@@ -1,0 +1,2 @@
+# aaz
+Atomic Azure CLI
