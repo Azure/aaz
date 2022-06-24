@@ -1,6 +1,6 @@
 # [Command] _sentinel bookmark relation update_
 
-Update the bookmark relation.
+Creates the bookmark relation.
 
 ## Versions
 
