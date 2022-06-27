@@ -1,6 +1,6 @@
 # [Command] _sentinel bookmark relation show_
 
-Gets a bookmark relation.
+Get a bookmark relation.
 
 ## Versions
 

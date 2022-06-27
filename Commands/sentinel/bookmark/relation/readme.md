@@ -5,16 +5,16 @@ Manage bookmark relation with sentinel.
 ## Commands
 
 - [create](/Commands/sentinel/bookmark/relation/_create.md)
-: Creates the bookmark relation.
+: Create the bookmark relation.
 
 - [delete](/Commands/sentinel/bookmark/relation/_delete.md)
 : Delete the bookmark relation.
 
 - [list](/Commands/sentinel/bookmark/relation/_list.md)
-: Gets all bookmark relations.
+: Get all bookmark relations.
 
 - [show](/Commands/sentinel/bookmark/relation/_show.md)
-: Gets a bookmark relation.
+: Get a bookmark relation.
 
 - [update](/Commands/sentinel/bookmark/relation/_update.md)
-: Creates the bookmark relation.
+: Update the bookmark relation.

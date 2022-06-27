@@ -13,7 +13,7 @@ Manage threat intelligence indicator with sentinel.
 : Append tags to a threat intelligence indicator.
 
 - [create](/Commands/sentinel/threat-indicator/_create.md)
-: Create a threat Intelligence indicator.
+: Create a new threat intelligence indicator.
 
 - [delete](/Commands/sentinel/threat-indicator/_delete.md)
 : Delete a threat intelligence indicator.
@@ -31,4 +31,7 @@ Manage threat intelligence indicator with sentinel.
 : View a threat intelligence indicator by name.
 
 - [update](/Commands/sentinel/threat-indicator/_update.md)
+: Update a threat Intelligence indicator.
+
+- [update2](/Commands/sentinel/threat-indicator/_update2.md)
 : Update a threat Intelligence indicator.
