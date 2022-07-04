@@ -4,9 +4,6 @@ Manage data connector with sentinel.
 
 ## Commands
 
-- [check-requirement](/Commands/sentinel/data-connector/_check-requirement.md)
-: Get requirements state for a data connector type.
-
 - [connect](/Commands/sentinel/data-connector/_connect.md)
 : Connect a data connector.
 
