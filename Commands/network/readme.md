@@ -9,3 +9,6 @@ Manage Azure Network resources.
 
 - [security-partner-provider](/Commands/network/security-partner-provider/readme.md)
 : Manage Azure security partner provider.
+
+- [vhub](/Commands/network/vhub/readme.md)
+: Manage virtual hubs.
