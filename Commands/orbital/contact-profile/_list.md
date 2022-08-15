@@ -1,6 +1,6 @@
 # [Command] _orbital contact-profile list_
 
-Returns list of contact profiles by Subscription.
+List contact profiles.
 
 ## Versions
 
@@ -8,3 +8,15 @@ Returns list of contact profiles by Subscription.
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.orbital/contactprofiles 2022-03-01 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.orbital/contactprofiles 2022-03-01 -->
+
+#### examples
+
+- List Contact Profiles by subscription
+    ```bash
+        orbital contact-profile list
+    ```
+
+- List Contact Profiles by resource group
+    ```bash
+        orbital contact-profile list -g <resource-group>
+    ```

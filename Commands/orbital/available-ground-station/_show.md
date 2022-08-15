@@ -1,6 +1,6 @@
 # [Command] _orbital available-ground-station show_
 
-Gets the specified available ground station.
+Get the specified available ground station.
 
 ## Versions
 

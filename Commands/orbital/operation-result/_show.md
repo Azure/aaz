@@ -1,6 +1,6 @@
 # [Command] _orbital operation-result show_
 
-Returns operation results.
+Return operation results.
 
 ## Versions
 

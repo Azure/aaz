@@ -5,16 +5,16 @@ At the scheduled time, the selected ground station will contact the spacecraft a
 ## Commands
 
 - [create](/Commands/orbital/spacecraft/contact/_create.md)
-: Creates a contact.
+: Create a contact.
 
 - [delete](/Commands/orbital/spacecraft/contact/_delete.md)
-: Deletes a specified contact.
+: Delete a specified contact.
 
 - [list](/Commands/orbital/spacecraft/contact/_list.md)
-: Returns list of contacts by spacecraftName.
+: List contacts by spacecraft.
 
 - [show](/Commands/orbital/spacecraft/contact/_show.md)
-: Gets the specified contact in a specified resource group.
+: Get the specified contact in a specified resource group.
 
 - [update](/Commands/orbital/spacecraft/contact/_update.md)
 : Creates a contact.
