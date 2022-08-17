@@ -7,6 +7,9 @@ Manage Azure Network resources.
 - [asg](/Commands/network/asg/readme.md)
 : Manage application security groups (ASGs).
 
+- [route-filter](/Commands/network/route-filter/readme.md)
+: Manage route filters.
+
 - [security-partner-provider](/Commands/network/security-partner-provider/readme.md)
 : Manage Azure security partner provider.
 
