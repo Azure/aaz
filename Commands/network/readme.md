@@ -18,3 +18,6 @@ Manage Azure Network resources.
 
 - [vhub](/Commands/network/vhub/readme.md)
 : Manage virtual hubs.
+
+- [virtual-appliance](/Commands/network/virtual-appliance/readme.md)
+: Manage Azure Network Virtual Appliance.
