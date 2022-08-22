@@ -14,6 +14,9 @@
 - [network](/Commands/network/readme.md)
 : Manage Azure Network resources.
 
+- [network-function](/Commands/network-function/readme.md)
+: Microsoft Azure PowerShell: NetworkFunction cmdlets
+
 - [orbital](/Commands/orbital/readme.md)
 : Azure Orbital Ground Station as-a-Service (GSaaS).
 
