@@ -10,6 +10,9 @@ Manage Azure Network resources.
 - [route-filter](/Commands/network/route-filter/readme.md)
 : Manage route filters.
 
+- [route-table](/Commands/network/route-table/readme.md)
+: Manage route tables.
+
 - [security-partner-provider](/Commands/network/security-partner-provider/readme.md)
 : Manage Azure security partner provider.
 
