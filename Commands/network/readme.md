@@ -7,6 +7,9 @@ Manage Azure Network resources.
 - [asg](/Commands/network/asg/readme.md)
 : Manage application security groups (ASGs).
 
+- [local-gateway](/Commands/network/local-gateway/readme.md)
+: Manage local gateways.
+
 - [route-filter](/Commands/network/route-filter/readme.md)
 : Manage route filters.
 
