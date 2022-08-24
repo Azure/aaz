@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.orbital/availablegroundstations" version="2022-03-01" swagger="mgmt-plane/orbital/ResourceProviders/Microsoft.Orbital/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk9yYml0YWwvYXZhaWxhYmxlR3JvdW5kU3RhdGlvbnM=/V/MjAyMi0wMy0wMQ=="/>
+  <commandGroup name="orbital available-ground-station">
+    <command name="list" version="2022-03-01">
+      <resource id="/subscriptions/{}/providers/microsoft.orbital/availablegroundstations" version="2022-03-01" swagger="mgmt-plane/orbital/ResourceProviders/Microsoft.Orbital/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk9yYml0YWwvYXZhaWxhYmxlR3JvdW5kU3RhdGlvbnM=/V/MjAyMi0wMy0wMQ=="/>
+      <argGroup name="">
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True"/>
+        <arg type="string" var="$Query.capability" options="capability" required="True">
+          <help short="Ground Station Capability."/>
+          <default value="&quot;EarthObservation&quot;"/>
+          <enum>
+            <item name="Communication" value="&quot;Communication&quot;"/>
+            <item name="EarthObservation" value="&quot;EarthObservation&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <operation operationId="AvailableGroundStations_ListByCapability">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Orbital/availableGroundStations">
+          <request method="get">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <param type="string" name="capability" arg="$Query.capability" required="True">
+                <default value="&quot;EarthObservation&quot;"/>
+                <enum>
+                  <item value="&quot;Communication&quot;"/>
+                  <item value="&quot;EarthObservation&quot;"/>
+                </enum>
+              </param>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-03-01&quot;"/>
+                <enum>
+                  <item value="&quot;2020-09-01-preview&quot;"/>
+                  <item value="&quot;2021-04-04-preview&quot;"/>
+                  <item value="&quot;2022-03-01&quot;"/>
+                </enum>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="string" name="id"/>
+                      <prop type="string" name="location"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="float" name="altitudeMeters"/>
+                        <prop type="string" name="city"/>
+                        <prop type="float" name="latitudeDegrees"/>
+                        <prop type="float" name="longitudeDegrees"/>
+                        <prop type="string" name="providerName"/>
+                        <prop type="string" name="releaseMode">
+                          <enum>
+                            <item value="&quot;GA&quot;"/>
+                            <item value="&quot;Preview&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
