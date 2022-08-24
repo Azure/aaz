@@ -19,3 +19,6 @@
 
 - [sentinel](/Commands/sentinel/readme.md)
 : Manage Microsoft Sentinel.
+
+- [sql](/Commands/sql/readme.md)
+: Sql
