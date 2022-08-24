@@ -1,6 +1,6 @@
 # [Command] _sql mi link delete_
 
-Drops a distributed availability group between Sql On-Prem and Sql Managed Instance.
+Drop an Instance link between Sql On-Prem and Sql Managed Instance.
 
 ## Versions
 
