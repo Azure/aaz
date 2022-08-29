@@ -1,6 +1,6 @@
 # [Command] _sql mi partner-cert update_
 
-Uploads a server trust certificate from box to Sql Managed Instance.
+Upload a server trust certificate from box to Sql Managed Instance.
 
 ## Versions
 

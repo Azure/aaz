@@ -21,4 +21,4 @@
 : Manage Microsoft Sentinel.
 
 - [sql](/Commands/sql/readme.md)
-: Sql
+: Manage Azure SQL Databases and Data Warehouses.

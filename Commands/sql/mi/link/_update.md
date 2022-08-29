@@ -1,6 +1,6 @@
 # [Command] _sql mi link update_
 
-Update the Instance link between Sql On-Prem and Sql Managed Instance.
+Update a distributed availability group between Sql On-Prem and Sql Managed Instance.
 
 ## Versions
 

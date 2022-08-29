@@ -1,6 +1,6 @@
 # [Command] _sql mi partner-cert show_
 
-Gets a server trust certificate that was uploaded from box to Sql Managed Instance.
+Get a server trust certificate that was uploaded from box to Sql Managed Instance.
 
 ## Versions
 
