@@ -8,3 +8,10 @@ Return list of Azure Traffic Collectors in a subscription
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.networkfunction/azuretrafficcollectors 2022-08-01 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkfunction/azuretrafficcollectors 2022-08-01 -->
+
+#### examples
+
+- Return list of azure traffic collectors in a subscription
+    ```bash
+        network-function traffic-collector list --resource-group test-rg
+    ```
