@@ -1,6 +1,6 @@
 # [Command] _sql mi endpoint-cert show_
 
-Gets a certificate used on the endpoint with the given id.
+Get a certificate used on the endpoint with the given id.
 
 ## Versions
 

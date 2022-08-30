@@ -5,16 +5,16 @@ Instance link management commands.
 ## Commands
 
 - [create](/Commands/sql/mi/link/_create.md)
-: Create an Instace link between Sql On-Prem and Sql Managed Instance.
+: Create a distributed availability group between Sql On-Prem and Sql Managed Instance.
 
 - [delete](/Commands/sql/mi/link/_delete.md)
-: Drop an Instance link between Sql On-Prem and Sql Managed Instance.
+: Drop a distributed availability group between Sql On-Prem and Sql Managed Instance.
 
 - [list](/Commands/sql/mi/link/_list.md)
-: Get a list of instance links on a given SQL Managed Instance.
+: Get a list of a distributed availability groups in instance.
 
 - [show](/Commands/sql/mi/link/_show.md)
-: Get an Instance link.
+: Get a distributed availability group info.
 
 - [update](/Commands/sql/mi/link/_update.md)
-: Update the Instance link between Sql On-Prem and Sql Managed Instance.
+: Update a distributed availability group between Sql On-Prem and Sql Managed Instance.

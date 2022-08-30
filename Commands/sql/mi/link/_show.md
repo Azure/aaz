@@ -1,6 +1,6 @@
 # [Command] _sql mi link show_
 
-Get an Instance link.
+Get a distributed availability group info.
 
 ## Versions
 

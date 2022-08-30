@@ -1,6 +1,6 @@
 # [Command] _sql mi link list_
 
-Get a list of instance links on a given SQL Managed Instance.
+Get a list of a distributed availability groups in instance.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _sql mi partner-cert delete_
 
-Deletes a server trust certificate that was uploaded from box to Sql Managed Instance.
+Delete a server trust certificate that was uploaded from box to Sql Managed Instance.
 
 ## Versions
 

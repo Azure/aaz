@@ -1,6 +1,6 @@
 # [Command] _sql mi partner-cert list_
 
-Gets a list of server trust certificates that were uploaded from box to the given Sql Managed Instance.
+Get a list of server trust certificates that were uploaded from box to the given Sql Managed Instance.
 
 ## Versions
 

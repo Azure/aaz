@@ -1,6 +1,6 @@
 # [Command] _sql mi link create_
 
-Create an Instace link between Sql On-Prem and Sql Managed Instance.
+Create a distributed availability group between Sql On-Prem and Sql Managed Instance.
 
 ## Versions
 
