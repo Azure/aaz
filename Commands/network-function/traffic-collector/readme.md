@@ -1,25 +1,25 @@
 # [Group] _network-function traffic-collector_
 
-Creates or updates a Azure Traffic Collector resource
+Manage Azure Traffic Collector resources
 
 ## Subgroups
 
 - [collector-policy](/Commands/network-function/traffic-collector/collector-policy/readme.md)
-: Creates or updates a Collector Policy of Azure Traffic Collector resource
+: Manage Collector Policy for Azure Traffic Collector resource
 
 ## Commands
 
 - [create](/Commands/network-function/traffic-collector/_create.md)
-: Creates a Azure Traffic Collector resource
+: Create an Azure Traffic Collector resource
 
 - [delete](/Commands/network-function/traffic-collector/_delete.md)
-: Deletes a specified Azure Traffic Collector resource.
+: Delete a specified Azure Traffic Collector resource
 
 - [list](/Commands/network-function/traffic-collector/_list.md)
-: Return list of Azure Traffic Collectors in a subscription
+: Return a list of Azure Traffic Collectors
 
 - [show](/Commands/network-function/traffic-collector/_show.md)
-: Gets the specified Azure Traffic Collector in a specified resource group
+: Get the specified Azure Traffic Collector resource
 
 - [update](/Commands/network-function/traffic-collector/_update.md)
-: Updates a Azure Traffic Collector resource
+: Update an Azure Traffic Collector resource

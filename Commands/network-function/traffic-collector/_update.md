@@ -1,6 +1,6 @@
 # [Command] _network-function traffic-collector update_
 
-Updates a Azure Traffic Collector resource
+Update an Azure Traffic Collector resource
 
 ## Versions
 
@@ -10,7 +10,7 @@ Updates a Azure Traffic Collector resource
 
 #### examples
 
-- Updates a azure traffic collector resource
+- Update an azure traffic collector resource
     ```bash
-        network-function traffic-collector update --resource-group test-rg --name testatc --tags key=value
+        network-function traffic-collector update --resource-group rg1 --traffic-collector-name atc1 --tags key=value
     ```

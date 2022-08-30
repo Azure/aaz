@@ -1,6 +1,6 @@
 # [Command] _network-function traffic-collector collector-policy delete_
 
-Deletes a specified Collector Policy resource.
+Delete a specified Collector Policy
 
 ## Versions
 
@@ -10,7 +10,7 @@ Deletes a specified Collector Policy resource.
 
 #### examples
 
-- Deletes a specified collector policy resource
+- Delete a specified collector policy
     ```bash
-        network-function traffic-collector collector-policy delete --resource-group test-rg --azure-traffic-collector-name testatc --name test-cp
+        network-function traffic-collector collector-policy delete --resource-group rg1 --traffic-collector-name atc1 --name cp1
     ```

@@ -1,6 +1,6 @@
 # [Command] _network-function traffic-collector collector-policy create_
 
-Creates or updates a Collector Policy resource
+Create a Collector Policy
 
 ## Versions
 
@@ -10,7 +10,7 @@ Creates or updates a Collector Policy resource
 
 #### examples
 
-- Creates or updates a collector policy resource
+- Create a new collector policy
     ```bash
-        network-function traffic-collector collector-policy create --resource-group test-rg --azure-traffic-collector-name testatc --name testcp --location eastus --ingestion-policy {ingestion-sources:[{resource-id:/subscriptions/<subscription_id>/resourceGroups/<resource_group>/providers/Microsoft.Network/expressRouteCircuits/<cp_name>,source-type:Resource}],ingestion-type:IPFIX}
+        network-function traffic-collector collector-policy create --resource-group rg1 --traffic-collector-name atc1 --name cp1 --location eastus --ingestion-policy {ingestion-sources:[{resource-id:/subscriptions/<subscription_id>/resourceGroups/<resource_group>/providers/Microsoft.Network/expressRouteCircuits/<cp_name>,source-type:Resource}],ingestion-type:IPFIX}
     ```

@@ -1,6 +1,6 @@
 # [Command] _network-function traffic-collector show_
 
-Gets the specified Azure Traffic Collector in a specified resource group
+Get the specified Azure Traffic Collector resource
 
 ## Versions
 
@@ -10,7 +10,7 @@ Gets the specified Azure Traffic Collector in a specified resource group
 
 #### examples
 
-- Gets the specified azure traffic collector in a specified resource group
+- Get the specified azure traffic collector in a resource group
     ```bash
-        network-function traffic-collector show --resource-group test-rg --name testatc
+        network-function traffic-collector show --resource-group rg1 --traffic-collector-name atc1
     ```

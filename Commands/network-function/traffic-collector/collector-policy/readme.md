@@ -1,20 +1,20 @@
 # [Group] _network-function traffic-collector collector-policy_
 
-Creates or updates a Collector Policy of Azure Traffic Collector resource
+Manage Collector Policy for Azure Traffic Collector resource
 
 ## Commands
 
 - [create](/Commands/network-function/traffic-collector/collector-policy/_create.md)
-: Creates or updates a Collector Policy resource
+: Create a Collector Policy
 
 - [delete](/Commands/network-function/traffic-collector/collector-policy/_delete.md)
-: Deletes a specified Collector Policy resource.
+: Delete a specified Collector Policy
 
 - [list](/Commands/network-function/traffic-collector/collector-policy/_list.md)
-: Return list of Collector policies in a Azure Traffic Collector
+: List Collector policies
 
 - [show](/Commands/network-function/traffic-collector/collector-policy/_show.md)
-: Gets the collector policy in a specified Traffic Collector
+: Get the specified Collector Policy
 
 - [update](/Commands/network-function/traffic-collector/collector-policy/_update.md)
-: Creates or updates a Collector Policy resource
+: Update a specified Collector Policy

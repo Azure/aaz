@@ -1,6 +1,6 @@
 # [Command] _network-function traffic-collector collector-policy update_
 
-Creates or updates a Collector Policy resource
+Update a specified Collector Policy
 
 ## Versions
 
@@ -10,7 +10,7 @@ Creates or updates a Collector Policy resource
 
 #### examples
 
-- Creates or updates a collector policy resource
+- Update a specified collector policy
     ```bash
-        network-function traffic-collector collector-policy update --resource-group test-rg --azure-traffic-collector-name test-atc --name test-cp --location eastus --emission-policies [0]={emission-destinations:[{destination-type:AzureMonitor}],emission-type:IPFIX}
+        network-function traffic-collector collector-policy update --resource-group rg1 --traffic-collector-name atc1 --name cp1 --location eastus --emission-policies [0]={emission-destinations:[{destination-type:AzureMonitor}],emission-type:IPFIX}
     ```

@@ -1,6 +1,6 @@
 # [Command] _network-function traffic-collector collector-policy list_
 
-Return list of Collector policies in a Azure Traffic Collector
+List Collector policies
 
 ## Versions
 
@@ -10,7 +10,7 @@ Return list of Collector policies in a Azure Traffic Collector
 
 #### examples
 
-- Return list of collector policies in a azure traffic collector
+- Return a list of collector policies by resource group and traffic-collector name
     ```bash
-        az network-function traffic-collector collector-policy show --resource-group test-rg --azure-traffic-collector-name testatc
+        network-function traffic-collector collector-policy list --resource-group rg1 --traffic-collector-name atc1
     ```

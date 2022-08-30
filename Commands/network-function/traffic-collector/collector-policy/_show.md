@@ -1,6 +1,6 @@
 # [Command] _network-function traffic-collector collector-policy show_
 
-Gets the collector policy in a specified Traffic Collector
+Get the specified Collector Policy
 
 ## Versions
 
@@ -10,7 +10,7 @@ Gets the collector policy in a specified Traffic Collector
 
 #### examples
 
-- Gets the collector policy in a specified azure traffic collector
+- Get the specified collector policy
     ```bash
-        network-function traffic-collector collector-policy show --resource-group test-rg --azure-traffic-collector-name testatc --name test-cp
+        network-function traffic-collector collector-policy show --resource-group rg1 --traffic-collector-name atc1 --name cp1
     ```

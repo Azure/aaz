@@ -1,6 +1,6 @@
 # [Command] _network-function traffic-collector create_
 
-Creates a Azure Traffic Collector resource
+Create an Azure Traffic Collector resource
 
 ## Versions
 
@@ -10,7 +10,7 @@ Creates a Azure Traffic Collector resource
 
 #### examples
 
-- Create a new traffic collector
+- Create a new azure traffic collector resource
     ```bash
-        network-function traffic-collector create --resource-group test-rg --name testatc
+        network-function traffic-collector create --resource-group rg1 --traffic-collector-name atc1 --location eastus
     ```

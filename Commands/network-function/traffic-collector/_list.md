@@ -1,6 +1,6 @@
 # [Command] _network-function traffic-collector list_
 
-Return list of Azure Traffic Collectors in a subscription
+Return a list of Azure Traffic Collectors
 
 ## Versions
 
@@ -11,7 +11,7 @@ Return list of Azure Traffic Collectors in a subscription
 
 #### examples
 
-- Return list of azure traffic collectors in a subscription
+- Return a list of azure traffic collectors in a resource group
     ```bash
-        network-function traffic-collector list --resource-group test-rg
+        network-function traffic-collector list --resource-group rg1
     ```

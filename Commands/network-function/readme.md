@@ -1,8 +1,8 @@
 # [Group] _network-function_
 
-Microsoft Azure PowerShell: NetworkFunction cmdlets
+Manage network function
 
 ## Subgroups
 
 - [traffic-collector](/Commands/network-function/traffic-collector/readme.md)
-: Creates or updates a Azure Traffic Collector resource
+: Manage Azure Traffic Collector resources

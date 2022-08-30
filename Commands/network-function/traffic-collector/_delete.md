@@ -1,6 +1,6 @@
 # [Command] _network-function traffic-collector delete_
 
-Deletes a specified Azure Traffic Collector resource.
+Delete a specified Azure Traffic Collector resource
 
 ## Versions
 
@@ -10,7 +10,7 @@ Deletes a specified Azure Traffic Collector resource.
 
 #### examples
 
-- Deletes a specified azure traffic collector resource
+- Delete a specified azure traffic collector resource
     ```bash
-        network-function traffic-collector delete --resource-group test-rg --name testatc
+        network-function traffic-collector delete --resource-group rg1 --traffic-collector-name atc1
     ```
