@@ -19,6 +19,9 @@ Manage Azure Network resources.
 - [route-table](/Commands/network/route-table/readme.md)
 : Manage route tables.
 
+- [routeserver](/Commands/network/routeserver/readme.md)
+: Manage the route server.
+
 - [security-partner-provider](/Commands/network/security-partner-provider/readme.md)
 : Manage Azure security partner provider.
 
