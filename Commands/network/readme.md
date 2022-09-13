@@ -19,11 +19,17 @@ Manage Azure Network resources.
 - [route-table](/Commands/network/route-table/readme.md)
 : Manage route tables.
 
+- [routeserver](/Commands/network/routeserver/readme.md)
+: Manage the route server.
+
 - [security-partner-provider](/Commands/network/security-partner-provider/readme.md)
 : Manage Azure security partner provider.
 
 - [service-endpoint](/Commands/network/service-endpoint/readme.md)
 : Manage policies related to service endpoints.
+
+- [traffic-manager](/Commands/network/traffic-manager/readme.md)
+: Manage the routing of incoming traffic.
 
 - [vhub](/Commands/network/vhub/readme.md)
 : Manage virtual hubs.
