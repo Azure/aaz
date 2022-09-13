@@ -28,6 +28,9 @@ Manage Azure Network resources.
 - [service-endpoint](/Commands/network/service-endpoint/readme.md)
 : Manage policies related to service endpoints.
 
+- [traffic-manager](/Commands/network/traffic-manager/readme.md)
+: Manage the routing of incoming traffic.
+
 - [vhub](/Commands/network/vhub/readme.md)
 : Manage virtual hubs.
 
