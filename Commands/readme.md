@@ -14,5 +14,14 @@
 - [network](/Commands/network/readme.md)
 : Manage Azure Network resources.
 
+- [network-function](/Commands/network-function/readme.md)
+: Manage network function
+
+- [orbital](/Commands/orbital/readme.md)
+: Azure Orbital Ground Station as-a-Service (GSaaS).
+
 - [sentinel](/Commands/sentinel/readme.md)
 : Manage Microsoft Sentinel.
+
+- [sql](/Commands/sql/readme.md)
+: Manage Azure SQL Databases and Data Warehouses.
