@@ -9,3 +9,6 @@ Manage Azure Network resources.
 
 - [security-partner-provider](/Commands/network/security-partner-provider/readme.md)
 : Manage Azure security partner provider.
+
+- [traffic-manager](/Commands/network/traffic-manager/readme.md)
+: Manage the routing of incoming traffic.
