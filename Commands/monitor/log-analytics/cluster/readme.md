@@ -8,7 +8,7 @@ Manage Azure log analytics cluster.
 : Create a cluster instance.
 
 - [delete](/Commands/monitor/log-analytics/cluster/_delete.md)
-: Deletes a cluster instance.
+: Delete a cluster instance.
 
 - [list](/Commands/monitor/log-analytics/cluster/_list.md)
 : List all cluster instances in a resource group or in current subscription.
@@ -17,4 +17,4 @@ Manage Azure log analytics cluster.
 : Show the properties of a cluster instance.
 
 - [update](/Commands/monitor/log-analytics/cluster/_update.md)
-: Create or update a Log Analytics cluster.
+: Update a cluster instance.

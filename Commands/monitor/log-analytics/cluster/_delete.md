@@ -1,6 +1,6 @@
 # [Command] _monitor log-analytics cluster delete_
 
-Deletes a cluster instance.
+Delete a cluster instance.
 
 ## Versions
 

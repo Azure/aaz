@@ -36,7 +36,7 @@
                                     "required": true,
                                     "idPart": "name",
                                     "help": {
-                                        "short": "The name of the Log Analytics cluster."
+                                        "short": "Name of the Log Analytics Cluster."
                                     }
                                 },
                                 {
@@ -135,7 +135,7 @@
                                                             }
                                                         },
                                                         {
-                                                            "type": "object",
+                                                            "type": "IdentityObject",
                                                             "name": "identity",
                                                             "props": [
                                                                 {
@@ -208,6 +208,7 @@
                                                                     "type": "array<object>",
                                                                     "name": "associatedWorkspaces",
                                                                     "item": {
+                                                                        "readOnly": true,
                                                                         "type": "object",
                                                                         "props": [
                                                                             {
@@ -440,7 +441,7 @@
                                     "required": true,
                                     "idPart": "name",
                                     "help": {
-                                        "short": "The name of the Log Analytics cluster."
+                                        "short": "Name of the Log Analytics Cluster."
                                     }
                                 },
                                 {
@@ -605,6 +606,33 @@
                                     ],
                                     "required": true,
                                     "idPart": "subscription"
+                                },
+                                {
+                                    "type": "ResourceLocation",
+                                    "var": "$parameters.location",
+                                    "options": [
+                                        "l",
+                                        "location"
+                                    ],
+                                    "required": true,
+                                    "help": {
+                                        "short": "The geo-location where the resource lives"
+                                    }
+                                },
+                                {
+                                    "type": "object",
+                                    "var": "$parameters.tags",
+                                    "options": [
+                                        "tags"
+                                    ],
+                                    "help": {
+                                        "short": "Resource tags."
+                                    },
+                                    "additionalProps": {
+                                        "item": {
+                                            "type": "string"
+                                        }
+                                    }
                                 }
                             ]
                         },
@@ -621,6 +649,9 @@
                                     "help": {
                                         "short": "Type of managed service identity."
                                     },
+                                    "default": {
+                                        "value": "SystemAssigned"
+                                    },
                                     "enum": {
                                         "items": [
                                             {
@@ -636,6 +667,25 @@
                                                 "value": "UserAssigned"
                                             }
                                         ]
+                                    }
+                                },
+                                {
+                                    "type": "object",
+                                    "var": "$parameters.identity.userAssignedIdentities",
+                                    "options": [
+                                        "user-assigned"
+                                    ],
+                                    "group": "Identity",
+                                    "help": {
+                                        "short": "The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
+                                    },
+                                    "additionalProps": {
+                                        "item": {
+                                            "blank": {
+                                                "value": {}
+                                            },
+                                            "type": "object"
+                                        }
                                     }
                                 }
                             ]
@@ -673,7 +723,7 @@
                                     ],
                                     "group": "Key Properties",
                                     "help": {
-                                        "short": "The Key Vault uri which holds the key associated with the Log Analytics cluster."
+                                        "short": "The Key Vault uri which holds they key associated with the Log Analytics cluster."
                                     }
                                 },
                                 {
@@ -692,19 +742,6 @@
                         {
                             "name": "Properties",
                             "args": [
-                                {
-                                    "type": "ResourceLocation",
-                                    "var": "$parameters.location",
-                                    "options": [
-                                        "l",
-                                        "location"
-                                    ],
-                                    "required": true,
-                                    "group": "Properties",
-                                    "help": {
-                                        "short": "The geo-location where the resource lives"
-                                    }
-                                },
                                 {
                                     "type": "string",
                                     "var": "$parameters.properties.billingType",
@@ -732,8 +769,9 @@
                                     "type": "boolean",
                                     "var": "$parameters.properties.isAvailabilityZonesEnabled",
                                     "options": [
-                                        "enable-availability-zones"
+                                        "is-availability-zones-enabled"
                                     ],
+                                    "hide": true,
                                     "group": "Properties",
                                     "help": {
                                         "short": "Sets whether the cluster will support availability zones. This can be set as true only in regions where Azure Data Explorer support Availability Zones. This Property can not be modified after cluster creation. Default value is 'true' if region supports Availability Zones."
@@ -743,27 +781,12 @@
                                     "type": "boolean",
                                     "var": "$parameters.properties.isDoubleEncryptionEnabled",
                                     "options": [
-                                        "enable-double-encryption"
+                                        "is-double-encryption-enabled"
                                     ],
+                                    "hide": true,
                                     "group": "Properties",
                                     "help": {
                                         "short": "Configures whether cluster will use double encryption. This Property can not be modified after cluster creation. Default value is 'true'"
-                                    }
-                                },
-                                {
-                                    "type": "object",
-                                    "var": "$parameters.tags",
-                                    "options": [
-                                        "tags"
-                                    ],
-                                    "group": "Properties",
-                                    "help": {
-                                        "short": "Resource tags."
-                                    },
-                                    "additionalProps": {
-                                        "item": {
-                                            "type": "string"
-                                        }
                                     }
                                 }
                             ]
@@ -811,6 +834,9 @@
                                     "group": "Sku",
                                     "help": {
                                         "short": "The name of the SKU."
+                                    },
+                                    "default": {
+                                        "value": "CapacityReservation"
                                     },
                                     "enum": {
                                         "items": [
@@ -893,7 +919,7 @@
                                                 "required": true,
                                                 "props": [
                                                     {
-                                                        "type": "object",
+                                                        "type": "IdentityObject",
                                                         "name": "identity",
                                                         "props": [
                                                             {
@@ -913,6 +939,16 @@
                                                                             "value": "UserAssigned"
                                                                         }
                                                                     ]
+                                                                }
+                                                            },
+                                                            {
+                                                                "type": "object",
+                                                                "name": "userAssignedIdentities",
+                                                                "arg": "$parameters.identity.userAssignedIdentities",
+                                                                "additionalProps": {
+                                                                    "item": {
+                                                                        "type": "object"
+                                                                    }
                                                                 }
                                                             }
                                                         ]
@@ -1057,7 +1093,7 @@
                                                             }
                                                         },
                                                         {
-                                                            "type": "object",
+                                                            "type": "IdentityObject",
                                                             "name": "identity",
                                                             "props": [
                                                                 {
@@ -1130,6 +1166,7 @@
                                                                     "type": "array<object>",
                                                                     "name": "associatedWorkspaces",
                                                                     "item": {
+                                                                        "readOnly": true,
                                                                         "type": "object",
                                                                         "props": [
                                                                             {
@@ -1367,7 +1404,7 @@
                                     "required": true,
                                     "idPart": "name",
                                     "help": {
-                                        "short": "The name of the Log Analytics cluster."
+                                        "short": "Name of the Log Analytics Cluster."
                                     }
                                 },
                                 {
@@ -1388,6 +1425,23 @@
                                     ],
                                     "required": true,
                                     "idPart": "subscription"
+                                },
+                                {
+                                    "nullable": true,
+                                    "type": "object",
+                                    "var": "$parameters.tags",
+                                    "options": [
+                                        "tags"
+                                    ],
+                                    "help": {
+                                        "short": "Resource tags."
+                                    },
+                                    "additionalProps": {
+                                        "item": {
+                                            "nullable": true,
+                                            "type": "string"
+                                        }
+                                    }
                                 }
                             ]
                         },
@@ -1400,7 +1454,6 @@
                                     "options": [
                                         "identity-type"
                                     ],
-                                    "hide": true,
                                     "group": "Identity",
                                     "help": {
                                         "short": "Type of managed service identity."
@@ -1420,6 +1473,27 @@
                                                 "value": "UserAssigned"
                                             }
                                         ]
+                                    }
+                                },
+                                {
+                                    "nullable": true,
+                                    "type": "object",
+                                    "var": "$parameters.identity.userAssignedIdentities",
+                                    "options": [
+                                        "user-assigned"
+                                    ],
+                                    "group": "Identity",
+                                    "help": {
+                                        "short": "The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."
+                                    },
+                                    "additionalProps": {
+                                        "item": {
+                                            "nullable": true,
+                                            "blank": {
+                                                "value": {}
+                                            },
+                                            "type": "object"
+                                        }
                                     }
                                 }
                             ]
@@ -1460,7 +1534,7 @@
                                     ],
                                     "group": "Key Properties",
                                     "help": {
-                                        "short": "The Key Vault uri which holds the key associated with the Log Analytics cluster."
+                                        "short": "The Key Vault uri which holds they key associated with the Log Analytics cluster."
                                     }
                                 },
                                 {
@@ -1480,19 +1554,6 @@
                         {
                             "name": "Properties",
                             "args": [
-                                {
-                                    "type": "ResourceLocation",
-                                    "var": "$parameters.location",
-                                    "options": [
-                                        "l",
-                                        "location"
-                                    ],
-                                    "hide": true,
-                                    "group": "Properties",
-                                    "help": {
-                                        "short": "The geo-location where the resource lives"
-                                    }
-                                },
                                 {
                                     "nullable": true,
                                     "type": "string",
@@ -1522,30 +1583,12 @@
                                     "type": "boolean",
                                     "var": "$parameters.properties.isAvailabilityZonesEnabled",
                                     "options": [
-                                        "enable-availability-zones"
+                                        "is-availability-zones-enabled"
                                     ],
                                     "hide": true,
                                     "group": "Properties",
                                     "help": {
                                         "short": "Sets whether the cluster will support availability zones. This can be set as true only in regions where Azure Data Explorer support Availability Zones. This Property can not be modified after cluster creation. Default value is 'true' if region supports Availability Zones."
-                                    }
-                                },
-                                {
-                                    "nullable": true,
-                                    "type": "object",
-                                    "var": "$parameters.tags",
-                                    "options": [
-                                        "tags"
-                                    ],
-                                    "group": "Properties",
-                                    "help": {
-                                        "short": "Resource tags."
-                                    },
-                                    "additionalProps": {
-                                        "item": {
-                                            "nullable": true,
-                                            "type": "string"
-                                        }
                                     }
                                 }
                             ]
@@ -1683,7 +1726,7 @@
                                                             }
                                                         },
                                                         {
-                                                            "type": "object",
+                                                            "type": "IdentityObject",
                                                             "name": "identity",
                                                             "props": [
                                                                 {
@@ -1756,6 +1799,7 @@
                                                                     "type": "array<object>",
                                                                     "name": "associatedWorkspaces",
                                                                     "item": {
+                                                                        "readOnly": true,
                                                                         "type": "object",
                                                                         "props": [
                                                                             {
@@ -1965,7 +2009,7 @@
                                         "required": true,
                                         "props": [
                                             {
-                                                "type": "object",
+                                                "type": "IdentityObject",
                                                 "name": "identity",
                                                 "props": [
                                                     {
@@ -1986,14 +2030,18 @@
                                                                 }
                                                             ]
                                                         }
+                                                    },
+                                                    {
+                                                        "type": "object",
+                                                        "name": "userAssignedIdentities",
+                                                        "arg": "$parameters.identity.userAssignedIdentities",
+                                                        "additionalProps": {
+                                                            "item": {
+                                                                "type": "object"
+                                                            }
+                                                        }
                                                     }
                                                 ]
-                                            },
-                                            {
-                                                "type": "ResourceLocation",
-                                                "name": "location",
-                                                "arg": "$parameters.location",
-                                                "required": true
                                             },
                                             {
                                                 "type": "object",

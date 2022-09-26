@@ -9,3 +9,6 @@ Manage Azure log analytics.
 
 - [query-pack](/Commands/monitor/log-analytics/query-pack/readme.md)
 : Manage Azure log analytics query pack.
+
+- [workspace](/Commands/monitor/log-analytics/workspace/readme.md)
+: Manage Azure log analytics workspace

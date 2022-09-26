@@ -1,6 +1,6 @@
 # [Command] _monitor log-analytics cluster update_
 
-Create or update a Log Analytics cluster.
+Update a cluster instance.
 
 Update a cluster instance.
 
