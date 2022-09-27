@@ -14,3 +14,14 @@ Migrate a Log Analytics table from support of the Data Collector API and Custom 
     ```bash
         monitor log-analytics workspace table migrate --resource-group MyResourceGroup --workspace-name MyWorkspace -n MyTable_CL
     ```
+
+### [2022-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5vcGVyYXRpb25hbGluc2lnaHRzL3dvcmtzcGFjZXMve30vdGFibGVzL3t9L21pZ3JhdGU=/2022-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.operationalinsights/workspaces/{}/tables/{}/migrate 2022-10-01 -->
+
+#### examples
+
+- Migrate a Log Analytics workspace table.
+    ```bash
+        monitor log-analytics workspace table migrate --resource-group MyResourceGroup --workspace-name MyWorkspace -n MyTable_CL
+    ```

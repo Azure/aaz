@@ -2,6 +2,11 @@
 
 Manage tables for log analytics workspace.
 
+## Subgroups
+
+- [search-job](/Commands/monitor/log-analytics/workspace/table/search-job/readme.md)
+: Manage tables for log analytics workspace search results table.
+
 ## Commands
 
 - [create](/Commands/monitor/log-analytics/workspace/table/_create.md)
