@@ -7,6 +7,9 @@ Manage Azure Network resources.
 - [asg](/Commands/network/asg/readme.md)
 : Manage application security groups (ASGs).
 
+- [ddos-protection](/Commands/network/ddos-protection/readme.md)
+: Manage DDoS Protection Plans.
+
 - [local-gateway](/Commands/network/local-gateway/readme.md)
 : Manage local gateways.
 
