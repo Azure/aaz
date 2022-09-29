@@ -4,6 +4,9 @@ Manage Azure Network resources.
 
 ## Subgroups
 
+- [application-gateway](/Commands/network/application-gateway/readme.md)
+: Manage application-level routing and load balancing services.
+
 - [asg](/Commands/network/asg/readme.md)
 : Manage application security groups (ASGs).
 
