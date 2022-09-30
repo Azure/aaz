@@ -17,6 +17,9 @@
 - [network-function](/Commands/network-function/readme.md)
 : Manage network function
 
+- [nginx](/Commands/nginx/readme.md)
+: Manage NGINX deployment resources
+
 - [orbital](/Commands/orbital/readme.md)
 : Azure Orbital Ground Station as-a-Service (GSaaS).
 
