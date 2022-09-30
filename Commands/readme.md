@@ -8,6 +8,9 @@
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
 
+- [elastic-san](/Commands/elastic-san/readme.md)
+: Manage Elastic SAN.
+
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
 
