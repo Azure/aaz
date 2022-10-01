@@ -23,6 +23,9 @@
 - [orbital](/Commands/orbital/readme.md)
 : Azure Orbital Ground Station as-a-Service (GSaaS).
 
+- [reservations](/Commands/reservations/readme.md)
+: Azure Reservations
+
 - [sentinel](/Commands/sentinel/readme.md)
 : Manage Microsoft Sentinel.
 

@@ -1,0 +1,178 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/providers/microsoft.capacity/reservationorders/{}/return" version="2022-03-01" swagger="mgmt-plane/reservations/ResourceProviders/Microsoft.Capacity/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2FwYWNpdHkvcmVzZXJ2YXRpb25PcmRlcnMve3Jlc2VydmF0aW9uT3JkZXJJZH0vcmV0dXJu/V/MjAyMi0wMy0wMQ=="/>
+  <commandGroup name="reservations reservation-order">
+    <command name="return" version="2022-03-01">
+      <resource id="/providers/microsoft.capacity/reservationorders/{}/return" version="2022-03-01" swagger="mgmt-plane/reservations/ResourceProviders/Microsoft.Capacity/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2FwYWNpdHkvcmVzZXJ2YXRpb25PcmRlcnMve3Jlc2VydmF0aW9uT3JkZXJJZH0vcmV0dXJu/V/MjAyMi0wMy0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.reservationOrderId" options="reservation-order-id" required="True">
+          <help short="Order Id of the reservation"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="object" var="$body.properties.reservationToReturn" options="reservation-to-return" group="Properties">
+          <help short="Reservation to return"/>
+          <arg type="integer32" var="$body.properties.reservationToReturn.quantity" options="quantity">
+            <help short="Quantity to be returned. Must be greater than zero."/>
+          </arg>
+          <arg type="string" var="$body.properties.reservationToReturn.reservationId" options="reservation-id">
+            <help short="Fully qualified identifier of the Reservation being returned"/>
+          </arg>
+        </arg>
+        <arg type="string" var="$body.properties.returnReason" options="return-reason" group="Properties">
+          <help short="The reason of returning the reservation"/>
+        </arg>
+        <arg type="string" var="$body.properties.scope" options="scope" group="Properties">
+          <help short="The scope of the refund, e.g. Reservation"/>
+        </arg>
+        <arg type="string" var="$body.properties.sessionId" options="session-id" group="Properties">
+          <help short="SessionId that was returned by CalculateRefund API."/>
+        </arg>
+      </argGroup>
+      <operation operationId="Return_Post">
+        <http path="/providers/Microsoft.Capacity/reservationOrders/{reservationOrderId}/return">
+          <request method="post">
+            <path>
+              <param type="string" name="reservationOrderId" arg="$Path.reservationOrderId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-03-01&quot;"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="object" name="properties">
+                    <prop type="object" name="reservationToReturn" arg="$body.properties.reservationToReturn">
+                      <prop type="integer32" name="quantity" arg="$body.properties.reservationToReturn.quantity"/>
+                      <prop type="string" name="reservationId" arg="$body.properties.reservationToReturn.reservationId"/>
+                    </prop>
+                    <prop type="string" name="returnReason" arg="$body.properties.returnReason"/>
+                    <prop type="string" name="scope" arg="$body.properties.scope"/>
+                    <prop type="string" name="sessionId" arg="$body.properties.sessionId"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+            </header>
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="id"/>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="billingInformation">
+                      <prop type="@Price_read" name="billingCurrencyProratedAmount"/>
+                      <prop type="@Price_read" name="billingCurrencyRemainingCommitmentAmount"/>
+                      <prop type="@Price_read" name="billingCurrencyTotalPaidAmount"/>
+                      <prop type="string" name="billingPlan">
+                        <enum>
+                          <item value="&quot;Monthly&quot;"/>
+                          <item value="&quot;Upfront&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="integer32" name="completedTransactions"/>
+                      <prop type="integer32" name="totalTransactions"/>
+                    </prop>
+                    <prop type="object" name="billingRefundAmount" cls="Price_read">
+                      <prop type="float64" name="amount"/>
+                      <prop type="string" name="currencyCode"/>
+                    </prop>
+                    <prop type="object" name="policyResult">
+                      <prop type="object" name="properties">
+                        <prop type="@Price_read" name="consumedRefundsTotal"/>
+                        <prop type="@Price_read" name="maxRefundLimit"/>
+                        <prop type="array<object>" name="policyErrors">
+                          <item type="object">
+                            <prop type="string" name="code">
+                              <enum>
+                                <item value="&quot;ActivateQuoteFailed&quot;"/>
+                                <item value="&quot;AppliedScopesNotAssociatedWithCommerceAccount&quot;"/>
+                                <item value="&quot;AppliedScopesSameAsExisting&quot;"/>
+                                <item value="&quot;AuthorizationFailed&quot;"/>
+                                <item value="&quot;BadRequest&quot;"/>
+                                <item value="&quot;BillingCustomerInputError&quot;"/>
+                                <item value="&quot;BillingError&quot;"/>
+                                <item value="&quot;BillingPaymentInstrumentHardError&quot;"/>
+                                <item value="&quot;BillingPaymentInstrumentSoftError&quot;"/>
+                                <item value="&quot;BillingScopeIdCannotBeChanged&quot;"/>
+                                <item value="&quot;BillingTransientError&quot;"/>
+                                <item value="&quot;CalculatePriceFailed&quot;"/>
+                                <item value="&quot;CapacityUpdateScopesFailed&quot;"/>
+                                <item value="&quot;ClientCertificateThumbprintNotSet&quot;"/>
+                                <item value="&quot;CreateQuoteFailed&quot;"/>
+                                <item value="&quot;Forbidden&quot;"/>
+                                <item value="&quot;FulfillmentConfigurationError&quot;"/>
+                                <item value="&quot;FulfillmentError&quot;"/>
+                                <item value="&quot;FulfillmentOutOfStockError&quot;"/>
+                                <item value="&quot;FulfillmentTransientError&quot;"/>
+                                <item value="&quot;HttpMethodNotSupported&quot;"/>
+                                <item value="&quot;InternalServerError&quot;"/>
+                                <item value="&quot;InvalidAccessToken&quot;"/>
+                                <item value="&quot;InvalidFulfillmentRequestParameters&quot;"/>
+                                <item value="&quot;InvalidHealthCheckType&quot;"/>
+                                <item value="&quot;InvalidLocationId&quot;"/>
+                                <item value="&quot;InvalidRefundQuantity&quot;"/>
+                                <item value="&quot;InvalidRequestContent&quot;"/>
+                                <item value="&quot;InvalidRequestUri&quot;"/>
+                                <item value="&quot;InvalidReservationId&quot;"/>
+                                <item value="&quot;InvalidReservationOrderId&quot;"/>
+                                <item value="&quot;InvalidSingleAppliedScopesCount&quot;"/>
+                                <item value="&quot;InvalidSubscriptionId&quot;"/>
+                                <item value="&quot;InvalidTenantId&quot;"/>
+                                <item value="&quot;MissingAppliedScopesForSingle&quot;"/>
+                                <item value="&quot;MissingTenantId&quot;"/>
+                                <item value="&quot;NoValidReservationsToReRate&quot;"/>
+                                <item value="&quot;NonsupportedAccountId&quot;"/>
+                                <item value="&quot;NotSpecified&quot;"/>
+                                <item value="&quot;NotSupportedCountry&quot;"/>
+                                <item value="&quot;OperationCannotBePerformedInCurrentState&quot;"/>
+                                <item value="&quot;OperationFailed&quot;"/>
+                                <item value="&quot;PatchValuesSameAsExisting&quot;"/>
+                                <item value="&quot;PaymentInstrumentNotFound&quot;"/>
+                                <item value="&quot;PurchaseError&quot;"/>
+                                <item value="&quot;ReRateOnlyAllowedForEA&quot;"/>
+                                <item value="&quot;RefundLimitExceeded&quot;"/>
+                                <item value="&quot;ReservationIdNotInReservationOrder&quot;"/>
+                                <item value="&quot;ReservationOrderCreationFailed&quot;"/>
+                                <item value="&quot;ReservationOrderIdAlreadyExists&quot;"/>
+                                <item value="&quot;ReservationOrderNotEnabled&quot;"/>
+                                <item value="&quot;ReservationOrderNotFound&quot;"/>
+                                <item value="&quot;RiskCheckFailed&quot;"/>
+                                <item value="&quot;RoleAssignmentCreationFailed&quot;"/>
+                                <item value="&quot;SelfServiceRefundNotSupported&quot;"/>
+                                <item value="&quot;ServerTimeout&quot;"/>
+                                <item value="&quot;UnauthenticatedRequestsThrottled&quot;"/>
+                                <item value="&quot;UnsupportedReservationTerm&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="message"/>
+                          </item>
+                        </prop>
+                      </prop>
+                    </prop>
+                    <prop type="@Price_read" name="pricingRefundAmount"/>
+                    <prop type="integer32" name="quantity"/>
+                    <prop type="string" name="sessionId"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
