@@ -9,6 +9,12 @@ reservations reservation
 
 ## Commands
 
+- [archive](/Commands/reservations/reservation/_archive.md)
+: Archiving a `Reservation` which is in cancelled/expired state and move it to `Archived` state.
+
+- [available-scope](/Commands/reservations/reservation/_available-scope.md)
+: Get Available Scopes for `Reservation`.
+
 - [list](/Commands/reservations/reservation/_list.md)
 : List `Reservations within a single `ReservationOrder`.
 
@@ -23,6 +29,9 @@ reservations reservation
 
 - [split](/Commands/reservations/reservation/_split.md)
 : Split a `Reservation` into two `Reservation`s with specified quantity distribution.
+
+- [unarchive](/Commands/reservations/reservation/_unarchive.md)
+: Unarchiving a `Reservation` moves it to the state it was before archiving.
 
 - [update](/Commands/reservations/reservation/_update.md)
 : Update the applied scopes, renewal, name, instance-flexibility of the `Reservation`.

@@ -29,7 +29,7 @@
                 <item name="Single" value="&quot;Single&quot;"/>
               </enum>
             </arg>
-            <arg type="array<string>" var="$body.properties.reservationsToPurchase[].properties.appliedScopes" options="applied-scopes" group="Properties">
+            <arg type="array<string>" var="$body.properties.reservationsToPurchase[].properties.appliedScopes" options="applied-scope" group="Properties">
               <help short="List of the subscriptions that the benefit will be applied. Do not specify if AppliedScopeType is Shared."/>
               <item type="string"/>
             </arg>
@@ -40,7 +40,7 @@
                 <item name="Upfront" value="&quot;Upfront&quot;"/>
               </enum>
             </arg>
-            <arg type="string" var="$body.properties.reservationsToPurchase[].properties.billingScopeId" options="billing-scope-id" group="Properties">
+            <arg type="string" var="$body.properties.reservationsToPurchase[].properties.billingScopeId" options="billing-scope" group="Properties">
               <help short="Subscription that will be charged for purchasing Reservation"/>
             </arg>
             <arg type="string" var="$body.properties.reservationsToPurchase[].properties.displayName" options="display-name" group="Properties">
@@ -53,15 +53,12 @@
               <help short="Setting this to true will automatically purchase a new reservation on the expiration date time."/>
               <default value="false"/>
             </arg>
-            <arg type="object" var="$body.properties.reservationsToPurchase[].properties.reservedResourceProperties" options="reserved-resource-properties" group="Properties">
-              <help short="Properties specific to each reserved resource type. Not required if not applicable."/>
-              <arg type="string" var="$body.properties.reservationsToPurchase[].properties.reservedResourceProperties.instanceFlexibility" options="instance-flexibility">
-                <help short="Turning this on will apply the reservation discount to other VMs in the same VM size group. Only specify for VirtualMachines reserved resource type."/>
-                <enum>
-                  <item name="Off" value="&quot;Off&quot;"/>
-                  <item name="On" value="&quot;On&quot;"/>
-                </enum>
-              </arg>
+            <arg type="string" var="$body.properties.reservationsToPurchase[].properties.reservedResourceProperties.instanceFlexibility" options="instance-flexibility" group="ReservedResourceProperties">
+              <help short="Turning this on will apply the reservation discount to other VMs in the same VM size group. Only specify for VirtualMachines reserved resource type."/>
+              <enum>
+                <item name="Off" value="&quot;Off&quot;"/>
+                <item name="On" value="&quot;On&quot;"/>
+              </enum>
             </arg>
             <arg type="string" var="$body.properties.reservationsToPurchase[].properties.reservedResourceType" options="reserved-resource-type" group="Properties">
               <help short="The type of the resource that is being reserved."/>
@@ -102,9 +99,7 @@
                 <item name="P5Y" value="&quot;P5Y&quot;"/>
               </enum>
             </arg>
-            <arg type="object" var="$body.properties.reservationsToPurchase[].sku" options="sku">
-              <arg type="string" var="$body.properties.reservationsToPurchase[].sku.name" options="name"/>
-            </arg>
+            <arg type="string" var="$body.properties.reservationsToPurchase[].sku.name" options="sku" group="Sku"/>
           </item>
         </arg>
       </argGroup>
@@ -152,7 +147,7 @@
                           <prop type="boolean" name="renew" arg="$body.properties.reservationsToPurchase[].properties.renew">
                             <default value="false"/>
                           </prop>
-                          <prop type="object" name="reservedResourceProperties" arg="$body.properties.reservationsToPurchase[].properties.reservedResourceProperties">
+                          <prop type="object" name="reservedResourceProperties">
                             <prop type="string" name="instanceFlexibility" arg="$body.properties.reservationsToPurchase[].properties.reservedResourceProperties.instanceFlexibility">
                               <enum>
                                 <item value="&quot;Off&quot;"/>
@@ -198,7 +193,7 @@
                             </enum>
                           </prop>
                         </prop>
-                        <prop type="object" name="sku" arg="$body.properties.reservationsToPurchase[].sku">
+                        <prop type="object" name="sku">
                           <prop type="string" name="name" arg="$body.properties.reservationsToPurchase[].sku.name"/>
                         </prop>
                       </item>
