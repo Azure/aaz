@@ -19,6 +19,12 @@ Manage Azure Network resources.
 - [nsg](/Commands/network/nsg/readme.md)
 : Manage Azure Network Security Groups (NSGs).
 
+- [profile](/Commands/network/profile/readme.md)
+: Manage network profiles.
+
+- [public-ip](/Commands/network/public-ip/readme.md)
+: Manage public IP addresses.
+
 - [route-filter](/Commands/network/route-filter/readme.md)
 : Manage route filters.
 
@@ -45,3 +51,11 @@ Manage Azure Network resources.
 
 - [vnet](/Commands/network/vnet/readme.md)
 : Check if a private IP address is available for use within a virtual network.
+
+## Commands
+
+- [list-service-aliases](/Commands/network/_list-service-aliases.md)
+: List available service aliases in the region which can be used for Service Endpoint Policies.
+
+- [list-service-tags](/Commands/network/_list-service-tags.md)
+: List all service tags which are below to different resources
