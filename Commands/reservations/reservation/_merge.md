@@ -12,5 +12,5 @@ Merge the specified `Reservation`s into a new `Reservation`. The two `Reservatio
 
 - Merge reservations
     ```bash
-        reservations reservation merge --reservation-order-id 10000000-aaaa-bbbb-cccc-100000000005 --sources ['/providers/Microsoft.Capacity/reservationOrders/10000000-aaaa-bbbb-cccc-100000000005/reservations/30000000-aaaa-bbbb-cccc-100000000002','/providers/Microsoft.Capacity/reservationOrders/10000000-aaaa-bbbb-cccc-100000000005/reservations/30000000-aaaa-bbbb-cccc-100000000004']
+        reservations reservation merge --reservation-order-id 10000000-aaaa-bbbb-cccc-100000000005 --sources "['/providers/Microsoft.Capacity/reservationOrders/10000000-aaaa-bbbb-cccc-100000000005/reservations/30000000-aaaa-bbbb-cccc-100000000002','/providers/Microsoft.Capacity/reservationOrders/10000000-aaaa-bbbb-cccc-100000000005/reservations/30000000-aaaa-bbbb-cccc-100000000004']"
     ```

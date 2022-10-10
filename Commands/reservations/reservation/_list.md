@@ -1,6 +1,6 @@
 # [Command] _reservations reservation list_
 
-List `Reservations within a single `ReservationOrder`.
+List Reservations within a single `ReservationOrder`.
 
 ## Versions
 

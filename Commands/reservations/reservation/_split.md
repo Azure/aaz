@@ -12,5 +12,5 @@ Split a `Reservation` into two `Reservation`s with specified quantity distributi
 
 - Split a reservation
     ```bash
-        reservations reservation split --quantities [2,8] --reservation-id /providers/Microsoft.Capacity/reservationOrders/30000000-aaaa-bbbb-cccc-100000000004/reservations/40000000-aaaa-bbbb-cccc-100000000001 --reservation-order-id 30000000-aaaa-bbbb-cccc-100000000004
+        reservations reservation split --quantities "[2,8]" --reservation-id /providers/Microsoft.Capacity/reservationOrders/30000000-aaaa-bbbb-cccc-100000000004/reservations/40000000-aaaa-bbbb-cccc-100000000001 --reservation-order-id 30000000-aaaa-bbbb-cccc-100000000004
     ```

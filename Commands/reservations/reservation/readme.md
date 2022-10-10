@@ -16,7 +16,10 @@ reservations reservation
 : Get Available Scopes for `Reservation`.
 
 - [list](/Commands/reservations/reservation/_list.md)
-: List `Reservations within a single `ReservationOrder`.
+: List Reservations within a single `ReservationOrder`.
+
+- [list-available-scope](/Commands/reservations/reservation/_list-available-scope.md)
+: List Available Scopes for `Reservation`.
 
 - [list-history](/Commands/reservations/reservation/_list-history.md)
 : List of all the revisions for the `Reservation`.

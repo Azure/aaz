@@ -10,7 +10,7 @@ Archiving a `Reservation` which is in cancelled/expired state and move it to `Ar
 
 #### examples
 
-- Archive a reservation
+- Archiving a reservation
     ```bash
         reservations reservation archive --reservation-order-id 40000000-aaaa-bbbb-cccc-20000000000 --reservation-id 50000000-aaaa-bbbb-cccc-200000000000
     ```
