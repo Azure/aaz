@@ -2,6 +2,9 @@
 
 ## Groups
 
+- [automation](/Commands/automation/readme.md)
+: Manage Automation Account
+
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
