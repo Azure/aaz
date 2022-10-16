@@ -19,6 +19,9 @@ Manage Azure Network resources.
 - [nsg](/Commands/network/nsg/readme.md)
 : Manage Azure Network Security Groups (NSGs).
 
+- [perimeter](/Commands/network/perimeter/readme.md)
+: Manage Network Security Perimeters
+
 - [profile](/Commands/network/profile/readme.md)
 : Manage network profiles.
 
