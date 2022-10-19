@@ -13,6 +13,9 @@ Manage Azure Network resources.
 - [ddos-protection](/Commands/network/ddos-protection/readme.md)
 : Manage DDoS Protection Plans.
 
+- [lb](/Commands/network/lb/readme.md)
+: Manage and configure load balancers.
+
 - [local-gateway](/Commands/network/local-gateway/readme.md)
 : Manage local gateways.
 
