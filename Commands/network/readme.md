@@ -10,6 +10,9 @@ Manage Azure Network resources.
 - [asg](/Commands/network/asg/readme.md)
 : Manage application security groups (ASGs).
 
+- [custom-ip](/Commands/network/custom-ip/readme.md)
+: Manage custom IP.
+
 - [ddos-protection](/Commands/network/ddos-protection/readme.md)
 : Manage DDoS Protection Plans.
 
