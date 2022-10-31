@@ -8,9 +8,6 @@
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
 
-- [dynatrace](/Commands/dynatrace/readme.md)
-: Manage dynatrace
-
 - [elastic-san](/Commands/elastic-san/readme.md)
 : Manage Elastic SAN.
 
