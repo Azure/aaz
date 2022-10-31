@@ -2,7 +2,12 @@
 
 Manage and configure load balancers.
 
-To learn more about Azure Load Balancer visit https://docs.microsoft.com/azure/load-balancer/load-balancer-get-started-internet-arm-cli
+To learn more about Azure Load Balancer visit https://docs.microsoft.com/azure/load-balancer/load-balancer-get-started-internet-arm-cli.
+
+## Subgroups
+
+- [probe](/Commands/network/lb/probe/readme.md)
+: Evaluate probe information and define routing rules.
 
 ## Commands
 
