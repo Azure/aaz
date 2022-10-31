@@ -16,7 +16,7 @@ Manage Network Security Perimeters
 ## Commands
 
 - [create](/Commands/network/perimeter/_create.md)
-: Creates or updates a Network Security Perimeter.
+: Creates a Network Security Perimeter.
 
 - [delete](/Commands/network/perimeter/_delete.md)
 : Deletes a network security perimeter.

@@ -8,3 +8,10 @@ List all network security perimeters in a subscription.
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.network/networksecurityperimeters 2021-02-01-preview -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networksecurityperimeters 2021-02-01-preview -->
+
+#### examples
+
+- List Network Security Perimeters
+    ```bash
+        network perimeter list -g MyResourceGroup
+    ```
