@@ -68,3 +68,6 @@ Manage Azure Network resources.
 
 - [list-service-tags](/Commands/network/_list-service-tags.md)
 : List all service tags which are below to different resources
+
+- [list-usages](/Commands/network/_list-usages.md)
+: List the number of network resources in a region that are used against a subscription quota.
