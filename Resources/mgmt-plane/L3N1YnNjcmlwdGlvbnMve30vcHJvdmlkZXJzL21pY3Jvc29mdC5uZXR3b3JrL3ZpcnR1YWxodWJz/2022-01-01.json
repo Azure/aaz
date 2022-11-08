@@ -56,6 +56,22 @@
                     ],
                     "conditions": [
                         {
+                            "var": "$Condition_VirtualHubs_ListByResourceGroup",
+                            "operator": {
+                                "type": "and",
+                                "operators": [
+                                    {
+                                        "type": "hasValue",
+                                        "arg": "$Path.resourceGroupName"
+                                    },
+                                    {
+                                        "type": "hasValue",
+                                        "arg": "$Path.subscriptionId"
+                                    }
+                                ]
+                            }
+                        },
+                        {
                             "var": "$Condition_VirtualHubs_List",
                             "operator": {
                                 "type": "and",
@@ -73,36 +89,26 @@
                                     }
                                 ]
                             }
-                        },
-                        {
-                            "var": "$Condition_VirtualHubs_ListByResourceGroup",
-                            "operator": {
-                                "type": "and",
-                                "operators": [
-                                    {
-                                        "type": "hasValue",
-                                        "arg": "$Path.resourceGroupName"
-                                    },
-                                    {
-                                        "type": "hasValue",
-                                        "arg": "$Path.subscriptionId"
-                                    }
-                                ]
-                            }
                         }
                     ],
                     "operations": [
                         {
                             "when": [
-                                "$Condition_VirtualHubs_List"
+                                "$Condition_VirtualHubs_ListByResourceGroup"
                             ],
-                            "operationId": "VirtualHubs_List",
+                            "operationId": "VirtualHubs_ListByResourceGroup",
                             "http": {
-                                "path": "/subscriptions/{subscriptionId}/providers/Microsoft.Network/virtualHubs",
+                                "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualHubs",
                                 "request": {
                                     "method": "get",
                                     "path": {
                                         "params": [
+                                            {
+                                                "type": "string",
+                                                "name": "resourceGroupName",
+                                                "arg": "$Path.resourceGroupName",
+                                                "required": true
+                                            },
                                             {
                                                 "type": "string",
                                                 "name": "subscriptionId",
@@ -195,7 +201,6 @@
                                                                                 "type": "array<@SubResource_read>",
                                                                                 "name": "bgpConnections",
                                                                                 "item": {
-                                                                                    "readOnly": true,
                                                                                     "type": "@SubResource_read"
                                                                                 }
                                                                             },
@@ -225,7 +230,6 @@
                                                                                 "type": "array<@SubResource_read>",
                                                                                 "name": "ipConfigurations",
                                                                                 "item": {
-                                                                                    "readOnly": true,
                                                                                     "type": "@SubResource_read"
                                                                                 }
                                                                             },
@@ -504,21 +508,15 @@
                         },
                         {
                             "when": [
-                                "$Condition_VirtualHubs_ListByResourceGroup"
+                                "$Condition_VirtualHubs_List"
                             ],
-                            "operationId": "VirtualHubs_ListByResourceGroup",
+                            "operationId": "VirtualHubs_List",
                             "http": {
-                                "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualHubs",
+                                "path": "/subscriptions/{subscriptionId}/providers/Microsoft.Network/virtualHubs",
                                 "request": {
                                     "method": "get",
                                     "path": {
                                         "params": [
-                                            {
-                                                "type": "string",
-                                                "name": "resourceGroupName",
-                                                "arg": "$Path.resourceGroupName",
-                                                "required": true
-                                            },
                                             {
                                                 "type": "string",
                                                 "name": "subscriptionId",
@@ -611,7 +609,6 @@
                                                                                 "type": "array<@SubResource_read>",
                                                                                 "name": "bgpConnections",
                                                                                 "item": {
-                                                                                    "readOnly": true,
                                                                                     "type": "@SubResource_read"
                                                                                 }
                                                                             },
@@ -641,7 +638,6 @@
                                                                                 "type": "array<@SubResource_read>",
                                                                                 "name": "ipConfigurations",
                                                                                 "item": {
-                                                                                    "readOnly": true,
                                                                                     "type": "@SubResource_read"
                                                                                 }
                                                                             },
