@@ -17,6 +17,9 @@
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
 
+- [load](/Commands/load/readme.md)
+: Manage load test resources.
+
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
 
