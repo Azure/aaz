@@ -14,3 +14,14 @@ Check the availability of a relative DNS name.
     ```bash
         network traffic-manager profile check-dns -n mywebapp
     ```
+
+### [2022-04-01-preview](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQubmV0d29yay9jaGVja3RyYWZmaWNtYW5hZ2VybmFtZWF2YWlsYWJpbGl0eQ==/2022-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /providers/microsoft.network/checktrafficmanagernameavailability 2022-04-01-preview -->
+
+#### examples
+
+- Check the availability of 'mywebapp.trafficmanager.net' in Azure.
+    ```bash
+        network traffic-manager profile check-dns -n mywebapp
+    ```
