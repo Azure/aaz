@@ -1,6 +1,6 @@
 # [Command] _load delete_
 
-Delete a load test resource.
+Delete an Azure Load Testing resource.
 
 ## Versions
 

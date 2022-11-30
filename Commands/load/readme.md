@@ -1,20 +1,20 @@
 # [Group] _load_
 
-Manage load test resources.
+Manage Azure Load Testing resources.
 
 ## Commands
 
 - [create](/Commands/load/_create.md)
-: Create a load test resource.
+: Create an Azure Load Testing resource.
 
 - [delete](/Commands/load/_delete.md)
-: Delete a load test resource.
+: Delete an Azure Load Testing resource.
 
 - [list](/Commands/load/_list.md)
-: Lists load test resources.
+: Lists Azure Load Testing resources.
 
 - [show](/Commands/load/_show.md)
-: Get a LoadTest resource.
+: Show the details of one or more Azure Load Testing resources.
 
 - [update](/Commands/load/_update.md)
-: Update a loadtest resource.
+: Update an Azure Load Testing resource.

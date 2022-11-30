@@ -1,6 +1,8 @@
 # [Command] _load create_
 
-Create a load test resource.
+Create an Azure Load Testing resource.
+
+The load test resource name must be unique to a resource group.
 
 ## Versions
 

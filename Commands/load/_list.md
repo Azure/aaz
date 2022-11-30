@@ -1,6 +1,6 @@
 # [Command] _load list_
 
-Lists load test resources.
+Lists Azure Load Testing resources.
 
 ## Versions
 

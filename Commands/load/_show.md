@@ -1,6 +1,6 @@
 # [Command] _load show_
 
-Get a LoadTest resource.
+Show the details of one or more Azure Load Testing resources.
 
 ## Versions
 

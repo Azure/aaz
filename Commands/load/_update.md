@@ -1,6 +1,6 @@
 # [Command] _load update_
 
-Update a loadtest resource.
+Update an Azure Load Testing resource.
 
 ## Versions
 
