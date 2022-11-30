@@ -16,6 +16,9 @@ Manage Azure Network resources.
 - [ddos-protection](/Commands/network/ddos-protection/readme.md)
 : Manage DDoS Protection Plans.
 
+- [express-route](/Commands/network/express-route/readme.md)
+: Manage dedicated private network fiber connections to Azure.
+
 - [lb](/Commands/network/lb/readme.md)
 : Manage and configure load balancers.
 
