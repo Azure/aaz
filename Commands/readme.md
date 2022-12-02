@@ -2,6 +2,9 @@
 
 ## Groups
 
+- [capacity](/Commands/capacity/readme.md)
+: Manage capacity resources.
+
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
