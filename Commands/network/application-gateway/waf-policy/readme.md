@@ -2,6 +2,11 @@
 
 Manage application gateway web application firewall (WAF) policies.
 
+## Subgroups
+
+- [custom-rule](/Commands/network/application-gateway/waf-policy/custom-rule/readme.md)
+: Manage application gateway web application firewall (WAF) policy custom rules.
+
 ## Commands
 
 - [create](/Commands/network/application-gateway/waf-policy/_create.md)
