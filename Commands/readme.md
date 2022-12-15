@@ -38,8 +38,17 @@
 - [reservations](/Commands/reservations/readme.md)
 : Azure Reservations
 
+- [restore-point](/Commands/restore-point/readme.md)
+: Manage restore point with res.
+
 - [sentinel](/Commands/sentinel/readme.md)
 : Manage Microsoft Sentinel.
 
+- [sig](/Commands/sig/readme.md)
+: Manage shared image gallery.
+
 - [sql](/Commands/sql/readme.md)
 : Manage Azure SQL Databases and Data Warehouses.
+
+- [vmss](/Commands/vmss/readme.md)
+: Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS).
