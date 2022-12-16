@@ -1,4 +1,4 @@
-# [Command] _billing-benefits validate_
+# [Command] _billing-benefits validate-purchase_
 
 Validate savings plan purchase.
 

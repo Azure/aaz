@@ -18,5 +18,5 @@ Azure billing benefits commands
 
 ## Commands
 
-- [validate](/Commands/billing-benefits/_validate.md)
+- [validate-purchase](/Commands/billing-benefits/_validate-purchase.md)
 : Validate savings plan purchase.

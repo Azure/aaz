@@ -13,5 +13,5 @@ Azure billing benefits savings plan in savings plan order commands
 - [update](/Commands/billing-benefits/savings-plan-order/savings-plan/_update.md)
 : Update savings plan.
 
-- [validate](/Commands/billing-benefits/savings-plan-order/savings-plan/_validate.md)
+- [validate-update](/Commands/billing-benefits/savings-plan-order/savings-plan/_validate-update.md)
 : Validate savings plan patch.

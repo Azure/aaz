@@ -32,7 +32,7 @@ Update savings plan.
 
 - Update savings plan applied scope to "ManagementGroup"
     ```bash
-        billing-benefits savings-plan-order savings-plan update --savings-plan-order-id 30000000-aaaa-bbbb-cccc-200000000017 --savings-plan-id 30000000-aaaa-bbbb-cccc-200000000019 --applied-scope-type Single --applied-scope-properties "{tenantId:10000000-aaaa-bbbb-cccc-20000000006,managementGroupId:/providers/Microsoft.Management/managementGroups/TestRg}"
+        billing-benefits savings-plan-order savings-plan update --savings-plan-order-id 30000000-aaaa-bbbb-cccc-200000000017 --savings-plan-id 30000000-aaaa-bbbb-cccc-200000000019 --applied-scope-type ManagementGroup --applied-scope-properties "{tenantId:10000000-aaaa-bbbb-cccc-20000000006,managementGroupId:/providers/Microsoft.Management/managementGroups/TestRg}"
     ```
 
 - Update savings plan renewal setting
