@@ -167,16 +167,13 @@
           <help short="Name of the reservation order alias"/>
           <format pattern="^[a-zA-Z0-9_\-\.]+$"/>
         </arg>
+        <arg type="string" var="$body.sku.name" options="sku" group="">
+          <help short="Name of the SKU to be applied"/>
+        </arg>
       </argGroup>
       <argGroup name="Body">
         <arg type="ResourceLocation" var="$body.location" options="location l" group="Body">
           <help short="The Azure Region where the reservation benefits are applied to."/>
-        </arg>
-        <arg type="object" var="$body.sku" options="sku" required="True" group="Body">
-          <help short="Reservation order SKU"/>
-          <arg type="string" var="$body.sku.name" options="name">
-            <help short="Name of the SKU to be applied"/>
-          </arg>
         </arg>
       </argGroup>
       <argGroup name="Properties">
@@ -226,16 +223,6 @@
           <help short="Setting this to true will automatically purchase a new benefit on the expiration date time."/>
           <default value="false"/>
         </arg>
-        <arg type="object" var="$body.properties.reservedResourceProperties" options="reserved-resource-properties" group="Properties">
-          <help short="Properties specific to each reserved resource type. Not required if not applicable."/>
-          <arg type="string" var="$body.properties.reservedResourceProperties.instanceFlexibility" options="instance-flexibility">
-            <help short="Turning this on will apply the reservation discount to other VMs in the same VM size group."/>
-            <enum>
-              <item name="Off" value="&quot;Off&quot;"/>
-              <item name="On" value="&quot;On&quot;"/>
-            </enum>
-          </arg>
-        </arg>
         <arg type="string" var="$body.properties.reservedResourceType" options="reserved-resource-type" group="Properties">
           <help short="The type of the resource that is being reserved."/>
           <enum>
@@ -276,6 +263,15 @@
             <item name="P1Y" value="&quot;P1Y&quot;"/>
             <item name="P3Y" value="&quot;P3Y&quot;"/>
             <item name="P5Y" value="&quot;P5Y&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <argGroup name="ReservedResourceProperties">
+        <arg type="string" var="$body.properties.reservedResourceProperties.instanceFlexibility" options="instance-flexibility" group="ReservedResourceProperties">
+          <help short="Turning this on will apply the reservation discount to other VMs in the same VM size group."/>
+          <enum>
+            <item name="Off" value="&quot;Off&quot;"/>
+            <item name="On" value="&quot;On&quot;"/>
           </enum>
         </arg>
       </argGroup>
@@ -325,7 +321,7 @@
                     <prop type="boolean" name="renew" arg="$body.properties.renew">
                       <default value="false"/>
                     </prop>
-                    <prop type="object" name="reservedResourceProperties" arg="$body.properties.reservedResourceProperties">
+                    <prop type="object" name="reservedResourceProperties">
                       <prop type="string" name="instanceFlexibility" arg="$body.properties.reservedResourceProperties.instanceFlexibility">
                         <enum>
                           <item value="&quot;Off&quot;"/>
@@ -372,7 +368,7 @@
                       </enum>
                     </prop>
                   </prop>
-                  <prop type="object" name="sku" arg="$body.sku" required="True">
+                  <prop type="object" name="sku" required="True">
                     <prop type="string" name="name" arg="$body.sku.name"/>
                   </prop>
                 </schema>
