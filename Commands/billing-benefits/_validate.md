@@ -12,5 +12,5 @@ Validate savings plan purchase.
 
 - Validate savings plan purchase
     ```bash
-        billing-benefits validate --benefits "[{applied-scope-type:Shared,billing-plan:P1M,billing-scope-id:90000000-aaaa-bbbb-cccc-200000000012,display-name:name1,sku:Compute_Savings_Plan,term:P1Y,commitment:{amount:10.0,currency-code:USD,grain:Hourly}}]"
+        billing-benefits validate-purchase --benefits "[{applied-scope-type:Shared,billing-plan:P1M,billing-scope-id:50000000-aaaa-bbbb-cccc-200000000012,display-name:name1,sku:Compute_Savings_Plan,term:P1Y,commitment:{amount:10.0,currency-code:USD,grain:Hourly}}]"
     ```

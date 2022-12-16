@@ -14,4 +14,3 @@ List all Savings plan orders.
     ```bash
         billing-benefits savings-plan-order list
     ```
-

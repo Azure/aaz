@@ -7,3 +7,10 @@ List savings plans in an order.
 ### [2022-11-01](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuYmlsbGluZ2JlbmVmaXRzL3NhdmluZ3NwbGFub3JkZXJzL3t9L3NhdmluZ3NwbGFucw==/2022-11-01.xml) **Stable**
 
 <!-- mgmt-plane /providers/microsoft.billingbenefits/savingsplanorders/{}/savingsplans 2022-11-01 -->
+
+#### examples
+
+- List savings plans in an order
+    ```bash
+        billing-benefits savings-plan-order savings-plan list --savings-plan-order-id 30000000-aaaa-bbbb-cccc-200000000017
+    ```
