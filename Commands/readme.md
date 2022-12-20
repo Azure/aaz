@@ -2,6 +2,9 @@
 
 ## Groups
 
+- [billing-benefits](/Commands/billing-benefits/readme.md)
+: Azure billing benefits commands
+
 - [capacity](/Commands/capacity/readme.md)
 : Manage capacity resources.
 
