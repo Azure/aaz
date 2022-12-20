@@ -5,39 +5,33 @@
     <command name="health-on-demand" version="2022-05-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/applicationgateways/{}/getbackendhealthondemand" version="2022-05-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9hcHBsaWNhdGlvbkdhdGV3YXlzL3thcHBsaWNhdGlvbkdhdGV3YXlOYW1lfS9nZXRCYWNrZW5kSGVhbHRoT25EZW1hbmQ=/V/MjAyMi0wNS0wMQ=="/>
       <argGroup name="">
-        <arg type="string" var="$Path.applicationGatewayName" options="name n" required="True" group="">
+        <arg type="string" var="$Path.applicationGatewayName" options="name n" required="True" group="" idPart="name">
           <help short="Name of the application gateway."/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True"/>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True"/>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         <arg type="string" var="$Query.expand" options="expand" group="">
           <help short="Expand BackendAddressPool and BackendHttpSettings referenced in backend health."/>
         </arg>
       </argGroup>
       <argGroup name="Probe Operation">
-        <arg type="string" var="$probeRequest.backendAddressPool.id" options="address-pool" stage="Preview" group="Probe Operation">
-          <help short="Name or ID of the backend address pool."/>
-        </arg>
-        <arg type="string" var="$probeRequest.backendHttpSettings.id" options="http-settings" stage="Preview" group="Probe Operation">
-          <help short="Name or ID of the HTTP settings."/>
-        </arg>
-        <arg type="string" var="$probeRequest.host" options="host" stage="Preview" group="Probe Operation">
+        <arg type="string" var="$probeRequest.host" options="host" group="Probe Operation">
           <help short="Name of the host to send the probe."/>
         </arg>
-        <arg type="string" var="$probeRequest.match.body" options="match-body" stage="Preview" group="Probe Operation">
+        <arg type="string" var="$probeRequest.match.body" options="match-body" group="Probe Operation">
           <help short="Body that must be contained in the health response."/>
         </arg>
-        <arg type="array<string>" var="$probeRequest.match.statusCodes" options="match-status-codes" stage="Preview" group="Probe Operation">
+        <arg type="array<string>" var="$probeRequest.match.statusCodes" options="match-status-codes" group="Probe Operation">
           <help short="Space-separated list of allowed ranges of healthy status codes for the health response."/>
           <item type="string"/>
         </arg>
-        <arg type="string" var="$probeRequest.path" options="path" stage="Preview" group="Probe Operation">
+        <arg type="string" var="$probeRequest.path" options="path" group="Probe Operation">
           <help short="Relative path of the probe. Valid paths start from &quot;/&quot;."/>
         </arg>
-        <arg type="boolean" var="$probeRequest.pickHostNameFromBackendHttpSettings" options="host-name-from-http-settings" stage="Preview" group="Probe Operation">
+        <arg type="boolean" var="$probeRequest.pickHostNameFromBackendHttpSettings" options="host-name-from-http-settings" group="Probe Operation">
           <help short="Use host header from HTTP settings."/>
         </arg>
-        <arg type="string" var="$probeRequest.protocol" options="protocol" stage="Preview" group="Probe Operation">
+        <arg type="string" var="$probeRequest.protocol" options="protocol" group="Probe Operation">
           <help short="HTTP settings protocol."/>
           <enum>
             <item name="Http" value="&quot;Http&quot;"/>
@@ -46,8 +40,19 @@
             <item name="Tls" value="&quot;Tls&quot;"/>
           </enum>
         </arg>
-        <arg type="integer32" var="$probeRequest.timeout" options="timeout" stage="Preview" group="Probe Operation">
+        <arg type="integer32" var="$probeRequest.timeout" options="timeout" group="Probe Operation">
           <help short="Probe timeout in seconds."/>
+        </arg>
+      </argGroup>
+      <argGroup name="ProbeRequest">
+        <arg type="object" var="$probeRequest.backendAddressPool" options="backend-address-pool" group="ProbeRequest" cls="SubResource_create">
+          <help short="Reference to backend pool of application gateway to which probe request will be sent."/>
+          <arg type="string" var="@SubResource_create.id" options="id">
+            <help short="Resource ID."/>
+          </arg>
+        </arg>
+        <arg type="@SubResource_create" var="$probeRequest.backendHttpSettings" options="backend-http-settings" group="ProbeRequest">
+          <help short="Reference to backend http setting of application gateway to be used for test probe."/>
         </arg>
       </argGroup>
       <operation operationId="ApplicationGateways_BackendHealthOnDemand">
@@ -68,12 +73,10 @@
             <body>
               <json>
                 <schema type="object" name="probeRequest" required="True" clientFlatten="True">
-                  <prop type="object" name="backendAddressPool">
-                    <prop type="string" name="id" arg="$probeRequest.backendAddressPool.id"/>
+                  <prop type="object" name="backendAddressPool" arg="$probeRequest.backendAddressPool" cls="SubResource_create">
+                    <prop type="string" name="id" arg="@SubResource_create.id"/>
                   </prop>
-                  <prop type="object" name="backendHttpSettings">
-                    <prop type="string" name="id" arg="$probeRequest.backendHttpSettings.id"/>
-                  </prop>
+                  <prop type="@SubResource_create" name="backendHttpSettings" arg="$probeRequest.backendHttpSettings"/>
                   <prop type="string" name="host" arg="$probeRequest.host"/>
                   <prop type="object" name="match">
                     <prop type="string" name="body" arg="$probeRequest.match.body"/>
