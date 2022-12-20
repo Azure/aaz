@@ -7,9 +7,15 @@
       <resource id="/subscriptions/{}/providers/microsoft.network/applicationgateways" version="2022-05-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk5ldHdvcmsvYXBwbGljYXRpb25HYXRld2F5cw==/V/MjAyMi0wNS0wMQ=="/>
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/applicationgateways" version="2022-05-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9hcHBsaWNhdGlvbkdhdGV3YXlz/V/MjAyMi0wNS0wMQ=="/>
       <argGroup name="">
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g"/>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True"/>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <condition var="$Condition_ApplicationGateways_List">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
       <condition var="$Condition_ApplicationGateways_ListAll">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -18,16 +24,11 @@
           </operator>
         </operator>
       </condition>
-      <condition var="$Condition_ApplicationGateways_List">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
-      <operation when="$Condition_ApplicationGateways_ListAll" operationId="ApplicationGateways_ListAll">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGateways">
+      <operation when="$Condition_ApplicationGateways_List" operationId="ApplicationGateways_List">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -2124,11 +2125,10 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_ApplicationGateways_List" operationId="ApplicationGateways_List">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways">
+      <operation when="$Condition_ApplicationGateways_ListAll" operationId="ApplicationGateways_ListAll">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGateways">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
