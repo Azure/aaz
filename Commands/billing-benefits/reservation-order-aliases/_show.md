@@ -12,5 +12,5 @@ Get a reservation order alias.
 
 - Show the details of a reservation order alias
     ```bash
-        billing-benefits reservation-order-aliases show --reservation-order-alias-name TestRO
+        billing-benefits order-aliases show --reservation-order-alias-name TestRO
     ```

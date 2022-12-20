@@ -12,5 +12,5 @@ Get a savings plan order alias.
 
 - Get a savings plan order alias
     ```bash
-        billing-benefits savings-plan-order-aliases show --savings-plan-order-alias-name aliasName
+        billing-benefits savings-plan-order-aliases show --order-alias-name aliasName
     ```
