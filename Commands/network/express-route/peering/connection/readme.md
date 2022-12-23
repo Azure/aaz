@@ -2,6 +2,11 @@
 
 Manage ExpressRoute circuit connections.
 
+## Subgroups
+
+- [ipv6-config](/Commands/network/express-route/peering/connection/ipv6-config/readme.md)
+: Manage ExpressRoute circuit connection configs.
+
 ## Commands
 
 - [create](/Commands/network/express-route/peering/connection/_create.md)
