@@ -11,6 +11,9 @@
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
+- [databricks](/Commands/databricks/readme.md)
+: Manage databricks workspaces.
+
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
 
