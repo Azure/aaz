@@ -79,9 +79,9 @@
                       <prop type="string" name="id"/>
                     </prop>
                     <prop type="@AddressSpace_read" name="remoteVirtualNetworkAddressSpace"/>
-                    <prop readOnly="True" type="object" name="remoteVirtualNetworkEncryption">
-                      <prop readOnly="True" type="boolean" name="enabled" required="True"/>
-                      <prop readOnly="True" type="string" name="enforcement">
+                    <prop type="object" name="remoteVirtualNetworkEncryption">
+                      <prop type="boolean" name="enabled" required="True"/>
+                      <prop type="string" name="enforcement">
                         <enum>
                           <item value="&quot;AllowUnencrypted&quot;"/>
                           <item value="&quot;DropUnencrypted&quot;"/>
@@ -107,7 +107,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="delete" version="2022-01-01" confirmation="Are you sure you want to perform this operation?">
+    <command name="delete" version="2022-01-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/virtualnetworks/{}/virtualnetworkpeerings/{}" version="2022-01-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay92aXJ0dWFsTmV0d29ya3Mve3ZpcnR1YWxOZXR3b3JrTmFtZX0vdmlydHVhbE5ldHdvcmtQZWVyaW5ncy97dmlydHVhbE5ldHdvcmtQZWVyaW5nTmFtZX0=/V/MjAyMi0wMS0wMQ=="/>
       <argGroup name="">
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
@@ -159,27 +159,37 @@
         <arg type="string" var="$Path.virtualNetworkPeeringName" options="name n" required="True" idPart="child_name_1">
           <help short="The name of the VNet peering."/>
         </arg>
-        <arg type="string" var="$Query.syncRemoteAddressSpace" options="sync-remote-address-space">
-          <help short="Parameter indicates the intention to sync the peering with the current address space on the remote vNet after it's updated."/>
+        <arg type="string" var="$Query.syncRemoteAddressSpace" options="sync-remote" group="">
+          <help short="Indicate the intention to sync the peering with the current address space on the remote VNet after it's updated."/>
           <enum>
             <item name="true" value="&quot;true&quot;"/>
           </enum>
         </arg>
+        <arg type="boolean" var="$VirtualNetworkPeeringParameters.properties.allowForwardedTraffic" options="allow-forwarded-traffic" group="">
+          <help short="Whether the forwarded traffic from the VMs in the local virtual network will be allowed/disallowed in remote virtual network."/>
+          <default value="false"/>
+        </arg>
+        <arg type="boolean" var="$VirtualNetworkPeeringParameters.properties.allowGatewayTransit" options="allow-gateway-transit" group="">
+          <help short="If gateway links can be used in remote virtual networking to link to this virtual network."/>
+          <default value="false"/>
+        </arg>
+        <arg type="boolean" var="$VirtualNetworkPeeringParameters.properties.allowVirtualNetworkAccess" options="allow-vnet-access" group="">
+          <help short="Whether the VMs in the local virtual network space would be able to access the VMs in remote virtual network space."/>
+          <default value="false"/>
+        </arg>
+        <arg type="string" var="$VirtualNetworkPeeringParameters.properties.remoteVirtualNetwork.id" options="remote-vnet" group="">
+          <help short="Name or ID of the remote VNet."/>
+        </arg>
+        <arg type="boolean" var="$VirtualNetworkPeeringParameters.properties.useRemoteGateways" options="use-remote-gateways" group="">
+          <help short="Allows VNet to use the remote VNet's gateway. Remote VNet gateway must have --allow-gateway-transit enabled for remote peering. Only 1 peering can have this flag enabled. Cannot be set if the VNet already has a gateway."/>
+          <default value="false"/>
+        </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg type="boolean" var="$VirtualNetworkPeeringParameters.properties.allowForwardedTraffic" options="allow-forwarded-traffic" group="Properties">
-          <help short="Whether the forwarded traffic from the VMs in the local virtual network will be allowed/disallowed in remote virtual network."/>
-        </arg>
-        <arg type="boolean" var="$VirtualNetworkPeeringParameters.properties.allowGatewayTransit" options="allow-gateway-transit" group="Properties">
-          <help short="If gateway links can be used in remote virtual networking to link to this virtual network."/>
-        </arg>
-        <arg type="boolean" var="$VirtualNetworkPeeringParameters.properties.allowVirtualNetworkAccess" options="allow-virtual-network-access" group="Properties">
-          <help short="Whether the VMs in the local virtual network space would be able to access the VMs in remote virtual network space."/>
-        </arg>
-        <arg type="boolean" var="$VirtualNetworkPeeringParameters.properties.doNotVerifyRemoteGateways" options="do-not-verify-remote-gateways" group="Properties">
+        <arg type="boolean" var="$VirtualNetworkPeeringParameters.properties.doNotVerifyRemoteGateways" options="do-not-verify-remote-gateways" hide="True" group="Properties">
           <help short="If we need to verify the provisioning state of the remote gateway."/>
         </arg>
-        <arg type="string" var="$VirtualNetworkPeeringParameters.properties.peeringState" options="peering-state" group="Properties">
+        <arg type="string" var="$VirtualNetworkPeeringParameters.properties.peeringState" options="peering-state" hide="True" group="Properties">
           <help short="The status of the virtual network peering."/>
           <enum>
             <item name="Connected" value="&quot;Connected&quot;"/>
@@ -187,7 +197,7 @@
             <item name="Initiated" value="&quot;Initiated&quot;"/>
           </enum>
         </arg>
-        <arg type="string" var="$VirtualNetworkPeeringParameters.properties.peeringSyncLevel" options="peering-sync-level" group="Properties">
+        <arg type="string" var="$VirtualNetworkPeeringParameters.properties.peeringSyncLevel" options="peering-sync-level" hide="True" group="Properties">
           <help short="The peering sync status of the virtual network peering."/>
           <enum>
             <item name="FullyInSync" value="&quot;FullyInSync&quot;"/>
@@ -196,30 +206,21 @@
             <item name="RemoteNotInSync" value="&quot;RemoteNotInSync&quot;"/>
           </enum>
         </arg>
-        <arg type="object" var="$VirtualNetworkPeeringParameters.properties.remoteAddressSpace" options="remote-address-space" group="Properties" cls="AddressSpace_create">
+        <arg type="object" var="$VirtualNetworkPeeringParameters.properties.remoteAddressSpace" options="remote-address-space" hide="True" group="Properties" cls="AddressSpace_create">
           <help short="The reference to the address space peered with the remote virtual network."/>
           <arg type="array<string>" var="@AddressSpace_create.addressPrefixes" options="address-prefixes">
             <help short="A list of address blocks reserved for this virtual network in CIDR notation."/>
             <item type="string"/>
           </arg>
         </arg>
-        <arg type="object" var="$VirtualNetworkPeeringParameters.properties.remoteBgpCommunities" options="remote-bgp-communities" group="Properties">
+        <arg type="object" var="$VirtualNetworkPeeringParameters.properties.remoteBgpCommunities" options="remote-bgp-communities" hide="True" group="Properties">
           <help short="The reference to the remote virtual network's Bgp Communities."/>
           <arg type="string" var="$VirtualNetworkPeeringParameters.properties.remoteBgpCommunities.virtualNetworkCommunity" options="virtual-network-community" required="True">
             <help short="The BGP community associated with the virtual network."/>
           </arg>
         </arg>
-        <arg type="object" var="$VirtualNetworkPeeringParameters.properties.remoteVirtualNetwork" options="remote-virtual-network" group="Properties">
-          <help short="The reference to the remote virtual network. The remote virtual network can be in the same or different region (preview). See here to register for the preview and learn more (https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-create-peering)."/>
-          <arg type="string" var="$VirtualNetworkPeeringParameters.properties.remoteVirtualNetwork.id" options="id">
-            <help short="Resource ID."/>
-          </arg>
-        </arg>
-        <arg type="@AddressSpace_create" var="$VirtualNetworkPeeringParameters.properties.remoteVirtualNetworkAddressSpace" options="remote-virtual-network-address-space" group="Properties">
+        <arg type="@AddressSpace_create" var="$VirtualNetworkPeeringParameters.properties.remoteVirtualNetworkAddressSpace" options="remote-virtual-network-address-space" hide="True" group="Properties">
           <help short="The reference to the current address space of the remote virtual network."/>
-        </arg>
-        <arg type="boolean" var="$VirtualNetworkPeeringParameters.properties.useRemoteGateways" options="use-remote-gateways" group="Properties">
-          <help short="If remote gateways can be used on this virtual network. If the flag is set to true, and allowGatewayTransit on remote peering is also true, virtual network will use gateways of remote virtual network for transit. Only one peering can have this flag set to true. This flag cannot be set if virtual network already has a gateway."/>
         </arg>
       </argGroup>
       <argGroup name="VirtualNetworkPeeringParameters">
@@ -227,7 +228,7 @@
           <help short="Resource ID."/>
           <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/virtualNetworks/{}/virtualNetworkPeerings/{}"/>
         </arg>
-        <arg type="string" var="$VirtualNetworkPeeringParameters.type" options="type" group="VirtualNetworkPeeringParameters">
+        <arg type="string" var="$VirtualNetworkPeeringParameters.type" options="type" hide="True" group="VirtualNetworkPeeringParameters">
           <help short="Resource type."/>
         </arg>
       </argGroup>
@@ -286,7 +287,7 @@
                     <prop type="object" name="remoteBgpCommunities" arg="$VirtualNetworkPeeringParameters.properties.remoteBgpCommunities">
                       <prop type="string" name="virtualNetworkCommunity" arg="$VirtualNetworkPeeringParameters.properties.remoteBgpCommunities.virtualNetworkCommunity" required="True"/>
                     </prop>
-                    <prop type="object" name="remoteVirtualNetwork" arg="$VirtualNetworkPeeringParameters.properties.remoteVirtualNetwork">
+                    <prop type="object" name="remoteVirtualNetwork">
                       <prop type="string" name="id" arg="$VirtualNetworkPeeringParameters.properties.remoteVirtualNetwork.id"/>
                     </prop>
                     <prop type="@AddressSpace_create" name="remoteVirtualNetworkAddressSpace" arg="$VirtualNetworkPeeringParameters.properties.remoteVirtualNetworkAddressSpace"/>
@@ -347,9 +348,9 @@
                       <prop type="string" name="id"/>
                     </prop>
                     <prop type="@AddressSpace_read" name="remoteVirtualNetworkAddressSpace"/>
-                    <prop readOnly="True" type="object" name="remoteVirtualNetworkEncryption">
-                      <prop readOnly="True" type="boolean" name="enabled" required="True"/>
-                      <prop readOnly="True" type="string" name="enforcement">
+                    <prop type="object" name="remoteVirtualNetworkEncryption">
+                      <prop type="boolean" name="enabled" required="True"/>
+                      <prop type="string" name="enforcement">
                         <enum>
                           <item value="&quot;AllowUnencrypted&quot;"/>
                           <item value="&quot;DropUnencrypted&quot;"/>
@@ -386,27 +387,33 @@
         <arg type="string" var="$Path.virtualNetworkPeeringName" options="name n" required="True" idPart="child_name_1">
           <help short="The name of the VNet peering."/>
         </arg>
-        <arg type="string" var="$Query.syncRemoteAddressSpace" options="sync-remote-address-space">
+        <arg type="string" var="$Query.syncRemoteAddressSpace" options="sync-remote-address-space" hide="True" group="">
           <help short="Parameter indicates the intention to sync the peering with the current address space on the remote vNet after it's updated."/>
           <enum>
             <item name="true" value="&quot;true&quot;"/>
           </enum>
         </arg>
+        <arg nullable="True" type="boolean" var="$VirtualNetworkPeeringParameters.properties.allowForwardedTraffic" options="allow-forwarded-traffic" hide="True" group="">
+          <help short="Allows forwarded traffic from the local VNet to the remote VNet."/>
+        </arg>
+        <arg nullable="True" type="boolean" var="$VirtualNetworkPeeringParameters.properties.allowGatewayTransit" options="allow-gateway-transit" hide="True" group="">
+          <help short="Allows gateway link to be used in the remote VNet."/>
+        </arg>
+        <arg nullable="True" type="boolean" var="$VirtualNetworkPeeringParameters.properties.allowVirtualNetworkAccess" options="allow-vnet-access" hide="True" group="">
+          <help short="Allows access from the local VNet to the remote VNet."/>
+        </arg>
+        <arg nullable="True" type="string" var="$VirtualNetworkPeeringParameters.properties.remoteVirtualNetwork.id" options="remote-vnet" hide="True" group="">
+          <help short="Name or ID of the remote VNet."/>
+        </arg>
+        <arg nullable="True" type="boolean" var="$VirtualNetworkPeeringParameters.properties.useRemoteGateways" options="use-remote-gateways" hide="True" group="">
+          <help short="Allows VNet to use the remote VNet's gateway. Remote VNet gateway must have --allow-gateway-transit enabled for remote peering. Only 1 peering can have this flag enabled. Cannot be set if the VNet already has a gateway."/>
+        </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="boolean" var="$VirtualNetworkPeeringParameters.properties.allowForwardedTraffic" options="allow-forwarded-traffic" group="Properties">
-          <help short="Whether the forwarded traffic from the VMs in the local virtual network will be allowed/disallowed in remote virtual network."/>
-        </arg>
-        <arg nullable="True" type="boolean" var="$VirtualNetworkPeeringParameters.properties.allowGatewayTransit" options="allow-gateway-transit" group="Properties">
-          <help short="If gateway links can be used in remote virtual networking to link to this virtual network."/>
-        </arg>
-        <arg nullable="True" type="boolean" var="$VirtualNetworkPeeringParameters.properties.allowVirtualNetworkAccess" options="allow-virtual-network-access" group="Properties">
-          <help short="Whether the VMs in the local virtual network space would be able to access the VMs in remote virtual network space."/>
-        </arg>
-        <arg nullable="True" type="boolean" var="$VirtualNetworkPeeringParameters.properties.doNotVerifyRemoteGateways" options="do-not-verify-remote-gateways" group="Properties">
+        <arg nullable="True" type="boolean" var="$VirtualNetworkPeeringParameters.properties.doNotVerifyRemoteGateways" options="do-not-verify-remote-gateways" hide="True" group="Properties">
           <help short="If we need to verify the provisioning state of the remote gateway."/>
         </arg>
-        <arg nullable="True" type="string" var="$VirtualNetworkPeeringParameters.properties.peeringState" options="peering-state" group="Properties">
+        <arg nullable="True" type="string" var="$VirtualNetworkPeeringParameters.properties.peeringState" options="peering-state" hide="True" group="Properties">
           <help short="The status of the virtual network peering."/>
           <enum>
             <item name="Connected" value="&quot;Connected&quot;"/>
@@ -414,7 +421,7 @@
             <item name="Initiated" value="&quot;Initiated&quot;"/>
           </enum>
         </arg>
-        <arg nullable="True" type="string" var="$VirtualNetworkPeeringParameters.properties.peeringSyncLevel" options="peering-sync-level" group="Properties">
+        <arg nullable="True" type="string" var="$VirtualNetworkPeeringParameters.properties.peeringSyncLevel" options="peering-sync-level" hide="True" group="Properties">
           <help short="The peering sync status of the virtual network peering."/>
           <enum>
             <item name="FullyInSync" value="&quot;FullyInSync&quot;"/>
@@ -423,30 +430,21 @@
             <item name="RemoteNotInSync" value="&quot;RemoteNotInSync&quot;"/>
           </enum>
         </arg>
-        <arg nullable="True" type="object" var="$VirtualNetworkPeeringParameters.properties.remoteAddressSpace" options="remote-address-space" group="Properties" cls="AddressSpace_update">
+        <arg nullable="True" type="object" var="$VirtualNetworkPeeringParameters.properties.remoteAddressSpace" options="remote-address-space" hide="True" group="Properties" cls="AddressSpace_update">
           <help short="The reference to the address space peered with the remote virtual network."/>
           <arg nullable="True" type="array<string>" var="@AddressSpace_update.addressPrefixes" options="address-prefixes">
             <help short="A list of address blocks reserved for this virtual network in CIDR notation."/>
             <item nullable="True" type="string"/>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$VirtualNetworkPeeringParameters.properties.remoteBgpCommunities" options="remote-bgp-communities" group="Properties">
+        <arg nullable="True" type="object" var="$VirtualNetworkPeeringParameters.properties.remoteBgpCommunities" options="remote-bgp-communities" hide="True" group="Properties">
           <help short="The reference to the remote virtual network's Bgp Communities."/>
           <arg type="string" var="$VirtualNetworkPeeringParameters.properties.remoteBgpCommunities.virtualNetworkCommunity" options="virtual-network-community">
             <help short="The BGP community associated with the virtual network."/>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$VirtualNetworkPeeringParameters.properties.remoteVirtualNetwork" options="remote-virtual-network" group="Properties">
-          <help short="The reference to the remote virtual network. The remote virtual network can be in the same or different region (preview). See here to register for the preview and learn more (https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-create-peering)."/>
-          <arg nullable="True" type="string" var="$VirtualNetworkPeeringParameters.properties.remoteVirtualNetwork.id" options="id">
-            <help short="Resource ID."/>
-          </arg>
-        </arg>
-        <arg nullable="True" type="@AddressSpace_update" var="$VirtualNetworkPeeringParameters.properties.remoteVirtualNetworkAddressSpace" options="remote-virtual-network-address-space" group="Properties">
+        <arg nullable="True" type="@AddressSpace_update" var="$VirtualNetworkPeeringParameters.properties.remoteVirtualNetworkAddressSpace" options="remote-virtual-network-address-space" hide="True" group="Properties">
           <help short="The reference to the current address space of the remote virtual network."/>
-        </arg>
-        <arg nullable="True" type="boolean" var="$VirtualNetworkPeeringParameters.properties.useRemoteGateways" options="use-remote-gateways" group="Properties">
-          <help short="If remote gateways can be used on this virtual network. If the flag is set to true, and allowGatewayTransit on remote peering is also true, virtual network will use gateways of remote virtual network for transit. Only one peering can have this flag set to true. This flag cannot be set if virtual network already has a gateway."/>
         </arg>
       </argGroup>
       <argGroup name="VirtualNetworkPeeringParameters">
@@ -454,7 +452,7 @@
           <help short="Resource ID."/>
           <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/virtualNetworks/{}/virtualNetworkPeerings/{}"/>
         </arg>
-        <arg nullable="True" type="string" var="$VirtualNetworkPeeringParameters.type" options="type" group="VirtualNetworkPeeringParameters">
+        <arg nullable="True" type="string" var="$VirtualNetworkPeeringParameters.type" options="type" hide="True" group="VirtualNetworkPeeringParameters">
           <help short="Resource type."/>
         </arg>
       </argGroup>
@@ -523,9 +521,9 @@
                       <prop type="string" name="id"/>
                     </prop>
                     <prop type="@AddressSpace_read" name="remoteVirtualNetworkAddressSpace"/>
-                    <prop readOnly="True" type="object" name="remoteVirtualNetworkEncryption">
-                      <prop readOnly="True" type="boolean" name="enabled" required="True"/>
-                      <prop readOnly="True" type="string" name="enforcement">
+                    <prop type="object" name="remoteVirtualNetworkEncryption">
+                      <prop type="boolean" name="enabled" required="True"/>
+                      <prop type="string" name="enforcement">
                         <enum>
                           <item value="&quot;AllowUnencrypted&quot;"/>
                           <item value="&quot;DropUnencrypted&quot;"/>
@@ -550,7 +548,7 @@
         </http>
       </operation>
       <operation>
-        <instanceUpdate instance="$Instance">
+        <instanceUpdate ref="$Instance">
           <json>
             <schema type="object" name="VirtualNetworkPeeringParameters" required="True" clientFlatten="True">
               <prop type="ResourceId" name="id" arg="$VirtualNetworkPeeringParameters.id">
@@ -585,7 +583,7 @@
                 <prop type="object" name="remoteBgpCommunities" arg="$VirtualNetworkPeeringParameters.properties.remoteBgpCommunities">
                   <prop type="string" name="virtualNetworkCommunity" arg="$VirtualNetworkPeeringParameters.properties.remoteBgpCommunities.virtualNetworkCommunity" required="True"/>
                 </prop>
-                <prop type="object" name="remoteVirtualNetwork" arg="$VirtualNetworkPeeringParameters.properties.remoteVirtualNetwork">
+                <prop type="object" name="remoteVirtualNetwork">
                   <prop type="string" name="id" arg="$VirtualNetworkPeeringParameters.properties.remoteVirtualNetwork.id"/>
                 </prop>
                 <prop type="@AddressSpace_update" name="remoteVirtualNetworkAddressSpace" arg="$VirtualNetworkPeeringParameters.properties.remoteVirtualNetworkAddressSpace"/>
