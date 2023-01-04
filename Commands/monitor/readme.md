@@ -12,3 +12,6 @@ Manage the Azure Monitor Service.
 
 - [log-analytics](/Commands/monitor/log-analytics/readme.md)
 : Manage Azure log analytics.
+
+- [log-profiles](/Commands/monitor/log-profiles/readme.md)
+: Manage log profiles.
