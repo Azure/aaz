@@ -476,9 +476,7 @@
                                                 <prop readOnly="True" type="string" name="name"/>
                                                 <prop type="object" name="properties" clientFlatten="True">
                                                   <prop type="object" name="ddosSettings">
-                                                    <prop type="object" name="ddosProtectionPlan">
-                                                      <prop type="string" name="id"/>
-                                                    </prop>
+                                                    <prop type="@SubResource_read" name="ddosProtectionPlan"/>
                                                     <prop type="string" name="protectionMode">
                                                       <enum>
                                                         <item value="&quot;Disabled&quot;"/>
@@ -531,7 +529,7 @@
                                                       <prop type="string" name="tag"/>
                                                     </item>
                                                   </prop>
-                                                  <prop readOnly="True" type="@PublicIPAddress_read" name="linkedPublicIPAddress"/>
+                                                  <prop type="@PublicIPAddress_read" name="linkedPublicIPAddress"/>
                                                   <prop type="string" name="migrationPhase">
                                                     <enum>
                                                       <item value="&quot;Abort&quot;"/>
@@ -606,11 +604,9 @@
                                                       <item value="&quot;Static&quot;"/>
                                                     </enum>
                                                   </prop>
-                                                  <prop type="object" name="publicIPPrefix">
-                                                    <prop type="string" name="id"/>
-                                                  </prop>
+                                                  <prop type="@SubResource_read" name="publicIPPrefix"/>
                                                   <prop readOnly="True" type="string" name="resourceGuid"/>
-                                                  <prop readOnly="True" type="@PublicIPAddress_read" name="servicePublicIPAddress"/>
+                                                  <prop type="@PublicIPAddress_read" name="servicePublicIPAddress"/>
                                                 </prop>
                                                 <prop type="object" name="sku">
                                                   <prop type="string" name="name">
@@ -1441,7 +1437,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="delete" version="2022-05-01" confirmation="Are you sure you want to perform this operation?">
+    <command name="delete" version="2022-05-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/loadbalancers/{}" version="2022-05-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9sb2FkQmFsYW5jZXJzL3tsb2FkQmFsYW5jZXJOYW1lfQ==/V/MjAyMi0wNS0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.loadBalancerName" options="name n" required="True" idPart="name">
@@ -1637,27 +1633,24 @@
                 <item name="Static" value="&quot;Static&quot;"/>
               </enum>
             </arg>
-            <arg type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress" options="public-ip-address" group="Properties">
+            <arg type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress" options="public-ip-address" group="Properties" cls="PublicIPAddress_create">
               <help short="The reference to the Public IP resource."/>
-              <arg type="@ExtendedLocation_create" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.extendedLocation" options="extended-location">
+              <arg type="@ExtendedLocation_create" var="@PublicIPAddress_create.extendedLocation" options="extended-location">
                 <help short="The extended location of the public ip address."/>
               </arg>
-              <arg type="ResourceId" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.id" options="id">
+              <arg type="ResourceId" var="@PublicIPAddress_create.id" options="id" hide="True">
                 <help short="Resource ID."/>
                 <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/publicIPAddresses/{}"/>
               </arg>
-              <arg type="ResourceLocation" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.location" options="location l">
+              <arg type="ResourceLocation" var="@PublicIPAddress_create.location" options="location l">
                 <help short="Resource location."/>
               </arg>
-              <arg type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ddosSettings" options="ddos-settings" group="Properties">
+              <arg type="object" var="@PublicIPAddress_create.properties.ddosSettings" options="ddos-settings" group="Properties">
                 <help short="The DDoS protection custom policy associated with the public IP address."/>
-                <arg type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ddosSettings.ddosProtectionPlan" options="ddos-protection-plan">
+                <arg type="@SubResource_create" var="@PublicIPAddress_create.properties.ddosSettings.ddosProtectionPlan" options="ddos-protection-plan">
                   <help short="The DDoS protection plan associated with the public IP. Can only be set if ProtectionMode is Enabled"/>
-                  <arg type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ddosSettings.ddosProtectionPlan.id" options="id">
-                    <help short="Resource ID."/>
-                  </arg>
                 </arg>
-                <arg type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ddosSettings.protectionMode" options="protection-mode">
+                <arg type="string" var="@PublicIPAddress_create.properties.ddosSettings.protectionMode" options="protection-mode">
                   <help short="The DDoS protection mode of the public IP"/>
                   <enum>
                     <item name="Disabled" value="&quot;Disabled&quot;"/>
@@ -1666,43 +1659,46 @@
                   </enum>
                 </arg>
               </arg>
-              <arg type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.deleteOption" options="delete-option" group="Properties">
+              <arg type="string" var="@PublicIPAddress_create.properties.deleteOption" options="delete-option" group="Properties">
                 <help short="Specify what happens to the public IP address when the VM using it is deleted"/>
                 <enum>
                   <item name="Delete" value="&quot;Delete&quot;"/>
                   <item name="Detach" value="&quot;Detach&quot;"/>
                 </enum>
               </arg>
-              <arg type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.dnsSettings" options="dns-settings" group="Properties">
+              <arg type="object" var="@PublicIPAddress_create.properties.dnsSettings" options="dns-settings" group="Properties">
                 <help short="The FQDN of the DNS record associated with the public IP address."/>
-                <arg type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.dnsSettings.domainNameLabel" options="domain-name-label">
+                <arg type="string" var="@PublicIPAddress_create.properties.dnsSettings.domainNameLabel" options="domain-name-label">
                   <help short="The domain name label. The concatenation of the domain name label and the regionalized DNS zone make up the fully qualified domain name associated with the public IP address. If a domain name label is specified, an A DNS record is created for the public IP in the Microsoft Azure DNS system."/>
                 </arg>
-                <arg type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.dnsSettings.fqdn" options="fqdn">
+                <arg type="string" var="@PublicIPAddress_create.properties.dnsSettings.fqdn" options="fqdn">
                   <help short="The Fully Qualified Domain Name of the A DNS record associated with the public IP. This is the concatenation of the domainNameLabel and the regionalized DNS zone."/>
                 </arg>
-                <arg type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.dnsSettings.reverseFqdn" options="reverse-fqdn">
+                <arg type="string" var="@PublicIPAddress_create.properties.dnsSettings.reverseFqdn" options="reverse-fqdn">
                   <help short="The reverse FQDN. A user-visible, fully qualified domain name that resolves to this public IP address. If the reverseFqdn is specified, then a PTR DNS record is created pointing from the IP address in the in-addr.arpa domain to the reverse FQDN."/>
                 </arg>
               </arg>
-              <arg type="integer32" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.idleTimeoutInMinutes" options="idle-timeout-in-minutes" group="Properties">
+              <arg type="integer32" var="@PublicIPAddress_create.properties.idleTimeoutInMinutes" options="idle-timeout-in-minutes" group="Properties">
                 <help short="The idle timeout of the public IP address."/>
               </arg>
-              <arg type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ipAddress" options="ip-address" group="Properties">
+              <arg type="string" var="@PublicIPAddress_create.properties.ipAddress" options="ip-address" group="Properties">
                 <help short="The IP address associated with the public IP address resource."/>
               </arg>
-              <arg type="array<object>" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ipTags" options="ip-tags" group="Properties">
+              <arg type="array<object>" var="@PublicIPAddress_create.properties.ipTags" options="ip-tags" group="Properties">
                 <help short="The list of tags associated with the public IP address."/>
                 <item type="object">
-                  <arg type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ipTags[].ipTagType" options="ip-tag-type">
+                  <arg type="string" var="@PublicIPAddress_create.properties.ipTags[].ipTagType" options="ip-tag-type">
                     <help short="The IP tag type. Example: FirstPartyUsage."/>
                   </arg>
-                  <arg type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ipTags[].tag" options="tag">
+                  <arg type="string" var="@PublicIPAddress_create.properties.ipTags[].tag" options="tag">
                     <help short="The value of the IP tag associated with the public IP. Example: SQL."/>
                   </arg>
                 </item>
               </arg>
-              <arg type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.migrationPhase" options="migration-phase" group="Properties">
+              <arg type="@PublicIPAddress_create" var="@PublicIPAddress_create.properties.linkedPublicIPAddress" options="linked-public-ip-address" group="Properties">
+                <help short="The linked public IP address of the public IP address resource."/>
+              </arg>
+              <arg type="string" var="@PublicIPAddress_create.properties.migrationPhase" options="migration-phase" group="Properties">
                 <help short="Migration phase of Public IP Address."/>
                 <enum>
                   <item name="Abort" value="&quot;Abort&quot;"/>
@@ -1712,76 +1708,76 @@
                   <item name="Prepare" value="&quot;Prepare&quot;"/>
                 </enum>
               </arg>
-              <arg type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway" options="nat-gateway" group="Properties">
+              <arg type="object" var="@PublicIPAddress_create.properties.natGateway" options="nat-gateway" group="Properties">
                 <help short="The NatGateway for the Public IP address."/>
-                <arg type="ResourceId" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.id" options="id">
+                <arg type="ResourceId" var="@PublicIPAddress_create.properties.natGateway.id" options="id">
                   <help short="Resource ID."/>
                   <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/natGateways/{}"/>
                 </arg>
-                <arg type="ResourceLocation" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.location" options="location l">
+                <arg type="ResourceLocation" var="@PublicIPAddress_create.properties.natGateway.location" options="location l">
                   <help short="Resource location."/>
                 </arg>
-                <arg type="integer32" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.properties.idleTimeoutInMinutes" options="idle-timeout-in-minutes" group="Properties">
+                <arg type="integer32" var="@PublicIPAddress_create.properties.natGateway.properties.idleTimeoutInMinutes" options="idle-timeout-in-minutes" group="Properties">
                   <help short="The idle timeout of the nat gateway."/>
                 </arg>
-                <arg type="array<@SubResource_create>" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.properties.publicIpAddresses" options="public-ip-addresses" group="Properties">
+                <arg type="array<@SubResource_create>" var="@PublicIPAddress_create.properties.natGateway.properties.publicIpAddresses" options="public-ip-addresses" group="Properties">
                   <help short="An array of public ip addresses associated with the nat gateway resource."/>
                   <item type="@SubResource_create"/>
                 </arg>
-                <arg type="array<@SubResource_create>" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.properties.publicIpPrefixes" options="public-ip-prefixes" group="Properties">
+                <arg type="array<@SubResource_create>" var="@PublicIPAddress_create.properties.natGateway.properties.publicIpPrefixes" options="public-ip-prefixes" group="Properties">
                   <help short="An array of public ip prefixes associated with the nat gateway resource."/>
                   <item type="@SubResource_create"/>
                 </arg>
-                <arg type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.sku" options="sku">
+                <arg type="object" var="@PublicIPAddress_create.properties.natGateway.sku" options="sku">
                   <help short="The nat gateway SKU."/>
-                  <arg type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.sku.name" options="name">
+                  <arg type="string" var="@PublicIPAddress_create.properties.natGateway.sku.name" options="name">
                     <help short="Name of Nat Gateway SKU."/>
                     <enum>
                       <item name="Standard" value="&quot;Standard&quot;"/>
                     </enum>
                   </arg>
                 </arg>
-                <arg type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.tags" options="tags">
+                <arg type="object" var="@PublicIPAddress_create.properties.natGateway.tags" options="tags">
                   <help short="Resource tags."/>
                   <additionalProp>
                     <item type="string"/>
                   </additionalProp>
                 </arg>
-                <arg type="array<string>" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.zones" options="zones">
+                <arg type="array<string>" var="@PublicIPAddress_create.properties.natGateway.zones" options="zones">
                   <help short="A list of availability zones denoting the zone in which Nat Gateway should be deployed."/>
                   <item type="string"/>
                 </arg>
               </arg>
-              <arg type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.publicIPAddressVersion" options="public-ip-address-version" group="Properties">
+              <arg type="string" var="@PublicIPAddress_create.properties.publicIPAddressVersion" options="public-ip-address-version" group="Properties">
                 <help short="The public IP address version."/>
                 <enum>
                   <item name="IPv4" value="&quot;IPv4&quot;"/>
                   <item name="IPv6" value="&quot;IPv6&quot;"/>
                 </enum>
               </arg>
-              <arg type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.publicIPAllocationMethod" options="public-ip-allocation-method" group="Properties">
+              <arg type="string" var="@PublicIPAddress_create.properties.publicIPAllocationMethod" options="public-ip-allocation-method" group="Properties">
                 <help short="The public IP address allocation method."/>
                 <enum>
                   <item name="Dynamic" value="&quot;Dynamic&quot;"/>
                   <item name="Static" value="&quot;Static&quot;"/>
                 </enum>
               </arg>
-              <arg type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.publicIPPrefix" options="public-ip-prefix" group="Properties">
+              <arg type="@SubResource_create" var="@PublicIPAddress_create.properties.publicIPPrefix" options="public-ip-prefix" group="Properties">
                 <help short="The Public IP Prefix this Public IP Address should be allocated from."/>
-                <arg type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.publicIPPrefix.id" options="id">
-                  <help short="Resource ID."/>
-                </arg>
               </arg>
-              <arg type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.sku" options="sku">
+              <arg type="@PublicIPAddress_create" var="@PublicIPAddress_create.properties.servicePublicIPAddress" options="service-public-ip-address" group="Properties">
+                <help short="The service public IP address of the public IP address resource."/>
+              </arg>
+              <arg type="object" var="@PublicIPAddress_create.sku" options="sku">
                 <help short="The public IP address SKU."/>
-                <arg type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.sku.name" options="name">
+                <arg type="string" var="@PublicIPAddress_create.sku.name" options="name">
                   <help short="Name of a public IP address SKU."/>
                   <enum>
                     <item name="Basic" value="&quot;Basic&quot;"/>
                     <item name="Standard" value="&quot;Standard&quot;"/>
                   </enum>
                 </arg>
-                <arg type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.sku.tier" options="tier">
+                <arg type="string" var="@PublicIPAddress_create.sku.tier" options="tier">
                   <help short="Tier of a public IP address SKU."/>
                   <enum>
                     <item name="Global" value="&quot;Global&quot;"/>
@@ -1789,13 +1785,13 @@
                   </enum>
                 </arg>
               </arg>
-              <arg type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.tags" options="tags">
+              <arg type="object" var="@PublicIPAddress_create.tags" options="tags">
                 <help short="Resource tags."/>
                 <additionalProp>
                   <item type="string"/>
                 </additionalProp>
               </arg>
-              <arg type="array<string>" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.zones" options="zones">
+              <arg type="array<string>" var="@PublicIPAddress_create.zones" options="zones">
                 <help short="A list of availability zones denoting the IP allocated for the resource needs to come from."/>
                 <item type="string"/>
               </arg>
@@ -2435,18 +2431,16 @@
                               <item value="&quot;Static&quot;"/>
                             </enum>
                           </prop>
-                          <prop type="object" name="publicIPAddress" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress">
-                            <prop type="@ExtendedLocation_create" name="extendedLocation" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.extendedLocation"/>
-                            <prop type="ResourceId" name="id" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.id">
+                          <prop type="object" name="publicIPAddress" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress" cls="PublicIPAddress_create">
+                            <prop type="@ExtendedLocation_create" name="extendedLocation" arg="@PublicIPAddress_create.extendedLocation"/>
+                            <prop type="ResourceId" name="id" arg="@PublicIPAddress_create.id">
                               <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/publicIPAddresses/{}"/>
                             </prop>
-                            <prop type="ResourceLocation" name="location" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.location"/>
+                            <prop type="ResourceLocation" name="location" arg="@PublicIPAddress_create.location"/>
                             <prop type="object" name="properties" clientFlatten="True">
-                              <prop type="object" name="ddosSettings" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ddosSettings">
-                                <prop type="object" name="ddosProtectionPlan" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ddosSettings.ddosProtectionPlan">
-                                  <prop type="string" name="id" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ddosSettings.ddosProtectionPlan.id"/>
-                                </prop>
-                                <prop type="string" name="protectionMode" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ddosSettings.protectionMode">
+                              <prop type="object" name="ddosSettings" arg="@PublicIPAddress_create.properties.ddosSettings">
+                                <prop type="@SubResource_create" name="ddosProtectionPlan" arg="@PublicIPAddress_create.properties.ddosSettings.ddosProtectionPlan"/>
+                                <prop type="string" name="protectionMode" arg="@PublicIPAddress_create.properties.ddosSettings.protectionMode">
                                   <enum>
                                     <item value="&quot;Disabled&quot;"/>
                                     <item value="&quot;Enabled&quot;"/>
@@ -2454,26 +2448,27 @@
                                   </enum>
                                 </prop>
                               </prop>
-                              <prop type="string" name="deleteOption" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.deleteOption">
+                              <prop type="string" name="deleteOption" arg="@PublicIPAddress_create.properties.deleteOption">
                                 <enum>
                                   <item value="&quot;Delete&quot;"/>
                                   <item value="&quot;Detach&quot;"/>
                                 </enum>
                               </prop>
-                              <prop type="object" name="dnsSettings" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.dnsSettings">
-                                <prop type="string" name="domainNameLabel" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.dnsSettings.domainNameLabel"/>
-                                <prop type="string" name="fqdn" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.dnsSettings.fqdn"/>
-                                <prop type="string" name="reverseFqdn" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.dnsSettings.reverseFqdn"/>
+                              <prop type="object" name="dnsSettings" arg="@PublicIPAddress_create.properties.dnsSettings">
+                                <prop type="string" name="domainNameLabel" arg="@PublicIPAddress_create.properties.dnsSettings.domainNameLabel"/>
+                                <prop type="string" name="fqdn" arg="@PublicIPAddress_create.properties.dnsSettings.fqdn"/>
+                                <prop type="string" name="reverseFqdn" arg="@PublicIPAddress_create.properties.dnsSettings.reverseFqdn"/>
                               </prop>
-                              <prop type="integer32" name="idleTimeoutInMinutes" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.idleTimeoutInMinutes"/>
-                              <prop type="string" name="ipAddress" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ipAddress"/>
-                              <prop type="array<object>" name="ipTags" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ipTags">
+                              <prop type="integer32" name="idleTimeoutInMinutes" arg="@PublicIPAddress_create.properties.idleTimeoutInMinutes"/>
+                              <prop type="string" name="ipAddress" arg="@PublicIPAddress_create.properties.ipAddress"/>
+                              <prop type="array<object>" name="ipTags" arg="@PublicIPAddress_create.properties.ipTags">
                                 <item type="object">
-                                  <prop type="string" name="ipTagType" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ipTags[].ipTagType"/>
-                                  <prop type="string" name="tag" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ipTags[].tag"/>
+                                  <prop type="string" name="ipTagType" arg="@PublicIPAddress_create.properties.ipTags[].ipTagType"/>
+                                  <prop type="string" name="tag" arg="@PublicIPAddress_create.properties.ipTags[].tag"/>
                                 </item>
                               </prop>
-                              <prop type="string" name="migrationPhase" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.migrationPhase">
+                              <prop type="@PublicIPAddress_create" name="linkedPublicIPAddress" arg="@PublicIPAddress_create.properties.linkedPublicIPAddress"/>
+                              <prop type="string" name="migrationPhase" arg="@PublicIPAddress_create.properties.migrationPhase">
                                 <enum>
                                   <item value="&quot;Abort&quot;"/>
                                   <item value="&quot;Commit&quot;"/>
@@ -2482,72 +2477,71 @@
                                   <item value="&quot;Prepare&quot;"/>
                                 </enum>
                               </prop>
-                              <prop type="object" name="natGateway" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway">
-                                <prop type="ResourceId" name="id" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.id">
+                              <prop type="object" name="natGateway" arg="@PublicIPAddress_create.properties.natGateway">
+                                <prop type="ResourceId" name="id" arg="@PublicIPAddress_create.properties.natGateway.id">
                                   <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/natGateways/{}"/>
                                 </prop>
-                                <prop type="ResourceLocation" name="location" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.location"/>
+                                <prop type="ResourceLocation" name="location" arg="@PublicIPAddress_create.properties.natGateway.location"/>
                                 <prop type="object" name="properties" clientFlatten="True">
-                                  <prop type="integer32" name="idleTimeoutInMinutes" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.properties.idleTimeoutInMinutes"/>
-                                  <prop type="array<@SubResource_create>" name="publicIpAddresses" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.properties.publicIpAddresses">
+                                  <prop type="integer32" name="idleTimeoutInMinutes" arg="@PublicIPAddress_create.properties.natGateway.properties.idleTimeoutInMinutes"/>
+                                  <prop type="array<@SubResource_create>" name="publicIpAddresses" arg="@PublicIPAddress_create.properties.natGateway.properties.publicIpAddresses">
                                     <item type="@SubResource_create"/>
                                   </prop>
-                                  <prop type="array<@SubResource_create>" name="publicIpPrefixes" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.properties.publicIpPrefixes">
+                                  <prop type="array<@SubResource_create>" name="publicIpPrefixes" arg="@PublicIPAddress_create.properties.natGateway.properties.publicIpPrefixes">
                                     <item type="@SubResource_create"/>
                                   </prop>
                                 </prop>
-                                <prop type="object" name="sku" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.sku">
-                                  <prop type="string" name="name" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.sku.name">
+                                <prop type="object" name="sku" arg="@PublicIPAddress_create.properties.natGateway.sku">
+                                  <prop type="string" name="name" arg="@PublicIPAddress_create.properties.natGateway.sku.name">
                                     <enum>
                                       <item value="&quot;Standard&quot;"/>
                                     </enum>
                                   </prop>
                                 </prop>
-                                <prop type="object" name="tags" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.tags">
+                                <prop type="object" name="tags" arg="@PublicIPAddress_create.properties.natGateway.tags">
                                   <additionalProp>
                                     <item type="string"/>
                                   </additionalProp>
                                 </prop>
-                                <prop type="array<string>" name="zones" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.zones">
+                                <prop type="array<string>" name="zones" arg="@PublicIPAddress_create.properties.natGateway.zones">
                                   <item type="string"/>
                                 </prop>
                               </prop>
-                              <prop type="string" name="publicIPAddressVersion" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.publicIPAddressVersion">
+                              <prop type="string" name="publicIPAddressVersion" arg="@PublicIPAddress_create.properties.publicIPAddressVersion">
                                 <enum>
                                   <item value="&quot;IPv4&quot;"/>
                                   <item value="&quot;IPv6&quot;"/>
                                 </enum>
                               </prop>
-                              <prop type="string" name="publicIPAllocationMethod" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.publicIPAllocationMethod">
+                              <prop type="string" name="publicIPAllocationMethod" arg="@PublicIPAddress_create.properties.publicIPAllocationMethod">
                                 <enum>
                                   <item value="&quot;Dynamic&quot;"/>
                                   <item value="&quot;Static&quot;"/>
                                 </enum>
                               </prop>
-                              <prop type="object" name="publicIPPrefix" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.publicIPPrefix">
-                                <prop type="string" name="id" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.publicIPPrefix.id"/>
-                              </prop>
+                              <prop type="@SubResource_create" name="publicIPPrefix" arg="@PublicIPAddress_create.properties.publicIPPrefix"/>
+                              <prop type="@PublicIPAddress_create" name="servicePublicIPAddress" arg="@PublicIPAddress_create.properties.servicePublicIPAddress"/>
                             </prop>
-                            <prop type="object" name="sku" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.sku">
-                              <prop type="string" name="name" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.sku.name">
+                            <prop type="object" name="sku" arg="@PublicIPAddress_create.sku">
+                              <prop type="string" name="name" arg="@PublicIPAddress_create.sku.name">
                                 <enum>
                                   <item value="&quot;Basic&quot;"/>
                                   <item value="&quot;Standard&quot;"/>
                                 </enum>
                               </prop>
-                              <prop type="string" name="tier" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.sku.tier">
+                              <prop type="string" name="tier" arg="@PublicIPAddress_create.sku.tier">
                                 <enum>
                                   <item value="&quot;Global&quot;"/>
                                   <item value="&quot;Regional&quot;"/>
                                 </enum>
                               </prop>
                             </prop>
-                            <prop type="object" name="tags" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.tags">
+                            <prop type="object" name="tags" arg="@PublicIPAddress_create.tags">
                               <additionalProp>
                                 <item type="string"/>
                               </additionalProp>
                             </prop>
-                            <prop type="array<string>" name="zones" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.zones">
+                            <prop type="array<string>" name="zones" arg="@PublicIPAddress_create.zones">
                               <item type="string"/>
                             </prop>
                           </prop>
@@ -3371,9 +3365,7 @@
                                                 <prop readOnly="True" type="string" name="name"/>
                                                 <prop type="object" name="properties" clientFlatten="True">
                                                   <prop type="object" name="ddosSettings">
-                                                    <prop type="object" name="ddosProtectionPlan">
-                                                      <prop type="string" name="id"/>
-                                                    </prop>
+                                                    <prop type="@SubResource_read" name="ddosProtectionPlan"/>
                                                     <prop type="string" name="protectionMode">
                                                       <enum>
                                                         <item value="&quot;Disabled&quot;"/>
@@ -3426,7 +3418,7 @@
                                                       <prop type="string" name="tag"/>
                                                     </item>
                                                   </prop>
-                                                  <prop readOnly="True" type="@PublicIPAddress_read" name="linkedPublicIPAddress"/>
+                                                  <prop type="@PublicIPAddress_read" name="linkedPublicIPAddress"/>
                                                   <prop type="string" name="migrationPhase">
                                                     <enum>
                                                       <item value="&quot;Abort&quot;"/>
@@ -3501,11 +3493,9 @@
                                                       <item value="&quot;Static&quot;"/>
                                                     </enum>
                                                   </prop>
-                                                  <prop type="object" name="publicIPPrefix">
-                                                    <prop type="string" name="id"/>
-                                                  </prop>
+                                                  <prop type="@SubResource_read" name="publicIPPrefix"/>
                                                   <prop readOnly="True" type="string" name="resourceGuid"/>
-                                                  <prop readOnly="True" type="@PublicIPAddress_read" name="servicePublicIPAddress"/>
+                                                  <prop type="@PublicIPAddress_read" name="servicePublicIPAddress"/>
                                                 </prop>
                                                 <prop type="object" name="sku">
                                                   <prop type="string" name="name">
@@ -4344,6 +4334,12 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg nullable="True" type="object" var="$parameters.tags" options="tags" group="">
+          <help short="Space-separated tags: key[=value] [key[=value] ...]."/>
+          <additionalProp>
+            <item nullable="True" type="string"/>
+          </additionalProp>
+        </arg>
       </argGroup>
       <argGroup name="Parameters">
         <arg nullable="True" type="object" var="$parameters.extendedLocation" options="extended-location" hide="True" group="Parameters" cls="ExtendedLocation_update">
@@ -4382,12 +4378,6 @@
               <item name="Regional" value="&quot;Regional&quot;"/>
             </enum>
           </arg>
-        </arg>
-        <arg nullable="True" type="object" var="$parameters.tags" options="tags" hide="True" group="Parameters">
-          <help short="Resource tags."/>
-          <additionalProp>
-            <item nullable="True" type="string"/>
-          </additionalProp>
         </arg>
       </argGroup>
       <argGroup name="Properties">
@@ -4495,27 +4485,24 @@
                 <item name="Static" value="&quot;Static&quot;"/>
               </enum>
             </arg>
-            <arg nullable="True" type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress" options="public-ip-address" group="Properties">
+            <arg nullable="True" type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress" options="public-ip-address" group="Properties" cls="PublicIPAddress_update">
               <help short="The reference to the Public IP resource."/>
-              <arg nullable="True" type="@ExtendedLocation_update" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.extendedLocation" options="extended-location">
+              <arg nullable="True" type="@ExtendedLocation_update" var="@PublicIPAddress_update.extendedLocation" options="extended-location">
                 <help short="The extended location of the public ip address."/>
               </arg>
-              <arg nullable="True" type="ResourceId" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.id" options="id">
+              <arg nullable="True" type="ResourceId" var="@PublicIPAddress_update.id" options="id" hide="True">
                 <help short="Resource ID."/>
                 <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/publicIPAddresses/{}"/>
               </arg>
-              <arg nullable="True" type="ResourceLocation" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.location" options="location l">
+              <arg nullable="True" type="ResourceLocation" var="@PublicIPAddress_update.location" options="location l">
                 <help short="Resource location."/>
               </arg>
-              <arg nullable="True" type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ddosSettings" options="ddos-settings" group="Properties">
+              <arg nullable="True" type="object" var="@PublicIPAddress_update.properties.ddosSettings" options="ddos-settings" group="Properties">
                 <help short="The DDoS protection custom policy associated with the public IP address."/>
-                <arg nullable="True" type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ddosSettings.ddosProtectionPlan" options="ddos-protection-plan">
+                <arg nullable="True" type="@SubResource_update" var="@PublicIPAddress_update.properties.ddosSettings.ddosProtectionPlan" options="ddos-protection-plan">
                   <help short="The DDoS protection plan associated with the public IP. Can only be set if ProtectionMode is Enabled"/>
-                  <arg nullable="True" type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ddosSettings.ddosProtectionPlan.id" options="id">
-                    <help short="Resource ID."/>
-                  </arg>
                 </arg>
-                <arg nullable="True" type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ddosSettings.protectionMode" options="protection-mode">
+                <arg nullable="True" type="string" var="@PublicIPAddress_update.properties.ddosSettings.protectionMode" options="protection-mode">
                   <help short="The DDoS protection mode of the public IP"/>
                   <enum>
                     <item name="Disabled" value="&quot;Disabled&quot;"/>
@@ -4524,43 +4511,46 @@
                   </enum>
                 </arg>
               </arg>
-              <arg nullable="True" type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.deleteOption" options="delete-option" group="Properties">
+              <arg nullable="True" type="string" var="@PublicIPAddress_update.properties.deleteOption" options="delete-option" group="Properties">
                 <help short="Specify what happens to the public IP address when the VM using it is deleted"/>
                 <enum>
                   <item name="Delete" value="&quot;Delete&quot;"/>
                   <item name="Detach" value="&quot;Detach&quot;"/>
                 </enum>
               </arg>
-              <arg nullable="True" type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.dnsSettings" options="dns-settings" group="Properties">
+              <arg nullable="True" type="object" var="@PublicIPAddress_update.properties.dnsSettings" options="dns-settings" group="Properties">
                 <help short="The FQDN of the DNS record associated with the public IP address."/>
-                <arg nullable="True" type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.dnsSettings.domainNameLabel" options="domain-name-label">
+                <arg nullable="True" type="string" var="@PublicIPAddress_update.properties.dnsSettings.domainNameLabel" options="domain-name-label">
                   <help short="The domain name label. The concatenation of the domain name label and the regionalized DNS zone make up the fully qualified domain name associated with the public IP address. If a domain name label is specified, an A DNS record is created for the public IP in the Microsoft Azure DNS system."/>
                 </arg>
-                <arg nullable="True" type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.dnsSettings.fqdn" options="fqdn">
+                <arg nullable="True" type="string" var="@PublicIPAddress_update.properties.dnsSettings.fqdn" options="fqdn">
                   <help short="The Fully Qualified Domain Name of the A DNS record associated with the public IP. This is the concatenation of the domainNameLabel and the regionalized DNS zone."/>
                 </arg>
-                <arg nullable="True" type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.dnsSettings.reverseFqdn" options="reverse-fqdn">
+                <arg nullable="True" type="string" var="@PublicIPAddress_update.properties.dnsSettings.reverseFqdn" options="reverse-fqdn">
                   <help short="The reverse FQDN. A user-visible, fully qualified domain name that resolves to this public IP address. If the reverseFqdn is specified, then a PTR DNS record is created pointing from the IP address in the in-addr.arpa domain to the reverse FQDN."/>
                 </arg>
               </arg>
-              <arg nullable="True" type="integer32" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.idleTimeoutInMinutes" options="idle-timeout-in-minutes" group="Properties">
+              <arg nullable="True" type="integer32" var="@PublicIPAddress_update.properties.idleTimeoutInMinutes" options="idle-timeout-in-minutes" group="Properties">
                 <help short="The idle timeout of the public IP address."/>
               </arg>
-              <arg nullable="True" type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ipAddress" options="ip-address" group="Properties">
+              <arg nullable="True" type="string" var="@PublicIPAddress_update.properties.ipAddress" options="ip-address" group="Properties">
                 <help short="The IP address associated with the public IP address resource."/>
               </arg>
-              <arg nullable="True" type="array<object>" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ipTags" options="ip-tags" group="Properties">
+              <arg nullable="True" type="array<object>" var="@PublicIPAddress_update.properties.ipTags" options="ip-tags" group="Properties">
                 <help short="The list of tags associated with the public IP address."/>
                 <item nullable="True" type="object">
-                  <arg nullable="True" type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ipTags[].ipTagType" options="ip-tag-type">
+                  <arg nullable="True" type="string" var="@PublicIPAddress_update.properties.ipTags[].ipTagType" options="ip-tag-type">
                     <help short="The IP tag type. Example: FirstPartyUsage."/>
                   </arg>
-                  <arg nullable="True" type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ipTags[].tag" options="tag">
+                  <arg nullable="True" type="string" var="@PublicIPAddress_update.properties.ipTags[].tag" options="tag">
                     <help short="The value of the IP tag associated with the public IP. Example: SQL."/>
                   </arg>
                 </item>
               </arg>
-              <arg nullable="True" type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.migrationPhase" options="migration-phase" group="Properties">
+              <arg nullable="True" type="@PublicIPAddress_update" var="@PublicIPAddress_update.properties.linkedPublicIPAddress" options="linked-public-ip-address" group="Properties">
+                <help short="The linked public IP address of the public IP address resource."/>
+              </arg>
+              <arg nullable="True" type="string" var="@PublicIPAddress_update.properties.migrationPhase" options="migration-phase" group="Properties">
                 <help short="Migration phase of Public IP Address."/>
                 <enum>
                   <item name="Abort" value="&quot;Abort&quot;"/>
@@ -4570,76 +4560,76 @@
                   <item name="Prepare" value="&quot;Prepare&quot;"/>
                 </enum>
               </arg>
-              <arg nullable="True" type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway" options="nat-gateway" group="Properties">
+              <arg nullable="True" type="object" var="@PublicIPAddress_update.properties.natGateway" options="nat-gateway" group="Properties">
                 <help short="The NatGateway for the Public IP address."/>
-                <arg nullable="True" type="ResourceId" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.id" options="id">
+                <arg nullable="True" type="ResourceId" var="@PublicIPAddress_update.properties.natGateway.id" options="id">
                   <help short="Resource ID."/>
                   <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/natGateways/{}"/>
                 </arg>
-                <arg nullable="True" type="ResourceLocation" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.location" options="location l">
+                <arg nullable="True" type="ResourceLocation" var="@PublicIPAddress_update.properties.natGateway.location" options="location l">
                   <help short="Resource location."/>
                 </arg>
-                <arg nullable="True" type="integer32" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.properties.idleTimeoutInMinutes" options="idle-timeout-in-minutes" group="Properties">
+                <arg nullable="True" type="integer32" var="@PublicIPAddress_update.properties.natGateway.properties.idleTimeoutInMinutes" options="idle-timeout-in-minutes" group="Properties">
                   <help short="The idle timeout of the nat gateway."/>
                 </arg>
-                <arg nullable="True" type="array<@SubResource_update>" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.properties.publicIpAddresses" options="public-ip-addresses" group="Properties">
+                <arg nullable="True" type="array<@SubResource_update>" var="@PublicIPAddress_update.properties.natGateway.properties.publicIpAddresses" options="public-ip-addresses" group="Properties">
                   <help short="An array of public ip addresses associated with the nat gateway resource."/>
                   <item nullable="True" type="@SubResource_update"/>
                 </arg>
-                <arg nullable="True" type="array<@SubResource_update>" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.properties.publicIpPrefixes" options="public-ip-prefixes" group="Properties">
+                <arg nullable="True" type="array<@SubResource_update>" var="@PublicIPAddress_update.properties.natGateway.properties.publicIpPrefixes" options="public-ip-prefixes" group="Properties">
                   <help short="An array of public ip prefixes associated with the nat gateway resource."/>
                   <item nullable="True" type="@SubResource_update"/>
                 </arg>
-                <arg nullable="True" type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.sku" options="sku">
+                <arg nullable="True" type="object" var="@PublicIPAddress_update.properties.natGateway.sku" options="sku">
                   <help short="The nat gateway SKU."/>
-                  <arg nullable="True" type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.sku.name" options="name">
+                  <arg nullable="True" type="string" var="@PublicIPAddress_update.properties.natGateway.sku.name" options="name">
                     <help short="Name of Nat Gateway SKU."/>
                     <enum>
                       <item name="Standard" value="&quot;Standard&quot;"/>
                     </enum>
                   </arg>
                 </arg>
-                <arg nullable="True" type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.tags" options="tags">
+                <arg nullable="True" type="object" var="@PublicIPAddress_update.properties.natGateway.tags" options="tags">
                   <help short="Resource tags."/>
                   <additionalProp>
                     <item nullable="True" type="string"/>
                   </additionalProp>
                 </arg>
-                <arg nullable="True" type="array<string>" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.zones" options="zones">
+                <arg nullable="True" type="array<string>" var="@PublicIPAddress_update.properties.natGateway.zones" options="zones">
                   <help short="A list of availability zones denoting the zone in which Nat Gateway should be deployed."/>
                   <item nullable="True" type="string"/>
                 </arg>
               </arg>
-              <arg nullable="True" type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.publicIPAddressVersion" options="public-ip-address-version" group="Properties">
+              <arg nullable="True" type="string" var="@PublicIPAddress_update.properties.publicIPAddressVersion" options="public-ip-address-version" group="Properties">
                 <help short="The public IP address version."/>
                 <enum>
                   <item name="IPv4" value="&quot;IPv4&quot;"/>
                   <item name="IPv6" value="&quot;IPv6&quot;"/>
                 </enum>
               </arg>
-              <arg nullable="True" type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.publicIPAllocationMethod" options="public-ip-allocation-method" group="Properties">
+              <arg nullable="True" type="string" var="@PublicIPAddress_update.properties.publicIPAllocationMethod" options="public-ip-allocation-method" group="Properties">
                 <help short="The public IP address allocation method."/>
                 <enum>
                   <item name="Dynamic" value="&quot;Dynamic&quot;"/>
                   <item name="Static" value="&quot;Static&quot;"/>
                 </enum>
               </arg>
-              <arg nullable="True" type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.publicIPPrefix" options="public-ip-prefix" group="Properties">
+              <arg nullable="True" type="@SubResource_update" var="@PublicIPAddress_update.properties.publicIPPrefix" options="public-ip-prefix" group="Properties">
                 <help short="The Public IP Prefix this Public IP Address should be allocated from."/>
-                <arg nullable="True" type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.publicIPPrefix.id" options="id">
-                  <help short="Resource ID."/>
-                </arg>
               </arg>
-              <arg nullable="True" type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.sku" options="sku">
+              <arg nullable="True" type="@PublicIPAddress_update" var="@PublicIPAddress_update.properties.servicePublicIPAddress" options="service-public-ip-address" group="Properties">
+                <help short="The service public IP address of the public IP address resource."/>
+              </arg>
+              <arg nullable="True" type="object" var="@PublicIPAddress_update.sku" options="sku">
                 <help short="The public IP address SKU."/>
-                <arg nullable="True" type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.sku.name" options="name">
+                <arg nullable="True" type="string" var="@PublicIPAddress_update.sku.name" options="name">
                   <help short="Name of a public IP address SKU."/>
                   <enum>
                     <item name="Basic" value="&quot;Basic&quot;"/>
                     <item name="Standard" value="&quot;Standard&quot;"/>
                   </enum>
                 </arg>
-                <arg nullable="True" type="string" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.sku.tier" options="tier">
+                <arg nullable="True" type="string" var="@PublicIPAddress_update.sku.tier" options="tier">
                   <help short="Tier of a public IP address SKU."/>
                   <enum>
                     <item name="Global" value="&quot;Global&quot;"/>
@@ -4647,13 +4637,13 @@
                   </enum>
                 </arg>
               </arg>
-              <arg nullable="True" type="object" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.tags" options="tags">
+              <arg nullable="True" type="object" var="@PublicIPAddress_update.tags" options="tags">
                 <help short="Resource tags."/>
                 <additionalProp>
                   <item nullable="True" type="string"/>
                 </additionalProp>
               </arg>
-              <arg nullable="True" type="array<string>" var="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.zones" options="zones">
+              <arg nullable="True" type="array<string>" var="@PublicIPAddress_update.zones" options="zones">
                 <help short="A list of availability zones denoting the IP allocated for the resource needs to come from."/>
                 <item nullable="True" type="string"/>
               </arg>
@@ -5650,9 +5640,7 @@
                                                 <prop readOnly="True" type="string" name="name"/>
                                                 <prop type="object" name="properties" clientFlatten="True">
                                                   <prop type="object" name="ddosSettings">
-                                                    <prop type="object" name="ddosProtectionPlan">
-                                                      <prop type="string" name="id"/>
-                                                    </prop>
+                                                    <prop type="@SubResource_read" name="ddosProtectionPlan"/>
                                                     <prop type="string" name="protectionMode">
                                                       <enum>
                                                         <item value="&quot;Disabled&quot;"/>
@@ -5705,7 +5693,7 @@
                                                       <prop type="string" name="tag"/>
                                                     </item>
                                                   </prop>
-                                                  <prop readOnly="True" type="@PublicIPAddress_read" name="linkedPublicIPAddress"/>
+                                                  <prop type="@PublicIPAddress_read" name="linkedPublicIPAddress"/>
                                                   <prop type="string" name="migrationPhase">
                                                     <enum>
                                                       <item value="&quot;Abort&quot;"/>
@@ -5780,11 +5768,9 @@
                                                       <item value="&quot;Static&quot;"/>
                                                     </enum>
                                                   </prop>
-                                                  <prop type="object" name="publicIPPrefix">
-                                                    <prop type="string" name="id"/>
-                                                  </prop>
+                                                  <prop type="@SubResource_read" name="publicIPPrefix"/>
                                                   <prop readOnly="True" type="string" name="resourceGuid"/>
-                                                  <prop readOnly="True" type="@PublicIPAddress_read" name="servicePublicIPAddress"/>
+                                                  <prop type="@PublicIPAddress_read" name="servicePublicIPAddress"/>
                                                 </prop>
                                                 <prop type="object" name="sku">
                                                   <prop type="string" name="name">
@@ -6614,7 +6600,7 @@
         </http>
       </operation>
       <operation>
-        <instanceUpdate instance="$Instance">
+        <instanceUpdate ref="$Instance">
           <json>
             <schema type="object" name="parameters" required="True" clientFlatten="True">
               <prop type="object" name="extendedLocation" arg="$parameters.extendedLocation" cls="ExtendedLocation_update">
@@ -6702,18 +6688,16 @@
                           <item value="&quot;Static&quot;"/>
                         </enum>
                       </prop>
-                      <prop type="object" name="publicIPAddress" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress">
-                        <prop type="@ExtendedLocation_update" name="extendedLocation" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.extendedLocation"/>
-                        <prop type="ResourceId" name="id" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.id">
+                      <prop type="object" name="publicIPAddress" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress" cls="PublicIPAddress_update">
+                        <prop type="@ExtendedLocation_update" name="extendedLocation" arg="@PublicIPAddress_update.extendedLocation"/>
+                        <prop type="ResourceId" name="id" arg="@PublicIPAddress_update.id">
                           <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/publicIPAddresses/{}"/>
                         </prop>
-                        <prop type="ResourceLocation" name="location" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.location"/>
+                        <prop type="ResourceLocation" name="location" arg="@PublicIPAddress_update.location"/>
                         <prop type="object" name="properties" clientFlatten="True">
-                          <prop type="object" name="ddosSettings" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ddosSettings">
-                            <prop type="object" name="ddosProtectionPlan" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ddosSettings.ddosProtectionPlan">
-                              <prop type="string" name="id" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ddosSettings.ddosProtectionPlan.id"/>
-                            </prop>
-                            <prop type="string" name="protectionMode" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ddosSettings.protectionMode">
+                          <prop type="object" name="ddosSettings" arg="@PublicIPAddress_update.properties.ddosSettings">
+                            <prop type="@SubResource_update" name="ddosProtectionPlan" arg="@PublicIPAddress_update.properties.ddosSettings.ddosProtectionPlan"/>
+                            <prop type="string" name="protectionMode" arg="@PublicIPAddress_update.properties.ddosSettings.protectionMode">
                               <enum>
                                 <item value="&quot;Disabled&quot;"/>
                                 <item value="&quot;Enabled&quot;"/>
@@ -6721,26 +6705,27 @@
                               </enum>
                             </prop>
                           </prop>
-                          <prop type="string" name="deleteOption" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.deleteOption">
+                          <prop type="string" name="deleteOption" arg="@PublicIPAddress_update.properties.deleteOption">
                             <enum>
                               <item value="&quot;Delete&quot;"/>
                               <item value="&quot;Detach&quot;"/>
                             </enum>
                           </prop>
-                          <prop type="object" name="dnsSettings" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.dnsSettings">
-                            <prop type="string" name="domainNameLabel" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.dnsSettings.domainNameLabel"/>
-                            <prop type="string" name="fqdn" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.dnsSettings.fqdn"/>
-                            <prop type="string" name="reverseFqdn" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.dnsSettings.reverseFqdn"/>
+                          <prop type="object" name="dnsSettings" arg="@PublicIPAddress_update.properties.dnsSettings">
+                            <prop type="string" name="domainNameLabel" arg="@PublicIPAddress_update.properties.dnsSettings.domainNameLabel"/>
+                            <prop type="string" name="fqdn" arg="@PublicIPAddress_update.properties.dnsSettings.fqdn"/>
+                            <prop type="string" name="reverseFqdn" arg="@PublicIPAddress_update.properties.dnsSettings.reverseFqdn"/>
                           </prop>
-                          <prop type="integer32" name="idleTimeoutInMinutes" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.idleTimeoutInMinutes"/>
-                          <prop type="string" name="ipAddress" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ipAddress"/>
-                          <prop type="array<object>" name="ipTags" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ipTags">
+                          <prop type="integer32" name="idleTimeoutInMinutes" arg="@PublicIPAddress_update.properties.idleTimeoutInMinutes"/>
+                          <prop type="string" name="ipAddress" arg="@PublicIPAddress_update.properties.ipAddress"/>
+                          <prop type="array<object>" name="ipTags" arg="@PublicIPAddress_update.properties.ipTags">
                             <item type="object">
-                              <prop type="string" name="ipTagType" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ipTags[].ipTagType"/>
-                              <prop type="string" name="tag" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.ipTags[].tag"/>
+                              <prop type="string" name="ipTagType" arg="@PublicIPAddress_update.properties.ipTags[].ipTagType"/>
+                              <prop type="string" name="tag" arg="@PublicIPAddress_update.properties.ipTags[].tag"/>
                             </item>
                           </prop>
-                          <prop type="string" name="migrationPhase" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.migrationPhase">
+                          <prop type="@PublicIPAddress_update" name="linkedPublicIPAddress" arg="@PublicIPAddress_update.properties.linkedPublicIPAddress"/>
+                          <prop type="string" name="migrationPhase" arg="@PublicIPAddress_update.properties.migrationPhase">
                             <enum>
                               <item value="&quot;Abort&quot;"/>
                               <item value="&quot;Commit&quot;"/>
@@ -6749,72 +6734,71 @@
                               <item value="&quot;Prepare&quot;"/>
                             </enum>
                           </prop>
-                          <prop type="object" name="natGateway" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway">
-                            <prop type="ResourceId" name="id" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.id">
+                          <prop type="object" name="natGateway" arg="@PublicIPAddress_update.properties.natGateway">
+                            <prop type="ResourceId" name="id" arg="@PublicIPAddress_update.properties.natGateway.id">
                               <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/natGateways/{}"/>
                             </prop>
-                            <prop type="ResourceLocation" name="location" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.location"/>
+                            <prop type="ResourceLocation" name="location" arg="@PublicIPAddress_update.properties.natGateway.location"/>
                             <prop type="object" name="properties" clientFlatten="True">
-                              <prop type="integer32" name="idleTimeoutInMinutes" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.properties.idleTimeoutInMinutes"/>
-                              <prop type="array<@SubResource_update>" name="publicIpAddresses" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.properties.publicIpAddresses">
+                              <prop type="integer32" name="idleTimeoutInMinutes" arg="@PublicIPAddress_update.properties.natGateway.properties.idleTimeoutInMinutes"/>
+                              <prop type="array<@SubResource_update>" name="publicIpAddresses" arg="@PublicIPAddress_update.properties.natGateway.properties.publicIpAddresses">
                                 <item type="@SubResource_update"/>
                               </prop>
-                              <prop type="array<@SubResource_update>" name="publicIpPrefixes" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.properties.publicIpPrefixes">
+                              <prop type="array<@SubResource_update>" name="publicIpPrefixes" arg="@PublicIPAddress_update.properties.natGateway.properties.publicIpPrefixes">
                                 <item type="@SubResource_update"/>
                               </prop>
                             </prop>
-                            <prop type="object" name="sku" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.sku">
-                              <prop type="string" name="name" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.sku.name">
+                            <prop type="object" name="sku" arg="@PublicIPAddress_update.properties.natGateway.sku">
+                              <prop type="string" name="name" arg="@PublicIPAddress_update.properties.natGateway.sku.name">
                                 <enum>
                                   <item value="&quot;Standard&quot;"/>
                                 </enum>
                               </prop>
                             </prop>
-                            <prop type="object" name="tags" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.tags">
+                            <prop type="object" name="tags" arg="@PublicIPAddress_update.properties.natGateway.tags">
                               <additionalProp>
                                 <item type="string"/>
                               </additionalProp>
                             </prop>
-                            <prop type="array<string>" name="zones" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.natGateway.zones">
+                            <prop type="array<string>" name="zones" arg="@PublicIPAddress_update.properties.natGateway.zones">
                               <item type="string"/>
                             </prop>
                           </prop>
-                          <prop type="string" name="publicIPAddressVersion" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.publicIPAddressVersion">
+                          <prop type="string" name="publicIPAddressVersion" arg="@PublicIPAddress_update.properties.publicIPAddressVersion">
                             <enum>
                               <item value="&quot;IPv4&quot;"/>
                               <item value="&quot;IPv6&quot;"/>
                             </enum>
                           </prop>
-                          <prop type="string" name="publicIPAllocationMethod" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.publicIPAllocationMethod">
+                          <prop type="string" name="publicIPAllocationMethod" arg="@PublicIPAddress_update.properties.publicIPAllocationMethod">
                             <enum>
                               <item value="&quot;Dynamic&quot;"/>
                               <item value="&quot;Static&quot;"/>
                             </enum>
                           </prop>
-                          <prop type="object" name="publicIPPrefix" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.publicIPPrefix">
-                            <prop type="string" name="id" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.properties.publicIPPrefix.id"/>
-                          </prop>
+                          <prop type="@SubResource_update" name="publicIPPrefix" arg="@PublicIPAddress_update.properties.publicIPPrefix"/>
+                          <prop type="@PublicIPAddress_update" name="servicePublicIPAddress" arg="@PublicIPAddress_update.properties.servicePublicIPAddress"/>
                         </prop>
-                        <prop type="object" name="sku" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.sku">
-                          <prop type="string" name="name" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.sku.name">
+                        <prop type="object" name="sku" arg="@PublicIPAddress_update.sku">
+                          <prop type="string" name="name" arg="@PublicIPAddress_update.sku.name">
                             <enum>
                               <item value="&quot;Basic&quot;"/>
                               <item value="&quot;Standard&quot;"/>
                             </enum>
                           </prop>
-                          <prop type="string" name="tier" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.sku.tier">
+                          <prop type="string" name="tier" arg="@PublicIPAddress_update.sku.tier">
                             <enum>
                               <item value="&quot;Global&quot;"/>
                               <item value="&quot;Regional&quot;"/>
                             </enum>
                           </prop>
                         </prop>
-                        <prop type="object" name="tags" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.tags">
+                        <prop type="object" name="tags" arg="@PublicIPAddress_update.tags">
                           <additionalProp>
                             <item type="string"/>
                           </additionalProp>
                         </prop>
-                        <prop type="array<string>" name="zones" arg="$parameters.properties.frontendIPConfigurations[].properties.publicIPAddress.zones">
+                        <prop type="array<string>" name="zones" arg="@PublicIPAddress_update.zones">
                           <item type="string"/>
                         </prop>
                       </prop>

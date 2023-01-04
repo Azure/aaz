@@ -2,7 +2,7 @@
 
 Manage and configure load balancers.
 
-To learn more about Azure Load Balancer visit https://docs.microsoft.com/azure/load-balancer/load-balancer-get-started-internet-arm-cli.
+To learn more about Azure Load Balancer visit https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-public-cli.
 
 ## Subgroups
 
