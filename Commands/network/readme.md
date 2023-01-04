@@ -25,6 +25,9 @@ Manage Azure Network resources.
 - [local-gateway](/Commands/network/local-gateway/readme.md)
 : Manage local gateways.
 
+- [manager](/Commands/network/manager/readme.md)
+: Manage network-manager with network.
+
 - [nsg](/Commands/network/nsg/readme.md)
 : Manage Azure Network Security Groups (NSGs).
 
