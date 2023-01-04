@@ -32,6 +32,7 @@
                                         "nsg-name"
                                     ],
                                     "required": true,
+                                    "group": "",
                                     "idPart": "name",
                                     "help": {
                                         "short": "Name of the network security group."
@@ -55,6 +56,7 @@
                                         "name"
                                     ],
                                     "required": true,
+                                    "group": "",
                                     "idPart": "child_name_1",
                                     "help": {
                                         "short": "Name of the network security group rule."
@@ -397,7 +399,8 @@
                             "ref": "$Instance",
                             "clientFlatten": true
                         }
-                    ]
+                    ],
+                    "confirmation": ""
                 },
                 {
                     "name": "delete",
@@ -420,6 +423,7 @@
                                         "nsg-name"
                                     ],
                                     "required": true,
+                                    "group": "",
                                     "idPart": "name",
                                     "help": {
                                         "short": "Name of the network security group."
@@ -443,6 +447,7 @@
                                         "name"
                                     ],
                                     "required": true,
+                                    "group": "",
                                     "idPart": "child_name_1",
                                     "help": {
                                         "short": "Name of the network security group rule."
@@ -543,7 +548,7 @@
                             }
                         }
                     ],
-                    "confirmation": "Are you sure you want to perform this operation?"
+                    "confirmation": ""
                 },
                 {
                     "name": "create",
@@ -566,6 +571,7 @@
                                         "nsg-name"
                                     ],
                                     "required": true,
+                                    "group": "",
                                     "idPart": "name",
                                     "help": {
                                         "short": "Name of the network security group."
@@ -589,6 +595,7 @@
                                         "name"
                                     ],
                                     "required": true,
+                                    "group": "",
                                     "idPart": "child_name_1",
                                     "help": {
                                         "short": "Name of the network security group rule."
@@ -611,7 +618,7 @@
                                     ],
                                     "group": "",
                                     "help": {
-                                        "short": "Allowed values: Allow, Deny."
+                                        "short": "Network traffic is allowed or denied."
                                     },
                                     "default": {
                                         "value": "Allow"
@@ -637,7 +644,7 @@
                                     ],
                                     "group": "",
                                     "help": {
-                                        "short": "Rule description."
+                                        "short": "Description for this rule. Restricted to 140 chars."
                                     }
                                 },
                                 {
@@ -648,7 +655,7 @@
                                     ],
                                     "group": "",
                                     "help": {
-                                        "short": "Allowed values: Inbound, Outbound."
+                                        "short": "Direction of the rule. The direction specifies if rule will be evaluated on incoming or outgoing traffic."
                                     },
                                     "default": {
                                         "value": "Inbound"
@@ -674,7 +681,7 @@
                                     ],
                                     "group": "",
                                     "help": {
-                                        "short": "Rule priority, between 100 (highest priority) and 4096 (lowest priority). Must be unique for each rule in the collection."
+                                        "short": "Priority of the rule. The value can be between 100 and 4096. The priority number must be unique for each rule in the collection. The lower the priority number, the higher the priority of the rule."
                                     }
                                 },
                                 {
@@ -685,10 +692,10 @@
                                     ],
                                     "group": "",
                                     "help": {
-                                        "short": "etwork protocol this rule applies to.  Allowed values: *, Ah, Esp, Icmp, Tcp, Udp."
+                                        "short": "Network protocol this rule applies to."
                                     },
                                     "default": {
-                                        "value": "*"
+                                        "value": "\"*\""
                                     },
                                     "enum": {
                                         "items": [
@@ -732,10 +739,7 @@
                                     ],
                                     "group": "Destination",
                                     "help": {
-                                        "short": "Space-separated list of CIDR prefixes or IP ranges.  Alternatively, specify ONE of 'VirtualNetwork', 'AzureLoadBalancer', 'Internet' or '*' to match all IPs. Besides, it also supports all available Service Tags like 'ApiManagement', 'SqlManagement', 'AzureMonitor', etc."
-                                    },
-                                    "default": {
-                                        "value": "*"
+                                        "short": "The destination address prefix. CIDR or destination IP range. Asterisk '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used."
                                     }
                                 },
                                 {
@@ -746,7 +750,12 @@
                                     ],
                                     "group": "Destination",
                                     "help": {
-                                        "short": "Space-separated list of CIDR prefixes or IP ranges. Alternatively, specify ONE of 'VirtualNetwork', 'AzureLoadBalancer', 'Internet' or '*' to match all IPs. Besides, it also supports all available Service Tags like 'ApiManagement', 'SqlManagement', 'AzureMonitor', etc. Default: *."
+                                        "short": "Space-separated list of CIDR prefixes or IP ranges. Alternatively, specify ONE of 'VirtualNetwork', 'AzureLoadBalancer', 'Internet' or '*' to match all IPs. Besides, it also supports all available Service Tags like 'ApiManagement', 'SqlManagement', 'AzureMonitor', etc."
+                                    },
+                                    "default": {
+                                        "value": [
+                                            "*"
+                                        ]
                                     },
                                     "item": {
                                         "type": "string"
@@ -756,11 +765,11 @@
                                     "type": "array<@ApplicationSecurityGroup_create>",
                                     "var": "$securityRuleParameters.properties.destinationApplicationSecurityGroups",
                                     "options": [
-                                        "destination-asgs"
+                                        "destination-application-security-groups"
                                     ],
                                     "group": "Destination",
                                     "help": {
-                                        "short": "Space-separated list of application security group names or IDs. Limited by backend server, temporarily this argument only supports one application security group name or ID."
+                                        "short": "Application security group specified as destination."
                                     },
                                     "item": {
                                         "type": "@ApplicationSecurityGroup_create"
@@ -774,10 +783,7 @@
                                     ],
                                     "group": "Destination",
                                     "help": {
-                                        "short": "Port or port range between 0-65535. Use '*' to match all ports."
-                                    },
-                                    "default": {
-                                        "value": "80"
+                                        "short": "The destination port or range. Integer or range between 0 and 65535. Asterisk '*' can also be used to match all ports."
                                     }
                                 },
                                 {
@@ -788,7 +794,12 @@
                                     ],
                                     "group": "Destination",
                                     "help": {
-                                        "short": "Space-separated list of ports or port ranges between 0-65535. Use '*' to match all ports.  Default: 80."
+                                        "short": "Space-separated list of ports or port ranges between 0-65535. Use '*' to match all ports."
+                                    },
+                                    "default": {
+                                        "value": [
+                                            "80"
+                                        ]
                                     },
                                     "item": {
                                         "type": "string"
@@ -836,10 +847,7 @@
                                     ],
                                     "group": "Source",
                                     "help": {
-                                        "short": "Space-separated list of CIDR prefixes or IP ranges. Alternatively, specify ONE of 'VirtualNetwork',                                      'AzureLoadBalancer', 'Internet' or '*' to match all IPs. Besides, it also supports all available Service Tags like 'ApiManagement', 'SqlManagement', 'AzureMonitor', etc."
-                                    },
-                                    "default": {
-                                        "value": "*"
+                                        "short": "The CIDR or source IP range. Asterisk '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used. If this is an ingress rule, specifies where network traffic originates from."
                                     }
                                 },
                                 {
@@ -850,7 +858,12 @@
                                     ],
                                     "group": "Source",
                                     "help": {
-                                        "short": "Space-separated list of CIDR prefixes or IP ranges. Alternatively, specify ONE of 'VirtualNetwork', 'AzureLoadBalancer', 'Internet' or '*' to match all IPs. Besides, it also supports all available Service Tags like 'ApiManagement', 'SqlManagement', 'AzureMonitor', etc. Default: *."
+                                        "short": "Space-separated list of CIDR prefixes or IP ranges. Alternatively, specify ONE of 'VirtualNetwork', 'AzureLoadBalancer', 'Internet' or '*' to match all IPs. Besides, it also supports all available Service Tags like 'ApiManagement', 'SqlManagement', 'AzureMonitor', etc."
+                                    },
+                                    "default": {
+                                        "value": [
+                                            "*"
+                                        ]
                                     },
                                     "item": {
                                         "type": "string"
@@ -860,11 +873,11 @@
                                     "type": "array<object>",
                                     "var": "$securityRuleParameters.properties.sourceApplicationSecurityGroups",
                                     "options": [
-                                        "source-asgs"
+                                        "source-application-security-groups"
                                     ],
                                     "group": "Source",
                                     "help": {
-                                        "short": "Space-separated list of application security group names or IDs. Limited by backend server, temporarily this argument only supports one application security group name or ID."
+                                        "short": "Application security group specified as source."
                                     },
                                     "item": {
                                         "type": "object",
@@ -875,6 +888,7 @@
                                                 "options": [
                                                     "id"
                                                 ],
+                                                "group": "",
                                                 "help": {
                                                     "short": "Resource ID."
                                                 },
@@ -889,8 +903,6 @@
                                                     "l",
                                                     "location"
                                                 ],
-                                                "hide": true,
-                                                "group": "",
                                                 "help": {
                                                     "short": "Resource location."
                                                 }
@@ -901,8 +913,6 @@
                                                 "options": [
                                                     "tags"
                                                 ],
-                                                "hide": true,
-                                                "group": "",
                                                 "help": {
                                                     "short": "Resource tags."
                                                 },
@@ -924,10 +934,7 @@
                                     ],
                                     "group": "Source",
                                     "help": {
-                                        "short": "Port or port range between 0-65535. Use '*' to match all ports."
-                                    },
-                                    "default": {
-                                        "value": "*"
+                                        "short": "The source port or range. Integer or range between 0 and 65535. Asterisk '*' can also be used to match all ports."
                                     }
                                 },
                                 {
@@ -938,7 +945,12 @@
                                     ],
                                     "group": "Source",
                                     "help": {
-                                        "short": "Space-separated list of ports or port ranges between 0-65535. Use '*' to match all ports.  Default: *."
+                                        "short": "Space-separated list of ports or port ranges between 0-65535. Use '*' to match all ports."
+                                    },
+                                    "default": {
+                                        "value": [
+                                            "*"
+                                        ]
                                     },
                                     "item": {
                                         "type": "string"
@@ -1474,7 +1486,8 @@
                             "ref": "$Instance",
                             "clientFlatten": true
                         }
-                    ]
+                    ],
+                    "confirmation": ""
                 },
                 {
                     "name": "update",
@@ -1497,6 +1510,7 @@
                                         "nsg-name"
                                     ],
                                     "required": true,
+                                    "group": "",
                                     "idPart": "name",
                                     "help": {
                                         "short": "Name of the network security group."
@@ -1520,6 +1534,7 @@
                                         "name"
                                     ],
                                     "required": true,
+                                    "group": "",
                                     "idPart": "child_name_1",
                                     "help": {
                                         "short": "Name of the network security group rule."
@@ -1542,7 +1557,7 @@
                                     ],
                                     "group": "",
                                     "help": {
-                                        "short": "Allowed values: Allow, Deny."
+                                        "short": "Network traffic is allowed or denied."
                                     },
                                     "enum": {
                                         "items": [
@@ -1566,7 +1581,7 @@
                                     ],
                                     "group": "",
                                     "help": {
-                                        "short": "Rule description."
+                                        "short": "Description for this rule. Restricted to 140 chars."
                                     }
                                 },
                                 {
@@ -1577,7 +1592,7 @@
                                     ],
                                     "group": "",
                                     "help": {
-                                        "short": "Allowed values: Inbound, Outbound."
+                                        "short": "Direction of the rule. The direction specifies if rule will be evaluated on incoming or outgoing traffic."
                                     },
                                     "enum": {
                                         "items": [
@@ -1601,7 +1616,7 @@
                                     ],
                                     "group": "",
                                     "help": {
-                                        "short": "Rule priority, between 100 (highest priority) and 4096 (lowest priority). Must be unique for each rule in the collection."
+                                        "short": "Priority of the rule. The value can be between 100 and 4096. The priority number must be unique for each rule in the collection. The lower the priority number, the higher the priority of the rule."
                                     }
                                 },
                                 {
@@ -1612,7 +1627,7 @@
                                     ],
                                     "group": "",
                                     "help": {
-                                        "short": "etwork protocol this rule applies to.  Allowed values: *, Ah, Esp, Icmp, Tcp, Udp."
+                                        "short": "Network protocol this rule applies to."
                                     },
                                     "enum": {
                                         "items": [
@@ -1653,12 +1668,11 @@
                                     "type": "string",
                                     "var": "$securityRuleParameters.properties.destinationAddressPrefix",
                                     "options": [
-                                        "destination-address-prefix-id"
+                                        "destination-address-prefix"
                                     ],
-                                    "hide": true,
                                     "group": "Destination",
                                     "help": {
-                                        "short": "Space-separated list of CIDR prefixes or IP ranges.  Alternatively, specify ONE of 'VirtualNetwork', 'AzureLoadBalancer', 'Internet' or '*' to match all IPs. Besides, it also supports all available Service Tags like 'ApiManagement', 'SqlManagement', 'AzureMonitor', etc."
+                                        "short": "The destination address prefix. CIDR or destination IP range. Asterisk '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used."
                                     }
                                 },
                                 {
@@ -1666,12 +1680,11 @@
                                     "type": "array<string>",
                                     "var": "$securityRuleParameters.properties.destinationAddressPrefixes",
                                     "options": [
-                                        "destination-address-prefix",
                                         "destination-address-prefixes"
                                     ],
                                     "group": "Destination",
                                     "help": {
-                                        "short": "Space-separated list of CIDR prefixes or IP ranges. Alternatively, specify ONE of 'VirtualNetwork', 'AzureLoadBalancer', 'Internet' or '*' to match all IPs. Besides, it also supports all available Service Tags like 'ApiManagement', 'SqlManagement', 'AzureMonitor', etc. Default: *."
+                                        "short": "Space-separated list of CIDR prefixes or IP ranges. Alternatively, specify ONE of 'VirtualNetwork', 'AzureLoadBalancer', 'Internet' or '*' to match all IPs. Besides, it also supports all available Service Tags like 'ApiManagement', 'SqlManagement', 'AzureMonitor', etc."
                                     },
                                     "item": {
                                         "nullable": true,
@@ -1683,11 +1696,11 @@
                                     "type": "array<@ApplicationSecurityGroup_update>",
                                     "var": "$securityRuleParameters.properties.destinationApplicationSecurityGroups",
                                     "options": [
-                                        "destination-asgs-id"
+                                        "destination-application-security-groups"
                                     ],
                                     "group": "Destination",
                                     "help": {
-                                        "short": "Space-separated list of application security group names or supports one application security group name or ID."
+                                        "short": "Application security group specified as destination."
                                     },
                                     "item": {
                                         "nullable": true,
@@ -1699,12 +1712,11 @@
                                     "type": "string",
                                     "var": "$securityRuleParameters.properties.destinationPortRange",
                                     "options": [
-                                        "destination-port-range-id"
+                                        "destination-port-range"
                                     ],
-                                    "hide": true,
                                     "group": "Destination",
                                     "help": {
-                                        "short": "Port or port range between 0-65535. Use '*' to match all ports."
+                                        "short": "The destination port or range. Integer or range between 0 and 65535. Asterisk '*' can also be used to match all ports."
                                     }
                                 },
                                 {
@@ -1712,12 +1724,11 @@
                                     "type": "array<string>",
                                     "var": "$securityRuleParameters.properties.destinationPortRanges",
                                     "options": [
-                                        "destination-port-range",
                                         "destination-port-ranges"
                                     ],
                                     "group": "Destination",
                                     "help": {
-                                        "short": "Space-separated list of ports or port ranges between 0-65535. Use '*' to match all ports.  Default: 80."
+                                        "short": "Space-separated list of ports or port ranges between 0-65535. Use '*' to match all ports."
                                     },
                                     "item": {
                                         "nullable": true,
@@ -1765,12 +1776,11 @@
                                     "type": "string",
                                     "var": "$securityRuleParameters.properties.sourceAddressPrefix",
                                     "options": [
-                                        "source-address-prefix-id"
+                                        "source-address-prefix"
                                     ],
-                                    "hide": true,
                                     "group": "Source",
                                     "help": {
-                                        "short": "Space-separated list of CIDR prefixes or IP ranges. Alternatively, specify ONE of 'VirtualNetwork',                                      'AzureLoadBalancer', 'Internet' or '*' to match all IPs. Besides, it also supports all available Service Tags like 'ApiManagement', 'SqlManagement', 'AzureMonitor', etc."
+                                        "short": "The CIDR or source IP range. Asterisk '*' can also be used to match all source IPs. Default tags such as 'VirtualNetwork', 'AzureLoadBalancer' and 'Internet' can also be used. If this is an ingress rule, specifies where network traffic originates from."
                                     }
                                 },
                                 {
@@ -1778,12 +1788,11 @@
                                     "type": "array<string>",
                                     "var": "$securityRuleParameters.properties.sourceAddressPrefixes",
                                     "options": [
-                                        "source-address-prefix",
                                         "source-address-prefixes"
                                     ],
                                     "group": "Source",
                                     "help": {
-                                        "short": "Space-separated list of CIDR prefixes or IP ranges. Alternatively, specify ONE of 'VirtualNetwork', 'AzureLoadBalancer', 'Internet' or '*' to match all IPs. Besides, it also supports all available Service Tags like 'ApiManagement', 'SqlManagement', 'AzureMonitor', etc. Default: *."
+                                        "short": "Space-separated list of CIDR prefixes or IP ranges. Alternatively, specify ONE of 'VirtualNetwork', 'AzureLoadBalancer', 'Internet' or '*' to match all IPs. Besides, it also supports all available Service Tags like 'ApiManagement', 'SqlManagement', 'AzureMonitor', etc."
                                     },
                                     "item": {
                                         "nullable": true,
@@ -1795,11 +1804,11 @@
                                     "type": "array<object>",
                                     "var": "$securityRuleParameters.properties.sourceApplicationSecurityGroups",
                                     "options": [
-                                        "source-asgs-id"
+                                        "source-application-security-groups"
                                     ],
                                     "group": "Source",
                                     "help": {
-                                        "short": "Space-separated list of application security group names or IDs. Limited by backend server, temporarily this argument only supports one application security group name or ID."
+                                        "short": "Application security group specified as source."
                                     },
                                     "item": {
                                         "nullable": true,
@@ -1812,6 +1821,7 @@
                                                 "options": [
                                                     "id"
                                                 ],
+                                                "group": "",
                                                 "help": {
                                                     "short": "Resource ID."
                                                 },
@@ -1827,8 +1837,6 @@
                                                     "l",
                                                     "location"
                                                 ],
-                                                "hide": true,
-                                                "group": "",
                                                 "help": {
                                                     "short": "Resource location."
                                                 }
@@ -1840,8 +1848,6 @@
                                                 "options": [
                                                     "tags"
                                                 ],
-                                                "hide": true,
-                                                "group": "",
                                                 "help": {
                                                     "short": "Resource tags."
                                                 },
@@ -1861,12 +1867,11 @@
                                     "type": "string",
                                     "var": "$securityRuleParameters.properties.sourcePortRange",
                                     "options": [
-                                        "source-port-range-id"
+                                        "source-port-range"
                                     ],
-                                    "hide": true,
                                     "group": "Source",
                                     "help": {
-                                        "short": "Port or port range between 0-65535. Use '*' to match all ports."
+                                        "short": "The source port or range. Integer or range between 0 and 65535. Asterisk '*' can also be used to match all ports."
                                     }
                                 },
                                 {
@@ -1874,12 +1879,11 @@
                                     "type": "array<string>",
                                     "var": "$securityRuleParameters.properties.sourcePortRanges",
                                     "options": [
-                                        "source-port-range",
                                         "source-port-ranges"
                                     ],
                                     "group": "Source",
                                     "help": {
-                                        "short": "Space-separated list of ports or port ranges between 0-65535. Use '*' to match all ports.  Default: *."
+                                        "short": "Space-separated list of ports or port ranges between 0-65535. Use '*' to match all ports."
                                     },
                                     "item": {
                                         "nullable": true,
@@ -2210,7 +2214,7 @@
                         },
                         {
                             "instanceUpdate": {
-                                "instance": "$Instance",
+                                "ref": "$Instance",
                                 "json": {
                                     "schema": {
                                         "type": "object",
@@ -2501,7 +2505,8 @@
                             "ref": "$Instance",
                             "clientFlatten": true
                         }
-                    ]
+                    ],
+                    "confirmation": ""
                 }
             ]
         }
