@@ -124,12 +124,12 @@ Create a network security group rule.
         network nsg rule create -g MyResourceGroup --nsg-name MyNsg -n MyNsgRule --priority 4096 --source-address-prefixes 208.130.28.0/24 --source-port-ranges 80 --destination-address-prefixes '*' --destination-port-ranges 80 8080 --access Deny --protocol Tcp --description "Deny from specific IP address ranges on 80 and 8080."
     ```
 
-- Create a security rule using service tags. For more details visit https://aka.ms/servicetags
+- Create a security rule using service tags (https://aka.ms/servicetags).
     ```bash
         network nsg rule create -g MyResourceGroup --nsg-name MyNsg -n MyNsgRuleWithTags --priority 400 --source-address-prefixes VirtualNetwork --destination-address-prefixes Storage --destination-port-ranges '*' --direction Outbound --access Allow --protocol Tcp --description "Allow VirtualNetwork to Storage."
     ```
 
-- Create a security rule using application security groups. https://aka.ms/applicationsecuritygroups
+- Create a security rule using application security groups (https://aka.ms/applicationsecuritygroups).
     ```bash
         network nsg rule create -g MyResourceGroup --nsg-name MyNsg -n MyNsgRuleWithAsg --priority 500 --source-address-prefixes Internet --destination-port-ranges 80 8080 --destination-asgs Web --access Allow --protocol Tcp --description "Allow Internet to Web ASG on ports 80,8080."
     ```
