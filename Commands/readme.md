@@ -26,6 +26,9 @@
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
 
+- [mobile-network](/Commands/mobile-network/readme.md)
+: Manage mobile network
+
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
 
