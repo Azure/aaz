@@ -10,6 +10,9 @@ Manage Azure Network resources.
 - [asg](/Commands/network/asg/readme.md)
 : Manage application security groups (ASGs).
 
+- [bastion](/Commands/network/bastion/readme.md)
+: Manage Azure Bastion host machines.
+
 - [custom-ip](/Commands/network/custom-ip/readme.md)
 : Manage custom IP.
 
