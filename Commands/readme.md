@@ -5,6 +5,9 @@
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
+- [data-protection](/Commands/data-protection/readme.md)
+: Manage Data Protection.
+
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
 
