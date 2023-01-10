@@ -4380,6 +4380,43 @@
           </arg>
         </arg>
       </argGroup>
+      <argGroup name="Probe">
+        <arg nullable="True" type="array<object>" var="$parameters.properties.probes" options="probes" group="Probe">
+          <help short="Collection of probe objects used in the load balancer."/>
+          <item nullable="True" type="object">
+            <arg nullable="True" type="ResourceId" var="$parameters.properties.probes[].id" options="id">
+              <help short="Resource ID."/>
+              <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/loadBalancers/{}/probes/{}"/>
+            </arg>
+            <arg nullable="True" type="string" var="$parameters.properties.probes[].name" options="name">
+              <help short="The name of the resource that is unique within the set of probes used by the load balancer. This name can be used to access the resource."/>
+            </arg>
+            <arg nullable="True" type="integer32" var="$parameters.properties.probes[].properties.intervalInSeconds" options="interval-in-seconds" group="Properties">
+              <help short="The interval, in seconds, for how frequently to probe the endpoint for health status. Typically, the interval is slightly less than half the allocated timeout period (in seconds) which allows two full probes before taking the instance out of rotation. The default value is 15, the minimum value is 5."/>
+            </arg>
+            <arg nullable="True" type="integer32" var="$parameters.properties.probes[].properties.numberOfProbes" options="number-of-probes" group="Properties">
+              <help short="The number of probes where if no response, will result in stopping further traffic from being delivered to the endpoint. This values allows endpoints to be taken out of rotation faster or slower than the typical times used in Azure."/>
+            </arg>
+            <arg type="integer32" var="$parameters.properties.probes[].properties.port" options="port" group="Properties">
+              <help short="The port for communicating the probe. Possible values range from 1 to 65535, inclusive."/>
+            </arg>
+            <arg nullable="True" type="integer32" var="$parameters.properties.probes[].properties.probeThreshold" options="probe-threshold" group="Properties">
+              <help short="The number of consecutive successful or failed probes in order to allow or deny traffic from being delivered to this endpoint. After failing the number of consecutive probes equal to this value, the endpoint will be taken out of rotation and require the same number of successful consecutive probes to be placed back in rotation."/>
+            </arg>
+            <arg type="string" var="$parameters.properties.probes[].properties.protocol" options="protocol" group="Properties">
+              <help short="The protocol of the end point. If 'Tcp' is specified, a received ACK is required for the probe to be successful. If 'Http' or 'Https' is specified, a 200 OK response from the specifies URI is required for the probe to be successful."/>
+              <enum>
+                <item name="Http" value="&quot;Http&quot;"/>
+                <item name="Https" value="&quot;Https&quot;"/>
+                <item name="Tcp" value="&quot;Tcp&quot;"/>
+              </enum>
+            </arg>
+            <arg nullable="True" type="string" var="$parameters.properties.probes[].properties.requestPath" options="request-path" group="Properties">
+              <help short="The URI used for requesting health status from the VM. Path is required if a protocol is set to http. Otherwise, it is not allowed. There is no default value."/>
+            </arg>
+          </item>
+        </arg>
+      </argGroup>
       <argGroup name="Properties">
         <arg nullable="True" type="array<object>" var="$parameters.properties.backendAddressPools" options="backend-address-pools" hide="True" group="Properties">
           <help short="Collection of backend address pools used by a load balancer."/>
@@ -5140,41 +5177,6 @@
                 <item name="Tcp" value="&quot;Tcp&quot;"/>
                 <item name="Udp" value="&quot;Udp&quot;"/>
               </enum>
-            </arg>
-          </item>
-        </arg>
-        <arg nullable="True" type="array<object>" var="$parameters.properties.probes" options="probes" hide="True" group="Properties">
-          <help short="Collection of probe objects used in the load balancer."/>
-          <item nullable="True" type="object">
-            <arg nullable="True" type="ResourceId" var="$parameters.properties.probes[].id" options="id">
-              <help short="Resource ID."/>
-              <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/loadBalancers/{}/probes/{}"/>
-            </arg>
-            <arg nullable="True" type="string" var="$parameters.properties.probes[].name" options="name">
-              <help short="The name of the resource that is unique within the set of probes used by the load balancer. This name can be used to access the resource."/>
-            </arg>
-            <arg nullable="True" type="integer32" var="$parameters.properties.probes[].properties.intervalInSeconds" options="interval-in-seconds" group="Properties">
-              <help short="The interval, in seconds, for how frequently to probe the endpoint for health status. Typically, the interval is slightly less than half the allocated timeout period (in seconds) which allows two full probes before taking the instance out of rotation. The default value is 15, the minimum value is 5."/>
-            </arg>
-            <arg nullable="True" type="integer32" var="$parameters.properties.probes[].properties.numberOfProbes" options="number-of-probes" group="Properties">
-              <help short="The number of probes where if no response, will result in stopping further traffic from being delivered to the endpoint. This values allows endpoints to be taken out of rotation faster or slower than the typical times used in Azure."/>
-            </arg>
-            <arg type="integer32" var="$parameters.properties.probes[].properties.port" options="port" group="Properties">
-              <help short="The port for communicating the probe. Possible values range from 1 to 65535, inclusive."/>
-            </arg>
-            <arg nullable="True" type="integer32" var="$parameters.properties.probes[].properties.probeThreshold" options="probe-threshold" group="Properties">
-              <help short="The number of consecutive successful or failed probes in order to allow or deny traffic from being delivered to this endpoint. After failing the number of consecutive probes equal to this value, the endpoint will be taken out of rotation and require the same number of successful consecutive probes to be placed back in rotation."/>
-            </arg>
-            <arg type="string" var="$parameters.properties.probes[].properties.protocol" options="protocol" group="Properties">
-              <help short="The protocol of the end point. If 'Tcp' is specified, a received ACK is required for the probe to be successful. If 'Http' or 'Https' is specified, a 200 OK response from the specifies URI is required for the probe to be successful."/>
-              <enum>
-                <item name="Http" value="&quot;Http&quot;"/>
-                <item name="Https" value="&quot;Https&quot;"/>
-                <item name="Tcp" value="&quot;Tcp&quot;"/>
-              </enum>
-            </arg>
-            <arg nullable="True" type="string" var="$parameters.properties.probes[].properties.requestPath" options="request-path" group="Properties">
-              <help short="The URI used for requesting health status from the VM. Path is required if a protocol is set to http. Otherwise, it is not allowed. There is no default value."/>
             </arg>
           </item>
         </arg>
