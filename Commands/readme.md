@@ -38,5 +38,8 @@
 - [sentinel](/Commands/sentinel/readme.md)
 : Manage Microsoft Sentinel.
 
+- [servicebus](/Commands/servicebus/readme.md)
+: servicebus
+
 - [sql](/Commands/sql/readme.md)
 : Manage Azure SQL Databases and Data Warehouses.
