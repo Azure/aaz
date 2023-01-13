@@ -2,9 +2,15 @@
 
 Manage application-level routing and load balancing services.
 
-To learn more about Application Gateway, visit https://docs.microsoft.com/azure/application-gateway/application-gateway-create-gateway-cli.
+To learn more about Application Gateway, visit https://learn.microsoft.com/en-us/azure/application-gateway/quick-create-cli.
 
 ## Subgroups
+
+- [url-path-map](/Commands/network/application-gateway/url-path-map/readme.md)
+: Manage URL path maps of an application gateway.
+
+- [waf-config](/Commands/network/application-gateway/waf-config/readme.md)
+: Configure the settings of a web application firewall.
 
 - [waf-policy](/Commands/network/application-gateway/waf-policy/readme.md)
 : Manage application gateway web application firewall (WAF) policies.
