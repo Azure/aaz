@@ -37,6 +37,9 @@ Manage Azure Network resources.
 - [perimeter](/Commands/network/perimeter/readme.md)
 : Manage Network Security Perimeters
 
+- [private-endpoint](/Commands/network/private-endpoint/readme.md)
+: Manage private endpoints.
+
 - [profile](/Commands/network/profile/readme.md)
 : Manage network profiles.
 
