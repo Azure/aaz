@@ -6,6 +6,12 @@ To learn more about Application Gateway, visit https://learn.microsoft.com/en-us
 
 ## Subgroups
 
+- [ssl-policy](/Commands/network/application-gateway/ssl-policy/readme.md)
+: Manage the SSL policy of an application gateway.
+
+- [ssl-profile](/Commands/network/application-gateway/ssl-profile/readme.md)
+: Manage SSL profiles of application gateway.
+
 - [url-path-map](/Commands/network/application-gateway/url-path-map/readme.md)
 : Manage URL path maps of an application gateway.
 
