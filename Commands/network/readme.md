@@ -40,6 +40,9 @@ Manage Azure Network resources.
 - [private-endpoint](/Commands/network/private-endpoint/readme.md)
 : Manage private endpoints.
 
+- [private-link-service](/Commands/network/private-link-service/readme.md)
+: Manage private link services.
+
 - [profile](/Commands/network/profile/readme.md)
 : Manage network profiles.
 
