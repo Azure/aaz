@@ -6,6 +6,9 @@ To learn more about Azure Load Balancer visit https://learn.microsoft.com/en-us/
 
 ## Subgroups
 
+- [frontend-ip](/Commands/network/lb/frontend-ip/readme.md)
+: Manage frontend IP addresses of a load balancer.
+
 - [probe](/Commands/network/lb/probe/readme.md)
 : Evaluate probe information and define routing rules.
 
