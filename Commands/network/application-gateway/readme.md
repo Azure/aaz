@@ -6,6 +6,9 @@ To learn more about Application Gateway, visit https://learn.microsoft.com/en-us
 
 ## Subgroups
 
+- [ssl-cert](/Commands/network/application-gateway/ssl-cert/readme.md)
+: Manage SSL certificates of an application gateway.
+
 - [ssl-policy](/Commands/network/application-gateway/ssl-policy/readme.md)
 : Manage the SSL policy of an application gateway.
 
