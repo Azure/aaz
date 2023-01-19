@@ -6,6 +6,18 @@ To learn more about Application Gateway, visit https://learn.microsoft.com/en-us
 
 ## Subgroups
 
+- [address-pool](/Commands/network/application-gateway/address-pool/readme.md)
+: Manage address pools of an application gateway.
+
+- [auth-cert](/Commands/network/application-gateway/auth-cert/readme.md)
+: Manage authorization certificates of an application gateway.
+
+- [client-cert](/Commands/network/application-gateway/client-cert/readme.md)
+: Manage trusted client certificates of application gateway.
+
+- [root-cert](/Commands/network/application-gateway/root-cert/readme.md)
+: Manage trusted root certificates of an application gateway.
+
 - [ssl-cert](/Commands/network/application-gateway/ssl-cert/readme.md)
 : Manage SSL certificates of an application gateway.
 
