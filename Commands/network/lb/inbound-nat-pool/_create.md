@@ -12,5 +12,5 @@ Create an inbound NAT address pool.
 
 - Create an inbound NAT address pool.
     ```bash
-        network lb inbound-nat-pool create -g MyResourceGroup --lb-name MyLb -n MyNatPool --protocol Tcp --frontend-port-range-start 80 --frontend-port-range-end 89 --backend-port 80 --frontend-ip-name MyFrontendIp
+        network lb inbound-nat-pool create -g MyResourceGroup --lb-name MyLb -n MyNatPool --protocol Tcp --frontend-port-range-start 80 --frontend-port-range-end 89 --backend-port 80 --frontend-ip MyFrontendIp
     ```
