@@ -16,10 +16,10 @@ Get a resource belonging to a resource group.
 
 - Get BackupVault
     ```bash
-        az dataprotection backup-vault show --resource-group "SampleResourceGroup" --vault-name "swaggerExample"
+        dataprotection backup-vault show --resource-group "SampleResourceGroup" --vault-name "swaggerExample"
     ```
 
 - Get BackupVault With MSI
     ```bash
-        az dataprotection backup-vault show --resource-group "SampleResourceGroup" --vault-name "swaggerExample"
+        dataprotection backup-vault show --resource-group "SampleResourceGroup" --vault-name "swaggerExample"
     ```

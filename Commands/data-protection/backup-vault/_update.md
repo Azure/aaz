@@ -16,5 +16,5 @@ Updates a BackupVault resource belonging to a resource group. For example, updat
 
 - Patch BackupVault
     ```bash
-        az dataprotection backup-vault update --azure-monitor-alerts-for-job-failures "Enabled" --tags newKey="newVal" --resource-group "SampleResourceGroup" --vault-name "swaggerExample"
+        dataprotection backup-vault update --azure-monitor-alerts-for-job-failures "Enabled" --tags newKey="newVal" --resource-group "SampleResourceGroup" --vault-name "swaggerExample"
     ```
