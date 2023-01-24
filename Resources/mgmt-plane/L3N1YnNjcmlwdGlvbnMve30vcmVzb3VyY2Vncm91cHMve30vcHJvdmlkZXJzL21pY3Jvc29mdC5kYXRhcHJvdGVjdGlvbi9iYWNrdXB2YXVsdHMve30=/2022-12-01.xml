@@ -7,7 +7,7 @@
       <argGroup name="">
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="string" var="$Path.vaultName" options="vault-name name n" required="True" idPart="name">
+        <arg type="string" var="$Path.vaultName" options="vault-name" required="True" group="" idPart="name">
           <help short="The name of the backup vault."/>
         </arg>
       </argGroup>
@@ -182,7 +182,7 @@
       <argGroup name="">
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="string" var="$Path.vaultName" options="vault-name name n" required="True" idPart="name">
+        <arg type="string" var="$Path.vaultName" options="vault-name" required="True" group="" idPart="name">
           <help short="The name of the backup vault."/>
         </arg>
       </argGroup>
@@ -221,7 +221,7 @@
       <argGroup name="">
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="string" var="$Path.vaultName" options="vault-name name n" required="True" idPart="name">
+        <arg type="string" var="$Path.vaultName" options="vault-name" required="True" group="" idPart="name">
           <help short="The name of the backup vault."/>
         </arg>
       </argGroup>
@@ -254,7 +254,7 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg type="object" var="$parameters.properties.featureSettings" options="feature-settings" group="Properties">
+        <arg type="object" var="$parameters.properties.featureSettings" options="feature-settings" hide="True" group="Properties">
           <help short="Feature Settings"/>
           <arg type="object" var="$parameters.properties.featureSettings.crossSubscriptionRestoreSettings" options="cross-subscription-restore-settings">
             <help short="CrossSubscriptionRestore Settings"/>
@@ -268,36 +268,8 @@
             </arg>
           </arg>
         </arg>
-        <arg type="object" var="$parameters.properties.securitySettings" options="security-settings" group="Properties">
-          <help short="Security Settings"/>
-          <arg type="object" var="$parameters.properties.securitySettings.immutabilitySettings" options="immutability-settings">
-            <help short="Immutability Settings at vault level"/>
-            <arg type="string" var="$parameters.properties.securitySettings.immutabilitySettings.state" options="state">
-              <help short="Immutability state"/>
-              <enum>
-                <item name="Disabled" value="&quot;Disabled&quot;"/>
-                <item name="Locked" value="&quot;Locked&quot;"/>
-                <item name="Unlocked" value="&quot;Unlocked&quot;"/>
-              </enum>
-            </arg>
-          </arg>
-          <arg type="object" var="$parameters.properties.securitySettings.softDeleteSettings" options="soft-delete-settings">
-            <help short="Soft delete related settings"/>
-            <arg type="float64" var="$parameters.properties.securitySettings.softDeleteSettings.retentionDurationInDays" options="retention-duration-in-days">
-              <help short="Soft delete retention duration"/>
-            </arg>
-            <arg type="string" var="$parameters.properties.securitySettings.softDeleteSettings.state" options="state">
-              <help short="State of soft delete"/>
-              <enum>
-                <item name="AlwaysOn" value="&quot;AlwaysOn&quot;"/>
-                <item name="Off" value="&quot;Off&quot;"/>
-                <item name="On" value="&quot;On&quot;"/>
-              </enum>
-            </arg>
-          </arg>
-        </arg>
         <arg type="array<object>" var="$parameters.properties.storageSettings" options="storage-settings" required="True" group="Properties">
-          <help short="Storage Settings. Usage: --storage-settings datastore-type=XX type=XX. datastore-type: Gets or sets the type of the datastore. type: Gets or sets the type. Multiple actions can be specified by using more than one --storage-settings argument."/>
+          <help short="Storage Settings." lines="--storage-settings --storage-settings datastore-type=XX datastore-type: datastore. specified argument. type=XX. Multiple actions Usage: type: using Gets sets type Gets sets type more than the the the can one or of or be by"/>
           <item type="object">
             <arg type="string" var="$parameters.properties.storageSettings[].datastoreType" options="datastore-type">
               <help short="Gets or sets the type of the datastore."/>
@@ -316,6 +288,30 @@
               </enum>
             </arg>
           </item>
+        </arg>
+      </argGroup>
+      <argGroup name="SecuritySettings">
+        <arg type="string" var="$parameters.properties.securitySettings.immutabilitySettings.state" options="immutability-state" group="SecuritySettings">
+          <help short="Immutability state"/>
+          <enum>
+            <item name="Disabled" value="&quot;Disabled&quot;"/>
+            <item name="Locked" value="&quot;Locked&quot;"/>
+            <item name="Unlocked" value="&quot;Unlocked&quot;"/>
+          </enum>
+        </arg>
+        <arg type="object" var="$parameters.properties.securitySettings.softDeleteSettings" options="soft-delete-settings" hide="True" group="SecuritySettings">
+          <help short="Soft delete related settings"/>
+          <arg type="float64" var="$parameters.properties.securitySettings.softDeleteSettings.retentionDurationInDays" options="retention-duration-in-days">
+            <help short="Soft delete retention duration"/>
+          </arg>
+          <arg type="string" var="$parameters.properties.securitySettings.softDeleteSettings.state" options="state">
+            <help short="State of soft delete"/>
+            <enum>
+              <item name="AlwaysOn" value="&quot;AlwaysOn&quot;"/>
+              <item name="Off" value="&quot;Off&quot;"/>
+              <item name="On" value="&quot;On&quot;"/>
+            </enum>
+          </arg>
         </arg>
       </argGroup>
       <operation operationId="BackupVaults_CreateOrUpdate">
@@ -365,8 +361,8 @@
                         </prop>
                       </prop>
                     </prop>
-                    <prop type="object" name="securitySettings" arg="$parameters.properties.securitySettings">
-                      <prop type="object" name="immutabilitySettings" arg="$parameters.properties.securitySettings.immutabilitySettings">
+                    <prop type="object" name="securitySettings">
+                      <prop type="object" name="immutabilitySettings">
                         <prop type="string" name="state" arg="$parameters.properties.securitySettings.immutabilitySettings.state">
                           <enum>
                             <item value="&quot;Disabled&quot;"/>
@@ -568,21 +564,29 @@
       <argGroup name="">
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="string" var="$Path.vaultName" options="vault-name name n" required="True" idPart="name">
+        <arg type="string" var="$Path.vaultName" options="vault-name" required="True" group="" idPart="name">
           <help short="The name of the backup vault."/>
         </arg>
       </argGroup>
+      <argGroup name="Identity">
+        <arg nullable="True" type="string" var="$parameters.identity.type" options="type" group="Identity">
+          <help short="The identityType which can be either SystemAssigned or None"/>
+        </arg>
+      </argGroup>
+      <argGroup name="MonitoringSettings">
+        <arg nullable="True" type="string" var="$parameters.properties.monitoringSettings.azureMonitorAlertSettings.alertsForAllJobFailures" options="azure-monitor-alerts-for-job-failures" group="MonitoringSettings">
+          <help short="Property that specifies whether built-in Azure Monitor alerts should be fired for all failed jobs."/>
+          <enum>
+            <item name="Disabled" value="&quot;Disabled&quot;"/>
+            <item name="Enabled" value="&quot;Enabled&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
       <argGroup name="Parameters">
-        <arg nullable="True" type="string" var="$parameters.eTag" options="e-tag" group="Parameters">
+        <arg nullable="True" type="string" var="$parameters.eTag" options="e-tag" hide="True" group="Parameters">
           <help short="Optional ETag."/>
         </arg>
-        <arg nullable="True" type="object" var="$parameters.identity" options="identity" group="Parameters">
-          <help short="Input Managed Identity Details"/>
-          <arg nullable="True" type="string" var="$parameters.identity.type" options="type">
-            <help short="The identityType which can be either SystemAssigned or None"/>
-          </arg>
-        </arg>
-        <arg type="ResourceLocation" var="$parameters.location" options="location l" group="Parameters">
+        <arg type="ResourceLocation" var="$parameters.location" options="location l" hide="True" group="Parameters">
           <help short="Resource location."/>
         </arg>
         <arg nullable="True" type="object" var="$parameters.tags" options="tags" group="Parameters">
@@ -593,7 +597,7 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="object" var="$parameters.properties.featureSettings" options="feature-settings" group="Properties">
+        <arg nullable="True" type="object" var="$parameters.properties.featureSettings" options="feature-settings" hide="True" group="Properties">
           <help short="Feature Settings"/>
           <arg nullable="True" type="object" var="$parameters.properties.featureSettings.crossSubscriptionRestoreSettings" options="cross-subscription-restore-settings">
             <help short="CrossSubscriptionRestore Settings"/>
@@ -607,47 +611,7 @@
             </arg>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$parameters.properties.monitoringSettings" options="monitoring-settings" group="Properties">
-          <help short="Monitoring Settings"/>
-          <arg nullable="True" type="object" var="$parameters.properties.monitoringSettings.azureMonitorAlertSettings" options="azure-monitor-alert-settings">
-            <help short="Settings for Azure Monitor based alerts"/>
-            <arg nullable="True" type="string" var="$parameters.properties.monitoringSettings.azureMonitorAlertSettings.alertsForAllJobFailures" options="alerts-for-all-job-failures">
-              <enum>
-                <item name="Disabled" value="&quot;Disabled&quot;"/>
-                <item name="Enabled" value="&quot;Enabled&quot;"/>
-              </enum>
-            </arg>
-          </arg>
-        </arg>
-        <arg nullable="True" type="object" var="$parameters.properties.securitySettings" options="security-settings" group="Properties">
-          <help short="Security Settings"/>
-          <arg nullable="True" type="object" var="$parameters.properties.securitySettings.immutabilitySettings" options="immutability-settings">
-            <help short="Immutability Settings at vault level"/>
-            <arg nullable="True" type="string" var="$parameters.properties.securitySettings.immutabilitySettings.state" options="state">
-              <help short="Immutability state"/>
-              <enum>
-                <item name="Disabled" value="&quot;Disabled&quot;"/>
-                <item name="Locked" value="&quot;Locked&quot;"/>
-                <item name="Unlocked" value="&quot;Unlocked&quot;"/>
-              </enum>
-            </arg>
-          </arg>
-          <arg nullable="True" type="object" var="$parameters.properties.securitySettings.softDeleteSettings" options="soft-delete-settings">
-            <help short="Soft delete related settings"/>
-            <arg nullable="True" type="float64" var="$parameters.properties.securitySettings.softDeleteSettings.retentionDurationInDays" options="retention-duration-in-days">
-              <help short="Soft delete retention duration"/>
-            </arg>
-            <arg nullable="True" type="string" var="$parameters.properties.securitySettings.softDeleteSettings.state" options="state">
-              <help short="State of soft delete"/>
-              <enum>
-                <item name="AlwaysOn" value="&quot;AlwaysOn&quot;"/>
-                <item name="Off" value="&quot;Off&quot;"/>
-                <item name="On" value="&quot;On&quot;"/>
-              </enum>
-            </arg>
-          </arg>
-        </arg>
-        <arg type="array<object>" var="$parameters.properties.storageSettings" options="storage-settings" group="Properties">
+        <arg type="array<object>" var="$parameters.properties.storageSettings" options="storage-settings" hide="True" group="Properties">
           <help short="Storage Settings"/>
           <item nullable="True" type="object">
             <arg nullable="True" type="string" var="$parameters.properties.storageSettings[].datastoreType" options="datastore-type">
@@ -667,6 +631,30 @@
               </enum>
             </arg>
           </item>
+        </arg>
+      </argGroup>
+      <argGroup name="SecuritySettings">
+        <arg nullable="True" type="string" var="$parameters.properties.securitySettings.immutabilitySettings.state" options="immutability-state" group="SecuritySettings">
+          <help short="Immutability state"/>
+          <enum>
+            <item name="Disabled" value="&quot;Disabled&quot;"/>
+            <item name="Locked" value="&quot;Locked&quot;"/>
+            <item name="Unlocked" value="&quot;Unlocked&quot;"/>
+          </enum>
+        </arg>
+        <arg nullable="True" type="object" var="$parameters.properties.securitySettings.softDeleteSettings" options="soft-delete-settings" hide="True" group="SecuritySettings">
+          <help short="Soft delete related settings"/>
+          <arg nullable="True" type="float64" var="$parameters.properties.securitySettings.softDeleteSettings.retentionDurationInDays" options="retention-duration-in-days">
+            <help short="Soft delete retention duration"/>
+          </arg>
+          <arg nullable="True" type="string" var="$parameters.properties.securitySettings.softDeleteSettings.state" options="state">
+            <help short="State of soft delete"/>
+            <enum>
+              <item name="AlwaysOn" value="&quot;AlwaysOn&quot;"/>
+              <item name="Off" value="&quot;Off&quot;"/>
+              <item name="On" value="&quot;On&quot;"/>
+            </enum>
+          </arg>
         </arg>
       </argGroup>
       <operation operationId="BackupVaults_Get">
@@ -838,7 +826,7 @@
           <json>
             <schema type="object" name="parameters" required="True" clientFlatten="True">
               <prop type="string" name="eTag" arg="$parameters.eTag"/>
-              <prop type="object" name="identity" arg="$parameters.identity">
+              <prop type="object" name="identity">
                 <prop type="string" name="type" arg="$parameters.identity.type"/>
               </prop>
               <prop type="ResourceLocation" name="location" arg="$parameters.location" required="True"/>
@@ -854,8 +842,8 @@
                     </prop>
                   </prop>
                 </prop>
-                <prop type="object" name="monitoringSettings" arg="$parameters.properties.monitoringSettings">
-                  <prop type="object" name="azureMonitorAlertSettings" arg="$parameters.properties.monitoringSettings.azureMonitorAlertSettings">
+                <prop type="object" name="monitoringSettings">
+                  <prop type="object" name="azureMonitorAlertSettings">
                     <prop type="string" name="alertsForAllJobFailures" arg="$parameters.properties.monitoringSettings.azureMonitorAlertSettings.alertsForAllJobFailures">
                       <enum>
                         <item value="&quot;Disabled&quot;"/>
@@ -864,8 +852,8 @@
                     </prop>
                   </prop>
                 </prop>
-                <prop type="object" name="securitySettings" arg="$parameters.properties.securitySettings">
-                  <prop type="object" name="immutabilitySettings" arg="$parameters.properties.securitySettings.immutabilitySettings">
+                <prop type="object" name="securitySettings">
+                  <prop type="object" name="immutabilitySettings">
                     <prop type="string" name="state" arg="$parameters.properties.securitySettings.immutabilitySettings.state">
                       <enum>
                         <item value="&quot;Disabled&quot;"/>
