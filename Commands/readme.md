@@ -8,6 +8,9 @@
 - [data-protection](/Commands/data-protection/readme.md)
 : Manage Data Protection.
 
+- [dataprotection](/Commands/dataprotection/readme.md)
+: Manage Data Protection.
+
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
 
