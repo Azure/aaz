@@ -10,8 +10,12 @@ List the available namespaces within a resource group.
 
 #### examples
 
-- List the Service Bus Namespaces
+- List the Service Bus Namespaces under resourcegroup.
     ```bash
         servicebus namespace list --resource-group myresourcegroup
+    ```
+
+- List the Service Bus Namespaces under subscription
+    ```bash
         servicebus namespace list
     ```
