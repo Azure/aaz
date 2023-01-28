@@ -2,6 +2,9 @@
 
 ## Groups
 
+- [automanage](/Commands/automanage/readme.md)
+: Manage Automanage
+
 - [billing-benefits](/Commands/billing-benefits/readme.md)
 : Azure billing benefits commands
 
