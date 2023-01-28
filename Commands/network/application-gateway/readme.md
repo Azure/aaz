@@ -24,6 +24,15 @@ To learn more about Application Gateway, visit https://learn.microsoft.com/en-us
 - [http-settings](/Commands/network/application-gateway/http-settings/readme.md)
 : Manage HTTP settings of an application gateway.
 
+- [identity](/Commands/network/application-gateway/identity/readme.md)
+: Manage the managed service identity of an application gateway.
+
+- [probe](/Commands/network/application-gateway/probe/readme.md)
+: Manage probes to gather and evaluate information on an application gateway.
+
+- [redirect-config](/Commands/network/application-gateway/redirect-config/readme.md)
+: Manage redirect configurations of an application gateway.
+
 - [root-cert](/Commands/network/application-gateway/root-cert/readme.md)
 : Manage trusted root certificates of an application gateway.
 
