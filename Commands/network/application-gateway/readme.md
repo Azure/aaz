@@ -21,8 +21,14 @@ To learn more about Application Gateway, visit https://learn.microsoft.com/en-us
 - [frontend-port](/Commands/network/application-gateway/frontend-port/readme.md)
 : Manage frontend ports of an application gateway.
 
+- [http-settings](/Commands/network/application-gateway/http-settings/readme.md)
+: Manage HTTP settings of an application gateway.
+
 - [root-cert](/Commands/network/application-gateway/root-cert/readme.md)
 : Manage trusted root certificates of an application gateway.
+
+- [settings](/Commands/network/application-gateway/settings/readme.md)
+: Manage settings of an application gateway.
 
 - [ssl-cert](/Commands/network/application-gateway/ssl-cert/readme.md)
 : Manage SSL certificates of an application gateway.
