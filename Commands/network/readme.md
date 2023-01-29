@@ -76,6 +76,9 @@ Manage Azure Network resources.
 - [vnet](/Commands/network/vnet/readme.md)
 : Check if a private IP address is available for use within a virtual network.
 
+- [vnet-gateway](/Commands/network/vnet-gateway/readme.md)
+: Use an Azure Virtual Network Gateway to establish secure, cross-premises connectivity.
+
 - [vpn-gateway](/Commands/network/vpn-gateway/readme.md)
 : Manage site-to-site VPN gateways.
 
