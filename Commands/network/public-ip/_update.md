@@ -14,3 +14,8 @@ Update a public IP address.
     ```bash
         network public-ip update -g MyResourceGroup -n MyIp --dns-name MyLabel --allocation-method Static
     ```
+
+- Detach a DDoS protection plan in a public IP resource.
+    ```bash
+        network public-ip update -g MyResourceGroup -n MyIP --protection-mode Disabled --ddos-protection-plan null
+    ```
