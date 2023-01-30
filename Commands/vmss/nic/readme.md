@@ -5,10 +5,10 @@ Manage network interfaces of a VMSS.
 ## Commands
 
 - [list](/Commands/vmss/nic/_list.md)
-: Gets all network interfaces in a virtual machine scale set.
+: Get all network interfaces in a virtual machine scale set.
 
 - [list-vm-nics](/Commands/vmss/nic/_list-vm-nics.md)
-: Gets information about all network interfaces in a virtual machine in a virtual machine scale set.
+: Get information about all network interfaces in a virtual machine in a virtual machine scale set.
 
 - [show](/Commands/vmss/nic/_show.md)
 : Get the specified network interface in a virtual machine scale set.

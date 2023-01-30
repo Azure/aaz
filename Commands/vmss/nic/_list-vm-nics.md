@@ -1,6 +1,6 @@
 # [Command] _vmss nic list-vm-nics_
 
-Gets information about all network interfaces in a virtual machine in a virtual machine scale set.
+Get information about all network interfaces in a virtual machine in a virtual machine scale set.
 
 ## Versions
 
