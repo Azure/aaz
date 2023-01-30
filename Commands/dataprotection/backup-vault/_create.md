@@ -12,10 +12,10 @@ Create a BackupVault resource belonging to a resource group.
 
 - Create BackupVault
     ```bash
-        dataprotection backup-vault create --type "None" --location "WestUS" --azure-monitor-alerts-for-job-failures "Enabled" --storage-settings "[{type:LocallyRedundant,datastore-type:VaultStore}]" --tags key1="val1" --resource-group "SampleResourceGroup" --vault-name "swaggerExample"
+        dataprotection backup-vault create --type "None" --location "WestUS" --azure-monitor-alerts-for-job-failures "Enabled" --storage-settings type="LocallyRedundant" datastore-type="VaultStore" --tags key1="val1" --resource-group "SampleResourceGroup" --vault-name "swaggerExample"
     ```
 
 - Create BackupVault With MSI
     ```bash
-        dataprotection backup-vault create --type "systemAssigned" --location "WestUS" --azure-monitor-alerts-for-job-failures "Enabled" --storage-settings "[{type:LocallyRedundant,datastore-type:VaultStore}]" --tags key1="val1" --resource-group "SampleResourceGroup" --vault-name "swaggerExample"
+        dataprotection backup-vault create --type "systemAssigned" --location "WestUS" --azure-monitor-alerts-for-job-failures "Enabled" --storage-settings type="LocallyRedundant" datastore-type="VaultStore" --tags key1="val1" --resource-group "SampleResourceGroup" --vault-name "swaggerExample"
     ```
