@@ -12,6 +12,9 @@ To learn more about Web Application Firewall visit https://learn.microsoft.com/e
 - [managed-rule](/Commands/network/application-gateway/waf-policy/managed-rule/readme.md)
 : Manage managed rules of a WAF policy.
 
+- [policy-setting](/Commands/network/application-gateway/waf-policy/policy-setting/readme.md)
+: Define contents of a web application firewall global configuration.
+
 ## Commands
 
 - [create](/Commands/network/application-gateway/waf-policy/_create.md)
