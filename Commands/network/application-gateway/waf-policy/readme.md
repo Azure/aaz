@@ -2,15 +2,20 @@
 
 Manage application gateway web application firewall (WAF) policies.
 
+To learn more about Web Application Firewall visit https://learn.microsoft.com/en-us/azure/web-application-firewall/ag/ag-overview.
+
 ## Subgroups
 
 - [custom-rule](/Commands/network/application-gateway/waf-policy/custom-rule/readme.md)
 : Manage application gateway web application firewall (WAF) policy custom rules.
 
+- [managed-rule](/Commands/network/application-gateway/waf-policy/managed-rule/readme.md)
+: Manage managed rules of a WAF policy.
+
 ## Commands
 
 - [create](/Commands/network/application-gateway/waf-policy/_create.md)
-: Create policy with specified rule set name within a resource group.
+: Create an application gateway WAF policy.
 
 - [delete](/Commands/network/application-gateway/waf-policy/_delete.md)
 : Delete an application gateway WAF policy.
