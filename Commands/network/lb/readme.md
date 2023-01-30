@@ -18,6 +18,9 @@ To learn more about Azure Load Balancer visit https://learn.microsoft.com/en-us/
 - [probe](/Commands/network/lb/probe/readme.md)
 : Evaluate probe information and define routing rules.
 
+- [rule](/Commands/network/lb/rule/readme.md)
+: Manage load balancing rules.
+
 ## Commands
 
 - [create](/Commands/network/lb/_create.md)
