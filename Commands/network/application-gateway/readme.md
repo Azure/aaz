@@ -33,6 +33,9 @@ To learn more about Application Gateway, visit https://learn.microsoft.com/en-us
 - [redirect-config](/Commands/network/application-gateway/redirect-config/readme.md)
 : Manage redirect configurations of an application gateway.
 
+- [rewrite-rule](/Commands/network/application-gateway/rewrite-rule/readme.md)
+: Manage rewrite rules of an application gateway.
+
 - [root-cert](/Commands/network/application-gateway/root-cert/readme.md)
 : Manage trusted root certificates of an application gateway.
 
