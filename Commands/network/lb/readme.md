@@ -15,6 +15,9 @@ To learn more about Azure Load Balancer visit https://learn.microsoft.com/en-us/
 - [inbound-nat-rule](/Commands/network/lb/inbound-nat-rule/readme.md)
 : Manage inbound NAT rules of a load balancer.
 
+- [outbound-rule](/Commands/network/lb/outbound-rule/readme.md)
+: Manage outbound rules of a load balancer.
+
 - [probe](/Commands/network/lb/probe/readme.md)
 : Evaluate probe information and define routing rules.
 
