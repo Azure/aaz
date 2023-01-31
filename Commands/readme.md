@@ -50,6 +50,9 @@
 - [sentinel](/Commands/sentinel/readme.md)
 : Manage Microsoft Sentinel.
 
+- [servicebus](/Commands/servicebus/readme.md)
+: servicebus
+
 - [sig](/Commands/sig/readme.md)
 : Manage shared image gallery.
 
