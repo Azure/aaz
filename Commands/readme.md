@@ -59,5 +59,8 @@
 - [sql](/Commands/sql/readme.md)
 : Manage Azure SQL Databases and Data Warehouses.
 
+- [vm](/Commands/vm/readme.md)
+: Manage Linux or Windows virtual machines.
+
 - [vmss](/Commands/vmss/readme.md)
 : Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS).
