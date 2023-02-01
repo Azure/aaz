@@ -21,11 +21,17 @@ To learn more about Application Gateway, visit https://learn.microsoft.com/en-us
 - [frontend-port](/Commands/network/application-gateway/frontend-port/readme.md)
 : Manage frontend ports of an application gateway.
 
+- [http-listener](/Commands/network/application-gateway/http-listener/readme.md)
+: Manage HTTP listeners of an application gateway.
+
 - [http-settings](/Commands/network/application-gateway/http-settings/readme.md)
 : Manage HTTP settings of an application gateway.
 
 - [identity](/Commands/network/application-gateway/identity/readme.md)
 : Manage the managed service identity of an application gateway.
+
+- [listener](/Commands/network/application-gateway/listener/readme.md)
+: Manage listeners of an application gateway.
 
 - [probe](/Commands/network/application-gateway/probe/readme.md)
 : Manage probes to gather and evaluate information on an application gateway.
