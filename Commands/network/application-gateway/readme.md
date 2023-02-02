@@ -45,6 +45,12 @@ To learn more about Application Gateway, visit https://learn.microsoft.com/en-us
 - [root-cert](/Commands/network/application-gateway/root-cert/readme.md)
 : Manage trusted root certificates of an application gateway.
 
+- [routing-rule](/Commands/network/application-gateway/routing-rule/readme.md)
+: Evaluate probe information and define TCP/TLS routing rules.
+
+- [rule](/Commands/network/application-gateway/rule/readme.md)
+: Evaluate probe information and define HTTP/HTTPS routing rules.
+
 - [settings](/Commands/network/application-gateway/settings/readme.md)
 : Manage settings of an application gateway.
 
