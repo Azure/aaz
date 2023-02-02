@@ -20,6 +20,9 @@
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
 
+- [maintenance](/Commands/maintenance/readme.md)
+: Manage maintenance.
+
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
 
