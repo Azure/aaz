@@ -12,5 +12,5 @@ Create a configuration profile version
 
 - create configuration-profile version
     ```bash
-        automanage configuration-profile version create --profile-name {profile_name} -g {rg} -n {version_name} --configuration {"Antimalware/Enable":false}
+        automanage configuration-profile version create --profile-name {profile_name} -g {rg} -n {version_name} --configuration '{"Antimalware/Enable":false}'
     ```

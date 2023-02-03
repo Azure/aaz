@@ -12,5 +12,5 @@ Update a configuration profile version
 
 - update configuration-profile version
     ```bash
-        automanage configuration-profile version update --profile-name {profile_name} -g {rg} -n {version_name} --configuration {"Antimalware/Enable":true}
+        automanage configuration-profile version update --profile-name {profile_name} -g {rg} -n {version_name} --configuration '{"Antimalware/Enable":true}'
     ```
