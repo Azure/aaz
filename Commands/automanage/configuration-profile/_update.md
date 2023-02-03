@@ -12,5 +12,5 @@ Update a configuration profile
 
 - update configuration-profile
     ```bash
-        automanage configuration-profile update -n {profile_name} -g {rg} --configuration {"Antimalware/Enable":true,"VMInsights/Enable":false}
+        automanage configuration-profile update -n {profile_name} -g {rg} --configuration '{"Antimalware/Enable":true,"VMInsights/Enable":false}'
     ```
