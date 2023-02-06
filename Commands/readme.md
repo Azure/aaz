@@ -61,3 +61,6 @@
 
 - [vmss](/Commands/vmss/readme.md)
 : Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS).
+
+- [voice-service](/Commands/voice-service/readme.md)
+: Manage voice services
