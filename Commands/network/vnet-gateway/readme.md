@@ -4,6 +4,23 @@ Use an Azure Virtual Network Gateway to establish secure, cross-premises connect
 
 To learn more about Azure Virtual Network Gateways, visit https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-howto-site-to-site-resource-manager-cli.
 
+## Subgroups
+
+- [aad](/Commands/network/vnet-gateway/aad/readme.md)
+: Manage AAD(Azure Active Directory) authentication of a virtual network gateway.
+
+- [ipsec-policy](/Commands/network/vnet-gateway/ipsec-policy/readme.md)
+: Manage virtual network gateway IPSec policies.
+
+- [nat-rule](/Commands/network/vnet-gateway/nat-rule/readme.md)
+: Manage nat rule in a virtual network gateway.
+
+- [revoked-cert](/Commands/network/vnet-gateway/revoked-cert/readme.md)
+: Manage revoked certificates in a virtual network gateway. Prevent machines using this certificate from accessing Azure through this gateway.
+
+- [root-cert](/Commands/network/vnet-gateway/root-cert/readme.md)
+: Manage root certificates of a virtual network gateway.
+
 ## Commands
 
 - [create](/Commands/network/vnet-gateway/_create.md)
