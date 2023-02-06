@@ -1,4 +1,4 @@
-# [Command] _network cross-region-lb address-pool list_
+# [Command] _network lb address-pool list_
 
 List all the load balancer backed address pools.
 
@@ -12,5 +12,5 @@ List all the load balancer backed address pools.
 
 - List address pools.
     ```bash
-        network cross-region-lb address-pool list -g MyResourceGroup --lb-name MyLb -o table
+        network lb address-pool list -g MyResourceGroup --lb-name MyLb -o table
     ```
