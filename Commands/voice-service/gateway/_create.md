@@ -12,5 +12,5 @@ Create a communications gateway
 
 - Create gateway
     ```bash
-        voice-service gateway create -n gw1 -g voicetest --service-locations '[{name:useast,PrimaryRegionProperties:{operatorAddresses:[198.51.100.1],allowedSignalingSourceAddressPrefixes:[10.1.1.0/24],allowedMediaSourceAddressPrefixes:[10.1.2.0/24]}},{name:useast2,PrimaryRegionProperties:{operatorAddresses:[198.51.100.2],allowedSignalingSourceAddressPrefixes:[10.2.1.0/24],allowedMediaSourceAddressPrefixes:[10.2.2.0/24]}}]' --connectivity PublicAddress --codecs '[PCMA]' --e911-type Standard --platforms '[OperatorConnect]'
+        voice-service gateway create -n gw1 -g voicetest --service-locations "[{name:useast,PrimaryRegionProperties:{operatorAddresses:[198.51.100.1],allowedSignalingSourceAddressPrefixes:[10.1.1.0/24],allowedMediaSourceAddressPrefixes:[10.1.2.0/24]}},{name:useast2,PrimaryRegionProperties:{operatorAddresses:[198.51.100.2],allowedSignalingSourceAddressPrefixes:[10.2.1.0/24],allowedMediaSourceAddressPrefixes:[10.2.2.0/24]}}]" --connectivity PublicAddress --codecs "[PCMA]" --e911-type Standard --platforms "[OperatorConnect]"
     ```

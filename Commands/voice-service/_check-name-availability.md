@@ -12,5 +12,5 @@ Check whether the resource name is available in the given region.
 
 - check name availability
     ```bash
-        voice-services check-name-availability -l centraluseuap --name voicenametest --type microsoft.voiceservices/communicationsgateways/testlines
+        voice-service check-name-availability -l centraluseuap --name voicenametest --type microsoft.voiceservices/communicationsgateways/testlines
     ```

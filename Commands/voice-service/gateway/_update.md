@@ -12,5 +12,5 @@ Update a communications gateway
 
 - Update a gateway
     ```bash
-        voice-service gateway update -n gateway-name -g rg --tags '{tag:test,tag2:test2}'
+        voice-service gateway update -n gateway-name -g rg --tags "{tag:test,tag2:test2}"
     ```
