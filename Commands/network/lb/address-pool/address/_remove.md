@@ -1,6 +1,6 @@
-# [Command] _network cross-region-lb address-pool address show_
+# [Command] _network lb address-pool address remove_
 
-Show the backend address from the load balance backend address pool.
+Remove one backend address from the load balance backend address pool.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Show the backend address from the load balance backend address pool.
 
 #### examples
 
-- Show the backend address from the load balance backend address pool.
+- Remove one backend address from the load balance backend address pool.
     ```bash
-        network cross-region-lb address-pool address show -g MyResourceGroup --lb-name MyLb --pool-name MyAddressPool -n MyAddress
+        network lb address-pool address remove -g MyResourceGroup --lb-name MyLb --pool-name MyAddressPool -n MyAddress
     ```

@@ -1,4 +1,4 @@
-# [Command] _network cross-region-lb address-pool address list_
+# [Command] _network lb address-pool address list_
 
 List all backend addresses of the load balance backend address pool.
 
@@ -12,5 +12,5 @@ List all backend addresses of the load balance backend address pool.
 
 - List all backend addresses of the load balance backend address pool.
     ```bash
-        network cross-region-lb address-pool address list -g MyResourceGroup --lb-name MyLb --pool-name MyAddressPool
+        network lb address-pool address list -g MyResourceGroup --lb-name MyLb --pool-name MyAddressPool
     ```

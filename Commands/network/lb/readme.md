@@ -6,6 +6,9 @@ To learn more about Azure Load Balancer visit https://learn.microsoft.com/en-us/
 
 ## Subgroups
 
+- [address-pool](/Commands/network/lb/address-pool/readme.md)
+: Manage address pools of a load balancer.
+
 - [frontend-ip](/Commands/network/lb/frontend-ip/readme.md)
 : Manage frontend IP addresses of a load balancer.
 

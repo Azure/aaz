@@ -1,4 +1,4 @@
-# [Command] _network cross-region-lb address-pool show_
+# [Command] _network lb address-pool show_
 
 Get load balancer backend address pool.
 
@@ -12,5 +12,5 @@ Get load balancer backend address pool.
 
 - Get the details of an address pool.
     ```bash
-        network cross-region-lb address-pool show -g MyResourceGroup --lb-name MyLb -n MyAddressPool
+        network lb address-pool show -g MyResourceGroup --lb-name MyLb -n MyAddressPool
     ```

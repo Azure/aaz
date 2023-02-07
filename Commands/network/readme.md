@@ -13,9 +13,6 @@ Manage Azure Network resources.
 - [bastion](/Commands/network/bastion/readme.md)
 : Manage Azure Bastion host machines.
 
-- [cross-region-lb](/Commands/network/cross-region-lb/readme.md)
-: Manage and configure cross-region load balancers.
-
 - [custom-ip](/Commands/network/custom-ip/readme.md)
 : Manage custom IP.
 

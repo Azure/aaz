@@ -1,4 +1,4 @@
-# [Command] _network cross-region-lb address-pool delete_
+# [Command] _network lb address-pool delete_
 
 Delete the specified load balancer backend address pool.
 
@@ -12,5 +12,5 @@ Delete the specified load balancer backend address pool.
 
 - Delete an address pool.
     ```bash
-        network cross-region-lb address-pool delete -g MyResourceGroup --lb-name MyLb -n MyAddressPool
+        network lb address-pool delete -g MyResourceGroup --lb-name MyLb -n MyAddressPool
     ```
