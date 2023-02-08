@@ -14,3 +14,8 @@ Create a configuration profile
     ```bash
         automanage configuration-profile create -n {profile_name} -g {rg} --configuration '{"Antimalware/Enable":false,"Backup/Enable":false,"VMInsights/Enable":true,"AzureSecurityCenter/Enable":true,"UpdateManagement/Enable":true,"ChangeTrackingAndInventory/Enable":true,"GuestConfiguration/Enable":true,"LogAnalytics/Enable":true,"BootDiagnostics/Enable":true}'
     ```
+
+- create with datatime array
+    ```bash
+        automanage configuration-profile create -n {profile_name} -g {rg} --configuration '{"Backup/SchedulePolicy/ScheduleRunTimes":["2023-02-10T18:25:43.511Z", "2023-02-12T01:02:03.456Z"],"Backup/RetentionPolicy/DailySchedule/RetentionTimes":["2023-02-10T18:25:43.511Z", "2023-02-12T01:02:03.456Z"]}'
+    ```
