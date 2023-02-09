@@ -2,14 +2,23 @@
 
 ## Groups
 
+- [automanage](/Commands/automanage/readme.md)
+: Manage Automanage
+
+- [billing-benefits](/Commands/billing-benefits/readme.md)
+: Azure billing benefits commands
+
+- [capacity](/Commands/capacity/readme.md)
+: Manage capacity resources.
+
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
-- [data-protection](/Commands/data-protection/readme.md)
-: Manage Data Protection.
-
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage Data Protection.
+
+- [databricks](/Commands/databricks/readme.md)
+: Manage databricks workspaces.
 
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
@@ -41,8 +50,20 @@
 - [reservations](/Commands/reservations/readme.md)
 : Azure Reservations
 
+- [restore-point](/Commands/restore-point/readme.md)
+: Manage restore point with res.
+
 - [sentinel](/Commands/sentinel/readme.md)
 : Manage Microsoft Sentinel.
 
+- [sig](/Commands/sig/readme.md)
+: Manage shared image gallery.
+
 - [sql](/Commands/sql/readme.md)
 : Manage Azure SQL Databases and Data Warehouses.
+
+- [vm](/Commands/vm/readme.md)
+: Manage Linux or Windows virtual machines.
+
+- [vmss](/Commands/vmss/readme.md)
+: Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS).

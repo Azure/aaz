@@ -10,6 +10,12 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True"/>
       </argGroup>
+      <condition var="$Condition_VirtualHubs_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
       <condition var="$Condition_VirtualHubs_List">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -18,16 +24,11 @@
           </operator>
         </operator>
       </condition>
-      <condition var="$Condition_VirtualHubs_ListByResourceGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
-      <operation when="$Condition_VirtualHubs_List" operationId="VirtualHubs_List">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Network/virtualHubs">
+      <operation when="$Condition_VirtualHubs_ListByResourceGroup" operationId="VirtualHubs_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualHubs">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -55,7 +56,7 @@
                         <prop type="boolean" name="allowBranchToBranchTraffic"/>
                         <prop type="@SubResource_read" name="azureFirewall"/>
                         <prop readOnly="True" type="array<@SubResource_read>" name="bgpConnections">
-                          <item readOnly="True" type="@SubResource_read"/>
+                          <item type="@SubResource_read"/>
                         </prop>
                         <prop type="@SubResource_read" name="expressRouteGateway"/>
                         <prop type="string" name="hubRoutingPreference">
@@ -66,7 +67,7 @@
                           </enum>
                         </prop>
                         <prop readOnly="True" type="array<@SubResource_read>" name="ipConfigurations">
-                          <item readOnly="True" type="@SubResource_read"/>
+                          <item type="@SubResource_read"/>
                         </prop>
                         <prop type="@SubResource_read" name="p2SVpnGateway"/>
                         <prop type="string" name="preferredRoutingGateway">
@@ -176,11 +177,10 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_VirtualHubs_ListByResourceGroup" operationId="VirtualHubs_ListByResourceGroup">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualHubs">
+      <operation when="$Condition_VirtualHubs_List" operationId="VirtualHubs_List">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Network/virtualHubs">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -208,7 +208,7 @@
                         <prop type="boolean" name="allowBranchToBranchTraffic"/>
                         <prop type="@SubResource_read" name="azureFirewall"/>
                         <prop readOnly="True" type="array<@SubResource_read>" name="bgpConnections">
-                          <item readOnly="True" type="@SubResource_read"/>
+                          <item type="@SubResource_read"/>
                         </prop>
                         <prop type="@SubResource_read" name="expressRouteGateway"/>
                         <prop type="string" name="hubRoutingPreference">
@@ -219,7 +219,7 @@
                           </enum>
                         </prop>
                         <prop readOnly="True" type="array<@SubResource_read>" name="ipConfigurations">
-                          <item readOnly="True" type="@SubResource_read"/>
+                          <item type="@SubResource_read"/>
                         </prop>
                         <prop type="@SubResource_read" name="p2SVpnGateway"/>
                         <prop type="string" name="preferredRoutingGateway">
