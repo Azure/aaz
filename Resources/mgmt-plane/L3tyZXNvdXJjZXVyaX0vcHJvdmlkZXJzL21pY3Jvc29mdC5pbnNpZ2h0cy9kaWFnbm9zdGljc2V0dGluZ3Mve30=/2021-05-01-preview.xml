@@ -348,9 +348,6 @@
         <arg type="string" var="$Path.name" options="name n" required="True" group="">
           <help short="The name of the diagnostic setting. Required."/>
         </arg>
-        <arg type="string" var="$Path.resourceUri" options="resource" required="True" group="">
-          <help short="Name or ID of the target resource."/>
-        </arg>
       </argGroup>
       <argGroup name="Properties">
         <arg nullable="True" type="string" var="$parameters.properties.eventHubAuthorizationRuleId" options="event-hub-rule" group="Properties">
@@ -359,7 +356,7 @@
         <arg nullable="True" type="string" var="$parameters.properties.eventHubName" options="event-hub" group="Properties">
           <help short="The name of the event hub. If none is specified, the default event hub will be selected."/>
         </arg>
-        <arg nullable="True" type="string" var="$parameters.properties.logAnalyticsDestinationType" options="log-analytics-destination-type" group="Properties">
+        <arg nullable="True" type="string" var="$parameters.properties.logAnalyticsDestinationType" options="log-analytics-destination-type log-ana-dtype" group="Properties">
           <help short="A string indicating whether the export to Log Analytics should use the default destination type, i.e. AzureDiagnostics, or use a destination type constructed as follows: <normalized service identity>_<normalized category name>. Possible values are: Dedicated and null (null is default.)"/>
         </arg>
         <arg nullable="True" type="array<object>" var="$parameters.properties.logs" options="logs" group="Properties">
@@ -414,6 +411,11 @@
         </arg>
         <arg nullable="True" type="string" var="$parameters.properties.workspaceId" options="workspace-id" group="Properties">
           <help short="The full ARM resource ID of the Log Analytics workspace to which you would like to send Diagnostic Logs. Example: /subscriptions/4b9e8510-67ab-4e9a-95a9-e2f1e570ea9c/resourceGroups/insights-integration/providers/Microsoft.OperationalInsights/workspaces/viruela2"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Target Resource">
+        <arg type="string" var="$Path.resourceUri" options="resource" required="True" group="Target Resource">
+          <help short="Name or ID of the target resource."/>
         </arg>
       </argGroup>
       <operation operationId="DiagnosticSettings_Get">
@@ -505,7 +507,7 @@
         </http>
       </operation>
       <operation>
-        <instanceUpdate instance="$Instance">
+        <instanceUpdate ref="$Instance">
           <json>
             <schema type="object" name="parameters" required="True" clientFlatten="True">
               <prop type="object" name="properties" clientFlatten="True">
