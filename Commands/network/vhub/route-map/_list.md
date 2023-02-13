@@ -7,3 +7,10 @@ List routem maps by resource group.
 ### [2022-05-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL3ZpcnR1YWxodWJzL3t9L3JvdXRlbWFwcw==/2022-05-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/virtualhubs/{}/routemaps 2022-05-01 -->
+
+#### examples
+
+- List route maps by resource group
+    ```bash
+        network vhub route-map list -g rg --vhub-name vhub-name
+    ```
