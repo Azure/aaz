@@ -33,6 +33,9 @@ To learn more about Application Gateway, visit https://learn.microsoft.com/en-us
 - [listener](/Commands/network/application-gateway/listener/readme.md)
 : Manage listeners of an application gateway.
 
+- [private-link](/Commands/network/application-gateway/private-link/readme.md)
+: Manage private link of an application gateway.
+
 - [probe](/Commands/network/application-gateway/probe/readme.md)
 : Manage probes to gather and evaluate information on an application gateway.
 
