@@ -31,6 +31,9 @@ Manage Azure Network resources.
 - [manager](/Commands/network/manager/readme.md)
 : Manage network-manager with network.
 
+- [nic](/Commands/network/nic/readme.md)
+: Manage network interfaces.
+
 - [nsg](/Commands/network/nsg/readme.md)
 : Manage Azure Network Security Groups (NSGs).
 
