@@ -82,6 +82,9 @@ Manage Azure Network resources.
 - [vnet-gateway](/Commands/network/vnet-gateway/readme.md)
 : Use an Azure Virtual Network Gateway to establish secure, cross-premises connectivity.
 
+- [vpn-connection](/Commands/network/vpn-connection/readme.md)
+: Manage VPN connections.
+
 - [vpn-gateway](/Commands/network/vpn-gateway/readme.md)
 : Manage site-to-site VPN gateways.
 
