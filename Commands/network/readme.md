@@ -88,6 +88,9 @@ Manage Azure Network resources.
 - [vpn-gateway](/Commands/network/vpn-gateway/readme.md)
 : Manage site-to-site VPN gateways.
 
+- [watcher](/Commands/network/watcher/readme.md)
+: Manage the Azure Network Watcher. Network Watcher assists with monitoring and diagnosing conditions at a network scenario level. To learn more visit https://docs.microsoft.com/azure/network-watcher/.
+
 ## Commands
 
 - [list-service-aliases](/Commands/network/_list-service-aliases.md)
