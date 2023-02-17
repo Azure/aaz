@@ -4,6 +4,11 @@ Manage network interfaces.
 
 To learn more about network interfaces in Azure, visit https://learn.microsoft.com/en-us/azure/virtual-network/virtual-network-network-interface?tabs=network-interface-portal.
 
+## Subgroups
+
+- [ip-config](/Commands/network/nic/ip-config/readme.md)
+: Manage IP configurations of a network interface.
+
 ## Commands
 
 - [create](/Commands/network/nic/_create.md)
