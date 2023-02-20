@@ -14,6 +14,9 @@
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
+- [data-protection](/Commands/data-protection/readme.md)
+: Manage backup instance with dataprotection
+
 - [databricks](/Commands/databricks/readme.md)
 : Manage databricks workspaces.
 
