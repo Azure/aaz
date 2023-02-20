@@ -14,11 +14,11 @@
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
-- [dataprotection](/Commands/dataprotection/readme.md)
-: Manage Data Protection.
-
 - [databricks](/Commands/databricks/readme.md)
 : Manage databricks workspaces.
+
+- [dataprotection](/Commands/dataprotection/readme.md)
+: Manage Data Protection.
 
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
