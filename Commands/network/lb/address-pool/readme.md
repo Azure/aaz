@@ -16,16 +16,16 @@ Manage address pools of a load balancer.
 ## Commands
 
 - [create](/Commands/network/lb/address-pool/_create.md)
-: Create load balancer backend address pool.
+: Create an address pool.
 
 - [delete](/Commands/network/lb/address-pool/_delete.md)
-: Delete the specified load balancer backend address pool.
+: Delete an address pool.
 
 - [list](/Commands/network/lb/address-pool/_list.md)
-: List all the load balancer backed address pools.
+: List address pools.
 
 - [show](/Commands/network/lb/address-pool/_show.md)
-: Get load balancer backend address pool.
+: Get the details of an address pool.
 
 - [update](/Commands/network/lb/address-pool/_update.md)
-: Update a load balancer backend address pool.
+: Update an address pool.
