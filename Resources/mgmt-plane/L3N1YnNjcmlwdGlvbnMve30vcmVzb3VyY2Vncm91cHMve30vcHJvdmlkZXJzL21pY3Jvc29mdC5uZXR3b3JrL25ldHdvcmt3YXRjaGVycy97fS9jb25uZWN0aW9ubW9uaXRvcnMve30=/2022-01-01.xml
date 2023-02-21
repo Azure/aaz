@@ -295,9 +295,7 @@
         <arg type="string" var="$Path.networkWatcherName" options="network-watcher-name" required="True" idPart="name">
           <help short="The name of the Network Watcher resource."/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group-name g" required="True" group="" idPart="resource_group">
-          <help short="Name of resource group. You can configure the default group using `az configure --defaults group=<name>`."/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         <arg type="string" var="$Query.migrate" options="migrate">
           <help short="Value indicating whether connection monitor V1 should be migrated to V2 format."/>
@@ -330,7 +328,29 @@
             <help short="The ID of the resource used as the destination by connection monitor."/>
           </arg>
         </arg>
-        <arg type="array<object>" var="$parameters.properties.endpoints" options="endpoints" group="Properties">
+        <arg type="integer32" var="$parameters.properties.monitoringIntervalInSeconds" options="monitoring-interval-in-seconds monitor-in-sec" group="Properties">
+          <help short="Monitoring interval in seconds."/>
+          <default value="60"/>
+          <format maximum="1800" minimum="30"/>
+        </arg>
+        <arg type="object" var="$parameters.properties.source" options="source" group="Properties">
+          <help short="Describes the source of connection monitor."/>
+          <arg type="integer32" var="$parameters.properties.source.port" options="port">
+            <help short="The source port used by connection monitor."/>
+            <format maximum="65535" minimum="0"/>
+          </arg>
+          <arg type="string" var="$parameters.properties.source.resourceId" options="resource-id" required="True">
+            <help short="The ID of the resource used as the source by connection monitor."/>
+          </arg>
+        </arg>
+      </argGroup>
+      <argGroup name="V2">
+        <arg type="string" var="$parameters.properties.notes" options="notes" group="V2">
+          <help short="Optional notes to be associated with the connection monitor."/>
+        </arg>
+      </argGroup>
+      <argGroup name="V2 Endpoint">
+        <arg type="array<object>" var="$parameters.properties.endpoints" options="endpoints" group="V2 Endpoint">
           <help short="List of connection monitor endpoints."/>
           <item type="object">
             <arg type="string" var="$parameters.properties.endpoints[].address" options="address">
@@ -406,39 +426,25 @@
             </arg>
           </item>
         </arg>
-        <arg type="integer32" var="$parameters.properties.monitoringIntervalInSeconds" options="monitoring-interval-in-seconds monitor-in-sec" group="Properties">
-          <help short="Monitoring interval in seconds."/>
-          <default value="60"/>
-          <format maximum="1800" minimum="30"/>
-        </arg>
-        <arg type="array<object>" var="$parameters.properties.outputs" options="outputs" group="Properties">
+      </argGroup>
+      <argGroup name="V2 Output">
+        <arg type="array<object>" var="$parameters.properties.outputs" options="outputs" group="V2 Output">
           <help short="List of connection monitor outputs."/>
           <item type="object">
-            <arg type="string" var="$parameters.properties.outputs[].type" options="type">
-              <help short="Connection monitor output destination type. Currently, only &quot;Workspace&quot; is supported."/>
+            <arg type="string" var="$parameters.properties.outputs[].type" options="type" group="">
+              <help short="Connection monitor output destination type. Currently, only &quot;Workspace&quot; is supported.  Allowed values: Workspace."/>
               <enum>
                 <item name="Workspace" value="&quot;Workspace&quot;"/>
               </enum>
             </arg>
-            <arg type="object" var="$parameters.properties.outputs[].workspaceSettings" options="workspace-settings">
-              <help short="Describes the settings for producing output into a log analytics workspace."/>
-              <arg type="string" var="$parameters.properties.outputs[].workspaceSettings.workspaceResourceId" options="workspace-resource-id">
-                <help short="Log analytics workspace resource ID."/>
-              </arg>
+            <arg type="string" var="$parameters.properties.outputs[].workspaceSettings.workspaceResourceId" options="workspace-id" group="">
+              <help short="The id of log analytics workspace."/>
             </arg>
           </item>
         </arg>
-        <arg type="object" var="$parameters.properties.source" options="source" group="Properties">
-          <help short="Describes the source of connection monitor."/>
-          <arg type="integer32" var="$parameters.properties.source.port" options="port">
-            <help short="The source port used by connection monitor."/>
-            <format maximum="65535" minimum="0"/>
-          </arg>
-          <arg type="string" var="$parameters.properties.source.resourceId" options="resource-id" required="True">
-            <help short="The ID of the resource used as the source by connection monitor."/>
-          </arg>
-        </arg>
-        <arg type="array<object>" var="$parameters.properties.testConfigurations" options="test-configurations" group="Properties">
+      </argGroup>
+      <argGroup name="V2 Test Configuration">
+        <arg type="array<object>" var="$parameters.properties.testConfigurations" options="test-configurations" group="V2 Test Configuration">
           <help short="List of connection monitor test configurations."/>
           <item type="object">
             <arg type="object" var="$parameters.properties.testConfigurations[].httpConfiguration" options="http-configuration">
@@ -531,7 +537,9 @@
             </arg>
           </item>
         </arg>
-        <arg type="array<object>" var="$parameters.properties.testGroups" options="test-groups" group="Properties">
+      </argGroup>
+      <argGroup name="V2 Test Group">
+        <arg type="array<object>" var="$parameters.properties.testGroups" options="test-groups" group="V2 Test Group">
           <help short="List of connection monitor test groups."/>
           <item type="object">
             <arg type="array<string>" var="$parameters.properties.testGroups[].destinations" options="destinations" required="True">
@@ -553,11 +561,6 @@
               <item type="string"/>
             </arg>
           </item>
-        </arg>
-      </argGroup>
-      <argGroup name="V2">
-        <arg type="string" var="$parameters.properties.notes" options="notes" group="V2">
-          <help short="Optional notes to be associated with the connection monitor."/>
         </arg>
       </argGroup>
       <operation operationId="ConnectionMonitors_CreateOrUpdate">
@@ -659,7 +662,7 @@
                             <item value="&quot;Workspace&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="object" name="workspaceSettings" arg="$parameters.properties.outputs[].workspaceSettings">
+                        <prop type="object" name="workspaceSettings">
                           <prop type="string" name="workspaceResourceId" arg="$parameters.properties.outputs[].workspaceSettings.workspaceResourceId"/>
                         </prop>
                       </item>
