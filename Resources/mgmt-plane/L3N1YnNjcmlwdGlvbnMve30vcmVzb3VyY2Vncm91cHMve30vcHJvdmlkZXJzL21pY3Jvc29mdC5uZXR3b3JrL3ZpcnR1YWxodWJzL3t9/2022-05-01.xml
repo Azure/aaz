@@ -41,7 +41,7 @@
                     <prop type="boolean" name="allowBranchToBranchTraffic"/>
                     <prop type="@SubResource_read" name="azureFirewall"/>
                     <prop readOnly="True" type="array<@SubResource_read>" name="bgpConnections">
-                      <item readOnly="True" type="@SubResource_read"/>
+                      <item type="@SubResource_read"/>
                     </prop>
                     <prop type="@SubResource_read" name="expressRouteGateway"/>
                     <prop type="string" name="hubRoutingPreference">
@@ -52,7 +52,7 @@
                       </enum>
                     </prop>
                     <prop readOnly="True" type="array<@SubResource_read>" name="ipConfigurations">
-                      <item readOnly="True" type="@SubResource_read"/>
+                      <item type="@SubResource_read"/>
                     </prop>
                     <prop type="@SubResource_read" name="p2SVpnGateway"/>
                     <prop type="string" name="preferredRoutingGateway">
@@ -71,7 +71,7 @@
                       </enum>
                     </prop>
                     <prop readOnly="True" type="array<@SubResource_read>" name="routeMaps">
-                      <item readOnly="True" type="@SubResource_read"/>
+                      <item type="@SubResource_read"/>
                     </prop>
                     <prop type="object" name="routeTable">
                       <prop type="array<object>" name="routes">
@@ -139,12 +139,10 @@
                     <prop type="array<string>" name="virtualRouterIps">
                       <item type="string"/>
                     </prop>
-                    <prop type="object" name="virtualWan">
+                    <prop type="object" name="virtualWan" cls="SubResource_read">
                       <prop type="string" name="id"/>
                     </prop>
-                    <prop type="object" name="vpnGateway" cls="SubResource_read">
-                      <prop type="string" name="id"/>
-                    </prop>
+                    <prop type="@SubResource_read" name="vpnGateway"/>
                   </prop>
                   <prop type="object" name="tags">
                     <additionalProp>
@@ -212,46 +210,30 @@
         <arg type="string" var="$Path.virtualHubName" options="name n" required="True" idPart="name">
           <help short="Name of the virtual hub."/>
         </arg>
-        <arg type="ResourceLocation" var="$virtualHubParameters.location" options="location l" required="True">
-          <help short="Location. Values from: `az account list-locations`. You can configure the default location using `az configure --defaults location=<location>`."/>
-        </arg>
-        <arg type="string" var="$virtualHubParameters.properties.addressPrefix" options="address-prefix">
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="string" var="$virtualHubParameters.properties.addressPrefix" options="address-prefix" group="Properties">
           <help short="CIDR address prefix for the virtual hub."/>
         </arg>
-        <arg type="string" var="$virtualHubParameters.properties.hubRoutingPreference" options="hub-routing-preference">
+        <arg type="boolean" var="$virtualHubParameters.properties.allowBranchToBranchTraffic" options="allow-branch-to-branch-traffic" hide="True" group="Properties">
+          <help short="Flag to control transit for VirtualRouter hub."/>
+        </arg>
+        <arg type="object" var="$virtualHubParameters.properties.azureFirewall" options="azure-firewall" hide="True" group="Properties" cls="SubResource_create">
+          <help short="The azureFirewall associated with this VirtualHub."/>
+          <arg type="string" var="@SubResource_create.id" options="id">
+            <help short="Resource ID."/>
+          </arg>
+        </arg>
+        <arg type="@SubResource_create" var="$virtualHubParameters.properties.expressRouteGateway" options="express-route-gateway" hide="True" group="Properties">
+          <help short="The expressRouteGateway associated with this VirtualHub."/>
+        </arg>
+        <arg type="string" var="$virtualHubParameters.properties.hubRoutingPreference" options="hub-routing-preference" group="Properties">
           <help short="The hub routing preference gateway types."/>
           <enum>
             <item name="ASPath" value="&quot;ASPath&quot;"/>
             <item name="ExpressRoute" value="&quot;ExpressRoute&quot;"/>
             <item name="VpnGateway" value="&quot;VpnGateway&quot;"/>
           </enum>
-        </arg>
-        <arg type="string" var="$virtualHubParameters.properties.sku" options="sku">
-          <help short="The sku of the VirtualHub. Allowed values: Basic, Standard."/>
-        </arg>
-        <arg type="integer64" var="$virtualHubParameters.properties.virtualRouterAsn" options="asn">
-          <help short="VirtualRouter ASN."/>
-          <format maximum="4294967295" minimum="0"/>
-        </arg>
-        <arg type="string" var="$virtualHubParameters.properties.virtualWan.id" options="vwan">
-          <help short="Name or ID of the virtual WAN."/>
-        </arg>
-        <arg type="object" var="$virtualHubParameters.tags" options="tags">
-          <help short="Space-separated tags: key[=value] [key[=value] ...]."/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
-        </arg>
-      </argGroup>
-      <argGroup name="Properties">
-        <arg type="boolean" var="$virtualHubParameters.properties.allowBranchToBranchTraffic" options="allow-branch-to-branch-traffic" hide="True" group="Properties">
-          <help short="Flag to control transit for VirtualRouter hub."/>
-        </arg>
-        <arg type="@SubResource_create" var="$virtualHubParameters.properties.azureFirewall" options="azure-firewall" hide="True" group="Properties">
-          <help short="The azureFirewall associated with this VirtualHub."/>
-        </arg>
-        <arg type="@SubResource_create" var="$virtualHubParameters.properties.expressRouteGateway" options="express-route-gateway" hide="True" group="Properties">
-          <help short="The expressRouteGateway associated with this VirtualHub."/>
         </arg>
         <arg type="@SubResource_create" var="$virtualHubParameters.properties.p2SVpnGateway" options="p2-s-vpn-gateway" hide="True" group="Properties">
           <help short="The P2SVpnGateway associated with this VirtualHub."/>
@@ -284,6 +266,9 @@
         </arg>
         <arg type="string" var="$virtualHubParameters.properties.securityProviderName" options="security-provider-name" hide="True" group="Properties">
           <help short="The Security Provider name."/>
+        </arg>
+        <arg type="string" var="$virtualHubParameters.properties.sku" options="sku" group="Properties">
+          <help short="The sku of the VirtualHub. Allowed values: Basic, Standard."/>
         </arg>
         <arg type="array<object>" var="$virtualHubParameters.properties.virtualHubRouteTableV2s" options="virtual-hub-route-table-v2s" hide="True" group="Properties">
           <help short="List of all virtual hub route table v2s associated with this VirtualHub."/>
@@ -320,6 +305,10 @@
             </arg>
           </item>
         </arg>
+        <arg type="integer64" var="$virtualHubParameters.properties.virtualRouterAsn" options="asn" group="Properties">
+          <help short="VirtualRouter ASN."/>
+          <format maximum="4294967295" minimum="0"/>
+        </arg>
         <arg type="object" var="$virtualHubParameters.properties.virtualRouterAutoScaleConfiguration" options="virtual-router-auto-scale-configuration" hide="True" group="Properties">
           <help short="The VirtualHub Router autoscale configuration."/>
           <arg type="integer32" var="$virtualHubParameters.properties.virtualRouterAutoScaleConfiguration.minCapacity" options="min-capacity">
@@ -331,17 +320,28 @@
           <help short="VirtualRouter IPs."/>
           <item type="string"/>
         </arg>
-        <arg type="object" var="$virtualHubParameters.properties.vpnGateway" options="vpn-gateway" hide="True" group="Properties" cls="SubResource_create">
+        <arg type="@SubResource_create" var="$virtualHubParameters.properties.vpnGateway" options="vpn-gateway" hide="True" group="Properties">
           <help short="The VpnGateway associated with this VirtualHub."/>
-          <arg type="string" var="@SubResource_create.id" options="id">
-            <help short="Resource ID."/>
-          </arg>
         </arg>
       </argGroup>
       <argGroup name="VirtualHubParameters">
         <arg type="ResourceId" var="$virtualHubParameters.id" options="id" hide="True" group="VirtualHubParameters">
           <help short="Resource ID."/>
           <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/virtualHubs/{}"/>
+        </arg>
+        <arg type="ResourceLocation" var="$virtualHubParameters.location" options="location l" required="True" group="VirtualHubParameters">
+          <help short="Location. Values from: `az account list-locations`. You can configure the default location using `az configure --defaults location=<location>`."/>
+        </arg>
+        <arg type="object" var="$virtualHubParameters.tags" options="tags" group="VirtualHubParameters">
+          <help short="Space-separated tags: key[=value] [key[=value] ...]."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="VirtualWan">
+        <arg type="string" var="$virtualHubParameters.properties.virtualWan.id" options="vwan" group="VirtualWan">
+          <help short="Name or ID of the virtual WAN."/>
         </arg>
       </argGroup>
       <operation operationId="VirtualHubs_CreateOrUpdate">
@@ -368,7 +368,9 @@
                   <prop type="object" name="properties" clientFlatten="True">
                     <prop type="string" name="addressPrefix" arg="$virtualHubParameters.properties.addressPrefix"/>
                     <prop type="boolean" name="allowBranchToBranchTraffic" arg="$virtualHubParameters.properties.allowBranchToBranchTraffic"/>
-                    <prop type="@SubResource_create" name="azureFirewall" arg="$virtualHubParameters.properties.azureFirewall"/>
+                    <prop type="object" name="azureFirewall" arg="$virtualHubParameters.properties.azureFirewall" cls="SubResource_create">
+                      <prop type="string" name="id" arg="@SubResource_create.id"/>
+                    </prop>
                     <prop type="@SubResource_create" name="expressRouteGateway" arg="$virtualHubParameters.properties.expressRouteGateway"/>
                     <prop type="string" name="hubRoutingPreference" arg="$virtualHubParameters.properties.hubRoutingPreference">
                       <enum>
@@ -437,9 +439,7 @@
                     <prop type="object" name="virtualWan">
                       <prop type="string" name="id" arg="$virtualHubParameters.properties.virtualWan.id"/>
                     </prop>
-                    <prop type="object" name="vpnGateway" arg="$virtualHubParameters.properties.vpnGateway" cls="SubResource_create">
-                      <prop type="string" name="id" arg="@SubResource_create.id"/>
-                    </prop>
+                    <prop type="@SubResource_create" name="vpnGateway" arg="$virtualHubParameters.properties.vpnGateway"/>
                   </prop>
                   <prop type="object" name="tags" arg="$virtualHubParameters.tags">
                     <additionalProp>
@@ -466,7 +466,7 @@
                     <prop type="boolean" name="allowBranchToBranchTraffic"/>
                     <prop type="@SubResource_read" name="azureFirewall"/>
                     <prop readOnly="True" type="array<@SubResource_read>" name="bgpConnections">
-                      <item readOnly="True" type="@SubResource_read"/>
+                      <item type="@SubResource_read"/>
                     </prop>
                     <prop type="@SubResource_read" name="expressRouteGateway"/>
                     <prop type="string" name="hubRoutingPreference">
@@ -477,7 +477,7 @@
                       </enum>
                     </prop>
                     <prop readOnly="True" type="array<@SubResource_read>" name="ipConfigurations">
-                      <item readOnly="True" type="@SubResource_read"/>
+                      <item type="@SubResource_read"/>
                     </prop>
                     <prop type="@SubResource_read" name="p2SVpnGateway"/>
                     <prop type="string" name="preferredRoutingGateway">
@@ -496,7 +496,7 @@
                       </enum>
                     </prop>
                     <prop readOnly="True" type="array<@SubResource_read>" name="routeMaps">
-                      <item readOnly="True" type="@SubResource_read"/>
+                      <item type="@SubResource_read"/>
                     </prop>
                     <prop type="object" name="routeTable">
                       <prop type="array<object>" name="routes">
@@ -564,12 +564,10 @@
                     <prop type="array<string>" name="virtualRouterIps">
                       <item type="string"/>
                     </prop>
-                    <prop type="object" name="virtualWan">
+                    <prop type="object" name="virtualWan" cls="SubResource_read">
                       <prop type="string" name="id"/>
                     </prop>
-                    <prop type="object" name="vpnGateway" cls="SubResource_read">
-                      <prop type="string" name="id"/>
-                    </prop>
+                    <prop type="@SubResource_read" name="vpnGateway"/>
                   </prop>
                   <prop type="object" name="tags">
                     <additionalProp>
@@ -600,43 +598,30 @@
         <arg type="string" var="$Path.virtualHubName" options="name n" required="True" idPart="name">
           <help short="Name of the virtual hub."/>
         </arg>
-        <arg nullable="True" type="string" var="$virtualHubParameters.properties.addressPrefix" options="address-prefix">
+      </argGroup>
+      <argGroup name="Properties">
+        <arg nullable="True" type="string" var="$virtualHubParameters.properties.addressPrefix" options="address-prefix" group="Properties">
           <help short="CIDR address prefix for the virtual hub."/>
         </arg>
-        <arg nullable="True" type="string" var="$virtualHubParameters.properties.hubRoutingPreference" options="hub-routing-preference">
+        <arg nullable="True" type="boolean" var="$virtualHubParameters.properties.allowBranchToBranchTraffic" options="allow-branch-to-branch-traffic" hide="True" group="Properties">
+          <help short="Flag to control transit for VirtualRouter hub."/>
+        </arg>
+        <arg nullable="True" type="object" var="$virtualHubParameters.properties.azureFirewall" options="azure-firewall" hide="True" group="Properties" cls="SubResource_update">
+          <help short="The azureFirewall associated with this VirtualHub."/>
+          <arg nullable="True" type="string" var="@SubResource_update.id" options="id">
+            <help short="Resource ID."/>
+          </arg>
+        </arg>
+        <arg nullable="True" type="@SubResource_update" var="$virtualHubParameters.properties.expressRouteGateway" options="express-route-gateway" hide="True" group="Properties">
+          <help short="The expressRouteGateway associated with this VirtualHub."/>
+        </arg>
+        <arg nullable="True" type="string" var="$virtualHubParameters.properties.hubRoutingPreference" options="hub-routing-preference" group="Properties">
           <help short="The hub routing preference gateway types."/>
           <enum>
             <item name="ASPath" value="&quot;ASPath&quot;"/>
             <item name="ExpressRoute" value="&quot;ExpressRoute&quot;"/>
             <item name="VpnGateway" value="&quot;VpnGateway&quot;"/>
           </enum>
-        </arg>
-        <arg nullable="True" type="string" var="$virtualHubParameters.properties.sku" options="sku">
-          <help short="The sku of the VirtualHub."/>
-        </arg>
-        <arg nullable="True" type="integer64" var="$virtualHubParameters.properties.virtualRouterAsn" options="asn">
-          <help short="VirtualRouter ASN."/>
-          <format maximum="4294967295" minimum="0"/>
-        </arg>
-        <arg nullable="True" type="string" var="$virtualHubParameters.properties.virtualWan.id" options="vwan">
-          <help short="Name or ID of the virtual WAN."/>
-        </arg>
-        <arg nullable="True" type="object" var="$virtualHubParameters.tags" options="tags">
-          <help short="Space-separated tags: key[=value] [key[=value] ...]."/>
-          <additionalProp>
-            <item nullable="True" type="string"/>
-          </additionalProp>
-        </arg>
-      </argGroup>
-      <argGroup name="Properties">
-        <arg nullable="True" type="boolean" var="$virtualHubParameters.properties.allowBranchToBranchTraffic" options="allow-branch-to-branch-traffic" hide="True" group="Properties">
-          <help short="Flag to control transit for VirtualRouter hub."/>
-        </arg>
-        <arg nullable="True" type="@SubResource_update" var="$virtualHubParameters.properties.azureFirewall" options="azure-firewall" hide="True" group="Properties">
-          <help short="The azureFirewall associated with this VirtualHub."/>
-        </arg>
-        <arg nullable="True" type="@SubResource_update" var="$virtualHubParameters.properties.expressRouteGateway" options="express-route-gateway" hide="True" group="Properties">
-          <help short="The expressRouteGateway associated with this VirtualHub."/>
         </arg>
         <arg nullable="True" type="@SubResource_update" var="$virtualHubParameters.properties.p2SVpnGateway" options="p2-s-vpn-gateway" hide="True" group="Properties">
           <help short="The P2SVpnGateway associated with this VirtualHub."/>
@@ -669,6 +654,9 @@
         </arg>
         <arg nullable="True" type="string" var="$virtualHubParameters.properties.securityProviderName" options="security-provider-name" hide="True" group="Properties">
           <help short="The Security Provider name."/>
+        </arg>
+        <arg nullable="True" type="string" var="$virtualHubParameters.properties.sku" options="sku" group="Properties">
+          <help short="The sku of the VirtualHub."/>
         </arg>
         <arg nullable="True" type="array<object>" var="$virtualHubParameters.properties.virtualHubRouteTableV2s" options="virtual-hub-route-table-v2s" hide="True" group="Properties">
           <help short="List of all virtual hub route table v2s associated with this VirtualHub."/>
@@ -705,6 +693,10 @@
             </arg>
           </item>
         </arg>
+        <arg nullable="True" type="integer64" var="$virtualHubParameters.properties.virtualRouterAsn" options="asn" group="Properties">
+          <help short="VirtualRouter ASN."/>
+          <format maximum="4294967295" minimum="0"/>
+        </arg>
         <arg nullable="True" type="object" var="$virtualHubParameters.properties.virtualRouterAutoScaleConfiguration" options="virtual-router-auto-scale-configuration" hide="True" group="Properties">
           <help short="The VirtualHub Router autoscale configuration."/>
           <arg nullable="True" type="integer32" var="$virtualHubParameters.properties.virtualRouterAutoScaleConfiguration.minCapacity" options="min-capacity">
@@ -716,11 +708,8 @@
           <help short="VirtualRouter IPs."/>
           <item nullable="True" type="string"/>
         </arg>
-        <arg nullable="True" type="object" var="$virtualHubParameters.properties.vpnGateway" options="vpn-gateway" hide="True" group="Properties" cls="SubResource_update">
+        <arg nullable="True" type="@SubResource_update" var="$virtualHubParameters.properties.vpnGateway" options="vpn-gateway" hide="True" group="Properties">
           <help short="The VpnGateway associated with this VirtualHub."/>
-          <arg nullable="True" type="string" var="@SubResource_update.id" options="id">
-            <help short="Resource ID."/>
-          </arg>
         </arg>
       </argGroup>
       <argGroup name="VirtualHubParameters">
@@ -730,6 +719,17 @@
         </arg>
         <arg type="ResourceLocation" var="$virtualHubParameters.location" options="location l" hide="True" group="VirtualHubParameters">
           <help short="Resource location."/>
+        </arg>
+        <arg nullable="True" type="object" var="$virtualHubParameters.tags" options="tags" group="VirtualHubParameters">
+          <help short="Space-separated tags: key[=value] [key[=value] ...]."/>
+          <additionalProp>
+            <item nullable="True" type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="VirtualWan">
+        <arg nullable="True" type="string" var="$virtualHubParameters.properties.virtualWan.id" options="vwan" group="VirtualWan">
+          <help short="Name or ID of the virtual WAN."/>
         </arg>
       </argGroup>
       <operation operationId="VirtualHubs_Get">
@@ -762,7 +762,7 @@
                     <prop type="boolean" name="allowBranchToBranchTraffic"/>
                     <prop type="@SubResource_read" name="azureFirewall"/>
                     <prop readOnly="True" type="array<@SubResource_read>" name="bgpConnections">
-                      <item readOnly="True" type="@SubResource_read"/>
+                      <item type="@SubResource_read"/>
                     </prop>
                     <prop type="@SubResource_read" name="expressRouteGateway"/>
                     <prop type="string" name="hubRoutingPreference">
@@ -773,7 +773,7 @@
                       </enum>
                     </prop>
                     <prop readOnly="True" type="array<@SubResource_read>" name="ipConfigurations">
-                      <item readOnly="True" type="@SubResource_read"/>
+                      <item type="@SubResource_read"/>
                     </prop>
                     <prop type="@SubResource_read" name="p2SVpnGateway"/>
                     <prop type="string" name="preferredRoutingGateway">
@@ -792,7 +792,7 @@
                       </enum>
                     </prop>
                     <prop readOnly="True" type="array<@SubResource_read>" name="routeMaps">
-                      <item readOnly="True" type="@SubResource_read"/>
+                      <item type="@SubResource_read"/>
                     </prop>
                     <prop type="object" name="routeTable">
                       <prop type="array<object>" name="routes">
@@ -860,12 +860,10 @@
                     <prop type="array<string>" name="virtualRouterIps">
                       <item type="string"/>
                     </prop>
-                    <prop type="object" name="virtualWan">
+                    <prop type="object" name="virtualWan" cls="SubResource_read">
                       <prop type="string" name="id"/>
                     </prop>
-                    <prop type="object" name="vpnGateway" cls="SubResource_read">
-                      <prop type="string" name="id"/>
-                    </prop>
+                    <prop type="@SubResource_read" name="vpnGateway"/>
                   </prop>
                   <prop type="object" name="tags">
                     <additionalProp>
@@ -887,7 +885,7 @@
         </http>
       </operation>
       <operation>
-        <instanceUpdate instance="$Instance">
+        <instanceUpdate ref="$Instance">
           <json>
             <schema type="object" name="virtualHubParameters" required="True" clientFlatten="True">
               <prop type="ResourceId" name="id" arg="$virtualHubParameters.id">
@@ -897,7 +895,9 @@
               <prop type="object" name="properties" clientFlatten="True">
                 <prop type="string" name="addressPrefix" arg="$virtualHubParameters.properties.addressPrefix"/>
                 <prop type="boolean" name="allowBranchToBranchTraffic" arg="$virtualHubParameters.properties.allowBranchToBranchTraffic"/>
-                <prop type="@SubResource_update" name="azureFirewall" arg="$virtualHubParameters.properties.azureFirewall"/>
+                <prop type="object" name="azureFirewall" arg="$virtualHubParameters.properties.azureFirewall" cls="SubResource_update">
+                  <prop type="string" name="id" arg="@SubResource_update.id"/>
+                </prop>
                 <prop type="@SubResource_update" name="expressRouteGateway" arg="$virtualHubParameters.properties.expressRouteGateway"/>
                 <prop type="string" name="hubRoutingPreference" arg="$virtualHubParameters.properties.hubRoutingPreference">
                   <enum>
@@ -966,9 +966,7 @@
                 <prop type="object" name="virtualWan">
                   <prop type="string" name="id" arg="$virtualHubParameters.properties.virtualWan.id"/>
                 </prop>
-                <prop type="object" name="vpnGateway" arg="$virtualHubParameters.properties.vpnGateway" cls="SubResource_update">
-                  <prop type="string" name="id" arg="@SubResource_update.id"/>
-                </prop>
+                <prop type="@SubResource_update" name="vpnGateway" arg="$virtualHubParameters.properties.vpnGateway"/>
               </prop>
               <prop type="object" name="tags" arg="$virtualHubParameters.tags">
                 <additionalProp>
