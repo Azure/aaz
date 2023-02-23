@@ -1,6 +1,6 @@
 # [Group] _network watcher_
 
-Manage the Azure Network Watcher. Network Watcher assists with monitoring and diagnosing conditions at a network scenario level. To learn more visit https://learn.microsoft.com/en-us/azure/network-watcher.
+Manage the Azure Network Watcher. Network Watcher assists with monitoring and diagnosing conditions at a network scenario level. To learn more visit https://docs.microsoft.com/azure/network-watcher/.
 
 ## Subgroups
 
