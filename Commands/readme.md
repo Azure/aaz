@@ -65,6 +65,9 @@
 - [sql](/Commands/sql/readme.md)
 : Manage Azure SQL Databases and Data Warehouses.
 
+- [storage-mover](/Commands/storage-mover/readme.md)
+: Manage top-level Storage Mover resource.
+
 - [vm](/Commands/vm/readme.md)
 : Manage Linux or Windows virtual machines.
 
