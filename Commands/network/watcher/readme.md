@@ -18,6 +18,9 @@ Manage the Azure Network Watcher. Network Watcher assists with monitoring and di
 - [list](/Commands/network/watcher/_list.md)
 : List Network Watchers.
 
+- [run-configuration-diagnostic](/Commands/network/watcher/_run-configuration-diagnostic.md)
+: Run a configuration diagnostic on a target resource.
+
 - [show](/Commands/network/watcher/_show.md)
 : Get the specified network watcher by resource group.
 
@@ -26,6 +29,12 @@ Manage the Azure Network Watcher. Network Watcher assists with monitoring and di
 
 - [show-security-group-view](/Commands/network/watcher/_show-security-group-view.md)
 : Get detailed security information on a VM for the currently configured network security group.
+
+- [show-topology](/Commands/network/watcher/_show-topology.md)
+: Get the network topology of a resource group, virtual network or subnet.
+
+- [test-connectivity](/Commands/network/watcher/_test-connectivity.md)
+: Test if a connection can be established between a Virtual Machine and a given endpoint.
 
 - [test-ip-flow](/Commands/network/watcher/_test-ip-flow.md)
 : Test IP flow to/from a VM given the currently configured network security group rules.
