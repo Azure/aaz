@@ -2,12 +2,27 @@
 
 Manage and configure load balancers.
 
-To learn more about Azure Load Balancer visit https://docs.microsoft.com/azure/load-balancer/load-balancer-get-started-internet-arm-cli.
+To learn more about Azure Load Balancer visit https://learn.microsoft.com/en-us/azure/load-balancer/quickstart-load-balancer-standard-public-cli.
 
 ## Subgroups
 
+- [frontend-ip](/Commands/network/lb/frontend-ip/readme.md)
+: Manage frontend IP addresses of a load balancer.
+
+- [inbound-nat-pool](/Commands/network/lb/inbound-nat-pool/readme.md)
+: Manage inbound NAT address pools of a load balancer.
+
+- [inbound-nat-rule](/Commands/network/lb/inbound-nat-rule/readme.md)
+: Manage inbound NAT rules of a load balancer.
+
+- [outbound-rule](/Commands/network/lb/outbound-rule/readme.md)
+: Manage outbound rules of a load balancer.
+
 - [probe](/Commands/network/lb/probe/readme.md)
 : Evaluate probe information and define routing rules.
+
+- [rule](/Commands/network/lb/rule/readme.md)
+: Manage load balancing rules.
 
 ## Commands
 

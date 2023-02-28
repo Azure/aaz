@@ -7,8 +7,8 @@
       <resource id="/subscriptions/{}/providers/microsoft.network/loadbalancers" version="2022-05-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk5ldHdvcmsvbG9hZEJhbGFuY2Vycw==/V/MjAyMi0wNS0wMQ=="/>
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/loadbalancers" version="2022-05-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9sb2FkQmFsYW5jZXJz/V/MjAyMi0wNS0wMQ=="/>
       <argGroup name="">
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g"/>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True"/>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <condition var="$Condition_LoadBalancers_List">
         <operator type="and">
@@ -62,7 +62,7 @@
                         <prop type="array<@BackendAddressPool_read>" name="backendAddressPools">
                           <item type="@BackendAddressPool_read"/>
                         </prop>
-                        <prop type="array<object>" name="frontendIPConfigurations">
+                        <prop type="array<object>" name="frontendIPConfigurations" identifiers="name">
                           <item type="object" cls="FrontendIPConfiguration_read">
                             <prop readOnly="True" type="string" name="etag"/>
                             <prop type="ResourceId" name="id">
@@ -487,9 +487,7 @@
                                                     <prop readOnly="True" type="string" name="name"/>
                                                     <prop type="object" name="properties" clientFlatten="True">
                                                       <prop type="object" name="ddosSettings">
-                                                        <prop type="object" name="ddosProtectionPlan">
-                                                          <prop type="string" name="id"/>
-                                                        </prop>
+                                                        <prop type="@SubResource_read" name="ddosProtectionPlan"/>
                                                         <prop type="string" name="protectionMode">
                                                           <enum>
                                                             <item value="&quot;Disabled&quot;"/>
@@ -542,7 +540,7 @@
                                                           <prop type="string" name="tag"/>
                                                         </item>
                                                       </prop>
-                                                      <prop readOnly="True" type="@PublicIPAddress_read" name="linkedPublicIPAddress"/>
+                                                      <prop type="@PublicIPAddress_read" name="linkedPublicIPAddress"/>
                                                       <prop type="string" name="migrationPhase">
                                                         <enum>
                                                           <item value="&quot;Abort&quot;"/>
@@ -617,11 +615,9 @@
                                                           <item value="&quot;Static&quot;"/>
                                                         </enum>
                                                       </prop>
-                                                      <prop type="object" name="publicIPPrefix">
-                                                        <prop type="string" name="id"/>
-                                                      </prop>
+                                                      <prop type="@SubResource_read" name="publicIPPrefix"/>
                                                       <prop readOnly="True" type="string" name="resourceGuid"/>
-                                                      <prop readOnly="True" type="@PublicIPAddress_read" name="servicePublicIPAddress"/>
+                                                      <prop type="@PublicIPAddress_read" name="servicePublicIPAddress"/>
                                                     </prop>
                                                     <prop type="object" name="sku">
                                                       <prop type="string" name="name">
@@ -1256,7 +1252,7 @@
                             </prop>
                           </item>
                         </prop>
-                        <prop type="array<object>" name="inboundNatPools">
+                        <prop type="array<object>" name="inboundNatPools" identifiers="name">
                           <item type="object">
                             <prop readOnly="True" type="string" name="etag"/>
                             <prop type="string" name="id"/>
@@ -1288,10 +1284,10 @@
                             <prop readOnly="True" type="string" name="type"/>
                           </item>
                         </prop>
-                        <prop type="array<@InboundNatRule_read>" name="inboundNatRules">
+                        <prop type="array<@InboundNatRule_read>" name="inboundNatRules" identifiers="name">
                           <item type="@InboundNatRule_read"/>
                         </prop>
-                        <prop type="array<object>" name="loadBalancingRules">
+                        <prop type="array<object>" name="loadBalancingRules" identifiers="name">
                           <item type="object">
                             <prop readOnly="True" type="string" name="etag"/>
                             <prop type="ResourceId" name="id">
@@ -1482,10 +1478,10 @@
                         <prop type="array<@BackendAddressPool_read>" name="backendAddressPools">
                           <item type="@BackendAddressPool_read"/>
                         </prop>
-                        <prop type="array<@FrontendIPConfiguration_read>" name="frontendIPConfigurations">
+                        <prop type="array<@FrontendIPConfiguration_read>" name="frontendIPConfigurations" identifiers="name">
                           <item type="@FrontendIPConfiguration_read"/>
                         </prop>
-                        <prop type="array<object>" name="inboundNatPools">
+                        <prop type="array<object>" name="inboundNatPools" identifiers="name">
                           <item type="object">
                             <prop readOnly="True" type="string" name="etag"/>
                             <prop type="string" name="id"/>
@@ -1517,10 +1513,10 @@
                             <prop readOnly="True" type="string" name="type"/>
                           </item>
                         </prop>
-                        <prop type="array<@InboundNatRule_read>" name="inboundNatRules">
+                        <prop type="array<@InboundNatRule_read>" name="inboundNatRules" identifiers="name">
                           <item type="@InboundNatRule_read"/>
                         </prop>
-                        <prop type="array<object>" name="loadBalancingRules">
+                        <prop type="array<object>" name="loadBalancingRules" identifiers="name">
                           <item type="object">
                             <prop readOnly="True" type="string" name="etag"/>
                             <prop type="ResourceId" name="id">

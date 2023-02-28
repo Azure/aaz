@@ -10,11 +10,20 @@ Manage Azure Network resources.
 - [asg](/Commands/network/asg/readme.md)
 : Manage application security groups (ASGs).
 
+- [bastion](/Commands/network/bastion/readme.md)
+: Manage Azure Bastion host machines.
+
+- [cross-region-lb](/Commands/network/cross-region-lb/readme.md)
+: Manage and configure cross-region load balancers.
+
 - [custom-ip](/Commands/network/custom-ip/readme.md)
 : Manage custom IP.
 
 - [ddos-protection](/Commands/network/ddos-protection/readme.md)
 : Manage DDoS Protection Plans.
+
+- [express-route](/Commands/network/express-route/readme.md)
+: Manage dedicated private network fiber connections to Azure.
 
 - [lb](/Commands/network/lb/readme.md)
 : Manage and configure load balancers.
@@ -22,11 +31,20 @@ Manage Azure Network resources.
 - [local-gateway](/Commands/network/local-gateway/readme.md)
 : Manage local gateways.
 
+- [manager](/Commands/network/manager/readme.md)
+: Manage network-manager with network.
+
 - [nsg](/Commands/network/nsg/readme.md)
 : Manage Azure Network Security Groups (NSGs).
 
 - [perimeter](/Commands/network/perimeter/readme.md)
 : Manage Network Security Perimeters
+
+- [private-endpoint](/Commands/network/private-endpoint/readme.md)
+: Manage private endpoints.
+
+- [private-link-service](/Commands/network/private-link-service/readme.md)
+: Manage private link services.
 
 - [profile](/Commands/network/profile/readme.md)
 : Manage network profiles.
@@ -60,6 +78,9 @@ Manage Azure Network resources.
 
 - [vnet](/Commands/network/vnet/readme.md)
 : Check if a private IP address is available for use within a virtual network.
+
+- [vnet-gateway](/Commands/network/vnet-gateway/readme.md)
+: Use an Azure Virtual Network Gateway to establish secure, cross-premises connectivity.
 
 - [vpn-gateway](/Commands/network/vpn-gateway/readme.md)
 : Manage site-to-site VPN gateways.

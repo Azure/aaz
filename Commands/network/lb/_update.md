@@ -14,5 +14,5 @@ This command can only be used to update the tags for a load balancer. Name and r
 
 - Update the tags of a load balancer.
     ```bash
-        network lb update -g MyResourceGroup -n MyLb --set tags.CostCenter=MyBusinessGroup
+        network lb update -g MyResourceGroup -n MyLB --tags CostCenter=MyTestGroup
     ```
