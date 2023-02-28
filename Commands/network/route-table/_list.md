@@ -28,6 +28,18 @@ List route tables.
         network route-table list -g MyResourceGroup
     ```
 
+### [2018-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL3JvdXRldGFibGVz/2018-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.network/routetables 2018-11-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/routetables 2018-11-01 -->
+
+#### examples
+
+- List all route tables in a subscription.
+    ```bash
+        network route-table list -g MyResourceGroup
+    ```
+
 ### [2021-08-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL3JvdXRldGFibGVz/2021-08-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.network/routetables 2021-08-01 -->
