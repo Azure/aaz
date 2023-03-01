@@ -5,7 +5,7 @@ Manage the Azure Network Watcher. Network Watcher assists with monitoring and di
 ## Subgroups
 
 - [connection-monitor](/Commands/network/watcher/connection-monitor/readme.md)
-: Manage connection monitoring between an Azure Virtual Machine and any IP resource. Connection monitor can be used to monitor network connectivity between an Azure virtual machine and an IP address. The IP address can be assigned to another Azure resource or a resource on the Internet or on-premises. To learn more visit https://aka.ms/connectionmonitordoc.
+: Manage connection monitoring between an Azure Virtual Machine and any IP resource.
 
 - [flow-log](/Commands/network/watcher/flow-log/readme.md)
 : Manage network security group flow logging.

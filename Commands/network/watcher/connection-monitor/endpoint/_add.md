@@ -1,4 +1,4 @@
-# [Command] _network watcher connection-monitor endpoint create_
+# [Command] _network watcher connection-monitor endpoint add_
 
 Add an endpoint to a connection monitor.
 

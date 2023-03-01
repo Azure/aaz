@@ -4,17 +4,17 @@ Manage test configuration of a connection monitor.
 
 ## Commands
 
-- [create](/Commands/network/watcher/connection-monitor/test-configuration/_create.md)
-: network watcher connection-monitor test-configuration create
-
-- [delete](/Commands/network/watcher/connection-monitor/test-configuration/_delete.md)
-: network watcher connection-monitor test-configuration delete
+- [add](/Commands/network/watcher/connection-monitor/test-configuration/_add.md)
+: Add a test configuration to a connection monitor.
 
 - [list](/Commands/network/watcher/connection-monitor/test-configuration/_list.md)
-: network watcher connection-monitor test-configuration list
+: List all test configurations of a connection monitor.
+
+- [remove](/Commands/network/watcher/connection-monitor/test-configuration/_remove.md)
+: Remove a test configuration from a connection monitor.
 
 - [show](/Commands/network/watcher/connection-monitor/test-configuration/_show.md)
-: network watcher connection-monitor test-configuration show
+: Show a test configuration from a connection monitor.
 
 - [update](/Commands/network/watcher/connection-monitor/test-configuration/_update.md)
 : network watcher connection-monitor test-configuration update

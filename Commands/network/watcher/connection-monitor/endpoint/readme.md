@@ -4,7 +4,7 @@ Manage endpoint of a connection monitor.
 
 ## Commands
 
-- [create](/Commands/network/watcher/connection-monitor/endpoint/_create.md)
+- [add](/Commands/network/watcher/connection-monitor/endpoint/_add.md)
 : Add an endpoint to a connection monitor.
 
 - [list](/Commands/network/watcher/connection-monitor/endpoint/_list.md)

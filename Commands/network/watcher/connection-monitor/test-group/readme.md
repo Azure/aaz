@@ -4,17 +4,17 @@ Manage a test group of a connection monitor.
 
 ## Commands
 
-- [create](/Commands/network/watcher/connection-monitor/test-group/_create.md)
-: network watcher connection-monitor test-group create
-
-- [delete](/Commands/network/watcher/connection-monitor/test-group/_delete.md)
-: network watcher connection-monitor test-group delete
+- [add](/Commands/network/watcher/connection-monitor/test-group/_add.md)
+: Add a test group along with new-added/existing endpoint and test configuration to a connection monitor.
 
 - [list](/Commands/network/watcher/connection-monitor/test-group/_list.md)
-: network watcher connection-monitor test-group list
+: List all test groups of a connection     monitor.
+
+- [remove](/Commands/network/watcher/connection-monitor/test-group/_remove.md)
+: Remove test group from a connection monitor.
 
 - [show](/Commands/network/watcher/connection-monitor/test-group/_show.md)
-: network watcher connection-monitor test-group show
+: Show a test group of a connection monitor.
 
 - [update](/Commands/network/watcher/connection-monitor/test-group/_update.md)
 : network watcher connection-monitor test-group update
