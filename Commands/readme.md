@@ -26,6 +26,9 @@
 - [dynatrace](/Commands/dynatrace/readme.md)
 : Manage dynatrace
 
+- [elastic](/Commands/elastic/readme.md)
+: Manage Microsoft Elastic.
+
 - [elastic-san](/Commands/elastic-san/readme.md)
 : Manage Elastic SAN.
 
