@@ -6,9 +6,6 @@ For more information about configuring flow logs visit https://docs.microsoft.co
 
 ## Commands
 
-- [configure](/Commands/network/watcher/flow-log/_configure.md)
-: Configure flow logging on a network security group.
-
 - [configure-flow-log](/Commands/network/watcher/flow-log/_configure-flow-log.md)
 : Configure flow logging on a network security group.
 
