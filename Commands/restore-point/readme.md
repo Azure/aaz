@@ -2,6 +2,11 @@
 
 Manage restore point with res.
 
+## Subgroups
+
+- [collection](/Commands/restore-point/collection/readme.md)
+: Create the restore point collection. Please refer to https://aka.ms/RestorePoints for more details. When updating a restore point collection, only tags may be modified.
+
 ## Commands
 
 - [create](/Commands/restore-point/_create.md)
