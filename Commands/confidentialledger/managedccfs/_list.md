@@ -1,10 +1,10 @@
 # [Command] _confidentialledger managedccfs list_
 
-View the Managed CCF instances in a subscription.
+View the Azure Managed CCF instances in a resource group.
 
 ## Versions
 
-### [2022-09-08-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb25maWRlbnRpYWxsZWRnZXIvbWFuYWdlZGNjZnMv/2022-09-08-preview.xml) **Stable**
+### [2022-09-08-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb25maWRlbnRpYWxsZWRnZXIvbWFuYWdlZGNjZnMv/2022-09-08-preview.xml) **Preview**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.confidentialledger/managedccfs/ 2022-09-08-preview -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.confidentialledger/managedccfs 2022-09-08-preview -->
@@ -13,5 +13,5 @@ View the Managed CCF instances in a subscription.
 
 - View the Managed CCF instances
     ```bash
-        confidentialledger managedccfs list --subscription <subscription-id> --resource-group "myResourceGroup"
+        confidentialledger managedccfs list --resource-group "myResourceGroup"
     ```

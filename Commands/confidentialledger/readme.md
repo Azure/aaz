@@ -5,4 +5,4 @@ Deploy and manage Azure confidential ledgers.
 ## Subgroups
 
 - [managedccfs](/Commands/confidentialledger/managedccfs/readme.md)
-: Deploy and manage CCF aware applications on a managed platform
+: Deploy and manage the Azure Managed CCF instances
