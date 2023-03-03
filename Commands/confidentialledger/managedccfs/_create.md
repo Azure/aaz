@@ -12,10 +12,10 @@ Create an Azure Managed CCF instance.
 
 - Deploy a Managed CCF instance with the sample JS application
     ```bash
-        confidentialledger managedccfs create --certs [{certificate:'c:\certs\member0_cert.pem',identifier:"member0"},{certificate:'c:\certs\member1_cert.pem',identifier:"member1"}] --name mymccfinstance --resource-group mccfRG --location southcentralus --deployment-type {language-runtime:'JS',app-source-uri:'sample'}
+        confidentialledger managedccfs create --members [{certificate:'c:\certs\member0_cert.pem',identifier:"member0"},{certificate:'c:\certs\member1_cert.pem',identifier:"member1"}] --name mymccfinstance --resource-group mccfRG --location southcentralus --app-type sample
     ```
 
 - Deploy a Managed CCF instance with a custom JS application
     ```bash
-        confidentialledger managedccfs create --certs [{certificate:'c:\certs\member0_cert.pem',identifier:"member0"},{certificate:'c:\certs\member1_cert.pem',identifier:"member1"}] --name mymccfinstance --resource-group mccfRG --location southcentralus --deployment-type {language-runtime:'JS',app-source-uri:'customImage'}
+        confidentialledger managedccfs create --members [{certificate:'c:\certs\member0_cert.pem',identifier:"member0"},{certificate:'c:\certs\member1_cert.pem',identifier:"member1"}] --name mymccfinstance --resource-group mccfRG --location southcentralus
     ```
