@@ -50,6 +50,9 @@
 - [orbital](/Commands/orbital/readme.md)
 : Azure Orbital Ground Station as-a-Service (GSaaS).
 
+- [ppg](/Commands/ppg/readme.md)
+: Manage Proximity Placement Groups.
+
 - [reservations](/Commands/reservations/readme.md)
 : Azure Reservations
 
