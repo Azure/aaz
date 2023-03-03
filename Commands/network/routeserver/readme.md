@@ -4,6 +4,9 @@ Manage the route server.
 
 ## Subgroups
 
+- [ip-config](/Commands/network/routeserver/ip-config/readme.md)
+: Manage IP configurations of a route server.
+
 - [peering](/Commands/network/routeserver/peering/readme.md)
 : Manage the route server peering.
 
