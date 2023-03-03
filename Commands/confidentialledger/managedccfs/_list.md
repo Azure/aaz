@@ -15,3 +15,15 @@ View the Azure Managed CCF instances in a resource group.
     ```bash
         confidentialledger managedccfs list --resource-group "myResourceGroup"
     ```
+
+### [2023-01-26-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb25maWRlbnRpYWxsZWRnZXIvbWFuYWdlZGNjZnMv/2023-01-26-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.confidentialledger/managedccfs/ 2023-01-26-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.confidentialledger/managedccfs 2023-01-26-preview -->
+
+#### examples
+
+- View the Managed CCF instances
+    ```bash
+        confidentialledger managedccfs list --resource-group "myResourceGroup"
+    ```
