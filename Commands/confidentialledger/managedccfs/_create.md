@@ -26,12 +26,17 @@ Create an Azure Managed CCF instance.
 
 #### examples
 
-- Deploy a Managed CCF instance with the sample JS application
+- Deploy a Managed CCF instance with 3 CCF nodes and the sample JS application.
     ```bash
-        confidentialledger managedccfs create --members [{certificate:'c:\certs\member0_cert.pem',identifier:"member0"},{certificate:'c:\certs\member1_cert.pem',identifier:"member1"}] --name mymccfinstance --resource-group mccfRG --location southcentralus --app-type sample --node-count 5
+        confidentialledger managedccfs create --members [{certificate:'c:\certs\member0_cert.pem',identifier:"member0"},{certificate:'c:\certs\member1_cert.pem',identifier:"member1"}] --name mymccfinstance --resource-group mccfRG --location southcentralus --app-type sample
     ```
 
-- Deploy a Managed CCF instance with a custom JS application
+- Deploy a Managed CCF instance with 3 CCF nodes and a custom JS application.
     ```bash
-        confidentialledger managedccfs create --members [{certificate:'c:\certs\member0_cert.pem',identifier:"member0"},{certificate:'c:\certs\member1_cert.pem',identifier:"member1"}] --name mymccfinstance --resource-group mccfRG --location southcentralus --node-count 7
+        confidentialledger managedccfs create --members [{certificate:'c:\certs\member0_cert.pem',identifier:"member0"},{certificate:'c:\certs\member1_cert.pem',identifier:"member1"}] --name mymccfinstance --resource-group mccfRG --location southcentralus
+    ```
+
+- Deploy a Managed CCF instance with 5 CCF nodes and a custom JS application
+    ```bash
+        confidentialledger managedccfs create --members [{certificate:'c:\certs\member0_cert.pem',identifier:"member0"},{certificate:'c:\certs\member1_cert.pem',identifier:"member1"}] --name mymccfinstance --resource-group mccfRG --location southcentralus --node-count 5
     ```
