@@ -5,7 +5,7 @@ Deploy and manage the Azure Managed CCF instances
 ## Commands
 
 - [create](/Commands/confidentialledger/managedccfs/_create.md)
-: Create an Azure Managed CCF instance.
+: Create an instance of the Azure Managed CCF service.
 
 - [delete](/Commands/confidentialledger/managedccfs/_delete.md)
 : Delete a Managed CCF instance.
