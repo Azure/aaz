@@ -31,6 +31,9 @@ Manage Azure Network resources.
 - [manager](/Commands/network/manager/readme.md)
 : Manage network-manager with network.
 
+- [nat](/Commands/network/nat/readme.md)
+: Manage NAT resources.
+
 - [nic](/Commands/network/nic/readme.md)
 : Manage network interfaces.
 
