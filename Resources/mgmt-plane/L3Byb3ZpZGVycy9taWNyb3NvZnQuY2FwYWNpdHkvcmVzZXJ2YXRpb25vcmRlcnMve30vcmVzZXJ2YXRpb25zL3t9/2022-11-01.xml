@@ -331,7 +331,7 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg type="object" var="$parameters.properties.appliedScopeProperties" options="applied-scope-properties" group="Properties" cls="AppliedScopeProperties_update">
+        <arg type="object" var="$parameters.properties.appliedScopeProperties" options="applied-scope-property" group="Properties" cls="AppliedScopeProperties_update">
           <help short="Properties specific to applied scope type. Not required if not applicable. Required and need to provide tenantId and managementGroupId if AppliedScopeType is ManagementGroup"/>
           <arg type="string" var="@AppliedScopeProperties_update.displayName" options="display-name">
             <help short="Display name"/>
@@ -380,10 +380,10 @@
         </arg>
       </argGroup>
       <argGroup name="RenewProperties">
-        <arg type="object" var="$parameters.properties.renewProperties.purchaseProperties" options="renewal-purchase-properties" group="RenewProperties">
+        <arg type="object" var="$parameters.properties.renewProperties.purchaseProperties" options="renewal-properties" group="RenewProperties">
           <help short="renewal purchase properties"/>
           <arg type="@AppliedScopeProperties_update" var="$parameters.properties.renewProperties.purchaseProperties.properties.appliedScopeProperties" options="applied-scope-properties" group="Properties"/>
-          <arg type="string" var="$parameters.properties.renewProperties.purchaseProperties.properties.appliedScopeType" options="applied-scope-type" hide="True" group="Properties">
+          <arg type="string" var="$parameters.properties.renewProperties.purchaseProperties.properties.appliedScopeType" options="applied-scope-type" group="Properties">
             <help short="Type of the Applied Scope."/>
             <enum>
               <item name="ManagementGroup" value="&quot;ManagementGroup&quot;"/>
@@ -391,7 +391,7 @@
               <item name="Single" value="&quot;Single&quot;"/>
             </enum>
           </arg>
-          <arg type="@AppliedScopes_update" var="$parameters.properties.renewProperties.purchaseProperties.properties.appliedScopes" options="applied-scopes" hide="True" group="Properties">
+          <arg type="@AppliedScopes_update" var="$parameters.properties.renewProperties.purchaseProperties.properties.appliedScopes" options="applied-scopes" group="Properties">
             <help short="applied-scopes"/>
           </arg>
           <arg type="string" var="$parameters.properties.renewProperties.purchaseProperties.properties.billingPlan" options="billing-plan" group="Properties">
@@ -414,15 +414,15 @@
             <help short="Setting this to true will automatically purchase a new reservation on the expiration date time."/>
             <default value="false"/>
           </arg>
-          <arg type="string" var="$parameters.properties.renewProperties.purchaseProperties.properties.reservedResourceProperties.instanceFlexibility" options="instance-flexibility" hide="True" group="ReservedResourceProperties">
+          <arg type="string" var="$parameters.properties.renewProperties.purchaseProperties.properties.reservedResourceProperties.instanceFlexibility" options="instance-flexibility" group="ReservedResourceProperties">
             <help short="Turning this on will apply the reservation discount to other VMs in the same VM size group. Only specify for VirtualMachines reserved resource type."/>
             <enum>
               <item name="Off" value="&quot;Off&quot;"/>
               <item name="On" value="&quot;On&quot;"/>
             </enum>
           </arg>
-          <arg type="string" var="$parameters.properties.renewProperties.purchaseProperties.properties.reservedResourceType" options="reserved-resource-type" hide="True" group="Properties">
-            <help short="The type of the resource that is being reserved."/>
+          <arg type="string" var="$parameters.properties.renewProperties.purchaseProperties.properties.reservedResourceType" options="reserved-resource-type" group="Properties">
+            <help short="The type of the resource that is being reserved. For reservation renewal, this property should have the same value as the original reservation."/>
             <enum>
               <item name="AVS" value="&quot;AVS&quot;"/>
               <item name="AppService" value="&quot;AppService&quot;"/>
@@ -463,9 +463,8 @@
               <item name="P5Y" value="&quot;P5Y&quot;"/>
             </enum>
           </arg>
-          <arg type="object" var="$parameters.properties.renewProperties.purchaseProperties.sku" options="sku" hide="True">
+          <arg type="string" var="$parameters.properties.renewProperties.purchaseProperties.sku.name" options="sku" group="Sku">
             <help short="sku"/>
-            <arg type="string" var="$parameters.properties.renewProperties.purchaseProperties.sku.name" options="name"/>
           </arg>
         </arg>
       </argGroup>
@@ -584,7 +583,7 @@
                             </enum>
                           </prop>
                         </prop>
-                        <prop type="object" name="sku" arg="$parameters.properties.renewProperties.purchaseProperties.sku">
+                        <prop type="object" name="sku">
                           <prop type="string" name="name" arg="$parameters.properties.renewProperties.purchaseProperties.sku.name"/>
                         </prop>
                       </prop>
