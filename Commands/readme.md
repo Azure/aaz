@@ -62,6 +62,9 @@
 - [sentinel](/Commands/sentinel/readme.md)
 : Manage Microsoft Sentinel.
 
+- [service-networking](/Commands/service-networking/readme.md)
+: Manage Service Networking Resources
+
 - [sig](/Commands/sig/readme.md)
 : Manage shared image gallery.
 
