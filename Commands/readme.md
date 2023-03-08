@@ -20,6 +20,9 @@
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage Data Protection.
 
+- [devcenter](/Commands/devcenter/readme.md)
+: Manage resources with devcenter
+
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
 
