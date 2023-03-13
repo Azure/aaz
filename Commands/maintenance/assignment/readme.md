@@ -28,5 +28,5 @@ Manage configuration assignment with maintenance.
 - [update](/Commands/maintenance/assignment/_update.md)
 : Update configuration for resource.
 
-- [update-untitled2](/Commands/maintenance/assignment/_update-untitled2.md)
-: Update configuration for resource.
+- [update-parent](/Commands/maintenance/assignment/_update-parent.md)
+: Update configuration for parent resource.

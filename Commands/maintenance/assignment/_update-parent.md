@@ -1,6 +1,6 @@
-# [Command] _maintenance assignment update-untitled2_
+# [Command] _maintenance assignment update-parent_
 
-Update configuration for resource.
+Update configuration for parent resource.
 
 ## Versions
 
