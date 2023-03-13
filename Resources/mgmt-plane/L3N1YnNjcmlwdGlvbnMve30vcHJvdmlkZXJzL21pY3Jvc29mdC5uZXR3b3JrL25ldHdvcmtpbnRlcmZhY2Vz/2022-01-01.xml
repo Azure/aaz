@@ -10,12 +10,6 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <condition var="$Condition_NetworkInterfaces_List">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_NetworkInterfaces_ListAll">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -24,11 +18,16 @@
           </operator>
         </operator>
       </condition>
-      <operation when="$Condition_NetworkInterfaces_List" operationId="NetworkInterfaces_List">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkInterfaces">
+      <condition var="$Condition_NetworkInterfaces_List">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_NetworkInterfaces_ListAll" operationId="NetworkInterfaces_ListAll">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Network/networkInterfaces">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -91,7 +90,7 @@
                             </prop>
                             <prop type="string" name="name"/>
                             <prop type="object" name="properties" clientFlatten="True">
-                              <prop type="array<object>" name="applicationGatewayBackendAddressPools" identifiers="id">
+                              <prop type="array<object>" name="applicationGatewayBackendAddressPools">
                                 <item type="object">
                                   <prop readOnly="True" type="string" name="etag"/>
                                   <prop type="string" name="id"/>
@@ -122,7 +121,7 @@
                                 <item type="@ApplicationSecurityGroup_read"/>
                               </prop>
                               <prop type="@SubResource_read" name="gatewayLoadBalancer"/>
-                              <prop type="array<object>" name="loadBalancerBackendAddressPools" identifiers="id">
+                              <prop type="array<object>" name="loadBalancerBackendAddressPools">
                                 <item type="object">
                                   <prop readOnly="True" type="string" name="etag"/>
                                   <prop type="ResourceId" name="id">
@@ -204,7 +203,7 @@
                                   <prop readOnly="True" type="string" name="type"/>
                                 </item>
                               </prop>
-                              <prop type="array<object>" name="loadBalancerInboundNatRules" identifiers="id">
+                              <prop type="array<object>" name="loadBalancerInboundNatRules">
                                 <item type="object">
                                   <prop readOnly="True" type="string" name="etag"/>
                                   <prop type="ResourceId" name="id">
@@ -1251,10 +1250,11 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_NetworkInterfaces_ListAll" operationId="NetworkInterfaces_ListAll">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Network/networkInterfaces">
+      <operation when="$Condition_NetworkInterfaces_List" operationId="NetworkInterfaces_List">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkInterfaces">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>

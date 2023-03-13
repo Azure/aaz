@@ -52,9 +52,8 @@ List network security groups.
         network nsg list --query "[?location=='westus']"
     ```
 
-### [2022-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL25ldHdvcmtzZWN1cml0eWdyb3Vwcw==/2022-01-01.xml) **Stable**
+### [2022-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL25ldHdvcmtzZWN1cml0eWdyb3Vwcw==/2022-01-01.xml) **Stable**
 
-<!-- mgmt-plane /subscriptions/{}/providers/microsoft.network/networksecuritygroups 2022-01-01 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networksecuritygroups 2022-01-01 -->
 
 #### examples
