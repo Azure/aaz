@@ -81,7 +81,7 @@ To learn more about Application Gateway, visit https://learn.microsoft.com/en-us
 : Create the specified application gateway.
 
 - [delete](/Commands/network/application-gateway/_delete.md)
-: Delete an application gateway.
+: Delete the specified application gateway.
 
 - [health](/Commands/network/application-gateway/_health.md)
 : Get information on the backend health of an application gateway.
@@ -93,7 +93,7 @@ To learn more about Application Gateway, visit https://learn.microsoft.com/en-us
 : List application gateways.
 
 - [show](/Commands/network/application-gateway/_show.md)
-: Get the details of an application gateway.
+: Get the specified application gateway.
 
 - [start](/Commands/network/application-gateway/_start.md)
 : Start an application gateway.
@@ -102,4 +102,4 @@ To learn more about Application Gateway, visit https://learn.microsoft.com/en-us
 : Stop an application gateway.
 
 - [update](/Commands/network/application-gateway/_update.md)
-: Update an application gateway.
+: Update the specified application gateway.
