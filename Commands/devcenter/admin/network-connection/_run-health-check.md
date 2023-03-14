@@ -1,0 +1,16 @@
+# [Command] _devcenter admin network-connection run-health-check_
+
+Triggers a new health check run. The execution and health check result can be tracked via the network Connection health check details
+
+## Versions
+
+### [2022-11-11-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvbmV0d29ya2Nvbm5lY3Rpb25zL3t9L3J1bmhlYWx0aGNoZWNrcw==/2022-11-11-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/networkconnections/{}/runhealthchecks 2022-11-11-preview -->
+
+#### examples
+
+- Run health check
+    ```bash
+        devcenter admin network-connection run-health-check --name "uswest3network" --resource-group "rg1"
+    ```
