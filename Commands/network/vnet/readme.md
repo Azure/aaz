@@ -18,7 +18,7 @@ To learn more about Virtual Networks visit https://docs.microsoft.com/azure/virt
 : Check if a private IP address is available for use within a virtual network.
 
 - [create](/Commands/network/vnet/_create.md)
-: Create a virtual network in the specified resource group.
+: Create a virtual network.
 
 - [delete](/Commands/network/vnet/_delete.md)
 : Delete a virtual network.
@@ -33,4 +33,4 @@ To learn more about Virtual Networks visit https://docs.microsoft.com/azure/virt
 : Get the details of a virtual network.
 
 - [update](/Commands/network/vnet/_update.md)
-: Update a virtual network in the specified resource group.
+: Update a virtual network.

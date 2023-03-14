@@ -4,6 +4,9 @@ Manage virtual hubs.
 
 ## Subgroups
 
+- [route-map](/Commands/network/vhub/route-map/readme.md)
+: Manage route map
+
 - [routing-intent](/Commands/network/vhub/routing-intent/readme.md)
 : Manage routing intent in the virtual hub.
 

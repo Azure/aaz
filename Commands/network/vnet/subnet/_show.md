@@ -37,6 +37,28 @@ Show details of a subnet.
         network vnet subnet show -g MyResourceGroup -n MySubnet --vnet-name MyVNet
     ```
 
+### [2019-02-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL3ZpcnR1YWxuZXR3b3Jrcy97fS9zdWJuZXRzL3t9/2019-02-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/virtualnetworks/{}/subnets/{} 2019-02-01 -->
+
+#### examples
+
+- Show the details of a subnet associated with a virtual network.
+    ```bash
+        network vnet subnet show -g MyResourceGroup -n MySubnet --vnet-name MyVNet
+    ```
+
+### [2020-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL3ZpcnR1YWxuZXR3b3Jrcy97fS9zdWJuZXRzL3t9/2020-04-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/virtualnetworks/{}/subnets/{} 2020-04-01 -->
+
+#### examples
+
+- Show the details of a subnet associated with a virtual network.
+    ```bash
+        network vnet subnet show -g MyResourceGroup -n MySubnet --vnet-name MyVNet
+    ```
+
 ### [2022-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL3ZpcnR1YWxuZXR3b3Jrcy97fS9zdWJuZXRzL3t9/2022-01-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/virtualnetworks/{}/subnets/{} 2022-01-01 -->

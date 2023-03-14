@@ -41,7 +41,8 @@
                                     "options": [
                                         "g",
                                         "resource-group"
-                                    ]
+                                    ],
+                                    "idPart": "resource_group"
                                 },
                                 {
                                     "type": "SubscriptionId",
@@ -49,12 +50,29 @@
                                     "options": [
                                         "subscription"
                                     ],
-                                    "required": true
+                                    "required": true,
+                                    "idPart": "subscription"
                                 }
                             ]
                         }
                     ],
                     "conditions": [
+                        {
+                            "var": "$Condition_ApplicationGateways_List",
+                            "operator": {
+                                "type": "and",
+                                "operators": [
+                                    {
+                                        "type": "hasValue",
+                                        "arg": "$Path.resourceGroupName"
+                                    },
+                                    {
+                                        "type": "hasValue",
+                                        "arg": "$Path.subscriptionId"
+                                    }
+                                ]
+                            }
+                        },
                         {
                             "var": "$Condition_ApplicationGateways_ListAll",
                             "operator": {
@@ -73,36 +91,26 @@
                                     }
                                 ]
                             }
-                        },
-                        {
-                            "var": "$Condition_ApplicationGateways_List",
-                            "operator": {
-                                "type": "and",
-                                "operators": [
-                                    {
-                                        "type": "hasValue",
-                                        "arg": "$Path.resourceGroupName"
-                                    },
-                                    {
-                                        "type": "hasValue",
-                                        "arg": "$Path.subscriptionId"
-                                    }
-                                ]
-                            }
                         }
                     ],
                     "operations": [
                         {
                             "when": [
-                                "$Condition_ApplicationGateways_ListAll"
+                                "$Condition_ApplicationGateways_List"
                             ],
-                            "operationId": "ApplicationGateways_ListAll",
+                            "operationId": "ApplicationGateways_List",
                             "http": {
-                                "path": "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGateways",
+                                "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways",
                                 "request": {
                                     "method": "get",
                                     "path": {
                                         "params": [
+                                            {
+                                                "type": "string",
+                                                "name": "resourceGroupName",
+                                                "arg": "$Path.resourceGroupName",
+                                                "required": true
+                                            },
                                             {
                                                 "type": "string",
                                                 "name": "subscriptionId",
@@ -6277,21 +6285,15 @@
                         },
                         {
                             "when": [
-                                "$Condition_ApplicationGateways_List"
+                                "$Condition_ApplicationGateways_ListAll"
                             ],
-                            "operationId": "ApplicationGateways_List",
+                            "operationId": "ApplicationGateways_ListAll",
                             "http": {
-                                "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/applicationGateways",
+                                "path": "/subscriptions/{subscriptionId}/providers/Microsoft.Network/applicationGateways",
                                 "request": {
                                     "method": "get",
                                     "path": {
                                         "params": [
-                                            {
-                                                "type": "string",
-                                                "name": "resourceGroupName",
-                                                "arg": "$Path.resourceGroupName",
-                                                "required": true
-                                            },
                                             {
                                                 "type": "string",
                                                 "name": "subscriptionId",
