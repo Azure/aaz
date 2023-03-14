@@ -10,6 +10,9 @@ Manage schedule with devcenter
 - [delete](/Commands/devcenter/admin/schedule/_delete.md)
 : Delete the schedule.
 
+- [list-test](/Commands/devcenter/admin/schedule/_list-test.md)
+: List schedules for a pool
+
 - [show](/Commands/devcenter/admin/schedule/_show.md)
 : Get a schedule resource.
 

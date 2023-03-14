@@ -28,7 +28,7 @@ Manage admin resources with devcenter
 - [image](/Commands/devcenter/admin/image/readme.md)
 : Manage image with devcenter
 
-- [image-version](/Commands/devcenter/admin/image-version/readme.md)
+- [image-verion](/Commands/devcenter/admin/image-verion/readme.md)
 : Manage image version with devcenter
 
 - [network-connection](/Commands/devcenter/admin/network-connection/readme.md)

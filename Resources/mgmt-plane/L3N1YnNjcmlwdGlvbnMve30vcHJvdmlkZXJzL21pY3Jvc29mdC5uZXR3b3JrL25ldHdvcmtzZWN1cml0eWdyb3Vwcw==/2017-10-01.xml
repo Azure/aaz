@@ -7,15 +7,9 @@
       <resource id="/subscriptions/{}/providers/microsoft.network/networksecuritygroups" version="2017-10-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk5ldHdvcmsvbmV0d29ya1NlY3VyaXR5R3JvdXBz/V/MjAxNy0xMC0wMQ=="/>
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networksecuritygroups" version="2017-10-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9uZXR3b3JrU2VjdXJpdHlHcm91cHM=/V/MjAxNy0xMC0wMQ=="/>
       <argGroup name="">
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g"/>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True"/>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <condition var="$Condition_NetworkSecurityGroups_List">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_NetworkSecurityGroups_ListAll">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -24,11 +18,16 @@
           </operator>
         </operator>
       </condition>
-      <operation when="$Condition_NetworkSecurityGroups_List" operationId="NetworkSecurityGroups_List">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityGroups">
+      <condition var="$Condition_NetworkSecurityGroups_List">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_NetworkSecurityGroups_ListAll" operationId="NetworkSecurityGroups_ListAll">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Network/networkSecurityGroups">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -55,228 +54,228 @@
                           <item type="@SecurityRule_read"/>
                         </prop>
                         <prop readOnly="True" type="array<object>" name="networkInterfaces">
-                          <item readOnly="True" type="object">
-                            <prop readOnly="True" type="string" name="etag"/>
-                            <prop readOnly="True" type="ResourceId" name="id">
+                          <item type="object">
+                            <prop type="string" name="etag"/>
+                            <prop type="ResourceId" name="id">
                               <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/networkInterfaces/{}"/>
                             </prop>
-                            <prop readOnly="True" type="ResourceLocation" name="location"/>
+                            <prop type="ResourceLocation" name="location"/>
                             <prop readOnly="True" type="string" name="name"/>
-                            <prop readOnly="True" type="object" name="properties" clientFlatten="True">
-                              <prop readOnly="True" type="object" name="dnsSettings">
-                                <prop readOnly="True" type="array<string>" name="appliedDnsServers">
-                                  <item readOnly="True" type="string"/>
+                            <prop type="object" name="properties" clientFlatten="True">
+                              <prop type="object" name="dnsSettings">
+                                <prop type="array<string>" name="appliedDnsServers">
+                                  <item type="string"/>
                                 </prop>
-                                <prop readOnly="True" type="array<string>" name="dnsServers">
-                                  <item readOnly="True" type="string"/>
+                                <prop type="array<string>" name="dnsServers">
+                                  <item type="string"/>
                                 </prop>
-                                <prop readOnly="True" type="string" name="internalDnsNameLabel"/>
-                                <prop readOnly="True" type="string" name="internalDomainNameSuffix"/>
-                                <prop readOnly="True" type="string" name="internalFqdn"/>
+                                <prop type="string" name="internalDnsNameLabel"/>
+                                <prop type="string" name="internalDomainNameSuffix"/>
+                                <prop type="string" name="internalFqdn"/>
                               </prop>
-                              <prop readOnly="True" type="boolean" name="enableAcceleratedNetworking"/>
-                              <prop readOnly="True" type="boolean" name="enableIPForwarding"/>
-                              <prop readOnly="True" type="array<object>" name="ipConfigurations">
-                                <item readOnly="True" type="object" cls="NetworkInterfaceIPConfiguration_read">
-                                  <prop readOnly="True" type="string" name="etag"/>
-                                  <prop readOnly="True" type="ResourceId" name="id">
+                              <prop type="boolean" name="enableAcceleratedNetworking"/>
+                              <prop type="boolean" name="enableIPForwarding"/>
+                              <prop type="array<object>" name="ipConfigurations">
+                                <item type="object" cls="NetworkInterfaceIPConfiguration_read">
+                                  <prop type="string" name="etag"/>
+                                  <prop type="ResourceId" name="id">
                                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/networkInterfaces/{}/ipConfigurations/{}"/>
                                   </prop>
-                                  <prop readOnly="True" type="string" name="name"/>
-                                  <prop readOnly="True" type="object" name="properties" clientFlatten="True">
-                                    <prop readOnly="True" type="array<object>" name="applicationGatewayBackendAddressPools">
-                                      <item readOnly="True" type="object">
-                                        <prop readOnly="True" type="string" name="etag"/>
-                                        <prop readOnly="True" type="string" name="id"/>
-                                        <prop readOnly="True" type="string" name="name"/>
-                                        <prop readOnly="True" type="object" name="properties" clientFlatten="True">
-                                          <prop readOnly="True" type="array<object>" name="backendAddresses">
-                                            <item readOnly="True" type="object">
-                                              <prop readOnly="True" type="string" name="fqdn"/>
-                                              <prop readOnly="True" type="string" name="ipAddress"/>
+                                  <prop type="string" name="name"/>
+                                  <prop type="object" name="properties" clientFlatten="True">
+                                    <prop type="array<object>" name="applicationGatewayBackendAddressPools">
+                                      <item type="object">
+                                        <prop type="string" name="etag"/>
+                                        <prop type="string" name="id"/>
+                                        <prop type="string" name="name"/>
+                                        <prop type="object" name="properties" clientFlatten="True">
+                                          <prop type="array<object>" name="backendAddresses">
+                                            <item type="object">
+                                              <prop type="string" name="fqdn"/>
+                                              <prop type="string" name="ipAddress"/>
                                             </item>
                                           </prop>
-                                          <prop readOnly="True" type="array<@NetworkInterfaceIPConfiguration_read>" name="backendIPConfigurations">
-                                            <item readOnly="True" type="@NetworkInterfaceIPConfiguration_read"/>
+                                          <prop type="array<@NetworkInterfaceIPConfiguration_read>" name="backendIPConfigurations">
+                                            <item type="@NetworkInterfaceIPConfiguration_read"/>
                                           </prop>
-                                          <prop readOnly="True" type="string" name="provisioningState"/>
+                                          <prop type="string" name="provisioningState"/>
                                         </prop>
-                                        <prop readOnly="True" type="string" name="type"/>
+                                        <prop type="string" name="type"/>
                                       </item>
                                     </prop>
-                                    <prop readOnly="True" type="array<@ApplicationSecurityGroup_read>" name="applicationSecurityGroups">
-                                      <item readOnly="True" type="@ApplicationSecurityGroup_read"/>
+                                    <prop type="array<@ApplicationSecurityGroup_read>" name="applicationSecurityGroups">
+                                      <item type="@ApplicationSecurityGroup_read"/>
                                     </prop>
-                                    <prop readOnly="True" type="array<object>" name="loadBalancerBackendAddressPools">
-                                      <item readOnly="True" type="object">
-                                        <prop readOnly="True" type="string" name="etag"/>
-                                        <prop readOnly="True" type="ResourceId" name="id">
+                                    <prop type="array<object>" name="loadBalancerBackendAddressPools">
+                                      <item type="object">
+                                        <prop type="string" name="etag"/>
+                                        <prop type="ResourceId" name="id">
                                           <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/loadBalancers/{}/backendAddressPools/{}"/>
                                         </prop>
-                                        <prop readOnly="True" type="string" name="name"/>
-                                        <prop readOnly="True" type="object" name="properties" clientFlatten="True">
+                                        <prop type="string" name="name"/>
+                                        <prop type="object" name="properties" clientFlatten="True">
                                           <prop readOnly="True" type="array<@NetworkInterfaceIPConfiguration_read>" name="backendIPConfigurations">
-                                            <item readOnly="True" type="@NetworkInterfaceIPConfiguration_read"/>
+                                            <item type="@NetworkInterfaceIPConfiguration_read"/>
                                           </prop>
                                           <prop readOnly="True" type="array<@SubResource_read>" name="loadBalancingRules">
-                                            <item readOnly="True" type="@SubResource_read"/>
+                                            <item type="@SubResource_read"/>
                                           </prop>
                                           <prop readOnly="True" type="@SubResource_read" name="outboundNatRule"/>
-                                          <prop readOnly="True" type="string" name="provisioningState"/>
+                                          <prop type="string" name="provisioningState"/>
                                         </prop>
                                       </item>
                                     </prop>
-                                    <prop readOnly="True" type="array<object>" name="loadBalancerInboundNatRules">
-                                      <item readOnly="True" type="object">
-                                        <prop readOnly="True" type="string" name="etag"/>
-                                        <prop readOnly="True" type="ResourceId" name="id">
+                                    <prop type="array<object>" name="loadBalancerInboundNatRules">
+                                      <item type="object">
+                                        <prop type="string" name="etag"/>
+                                        <prop type="ResourceId" name="id">
                                           <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/loadBalancers/{}/inboundNatRules/{}"/>
                                         </prop>
-                                        <prop readOnly="True" type="string" name="name"/>
-                                        <prop readOnly="True" type="object" name="properties" clientFlatten="True">
+                                        <prop type="string" name="name"/>
+                                        <prop type="object" name="properties" clientFlatten="True">
                                           <prop readOnly="True" type="@NetworkInterfaceIPConfiguration_read" name="backendIPConfiguration"/>
-                                          <prop readOnly="True" type="integer32" name="backendPort"/>
-                                          <prop readOnly="True" type="boolean" name="enableFloatingIP"/>
-                                          <prop readOnly="True" type="@SubResource_read" name="frontendIPConfiguration"/>
-                                          <prop readOnly="True" type="integer32" name="frontendPort"/>
-                                          <prop readOnly="True" type="integer32" name="idleTimeoutInMinutes"/>
-                                          <prop readOnly="True" type="string" name="protocol">
+                                          <prop type="integer32" name="backendPort"/>
+                                          <prop type="boolean" name="enableFloatingIP"/>
+                                          <prop type="@SubResource_read" name="frontendIPConfiguration"/>
+                                          <prop type="integer32" name="frontendPort"/>
+                                          <prop type="integer32" name="idleTimeoutInMinutes"/>
+                                          <prop type="string" name="protocol">
                                             <enum>
                                               <item value="&quot;All&quot;"/>
                                               <item value="&quot;Tcp&quot;"/>
                                               <item value="&quot;Udp&quot;"/>
                                             </enum>
                                           </prop>
-                                          <prop readOnly="True" type="string" name="provisioningState"/>
+                                          <prop type="string" name="provisioningState"/>
                                         </prop>
                                       </item>
                                     </prop>
-                                    <prop readOnly="True" type="boolean" name="primary"/>
-                                    <prop readOnly="True" type="string" name="privateIPAddress"/>
-                                    <prop readOnly="True" type="string" name="privateIPAddressVersion">
+                                    <prop type="boolean" name="primary"/>
+                                    <prop type="string" name="privateIPAddress"/>
+                                    <prop type="string" name="privateIPAddressVersion">
                                       <enum>
                                         <item value="&quot;IPv4&quot;"/>
                                         <item value="&quot;IPv6&quot;"/>
                                       </enum>
                                     </prop>
-                                    <prop readOnly="True" type="string" name="privateIPAllocationMethod">
+                                    <prop type="string" name="privateIPAllocationMethod">
                                       <enum>
                                         <item value="&quot;Dynamic&quot;"/>
                                         <item value="&quot;Static&quot;"/>
                                       </enum>
                                     </prop>
-                                    <prop readOnly="True" type="string" name="provisioningState"/>
-                                    <prop readOnly="True" type="@PublicIPAddress_read" name="publicIPAddress"/>
-                                    <prop readOnly="True" type="object" name="subnet" cls="Subnet_read">
-                                      <prop readOnly="True" type="string" name="etag"/>
-                                      <prop readOnly="True" type="ResourceId" name="id">
+                                    <prop type="string" name="provisioningState"/>
+                                    <prop type="@PublicIPAddress_read" name="publicIPAddress"/>
+                                    <prop type="object" name="subnet" cls="Subnet_read">
+                                      <prop type="string" name="etag"/>
+                                      <prop type="ResourceId" name="id">
                                         <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/virtualNetworks/{}/subnets/{}"/>
                                       </prop>
-                                      <prop readOnly="True" type="string" name="name"/>
-                                      <prop readOnly="True" type="object" name="properties" clientFlatten="True">
-                                        <prop readOnly="True" type="string" name="addressPrefix"/>
+                                      <prop type="string" name="name"/>
+                                      <prop type="object" name="properties" clientFlatten="True">
+                                        <prop type="string" name="addressPrefix"/>
                                         <prop readOnly="True" type="array<object>" name="ipConfigurations">
-                                          <item readOnly="True" type="object" cls="IPConfiguration_read">
-                                            <prop readOnly="True" type="string" name="etag"/>
-                                            <prop readOnly="True" type="string" name="id"/>
-                                            <prop readOnly="True" type="string" name="name"/>
-                                            <prop readOnly="True" type="object" name="properties" clientFlatten="True">
-                                              <prop readOnly="True" type="string" name="privateIPAddress"/>
-                                              <prop readOnly="True" type="string" name="privateIPAllocationMethod">
+                                          <item type="object" cls="IPConfiguration_read">
+                                            <prop type="string" name="etag"/>
+                                            <prop type="string" name="id"/>
+                                            <prop type="string" name="name"/>
+                                            <prop type="object" name="properties" clientFlatten="True">
+                                              <prop type="string" name="privateIPAddress"/>
+                                              <prop type="string" name="privateIPAllocationMethod">
                                                 <enum>
                                                   <item value="&quot;Dynamic&quot;"/>
                                                   <item value="&quot;Static&quot;"/>
                                                 </enum>
                                               </prop>
-                                              <prop readOnly="True" type="string" name="provisioningState"/>
-                                              <prop readOnly="True" type="object" name="publicIPAddress" cls="PublicIPAddress_read">
-                                                <prop readOnly="True" type="string" name="etag"/>
-                                                <prop readOnly="True" type="ResourceId" name="id">
+                                              <prop type="string" name="provisioningState"/>
+                                              <prop type="object" name="publicIPAddress" cls="PublicIPAddress_read">
+                                                <prop type="string" name="etag"/>
+                                                <prop type="ResourceId" name="id">
                                                   <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/publicIPAddresses/{}"/>
                                                 </prop>
-                                                <prop readOnly="True" type="ResourceLocation" name="location"/>
+                                                <prop type="ResourceLocation" name="location"/>
                                                 <prop readOnly="True" type="string" name="name"/>
-                                                <prop readOnly="True" type="object" name="properties" clientFlatten="True">
-                                                  <prop readOnly="True" type="object" name="dnsSettings">
-                                                    <prop readOnly="True" type="string" name="domainNameLabel"/>
-                                                    <prop readOnly="True" type="string" name="fqdn"/>
-                                                    <prop readOnly="True" type="string" name="reverseFqdn"/>
+                                                <prop type="object" name="properties" clientFlatten="True">
+                                                  <prop type="object" name="dnsSettings">
+                                                    <prop type="string" name="domainNameLabel"/>
+                                                    <prop type="string" name="fqdn"/>
+                                                    <prop type="string" name="reverseFqdn"/>
                                                   </prop>
-                                                  <prop readOnly="True" type="integer32" name="idleTimeoutInMinutes"/>
-                                                  <prop readOnly="True" type="string" name="ipAddress"/>
+                                                  <prop type="integer32" name="idleTimeoutInMinutes"/>
+                                                  <prop type="string" name="ipAddress"/>
                                                   <prop readOnly="True" type="@IPConfiguration_read" name="ipConfiguration"/>
-                                                  <prop readOnly="True" type="string" name="provisioningState"/>
-                                                  <prop readOnly="True" type="string" name="publicIPAddressVersion">
+                                                  <prop type="string" name="provisioningState"/>
+                                                  <prop type="string" name="publicIPAddressVersion">
                                                     <enum>
                                                       <item value="&quot;IPv4&quot;"/>
                                                       <item value="&quot;IPv6&quot;"/>
                                                     </enum>
                                                   </prop>
-                                                  <prop readOnly="True" type="string" name="publicIPAllocationMethod">
+                                                  <prop type="string" name="publicIPAllocationMethod">
                                                     <enum>
                                                       <item value="&quot;Dynamic&quot;"/>
                                                       <item value="&quot;Static&quot;"/>
                                                     </enum>
                                                   </prop>
-                                                  <prop readOnly="True" type="string" name="resourceGuid"/>
+                                                  <prop type="string" name="resourceGuid"/>
                                                 </prop>
-                                                <prop readOnly="True" type="object" name="sku">
-                                                  <prop readOnly="True" type="string" name="name">
+                                                <prop type="object" name="sku">
+                                                  <prop type="string" name="name">
                                                     <enum>
                                                       <item value="&quot;Basic&quot;"/>
                                                       <item value="&quot;Standard&quot;"/>
                                                     </enum>
                                                   </prop>
                                                 </prop>
-                                                <prop readOnly="True" type="object" name="tags">
-                                                  <additionalProp readOnly="True">
-                                                    <item readOnly="True" type="string"/>
+                                                <prop type="object" name="tags">
+                                                  <additionalProp>
+                                                    <item type="string"/>
                                                   </additionalProp>
                                                 </prop>
                                                 <prop readOnly="True" type="string" name="type"/>
-                                                <prop readOnly="True" type="array<string>" name="zones">
-                                                  <item readOnly="True" type="string"/>
+                                                <prop type="array<string>" name="zones">
+                                                  <item type="string"/>
                                                 </prop>
                                               </prop>
-                                              <prop readOnly="True" type="@Subnet_read" name="subnet"/>
+                                              <prop type="@Subnet_read" name="subnet"/>
                                             </prop>
                                           </item>
                                         </prop>
-                                        <prop readOnly="True" type="@NetworkSecurityGroup_read" name="networkSecurityGroup"/>
-                                        <prop readOnly="True" type="string" name="provisioningState"/>
-                                        <prop readOnly="True" type="array<object>" name="resourceNavigationLinks">
-                                          <item readOnly="True" type="object">
+                                        <prop type="@NetworkSecurityGroup_read" name="networkSecurityGroup"/>
+                                        <prop type="string" name="provisioningState"/>
+                                        <prop type="array<object>" name="resourceNavigationLinks">
+                                          <item type="object">
                                             <prop readOnly="True" type="string" name="etag"/>
-                                            <prop readOnly="True" type="string" name="id"/>
-                                            <prop readOnly="True" type="string" name="name"/>
-                                            <prop readOnly="True" type="object" name="properties" clientFlatten="True">
-                                              <prop readOnly="True" type="string" name="link"/>
-                                              <prop readOnly="True" type="string" name="linkedResourceType"/>
+                                            <prop type="string" name="id"/>
+                                            <prop type="string" name="name"/>
+                                            <prop type="object" name="properties" clientFlatten="True">
+                                              <prop type="string" name="link"/>
+                                              <prop type="string" name="linkedResourceType"/>
                                               <prop readOnly="True" type="string" name="provisioningState"/>
                                             </prop>
                                           </item>
                                         </prop>
-                                        <prop readOnly="True" type="object" name="routeTable">
-                                          <prop readOnly="True" type="string" name="etag"/>
-                                          <prop readOnly="True" type="ResourceId" name="id">
+                                        <prop type="object" name="routeTable">
+                                          <prop type="string" name="etag"/>
+                                          <prop type="ResourceId" name="id">
                                             <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/routeTables/{}"/>
                                           </prop>
-                                          <prop readOnly="True" type="ResourceLocation" name="location"/>
+                                          <prop type="ResourceLocation" name="location"/>
                                           <prop readOnly="True" type="string" name="name"/>
-                                          <prop readOnly="True" type="object" name="properties" clientFlatten="True">
-                                            <prop readOnly="True" type="boolean" name="disableBgpRoutePropagation"/>
-                                            <prop readOnly="True" type="string" name="provisioningState"/>
-                                            <prop readOnly="True" type="array<object>" name="routes">
-                                              <item readOnly="True" type="object">
-                                                <prop readOnly="True" type="string" name="etag"/>
-                                                <prop readOnly="True" type="ResourceId" name="id">
+                                          <prop type="object" name="properties" clientFlatten="True">
+                                            <prop type="boolean" name="disableBgpRoutePropagation"/>
+                                            <prop type="string" name="provisioningState"/>
+                                            <prop type="array<object>" name="routes">
+                                              <item type="object">
+                                                <prop type="string" name="etag"/>
+                                                <prop type="ResourceId" name="id">
                                                   <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/routeTables/{}/routes/{}"/>
                                                 </prop>
-                                                <prop readOnly="True" type="string" name="name"/>
-                                                <prop readOnly="True" type="object" name="properties" clientFlatten="True">
-                                                  <prop readOnly="True" type="string" name="addressPrefix"/>
-                                                  <prop readOnly="True" type="string" name="nextHopIpAddress"/>
-                                                  <prop readOnly="True" type="string" name="nextHopType" required="True">
+                                                <prop type="string" name="name"/>
+                                                <prop type="object" name="properties" clientFlatten="True">
+                                                  <prop type="string" name="addressPrefix"/>
+                                                  <prop type="string" name="nextHopIpAddress"/>
+                                                  <prop type="string" name="nextHopType" required="True">
                                                     <enum>
                                                       <item value="&quot;Internet&quot;"/>
                                                       <item value="&quot;None&quot;"/>
@@ -285,28 +284,28 @@
                                                       <item value="&quot;VnetLocal&quot;"/>
                                                     </enum>
                                                   </prop>
-                                                  <prop readOnly="True" type="string" name="provisioningState"/>
+                                                  <prop type="string" name="provisioningState"/>
                                                 </prop>
                                               </item>
                                             </prop>
                                             <prop readOnly="True" type="array<@Subnet_read>" name="subnets">
-                                              <item readOnly="True" type="@Subnet_read"/>
+                                              <item type="@Subnet_read"/>
                                             </prop>
                                           </prop>
-                                          <prop readOnly="True" type="object" name="tags">
-                                            <additionalProp readOnly="True">
-                                              <item readOnly="True" type="string"/>
+                                          <prop type="object" name="tags">
+                                            <additionalProp>
+                                              <item type="string"/>
                                             </additionalProp>
                                           </prop>
                                           <prop readOnly="True" type="string" name="type"/>
                                         </prop>
-                                        <prop readOnly="True" type="array<object>" name="serviceEndpoints">
-                                          <item readOnly="True" type="object">
-                                            <prop readOnly="True" type="array<string>" name="locations">
-                                              <item readOnly="True" type="string"/>
+                                        <prop type="array<object>" name="serviceEndpoints">
+                                          <item type="object">
+                                            <prop type="array<string>" name="locations">
+                                              <item type="string"/>
                                             </prop>
-                                            <prop readOnly="True" type="string" name="provisioningState"/>
-                                            <prop readOnly="True" type="string" name="service"/>
+                                            <prop type="string" name="provisioningState"/>
+                                            <prop type="string" name="service"/>
                                           </item>
                                         </prop>
                                       </prop>
@@ -314,18 +313,18 @@
                                   </prop>
                                 </item>
                               </prop>
-                              <prop readOnly="True" type="string" name="macAddress"/>
-                              <prop readOnly="True" type="@NetworkSecurityGroup_read" name="networkSecurityGroup"/>
-                              <prop readOnly="True" type="boolean" name="primary"/>
-                              <prop readOnly="True" type="string" name="provisioningState"/>
-                              <prop readOnly="True" type="string" name="resourceGuid"/>
-                              <prop readOnly="True" type="object" name="virtualMachine" cls="SubResource_read">
-                                <prop readOnly="True" type="string" name="id"/>
+                              <prop type="string" name="macAddress"/>
+                              <prop type="@NetworkSecurityGroup_read" name="networkSecurityGroup"/>
+                              <prop type="boolean" name="primary"/>
+                              <prop type="string" name="provisioningState"/>
+                              <prop type="string" name="resourceGuid"/>
+                              <prop type="object" name="virtualMachine" cls="SubResource_read">
+                                <prop type="string" name="id"/>
                               </prop>
                             </prop>
-                            <prop readOnly="True" type="object" name="tags">
-                              <additionalProp readOnly="True">
-                                <item readOnly="True" type="string"/>
+                            <prop type="object" name="tags">
+                              <additionalProp>
+                                <item type="string"/>
                               </additionalProp>
                             </prop>
                             <prop readOnly="True" type="string" name="type"/>
@@ -404,7 +403,7 @@
                           </item>
                         </prop>
                         <prop readOnly="True" type="array<@Subnet_read>" name="subnets">
-                          <item readOnly="True" type="@Subnet_read"/>
+                          <item type="@Subnet_read"/>
                         </prop>
                       </prop>
                       <prop type="object" name="tags">
@@ -428,10 +427,11 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_NetworkSecurityGroups_ListAll" operationId="NetworkSecurityGroups_ListAll">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Network/networkSecurityGroups">
+      <operation when="$Condition_NetworkSecurityGroups_List" operationId="NetworkSecurityGroups_List">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityGroups">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>

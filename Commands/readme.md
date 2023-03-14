@@ -35,6 +35,9 @@
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
 
+- [mobile-network](/Commands/mobile-network/readme.md)
+: Manage mobile network
+
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
 
@@ -50,6 +53,9 @@
 - [orbital](/Commands/orbital/readme.md)
 : Azure Orbital Ground Station as-a-Service (GSaaS).
 
+- [ppg](/Commands/ppg/readme.md)
+: Manage Proximity Placement Groups.
+
 - [reservations](/Commands/reservations/readme.md)
 : Azure Reservations
 
@@ -64,6 +70,9 @@
 
 - [sql](/Commands/sql/readme.md)
 : Manage Azure SQL Databases and Data Warehouses.
+
+- [storage-mover](/Commands/storage-mover/readme.md)
+: Manage top-level Storage Mover resource.
 
 - [vm](/Commands/vm/readme.md)
 : Manage Linux or Windows virtual machines.

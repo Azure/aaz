@@ -9,3 +9,6 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 
 - [nic](/Commands/vmss/nic/readme.md)
 : Manage network interfaces of a VMSS.
+
+- [rolling-upgrade](/Commands/vmss/rolling-upgrade/readme.md)
+: Manage rolling upgrades.
