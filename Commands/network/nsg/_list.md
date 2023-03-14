@@ -40,6 +40,18 @@ List network security groups.
         network nsg list --query "[?location=='westus']"
     ```
 
+### [2020-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL25ldHdvcmtzZWN1cml0eWdyb3Vwcw==/2020-04-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.network/networksecuritygroups 2020-04-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networksecuritygroups 2020-04-01 -->
+
+#### examples
+
+- List all NSGs in the 'westus' region.
+    ```bash
+        network nsg list --query "[?location=='westus']"
+    ```
+
 ### [2021-08-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL25ldHdvcmtzZWN1cml0eWdyb3Vwcw==/2021-08-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.network/networksecuritygroups 2021-08-01 -->
