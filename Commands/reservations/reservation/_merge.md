@@ -14,3 +14,14 @@ Merge the specified `Reservation`s into a new `Reservation`. The two `Reservatio
     ```bash
         reservations reservation merge --reservation-order-id 10000000-aaaa-bbbb-cccc-100000000005 --sources "['/providers/Microsoft.Capacity/reservationOrders/10000000-aaaa-bbbb-cccc-100000000005/reservations/30000000-aaaa-bbbb-cccc-100000000002','/providers/Microsoft.Capacity/reservationOrders/10000000-aaaa-bbbb-cccc-100000000005/reservations/30000000-aaaa-bbbb-cccc-100000000004']"
     ```
+
+### [2022-11-01](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuY2FwYWNpdHkvcmVzZXJ2YXRpb25vcmRlcnMve30vbWVyZ2U=/2022-11-01.xml) **Stable**
+
+<!-- mgmt-plane /providers/microsoft.capacity/reservationorders/{}/merge 2022-11-01 -->
+
+#### examples
+
+- Merge reservations
+    ```bash
+        reservations reservation merge --reservation-order-id 10000000-aaaa-bbbb-cccc-100000000005 --sources "['/providers/Microsoft.Capacity/reservationOrders/10000000-aaaa-bbbb-cccc-100000000005/reservations/30000000-aaaa-bbbb-cccc-100000000002','/providers/Microsoft.Capacity/reservationOrders/10000000-aaaa-bbbb-cccc-100000000005/reservations/30000000-aaaa-bbbb-cccc-100000000004']"
+    ```

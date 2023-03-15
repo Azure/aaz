@@ -31,6 +31,12 @@ Manage Azure Network resources.
 - [manager](/Commands/network/manager/readme.md)
 : Manage network-manager with network.
 
+- [nat](/Commands/network/nat/readme.md)
+: Manage NAT resources.
+
+- [nic](/Commands/network/nic/readme.md)
+: Manage network interfaces.
+
 - [nsg](/Commands/network/nsg/readme.md)
 : Manage Azure Network Security Groups (NSGs).
 
@@ -76,8 +82,17 @@ Manage Azure Network resources.
 - [vnet](/Commands/network/vnet/readme.md)
 : Check if a private IP address is available for use within a virtual network.
 
+- [vnet-gateway](/Commands/network/vnet-gateway/readme.md)
+: Use an Azure Virtual Network Gateway to establish secure, cross-premises connectivity.
+
+- [vpn-connection](/Commands/network/vpn-connection/readme.md)
+: Manage VPN connections.
+
 - [vpn-gateway](/Commands/network/vpn-gateway/readme.md)
 : Manage site-to-site VPN gateways.
+
+- [watcher](/Commands/network/watcher/readme.md)
+: Manage the Azure Network Watcher. Network Watcher assists with monitoring and diagnosing conditions at a network scenario level. To learn more visit https://docs.microsoft.com/azure/network-watcher/.
 
 ## Commands
 

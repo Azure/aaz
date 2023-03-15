@@ -2,6 +2,9 @@
 
 ## Groups
 
+- [automanage](/Commands/automanage/readme.md)
+: Manage Automanage
+
 - [billing-benefits](/Commands/billing-benefits/readme.md)
 : Azure billing benefits commands
 
@@ -14,6 +17,12 @@
 - [databricks](/Commands/databricks/readme.md)
 : Manage databricks workspaces.
 
+- [dataprotection](/Commands/dataprotection/readme.md)
+: Manage Data Protection.
+
+- [devcenter](/Commands/devcenter/readme.md)
+: Manage resources with devcenter
+
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
 
@@ -25,6 +34,9 @@
 
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
+
+- [mobile-network](/Commands/mobile-network/readme.md)
+: Manage mobile network
 
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
@@ -41,6 +53,9 @@
 - [orbital](/Commands/orbital/readme.md)
 : Azure Orbital Ground Station as-a-Service (GSaaS).
 
+- [ppg](/Commands/ppg/readme.md)
+: Manage Proximity Placement Groups.
+
 - [reservations](/Commands/reservations/readme.md)
 : Azure Reservations
 
@@ -50,6 +65,9 @@
 - [sentinel](/Commands/sentinel/readme.md)
 : Manage Microsoft Sentinel.
 
+- [service-networking](/Commands/service-networking/readme.md)
+: Manage Service Networking Resources
+
 - [servicebus](/Commands/servicebus/readme.md)
 : servicebus
 
@@ -58,6 +76,12 @@
 
 - [sql](/Commands/sql/readme.md)
 : Manage Azure SQL Databases and Data Warehouses.
+
+- [storage-mover](/Commands/storage-mover/readme.md)
+: Manage top-level Storage Mover resource.
+
+- [vm](/Commands/vm/readme.md)
+: Manage Linux or Windows virtual machines.
 
 - [vmss](/Commands/vmss/readme.md)
 : Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS).

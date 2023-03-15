@@ -21,8 +21,41 @@ To learn more about Application Gateway, visit https://learn.microsoft.com/en-us
 - [frontend-port](/Commands/network/application-gateway/frontend-port/readme.md)
 : Manage frontend ports of an application gateway.
 
+- [http-listener](/Commands/network/application-gateway/http-listener/readme.md)
+: Manage HTTP listeners of an application gateway.
+
+- [http-settings](/Commands/network/application-gateway/http-settings/readme.md)
+: Manage HTTP settings of an application gateway.
+
+- [identity](/Commands/network/application-gateway/identity/readme.md)
+: Manage the managed service identity of an application gateway.
+
+- [listener](/Commands/network/application-gateway/listener/readme.md)
+: Manage listeners of an application gateway.
+
+- [private-link](/Commands/network/application-gateway/private-link/readme.md)
+: Manage private link of an application gateway.
+
+- [probe](/Commands/network/application-gateway/probe/readme.md)
+: Manage probes to gather and evaluate information on an application gateway.
+
+- [redirect-config](/Commands/network/application-gateway/redirect-config/readme.md)
+: Manage redirect configurations of an application gateway.
+
+- [rewrite-rule](/Commands/network/application-gateway/rewrite-rule/readme.md)
+: Manage rewrite rules of an application gateway.
+
 - [root-cert](/Commands/network/application-gateway/root-cert/readme.md)
 : Manage trusted root certificates of an application gateway.
+
+- [routing-rule](/Commands/network/application-gateway/routing-rule/readme.md)
+: Evaluate probe information and define TCP/TLS routing rules.
+
+- [rule](/Commands/network/application-gateway/rule/readme.md)
+: Evaluate probe information and define HTTP/HTTPS routing rules.
+
+- [settings](/Commands/network/application-gateway/settings/readme.md)
+: Manage settings of an application gateway.
 
 - [ssl-cert](/Commands/network/application-gateway/ssl-cert/readme.md)
 : Manage SSL certificates of an application gateway.
