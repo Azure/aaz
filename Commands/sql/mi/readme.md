@@ -1,6 +1,6 @@
 # [Group] _sql mi_
 
-Manage SQL managed instances.
+Managed Instance
 
 ## Subgroups
 
@@ -12,3 +12,6 @@ Manage SQL managed instances.
 
 - [partner-cert](/Commands/sql/mi/partner-cert/readme.md)
 : Server trust certificate management commands.
+
+- [server-configuration-option](/Commands/sql/mi/server-configuration-option/readme.md)
+: Server configuration option management commands.
