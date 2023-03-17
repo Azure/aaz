@@ -68,6 +68,9 @@
 - [service-networking](/Commands/service-networking/readme.md)
 : Manage Service Networking Resources
 
+- [servicebus](/Commands/servicebus/readme.md)
+: servicebus
+
 - [sig](/Commands/sig/readme.md)
 : Manage shared image gallery.
 
@@ -82,3 +85,6 @@
 
 - [vmss](/Commands/vmss/readme.md)
 : Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS).
+
+- [voice-service](/Commands/voice-service/readme.md)
+: Manage voice services
