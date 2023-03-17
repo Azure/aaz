@@ -1,8 +1,11 @@
 # [Group] _sql mi_
 
-Managed Instance
+Manage SQL managed instances.
 
 ## Subgroups
+
+- [dtc](/Commands/sql/mi/dtc/readme.md)
+: Commands related to managed instance DTC management.
 
 - [endpoint-cert](/Commands/sql/mi/endpoint-cert/readme.md)
 : Endpoint certificates management commands.
