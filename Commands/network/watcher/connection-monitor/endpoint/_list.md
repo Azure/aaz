@@ -1,6 +1,6 @@
 # [Command] _network watcher connection-monitor endpoint list_
 
-List all endpoints form a connection monitor.
+List all endpoints from a connection monitor.
 
 ## Versions
 
@@ -10,7 +10,7 @@ List all endpoints form a connection monitor.
 
 #### examples
 
-- List all endpoints form a connection monitor.
+- List all endpoints from a connection monitor.
     ```bash
         network watcher connection-monitor endpoint list --connection-monitor MyConnectionMonitor --location westus2
     ```

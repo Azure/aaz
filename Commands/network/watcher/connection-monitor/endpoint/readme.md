@@ -8,7 +8,7 @@ Manage endpoint of a connection monitor.
 : Add an endpoint to a connection monitor.
 
 - [list](/Commands/network/watcher/connection-monitor/endpoint/_list.md)
-: List all endpoints form a connection monitor.
+: List all endpoints from a connection monitor.
 
 - [remove](/Commands/network/watcher/connection-monitor/endpoint/_remove.md)
 : Remove an endpoint from a connection monitor.
