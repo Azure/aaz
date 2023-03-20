@@ -1,6 +1,8 @@
 # [Command] _vm reimage_
 
-Reimages (upgrade the operating system) a virtual machine which don't have a ephemeral OS disk, for virtual machines who have a ephemeral OS disk the virtual machine is reset to initial state. NOTE: The retaining of old OS disk depends on the value of deleteOption of OS disk. If deleteOption is detach, the old OS disk will be preserved after reimage. If deleteOption is delete, the old OS disk will be deleted after reimage. The deleteOption of the OS disk should be updated accordingly before performing the reimage.
+Reimage (upgrade the operating system) a virtual machine.
+
+Reimage (upgrade the operating system) a virtual machine which don't have a ephemeral OS disk, for virtual machines who have a ephemeral OS disk the virtual machine is reset to initial state. NOTE: The retaining of old OS disk depends on the value of deleteOption of OS disk. If deleteOption is detach, the old OS disk will be preserved after reimage. If deleteOption is delete, the old OS disk will be deleted after reimage. The deleteOption of the OS disk should be updated accordingly before performing the reimage.
 
 ## Versions
 
@@ -10,7 +12,7 @@ Reimages (upgrade the operating system) a virtual machine which don't have a eph
 
 #### examples
 
-- Reimage an existing image.
+- Reimage a virtual machine.
     ```bash
         vm reimage --name MyVm --resource-group MyResourceGroup --admin-password MyPassword --custom-data "dGVzdA==" --temp-disk false --exact-version 0.1
     ```
