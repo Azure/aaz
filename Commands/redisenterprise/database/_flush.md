@@ -1,0 +1,16 @@
+# [Command] _redisenterprise database flush_
+
+Flushes all the keys in this database and also from its linked databases.
+
+## Versions
+
+### [2023-03-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jYWNoZS9yZWRpc2VudGVycHJpc2Uve30vZGF0YWJhc2VzL3t9L2ZsdXNo/2023-03-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cache/redisenterprise/{}/databases/{}/flush 2023-03-01-preview -->
+
+#### examples
+
+- flush the cache data
+    ```bash
+        redisenterprise database flush --cluster-name "cache1" --ids "/subscriptions/subid2/resourceGroups/rg2/providers/Microsoft.Cache/redisEnterprise/cache2/databases/default" --resource-group "rg1"
+    ```
