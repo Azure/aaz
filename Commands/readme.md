@@ -14,6 +14,9 @@
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
+- [confidentialledger](/Commands/confidentialledger/readme.md)
+: Deploy and manage Azure confidential ledgers.
+
 - [databricks](/Commands/databricks/readme.md)
 : Manage databricks workspaces.
 
