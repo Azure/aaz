@@ -2,6 +2,11 @@
 
 servicebus topic subscription
 
+## Subgroups
+
+- [rule](/Commands/servicebus/topic/subscription/rule/readme.md)
+: servicebus topic subscription rule
+
 ## Commands
 
 - [create](/Commands/servicebus/topic/subscription/_create.md)
