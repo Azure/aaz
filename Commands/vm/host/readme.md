@@ -10,7 +10,7 @@ Manage Dedicated Hosts for Virtual Machines
 ## Commands
 
 - [create](/Commands/vm/host/_create.md)
-: Create a dedicated host .
+: Create a dedicated host.
 
 - [delete](/Commands/vm/host/_delete.md)
 : Delete a dedicated host.
@@ -25,4 +25,4 @@ Manage Dedicated Hosts for Virtual Machines
 : Get the details of a dedicated host.
 
 - [update](/Commands/vm/host/_update.md)
-: Update a dedicated host .
+: Update a dedicated host.

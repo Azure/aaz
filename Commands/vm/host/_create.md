@@ -1,6 +1,6 @@
 # [Command] _vm host create_
 
-Create a dedicated host .
+Create a dedicated host.
 
 ## Versions
 

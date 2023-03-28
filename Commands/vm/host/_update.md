@@ -1,6 +1,6 @@
 # [Command] _vm host update_
 
-Update a dedicated host .
+Update a dedicated host.
 
 ## Versions
 
