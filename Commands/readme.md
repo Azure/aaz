@@ -32,6 +32,9 @@
 - [elastic-san](/Commands/elastic-san/readme.md)
 : Manage Elastic SAN.
 
+- [eventhubs](/Commands/eventhubs/readme.md)
+: eventhubs
+
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
 
