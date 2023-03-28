@@ -12,5 +12,5 @@ Create a mobile network site.
 
 - Create site
     ```bash
-        mobile-network create -n mobile-network-name -g rg --identifier "{mcc:001,mnc:01}"
+        mobile-network site create --mobile-network-name mobile-network-name -n site-name -g rg
     ```
