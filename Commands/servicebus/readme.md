@@ -4,6 +4,9 @@ servicebus
 
 ## Subgroups
 
+- [namespace](/Commands/servicebus/namespace/readme.md)
+: servicebus namespace
+
 - [queue](/Commands/servicebus/queue/readme.md)
 : servicebus queue
 
