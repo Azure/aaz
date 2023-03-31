@@ -6,6 +6,50 @@ This command can only be used to update the tags for a load balancer. Name and r
 
 ## Versions
 
+### [2015-06-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL2xvYWRiYWxhbmNlcnMve30=/2015-06-15.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/loadbalancers/{} 2015-06-15 -->
+
+#### examples
+
+- Update the tags of a load balancer.
+    ```bash
+        network lb update -g MyResourceGroup -n MyLB --tags CostCenter=MyTestGroup
+    ```
+
+### [2017-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL2xvYWRiYWxhbmNlcnMve30=/2017-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/loadbalancers/{} 2017-10-01 -->
+
+#### examples
+
+- Update the tags of a load balancer.
+    ```bash
+        network lb update -g MyResourceGroup -n MyLB --tags CostCenter=MyTestGroup
+    ```
+
+### [2018-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL2xvYWRiYWxhbmNlcnMve30=/2018-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/loadbalancers/{} 2018-11-01 -->
+
+#### examples
+
+- Update the tags of a load balancer.
+    ```bash
+        network lb update -g MyResourceGroup -n MyLB --tags CostCenter=MyTestGroup
+    ```
+
+### [2022-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL2xvYWRiYWxhbmNlcnMve30=/2022-01-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/loadbalancers/{} 2022-01-01 -->
+
+#### examples
+
+- Update the tags of a load balancer.
+    ```bash
+        network lb update -g MyResourceGroup -n MyLB --tags CostCenter=MyTestGroup
+    ```
+
 ### [2022-05-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL2xvYWRiYWxhbmNlcnMve30=/2022-05-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/loadbalancers/{} 2022-05-01 -->
@@ -14,5 +58,5 @@ This command can only be used to update the tags for a load balancer. Name and r
 
 - Update the tags of a load balancer.
     ```bash
-        network lb update -g MyResourceGroup -n MyLb --set tags.CostCenter=MyBusinessGroup
+        network lb update -g MyResourceGroup -n MyLB --tags CostCenter=MyTestGroup
     ```

@@ -25,3 +25,6 @@ Azure Reservations
 - [exchange](/Commands/reservations/_exchange.md)
 : Returns one or more `Reservations` in exchange for one or more `Reservation` purchases.
 
+
+- [list](/Commands/reservations/_list.md)
+: List the reservations that the user has access to in the current tenant.

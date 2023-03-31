@@ -34,6 +34,7 @@
                                     ],
                                     "required": true,
                                     "group": "",
+                                    "idPart": "name",
                                     "help": {
                                         "short": "Name of the application gateway."
                                     }
@@ -45,7 +46,8 @@
                                         "g",
                                         "resource-group"
                                     ],
-                                    "required": true
+                                    "required": true,
+                                    "idPart": "resource_group"
                                 },
                                 {
                                     "type": "SubscriptionId",
@@ -53,7 +55,8 @@
                                     "options": [
                                         "subscription"
                                     ],
-                                    "required": true
+                                    "required": true,
+                                    "idPart": "subscription"
                                 },
                                 {
                                     "type": "string",
@@ -73,35 +76,10 @@
                             "args": [
                                 {
                                     "type": "string",
-                                    "var": "$probeRequest.backendAddressPool.id",
-                                    "options": [
-                                        "address-pool"
-                                    ],
-                                    "stage": "Preview",
-                                    "group": "Probe Operation",
-                                    "help": {
-                                        "short": "Name or ID of the backend address pool."
-                                    }
-                                },
-                                {
-                                    "type": "string",
-                                    "var": "$probeRequest.backendHttpSettings.id",
-                                    "options": [
-                                        "http-settings"
-                                    ],
-                                    "stage": "Preview",
-                                    "group": "Probe Operation",
-                                    "help": {
-                                        "short": "Name or ID of the HTTP settings."
-                                    }
-                                },
-                                {
-                                    "type": "string",
                                     "var": "$probeRequest.host",
                                     "options": [
                                         "host"
                                     ],
-                                    "stage": "Preview",
                                     "group": "Probe Operation",
                                     "help": {
                                         "short": "Name of the host to send the probe."
@@ -113,7 +91,6 @@
                                     "options": [
                                         "match-body"
                                     ],
-                                    "stage": "Preview",
                                     "group": "Probe Operation",
                                     "help": {
                                         "short": "Body that must be contained in the health response."
@@ -125,7 +102,6 @@
                                     "options": [
                                         "match-status-codes"
                                     ],
-                                    "stage": "Preview",
                                     "group": "Probe Operation",
                                     "help": {
                                         "short": "Space-separated list of allowed ranges of healthy status codes for the health response."
@@ -140,7 +116,6 @@
                                     "options": [
                                         "path"
                                     ],
-                                    "stage": "Preview",
                                     "group": "Probe Operation",
                                     "help": {
                                         "short": "Relative path of the probe. Valid paths start from \"/\"."
@@ -152,7 +127,6 @@
                                     "options": [
                                         "host-name-from-http-settings"
                                     ],
-                                    "stage": "Preview",
                                     "group": "Probe Operation",
                                     "help": {
                                         "short": "Use host header from HTTP settings."
@@ -164,7 +138,6 @@
                                     "options": [
                                         "protocol"
                                     ],
-                                    "stage": "Preview",
                                     "group": "Probe Operation",
                                     "help": {
                                         "short": "HTTP settings protocol."
@@ -196,10 +169,49 @@
                                     "options": [
                                         "timeout"
                                     ],
-                                    "stage": "Preview",
                                     "group": "Probe Operation",
                                     "help": {
                                         "short": "Probe timeout in seconds."
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "ProbeRequest",
+                            "args": [
+                                {
+                                    "type": "object",
+                                    "var": "$probeRequest.backendAddressPool",
+                                    "options": [
+                                        "backend-address-pool"
+                                    ],
+                                    "group": "ProbeRequest",
+                                    "help": {
+                                        "short": "Reference to backend pool of application gateway to which probe request will be sent."
+                                    },
+                                    "args": [
+                                        {
+                                            "type": "string",
+                                            "var": "@SubResource_create.id",
+                                            "options": [
+                                                "id"
+                                            ],
+                                            "help": {
+                                                "short": "Resource ID."
+                                            }
+                                        }
+                                    ],
+                                    "cls": "SubResource_create"
+                                },
+                                {
+                                    "type": "@SubResource_create",
+                                    "var": "$probeRequest.backendHttpSettings",
+                                    "options": [
+                                        "backend-http-settings"
+                                    ],
+                                    "group": "ProbeRequest",
+                                    "help": {
+                                        "short": "Reference to backend http setting of application gateway to be used for test probe."
                                     }
                                 }
                             ]
@@ -268,24 +280,20 @@
                                                     {
                                                         "type": "object",
                                                         "name": "backendAddressPool",
+                                                        "arg": "$probeRequest.backendAddressPool",
                                                         "props": [
                                                             {
                                                                 "type": "string",
                                                                 "name": "id",
-                                                                "arg": "$probeRequest.backendAddressPool.id"
+                                                                "arg": "@SubResource_create.id"
                                                             }
-                                                        ]
+                                                        ],
+                                                        "cls": "SubResource_create"
                                                     },
                                                     {
-                                                        "type": "object",
+                                                        "type": "@SubResource_create",
                                                         "name": "backendHttpSettings",
-                                                        "props": [
-                                                            {
-                                                                "type": "string",
-                                                                "name": "id",
-                                                                "arg": "$probeRequest.backendHttpSettings.id"
-                                                            }
-                                                        ]
+                                                        "arg": "$probeRequest.backendHttpSettings"
                                                     },
                                                     {
                                                         "type": "string",
