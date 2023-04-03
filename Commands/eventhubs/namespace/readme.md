@@ -2,6 +2,11 @@
 
 NamespaceV2
 
+## Subgroups
+
+- [application-group](/Commands/eventhubs/namespace/application-group/readme.md)
+: Manages Application Groups for premium eventhubs namespace.
+
 ## Commands
 
 - [create](/Commands/eventhubs/namespace/_create.md)
