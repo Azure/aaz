@@ -1,6 +1,6 @@
-# [Command] _sql mi server-configuration-option create_
+# [Command] _sql mi server-configuration-option set_
 
-Create managed instance server configuration option.
+Set managed instance server configuration option.
 
 ## Versions
 
@@ -12,5 +12,5 @@ Create managed instance server configuration option.
 
 - Create server configuration option on ManagedInstance_1 in ResourceGroup_1
     ```bash
-        mi server-configuration-option create -g 'ResourceGroup_1' --mi 'ManagedInstance_1' --name 'allowPolybaseExport' --value '1'
+        mi server-configuration-option set -g 'ResourceGroup_1' --mi 'ManagedInstance_1' --name 'allowPolybaseExport' --value '1'
     ```
