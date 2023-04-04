@@ -7,6 +7,12 @@ Manage Network Security Perimeters
 - [association](/Commands/network/perimeter/association/readme.md)
 : Manage NSP Associations
 
+- [link](/Commands/network/perimeter/link/readme.md)
+: Network Security Perimeter Link
+
+- [link-reference](/Commands/network/perimeter/link-reference/readme.md)
+: Network Security Perimeter Link
+
 - [onboarded-resources](/Commands/network/perimeter/onboarded-resources/readme.md)
 : Manage resources onboarded to NSP
 
