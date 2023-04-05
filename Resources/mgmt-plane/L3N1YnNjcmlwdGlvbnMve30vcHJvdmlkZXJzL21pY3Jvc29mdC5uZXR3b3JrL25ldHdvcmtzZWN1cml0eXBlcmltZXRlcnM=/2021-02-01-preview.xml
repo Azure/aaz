@@ -17,6 +17,12 @@
           <format maximum="20" minimum="1"/>
         </arg>
       </argGroup>
+      <condition var="$Condition_NetworkSecurityPerimeters_List">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
       <condition var="$Condition_NetworkSecurityPerimeters_ListBySubscription">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -25,16 +31,11 @@
           </operator>
         </operator>
       </condition>
-      <condition var="$Condition_NetworkSecurityPerimeters_List">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
-      <operation when="$Condition_NetworkSecurityPerimeters_ListBySubscription" operationId="NetworkSecurityPerimeters_ListBySubscription">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Network/networkSecurityPerimeters">
+      <operation when="$Condition_NetworkSecurityPerimeters_List" operationId="NetworkSecurityPerimeters_List">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityPerimeters">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -59,7 +60,7 @@
                       </prop>
                       <prop type="ResourceLocation" name="location"/>
                       <prop type="string" name="name"/>
-                      <prop type="object" name="properties" clientFlatten="True">
+                      <prop type="object" name="properties">
                         <prop readOnly="True" type="string" name="perimeterGuid"/>
                         <prop readOnly="True" type="string" name="provisioningState">
                           <enum>
@@ -93,11 +94,10 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_NetworkSecurityPerimeters_List" operationId="NetworkSecurityPerimeters_List">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkSecurityPerimeters">
+      <operation when="$Condition_NetworkSecurityPerimeters_ListBySubscription" operationId="NetworkSecurityPerimeters_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Network/networkSecurityPerimeters">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -122,7 +122,7 @@
                       </prop>
                       <prop type="ResourceLocation" name="location"/>
                       <prop type="string" name="name"/>
-                      <prop type="object" name="properties" clientFlatten="True">
+                      <prop type="object" name="properties">
                         <prop readOnly="True" type="string" name="perimeterGuid"/>
                         <prop readOnly="True" type="string" name="provisioningState">
                           <enum>
