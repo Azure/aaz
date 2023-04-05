@@ -1,6 +1,6 @@
 # [Group] _network perimeter link_
 
-Network Security Perimeter Link
+Manage network security perimeter link
 
 ## Commands
 
