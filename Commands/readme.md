@@ -83,6 +83,9 @@
 - [sig](/Commands/sig/readme.md)
 : Manage shared image gallery.
 
+- [site-recovery](/Commands/site-recovery/readme.md)
+: Manage Site Recovery Service
+
 - [sql](/Commands/sql/readme.md)
 : Manage Azure SQL Databases and Data Warehouses.
 

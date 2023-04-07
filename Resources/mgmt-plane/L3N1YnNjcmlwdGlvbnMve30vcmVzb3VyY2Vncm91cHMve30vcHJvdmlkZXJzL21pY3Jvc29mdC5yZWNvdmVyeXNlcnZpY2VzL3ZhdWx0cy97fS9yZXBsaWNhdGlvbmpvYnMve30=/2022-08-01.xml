@@ -1,0 +1,262 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.recoveryservices/vaults/{}/replicationjobs/{}" version="2022-08-01" swagger="mgmt-plane/recoveryservicessiterecovery/ResourceProviders/Microsoft.RecoveryServices/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuUmVjb3ZlcnlTZXJ2aWNlcy92YXVsdHMve3Jlc291cmNlTmFtZX0vcmVwbGljYXRpb25Kb2JzL3tqb2JOYW1lfQ==/V/MjAyMi0wOC0wMQ=="/>
+  <commandGroup name="site-recovery vault job">
+    <command name="show" version="2022-08-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.recoveryservices/vaults/{}/replicationjobs/{}" version="2022-08-01" swagger="mgmt-plane/recoveryservicessiterecovery/ResourceProviders/Microsoft.RecoveryServices/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuUmVjb3ZlcnlTZXJ2aWNlcy92YXVsdHMve3Jlc291cmNlTmFtZX0vcmVwbGljYXRpb25Kb2JzL3tqb2JOYW1lfQ==/V/MjAyMi0wOC0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.jobName" options="job-name name n" required="True" idPart="child_name_1">
+          <help short="Job identifier."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.resourceName" options="vault-name" required="True" group="" idPart="name">
+          <help short="The name of the recovery services vault."/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="ReplicationJobs_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationJobs/{jobName}">
+          <request method="get">
+            <path>
+              <param type="string" name="jobName" arg="$Path.jobName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="resourceName" arg="$Path.resourceName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-08-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.RecoveryServices/vaults/{}/replicationJobs/{}"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="string" name="activityId"/>
+                    <prop type="array<string>" name="allowedActions">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="object" name="customDetails">
+                      <prop type="object" name="affectedObjectDetails">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop type="string" name="instanceType" required="True">
+                        <enum>
+                          <item value="&quot;AsrJobDetails&quot;"/>
+                          <item value="&quot;ExportJobDetails&quot;"/>
+                          <item value="&quot;FailoverJobDetails&quot;"/>
+                          <item value="&quot;SwitchProtectionJobDetails&quot;"/>
+                          <item value="&quot;TestFailoverJobDetails&quot;"/>
+                        </enum>
+                      </prop>
+                      <discriminator property="instanceType" value="ExportJobDetails">
+                        <prop type="string" name="blobUri"/>
+                        <prop type="string" name="sasToken"/>
+                      </discriminator>
+                      <discriminator property="instanceType" value="FailoverJobDetails">
+                        <prop type="array<object>" name="protectedItemDetails">
+                          <item type="object" cls="FailoverReplicationProtectedItemDetails_read">
+                            <prop type="string" name="friendlyName"/>
+                            <prop type="string" name="name"/>
+                            <prop type="string" name="networkConnectionStatus"/>
+                            <prop type="string" name="networkFriendlyName"/>
+                            <prop type="string" name="recoveryPointId"/>
+                            <prop type="dateTime" name="recoveryPointTime"/>
+                            <prop type="string" name="subnet"/>
+                            <prop type="string" name="testVmFriendlyName"/>
+                            <prop type="string" name="testVmName"/>
+                          </item>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="instanceType" value="SwitchProtectionJobDetails">
+                        <prop type="string" name="newReplicationProtectedItemId"/>
+                      </discriminator>
+                      <discriminator property="instanceType" value="TestFailoverJobDetails">
+                        <prop type="string" name="comments"/>
+                        <prop type="string" name="networkFriendlyName"/>
+                        <prop type="string" name="networkName"/>
+                        <prop type="string" name="networkType"/>
+                        <prop type="array<@FailoverReplicationProtectedItemDetails_read>" name="protectedItemDetails">
+                          <item type="@FailoverReplicationProtectedItemDetails_read"/>
+                        </prop>
+                        <prop type="string" name="testFailoverStatus"/>
+                      </discriminator>
+                    </prop>
+                    <prop type="dateTime" name="endTime"/>
+                    <prop type="array<@JobErrorDetails_read>" name="errors">
+                      <item type="@JobErrorDetails_read"/>
+                    </prop>
+                    <prop type="string" name="friendlyName"/>
+                    <prop type="string" name="scenarioName"/>
+                    <prop type="dateTime" name="startTime"/>
+                    <prop type="string" name="state"/>
+                    <prop type="string" name="stateDescription"/>
+                    <prop type="string" name="targetInstanceType"/>
+                    <prop type="string" name="targetObjectId"/>
+                    <prop type="string" name="targetObjectName"/>
+                    <prop type="array<object>" name="tasks">
+                      <item type="object" cls="ASRTask_read">
+                        <prop type="array<string>" name="allowedActions">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="object" name="customDetails">
+                          <prop type="string" name="instanceType" required="True">
+                            <enum>
+                              <item value="&quot;AutomationRunbookTaskDetails&quot;"/>
+                              <item value="&quot;ConsistencyCheckTaskDetails&quot;"/>
+                              <item value="&quot;FabricReplicationGroupTaskDetails&quot;"/>
+                              <item value="&quot;JobTaskDetails&quot;"/>
+                              <item value="&quot;ManualActionTaskDetails&quot;"/>
+                              <item value="&quot;ScriptActionTaskDetails&quot;"/>
+                              <item value="&quot;VirtualMachineTaskDetails&quot;"/>
+                              <item value="&quot;VmNicUpdatesTaskDetails&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="instanceType" value="AutomationRunbookTaskDetails">
+                            <prop type="string" name="accountName"/>
+                            <prop type="string" name="cloudServiceName"/>
+                            <prop type="boolean" name="isPrimarySideScript"/>
+                            <prop type="string" name="jobId"/>
+                            <prop type="string" name="jobOutput"/>
+                            <prop type="string" name="name"/>
+                            <prop type="string" name="runbookId"/>
+                            <prop type="string" name="runbookName"/>
+                            <prop type="string" name="subscriptionId"/>
+                          </discriminator>
+                          <discriminator property="instanceType" value="ConsistencyCheckTaskDetails">
+                            <prop type="array<object>" name="vmDetails">
+                              <item type="object">
+                                <prop type="string" name="cloudName"/>
+                                <prop type="array<string>" name="details">
+                                  <item type="string"/>
+                                </prop>
+                                <prop type="array<string>" name="errorIds">
+                                  <item type="string"/>
+                                </prop>
+                                <prop type="string" name="vmName"/>
+                              </item>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="instanceType" value="FabricReplicationGroupTaskDetails">
+                            <prop type="@JobEntity_read" name="jobTask"/>
+                            <prop type="string" name="skippedReason"/>
+                            <prop type="string" name="skippedReasonString"/>
+                          </discriminator>
+                          <discriminator property="instanceType" value="JobTaskDetails">
+                            <prop type="object" name="jobTask" cls="JobEntity_read">
+                              <prop type="string" name="jobFriendlyName"/>
+                              <prop type="string" name="jobId"/>
+                              <prop type="string" name="jobScenarioName"/>
+                              <prop type="string" name="targetInstanceType"/>
+                              <prop type="string" name="targetObjectId"/>
+                              <prop type="string" name="targetObjectName"/>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="instanceType" value="ManualActionTaskDetails">
+                            <prop type="string" name="instructions"/>
+                            <prop type="string" name="name"/>
+                            <prop type="string" name="observation"/>
+                          </discriminator>
+                          <discriminator property="instanceType" value="ScriptActionTaskDetails">
+                            <prop type="boolean" name="isPrimarySideScript"/>
+                            <prop type="string" name="name"/>
+                            <prop type="string" name="output"/>
+                            <prop type="string" name="path"/>
+                          </discriminator>
+                          <discriminator property="instanceType" value="VirtualMachineTaskDetails">
+                            <prop type="@JobEntity_read" name="jobTask"/>
+                            <prop type="string" name="skippedReason"/>
+                            <prop type="string" name="skippedReasonString"/>
+                          </discriminator>
+                          <discriminator property="instanceType" value="VmNicUpdatesTaskDetails">
+                            <prop type="string" name="name"/>
+                            <prop type="string" name="nicId"/>
+                            <prop type="string" name="vmId"/>
+                          </discriminator>
+                        </prop>
+                        <prop type="dateTime" name="endTime"/>
+                        <prop type="array<object>" name="errors">
+                          <item type="object" cls="JobErrorDetails_read">
+                            <prop type="dateTime" name="creationTime"/>
+                            <prop type="string" name="errorLevel"/>
+                            <prop type="object" name="providerErrorDetails">
+                              <prop type="integer32" name="errorCode"/>
+                              <prop type="string" name="errorId"/>
+                              <prop type="string" name="errorMessage"/>
+                              <prop type="string" name="possibleCauses"/>
+                              <prop type="string" name="recommendedAction"/>
+                            </prop>
+                            <prop type="object" name="serviceErrorDetails">
+                              <prop type="string" name="activityId"/>
+                              <prop type="string" name="code"/>
+                              <prop type="string" name="message"/>
+                              <prop type="string" name="possibleCauses"/>
+                              <prop type="string" name="recommendedAction"/>
+                            </prop>
+                            <prop type="string" name="taskId"/>
+                          </item>
+                        </prop>
+                        <prop type="string" name="friendlyName"/>
+                        <prop type="object" name="groupTaskCustomDetails">
+                          <prop type="array<@ASRTask_read>" name="childTasks">
+                            <item type="@ASRTask_read"/>
+                          </prop>
+                          <prop type="string" name="instanceType" required="True">
+                            <enum>
+                              <item value="&quot;InlineWorkflowTaskDetails&quot;"/>
+                              <item value="&quot;RecoveryPlanGroupTaskDetails&quot;"/>
+                              <item value="&quot;RecoveryPlanShutdownGroupTaskDetails&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="instanceType" value="InlineWorkflowTaskDetails">
+                            <prop type="array<string>" name="workflowIds">
+                              <item type="string"/>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="instanceType" value="RecoveryPlanGroupTaskDetails">
+                            <prop type="string" name="groupId"/>
+                            <prop type="string" name="name"/>
+                            <prop type="string" name="rpGroupType"/>
+                          </discriminator>
+                          <discriminator property="instanceType" value="RecoveryPlanShutdownGroupTaskDetails">
+                            <prop type="string" name="groupId"/>
+                            <prop type="string" name="name"/>
+                            <prop type="string" name="rpGroupType"/>
+                          </discriminator>
+                        </prop>
+                        <prop type="string" name="name"/>
+                        <prop type="dateTime" name="startTime"/>
+                        <prop type="string" name="state"/>
+                        <prop type="string" name="stateDescription"/>
+                        <prop type="string" name="taskId"/>
+                        <prop type="string" name="taskType"/>
+                      </item>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

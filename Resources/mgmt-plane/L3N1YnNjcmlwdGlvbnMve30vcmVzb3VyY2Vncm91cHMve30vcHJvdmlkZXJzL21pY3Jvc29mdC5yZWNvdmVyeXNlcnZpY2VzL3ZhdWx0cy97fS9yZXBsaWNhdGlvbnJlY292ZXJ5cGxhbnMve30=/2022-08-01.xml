@@ -1,0 +1,1153 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.recoveryservices/vaults/{}/replicationrecoveryplans/{}" version="2022-08-01" swagger="mgmt-plane/recoveryservicessiterecovery/ResourceProviders/Microsoft.RecoveryServices/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuUmVjb3ZlcnlTZXJ2aWNlcy92YXVsdHMve3Jlc291cmNlTmFtZX0vcmVwbGljYXRpb25SZWNvdmVyeVBsYW5zL3tyZWNvdmVyeVBsYW5OYW1lfQ==/V/MjAyMi0wOC0wMQ=="/>
+  <commandGroup name="site-recovery vault recovery-plan">
+    <command name="show" version="2022-08-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.recoveryservices/vaults/{}/replicationrecoveryplans/{}" version="2022-08-01" swagger="mgmt-plane/recoveryservicessiterecovery/ResourceProviders/Microsoft.RecoveryServices/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuUmVjb3ZlcnlTZXJ2aWNlcy92YXVsdHMve3Jlc291cmNlTmFtZX0vcmVwbGljYXRpb25SZWNvdmVyeVBsYW5zL3tyZWNvdmVyeVBsYW5OYW1lfQ==/V/MjAyMi0wOC0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.recoveryPlanName" options="recovery-plan-name name n" required="True" idPart="child_name_1">
+          <help short="Name of the recovery plan."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.resourceName" options="vault-name" required="True" group="" idPart="name">
+          <help short="The name of the recovery services vault."/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="ReplicationRecoveryPlans_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationRecoveryPlans/{recoveryPlanName}">
+          <request method="get">
+            <path>
+              <param type="string" name="recoveryPlanName" arg="$Path.recoveryPlanName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="resourceName" arg="$Path.resourceName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-08-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.RecoveryServices/vaults/{}/replicationRecoveryPlans/{}"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="array<string>" name="allowedOperations">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="object" name="currentScenario">
+                      <prop type="string" name="jobId"/>
+                      <prop type="string" name="scenarioName"/>
+                      <prop type="dateTime" name="startTime"/>
+                    </prop>
+                    <prop type="string" name="currentScenarioStatus"/>
+                    <prop type="string" name="currentScenarioStatusDescription"/>
+                    <prop type="string" name="failoverDeploymentModel"/>
+                    <prop type="string" name="friendlyName"/>
+                    <prop type="array<object>" name="groups">
+                      <item type="object">
+                        <prop type="array<@RecoveryPlanAction_read>" name="endGroupActions">
+                          <item type="@RecoveryPlanAction_read"/>
+                        </prop>
+                        <prop type="string" name="groupType" required="True">
+                          <enum>
+                            <item value="&quot;Boot&quot;"/>
+                            <item value="&quot;Failover&quot;"/>
+                            <item value="&quot;Shutdown&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<object>" name="replicationProtectedItems">
+                          <item type="object">
+                            <prop type="string" name="id"/>
+                            <prop type="string" name="virtualMachineId"/>
+                          </item>
+                        </prop>
+                        <prop type="array<object>" name="startGroupActions">
+                          <item type="object" cls="RecoveryPlanAction_read">
+                            <prop type="string" name="actionName" required="True"/>
+                            <prop type="object" name="customDetails" required="True">
+                              <prop type="string" name="instanceType" required="True">
+                                <enum>
+                                  <item value="&quot;AutomationRunbookActionDetails&quot;"/>
+                                  <item value="&quot;ManualActionDetails&quot;"/>
+                                  <item value="&quot;ScriptActionDetails&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="instanceType" value="AutomationRunbookActionDetails">
+                                <prop type="string" name="fabricLocation" required="True">
+                                  <enum>
+                                    <item value="&quot;Primary&quot;"/>
+                                    <item value="&quot;Recovery&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="runbookId"/>
+                                <prop type="string" name="timeout"/>
+                              </discriminator>
+                              <discriminator property="instanceType" value="ManualActionDetails">
+                                <prop type="string" name="description"/>
+                              </discriminator>
+                              <discriminator property="instanceType" value="ScriptActionDetails">
+                                <prop type="string" name="fabricLocation" required="True">
+                                  <enum>
+                                    <item value="&quot;Primary&quot;"/>
+                                    <item value="&quot;Recovery&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="path" required="True"/>
+                                <prop type="string" name="timeout"/>
+                              </discriminator>
+                            </prop>
+                            <prop type="array<string>" name="failoverDirections" required="True">
+                              <item type="string">
+                                <enum>
+                                  <item value="&quot;PrimaryToRecovery&quot;"/>
+                                  <item value="&quot;RecoveryToPrimary&quot;"/>
+                                </enum>
+                              </item>
+                            </prop>
+                            <prop type="array<string>" name="failoverTypes" required="True">
+                              <item type="string">
+                                <enum>
+                                  <item value="&quot;CancelFailover&quot;"/>
+                                  <item value="&quot;ChangePit&quot;"/>
+                                  <item value="&quot;Commit&quot;"/>
+                                  <item value="&quot;CompleteMigration&quot;"/>
+                                  <item value="&quot;DisableProtection&quot;"/>
+                                  <item value="&quot;Failback&quot;"/>
+                                  <item value="&quot;FinalizeFailback&quot;"/>
+                                  <item value="&quot;PlannedFailover&quot;"/>
+                                  <item value="&quot;RepairReplication&quot;"/>
+                                  <item value="&quot;ReverseReplicate&quot;"/>
+                                  <item value="&quot;SwitchProtection&quot;"/>
+                                  <item value="&quot;TestFailover&quot;"/>
+                                  <item value="&quot;TestFailoverCleanup&quot;"/>
+                                  <item value="&quot;UnplannedFailover&quot;"/>
+                                </enum>
+                              </item>
+                            </prop>
+                          </item>
+                        </prop>
+                      </item>
+                    </prop>
+                    <prop type="dateTime" name="lastPlannedFailoverTime"/>
+                    <prop type="dateTime" name="lastTestFailoverTime"/>
+                    <prop type="dateTime" name="lastUnplannedFailoverTime"/>
+                    <prop type="string" name="primaryFabricFriendlyName"/>
+                    <prop type="string" name="primaryFabricId"/>
+                    <prop type="array<object>" name="providerSpecificDetails">
+                      <item type="object">
+                        <prop type="string" name="instanceType" required="True">
+                          <enum>
+                            <item value="&quot;A2A&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="instanceType" value="A2A">
+                          <prop type="string" name="primaryZone"/>
+                          <prop type="string" name="recoveryZone"/>
+                        </discriminator>
+                      </item>
+                    </prop>
+                    <prop type="string" name="recoveryFabricFriendlyName"/>
+                    <prop type="string" name="recoveryFabricId"/>
+                    <prop type="array<string>" name="replicationProviders">
+                      <item type="string"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2022-08-01" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.recoveryservices/vaults/{}/replicationrecoveryplans/{}" version="2022-08-01" swagger="mgmt-plane/recoveryservicessiterecovery/ResourceProviders/Microsoft.RecoveryServices/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuUmVjb3ZlcnlTZXJ2aWNlcy92YXVsdHMve3Jlc291cmNlTmFtZX0vcmVwbGljYXRpb25SZWNvdmVyeVBsYW5zL3tyZWNvdmVyeVBsYW5OYW1lfQ==/V/MjAyMi0wOC0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.recoveryPlanName" options="recovery-plan-name name n" required="True" idPart="child_name_1">
+          <help short="Recovery plan name."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.resourceName" options="vault-name" required="True" group="" idPart="name">
+          <help short="The name of the recovery services vault."/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="ReplicationRecoveryPlans_Delete">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationRecoveryPlans/{recoveryPlanName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="recoveryPlanName" arg="$Path.recoveryPlanName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="resourceName" arg="$Path.resourceName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-08-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200"/>
+          <response statusCode="202"/>
+          <response statusCode="204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="create" version="2022-08-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.recoveryservices/vaults/{}/replicationrecoveryplans/{}" version="2022-08-01" swagger="mgmt-plane/recoveryservicessiterecovery/ResourceProviders/Microsoft.RecoveryServices/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuUmVjb3ZlcnlTZXJ2aWNlcy92YXVsdHMve3Jlc291cmNlTmFtZX0vcmVwbGljYXRpb25SZWNvdmVyeVBsYW5zL3tyZWNvdmVyeVBsYW5OYW1lfQ==/V/MjAyMi0wOC0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.recoveryPlanName" options="recovery-plan-name name n" required="True" idPart="child_name_1">
+          <help short="Recovery plan name."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.resourceName" options="vault-name" required="True" group="" idPart="name">
+          <help short="The name of the recovery services vault."/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="string" var="$input.properties.failoverDeploymentModel" options="failover-deployment-model failover-deploy-model" group="Properties">
+          <help short="The failover deployment model."/>
+          <enum>
+            <item name="Classic" value="&quot;Classic&quot;"/>
+            <item name="NotApplicable" value="&quot;NotApplicable&quot;"/>
+            <item name="ResourceManager" value="&quot;ResourceManager&quot;"/>
+          </enum>
+        </arg>
+        <arg type="array<object>" var="$input.properties.groups" options="groups" required="True" group="Properties">
+          <help short="The recovery plan groups."/>
+          <item type="object">
+            <arg type="array<@RecoveryPlanAction_create>" var="$input.properties.groups[].endGroupActions" options="end-group-actions">
+              <help short="The end group actions."/>
+              <item type="@RecoveryPlanAction_create"/>
+            </arg>
+            <arg type="string" var="$input.properties.groups[].groupType" options="group-type" required="True">
+              <help short="The group type."/>
+              <enum>
+                <item name="Boot" value="&quot;Boot&quot;"/>
+                <item name="Failover" value="&quot;Failover&quot;"/>
+                <item name="Shutdown" value="&quot;Shutdown&quot;"/>
+              </enum>
+            </arg>
+            <arg type="array<object>" var="$input.properties.groups[].replicationProtectedItems" options="replication-protected-items">
+              <help short="The list of protected items."/>
+              <item type="object">
+                <arg type="string" var="$input.properties.groups[].replicationProtectedItems[].id" options="id">
+                  <help short="The ARM Id of the recovery plan protected item."/>
+                </arg>
+                <arg type="string" var="$input.properties.groups[].replicationProtectedItems[].virtualMachineId" options="virtual-machine-id">
+                  <help short="The virtual machine Id."/>
+                </arg>
+              </item>
+            </arg>
+            <arg type="array<object>" var="$input.properties.groups[].startGroupActions" options="start-group-actions">
+              <help short="The start group actions."/>
+              <item type="object" cls="RecoveryPlanAction_create">
+                <arg type="string" var="@RecoveryPlanAction_create.actionName" options="action-name" required="True">
+                  <help short="The action name."/>
+                </arg>
+                <arg type="object" var="@RecoveryPlanAction_create.customDetails" options="custom-details" required="True">
+                  <help short="The custom details."/>
+                  <arg type="object" var="@RecoveryPlanAction_create.customDetails.AutomationRunbookActionDetails" options="automation-runbook-action-details">
+                    <arg type="string" var="@RecoveryPlanAction_create.customDetails.AutomationRunbookActionDetails.fabricLocation" options="fabric-location" required="True">
+                      <help short="The fabric location."/>
+                      <enum>
+                        <item name="Primary" value="&quot;Primary&quot;"/>
+                        <item name="Recovery" value="&quot;Recovery&quot;"/>
+                      </enum>
+                    </arg>
+                    <arg type="string" var="@RecoveryPlanAction_create.customDetails.AutomationRunbookActionDetails.runbookId" options="runbook-id">
+                      <help short="The runbook ARM Id."/>
+                    </arg>
+                    <arg type="string" var="@RecoveryPlanAction_create.customDetails.AutomationRunbookActionDetails.timeout" options="timeout">
+                      <help short="The runbook timeout."/>
+                    </arg>
+                  </arg>
+                  <arg type="object" var="@RecoveryPlanAction_create.customDetails.ManualActionDetails" options="manual-action-details">
+                    <arg type="string" var="@RecoveryPlanAction_create.customDetails.ManualActionDetails.description" options="description">
+                      <help short="The manual action description."/>
+                    </arg>
+                  </arg>
+                  <arg type="object" var="@RecoveryPlanAction_create.customDetails.ScriptActionDetails" options="script-action-details">
+                    <arg type="string" var="@RecoveryPlanAction_create.customDetails.ScriptActionDetails.fabricLocation" options="fabric-location" required="True">
+                      <help short="The fabric location."/>
+                      <enum>
+                        <item name="Primary" value="&quot;Primary&quot;"/>
+                        <item name="Recovery" value="&quot;Recovery&quot;"/>
+                      </enum>
+                    </arg>
+                    <arg type="string" var="@RecoveryPlanAction_create.customDetails.ScriptActionDetails.path" options="path" required="True">
+                      <help short="The script path."/>
+                    </arg>
+                    <arg type="string" var="@RecoveryPlanAction_create.customDetails.ScriptActionDetails.timeout" options="timeout">
+                      <help short="The script timeout."/>
+                    </arg>
+                  </arg>
+                </arg>
+                <arg type="array<string>" var="@RecoveryPlanAction_create.failoverDirections" options="failover-directions" required="True">
+                  <help short="The list of failover directions."/>
+                  <item type="string">
+                    <enum>
+                      <item name="PrimaryToRecovery" value="&quot;PrimaryToRecovery&quot;"/>
+                      <item name="RecoveryToPrimary" value="&quot;RecoveryToPrimary&quot;"/>
+                    </enum>
+                  </item>
+                </arg>
+                <arg type="array<string>" var="@RecoveryPlanAction_create.failoverTypes" options="failover-types" required="True">
+                  <help short="The list of failover types."/>
+                  <item type="string">
+                    <enum>
+                      <item name="CancelFailover" value="&quot;CancelFailover&quot;"/>
+                      <item name="ChangePit" value="&quot;ChangePit&quot;"/>
+                      <item name="Commit" value="&quot;Commit&quot;"/>
+                      <item name="CompleteMigration" value="&quot;CompleteMigration&quot;"/>
+                      <item name="DisableProtection" value="&quot;DisableProtection&quot;"/>
+                      <item name="Failback" value="&quot;Failback&quot;"/>
+                      <item name="FinalizeFailback" value="&quot;FinalizeFailback&quot;"/>
+                      <item name="PlannedFailover" value="&quot;PlannedFailover&quot;"/>
+                      <item name="RepairReplication" value="&quot;RepairReplication&quot;"/>
+                      <item name="ReverseReplicate" value="&quot;ReverseReplicate&quot;"/>
+                      <item name="SwitchProtection" value="&quot;SwitchProtection&quot;"/>
+                      <item name="TestFailover" value="&quot;TestFailover&quot;"/>
+                      <item name="TestFailoverCleanup" value="&quot;TestFailoverCleanup&quot;"/>
+                      <item name="UnplannedFailover" value="&quot;UnplannedFailover&quot;"/>
+                    </enum>
+                  </item>
+                </arg>
+              </item>
+            </arg>
+          </item>
+        </arg>
+        <arg type="string" var="$input.properties.primaryFabricId" options="primary-fabric-id" required="True" group="Properties">
+          <help short="The primary fabric Id."/>
+        </arg>
+        <arg type="array<object>" var="$input.properties.providerSpecificInput" options="provider-specific-input provider-input" group="Properties">
+          <help short="The provider specific input."/>
+          <item type="object">
+            <arg type="object" var="$input.properties.providerSpecificInput[].A2A" options="a2-a">
+              <arg type="object" var="$input.properties.providerSpecificInput[].A2A.primaryExtendedLocation" options="primary-extended-location" cls="ExtendedLocation_create">
+                <help short="The primary extended location."/>
+                <arg type="string" var="@ExtendedLocation_create.name" options="name" required="True">
+                  <help short="The name of the extended location."/>
+                </arg>
+                <arg type="string" var="@ExtendedLocation_create.type" options="type" required="True">
+                  <help short="The extended location type."/>
+                  <enum>
+                    <item name="EdgeZone" value="&quot;EdgeZone&quot;"/>
+                  </enum>
+                </arg>
+              </arg>
+              <arg type="string" var="$input.properties.providerSpecificInput[].A2A.primaryZone" options="primary-zone">
+                <help short="The primary zone."/>
+              </arg>
+              <arg type="@ExtendedLocation_create" var="$input.properties.providerSpecificInput[].A2A.recoveryExtendedLocation" options="recovery-extended-location">
+                <help short="The recovery extended location."/>
+              </arg>
+              <arg type="string" var="$input.properties.providerSpecificInput[].A2A.recoveryZone" options="recovery-zone">
+                <help short="The recovery zone."/>
+              </arg>
+            </arg>
+          </item>
+        </arg>
+        <arg type="string" var="$input.properties.recoveryFabricId" options="recovery-fabric-id" required="True" group="Properties">
+          <help short="The recovery fabric Id."/>
+        </arg>
+      </argGroup>
+      <operation operationId="ReplicationRecoveryPlans_Create">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationRecoveryPlans/{recoveryPlanName}">
+          <request method="put">
+            <path>
+              <param type="string" name="recoveryPlanName" arg="$Path.recoveryPlanName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="resourceName" arg="$Path.resourceName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-08-01&quot;"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="input" required="True" clientFlatten="True">
+                  <prop type="object" name="properties" required="True">
+                    <prop type="string" name="failoverDeploymentModel" arg="$input.properties.failoverDeploymentModel">
+                      <enum>
+                        <item value="&quot;Classic&quot;"/>
+                        <item value="&quot;NotApplicable&quot;"/>
+                        <item value="&quot;ResourceManager&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<object>" name="groups" arg="$input.properties.groups" required="True">
+                      <item type="object">
+                        <prop type="array<@RecoveryPlanAction_create>" name="endGroupActions" arg="$input.properties.groups[].endGroupActions">
+                          <item type="@RecoveryPlanAction_create"/>
+                        </prop>
+                        <prop type="string" name="groupType" arg="$input.properties.groups[].groupType" required="True">
+                          <enum>
+                            <item value="&quot;Boot&quot;"/>
+                            <item value="&quot;Failover&quot;"/>
+                            <item value="&quot;Shutdown&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<object>" name="replicationProtectedItems" arg="$input.properties.groups[].replicationProtectedItems">
+                          <item type="object">
+                            <prop type="string" name="id" arg="$input.properties.groups[].replicationProtectedItems[].id"/>
+                            <prop type="string" name="virtualMachineId" arg="$input.properties.groups[].replicationProtectedItems[].virtualMachineId"/>
+                          </item>
+                        </prop>
+                        <prop type="array<object>" name="startGroupActions" arg="$input.properties.groups[].startGroupActions">
+                          <item type="object" cls="RecoveryPlanAction_create">
+                            <prop type="string" name="actionName" arg="@RecoveryPlanAction_create.actionName" required="True"/>
+                            <prop type="object" name="customDetails" arg="@RecoveryPlanAction_create.customDetails" required="True">
+                              <prop type="string" name="instanceType" required="True">
+                                <enum>
+                                  <item arg="@RecoveryPlanAction_create.customDetails.AutomationRunbookActionDetails" value="&quot;AutomationRunbookActionDetails&quot;"/>
+                                  <item arg="@RecoveryPlanAction_create.customDetails.ManualActionDetails" value="&quot;ManualActionDetails&quot;"/>
+                                  <item arg="@RecoveryPlanAction_create.customDetails.ScriptActionDetails" value="&quot;ScriptActionDetails&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="instanceType" value="AutomationRunbookActionDetails">
+                                <prop type="string" name="fabricLocation" arg="@RecoveryPlanAction_create.customDetails.AutomationRunbookActionDetails.fabricLocation" required="True">
+                                  <enum>
+                                    <item value="&quot;Primary&quot;"/>
+                                    <item value="&quot;Recovery&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="runbookId" arg="@RecoveryPlanAction_create.customDetails.AutomationRunbookActionDetails.runbookId"/>
+                                <prop type="string" name="timeout" arg="@RecoveryPlanAction_create.customDetails.AutomationRunbookActionDetails.timeout"/>
+                              </discriminator>
+                              <discriminator property="instanceType" value="ManualActionDetails">
+                                <prop type="string" name="description" arg="@RecoveryPlanAction_create.customDetails.ManualActionDetails.description"/>
+                              </discriminator>
+                              <discriminator property="instanceType" value="ScriptActionDetails">
+                                <prop type="string" name="fabricLocation" arg="@RecoveryPlanAction_create.customDetails.ScriptActionDetails.fabricLocation" required="True">
+                                  <enum>
+                                    <item value="&quot;Primary&quot;"/>
+                                    <item value="&quot;Recovery&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="path" arg="@RecoveryPlanAction_create.customDetails.ScriptActionDetails.path" required="True"/>
+                                <prop type="string" name="timeout" arg="@RecoveryPlanAction_create.customDetails.ScriptActionDetails.timeout"/>
+                              </discriminator>
+                            </prop>
+                            <prop type="array<string>" name="failoverDirections" arg="@RecoveryPlanAction_create.failoverDirections" required="True">
+                              <item type="string">
+                                <enum>
+                                  <item value="&quot;PrimaryToRecovery&quot;"/>
+                                  <item value="&quot;RecoveryToPrimary&quot;"/>
+                                </enum>
+                              </item>
+                            </prop>
+                            <prop type="array<string>" name="failoverTypes" arg="@RecoveryPlanAction_create.failoverTypes" required="True">
+                              <item type="string">
+                                <enum>
+                                  <item value="&quot;CancelFailover&quot;"/>
+                                  <item value="&quot;ChangePit&quot;"/>
+                                  <item value="&quot;Commit&quot;"/>
+                                  <item value="&quot;CompleteMigration&quot;"/>
+                                  <item value="&quot;DisableProtection&quot;"/>
+                                  <item value="&quot;Failback&quot;"/>
+                                  <item value="&quot;FinalizeFailback&quot;"/>
+                                  <item value="&quot;PlannedFailover&quot;"/>
+                                  <item value="&quot;RepairReplication&quot;"/>
+                                  <item value="&quot;ReverseReplicate&quot;"/>
+                                  <item value="&quot;SwitchProtection&quot;"/>
+                                  <item value="&quot;TestFailover&quot;"/>
+                                  <item value="&quot;TestFailoverCleanup&quot;"/>
+                                  <item value="&quot;UnplannedFailover&quot;"/>
+                                </enum>
+                              </item>
+                            </prop>
+                          </item>
+                        </prop>
+                      </item>
+                    </prop>
+                    <prop type="string" name="primaryFabricId" arg="$input.properties.primaryFabricId" required="True"/>
+                    <prop type="array<object>" name="providerSpecificInput" arg="$input.properties.providerSpecificInput">
+                      <item type="object">
+                        <prop type="string" name="instanceType" required="True">
+                          <enum>
+                            <item arg="$input.properties.providerSpecificInput[].A2A" value="&quot;A2A&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="instanceType" value="A2A">
+                          <prop type="object" name="primaryExtendedLocation" arg="$input.properties.providerSpecificInput[].A2A.primaryExtendedLocation" cls="ExtendedLocation_create">
+                            <prop type="string" name="name" arg="@ExtendedLocation_create.name" required="True"/>
+                            <prop type="string" name="type" arg="@ExtendedLocation_create.type" required="True">
+                              <enum>
+                                <item value="&quot;EdgeZone&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop type="string" name="primaryZone" arg="$input.properties.providerSpecificInput[].A2A.primaryZone"/>
+                          <prop type="@ExtendedLocation_create" name="recoveryExtendedLocation" arg="$input.properties.providerSpecificInput[].A2A.recoveryExtendedLocation"/>
+                          <prop type="string" name="recoveryZone" arg="$input.properties.providerSpecificInput[].A2A.recoveryZone"/>
+                        </discriminator>
+                      </item>
+                    </prop>
+                    <prop type="string" name="recoveryFabricId" arg="$input.properties.recoveryFabricId" required="True"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.RecoveryServices/vaults/{}/replicationRecoveryPlans/{}"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="array<string>" name="allowedOperations">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="object" name="currentScenario">
+                      <prop type="string" name="jobId"/>
+                      <prop type="string" name="scenarioName"/>
+                      <prop type="dateTime" name="startTime"/>
+                    </prop>
+                    <prop type="string" name="currentScenarioStatus"/>
+                    <prop type="string" name="currentScenarioStatusDescription"/>
+                    <prop type="string" name="failoverDeploymentModel"/>
+                    <prop type="string" name="friendlyName"/>
+                    <prop type="array<object>" name="groups">
+                      <item type="object">
+                        <prop type="array<@RecoveryPlanAction_read>" name="endGroupActions">
+                          <item type="@RecoveryPlanAction_read"/>
+                        </prop>
+                        <prop type="string" name="groupType" required="True">
+                          <enum>
+                            <item value="&quot;Boot&quot;"/>
+                            <item value="&quot;Failover&quot;"/>
+                            <item value="&quot;Shutdown&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<object>" name="replicationProtectedItems">
+                          <item type="object">
+                            <prop type="string" name="id"/>
+                            <prop type="string" name="virtualMachineId"/>
+                          </item>
+                        </prop>
+                        <prop type="array<object>" name="startGroupActions">
+                          <item type="object" cls="RecoveryPlanAction_read">
+                            <prop type="string" name="actionName" required="True"/>
+                            <prop type="object" name="customDetails" required="True">
+                              <prop type="string" name="instanceType" required="True">
+                                <enum>
+                                  <item value="&quot;AutomationRunbookActionDetails&quot;"/>
+                                  <item value="&quot;ManualActionDetails&quot;"/>
+                                  <item value="&quot;ScriptActionDetails&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="instanceType" value="AutomationRunbookActionDetails">
+                                <prop type="string" name="fabricLocation" required="True">
+                                  <enum>
+                                    <item value="&quot;Primary&quot;"/>
+                                    <item value="&quot;Recovery&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="runbookId"/>
+                                <prop type="string" name="timeout"/>
+                              </discriminator>
+                              <discriminator property="instanceType" value="ManualActionDetails">
+                                <prop type="string" name="description"/>
+                              </discriminator>
+                              <discriminator property="instanceType" value="ScriptActionDetails">
+                                <prop type="string" name="fabricLocation" required="True">
+                                  <enum>
+                                    <item value="&quot;Primary&quot;"/>
+                                    <item value="&quot;Recovery&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="path" required="True"/>
+                                <prop type="string" name="timeout"/>
+                              </discriminator>
+                            </prop>
+                            <prop type="array<string>" name="failoverDirections" required="True">
+                              <item type="string">
+                                <enum>
+                                  <item value="&quot;PrimaryToRecovery&quot;"/>
+                                  <item value="&quot;RecoveryToPrimary&quot;"/>
+                                </enum>
+                              </item>
+                            </prop>
+                            <prop type="array<string>" name="failoverTypes" required="True">
+                              <item type="string">
+                                <enum>
+                                  <item value="&quot;CancelFailover&quot;"/>
+                                  <item value="&quot;ChangePit&quot;"/>
+                                  <item value="&quot;Commit&quot;"/>
+                                  <item value="&quot;CompleteMigration&quot;"/>
+                                  <item value="&quot;DisableProtection&quot;"/>
+                                  <item value="&quot;Failback&quot;"/>
+                                  <item value="&quot;FinalizeFailback&quot;"/>
+                                  <item value="&quot;PlannedFailover&quot;"/>
+                                  <item value="&quot;RepairReplication&quot;"/>
+                                  <item value="&quot;ReverseReplicate&quot;"/>
+                                  <item value="&quot;SwitchProtection&quot;"/>
+                                  <item value="&quot;TestFailover&quot;"/>
+                                  <item value="&quot;TestFailoverCleanup&quot;"/>
+                                  <item value="&quot;UnplannedFailover&quot;"/>
+                                </enum>
+                              </item>
+                            </prop>
+                          </item>
+                        </prop>
+                      </item>
+                    </prop>
+                    <prop type="dateTime" name="lastPlannedFailoverTime"/>
+                    <prop type="dateTime" name="lastTestFailoverTime"/>
+                    <prop type="dateTime" name="lastUnplannedFailoverTime"/>
+                    <prop type="string" name="primaryFabricFriendlyName"/>
+                    <prop type="string" name="primaryFabricId"/>
+                    <prop type="array<object>" name="providerSpecificDetails">
+                      <item type="object">
+                        <prop type="string" name="instanceType" required="True">
+                          <enum>
+                            <item value="&quot;A2A&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="instanceType" value="A2A">
+                          <prop type="string" name="primaryZone"/>
+                          <prop type="string" name="recoveryZone"/>
+                        </discriminator>
+                      </item>
+                    </prop>
+                    <prop type="string" name="recoveryFabricFriendlyName"/>
+                    <prop type="string" name="recoveryFabricId"/>
+                    <prop type="array<string>" name="replicationProviders">
+                      <item type="string"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2022-08-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.recoveryservices/vaults/{}/replicationrecoveryplans/{}" version="2022-08-01" swagger="mgmt-plane/recoveryservicessiterecovery/ResourceProviders/Microsoft.RecoveryServices/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuUmVjb3ZlcnlTZXJ2aWNlcy92YXVsdHMve3Jlc291cmNlTmFtZX0vcmVwbGljYXRpb25SZWNvdmVyeVBsYW5zL3tyZWNvdmVyeVBsYW5OYW1lfQ==/V/MjAyMi0wOC0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.recoveryPlanName" options="recovery-plan-name name n" required="True" idPart="child_name_1">
+          <help short="Name of the recovery plan."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.resourceName" options="vault-name" required="True" group="" idPart="name">
+          <help short="The name of the recovery services vault."/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg nullable="True" type="string" var="$input.properties.failoverDeploymentModel" options="failover-deployment-model failover-deploy-model" group="Properties">
+          <help short="The failover deployment model."/>
+          <enum>
+            <item name="Classic" value="&quot;Classic&quot;"/>
+            <item name="NotApplicable" value="&quot;NotApplicable&quot;"/>
+            <item name="ResourceManager" value="&quot;ResourceManager&quot;"/>
+          </enum>
+        </arg>
+        <arg type="array<object>" var="$input.properties.groups" options="groups" group="Properties">
+          <help short="The recovery plan groups."/>
+          <item nullable="True" type="object">
+            <arg nullable="True" type="array<@RecoveryPlanAction_update>" var="$input.properties.groups[].endGroupActions" options="end-group-actions">
+              <help short="The end group actions."/>
+              <item nullable="True" type="@RecoveryPlanAction_update"/>
+            </arg>
+            <arg type="string" var="$input.properties.groups[].groupType" options="group-type">
+              <help short="The group type."/>
+              <enum>
+                <item name="Boot" value="&quot;Boot&quot;"/>
+                <item name="Failover" value="&quot;Failover&quot;"/>
+                <item name="Shutdown" value="&quot;Shutdown&quot;"/>
+              </enum>
+            </arg>
+            <arg nullable="True" type="array<object>" var="$input.properties.groups[].replicationProtectedItems" options="replication-protected-items">
+              <help short="The list of protected items."/>
+              <item nullable="True" type="object">
+                <arg nullable="True" type="string" var="$input.properties.groups[].replicationProtectedItems[].id" options="id">
+                  <help short="The ARM Id of the recovery plan protected item."/>
+                </arg>
+                <arg nullable="True" type="string" var="$input.properties.groups[].replicationProtectedItems[].virtualMachineId" options="virtual-machine-id">
+                  <help short="The virtual machine Id."/>
+                </arg>
+              </item>
+            </arg>
+            <arg nullable="True" type="array<object>" var="$input.properties.groups[].startGroupActions" options="start-group-actions">
+              <help short="The start group actions."/>
+              <item nullable="True" type="object" cls="RecoveryPlanAction_update">
+                <arg type="string" var="@RecoveryPlanAction_update.actionName" options="action-name">
+                  <help short="The action name."/>
+                </arg>
+                <arg type="object" var="@RecoveryPlanAction_update.customDetails" options="custom-details">
+                  <help short="The custom details."/>
+                  <arg type="object" var="@RecoveryPlanAction_update.customDetails.AutomationRunbookActionDetails" options="automation-runbook-action-details">
+                    <arg type="string" var="@RecoveryPlanAction_update.customDetails.AutomationRunbookActionDetails.fabricLocation" options="fabric-location">
+                      <help short="The fabric location."/>
+                      <enum>
+                        <item name="Primary" value="&quot;Primary&quot;"/>
+                        <item name="Recovery" value="&quot;Recovery&quot;"/>
+                      </enum>
+                    </arg>
+                    <arg nullable="True" type="string" var="@RecoveryPlanAction_update.customDetails.AutomationRunbookActionDetails.runbookId" options="runbook-id">
+                      <help short="The runbook ARM Id."/>
+                    </arg>
+                    <arg nullable="True" type="string" var="@RecoveryPlanAction_update.customDetails.AutomationRunbookActionDetails.timeout" options="timeout">
+                      <help short="The runbook timeout."/>
+                    </arg>
+                  </arg>
+                  <arg type="object" var="@RecoveryPlanAction_update.customDetails.ManualActionDetails" options="manual-action-details">
+                    <arg nullable="True" type="string" var="@RecoveryPlanAction_update.customDetails.ManualActionDetails.description" options="description">
+                      <help short="The manual action description."/>
+                    </arg>
+                  </arg>
+                  <arg type="object" var="@RecoveryPlanAction_update.customDetails.ScriptActionDetails" options="script-action-details">
+                    <arg type="string" var="@RecoveryPlanAction_update.customDetails.ScriptActionDetails.fabricLocation" options="fabric-location">
+                      <help short="The fabric location."/>
+                      <enum>
+                        <item name="Primary" value="&quot;Primary&quot;"/>
+                        <item name="Recovery" value="&quot;Recovery&quot;"/>
+                      </enum>
+                    </arg>
+                    <arg type="string" var="@RecoveryPlanAction_update.customDetails.ScriptActionDetails.path" options="path">
+                      <help short="The script path."/>
+                    </arg>
+                    <arg nullable="True" type="string" var="@RecoveryPlanAction_update.customDetails.ScriptActionDetails.timeout" options="timeout">
+                      <help short="The script timeout."/>
+                    </arg>
+                  </arg>
+                </arg>
+                <arg type="array<string>" var="@RecoveryPlanAction_update.failoverDirections" options="failover-directions">
+                  <help short="The list of failover directions."/>
+                  <item nullable="True" type="string">
+                    <enum>
+                      <item name="PrimaryToRecovery" value="&quot;PrimaryToRecovery&quot;"/>
+                      <item name="RecoveryToPrimary" value="&quot;RecoveryToPrimary&quot;"/>
+                    </enum>
+                  </item>
+                </arg>
+                <arg type="array<string>" var="@RecoveryPlanAction_update.failoverTypes" options="failover-types">
+                  <help short="The list of failover types."/>
+                  <item nullable="True" type="string">
+                    <enum>
+                      <item name="CancelFailover" value="&quot;CancelFailover&quot;"/>
+                      <item name="ChangePit" value="&quot;ChangePit&quot;"/>
+                      <item name="Commit" value="&quot;Commit&quot;"/>
+                      <item name="CompleteMigration" value="&quot;CompleteMigration&quot;"/>
+                      <item name="DisableProtection" value="&quot;DisableProtection&quot;"/>
+                      <item name="Failback" value="&quot;Failback&quot;"/>
+                      <item name="FinalizeFailback" value="&quot;FinalizeFailback&quot;"/>
+                      <item name="PlannedFailover" value="&quot;PlannedFailover&quot;"/>
+                      <item name="RepairReplication" value="&quot;RepairReplication&quot;"/>
+                      <item name="ReverseReplicate" value="&quot;ReverseReplicate&quot;"/>
+                      <item name="SwitchProtection" value="&quot;SwitchProtection&quot;"/>
+                      <item name="TestFailover" value="&quot;TestFailover&quot;"/>
+                      <item name="TestFailoverCleanup" value="&quot;TestFailoverCleanup&quot;"/>
+                      <item name="UnplannedFailover" value="&quot;UnplannedFailover&quot;"/>
+                    </enum>
+                  </item>
+                </arg>
+              </item>
+            </arg>
+          </item>
+        </arg>
+        <arg type="string" var="$input.properties.primaryFabricId" options="primary-fabric-id" group="Properties">
+          <help short="The primary fabric Id."/>
+        </arg>
+        <arg nullable="True" type="array<object>" var="$input.properties.providerSpecificInput" options="provider-specific-input provider-input" group="Properties">
+          <help short="The provider specific input."/>
+          <item nullable="True" type="object">
+            <arg type="object" var="$input.properties.providerSpecificInput[].A2A" options="a2-a">
+              <arg nullable="True" type="object" var="$input.properties.providerSpecificInput[].A2A.primaryExtendedLocation" options="primary-extended-location" cls="ExtendedLocation_update">
+                <help short="The primary extended location."/>
+                <arg type="string" var="@ExtendedLocation_update.name" options="name">
+                  <help short="The name of the extended location."/>
+                </arg>
+                <arg type="string" var="@ExtendedLocation_update.type" options="type">
+                  <help short="The extended location type."/>
+                  <enum>
+                    <item name="EdgeZone" value="&quot;EdgeZone&quot;"/>
+                  </enum>
+                </arg>
+              </arg>
+              <arg nullable="True" type="string" var="$input.properties.providerSpecificInput[].A2A.primaryZone" options="primary-zone">
+                <help short="The primary zone."/>
+              </arg>
+              <arg nullable="True" type="@ExtendedLocation_update" var="$input.properties.providerSpecificInput[].A2A.recoveryExtendedLocation" options="recovery-extended-location">
+                <help short="The recovery extended location."/>
+              </arg>
+              <arg nullable="True" type="string" var="$input.properties.providerSpecificInput[].A2A.recoveryZone" options="recovery-zone">
+                <help short="The recovery zone."/>
+              </arg>
+            </arg>
+          </item>
+        </arg>
+        <arg type="string" var="$input.properties.recoveryFabricId" options="recovery-fabric-id" group="Properties">
+          <help short="The recovery fabric Id."/>
+        </arg>
+      </argGroup>
+      <operation operationId="ReplicationRecoveryPlans_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationRecoveryPlans/{recoveryPlanName}">
+          <request method="get">
+            <path>
+              <param type="string" name="recoveryPlanName" arg="$Path.recoveryPlanName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="resourceName" arg="$Path.resourceName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-08-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="RecoveryPlan_read">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.RecoveryServices/vaults/{}/replicationRecoveryPlans/{}"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="array<string>" name="allowedOperations">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="object" name="currentScenario">
+                      <prop type="string" name="jobId"/>
+                      <prop type="string" name="scenarioName"/>
+                      <prop type="dateTime" name="startTime"/>
+                    </prop>
+                    <prop type="string" name="currentScenarioStatus"/>
+                    <prop type="string" name="currentScenarioStatusDescription"/>
+                    <prop type="string" name="failoverDeploymentModel"/>
+                    <prop type="string" name="friendlyName"/>
+                    <prop type="array<object>" name="groups">
+                      <item type="object">
+                        <prop type="array<@RecoveryPlanAction_read>" name="endGroupActions">
+                          <item type="@RecoveryPlanAction_read"/>
+                        </prop>
+                        <prop type="string" name="groupType" required="True">
+                          <enum>
+                            <item value="&quot;Boot&quot;"/>
+                            <item value="&quot;Failover&quot;"/>
+                            <item value="&quot;Shutdown&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<object>" name="replicationProtectedItems">
+                          <item type="object">
+                            <prop type="string" name="id"/>
+                            <prop type="string" name="virtualMachineId"/>
+                          </item>
+                        </prop>
+                        <prop type="array<object>" name="startGroupActions">
+                          <item type="object" cls="RecoveryPlanAction_read">
+                            <prop type="string" name="actionName" required="True"/>
+                            <prop type="object" name="customDetails" required="True">
+                              <prop type="string" name="instanceType" required="True">
+                                <enum>
+                                  <item value="&quot;AutomationRunbookActionDetails&quot;"/>
+                                  <item value="&quot;ManualActionDetails&quot;"/>
+                                  <item value="&quot;ScriptActionDetails&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="instanceType" value="AutomationRunbookActionDetails">
+                                <prop type="string" name="fabricLocation" required="True">
+                                  <enum>
+                                    <item value="&quot;Primary&quot;"/>
+                                    <item value="&quot;Recovery&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="runbookId"/>
+                                <prop type="string" name="timeout"/>
+                              </discriminator>
+                              <discriminator property="instanceType" value="ManualActionDetails">
+                                <prop type="string" name="description"/>
+                              </discriminator>
+                              <discriminator property="instanceType" value="ScriptActionDetails">
+                                <prop type="string" name="fabricLocation" required="True">
+                                  <enum>
+                                    <item value="&quot;Primary&quot;"/>
+                                    <item value="&quot;Recovery&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="path" required="True"/>
+                                <prop type="string" name="timeout"/>
+                              </discriminator>
+                            </prop>
+                            <prop type="array<string>" name="failoverDirections" required="True">
+                              <item type="string">
+                                <enum>
+                                  <item value="&quot;PrimaryToRecovery&quot;"/>
+                                  <item value="&quot;RecoveryToPrimary&quot;"/>
+                                </enum>
+                              </item>
+                            </prop>
+                            <prop type="array<string>" name="failoverTypes" required="True">
+                              <item type="string">
+                                <enum>
+                                  <item value="&quot;CancelFailover&quot;"/>
+                                  <item value="&quot;ChangePit&quot;"/>
+                                  <item value="&quot;Commit&quot;"/>
+                                  <item value="&quot;CompleteMigration&quot;"/>
+                                  <item value="&quot;DisableProtection&quot;"/>
+                                  <item value="&quot;Failback&quot;"/>
+                                  <item value="&quot;FinalizeFailback&quot;"/>
+                                  <item value="&quot;PlannedFailover&quot;"/>
+                                  <item value="&quot;RepairReplication&quot;"/>
+                                  <item value="&quot;ReverseReplicate&quot;"/>
+                                  <item value="&quot;SwitchProtection&quot;"/>
+                                  <item value="&quot;TestFailover&quot;"/>
+                                  <item value="&quot;TestFailoverCleanup&quot;"/>
+                                  <item value="&quot;UnplannedFailover&quot;"/>
+                                </enum>
+                              </item>
+                            </prop>
+                          </item>
+                        </prop>
+                      </item>
+                    </prop>
+                    <prop type="dateTime" name="lastPlannedFailoverTime"/>
+                    <prop type="dateTime" name="lastTestFailoverTime"/>
+                    <prop type="dateTime" name="lastUnplannedFailoverTime"/>
+                    <prop type="string" name="primaryFabricFriendlyName"/>
+                    <prop type="string" name="primaryFabricId"/>
+                    <prop type="array<object>" name="providerSpecificDetails">
+                      <item type="object">
+                        <prop type="string" name="instanceType" required="True">
+                          <enum>
+                            <item value="&quot;A2A&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="instanceType" value="A2A">
+                          <prop type="string" name="primaryZone"/>
+                          <prop type="string" name="recoveryZone"/>
+                        </discriminator>
+                      </item>
+                    </prop>
+                    <prop type="string" name="recoveryFabricFriendlyName"/>
+                    <prop type="string" name="recoveryFabricId"/>
+                    <prop type="array<string>" name="replicationProviders">
+                      <item type="string"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate ref="$Instance">
+          <json>
+            <schema type="object" name="input" required="True" clientFlatten="True">
+              <prop type="object" name="properties" required="True">
+                <prop type="string" name="failoverDeploymentModel" arg="$input.properties.failoverDeploymentModel">
+                  <enum>
+                    <item value="&quot;Classic&quot;"/>
+                    <item value="&quot;NotApplicable&quot;"/>
+                    <item value="&quot;ResourceManager&quot;"/>
+                  </enum>
+                </prop>
+                <prop type="array<object>" name="groups" arg="$input.properties.groups" required="True">
+                  <item type="object">
+                    <prop type="array<@RecoveryPlanAction_update>" name="endGroupActions" arg="$input.properties.groups[].endGroupActions">
+                      <item type="@RecoveryPlanAction_update"/>
+                    </prop>
+                    <prop type="string" name="groupType" arg="$input.properties.groups[].groupType" required="True">
+                      <enum>
+                        <item value="&quot;Boot&quot;"/>
+                        <item value="&quot;Failover&quot;"/>
+                        <item value="&quot;Shutdown&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<object>" name="replicationProtectedItems" arg="$input.properties.groups[].replicationProtectedItems">
+                      <item type="object">
+                        <prop type="string" name="id" arg="$input.properties.groups[].replicationProtectedItems[].id"/>
+                        <prop type="string" name="virtualMachineId" arg="$input.properties.groups[].replicationProtectedItems[].virtualMachineId"/>
+                      </item>
+                    </prop>
+                    <prop type="array<object>" name="startGroupActions" arg="$input.properties.groups[].startGroupActions">
+                      <item type="object" cls="RecoveryPlanAction_update">
+                        <prop type="string" name="actionName" arg="@RecoveryPlanAction_update.actionName" required="True"/>
+                        <prop type="object" name="customDetails" arg="@RecoveryPlanAction_update.customDetails" required="True">
+                          <prop type="string" name="instanceType" required="True">
+                            <enum>
+                              <item arg="@RecoveryPlanAction_update.customDetails.AutomationRunbookActionDetails" value="&quot;AutomationRunbookActionDetails&quot;"/>
+                              <item arg="@RecoveryPlanAction_update.customDetails.ManualActionDetails" value="&quot;ManualActionDetails&quot;"/>
+                              <item arg="@RecoveryPlanAction_update.customDetails.ScriptActionDetails" value="&quot;ScriptActionDetails&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="instanceType" value="AutomationRunbookActionDetails">
+                            <prop type="string" name="fabricLocation" arg="@RecoveryPlanAction_update.customDetails.AutomationRunbookActionDetails.fabricLocation" required="True">
+                              <enum>
+                                <item value="&quot;Primary&quot;"/>
+                                <item value="&quot;Recovery&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="runbookId" arg="@RecoveryPlanAction_update.customDetails.AutomationRunbookActionDetails.runbookId"/>
+                            <prop type="string" name="timeout" arg="@RecoveryPlanAction_update.customDetails.AutomationRunbookActionDetails.timeout"/>
+                          </discriminator>
+                          <discriminator property="instanceType" value="ManualActionDetails">
+                            <prop type="string" name="description" arg="@RecoveryPlanAction_update.customDetails.ManualActionDetails.description"/>
+                          </discriminator>
+                          <discriminator property="instanceType" value="ScriptActionDetails">
+                            <prop type="string" name="fabricLocation" arg="@RecoveryPlanAction_update.customDetails.ScriptActionDetails.fabricLocation" required="True">
+                              <enum>
+                                <item value="&quot;Primary&quot;"/>
+                                <item value="&quot;Recovery&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="path" arg="@RecoveryPlanAction_update.customDetails.ScriptActionDetails.path" required="True"/>
+                            <prop type="string" name="timeout" arg="@RecoveryPlanAction_update.customDetails.ScriptActionDetails.timeout"/>
+                          </discriminator>
+                        </prop>
+                        <prop type="array<string>" name="failoverDirections" arg="@RecoveryPlanAction_update.failoverDirections" required="True">
+                          <item type="string">
+                            <enum>
+                              <item value="&quot;PrimaryToRecovery&quot;"/>
+                              <item value="&quot;RecoveryToPrimary&quot;"/>
+                            </enum>
+                          </item>
+                        </prop>
+                        <prop type="array<string>" name="failoverTypes" arg="@RecoveryPlanAction_update.failoverTypes" required="True">
+                          <item type="string">
+                            <enum>
+                              <item value="&quot;CancelFailover&quot;"/>
+                              <item value="&quot;ChangePit&quot;"/>
+                              <item value="&quot;Commit&quot;"/>
+                              <item value="&quot;CompleteMigration&quot;"/>
+                              <item value="&quot;DisableProtection&quot;"/>
+                              <item value="&quot;Failback&quot;"/>
+                              <item value="&quot;FinalizeFailback&quot;"/>
+                              <item value="&quot;PlannedFailover&quot;"/>
+                              <item value="&quot;RepairReplication&quot;"/>
+                              <item value="&quot;ReverseReplicate&quot;"/>
+                              <item value="&quot;SwitchProtection&quot;"/>
+                              <item value="&quot;TestFailover&quot;"/>
+                              <item value="&quot;TestFailoverCleanup&quot;"/>
+                              <item value="&quot;UnplannedFailover&quot;"/>
+                            </enum>
+                          </item>
+                        </prop>
+                      </item>
+                    </prop>
+                  </item>
+                </prop>
+                <prop type="string" name="primaryFabricId" arg="$input.properties.primaryFabricId" required="True"/>
+                <prop type="array<object>" name="providerSpecificInput" arg="$input.properties.providerSpecificInput">
+                  <item type="object">
+                    <prop type="string" name="instanceType" required="True">
+                      <enum>
+                        <item arg="$input.properties.providerSpecificInput[].A2A" value="&quot;A2A&quot;"/>
+                      </enum>
+                    </prop>
+                    <discriminator property="instanceType" value="A2A">
+                      <prop type="object" name="primaryExtendedLocation" arg="$input.properties.providerSpecificInput[].A2A.primaryExtendedLocation" cls="ExtendedLocation_update">
+                        <prop type="string" name="name" arg="@ExtendedLocation_update.name" required="True"/>
+                        <prop type="string" name="type" arg="@ExtendedLocation_update.type" required="True">
+                          <enum>
+                            <item value="&quot;EdgeZone&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="primaryZone" arg="$input.properties.providerSpecificInput[].A2A.primaryZone"/>
+                      <prop type="@ExtendedLocation_update" name="recoveryExtendedLocation" arg="$input.properties.providerSpecificInput[].A2A.recoveryExtendedLocation"/>
+                      <prop type="string" name="recoveryZone" arg="$input.properties.providerSpecificInput[].A2A.recoveryZone"/>
+                    </discriminator>
+                  </item>
+                </prop>
+                <prop type="string" name="recoveryFabricId" arg="$input.properties.recoveryFabricId" required="True"/>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="ReplicationRecoveryPlans_Create">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationRecoveryPlans/{recoveryPlanName}">
+          <request method="put">
+            <path>
+              <param type="string" name="recoveryPlanName" arg="$Path.recoveryPlanName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="resourceName" arg="$Path.resourceName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-08-01&quot;"/>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="@RecoveryPlan_read"/>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
