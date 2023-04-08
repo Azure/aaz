@@ -12,5 +12,5 @@ List the protection container mappings in the vault.
 
 - list-protection-container-mapping
     ```bash
-        site-recovery vault list-protection-container-mapping -g {rg} --resource-name {vault_name}
+        site-recovery vault list-protection-container-mapping -g rg --vault-name vault_name
     ```

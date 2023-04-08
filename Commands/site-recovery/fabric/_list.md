@@ -12,5 +12,5 @@ List a list of the Azure Site Recovery fabrics in the vault.
 
 - fabric list
     ```bash
-        site-recovery fabric list -g {rg} --vault-name {vault_name}
+        site-recovery fabric list -g rg --vault-name vault_name
     ```

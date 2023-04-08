@@ -12,5 +12,5 @@ Show the supported operating system for the vault.
 
 - show-supported-operating-system
     ```bash
-        site-recovery vault show-supported-operating-system -g {rg} --resource-name {vault_name}
+        site-recovery vault show-supported-operating-system -g rg --vault-name vault_name
     ```

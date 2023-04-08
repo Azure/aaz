@@ -12,5 +12,5 @@ List the vCenter servers registered in the vault.
 
 - list-v-center
     ```bash
-        site-recovery vault list-v-center -g {rg} --resource-name {vault_name}
+        site-recovery vault list-v-center -g rg --vault-name vault_name
     ```

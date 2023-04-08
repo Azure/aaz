@@ -12,5 +12,5 @@ Refresh default for the health of the vault.
 
 - health refresh-default
     ```bash
-        site-recovery vault health refresh-default -g {rg} --resource-name {vault_name}
+        site-recovery vault health refresh-default -g rg --vault-name vault_name
     ```

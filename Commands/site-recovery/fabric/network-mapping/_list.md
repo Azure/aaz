@@ -12,5 +12,5 @@ List all ASR network mappings for the specified network.
 
 - network-mapping list
     ```bash
-        site-recovery fabric network-mapping list -g {rg} --fabric-name {fabric_source_name} --network-name azureNetwork --vault-name {vault_name}
+        site-recovery fabric network-mapping list -g rg --fabric-name fabric_source_name --network-name azureNetwork --vault-name vault_name
     ```

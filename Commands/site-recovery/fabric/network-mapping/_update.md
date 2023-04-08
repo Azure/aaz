@@ -12,5 +12,5 @@ Update operation to create an ASR network mapping.
 
 - network-mapping update
     ```bash
-        site-recovery fabric network-mapping update -g {rg} --fabric-name {fabric_recovery_name} -n {network_mapping_src_to_recovery_name} --network-name azureNetwork --vault-name {vault_name} --recovery-network-id {vnetvm_id} --fabric-details '{azure-to-azure:{primary-network-id:{vnet_recovery_id}}}' --recovery-fabric-name {fabric_source_name}
+        site-recovery fabric network-mapping update -g rg --fabric-name fabric_recovery_name -n network_mapping_src_to_recovery_name --network-name azureNetwork --vault-name vault_name --recovery-network-id vnetvm_id --fabric-details '{azure-to-azure:{primary-network-id:vnet_recovery_id}}' --recovery-fabric-name fabric_source_name
     ```

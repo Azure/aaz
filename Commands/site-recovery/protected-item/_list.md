@@ -12,5 +12,5 @@ List the list of ASR replication protected items in the protection container.
 
 - protected-item list
     ```bash
-        site-recovery protected-item list -g {rg} --fabric-name {fabric_recovery_name} --protection-container {container_recovery_name} --vault-name {vault_name}
+        site-recovery protected-item list -g rg --fabric-name fabric_recovery_name --protection-container container_recovery_name --vault-name vault_name
     ```

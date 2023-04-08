@@ -12,5 +12,5 @@ Create an email notification(alert) configuration.
 
 - alert-setting create
     ```bash
-        site-recovery vault alert-setting create -n defaultAlertSetting -g {rg} --resource-name {vault_name} --custom-email-addresses email@address.com --locale en_US --send-to-owners Send
+        site-recovery vault alert-setting create -n defaultAlertSetting -g rg --vault-name vault_name --custom-email-addresses email@address.com --locale en_US --send-to-owners Send
     ```

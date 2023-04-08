@@ -1,6 +1,6 @@
 # [Group] _site-recovery fabric protection-container_
 
-Manage Vault Fabric Protection Container
+Manage Protection Container
 
 ## Subgroups
 

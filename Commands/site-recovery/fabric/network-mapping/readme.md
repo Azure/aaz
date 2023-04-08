@@ -1,6 +1,6 @@
 # [Group] _site-recovery fabric network-mapping_
 
-Manage Vault Fabric Network Mapping
+Manage Network Mapping
 
 ## Commands
 

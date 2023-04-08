@@ -12,5 +12,5 @@ Update operation to create an Azure Site Recovery fabric (for e.g. Hyper-V site)
 
 - fabric update
     ```bash
-        site-recovery fabric update -n {fabric_source_name} -g {rg} --vault-name {vault_name} --custom-details '{azure:{location:eastus}}'
+        site-recovery fabric update -n fabric_source_name -g rg --vault-name vault_name --custom-details '{azure:{location:eastus}}'
     ```

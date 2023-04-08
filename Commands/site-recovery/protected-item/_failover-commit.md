@@ -12,5 +12,5 @@ Operation to commit the failover of the replication protected item.
 
 - protected-item failover-commit
     ```bash
-        site-recovery protected-item failover-commit --fabric-name {fabric1_name} --protection-container {container1_name} -n {protected_item_name} -g {rg} --vault-name {vault_name}
+        site-recovery protected-item failover-commit --fabric-name fabric1_name --protection-container container1_name -n protected_item_name -g rg --vault-name vault_name
     ```

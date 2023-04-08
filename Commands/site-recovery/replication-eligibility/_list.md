@@ -12,5 +12,5 @@ List whether a given VM can be protected or not in which case returns list of er
 
 - List replication eligibility
     ```bash
-        site-recovery replication-eligibility list -g {rg} --virtual-machine-name {vm_name}
+        site-recovery replication-eligibility list -g rg --virtual-machine-name vm_name
     ```

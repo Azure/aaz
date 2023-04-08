@@ -12,5 +12,5 @@ Update to create a protection container.
 
 - protection-container update
     ```bash
-        site-recovery fabric protection-container update -g {rg} --fabric-name {fabric_source_name} -n {container_source_name} --vault-name {vault_name} --provider-input [{{instance-type:A2ACrossClusterMigration}}
+        site-recovery fabric protection-container update -g rg --fabric-name fabric_source_name -n container_source_name --vault-name vault_name --provider-input '[{instance-type:A2ACrossClusterMigration}]'
     ```

@@ -12,5 +12,5 @@ Delete operation to purge(force delete) a protection container mapping.
 
 - protection-container mapping delete
     ```bash
-        site-recovery fabric protection-container mapping delete -g {rg} --fabric-name {fabric1_name} -n {container_mapping1_name} --protection-container {container1_name} --vault-name {vault_name}
+        site-recovery fabric protection-container mapping delete -g rg --fabric-name fabric1_name -n container_mapping1_name --protection-container container1_name --vault-name vault_name
     ```

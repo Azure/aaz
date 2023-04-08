@@ -12,5 +12,5 @@ Get whether a given VM can be protected or not in which case returns list of err
 
 - Show default replication-eligibility
     ```bash
-        site-recovery replication-eligibility show-default -g {rg} --virtual-machine-name {vm_name}
+        site-recovery replication-eligibility show-default -g rg --virtual-machine-name vm_name
     ```

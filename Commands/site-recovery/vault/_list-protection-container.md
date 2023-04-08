@@ -12,5 +12,5 @@ List the protection containers in a vault.
 
 - list-protection-container
     ```bash
-        site-recovery vault list-protection-container -g {rg} --resource-name {vault_name}
+        site-recovery vault list-protection-container -g rg --vault-name vault_name
     ```

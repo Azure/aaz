@@ -12,5 +12,5 @@ List the storage classifications in the vault.
 
 - list-storage-classification
     ```bash
-        site-recovery vault list-storage-classification -g {rg} --resource-name {vault_name}
+        site-recovery vault list-storage-classification -g rg --vault-name vault_name
     ```

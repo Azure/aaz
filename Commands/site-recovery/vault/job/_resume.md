@@ -12,5 +12,5 @@ The operation to resume an Azure Site Recovery job.
 
 - job restart
     ```bash
-        site-recovery vault job restart --job-name {id} -g {rg} --resource-name {vault_name}
+        site-recovery vault job restart --job-name job_id -g rg --vault-name vault_name
     ```

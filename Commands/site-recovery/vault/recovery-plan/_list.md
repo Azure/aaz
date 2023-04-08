@@ -12,5 +12,5 @@ List the recovery plans in the vault.
 
 - recovery-plan list
     ```bash
-        site-recovery vault recovery-plan list -g {rg} --vault-name {vault_name}
+        site-recovery vault recovery-plan list -g rg --vault-name vault_name
     ```

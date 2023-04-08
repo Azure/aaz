@@ -12,10 +12,10 @@ Update operation to update a replication policy.
 
 - policy update for type in-mage-rcm
     ```bash
-        site-recovery vault policy update --debug -g {rg} --resource-name {vault_name} -n {policy_name_rcm} --provider-specific-input '{in-mage-rcm:{app-consistent-frequency-in-minutes:0,crash-consistent-frequency-in-minutes:5,enable-multi-vm-sync:true,recovery-point-history-in-minutes:1440}}'
+        site-recovery vault policy update -g rg --vault-name vault_name -n policy_name_rcm --provider-specific-input '{in-mage-rcm:{app-consistent-frequency-in-minutes:0,crash-consistent-frequency-in-minutes:5,enable-multi-vm-sync:true,recovery-point-history-in-minutes:1440}}'
     ```
 
 - policy update for type in-mage-rcm-failback
     ```bash
-        site-recovery vault policy update -g {rg} --resource-name {vault_name} -n {policy_name_rcm_failback} --provider-specific-input '{in-mage-rcm-failback:{app-consistent-frequency-in-minutes:0,crash-consistent-frequency-in-minutes:10}}'
+        site-recovery vault policy update -g rg --vault-name vault_name -n policy_name_rcm_failback --provider-specific-input '{in-mage-rcm-failback:{app-consistent-frequency-in-minutes:0,crash-consistent-frequency-in-minutes:10}}'
     ```

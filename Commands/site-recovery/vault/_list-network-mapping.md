@@ -12,5 +12,5 @@ List all ASR network mappings in the vault.
 
 - list-network-mapping
     ```bash
-        site-recovery vault list-network-mapping -g {rg} --resource-name {vault_name}
+        site-recovery vault list-network-mapping -g rg --vault-name vault_name
     ```

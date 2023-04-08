@@ -12,5 +12,5 @@ List the list of Azure Site Recovery Jobs for the vault.
 
 - job list
     ```bash
-        site-recovery vault job list -g {rg} --resource-name {vault_name}
+        site-recovery vault job list -g rg --vault-name vault_name
     ```

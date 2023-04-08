@@ -12,10 +12,15 @@ Create operation to create a replication policy.
 
 - policy create of type in-mage-rcm
     ```bash
-        site-recovery vault policy create -g {rg} --resource-name {vault_name} -n {policy_name_rcm} --provider-specific-input '{in-mage-rcm:{app-consistent-frequency-in-minutes:0,crash-consistent-frequency-in-minutes:5,enable-multi-vm-sync:true,recovery-point-history-in-minutes:2880}}'
+        site-recovery vault policy create -g rg --vault-name vault_name -n policy_name_rcm --provider-specific-input '{in-mage-rcm:{app-consistent-frequency-in-minutes:0,crash-consistent-frequency-in-minutes:5,enable-multi-vm-sync:true,recovery-point-history-in-minutes:2880}}'
     ```
 
 - policy create for type in-mage-rcm-failback
     ```bash
-        site-recovery vault policy create -g {rg} --resource-name {vault_name} -n {policy_name_rcm_failback} --provider-specific-input '{in-mage-rcm-failback:{app-consistent-frequency-in-minutes:60,crash-consistent-frequency-in-minutes:5}}'
+        site-recovery vault policy create -g rg --vault-name vault_name -n policy_name_rcm_failback --provider-specific-input '{in-mage-rcm-failback:{app-consistent-frequency-in-minutes:60,crash-consistent-frequency-in-minutes:5}}'
+    ```
+
+- policy create for A2A
+    ```bash
+        site-recovery vault policy create -g rg --vault-name vault_name -n policy_name --provider-specific-input {a2a:{multi-vm-sync-status:Enable}}
     ```

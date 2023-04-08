@@ -12,5 +12,5 @@ List the networks available in a vault.
 
 - list-network
     ```bash
-        site-recovery vault list-network -g {rg} --resource-name {vault_name}
+        site-recovery vault list-network -g rg --vault-name vault_name
     ```

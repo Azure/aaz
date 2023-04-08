@@ -12,5 +12,5 @@ Create operation to create a recovery plan.
 
 - recovery-plan create
     ```bash
-        site-recovery vault recovery-plan create -n {recovery_plan_name} -g {rg} --vault-name {vault_name} --groups '[{group-type:Boot,replication-protected-items:[{id:{protected_item_id},virtual-machine-id:{vm_id}}]}]' --primary-fabric-id {fabric1_id} --recovery-fabric-id {fabric2_id} --failover-deployment-model ResourceManager
+        site-recovery vault recovery-plan create -n recovery_plan_name -g rg --vault-name vault_name --groups '[{group-type:Boot,replication-protected-items:[{id:protected_item_id,virtual-machine-id:vm_id}]}]' --primary-fabric-id fabric1_id --recovery-fabric-id fabric2_id --failover-deployment-model ResourceManager
     ```

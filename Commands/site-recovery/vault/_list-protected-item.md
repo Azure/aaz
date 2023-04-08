@@ -12,5 +12,5 @@ List the list of ASR replication protected items in the vault.
 
 - list-protected-item
     ```bash
-        site-recovery vault list-protected-item -g {rg} --resource-name {vault_name}
+        site-recovery vault list-protected-item -g rg --vault-name vault_name
     ```

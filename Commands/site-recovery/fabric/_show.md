@@ -12,5 +12,5 @@ Get the details of an Azure Site Recovery fabric.
 
 - fabric show
     ```bash
-        site-recovery fabric show -n {fabric1_name} -g {rg} --vault-name {vault_name}
+        site-recovery fabric show -n fabric1_name -g rg --vault-name vault_name
     ```

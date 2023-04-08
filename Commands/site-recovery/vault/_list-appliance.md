@@ -12,5 +12,5 @@ List the list of Azure Site Recovery appliances for the vault.
 
 - list-appliance for vault
     ```bash
-        site-recovery vault list-appliance -g {rg} --resource-name {vault_name}
+        site-recovery vault list-appliance -g rg --vault-name vault_name
     ```

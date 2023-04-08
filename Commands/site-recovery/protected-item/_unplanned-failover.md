@@ -12,10 +12,10 @@ Operation to initiate a failover of the replication protected item.
 
 - protected-item unplanned-failover for A2A
     ```bash
-        site-recovery protected-item unplanned-failover --fabric-name {fabric1_name} --protection-container {container1_name} -n {protected_item_name} -g {rg} --vault-name {vault_name} --failover-direction PrimaryToRecovery --provider-details '{a2a:{}}' --source-site-operations NotRequired
+        site-recovery protected-item unplanned-failover --fabric-name fabric1_name --protection-container container1_name -n protected_item_name -g rg --vault-name vault_name --failover-direction PrimaryToRecovery --provider-details '{a2a:{}}' --source-site-operations NotRequired
     ```
 
 - protected-item failback for A2A
     ```bash
-        site-recovery protected-item unplanned-failover --fabric-name {fabric2_name} --protection-container {container2_name} -n {protected_item_name} -g {rg} --vault-name {vault_name} --failover-direction PrimaryToRecovery --provider-details '{a2a:{}}' --source-site-operations NotRequired
+        site-recovery protected-item unplanned-failover --fabric-name fabric2_name --protection-container container2_name -n protected_item_name -g rg --vault-name vault_name --failover-direction PrimaryToRecovery --provider-details '{a2a:{}}' --source-site-operations NotRequired
     ```

@@ -12,5 +12,5 @@ Get the details of the recovery plan.
 
 - recovery-plan show
     ```bash
-        site-recovery vault recovery-plan show -n {recovery_plan_name} -g {rg} --vault-name {vault_name}
+        site-recovery vault recovery-plan show -n recovery_plan_name -g rg --vault-name vault_name
     ```

@@ -12,5 +12,5 @@ Update an email notification(alert) configuration.
 
 - alert-setting update
     ```bash
-        site-recovery vault alert-setting update -n defaultAlertSetting -g {rg} --resource-name {vault_name} --custom-email-addresses email2@address.com --locale fr_FR --send-to-owners DoNotSend
+        site-recovery vault alert-setting update -n defaultAlertSetting -g rg --vault-name vault_name --custom-email-addresses email2@address.com --locale fr_FR --send-to-owners DoNotSend
     ```

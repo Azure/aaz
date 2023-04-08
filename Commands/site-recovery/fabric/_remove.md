@@ -12,5 +12,5 @@ The operation to delete or remove an Azure Site Recovery fabric.
 
 - fabric remove
     ```bash
-        site-recovery fabric remove -n {fabric_source_name} -g {rg} --vault-name {vault_name}
+        site-recovery fabric remove -n fabric_source_name -g rg --vault-name vault_name
     ```

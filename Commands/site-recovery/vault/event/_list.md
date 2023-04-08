@@ -12,5 +12,5 @@ List the list of Azure Site Recovery events for the vault.
 
 - event list
     ```bash
-        site-recovery vault event list -g {rg} --resource-name {vault_name}
+        site-recovery vault event list -g rg --vault-name vault_name
     ```

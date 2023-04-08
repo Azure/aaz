@@ -12,5 +12,5 @@ Get the details of an ASR replication protected item.
 
 - protected-item show
     ```bash
-        site-recovery protected-item show -g {rg} --fabric-name {fabric1_name} -n {protected_item_name} --protection-container {container1_name} --vault-name {vault_name}
+        site-recovery protected-item show -g rg --fabric-name fabric1_name -n protected_item_name --protection-container container1_name --vault-name vault_name
     ```

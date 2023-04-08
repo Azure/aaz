@@ -12,5 +12,5 @@ Get the health details of the vault.
 
 - health show
     ```bash
-        site-recovery vault health show -g {rg} --resource-name {vault_name}
+        site-recovery vault health show -g rg --vault-name vault_name
     ```

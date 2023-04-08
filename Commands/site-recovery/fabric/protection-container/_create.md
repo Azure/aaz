@@ -12,5 +12,5 @@ Create to create a protection container.
 
 - protection-container create for A2A
     ```bash
-        site-recovery fabric protection-container create -g {rg} --fabric-name {fabric1_name} -n {container1_name} --vault-name {vault_name} --provider-input '[{instance-type:A2A}]'
+        site-recovery fabric protection-container create -g rg --fabric-name fabric1_name -n container1_name --vault-name vault_name --provider-input '[{instance-type:A2A}]'
     ```

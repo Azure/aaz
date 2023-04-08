@@ -12,5 +12,5 @@ List the storage classification mappings in the vault.
 
 - list-storage-classification-mapping
     ```bash
-        site-recovery vault list-storage-classification-mapping -g {rg} --resource-name {vault_name}
+        site-recovery vault list-storage-classification-mapping -g rg --vault-name vault_name
     ```

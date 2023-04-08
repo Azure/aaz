@@ -12,5 +12,5 @@ Delete a recovery plan.
 
 - recovery-plan delete
     ```bash
-        site-recovery vault recovery-plan delete -n {recovery_plan_name} -g {rg} --vault-name {vault_name}
+        site-recovery vault recovery-plan delete -n recovery_plan_name -g rg --vault-name vault_name
     ```

@@ -12,5 +12,5 @@ Delete operation to delete or purge a replication protected item. This operation
 
 - protected-item delete
     ```bash
-        site-recovery protected-item delete -g {rg} --fabric-name {fabric2_name} -n {protected_item_name} --protection-container {container2_name} --vault-name {vault_name}
+        site-recovery protected-item delete -g rg --fabric-name fabric2_name -n protected_item_name --protection-container container2_name --vault-name vault_name
     ```

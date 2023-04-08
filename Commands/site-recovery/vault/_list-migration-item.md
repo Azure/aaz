@@ -12,5 +12,5 @@ Get the list of ASR replication migration items in the vault.
 
 - list-migration-item
     ```bash
-        site-recovery vault list-migration-item -g {rg} --resource-name {vault_name}
+        site-recovery vault list-migration-item -g rg --vault-name vault_name
     ```

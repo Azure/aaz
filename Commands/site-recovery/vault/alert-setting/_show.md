@@ -12,5 +12,5 @@ Get the details of the specified email notification(alert) configuration.
 
 - alert-setting show
     ```bash
-        site-recovery vault alert-setting show -n defaultAlertSetting -g {rg} --resource-name {vault_name}
+        site-recovery vault alert-setting show -n defaultAlertSetting -g rg --vault-name vault_name
     ```

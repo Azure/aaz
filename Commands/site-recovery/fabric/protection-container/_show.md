@@ -12,5 +12,5 @@ Get the details of a protection container.
 
 - protection-container show
     ```bash
-        site-recovery fabric protection-container show -g {rg} --fabric-name {fabric1_name} -n {container1_name} --vault-name {vault_name}
+        site-recovery fabric protection-container show -g rg --fabric-name fabric1_name -n container1_name --vault-name vault_name
     ```

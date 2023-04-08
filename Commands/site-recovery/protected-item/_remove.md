@@ -12,5 +12,5 @@ The operation to disable replication on a replication protected item. This will 
 
 - protected-item remove
     ```bash
-        site-recovery protected-item remove -g {rg} --fabric-name {fabric_recovery_name} -n {protected_item_name} --protection-container {container_recovery_name} --vault-name {vault_name}
+        site-recovery protected-item remove -g rg --fabric-name fabric_recovery_name -n protected_item_name --protection-container container_recovery_name --vault-name vault_name
     ```

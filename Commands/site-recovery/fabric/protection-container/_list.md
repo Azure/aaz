@@ -12,5 +12,5 @@ List the protection containers in the specified fabric.
 
 - protection-container list
     ```bash
-        site-recovery fabric protection-container list -g {rg} --fabric-name {fabric_source_name} --vault-name {vault_name}
+        site-recovery fabric protection-container list -g rg --fabric-name fabric_source_name --vault-name vault_name
     ```

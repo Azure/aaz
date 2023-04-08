@@ -12,5 +12,5 @@ Create operation to create a protection container mapping.
 
 - protection-container mapping create for A2A
     ```bash
-        site-recovery fabric protection-container mapping create -g {rg} --fabric-name {fabric1_name} -n {container_mapping1_name} --protection-container {container1_name} --vault-name {vault_name} --policy-id {policy_id} --provider-input '{a2a:{agent-auto-update-status:Disabled}}' --target-container {container2_id}
+        site-recovery fabric protection-container mapping create -g rg --fabric-name fabric1_name -n container_mapping1_name --protection-container container1_name --vault-name vault_name --policy-id policy_id --provider-input '{a2a:{agent-auto-update-status:Disabled}}' --target-container container2_id
     ```

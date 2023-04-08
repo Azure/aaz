@@ -12,5 +12,5 @@ Delete operation to purge(force delete) an Azure Site Recovery fabric.
 
 - fabric delete
     ```bash
-        site-recovery fabric delete -n {fabric1_name} -g {rg} --vault-name {vault_name}
+        site-recovery fabric delete -n fabric1_name -g rg --vault-name vault_name
     ```

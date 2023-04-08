@@ -12,5 +12,5 @@ List the registered recovery services providers in the vault.
 
 - list-recovery-services-provider
     ```bash
-        site-recovery vault list-recovery-services-provider -g {rg} --resource-name {vault_name}
+        site-recovery vault list-recovery-services-provider -g rg --vault-name vault_name
     ```

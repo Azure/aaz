@@ -12,5 +12,5 @@ The operation to export the details of the Azure Site Recovery jobs of the vault
 
 - job export
     ```bash
-        site-recovery vault job export -g {rg} --resource-name {vault_name}
+        site-recovery vault job export -g rg --vault-name vault_name
     ```

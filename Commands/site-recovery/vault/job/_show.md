@@ -12,5 +12,5 @@ Get the details of an Azure Site Recovery job.
 
 - job show
     ```bash
-        site-recovery vault job show -g {rg} --resource-name {vault_name} --job-name {job_name}
+        site-recovery vault job show -g rg --vault-name vault_name --job-name job_id
     ```

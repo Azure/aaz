@@ -1,6 +1,6 @@
 # [Group] _site-recovery protected-item_
 
-Manage Vault Fabric Protection Container Protected Item
+Manage Protected Item
 
 ## Commands
 

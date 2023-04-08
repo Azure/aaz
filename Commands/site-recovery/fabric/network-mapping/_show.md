@@ -12,5 +12,5 @@ Get the details of an ASR network mapping.
 
 - network-mapping show
     ```bash
-        site-recovery fabric network-mapping show -g {rg} --fabric-name {fabric_source_name} -n {network_mapping_src_to_recovery_name} --network-name azureNetwork --vault-name {vault_name}
+        site-recovery fabric network-mapping show -g rg --fabric-name fabric_source_name -n network_mapping_src_to_recovery_name --network-name azureNetwork --vault-name vault_name
     ```

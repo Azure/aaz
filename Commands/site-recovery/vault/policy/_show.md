@@ -12,5 +12,5 @@ Get the details of a replication policy.
 
 - policy show
     ```bash
-        site-recovery vault policy show -g {rg} --resource-name {vault_name} -n {policy_name_rcm}
+        site-recovery vault policy show -g rg --vault-name vault_name -n policy_name_rcm
     ```
