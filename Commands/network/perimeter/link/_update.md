@@ -12,5 +12,5 @@ Update NSP link resource.
 
 - Update NSP Link
     ```bash
-        network perimeter link update --name link1 --perimeter-name nsp1 --resource-group rg1 --local-inbound-profiles "[\'*\']"
+        network perimeter link update --name link1 --perimeter-name nsp1 --resource-group rg1 --local-inbound-profile "[\'*\']"
     ```

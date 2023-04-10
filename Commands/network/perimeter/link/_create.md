@@ -12,5 +12,5 @@ Create NSP link resource.
 
 - Create NSP Link
     ```bash
-        network perimeter link create --name link1 --perimeter-name nsp1 --resource-group rg1 --auto-approved-remote-perimeter-resource-id <NspId> --local-inbound-profiles "[\'*\']" --remote-inbound-profiles "[\'*\']" '
+        network perimeter link create --name link1 --perimeter-name nsp1 --resource-group rg1 --auto-remote-nsp-id <NspId> --local-inbound-profile "[\'*\']" --remote-inbound-profile "[\'*\']" '
     ```
