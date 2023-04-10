@@ -91,3 +91,6 @@
 
 - [voice-service](/Commands/voice-service/readme.md)
 : Manage voice services
+
+- [workloads](/Commands/workloads/readme.md)
+: Manage workloads
