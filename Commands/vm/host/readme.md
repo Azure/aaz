@@ -18,6 +18,12 @@ Manage Dedicated Hosts for Virtual Machines
 - [list](/Commands/vm/host/_list.md)
 : List dedicated hosts.
 
+- [list-host-resize-options](/Commands/vm/host/_list-host-resize-options.md)
+: List all available dedicated host sizes to which the specified dedicated host can be resized. NOTE: The dedicated host sizes provided can be used to only scale up the existing dedicated host.
+
+- [resize](/Commands/vm/host/_resize.md)
+: Resize a dedicated host.
+
 - [restart](/Commands/vm/host/_restart.md)
 : Restart the dedicated host.
 
