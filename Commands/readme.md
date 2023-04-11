@@ -35,8 +35,14 @@
 - [elastic-san](/Commands/elastic-san/readme.md)
 : Manage Elastic SAN.
 
+- [eventhubs](/Commands/eventhubs/readme.md)
+: NamespaceV2
+
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
+
+- [load](/Commands/load/readme.md)
+: Manage Azure Load Testing resources.
 
 - [mobile-network](/Commands/mobile-network/readme.md)
 : Manage mobile network
