@@ -26,6 +26,9 @@
 - [devcenter](/Commands/devcenter/readme.md)
 : Manage resources with devcenter
 
+- [disk-access](/Commands/disk-access/readme.md)
+: Manage disk access resources.
+
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
 
