@@ -10,6 +10,12 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <condition var="$Condition_monitors_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
       <condition var="$Condition_monitors_List">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -18,16 +24,13 @@
           </operator>
         </operator>
       </condition>
-      <condition var="$Condition_monitors_ListByResourceGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
-      <operation when="$Condition_monitors_List" operationId="monitors_List">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Workloads/monitors">
+      <operation when="$Condition_monitors_ListByResourceGroup" operationId="monitors_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/monitors">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
                 <format minLength="1"/>
               </param>
@@ -149,13 +152,10 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_monitors_ListByResourceGroup" operationId="monitors_ListByResourceGroup">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/monitors">
+      <operation when="$Condition_monitors_List" operationId="monitors_List">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Workloads/monitors">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
                 <format minLength="1"/>
               </param>

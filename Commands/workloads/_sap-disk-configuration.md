@@ -4,7 +4,7 @@ Show the SAP Disk Configuration Layout prod/non-prod SAP System.
 
 ## Versions
 
-### [2023-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC53b3JrbG9hZHMvbG9jYXRpb25zL3t9L3NhcHZpcnR1YWxpbnN0YW5jZW1ldGFkYXRhL2RlZmF1bHQvZ2V0ZGlza2NvbmZpZ3VyYXRpb25z/2023-04-01.xml) **Stable**
+### [2023-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC53b3JrbG9hZHMvbG9jYXRpb25zL3t9L3NhcHZpcnR1YWxpbnN0YW5jZW1ldGFkYXRhL2RlZmF1bHQvZ2V0ZGlza2NvbmZpZ3VyYXRpb25z/2023-04-01.xml) **Preview**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.workloads/locations/{}/sapvirtualinstancemetadata/default/getdiskconfigurations 2023-04-01 -->
 
