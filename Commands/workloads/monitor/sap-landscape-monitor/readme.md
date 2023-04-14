@@ -14,7 +14,7 @@ Manage monitor sap landscape monitor
 : List configuration values for Single Pane Of Glass for SAP monitor for the specified subscription, resource group, and resource name.
 
 - [show](/Commands/workloads/monitor/sap-landscape-monitor/_show.md)
-: Get configuration values for Single Pane Of Glass for SAP monitor for the specified subscription, resource group, and resource name.
+: Show configuration values for Single Pane Of Glass for SAP monitor for the specified subscription, resource group, and resource name.
 
 - [update](/Commands/workloads/monitor/sap-landscape-monitor/_update.md)
 : Update a SAP Landscape Monitor Dashboard for the specified subscription, resource group, and resource name.

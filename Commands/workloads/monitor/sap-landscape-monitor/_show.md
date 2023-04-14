@@ -1,6 +1,6 @@
 # [Command] _workloads monitor sap-landscape-monitor show_
 
-Get configuration values for Single Pane Of Glass for SAP monitor for the specified subscription, resource group, and resource name.
+Show configuration values for Single Pane Of Glass for SAP monitor for the specified subscription, resource group, and resource name.
 
 ## Versions
 

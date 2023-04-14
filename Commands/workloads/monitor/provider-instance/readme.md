@@ -15,3 +15,6 @@ Manage monitor provider instance
 
 - [show](/Commands/workloads/monitor/provider-instance/_show.md)
 : Show properties of a provider instance for the specified subscription, resource group, SAP monitor name, and resource name.
+
+- [update](/Commands/workloads/monitor/provider-instance/_update.md)
+: Update a provider instance for the specified subscription, resource group, SAP monitor name, and resource name.

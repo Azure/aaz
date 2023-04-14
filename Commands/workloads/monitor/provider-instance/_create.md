@@ -12,5 +12,5 @@ Create a provider instance for the specified subscription, resource group, SAP m
 
 - Create workloads monitor provider instance
     ```bash
-        workloads monitor provider-instance create -g rg --mointor-name name -n instance-name
+        workloads monitor provider-instance create -g rg --mointor-name name -n instance-name --provider-settings "{sapHana:{hostname:name,dbName:db,sqlPort:0000,instanceNumber:00,dbUsername:user,dbPassword:****,sslPreference:ServerCertificate,sslCertificateUri:'https://storageaccount.blob.core.windows.net/containername/filename',sslHostNameInCertificate:xyz.domain.com,sapSid:SID}}"
     ```
