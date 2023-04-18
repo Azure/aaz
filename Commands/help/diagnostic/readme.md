@@ -9,6 +9,3 @@ diagnostic command will help you create diagnostics for azure resources.
 
 - [show](/Commands/help/diagnostic/_show.md)
 : Get the diagnostics using the 'diagnosticsResourceName' you chose while creating the diagnostic.
-
-- [update](/Commands/help/diagnostic/_update.md)
-: Updates an existing diagnostic and lets you run the diagnostic again with different input parameters
