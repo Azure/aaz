@@ -12,5 +12,5 @@ List all available dedicated host sizes to which the specified dedicated host ca
 
 - List all available dedicated host sizes to which the specified dedicated host can be resized.
     ```bash
-        vm host list-host-resize-options --host-group MyHostGroup --name MyHost --resource-group MyResourceGroup
+        vm host list-resize-options --host-group MyHostGroup --name MyHost --resource-group MyResourceGroup
     ```
