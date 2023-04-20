@@ -1,4 +1,4 @@
-# [Command] _vm host list-host-resize-options_
+# [Command] _vm host list-resize-options_
 
 List all available dedicated host sizes to which the specified dedicated host can be resized. NOTE: The dedicated host sizes provided can be used to only scale up the existing dedicated host.
 
