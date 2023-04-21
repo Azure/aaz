@@ -10,7 +10,12 @@ Show a Virtual Instance for SAP solutions resource
 
 #### examples
 
-- Show workloads sap-virtual-instance
+- Get an overview of any Virtual Instance(s) for SAP solutions (VIS)
     ```bash
-        workloads sap-virtual-instance show -g rg -n instance-name
+        workloads sap-virtual-instance show -g <Resource-group-name> -n <ResourceName>
+    ```
+
+- Get an overview of the Virtual Instance(s) for SAP solutions (VIS) using the Azure resource ID of the VIS
+    ```bash
+        workloads sap-virtual-instance show --id <ResourceID>
     ```

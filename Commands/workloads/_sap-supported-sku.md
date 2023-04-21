@@ -10,7 +10,7 @@ Show a list of SAP supported SKUs for ASCS, Application and Database tier.
 
 #### examples
 
-- Show a list of SAP supported SKUs for ASCS
+- Get a list of SKUs supported for your SAP system deployment type from Azure Center for SAP solutions
     ```bash
-        workloads sap-supported-sku --app-location "eastus2" --database-type "HANA" --deployment-type "SingleServer" --environment "NonProd" --sap-product "S4HANA" --location "eastus2"
+        workloads sap-supported-sku --app-location "eastus" --database-type "HANA" --deployment-type "ThreeTier" --environment "Prod" --high-availability-type "AvailabilitySet" --sap-product "S4HANA" --location "eastus"
     ```

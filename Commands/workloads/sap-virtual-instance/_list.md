@@ -11,7 +11,7 @@ List all Virtual Instances for SAP solutions resources in a Resource Group.
 
 #### examples
 
-- List workloads sap-virtual-instance
+- Get a list of the Virtual Instance(s) for SAP solutions (VIS)
     ```bash
-        workloads sap-virtual-instance list -g rg
+        workloads sap-virtual-instance list -g <Resource-group-name>
     ```

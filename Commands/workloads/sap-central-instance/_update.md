@@ -10,7 +10,12 @@ Update the SAP Central Services Instance resource. This will be used by service 
 
 #### examples
 
-- Update workloads sap central instance tags
+- Add tags for an existing Central services instance resource
     ```bash
-        workloads sap-central-instance update -g rg -n instace-name --vis-name name --tags "{tag:tag}"
+        workloads sap-central-instance update --sap-virtual-instance-name <VIS name> -g <Resource-group-name> -n <ResourceName> --tags tag=test tag2=test2
+    ```
+
+- Add tags for an existing Central services instance resource using the Azure resource ID of the instance
+    ```bash
+        workloads sap-central-instance update --id <ResourceID> --tags tag=test1
     ```

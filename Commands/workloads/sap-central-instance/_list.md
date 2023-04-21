@@ -10,7 +10,7 @@ List the SAP Central Services Instance resource for the given Virtual Instance f
 
 #### examples
 
-- List workloads sap-central-instance
+- Get an overview of the Central service Instance in a Virtual instance for SAP solutions (VIS)
     ```bash
-        workloads sap-central-instance list -g rg --vis-name name
+        workloads sap-central-instance list -g <Resource-group-name> --sap-virtual-instance-name <VIS name>
     ```

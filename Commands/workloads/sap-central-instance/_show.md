@@ -10,7 +10,7 @@ Show the SAP Central Services Instance resource.
 
 #### examples
 
-- Show workloads sap central instance
+- Get an overview of a Central service Instance using the Azure resource ID of the instance
     ```bash
-        workloads sap-central-instance show -g rg -n instance-name --vis-name name
+        workloads sap-central-instance show --id <ResourceID>
     ```

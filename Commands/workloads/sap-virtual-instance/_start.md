@@ -10,7 +10,12 @@ Starts the SAP application, that is the Central Services instance and Applicatio
 
 #### examples
 
-- Start workloads sap-virtual-instance
+- Start an SAP system: This command starts the SAP application tier, that is ASCS instance and App servers of the system.
     ```bash
-        workloads sap-virtual-instance start -g rg --vis-name name
+        workloads sap-virtual-instance start -g <Resource-group-name> -n <ResourceName>
+    ```
+
+- Start an SAP system using the Azure resource ID of the Virtual instance for SAP solutions (VIS): This command starts the SAP application tier, that is ASCS instance and App servers of the system.
+    ```bash
+        workloads sap-virtual-instance start --id <ResourceID>
     ```

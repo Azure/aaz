@@ -10,7 +10,12 @@ Show the SAP Application Server Instance corresponding to the Virtual Instance f
 
 #### examples
 
-- Show workloads sap application server instance
+- Get an overview of an App Server Instance
     ```bash
-        workloads sap-application-server-instance show -g rg -n instance-name --vis-name name
+        workloads sap-application-server-instance show -g <Resource-group-name> --sap-virtual-instance-name <VIS name> -n <ResourceName>
+    ```
+
+- Get an overview of an App Server Instance using the Azure resource ID of the instance
+    ```bash
+        workloads sap-application-server-instance show --id <ResourceID>
     ```

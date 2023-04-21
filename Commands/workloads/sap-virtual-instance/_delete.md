@@ -10,7 +10,12 @@ Delete a Virtual Instance for SAP solutions resource and its child resources, th
 
 #### examples
 
-- Delete workloads sap-virtual-instance
+- Delete a Virtual Instance for SAP solutions (VIS)
     ```bash
-        workloads sap-virtual-instance delete -g rg -n instance-name -y
+        workloads sap-virtual-instance delete -g <Resource_Group_Name> -n <VIS Name>
+    ```
+
+- Remove a Virtual Instance for SAP solutions (VIS) using the Azure resource ID of the VIS
+    ```bash
+        workloads sap-virtual-instance delete --id <ResourceID>
     ```

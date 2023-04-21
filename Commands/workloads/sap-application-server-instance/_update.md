@@ -10,7 +10,12 @@ Update the SAP Application Server Instance resource. This will be used by servic
 
 #### examples
 
-- Update workloads sap application server instance
+- Add tags for an existing App server instance resource
     ```bash
-        workloads sap-application-server-instance update -g rg -n instance-name --vis-name name --tags "{tag:tag}"
+        workloads sap-application-server-instance update --sap-virtual-instance-name <VIS name> -g <Resource-group-name> -n <ResourceName> --tags tag=test tag2=test2
+    ```
+
+- Add tags for an existing App server instance resource using the Azure resource ID of the instance
+    ```bash
+        workloads sap-application-server-instance update --id <ResourceID> --tags tag=test1
     ```

@@ -10,7 +10,12 @@ Show SAP sizing recommendations by providing input SAPS for application tier and
 
 #### examples
 
-- Show SAP sizing recommendations
+- Get sizing recommendations for a Distributed with High Availability (HA) system by providing SAPS for application tier and memory required for database tier of the SAP system
     ```bash
-        workloads sap-sizing-recommendation --app-location "northeurope" --database-type "HANA" --db-memory 2000 --deployment-type "SingleServer" --environment "NonProd" --sap-product "S4HANA" --saps 60000 --location "northeurope"
+        workloads sap-sizing-recommendation --app-location "eastus" --database-type "HANA" --db-memory 1024 --deployment-type "ThreeTier" --environment "Prod" --high-availability-type "AvailabilitySet" --sap-product "S4HANA" --saps 75000 --location "eastus2"
+    ```
+
+- Get sizing recommendations for a Distributed system by providing SAPS for application tier and memory required for database tier of the SAP system
+    ```bash
+        workloads sap-sizing-recommendation --app-location "eastus" --database-type "HANA" --db-memory 1024 --deployment-type "ThreeTier" --environment "Prod" --sap-product "S4HANA" --saps 20000 --location "northeurope"
     ```

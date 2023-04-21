@@ -10,7 +10,7 @@ List the SAP Application Server Instance resources for a given Virtual Instance 
 
 #### examples
 
-- List workloads sap application server instance
+- Get an overview of The App Server Instances in a Virtual instance for SAP solutions (VIS)
     ```bash
-        workloads sap-application-server-instance list -g rg --vis-name name
+        workloads sap-application-server-instance list -g <Resource-group-name> --sap-virtual-instance-name <VIS name>
     ```

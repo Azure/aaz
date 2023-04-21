@@ -10,7 +10,12 @@ Starts the SAP Application Server Instance.
 
 #### examples
 
-- Start workloads sap application server instance
+- Start an Application server instance of the SAP system
     ```bash
-        workloads sap-application-server-instance start -g rg -n instance-name --vis-name name
+        workloads sap-application-server-instance start --sap-virtual-instance-name <VIS Name> -g <Resource-group-name> -n <ResourceName>
+    ```
+
+- Start an Application server instance of the SAP system using the Azure resource ID of the instance
+    ```bash
+        workloads sap-application-server-instance start --id <ResourceID>
     ```

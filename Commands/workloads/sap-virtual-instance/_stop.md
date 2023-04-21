@@ -10,7 +10,12 @@ Stops the SAP Application, that is the Application server instances and Central 
 
 #### examples
 
-- Stop workloads sap-virtual-instance
+- Stop an SAP system: This command stops the SAP application tier, that is ASCS instance and App servers of the system.
     ```bash
-        workloads sap-virtual-instance stop -g rg --vis-name name
+        workloads sap-virtual-instance stop -g <Resource-group-name> -n <ResourceName>
+    ```
+
+- Stop an SAP system using the Azure resource ID of the Virtual instance for SAP solutions (VIS): This command stops the SAP application tier, that is ASCS instance and App servers of the system.
+    ```bash
+        workloads sap-virtual-instance stop --id <ResourceID>
     ```

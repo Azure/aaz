@@ -10,7 +10,12 @@ Starts the SAP Central Services Instance.
 
 #### examples
 
-- Start workloads sap central instance
+- Start Central services instance of the SAP system
     ```bash
-        workloads sap-central-instance start -g rg -n instance-name --vis-name name
+        workloads sap-central-instance start --sap-virtual-instance-name <VIS Name> -g <Resource-group-name> -n <ResourceName>
+    ```
+
+- Start Central services instance of the SAP system using the Azure resource ID of the instance
+    ```bash
+        workloads sap-central-instance start --id <ResourceID>
     ```

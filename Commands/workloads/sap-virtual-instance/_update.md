@@ -10,7 +10,12 @@ Update a Virtual Instance for SAP solutions (VIS) resource
 
 #### examples
 
-- Update sap-virtual-instance tags
+- Add tags for an existing Virtual Instance for SAP solutions (VIS) resource
     ```bash
-        workloads sap-virtual-instance update -g rg -n instance-name --tags "{tag:tag}"
+        workloads sap-virtual-instance update -g <Resource-group-name> -n <ResourceName> --tags tag=test tag2=test2
+    ```
+
+- Add tags for an existing Virtual Instance for SAP solutions (VIS) resource using the Azure resource ID of the VIS
+    ```bash
+        workloads sap-virtual-instance update --id <ResourceID> --tags tag=test1
     ```

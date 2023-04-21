@@ -10,7 +10,12 @@ Stops the database instance of the SAP system.
 
 #### examples
 
-- Stop workloads sap database instance
+- Stop Database instance of the SAP system: Currently stop action is supported for SAP HANA Database only.
     ```bash
-        workloads sap-database-instance stop -g rg -n instance-name --vis-name name
+        workloads sap-database-instance stop --sap-virtual-instance-name <VIS Name> -g <Resource-group-name> -n <ResourceName>
+    ```
+
+- Stop Database instance of the SAP system using the Azure resource ID of the instance:  Currently stop action is supported for SAP HANA Database only.
+    ```bash
+        workloads sap-database-instance stop --id <ResourceID>
     ```

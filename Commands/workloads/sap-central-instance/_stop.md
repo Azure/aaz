@@ -10,7 +10,12 @@ Stops the SAP Central Services Instance.
 
 #### examples
 
-- Stop workloads sap central instance
+- Stop Central services instance of the SAP system
     ```bash
-        workloads sap-central-instance stop -g rg -n instance-name --vis-name name
+        workloads sap-central-instance stop --sap-virtual-instance-name <VIS Name> -g <Resource-group-name> -n <ResourceName>
+    ```
+
+- Stop Central services instance of the SAP system using the Azure resource ID of the instance
+    ```bash
+        workloads sap-central-instance stop --id <ResourceID>
     ```

@@ -10,7 +10,12 @@ Starts the database instance of the SAP system.
 
 #### examples
 
-- Start workloads sap-database-instance
+- Start Database instance of the SAP system: Currently start action is supported for SAP HANA Database only
     ```bash
-        workloads sap-database-instance start -g rg -n instance-name --vis-name name
+        workloads sap-database-instance start --sap-virtual-instance-name <VIS Name> -g <Resource-group-name> -n <ResourceName>
+    ```
+
+- Start Database instance of the SAP system using the Azure resource ID of the instance: Currently start action is supported for SAP HANA Database only
+    ```bash
+        workloads sap-database-instance start --id <ResourceID>
     ```

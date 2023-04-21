@@ -10,7 +10,12 @@ Update the Database resource corresponding to the Virtual Instance for SAP solut
 
 #### examples
 
-- Update workloads sap database instance tags
+- Add tags for an existing Database instance resource
     ```bash
-        workloads sap-database-instance update -g rg -n instance-name --vis-name name --tags "{tag:tag}"
+        workloads sap-database-instance update --sap-virtual-instance-name <VIS name> -g <Resource-group-name> -n <ResourceName> --tags tag=test tag2=test2
+    ```
+
+- Add tags for an existing Database instance resource using the Azure resource ID of the instance
+    ```bash
+        workloads sap-database-instance update --id <ResourceID> --tags tag=test1
     ```
