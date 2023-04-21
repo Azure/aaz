@@ -1,4 +1,4 @@
-# [Command] _help diagnostic show_
+# [Command] _self-help diagnostic show_
 
 Get the diagnostics using the 'diagnosticsResourceName' you chose while creating the diagnostic.
 

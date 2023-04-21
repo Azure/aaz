@@ -1,4 +1,4 @@
-# [Command] _help diagnostic create_
+# [Command] _self-help diagnostic create_
 
 Creates a diagnostics that will help you troubleshoot an issue with your azure resource.
 

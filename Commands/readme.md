@@ -44,9 +44,6 @@
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
 
-- [help](/Commands/help/readme.md)
-: Azure SelfHelp will help you troubleshoot issues with Azure resources.
-
 - [load](/Commands/load/readme.md)
 : Manage Azure Load Testing resources.
 
@@ -76,6 +73,9 @@
 
 - [restore-point](/Commands/restore-point/readme.md)
 : Manage restore point with res.
+
+- [self-help](/Commands/self-help/readme.md)
+: Azure SelfHelp will help you troubleshoot issues with Azure resources.
 
 - [sentinel](/Commands/sentinel/readme.md)
 : Manage Microsoft Sentinel.

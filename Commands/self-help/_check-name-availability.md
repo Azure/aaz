@@ -1,4 +1,4 @@
-# [Command] _help check-name-availability_
+# [Command] _self-help check-name-availability_
 
 This API is used to check the uniqueness of a resource name used for a diagnostic check.
 
