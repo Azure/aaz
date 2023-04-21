@@ -1,6 +1,6 @@
 # [Command] _workloads sap-central-instance update_
 
-Update the SAP Central Services Instance resource. This will be used by service only. PUT operation on this resource by end user will return a Bad Request error.
+Update the SAP Central Services Instance resource. This can be used to update tags on the resource.
 
 ## Versions
 

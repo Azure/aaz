@@ -1,6 +1,6 @@
 # [Command] _workloads sap-application-server-instance update_
 
-Update the SAP Application Server Instance resource. This will be used by service only. PUT by end user will return a Bad Request error.
+Update the SAP Application Server Instance resource.
 
 ## Versions
 

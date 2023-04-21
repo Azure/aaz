@@ -509,16 +509,17 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Body">
-        <arg nullable="True" type="object" var="$body.tags" options="tags" group="Body">
-          <help short="Resource tags."/>
+        <arg type="object" var="$body.tags" options="tags" group="Body">
+          <help short="Gets or sets the Resource tags."/>
           <additionalProp>
-            <item nullable="True" type="string"/>
+            <item type="string"/>
           </additionalProp>
         </arg>
       </argGroup>
-      <operation operationId="SAPCentralInstances_Get">
+      <operation operationId="SAPCentralInstances_Update">
+        <longRunning finalStateVia="azure-async-operation"/>
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}/centralInstances/{centralInstanceName}">
-          <request method="get">
+          <request method="patch">
             <path>
               <param type="string" name="centralInstanceName" arg="$Path.centralInstanceName" required="True"/>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
@@ -535,11 +536,22 @@
                 <format minLength="1"/>
               </const>
             </query>
+            <body>
+              <json>
+                <schema type="object" name="body" clientFlatten="True">
+                  <prop type="object" name="tags" arg="$body.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
           </request>
-          <response statusCode="200">
+          <response statusCode="200 201">
             <body>
               <json var="$Instance">
-                <schema type="object" cls="SAPCentralServerInstance_read">
+                <schema type="object">
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Workloads/sapVirtualInstances/{}/centralInstances/{}"/>
                   </prop>
@@ -702,59 +714,6 @@
                   </prop>
                   <prop readOnly="True" type="string" name="type"/>
                 </schema>
-              </json>
-            </body>
-          </response>
-          <response isError="True">
-            <body>
-              <json>
-                <schema type="@MgmtErrorFormat"/>
-              </json>
-            </body>
-          </response>
-        </http>
-      </operation>
-      <operation>
-        <instanceUpdate ref="$Instance">
-          <json>
-            <schema type="object" name="body" clientFlatten="True">
-              <prop type="object" name="tags" arg="$body.tags">
-                <additionalProp>
-                  <item type="string"/>
-                </additionalProp>
-              </prop>
-            </schema>
-          </json>
-        </instanceUpdate>
-      </operation>
-      <operation operationId="SAPCentralInstances_Create">
-        <longRunning finalStateVia="azure-async-operation"/>
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}/centralInstances/{centralInstanceName}">
-          <request method="put">
-            <path>
-              <param type="string" name="centralInstanceName" arg="$Path.centralInstanceName" required="True"/>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
-              <param type="string" name="sapVirtualInstanceName" arg="$Path.sapVirtualInstanceName" required="True"/>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
-                <format minLength="1"/>
-              </param>
-            </path>
-            <query>
-              <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="&quot;2023-04-01&quot;"/>
-                <format minLength="1"/>
-              </const>
-            </query>
-            <body>
-              <json ref="$Instance"/>
-            </body>
-          </request>
-          <response statusCode="200 201">
-            <body>
-              <json var="$Instance">
-                <schema type="@SAPCentralServerInstance_read"/>
               </json>
             </body>
           </response>
