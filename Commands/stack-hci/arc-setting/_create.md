@@ -1,6 +1,6 @@
 # [Command] _stack-hci arc-setting create_
 
-Create ArcSetting for HCI cluster.
+Create arc setting for HCI cluster.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Create ArcSetting for HCI cluster.
 
 #### examples
 
-- Create ArcSetting
+- Create arc setting
     ```bash
         stack-hci arc-setting create --name "default" --cluster-name "myCluster" --resource-group "test-rg"
     ```

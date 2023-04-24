@@ -1,6 +1,6 @@
 # [Command] _stack-hci extension list_
 
-List all Extensions under ArcSetting resource.
+List all extensions under arc setting resource.
 
 ## Versions
 
@@ -10,7 +10,7 @@ List all Extensions under ArcSetting resource.
 
 #### examples
 
-- List Extensions under ArcSetting resource
+- List extensions under arc setting resource
     ```bash
         stack-hci extension list --arc-setting-name "default" --cluster-name "myCluster" --resource-group "test-rg"
     ```

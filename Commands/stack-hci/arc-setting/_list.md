@@ -1,6 +1,6 @@
 # [Command] _stack-hci arc-setting list_
 
-List ArcSetting resources of HCI Cluster.
+List arc setting resources of HCI cluster.
 
 ## Versions
 
@@ -10,7 +10,7 @@ List ArcSetting resources of HCI Cluster.
 
 #### examples
 
-- List ArcSetting resources by HCI Cluster
+- List arc setting resources by HCI cluster
     ```bash
         stack-hci arc-setting list --cluster-name "myCluster" --resource-group "test-rg"
     ```

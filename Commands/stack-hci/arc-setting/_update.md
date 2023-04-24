@@ -1,6 +1,6 @@
 # [Command] _stack-hci arc-setting update_
 
-Update ArcSetting for HCI cluster.
+Update arc setting for HCI cluster.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Update ArcSetting for HCI cluster.
 
 #### examples
 
-- Update ArcSetting
+- Update arc setting
     ```bash
         stack-hci arc-setting update --resource-group "test-rg" --cluster-name "myCluster" --name "default" --tags "{tag:tag}"
     ```

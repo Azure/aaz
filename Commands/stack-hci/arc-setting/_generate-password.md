@@ -10,7 +10,7 @@ Generate password for arc settings.
 
 #### examples
 
-- Generate Password
+- Generate password
     ```bash
         stack-hci arc-setting generate-password --name "default" --cluster-name "myCluster" --resource-group "test-rg"
     ```

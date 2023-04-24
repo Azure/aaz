@@ -1,6 +1,6 @@
 # [Command] _stack-hci extension update_
 
-Update Extension for HCI cluster.
+Update extension for HCI cluster.
 
 ## Versions
 

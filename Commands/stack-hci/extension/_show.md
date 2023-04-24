@@ -1,6 +1,6 @@
 # [Command] _stack-hci extension show_
 
-Get particular Arc Extension of HCI Cluster.
+Get particular arc extension of HCI cluster.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Get particular Arc Extension of HCI Cluster.
 
 #### examples
 
-- Get ArcSettings Extension
+- Get arc settings extension
     ```bash
         stack-hci extension show --arc-setting-name "default" --cluster-name "myCluster" --name "MicrosoftMonitoringAgent" --resource-group "test-rg"
     ```

@@ -1,6 +1,6 @@
 # [Command] _stack-hci extension create_
 
-Create Extension for HCI cluster.
+Create extension for HCI cluster.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Create Extension for HCI cluster.
 
 #### examples
 
-- Create Arc Extension
+- Create arc extension
     ```bash
         stack-hci extension create --arc-setting-name "default" --cluster-name "myCluster" --type "MicrosoftMonitoringAgent" --protected-settings "{workspaceKey:xx}" --publisher "Microsoft.Compute" --settings "{workspaceId:xx}" --type-handler-version "1.10" --name "MicrosoftMonitoringAgent" --resource-group "test-rg"
     ```

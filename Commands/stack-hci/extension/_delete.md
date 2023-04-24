@@ -1,6 +1,6 @@
 # [Command] _stack-hci extension delete_
 
-Delete particular Arc Extension of HCI Cluster.
+Delete particular arc extension of HCI Cluster.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Delete particular Arc Extension of HCI Cluster.
 
 #### examples
 
-- Delete Arc Extension
+- Delete arc extension
     ```bash
         stack-hci extension delete --arc-setting-name "default" --cluster-name "myCluster" --name "MicrosoftMonitoringAgent" --resource-group "test-rg"
     ```

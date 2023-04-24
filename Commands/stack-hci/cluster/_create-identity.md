@@ -10,7 +10,7 @@ Create cluster identity.
 
 #### examples
 
-- Create cluster Identity
+- Create cluster identity
     ```bash
         stack-hci cluster create-identity --name "myCluster" --resource-group "test-rg"
     ```

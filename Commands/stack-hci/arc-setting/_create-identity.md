@@ -1,6 +1,6 @@
 # [Command] _stack-hci arc-setting create-identity_
 
-Create Aad identity for arc settings.
+Create AAD identity for arc settings.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Create Aad identity for arc settings.
 
 #### examples
 
-- Create Arc Identity
+- Create arc identity
     ```bash
         stack-hci arc-setting create-identity --name "default" --cluster-name "myCluster" --resource-group "test-rg"
     ```

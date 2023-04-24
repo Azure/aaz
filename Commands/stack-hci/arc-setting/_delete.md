@@ -1,6 +1,6 @@
 # [Command] _stack-hci arc-setting delete_
 
-Delete ArcSetting resource details of HCI Cluster.
+Delete arc setting resource details of HCI cluster.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Delete ArcSetting resource details of HCI Cluster.
 
 #### examples
 
-- Delete ArcSetting
+- Delete arc setting
     ```bash
         stack-hci arc-setting delete --name "default" --cluster-name "myCluster" --resource-group "test-rg"
     ```

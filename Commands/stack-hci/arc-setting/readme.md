@@ -5,22 +5,22 @@ Manage arc setting with stack hci.
 ## Commands
 
 - [create](/Commands/stack-hci/arc-setting/_create.md)
-: Create ArcSetting for HCI cluster.
+: Create arc setting for HCI cluster.
 
 - [create-identity](/Commands/stack-hci/arc-setting/_create-identity.md)
-: Create Aad identity for arc settings.
+: Create AAD identity for arc settings.
 
 - [delete](/Commands/stack-hci/arc-setting/_delete.md)
-: Delete ArcSetting resource details of HCI Cluster.
+: Delete arc setting resource details of HCI cluster.
 
 - [generate-password](/Commands/stack-hci/arc-setting/_generate-password.md)
 : Generate password for arc settings.
 
 - [list](/Commands/stack-hci/arc-setting/_list.md)
-: List ArcSetting resources of HCI Cluster.
+: List arc setting resources of HCI cluster.
 
 - [show](/Commands/stack-hci/arc-setting/_show.md)
-: Get ArcSetting resource details of HCI Cluster.
+: Get arc setting resource details of HCI cluster.
 
 - [update](/Commands/stack-hci/arc-setting/_update.md)
-: Update ArcSetting for HCI cluster.
+: Update arc setting for HCI cluster.

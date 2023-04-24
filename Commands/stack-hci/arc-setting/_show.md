@@ -1,6 +1,6 @@
 # [Command] _stack-hci arc-setting show_
 
-Get ArcSetting resource details of HCI Cluster.
+Get arc setting resource details of HCI cluster.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Get ArcSetting resource details of HCI Cluster.
 
 #### examples
 
-- Get ArcSetting
+- Get arc setting
     ```bash
         stack-hci arc-setting show --name "default" --cluster-name "myCluster" --resource-group "test-rg"
     ```
