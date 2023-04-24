@@ -2,6 +2,9 @@
 
 ## Groups
 
+- [alerts-management](/Commands/alerts-management/readme.md)
+: Manage Azure Alerts Management Service Resource.
+
 - [automanage](/Commands/automanage/readme.md)
 : Manage Automanage
 
