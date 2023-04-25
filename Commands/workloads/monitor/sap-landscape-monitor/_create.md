@@ -10,7 +10,7 @@ Create a SAP Landscape Monitor Dashboard for the specified subscription, resourc
 
 #### examples
 
-- Create workloads monitor sap landscape monitor
+- Create a new SAP landscape monitor
     ```bash
-        workloads monitor sap-landscape-monitor create -g rg --monitor-name name --grouping "{landscape:[{name:Prod,topSid:[SID1,SID2]}],sapApplication:[{name:ERP1,topSid:[SID1,SID2]}]}" --top-metrics-thresholds "[{name:Inscane, green:90,yellow:75,red:50}]"
+        workloads monitor sap-landscape-monitor create -g <RG-NAME> --monitor-name <monitor-name> --grouping <grouping- details>
     ```

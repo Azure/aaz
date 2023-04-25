@@ -10,7 +10,7 @@ Create a SAP monitor for the specified subscription, resource group, and resourc
 
 #### examples
 
-- Create workloads monitor
+- Create a new monitor
     ```bash
-        workloads monitor create -n monitor-name -g rg --app-location westus --managed-rg-name rg-name
+        workloads monitor create -g <rg-name> -n <ams-name> -l <location> --app-location <app-location> --managed-rg-name <mrg-name> --monitor-subnet <subnet> --routing-preference <routing-preference>
     ```

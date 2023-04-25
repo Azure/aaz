@@ -10,7 +10,7 @@ Show properties of a provider instance for the specified subscription, resource 
 
 #### examples
 
-- Show workloads monitor provider instance
+- Get an overview of any provider
     ```bash
-        workloads monitor provider-instance show -g rg --monitor-name name -n instance-name
+        workloads monitor provider-instance show --monitor-name <monitor-name> -n <provider-instance-name> -g <RG-NAME>
     ```

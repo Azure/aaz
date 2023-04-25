@@ -10,7 +10,7 @@ List configuration values for Single Pane Of Glass for SAP monitor for the speci
 
 #### examples
 
-- List workloads monitor sap landscape monitor
+- Get a list of SAP landscape monitors
     ```bash
-        workloads monitor sap-landscape-monitor list -g rg --monitor-name name
+        workloads monitor sap-landscape-monitor list -g <RG-NAME> --monitor-name <monitor-name>
     ```

@@ -10,7 +10,7 @@ Delete a SAP monitor with the specified subscription, resource group, and SAP mo
 
 #### examples
 
-- Delete monitor
+- Delete a monitor
     ```bash
-        workloads monitor delete -n monitor-name -g rg -y
+        workloads monitor delete -g <RG-NAME> -n <monitor-name>
     ```

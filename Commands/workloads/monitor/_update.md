@@ -10,7 +10,7 @@ Update a SAP monitor for the specified subscription, resource group, and resourc
 
 #### examples
 
-- Update monitor tags
+- Add monitor tags
     ```bash
-        workloads monitor update -g rg -n monitor-name --tags "{tag:tag1}"
+        workloads monitor update -g <Resource-group-name> -n <monitor-name> --tags tag=test tag2=test2
     ```

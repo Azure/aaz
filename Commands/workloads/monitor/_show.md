@@ -10,7 +10,7 @@ Show properties of a SAP monitor for the specified subscription, resource group,
 
 #### examples
 
-- Show wokloads monitor
+- Get an overview of any monitor
     ```bash
-        workloads monitor show -g rg -n monitor-name
+        workloads monitor show -g <RG-NAME> -n <monitor-name>
     ```

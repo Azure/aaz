@@ -11,7 +11,7 @@ List a list of SAP monitors in the specified resource group.
 
 #### examples
 
-- List wokloads monitors
+- Get a list of monitors
     ```bash
-        workloads monitor list -g rg
+        workloads monitor list -g <RG-NAME>
     ```
