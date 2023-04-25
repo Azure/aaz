@@ -12,5 +12,5 @@ Delete the SAP Central Services Instance resource. This will be used by service 
 
 - Delete workloads sap central instance
     ```bash
-        workloads sap-central-instance delete -g rg -n instance-name --vis-name name -y
+        workloads sap-central-instance delete -g rg -n instance-name --vis-name name
     ```

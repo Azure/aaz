@@ -12,5 +12,5 @@ Delete the Database resource corresponding to a Virtual Instance for SAP solutio
 
 - Delete workloads sap database instance
     ```bash
-        workloads sap-database-instance delete -g rg -n instance-name --vis-name name -y
+        workloads sap-database-instance delete -g rg -n instance-name --vis-name name
     ```

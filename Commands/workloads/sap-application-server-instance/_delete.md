@@ -12,5 +12,5 @@ Delete the SAP Application Server Instance resource. This operation will be used
 
 - Delete workloads sap application server instance
     ```bash
-        workloads sap-application-server-instance delete -g rg -n instance-name --vis-name name -y
+        workloads sap-application-server-instance delete -g rg -n instance-name --vis-name name
     ```
