@@ -12,5 +12,5 @@ List the Database resources associated with a Virtual Instance for SAP solutions
 
 - List workloads sap database instance
     ```bash
-        workloads sap-database-instance list -g rg --vis-name name
+        workloads sap-database-instance list -g <Resource-group-name> --vis-name <VIS name>
     ```

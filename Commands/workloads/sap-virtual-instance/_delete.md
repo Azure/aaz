@@ -12,10 +12,10 @@ Delete a Virtual Instance for SAP solutions resource and its child resources, th
 
 - Delete a Virtual Instance for SAP solutions (VIS)
     ```bash
-        workloads sap-virtual-instance delete -g <Resource_Group_Name> -n <VIS Name>
+        workloads sap-virtual-instance delete -g <Resource_Group_Name> -n <VIS Name> -y
     ```
 
 - Remove a Virtual Instance for SAP solutions (VIS) using the Azure resource ID of the VIS
     ```bash
-        workloads sap-virtual-instance delete --id <ResourceID>
+        workloads sap-virtual-instance delete --id <ResourceID> -y
     ```

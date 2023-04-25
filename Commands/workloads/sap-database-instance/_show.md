@@ -12,7 +12,7 @@ Show the SAP Database Instance resource.
 
 - Get an overview of the Database Instance in a Virtual instance for SAP solutions (VIS)
     ```bash
-        workloads sap-database-instance show -g <Resource-group-name> --sap-virtual-instance-name <VIS name>
+        workloads sap-database-instance show -g <Resource-group-name> --sap-virtual-instance-name <VIS name> -n <ResourceName>
     ```
 
 - Get an overview of the Database Instance  using the Azure resource ID of the App server instance
