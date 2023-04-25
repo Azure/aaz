@@ -10,7 +10,7 @@ Show properties of a provider instance for the specified subscription, resource 
 
 #### examples
 
-- Get an overview of any provider
+- Show properties of a provider instance for the specified subscription, resource group, SAP monitor name, and resource name.
     ```bash
         workloads monitor provider-instance show --monitor-name <monitor-name> -n <provider-instance-name> -g <RG-NAME>
     ```

@@ -10,7 +10,7 @@ Update a SAP Landscape Monitor Dashboard for the specified subscription, resourc
 
 #### examples
 
-- Update a SAP landscape monitor
+- Update a SAP Landscape Monitor Dashboard for the specified subscription, resource group, and resource name
     ```bash
         workloads monitor sap-landscape-monitor update -g <RG-NAME> --monitor-name <monitor-name> --grouping <grouping-details>
     ```

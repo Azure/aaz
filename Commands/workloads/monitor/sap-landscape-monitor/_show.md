@@ -10,7 +10,7 @@ Show configuration values for Single Pane Of Glass for SAP monitor for the speci
 
 #### examples
 
-- Get an overview of SAP landscape monitor
+- Show configuration values for Single Pane Of Glass for SAP monitor for the specified subscription, resource group, and resource name.
     ```bash
         workloads monitor sap-landscape-monitor show -g <RG-NAME> --monitor-name <monitor-name>
     ```

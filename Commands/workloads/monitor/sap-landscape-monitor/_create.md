@@ -10,7 +10,7 @@ Create a SAP Landscape Monitor Dashboard for the specified subscription, resourc
 
 #### examples
 
-- Create a new SAP landscape monitor
+- Create a SAP Landscape Monitor Dashboard for the specified subscription, resource group, and resource name.
     ```bash
         workloads monitor sap-landscape-monitor create -g <RG-NAME> --monitor-name <monitor-name> --grouping <grouping- details>
     ```

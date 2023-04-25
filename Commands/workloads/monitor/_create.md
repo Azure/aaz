@@ -10,7 +10,7 @@ Create a SAP monitor for the specified subscription, resource group, and resourc
 
 #### examples
 
-- Create a new monitor
+- Create a SAP monitor for the specified subscription, resource group, and resource name.
     ```bash
         workloads monitor create -g <rg-name> -n <ams-name> -l <location> --app-location <app-location> --managed-rg-name <mrg-name> --monitor-subnet <subnet> --routing-preference <routing-preference>
     ```

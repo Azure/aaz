@@ -10,7 +10,7 @@ Create a provider instance for the specified subscription, resource group, SAP m
 
 #### examples
 
-- Create a new provider
+- Create a provider instance for the specified subscription, resource group, SAP monitor name, and resource name.
     ```bash
         workloads monitor provider-instance create --monitor-name <monitor-name> -n <provider-instamce-name> -g <RG-NAME> --provider-settings <provider-settings>
     ```

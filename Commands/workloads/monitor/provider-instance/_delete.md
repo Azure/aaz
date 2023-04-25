@@ -10,7 +10,7 @@ Delete a provider instance for the specified subscription, resource group, SAP m
 
 #### examples
 
-- Delete a provider
+- Delete a provider instance for the specified subscription, resource group, SAP monitor name, and resource name.
     ```bash
         workloads monitor provider-instance delete --monitor-name <monitor-name> -n <provider-instance-name> -g <RG-NAME>
     ```

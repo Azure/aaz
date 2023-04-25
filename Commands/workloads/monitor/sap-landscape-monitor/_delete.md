@@ -10,7 +10,7 @@ Delete a SAP Landscape Monitor Dashboard with the specified subscription, resour
 
 #### examples
 
-- Delete a SAP landscape monitor
+- Delete a SAP Landscape Monitor Dashboard with the specified subscription, resource group, and SAP monitor name.
     ```bash
         workloads monitor sap-landscape-monitor delete -g <RG-NAME> --monitor-name <monitor-name>
     ```

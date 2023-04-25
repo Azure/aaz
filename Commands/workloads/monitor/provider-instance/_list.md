@@ -10,7 +10,7 @@ List a list of provider instances in the specified SAP monitor. The operations r
 
 #### examples
 
-- Get a list of providers
+- Get a list of provider instances in the specified SAP monitor. The operations returns various properties of each provider instances.
     ```bash
         workloads monitor provider-instance list --monitor-name <monitor-name> -g <RG-NAME>
     ```
