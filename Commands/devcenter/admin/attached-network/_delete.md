@@ -21,7 +21,7 @@ Delete an attached network connection.
 
 #### examples
 
-- Delete an attached network connection
+- Delete
     ```bash
         devcenter admin attached-network delete --attached-network-connection-name "network-uswest3" --dev-center-name "Contoso" --resource-group "rg1"
     ```

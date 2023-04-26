@@ -21,7 +21,7 @@ Create an attached network connection.
 
 #### examples
 
-- Create an attached network connection
+- Create
     ```bash
         devcenter admin attached-network create --attached-network-connection-name "network-uswest3" --network-connection-id "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/rg1/providers/Microsoft.DevCenter/NetworkConnections/network-uswest3" --dev-center-name "Contoso" --resource-group "rg1"
     ```

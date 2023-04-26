@@ -1,6 +1,6 @@
 # [Group] _devcenter admin_
 
-Manage admin resources with devcenter.
+Manage devcenter admin resources.
 
 ## Subgroups
 
