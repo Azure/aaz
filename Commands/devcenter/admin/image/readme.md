@@ -1,11 +1,11 @@
 # [Group] _devcenter admin image_
 
-Manage image with devcenter
+Manage images.
 
 ## Commands
 
 - [list](/Commands/devcenter/admin/image/_list.md)
-: List images for a gallery.
+: List images for a dev center or gallery.
 
 - [show](/Commands/devcenter/admin/image/_show.md)
 : Get a gallery image.

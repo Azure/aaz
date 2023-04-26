@@ -1,6 +1,6 @@
 # [Command] _devcenter admin network-connection show_
 
-Get a network connection resource
+Get a network connection.
 
 ## Versions
 
@@ -13,4 +13,15 @@ Get a network connection resource
 - Show
     ```bash
         devcenter admin network-connection show --name "{networkConnectionName}" --resource-group "rg1"
+    ```
+
+### [2023-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvbmV0d29ya2Nvbm5lY3Rpb25zL3t9/2023-04-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/networkconnections/{} 2023-04-01 -->
+
+#### examples
+
+- Get
+    ```bash
+        devcenter admin network-connection show --name "uswest3network" --resource-group "rg1"
     ```

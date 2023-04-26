@@ -1,6 +1,6 @@
 # [Group] _devcenter admin project-allowed-environment-type_
 
-Manage allowed project environment type with devcenter
+Manage project allowed environment types.
 
 ## Commands
 
