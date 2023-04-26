@@ -1,6 +1,6 @@
 # [Group] _devcenter admin attached-network_
 
-Manage attached network with devcenter
+Manage attached networks.
 
 ## Commands
 
@@ -8,10 +8,10 @@ Manage attached network with devcenter
 : Create an attached network connection.
 
 - [delete](/Commands/devcenter/admin/attached-network/_delete.md)
-: Delete a NetworkConnection.
+: Delete an attached network connection.
 
 - [list](/Commands/devcenter/admin/attached-network/_list.md)
-: List the attached NetworkConnections for a Project.
+: List the attached network connections for a dev center or project.
 
 - [show](/Commands/devcenter/admin/attached-network/_show.md)
-: Get an attached NetworkConnection.
+: Get an attached network connection configured for a dev center or project.

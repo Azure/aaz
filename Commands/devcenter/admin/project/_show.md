@@ -1,6 +1,6 @@
 # [Command] _devcenter admin project show_
 
-Get a specific project.
+Get a project.
 
 ## Versions
 
@@ -13,4 +13,15 @@ Get a specific project.
 - Show
     ```bash
         devcenter admin project show --name "{projectName}" --resource-group "rg1"
+    ```
+
+### [2023-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvcHJvamVjdHMve30=/2023-04-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/projects/{} 2023-04-01 -->
+
+#### examples
+
+- Get
+    ```bash
+        devcenter admin project show --name "DevProject" --resource-group "rg1"
     ```

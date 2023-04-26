@@ -1,8 +1,8 @@
 # [Group] _devcenter admin check-name-availability_
 
-Manage check name availability with devcenter
+Manage check name availability.
 
 ## Commands
 
 - [execute](/Commands/devcenter/admin/check-name-availability/_execute.md)
-: Check the availability of name for resource
+: Check the availability of name for resource.

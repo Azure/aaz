@@ -1,6 +1,6 @@
 # [Group] _devcenter admin project_
 
-Manage project with devcenter
+Manage projects.
 
 ## Commands
 
@@ -8,13 +8,13 @@ Manage project with devcenter
 : Create a project.
 
 - [delete](/Commands/devcenter/admin/project/_delete.md)
-: Delete a project resource.
+: Delete a project.
 
 - [list](/Commands/devcenter/admin/project/_list.md)
-: List all projects in the subscription.
+: List projects.
 
 - [show](/Commands/devcenter/admin/project/_show.md)
-: Get a specific project.
+: Get a project.
 
 - [update](/Commands/devcenter/admin/project/_update.md)
 : Update a project.

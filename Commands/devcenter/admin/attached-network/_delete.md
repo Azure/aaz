@@ -1,6 +1,6 @@
 # [Command] _devcenter admin attached-network delete_
 
-Delete a NetworkConnection.
+Delete an attached network connection.
 
 ## Versions
 
@@ -13,4 +13,15 @@ Delete a NetworkConnection.
 - Delete
     ```bash
         devcenter admin attached-network delete --attached-network-connection-name "{attachedNetworkConnectionName}" --dev-center-name "Contoso" --resource-group "rg1"
+    ```
+
+### [2023-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvZGV2Y2VudGVycy97fS9hdHRhY2hlZG5ldHdvcmtzL3t9/2023-04-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/devcenters/{}/attachednetworks/{} 2023-04-01 -->
+
+#### examples
+
+- Delete an attached network connection
+    ```bash
+        devcenter admin attached-network delete --attached-network-connection-name "network-uswest3" --dev-center-name "Contoso" --resource-group "rg1"
     ```
