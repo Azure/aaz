@@ -38,9 +38,6 @@ Manage admin resources with devcenter.
 : Manage network connections.
 
 - [pool](/Commands/devcenter/admin/pool/readme.md)
-: Manage pool with devcenter
-
-- [pools](/Commands/devcenter/admin/pools/readme.md)
 : Manage pools.
 
 - [project](/Commands/devcenter/admin/project/readme.md)

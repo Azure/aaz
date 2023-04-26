@@ -1,4 +1,4 @@
-# [Command] _devcenter admin pools run-health-check_
+# [Command] _devcenter admin pool run-health-check_
 
 Triggers a refresh of the pool status.
 
