@@ -1,6 +1,6 @@
 # [Command] _devcenter admin attached-network list_
 
-List the attached network connections for a dev center or project.
+List the attached network connections configured for a dev center or project.
 
 ## Versions
 

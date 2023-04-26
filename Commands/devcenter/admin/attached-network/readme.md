@@ -11,7 +11,7 @@ Manage attached networks.
 : Delete an attached network connection.
 
 - [list](/Commands/devcenter/admin/attached-network/_list.md)
-: List the attached network connections for a dev center or project.
+: List the attached network connections configured for a dev center or project.
 
 - [show](/Commands/devcenter/admin/attached-network/_show.md)
 : Get an attached network connection configured for a dev center or project.
