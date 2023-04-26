@@ -1,6 +1,6 @@
 # [Command] _devcenter admin network-connection update_
 
-Update a Network Connections resource
+Update a network connection.
 
 ## Versions
 
@@ -23,5 +23,5 @@ Update a Network Connections resource
 
 - Update
     ```bash
-        devcenter admin network-connection update --domain-password "New Password value for user" --name "uswest3network" --resource-group "rg1"
+        devcenter admin network-connection update --domain-password "New Password value for user" --name "{networkConnectionName}" --resource-group "rg1"
     ```

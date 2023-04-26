@@ -17,4 +17,4 @@ Manage dev centers.
 : Get a dev center.
 
 - [update](/Commands/devcenter/admin/devcenter/_update.md)
-: Update a dev center resource.
+: Update a dev center.

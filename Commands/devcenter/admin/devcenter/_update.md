@@ -1,6 +1,6 @@
 # [Command] _devcenter admin devcenter update_
 
-Update a dev center resource.
+Update a dev center.
 
 ## Versions
 
