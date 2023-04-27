@@ -1,8 +1,11 @@
 # [Group] _eventhubs_
 
-NamespaceV2
+eventhub
 
 ## Subgroups
+
+- [eventhub](/Commands/eventhubs/eventhub/readme.md)
+: Manage Azure EventHubs eventhub and authorization-rule.
 
 - [namespace](/Commands/eventhubs/namespace/readme.md)
 : NamespaceV2
