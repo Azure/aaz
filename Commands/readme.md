@@ -92,6 +92,9 @@
 - [sql](/Commands/sql/readme.md)
 : Manage Azure SQL Databases and Data Warehouses.
 
+- [stack-hci](/Commands/stack-hci/readme.md)
+: Manage Azure Stack HCI.
+
 - [storage-mover](/Commands/storage-mover/readme.md)
 : Manage top-level Storage Mover resource.
 
@@ -103,3 +106,6 @@
 
 - [voice-service](/Commands/voice-service/readme.md)
 : Manage voice services
+
+- [workloads](/Commands/workloads/readme.md)
+: Manage workloads
