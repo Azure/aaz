@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <CodeGen plane="mgmt-plane">
-  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backupinstances/{}/restore" version="2022-12-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9L2JhY2t1cEluc3RhbmNlcy97YmFja3VwSW5zdGFuY2VOYW1lfS9yZXN0b3Jl/V/MjAyMi0xMi0wMQ=="/>
-  <commandGroup name="data-protection backup-instance restore">
-    <command name="trigger" version="2022-12-01" confirmation="">
-      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backupinstances/{}/restore" version="2022-12-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9L2JhY2t1cEluc3RhbmNlcy97YmFja3VwSW5zdGFuY2VOYW1lfS9yZXN0b3Jl/V/MjAyMi0xMi0wMQ=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backupinstances/{}/restore" version="2023-01-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9L2JhY2t1cEluc3RhbmNlcy97YmFja3VwSW5zdGFuY2VOYW1lfS9yZXN0b3Jl/V/MjAyMy0wMS0wMQ=="/>
+  <commandGroup name="dataprotection backup-instance restore">
+    <command name="trigger" version="2023-01-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backupinstances/{}/restore" version="2023-01-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9L2JhY2t1cEluc3RhbmNlcy97YmFja3VwSW5zdGFuY2VOYW1lfS9yZXN0b3Jl/V/MjAyMy0wMS0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.backupInstanceName" options="backup-instance-name" required="True" idPart="child_name_1">
           <help short="The name of the backup instance."/>
@@ -115,6 +115,63 @@
             <arg type="array<object>" var="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria" options="restore-criteria" required="True" group="ItemLevelRestoreTargetInfo">
               <help short="Restore Criteria"/>
               <item type="object">
+                <arg type="object" var="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].ItemPathBasedRestoreCriteria" options="item-path-based-restore-criteria">
+                  <arg type="boolean" var="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].ItemPathBasedRestoreCriteria.isPathRelativeToBackupItem" options="is-path-relative-to-backup-item" required="True">
+                    <help short="Flag to specify if the path is relative to backup item or full path"/>
+                  </arg>
+                  <arg type="string" var="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].ItemPathBasedRestoreCriteria.itemPath" options="item-path" required="True">
+                    <help short="The path of the item to be restored. It could be the full path of the item or the path relative to the backup item"/>
+                  </arg>
+                  <arg type="array<string>" var="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].ItemPathBasedRestoreCriteria.subItemPathPrefix" options="sub-item-path-prefix">
+                    <help short="The list of prefix strings to be used as filter criteria during restore. These are relative to the item path specified."/>
+                    <item type="string"/>
+                  </arg>
+                </arg>
+                <arg type="object" var="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria" options="kubernetes-cluster-restore-criteria">
+                  <arg type="string" var="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria.conflictPolicy" options="conflict-policy">
+                    <help short="Gets or sets the Conflict Policy property. This property sets policy during conflict of resources during restore."/>
+                    <enum>
+                      <item name="Patch" value="&quot;Patch&quot;"/>
+                      <item name="Skip" value="&quot;Skip&quot;"/>
+                    </enum>
+                  </arg>
+                  <arg type="array<string>" var="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria.excludedNamespaces" options="excluded-namespaces">
+                    <help short="Gets or sets the exclude namespaces property. This property sets the namespaces to be excluded during restore."/>
+                    <item type="string"/>
+                  </arg>
+                  <arg type="array<string>" var="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria.excludedResourceTypes" options="excluded-resource-types">
+                    <help short="Gets or sets the exclude resource types property. This property sets the resource types to be excluded during restore."/>
+                    <item type="string"/>
+                  </arg>
+                  <arg type="boolean" var="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria.includeClusterScopeResources" options="include-cluster-scope-resources" required="True">
+                    <help short="Gets or sets the include cluster resources property. This property if enabled will include cluster scope resources during restore."/>
+                  </arg>
+                  <arg type="array<string>" var="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria.includedNamespaces" options="included-namespaces">
+                    <help short="Gets or sets the include namespaces property. This property sets the namespaces to be included during restore."/>
+                    <item type="string"/>
+                  </arg>
+                  <arg type="array<string>" var="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria.includedResourceTypes" options="included-resource-types">
+                    <help short="Gets or sets the include resource types property. This property sets the resource types to be included during restore."/>
+                    <item type="string"/>
+                  </arg>
+                  <arg type="array<string>" var="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria.labelSelectors" options="label-selectors">
+                    <help short="Gets or sets the LabelSelectors property. This property sets the resource with such label selectors to be included during restore."/>
+                    <item type="string"/>
+                  </arg>
+                  <arg type="object" var="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria.namespaceMappings" options="namespace-mappings">
+                    <help short="Gets or sets the Namespace Mappings property. This property sets if namespace needs to be change during restore."/>
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </arg>
+                  <arg type="string" var="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria.persistentVolumeRestoreMode" options="persistent-volume-restore-mode">
+                    <help short="Gets or sets the PV (Persistent Volume) Restore Mode property. This property sets whether volumes needs to be restored."/>
+                    <enum>
+                      <item name="RestoreWithVolumeData" value="&quot;RestoreWithVolumeData&quot;"/>
+                      <item name="RestoreWithoutVolumeData" value="&quot;RestoreWithoutVolumeData&quot;"/>
+                    </enum>
+                  </arg>
+                </arg>
                 <arg type="object" var="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesPVRestoreCriteria" options="kubernetes-pv-restore-criteria">
                   <arg type="string" var="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesPVRestoreCriteria.name" options="name">
                     <help short="Selected persistent volume claim name"/>
@@ -212,7 +269,7 @@
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="&quot;2022-12-01&quot;"/>
+                <default value="&quot;2023-01-01&quot;"/>
                 <format minLength="1"/>
               </const>
             </query>
@@ -282,11 +339,55 @@
                         <item type="object">
                           <prop type="string" name="objectType" required="True">
                             <enum>
+                              <item arg="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].ItemPathBasedRestoreCriteria" value="&quot;ItemPathBasedRestoreCriteria&quot;"/>
+                              <item arg="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria" value="&quot;KubernetesClusterRestoreCriteria&quot;"/>
                               <item arg="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesPVRestoreCriteria" value="&quot;KubernetesPVRestoreCriteria&quot;"/>
                               <item arg="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesStorageClassRestoreCriteria" value="&quot;KubernetesStorageClassRestoreCriteria&quot;"/>
                               <item arg="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].RangeBasedItemLevelRestoreCriteria" value="&quot;RangeBasedItemLevelRestoreCriteria&quot;"/>
                             </enum>
                           </prop>
+                          <discriminator property="objectType" value="ItemPathBasedRestoreCriteria">
+                            <prop type="boolean" name="isPathRelativeToBackupItem" arg="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].ItemPathBasedRestoreCriteria.isPathRelativeToBackupItem" required="True"/>
+                            <prop type="string" name="itemPath" arg="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].ItemPathBasedRestoreCriteria.itemPath" required="True"/>
+                            <prop type="array<string>" name="subItemPathPrefix" arg="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].ItemPathBasedRestoreCriteria.subItemPathPrefix">
+                              <item type="string"/>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="objectType" value="KubernetesClusterRestoreCriteria">
+                            <prop type="string" name="conflictPolicy" arg="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria.conflictPolicy">
+                              <enum>
+                                <item value="&quot;Patch&quot;"/>
+                                <item value="&quot;Skip&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="array<string>" name="excludedNamespaces" arg="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria.excludedNamespaces">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="array<string>" name="excludedResourceTypes" arg="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria.excludedResourceTypes">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="boolean" name="includeClusterScopeResources" arg="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria.includeClusterScopeResources" required="True"/>
+                            <prop type="array<string>" name="includedNamespaces" arg="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria.includedNamespaces">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="array<string>" name="includedResourceTypes" arg="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria.includedResourceTypes">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="array<string>" name="labelSelectors" arg="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria.labelSelectors">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="object" name="namespaceMappings" arg="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria.namespaceMappings">
+                              <additionalProp>
+                                <item type="string"/>
+                              </additionalProp>
+                            </prop>
+                            <prop type="string" name="persistentVolumeRestoreMode" arg="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesClusterRestoreCriteria.persistentVolumeRestoreMode">
+                              <enum>
+                                <item value="&quot;RestoreWithVolumeData&quot;"/>
+                                <item value="&quot;RestoreWithoutVolumeData&quot;"/>
+                              </enum>
+                            </prop>
+                          </discriminator>
                           <discriminator property="objectType" value="KubernetesPVRestoreCriteria">
                             <prop type="string" name="name" arg="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesPVRestoreCriteria.name"/>
                             <prop type="string" name="storageClassName" arg="$parameters.restoreTargetInfo.ItemLevelRestoreTargetInfo.restoreCriteria[].KubernetesPVRestoreCriteria.storageClassName"/>

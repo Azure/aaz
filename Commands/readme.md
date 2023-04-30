@@ -21,7 +21,7 @@
 : Manage databricks workspaces.
 
 - [dataprotection](/Commands/dataprotection/readme.md)
-: Manage Data Protection.
+: Manage backup instance with dataprotection
 
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
