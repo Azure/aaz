@@ -1,6 +1,6 @@
 # [Command] _vmss rolling-upgrade cancel_
 
-Cancels the current virtual machine scale set rolling upgrade.
+Cancel the current virtual machine scale set rolling upgrade.
 
 ## Versions
 

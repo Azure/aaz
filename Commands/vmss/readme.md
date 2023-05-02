@@ -12,3 +12,8 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 
 - [rolling-upgrade](/Commands/vmss/rolling-upgrade/readme.md)
 : Manage rolling upgrades.
+
+## Commands
+
+- [list-instance-public-ips](/Commands/vmss/_list-instance-public-ips.md)
+: List information about all public IP addresses on a virtual machine scale set level.

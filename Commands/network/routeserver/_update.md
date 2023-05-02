@@ -12,5 +12,5 @@ Update a route server.
 
 - Update a route server.
     ```bash
-        network routeserver update --name myrouteserver --resource-group myresourcegroup --tags super_secure no_80 no_22
+        network routeserver update --name myrouteserver --resource-group myresourcegroup --allow-b2b-traffic
     ```
