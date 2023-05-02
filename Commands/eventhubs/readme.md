@@ -1,8 +1,8 @@
 # [Group] _eventhubs_
 
-NamespaceV2
+Eventhub
 
 ## Subgroups
 
 - [namespace](/Commands/eventhubs/namespace/readme.md)
-: NamespaceV2
+: Eventhub namespace.

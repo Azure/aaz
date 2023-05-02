@@ -1,6 +1,11 @@
 # [Group] _eventhubs namespace_
 
-NamespaceV2
+Eventhub namespace.
+
+## Subgroups
+
+- [schema-registry](/Commands/eventhubs/namespace/schema-registry/readme.md)
+: Manages eventhubs namespace schema registry.
 
 ## Commands
 

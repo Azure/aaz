@@ -42,7 +42,7 @@
 : Manage Elastic SAN.
 
 - [eventhubs](/Commands/eventhubs/readme.md)
-: NamespaceV2
+: Eventhub
 
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
