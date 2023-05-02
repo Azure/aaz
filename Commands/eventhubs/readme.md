@@ -1,6 +1,6 @@
 # [Group] _eventhubs_
 
-NamespaceV2
+Eventhub.
 
 ## Subgroups
 

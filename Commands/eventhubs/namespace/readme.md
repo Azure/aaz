@@ -10,6 +10,9 @@ NamespaceV2
 - [delete](/Commands/eventhubs/namespace/_delete.md)
 : Delete an existing namespace. This operation also removes all associated resources under the namespace.
 
+- [exists](/Commands/eventhubs/namespace/_exists.md)
+: Check the give Namespace name availability.
+
 - [list](/Commands/eventhubs/namespace/_list.md)
 : List the available Namespaces within a resource group.
 
