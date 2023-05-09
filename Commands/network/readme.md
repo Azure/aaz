@@ -25,6 +25,9 @@ Manage Azure Network resources.
 - [express-route](/Commands/network/express-route/readme.md)
 : Manage dedicated private network fiber connections to Azure.
 
+- [firewall](/Commands/network/firewall/readme.md)
+: Manage and configure Azure Firewalls.
+
 - [lb](/Commands/network/lb/readme.md)
 : Manage and configure load balancers.
 
