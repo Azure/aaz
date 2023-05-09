@@ -59,11 +59,11 @@
 - [network](/Commands/network/readme.md)
 : Manage Azure Network resources.
 
-- [networkcloud](/Commands/networkcloud/readme.md)
-: Manage Azure NetworkCloud resources.
-
 - [network-function](/Commands/network-function/readme.md)
 : Manage network function
+
+- [networkcloud](/Commands/networkcloud/readme.md)
+: Manage Network Cloud resources
 
 - [nginx](/Commands/nginx/readme.md)
 : Manage NGINX deployment resources
