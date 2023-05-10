@@ -1352,7 +1352,7 @@
         </arg>
       </argGroup>
       <argGroup name="JobResource">
-        <arg type="object" var="$jobResource.identity" options="identity" group="JobResource">
+        <arg type="object" var="$jobResource.identity" options="identity" hide="True" group="JobResource">
           <help short="Msi identity of the resource"/>
           <arg type="string" var="$jobResource.identity.type" options="type">
             <help short="Identity type"/>
@@ -1369,24 +1369,6 @@
         </arg>
         <arg type="ResourceLocation" var="$jobResource.location" options="location l" required="True" group="JobResource">
           <help short="The location of the resource. This will be one of the supported and registered Azure Regions (e.g. West US, East US, Southeast Asia, etc.). The region of a resource cannot be changed once it is created, but if an identical region is specified on update the request will succeed."/>
-        </arg>
-        <arg type="object" var="$jobResource.sku" options="sku" required="True" group="JobResource">
-          <help short="The sku type."/>
-          <arg type="string" var="$jobResource.sku.displayName" options="display-name">
-            <help short="The display name of the sku."/>
-          </arg>
-          <arg type="string" var="$jobResource.sku.family" options="family">
-            <help short="The sku family."/>
-          </arg>
-          <arg type="string" var="$jobResource.sku.name" options="name" required="True">
-            <help short="The sku name."/>
-            <enum>
-              <item name="DataBox" value="&quot;DataBox&quot;"/>
-              <item name="DataBoxCustomerDisk" value="&quot;DataBoxCustomerDisk&quot;"/>
-              <item name="DataBoxDisk" value="&quot;DataBoxDisk&quot;"/>
-              <item name="DataBoxHeavy" value="&quot;DataBoxHeavy&quot;"/>
-            </enum>
-          </arg>
         </arg>
         <arg type="object" var="$jobResource.tags" options="tags" group="JobResource">
           <help short="The list of key value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups)."/>
@@ -1460,6 +1442,23 @@
         </arg>
         <arg type="string" var="$jobResource.properties.details.shippingAddress.zipExtendedCode" options="zip-extended-code" hide="True" group="ShippingAddress">
           <help short="zip extended code"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Sku">
+        <arg type="string" var="$jobResource.sku.displayName" options="display-name" hide="True" group="Sku">
+          <help short="The display name of the sku."/>
+        </arg>
+        <arg type="string" var="$jobResource.sku.family" options="family" hide="True" group="Sku">
+          <help short="The sku family."/>
+        </arg>
+        <arg type="string" var="$jobResource.sku.name" options="sku" required="True" group="Sku">
+          <help short="The sku name."/>
+          <enum>
+            <item name="DataBox" value="&quot;DataBox&quot;"/>
+            <item name="DataBoxCustomerDisk" value="&quot;DataBoxCustomerDisk&quot;"/>
+            <item name="DataBoxDisk" value="&quot;DataBoxDisk&quot;"/>
+            <item name="DataBoxHeavy" value="&quot;DataBoxHeavy&quot;"/>
+          </enum>
         </arg>
       </argGroup>
       <operation operationId="Jobs_Create">
@@ -1794,7 +1793,7 @@
                       </enum>
                     </prop>
                   </prop>
-                  <prop type="object" name="sku" arg="$jobResource.sku" required="True">
+                  <prop type="object" name="sku" required="True">
                     <prop type="string" name="displayName" arg="$jobResource.sku.displayName"/>
                     <prop type="string" name="family" arg="$jobResource.sku.family"/>
                     <prop type="string" name="name" arg="$jobResource.sku.name" required="True">
@@ -2701,7 +2700,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="update" version="2022-12-01">
+    <command name="update" version="2022-12-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.databox/jobs/{}" version="2022-12-01" swagger="mgmt-plane/databox/ResourceProviders/Microsoft.DataBox/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YUJveC9qb2JzL3tqb2JOYW1lfQ==/V/MjAyMi0xMi0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.jobName" options="job-name name n" required="True" idPart="name">
@@ -3096,10 +3095,10 @@
         </arg>
         <arg type="object" var="$jobResource.sku" options="sku" hide="True" group="JobResource">
           <help short="The sku type."/>
-          <arg nullable="True" type="string" var="$jobResource.sku.displayName" options="display-name">
+          <arg nullable="True" type="string" var="$jobResource.sku.displayName" options="display-name" hide="True" group="Sku">
             <help short="The display name of the sku."/>
           </arg>
-          <arg nullable="True" type="string" var="$jobResource.sku.family" options="family">
+          <arg nullable="True" type="string" var="$jobResource.sku.family" options="family" hide="True" group="Sku">
             <help short="The sku family."/>
           </arg>
           <arg type="string" var="$jobResource.sku.name" options="name">

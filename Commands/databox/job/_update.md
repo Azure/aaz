@@ -1,6 +1,6 @@
 # [Command] _databox job update_
 
-Update a new job with the specified parameters. Existing job cannot be updated with this API and should instead be updated with the Update job API.
+Update an existing job with the specified parameters.
 
 ## Versions
 

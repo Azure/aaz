@@ -23,4 +23,4 @@ Manage data box job
 : Get information about the specified job.
 
 - [update](/Commands/databox/job/_update.md)
-: Update a new job with the specified parameters. Existing job cannot be updated with this API and should instead be updated with the Update job API.
+: Update an existing job with the specified parameters.
