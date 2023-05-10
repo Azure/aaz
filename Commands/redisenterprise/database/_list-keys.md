@@ -1,4 +1,4 @@
-# [Command] _redisenterprise database list-key_
+# [Command] _redisenterprise database list-keys_
 
 Retrieves the access keys for the RedisEnterprise database.
 

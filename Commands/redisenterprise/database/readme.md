@@ -25,7 +25,7 @@ Manage Redis Enterprise databases
 - [list](/Commands/redisenterprise/database/_list.md)
 : List all databases in the specified RedisEnterprise cluster.
 
-- [list-key](/Commands/redisenterprise/database/_list-key.md)
+- [list-keys](/Commands/redisenterprise/database/_list-keys.md)
 : Retrieves the access keys for the RedisEnterprise database.
 
 - [regenerate-key](/Commands/redisenterprise/database/_regenerate-key.md)

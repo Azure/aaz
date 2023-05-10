@@ -255,47 +255,45 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Parameters">
-        <arg type="object" var="$parameters.identity" options="identity" group="Parameters">
-          <help short="The identity of the resource."/>
-          <arg type="string" var="$parameters.identity.type" options="type" required="True">
-            <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
-            <enum>
-              <item name="None" value="&quot;None&quot;"/>
-              <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
-              <item name="SystemAssigned, UserAssigned" value="&quot;SystemAssigned, UserAssigned&quot;"/>
-              <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
-            </enum>
-          </arg>
-          <arg type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-identities">
-            <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
-            <additionalProp>
-              <item type="object">
-                <blank value="{}"/>
-              </item>
-            </additionalProp>
-          </arg>
+      <argGroup name="Encryption">
+        <arg type="string" var="$parameters.properties.encryption.customerManagedKeyEncryption.keyEncryptionKeyUrl" options="key-encryption-key-url" group="Encryption">
+          <help short="Key encryption key Url, versioned only. Ex: https://contosovault.vault.azure.net/keys/contosokek/562a4bb76b524a1493a6afe8e536ee78"/>
         </arg>
+      </argGroup>
+      <argGroup name="Identity">
+        <arg type="string" var="$parameters.identity.type" options="identity-type" group="Identity">
+          <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
+          <enum>
+            <item name="None" value="&quot;None&quot;"/>
+            <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
+            <item name="SystemAssigned, UserAssigned" value="&quot;SystemAssigned, UserAssigned&quot;"/>
+            <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
+          </enum>
+        </arg>
+        <arg type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-identities" group="Identity">
+          <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
+          <additionalProp>
+            <item type="object">
+              <blank value="{}"/>
+            </item>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="KeyEncryptionKeyIdentity">
+        <arg type="string" var="$parameters.properties.encryption.customerManagedKeyEncryption.keyEncryptionKeyIdentity.identityType" options="key-encryption-identity-type" group="KeyEncryptionKeyIdentity">
+          <help short="Only userAssignedIdentity is supported in this API version; other types may be supported in the future"/>
+          <enum>
+            <item name="systemAssignedIdentity" value="&quot;systemAssignedIdentity&quot;"/>
+            <item name="userAssignedIdentity" value="&quot;userAssignedIdentity&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$parameters.properties.encryption.customerManagedKeyEncryption.keyEncryptionKeyIdentity.userAssignedIdentityResourceId" options="user-assigned-identity-resource-id" group="KeyEncryptionKeyIdentity">
+          <help short="User assigned identity to use for accessing key encryption key Url. Ex: /subscriptions/<sub uuid>/resourceGroups/<resource group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myId."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Parameters">
         <arg type="ResourceLocation" var="$parameters.location" options="location l" required="True" group="Parameters">
           <help short="The geo-location where the resource lives"/>
-        </arg>
-        <arg type="object" var="$parameters.sku" options="sku" required="True" group="Parameters">
-          <help short="The SKU to create, which affects price, performance, and features."/>
-          <arg type="integer32" var="$parameters.sku.capacity" options="capacity">
-            <help short="The size of the RedisEnterprise cluster. Defaults to 2 or 3 depending on SKU. Valid values are (2, 4, 6, ...) for Enterprise SKUs and (3, 9, 15, ...) for Flash SKUs."/>
-          </arg>
-          <arg type="string" var="$parameters.sku.name" options="name" required="True">
-            <help short="The type of RedisEnterprise cluster to deploy. Possible values: (Enterprise_E10, EnterpriseFlash_F300 etc.)"/>
-            <enum>
-              <item name="EnterpriseFlash_F1500" value="&quot;EnterpriseFlash_F1500&quot;"/>
-              <item name="EnterpriseFlash_F300" value="&quot;EnterpriseFlash_F300&quot;"/>
-              <item name="EnterpriseFlash_F700" value="&quot;EnterpriseFlash_F700&quot;"/>
-              <item name="Enterprise_E10" value="&quot;Enterprise_E10&quot;"/>
-              <item name="Enterprise_E100" value="&quot;Enterprise_E100&quot;"/>
-              <item name="Enterprise_E20" value="&quot;Enterprise_E20&quot;"/>
-              <item name="Enterprise_E50" value="&quot;Enterprise_E50&quot;"/>
-            </enum>
-          </arg>
         </arg>
         <arg type="object" var="$parameters.tags" options="tags" group="Parameters">
           <help short="Resource tags."/>
@@ -309,34 +307,29 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg type="object" var="$parameters.properties.encryption" options="encryption" group="Properties">
-          <help short="Encryption-at-rest configuration for the cluster."/>
-          <arg type="object" var="$parameters.properties.encryption.customerManagedKeyEncryption" options="customer-managed-key-encryption">
-            <help short="All Customer-managed key encryption properties for the resource. Set this to an empty object to use Microsoft-managed key encryption."/>
-            <arg type="object" var="$parameters.properties.encryption.customerManagedKeyEncryption.keyEncryptionKeyIdentity" options="key-encryption-key-identity">
-              <help short="All identity configuration for Customer-managed key settings defining which identity should be used to auth to Key Vault."/>
-              <arg type="string" var="$parameters.properties.encryption.customerManagedKeyEncryption.keyEncryptionKeyIdentity.identityType" options="identity-type">
-                <help short="Only userAssignedIdentity is supported in this API version; other types may be supported in the future"/>
-                <enum>
-                  <item name="systemAssignedIdentity" value="&quot;systemAssignedIdentity&quot;"/>
-                  <item name="userAssignedIdentity" value="&quot;userAssignedIdentity&quot;"/>
-                </enum>
-              </arg>
-              <arg type="string" var="$parameters.properties.encryption.customerManagedKeyEncryption.keyEncryptionKeyIdentity.userAssignedIdentityResourceId" options="user-assigned-identity-resource-id">
-                <help short="User assigned identity to use for accessing key encryption key Url. Ex: /subscriptions/<sub uuid>/resourceGroups/<resource group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myId."/>
-              </arg>
-            </arg>
-            <arg type="string" var="$parameters.properties.encryption.customerManagedKeyEncryption.keyEncryptionKeyUrl" options="key-encryption-key-url">
-              <help short="Key encryption key Url, versioned only. Ex: https://contosovault.vault.azure.net/keys/contosokek/562a4bb76b524a1493a6afe8e536ee78"/>
-            </arg>
-          </arg>
-        </arg>
         <arg type="string" var="$parameters.properties.minimumTlsVersion" options="minimum-tls-version" group="Properties">
           <help short="The minimum TLS version for the cluster to support, e.g. '1.2'"/>
           <enum>
             <item name="1.0" value="&quot;1.0&quot;"/>
             <item name="1.1" value="&quot;1.1&quot;"/>
             <item name="1.2" value="&quot;1.2&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <argGroup name="Sku">
+        <arg type="integer32" var="$parameters.sku.capacity" options="capacity" group="Sku">
+          <help short="The size of the RedisEnterprise cluster. Defaults to 2 or 3 depending on SKU. Valid values are (2, 4, 6, ...) for Enterprise SKUs and (3, 9, 15, ...) for Flash SKUs."/>
+        </arg>
+        <arg type="string" var="$parameters.sku.name" options="sku" required="True" group="Sku">
+          <help short="The type of RedisEnterprise cluster to deploy. Possible values: (Enterprise_E10, EnterpriseFlash_F300 etc.)"/>
+          <enum>
+            <item name="EnterpriseFlash_F1500" value="&quot;EnterpriseFlash_F1500&quot;"/>
+            <item name="EnterpriseFlash_F300" value="&quot;EnterpriseFlash_F300&quot;"/>
+            <item name="EnterpriseFlash_F700" value="&quot;EnterpriseFlash_F700&quot;"/>
+            <item name="Enterprise_E10" value="&quot;Enterprise_E10&quot;"/>
+            <item name="Enterprise_E100" value="&quot;Enterprise_E100&quot;"/>
+            <item name="Enterprise_E20" value="&quot;Enterprise_E20&quot;"/>
+            <item name="Enterprise_E50" value="&quot;Enterprise_E50&quot;"/>
           </enum>
         </arg>
       </argGroup>
@@ -362,7 +355,7 @@
             <body>
               <json>
                 <schema type="object" name="parameters" required="True" clientFlatten="True">
-                  <prop type="IdentityObject" name="identity" arg="$parameters.identity">
+                  <prop type="IdentityObject" name="identity">
                     <prop type="string" name="type" arg="$parameters.identity.type" required="True">
                       <enum>
                         <item value="&quot;None&quot;"/>
@@ -379,9 +372,9 @@
                   </prop>
                   <prop type="ResourceLocation" name="location" arg="$parameters.location" required="True"/>
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop type="object" name="encryption" arg="$parameters.properties.encryption">
-                      <prop type="object" name="customerManagedKeyEncryption" arg="$parameters.properties.encryption.customerManagedKeyEncryption">
-                        <prop type="object" name="keyEncryptionKeyIdentity" arg="$parameters.properties.encryption.customerManagedKeyEncryption.keyEncryptionKeyIdentity">
+                    <prop type="object" name="encryption">
+                      <prop type="object" name="customerManagedKeyEncryption">
+                        <prop type="object" name="keyEncryptionKeyIdentity">
                           <prop type="string" name="identityType" arg="$parameters.properties.encryption.customerManagedKeyEncryption.keyEncryptionKeyIdentity.identityType">
                             <enum>
                               <item value="&quot;systemAssignedIdentity&quot;"/>
@@ -401,7 +394,7 @@
                       </enum>
                     </prop>
                   </prop>
-                  <prop type="object" name="sku" arg="$parameters.sku" required="True">
+                  <prop type="object" name="sku" required="True">
                     <prop type="integer32" name="capacity" arg="$parameters.sku.capacity"/>
                     <prop type="string" name="name" arg="$parameters.sku.name" required="True">
                       <enum>
@@ -610,45 +603,43 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="Encryption">
+        <arg nullable="True" type="string" var="$parameters.properties.encryption.customerManagedKeyEncryption.keyEncryptionKeyUrl" options="key-encryption-key-url" group="Encryption">
+          <help short="Key encryption key Url, versioned only. Ex: https://contosovault.vault.azure.net/keys/contosokek/562a4bb76b524a1493a6afe8e536ee78"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Identity">
+        <arg type="string" var="$parameters.identity.type" options="identity-type" group="Identity">
+          <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
+          <enum>
+            <item name="None" value="&quot;None&quot;"/>
+            <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
+            <item name="SystemAssigned, UserAssigned" value="&quot;SystemAssigned, UserAssigned&quot;"/>
+            <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
+          </enum>
+        </arg>
+        <arg nullable="True" type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-identities" group="Identity">
+          <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
+          <additionalProp>
+            <item nullable="True" type="object">
+              <blank value="{}"/>
+            </item>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="KeyEncryptionKeyIdentity">
+        <arg nullable="True" type="string" var="$parameters.properties.encryption.customerManagedKeyEncryption.keyEncryptionKeyIdentity.identityType" options="key-encryption-identity-type" group="KeyEncryptionKeyIdentity">
+          <help short="Only userAssignedIdentity is supported in this API version; other types may be supported in the future"/>
+          <enum>
+            <item name="systemAssignedIdentity" value="&quot;systemAssignedIdentity&quot;"/>
+            <item name="userAssignedIdentity" value="&quot;userAssignedIdentity&quot;"/>
+          </enum>
+        </arg>
+        <arg nullable="True" type="string" var="$parameters.properties.encryption.customerManagedKeyEncryption.keyEncryptionKeyIdentity.userAssignedIdentityResourceId" options="user-assigned-identity-resource-id" group="KeyEncryptionKeyIdentity">
+          <help short="User assigned identity to use for accessing key encryption key Url. Ex: /subscriptions/<sub uuid>/resourceGroups/<resource group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myId."/>
+        </arg>
+      </argGroup>
       <argGroup name="Parameters">
-        <arg nullable="True" type="object" var="$parameters.identity" options="identity" group="Parameters">
-          <help short="The identity of the resource."/>
-          <arg type="string" var="$parameters.identity.type" options="type">
-            <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
-            <enum>
-              <item name="None" value="&quot;None&quot;"/>
-              <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
-              <item name="SystemAssigned, UserAssigned" value="&quot;SystemAssigned, UserAssigned&quot;"/>
-              <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
-            </enum>
-          </arg>
-          <arg nullable="True" type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-identities">
-            <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
-            <additionalProp>
-              <item nullable="True" type="object">
-                <blank value="{}"/>
-              </item>
-            </additionalProp>
-          </arg>
-        </arg>
-        <arg type="object" var="$parameters.sku" options="sku" group="Parameters">
-          <help short="The SKU to create, which affects price, performance, and features."/>
-          <arg nullable="True" type="integer32" var="$parameters.sku.capacity" options="capacity">
-            <help short="The size of the RedisEnterprise cluster. Defaults to 2 or 3 depending on SKU. Valid values are (2, 4, 6, ...) for Enterprise SKUs and (3, 9, 15, ...) for Flash SKUs."/>
-          </arg>
-          <arg type="string" var="$parameters.sku.name" options="name">
-            <help short="The type of RedisEnterprise cluster to deploy. Possible values: (Enterprise_E10, EnterpriseFlash_F300 etc.)"/>
-            <enum>
-              <item name="EnterpriseFlash_F1500" value="&quot;EnterpriseFlash_F1500&quot;"/>
-              <item name="EnterpriseFlash_F300" value="&quot;EnterpriseFlash_F300&quot;"/>
-              <item name="EnterpriseFlash_F700" value="&quot;EnterpriseFlash_F700&quot;"/>
-              <item name="Enterprise_E10" value="&quot;Enterprise_E10&quot;"/>
-              <item name="Enterprise_E100" value="&quot;Enterprise_E100&quot;"/>
-              <item name="Enterprise_E20" value="&quot;Enterprise_E20&quot;"/>
-              <item name="Enterprise_E50" value="&quot;Enterprise_E50&quot;"/>
-            </enum>
-          </arg>
-        </arg>
         <arg nullable="True" type="object" var="$parameters.tags" options="tags" group="Parameters">
           <help short="Resource tags."/>
           <additionalProp>
@@ -661,34 +652,29 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="object" var="$parameters.properties.encryption" options="encryption" group="Properties">
-          <help short="Encryption-at-rest configuration for the cluster."/>
-          <arg nullable="True" type="object" var="$parameters.properties.encryption.customerManagedKeyEncryption" options="customer-managed-key-encryption">
-            <help short="All Customer-managed key encryption properties for the resource. Set this to an empty object to use Microsoft-managed key encryption."/>
-            <arg nullable="True" type="object" var="$parameters.properties.encryption.customerManagedKeyEncryption.keyEncryptionKeyIdentity" options="key-encryption-key-identity">
-              <help short="All identity configuration for Customer-managed key settings defining which identity should be used to auth to Key Vault."/>
-              <arg nullable="True" type="string" var="$parameters.properties.encryption.customerManagedKeyEncryption.keyEncryptionKeyIdentity.identityType" options="identity-type">
-                <help short="Only userAssignedIdentity is supported in this API version; other types may be supported in the future"/>
-                <enum>
-                  <item name="systemAssignedIdentity" value="&quot;systemAssignedIdentity&quot;"/>
-                  <item name="userAssignedIdentity" value="&quot;userAssignedIdentity&quot;"/>
-                </enum>
-              </arg>
-              <arg nullable="True" type="string" var="$parameters.properties.encryption.customerManagedKeyEncryption.keyEncryptionKeyIdentity.userAssignedIdentityResourceId" options="user-assigned-identity-resource-id">
-                <help short="User assigned identity to use for accessing key encryption key Url. Ex: /subscriptions/<sub uuid>/resourceGroups/<resource group>/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myId."/>
-              </arg>
-            </arg>
-            <arg nullable="True" type="string" var="$parameters.properties.encryption.customerManagedKeyEncryption.keyEncryptionKeyUrl" options="key-encryption-key-url">
-              <help short="Key encryption key Url, versioned only. Ex: https://contosovault.vault.azure.net/keys/contosokek/562a4bb76b524a1493a6afe8e536ee78"/>
-            </arg>
-          </arg>
-        </arg>
         <arg nullable="True" type="string" var="$parameters.properties.minimumTlsVersion" options="minimum-tls-version" group="Properties">
           <help short="The minimum TLS version for the cluster to support, e.g. '1.2'"/>
           <enum>
             <item name="1.0" value="&quot;1.0&quot;"/>
             <item name="1.1" value="&quot;1.1&quot;"/>
             <item name="1.2" value="&quot;1.2&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <argGroup name="Sku">
+        <arg nullable="True" type="integer32" var="$parameters.sku.capacity" options="capacity" group="Sku">
+          <help short="The size of the RedisEnterprise cluster. Defaults to 2 or 3 depending on SKU. Valid values are (2, 4, 6, ...) for Enterprise SKUs and (3, 9, 15, ...) for Flash SKUs."/>
+        </arg>
+        <arg type="string" var="$parameters.sku.name" options="sku" group="Sku">
+          <help short="The type of RedisEnterprise cluster to deploy. Possible values: (Enterprise_E10, EnterpriseFlash_F300 etc.)"/>
+          <enum>
+            <item name="EnterpriseFlash_F1500" value="&quot;EnterpriseFlash_F1500&quot;"/>
+            <item name="EnterpriseFlash_F300" value="&quot;EnterpriseFlash_F300&quot;"/>
+            <item name="EnterpriseFlash_F700" value="&quot;EnterpriseFlash_F700&quot;"/>
+            <item name="Enterprise_E10" value="&quot;Enterprise_E10&quot;"/>
+            <item name="Enterprise_E100" value="&quot;Enterprise_E100&quot;"/>
+            <item name="Enterprise_E20" value="&quot;Enterprise_E20&quot;"/>
+            <item name="Enterprise_E50" value="&quot;Enterprise_E50&quot;"/>
           </enum>
         </arg>
       </argGroup>
@@ -887,7 +873,7 @@
         <instanceUpdate ref="$Instance">
           <json>
             <schema type="object" name="parameters" required="True" clientFlatten="True">
-              <prop type="IdentityObject" name="identity" arg="$parameters.identity">
+              <prop type="IdentityObject" name="identity">
                 <prop type="string" name="type" arg="$parameters.identity.type" required="True">
                   <enum>
                     <item value="&quot;None&quot;"/>
@@ -903,9 +889,9 @@
                 </prop>
               </prop>
               <prop type="object" name="properties" clientFlatten="True">
-                <prop type="object" name="encryption" arg="$parameters.properties.encryption">
-                  <prop type="object" name="customerManagedKeyEncryption" arg="$parameters.properties.encryption.customerManagedKeyEncryption">
-                    <prop type="object" name="keyEncryptionKeyIdentity" arg="$parameters.properties.encryption.customerManagedKeyEncryption.keyEncryptionKeyIdentity">
+                <prop type="object" name="encryption">
+                  <prop type="object" name="customerManagedKeyEncryption">
+                    <prop type="object" name="keyEncryptionKeyIdentity">
                       <prop type="string" name="identityType" arg="$parameters.properties.encryption.customerManagedKeyEncryption.keyEncryptionKeyIdentity.identityType">
                         <enum>
                           <item value="&quot;systemAssignedIdentity&quot;"/>
@@ -925,7 +911,7 @@
                   </enum>
                 </prop>
               </prop>
-              <prop type="object" name="sku" arg="$parameters.sku" required="True">
+              <prop type="object" name="sku" required="True">
                 <prop type="integer32" name="capacity" arg="$parameters.sku.capacity"/>
                 <prop type="string" name="name" arg="$parameters.sku.name" required="True">
                   <enum>
