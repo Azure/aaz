@@ -90,7 +90,7 @@
 : Manage Service Networking Resources
 
 - [servicebus](/Commands/servicebus/readme.md)
-: servicebus
+: NamespaceV2
 
 - [sig](/Commands/sig/readme.md)
 : Manage shared image gallery.
