@@ -1071,11 +1071,19 @@
             <help short="Set Device password for unlocking Databox Heavy. Should not be passed for TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will not be returned in Get Call. Password Requirements :  Password must be minimum of 12 and maximum of 64 characters. Password must have at least one uppercase alphabet, one number and one special character. Password cannot have the following characters : IilLoO0 Password can have only alphabets, numbers and these characters : @#\-$%^!+=;:_()]+"/>
           </arg>
         </arg>
-        <arg type="array<object>" var="$jobResource.properties.details.dataExportDetails" options="data-export-details" hide="True" group="Details">
+        <arg type="array<object>" var="$jobResource.properties.details.dataExportDetails" options="data-export-details" group="Details">
           <help short="Details of the data to be exported from azure."/>
           <item type="object">
-            <arg type="@DataAccountDetails_create" var="$jobResource.properties.details.dataExportDetails[].accountDetails" options="account-details" required="True">
+            <arg type="object" var="$jobResource.properties.details.dataExportDetails[].accountDetails" options="account-details" required="True">
               <help short="Account details of the data to be transferred"/>
+              <arg type="object" var="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk" options="managed-disk">
+                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.resourceGroupId" options="resource-group-id" required="True"/>
+                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" options="staging-storage-account-id" required="True"/>
+              </arg>
+              <arg type="object" var="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount" options="storage-account">
+                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id" required="True"/>
+              </arg>
+              <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.sharePassword" options="share-password"/>
             </arg>
             <arg type="string" var="$jobResource.properties.details.dataExportDetails[].logCollectionLevel" options="log-collection-level">
               <help short="Level of the logs to be collected."/>
@@ -1176,27 +1184,19 @@
             </arg>
           </item>
         </arg>
-        <arg type="array<object>" var="$jobResource.properties.details.dataImportDetails" options="data-import-details" hide="True" group="Details">
+        <arg type="array<object>" var="$jobResource.properties.details.dataImportDetails" options="data-import-details" group="Details">
           <help short="Details of the data to be imported into azure."/>
           <item type="object">
-            <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails" options="account-details" required="True" cls="DataAccountDetails_create">
+            <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails" options="account-details" required="True">
               <help short="Account details of the data to be transferred"/>
-              <arg type="object" var="@DataAccountDetails_create.ManagedDisk" options="managed-disk">
-                <arg type="string" var="@DataAccountDetails_create.ManagedDisk.resourceGroupId" options="resource-group-id" required="True">
-                  <help short="Resource Group Id of the compute disks."/>
-                </arg>
-                <arg type="string" var="@DataAccountDetails_create.ManagedDisk.stagingStorageAccountId" options="staging-storage-account-id" required="True">
-                  <help short="Resource Id of the storage account that can be used to copy the vhd for staging."/>
-                </arg>
+              <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk" options="managed-disk">
+                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.resourceGroupId" options="resource-group-id" required="True"/>
+                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" options="staging-storage-account-id" required="True"/>
               </arg>
-              <arg type="object" var="@DataAccountDetails_create.StorageAccount" options="storage-account">
-                <arg type="string" var="@DataAccountDetails_create.StorageAccount.storageAccountId" options="storage-account-id" required="True">
-                  <help short="Storage Account Resource Id."/>
-                </arg>
+              <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount" options="storage-account">
+                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id" required="True"/>
               </arg>
-              <arg type="string" var="@DataAccountDetails_create.sharePassword" options="share-password">
-                <help short="Password for all the shares to be created on the device. Should not be passed for TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will not be returned in Get Call. Password Requirements :  Password must be minimum of 12 and maximum of 64 characters. Password must have at least one uppercase alphabet, one number and one special character. Password cannot have the following characters : IilLoO0 Password can have only alphabets, numbers and these characters : @#\-$%^!+=;:_()]+"/>
-              </arg>
+              <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.sharePassword" options="share-password"/>
             </arg>
             <arg type="string" var="$jobResource.properties.details.dataImportDetails[].logCollectionLevel" options="log-collection-level">
               <help short="Level of the logs to be collected."/>
@@ -1533,7 +1533,23 @@
                       </prop>
                       <prop type="array<object>" name="dataExportDetails" arg="$jobResource.properties.details.dataExportDetails">
                         <item type="object">
-                          <prop type="@DataAccountDetails_create" name="accountDetails" arg="$jobResource.properties.details.dataExportDetails[].accountDetails" required="True"/>
+                          <prop type="object" name="accountDetails" arg="$jobResource.properties.details.dataExportDetails[].accountDetails" required="True">
+                            <prop type="string" name="dataAccountType" required="True">
+                              <default value="&quot;StorageAccount&quot;"/>
+                              <enum>
+                                <item arg="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk" value="&quot;ManagedDisk&quot;"/>
+                                <item arg="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount" value="&quot;StorageAccount&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="sharePassword" arg="$jobResource.properties.details.dataExportDetails[].accountDetails.sharePassword" secret="True"/>
+                            <discriminator property="dataAccountType" value="ManagedDisk">
+                              <prop type="string" name="resourceGroupId" arg="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.resourceGroupId" required="True"/>
+                              <prop type="string" name="stagingStorageAccountId" arg="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" required="True"/>
+                            </discriminator>
+                            <discriminator property="dataAccountType" value="StorageAccount">
+                              <prop type="string" name="storageAccountId" arg="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount.storageAccountId" required="True"/>
+                            </discriminator>
+                          </prop>
                           <prop type="string" name="logCollectionLevel" arg="$jobResource.properties.details.dataExportDetails[].logCollectionLevel">
                             <default value="&quot;Error&quot;"/>
                             <enum>
@@ -1610,21 +1626,21 @@
                       </prop>
                       <prop type="array<object>" name="dataImportDetails" arg="$jobResource.properties.details.dataImportDetails">
                         <item type="object">
-                          <prop type="object" name="accountDetails" arg="$jobResource.properties.details.dataImportDetails[].accountDetails" required="True" cls="DataAccountDetails_create">
+                          <prop type="object" name="accountDetails" arg="$jobResource.properties.details.dataImportDetails[].accountDetails" required="True">
                             <prop type="string" name="dataAccountType" required="True">
                               <default value="&quot;StorageAccount&quot;"/>
                               <enum>
-                                <item arg="@DataAccountDetails_create.ManagedDisk" value="&quot;ManagedDisk&quot;"/>
-                                <item arg="@DataAccountDetails_create.StorageAccount" value="&quot;StorageAccount&quot;"/>
+                                <item arg="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk" value="&quot;ManagedDisk&quot;"/>
+                                <item arg="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount" value="&quot;StorageAccount&quot;"/>
                               </enum>
                             </prop>
-                            <prop type="string" name="sharePassword" arg="@DataAccountDetails_create.sharePassword" secret="True"/>
+                            <prop type="string" name="sharePassword" arg="$jobResource.properties.details.dataImportDetails[].accountDetails.sharePassword" secret="True"/>
                             <discriminator property="dataAccountType" value="ManagedDisk">
-                              <prop type="string" name="resourceGroupId" arg="@DataAccountDetails_create.ManagedDisk.resourceGroupId" required="True"/>
-                              <prop type="string" name="stagingStorageAccountId" arg="@DataAccountDetails_create.ManagedDisk.stagingStorageAccountId" required="True"/>
+                              <prop type="string" name="resourceGroupId" arg="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.resourceGroupId" required="True"/>
+                              <prop type="string" name="stagingStorageAccountId" arg="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" required="True"/>
                             </discriminator>
                             <discriminator property="dataAccountType" value="StorageAccount">
-                              <prop type="string" name="storageAccountId" arg="@DataAccountDetails_create.StorageAccount.storageAccountId" required="True"/>
+                              <prop type="string" name="storageAccountId" arg="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount.storageAccountId" required="True"/>
                             </discriminator>
                           </prop>
                           <prop type="string" name="logCollectionLevel" arg="$jobResource.properties.details.dataImportDetails[].logCollectionLevel">
@@ -2808,11 +2824,18 @@
             <help short="Set Device password for unlocking Databox Heavy. Should not be passed for TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will not be returned in Get Call. Password Requirements :  Password must be minimum of 12 and maximum of 64 characters. Password must have at least one uppercase alphabet, one number and one special character. Password cannot have the following characters : IilLoO0 Password can have only alphabets, numbers and these characters : @#\-$%^!+=;:_()]+"/>
           </arg>
         </arg>
-        <arg nullable="True" type="array<object>" var="$jobResource.properties.details.dataExportDetails" options="data-export-details" hide="True" group="Details">
+        <arg nullable="True" type="array<object>" var="$jobResource.properties.details.dataExportDetails" options="data-export-details" group="Details">
           <help short="Details of the data to be exported from azure."/>
           <item nullable="True" type="object">
-            <arg type="@DataAccountDetails_update" var="$jobResource.properties.details.dataExportDetails[].accountDetails" options="account-details">
+            <arg type="object" var="$jobResource.properties.details.dataExportDetails[].accountDetails" options="account-details">
               <help short="Account details of the data to be transferred"/>
+              <arg type="object" var="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk" options="managed-disk">
+                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.resourceGroupId" options="resource-group-id"/>
+                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" options="staging-storage-account-id"/>
+              </arg>
+              <arg type="object" var="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount" options="storage-account">
+                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id"/>
+              </arg>
             </arg>
             <arg nullable="True" type="string" var="$jobResource.properties.details.dataExportDetails[].logCollectionLevel" options="log-collection-level">
               <help short="Level of the logs to be collected."/>
@@ -2910,23 +2933,17 @@
             </arg>
           </item>
         </arg>
-        <arg nullable="True" type="array<object>" var="$jobResource.properties.details.dataImportDetails" options="data-import-details" hide="True" group="Details">
+        <arg nullable="True" type="array<object>" var="$jobResource.properties.details.dataImportDetails" options="data-import-details" group="Details">
           <help short="Details of the data to be imported into azure."/>
           <item nullable="True" type="object">
-            <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails" options="account-details" cls="DataAccountDetails_update">
+            <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails" options="account-details">
               <help short="Account details of the data to be transferred"/>
-              <arg type="object" var="@DataAccountDetails_update.ManagedDisk" options="managed-disk">
-                <arg type="string" var="@DataAccountDetails_update.ManagedDisk.resourceGroupId" options="resource-group-id">
-                  <help short="Resource Group Id of the compute disks."/>
-                </arg>
-                <arg type="string" var="@DataAccountDetails_update.ManagedDisk.stagingStorageAccountId" options="staging-storage-account-id">
-                  <help short="Resource Id of the storage account that can be used to copy the vhd for staging."/>
-                </arg>
+              <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk" options="managed-disk">
+                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.resourceGroupId" options="resource-group-id"/>
+                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" options="staging-storage-account-id"/>
               </arg>
-              <arg type="object" var="@DataAccountDetails_update.StorageAccount" options="storage-account">
-                <arg type="string" var="@DataAccountDetails_update.StorageAccount.storageAccountId" options="storage-account-id">
-                  <help short="Storage Account Resource Id."/>
-                </arg>
+              <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount" options="storage-account">
+                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id"/>
               </arg>
             </arg>
             <arg nullable="True" type="string" var="$jobResource.properties.details.dataImportDetails[].logCollectionLevel" options="log-collection-level">
@@ -4138,7 +4155,22 @@
                   </prop>
                   <prop type="array<object>" name="dataExportDetails" arg="$jobResource.properties.details.dataExportDetails">
                     <item type="object">
-                      <prop type="@DataAccountDetails_update" name="accountDetails" arg="$jobResource.properties.details.dataExportDetails[].accountDetails" required="True"/>
+                      <prop type="object" name="accountDetails" arg="$jobResource.properties.details.dataExportDetails[].accountDetails" required="True">
+                        <prop type="string" name="dataAccountType" required="True">
+                          <default value="&quot;StorageAccount&quot;"/>
+                          <enum>
+                            <item arg="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk" value="&quot;ManagedDisk&quot;"/>
+                            <item arg="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount" value="&quot;StorageAccount&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="dataAccountType" value="ManagedDisk">
+                          <prop type="string" name="resourceGroupId" arg="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.resourceGroupId" required="True"/>
+                          <prop type="string" name="stagingStorageAccountId" arg="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" required="True"/>
+                        </discriminator>
+                        <discriminator property="dataAccountType" value="StorageAccount">
+                          <prop type="string" name="storageAccountId" arg="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount.storageAccountId" required="True"/>
+                        </discriminator>
+                      </prop>
                       <prop type="string" name="logCollectionLevel" arg="$jobResource.properties.details.dataExportDetails[].logCollectionLevel">
                         <default value="&quot;Error&quot;"/>
                         <enum>
@@ -4215,20 +4247,20 @@
                   </prop>
                   <prop type="array<object>" name="dataImportDetails" arg="$jobResource.properties.details.dataImportDetails">
                     <item type="object">
-                      <prop type="object" name="accountDetails" arg="$jobResource.properties.details.dataImportDetails[].accountDetails" required="True" cls="DataAccountDetails_update">
+                      <prop type="object" name="accountDetails" arg="$jobResource.properties.details.dataImportDetails[].accountDetails" required="True">
                         <prop type="string" name="dataAccountType" required="True">
                           <default value="&quot;StorageAccount&quot;"/>
                           <enum>
-                            <item arg="@DataAccountDetails_update.ManagedDisk" value="&quot;ManagedDisk&quot;"/>
-                            <item arg="@DataAccountDetails_update.StorageAccount" value="&quot;StorageAccount&quot;"/>
+                            <item arg="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk" value="&quot;ManagedDisk&quot;"/>
+                            <item arg="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount" value="&quot;StorageAccount&quot;"/>
                           </enum>
                         </prop>
                         <discriminator property="dataAccountType" value="ManagedDisk">
-                          <prop type="string" name="resourceGroupId" arg="@DataAccountDetails_update.ManagedDisk.resourceGroupId" required="True"/>
-                          <prop type="string" name="stagingStorageAccountId" arg="@DataAccountDetails_update.ManagedDisk.stagingStorageAccountId" required="True"/>
+                          <prop type="string" name="resourceGroupId" arg="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.resourceGroupId" required="True"/>
+                          <prop type="string" name="stagingStorageAccountId" arg="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" required="True"/>
                         </discriminator>
                         <discriminator property="dataAccountType" value="StorageAccount">
-                          <prop type="string" name="storageAccountId" arg="@DataAccountDetails_update.StorageAccount.storageAccountId" required="True"/>
+                          <prop type="string" name="storageAccountId" arg="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount.storageAccountId" required="True"/>
                         </discriminator>
                       </prop>
                       <prop type="string" name="logCollectionLevel" arg="$jobResource.properties.details.dataImportDetails[].logCollectionLevel">
