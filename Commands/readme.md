@@ -47,6 +47,9 @@
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
 
+- [image](/Commands/image/readme.md)
+: Manage custom virtual machine images.
+
 - [load](/Commands/load/readme.md)
 : Manage Azure Load Testing resources.
 
