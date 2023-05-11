@@ -65,6 +65,9 @@
 - [network-function](/Commands/network-function/readme.md)
 : Manage network function
 
+- [networkcloud](/Commands/networkcloud/readme.md)
+: Manage Network Cloud resources
+
 - [nginx](/Commands/nginx/readme.md)
 : Manage NGINX deployment resources
 
@@ -80,6 +83,9 @@
 - [restore-point](/Commands/restore-point/readme.md)
 : Manage restore point with res.
 
+- [self-help](/Commands/self-help/readme.md)
+: Azure SelfHelp will help you troubleshoot issues with Azure resources.
+
 - [sentinel](/Commands/sentinel/readme.md)
 : Manage Microsoft Sentinel.
 
@@ -87,13 +93,16 @@
 : Manage Service Networking Resources
 
 - [servicebus](/Commands/servicebus/readme.md)
-: servicebus
+: NamespaceV2
 
 - [sig](/Commands/sig/readme.md)
 : Manage shared image gallery.
 
 - [sql](/Commands/sql/readme.md)
 : Manage Azure SQL Databases and Data Warehouses.
+
+- [stack-hci](/Commands/stack-hci/readme.md)
+: Manage Azure Stack HCI.
 
 - [storage-mover](/Commands/storage-mover/readme.md)
 : Manage top-level Storage Mover resource.
@@ -106,3 +115,6 @@
 
 - [voice-service](/Commands/voice-service/readme.md)
 : Manage voice services
+
+- [workloads](/Commands/workloads/readme.md)
+: Manage workloads

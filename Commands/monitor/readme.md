@@ -4,6 +4,9 @@ Manage the Azure Monitor Service.
 
 ## Subgroups
 
+- [account](/Commands/monitor/account/readme.md)
+: Manage monitor account
+
 - [autoscale](/Commands/monitor/autoscale/readme.md)
 : Manage autoscale settings
 
