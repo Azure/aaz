@@ -1071,7 +1071,7 @@
             <help short="Set Device password for unlocking Databox Heavy. Should not be passed for TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will not be returned in Get Call. Password Requirements :  Password must be minimum of 12 and maximum of 64 characters. Password must have at least one uppercase alphabet, one number and one special character. Password cannot have the following characters : IilLoO0 Password can have only alphabets, numbers and these characters : @#\-$%^!+=;:_()]+"/>
           </arg>
         </arg>
-        <arg type="array<object>" var="$jobResource.properties.details.dataExportDetails" options="data-export-details" group="Details">
+        <arg type="array<object>" var="$jobResource.properties.details.dataExportDetails" options="data-export-details" hide="True" group="Details">
           <help short="Details of the data to be exported from azure."/>
           <item type="object">
             <arg type="object" var="$jobResource.properties.details.dataExportDetails[].accountDetails" options="account-details" required="True">
@@ -1184,7 +1184,7 @@
             </arg>
           </item>
         </arg>
-        <arg type="array<object>" var="$jobResource.properties.details.dataImportDetails" options="data-import-details" group="Details">
+        <arg type="array<object>" var="$jobResource.properties.details.dataImportDetails" options="data-import-details" hide="True" group="Details">
           <help short="Details of the data to be imported into azure."/>
           <item type="object">
             <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails" options="account-details" required="True">
@@ -1194,7 +1194,7 @@
                 <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" options="staging-storage-account-id" required="True"/>
               </arg>
               <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount" options="storage-account">
-                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id" required="True"/>
+                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id" required="True" group="StorageAccount"/>
               </arg>
               <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.sharePassword" options="share-password"/>
             </arg>
@@ -1210,35 +1210,6 @@
         </arg>
         <arg type="integer32" var="$jobResource.properties.details.expectedDataSizeInTeraBytes" options="expected-data-size" group="Details">
           <help short="The expected size of the data, which needs to be transferred in this job, in terabytes."/>
-        </arg>
-        <arg type="object" var="$jobResource.properties.details.keyEncryptionKey" options="key-encryption-key" group="Details">
-          <help short="Details about which key encryption type is being used."/>
-          <arg type="object" var="$jobResource.properties.details.keyEncryptionKey.identityProperties" options="identity-properties">
-            <help short="Managed identity properties used for key encryption."/>
-            <arg type="string" var="$jobResource.properties.details.keyEncryptionKey.identityProperties.type" options="type">
-              <help short="Managed service identity type."/>
-            </arg>
-            <arg type="object" var="$jobResource.properties.details.keyEncryptionKey.identityProperties.userAssigned" options="user-assigned">
-              <help short="User assigned identity properties."/>
-              <arg type="string" var="$jobResource.properties.details.keyEncryptionKey.identityProperties.userAssigned.resourceId" options="resource-id">
-                <help short="Arm resource id for user assigned identity to be used to fetch MSI token."/>
-              </arg>
-            </arg>
-          </arg>
-          <arg type="string" var="$jobResource.properties.details.keyEncryptionKey.kekType" options="kek-type" required="True">
-            <help short="Type of encryption key used for key encryption."/>
-            <default value="&quot;MicrosoftManaged&quot;"/>
-            <enum>
-              <item name="CustomerManaged" value="&quot;CustomerManaged&quot;"/>
-              <item name="MicrosoftManaged" value="&quot;MicrosoftManaged&quot;"/>
-            </enum>
-          </arg>
-          <arg type="string" var="$jobResource.properties.details.keyEncryptionKey.kekUrl" options="kek-url">
-            <help short="Key encryption key. It is required in case of Customer managed KekType."/>
-          </arg>
-          <arg type="string" var="$jobResource.properties.details.keyEncryptionKey.kekVaultResourceID" options="kek-vault-resource-id">
-            <help short="Kek vault resource id. It is required in case of Customer managed KekType."/>
-          </arg>
         </arg>
         <arg type="object" var="$jobResource.properties.details.preferences" options="preferences" hide="True" group="Details">
           <help short="Preferences for the order."/>
@@ -1375,6 +1346,34 @@
           <additionalProp>
             <item type="string"/>
           </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="KeyEncryptionKey">
+        <arg type="object" var="$jobResource.properties.details.keyEncryptionKey.identityProperties" options="identity-properties" hide="True" group="KeyEncryptionKey">
+          <help short="Managed identity properties used for key encryption."/>
+          <arg type="string" var="$jobResource.properties.details.keyEncryptionKey.identityProperties.type" options="type">
+            <help short="Managed service identity type."/>
+          </arg>
+          <arg type="object" var="$jobResource.properties.details.keyEncryptionKey.identityProperties.userAssigned" options="user-assigned">
+            <help short="User assigned identity properties."/>
+            <arg type="string" var="$jobResource.properties.details.keyEncryptionKey.identityProperties.userAssigned.resourceId" options="resource-id">
+              <help short="Arm resource id for user assigned identity to be used to fetch MSI token."/>
+            </arg>
+          </arg>
+        </arg>
+        <arg type="string" var="$jobResource.properties.details.keyEncryptionKey.kekType" options="kek-type" group="KeyEncryptionKey">
+          <help short="Type of encryption key used for key encryption."/>
+          <default value="&quot;MicrosoftManaged&quot;"/>
+          <enum>
+            <item name="CustomerManaged" value="&quot;CustomerManaged&quot;"/>
+            <item name="MicrosoftManaged" value="&quot;MicrosoftManaged&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$jobResource.properties.details.keyEncryptionKey.kekUrl" options="kek-url" hide="True" group="KeyEncryptionKey">
+          <help short="Key encryption key. It is required in case of Customer managed KekType."/>
+        </arg>
+        <arg type="string" var="$jobResource.properties.details.keyEncryptionKey.kekVaultResourceID" options="kek-vault-resource-id" hide="True" group="KeyEncryptionKey">
+          <help short="Kek vault resource id. It is required in case of Customer managed KekType."/>
         </arg>
       </argGroup>
       <argGroup name="Properties">
@@ -1661,7 +1660,7 @@
                           <item arg="$jobResource.properties.details.DataBoxHeavy" value="&quot;DataBoxHeavy&quot;"/>
                         </enum>
                       </prop>
-                      <prop type="object" name="keyEncryptionKey" arg="$jobResource.properties.details.keyEncryptionKey">
+                      <prop type="object" name="keyEncryptionKey">
                         <prop type="object" name="identityProperties" arg="$jobResource.properties.details.keyEncryptionKey.identityProperties">
                           <prop type="string" name="type" arg="$jobResource.properties.details.keyEncryptionKey.identityProperties.type"/>
                           <prop type="object" name="userAssigned" arg="$jobResource.properties.details.keyEncryptionKey.identityProperties.userAssigned">
@@ -2824,7 +2823,7 @@
             <help short="Set Device password for unlocking Databox Heavy. Should not be passed for TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will not be returned in Get Call. Password Requirements :  Password must be minimum of 12 and maximum of 64 characters. Password must have at least one uppercase alphabet, one number and one special character. Password cannot have the following characters : IilLoO0 Password can have only alphabets, numbers and these characters : @#\-$%^!+=;:_()]+"/>
           </arg>
         </arg>
-        <arg nullable="True" type="array<object>" var="$jobResource.properties.details.dataExportDetails" options="data-export-details" group="Details">
+        <arg nullable="True" type="array<object>" var="$jobResource.properties.details.dataExportDetails" options="data-export-details" hide="True" group="Details">
           <help short="Details of the data to be exported from azure."/>
           <item nullable="True" type="object">
             <arg type="object" var="$jobResource.properties.details.dataExportDetails[].accountDetails" options="account-details">
@@ -2933,7 +2932,7 @@
             </arg>
           </item>
         </arg>
-        <arg nullable="True" type="array<object>" var="$jobResource.properties.details.dataImportDetails" options="data-import-details" group="Details">
+        <arg nullable="True" type="array<object>" var="$jobResource.properties.details.dataImportDetails" options="data-import-details" hide="True" group="Details">
           <help short="Details of the data to be imported into azure."/>
           <item nullable="True" type="object">
             <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails" options="account-details">
@@ -2943,7 +2942,7 @@
                 <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" options="staging-storage-account-id"/>
               </arg>
               <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount" options="storage-account">
-                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id"/>
+                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id" group="StorageAccount"/>
               </arg>
             </arg>
             <arg nullable="True" type="string" var="$jobResource.properties.details.dataImportDetails[].logCollectionLevel" options="log-collection-level">
@@ -2957,34 +2956,6 @@
         </arg>
         <arg nullable="True" type="integer32" var="$jobResource.properties.details.expectedDataSizeInTeraBytes" options="expected-data-size" hide="True" group="Details">
           <help short="The expected size of the data, which needs to be transferred in this job, in terabytes."/>
-        </arg>
-        <arg nullable="True" type="object" var="$jobResource.properties.details.keyEncryptionKey" options="key-encryption-key" group="Details">
-          <help short="Details about which key encryption type is being used."/>
-          <arg nullable="True" type="object" var="$jobResource.properties.details.keyEncryptionKey.identityProperties" options="identity-properties">
-            <help short="Managed identity properties used for key encryption."/>
-            <arg nullable="True" type="string" var="$jobResource.properties.details.keyEncryptionKey.identityProperties.type" options="type">
-              <help short="Managed service identity type."/>
-            </arg>
-            <arg nullable="True" type="object" var="$jobResource.properties.details.keyEncryptionKey.identityProperties.userAssigned" options="user-assigned">
-              <help short="User assigned identity properties."/>
-              <arg nullable="True" type="string" var="$jobResource.properties.details.keyEncryptionKey.identityProperties.userAssigned.resourceId" options="resource-id">
-                <help short="Arm resource id for user assigned identity to be used to fetch MSI token."/>
-              </arg>
-            </arg>
-          </arg>
-          <arg type="string" var="$jobResource.properties.details.keyEncryptionKey.kekType" options="kek-type">
-            <help short="Type of encryption key used for key encryption."/>
-            <enum>
-              <item name="CustomerManaged" value="&quot;CustomerManaged&quot;"/>
-              <item name="MicrosoftManaged" value="&quot;MicrosoftManaged&quot;"/>
-            </enum>
-          </arg>
-          <arg nullable="True" type="string" var="$jobResource.properties.details.keyEncryptionKey.kekUrl" options="kek-url">
-            <help short="Key encryption key. It is required in case of Customer managed KekType."/>
-          </arg>
-          <arg nullable="True" type="string" var="$jobResource.properties.details.keyEncryptionKey.kekVaultResourceID" options="kek-vault-resource-id">
-            <help short="Kek vault resource id. It is required in case of Customer managed KekType."/>
-          </arg>
         </arg>
         <arg nullable="True" type="object" var="$jobResource.properties.details.preferences" options="preferences" hide="True" group="Details">
           <help short="Preferences for the order."/>
@@ -3133,6 +3104,33 @@
           <additionalProp>
             <item nullable="True" type="string"/>
           </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="KeyEncryptionKey">
+        <arg nullable="True" type="object" var="$jobResource.properties.details.keyEncryptionKey.identityProperties" options="identity-properties" hide="True" group="KeyEncryptionKey">
+          <help short="Managed identity properties used for key encryption."/>
+          <arg nullable="True" type="string" var="$jobResource.properties.details.keyEncryptionKey.identityProperties.type" options="type">
+            <help short="Managed service identity type."/>
+          </arg>
+          <arg nullable="True" type="object" var="$jobResource.properties.details.keyEncryptionKey.identityProperties.userAssigned" options="user-assigned">
+            <help short="User assigned identity properties."/>
+            <arg nullable="True" type="string" var="$jobResource.properties.details.keyEncryptionKey.identityProperties.userAssigned.resourceId" options="resource-id">
+              <help short="Arm resource id for user assigned identity to be used to fetch MSI token."/>
+            </arg>
+          </arg>
+        </arg>
+        <arg type="string" var="$jobResource.properties.details.keyEncryptionKey.kekType" options="kek-type" group="KeyEncryptionKey">
+          <help short="Type of encryption key used for key encryption."/>
+          <enum>
+            <item name="CustomerManaged" value="&quot;CustomerManaged&quot;"/>
+            <item name="MicrosoftManaged" value="&quot;MicrosoftManaged&quot;"/>
+          </enum>
+        </arg>
+        <arg nullable="True" type="string" var="$jobResource.properties.details.keyEncryptionKey.kekUrl" options="kek-url" hide="True" group="KeyEncryptionKey">
+          <help short="Key encryption key. It is required in case of Customer managed KekType."/>
+        </arg>
+        <arg nullable="True" type="string" var="$jobResource.properties.details.keyEncryptionKey.kekVaultResourceID" options="kek-vault-resource-id" hide="True" group="KeyEncryptionKey">
+          <help short="Kek vault resource id. It is required in case of Customer managed KekType."/>
         </arg>
       </argGroup>
       <argGroup name="Properties">
@@ -4281,7 +4279,7 @@
                       <item arg="$jobResource.properties.details.DataBoxHeavy" value="&quot;DataBoxHeavy&quot;"/>
                     </enum>
                   </prop>
-                  <prop type="object" name="keyEncryptionKey" arg="$jobResource.properties.details.keyEncryptionKey">
+                  <prop type="object" name="keyEncryptionKey">
                     <prop type="object" name="identityProperties" arg="$jobResource.properties.details.keyEncryptionKey.identityProperties">
                       <prop type="string" name="type" arg="$jobResource.properties.details.keyEncryptionKey.identityProperties.type"/>
                       <prop type="object" name="userAssigned" arg="$jobResource.properties.details.keyEncryptionKey.identityProperties.userAssigned">
