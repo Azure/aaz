@@ -1077,13 +1077,21 @@
             <arg type="object" var="$jobResource.properties.details.dataExportDetails[].accountDetails" options="account-details" required="True">
               <help short="Account details of the data to be transferred"/>
               <arg type="object" var="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk" options="managed-disk">
-                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.resourceGroupId" options="resource-group-id" required="True"/>
-                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" options="staging-storage-account-id" required="True"/>
+                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.resourceGroupId" options="resource-group-id" required="True">
+                  <help short="Resource Group Id of the compute disks."/>
+                </arg>
+                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" options="staging-storage-account-id" required="True">
+                  <help short="Resource Id of the storage account that can be used to copy the vhd for staging."/>
+                </arg>
               </arg>
               <arg type="object" var="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount" options="storage-account">
-                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id" required="True"/>
+                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id" required="True">
+                  <help short="Storage Account Resource Id."/>
+                </arg>
               </arg>
-              <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.sharePassword" options="share-password"/>
+              <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.sharePassword" options="share-password">
+                <help short="Password for all the shares to be created on the device. Should not be passed for TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will not be returned in Get Call. Password Requirements :  Password must be minimum of 12 and maximum of 64 characters. Password must have at least one uppercase alphabet, one number and one special character. Password cannot have the following characters : IilLoO0 Password can have only alphabets, numbers and these characters : @#\-$%^!+=;:_()]+"/>
+              </arg>
             </arg>
             <arg type="string" var="$jobResource.properties.details.dataExportDetails[].logCollectionLevel" options="log-collection-level">
               <help short="Level of the logs to be collected."/>
@@ -1190,13 +1198,21 @@
             <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails" options="account-details" required="True">
               <help short="Account details of the data to be transferred"/>
               <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk" options="managed-disk">
-                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.resourceGroupId" options="resource-group-id" required="True"/>
-                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" options="staging-storage-account-id" required="True"/>
+                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.resourceGroupId" options="resource-group-id" required="True">
+                  <help short="Resource Group Id of the compute disks."/>
+                </arg>
+                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" options="staging-storage-account-id" required="True">
+                  <help short="Resource Id of the storage account that can be used to copy the vhd for staging."/>
+                </arg>
               </arg>
               <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount" options="storage-account">
-                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id" required="True" group="StorageAccount"/>
+                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id" required="True" group="StorageAccount">
+                  <help short="Storage Account Resource Id."/>
+                </arg>
               </arg>
-              <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.sharePassword" options="share-password"/>
+              <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.sharePassword" options="share-password">
+                <help short="Password for all the shares to be created on the device. Should not be passed for TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will not be returned in Get Call. Password Requirements :  Password must be minimum of 12 and maximum of 64 characters. Password must have at least one uppercase alphabet, one number and one special character. Password cannot have the following characters : IilLoO0 Password can have only alphabets, numbers and these characters : @#\-$%^!+=;:_()]+"/>
+              </arg>
             </arg>
             <arg type="string" var="$jobResource.properties.details.dataImportDetails[].logCollectionLevel" options="log-collection-level">
               <help short="Level of the logs to be collected."/>
@@ -1323,7 +1339,7 @@
         </arg>
       </argGroup>
       <argGroup name="JobResource">
-        <arg type="object" var="$jobResource.identity" options="identity" hide="True" group="JobResource">
+        <arg type="object" var="$jobResource.identity" options="identity" group="JobResource">
           <help short="Msi identity of the resource"/>
           <arg type="string" var="$jobResource.identity.type" options="type">
             <help short="Identity type"/>
@@ -1349,7 +1365,7 @@
         </arg>
       </argGroup>
       <argGroup name="KeyEncryptionKey">
-        <arg type="object" var="$jobResource.properties.details.keyEncryptionKey.identityProperties" options="identity-properties" hide="True" group="KeyEncryptionKey">
+        <arg type="object" var="$jobResource.properties.details.keyEncryptionKey.identityProperties" options="kek-identity" group="KeyEncryptionKey">
           <help short="Managed identity properties used for key encryption."/>
           <arg type="string" var="$jobResource.properties.details.keyEncryptionKey.identityProperties.type" options="type">
             <help short="Managed service identity type."/>
@@ -1369,10 +1385,10 @@
             <item name="MicrosoftManaged" value="&quot;MicrosoftManaged&quot;"/>
           </enum>
         </arg>
-        <arg type="string" var="$jobResource.properties.details.keyEncryptionKey.kekUrl" options="kek-url" hide="True" group="KeyEncryptionKey">
+        <arg type="string" var="$jobResource.properties.details.keyEncryptionKey.kekUrl" options="kek-url" group="KeyEncryptionKey">
           <help short="Key encryption key. It is required in case of Customer managed KekType."/>
         </arg>
-        <arg type="string" var="$jobResource.properties.details.keyEncryptionKey.kekVaultResourceID" options="kek-vault-resource-id" hide="True" group="KeyEncryptionKey">
+        <arg type="string" var="$jobResource.properties.details.keyEncryptionKey.kekVaultResourceID" options="kek-vault-resource-id" group="KeyEncryptionKey">
           <help short="Kek vault resource id. It is required in case of Customer managed KekType."/>
         </arg>
       </argGroup>
@@ -2829,11 +2845,17 @@
             <arg type="object" var="$jobResource.properties.details.dataExportDetails[].accountDetails" options="account-details">
               <help short="Account details of the data to be transferred"/>
               <arg type="object" var="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk" options="managed-disk">
-                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.resourceGroupId" options="resource-group-id"/>
-                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" options="staging-storage-account-id"/>
+                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.resourceGroupId" options="resource-group-id">
+                  <help short="Resource Group Id of the compute disks."/>
+                </arg>
+                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" options="staging-storage-account-id">
+                  <help short="Resource Id of the storage account that can be used to copy the vhd for staging."/>
+                </arg>
               </arg>
               <arg type="object" var="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount" options="storage-account">
-                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id"/>
+                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id">
+                  <help short="Storage Account Resource Id."/>
+                </arg>
               </arg>
             </arg>
             <arg nullable="True" type="string" var="$jobResource.properties.details.dataExportDetails[].logCollectionLevel" options="log-collection-level">
@@ -2938,11 +2960,17 @@
             <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails" options="account-details">
               <help short="Account details of the data to be transferred"/>
               <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk" options="managed-disk">
-                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.resourceGroupId" options="resource-group-id"/>
-                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" options="staging-storage-account-id"/>
+                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.resourceGroupId" options="resource-group-id">
+                  <help short="Resource Group Id of the compute disks."/>
+                </arg>
+                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" options="staging-storage-account-id">
+                  <help short="Resource Id of the storage account that can be used to copy the vhd for staging."/>
+                </arg>
               </arg>
               <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount" options="storage-account">
-                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id" group="StorageAccount"/>
+                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id" group="StorageAccount">
+                  <help short="Storage Account Resource Id."/>
+                </arg>
               </arg>
             </arg>
             <arg nullable="True" type="string" var="$jobResource.properties.details.dataImportDetails[].logCollectionLevel" options="log-collection-level">
@@ -3107,7 +3135,7 @@
         </arg>
       </argGroup>
       <argGroup name="KeyEncryptionKey">
-        <arg nullable="True" type="object" var="$jobResource.properties.details.keyEncryptionKey.identityProperties" options="identity-properties" hide="True" group="KeyEncryptionKey">
+        <arg nullable="True" type="object" var="$jobResource.properties.details.keyEncryptionKey.identityProperties" options="kek-identity" group="KeyEncryptionKey">
           <help short="Managed identity properties used for key encryption."/>
           <arg nullable="True" type="string" var="$jobResource.properties.details.keyEncryptionKey.identityProperties.type" options="type">
             <help short="Managed service identity type."/>
@@ -3126,10 +3154,10 @@
             <item name="MicrosoftManaged" value="&quot;MicrosoftManaged&quot;"/>
           </enum>
         </arg>
-        <arg nullable="True" type="string" var="$jobResource.properties.details.keyEncryptionKey.kekUrl" options="kek-url" hide="True" group="KeyEncryptionKey">
+        <arg nullable="True" type="string" var="$jobResource.properties.details.keyEncryptionKey.kekUrl" options="kek-url" group="KeyEncryptionKey">
           <help short="Key encryption key. It is required in case of Customer managed KekType."/>
         </arg>
-        <arg nullable="True" type="string" var="$jobResource.properties.details.keyEncryptionKey.kekVaultResourceID" options="kek-vault-resource-id" hide="True" group="KeyEncryptionKey">
+        <arg nullable="True" type="string" var="$jobResource.properties.details.keyEncryptionKey.kekVaultResourceID" options="kek-vault-resource-id" group="KeyEncryptionKey">
           <help short="Kek vault resource id. It is required in case of Customer managed KekType."/>
         </arg>
       </argGroup>
