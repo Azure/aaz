@@ -7,3 +7,10 @@ Request to mark devices for a given job as shipped
 ### [2022-12-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhYm94L2pvYnMve30vbWFya2RldmljZXNzaGlwcGVk/2022-12-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.databox/jobs/{}/markdevicesshipped 2022-12-01 -->
+
+#### examples
+
+- Mark devices shipped
+    ```bash
+        databox job mark-devices-shipped -g rg -n job-name
+    ```

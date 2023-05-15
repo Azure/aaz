@@ -26,4 +26,4 @@ Manage data box job
 : Get information about the specified job.
 
 - [update](/Commands/databox/job/_update.md)
-: Update an existing job with the specified parameters.
+: Update the properties of an existing job.

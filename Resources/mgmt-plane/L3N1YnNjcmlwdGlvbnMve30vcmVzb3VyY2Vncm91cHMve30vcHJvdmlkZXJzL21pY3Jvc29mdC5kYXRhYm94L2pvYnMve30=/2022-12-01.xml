@@ -2731,9 +2731,12 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="update" version="2022-12-01" confirmation="">
+    <command name="update" version="2022-12-01">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.databox/jobs/{}" version="2022-12-01" swagger="mgmt-plane/databox/ResourceProviders/Microsoft.DataBox/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YUJveC9qb2JzL3tqb2JOYW1lfQ==/V/MjAyMi0xMi0wMQ=="/>
       <argGroup name="">
+        <arg type="string" var="$Header.If-Match" options="if-match" hide="True" group="">
+          <help short="Defines the If-Match condition. The patch will be performed only if the ETag of the job on the server matches this value."/>
+        </arg>
         <arg type="string" var="$Path.jobName" options="job-name name n" required="True" idPart="name">
           <help short="The name of the job Resource within the specified resource group. job names must be between 3 and 24 characters in length and use any alphanumeric and underscore only"/>
           <format pattern="^[-\w\.]+$" maxLength="24" minLength="3"/>
@@ -2742,23 +2745,24 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="ContactDetails">
-        <arg type="string" var="$jobResource.properties.details.contactDetails.contactName" options="contact-name" group="ContactDetails">
+        <arg type="string" var="$jobResourceUpdateParameter.properties.details.contactDetails.contactName" options="contact-name" group="ContactDetails">
           <help short="Contact name of the person."/>
         </arg>
-        <arg type="array<string>" var="$jobResource.properties.details.contactDetails.emailList" options="email-list" group="ContactDetails">
+        <arg type="array<string>" var="$jobResourceUpdateParameter.properties.details.contactDetails.emailList" options="email-list" group="ContactDetails">
           <help short="List of Email-ids to be notified about job progress."/>
-          <item nullable="True" type="string"/>
+          <item type="string"/>
         </arg>
-        <arg nullable="True" type="string" var="$jobResource.properties.details.contactDetails.mobile" options="mobile" group="ContactDetails">
+        <arg type="string" var="$jobResourceUpdateParameter.properties.details.contactDetails.mobile" options="mobile" group="ContactDetails">
           <help short="Mobile number of the contact person."/>
         </arg>
-        <arg nullable="True" type="array<object>" var="$jobResource.properties.details.contactDetails.notificationPreference" options="notification-preference" hide="True" group="ContactDetails">
+        <arg type="array<object>" var="$jobResourceUpdateParameter.properties.details.contactDetails.notificationPreference" options="notification-preference" hide="True" group="ContactDetails">
           <help short="Notification preference for a job stage."/>
-          <item nullable="True" type="object">
-            <arg type="boolean" var="$jobResource.properties.details.contactDetails.notificationPreference[].sendNotification" options="send-notification">
+          <item type="object">
+            <arg type="boolean" var="$jobResourceUpdateParameter.properties.details.contactDetails.notificationPreference[].sendNotification" options="send-notification" required="True">
               <help short="Notification is required or not."/>
+              <default value="true"/>
             </arg>
-            <arg type="string" var="$jobResource.properties.details.contactDetails.notificationPreference[].stageName" options="stage-name">
+            <arg type="string" var="$jobResourceUpdateParameter.properties.details.contactDetails.notificationPreference[].stageName" options="stage-name" required="True">
               <help short="Name of the stage."/>
               <enum>
                 <item name="AtAzureDC" value="&quot;AtAzureDC&quot;"/>
@@ -2773,230 +2777,27 @@
             </arg>
           </item>
         </arg>
-        <arg type="string" var="$jobResource.properties.details.contactDetails.phone" options="phone" group="ContactDetails">
+        <arg type="string" var="$jobResourceUpdateParameter.properties.details.contactDetails.phone" options="phone" group="ContactDetails">
           <help short="Phone number of the contact person."/>
         </arg>
-        <arg nullable="True" type="string" var="$jobResource.properties.details.contactDetails.phoneExtension" options="phone-extension" hide="True" group="ContactDetails">
+        <arg type="string" var="$jobResourceUpdateParameter.properties.details.contactDetails.phoneExtension" options="phone-extension" hide="True" group="ContactDetails">
           <help short="Phone extension number of the contact person."/>
         </arg>
       </argGroup>
       <argGroup name="Details">
-        <arg type="object" var="$jobResource.properties.details.DataBox" options="data-box" hide="True" group="Details">
-          <help short="data box"/>
-          <arg nullable="True" type="string" var="$jobResource.properties.details.DataBox.devicePassword" options="device-password">
-            <help short="Set Device password for unlocking Databox. Should not be passed for TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will not be returned in Get Call. Password Requirements :  Password must be minimum of 12 and maximum of 64 characters. Password must have at least one uppercase alphabet, one number and one special character. Password cannot have the following characters : IilLoO0 Password can have only alphabets, numbers and these characters : @#\-$%^!+=;:_()]+"/>
-          </arg>
-        </arg>
-        <arg type="object" var="$jobResource.properties.details.DataBoxCustomerDisk" options="data-box-customer-disk" hide="True" group="Details">
-          <help short="data box customer disk"/>
-          <arg nullable="True" type="boolean" var="$jobResource.properties.details.DataBoxCustomerDisk.enableManifestBackup" options="enable-manifest-backup">
-            <help short="Flag to indicate if disk manifest should be backed-up in the Storage Account."/>
-          </arg>
-          <arg nullable="True" type="object" var="$jobResource.properties.details.DataBoxCustomerDisk.importDiskDetailsCollection" options="import-disk-details-collection">
-            <help short="Contains the map of disk serial number to the disk details for import jobs."/>
-            <additionalProp>
-              <item nullable="True" type="object">
-                <arg type="string" var="$jobResource.properties.details.DataBoxCustomerDisk.importDiskDetailsCollection{}.bitLockerKey" options="bit-locker-key">
-                  <help short="BitLocker key used to encrypt the disk."/>
-                </arg>
-                <arg type="string" var="$jobResource.properties.details.DataBoxCustomerDisk.importDiskDetailsCollection{}.manifestFile" options="manifest-file">
-                  <help short="The relative path of the manifest file on the disk."/>
-                </arg>
-                <arg type="string" var="$jobResource.properties.details.DataBoxCustomerDisk.importDiskDetailsCollection{}.manifestHash" options="manifest-hash">
-                  <help short="The Base16-encoded MD5 hash of the manifest file on the disk."/>
-                </arg>
-              </item>
-            </additionalProp>
-          </arg>
-          <arg type="object" var="$jobResource.properties.details.DataBoxCustomerDisk.returnToCustomerPackageDetails" options="return-to-customer-package-details">
-            <help short="Return package shipping details."/>
-            <arg nullable="True" type="string" var="$jobResource.properties.details.DataBoxCustomerDisk.returnToCustomerPackageDetails.carrierAccountNumber" options="carrier-account-number">
-              <help short="Carrier Account Number of customer for customer disk."/>
-            </arg>
-            <arg nullable="True" type="string" var="$jobResource.properties.details.DataBoxCustomerDisk.returnToCustomerPackageDetails.carrierName" options="carrier-name">
-              <help short="Name of the carrier."/>
-            </arg>
-            <arg nullable="True" type="string" var="$jobResource.properties.details.DataBoxCustomerDisk.returnToCustomerPackageDetails.trackingId" options="tracking-id">
-              <help short="Tracking Id of shipment."/>
-            </arg>
-          </arg>
-        </arg>
-        <arg type="object" var="$jobResource.properties.details.DataBoxDisk" options="data-box-disk" hide="True" group="Details">
-          <help short="data box disk"/>
-          <arg nullable="True" type="string" var="$jobResource.properties.details.DataBoxDisk.passkey" options="passkey">
-            <help short="User entered passkey for DataBox Disk job."/>
-          </arg>
-          <arg nullable="True" type="object" var="$jobResource.properties.details.DataBoxDisk.preferredDisks" options="preferred-disks">
-            <help short="User preference on what size disks are needed for the job. The map is from the disk size in TB to the count. Eg. {2,5} means 5 disks of 2 TB size. Key is string but will be checked against an int."/>
-            <additionalProp>
-              <item nullable="True" type="integer32"/>
-            </additionalProp>
-          </arg>
-        </arg>
-        <arg type="object" var="$jobResource.properties.details.DataBoxHeavy" options="data-box-heavy" hide="True" group="Details">
-          <help short="data box heavy"/>
-          <arg nullable="True" type="string" var="$jobResource.properties.details.DataBoxHeavy.devicePassword" options="device-password">
-            <help short="Set Device password for unlocking Databox Heavy. Should not be passed for TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will not be returned in Get Call. Password Requirements :  Password must be minimum of 12 and maximum of 64 characters. Password must have at least one uppercase alphabet, one number and one special character. Password cannot have the following characters : IilLoO0 Password can have only alphabets, numbers and these characters : @#\-$%^!+=;:_()]+"/>
-          </arg>
-        </arg>
-        <arg nullable="True" type="array<object>" var="$jobResource.properties.details.dataExportDetails" options="data-export-details" hide="True" group="Details">
-          <help short="Details of the data to be exported from azure."/>
-          <item nullable="True" type="object">
-            <arg type="object" var="$jobResource.properties.details.dataExportDetails[].accountDetails" options="account-details">
-              <help short="Account details of the data to be transferred"/>
-              <arg type="object" var="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk" options="managed-disk">
-                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.resourceGroupId" options="resource-group-id">
-                  <help short="Resource Group Id of the compute disks."/>
-                </arg>
-                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" options="staging-storage-account-id">
-                  <help short="Resource Id of the storage account that can be used to copy the vhd for staging."/>
-                </arg>
-              </arg>
-              <arg type="object" var="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount" options="storage-account">
-                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id">
-                  <help short="Storage Account Resource Id."/>
-                </arg>
-              </arg>
-            </arg>
-            <arg nullable="True" type="string" var="$jobResource.properties.details.dataExportDetails[].logCollectionLevel" options="log-collection-level">
-              <help short="Level of the logs to be collected."/>
-              <enum>
-                <item name="Error" value="&quot;Error&quot;"/>
-                <item name="Verbose" value="&quot;Verbose&quot;"/>
-              </enum>
-            </arg>
-            <arg type="object" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration" options="transfer-configuration">
-              <help short="Configuration for the data transfer."/>
-              <arg nullable="True" type="object" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferAllDetails" options="transfer-all-details">
-                <help short="Map of filter type and the details to transfer all data. This field is required only if the TransferConfigurationType is given as TransferAll"/>
-                <arg nullable="True" type="object" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferAllDetails.include" options="include">
-                  <help short="Details to transfer all data."/>
-                  <arg type="string" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferAllDetails.include.dataAccountType" options="data-account-type">
-                    <help short="Type of the account of data"/>
-                    <enum>
-                      <item name="ManagedDisk" value="&quot;ManagedDisk&quot;"/>
-                      <item name="StorageAccount" value="&quot;StorageAccount&quot;"/>
-                    </enum>
-                  </arg>
-                  <arg nullable="True" type="boolean" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferAllDetails.include.transferAllBlobs" options="transfer-all-blobs">
-                    <help short="To indicate if all Azure blobs have to be transferred"/>
-                  </arg>
-                  <arg nullable="True" type="boolean" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferAllDetails.include.transferAllFiles" options="transfer-all-files">
-                    <help short="To indicate if all Azure Files have to be transferred"/>
-                  </arg>
-                </arg>
-              </arg>
-              <arg type="string" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferConfigurationType" options="transfer-configuration-type">
-                <help short="Type of the configuration for transfer."/>
-                <enum>
-                  <item name="TransferAll" value="&quot;TransferAll&quot;"/>
-                  <item name="TransferUsingFilter" value="&quot;TransferUsingFilter&quot;"/>
-                </enum>
-              </arg>
-              <arg nullable="True" type="object" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails" options="transfer-filter-details">
-                <help short="Map of filter type and the details to filter. This field is required only if the TransferConfigurationType is given as TransferUsingFilter."/>
-                <arg nullable="True" type="object" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include" options="include">
-                  <help short="Details of the filtering the transfer of data."/>
-                  <arg nullable="True" type="object" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.azureFileFilterDetails" options="azure-file-filter-details">
-                    <help short="Filter details to transfer Azure files."/>
-                    <arg nullable="True" type="array<string>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.azureFileFilterDetails.filePathList" options="file-path-list">
-                      <help short="List of full path of the files to be transferred."/>
-                      <item nullable="True" type="string"/>
-                    </arg>
-                    <arg nullable="True" type="array<string>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.azureFileFilterDetails.filePrefixList" options="file-prefix-list">
-                      <help short="Prefix list of the Azure files to be transferred."/>
-                      <item nullable="True" type="string"/>
-                    </arg>
-                    <arg nullable="True" type="array<string>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.azureFileFilterDetails.fileShareList" options="file-share-list">
-                      <help short="List of file shares to be transferred."/>
-                      <item nullable="True" type="string"/>
-                    </arg>
-                  </arg>
-                  <arg nullable="True" type="object" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.blobFilterDetails" options="blob-filter-details">
-                    <help short="Filter details to transfer blobs."/>
-                    <arg nullable="True" type="array<string>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.blobFilterDetails.blobPathList" options="blob-path-list">
-                      <help short="List of full path of the blobs to be transferred."/>
-                      <item nullable="True" type="string"/>
-                    </arg>
-                    <arg nullable="True" type="array<string>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.blobFilterDetails.blobPrefixList" options="blob-prefix-list">
-                      <help short="Prefix list of the Azure blobs to be transferred."/>
-                      <item nullable="True" type="string"/>
-                    </arg>
-                    <arg nullable="True" type="array<string>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.blobFilterDetails.containerList" options="container-list">
-                      <help short="List of blob containers to be transferred."/>
-                      <item nullable="True" type="string"/>
-                    </arg>
-                  </arg>
-                  <arg type="string" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.dataAccountType" options="data-account-type">
-                    <help short="Type of the account of data."/>
-                    <enum>
-                      <item name="ManagedDisk" value="&quot;ManagedDisk&quot;"/>
-                      <item name="StorageAccount" value="&quot;StorageAccount&quot;"/>
-                    </enum>
-                  </arg>
-                  <arg nullable="True" type="array<object>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.filterFileDetails" options="filter-file-details">
-                    <help short="Details of the filter files to be used for data transfer."/>
-                    <item nullable="True" type="object">
-                      <arg type="string" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.filterFileDetails[].filterFilePath" options="filter-file-path">
-                        <help short="Path of the file that contains the details of all items to transfer."/>
-                      </arg>
-                      <arg type="string" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.filterFileDetails[].filterFileType" options="filter-file-type">
-                        <help short="Type of the filter file."/>
-                        <enum>
-                          <item name="AzureBlob" value="&quot;AzureBlob&quot;"/>
-                          <item name="AzureFile" value="&quot;AzureFile&quot;"/>
-                        </enum>
-                      </arg>
-                    </item>
-                  </arg>
-                </arg>
-              </arg>
-            </arg>
-          </item>
-        </arg>
-        <arg nullable="True" type="array<object>" var="$jobResource.properties.details.dataImportDetails" options="data-import-details" hide="True" group="Details">
-          <help short="Details of the data to be imported into azure."/>
-          <item nullable="True" type="object">
-            <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails" options="account-details">
-              <help short="Account details of the data to be transferred"/>
-              <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk" options="managed-disk">
-                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.resourceGroupId" options="resource-group-id">
-                  <help short="Resource Group Id of the compute disks."/>
-                </arg>
-                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" options="staging-storage-account-id">
-                  <help short="Resource Id of the storage account that can be used to copy the vhd for staging."/>
-                </arg>
-              </arg>
-              <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount" options="storage-account">
-                <arg type="string" var="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id" group="StorageAccount">
-                  <help short="Storage Account Resource Id."/>
-                </arg>
-              </arg>
-            </arg>
-            <arg nullable="True" type="string" var="$jobResource.properties.details.dataImportDetails[].logCollectionLevel" options="log-collection-level">
-              <help short="Level of the logs to be collected."/>
-              <enum>
-                <item name="Error" value="&quot;Error&quot;"/>
-                <item name="Verbose" value="&quot;Verbose&quot;"/>
-              </enum>
-            </arg>
-          </item>
-        </arg>
-        <arg nullable="True" type="integer32" var="$jobResource.properties.details.expectedDataSizeInTeraBytes" options="expected-data-size" hide="True" group="Details">
-          <help short="The expected size of the data, which needs to be transferred in this job, in terabytes."/>
-        </arg>
-        <arg nullable="True" type="object" var="$jobResource.properties.details.preferences" options="preferences" hide="True" group="Details">
-          <help short="Preferences for the order."/>
-          <arg nullable="True" type="object" var="$jobResource.properties.details.preferences.encryptionPreferences" options="encryption-preferences">
+        <arg type="object" var="$jobResourceUpdateParameter.properties.details.preferences" options="preferences" hide="True" group="Details">
+          <help short="Preferences related to the order"/>
+          <arg type="object" var="$jobResourceUpdateParameter.properties.details.preferences.encryptionPreferences" options="encryption-preferences">
             <help short="Preferences related to the Encryption."/>
-            <arg nullable="True" type="string" var="$jobResource.properties.details.preferences.encryptionPreferences.doubleEncryption" options="double-encryption">
+            <arg type="string" var="$jobResourceUpdateParameter.properties.details.preferences.encryptionPreferences.doubleEncryption" options="double-encryption">
               <help short="Defines secondary layer of software-based encryption enablement."/>
+              <default value="&quot;Disabled&quot;"/>
               <enum>
                 <item name="Disabled" value="&quot;Disabled&quot;"/>
                 <item name="Enabled" value="&quot;Enabled&quot;"/>
               </enum>
             </arg>
-            <arg nullable="True" type="string" var="$jobResource.properties.details.preferences.encryptionPreferences.hardwareEncryption" options="hardware-encryption">
+            <arg type="string" var="$jobResourceUpdateParameter.properties.details.preferences.encryptionPreferences.hardwareEncryption" options="hardware-encryption">
               <help short="Defines Hardware level encryption (Only for disk)"/>
               <enum>
                 <item name="Disabled" value="&quot;Disabled&quot;"/>
@@ -3004,24 +2805,24 @@
               </enum>
             </arg>
           </arg>
-          <arg nullable="True" type="array<string>" var="$jobResource.properties.details.preferences.preferredDataCenterRegion" options="preferred-data-center-region">
+          <arg type="array<string>" var="$jobResourceUpdateParameter.properties.details.preferences.preferredDataCenterRegion" options="preferred-data-center-region">
             <help short="Preferred data center region."/>
-            <item nullable="True" type="string"/>
+            <item type="string"/>
           </arg>
-          <arg nullable="True" type="@TransportPreferences_update" var="$jobResource.properties.details.preferences.reverseTransportPreferences" options="reverse-transport-preferences">
+          <arg type="@TransportPreferences_update" var="$jobResourceUpdateParameter.properties.details.preferences.reverseTransportPreferences" options="reverse-transport-preferences">
             <help short="Optional Preferences related to the reverse shipment logistics of the sku."/>
           </arg>
-          <arg nullable="True" type="array<string>" var="$jobResource.properties.details.preferences.storageAccountAccessTierPreferences" options="storage-account-access-tier-preferences">
+          <arg type="array<string>" var="$jobResourceUpdateParameter.properties.details.preferences.storageAccountAccessTierPreferences" options="storage-account-access-tier-preferences">
             <help short="Preferences related to the Access Tier of storage accounts."/>
-            <item nullable="True" type="string">
+            <item type="string">
               <enum>
                 <item name="Archive" value="&quot;Archive&quot;"/>
               </enum>
             </item>
           </arg>
-          <arg nullable="True" type="object" var="$jobResource.properties.details.preferences.transportPreferences" options="transport-preferences" cls="TransportPreferences_update">
+          <arg type="object" var="$jobResourceUpdateParameter.properties.details.preferences.transportPreferences" options="transport-preferences" cls="TransportPreferences_update">
             <help short="Preferences related to the shipment logistics of the sku."/>
-            <arg type="string" var="@TransportPreferences_update.preferredShipmentType" options="preferred-shipment-type">
+            <arg type="string" var="@TransportPreferences_update.preferredShipmentType" options="preferred-shipment-type" required="True">
               <help short="Indicates Shipment Logistics type that the customer preferred."/>
               <enum>
                 <item name="CustomerManaged" value="&quot;CustomerManaged&quot;"/>
@@ -3030,205 +2831,181 @@
             </arg>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$jobResource.properties.details.reverseShippingDetails" options="reverse-shipping-details" hide="True" group="Details">
-          <help short="Optional Reverse Shipping details for order."/>
-          <arg nullable="True" type="object" var="$jobResource.properties.details.reverseShippingDetails.contactDetails" options="contact-details">
+        <arg type="object" var="$jobResourceUpdateParameter.properties.details.returnToCustomerPackageDetails" options="return-to-customer-package-details" hide="True" group="Details">
+          <help short="Return package details of job."/>
+          <arg type="string" var="$jobResourceUpdateParameter.properties.details.returnToCustomerPackageDetails.carrierAccountNumber" options="carrier-account-number">
+            <help short="Carrier Account Number of customer for customer disk."/>
+          </arg>
+          <arg type="string" var="$jobResourceUpdateParameter.properties.details.returnToCustomerPackageDetails.carrierName" options="carrier-name">
+            <help short="Name of the carrier."/>
+          </arg>
+          <arg type="string" var="$jobResourceUpdateParameter.properties.details.returnToCustomerPackageDetails.trackingId" options="tracking-id">
+            <help short="Tracking Id of shipment."/>
+          </arg>
+        </arg>
+        <arg type="object" var="$jobResourceUpdateParameter.properties.details.reverseShippingDetails" options="reverse-shipping-details" hide="True" group="Details">
+          <help short="Reverse Shipping Address and contact details for a job."/>
+          <arg type="object" var="$jobResourceUpdateParameter.properties.details.reverseShippingDetails.contactDetails" options="contact-details">
             <help short="Contact Info."/>
-            <arg type="string" var="$jobResource.properties.details.reverseShippingDetails.contactDetails.contactName" options="contact-name">
+            <arg type="string" var="$jobResourceUpdateParameter.properties.details.reverseShippingDetails.contactDetails.contactName" options="contact-name" required="True">
               <help short="Contact name of the person."/>
               <format minLength="1"/>
             </arg>
-            <arg nullable="True" type="string" var="$jobResource.properties.details.reverseShippingDetails.contactDetails.mobile" options="mobile">
+            <arg type="string" var="$jobResourceUpdateParameter.properties.details.reverseShippingDetails.contactDetails.mobile" options="mobile">
               <help short="Mobile number of the contact person."/>
             </arg>
-            <arg type="string" var="$jobResource.properties.details.reverseShippingDetails.contactDetails.phone" options="phone">
+            <arg type="string" var="$jobResourceUpdateParameter.properties.details.reverseShippingDetails.contactDetails.phone" options="phone" required="True">
               <help short="Phone number of the contact person."/>
               <format minLength="1"/>
             </arg>
-            <arg nullable="True" type="string" var="$jobResource.properties.details.reverseShippingDetails.contactDetails.phoneExtension" options="phone-extension">
+            <arg type="string" var="$jobResourceUpdateParameter.properties.details.reverseShippingDetails.contactDetails.phoneExtension" options="phone-extension">
               <help short="Phone extension number of the contact person."/>
             </arg>
           </arg>
-          <arg nullable="True" type="object" var="$jobResource.properties.details.reverseShippingDetails.shippingAddress" options="shipping-address" cls="ShippingAddress_update">
-            <arg nullable="True" type="string" var="@ShippingAddress_update.addressType" options="address-type">
+          <arg type="object" var="$jobResourceUpdateParameter.properties.details.reverseShippingDetails.shippingAddress" options="shipping-address" cls="ShippingAddress_update">
+            <arg type="string" var="@ShippingAddress_update.addressType" options="address-type">
               <help short="Type of address."/>
+              <default value="&quot;None&quot;"/>
               <enum>
                 <item name="Commercial" value="&quot;Commercial&quot;"/>
                 <item name="None" value="&quot;None&quot;"/>
                 <item name="Residential" value="&quot;Residential&quot;"/>
               </enum>
             </arg>
-            <arg nullable="True" type="string" var="@ShippingAddress_update.city" options="city">
+            <arg type="string" var="@ShippingAddress_update.city" options="city">
               <help short="Name of the City."/>
             </arg>
-            <arg nullable="True" type="string" var="@ShippingAddress_update.companyName" options="company-name">
+            <arg type="string" var="@ShippingAddress_update.companyName" options="company-name">
               <help short="Name of the company."/>
             </arg>
-            <arg type="string" var="@ShippingAddress_update.country" options="country">
+            <arg type="string" var="@ShippingAddress_update.country" options="country" required="True">
               <help short="Name of the Country."/>
             </arg>
-            <arg nullable="True" type="string" var="@ShippingAddress_update.postalCode" options="postal-code">
+            <arg type="string" var="@ShippingAddress_update.postalCode" options="postal-code">
               <help short="Postal code."/>
             </arg>
-            <arg nullable="True" type="boolean" var="@ShippingAddress_update.skipAddressValidation" options="skip-address-validation">
+            <arg type="boolean" var="@ShippingAddress_update.skipAddressValidation" options="skip-address-validation">
               <help short="Flag to indicate if customer has chosen to skip default address validation"/>
             </arg>
-            <arg nullable="True" type="string" var="@ShippingAddress_update.stateOrProvince" options="state-or-province">
+            <arg type="string" var="@ShippingAddress_update.stateOrProvince" options="state-or-province">
               <help short="Name of the State or Province."/>
             </arg>
-            <arg type="string" var="@ShippingAddress_update.streetAddress1" options="street-address1">
+            <arg type="string" var="@ShippingAddress_update.streetAddress1" options="street-address1" required="True">
               <help short="Street Address line 1."/>
             </arg>
-            <arg nullable="True" type="string" var="@ShippingAddress_update.streetAddress2" options="street-address2">
+            <arg type="string" var="@ShippingAddress_update.streetAddress2" options="street-address2">
               <help short="Street Address line 2."/>
             </arg>
-            <arg nullable="True" type="string" var="@ShippingAddress_update.streetAddress3" options="street-address3">
+            <arg type="string" var="@ShippingAddress_update.streetAddress3" options="street-address3">
               <help short="Street Address line 3."/>
             </arg>
-            <arg nullable="True" type="string" var="@ShippingAddress_update.taxIdentificationNumber" options="tax-identification-number">
+            <arg type="string" var="@ShippingAddress_update.taxIdentificationNumber" options="tax-identification-number">
               <help short="Tax Identification Number"/>
             </arg>
-            <arg nullable="True" type="string" var="@ShippingAddress_update.zipExtendedCode" options="zip-extended-code">
+            <arg type="string" var="@ShippingAddress_update.zipExtendedCode" options="zip-extended-code">
               <help short="Extended Zip Code."/>
             </arg>
           </arg>
         </arg>
       </argGroup>
-      <argGroup name="JobResource">
-        <arg nullable="True" type="object" var="$jobResource.identity" options="identity" hide="True" group="JobResource">
+      <argGroup name="JobResourceUpdateParameter">
+        <arg type="object" var="$jobResourceUpdateParameter.identity" options="identity" hide="True" group="JobResourceUpdateParameter">
           <help short="Msi identity of the resource"/>
-          <arg nullable="True" type="string" var="$jobResource.identity.type" options="type">
+          <arg type="string" var="$jobResourceUpdateParameter.identity.type" options="type">
             <help short="Identity type"/>
+            <default value="&quot;None&quot;"/>
           </arg>
-          <arg nullable="True" type="object" var="$jobResource.identity.userAssignedIdentities" options="user-assigned-identities">
+          <arg type="object" var="$jobResourceUpdateParameter.identity.userAssignedIdentities" options="user-assigned-identities">
             <help short="User Assigned Identities"/>
             <additionalProp>
-              <item nullable="True" type="object">
+              <item type="object">
                 <blank value="{}"/>
               </item>
             </additionalProp>
           </arg>
         </arg>
-        <arg type="object" var="$jobResource.sku" options="sku" hide="True" group="JobResource">
-          <help short="The sku type."/>
-          <arg nullable="True" type="string" var="$jobResource.sku.displayName" options="display-name" hide="True" group="Sku">
-            <help short="The display name of the sku."/>
-          </arg>
-          <arg nullable="True" type="string" var="$jobResource.sku.family" options="family" hide="True" group="Sku">
-            <help short="The sku family."/>
-          </arg>
-          <arg type="string" var="$jobResource.sku.name" options="name">
-            <help short="The sku name."/>
-            <enum>
-              <item name="DataBox" value="&quot;DataBox&quot;"/>
-              <item name="DataBoxCustomerDisk" value="&quot;DataBoxCustomerDisk&quot;"/>
-              <item name="DataBoxDisk" value="&quot;DataBoxDisk&quot;"/>
-              <item name="DataBoxHeavy" value="&quot;DataBoxHeavy&quot;"/>
-            </enum>
-          </arg>
-        </arg>
-        <arg nullable="True" type="object" var="$jobResource.tags" options="tags" hide="True" group="JobResource">
+        <arg type="object" var="$jobResourceUpdateParameter.tags" options="tags" hide="True" group="JobResourceUpdateParameter">
           <help short="The list of key value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups)."/>
           <additionalProp>
-            <item nullable="True" type="string"/>
+            <item type="string"/>
           </additionalProp>
         </arg>
       </argGroup>
       <argGroup name="KeyEncryptionKey">
-        <arg nullable="True" type="object" var="$jobResource.properties.details.keyEncryptionKey.identityProperties" options="kek-identity" group="KeyEncryptionKey">
+        <arg type="object" var="$jobResourceUpdateParameter.properties.details.keyEncryptionKey.identityProperties" options="kek-identity" group="KeyEncryptionKey">
           <help short="Managed identity properties used for key encryption."/>
-          <arg nullable="True" type="string" var="$jobResource.properties.details.keyEncryptionKey.identityProperties.type" options="type">
+          <arg type="string" var="$jobResourceUpdateParameter.properties.details.keyEncryptionKey.identityProperties.type" options="type">
             <help short="Managed service identity type."/>
           </arg>
-          <arg nullable="True" type="object" var="$jobResource.properties.details.keyEncryptionKey.identityProperties.userAssigned" options="user-assigned">
+          <arg type="object" var="$jobResourceUpdateParameter.properties.details.keyEncryptionKey.identityProperties.userAssigned" options="user-assigned">
             <help short="User assigned identity properties."/>
-            <arg nullable="True" type="string" var="$jobResource.properties.details.keyEncryptionKey.identityProperties.userAssigned.resourceId" options="resource-id">
+            <arg type="string" var="$jobResourceUpdateParameter.properties.details.keyEncryptionKey.identityProperties.userAssigned.resourceId" options="resource-id">
               <help short="Arm resource id for user assigned identity to be used to fetch MSI token."/>
             </arg>
           </arg>
         </arg>
-        <arg type="string" var="$jobResource.properties.details.keyEncryptionKey.kekType" options="kek-type" group="KeyEncryptionKey">
+        <arg type="string" var="$jobResourceUpdateParameter.properties.details.keyEncryptionKey.kekType" options="kek-type" group="KeyEncryptionKey">
           <help short="Type of encryption key used for key encryption."/>
           <enum>
             <item name="CustomerManaged" value="&quot;CustomerManaged&quot;"/>
             <item name="MicrosoftManaged" value="&quot;MicrosoftManaged&quot;"/>
           </enum>
         </arg>
-        <arg nullable="True" type="string" var="$jobResource.properties.details.keyEncryptionKey.kekUrl" options="kek-url" group="KeyEncryptionKey">
+        <arg type="string" var="$jobResourceUpdateParameter.properties.details.keyEncryptionKey.kekUrl" options="kek-url" group="KeyEncryptionKey">
           <help short="Key encryption key. It is required in case of Customer managed KekType."/>
         </arg>
-        <arg nullable="True" type="string" var="$jobResource.properties.details.keyEncryptionKey.kekVaultResourceID" options="kek-vault-resource-id" group="KeyEncryptionKey">
+        <arg type="string" var="$jobResourceUpdateParameter.properties.details.keyEncryptionKey.kekVaultResourceID" options="kek-vault-resource-id" group="KeyEncryptionKey">
           <help short="Kek vault resource id. It is required in case of Customer managed KekType."/>
         </arg>
       </argGroup>
-      <argGroup name="Properties">
-        <arg nullable="True" type="object" var="$jobResource.properties.deliveryInfo" options="delivery-info" hide="True" group="Properties">
-          <help short="Delivery Info of Job."/>
-          <arg nullable="True" type="dateTime" var="$jobResource.properties.deliveryInfo.scheduledDateTime" options="scheduled-date-time">
-            <help short="Scheduled date time."/>
-          </arg>
-        </arg>
-        <arg nullable="True" type="string" var="$jobResource.properties.deliveryType" options="delivery-type" hide="True" group="Properties">
-          <help short="Delivery type of Job."/>
-          <enum>
-            <item name="NonScheduled" value="&quot;NonScheduled&quot;"/>
-            <item name="Scheduled" value="&quot;Scheduled&quot;"/>
-          </enum>
-        </arg>
-        <arg type="string" var="$jobResource.properties.transferType" options="transfer-type" hide="True" group="Properties">
-          <help short="Type of the data transfer."/>
-          <enum>
-            <item name="ExportFromAzure" value="&quot;ExportFromAzure&quot;"/>
-            <item name="ImportToAzure" value="&quot;ImportToAzure&quot;"/>
-          </enum>
-        </arg>
-      </argGroup>
       <argGroup name="ShippingAddress">
-        <arg nullable="True" type="string" var="$jobResource.properties.details.shippingAddress.addressType" options="address-type" hide="True" group="ShippingAddress">
+        <arg type="string" var="$jobResourceUpdateParameter.properties.details.shippingAddress.addressType" options="address-type" hide="True" group="ShippingAddress">
           <help short="address type"/>
+          <default value="&quot;None&quot;"/>
           <enum>
             <item name="Commercial" value="&quot;Commercial&quot;"/>
             <item name="None" value="&quot;None&quot;"/>
             <item name="Residential" value="&quot;Residential&quot;"/>
           </enum>
         </arg>
-        <arg nullable="True" type="string" var="$jobResource.properties.details.shippingAddress.city" options="city" group="ShippingAddress">
+        <arg type="string" var="$jobResourceUpdateParameter.properties.details.shippingAddress.city" options="city" group="ShippingAddress">
           <help short="Name of the city."/>
         </arg>
-        <arg nullable="True" type="string" var="$jobResource.properties.details.shippingAddress.companyName" options="company-name" group="ShippingAddress">
+        <arg type="string" var="$jobResourceUpdateParameter.properties.details.shippingAddress.companyName" options="company-name" group="ShippingAddress">
           <help short="Name of the company."/>
         </arg>
-        <arg type="string" var="$jobResource.properties.details.shippingAddress.country" options="country" group="ShippingAddress">
+        <arg type="string" var="$jobResourceUpdateParameter.properties.details.shippingAddress.country" options="country" group="ShippingAddress">
           <help short="Name of the Country."/>
         </arg>
-        <arg nullable="True" type="string" var="$jobResource.properties.details.shippingAddress.postalCode" options="postal-code" group="ShippingAddress">
+        <arg type="string" var="$jobResourceUpdateParameter.properties.details.shippingAddress.postalCode" options="postal-code" group="ShippingAddress">
           <help short="Postal code."/>
         </arg>
-        <arg nullable="True" type="boolean" var="$jobResource.properties.details.shippingAddress.skipAddressValidation" options="skip-address-validation" hide="True" group="ShippingAddress">
+        <arg type="boolean" var="$jobResourceUpdateParameter.properties.details.shippingAddress.skipAddressValidation" options="skip-address-validation" hide="True" group="ShippingAddress">
           <help short="skip address validation"/>
         </arg>
-        <arg nullable="True" type="string" var="$jobResource.properties.details.shippingAddress.stateOrProvince" options="state-or-province" group="ShippingAddress">
+        <arg type="string" var="$jobResourceUpdateParameter.properties.details.shippingAddress.stateOrProvince" options="state-or-province" group="ShippingAddress">
           <help short="Name of the State or Province."/>
         </arg>
-        <arg type="string" var="$jobResource.properties.details.shippingAddress.streetAddress1" options="street-address1" group="ShippingAddress">
+        <arg type="string" var="$jobResourceUpdateParameter.properties.details.shippingAddress.streetAddress1" options="street-address1" group="ShippingAddress">
           <help short="Street Address line 1."/>
         </arg>
-        <arg nullable="True" type="string" var="$jobResource.properties.details.shippingAddress.streetAddress2" options="street-address2" group="ShippingAddress">
+        <arg type="string" var="$jobResourceUpdateParameter.properties.details.shippingAddress.streetAddress2" options="street-address2" group="ShippingAddress">
           <help short="Street Address line 2."/>
         </arg>
-        <arg nullable="True" type="string" var="$jobResource.properties.details.shippingAddress.streetAddress3" options="street-address3" group="ShippingAddress">
+        <arg type="string" var="$jobResourceUpdateParameter.properties.details.shippingAddress.streetAddress3" options="street-address3" group="ShippingAddress">
           <help short="Street Address line 3."/>
         </arg>
-        <arg nullable="True" type="string" var="$jobResource.properties.details.shippingAddress.taxIdentificationNumber" options="tax-identification-number" hide="True" group="ShippingAddress">
+        <arg type="string" var="$jobResourceUpdateParameter.properties.details.shippingAddress.taxIdentificationNumber" options="tax-identification-number" hide="True" group="ShippingAddress">
           <help short="tax identification number"/>
         </arg>
-        <arg nullable="True" type="string" var="$jobResource.properties.details.shippingAddress.zipExtendedCode" options="zip-extended-code" hide="True" group="ShippingAddress">
+        <arg type="string" var="$jobResourceUpdateParameter.properties.details.shippingAddress.zipExtendedCode" options="zip-extended-code" hide="True" group="ShippingAddress">
           <help short="zip extended code"/>
         </arg>
       </argGroup>
-      <operation operationId="Jobs_Get">
+      <operation operationId="Jobs_Update">
+        <longRunning finalStateVia="azure-async-operation"/>
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/jobs/{jobName}">
-          <request method="get">
+          <request method="patch">
             <path>
               <param type="string" name="jobName" arg="$Path.jobName" required="True">
                 <format pattern="^[-\w\.]+$" maxLength="24" minLength="3"/>
@@ -3241,11 +3018,179 @@
                 <default value="&quot;2022-12-01&quot;"/>
               </const>
             </query>
+            <header>
+              <param type="string" name="If-Match" arg="$Header.If-Match"/>
+            </header>
+            <body>
+              <json>
+                <schema type="object" name="jobResourceUpdateParameter" required="True" clientFlatten="True">
+                  <prop type="IdentityObject" name="identity" arg="$jobResourceUpdateParameter.identity">
+                    <prop type="string" name="type" arg="$jobResourceUpdateParameter.identity.type">
+                      <default value="&quot;None&quot;"/>
+                    </prop>
+                    <prop type="object" name="userAssignedIdentities" arg="$jobResourceUpdateParameter.identity.userAssignedIdentities">
+                      <additionalProp>
+                        <item type="object"/>
+                      </additionalProp>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="object" name="details">
+                      <prop type="object" name="contactDetails">
+                        <prop type="string" name="contactName" arg="$jobResourceUpdateParameter.properties.details.contactDetails.contactName" required="True"/>
+                        <prop type="array<string>" name="emailList" arg="$jobResourceUpdateParameter.properties.details.contactDetails.emailList" required="True">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="string" name="mobile" arg="$jobResourceUpdateParameter.properties.details.contactDetails.mobile"/>
+                        <prop type="array<object>" name="notificationPreference" arg="$jobResourceUpdateParameter.properties.details.contactDetails.notificationPreference">
+                          <item type="object">
+                            <prop type="boolean" name="sendNotification" arg="$jobResourceUpdateParameter.properties.details.contactDetails.notificationPreference[].sendNotification" required="True">
+                              <default value="true"/>
+                            </prop>
+                            <prop type="string" name="stageName" arg="$jobResourceUpdateParameter.properties.details.contactDetails.notificationPreference[].stageName" required="True">
+                              <enum>
+                                <item value="&quot;AtAzureDC&quot;"/>
+                                <item value="&quot;Created&quot;"/>
+                                <item value="&quot;DataCopy&quot;"/>
+                                <item value="&quot;Delivered&quot;"/>
+                                <item value="&quot;DevicePrepared&quot;"/>
+                                <item value="&quot;Dispatched&quot;"/>
+                                <item value="&quot;PickedUp&quot;"/>
+                                <item value="&quot;ShippedToCustomer&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="string" name="phone" arg="$jobResourceUpdateParameter.properties.details.contactDetails.phone" required="True"/>
+                        <prop type="string" name="phoneExtension" arg="$jobResourceUpdateParameter.properties.details.contactDetails.phoneExtension"/>
+                      </prop>
+                      <prop type="object" name="keyEncryptionKey">
+                        <prop type="object" name="identityProperties" arg="$jobResourceUpdateParameter.properties.details.keyEncryptionKey.identityProperties">
+                          <prop type="string" name="type" arg="$jobResourceUpdateParameter.properties.details.keyEncryptionKey.identityProperties.type"/>
+                          <prop type="object" name="userAssigned" arg="$jobResourceUpdateParameter.properties.details.keyEncryptionKey.identityProperties.userAssigned">
+                            <prop type="string" name="resourceId" arg="$jobResourceUpdateParameter.properties.details.keyEncryptionKey.identityProperties.userAssigned.resourceId"/>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="kekType" arg="$jobResourceUpdateParameter.properties.details.keyEncryptionKey.kekType" required="True">
+                          <default value="&quot;MicrosoftManaged&quot;"/>
+                          <enum>
+                            <item value="&quot;CustomerManaged&quot;"/>
+                            <item value="&quot;MicrosoftManaged&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="kekUrl" arg="$jobResourceUpdateParameter.properties.details.keyEncryptionKey.kekUrl"/>
+                        <prop type="string" name="kekVaultResourceID" arg="$jobResourceUpdateParameter.properties.details.keyEncryptionKey.kekVaultResourceID"/>
+                      </prop>
+                      <prop type="object" name="preferences" arg="$jobResourceUpdateParameter.properties.details.preferences">
+                        <prop type="object" name="encryptionPreferences" arg="$jobResourceUpdateParameter.properties.details.preferences.encryptionPreferences">
+                          <prop type="string" name="doubleEncryption" arg="$jobResourceUpdateParameter.properties.details.preferences.encryptionPreferences.doubleEncryption">
+                            <default value="&quot;Disabled&quot;"/>
+                            <enum>
+                              <item value="&quot;Disabled&quot;"/>
+                              <item value="&quot;Enabled&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="hardwareEncryption" arg="$jobResourceUpdateParameter.properties.details.preferences.encryptionPreferences.hardwareEncryption">
+                            <enum>
+                              <item value="&quot;Disabled&quot;"/>
+                              <item value="&quot;Enabled&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop type="array<string>" name="preferredDataCenterRegion" arg="$jobResourceUpdateParameter.properties.details.preferences.preferredDataCenterRegion">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="@TransportPreferences_update" name="reverseTransportPreferences" arg="$jobResourceUpdateParameter.properties.details.preferences.reverseTransportPreferences"/>
+                        <prop type="array<string>" name="storageAccountAccessTierPreferences" arg="$jobResourceUpdateParameter.properties.details.preferences.storageAccountAccessTierPreferences">
+                          <item type="string">
+                            <enum>
+                              <item value="&quot;Archive&quot;"/>
+                            </enum>
+                          </item>
+                        </prop>
+                        <prop type="object" name="transportPreferences" arg="$jobResourceUpdateParameter.properties.details.preferences.transportPreferences" cls="TransportPreferences_update">
+                          <prop type="string" name="preferredShipmentType" arg="@TransportPreferences_update.preferredShipmentType" required="True">
+                            <enum>
+                              <item value="&quot;CustomerManaged&quot;"/>
+                              <item value="&quot;MicrosoftManaged&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="returnToCustomerPackageDetails" arg="$jobResourceUpdateParameter.properties.details.returnToCustomerPackageDetails">
+                        <prop type="string" name="carrierAccountNumber" arg="$jobResourceUpdateParameter.properties.details.returnToCustomerPackageDetails.carrierAccountNumber" secret="True"/>
+                        <prop type="string" name="carrierName" arg="$jobResourceUpdateParameter.properties.details.returnToCustomerPackageDetails.carrierName"/>
+                        <prop type="string" name="trackingId" arg="$jobResourceUpdateParameter.properties.details.returnToCustomerPackageDetails.trackingId"/>
+                      </prop>
+                      <prop type="object" name="reverseShippingDetails" arg="$jobResourceUpdateParameter.properties.details.reverseShippingDetails">
+                        <prop type="object" name="contactDetails" arg="$jobResourceUpdateParameter.properties.details.reverseShippingDetails.contactDetails">
+                          <prop type="string" name="contactName" arg="$jobResourceUpdateParameter.properties.details.reverseShippingDetails.contactDetails.contactName" required="True">
+                            <format minLength="1"/>
+                          </prop>
+                          <prop type="string" name="mobile" arg="$jobResourceUpdateParameter.properties.details.reverseShippingDetails.contactDetails.mobile"/>
+                          <prop type="string" name="phone" arg="$jobResourceUpdateParameter.properties.details.reverseShippingDetails.contactDetails.phone" required="True">
+                            <format minLength="1"/>
+                          </prop>
+                          <prop type="string" name="phoneExtension" arg="$jobResourceUpdateParameter.properties.details.reverseShippingDetails.contactDetails.phoneExtension"/>
+                        </prop>
+                        <prop type="object" name="shippingAddress" arg="$jobResourceUpdateParameter.properties.details.reverseShippingDetails.shippingAddress" cls="ShippingAddress_update">
+                          <prop type="string" name="addressType" arg="@ShippingAddress_update.addressType">
+                            <default value="&quot;None&quot;"/>
+                            <enum>
+                              <item value="&quot;Commercial&quot;"/>
+                              <item value="&quot;None&quot;"/>
+                              <item value="&quot;Residential&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="city" arg="@ShippingAddress_update.city"/>
+                          <prop type="string" name="companyName" arg="@ShippingAddress_update.companyName"/>
+                          <prop type="string" name="country" arg="@ShippingAddress_update.country" required="True"/>
+                          <prop type="string" name="postalCode" arg="@ShippingAddress_update.postalCode"/>
+                          <prop type="boolean" name="skipAddressValidation" arg="@ShippingAddress_update.skipAddressValidation"/>
+                          <prop type="string" name="stateOrProvince" arg="@ShippingAddress_update.stateOrProvince"/>
+                          <prop type="string" name="streetAddress1" arg="@ShippingAddress_update.streetAddress1" required="True"/>
+                          <prop type="string" name="streetAddress2" arg="@ShippingAddress_update.streetAddress2"/>
+                          <prop type="string" name="streetAddress3" arg="@ShippingAddress_update.streetAddress3"/>
+                          <prop type="string" name="taxIdentificationNumber" arg="@ShippingAddress_update.taxIdentificationNumber"/>
+                          <prop type="string" name="zipExtendedCode" arg="@ShippingAddress_update.zipExtendedCode"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="shippingAddress">
+                        <prop type="string" name="addressType" arg="$jobResourceUpdateParameter.properties.details.shippingAddress.addressType">
+                          <default value="&quot;None&quot;"/>
+                          <enum>
+                            <item value="&quot;Commercial&quot;"/>
+                            <item value="&quot;None&quot;"/>
+                            <item value="&quot;Residential&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="city" arg="$jobResourceUpdateParameter.properties.details.shippingAddress.city"/>
+                        <prop type="string" name="companyName" arg="$jobResourceUpdateParameter.properties.details.shippingAddress.companyName"/>
+                        <prop type="string" name="country" arg="$jobResourceUpdateParameter.properties.details.shippingAddress.country" required="True"/>
+                        <prop type="string" name="postalCode" arg="$jobResourceUpdateParameter.properties.details.shippingAddress.postalCode"/>
+                        <prop type="boolean" name="skipAddressValidation" arg="$jobResourceUpdateParameter.properties.details.shippingAddress.skipAddressValidation"/>
+                        <prop type="string" name="stateOrProvince" arg="$jobResourceUpdateParameter.properties.details.shippingAddress.stateOrProvince"/>
+                        <prop type="string" name="streetAddress1" arg="$jobResourceUpdateParameter.properties.details.shippingAddress.streetAddress1" required="True"/>
+                        <prop type="string" name="streetAddress2" arg="$jobResourceUpdateParameter.properties.details.shippingAddress.streetAddress2"/>
+                        <prop type="string" name="streetAddress3" arg="$jobResourceUpdateParameter.properties.details.shippingAddress.streetAddress3"/>
+                        <prop type="string" name="taxIdentificationNumber" arg="$jobResourceUpdateParameter.properties.details.shippingAddress.taxIdentificationNumber"/>
+                        <prop type="string" name="zipExtendedCode" arg="$jobResourceUpdateParameter.properties.details.shippingAddress.zipExtendedCode"/>
+                      </prop>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags" arg="$jobResourceUpdateParameter.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
           </request>
           <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="object" cls="JobResource_read">
+                <schema type="object">
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.DataBox/jobs/{}"/>
                   </prop>
@@ -4116,394 +4061,11 @@
               </json>
             </body>
           </response>
-          <response isError="True">
-            <body>
-              <json>
-                <schema type="@ODataV4Format"/>
-              </json>
-            </body>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+            </header>
           </response>
-        </http>
-      </operation>
-      <operation>
-        <instanceUpdate ref="$Instance">
-          <json>
-            <schema type="object" name="jobResource" required="True" clientFlatten="True">
-              <prop type="IdentityObject" name="identity" arg="$jobResource.identity">
-                <prop type="string" name="type" arg="$jobResource.identity.type">
-                  <default value="&quot;None&quot;"/>
-                </prop>
-                <prop type="object" name="userAssignedIdentities" arg="$jobResource.identity.userAssignedIdentities">
-                  <additionalProp>
-                    <item type="object"/>
-                  </additionalProp>
-                </prop>
-              </prop>
-              <prop type="object" name="properties" required="True" clientFlatten="True">
-                <prop type="object" name="deliveryInfo" arg="$jobResource.properties.deliveryInfo">
-                  <prop type="dateTime" name="scheduledDateTime" arg="$jobResource.properties.deliveryInfo.scheduledDateTime"/>
-                </prop>
-                <prop type="string" name="deliveryType" arg="$jobResource.properties.deliveryType">
-                  <default value="&quot;NonScheduled&quot;"/>
-                  <enum>
-                    <item value="&quot;NonScheduled&quot;"/>
-                    <item value="&quot;Scheduled&quot;"/>
-                  </enum>
-                </prop>
-                <prop type="object" name="details">
-                  <prop type="object" name="contactDetails" required="True">
-                    <prop type="string" name="contactName" arg="$jobResource.properties.details.contactDetails.contactName" required="True"/>
-                    <prop type="array<string>" name="emailList" arg="$jobResource.properties.details.contactDetails.emailList" required="True">
-                      <item type="string"/>
-                    </prop>
-                    <prop type="string" name="mobile" arg="$jobResource.properties.details.contactDetails.mobile"/>
-                    <prop type="array<object>" name="notificationPreference" arg="$jobResource.properties.details.contactDetails.notificationPreference">
-                      <item type="object">
-                        <prop type="boolean" name="sendNotification" arg="$jobResource.properties.details.contactDetails.notificationPreference[].sendNotification" required="True">
-                          <default value="true"/>
-                        </prop>
-                        <prop type="string" name="stageName" arg="$jobResource.properties.details.contactDetails.notificationPreference[].stageName" required="True">
-                          <enum>
-                            <item value="&quot;AtAzureDC&quot;"/>
-                            <item value="&quot;Created&quot;"/>
-                            <item value="&quot;DataCopy&quot;"/>
-                            <item value="&quot;Delivered&quot;"/>
-                            <item value="&quot;DevicePrepared&quot;"/>
-                            <item value="&quot;Dispatched&quot;"/>
-                            <item value="&quot;PickedUp&quot;"/>
-                            <item value="&quot;ShippedToCustomer&quot;"/>
-                          </enum>
-                        </prop>
-                      </item>
-                    </prop>
-                    <prop type="string" name="phone" arg="$jobResource.properties.details.contactDetails.phone" required="True"/>
-                    <prop type="string" name="phoneExtension" arg="$jobResource.properties.details.contactDetails.phoneExtension"/>
-                  </prop>
-                  <prop type="array<object>" name="dataExportDetails" arg="$jobResource.properties.details.dataExportDetails">
-                    <item type="object">
-                      <prop type="object" name="accountDetails" arg="$jobResource.properties.details.dataExportDetails[].accountDetails" required="True">
-                        <prop type="string" name="dataAccountType" required="True">
-                          <default value="&quot;StorageAccount&quot;"/>
-                          <enum>
-                            <item arg="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk" value="&quot;ManagedDisk&quot;"/>
-                            <item arg="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount" value="&quot;StorageAccount&quot;"/>
-                          </enum>
-                        </prop>
-                        <discriminator property="dataAccountType" value="ManagedDisk">
-                          <prop type="string" name="resourceGroupId" arg="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.resourceGroupId" required="True"/>
-                          <prop type="string" name="stagingStorageAccountId" arg="$jobResource.properties.details.dataExportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" required="True"/>
-                        </discriminator>
-                        <discriminator property="dataAccountType" value="StorageAccount">
-                          <prop type="string" name="storageAccountId" arg="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount.storageAccountId" required="True"/>
-                        </discriminator>
-                      </prop>
-                      <prop type="string" name="logCollectionLevel" arg="$jobResource.properties.details.dataExportDetails[].logCollectionLevel">
-                        <default value="&quot;Error&quot;"/>
-                        <enum>
-                          <item value="&quot;Error&quot;"/>
-                          <item value="&quot;Verbose&quot;"/>
-                        </enum>
-                      </prop>
-                      <prop type="object" name="transferConfiguration" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration" required="True">
-                        <prop type="object" name="transferAllDetails" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferAllDetails">
-                          <prop type="object" name="include" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferAllDetails.include">
-                            <prop type="string" name="dataAccountType" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferAllDetails.include.dataAccountType" required="True">
-                              <default value="&quot;StorageAccount&quot;"/>
-                              <enum>
-                                <item value="&quot;ManagedDisk&quot;"/>
-                                <item value="&quot;StorageAccount&quot;"/>
-                              </enum>
-                            </prop>
-                            <prop type="boolean" name="transferAllBlobs" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferAllDetails.include.transferAllBlobs"/>
-                            <prop type="boolean" name="transferAllFiles" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferAllDetails.include.transferAllFiles"/>
-                          </prop>
-                        </prop>
-                        <prop type="string" name="transferConfigurationType" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferConfigurationType" required="True">
-                          <enum>
-                            <item value="&quot;TransferAll&quot;"/>
-                            <item value="&quot;TransferUsingFilter&quot;"/>
-                          </enum>
-                        </prop>
-                        <prop type="object" name="transferFilterDetails" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails">
-                          <prop type="object" name="include" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include">
-                            <prop type="object" name="azureFileFilterDetails" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.azureFileFilterDetails">
-                              <prop type="array<string>" name="filePathList" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.azureFileFilterDetails.filePathList">
-                                <item type="string"/>
-                              </prop>
-                              <prop type="array<string>" name="filePrefixList" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.azureFileFilterDetails.filePrefixList">
-                                <item type="string"/>
-                              </prop>
-                              <prop type="array<string>" name="fileShareList" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.azureFileFilterDetails.fileShareList">
-                                <item type="string"/>
-                              </prop>
-                            </prop>
-                            <prop type="object" name="blobFilterDetails" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.blobFilterDetails">
-                              <prop type="array<string>" name="blobPathList" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.blobFilterDetails.blobPathList">
-                                <item type="string"/>
-                              </prop>
-                              <prop type="array<string>" name="blobPrefixList" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.blobFilterDetails.blobPrefixList">
-                                <item type="string"/>
-                              </prop>
-                              <prop type="array<string>" name="containerList" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.blobFilterDetails.containerList">
-                                <item type="string"/>
-                              </prop>
-                            </prop>
-                            <prop type="string" name="dataAccountType" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.dataAccountType" required="True">
-                              <default value="&quot;StorageAccount&quot;"/>
-                              <enum>
-                                <item value="&quot;ManagedDisk&quot;"/>
-                                <item value="&quot;StorageAccount&quot;"/>
-                              </enum>
-                            </prop>
-                            <prop type="array<object>" name="filterFileDetails" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.filterFileDetails">
-                              <item type="object">
-                                <prop type="string" name="filterFilePath" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.filterFileDetails[].filterFilePath" required="True"/>
-                                <prop type="string" name="filterFileType" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.filterFileDetails[].filterFileType" required="True">
-                                  <enum>
-                                    <item value="&quot;AzureBlob&quot;"/>
-                                    <item value="&quot;AzureFile&quot;"/>
-                                  </enum>
-                                </prop>
-                              </item>
-                            </prop>
-                          </prop>
-                        </prop>
-                      </prop>
-                    </item>
-                  </prop>
-                  <prop type="array<object>" name="dataImportDetails" arg="$jobResource.properties.details.dataImportDetails">
-                    <item type="object">
-                      <prop type="object" name="accountDetails" arg="$jobResource.properties.details.dataImportDetails[].accountDetails" required="True">
-                        <prop type="string" name="dataAccountType" required="True">
-                          <default value="&quot;StorageAccount&quot;"/>
-                          <enum>
-                            <item arg="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk" value="&quot;ManagedDisk&quot;"/>
-                            <item arg="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount" value="&quot;StorageAccount&quot;"/>
-                          </enum>
-                        </prop>
-                        <discriminator property="dataAccountType" value="ManagedDisk">
-                          <prop type="string" name="resourceGroupId" arg="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.resourceGroupId" required="True"/>
-                          <prop type="string" name="stagingStorageAccountId" arg="$jobResource.properties.details.dataImportDetails[].accountDetails.ManagedDisk.stagingStorageAccountId" required="True"/>
-                        </discriminator>
-                        <discriminator property="dataAccountType" value="StorageAccount">
-                          <prop type="string" name="storageAccountId" arg="$jobResource.properties.details.dataImportDetails[].accountDetails.StorageAccount.storageAccountId" required="True"/>
-                        </discriminator>
-                      </prop>
-                      <prop type="string" name="logCollectionLevel" arg="$jobResource.properties.details.dataImportDetails[].logCollectionLevel">
-                        <default value="&quot;Error&quot;"/>
-                        <enum>
-                          <item value="&quot;Error&quot;"/>
-                          <item value="&quot;Verbose&quot;"/>
-                        </enum>
-                      </prop>
-                    </item>
-                  </prop>
-                  <prop type="integer32" name="expectedDataSizeInTeraBytes" arg="$jobResource.properties.details.expectedDataSizeInTeraBytes"/>
-                  <prop type="string" name="jobDetailsType" required="True">
-                    <enum>
-                      <item arg="$jobResource.properties.details.DataBox" value="&quot;DataBox&quot;"/>
-                      <item arg="$jobResource.properties.details.DataBoxCustomerDisk" value="&quot;DataBoxCustomerDisk&quot;"/>
-                      <item arg="$jobResource.properties.details.DataBoxDisk" value="&quot;DataBoxDisk&quot;"/>
-                      <item arg="$jobResource.properties.details.DataBoxHeavy" value="&quot;DataBoxHeavy&quot;"/>
-                    </enum>
-                  </prop>
-                  <prop type="object" name="keyEncryptionKey">
-                    <prop type="object" name="identityProperties" arg="$jobResource.properties.details.keyEncryptionKey.identityProperties">
-                      <prop type="string" name="type" arg="$jobResource.properties.details.keyEncryptionKey.identityProperties.type"/>
-                      <prop type="object" name="userAssigned" arg="$jobResource.properties.details.keyEncryptionKey.identityProperties.userAssigned">
-                        <prop type="string" name="resourceId" arg="$jobResource.properties.details.keyEncryptionKey.identityProperties.userAssigned.resourceId"/>
-                      </prop>
-                    </prop>
-                    <prop type="string" name="kekType" arg="$jobResource.properties.details.keyEncryptionKey.kekType" required="True">
-                      <default value="&quot;MicrosoftManaged&quot;"/>
-                      <enum>
-                        <item value="&quot;CustomerManaged&quot;"/>
-                        <item value="&quot;MicrosoftManaged&quot;"/>
-                      </enum>
-                    </prop>
-                    <prop type="string" name="kekUrl" arg="$jobResource.properties.details.keyEncryptionKey.kekUrl"/>
-                    <prop type="string" name="kekVaultResourceID" arg="$jobResource.properties.details.keyEncryptionKey.kekVaultResourceID"/>
-                  </prop>
-                  <prop type="object" name="preferences" arg="$jobResource.properties.details.preferences">
-                    <prop type="object" name="encryptionPreferences" arg="$jobResource.properties.details.preferences.encryptionPreferences">
-                      <prop type="string" name="doubleEncryption" arg="$jobResource.properties.details.preferences.encryptionPreferences.doubleEncryption">
-                        <default value="&quot;Disabled&quot;"/>
-                        <enum>
-                          <item value="&quot;Disabled&quot;"/>
-                          <item value="&quot;Enabled&quot;"/>
-                        </enum>
-                      </prop>
-                      <prop type="string" name="hardwareEncryption" arg="$jobResource.properties.details.preferences.encryptionPreferences.hardwareEncryption">
-                        <enum>
-                          <item value="&quot;Disabled&quot;"/>
-                          <item value="&quot;Enabled&quot;"/>
-                        </enum>
-                      </prop>
-                    </prop>
-                    <prop type="array<string>" name="preferredDataCenterRegion" arg="$jobResource.properties.details.preferences.preferredDataCenterRegion">
-                      <item type="string"/>
-                    </prop>
-                    <prop type="@TransportPreferences_update" name="reverseTransportPreferences" arg="$jobResource.properties.details.preferences.reverseTransportPreferences"/>
-                    <prop type="array<string>" name="storageAccountAccessTierPreferences" arg="$jobResource.properties.details.preferences.storageAccountAccessTierPreferences">
-                      <item type="string">
-                        <enum>
-                          <item value="&quot;Archive&quot;"/>
-                        </enum>
-                      </item>
-                    </prop>
-                    <prop type="object" name="transportPreferences" arg="$jobResource.properties.details.preferences.transportPreferences" cls="TransportPreferences_update">
-                      <prop type="string" name="preferredShipmentType" arg="@TransportPreferences_update.preferredShipmentType" required="True">
-                        <enum>
-                          <item value="&quot;CustomerManaged&quot;"/>
-                          <item value="&quot;MicrosoftManaged&quot;"/>
-                        </enum>
-                      </prop>
-                    </prop>
-                  </prop>
-                  <prop type="object" name="reverseShippingDetails" arg="$jobResource.properties.details.reverseShippingDetails">
-                    <prop type="object" name="contactDetails" arg="$jobResource.properties.details.reverseShippingDetails.contactDetails">
-                      <prop type="string" name="contactName" arg="$jobResource.properties.details.reverseShippingDetails.contactDetails.contactName" required="True">
-                        <format minLength="1"/>
-                      </prop>
-                      <prop type="string" name="mobile" arg="$jobResource.properties.details.reverseShippingDetails.contactDetails.mobile"/>
-                      <prop type="string" name="phone" arg="$jobResource.properties.details.reverseShippingDetails.contactDetails.phone" required="True">
-                        <format minLength="1"/>
-                      </prop>
-                      <prop type="string" name="phoneExtension" arg="$jobResource.properties.details.reverseShippingDetails.contactDetails.phoneExtension"/>
-                    </prop>
-                    <prop type="object" name="shippingAddress" arg="$jobResource.properties.details.reverseShippingDetails.shippingAddress" cls="ShippingAddress_update">
-                      <prop type="string" name="addressType" arg="@ShippingAddress_update.addressType">
-                        <default value="&quot;None&quot;"/>
-                        <enum>
-                          <item value="&quot;Commercial&quot;"/>
-                          <item value="&quot;None&quot;"/>
-                          <item value="&quot;Residential&quot;"/>
-                        </enum>
-                      </prop>
-                      <prop type="string" name="city" arg="@ShippingAddress_update.city"/>
-                      <prop type="string" name="companyName" arg="@ShippingAddress_update.companyName"/>
-                      <prop type="string" name="country" arg="@ShippingAddress_update.country" required="True"/>
-                      <prop type="string" name="postalCode" arg="@ShippingAddress_update.postalCode"/>
-                      <prop type="boolean" name="skipAddressValidation" arg="@ShippingAddress_update.skipAddressValidation"/>
-                      <prop type="string" name="stateOrProvince" arg="@ShippingAddress_update.stateOrProvince"/>
-                      <prop type="string" name="streetAddress1" arg="@ShippingAddress_update.streetAddress1" required="True"/>
-                      <prop type="string" name="streetAddress2" arg="@ShippingAddress_update.streetAddress2"/>
-                      <prop type="string" name="streetAddress3" arg="@ShippingAddress_update.streetAddress3"/>
-                      <prop type="string" name="taxIdentificationNumber" arg="@ShippingAddress_update.taxIdentificationNumber"/>
-                      <prop type="string" name="zipExtendedCode" arg="@ShippingAddress_update.zipExtendedCode"/>
-                    </prop>
-                  </prop>
-                  <prop type="object" name="shippingAddress">
-                    <prop type="string" name="addressType" arg="$jobResource.properties.details.shippingAddress.addressType">
-                      <default value="&quot;None&quot;"/>
-                      <enum>
-                        <item value="&quot;Commercial&quot;"/>
-                        <item value="&quot;None&quot;"/>
-                        <item value="&quot;Residential&quot;"/>
-                      </enum>
-                    </prop>
-                    <prop type="string" name="city" arg="$jobResource.properties.details.shippingAddress.city"/>
-                    <prop type="string" name="companyName" arg="$jobResource.properties.details.shippingAddress.companyName"/>
-                    <prop type="string" name="country" arg="$jobResource.properties.details.shippingAddress.country" required="True"/>
-                    <prop type="string" name="postalCode" arg="$jobResource.properties.details.shippingAddress.postalCode"/>
-                    <prop type="boolean" name="skipAddressValidation" arg="$jobResource.properties.details.shippingAddress.skipAddressValidation"/>
-                    <prop type="string" name="stateOrProvince" arg="$jobResource.properties.details.shippingAddress.stateOrProvince"/>
-                    <prop type="string" name="streetAddress1" arg="$jobResource.properties.details.shippingAddress.streetAddress1" required="True"/>
-                    <prop type="string" name="streetAddress2" arg="$jobResource.properties.details.shippingAddress.streetAddress2"/>
-                    <prop type="string" name="streetAddress3" arg="$jobResource.properties.details.shippingAddress.streetAddress3"/>
-                    <prop type="string" name="taxIdentificationNumber" arg="$jobResource.properties.details.shippingAddress.taxIdentificationNumber"/>
-                    <prop type="string" name="zipExtendedCode" arg="$jobResource.properties.details.shippingAddress.zipExtendedCode"/>
-                  </prop>
-                  <discriminator property="jobDetailsType" value="DataBox">
-                    <prop type="string" name="devicePassword" arg="$jobResource.properties.details.DataBox.devicePassword"/>
-                  </discriminator>
-                  <discriminator property="jobDetailsType" value="DataBoxCustomerDisk">
-                    <prop type="boolean" name="enableManifestBackup" arg="$jobResource.properties.details.DataBoxCustomerDisk.enableManifestBackup">
-                      <default value="false"/>
-                    </prop>
-                    <prop type="object" name="importDiskDetailsCollection" arg="$jobResource.properties.details.DataBoxCustomerDisk.importDiskDetailsCollection">
-                      <additionalProp>
-                        <item type="object">
-                          <prop type="string" name="bitLockerKey" arg="$jobResource.properties.details.DataBoxCustomerDisk.importDiskDetailsCollection{}.bitLockerKey" required="True" secret="True"/>
-                          <prop type="string" name="manifestFile" arg="$jobResource.properties.details.DataBoxCustomerDisk.importDiskDetailsCollection{}.manifestFile" required="True"/>
-                          <prop type="string" name="manifestHash" arg="$jobResource.properties.details.DataBoxCustomerDisk.importDiskDetailsCollection{}.manifestHash" required="True"/>
-                        </item>
-                      </additionalProp>
-                    </prop>
-                    <prop type="object" name="returnToCustomerPackageDetails" arg="$jobResource.properties.details.DataBoxCustomerDisk.returnToCustomerPackageDetails" required="True">
-                      <prop type="string" name="carrierAccountNumber" arg="$jobResource.properties.details.DataBoxCustomerDisk.returnToCustomerPackageDetails.carrierAccountNumber" secret="True"/>
-                      <prop type="string" name="carrierName" arg="$jobResource.properties.details.DataBoxCustomerDisk.returnToCustomerPackageDetails.carrierName"/>
-                      <prop type="string" name="trackingId" arg="$jobResource.properties.details.DataBoxCustomerDisk.returnToCustomerPackageDetails.trackingId"/>
-                    </prop>
-                  </discriminator>
-                  <discriminator property="jobDetailsType" value="DataBoxDisk">
-                    <prop type="string" name="passkey" arg="$jobResource.properties.details.DataBoxDisk.passkey"/>
-                    <prop type="object" name="preferredDisks" arg="$jobResource.properties.details.DataBoxDisk.preferredDisks">
-                      <additionalProp>
-                        <item type="integer32"/>
-                      </additionalProp>
-                    </prop>
-                  </discriminator>
-                  <discriminator property="jobDetailsType" value="DataBoxHeavy">
-                    <prop type="string" name="devicePassword" arg="$jobResource.properties.details.DataBoxHeavy.devicePassword"/>
-                  </discriminator>
-                </prop>
-                <prop type="string" name="transferType" arg="$jobResource.properties.transferType" required="True">
-                  <enum>
-                    <item value="&quot;ExportFromAzure&quot;"/>
-                    <item value="&quot;ImportToAzure&quot;"/>
-                  </enum>
-                </prop>
-              </prop>
-              <prop type="object" name="sku" arg="$jobResource.sku" required="True">
-                <prop type="string" name="displayName" arg="$jobResource.sku.displayName"/>
-                <prop type="string" name="family" arg="$jobResource.sku.family"/>
-                <prop type="string" name="name" arg="$jobResource.sku.name" required="True">
-                  <enum>
-                    <item value="&quot;DataBox&quot;"/>
-                    <item value="&quot;DataBoxCustomerDisk&quot;"/>
-                    <item value="&quot;DataBoxDisk&quot;"/>
-                    <item value="&quot;DataBoxHeavy&quot;"/>
-                  </enum>
-                </prop>
-              </prop>
-              <prop type="object" name="tags" arg="$jobResource.tags">
-                <additionalProp>
-                  <item type="string"/>
-                </additionalProp>
-              </prop>
-            </schema>
-          </json>
-        </instanceUpdate>
-      </operation>
-      <operation operationId="Jobs_Create">
-        <longRunning finalStateVia="azure-async-operation"/>
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/jobs/{jobName}">
-          <request method="put">
-            <path>
-              <param type="string" name="jobName" arg="$Path.jobName" required="True">
-                <format pattern="^[-\w\.]+$" maxLength="24" minLength="3"/>
-              </param>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
-            </path>
-            <query>
-              <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="&quot;2022-12-01&quot;"/>
-              </const>
-            </query>
-            <body>
-              <json ref="$Instance"/>
-            </body>
-          </request>
-          <response statusCode="200">
-            <body>
-              <json var="$Instance">
-                <schema type="@JobResource_read"/>
-              </json>
-            </body>
-          </response>
-          <response statusCode="202"/>
           <response isError="True">
             <body>
               <json>
