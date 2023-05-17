@@ -534,6 +534,103 @@
                         </prop>
                         <prop type="string" name="devicePassword"/>
                       </discriminator>
+                      <discriminator property="jobDetailsType" value="DataBoxCustomerDisk">
+                        <prop readOnly="True" type="array<object>" name="copyProgress">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="accountId"/>
+                            <prop readOnly="True" type="array<string>" name="actions">
+                              <item type="string">
+                                <enum>
+                                  <item value="&quot;MoveToCleanUpDevice&quot;"/>
+                                  <item value="&quot;None&quot;"/>
+                                  <item value="&quot;ReachOutToOperation&quot;"/>
+                                  <item value="&quot;Restart&quot;"/>
+                                  <item value="&quot;Resume&quot;"/>
+                                </enum>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="integer64" name="bytesProcessed"/>
+                            <prop readOnly="True" type="string" name="copyStatus">
+                              <enum>
+                                <item value="&quot;Completed&quot;"/>
+                                <item value="&quot;CompletedWithErrors&quot;"/>
+                                <item value="&quot;DeviceFormatted&quot;"/>
+                                <item value="&quot;DeviceMetadataModified&quot;"/>
+                                <item value="&quot;DriveCorrupted&quot;"/>
+                                <item value="&quot;DriveNotDetected&quot;"/>
+                                <item value="&quot;DriveNotReceived&quot;"/>
+                                <item value="&quot;Failed&quot;"/>
+                                <item value="&quot;HardwareError&quot;"/>
+                                <item value="&quot;InProgress&quot;"/>
+                                <item value="&quot;MetadataFilesModifiedOrRemoved&quot;"/>
+                                <item value="&quot;NotReturned&quot;"/>
+                                <item value="&quot;NotStarted&quot;"/>
+                                <item value="&quot;OtherServiceError&quot;"/>
+                                <item value="&quot;OtherUserError&quot;"/>
+                                <item value="&quot;StorageAccountNotAccessible&quot;"/>
+                                <item value="&quot;UnsupportedData&quot;"/>
+                                <item value="&quot;UnsupportedDrive&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="string" name="dataAccountType">
+                              <enum>
+                                <item value="&quot;ManagedDisk&quot;"/>
+                                <item value="&quot;StorageAccount&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="integer64" name="directoriesErroredOut"/>
+                            <prop readOnly="True" type="@CloudError_read" name="error"/>
+                            <prop readOnly="True" type="integer64" name="filesErroredOut"/>
+                            <prop readOnly="True" type="integer64" name="filesProcessed"/>
+                            <prop readOnly="True" type="integer64" name="invalidDirectoriesProcessed"/>
+                            <prop readOnly="True" type="integer64" name="invalidFileBytesUploaded"/>
+                            <prop readOnly="True" type="integer64" name="invalidFilesProcessed"/>
+                            <prop readOnly="True" type="boolean" name="isEnumerationInProgress"/>
+                            <prop readOnly="True" type="integer64" name="renamedContainerCount"/>
+                            <prop readOnly="True" type="string" name="serialNumber"/>
+                            <prop readOnly="True" type="string" name="storageAccountName"/>
+                            <prop readOnly="True" type="integer64" name="totalBytesToProcess"/>
+                            <prop readOnly="True" type="integer64" name="totalFilesToProcess"/>
+                            <prop readOnly="True" type="string" name="transferType">
+                              <enum>
+                                <item value="&quot;ExportFromAzure&quot;"/>
+                                <item value="&quot;ImportToAzure&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="object" name="deliverToDcPackageDetails">
+                          <prop type="string" name="carrierName"/>
+                          <prop type="string" name="trackingId"/>
+                        </prop>
+                        <prop type="boolean" name="enableManifestBackup">
+                          <default value="false"/>
+                        </prop>
+                        <prop readOnly="True" type="object" name="exportDiskDetailsCollection">
+                          <additionalProp readOnly="True">
+                            <item type="object">
+                              <prop readOnly="True" type="string" name="backupManifestCloudPath"/>
+                              <prop readOnly="True" type="string" name="manifestFile"/>
+                              <prop readOnly="True" type="string" name="manifestHash"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                        <prop type="object" name="importDiskDetailsCollection">
+                          <additionalProp>
+                            <item type="object">
+                              <prop readOnly="True" type="string" name="backupManifestCloudPath"/>
+                              <prop type="string" name="bitLockerKey" required="True" secret="True"/>
+                              <prop type="string" name="manifestFile" required="True"/>
+                              <prop type="string" name="manifestHash" required="True"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                        <prop type="object" name="returnToCustomerPackageDetails" required="True">
+                          <prop type="string" name="carrierAccountNumber" secret="True"/>
+                          <prop type="string" name="carrierName"/>
+                          <prop type="string" name="trackingId"/>
+                        </prop>
+                      </discriminator>
                       <discriminator property="jobDetailsType" value="DataBoxDisk">
                         <prop readOnly="True" type="array<object>" name="copyProgress">
                           <item type="object">
@@ -916,13 +1013,48 @@
       </argGroup>
       <argGroup name="Details">
         <arg type="object" var="$jobResource.properties.details.DataBox" options="data-box" hide="True" group="Details">
-          <help short="data box"/>
+          <help short="Databox Job Details"/>
           <arg type="string" var="$jobResource.properties.details.DataBox.devicePassword" options="device-password">
             <help short="Set Device password for unlocking Databox. Should not be passed for TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will not be returned in Get Call. Password Requirements :  Password must be minimum of 12 and maximum of 64 characters. Password must have at least one uppercase alphabet, one number and one special character. Password cannot have the following characters : IilLoO0 Password can have only alphabets, numbers and these characters : @#\-$%^!+=;:_()]+"/>
           </arg>
         </arg>
+        <arg type="object" var="$jobResource.properties.details.DataBoxCustomerDisk" options="data-box-customer-disk" group="Details">
+          <help short="Customer disk job details."/>
+          <arg type="boolean" var="$jobResource.properties.details.DataBoxCustomerDisk.enableManifestBackup" options="enable-manifest-backup">
+            <help short="Flag to indicate if disk manifest should be backed-up in the Storage Account."/>
+            <default value="false"/>
+          </arg>
+          <arg type="object" var="$jobResource.properties.details.DataBoxCustomerDisk.importDiskDetailsCollection" options="import-disk-details-collection">
+            <help short="Contains the map of disk serial number to the disk details for import jobs."/>
+            <additionalProp>
+              <item type="object">
+                <arg type="string" var="$jobResource.properties.details.DataBoxCustomerDisk.importDiskDetailsCollection{}.bitLockerKey" options="bit-locker-key" required="True">
+                  <help short="BitLocker key used to encrypt the disk."/>
+                </arg>
+                <arg type="string" var="$jobResource.properties.details.DataBoxCustomerDisk.importDiskDetailsCollection{}.manifestFile" options="manifest-file" required="True">
+                  <help short="The relative path of the manifest file on the disk."/>
+                </arg>
+                <arg type="string" var="$jobResource.properties.details.DataBoxCustomerDisk.importDiskDetailsCollection{}.manifestHash" options="manifest-hash" required="True">
+                  <help short="The Base16-encoded MD5 hash of the manifest file on the disk."/>
+                </arg>
+              </item>
+            </additionalProp>
+          </arg>
+          <arg type="object" var="$jobResource.properties.details.DataBoxCustomerDisk.returnToCustomerPackageDetails" options="return-to-customer-package-details" required="True">
+            <help short="Return package shipping details."/>
+            <arg type="string" var="$jobResource.properties.details.DataBoxCustomerDisk.returnToCustomerPackageDetails.carrierAccountNumber" options="carrier-account-number">
+              <help short="Carrier Account Number of customer for customer disk."/>
+            </arg>
+            <arg type="string" var="$jobResource.properties.details.DataBoxCustomerDisk.returnToCustomerPackageDetails.carrierName" options="carrier-name">
+              <help short="Name of the carrier."/>
+            </arg>
+            <arg type="string" var="$jobResource.properties.details.DataBoxCustomerDisk.returnToCustomerPackageDetails.trackingId" options="tracking-id">
+              <help short="Tracking Id of shipment."/>
+            </arg>
+          </arg>
+        </arg>
         <arg type="object" var="$jobResource.properties.details.DataBoxDisk" options="data-box-disk" hide="True" group="Details">
-          <help short="data box disk"/>
+          <help short="Databox Heavy Device Job Details"/>
           <arg type="string" var="$jobResource.properties.details.DataBoxDisk.passkey" options="passkey">
             <help short="User entered passkey for DataBox Disk job."/>
           </arg>
@@ -934,12 +1066,12 @@
           </arg>
         </arg>
         <arg type="object" var="$jobResource.properties.details.DataBoxHeavy" options="data-box-heavy" hide="True" group="Details">
-          <help short="data box heavy"/>
+          <help short="Details of data box heavy"/>
           <arg type="string" var="$jobResource.properties.details.DataBoxHeavy.devicePassword" options="device-password">
             <help short="Set Device password for unlocking Databox Heavy. Should not be passed for TransferType:ExportFromAzure jobs. If this is not passed, the service will generate password itself. This will not be returned in Get Call. Password Requirements :  Password must be minimum of 12 and maximum of 64 characters. Password must have at least one uppercase alphabet, one number and one special character. Password cannot have the following characters : IilLoO0 Password can have only alphabets, numbers and these characters : @#\-$%^!+=;:_()]+"/>
           </arg>
         </arg>
-        <arg type="array<object>" var="$jobResource.properties.details.dataExportDetails" options="data-export-details" hide="True" group="Details">
+        <arg type="array<object>" var="$jobResource.properties.details.dataExportDetails" options="data-export-details" group="Details">
           <help short="Details of the data to be exported from azure."/>
           <item type="object">
             <arg type="object" var="$jobResource.properties.details.dataExportDetails[].accountDetails" options="account-details" required="True">
@@ -953,7 +1085,7 @@
                 </arg>
               </arg>
               <arg type="object" var="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount" options="storage-account">
-                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id" required="True">
+                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].accountDetails.StorageAccount.storageAccountId" options="storage-account-id" required="True" group="StorageAccount">
                   <help short="Storage Account Resource Id."/>
                 </arg>
               </arg>
@@ -1000,67 +1132,64 @@
               </arg>
               <arg type="object" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails" options="transfer-filter-details">
                 <help short="Map of filter type and the details to filter. This field is required only if the TransferConfigurationType is given as TransferUsingFilter."/>
-                <arg type="object" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include" options="include">
-                  <help short="Details of the filtering the transfer of data."/>
-                  <arg type="object" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.azureFileFilterDetails" options="azure-file-filter-details">
-                    <help short="Filter details to transfer Azure files."/>
-                    <arg type="array<string>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.azureFileFilterDetails.filePathList" options="file-path-list">
-                      <help short="List of full path of the files to be transferred."/>
-                      <item type="string"/>
-                    </arg>
-                    <arg type="array<string>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.azureFileFilterDetails.filePrefixList" options="file-prefix-list">
-                      <help short="Prefix list of the Azure files to be transferred."/>
-                      <item type="string"/>
-                    </arg>
-                    <arg type="array<string>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.azureFileFilterDetails.fileShareList" options="file-share-list">
-                      <help short="List of file shares to be transferred."/>
-                      <item type="string"/>
-                    </arg>
+                <arg type="object" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.azureFileFilterDetails" options="azure-file-filter-details" group="Include">
+                  <help short="Filter details to transfer Azure files."/>
+                  <arg type="array<string>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.azureFileFilterDetails.filePathList" options="file-path-list">
+                    <help short="List of full path of the files to be transferred."/>
+                    <item type="string"/>
                   </arg>
-                  <arg type="object" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.blobFilterDetails" options="blob-filter-details">
-                    <help short="Filter details to transfer blobs."/>
-                    <arg type="array<string>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.blobFilterDetails.blobPathList" options="blob-path-list">
-                      <help short="List of full path of the blobs to be transferred."/>
-                      <item type="string"/>
-                    </arg>
-                    <arg type="array<string>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.blobFilterDetails.blobPrefixList" options="blob-prefix-list">
-                      <help short="Prefix list of the Azure blobs to be transferred."/>
-                      <item type="string"/>
-                    </arg>
-                    <arg type="array<string>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.blobFilterDetails.containerList" options="container-list">
-                      <help short="List of blob containers to be transferred."/>
-                      <item type="string"/>
-                    </arg>
+                  <arg type="array<string>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.azureFileFilterDetails.filePrefixList" options="file-prefix-list">
+                    <help short="Prefix list of the Azure files to be transferred."/>
+                    <item type="string"/>
                   </arg>
-                  <arg type="string" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.dataAccountType" options="data-account-type" required="True">
-                    <help short="Type of the account of data."/>
-                    <default value="&quot;StorageAccount&quot;"/>
-                    <enum>
-                      <item name="ManagedDisk" value="&quot;ManagedDisk&quot;"/>
-                      <item name="StorageAccount" value="&quot;StorageAccount&quot;"/>
-                    </enum>
+                  <arg type="array<string>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.azureFileFilterDetails.fileShareList" options="file-share-list">
+                    <help short="List of file shares to be transferred."/>
+                    <item type="string"/>
                   </arg>
-                  <arg type="array<object>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.filterFileDetails" options="filter-file-details">
-                    <help short="Details of the filter files to be used for data transfer."/>
-                    <item type="object">
-                      <arg type="string" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.filterFileDetails[].filterFilePath" options="filter-file-path" required="True">
-                        <help short="Path of the file that contains the details of all items to transfer."/>
-                      </arg>
-                      <arg type="string" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.filterFileDetails[].filterFileType" options="filter-file-type" required="True">
-                        <help short="Type of the filter file."/>
-                        <enum>
-                          <item name="AzureBlob" value="&quot;AzureBlob&quot;"/>
-                          <item name="AzureFile" value="&quot;AzureFile&quot;"/>
-                        </enum>
-                      </arg>
-                    </item>
+                </arg>
+                <arg type="object" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.blobFilterDetails" options="blob-filter-details" group="Include">
+                  <help short="Filter details to transfer blobs."/>
+                  <arg type="array<string>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.blobFilterDetails.blobPathList" options="blob-path-list">
+                    <help short="List of full path of the blobs to be transferred."/>
+                    <item type="string"/>
                   </arg>
+                  <arg type="array<string>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.blobFilterDetails.blobPrefixList" options="blob-prefix-list">
+                    <help short="Prefix list of the Azure blobs to be transferred."/>
+                    <item type="string"/>
+                  </arg>
+                  <arg type="array<string>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.blobFilterDetails.containerList" options="container-list">
+                    <help short="List of blob containers to be transferred."/>
+                    <item type="string"/>
+                  </arg>
+                </arg>
+                <arg type="string" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.dataAccountType" options="data-account-type" group="Include">
+                  <help short="Type of the account of data."/>
+                  <default value="&quot;StorageAccount&quot;"/>
+                  <enum>
+                    <item name="ManagedDisk" value="&quot;ManagedDisk&quot;"/>
+                    <item name="StorageAccount" value="&quot;StorageAccount&quot;"/>
+                  </enum>
+                </arg>
+                <arg type="array<object>" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.filterFileDetails" options="filter-file-details" group="Include">
+                  <help short="Details of the filter files to be used for data transfer."/>
+                  <item type="object">
+                    <arg type="string" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.filterFileDetails[].filterFilePath" options="filter-file-path" required="True">
+                      <help short="Path of the file that contains the details of all items to transfer."/>
+                    </arg>
+                    <arg type="string" var="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.filterFileDetails[].filterFileType" options="filter-file-type" required="True">
+                      <help short="Type of the filter file."/>
+                      <enum>
+                        <item name="AzureBlob" value="&quot;AzureBlob&quot;"/>
+                        <item name="AzureFile" value="&quot;AzureFile&quot;"/>
+                      </enum>
+                    </arg>
+                  </item>
                 </arg>
               </arg>
             </arg>
           </item>
         </arg>
-        <arg type="array<object>" var="$jobResource.properties.details.dataImportDetails" options="data-import-details" hide="True" group="Details">
+        <arg type="array<object>" var="$jobResource.properties.details.dataImportDetails" options="data-import-details" group="Details">
           <help short="Details of the data to be imported into azure."/>
           <item type="object">
             <arg type="object" var="$jobResource.properties.details.dataImportDetails[].accountDetails" options="account-details" required="True">
@@ -1461,7 +1590,7 @@
                               </enum>
                             </prop>
                             <prop type="object" name="transferFilterDetails" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails">
-                              <prop type="object" name="include" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include">
+                              <prop type="object" name="include">
                                 <prop type="object" name="azureFileFilterDetails" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.azureFileFilterDetails">
                                   <prop type="array<string>" name="filePathList" arg="$jobResource.properties.details.dataExportDetails[].transferConfiguration.transferFilterDetails.include.azureFileFilterDetails.filePathList">
                                     <item type="string"/>
@@ -1539,7 +1668,7 @@
                       <prop type="string" name="jobDetailsType" required="True">
                         <enum>
                           <item arg="$jobResource.properties.details.DataBox" value="&quot;DataBox&quot;"/>
-                          <item value="&quot;DataBoxCustomerDisk&quot;"/>
+                          <item arg="$jobResource.properties.details.DataBoxCustomerDisk" value="&quot;DataBoxCustomerDisk&quot;"/>
                           <item arg="$jobResource.properties.details.DataBoxDisk" value="&quot;DataBoxDisk&quot;"/>
                           <item arg="$jobResource.properties.details.DataBoxHeavy" value="&quot;DataBoxHeavy&quot;"/>
                         </enum>
@@ -1653,6 +1782,25 @@
                       </prop>
                       <discriminator property="jobDetailsType" value="DataBox">
                         <prop type="string" name="devicePassword" arg="$jobResource.properties.details.DataBox.devicePassword"/>
+                      </discriminator>
+                      <discriminator property="jobDetailsType" value="DataBoxCustomerDisk">
+                        <prop type="boolean" name="enableManifestBackup" arg="$jobResource.properties.details.DataBoxCustomerDisk.enableManifestBackup">
+                          <default value="false"/>
+                        </prop>
+                        <prop type="object" name="importDiskDetailsCollection" arg="$jobResource.properties.details.DataBoxCustomerDisk.importDiskDetailsCollection">
+                          <additionalProp>
+                            <item type="object">
+                              <prop type="string" name="bitLockerKey" arg="$jobResource.properties.details.DataBoxCustomerDisk.importDiskDetailsCollection{}.bitLockerKey" required="True" secret="True"/>
+                              <prop type="string" name="manifestFile" arg="$jobResource.properties.details.DataBoxCustomerDisk.importDiskDetailsCollection{}.manifestFile" required="True"/>
+                              <prop type="string" name="manifestHash" arg="$jobResource.properties.details.DataBoxCustomerDisk.importDiskDetailsCollection{}.manifestHash" required="True"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                        <prop type="object" name="returnToCustomerPackageDetails" arg="$jobResource.properties.details.DataBoxCustomerDisk.returnToCustomerPackageDetails" required="True">
+                          <prop type="string" name="carrierAccountNumber" arg="$jobResource.properties.details.DataBoxCustomerDisk.returnToCustomerPackageDetails.carrierAccountNumber" secret="True"/>
+                          <prop type="string" name="carrierName" arg="$jobResource.properties.details.DataBoxCustomerDisk.returnToCustomerPackageDetails.carrierName"/>
+                          <prop type="string" name="trackingId" arg="$jobResource.properties.details.DataBoxCustomerDisk.returnToCustomerPackageDetails.trackingId"/>
+                        </prop>
                       </discriminator>
                       <discriminator property="jobDetailsType" value="DataBoxDisk">
                         <prop type="string" name="passkey" arg="$jobResource.properties.details.DataBoxDisk.passkey"/>
@@ -2196,6 +2344,103 @@
                         </prop>
                         <prop type="string" name="devicePassword"/>
                       </discriminator>
+                      <discriminator property="jobDetailsType" value="DataBoxCustomerDisk">
+                        <prop readOnly="True" type="array<object>" name="copyProgress">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="accountId"/>
+                            <prop readOnly="True" type="array<string>" name="actions">
+                              <item type="string">
+                                <enum>
+                                  <item value="&quot;MoveToCleanUpDevice&quot;"/>
+                                  <item value="&quot;None&quot;"/>
+                                  <item value="&quot;ReachOutToOperation&quot;"/>
+                                  <item value="&quot;Restart&quot;"/>
+                                  <item value="&quot;Resume&quot;"/>
+                                </enum>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="integer64" name="bytesProcessed"/>
+                            <prop readOnly="True" type="string" name="copyStatus">
+                              <enum>
+                                <item value="&quot;Completed&quot;"/>
+                                <item value="&quot;CompletedWithErrors&quot;"/>
+                                <item value="&quot;DeviceFormatted&quot;"/>
+                                <item value="&quot;DeviceMetadataModified&quot;"/>
+                                <item value="&quot;DriveCorrupted&quot;"/>
+                                <item value="&quot;DriveNotDetected&quot;"/>
+                                <item value="&quot;DriveNotReceived&quot;"/>
+                                <item value="&quot;Failed&quot;"/>
+                                <item value="&quot;HardwareError&quot;"/>
+                                <item value="&quot;InProgress&quot;"/>
+                                <item value="&quot;MetadataFilesModifiedOrRemoved&quot;"/>
+                                <item value="&quot;NotReturned&quot;"/>
+                                <item value="&quot;NotStarted&quot;"/>
+                                <item value="&quot;OtherServiceError&quot;"/>
+                                <item value="&quot;OtherUserError&quot;"/>
+                                <item value="&quot;StorageAccountNotAccessible&quot;"/>
+                                <item value="&quot;UnsupportedData&quot;"/>
+                                <item value="&quot;UnsupportedDrive&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="string" name="dataAccountType">
+                              <enum>
+                                <item value="&quot;ManagedDisk&quot;"/>
+                                <item value="&quot;StorageAccount&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="integer64" name="directoriesErroredOut"/>
+                            <prop readOnly="True" type="@CloudError_read" name="error"/>
+                            <prop readOnly="True" type="integer64" name="filesErroredOut"/>
+                            <prop readOnly="True" type="integer64" name="filesProcessed"/>
+                            <prop readOnly="True" type="integer64" name="invalidDirectoriesProcessed"/>
+                            <prop readOnly="True" type="integer64" name="invalidFileBytesUploaded"/>
+                            <prop readOnly="True" type="integer64" name="invalidFilesProcessed"/>
+                            <prop readOnly="True" type="boolean" name="isEnumerationInProgress"/>
+                            <prop readOnly="True" type="integer64" name="renamedContainerCount"/>
+                            <prop readOnly="True" type="string" name="serialNumber"/>
+                            <prop readOnly="True" type="string" name="storageAccountName"/>
+                            <prop readOnly="True" type="integer64" name="totalBytesToProcess"/>
+                            <prop readOnly="True" type="integer64" name="totalFilesToProcess"/>
+                            <prop readOnly="True" type="string" name="transferType">
+                              <enum>
+                                <item value="&quot;ExportFromAzure&quot;"/>
+                                <item value="&quot;ImportToAzure&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="object" name="deliverToDcPackageDetails">
+                          <prop type="string" name="carrierName"/>
+                          <prop type="string" name="trackingId"/>
+                        </prop>
+                        <prop type="boolean" name="enableManifestBackup">
+                          <default value="false"/>
+                        </prop>
+                        <prop readOnly="True" type="object" name="exportDiskDetailsCollection">
+                          <additionalProp readOnly="True">
+                            <item type="object">
+                              <prop readOnly="True" type="string" name="backupManifestCloudPath"/>
+                              <prop readOnly="True" type="string" name="manifestFile"/>
+                              <prop readOnly="True" type="string" name="manifestHash"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                        <prop type="object" name="importDiskDetailsCollection">
+                          <additionalProp>
+                            <item type="object">
+                              <prop readOnly="True" type="string" name="backupManifestCloudPath"/>
+                              <prop type="string" name="bitLockerKey" required="True" secret="True"/>
+                              <prop type="string" name="manifestFile" required="True"/>
+                              <prop type="string" name="manifestHash" required="True"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                        <prop type="object" name="returnToCustomerPackageDetails" required="True">
+                          <prop type="string" name="carrierAccountNumber" secret="True"/>
+                          <prop type="string" name="carrierName"/>
+                          <prop type="string" name="trackingId"/>
+                        </prop>
+                      </discriminator>
                       <discriminator property="jobDetailsType" value="DataBoxDisk">
                         <prop readOnly="True" type="array<object>" name="copyProgress">
                           <item type="object">
@@ -2698,6 +2943,7 @@
         </arg>
         <arg type="string" var="$jobResourceUpdateParameter.properties.details.keyEncryptionKey.kekType" options="kek-type" group="KeyEncryptionKey">
           <help short="Type of encryption key used for key encryption."/>
+          <default value="&quot;MicrosoftManaged&quot;"/>
           <enum>
             <item name="CustomerManaged" value="&quot;CustomerManaged&quot;"/>
             <item name="MicrosoftManaged" value="&quot;MicrosoftManaged&quot;"/>
@@ -3440,6 +3686,103 @@
                           <item type="@CopyProgress_read"/>
                         </prop>
                         <prop type="string" name="devicePassword"/>
+                      </discriminator>
+                      <discriminator property="jobDetailsType" value="DataBoxCustomerDisk">
+                        <prop readOnly="True" type="array<object>" name="copyProgress">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="accountId"/>
+                            <prop readOnly="True" type="array<string>" name="actions">
+                              <item type="string">
+                                <enum>
+                                  <item value="&quot;MoveToCleanUpDevice&quot;"/>
+                                  <item value="&quot;None&quot;"/>
+                                  <item value="&quot;ReachOutToOperation&quot;"/>
+                                  <item value="&quot;Restart&quot;"/>
+                                  <item value="&quot;Resume&quot;"/>
+                                </enum>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="integer64" name="bytesProcessed"/>
+                            <prop readOnly="True" type="string" name="copyStatus">
+                              <enum>
+                                <item value="&quot;Completed&quot;"/>
+                                <item value="&quot;CompletedWithErrors&quot;"/>
+                                <item value="&quot;DeviceFormatted&quot;"/>
+                                <item value="&quot;DeviceMetadataModified&quot;"/>
+                                <item value="&quot;DriveCorrupted&quot;"/>
+                                <item value="&quot;DriveNotDetected&quot;"/>
+                                <item value="&quot;DriveNotReceived&quot;"/>
+                                <item value="&quot;Failed&quot;"/>
+                                <item value="&quot;HardwareError&quot;"/>
+                                <item value="&quot;InProgress&quot;"/>
+                                <item value="&quot;MetadataFilesModifiedOrRemoved&quot;"/>
+                                <item value="&quot;NotReturned&quot;"/>
+                                <item value="&quot;NotStarted&quot;"/>
+                                <item value="&quot;OtherServiceError&quot;"/>
+                                <item value="&quot;OtherUserError&quot;"/>
+                                <item value="&quot;StorageAccountNotAccessible&quot;"/>
+                                <item value="&quot;UnsupportedData&quot;"/>
+                                <item value="&quot;UnsupportedDrive&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="string" name="dataAccountType">
+                              <enum>
+                                <item value="&quot;ManagedDisk&quot;"/>
+                                <item value="&quot;StorageAccount&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="integer64" name="directoriesErroredOut"/>
+                            <prop readOnly="True" type="@CloudError_read" name="error"/>
+                            <prop readOnly="True" type="integer64" name="filesErroredOut"/>
+                            <prop readOnly="True" type="integer64" name="filesProcessed"/>
+                            <prop readOnly="True" type="integer64" name="invalidDirectoriesProcessed"/>
+                            <prop readOnly="True" type="integer64" name="invalidFileBytesUploaded"/>
+                            <prop readOnly="True" type="integer64" name="invalidFilesProcessed"/>
+                            <prop readOnly="True" type="boolean" name="isEnumerationInProgress"/>
+                            <prop readOnly="True" type="integer64" name="renamedContainerCount"/>
+                            <prop readOnly="True" type="string" name="serialNumber"/>
+                            <prop readOnly="True" type="string" name="storageAccountName"/>
+                            <prop readOnly="True" type="integer64" name="totalBytesToProcess"/>
+                            <prop readOnly="True" type="integer64" name="totalFilesToProcess"/>
+                            <prop readOnly="True" type="string" name="transferType">
+                              <enum>
+                                <item value="&quot;ExportFromAzure&quot;"/>
+                                <item value="&quot;ImportToAzure&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="object" name="deliverToDcPackageDetails">
+                          <prop type="string" name="carrierName"/>
+                          <prop type="string" name="trackingId"/>
+                        </prop>
+                        <prop type="boolean" name="enableManifestBackup">
+                          <default value="false"/>
+                        </prop>
+                        <prop readOnly="True" type="object" name="exportDiskDetailsCollection">
+                          <additionalProp readOnly="True">
+                            <item type="object">
+                              <prop readOnly="True" type="string" name="backupManifestCloudPath"/>
+                              <prop readOnly="True" type="string" name="manifestFile"/>
+                              <prop readOnly="True" type="string" name="manifestHash"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                        <prop type="object" name="importDiskDetailsCollection">
+                          <additionalProp>
+                            <item type="object">
+                              <prop readOnly="True" type="string" name="backupManifestCloudPath"/>
+                              <prop type="string" name="bitLockerKey" required="True" secret="True"/>
+                              <prop type="string" name="manifestFile" required="True"/>
+                              <prop type="string" name="manifestHash" required="True"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                        <prop type="object" name="returnToCustomerPackageDetails" required="True">
+                          <prop type="string" name="carrierAccountNumber" secret="True"/>
+                          <prop type="string" name="carrierName"/>
+                          <prop type="string" name="trackingId"/>
+                        </prop>
                       </discriminator>
                       <discriminator property="jobDetailsType" value="DataBoxDisk">
                         <prop readOnly="True" type="array<object>" name="copyProgress">
