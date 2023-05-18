@@ -74,6 +74,9 @@
 - [ppg](/Commands/ppg/readme.md)
 : Manage Proximity Placement Groups.
 
+- [redisenterprise](/Commands/redisenterprise/readme.md)
+: Manage the redisenterprise cache
+
 - [reservations](/Commands/reservations/readme.md)
 : Azure Reservations
 
