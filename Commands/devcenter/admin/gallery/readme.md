@@ -1,6 +1,6 @@
 # [Group] _devcenter admin gallery_
 
-Manage gallery with devcenter
+Manage galleries.
 
 ## Commands
 
@@ -8,10 +8,10 @@ Manage gallery with devcenter
 : Create a gallery.
 
 - [delete](/Commands/devcenter/admin/gallery/_delete.md)
-: Delete a gallery resource.
+: Delete a gallery.
 
 - [list](/Commands/devcenter/admin/gallery/_list.md)
-: List galleries for a devcenter.
+: List galleries for a dev center.
 
 - [show](/Commands/devcenter/admin/gallery/_show.md)
-: Get a gallery
+: Get a gallery.

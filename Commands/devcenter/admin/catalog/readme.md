@@ -1,6 +1,6 @@
 # [Group] _devcenter admin catalog_
 
-Manage catalog with dev center
+Manage catalogs.
 
 ## Commands
 
@@ -11,13 +11,13 @@ Manage catalog with dev center
 : Delete a catalog resource.
 
 - [list](/Commands/devcenter/admin/catalog/_list.md)
-: List catalogs for a devcenter.
+: List catalogs for a dev center.
 
 - [show](/Commands/devcenter/admin/catalog/_show.md)
-: Get a catalog
+: Get a catalog.
 
 - [sync](/Commands/devcenter/admin/catalog/_sync.md)
 : Syncs templates for a template source.
 
 - [update](/Commands/devcenter/admin/catalog/_update.md)
-: Update updates a catalog.
+: Update a catalog.

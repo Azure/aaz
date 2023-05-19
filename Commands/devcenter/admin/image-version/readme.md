@@ -1,6 +1,6 @@
 # [Group] _devcenter admin image-version_
 
-Manage image version with devcenter
+Manage image versions.
 
 ## Commands
 

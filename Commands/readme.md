@@ -27,7 +27,7 @@
 : Manage Data Protection.
 
 - [devcenter](/Commands/devcenter/readme.md)
-: Manage resources with devcenter
+: Manage resources with devcenter.
 
 - [disk-access](/Commands/disk-access/readme.md)
 : Manage disk access resources.
