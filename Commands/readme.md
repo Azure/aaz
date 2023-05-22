@@ -42,7 +42,7 @@
 : Manage Elastic SAN.
 
 - [eventhubs](/Commands/eventhubs/readme.md)
-: NamespaceV2
+: eventhub
 
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
@@ -93,7 +93,7 @@
 : Manage Service Networking Resources
 
 - [servicebus](/Commands/servicebus/readme.md)
-: NamespaceV2
+: servicebus
 
 - [sig](/Commands/sig/readme.md)
 : Manage shared image gallery.

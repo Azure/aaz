@@ -73,17 +73,17 @@
                       <prop type="string" name="correlationId"/>
                       <prop type="string" name="label"/>
                       <prop type="string" name="messageId"/>
+                      <prop type="object" name="properties">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
                       <prop type="string" name="replyTo"/>
                       <prop type="string" name="replyToSessionId"/>
                       <prop type="boolean" name="requiresPreprocessing">
                         <default value="true"/>
                       </prop>
                       <prop type="string" name="sessionId"/>
-                      <prop type="object" name="tags">
-                        <additionalProp>
-                          <item type="string"/>
-                        </additionalProp>
-                      </prop>
                       <prop type="string" name="to"/>
                     </prop>
                     <prop type="string" name="filterType">
@@ -138,7 +138,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="delete" version="2022-10-01-preview" confirmation="Are you sure you want to perform this operation?">
+    <command name="delete" version="2022-10-01-preview" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.servicebus/namespaces/{}/topics/{}/subscriptions/{}/rules/{}" version="2022-10-01-preview" swagger="mgmt-plane/servicebus/ResourceProviders/Microsoft.ServiceBus/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU2VydmljZUJ1cy9uYW1lc3BhY2VzL3tuYW1lc3BhY2VOYW1lfS90b3BpY3Mve3RvcGljTmFtZX0vc3Vic2NyaXB0aW9ucy97c3Vic2NyaXB0aW9uTmFtZX0vcnVsZXMve3J1bGVOYW1lfQ==/V/MjAyMi0xMC0wMS1wcmV2aWV3"/>
       <argGroup name="">
         <arg type="string" var="$Path.namespaceName" options="namespace-name" required="True" idPart="name">
@@ -225,7 +225,7 @@
         <arg type="integer32" var="$parameters.properties.action.compatibilityLevel" options="action-compatibility-level" group="Action">
           <help short="This property is reserved for future use. An integer value showing the compatibility level, currently hard-coded to 20."/>
         </arg>
-        <arg type="boolean" var="$parameters.properties.action.requiresPreprocessing" options="action-requires-preprocessing" group="Action">
+        <arg type="boolean" var="$parameters.properties.action.requiresPreprocessing" options="enable-action-preprocessing action-preprocessing" group="Action">
           <help short="Value that indicates whether the rule action requires preprocessing."/>
         </arg>
         <arg type="string" var="$parameters.properties.action.sqlExpression" options="action-sql-expression" group="Action">
@@ -245,24 +245,23 @@
         <arg type="string" var="$parameters.properties.correlationFilter.messageId" options="message-id" group="CorrelationFilter">
           <help short="Identifier of the message."/>
         </arg>
+        <arg type="object" var="$parameters.properties.correlationFilter.properties" options="properties" group="CorrelationFilter">
+          <help short="dictionary object for custom filters"/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
         <arg type="string" var="$parameters.properties.correlationFilter.replyTo" options="reply-to" group="CorrelationFilter">
           <help short="Address of the queue to reply to."/>
         </arg>
         <arg type="string" var="$parameters.properties.correlationFilter.replyToSessionId" options="reply-to-session-id" group="CorrelationFilter">
           <help short="Session identifier to reply to."/>
         </arg>
-        <arg type="boolean" var="$parameters.properties.correlationFilter.requiresPreprocessing" options="requires-preprocessing" group="CorrelationFilter">
+        <arg type="boolean" var="$parameters.properties.correlationFilter.requiresPreprocessing" options="enable-correlation-preprocessing requires-preprocessing" group="CorrelationFilter">
           <help short="Value that indicates whether the rule action requires preprocessing."/>
-          <default value="true"/>
         </arg>
         <arg type="string" var="$parameters.properties.correlationFilter.sessionId" options="session-id" group="CorrelationFilter">
           <help short="Session identifier."/>
-        </arg>
-        <arg type="object" var="$parameters.properties.correlationFilter.tags" options="correlation-filter-property properties" group="CorrelationFilter">
-          <help short="dictionary object for custom filters"/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
         </arg>
         <arg type="string" var="$parameters.properties.correlationFilter.to" options="to" group="CorrelationFilter">
           <help short="Address to send to."/>
@@ -281,10 +280,10 @@
         <arg type="integer32" var="$parameters.properties.sqlFilter.compatibilityLevel" options="compatibility-level" group="SqlFilter">
           <help short="This property is reserved for future use. An integer value showing the compatibility level, currently hard-coded to 20."/>
         </arg>
-        <arg type="boolean" var="$parameters.properties.sqlFilter.requiresPreprocessing" options="filter-requires-preprocessing" group="SqlFilter">
+        <arg type="boolean" var="$parameters.properties.sqlFilter.requiresPreprocessing" options="enable-sql-preprocessing f" group="SqlFilter">
           <help short="Value that indicates whether the rule action requires preprocessing."/>
         </arg>
-        <arg type="string" var="$parameters.properties.sqlFilter.sqlExpression" options="filter-sql-expression" group="SqlFilter">
+        <arg type="string" var="$parameters.properties.sqlFilter.sqlExpression" options="filter-sql-expression sql-expression" group="SqlFilter">
           <help short="The SQL expression. e.g. MyProperty='ABC'"/>
         </arg>
       </argGroup>
@@ -330,17 +329,17 @@
                       <prop type="string" name="correlationId" arg="$parameters.properties.correlationFilter.correlationId"/>
                       <prop type="string" name="label" arg="$parameters.properties.correlationFilter.label"/>
                       <prop type="string" name="messageId" arg="$parameters.properties.correlationFilter.messageId"/>
+                      <prop type="object" name="properties" arg="$parameters.properties.correlationFilter.properties">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
                       <prop type="string" name="replyTo" arg="$parameters.properties.correlationFilter.replyTo"/>
                       <prop type="string" name="replyToSessionId" arg="$parameters.properties.correlationFilter.replyToSessionId"/>
                       <prop type="boolean" name="requiresPreprocessing" arg="$parameters.properties.correlationFilter.requiresPreprocessing">
                         <default value="true"/>
                       </prop>
                       <prop type="string" name="sessionId" arg="$parameters.properties.correlationFilter.sessionId"/>
-                      <prop type="object" name="tags" arg="$parameters.properties.correlationFilter.tags">
-                        <additionalProp>
-                          <item type="string"/>
-                        </additionalProp>
-                      </prop>
                       <prop type="string" name="to" arg="$parameters.properties.correlationFilter.to"/>
                     </prop>
                     <prop type="string" name="filterType" arg="$parameters.properties.filterType">
@@ -383,17 +382,17 @@
                       <prop type="string" name="correlationId"/>
                       <prop type="string" name="label"/>
                       <prop type="string" name="messageId"/>
+                      <prop type="object" name="properties">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
                       <prop type="string" name="replyTo"/>
                       <prop type="string" name="replyToSessionId"/>
                       <prop type="boolean" name="requiresPreprocessing">
                         <default value="true"/>
                       </prop>
                       <prop type="string" name="sessionId"/>
-                      <prop type="object" name="tags">
-                        <additionalProp>
-                          <item type="string"/>
-                        </additionalProp>
-                      </prop>
                       <prop type="string" name="to"/>
                     </prop>
                     <prop type="string" name="filterType">
@@ -474,7 +473,7 @@
         <arg nullable="True" type="integer32" var="$parameters.properties.action.compatibilityLevel" options="action-compatibility-level" group="Action">
           <help short="This property is reserved for future use. An integer value showing the compatibility level, currently hard-coded to 20."/>
         </arg>
-        <arg nullable="True" type="boolean" var="$parameters.properties.action.requiresPreprocessing" options="action-requires-preprocessing" group="Action">
+        <arg nullable="True" type="boolean" var="$parameters.properties.action.requiresPreprocessing" options="enable-action-preprocessing action-preprocessing" group="Action">
           <help short="Value that indicates whether the rule action requires preprocessing."/>
         </arg>
         <arg nullable="True" type="string" var="$parameters.properties.action.sqlExpression" options="action-sql-expression" group="Action">
@@ -494,23 +493,23 @@
         <arg nullable="True" type="string" var="$parameters.properties.correlationFilter.messageId" options="message-id" group="CorrelationFilter">
           <help short="Identifier of the message."/>
         </arg>
+        <arg nullable="True" type="object" var="$parameters.properties.correlationFilter.properties" options="properties" group="CorrelationFilter">
+          <help short="dictionary object for custom filters"/>
+          <additionalProp>
+            <item nullable="True" type="string"/>
+          </additionalProp>
+        </arg>
         <arg nullable="True" type="string" var="$parameters.properties.correlationFilter.replyTo" options="reply-to" group="CorrelationFilter">
           <help short="Address of the queue to reply to."/>
         </arg>
         <arg nullable="True" type="string" var="$parameters.properties.correlationFilter.replyToSessionId" options="reply-to-session-id" group="CorrelationFilter">
           <help short="Session identifier to reply to."/>
         </arg>
-        <arg nullable="True" type="boolean" var="$parameters.properties.correlationFilter.requiresPreprocessing" options="requires-preprocessing" group="CorrelationFilter">
+        <arg nullable="True" type="boolean" var="$parameters.properties.correlationFilter.requiresPreprocessing" options="enable-correlation-preprocessing requires-preprocessing" group="CorrelationFilter">
           <help short="Value that indicates whether the rule action requires preprocessing."/>
         </arg>
         <arg nullable="True" type="string" var="$parameters.properties.correlationFilter.sessionId" options="session-id" group="CorrelationFilter">
           <help short="Session identifier."/>
-        </arg>
-        <arg nullable="True" type="object" var="$parameters.properties.correlationFilter.tags" options="correlation-filter-property properties" group="CorrelationFilter">
-          <help short="dictionary object for custom filters"/>
-          <additionalProp>
-            <item nullable="True" type="string"/>
-          </additionalProp>
         </arg>
         <arg nullable="True" type="string" var="$parameters.properties.correlationFilter.to" options="to" group="CorrelationFilter">
           <help short="Address to send to."/>
@@ -529,10 +528,10 @@
         <arg nullable="True" type="integer32" var="$parameters.properties.sqlFilter.compatibilityLevel" options="compatibility-level" group="SqlFilter">
           <help short="This property is reserved for future use. An integer value showing the compatibility level, currently hard-coded to 20."/>
         </arg>
-        <arg nullable="True" type="boolean" var="$parameters.properties.sqlFilter.requiresPreprocessing" options="filter-requires-preprocessing" group="SqlFilter">
+        <arg nullable="True" type="boolean" var="$parameters.properties.sqlFilter.requiresPreprocessing" options="enable-sql-preprocessing f" group="SqlFilter">
           <help short="Value that indicates whether the rule action requires preprocessing."/>
         </arg>
-        <arg nullable="True" type="string" var="$parameters.properties.sqlFilter.sqlExpression" options="filter-sql-expression" group="SqlFilter">
+        <arg nullable="True" type="string" var="$parameters.properties.sqlFilter.sqlExpression" options="filter-sql-expression sql-expression" group="SqlFilter">
           <help short="The SQL expression. e.g. MyProperty='ABC'"/>
         </arg>
       </argGroup>
@@ -585,17 +584,17 @@
                       <prop type="string" name="correlationId"/>
                       <prop type="string" name="label"/>
                       <prop type="string" name="messageId"/>
+                      <prop type="object" name="properties">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
                       <prop type="string" name="replyTo"/>
                       <prop type="string" name="replyToSessionId"/>
                       <prop type="boolean" name="requiresPreprocessing">
                         <default value="true"/>
                       </prop>
                       <prop type="string" name="sessionId"/>
-                      <prop type="object" name="tags">
-                        <additionalProp>
-                          <item type="string"/>
-                        </additionalProp>
-                      </prop>
                       <prop type="string" name="to"/>
                     </prop>
                     <prop type="string" name="filterType">
@@ -665,17 +664,17 @@
                   <prop type="string" name="correlationId" arg="$parameters.properties.correlationFilter.correlationId"/>
                   <prop type="string" name="label" arg="$parameters.properties.correlationFilter.label"/>
                   <prop type="string" name="messageId" arg="$parameters.properties.correlationFilter.messageId"/>
+                  <prop type="object" name="properties" arg="$parameters.properties.correlationFilter.properties">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
                   <prop type="string" name="replyTo" arg="$parameters.properties.correlationFilter.replyTo"/>
                   <prop type="string" name="replyToSessionId" arg="$parameters.properties.correlationFilter.replyToSessionId"/>
                   <prop type="boolean" name="requiresPreprocessing" arg="$parameters.properties.correlationFilter.requiresPreprocessing">
                     <default value="true"/>
                   </prop>
                   <prop type="string" name="sessionId" arg="$parameters.properties.correlationFilter.sessionId"/>
-                  <prop type="object" name="tags" arg="$parameters.properties.correlationFilter.tags">
-                    <additionalProp>
-                      <item type="string"/>
-                    </additionalProp>
-                  </prop>
                   <prop type="string" name="to" arg="$parameters.properties.correlationFilter.to"/>
                 </prop>
                 <prop type="string" name="filterType" arg="$parameters.properties.filterType">

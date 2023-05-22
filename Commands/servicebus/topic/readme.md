@@ -4,6 +4,9 @@ servicebus topic
 
 ## Subgroups
 
+- [authorization-rule](/Commands/servicebus/topic/authorization-rule/readme.md)
+: servicebus topic authorization-rule
+
 - [subscription](/Commands/servicebus/topic/subscription/readme.md)
 : servicebus topic subscription
 
