@@ -1,6 +1,6 @@
 # [Group] _eventhubs_
 
-Eventhub.
+eventhub
 
 ## Subgroups
 
@@ -8,10 +8,10 @@ Eventhub.
 : Manage Azure EventHubs Clusters.
 
 - [eventhub](/Commands/eventhubs/eventhub/readme.md)
-: Manage Azure EventHubs eventhub and authorization-rule.
+: eventhub
 
 - [georecovery-alias](/Commands/eventhubs/georecovery-alias/readme.md)
 : Manage Azure EventHubs Geo Recovery configuration Alias
 
 - [namespace](/Commands/eventhubs/namespace/readme.md)
-: NamespaceV2
+: eventhub namespace

@@ -1,8 +1,11 @@
 # [Group] _eventhubs eventhub_
 
-Manage Azure EventHubs eventhub and authorization-rule.
+eventhub
 
 ## Subgroups
+
+- [authorization-rule](/Commands/eventhubs/eventhub/authorization-rule/readme.md)
+: eventhub authorization rule
 
 - [consumer-group](/Commands/eventhubs/eventhub/consumer-group/readme.md)
 : eventhubs eventhub consumer-group

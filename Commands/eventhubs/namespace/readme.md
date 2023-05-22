@@ -1,14 +1,23 @@
 # [Group] _eventhubs namespace_
 
-NamespaceV2
+eventhub namespace
 
 ## Subgroups
 
 - [application-group](/Commands/eventhubs/namespace/application-group/readme.md)
 : Manages Application Groups for premium eventhubs namespace.
 
+- [authorization-rule](/Commands/eventhubs/namespace/authorization-rule/readme.md)
+: eventhub namespace authorization-rule
+
 - [network-rule-set](/Commands/eventhubs/namespace/network-rule-set/readme.md)
 : Manage Azure EventHubs networkruleset for namespace
+
+- [private-endpoint-connection](/Commands/eventhubs/namespace/private-endpoint-connection/readme.md)
+: eventhubs namespace private-endpoint-connection
+
+- [private-link-resource](/Commands/eventhubs/namespace/private-link-resource/readme.md)
+: eventhubs namespace private-link-resource
 
 - [schema-registry](/Commands/eventhubs/namespace/schema-registry/readme.md)
 : Manages eventhubs namespace schema registry.
