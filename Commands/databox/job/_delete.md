@@ -12,5 +12,5 @@ Delete a job.
 
 - Delete job
     ```bash
-        databox job delete -n job-name -g rg -y
+        databox job delete -n job-name -g rg
     ```

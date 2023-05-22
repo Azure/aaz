@@ -12,5 +12,5 @@ CancelJob.
 
 - Cancel job
     ```bash
-        databox job cancel -g rg --job-name name --reason reason -y
+        databox job cancel -g rg --job-name name --reason reason
     ```
