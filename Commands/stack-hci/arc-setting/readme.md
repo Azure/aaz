@@ -4,6 +4,9 @@ Manage arc setting with stack hci.
 
 ## Commands
 
+- [consent-and-install-default-extension](/Commands/stack-hci/arc-setting/_consent-and-install-default-extension.md)
+: Add consent time for default extensions and initiate extensions installation
+
 - [create](/Commands/stack-hci/arc-setting/_create.md)
 : Create arc setting for HCI cluster.
 
@@ -15,6 +18,9 @@ Manage arc setting with stack hci.
 
 - [generate-password](/Commands/stack-hci/arc-setting/_generate-password.md)
 : Generate password for arc settings.
+
+- [initialize-disable-proces](/Commands/stack-hci/arc-setting/_initialize-disable-proces.md)
+: Initializes ARC Disable process on the cluster
 
 - [list](/Commands/stack-hci/arc-setting/_list.md)
 : List arc setting resources of HCI cluster.

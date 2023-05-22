@@ -1,6 +1,14 @@
 # [Group] _stack-hci cluster_
 
-cluster with stack hci.
+Manage cluster with stack hci.
+
+## Subgroups
+
+- [offer](/Commands/stack-hci/cluster/offer/readme.md)
+: Manage cluster offer
+
+- [publisher](/Commands/stack-hci/cluster/publisher/readme.md)
+: Manage cluster publisher
 
 ## Commands
 
@@ -13,6 +21,9 @@ cluster with stack hci.
 - [delete](/Commands/stack-hci/cluster/_delete.md)
 : Delete an HCI cluster.
 
+- [extend-software-assurance-benefit](/Commands/stack-hci/cluster/_extend-software-assurance-benefit.md)
+: Extends Software Assurance Benefit to a cluster
+
 - [list](/Commands/stack-hci/cluster/_list.md)
 : List all HCI clusters in a subscription.
 
@@ -21,3 +32,6 @@ cluster with stack hci.
 
 - [update](/Commands/stack-hci/cluster/_update.md)
 : Update an HCI cluster.
+
+- [upload-certificate](/Commands/stack-hci/cluster/_upload-certificate.md)
+: Upload certificate.
