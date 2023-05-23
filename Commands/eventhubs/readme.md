@@ -1,6 +1,6 @@
 # [Group] _eventhubs_
 
-eventhub
+NamespaceV2
 
 ## Subgroups
 
@@ -14,4 +14,4 @@ eventhub
 : Manage Azure EventHubs Geo Recovery configuration Alias
 
 - [namespace](/Commands/eventhubs/namespace/readme.md)
-: eventhub namespace
+: NamespaceV2

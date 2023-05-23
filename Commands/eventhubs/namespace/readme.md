@@ -1,6 +1,6 @@
 # [Group] _eventhubs namespace_
 
-eventhub namespace
+NamespaceV2
 
 ## Subgroups
 
@@ -34,7 +34,7 @@ eventhub namespace
 : Check the give Namespace name availability.
 
 - [list](/Commands/eventhubs/namespace/_list.md)
-: List the available Namespaces within a resource group.
+: List all the available Namespaces within a subscription, irrespective of the resource groups.
 
 - [show](/Commands/eventhubs/namespace/_show.md)
 : Get the description of the specified namespace.
