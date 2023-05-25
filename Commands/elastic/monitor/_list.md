@@ -13,3 +13,10 @@ List all monitors under the specified resource group. And List all              
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.elastic/monitors 2023-02-01-preview -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors 2023-02-01-preview -->
+
+#### examples
+
+- List all monitors by resource group
+    ```bash
+        elastic monitor list -g rg
+    ```

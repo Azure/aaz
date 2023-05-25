@@ -11,3 +11,10 @@ Fetch information regarding Elastic cloud deployment corresponding to           
 ### [2023-02-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9L2xpc3RkZXBsb3ltZW50aW5mbw==/2023-02-01-preview.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/listdeploymentinfo 2023-02-01-preview -->
+
+#### examples
+
+- List deployment info
+    ```bash
+        elastic monitor list-deployment-info --monitor-name name -g rg
+    ```
