@@ -12,27 +12,6 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="InstallPatchesInput">
-        <arg type="object" var="$installPatchesInput.linuxParameters" options="linux-parameters" group="InstallPatchesInput">
-          <help short="Input for InstallPatches on a Linux VM, as directly received by the API"/>
-          <arg type="array<string>" var="$installPatchesInput.linuxParameters.classificationsToInclude" options="classifications-to-include">
-            <help short="The update classifications to select when installing patches for Linux."/>
-            <item type="string">
-              <enum>
-                <item name="Critical" value="&quot;Critical&quot;"/>
-                <item name="Other" value="&quot;Other&quot;"/>
-                <item name="Security" value="&quot;Security&quot;"/>
-              </enum>
-            </item>
-          </arg>
-          <arg type="array<string>" var="$installPatchesInput.linuxParameters.packageNameMasksToExclude" options="package-name-masks-to-exclude">
-            <help short="packages to exclude in the patch operation. Format: packageName_packageVersion"/>
-            <item type="string"/>
-          </arg>
-          <arg type="array<string>" var="$installPatchesInput.linuxParameters.packageNameMasksToInclude" options="package-name-masks-to-include">
-            <help short="packages to include in the patch operation. Format: packageName_packageVersion"/>
-            <item type="string"/>
-          </arg>
-        </arg>
         <arg type="string" var="$installPatchesInput.maximumDuration" options="maximum-duration" required="True" group="InstallPatchesInput">
           <help short="Specifies the maximum amount of time that the operation will run. It must be an ISO 8601-compliant duration string such as PT4H (4 hours)"/>
         </arg>
@@ -44,37 +23,56 @@
             <item name="Never" value="&quot;Never&quot;"/>
           </enum>
         </arg>
-        <arg type="object" var="$installPatchesInput.windowsParameters" options="windows-parameters" group="InstallPatchesInput">
-          <help short="Input for InstallPatches on a Windows VM, as directly received by the API"/>
-          <arg type="array<string>" var="$installPatchesInput.windowsParameters.classificationsToInclude" options="classifications-to-include">
-            <help short="The update classifications to select when installing patches for Windows."/>
-            <item type="string">
-              <enum>
-                <item name="Critical" value="&quot;Critical&quot;"/>
-                <item name="Definition" value="&quot;Definition&quot;"/>
-                <item name="FeaturePack" value="&quot;FeaturePack&quot;"/>
-                <item name="Security" value="&quot;Security&quot;"/>
-                <item name="ServicePack" value="&quot;ServicePack&quot;"/>
-                <item name="Tools" value="&quot;Tools&quot;"/>
-                <item name="UpdateRollUp" value="&quot;UpdateRollUp&quot;"/>
-                <item name="Updates" value="&quot;Updates&quot;"/>
-              </enum>
-            </item>
-          </arg>
-          <arg type="boolean" var="$installPatchesInput.windowsParameters.excludeKbsRequiringReboot" options="exclude-kbs-requiring-reboot">
-            <help short="Filters out Kbs that don't have an InstallationRebootBehavior of 'NeverReboots' when this is set to true."/>
-          </arg>
-          <arg type="array<string>" var="$installPatchesInput.windowsParameters.kbNumbersToExclude" options="kb-numbers-to-exclude">
-            <help short="Kbs to exclude in the patch operation"/>
-            <item type="string"/>
-          </arg>
-          <arg type="array<string>" var="$installPatchesInput.windowsParameters.kbNumbersToInclude" options="kb-numbers-to-include">
-            <help short="Kbs to include in the patch operation"/>
-            <item type="string"/>
-          </arg>
-          <arg type="dateTime" var="$installPatchesInput.windowsParameters.maxPatchPublishDate" options="max-patch-publish-date">
-            <help short="This is used to install patches that were published on or before this given max published date."/>
-          </arg>
+      </argGroup>
+      <argGroup name="LinuxParameters">
+        <arg type="array<string>" var="$installPatchesInput.linuxParameters.classificationsToInclude" options="classifications-to-include-lin" group="LinuxParameters">
+          <help short="The update classifications to select when installing patches for Linux."/>
+          <item type="string">
+            <enum>
+              <item name="Critical" value="&quot;Critical&quot;"/>
+              <item name="Other" value="&quot;Other&quot;"/>
+              <item name="Security" value="&quot;Security&quot;"/>
+            </enum>
+          </item>
+        </arg>
+        <arg type="array<string>" var="$installPatchesInput.linuxParameters.packageNameMasksToExclude" options="package-name-masks-to-exclude" group="LinuxParameters">
+          <help short="packages to exclude in the patch operation. Format: packageName_packageVersion"/>
+          <item type="string"/>
+        </arg>
+        <arg type="array<string>" var="$installPatchesInput.linuxParameters.packageNameMasksToInclude" options="package-name-masks-to-include" group="LinuxParameters">
+          <help short="packages to include in the patch operation. Format: packageName_packageVersion"/>
+          <item type="string"/>
+        </arg>
+      </argGroup>
+      <argGroup name="WindowsParameters">
+        <arg type="array<string>" var="$installPatchesInput.windowsParameters.classificationsToInclude" options="classifications-to-include-win" group="WindowsParameters">
+          <help short="The update classifications to select when installing patches for Windows."/>
+          <item type="string">
+            <enum>
+              <item name="Critical" value="&quot;Critical&quot;"/>
+              <item name="Definition" value="&quot;Definition&quot;"/>
+              <item name="FeaturePack" value="&quot;FeaturePack&quot;"/>
+              <item name="Security" value="&quot;Security&quot;"/>
+              <item name="ServicePack" value="&quot;ServicePack&quot;"/>
+              <item name="Tools" value="&quot;Tools&quot;"/>
+              <item name="UpdateRollUp" value="&quot;UpdateRollUp&quot;"/>
+              <item name="Updates" value="&quot;Updates&quot;"/>
+            </enum>
+          </item>
+        </arg>
+        <arg type="boolean" var="$installPatchesInput.windowsParameters.excludeKbsRequiringReboot" options="exclude-kbs-requiring-reboot" group="WindowsParameters">
+          <help short="Filters out Kbs that don't have an InstallationRebootBehavior of 'NeverReboots' when this is set to true."/>
+        </arg>
+        <arg type="array<string>" var="$installPatchesInput.windowsParameters.kbNumbersToExclude" options="kb-numbers-to-exclude" group="WindowsParameters">
+          <help short="Kbs to exclude in the patch operation"/>
+          <item type="string"/>
+        </arg>
+        <arg type="array<string>" var="$installPatchesInput.windowsParameters.kbNumbersToInclude" options="kb-numbers-to-include" group="WindowsParameters">
+          <help short="Kbs to include in the patch operation"/>
+          <item type="string"/>
+        </arg>
+        <arg type="dateTime" var="$installPatchesInput.windowsParameters.maxPatchPublishDate" options="max-patch-publish-date" group="WindowsParameters">
+          <help short="This is used to install patches that were published on or before this given max published date."/>
         </arg>
       </argGroup>
       <operation operationId="Machines_InstallPatches">
@@ -97,7 +95,7 @@
             <body>
               <json>
                 <schema type="object" name="installPatchesInput" required="True" clientFlatten="True">
-                  <prop type="object" name="linuxParameters" arg="$installPatchesInput.linuxParameters">
+                  <prop type="object" name="linuxParameters">
                     <prop type="array<string>" name="classificationsToInclude" arg="$installPatchesInput.linuxParameters.classificationsToInclude">
                       <item type="string">
                         <enum>
@@ -122,7 +120,7 @@
                       <item value="&quot;Never&quot;"/>
                     </enum>
                   </prop>
-                  <prop type="object" name="windowsParameters" arg="$installPatchesInput.windowsParameters">
+                  <prop type="object" name="windowsParameters">
                     <prop type="array<string>" name="classificationsToInclude" arg="$installPatchesInput.windowsParameters.classificationsToInclude">
                       <item type="string">
                         <enum>
