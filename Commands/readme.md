@@ -11,6 +11,9 @@
 - [billing-benefits](/Commands/billing-benefits/readme.md)
 : Azure billing benefits commands
 
+- [cache](/Commands/cache/readme.md)
+: Azure Cache for Redis
+
 - [capacity](/Commands/capacity/readme.md)
 : Manage capacity resources.
 
