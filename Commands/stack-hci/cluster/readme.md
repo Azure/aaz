@@ -22,7 +22,7 @@ Manage cluster with stack hci.
 : Delete an HCI cluster.
 
 - [extend-software-assurance-benefit](/Commands/stack-hci/cluster/_extend-software-assurance-benefit.md)
-: Extends Software Assurance Benefit to a cluster
+: Extend Software Assurance Benefit to a cluster
 
 - [list](/Commands/stack-hci/cluster/_list.md)
 : List all HCI clusters in a subscription.

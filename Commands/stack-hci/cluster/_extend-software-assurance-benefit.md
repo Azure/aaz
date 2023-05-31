@@ -1,6 +1,6 @@
 # [Command] _stack-hci cluster extend-software-assurance-benefit_
 
-Extends Software Assurance Benefit to a cluster
+Extend Software Assurance Benefit to a cluster
 
 ## Versions
 

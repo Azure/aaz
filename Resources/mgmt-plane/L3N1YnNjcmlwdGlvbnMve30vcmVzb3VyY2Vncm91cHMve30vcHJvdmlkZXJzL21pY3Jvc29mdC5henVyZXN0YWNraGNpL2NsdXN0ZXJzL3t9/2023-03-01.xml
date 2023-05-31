@@ -287,6 +287,26 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Cluster">
+        <arg type="object" var="$cluster.identity" options="identity" group="Cluster">
+          <help short="Identity of Cluster resource"/>
+          <arg type="string" var="$cluster.identity.type" options="type" required="True">
+            <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
+            <enum>
+              <item name="None" value="&quot;None&quot;"/>
+              <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
+              <item name="SystemAssigned, UserAssigned" value="&quot;SystemAssigned, UserAssigned&quot;"/>
+              <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
+            </enum>
+          </arg>
+          <arg type="object" var="$cluster.identity.userAssignedIdentities" options="user-assigned-identities">
+            <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
+            <additionalProp>
+              <item type="object">
+                <blank value="{}"/>
+              </item>
+            </additionalProp>
+          </arg>
+        </arg>
         <arg type="ResourceLocation" var="$cluster.location" options="location l" required="True" group="Cluster">
           <help short="The geo-location where the resource lives"/>
         </arg>
@@ -294,25 +314,6 @@
           <help short="Resource tags."/>
           <additionalProp>
             <item type="string"/>
-          </additionalProp>
-        </arg>
-      </argGroup>
-      <argGroup name="Identity">
-        <arg type="string" var="$cluster.identity.type" options="type" group="Identity">
-          <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
-          <enum>
-            <item name="None" value="&quot;None&quot;"/>
-            <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
-            <item name="SystemAssigned, UserAssigned" value="&quot;SystemAssigned, UserAssigned&quot;"/>
-            <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
-          </enum>
-        </arg>
-        <arg type="object" var="$cluster.identity.userAssignedIdentities" options="user-assigned-identities" group="Identity">
-          <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
-          <additionalProp>
-            <item type="object">
-              <blank value="{}"/>
-            </item>
           </additionalProp>
         </arg>
       </argGroup>
@@ -350,16 +351,16 @@
             </enum>
           </arg>
         </arg>
-        <arg type="object" var="$cluster.properties.softwareAssuranceProperties" options="software-assurance-properties" hide="True" group="Properties">
+        <arg type="object" var="$cluster.properties.softwareAssuranceProperties" options="software-assurance" hide="True" group="Properties">
           <help short="Software Assurance properties of the cluster."/>
-          <arg type="string" var="$cluster.properties.softwareAssuranceProperties.softwareAssuranceIntent" options="software-assurance-intent">
+          <arg type="string" var="$cluster.properties.softwareAssuranceProperties.softwareAssuranceIntent" options="intent" group="">
             <help short="Customer Intent for Software Assurance Benefit."/>
             <enum>
               <item name="Disable" value="&quot;Disable&quot;"/>
               <item name="Enable" value="&quot;Enable&quot;"/>
             </enum>
           </arg>
-          <arg type="string" var="$cluster.properties.softwareAssuranceProperties.softwareAssuranceStatus" options="software-assurance-status">
+          <arg type="string" var="$cluster.properties.softwareAssuranceProperties.softwareAssuranceStatus" options="status" group="">
             <help short="Status of the Software Assurance for the cluster."/>
             <enum>
               <item name="Disabled" value="&quot;Disabled&quot;"/>
@@ -389,7 +390,7 @@
             <body>
               <json>
                 <schema type="object" name="cluster" required="True" clientFlatten="True">
-                  <prop type="IdentityObject" name="identity">
+                  <prop type="IdentityObject" name="identity" arg="$cluster.identity">
                     <prop type="string" name="type" arg="$cluster.identity.type" required="True">
                       <enum>
                         <item value="&quot;None&quot;"/>
@@ -655,7 +656,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="update" version="2023-03-01" confirmation="">
+    <command name="update" version="2023-03-01">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.azurestackhci/clusters/{}" version="2023-03-01" swagger="mgmt-plane/azurestackhci/ResourceProviders/Microsoft.AzureStackHCI/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXp1cmVTdGFja0hDSS9jbHVzdGVycy97Y2x1c3Rlck5hbWV9/V/MjAyMy0wMy0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.clusterName" options="cluster-name name n" required="True" idPart="name">
@@ -665,6 +666,26 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Cluster">
+        <arg nullable="True" type="object" var="$cluster.identity" options="identity" group="Cluster">
+          <help short="Identity of Cluster resource"/>
+          <arg type="string" var="$cluster.identity.type" options="type">
+            <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
+            <enum>
+              <item name="None" value="&quot;None&quot;"/>
+              <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
+              <item name="SystemAssigned, UserAssigned" value="&quot;SystemAssigned, UserAssigned&quot;"/>
+              <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
+            </enum>
+          </arg>
+          <arg nullable="True" type="object" var="$cluster.identity.userAssignedIdentities" options="user-assigned-identities">
+            <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
+            <additionalProp>
+              <item nullable="True" type="object">
+                <blank value="{}"/>
+              </item>
+            </additionalProp>
+          </arg>
+        </arg>
         <arg nullable="True" type="object" var="$cluster.tags" options="tags" group="Cluster">
           <help short="Resource tags."/>
           <additionalProp>
@@ -672,33 +693,14 @@
           </additionalProp>
         </arg>
       </argGroup>
-      <argGroup name="Identity">
-        <arg type="string" var="$cluster.identity.type" options="type" group="Identity">
-          <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
-          <enum>
-            <item name="None" value="&quot;None&quot;"/>
-            <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
-            <item name="SystemAssigned, UserAssigned" value="&quot;SystemAssigned, UserAssigned&quot;"/>
-            <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
-          </enum>
-        </arg>
-        <arg nullable="True" type="object" var="$cluster.identity.userAssignedIdentities" options="user-assigned-identities" group="Identity">
-          <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
-          <additionalProp>
-            <item nullable="True" type="object">
-              <blank value="{}"/>
-            </item>
-          </additionalProp>
-        </arg>
-      </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="string" var="$cluster.properties.aadApplicationObjectId" options="aad-application-object-id" hide="True" group="Properties">
+        <arg nullable="True" type="string" var="$cluster.properties.aadApplicationObjectId" options="aad-application-object-id" group="Properties">
           <help short="Object id of cluster AAD identity."/>
         </arg>
         <arg nullable="True" type="string" var="$cluster.properties.aadClientId" options="aad-client-id" group="Properties">
           <help short="App id of cluster AAD identity."/>
         </arg>
-        <arg nullable="True" type="string" var="$cluster.properties.aadServicePrincipalObjectId" options="aad-service-principal-object-id" hide="True" group="Properties">
+        <arg nullable="True" type="string" var="$cluster.properties.aadServicePrincipalObjectId" options="aad-service-principal-object-id" group="Properties">
           <help short="Id of cluster identity service principal."/>
         </arg>
         <arg nullable="True" type="string" var="$cluster.properties.aadTenantId" options="aad-tenant-id" group="Properties">
@@ -725,16 +727,16 @@
             </enum>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$cluster.properties.softwareAssuranceProperties" options="software-assurance-properties" hide="True" group="Properties">
+        <arg nullable="True" type="object" var="$cluster.properties.softwareAssuranceProperties" options="software-assurance" hide="True" group="Properties">
           <help short="Software Assurance properties of the cluster."/>
-          <arg nullable="True" type="string" var="$cluster.properties.softwareAssuranceProperties.softwareAssuranceIntent" options="software-assurance-intent">
+          <arg nullable="True" type="string" var="$cluster.properties.softwareAssuranceProperties.softwareAssuranceIntent" options="intent" group="">
             <help short="Customer Intent for Software Assurance Benefit."/>
             <enum>
               <item name="Disable" value="&quot;Disable&quot;"/>
               <item name="Enable" value="&quot;Enable&quot;"/>
             </enum>
           </arg>
-          <arg nullable="True" type="string" var="$cluster.properties.softwareAssuranceProperties.softwareAssuranceStatus" options="software-assurance-status">
+          <arg nullable="True" type="string" var="$cluster.properties.softwareAssuranceProperties.softwareAssuranceStatus" options="status" group="">
             <help short="Status of the Software Assurance for the cluster."/>
             <enum>
               <item name="Disabled" value="&quot;Disabled&quot;"/>
@@ -969,7 +971,7 @@
         <instanceUpdate ref="$Instance">
           <json>
             <schema type="object" name="cluster" required="True" clientFlatten="True">
-              <prop type="IdentityObject" name="identity">
+              <prop type="IdentityObject" name="identity" arg="$cluster.identity">
                 <prop type="string" name="type" arg="$cluster.identity.type" required="True">
                   <enum>
                     <item value="&quot;None&quot;"/>

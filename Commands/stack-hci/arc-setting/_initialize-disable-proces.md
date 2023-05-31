@@ -1,6 +1,6 @@
 # [Command] _stack-hci arc-setting initialize-disable-proces_
 
-Initializes ARC Disable process on the cluster
+Initialize ARC Disable process on the cluster
 
 ## Versions
 

@@ -20,7 +20,7 @@ Manage arc setting with stack hci.
 : Generate password for arc settings.
 
 - [initialize-disable-proces](/Commands/stack-hci/arc-setting/_initialize-disable-proces.md)
-: Initializes ARC Disable process on the cluster
+: Initialize ARC Disable process on the cluster
 
 - [list](/Commands/stack-hci/arc-setting/_list.md)
 : List arc setting resources of HCI cluster.
