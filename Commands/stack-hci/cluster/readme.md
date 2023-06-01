@@ -4,6 +4,9 @@ Manage cluster with stack hci.
 
 ## Subgroups
 
+- [identity](/Commands/stack-hci/cluster/identity/readme.md)
+: Manage identity
+
 - [offer](/Commands/stack-hci/cluster/offer/readme.md)
 : Manage cluster offer
 
