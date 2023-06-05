@@ -20,6 +20,9 @@
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
 
+- [data-protection](/Commands/data-protection/readme.md)
+: Manage Data Protection.
+
 - [databox](/Commands/databox/readme.md)
 : Manage data box
 
@@ -27,7 +30,7 @@
 : Manage databricks workspaces.
 
 - [dataprotection](/Commands/dataprotection/readme.md)
-: Manage backup instance with dataprotection
+: Manage dataprotection.
 
 - [devcenter](/Commands/devcenter/readme.md)
 : Manage resources with devcenter.
