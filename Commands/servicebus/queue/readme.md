@@ -2,6 +2,11 @@
 
 servicebus queue
 
+## Subgroups
+
+- [authorization-rule](/Commands/servicebus/queue/authorization-rule/readme.md)
+: servicebus queue authorization-rule
+
 ## Commands
 
 - [create](/Commands/servicebus/queue/_create.md)

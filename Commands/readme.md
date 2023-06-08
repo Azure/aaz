@@ -20,14 +20,20 @@
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
 
+- [data-protection](/Commands/data-protection/readme.md)
+: Manage Data Protection.
+
+- [databox](/Commands/databox/readme.md)
+: Manage data box
+
 - [databricks](/Commands/databricks/readme.md)
 : Manage databricks workspaces.
 
 - [dataprotection](/Commands/dataprotection/readme.md)
-: Manage Data Protection.
+: Manage dataprotection.
 
 - [devcenter](/Commands/devcenter/readme.md)
-: Manage resources with devcenter
+: Manage resources with devcenter.
 
 - [disk-access](/Commands/disk-access/readme.md)
 : Manage disk access resources.
@@ -42,7 +48,7 @@
 : Manage Elastic SAN.
 
 - [eventhubs](/Commands/eventhubs/readme.md)
-: NamespaceV2
+: eventhub
 
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
@@ -77,6 +83,9 @@
 - [ppg](/Commands/ppg/readme.md)
 : Manage Proximity Placement Groups.
 
+- [redisenterprise](/Commands/redisenterprise/readme.md)
+: Manage the redisenterprise cache
+
 - [reservations](/Commands/reservations/readme.md)
 : Azure Reservations
 
@@ -93,7 +102,7 @@
 : Manage Service Networking Resources
 
 - [servicebus](/Commands/servicebus/readme.md)
-: NamespaceV2
+: servicebus
 
 - [sig](/Commands/sig/readme.md)
 : Manage shared image gallery.

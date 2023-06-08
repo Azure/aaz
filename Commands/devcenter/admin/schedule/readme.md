@@ -1,20 +1,23 @@
 # [Group] _devcenter admin schedule_
 
-Manage schedule with devcenter
+Manage schedules.
 
 ## Commands
 
 - [create](/Commands/devcenter/admin/schedule/_create.md)
-: Create a Schedule.
+: Create a schedule.
 
 - [delete](/Commands/devcenter/admin/schedule/_delete.md)
-: Delete the schedule.
+: Delete a schedule.
+
+- [list](/Commands/devcenter/admin/schedule/_list.md)
+: List schedules for a pool.
 
 - [list-test](/Commands/devcenter/admin/schedule/_list-test.md)
 : List schedules for a pool
 
 - [show](/Commands/devcenter/admin/schedule/_show.md)
-: Get a schedule resource.
+: Get a schedule.
 
 - [update](/Commands/devcenter/admin/schedule/_update.md)
-: Update a Schedule.
+: Update a schedule.

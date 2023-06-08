@@ -1,53 +1,59 @@
 # [Group] _devcenter admin_
 
-Manage admin resources with devcenter
+Manage devcenter admin resources.
 
 ## Subgroups
 
 - [attached-network](/Commands/devcenter/admin/attached-network/readme.md)
-: Manage attached network with devcenter
+: Manage attached networks.
 
 - [catalog](/Commands/devcenter/admin/catalog/readme.md)
-: Manage catalog with dev center
+: Manage catalogs.
 
 - [check-name-availability](/Commands/devcenter/admin/check-name-availability/readme.md)
-: Manage check name availability with devcenter
+: Manage check name availability.
 
 - [devbox-definition](/Commands/devcenter/admin/devbox-definition/readme.md)
-: Manage dev box definition with devcenter
+: Manage dev box definitions.
 
 - [devcenter](/Commands/devcenter/admin/devcenter/readme.md)
-: Manage dev center with devcenter
+: Manage dev centers.
 
 - [environment-type](/Commands/devcenter/admin/environment-type/readme.md)
-: Manage environment type with devcenter
+: Manage environment types.
 
 - [gallery](/Commands/devcenter/admin/gallery/readme.md)
-: Manage gallery with devcenter
+: Manage galleries.
 
 - [image](/Commands/devcenter/admin/image/readme.md)
-: Manage image with devcenter
+: Manage images.
 
 - [image-verion](/Commands/devcenter/admin/image-verion/readme.md)
 : Manage image version with devcenter
 
+- [image-version](/Commands/devcenter/admin/image-version/readme.md)
+: Manage image versions.
+
 - [network-connection](/Commands/devcenter/admin/network-connection/readme.md)
-: Manage network connection with devcenter
+: Manage network connections.
 
 - [pool](/Commands/devcenter/admin/pool/readme.md)
-: Manage pool with devcenter
+: Manage pools.
 
 - [project](/Commands/devcenter/admin/project/readme.md)
-: Manage project with devcenter
+: Manage projects.
 
 - [project-allowed-environment-type](/Commands/devcenter/admin/project-allowed-environment-type/readme.md)
-: Manage allowed project environment type with devcenter
+: Manage project allowed environment types.
 
 - [project-environment-type](/Commands/devcenter/admin/project-environment-type/readme.md)
-: Manage project environment type with devcenter
+: Manage project environment types.
 
 - [schedule](/Commands/devcenter/admin/schedule/readme.md)
-: Manage schedule with devcenter
+: Manage schedules.
 
 - [sku](/Commands/devcenter/admin/sku/readme.md)
-: Manage sku with devcenter
+: Manage skus.
+
+- [usage](/Commands/devcenter/admin/usage/readme.md)
+: Manage usages.

@@ -1,6 +1,6 @@
 # [Group] _devcenter admin environment-type_
 
-Manage environment type with devcenter
+Manage environment types.
 
 ## Commands
 
