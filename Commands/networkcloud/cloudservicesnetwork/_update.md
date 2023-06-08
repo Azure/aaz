@@ -12,5 +12,5 @@ Update properties of the provided cloud services network, or update the tags ass
 
 - Patch cloud services network
     ```bash
-        networkcloud cloudservicesnetwork update --name "cloudServicesNetworkName"  --additional-egress-endpoints "[{\\"category\\":\\"azure-resource-management\\",\\"endpoints\\":[{\\"domainName\\":\\"https://storageaccountex.blob.core.windows.net\\",\\"port\\":443}]}]" --enable-default-egress-endpoints "False" --tags key1="myvalue1" key2="myvalue2" --resource-group "resourceGroupName"
+        networkcloud cloudservicesnetwork update --name "cloudServicesNetworkName" --additional-egress-endpoints "[{category:'azure-resource-management',endpoints:[{domainName:'https://storageaccountex.blob.core.windows.net',port:443}]}]" --enable-default-egress-endpoints "False" --tags key1="myvalue1" key2="myvalue2" --resource-group "resourceGroupName"
     ```

@@ -12,5 +12,5 @@ Run one or more data extractions on the provided bare metal machine. The URL to 
 
 - Run data extraction on bare metal machine
     ```bash
-        networkcloud baremetalmachine run-data-extract --bare-metal-machine-name "bareMetalMachineName" --limit-time-seconds 60 --commands '[{"arguments":["SysInfo", "TTYLog"],"command":"hardware-support-data-collection"}]' --resource-group "resourceGroupName"
+        networkcloud baremetalmachine run-data-extract --bare-metal-machine-name "bareMetalMachineName" --limit-time-seconds 360 --commands "[{arguments:['SysInfo','TTYLog'],command:'hardware-support-data-collection'}]" --resource-group "resourceGroupName"
     ```
