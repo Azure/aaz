@@ -20,6 +20,9 @@
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
 
+- [data-protection](/Commands/data-protection/readme.md)
+: Manage Data Protection.
+
 - [databox](/Commands/databox/readme.md)
 : Manage data box
 
@@ -76,6 +79,9 @@
 
 - [ppg](/Commands/ppg/readme.md)
 : Manage Proximity Placement Groups.
+
+- [qumulo](/Commands/qumulo/readme.md)
+: Manage qumulo
 
 - [redisenterprise](/Commands/redisenterprise/readme.md)
 : Manage the redisenterprise cache
