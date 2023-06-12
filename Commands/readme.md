@@ -30,7 +30,7 @@
 : Manage databricks workspaces.
 
 - [dataprotection](/Commands/dataprotection/readme.md)
-: Manage dataprotection.
+: Manage dataprotection
 
 - [devcenter](/Commands/devcenter/readme.md)
 : Manage resources with devcenter.
