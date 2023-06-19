@@ -1,6 +1,6 @@
 # [Group] _capacity reservation group_
 
-test
+Manage capacity reservation group.
 
 ## Commands
 
