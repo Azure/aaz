@@ -12,7 +12,7 @@
 : Azure billing benefits commands
 
 - [capacity](/Commands/capacity/readme.md)
-: Manage capacity resources.
+: Manage capacity.
 
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
@@ -73,6 +73,9 @@
 
 - [networkcloud](/Commands/networkcloud/readme.md)
 : Manage Network Cloud resources
+
+- [networkfabric](/Commands/networkfabric/readme.md)
+: Manage Azure Network Fabric Management Service API
 
 - [nginx](/Commands/nginx/readme.md)
 : Manage NGINX deployment resources
