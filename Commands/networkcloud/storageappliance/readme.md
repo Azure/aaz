@@ -28,7 +28,7 @@ All customer initiated requests will be rejected as the life cycle of this resou
 : Get properties of the provided storage appliance.
 
 - [update](/Commands/networkcloud/storageappliance/_update.md)
-: Update properties of the provided bare metal machine, or update tags associated with the bare metal machine. Properties and tag updates can be done independently.
+: Update properties of the provided storage appliance, or update tags associated with the storage appliance Properties and tag updates can be done independently.
 
 - [validate-hardware](/Commands/networkcloud/storageappliance/_validate-hardware.md)
 : Validate the hardware of the provided storage appliance.
