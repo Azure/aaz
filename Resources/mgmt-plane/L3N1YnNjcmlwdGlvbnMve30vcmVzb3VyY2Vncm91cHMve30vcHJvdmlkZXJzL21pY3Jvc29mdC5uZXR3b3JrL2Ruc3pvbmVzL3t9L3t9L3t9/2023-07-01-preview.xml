@@ -312,7 +312,7 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="string" var="$Path.zoneName" options="zone-name" required="True" idPart="name">
+        <arg type="string" var="$Path.zoneName" options="zone-name z" required="True" group="" idPart="name">
           <help short="The name of the DNS zone (without a terminating dot)."/>
         </arg>
       </argGroup>
@@ -350,11 +350,14 @@
             <arg type="integer32" var="$parameters.properties.DSRecords[].algorithm" options="algorithm">
               <help short="The security algorithm type represents the standard security algorithm number of the DNSKEY Resource Record. See: https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xhtml"/>
             </arg>
-            <arg type="integer32" var="$parameters.properties.DSRecords[].digest.algorithmType" options="digest-algorithm-type" group="Digest">
-              <help short="The digest algorithm type represents the standard digest algorithm number used to construct the digest. See: https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xhtml"/>
-            </arg>
-            <arg type="string" var="$parameters.properties.DSRecords[].digest.value" options="digest-value" group="Digest">
-              <help short="The digest value is a cryptographic hash value of the referenced DNSKEY Resource Record."/>
+            <arg type="object" var="$parameters.properties.DSRecords[].digest" options="digest">
+              <help short="The digest entity."/>
+              <arg type="integer32" var="$parameters.properties.DSRecords[].digest.algorithmType" options="algorithm-type">
+                <help short="The digest algorithm type represents the standard digest algorithm number used to construct the digest. See: https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xhtml"/>
+              </arg>
+              <arg type="string" var="$parameters.properties.DSRecords[].digest.value" options="value">
+                <help short="The digest value is a cryptographic hash value of the referenced DNSKEY Resource Record."/>
+              </arg>
             </arg>
             <arg type="integer32" var="$parameters.properties.DSRecords[].keyTag" options="key-tag">
               <help short="The key tag value is used to determine which DNSKEY Resource Record is used for signature verification."/>
@@ -569,7 +572,7 @@
                     <prop type="array<object>" name="DSRecords" arg="$parameters.properties.DSRecords">
                       <item type="object">
                         <prop type="integer32" name="algorithm" arg="$parameters.properties.DSRecords[].algorithm"/>
-                        <prop type="object" name="digest">
+                        <prop type="object" name="digest" arg="$parameters.properties.DSRecords[].digest">
                           <prop type="integer32" name="algorithmType" arg="$parameters.properties.DSRecords[].digest.algorithmType"/>
                           <prop type="string" name="value" arg="$parameters.properties.DSRecords[].digest.value"/>
                         </prop>
@@ -863,11 +866,14 @@
             <arg nullable="True" type="integer32" var="$parameters.properties.DSRecords[].algorithm" options="algorithm">
               <help short="The security algorithm type represents the standard security algorithm number of the DNSKEY Resource Record. See: https://www.iana.org/assignments/dns-sec-alg-numbers/dns-sec-alg-numbers.xhtml"/>
             </arg>
-            <arg nullable="True" type="integer32" var="$parameters.properties.DSRecords[].digest.algorithmType" options="digest-algorithm-type" group="Digest">
-              <help short="The digest algorithm type represents the standard digest algorithm number used to construct the digest. See: https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xhtml"/>
-            </arg>
-            <arg nullable="True" type="string" var="$parameters.properties.DSRecords[].digest.value" options="digest-value" group="Digest">
-              <help short="The digest value is a cryptographic hash value of the referenced DNSKEY Resource Record."/>
+            <arg nullable="True" type="object" var="$parameters.properties.DSRecords[].digest" options="digest">
+              <help short="The digest entity."/>
+              <arg nullable="True" type="integer32" var="$parameters.properties.DSRecords[].digest.algorithmType" options="algorithm-type">
+                <help short="The digest algorithm type represents the standard digest algorithm number used to construct the digest. See: https://www.iana.org/assignments/ds-rr-types/ds-rr-types.xhtml"/>
+              </arg>
+              <arg nullable="True" type="string" var="$parameters.properties.DSRecords[].digest.value" options="value">
+                <help short="The digest value is a cryptographic hash value of the referenced DNSKEY Resource Record."/>
+              </arg>
             </arg>
             <arg nullable="True" type="integer32" var="$parameters.properties.DSRecords[].keyTag" options="key-tag">
               <help short="The key tag value is used to determine which DNSKEY Resource Record is used for signature verification."/>
@@ -1189,7 +1195,7 @@
                 <prop type="array<object>" name="DSRecords" arg="$parameters.properties.DSRecords">
                   <item type="object">
                     <prop type="integer32" name="algorithm" arg="$parameters.properties.DSRecords[].algorithm"/>
-                    <prop type="object" name="digest">
+                    <prop type="object" name="digest" arg="$parameters.properties.DSRecords[].digest">
                       <prop type="integer32" name="algorithmType" arg="$parameters.properties.DSRecords[].digest.algorithmType"/>
                       <prop type="string" name="value" arg="$parameters.properties.DSRecords[].digest.value"/>
                     </prop>
