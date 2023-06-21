@@ -1,6 +1,6 @@
 # [Group] _cosmosdb_
 
-cosmos short summary
+Manage Azure Cosmos DB database accounts.
 
 ## Subgroups
 

@@ -27,7 +27,7 @@
 : Deploy and manage Azure confidential ledgers.
 
 - [cosmosdb](/Commands/cosmosdb/readme.md)
-: cosmos short summary
+: Manage Azure Cosmos DB database accounts.
 
 - [databox](/Commands/databox/readme.md)
 : Manage data box
