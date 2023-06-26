@@ -315,6 +315,9 @@
         <arg type="string" var="$Path.zoneName" options="zone-name z" required="True" group="" idPart="name">
           <help short="The name of the DNS zone (without a terminating dot)."/>
         </arg>
+        <arg type="string" var="$parameters.properties.targetResource.id" options="target-resource" group="">
+          <help short="ID of an Azure resource from which the DNS resource value is taken."/>
+        </arg>
       </argGroup>
       <argGroup name="Parameters">
         <arg type="string" var="$parameters.etag" options="etag" hide="True" group="Parameters">
@@ -474,6 +477,7 @@
         </arg>
         <arg type="integer64" var="$parameters.properties.TTL" options="ttl" group="Properties">
           <help short="The TTL (time-to-live) of the records in the record set."/>
+          <default value="3600"/>
         </arg>
         <arg type="array<object>" var="$parameters.properties.TXTRecords" options="txt-records" group="Properties">
           <help short="The list of TXT records in the record set."/>
@@ -503,12 +507,6 @@
           <additionalProp>
             <item type="string"/>
           </additionalProp>
-        </arg>
-        <arg type="object" var="$parameters.properties.targetResource" options="target-resource" group="Properties">
-          <help short="A reference to an azure resource from where the dns resource value is taken."/>
-          <arg type="string" var="$parameters.properties.targetResource.id" options="id">
-            <help short="Resource Id."/>
-          </arg>
         </arg>
       </argGroup>
       <operation operationId="RecordSets_CreateOrUpdate">
@@ -650,7 +648,7 @@
                         <item type="string"/>
                       </additionalProp>
                     </prop>
-                    <prop type="object" name="targetResource" arg="$parameters.properties.targetResource">
+                    <prop type="object" name="targetResource">
                       <prop type="string" name="id" arg="$parameters.properties.targetResource.id"/>
                     </prop>
                   </prop>
