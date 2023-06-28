@@ -89,6 +89,9 @@
 - [redisenterprise](/Commands/redisenterprise/readme.md)
 : Manage the redisenterprise cache
 
+- [remote-rendering-account](/Commands/remote-rendering-account/readme.md)
+: Manage remote rendering account with mixed reality.
+
 - [reservations](/Commands/reservations/readme.md)
 : Azure Reservations
 
@@ -109,6 +112,9 @@
 
 - [sig](/Commands/sig/readme.md)
 : Manage shared image gallery.
+
+- [spatial-anchors-account](/Commands/spatial-anchors-account/readme.md)
+: Manage spatial anchor account with mixed reality.
 
 - [sql](/Commands/sql/readme.md)
 : Manage Azure SQL Databases and Data Warehouses.
