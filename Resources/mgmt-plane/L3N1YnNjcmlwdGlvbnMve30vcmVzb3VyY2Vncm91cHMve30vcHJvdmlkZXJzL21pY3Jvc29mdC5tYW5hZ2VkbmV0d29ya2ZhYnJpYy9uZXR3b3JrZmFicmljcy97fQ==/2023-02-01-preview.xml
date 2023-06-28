@@ -57,7 +57,7 @@
                       <item type="string"/>
                     </prop>
                     <prop type="object" name="managementNetworkConfiguration" required="True">
-                      <prop type="object" name="infrastructureVpnConfiguration" required="True">
+                      <prop type="object" name="infrastructureVpnConfiguration" required="True" cls="VpnConfigurationProperties_read">
                         <prop readOnly="True" type="string" name="administrativeState">
                           <enum>
                             <item value="&quot;Disabled&quot;"/>
@@ -65,7 +65,7 @@
                           </enum>
                         </prop>
                         <prop readOnly="True" type="string" name="networkToNetworkInterconnectId"/>
-                        <prop type="object" name="optionAProperties" cls="OptionAProperties_read">
+                        <prop type="object" name="optionAProperties">
                           <prop type="object" name="bfdConfiguration">
                             <prop readOnly="True" type="integer32" name="interval"/>
                             <prop readOnly="True" type="integer32" name="multiplier"/>
@@ -85,7 +85,7 @@
                             <format maximum="4095" minimum="501"/>
                           </prop>
                         </prop>
-                        <prop type="object" name="optionBProperties" cls="OptionBProperties_read">
+                        <prop type="object" name="optionBProperties">
                           <prop type="array<string>" name="exportRouteTargets" required="True">
                             <item type="string"/>
                           </prop>
@@ -100,23 +100,7 @@
                           </enum>
                         </prop>
                       </prop>
-                      <prop type="object" name="workloadVpnConfiguration" required="True">
-                        <prop readOnly="True" type="string" name="administrativeState">
-                          <enum>
-                            <item value="&quot;Disabled&quot;"/>
-                            <item value="&quot;Enabled&quot;"/>
-                          </enum>
-                        </prop>
-                        <prop readOnly="True" type="string" name="networkToNetworkInterconnectId"/>
-                        <prop type="@OptionAProperties_read" name="optionAProperties"/>
-                        <prop type="@OptionBProperties_read" name="optionBProperties"/>
-                        <prop type="string" name="peeringOption" required="True">
-                          <enum>
-                            <item value="&quot;OptionA&quot;"/>
-                            <item value="&quot;OptionB&quot;"/>
-                          </enum>
-                        </prop>
-                      </prop>
+                      <prop type="@VpnConfigurationProperties_read" name="workloadVpnConfiguration" required="True"/>
                     </prop>
                     <prop type="string" name="networkFabricControllerId" required="True"/>
                     <prop type="string" name="networkFabricSku" required="True"/>
@@ -296,41 +280,41 @@
           <help short="Configuration to be used to setup the management network."/>
           <arg type="object" var="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration" options="infrastructure-vpn-configuration" required="True">
             <help short="Configuration for infrastructure vpn."/>
-            <arg type="object" var="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties" options="option-a-properties" group="" cls="OptionAProperties_create">
+            <arg type="object" var="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties" options="option-a-properties" group="">
               <help short="Peering option A properties."/>
-              <arg type="integer32" var="@OptionAProperties_create.mtu" options="mtu" group="">
-                <help short="MTU to use for option A peering. The value should be between 1500 to 9000. Default value is 1500."/>
+              <arg type="integer32" var="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.mtu" options="mtu" group="">
+                <help short="MTU to use for option A peering."/>
                 <format maximum="9000" minimum="1500"/>
               </arg>
-              <arg type="integer32" var="@OptionAProperties_create.peerASN" options="peer-asn" group="">
-                <help short="Peer ASN number. The value should be between 1 to 65535. Example : 28."/>
+              <arg type="integer32" var="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.peerASN" options="peer-asn">
+                <help short="Peer ASN number.Example : 28"/>
                 <format maximum="65535" minimum="1"/>
               </arg>
-              <arg type="string" var="@OptionAProperties_create.primaryIpv4Prefix" options="primary-ipv4-prefix" group="">
-                <help short="IPv4 Address Prefix of CE-PE interconnect links. Example : 172.31.0.0/31."/>
+              <arg type="string" var="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.primaryIpv4Prefix" options="primary-ipv4-prefix">
+                <help short="IPv4 Address Prefix of CE-PE interconnect links. Example: 172.31.0.0/31. The values can be specified at the time of creation or can be updated afterwards. Any update to the values post-provisioning may disrupt traffic. The 1st and 3rd IPs are to be configured on CE1 and CE2 for Option B interfaces. The 2nd and 4th IPs are to be configured on PE1 and PE2 for Option B interfaces."/>
               </arg>
-              <arg type="string" var="@OptionAProperties_create.primaryIpv6Prefix" options="primary-ipv6-prefix" group="">
-                <help short="IPv6 Address Prefix of CE-PE interconnect links. Example : 3FFE:FFFF:0:CD30::a0/126."/>
+              <arg type="string" var="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.primaryIpv6Prefix" options="primary-ipv6-prefix">
+                <help short="IPv6 Address Prefix of CE-PE interconnect links. Example: 3FFE:FFFF:0:CD30::a0/126. The values can be specified at the time of creation or can be updated afterwards. Any update to the values post-provisioning may disrupt traffic. The 1st and 3rd IPs are to be configured on CE1 and CE2 for Option B interfaces. The 2nd and 4th IPs are to be configured on PE1 and PE2 for Option B interfaces."/>
               </arg>
-              <arg type="string" var="@OptionAProperties_create.secondaryIpv4Prefix" options="secondary-ipv4-prefix" group="">
-                <help short="Secondary IPv4 Address Prefix of CE-PE interconnect links. Example : 172.31.0.20/31."/>
+              <arg type="string" var="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.secondaryIpv4Prefix" options="secondary-ipv4-prefix">
+                <help short="Secondary IPv4 Address Prefix of CE-PE interconnect links. Example: 172.31.0.20/31. The values can be specified at the time of creation or can be updated afterwards. Any update to the values post-provisioning may disrupt traffic. The 1st and 3rd IPs are to be configured on CE1 and CE2 for Option B interfaces. The 2nd and 4th IPs are to be configured on PE1 and PE2 for Option B interfaces."/>
               </arg>
-              <arg type="string" var="@OptionAProperties_create.secondaryIpv6Prefix" options="secondary-ipv6-prefix" group="">
-                <help short="Secondary IPv6 Address Prefix of CE-PE interconnect links. Example : 3FFE:FFFF:0:CD30::a4/126."/>
+              <arg type="string" var="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.secondaryIpv6Prefix" options="secondary-ipv6-prefix">
+                <help short="Secondary IPv6 Address Prefix of CE-PE interconnect links. Example: 3FFE:FFFF:0:CD30::a4/126. The values can be specified at the time of creation or can be updated afterwards. Any update to the values post-provisioning may disrupt traffic. The 1st and 3rd IPs are to be configured on CE1 and CE2 for Option B interfaces. The 2nd and 4th IPs are to be configured on PE1 and PE2 for Option B interfaces."/>
               </arg>
-              <arg type="integer32" var="@OptionAProperties_create.vlanId" options="vlan-id" group="">
-                <help short="Vlan Id. The value should be between 501 to 4095. Example : 501."/>
+              <arg type="integer32" var="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.vlanId" options="vlan-id">
+                <help short="Vlan identifier. Example : 501"/>
                 <format maximum="4095" minimum="501"/>
               </arg>
             </arg>
-            <arg type="object" var="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionBProperties" options="option-b-properties" group="" cls="OptionBProperties_create">
+            <arg type="object" var="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionBProperties" options="option-b-properties" group="">
               <help short="Option B configuration to be used for management vpn."/>
-              <arg type="array<string>" var="@OptionBProperties_create.exportRouteTargets" options="export-route-targets" required="True" group="">
-                <help short="Route Targets to be applied for outgoing routes from CE. Example: 65541:2001."/>
+              <arg type="array<string>" var="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionBProperties.exportRouteTargets" options="export-route-targets" required="True">
+                <help short="Route Targets to be applied for outgoing routes from CE."/>
                 <item type="string"/>
               </arg>
-              <arg type="array<string>" var="@OptionBProperties_create.importRouteTargets" options="import-route-targets" required="True" group="">
-                <help short="Route Targets to be applied for incoming routes into CE. Example: 65311:2001, 65412:2001."/>
+              <arg type="array<string>" var="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionBProperties.importRouteTargets" options="import-route-targets" required="True">
+                <help short="Route Targets to be applied for incoming routes into CE."/>
                 <item type="string"/>
               </arg>
             </arg>
@@ -344,11 +328,43 @@
           </arg>
           <arg type="object" var="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration" options="workload-vpn-configuration" required="True">
             <help short="Configuration for workload vpn."/>
-            <arg type="@OptionAProperties_create" var="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties" options="option-a-properties" group="">
+            <arg type="object" var="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties" options="option-a-properties" group="">
               <help short="Peering option A properties."/>
+              <arg type="integer32" var="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.mtu" options="mtu" group="">
+                <help short="MTU to use for option A peering."/>
+                <format maximum="9000" minimum="1500"/>
+              </arg>
+              <arg type="integer32" var="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.peerASN" options="peer-asn">
+                <help short="Peer ASN number.Example : 28"/>
+                <format maximum="65535" minimum="1"/>
+              </arg>
+              <arg type="string" var="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.primaryIpv4Prefix" options="primary-ipv4-prefix">
+                <help short="IPv4 Address Prefix of CE-PE interconnect links. Example: 172.31.0.0/31. The values can be specified at the time of creation or can be updated afterwards. Any update to the values post-provisioning may disrupt traffic. The 1st and 3rd IPs are to be configured on CE1 and CE2 for Option B interfaces. The 2nd and 4th IPs are to be configured on PE1 and PE2 for Option B interfaces."/>
+              </arg>
+              <arg type="string" var="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.primaryIpv6Prefix" options="primary-ipv6-prefix">
+                <help short="IPv6 Address Prefix of CE-PE interconnect links. Example: 3FFE:FFFF:0:CD30::a0/126. The values can be specified at the time of creation or can be updated afterwards. Any update to the values post-provisioning may disrupt traffic. The 1st and 3rd IPs are to be configured on CE1 and CE2 for Option B interfaces. The 2nd and 4th IPs are to be configured on PE1 and PE2 for Option B interfaces."/>
+              </arg>
+              <arg type="string" var="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.secondaryIpv4Prefix" options="secondary-ipv4-prefix">
+                <help short="Secondary IPv4 Address Prefix of CE-PE interconnect links. Example: 172.31.0.20/31. The values can be specified at the time of creation or can be updated afterwards. Any update to the values post-provisioning may disrupt traffic. The 1st and 3rd IPs are to be configured on CE1 and CE2 for Option B interfaces. The 2nd and 4th IPs are to be configured on PE1 and PE2 for Option B interfaces."/>
+              </arg>
+              <arg type="string" var="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.secondaryIpv6Prefix" options="secondary-ipv6-prefix">
+                <help short="Secondary IPv6 Address Prefix of CE-PE interconnect links. Example: 3FFE:FFFF:0:CD30::a4/126. The values can be specified at the time of creation or can be updated afterwards. Any update to the values post-provisioning may disrupt traffic. The 1st and 3rd IPs are to be configured on CE1 and CE2 for Option B interfaces. The 2nd and 4th IPs are to be configured on PE1 and PE2 for Option B interfaces."/>
+              </arg>
+              <arg type="integer32" var="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.vlanId" options="vlan-id">
+                <help short="Vlan identifier. Example : 501"/>
+                <format maximum="4095" minimum="501"/>
+              </arg>
             </arg>
-            <arg type="@OptionBProperties_create" var="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionBProperties" options="option-b-properties" group="">
+            <arg type="object" var="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionBProperties" options="option-b-properties" group="">
               <help short="Option B configuration to be used for management vpn."/>
+              <arg type="array<string>" var="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionBProperties.exportRouteTargets" options="export-route-targets" required="True">
+                <help short="Route Targets to be applied for outgoing routes from CE."/>
+                <item type="string"/>
+              </arg>
+              <arg type="array<string>" var="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionBProperties.importRouteTargets" options="import-route-targets" required="True">
+                <help short="Route Targets to be applied for incoming routes into CE."/>
+                <item type="string"/>
+              </arg>
             </arg>
             <arg type="string" var="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.peeringOption" options="peering-option" required="True" group="">
               <help short="Peering option list."/>
@@ -430,27 +446,27 @@
                     <prop type="string" name="ipv6Prefix" arg="$body.properties.ipv6Prefix"/>
                     <prop type="object" name="managementNetworkConfiguration" arg="$body.properties.managementNetworkConfiguration" required="True">
                       <prop type="object" name="infrastructureVpnConfiguration" arg="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration" required="True">
-                        <prop type="object" name="optionAProperties" arg="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties" cls="OptionAProperties_create">
-                          <prop type="integer32" name="mtu" arg="@OptionAProperties_create.mtu">
+                        <prop type="object" name="optionAProperties" arg="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties">
+                          <prop type="integer32" name="mtu" arg="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.mtu">
                             <default value="1500"/>
                             <format maximum="9000" minimum="1500"/>
                           </prop>
-                          <prop type="integer32" name="peerASN" arg="@OptionAProperties_create.peerASN">
+                          <prop type="integer32" name="peerASN" arg="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.peerASN">
                             <format maximum="65535" minimum="1"/>
                           </prop>
-                          <prop type="string" name="primaryIpv4Prefix" arg="@OptionAProperties_create.primaryIpv4Prefix"/>
-                          <prop type="string" name="primaryIpv6Prefix" arg="@OptionAProperties_create.primaryIpv6Prefix"/>
-                          <prop type="string" name="secondaryIpv4Prefix" arg="@OptionAProperties_create.secondaryIpv4Prefix"/>
-                          <prop type="string" name="secondaryIpv6Prefix" arg="@OptionAProperties_create.secondaryIpv6Prefix"/>
-                          <prop type="integer32" name="vlanId" arg="@OptionAProperties_create.vlanId">
+                          <prop type="string" name="primaryIpv4Prefix" arg="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.primaryIpv4Prefix"/>
+                          <prop type="string" name="primaryIpv6Prefix" arg="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.primaryIpv6Prefix"/>
+                          <prop type="string" name="secondaryIpv4Prefix" arg="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.secondaryIpv4Prefix"/>
+                          <prop type="string" name="secondaryIpv6Prefix" arg="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.secondaryIpv6Prefix"/>
+                          <prop type="integer32" name="vlanId" arg="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionAProperties.vlanId">
                             <format maximum="4095" minimum="501"/>
                           </prop>
                         </prop>
-                        <prop type="object" name="optionBProperties" arg="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionBProperties" cls="OptionBProperties_create">
-                          <prop type="array<string>" name="exportRouteTargets" arg="@OptionBProperties_create.exportRouteTargets" required="True">
+                        <prop type="object" name="optionBProperties" arg="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionBProperties">
+                          <prop type="array<string>" name="exportRouteTargets" arg="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionBProperties.exportRouteTargets" required="True">
                             <item type="string"/>
                           </prop>
-                          <prop type="array<string>" name="importRouteTargets" arg="@OptionBProperties_create.importRouteTargets" required="True">
+                          <prop type="array<string>" name="importRouteTargets" arg="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration.optionBProperties.importRouteTargets" required="True">
                             <item type="string"/>
                           </prop>
                         </prop>
@@ -462,8 +478,30 @@
                         </prop>
                       </prop>
                       <prop type="object" name="workloadVpnConfiguration" arg="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration" required="True">
-                        <prop type="@OptionAProperties_create" name="optionAProperties" arg="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties"/>
-                        <prop type="@OptionBProperties_create" name="optionBProperties" arg="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionBProperties"/>
+                        <prop type="object" name="optionAProperties" arg="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties">
+                          <prop type="integer32" name="mtu" arg="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.mtu">
+                            <default value="1500"/>
+                            <format maximum="9000" minimum="1500"/>
+                          </prop>
+                          <prop type="integer32" name="peerASN" arg="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.peerASN">
+                            <format maximum="65535" minimum="1"/>
+                          </prop>
+                          <prop type="string" name="primaryIpv4Prefix" arg="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.primaryIpv4Prefix"/>
+                          <prop type="string" name="primaryIpv6Prefix" arg="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.primaryIpv6Prefix"/>
+                          <prop type="string" name="secondaryIpv4Prefix" arg="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.secondaryIpv4Prefix"/>
+                          <prop type="string" name="secondaryIpv6Prefix" arg="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.secondaryIpv6Prefix"/>
+                          <prop type="integer32" name="vlanId" arg="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionAProperties.vlanId">
+                            <format maximum="4095" minimum="501"/>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="optionBProperties" arg="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionBProperties">
+                          <prop type="array<string>" name="exportRouteTargets" arg="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionBProperties.exportRouteTargets" required="True">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="array<string>" name="importRouteTargets" arg="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.optionBProperties.importRouteTargets" required="True">
+                            <item type="string"/>
+                          </prop>
+                        </prop>
                         <prop type="string" name="peeringOption" arg="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration.peeringOption" required="True">
                           <enum>
                             <item value="&quot;OptionA&quot;"/>
@@ -522,7 +560,7 @@
                       <item type="string"/>
                     </prop>
                     <prop type="object" name="managementNetworkConfiguration" required="True">
-                      <prop type="object" name="infrastructureVpnConfiguration" required="True">
+                      <prop type="object" name="infrastructureVpnConfiguration" required="True" cls="VpnConfigurationProperties_read">
                         <prop readOnly="True" type="string" name="administrativeState">
                           <enum>
                             <item value="&quot;Disabled&quot;"/>
@@ -530,7 +568,7 @@
                           </enum>
                         </prop>
                         <prop readOnly="True" type="string" name="networkToNetworkInterconnectId"/>
-                        <prop type="object" name="optionAProperties" cls="OptionAProperties_read">
+                        <prop type="object" name="optionAProperties">
                           <prop type="object" name="bfdConfiguration">
                             <prop readOnly="True" type="integer32" name="interval"/>
                             <prop readOnly="True" type="integer32" name="multiplier"/>
@@ -550,7 +588,7 @@
                             <format maximum="4095" minimum="501"/>
                           </prop>
                         </prop>
-                        <prop type="object" name="optionBProperties" cls="OptionBProperties_read">
+                        <prop type="object" name="optionBProperties">
                           <prop type="array<string>" name="exportRouteTargets" required="True">
                             <item type="string"/>
                           </prop>
@@ -565,23 +603,7 @@
                           </enum>
                         </prop>
                       </prop>
-                      <prop type="object" name="workloadVpnConfiguration" required="True">
-                        <prop readOnly="True" type="string" name="administrativeState">
-                          <enum>
-                            <item value="&quot;Disabled&quot;"/>
-                            <item value="&quot;Enabled&quot;"/>
-                          </enum>
-                        </prop>
-                        <prop readOnly="True" type="string" name="networkToNetworkInterconnectId"/>
-                        <prop type="@OptionAProperties_read" name="optionAProperties"/>
-                        <prop type="@OptionBProperties_read" name="optionBProperties"/>
-                        <prop type="string" name="peeringOption" required="True">
-                          <enum>
-                            <item value="&quot;OptionA&quot;"/>
-                            <item value="&quot;OptionB&quot;"/>
-                          </enum>
-                        </prop>
-                      </prop>
+                      <prop type="@VpnConfigurationProperties_read" name="workloadVpnConfiguration" required="True"/>
                     </prop>
                     <prop type="string" name="networkFabricControllerId" required="True"/>
                     <prop type="string" name="networkFabricSku" required="True"/>
@@ -769,7 +791,7 @@
                       <item type="string"/>
                     </prop>
                     <prop type="object" name="managementNetworkConfiguration" required="True">
-                      <prop type="object" name="infrastructureVpnConfiguration" required="True">
+                      <prop type="object" name="infrastructureVpnConfiguration" required="True" cls="VpnConfigurationProperties_read">
                         <prop readOnly="True" type="string" name="administrativeState">
                           <enum>
                             <item value="&quot;Disabled&quot;"/>
@@ -777,7 +799,7 @@
                           </enum>
                         </prop>
                         <prop readOnly="True" type="string" name="networkToNetworkInterconnectId"/>
-                        <prop type="object" name="optionAProperties" cls="OptionAProperties_read">
+                        <prop type="object" name="optionAProperties">
                           <prop type="object" name="bfdConfiguration">
                             <prop readOnly="True" type="integer32" name="interval"/>
                             <prop readOnly="True" type="integer32" name="multiplier"/>
@@ -797,7 +819,7 @@
                             <format maximum="4095" minimum="501"/>
                           </prop>
                         </prop>
-                        <prop type="object" name="optionBProperties" cls="OptionBProperties_read">
+                        <prop type="object" name="optionBProperties">
                           <prop type="array<string>" name="exportRouteTargets" required="True">
                             <item type="string"/>
                           </prop>
@@ -812,23 +834,7 @@
                           </enum>
                         </prop>
                       </prop>
-                      <prop type="object" name="workloadVpnConfiguration" required="True">
-                        <prop readOnly="True" type="string" name="administrativeState">
-                          <enum>
-                            <item value="&quot;Disabled&quot;"/>
-                            <item value="&quot;Enabled&quot;"/>
-                          </enum>
-                        </prop>
-                        <prop readOnly="True" type="string" name="networkToNetworkInterconnectId"/>
-                        <prop type="@OptionAProperties_read" name="optionAProperties"/>
-                        <prop type="@OptionBProperties_read" name="optionBProperties"/>
-                        <prop type="string" name="peeringOption" required="True">
-                          <enum>
-                            <item value="&quot;OptionA&quot;"/>
-                            <item value="&quot;OptionB&quot;"/>
-                          </enum>
-                        </prop>
-                      </prop>
+                      <prop type="@VpnConfigurationProperties_read" name="workloadVpnConfiguration" required="True"/>
                     </prop>
                     <prop type="string" name="networkFabricControllerId" required="True"/>
                     <prop type="string" name="networkFabricSku" required="True"/>
