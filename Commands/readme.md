@@ -59,6 +59,9 @@
 - [load](/Commands/load/readme.md)
 : Manage Azure Load Testing resources.
 
+- [logic](/Commands/logic/readme.md)
+: Manage logic
+
 - [mobile-network](/Commands/mobile-network/readme.md)
 : Manage mobile network
 
