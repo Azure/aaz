@@ -12,7 +12,7 @@
 : Azure billing benefits commands
 
 - [capacity](/Commands/capacity/readme.md)
-: Manage capacity resources.
+: Manage capacity.
 
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
@@ -27,7 +27,7 @@
 : Manage databricks workspaces.
 
 - [dataprotection](/Commands/dataprotection/readme.md)
-: Manage dataprotection.
+: Manage dataprotection
 
 - [devcenter](/Commands/devcenter/readme.md)
 : Manage resources with devcenter.
@@ -50,8 +50,14 @@
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
 
+- [image](/Commands/image/readme.md)
+: Manage custom virtual machine images.
+
 - [load](/Commands/load/readme.md)
 : Manage Azure Load Testing resources.
+
+- [logic](/Commands/logic/readme.md)
+: Manage logic
 
 - [mobile-network](/Commands/mobile-network/readme.md)
 : Manage mobile network
@@ -68,6 +74,9 @@
 - [networkcloud](/Commands/networkcloud/readme.md)
 : Manage Network Cloud resources
 
+- [networkfabric](/Commands/networkfabric/readme.md)
+: Manage Azure Network Fabric Management Service API
+
 - [nginx](/Commands/nginx/readme.md)
 : Manage NGINX deployment resources
 
@@ -79,6 +88,9 @@
 
 - [redisenterprise](/Commands/redisenterprise/readme.md)
 : Manage the redisenterprise cache
+
+- [remote-rendering-account](/Commands/remote-rendering-account/readme.md)
+: Manage remote rendering account with mixed reality.
 
 - [reservations](/Commands/reservations/readme.md)
 : Azure Reservations
@@ -100,6 +112,9 @@
 
 - [sig](/Commands/sig/readme.md)
 : Manage shared image gallery.
+
+- [spatial-anchors-account](/Commands/spatial-anchors-account/readme.md)
+: Manage spatial anchor account with mixed reality.
 
 - [sql](/Commands/sql/readme.md)
 : Manage Azure SQL Databases and Data Warehouses.

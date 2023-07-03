@@ -1,6 +1,6 @@
 # [Group] _dataprotection_
 
-Manage dataprotection.
+Manage dataprotection
 
 ## Subgroups
 
