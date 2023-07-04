@@ -407,7 +407,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="update" version="2023-07-01-preview" confirmation="">
+    <command name="update" version="2023-07-01-preview">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.storagemover/storagemovers/{}/endpoints/{}" version="2023-07-01-preview" swagger="mgmt-plane/storagemover/ResourceProviders/Microsoft.StorageMover/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RvcmFnZU1vdmVyL3N0b3JhZ2VNb3ZlcnMve3N0b3JhZ2VNb3Zlck5hbWV9L2VuZHBvaW50cy97ZW5kcG9pbnROYW1lfQ==/V/MjAyMy0wNy0wMS1wcmV2aWV3"/>
       <argGroup name="">
         <arg type="string" var="$Path.endpointName" options="endpoint-name name n" required="True" idPart="child_name_1">
@@ -420,24 +420,30 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Properties">
+        <arg type="object" var="$endpoint.properties.AzureStorageBlobContainer" options="storage-blob-container" group="Properties">
+          <help short="Storage Blob Container Object"/>
+          <arg type="ResourceId" var="$endpoint.properties.AzureStorageBlobContainer.storageAccountResourceId" options="storage-account-resource-id">
+            <help short="The Azure Resource ID of the storage account that is the target destination."/>
+          </arg>
+        </arg>
         <arg type="object" var="$endpoint.properties.SmbMount" options="smb-mount" group="Properties">
-          <arg type="object" var="$endpoint.properties.SmbMount.credentials" options="credentials">
+          <arg nullable="True" type="object" var="$endpoint.properties.SmbMount.credentials" options="credentials">
             <help short="The Azure Key Vault secret URIs which store the required credentials to access the SMB share."/>
-            <arg type="string" var="$endpoint.properties.SmbMount.credentials.passwordUri" options="password-uri">
+            <arg nullable="True" type="string" var="$endpoint.properties.SmbMount.credentials.passwordUri" options="password-uri">
               <help short="The Azure Key Vault secret URI which stores the password. Use empty string to clean-up existing value."/>
             </arg>
-            <arg type="string" var="$endpoint.properties.SmbMount.credentials.usernameUri" options="username-uri">
+            <arg nullable="True" type="string" var="$endpoint.properties.SmbMount.credentials.usernameUri" options="username-uri">
               <help short="The Azure Key Vault secret URI which stores the username. Use empty string to clean-up existing value."/>
             </arg>
           </arg>
         </arg>
-        <arg type="string" var="$endpoint.properties.description" options="description" group="Properties">
+        <arg nullable="True" type="string" var="$endpoint.properties.description" options="description" group="Properties">
           <help short="A description for the Endpoint."/>
         </arg>
       </argGroup>
-      <operation operationId="Endpoints_Update">
+      <operation operationId="Endpoints_Get">
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageMover/storageMovers/{storageMoverName}/endpoints/{endpointName}">
-          <request method="patch">
+          <request method="get">
             <path>
               <param type="string" name="endpointName" arg="$Path.endpointName" required="True"/>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
@@ -454,26 +460,11 @@
                 <format minLength="1"/>
               </const>
             </query>
-            <body>
-              <json>
-                <schema type="object" name="endpoint" required="True" clientFlatten="True">
-                  <prop type="object" name="properties">
-                    <prop type="string" name="description" arg="$endpoint.properties.description"/>
-                    <discriminator property="endpointType" value="SmbMount">
-                      <prop type="object" name="credentials" arg="$endpoint.properties.SmbMount.credentials">
-                        <prop type="string" name="passwordUri" arg="$endpoint.properties.SmbMount.credentials.passwordUri"/>
-                        <prop type="string" name="usernameUri" arg="$endpoint.properties.SmbMount.credentials.usernameUri"/>
-                      </prop>
-                    </discriminator>
-                  </prop>
-                </schema>
-              </json>
-            </body>
           </request>
           <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="object">
+                <schema type="object" cls="Endpoint_read">
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.StorageMover/storageMovers/{}/endpoints/{}"/>
                   </prop>
@@ -551,6 +542,65 @@
                   </prop>
                   <prop readOnly="True" type="string" name="type"/>
                 </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate ref="$Instance">
+          <json>
+            <schema type="object" name="endpoint" required="True" clientFlatten="True">
+              <prop type="object" name="properties" required="True">
+                <prop type="string" name="description" arg="$endpoint.properties.description"/>
+                <discriminator property="endpointType" value="AzureStorageBlobContainer">
+                  <prop type="ResourceId" name="storageAccountResourceId" arg="$endpoint.properties.AzureStorageBlobContainer.storageAccountResourceId" required="True"/>
+                </discriminator>
+                <discriminator property="endpointType" value="SmbMount">
+                  <prop type="object" name="credentials" arg="$endpoint.properties.SmbMount.credentials">
+                    <prop type="string" name="passwordUri" arg="$endpoint.properties.SmbMount.credentials.passwordUri"/>
+                    <prop type="string" name="usernameUri" arg="$endpoint.properties.SmbMount.credentials.usernameUri"/>
+                  </prop>
+                </discriminator>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="Endpoints_CreateOrUpdate">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageMover/storageMovers/{storageMoverName}/endpoints/{endpointName}">
+          <request method="put">
+            <path>
+              <param type="string" name="endpointName" arg="$Path.endpointName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="storageMoverName" arg="$Path.storageMoverName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-07-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="@Endpoint_read"/>
               </json>
             </body>
           </response>
