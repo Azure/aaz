@@ -2,7 +2,7 @@
 <CodeGen plane="mgmt-plane">
   <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.mobilenetwork/simgroups/{}/uploadsims" version="2022-11-01" swagger="mgmt-plane/mobilenetwork/ResourceProviders/Microsoft.MobileNetwork/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTW9iaWxlTmV0d29yay9zaW1Hcm91cHMve3NpbUdyb3VwTmFtZX0vdXBsb2FkU2ltcw==/V/MjAyMi0xMS0wMQ=="/>
   <commandGroup name="mobile-network sim group">
-    <command name="upload-sim" version="2022-11-01" confirmation="">
+    <command name="bulk-upload-sims" version="2022-11-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.mobilenetwork/simgroups/{}/uploadsims" version="2022-11-01" swagger="mgmt-plane/mobilenetwork/ResourceProviders/Microsoft.MobileNetwork/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTW9iaWxlTmV0d29yay9zaW1Hcm91cHMve3NpbUdyb3VwTmFtZX0vdXBsb2FkU2ltcw==/V/MjAyMi0xMS0wMQ=="/>
       <argGroup name="">
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
@@ -26,11 +26,11 @@
             <arg type="string" var="$parameters.sims[].properties.deviceType" options="device-type" group="Properties">
               <help short="An optional free-form text field that can be used to record the device type this SIM is associated with, for example 'Video camera'. The Azure portal allows SIMs to be grouped and filtered based on this value."/>
             </arg>
-            <arg type="string" var="$parameters.sims[].properties.integratedCircuitCardIdentifier" options="integrated-circuit-card-identifier" group="Properties">
+            <arg type="string" var="$parameters.sims[].properties.integratedCircuitCardIdentifier" options="icc-id" group="Properties">
               <help short="The integrated circuit card ID (ICCID) for the SIM."/>
               <format pattern="^[0-9]{10,20}$"/>
             </arg>
-            <arg type="string" var="$parameters.sims[].properties.internationalMobileSubscriberIdentity" options="international-mobile-subscriber-identity" required="True" group="Properties">
+            <arg type="string" var="$parameters.sims[].properties.internationalMobileSubscriberIdentity" options="international-msi" required="True" group="Properties">
               <help short="The international mobile subscriber identity (IMSI) for the SIM."/>
               <format pattern="^[0-9]{5,15}$"/>
             </arg>
@@ -75,7 +75,7 @@
           </item>
         </arg>
       </argGroup>
-      <operation operationId="Sim_BulkUpload">
+      <operation operationId="Sims_BulkUpload">
         <longRunning finalStateVia="location"/>
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.MobileNetwork/simGroups/{simGroupName}/uploadSims">
           <request method="post">
@@ -103,7 +103,7 @@
                     <item type="object">
                       <prop type="string" name="name" arg="$parameters.sims[].name" required="True"/>
                       <prop type="object" name="properties" required="True" clientFlatten="True">
-                        <prop type="string" name="authenticationKey" arg="$parameters.sims[].properties.authenticationKey">
+                        <prop type="string" name="authenticationKey" arg="$parameters.sims[].properties.authenticationKey" secret="True">
                           <format pattern="^[0-9a-fA-F]{32}$"/>
                         </prop>
                         <prop type="string" name="deviceType" arg="$parameters.sims[].properties.deviceType"/>
@@ -113,7 +113,7 @@
                         <prop type="string" name="internationalMobileSubscriberIdentity" arg="$parameters.sims[].properties.internationalMobileSubscriberIdentity" required="True">
                           <format pattern="^[0-9]{5,15}$"/>
                         </prop>
-                        <prop type="string" name="operatorKeyCode" arg="$parameters.sims[].properties.operatorKeyCode">
+                        <prop type="string" name="operatorKeyCode" arg="$parameters.sims[].properties.operatorKeyCode" secret="True">
                           <format pattern="^[0-9a-fA-F]{32}$"/>
                         </prop>
                         <prop type="object" name="simPolicy" arg="$parameters.sims[].properties.simPolicy">
