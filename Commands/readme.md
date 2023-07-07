@@ -5,6 +5,9 @@
 - [alerts-management](/Commands/alerts-management/readme.md)
 : Manage Azure Alerts Management Service Resource.
 
+- [amlfs](/Commands/amlfs/readme.md)
+: Manage lustre file system
+
 - [automanage](/Commands/automanage/readme.md)
 : Manage Automanage
 
