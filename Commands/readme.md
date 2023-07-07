@@ -21,7 +21,7 @@
 : Deploy and manage Azure confidential ledgers.
 
 - [connectedmachine](/Commands/connectedmachine/readme.md)
-: Manage a connectedmachine
+: Manage an Azure Arc-Enabled Server.
 
 - [databricks](/Commands/databricks/readme.md)
 : Manage databricks workspaces.

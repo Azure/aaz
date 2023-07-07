@@ -1,6 +1,6 @@
 # [Command] _connectedmachine install-patches_
 
-The operation to install patches on a hybrid machine identity in Azure.
+Install patches on an Azure Arc-Enabled Server.
 
 ## Versions
 
@@ -10,7 +10,7 @@ The operation to install patches on a hybrid machine identity in Azure.
 
 #### examples
 
-- Example for Install-Patches
+- Sample command for install-patches
     ```bash
-        connectedmachine install-patches -g MyResourceGroup -n MyVm --maximum-duration PT4H --reboot-setting IfRequired --classifications-to-include-win Critical Security --exclude-kbs-requiring-reboot true
+        connectedmachine install-patches --resource-group MyResourceGroup --name MyMachine --maximum-duration PT4H --reboot-setting IfRequired --classifications-to-include-win Critical Security --exclude-kbs-requiring-reboot true
     ```

@@ -1,6 +1,11 @@
 # [Group] _connectedmachine extension_
 
-Manage a machine extension with connectedmachine
+Manage a VM extension on an Azure Arc-Enabled Server.
+
+## Subgroups
+
+- [image](/Commands/connectedmachine/extension/image/readme.md)
+: Manage VM extension images available for Azure Arc-Enabled Servers.
 
 ## Commands
 
@@ -11,10 +16,10 @@ Manage a machine extension with connectedmachine
 : The operation to delete the extension.
 
 - [list](/Commands/connectedmachine/extension/_list.md)
-: List operation to get all extensions of a non-Azure machine.
+: The operation to get all extensions of a Non-Azure machine.
 
 - [show](/Commands/connectedmachine/extension/_show.md)
-: The operation to get the extension.
+: The operation to create or update the extension.
 
 - [update](/Commands/connectedmachine/extension/_update.md)
-: The operation to create or update the extension
+: Update operation to create or update the extension.

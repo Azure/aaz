@@ -1,6 +1,6 @@
 # [Command] _connectedmachine assess-patches_
 
-The operation to assess patches on a hybrid machine identity in Azure.
+Assess patches on an Azure Arc-Enabled Server.
 
 ## Versions
 
@@ -10,7 +10,7 @@ The operation to assess patches on a hybrid machine identity in Azure.
 
 #### examples
 
-- Example for assess-patches
+- Sample command for access-patches
     ```bash
-        connectedmachine assess-patches -g MyResourceGroup -n MyVm
+        connectedmachine machine assess-patches --resource-group MyResourceGroup --name MyMachine
     ```

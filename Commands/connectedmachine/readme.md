@@ -1,11 +1,11 @@
 # [Group] _connectedmachine_
 
-Manage a connectedmachine
+Manage an Azure Arc-Enabled Server.
 
 ## Subgroups
 
 - [extension](/Commands/connectedmachine/extension/readme.md)
-: Manage a machine extension with connectedmachine
+: Manage a VM extension on an Azure Arc-Enabled Server.
 
 - [extensionimage](/Commands/connectedmachine/extensionimage/readme.md)
 : Manage a extension image with connectedmachine
@@ -22,13 +22,13 @@ Manage a connectedmachine
 ## Commands
 
 - [assess-patches](/Commands/connectedmachine/_assess-patches.md)
-: The operation to assess patches on a hybrid machine identity in Azure.
+: Assess patches on an Azure Arc-Enabled Server.
 
 - [install-patches](/Commands/connectedmachine/_install-patches.md)
-: The operation to install patches on a hybrid machine identity in Azure.
+: Install patches on an Azure Arc-Enabled Server.
 
 - [list](/Commands/connectedmachine/_list.md)
-: List all the hybrid machines in the specified subscription. Use the nextLink property in the response to get the next page of hybrid machines.And Lists all the hybrid machines in the specified subscription. Use the nextLink property in the response to get the next page of hybrid machines.
+: List all the Azure Arc-Enabled Servers in the specified resource group.
 
 - [upgrade-extension](/Commands/connectedmachine/_upgrade-extension.md)
 : The operation to Upgrade Machine Extensions.
