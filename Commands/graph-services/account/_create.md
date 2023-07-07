@@ -1,6 +1,6 @@
 # [Command] _graph-services account create_
 
-Create account resource.
+Create account resource. Enables billing for the provided application.
 
 ## Versions
 

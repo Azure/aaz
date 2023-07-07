@@ -1,6 +1,6 @@
 # [Command] _graph-services account show_
 
-Get account resource for a given name.
+Get an account resource given its name.
 
 ## Versions
 

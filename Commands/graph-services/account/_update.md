@@ -1,6 +1,6 @@
 # [Command] _graph-services account update_
 
-Update account resource.
+Update an account resource.
 
 The only supported updated on a resource is the tags property
 

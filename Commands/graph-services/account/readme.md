@@ -5,16 +5,16 @@ Make operations on Microsoft.GraphServices/Accounts
 ## Commands
 
 - [create](/Commands/graph-services/account/_create.md)
-: Create account resource.
+: Create account resource. Enables billing for the provided application.
 
 - [delete](/Commands/graph-services/account/_delete.md)
-: Delete a account resource.
+: Delete an account resource. Disables billing on the associated application.
 
 - [list](/Commands/graph-services/account/_list.md)
-: List list of accounts belonging to a subscription.
+: List of accounts belonging to a subscription.
 
 - [show](/Commands/graph-services/account/_show.md)
-: Get account resource for a given name.
+: Get an account resource given its name.
 
 - [update](/Commands/graph-services/account/_update.md)
-: Update account resource.
+: Update an account resource.

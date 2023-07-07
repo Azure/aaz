@@ -1,6 +1,6 @@
 # [Command] _graph-services account list_
 
-List list of accounts belonging to a subscription.
+List of accounts belonging to a subscription.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _graph-services account delete_
 
-Delete a account resource.
+Delete an account resource. Disables billing on the associated application.
 
 ## Versions
 
