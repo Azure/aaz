@@ -16,5 +16,5 @@ Create a tag rule set for a given monitor resource.
 
 - Create monitor tag-rule
     ```bash
-        elastic monitor tag-rule create -n default -g rg --monitor-name monitor --log-rules {filteringTags:[{name:Environment,value:Prod,action:Include}]}
+        elastic monitor tag-rule create -n default -g rg --monitor-name monitor --log-rules "{filteringTags:[{name:Environment,value:Prod,action:Include}]}"
     ```
