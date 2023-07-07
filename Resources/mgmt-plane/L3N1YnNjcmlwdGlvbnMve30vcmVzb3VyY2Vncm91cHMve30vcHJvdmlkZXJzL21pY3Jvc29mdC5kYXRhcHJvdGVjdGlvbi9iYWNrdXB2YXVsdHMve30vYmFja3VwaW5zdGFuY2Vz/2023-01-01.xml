@@ -1,12 +1,16 @@
 <?xml version='1.0' encoding='utf-8'?>
 <CodeGen plane="mgmt-plane">
-  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backupinstances" version="2022-12-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9L2JhY2t1cEluc3RhbmNlcw==/V/MjAyMi0xMi0wMQ=="/>
-  <commandGroup name="data-protection backup-instance">
-    <command name="list" version="2022-12-01" confirmation="">
-      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backupinstances" version="2022-12-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9L2JhY2t1cEluc3RhbmNlcw==/V/MjAyMi0xMi0wMQ=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backupinstances" version="2023-01-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9L2JhY2t1cEluc3RhbmNlcw==/V/MjAyMy0wMS0wMQ=="/>
+  <commandGroup name="dataprotection backup-instance">
+    <command name="list" version="2023-01-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backupinstances" version="2023-01-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9L2JhY2t1cEluc3RhbmNlcw==/V/MjAyMy0wMS0wMQ=="/>
       <argGroup name="">
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
+          <help short="Name of resource group. You can configure the default group using `az configure --defaults group=<name>`."/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
+          <help short="Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`."/>
+        </arg>
         <arg type="string" var="$Path.vaultName" options="vault-name" required="True" idPart="name">
           <help short="The name of the backup vault."/>
         </arg>
@@ -23,7 +27,7 @@
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="&quot;2022-12-01&quot;"/>
+                <default value="&quot;2023-01-01&quot;"/>
                 <format minLength="1"/>
               </const>
             </query>
@@ -96,6 +100,40 @@
                         <prop type="object" name="policyInfo" required="True">
                           <prop type="string" name="policyId" required="True"/>
                           <prop type="object" name="policyParameters">
+                            <prop type="array<object>" name="backupDatasourceParametersList">
+                              <item type="object">
+                                <prop type="string" name="objectType" required="True">
+                                  <enum>
+                                    <item value="&quot;BlobBackupDatasourceParameters&quot;"/>
+                                    <item value="&quot;KubernetesClusterBackupDatasourceParameters&quot;"/>
+                                  </enum>
+                                </prop>
+                                <discriminator property="objectType" value="BlobBackupDatasourceParameters">
+                                  <prop type="array<string>" name="containersList" required="True">
+                                    <item type="string"/>
+                                  </prop>
+                                </discriminator>
+                                <discriminator property="objectType" value="KubernetesClusterBackupDatasourceParameters">
+                                  <prop type="array<string>" name="excludedNamespaces">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="array<string>" name="excludedResourceTypes">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="boolean" name="includeClusterScopeResources" required="True"/>
+                                  <prop type="array<string>" name="includedNamespaces">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="array<string>" name="includedResourceTypes">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="array<string>" name="labelSelectors">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="boolean" name="snapshotVolumes" required="True"/>
+                                </discriminator>
+                              </item>
+                            </prop>
                             <prop type="array<object>" name="dataStoreParametersList">
                               <item type="object">
                                 <prop type="string" name="dataStoreType" required="True">
