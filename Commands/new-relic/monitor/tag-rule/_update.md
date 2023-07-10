@@ -12,5 +12,5 @@ Update a TagRule
 
 - Update a TagRule.
     ```bash
-        new-relic monitor tag-rule update --resource-group MyResourceGroup --monitor-name MyNewRelicMonitor --name default --log-rules {"send-aad-logs":"Enabled","send-subscription-logs":"Enabled","send-activity-logs":"Disabled","filtering-tags":[]}
+        new-relic monitor tag-rule update --resource-group MyResourceGroup --monitor-name MyNewRelicMonitor --name default --log-rules send-aad-logs="Enabled" send-subscription-logs="Enabled" send-activity-logs="Disabled" filtering-tags=[]
     ```

@@ -12,5 +12,5 @@ Create a TagRule
 
 - Create a TagRule.
     ```bash
-        new-relic monitor tag-rule create --resource-group MyResourceGroup --monitor-name MyNewRelicMonitor --name default --log-rules {"send-aad-logs":"Enabled","send-subscription-logs":"Enabled","send-activity-logs":"Enabled","filtering-tags":[]} --metric-rules {"user-email":"UserEmail@123.com","filtering-tags":[{"name":"Environment","value":"Prod","action":"Include"}]}
+        new-relic monitor tag-rule create --resource-group MyResourceGroup --monitor-name MyNewRelicMonitor --name default --log-rules send-aad-logs="Enabled" send-subscription-logs="Enabled" send-activity-logs="Enabled" filtering-tags=[] --metric-rules user-email="UserEmail@123.com" filtering-tags=[{"name":"Environment","value":"Prod","action":"Include"}]
     ```
