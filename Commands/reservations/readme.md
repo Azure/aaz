@@ -28,3 +28,7 @@ Azure Reservations
 
 - [list](/Commands/reservations/_list.md)
 : List the reservations that the user has access to in the current tenant.
+
+
+max-i
+next-token

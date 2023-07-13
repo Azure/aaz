@@ -12,5 +12,5 @@ This API is used to check the uniqueness of a resource name used for a diagnosti
 
 - Check Diagnostic Resource Uniqueness
     ```bash
-        self-help check-name-availability --scope subscriptions/{subId} --name {diagnostic-name} --type 'Microsoft.Help/diagnostics'
+        self-help check-name-availability --scope subscriptionId/{subId} --name {diagnostic-name} --type 'Microsoft.Help/diagnostics'
     ```
