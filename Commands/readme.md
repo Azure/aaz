@@ -14,6 +14,9 @@
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
+- [connectedmachine](/Commands/connectedmachine/readme.md)
+: Manage an Azure Arc-Enabled Server.
+
 - [databricks](/Commands/databricks/readme.md)
 : Manage databricks workspaces.
 
