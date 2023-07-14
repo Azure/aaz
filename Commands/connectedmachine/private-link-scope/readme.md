@@ -16,11 +16,5 @@ Manage a private-link-scope with connectedmachine.
 - [show](/Commands/connectedmachine/private-link-scope/_show.md)
 : Get a Azure Arc PrivateLinkScope.
 
-- [show-validation-detail](/Commands/connectedmachine/private-link-scope/_show-validation-detail.md)
-: Get a Azure Arc PrivateLinkScope's validation details.
-
-- [show-validation-detail-for-machine](/Commands/connectedmachine/private-link-scope/_show-validation-detail-for-machine.md)
-: Get a Azure Arc PrivateLinkScope's validation details for a given machine.
-
 - [update](/Commands/connectedmachine/private-link-scope/_update.md)
 : Update a Azure Arc PrivateLinkScope. Note: You cannot specify a different value for InstrumentationKey nor AppId in the Put operation.
