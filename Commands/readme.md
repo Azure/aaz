@@ -2,6 +2,9 @@
 
 ## Groups
 
+- [alerts-management](/Commands/alerts-management/readme.md)
+: Manage Azure Alerts Management Service Resource.
+
 - [automanage](/Commands/automanage/readme.md)
 : Manage Automanage
 
@@ -14,11 +17,23 @@
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
+- [confidentialledger](/Commands/confidentialledger/readme.md)
+: Deploy and manage Azure confidential ledgers.
+
+- [connectedmachine](/Commands/connectedmachine/readme.md)
+: Manage an Azure Arc-Enabled Server.
+
 - [databricks](/Commands/databricks/readme.md)
 : Manage databricks workspaces.
 
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage Data Protection.
+
+- [devcenter](/Commands/devcenter/readme.md)
+: Manage resources with devcenter
+
+- [disk-access](/Commands/disk-access/readme.md)
+: Manage disk access resources.
 
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
@@ -29,8 +44,14 @@
 - [elastic-san](/Commands/elastic-san/readme.md)
 : Manage Elastic SAN.
 
+- [eventhubs](/Commands/eventhubs/readme.md)
+: NamespaceV2
+
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
+
+- [load](/Commands/load/readme.md)
+: Manage Azure Load Testing resources.
 
 - [mobile-network](/Commands/mobile-network/readme.md)
 : Manage mobile network
@@ -59,17 +80,26 @@
 - [restore-point](/Commands/restore-point/readme.md)
 : Manage restore point with res.
 
+- [self-help](/Commands/self-help/readme.md)
+: Azure SelfHelp will help you troubleshoot issues with Azure resources.
+
 - [sentinel](/Commands/sentinel/readme.md)
 : Manage Microsoft Sentinel.
 
 - [service-networking](/Commands/service-networking/readme.md)
 : Manage Service Networking Resources
 
+- [servicebus](/Commands/servicebus/readme.md)
+: servicebus
+
 - [sig](/Commands/sig/readme.md)
 : Manage shared image gallery.
 
 - [sql](/Commands/sql/readme.md)
 : Manage Azure SQL Databases and Data Warehouses.
+
+- [stack-hci](/Commands/stack-hci/readme.md)
+: Manage Azure Stack HCI.
 
 - [storage-mover](/Commands/storage-mover/readme.md)
 : Manage top-level Storage Mover resource.
@@ -79,3 +109,9 @@
 
 - [vmss](/Commands/vmss/readme.md)
 : Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS).
+
+- [voice-service](/Commands/voice-service/readme.md)
+: Manage voice services
+
+- [workloads](/Commands/workloads/readme.md)
+: Manage workloads

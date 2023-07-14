@@ -1,0 +1,16 @@
+# [Command] _devcenter admin check-name-availability execute_
+
+Check the availability of name for resource
+
+## Versions
+
+### [2022-11-11-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvY2hlY2tuYW1lYXZhaWxhYmlsaXR5/2022-11-11-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.devcenter/checknameavailability 2022-11-11-preview -->
+
+#### examples
+
+- Check name availability
+    ```bash
+        devcenter admin check-name-availability execute --name "name1" --type "Microsoft.DevCenter/devcenters"
+    ```

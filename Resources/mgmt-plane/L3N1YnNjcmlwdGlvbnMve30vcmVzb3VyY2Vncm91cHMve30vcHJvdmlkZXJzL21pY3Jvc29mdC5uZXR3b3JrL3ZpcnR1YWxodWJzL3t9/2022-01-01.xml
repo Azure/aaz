@@ -7,8 +7,8 @@
       <argGroup name="">
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="string" var="$Path.virtualHubName" options="name n" required="True" idPart="name">
-          <help short="The name of the Route Server."/>
+        <arg type="string" var="$Path.virtualHubName" options="name n" required="True" group="" idPart="name">
+          <help short="Name of the route server."/>
         </arg>
       </argGroup>
       <operation operationId="VirtualHubs_Get">
@@ -167,8 +167,8 @@
       <argGroup name="">
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="string" var="$Path.virtualHubName" options="name n" required="True" idPart="name">
-          <help short="The name of the Route Server."/>
+        <arg type="string" var="$Path.virtualHubName" options="name n" required="True" group="" idPart="name">
+          <help short="Name of the route server."/>
         </arg>
       </argGroup>
       <operation operationId="VirtualHubs_Delete">
@@ -204,14 +204,22 @@
       <argGroup name="">
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="string" var="$Path.virtualHubName" options="name n" required="True" idPart="name">
-          <help short="The name of the Route Server."/>
+        <arg type="string" var="$Path.virtualHubName" options="name n" required="True" group="" idPart="name">
+          <help short="Name of the route server."/>
         </arg>
         <arg type="ResourceLocation" var="$virtualHubParameters.location" options="location l" required="True" group="">
           <help short="Location. Values from: `az account list-locations`. You can configure the default location using `az configure --defaults location=<location>`."/>
         </arg>
+        <arg type="string" var="$virtualHubParameters.properties.hubRoutingPreference" options="hub-routing-preference" group="">
+          <help short="Routing preference of the route server."/>
+          <enum>
+            <item name="ASPath" value="&quot;ASPath&quot;"/>
+            <item name="ExpressRoute" value="&quot;ExpressRoute&quot;"/>
+            <item name="VpnGateway" value="&quot;VpnGateway&quot;"/>
+          </enum>
+        </arg>
         <arg type="string" var="$virtualHubParameters.properties.sku" options="sku" group="">
-          <help short="The sku of this VirtualHub."/>
+          <help short="SKU of the route server."/>
         </arg>
         <arg type="object" var="$virtualHubParameters.tags" options="tags" group="">
           <help short="Space-separated tags: key[=value] [key[=value] ...]."/>
@@ -232,14 +240,6 @@
         </arg>
         <arg type="@SubResource_create" var="$virtualHubParameters.properties.expressRouteGateway" options="express-route-gateway" hide="True" group="Properties">
           <help short="The expressRouteGateway associated with this VirtualHub."/>
-        </arg>
-        <arg type="string" var="$virtualHubParameters.properties.hubRoutingPreference" options="hub-routing-preference" hide="True" group="Properties">
-          <help short="The hubRoutingPreference of this VirtualHub."/>
-          <enum>
-            <item name="ASPath" value="&quot;ASPath&quot;"/>
-            <item name="ExpressRoute" value="&quot;ExpressRoute&quot;"/>
-            <item name="VpnGateway" value="&quot;VpnGateway&quot;"/>
-          </enum>
         </arg>
         <arg type="@SubResource_create" var="$virtualHubParameters.properties.p2SVpnGateway" options="p2-s-vpn-gateway" hide="True" group="Properties">
           <help short="The P2SVpnGateway associated with this VirtualHub."/>
@@ -585,11 +585,19 @@
       <argGroup name="">
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="string" var="$Path.virtualHubName" options="name n" required="True" idPart="name">
-          <help short="The name of the Route Server."/>
+        <arg type="string" var="$Path.virtualHubName" options="name n" required="True" group="" idPart="name">
+          <help short="Name of the route server."/>
         </arg>
         <arg nullable="True" type="boolean" var="$virtualHubParameters.properties.allowBranchToBranchTraffic" options="allow-b2b-traffic" group="">
-          <help short="Allow branch to branch traffic."/>
+          <help short="Whether to allow branch to branch traffic."/>
+        </arg>
+        <arg nullable="True" type="string" var="$virtualHubParameters.properties.hubRoutingPreference" options="hub-routing-preference" group="">
+          <help short="Routing preference of the route server."/>
+          <enum>
+            <item name="ASPath" value="&quot;ASPath&quot;"/>
+            <item name="ExpressRoute" value="&quot;ExpressRoute&quot;"/>
+            <item name="VpnGateway" value="&quot;VpnGateway&quot;"/>
+          </enum>
         </arg>
         <arg nullable="True" type="object" var="$virtualHubParameters.tags" options="tags" group="">
           <help short="Space-separated tags: key[=value] [key[=value] ...]."/>
@@ -607,14 +615,6 @@
         </arg>
         <arg nullable="True" type="@SubResource_update" var="$virtualHubParameters.properties.expressRouteGateway" options="express-route-gateway" hide="True" group="Properties">
           <help short="The expressRouteGateway associated with this VirtualHub."/>
-        </arg>
-        <arg nullable="True" type="string" var="$virtualHubParameters.properties.hubRoutingPreference" options="hub-routing-preference" hide="True" group="Properties">
-          <help short="The hubRoutingPreference of this VirtualHub."/>
-          <enum>
-            <item name="ASPath" value="&quot;ASPath&quot;"/>
-            <item name="ExpressRoute" value="&quot;ExpressRoute&quot;"/>
-            <item name="VpnGateway" value="&quot;VpnGateway&quot;"/>
-          </enum>
         </arg>
         <arg nullable="True" type="@SubResource_update" var="$virtualHubParameters.properties.p2SVpnGateway" options="p2-s-vpn-gateway" hide="True" group="Properties">
           <help short="The P2SVpnGateway associated with this VirtualHub."/>
@@ -870,7 +870,7 @@
         </http>
       </operation>
       <operation>
-        <instanceUpdate instance="$Instance">
+        <instanceUpdate ref="$Instance">
           <json>
             <schema type="object" name="virtualHubParameters" required="True" clientFlatten="True">
               <prop type="ResourceId" name="id" arg="$virtualHubParameters.id">
