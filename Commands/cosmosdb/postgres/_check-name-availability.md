@@ -4,6 +4,6 @@ Checks availability of a cluster name. Cluster names should be globally unique; 
 
 ## Versions
 
-### [2022-11-08](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYmZvcnBvc3RncmVzcWwvY2hlY2tuYW1lYXZhaWxhYmlsaXR5/2022-11-08.xml) **Stable**
+### [2022-11-08](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYmZvcnBvc3RncmVzcWwvY2hlY2tuYW1lYXZhaWxhYmlsaXR5/2022-11-08.xml) **Preview**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.dbforpostgresql/checknameavailability 2022-11-08 -->

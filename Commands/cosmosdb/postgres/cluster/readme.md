@@ -16,10 +16,7 @@ Manage Azure Cosmos DB for PostgreSQL clusters.
 : Delete a cluster together with servers in it.
 
 - [list](/Commands/cosmosdb/postgres/cluster/_list.md)
-: List all clusters in a subscription.
-
-- [list-by-resource-group](/Commands/cosmosdb/postgres/cluster/_list-by-resource-group.md)
-: List all clusters in a subscription.
+: List all clusters in a subscription or a resource group.
 
 - [promote](/Commands/cosmosdb/postgres/cluster/_promote.md)
 : Promotes read replica cluster to an independent read-write cluster.
