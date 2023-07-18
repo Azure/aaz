@@ -1,0 +1,36 @@
+name: Verify Metadata
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.10
+
+    - name: Install `aaz-dev`
+      run: pip install aaz-dev
+
+    - name: Verify metadata
+      run: |
+        try {
+          aaz-dev command-model verify --aaz-path $GITHUB_WORKSPACE
+        } catch (error) {
+          echo "$error"
+          echo "Please pull the latest `main` branch, and `Export` your command model again."
+          exit 1
+        }
