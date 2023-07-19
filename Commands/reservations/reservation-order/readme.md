@@ -15,12 +15,8 @@ reservations reservation-order
 - [calculate-refund](/Commands/reservations/reservation-order/_calculate-refund.md)
 : Calculate price for returning `Reservations` if there are no policy errors.
 
-
 - [change-directory](/Commands/reservations/reservation-order/_change-directory.md)
 : Change directory (tenant) of `ReservationOrder` and all `Reservation` under it to specified tenant id
-
-- [create](/Commands/reservations/reservation-order/_create.md)
-: Create `ReservationOrder` and create resource under the specified URI.
 
 - [list](/Commands/reservations/reservation-order/_list.md)
 : List of all the `ReservationOrder`s that the user has access to in the current tenant.
