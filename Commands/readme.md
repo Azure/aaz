@@ -92,6 +92,9 @@
 - [orbital](/Commands/orbital/readme.md)
 : Azure Orbital Ground Station as-a-Service (GSaaS).
 
+- [powerbi](/Commands/powerbi/readme.md)
+: Manage PowerBI resources.
+
 - [ppg](/Commands/ppg/readme.md)
 : Manage Proximity Placement Groups.
 
