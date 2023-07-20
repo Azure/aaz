@@ -1,6 +1,6 @@
 # [Group] _eventhubs namespace_
 
-eventhub namespace
+Eventhub namespace.
 
 ## Subgroups
 
@@ -8,16 +8,16 @@ eventhub namespace
 : Manages Application Groups for premium eventhubs namespace.
 
 - [authorization-rule](/Commands/eventhubs/namespace/authorization-rule/readme.md)
-: eventhub namespace authorization-rule
+: Eventhub namespace authorization-rule.
 
 - [network-rule-set](/Commands/eventhubs/namespace/network-rule-set/readme.md)
 : Manage Azure EventHubs networkruleset for namespace
 
 - [private-endpoint-connection](/Commands/eventhubs/namespace/private-endpoint-connection/readme.md)
-: eventhubs namespace private-endpoint-connection
+: Manage eventhubs namespace private endpoint connection.
 
 - [private-link-resource](/Commands/eventhubs/namespace/private-link-resource/readme.md)
-: eventhubs namespace private-link-resource
+: Manage eventhubs namespace private link resources .
 
 - [schema-registry](/Commands/eventhubs/namespace/schema-registry/readme.md)
 : Manages eventhubs namespace schema registry.
@@ -34,7 +34,7 @@ eventhub namespace
 : Check the give Namespace name availability.
 
 - [list](/Commands/eventhubs/namespace/_list.md)
-: List the available Namespaces within a resource group.
+: List all the available Namespaces within a subscription, irrespective of the resource groups.
 
 - [show](/Commands/eventhubs/namespace/_show.md)
 : Get the description of the specified namespace.

@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.eventhub/namespaces/{}/disasterrecoveryconfigs/checknameavailability" version="2023-01-01-preview" swagger="mgmt-plane/eventhub/ResourceProviders/Microsoft.EventHub/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRXZlbnRIdWIvbmFtZXNwYWNlcy97bmFtZXNwYWNlTmFtZX0vZGlzYXN0ZXJSZWNvdmVyeUNvbmZpZ3MvY2hlY2tOYW1lQXZhaWxhYmlsaXR5/V/MjAyMy0wMS0wMS1wcmV2aWV3"/>
+  <commandGroup name="eventhubs georecovery-alias">
+    <command name="exists" version="2023-01-01-preview" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.eventhub/namespaces/{}/disasterrecoveryconfigs/checknameavailability" version="2023-01-01-preview" swagger="mgmt-plane/eventhub/ResourceProviders/Microsoft.EventHub/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRXZlbnRIdWIvbmFtZXNwYWNlcy97bmFtZXNwYWNlTmFtZX0vZGlzYXN0ZXJSZWNvdmVyeUNvbmZpZ3MvY2hlY2tOYW1lQXZhaWxhYmlsaXR5/V/MjAyMy0wMS0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.namespaceName" options="namespace-name" required="True" idPart="name">
+          <help short="The Namespace name"/>
+          <format maxLength="50" minLength="6"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Parameters">
+        <arg type="string" var="$parameters.name" options="alias a" required="True" group="Parameters">
+          <help short="Name to check the namespace name availability"/>
+        </arg>
+      </argGroup>
+      <operation operationId="DisasterRecoveryConfigs_CheckNameAvailability">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.EventHub/namespaces/{namespaceName}/disasterRecoveryConfigs/checkNameAvailability">
+          <request method="post">
+            <path>
+              <param type="string" name="namespaceName" arg="$Path.namespaceName" required="True">
+                <format maxLength="50" minLength="6"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-01-01-preview&quot;"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="parameters" required="True" clientFlatten="True">
+                  <prop type="string" name="name" arg="$parameters.name" required="True"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="message"/>
+                  <prop type="boolean" name="nameAvailable"/>
+                  <prop type="string" name="reason">
+                    <enum>
+                      <item value="&quot;InvalidName&quot;"/>
+                      <item value="&quot;NameInLockdown&quot;"/>
+                      <item value="&quot;NameInUse&quot;"/>
+                      <item value="&quot;None&quot;"/>
+                      <item value="&quot;SubscriptionIsDisabled&quot;"/>
+                      <item value="&quot;TooManyNamespaceInCurrentSubscription&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

@@ -1,6 +1,6 @@
 # [Group] _eventhubs namespace private-link-resource_
 
-eventhubs namespace private-link-resource
+Manage eventhubs namespace private link resources .
 
 ## Commands
 
