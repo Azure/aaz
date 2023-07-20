@@ -13,12 +13,6 @@ Manage Azure Cosmos DB for PostgreSQL resources.
 - [firewall-rule](/Commands/cosmosdb/postgres/firewall-rule/readme.md)
 : Manage Azure Cosmos DB for PostgreSQL firewall rules.
 
-- [private-endpoint-connection](/Commands/cosmosdb/postgres/private-endpoint-connection/readme.md)
-: Manage Azure Cosmos DB for PostgreSQL private endpoint connections.
-
-- [private-link-resource](/Commands/cosmosdb/postgres/private-link-resource/readme.md)
-: Manage Azure Cosmos DB for PostgreSQL private link resources.
-
 - [role](/Commands/cosmosdb/postgres/role/readme.md)
 : Manage Azure Cosmos DB for PostgreSQL roles.
 
