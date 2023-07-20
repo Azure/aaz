@@ -18,3 +18,6 @@ Manage extension with stack hci.
 
 - [update](/Commands/stack-hci/extension/_update.md)
 : Update extension for HCI cluster.
+
+- [upgrade](/Commands/stack-hci/extension/_upgrade.md)
+: Upgrade a particular Arc Extension of HCI Cluster.

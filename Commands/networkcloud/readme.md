@@ -22,6 +22,9 @@ Manage Network Cloud resources
 - [hybridakscluster](/Commands/networkcloud/hybridakscluster/readme.md)
 : Manage additional details of Hybrid AKS provisioned cluster
 
+- [kubernetescluster](/Commands/networkcloud/kubernetescluster/readme.md)
+: Manage Kubernetes cluster
+
 - [l2network](/Commands/networkcloud/l2network/readme.md)
 : Manage layer 2 (l2) network
 

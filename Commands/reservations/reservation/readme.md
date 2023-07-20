@@ -12,9 +12,6 @@ reservations reservation
 - [archive](/Commands/reservations/reservation/_archive.md)
 : Archiving a `Reservation` which is in cancelled/expired state and move it to `Archived` state.
 
-- [available-scope](/Commands/reservations/reservation/_available-scope.md)
-: Get Available Scopes for `Reservation`.
-
 - [list](/Commands/reservations/reservation/_list.md)
 : List Reservations within a single `ReservationOrder`.
 

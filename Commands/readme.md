@@ -5,6 +5,9 @@
 - [alerts-management](/Commands/alerts-management/readme.md)
 : Manage Azure Alerts Management Service Resource.
 
+- [amlfs](/Commands/amlfs/readme.md)
+: Manage lustre file system
+
 - [automanage](/Commands/automanage/readme.md)
 : Manage Automanage
 
@@ -12,7 +15,7 @@
 : Azure billing benefits commands
 
 - [capacity](/Commands/capacity/readme.md)
-: Manage capacity resources.
+: Manage capacity.
 
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
@@ -30,7 +33,7 @@
 : Manage databricks workspaces.
 
 - [dataprotection](/Commands/dataprotection/readme.md)
-: Manage dataprotection.
+: Manage dataprotection
 
 - [devcenter](/Commands/devcenter/readme.md)
 : Manage resources with devcenter.
@@ -44,6 +47,9 @@
 - [dynatrace](/Commands/dynatrace/readme.md)
 : Manage dynatrace
 
+- [elastic](/Commands/elastic/readme.md)
+: Manage Microsoft Elastic.
+
 - [elastic-san](/Commands/elastic-san/readme.md)
 : Manage Elastic SAN.
 
@@ -53,8 +59,17 @@
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
 
+- [graph-services](/Commands/graph-services/readme.md)
+: Make operations on Microsoft.GraphServices resource types
+
+- [image](/Commands/image/readme.md)
+: Manage custom virtual machine images.
+
 - [load](/Commands/load/readme.md)
 : Manage Azure Load Testing resources.
+
+- [logic](/Commands/logic/readme.md)
+: Manage logic
 
 - [mobile-network](/Commands/mobile-network/readme.md)
 : Manage mobile network
@@ -71,11 +86,20 @@
 - [networkcloud](/Commands/networkcloud/readme.md)
 : Manage Network Cloud resources
 
+- [networkfabric](/Commands/networkfabric/readme.md)
+: Manage Azure Network Fabric Management Service API
+
+- [new-relic](/Commands/new-relic/readme.md)
+: Manage Azure NewRelic resources.
+
 - [nginx](/Commands/nginx/readme.md)
 : Manage NGINX deployment resources
 
 - [orbital](/Commands/orbital/readme.md)
 : Azure Orbital Ground Station as-a-Service (GSaaS).
+
+- [powerbi](/Commands/powerbi/readme.md)
+: Manage PowerBI resources.
 
 - [ppg](/Commands/ppg/readme.md)
 : Manage Proximity Placement Groups.
@@ -85,6 +109,9 @@
 
 - [redisenterprise](/Commands/redisenterprise/readme.md)
 : Manage the redisenterprise cache
+
+- [remote-rendering-account](/Commands/remote-rendering-account/readme.md)
+: Manage remote rendering account with mixed reality.
 
 - [reservations](/Commands/reservations/readme.md)
 : Azure Reservations
@@ -106,6 +133,9 @@
 
 - [sig](/Commands/sig/readme.md)
 : Manage shared image gallery.
+
+- [spatial-anchors-account](/Commands/spatial-anchors-account/readme.md)
+: Manage spatial anchor account with mixed reality.
 
 - [sql](/Commands/sql/readme.md)
 : Manage Azure SQL Databases and Data Warehouses.

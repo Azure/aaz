@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.network/getdnsresourcereference" version="2023-07-01-preview" swagger="mgmt-plane/dns/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk5ldHdvcmsvZ2V0RG5zUmVzb3VyY2VSZWZlcmVuY2U=/V/MjAyMy0wNy0wMS1wcmV2aWV3"/>
+  <commandGroup name="network dns">
+    <command name="list-references" version="2023-07-01-preview" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.network/getdnsresourcereference" version="2023-07-01-preview" swagger="mgmt-plane/dns/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk5ldHdvcmsvZ2V0RG5zUmVzb3VyY2VSZWZlcmVuY2U=/V/MjAyMy0wNy0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="array<object>" var="$parameters.properties.targetResources" options="target-resources" group="Properties">
+          <help short="A list of references to azure resources for which referencing dns records need to be queried."/>
+          <item type="object">
+            <arg type="string" var="$parameters.properties.targetResources[].id" options="id">
+              <help short="Resource Id."/>
+            </arg>
+          </item>
+        </arg>
+      </argGroup>
+      <operation operationId="DnsResourceReference_GetByTargetResources">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Network/getDnsResourceReference">
+          <request method="post">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-07-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="parameters" required="True" clientFlatten="True">
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="array<object>" name="targetResources" arg="$parameters.properties.targetResources">
+                      <item type="object">
+                        <prop type="string" name="id" arg="$parameters.properties.targetResources[].id"/>
+                      </item>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="array<object>" name="dnsResourceReferences">
+                      <item type="object">
+                        <prop type="array<object>" name="dnsResources">
+                          <item type="object" cls="SubResource_read">
+                            <prop type="string" name="id"/>
+                          </item>
+                        </prop>
+                        <prop type="@SubResource_read" name="targetResource"/>
+                      </item>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

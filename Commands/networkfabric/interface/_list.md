@@ -1,0 +1,16 @@
+# [Command] _networkfabric interface list_
+
+List all Network Interfaces in the provided resource group.
+
+## Versions
+
+### [2023-02-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrZGV2aWNlcy97fS9uZXR3b3JraW50ZXJmYWNlcw==/2023-02-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkdevices/{}/networkinterfaces 2023-02-01-preview -->
+
+#### examples
+
+- List the Network Interfaces for Resource Group
+    ```bash
+        networkfabric interface list -g "example-rg" --network-device-name "example-device"
+    ```
