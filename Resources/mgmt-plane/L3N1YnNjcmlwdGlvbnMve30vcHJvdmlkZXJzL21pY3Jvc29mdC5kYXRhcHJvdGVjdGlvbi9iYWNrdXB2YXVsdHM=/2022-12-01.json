@@ -58,22 +58,6 @@
                     ],
                     "conditions": [
                         {
-                            "var": "$Condition_BackupVaults_GetInResourceGroup",
-                            "operator": {
-                                "type": "and",
-                                "operators": [
-                                    {
-                                        "type": "hasValue",
-                                        "arg": "$Path.resourceGroupName"
-                                    },
-                                    {
-                                        "type": "hasValue",
-                                        "arg": "$Path.subscriptionId"
-                                    }
-                                ]
-                            }
-                        },
-                        {
                             "var": "$Condition_BackupVaults_GetInSubscription",
                             "operator": {
                                 "type": "and",
@@ -91,30 +75,36 @@
                                     }
                                 ]
                             }
+                        },
+                        {
+                            "var": "$Condition_BackupVaults_GetInResourceGroup",
+                            "operator": {
+                                "type": "and",
+                                "operators": [
+                                    {
+                                        "type": "hasValue",
+                                        "arg": "$Path.resourceGroupName"
+                                    },
+                                    {
+                                        "type": "hasValue",
+                                        "arg": "$Path.subscriptionId"
+                                    }
+                                ]
+                            }
                         }
                     ],
                     "operations": [
                         {
                             "when": [
-                                "$Condition_BackupVaults_GetInResourceGroup"
+                                "$Condition_BackupVaults_GetInSubscription"
                             ],
-                            "operationId": "BackupVaults_GetInResourceGroup",
+                            "operationId": "BackupVaults_GetInSubscription",
                             "http": {
-                                "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults",
+                                "path": "/subscriptions/{subscriptionId}/providers/Microsoft.DataProtection/backupVaults",
                                 "request": {
                                     "method": "get",
                                     "path": {
                                         "params": [
-                                            {
-                                                "type": "string",
-                                                "name": "resourceGroupName",
-                                                "arg": "$Path.resourceGroupName",
-                                                "required": true,
-                                                "format": {
-                                                    "maxLength": 90,
-                                                    "minLength": 1
-                                                }
-                                            },
                                             {
                                                 "type": "uuid",
                                                 "name": "subscriptionId",
@@ -557,15 +547,25 @@
                         },
                         {
                             "when": [
-                                "$Condition_BackupVaults_GetInSubscription"
+                                "$Condition_BackupVaults_GetInResourceGroup"
                             ],
-                            "operationId": "BackupVaults_GetInSubscription",
+                            "operationId": "BackupVaults_GetInResourceGroup",
                             "http": {
-                                "path": "/subscriptions/{subscriptionId}/providers/Microsoft.DataProtection/backupVaults",
+                                "path": "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults",
                                 "request": {
                                     "method": "get",
                                     "path": {
                                         "params": [
+                                            {
+                                                "type": "string",
+                                                "name": "resourceGroupName",
+                                                "arg": "$Path.resourceGroupName",
+                                                "required": true,
+                                                "format": {
+                                                    "maxLength": 90,
+                                                    "minLength": 1
+                                                }
+                                            },
                                             {
                                                 "type": "uuid",
                                                 "name": "subscriptionId",
