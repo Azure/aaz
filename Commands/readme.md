@@ -101,6 +101,9 @@
 - [ppg](/Commands/ppg/readme.md)
 : Manage Proximity Placement Groups.
 
+- [qumulo](/Commands/qumulo/readme.md)
+: Manage qumulo
+
 - [redisenterprise](/Commands/redisenterprise/readme.md)
 : Manage the redisenterprise cache
 
