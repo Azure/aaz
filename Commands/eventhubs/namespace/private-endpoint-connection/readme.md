@@ -1,6 +1,6 @@
 # [Group] _eventhubs namespace private-endpoint-connection_
 
-eventhubs namespace private-endpoint-connection
+Manage eventhubs namespace private endpoint connection.
 
 ## Commands
 
