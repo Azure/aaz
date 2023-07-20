@@ -56,6 +56,9 @@
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
 
+- [graph-services](/Commands/graph-services/readme.md)
+: Make operations on Microsoft.GraphServices resource types
+
 - [image](/Commands/image/readme.md)
 : Manage custom virtual machine images.
 
