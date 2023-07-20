@@ -4,6 +4,11 @@ Manage public IP addresses.
 
 To learn more about public IP addresses visit https://docs.microsoft.com/azure/virtual-network/virtual-network-public-ip-address.
 
+## Subgroups
+
+- [prefix](/Commands/network/public-ip/prefix/readme.md)
+: Manage public IP prefix resources.
+
 ## Commands
 
 - [create](/Commands/network/public-ip/_create.md)

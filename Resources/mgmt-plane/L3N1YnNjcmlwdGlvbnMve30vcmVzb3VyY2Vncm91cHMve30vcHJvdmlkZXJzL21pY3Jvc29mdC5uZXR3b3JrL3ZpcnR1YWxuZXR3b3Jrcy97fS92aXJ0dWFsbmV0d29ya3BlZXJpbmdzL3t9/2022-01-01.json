@@ -272,18 +272,15 @@
                                                                     "name": "remoteVirtualNetworkAddressSpace"
                                                                 },
                                                                 {
-                                                                    "readOnly": true,
                                                                     "type": "object",
                                                                     "name": "remoteVirtualNetworkEncryption",
                                                                     "props": [
                                                                         {
-                                                                            "readOnly": true,
                                                                             "type": "boolean",
                                                                             "name": "enabled",
                                                                             "required": true
                                                                         },
                                                                         {
-                                                                            "readOnly": true,
                                                                             "type": "string",
                                                                             "name": "enforcement",
                                                                             "enum": {
@@ -486,7 +483,7 @@
                             }
                         }
                     ],
-                    "confirmation": "Are you sure you want to perform this operation?"
+                    "confirmation": ""
                 },
                 {
                     "name": "create",
@@ -550,10 +547,11 @@
                                     "type": "string",
                                     "var": "$Query.syncRemoteAddressSpace",
                                     "options": [
-                                        "sync-remote-address-space"
+                                        "sync-remote"
                                     ],
+                                    "group": "",
                                     "help": {
-                                        "short": "Parameter indicates the intention to sync the peering with the current address space on the remote vNet after it's updated."
+                                        "short": "Indicate the intention to sync the peering with the current address space on the remote VNet after it's updated."
                                     },
                                     "enum": {
                                         "items": [
@@ -563,21 +561,19 @@
                                             }
                                         ]
                                     }
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Properties",
-                            "args": [
+                                },
                                 {
                                     "type": "boolean",
                                     "var": "$VirtualNetworkPeeringParameters.properties.allowForwardedTraffic",
                                     "options": [
                                         "allow-forwarded-traffic"
                                     ],
-                                    "group": "Properties",
+                                    "group": "",
                                     "help": {
                                         "short": "Whether the forwarded traffic from the VMs in the local virtual network will be allowed/disallowed in remote virtual network."
+                                    },
+                                    "default": {
+                                        "value": false
                                     }
                                 },
                                 {
@@ -586,28 +582,65 @@
                                     "options": [
                                         "allow-gateway-transit"
                                     ],
-                                    "group": "Properties",
+                                    "group": "",
                                     "help": {
                                         "short": "If gateway links can be used in remote virtual networking to link to this virtual network."
+                                    },
+                                    "default": {
+                                        "value": false
                                     }
                                 },
                                 {
                                     "type": "boolean",
                                     "var": "$VirtualNetworkPeeringParameters.properties.allowVirtualNetworkAccess",
                                     "options": [
-                                        "allow-virtual-network-access"
+                                        "allow-vnet-access"
                                     ],
-                                    "group": "Properties",
+                                    "group": "",
                                     "help": {
                                         "short": "Whether the VMs in the local virtual network space would be able to access the VMs in remote virtual network space."
+                                    },
+                                    "default": {
+                                        "value": false
                                     }
                                 },
+                                {
+                                    "type": "string",
+                                    "var": "$VirtualNetworkPeeringParameters.properties.remoteVirtualNetwork.id",
+                                    "options": [
+                                        "remote-vnet"
+                                    ],
+                                    "group": "",
+                                    "help": {
+                                        "short": "Name or ID of the remote VNet."
+                                    }
+                                },
+                                {
+                                    "type": "boolean",
+                                    "var": "$VirtualNetworkPeeringParameters.properties.useRemoteGateways",
+                                    "options": [
+                                        "use-remote-gateways"
+                                    ],
+                                    "group": "",
+                                    "help": {
+                                        "short": "Allows VNet to use the remote VNet's gateway. Remote VNet gateway must have --allow-gateway-transit enabled for remote peering. Only 1 peering can have this flag enabled. Cannot be set if the VNet already has a gateway."
+                                    },
+                                    "default": {
+                                        "value": false
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Properties",
+                            "args": [
                                 {
                                     "type": "boolean",
                                     "var": "$VirtualNetworkPeeringParameters.properties.doNotVerifyRemoteGateways",
                                     "options": [
                                         "do-not-verify-remote-gateways"
                                     ],
+                                    "hide": true,
                                     "group": "Properties",
                                     "help": {
                                         "short": "If we need to verify the provisioning state of the remote gateway."
@@ -619,6 +652,7 @@
                                     "options": [
                                         "peering-state"
                                     ],
+                                    "hide": true,
                                     "group": "Properties",
                                     "help": {
                                         "short": "The status of the virtual network peering."
@@ -646,6 +680,7 @@
                                     "options": [
                                         "peering-sync-level"
                                     ],
+                                    "hide": true,
                                     "group": "Properties",
                                     "help": {
                                         "short": "The peering sync status of the virtual network peering."
@@ -677,6 +712,7 @@
                                     "options": [
                                         "remote-address-space"
                                     ],
+                                    "hide": true,
                                     "group": "Properties",
                                     "help": {
                                         "short": "The reference to the address space peered with the remote virtual network."
@@ -704,6 +740,7 @@
                                     "options": [
                                         "remote-bgp-communities"
                                     ],
+                                    "hide": true,
                                     "group": "Properties",
                                     "help": {
                                         "short": "The reference to the remote virtual network's Bgp Communities."
@@ -723,48 +760,15 @@
                                     ]
                                 },
                                 {
-                                    "type": "object",
-                                    "var": "$VirtualNetworkPeeringParameters.properties.remoteVirtualNetwork",
-                                    "options": [
-                                        "remote-virtual-network"
-                                    ],
-                                    "group": "Properties",
-                                    "help": {
-                                        "short": "The reference to the remote virtual network. The remote virtual network can be in the same or different region (preview). See here to register for the preview and learn more (https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-create-peering)."
-                                    },
-                                    "args": [
-                                        {
-                                            "type": "string",
-                                            "var": "$VirtualNetworkPeeringParameters.properties.remoteVirtualNetwork.id",
-                                            "options": [
-                                                "id"
-                                            ],
-                                            "help": {
-                                                "short": "Resource ID."
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
                                     "type": "@AddressSpace_create",
                                     "var": "$VirtualNetworkPeeringParameters.properties.remoteVirtualNetworkAddressSpace",
                                     "options": [
                                         "remote-virtual-network-address-space"
                                     ],
+                                    "hide": true,
                                     "group": "Properties",
                                     "help": {
                                         "short": "The reference to the current address space of the remote virtual network."
-                                    }
-                                },
-                                {
-                                    "type": "boolean",
-                                    "var": "$VirtualNetworkPeeringParameters.properties.useRemoteGateways",
-                                    "options": [
-                                        "use-remote-gateways"
-                                    ],
-                                    "group": "Properties",
-                                    "help": {
-                                        "short": "If remote gateways can be used on this virtual network. If the flag is set to true, and allowGatewayTransit on remote peering is also true, virtual network will use gateways of remote virtual network for transit. Only one peering can have this flag set to true. This flag cannot be set if virtual network already has a gateway."
                                     }
                                 }
                             ]
@@ -793,6 +797,7 @@
                                     "options": [
                                         "type"
                                     ],
+                                    "hide": true,
                                     "group": "VirtualNetworkPeeringParameters",
                                     "help": {
                                         "short": "Resource type."
@@ -982,7 +987,6 @@
                                                             {
                                                                 "type": "object",
                                                                 "name": "remoteVirtualNetwork",
-                                                                "arg": "$VirtualNetworkPeeringParameters.properties.remoteVirtualNetwork",
                                                                 "props": [
                                                                     {
                                                                         "type": "string",
@@ -1166,18 +1170,15 @@
                                                                     "name": "remoteVirtualNetworkAddressSpace"
                                                                 },
                                                                 {
-                                                                    "readOnly": true,
                                                                     "type": "object",
                                                                     "name": "remoteVirtualNetworkEncryption",
                                                                     "props": [
                                                                         {
-                                                                            "readOnly": true,
                                                                             "type": "boolean",
                                                                             "name": "enabled",
                                                                             "required": true
                                                                         },
                                                                         {
-                                                                            "readOnly": true,
                                                                             "type": "string",
                                                                             "name": "enforcement",
                                                                             "enum": {
@@ -1300,6 +1301,8 @@
                                     "options": [
                                         "sync-remote-address-space"
                                     ],
+                                    "hide": true,
+                                    "group": "",
                                     "help": {
                                         "short": "Parameter indicates the intention to sync the peering with the current address space on the remote vNet after it's updated."
                                     },
@@ -1311,12 +1314,7 @@
                                             }
                                         ]
                                     }
-                                }
-                            ]
-                        },
-                        {
-                            "name": "Properties",
-                            "args": [
+                                },
                                 {
                                     "nullable": true,
                                     "type": "boolean",
@@ -1324,9 +1322,10 @@
                                     "options": [
                                         "allow-forwarded-traffic"
                                     ],
-                                    "group": "Properties",
+                                    "hide": true,
+                                    "group": "",
                                     "help": {
-                                        "short": "Whether the forwarded traffic from the VMs in the local virtual network will be allowed/disallowed in remote virtual network."
+                                        "short": "Allows forwarded traffic from the local VNet to the remote VNet."
                                     }
                                 },
                                 {
@@ -1336,9 +1335,10 @@
                                     "options": [
                                         "allow-gateway-transit"
                                     ],
-                                    "group": "Properties",
+                                    "hide": true,
+                                    "group": "",
                                     "help": {
-                                        "short": "If gateway links can be used in remote virtual networking to link to this virtual network."
+                                        "short": "Allows gateway link to be used in the remote VNet."
                                     }
                                 },
                                 {
@@ -1346,13 +1346,45 @@
                                     "type": "boolean",
                                     "var": "$VirtualNetworkPeeringParameters.properties.allowVirtualNetworkAccess",
                                     "options": [
-                                        "allow-virtual-network-access"
+                                        "allow-vnet-access"
                                     ],
-                                    "group": "Properties",
+                                    "hide": true,
+                                    "group": "",
                                     "help": {
-                                        "short": "Whether the VMs in the local virtual network space would be able to access the VMs in remote virtual network space."
+                                        "short": "Allows access from the local VNet to the remote VNet."
                                     }
                                 },
+                                {
+                                    "nullable": true,
+                                    "type": "string",
+                                    "var": "$VirtualNetworkPeeringParameters.properties.remoteVirtualNetwork.id",
+                                    "options": [
+                                        "remote-vnet"
+                                    ],
+                                    "hide": true,
+                                    "group": "",
+                                    "help": {
+                                        "short": "Name or ID of the remote VNet."
+                                    }
+                                },
+                                {
+                                    "nullable": true,
+                                    "type": "boolean",
+                                    "var": "$VirtualNetworkPeeringParameters.properties.useRemoteGateways",
+                                    "options": [
+                                        "use-remote-gateways"
+                                    ],
+                                    "hide": true,
+                                    "group": "",
+                                    "help": {
+                                        "short": "Allows VNet to use the remote VNet's gateway. Remote VNet gateway must have --allow-gateway-transit enabled for remote peering. Only 1 peering can have this flag enabled. Cannot be set if the VNet already has a gateway."
+                                    }
+                                }
+                            ]
+                        },
+                        {
+                            "name": "Properties",
+                            "args": [
                                 {
                                     "nullable": true,
                                     "type": "boolean",
@@ -1360,6 +1392,7 @@
                                     "options": [
                                         "do-not-verify-remote-gateways"
                                     ],
+                                    "hide": true,
                                     "group": "Properties",
                                     "help": {
                                         "short": "If we need to verify the provisioning state of the remote gateway."
@@ -1372,6 +1405,7 @@
                                     "options": [
                                         "peering-state"
                                     ],
+                                    "hide": true,
                                     "group": "Properties",
                                     "help": {
                                         "short": "The status of the virtual network peering."
@@ -1400,6 +1434,7 @@
                                     "options": [
                                         "peering-sync-level"
                                     ],
+                                    "hide": true,
                                     "group": "Properties",
                                     "help": {
                                         "short": "The peering sync status of the virtual network peering."
@@ -1432,6 +1467,7 @@
                                     "options": [
                                         "remote-address-space"
                                     ],
+                                    "hide": true,
                                     "group": "Properties",
                                     "help": {
                                         "short": "The reference to the address space peered with the remote virtual network."
@@ -1462,6 +1498,7 @@
                                     "options": [
                                         "remote-bgp-communities"
                                     ],
+                                    "hide": true,
                                     "group": "Properties",
                                     "help": {
                                         "short": "The reference to the remote virtual network's Bgp Communities."
@@ -1481,51 +1518,15 @@
                                 },
                                 {
                                     "nullable": true,
-                                    "type": "object",
-                                    "var": "$VirtualNetworkPeeringParameters.properties.remoteVirtualNetwork",
-                                    "options": [
-                                        "remote-virtual-network"
-                                    ],
-                                    "group": "Properties",
-                                    "help": {
-                                        "short": "The reference to the remote virtual network. The remote virtual network can be in the same or different region (preview). See here to register for the preview and learn more (https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-create-peering)."
-                                    },
-                                    "args": [
-                                        {
-                                            "nullable": true,
-                                            "type": "string",
-                                            "var": "$VirtualNetworkPeeringParameters.properties.remoteVirtualNetwork.id",
-                                            "options": [
-                                                "id"
-                                            ],
-                                            "help": {
-                                                "short": "Resource ID."
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    "nullable": true,
                                     "type": "@AddressSpace_update",
                                     "var": "$VirtualNetworkPeeringParameters.properties.remoteVirtualNetworkAddressSpace",
                                     "options": [
                                         "remote-virtual-network-address-space"
                                     ],
+                                    "hide": true,
                                     "group": "Properties",
                                     "help": {
                                         "short": "The reference to the current address space of the remote virtual network."
-                                    }
-                                },
-                                {
-                                    "nullable": true,
-                                    "type": "boolean",
-                                    "var": "$VirtualNetworkPeeringParameters.properties.useRemoteGateways",
-                                    "options": [
-                                        "use-remote-gateways"
-                                    ],
-                                    "group": "Properties",
-                                    "help": {
-                                        "short": "If remote gateways can be used on this virtual network. If the flag is set to true, and allowGatewayTransit on remote peering is also true, virtual network will use gateways of remote virtual network for transit. Only one peering can have this flag set to true. This flag cannot be set if virtual network already has a gateway."
                                     }
                                 }
                             ]
@@ -1556,6 +1557,7 @@
                                     "options": [
                                         "type"
                                     ],
+                                    "hide": true,
                                     "group": "VirtualNetworkPeeringParameters",
                                     "help": {
                                         "short": "Resource type."
@@ -1764,18 +1766,15 @@
                                                                     "name": "remoteVirtualNetworkAddressSpace"
                                                                 },
                                                                 {
-                                                                    "readOnly": true,
                                                                     "type": "object",
                                                                     "name": "remoteVirtualNetworkEncryption",
                                                                     "props": [
                                                                         {
-                                                                            "readOnly": true,
                                                                             "type": "boolean",
                                                                             "name": "enabled",
                                                                             "required": true
                                                                         },
                                                                         {
-                                                                            "readOnly": true,
                                                                             "type": "string",
                                                                             "name": "enforcement",
                                                                             "enum": {
@@ -1828,7 +1827,7 @@
                         },
                         {
                             "instanceUpdate": {
-                                "instance": "$Instance",
+                                "ref": "$Instance",
                                 "json": {
                                     "schema": {
                                         "type": "object",
@@ -1943,7 +1942,6 @@
                                                     {
                                                         "type": "object",
                                                         "name": "remoteVirtualNetwork",
-                                                        "arg": "$VirtualNetworkPeeringParameters.properties.remoteVirtualNetwork",
                                                         "props": [
                                                             {
                                                                 "type": "string",

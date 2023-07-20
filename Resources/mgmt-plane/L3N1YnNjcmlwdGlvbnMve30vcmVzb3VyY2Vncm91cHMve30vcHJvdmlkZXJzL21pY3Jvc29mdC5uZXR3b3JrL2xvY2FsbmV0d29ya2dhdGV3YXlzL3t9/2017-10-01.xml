@@ -66,7 +66,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@ODataV4Format"/>
+                <schema type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
@@ -74,7 +74,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="delete" version="2017-10-01" confirmation="Are you sure you want to perform this operation?">
+    <command name="delete" version="2017-10-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/localnetworkgateways/{}" version="2017-10-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9sb2NhbE5ldHdvcmtHYXRld2F5cy97bG9jYWxOZXR3b3JrR2F0ZXdheU5hbWV9/V/MjAxNy0xMC0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.localNetworkGatewayName" options="name n" required="True" idPart="name">
@@ -107,7 +107,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@ODataV4Format"/>
+                <schema type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
@@ -123,22 +123,6 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="ResourceLocation" var="$parameters.location" options="location l">
-          <help short="Location. Values from: `az account list-locations`. You can configure the default location using `az configure --defaults location=<location>`."/>
-        </arg>
-        <arg type="string" var="$parameters.properties.gatewayIpAddress" options="gateway-ip-address">
-          <help short="Gateway's public IP address. (e.g. 10.1.1.1)."/>
-        </arg>
-        <arg type="array<string>" var="$parameters.properties.localNetworkAddressSpace.addressPrefixes" options="local-address-prefixes address-prefixes">
-          <help short="List of CIDR block prefixes representing the address space of the OnPremise VPN's subnet."/>
-          <item type="string"/>
-        </arg>
-        <arg type="object" var="$parameters.tags" options="tags">
-          <help short="Space-separated tags: key[=value] [key[=value] ...]."/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
-        </arg>
       </argGroup>
       <argGroup name="BGP Peering">
         <arg type="integer64" var="$parameters.properties.bgpSettings.asn" options="asn" group="BGP Peering">
@@ -151,6 +135,12 @@
           <help short="Weight (0-100) added to routes learned through BGP peering."/>
         </arg>
       </argGroup>
+      <argGroup name="LocalNetworkAddressSpace">
+        <arg type="array<string>" var="$parameters.properties.localNetworkAddressSpace.addressPrefixes" options="local-address-prefixes address-prefixes" group="LocalNetworkAddressSpace">
+          <help short="List of CIDR block prefixes representing the address space of the OnPremise VPN's subnet."/>
+          <item type="string"/>
+        </arg>
+      </argGroup>
       <argGroup name="Parameters">
         <arg type="string" var="$parameters.etag" options="etag" hide="True" group="Parameters">
           <help short="A unique read-only string that changes whenever the resource is updated."/>
@@ -159,8 +149,20 @@
           <help short="Resource ID."/>
           <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/localNetworkGateways/{}"/>
         </arg>
+        <arg type="ResourceLocation" var="$parameters.location" options="location l" group="Parameters">
+          <help short="Location. Values from: `az account list-locations`. You can configure the default location using `az configure --defaults location=<location>`."/>
+        </arg>
+        <arg type="object" var="$parameters.tags" options="tags" group="Parameters">
+          <help short="Space-separated tags: key[=value] [key[=value] ...]."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
       </argGroup>
       <argGroup name="Properties">
+        <arg type="string" var="$parameters.properties.gatewayIpAddress" options="gateway-ip-address" group="Properties">
+          <help short="Gateway's public IP address. (e.g. 10.1.1.1)."/>
+        </arg>
         <arg type="string" var="$parameters.properties.resourceGuid" options="resource-guid" hide="True" group="Properties">
           <help short="The resource GUID property of the LocalNetworkGateway resource."/>
         </arg>
@@ -250,7 +252,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@ODataV4Format"/>
+                <schema type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
@@ -267,19 +269,6 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg nullable="True" type="string" var="$parameters.properties.gatewayIpAddress" options="gateway-ip-address">
-          <help short="Gateway's public IP address. (e.g. 10.1.1.1)."/>
-        </arg>
-        <arg nullable="True" type="array<string>" var="$parameters.properties.localNetworkAddressSpace.addressPrefixes" options="local-address-prefixes address-prefixes">
-          <help short="List of CIDR block prefixes representing the address space of the OnPremise VPN's subnet."/>
-          <item nullable="True" type="string"/>
-        </arg>
-        <arg nullable="True" type="object" var="$parameters.tags" options="tags">
-          <help short="Space-separated tags: key[=value] [key[=value] ...]."/>
-          <additionalProp>
-            <item nullable="True" type="string"/>
-          </additionalProp>
-        </arg>
       </argGroup>
       <argGroup name="BGP Peering">
         <arg nullable="True" type="integer64" var="$parameters.properties.bgpSettings.asn" options="asn" group="BGP Peering">
@@ -290,6 +279,12 @@
         </arg>
         <arg nullable="True" type="integer32" var="$parameters.properties.bgpSettings.peerWeight" options="peer-weight" group="BGP Peering">
           <help short="Weight (0-100) added to routes learned through BGP peering."/>
+        </arg>
+      </argGroup>
+      <argGroup name="LocalNetworkAddressSpace">
+        <arg nullable="True" type="array<string>" var="$parameters.properties.localNetworkAddressSpace.addressPrefixes" options="local-address-prefixes address-prefixes" group="LocalNetworkAddressSpace">
+          <help short="List of CIDR block prefixes representing the address space of the OnPremise VPN's subnet."/>
+          <item nullable="True" type="string"/>
         </arg>
       </argGroup>
       <argGroup name="Parameters">
@@ -303,8 +298,17 @@
         <arg nullable="True" type="ResourceLocation" var="$parameters.location" options="location l" hide="True" group="Parameters">
           <help short="Location. Values from: `az account list-locations`. You can configure the default location using `az configure --defaults location=<location>`."/>
         </arg>
+        <arg nullable="True" type="object" var="$parameters.tags" options="tags" group="Parameters">
+          <help short="Space-separated tags: key[=value] [key[=value] ...]."/>
+          <additionalProp>
+            <item nullable="True" type="string"/>
+          </additionalProp>
+        </arg>
       </argGroup>
       <argGroup name="Properties">
+        <arg nullable="True" type="string" var="$parameters.properties.gatewayIpAddress" options="gateway-ip-address" group="Properties">
+          <help short="Gateway's public IP address. (e.g. 10.1.1.1)."/>
+        </arg>
         <arg nullable="True" type="string" var="$parameters.properties.resourceGuid" options="resource-guid" hide="True" group="Properties">
           <help short="The resource GUID property of the LocalNetworkGateway resource."/>
         </arg>
@@ -363,14 +367,14 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@ODataV4Format"/>
+                <schema type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
         </http>
       </operation>
       <operation>
-        <instanceUpdate instance="$Instance">
+        <instanceUpdate ref="$Instance">
           <json>
             <schema type="object" name="parameters" required="True" clientFlatten="True">
               <prop type="string" name="etag" arg="$parameters.etag"/>
@@ -431,7 +435,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@ODataV4Format"/>
+                <schema type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
