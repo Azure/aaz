@@ -28,7 +28,7 @@ servicebus namespace
 : Check the give namespace name availability.
 
 - [list](/Commands/servicebus/namespace/_list.md)
-: List the available namespaces within a resource group.
+: List all the available namespaces within the subscription by resource group & also irrespective of the resource groups
 
 - [show](/Commands/servicebus/namespace/_show.md)
 : Get a description for the specified namespace.
