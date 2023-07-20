@@ -35,6 +35,9 @@
 - [consumption](/Commands/consumption/readme.md)
 : Manage consumption of Azure resources.
 
+- [cosmosdb](/Commands/cosmosdb/readme.md)
+: Manage Azure Cosmos DB database accounts.
+
 - [databox](/Commands/databox/readme.md)
 : Manage data box
 
