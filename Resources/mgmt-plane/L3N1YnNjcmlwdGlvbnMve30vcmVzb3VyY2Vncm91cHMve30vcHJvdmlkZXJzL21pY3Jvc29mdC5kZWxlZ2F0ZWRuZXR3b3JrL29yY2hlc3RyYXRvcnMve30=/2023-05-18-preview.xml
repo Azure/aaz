@@ -51,6 +51,7 @@
                     </prop>
                   </prop>
                   <prop type="string" name="kind" required="True">
+                    <default value="&quot;Kubernetes&quot;"/>
                     <enum>
                       <item value="&quot;Kubernetes&quot;"/>
                     </enum>
@@ -156,19 +157,24 @@
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Parameters">
-        <arg type="object" var="$parameters.identity" options="identity" group="Parameters">
-          <help short="The identity of the orchestrator"/>
-          <arg type="string" var="$parameters.identity.type" options="type">
-            <help short="The type of identity used for orchestrator cluster. Type 'SystemAssigned' will use an implicitly created identity orchestrator clusters"/>
-            <enum>
-              <item name="None" value="&quot;None&quot;"/>
-              <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
-            </enum>
-          </arg>
+      <argGroup name="ControllerDetails">
+        <arg type="string" var="$parameters.properties.controllerDetails.id" options="id" group="ControllerDetails">
+          <help short="controller arm resource id"/>
         </arg>
+      </argGroup>
+      <argGroup name="Identity">
+        <arg type="string" var="$parameters.identity.type" options="type" group="Identity">
+          <help short="The type of identity used for orchestrator cluster. Type 'SystemAssigned' will use an implicitly created identity orchestrator clusters"/>
+          <enum>
+            <item name="None" value="&quot;None&quot;"/>
+            <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <argGroup name="Parameters">
         <arg type="string" var="$parameters.kind" options="kind" required="True" group="Parameters">
           <help short="The kind of workbook. Choices are user and shared."/>
+          <default value="&quot;Kubernetes&quot;"/>
           <enum>
             <item name="Kubernetes" value="&quot;Kubernetes&quot;"/>
           </enum>
@@ -190,19 +196,13 @@
         <arg type="string" var="$parameters.properties.clusterRootCA" options="cluster-root-ca" group="Properties">
           <help short="RootCA certificate of kubernetes cluster base64 encoded"/>
         </arg>
-        <arg type="object" var="$parameters.properties.controllerDetails" options="controller-details" group="Properties">
-          <help short="Properties of the controller."/>
-          <arg type="string" var="$parameters.properties.controllerDetails.id" options="id">
-            <help short="controller arm resource id"/>
-          </arg>
-        </arg>
         <arg type="string" var="$parameters.properties.orchestratorAppId" options="orchestrator-app-id" group="Properties">
           <help short="AAD ID used with apiserver"/>
         </arg>
         <arg type="string" var="$parameters.properties.orchestratorTenantId" options="orchestrator-tenant-id" group="Properties">
           <help short="TenantID of server App ID"/>
         </arg>
-        <arg type="string" var="$parameters.properties.privateLinkResourceId" options="private-link-resource-id" group="Properties">
+        <arg type="string" var="$parameters.properties.privateLinkResourceId" options="priv-link-resource-id" group="Properties">
           <help short="private link arm resource id. Either one of apiServerEndpoint or privateLinkResourceId can be specified"/>
         </arg>
       </argGroup>
@@ -230,7 +230,7 @@
             <body>
               <json>
                 <schema type="object" name="parameters" required="True" clientFlatten="True">
-                  <prop type="object" name="identity" arg="$parameters.identity">
+                  <prop type="object" name="identity">
                     <prop type="string" name="type" arg="$parameters.identity.type">
                       <enum>
                         <item value="&quot;None&quot;"/>
@@ -239,6 +239,7 @@
                     </prop>
                   </prop>
                   <prop type="string" name="kind" arg="$parameters.kind" required="True">
+                    <default value="&quot;Kubernetes&quot;"/>
                     <enum>
                       <item value="&quot;Kubernetes&quot;"/>
                     </enum>
@@ -247,7 +248,7 @@
                   <prop type="object" name="properties">
                     <prop type="string" name="apiServerEndpoint" arg="$parameters.properties.apiServerEndpoint"/>
                     <prop type="string" name="clusterRootCA" arg="$parameters.properties.clusterRootCA"/>
-                    <prop type="object" name="controllerDetails" arg="$parameters.properties.controllerDetails" required="True">
+                    <prop type="object" name="controllerDetails" required="True">
                       <prop type="string" name="id" arg="$parameters.properties.controllerDetails.id"/>
                     </prop>
                     <prop type="string" name="orchestratorAppId" arg="$parameters.properties.orchestratorAppId"/>
@@ -281,6 +282,7 @@
                     </prop>
                   </prop>
                   <prop type="string" name="kind" required="True">
+                    <default value="&quot;Kubernetes&quot;"/>
                     <enum>
                       <item value="&quot;Kubernetes&quot;"/>
                     </enum>
@@ -426,6 +428,7 @@
                     </prop>
                   </prop>
                   <prop type="string" name="kind" required="True">
+                    <default value="&quot;Kubernetes&quot;"/>
                     <enum>
                       <item value="&quot;Kubernetes&quot;"/>
                     </enum>
@@ -483,6 +486,7 @@
                 </prop>
               </prop>
               <prop type="string" name="kind" arg="$parameters.kind" required="True">
+                <default value="&quot;Kubernetes&quot;"/>
                 <enum>
                   <item value="&quot;Kubernetes&quot;"/>
                 </enum>
