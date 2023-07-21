@@ -11,6 +11,9 @@
 - [automanage](/Commands/automanage/readme.md)
 : Manage Automanage
 
+- [automation](/Commands/automation/readme.md)
+: Manage Automation Account
+
 - [billing-benefits](/Commands/billing-benefits/readme.md)
 : Azure billing benefits commands
 
@@ -56,6 +59,9 @@
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
 
+- [graph-services](/Commands/graph-services/readme.md)
+: Make operations on Microsoft.GraphServices resource types
+
 - [image](/Commands/image/readme.md)
 : Manage custom virtual machine images.
 
@@ -92,8 +98,14 @@
 - [orbital](/Commands/orbital/readme.md)
 : Azure Orbital Ground Station as-a-Service (GSaaS).
 
+- [powerbi](/Commands/powerbi/readme.md)
+: Manage PowerBI resources.
+
 - [ppg](/Commands/ppg/readme.md)
 : Manage Proximity Placement Groups.
+
+- [qumulo](/Commands/qumulo/readme.md)
+: Manage qumulo
 
 - [redisenterprise](/Commands/redisenterprise/readme.md)
 : Manage the redisenterprise cache
