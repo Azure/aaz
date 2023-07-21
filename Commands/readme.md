@@ -146,6 +146,9 @@
 - [storage-mover](/Commands/storage-mover/readme.md)
 : Manage top-level Storage Mover resource.
 
+- [tsi](/Commands/tsi/readme.md)
+: Manage Azure Time Series Insights.
+
 - [vm](/Commands/vm/readme.md)
 : Manage Linux or Windows virtual machines.
 
