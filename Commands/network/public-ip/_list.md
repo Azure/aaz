@@ -113,3 +113,25 @@ List public IP addresses.
     ```bash
         network public-ip list -g MyResourceGroup --query "[?dnsSettings.domainNameLabel=='MyLabel']"
     ```
+
+### [2022-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL3B1YmxpY2lwYWRkcmVzc2Vz/2022-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.network/publicipaddresses 2022-11-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/publicipaddresses 2022-11-01 -->
+
+#### examples
+
+- List all public IPs in a subscription.
+    ```bash
+        network public-ip list
+    ```
+
+- List all public IPs in a resource group.
+    ```bash
+        network public-ip list -g MyResourceGroup
+    ```
+
+- List all public IPs of a domain name label.
+    ```bash
+        network public-ip list -g MyResourceGroup --query "[?dnsSettings.domainNameLabel=='MyLabel']"
+    ```
