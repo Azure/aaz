@@ -41,6 +41,9 @@
 - [disk-access](/Commands/disk-access/readme.md)
 : Manage disk access resources.
 
+- [disk-encryption-set](/Commands/disk-encryption-set/readme.md)
+: Disk Encryption Set resource.
+
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
 
