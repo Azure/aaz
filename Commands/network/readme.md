@@ -52,6 +52,9 @@ Manage Azure Network resources.
 - [perimeter](/Commands/network/perimeter/readme.md)
 : Manage Network Security Perimeters
 
+- [private-dns](/Commands/network/private-dns/readme.md)
+: Manage Private DNS domains in Azure.
+
 - [private-endpoint](/Commands/network/private-endpoint/readme.md)
 : Manage private endpoints.
 
