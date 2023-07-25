@@ -13,4 +13,5 @@ List all the Azure Arc-Enabled Servers in the specified resource group.
 - Sample command for list
     ```bash
         connectedmachine list --resource-group myResourceGroup
+        connectedmachine list
     ```

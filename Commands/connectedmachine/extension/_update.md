@@ -1,6 +1,6 @@
 # [Command] _connectedmachine extension update_
 
-Update operation to create or update the extension.
+Update operation to update the extension.
 
 ## Versions
 

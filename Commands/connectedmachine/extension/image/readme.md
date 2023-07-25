@@ -1,6 +1,6 @@
 # [Group] _connectedmachine extension image_
 
-Manage VM extension images available for Azure Arc-Enabled Servers.
+Manage VM extension metadata available for Azure Arc-Enabled Servers.
 
 ## Commands
 
