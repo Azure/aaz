@@ -10,17 +10,7 @@ Test send a push notification.
 
 #### examples
 
-- Test send notification with message body
+- Test send notification
     ```bash
-        notification-hub test-send --resource-group MyResourceGroup --namespace-name my-namespace --notification-hub-name my-hub --notification-format gcm --message "test notification"
-    ```
-
-- Test send notification from file
-    ```bash
-        notification-hub test-send --resource-group MyResourceGroup --namespace-name my-namespace --notification-hub-name my-hub --notification-format gcm --payload path/to/file
-    ```
-
-- Test send notification with json string
-    ```bash
-        notification-hub test-send --resource-group MyResourceGroup --namespace-name my-namespace --notification-hub-name my-hub --notification-format gcm --payload "{\\\"data\\\":{\\\"message\\\":\\\"test notification\\\"}}"
+        notification-hub test-send --resource-group MyResourceGroup --namespace-name my-namespace --notification-hub-name my-hub
     ```

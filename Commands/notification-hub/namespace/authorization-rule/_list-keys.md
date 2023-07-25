@@ -1,4 +1,4 @@
-# [Command] _notification-hub namespace authorization-rule list-key_
+# [Command] _notification-hub namespace authorization-rule list-keys_
 
 List the primary and secondary connection strings to the namespace.
 

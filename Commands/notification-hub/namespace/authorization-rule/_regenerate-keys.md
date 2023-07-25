@@ -1,4 +1,4 @@
-# [Command] _notification-hub namespace authorization-rule regenerate-key_
+# [Command] _notification-hub namespace authorization-rule regenerate-keys_
 
 Regenerate the primary/secondary keys to the namespace authorization rule.
 

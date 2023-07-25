@@ -13,10 +13,10 @@ Commands to manage notification hubs namespace authorization rule.
 - [list](/Commands/notification-hub/namespace/authorization-rule/_list.md)
 : List the authorization rules for a namespace.
 
-- [list-key](/Commands/notification-hub/namespace/authorization-rule/_list-key.md)
+- [list-keys](/Commands/notification-hub/namespace/authorization-rule/_list-keys.md)
 : List the primary and secondary connection strings to the namespace.
 
-- [regenerate-key](/Commands/notification-hub/namespace/authorization-rule/_regenerate-key.md)
+- [regenerate-keys](/Commands/notification-hub/namespace/authorization-rule/_regenerate-keys.md)
 : Regenerate the primary/secondary keys to the namespace authorization rule.
 
 - [show](/Commands/notification-hub/namespace/authorization-rule/_show.md)
