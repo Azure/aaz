@@ -5,7 +5,11 @@ Manage a VM extension on an Azure Arc-Enabled Server.
 ## Subgroups
 
 - [image](/Commands/connectedmachine/extension/image/readme.md)
+<<<<<<< HEAD
 : Manage VM extension metadata available for Azure Arc-Enabled Servers.
+=======
+: Manage VM extension images available for Azure Arc-Enabled Servers.
+>>>>>>> 5a5413971a561818e788004da17a251669a03b0f
 
 ## Commands
 
@@ -22,4 +26,8 @@ Manage a VM extension on an Azure Arc-Enabled Server.
 : The operation to create or update the extension.
 
 - [update](/Commands/connectedmachine/extension/_update.md)
+<<<<<<< HEAD
 : Update operation to update the extension.
+=======
+: Update operation to create or update the extension.
+>>>>>>> 5a5413971a561818e788004da17a251669a03b0f

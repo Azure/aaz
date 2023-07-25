@@ -1,6 +1,6 @@
 # [Command] _sig gallery-application version show_
 
-Get information about a gallery application version.
+Get information about a gallery Application Version.
 
 ## Versions
 
