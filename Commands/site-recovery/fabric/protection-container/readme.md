@@ -7,6 +7,9 @@ Manage Protection Container
 - [mapping](/Commands/site-recovery/fabric/protection-container/mapping/readme.md)
 : Manage a protection container mapping for a protection container.
 
+- [protectable-item](/Commands/site-recovery/fabric/protection-container/protectable-item/readme.md)
+: Manage Vault Fabric Protection Container Protectable Item
+
 ## Commands
 
 - [create](/Commands/site-recovery/fabric/protection-container/_create.md)
