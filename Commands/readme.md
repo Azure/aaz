@@ -38,6 +38,9 @@
 - [devcenter](/Commands/devcenter/readme.md)
 : Manage resources with devcenter.
 
+- [disk](/Commands/disk/readme.md)
+: Manage Azure Managed Disks.
+
 - [disk-access](/Commands/disk-access/readme.md)
 : Manage disk access resources.
 
