@@ -4,6 +4,9 @@ Manage virtual hubs.
 
 ## Subgroups
 
+- [connection](/Commands/network/vhub/connection/readme.md)
+: Manage virtual hub VNet connections.
+
 - [route-map](/Commands/network/vhub/route-map/readme.md)
 : Manage route map
 
