@@ -98,6 +98,9 @@
 - [nginx](/Commands/nginx/readme.md)
 : Manage NGINX deployment resources
 
+- [notification-hub](/Commands/notification-hub/readme.md)
+: Manage notification hubs.
+
 - [orbital](/Commands/orbital/readme.md)
 : Azure Orbital Ground Station as-a-Service (GSaaS).
 
