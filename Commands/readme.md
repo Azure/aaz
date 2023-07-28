@@ -101,8 +101,14 @@
 - [nginx](/Commands/nginx/readme.md)
 : Manage NGINX deployment resources
 
+- [notification-hub](/Commands/notification-hub/readme.md)
+: Manage notification hubs.
+
 - [orbital](/Commands/orbital/readme.md)
 : Azure Orbital Ground Station as-a-Service (GSaaS).
+
+- [palo-alto](/Commands/palo-alto/readme.md)
+: Manage palo-alto networks resource
 
 - [powerbi](/Commands/powerbi/readme.md)
 : Manage PowerBI resources.
