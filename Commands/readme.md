@@ -104,6 +104,9 @@
 - [orbital](/Commands/orbital/readme.md)
 : Azure Orbital Ground Station as-a-Service (GSaaS).
 
+- [palo-alto](/Commands/palo-alto/readme.md)
+: Manage palo-alto networks resource
+
 - [powerbi](/Commands/powerbi/readme.md)
 : Manage PowerBI resources.
 
