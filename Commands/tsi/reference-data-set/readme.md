@@ -17,4 +17,4 @@ Manage reference data set with timeseriesinsights.
 : Get the reference data set with the specified name in the specified environment.
 
 - [update](/Commands/tsi/reference-data-set/_update.md)
-: Update a reference data set in the specified environment.
+: Update the reference data set with the specified name in the specified subscription, resource group, and environment.

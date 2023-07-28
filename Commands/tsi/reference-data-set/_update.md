@@ -1,6 +1,6 @@
 # [Command] _tsi reference-data-set update_
 
-Update a reference data set in the specified environment.
+Update the reference data set with the specified name in the specified subscription, resource group, and environment.
 
 ## Versions
 

@@ -292,7 +292,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="update" version="2020-05-15">
+    <command name="update" version="2020-05-15" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.timeseriesinsights/environments/{}/referencedatasets/{}" version="2020-05-15" swagger="mgmt-plane/timeseriesinsights/ResourceProviders/Microsoft.TimeSeriesInsights/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuVGltZVNlcmllc0luc2lnaHRzL2Vudmlyb25tZW50cy97ZW52aXJvbm1lbnROYW1lfS9yZWZlcmVuY2VEYXRhU2V0cy97cmVmZXJlbmNlRGF0YVNldE5hbWV9/V/MjAyMC0wNS0xNQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.environmentName" options="environment-name" required="True" idPart="name">
@@ -304,43 +304,17 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Parameters">
-        <arg nullable="True" type="object" var="$parameters.tags" options="tags" group="Parameters">
-          <help short="Key-value pairs of additional properties for the resource."/>
+      <argGroup name="ReferenceDataSetUpdateParameters">
+        <arg type="object" var="$referenceDataSetUpdateParameters.tags" options="tags" group="ReferenceDataSetUpdateParameters">
+          <help short="Key-value pairs of additional properties for the reference data set."/>
           <additionalProp>
-            <item nullable="True" type="string"/>
+            <item type="string"/>
           </additionalProp>
         </arg>
       </argGroup>
-      <argGroup name="Properties">
-        <arg nullable="True" type="string" var="$parameters.properties.dataStringComparisonBehavior" options="data-string-comparison-behavior comparison-behavior" hide="True" group="Properties">
-          <help short="The reference data set key comparison behavior can be set using this property. By default, the value is 'Ordinal' - which means case sensitive key comparison will be performed while joining reference data with events or while adding new reference data. When 'OrdinalIgnoreCase' is set, case insensitive comparison will be used."/>
-          <enum>
-            <item name="Ordinal" value="&quot;Ordinal&quot;"/>
-            <item name="OrdinalIgnoreCase" value="&quot;OrdinalIgnoreCase&quot;"/>
-          </enum>
-        </arg>
-        <arg type="array<object>" var="$parameters.properties.keyProperties" options="key-properties" hide="True" group="Properties">
-          <help short="The list of key properties for the reference data set."/>
-          <item nullable="True" type="object">
-            <arg nullable="True" type="string" var="$parameters.properties.keyProperties[].name" options="name">
-              <help short="The name of the key property."/>
-            </arg>
-            <arg nullable="True" type="string" var="$parameters.properties.keyProperties[].type" options="type">
-              <help short="The type of the key property."/>
-              <enum>
-                <item name="Bool" value="&quot;Bool&quot;"/>
-                <item name="DateTime" value="&quot;DateTime&quot;"/>
-                <item name="Double" value="&quot;Double&quot;"/>
-                <item name="String" value="&quot;String&quot;"/>
-              </enum>
-            </arg>
-          </item>
-        </arg>
-      </argGroup>
-      <operation operationId="ReferenceDataSets_Get">
+      <operation operationId="ReferenceDataSets_Update">
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/referenceDataSets/{referenceDataSetName}">
-          <request method="get">
+          <request method="patch">
             <path>
               <param type="string" name="environmentName" arg="$Path.environmentName" required="True"/>
               <param type="string" name="referenceDataSetName" arg="$Path.referenceDataSetName" required="True"/>
@@ -352,11 +326,22 @@
                 <default value="&quot;2020-05-15&quot;"/>
               </const>
             </query>
+            <body>
+              <json>
+                <schema type="object" name="referenceDataSetUpdateParameters" required="True" clientFlatten="True">
+                  <prop type="object" name="tags" arg="$referenceDataSetUpdateParameters.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
           </request>
           <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="object" cls="ReferenceDataSetResource_read">
+                <schema type="object">
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.TimeSeriesInsights/environments/{}/referenceDataSets/{}"/>
                   </prop>
@@ -401,76 +386,6 @@
                   </prop>
                   <prop readOnly="True" type="string" name="type"/>
                 </schema>
-              </json>
-            </body>
-          </response>
-          <response isError="True">
-            <body>
-              <json>
-                <schema type="@ODataV4Format"/>
-              </json>
-            </body>
-          </response>
-        </http>
-      </operation>
-      <operation>
-        <instanceUpdate ref="$Instance">
-          <json>
-            <schema type="object" name="parameters" required="True" clientFlatten="True">
-              <prop type="object" name="properties" required="True" clientFlatten="True">
-                <prop type="string" name="dataStringComparisonBehavior" arg="$parameters.properties.dataStringComparisonBehavior">
-                  <enum>
-                    <item value="&quot;Ordinal&quot;"/>
-                    <item value="&quot;OrdinalIgnoreCase&quot;"/>
-                  </enum>
-                </prop>
-                <prop type="array<object>" name="keyProperties" arg="$parameters.properties.keyProperties" required="True" identifiers="name">
-                  <item type="object">
-                    <prop type="string" name="name" arg="$parameters.properties.keyProperties[].name"/>
-                    <prop type="string" name="type" arg="$parameters.properties.keyProperties[].type">
-                      <enum>
-                        <item value="&quot;Bool&quot;"/>
-                        <item value="&quot;DateTime&quot;"/>
-                        <item value="&quot;Double&quot;"/>
-                        <item value="&quot;String&quot;"/>
-                      </enum>
-                    </prop>
-                  </item>
-                </prop>
-              </prop>
-              <prop type="object" name="tags" arg="$parameters.tags">
-                <additionalProp>
-                  <item type="string"/>
-                </additionalProp>
-              </prop>
-            </schema>
-          </json>
-        </instanceUpdate>
-      </operation>
-      <operation operationId="ReferenceDataSets_CreateOrUpdate">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/referenceDataSets/{referenceDataSetName}">
-          <request method="put">
-            <path>
-              <param type="string" name="environmentName" arg="$Path.environmentName" required="True"/>
-              <param type="string" name="referenceDataSetName" arg="$Path.referenceDataSetName" required="True">
-                <format pattern="^[A-Za-z0-9]" maxLength="63" minLength="3"/>
-              </param>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
-            </path>
-            <query>
-              <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="&quot;2020-05-15&quot;"/>
-              </const>
-            </query>
-            <body>
-              <json ref="$Instance"/>
-            </body>
-          </request>
-          <response statusCode="200 201">
-            <body>
-              <json var="$Instance">
-                <schema type="@ReferenceDataSetResource_read"/>
               </json>
             </body>
           </response>
