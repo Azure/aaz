@@ -17,4 +17,4 @@ Manage access policy with timeseriesinsights.
 : Get the access policy with the specified name in the specified environment.
 
 - [update](/Commands/tsi/access-policy/_update.md)
-: Update an access policy in the specified environment.
+: Update the access policy with the specified name in the specified subscription, resource group, and environment.

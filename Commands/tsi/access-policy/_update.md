@@ -1,6 +1,6 @@
 # [Command] _tsi access-policy update_
 
-Update an access policy in the specified environment.
+Update the access policy with the specified name in the specified subscription, resource group, and environment.
 
 ## Versions
 

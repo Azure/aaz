@@ -205,7 +205,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="update" version="2020-05-15">
+    <command name="update" version="2020-05-15" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.timeseriesinsights/environments/{}/accesspolicies/{}" version="2020-05-15" swagger="mgmt-plane/timeseriesinsights/ResourceProviders/Microsoft.TimeSeriesInsights/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuVGltZVNlcmllc0luc2lnaHRzL2Vudmlyb25tZW50cy97ZW52aXJvbm1lbnROYW1lfS9hY2Nlc3NQb2xpY2llcy97YWNjZXNzUG9saWN5TmFtZX0=/V/MjAyMC0wNS0xNQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.accessPolicyName" options="access-policy-name name n" required="True" idPart="child_name_1">
@@ -218,12 +218,12 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="string" var="$parameters.properties.description" options="description" group="Properties">
+        <arg type="string" var="$accessPolicyUpdateParameters.properties.description" options="description" group="Properties">
           <help short="An description of the access policy."/>
         </arg>
-        <arg nullable="True" type="array<string>" var="$parameters.properties.roles" options="roles" group="Properties">
+        <arg type="array<string>" var="$accessPolicyUpdateParameters.properties.roles" options="roles" group="Properties">
           <help short="The list of roles the principal is assigned on the environment."/>
-          <item nullable="True" type="string">
+          <item type="string">
             <enum>
               <item name="Contributor" value="&quot;Contributor&quot;"/>
               <item name="Reader" value="&quot;Reader&quot;"/>
@@ -231,9 +231,9 @@
           </item>
         </arg>
       </argGroup>
-      <operation operationId="AccessPolicies_Get">
+      <operation operationId="AccessPolicies_Update">
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/accessPolicies/{accessPolicyName}">
-          <request method="get">
+          <request method="patch">
             <path>
               <param type="string" name="accessPolicyName" arg="$Path.accessPolicyName" required="True"/>
               <param type="string" name="environmentName" arg="$Path.environmentName" required="True"/>
@@ -245,11 +245,28 @@
                 <default value="&quot;2020-05-15&quot;"/>
               </const>
             </query>
+            <body>
+              <json>
+                <schema type="object" name="accessPolicyUpdateParameters" required="True" clientFlatten="True">
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="string" name="description" arg="$accessPolicyUpdateParameters.properties.description"/>
+                    <prop type="array<string>" name="roles" arg="$accessPolicyUpdateParameters.properties.roles">
+                      <item type="string">
+                        <enum>
+                          <item value="&quot;Contributor&quot;"/>
+                          <item value="&quot;Reader&quot;"/>
+                        </enum>
+                      </item>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
           </request>
           <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="object" cls="AccessPolicyResource_read">
+                <schema type="object">
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.TimeSeriesInsights/environments/{}/accessPolicies/{}"/>
                   </prop>
@@ -268,61 +285,6 @@
                   </prop>
                   <prop readOnly="True" type="string" name="type"/>
                 </schema>
-              </json>
-            </body>
-          </response>
-          <response isError="True">
-            <body>
-              <json>
-                <schema type="@ODataV4Format"/>
-              </json>
-            </body>
-          </response>
-        </http>
-      </operation>
-      <operation>
-        <instanceUpdate ref="$Instance">
-          <json>
-            <schema type="object" name="parameters" required="True" clientFlatten="True">
-              <prop type="object" name="properties" required="True" clientFlatten="True">
-                <prop type="string" name="description" arg="$parameters.properties.description"/>
-                <prop type="array<string>" name="roles" arg="$parameters.properties.roles">
-                  <item type="string">
-                    <enum>
-                      <item value="&quot;Contributor&quot;"/>
-                      <item value="&quot;Reader&quot;"/>
-                    </enum>
-                  </item>
-                </prop>
-              </prop>
-            </schema>
-          </json>
-        </instanceUpdate>
-      </operation>
-      <operation operationId="AccessPolicies_CreateOrUpdate">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/accessPolicies/{accessPolicyName}">
-          <request method="put">
-            <path>
-              <param type="string" name="accessPolicyName" arg="$Path.accessPolicyName" required="True">
-                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
-              </param>
-              <param type="string" name="environmentName" arg="$Path.environmentName" required="True"/>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
-            </path>
-            <query>
-              <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="&quot;2020-05-15&quot;"/>
-              </const>
-            </query>
-            <body>
-              <json ref="$Instance"/>
-            </body>
-          </request>
-          <response statusCode="200 201">
-            <body>
-              <json var="$Instance">
-                <schema type="@AccessPolicyResource_read"/>
               </json>
             </body>
           </response>
