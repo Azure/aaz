@@ -209,8 +209,16 @@
           <arg type="string" var="$parameters.Microsoft.EventHub.properties.keyName" options="shared-access-policy-name key-name" required="True" group="Properties">
             <help short="The name of the SAS key that grants the Time Series Insights service access to the event hub. The shared access policies for this key must grant 'Listen' permissions to the event hub."/>
           </arg>
-          <arg type="@LocalTimestamp_create" var="$parameters.Microsoft.EventHub.properties.localTimestamp" options="local-timestamp" group="Properties">
+          <arg type="object" var="$parameters.Microsoft.EventHub.properties.localTimestamp" options="local-timestamp" group="Properties">
             <help short="An object that represents the local timestamp property. It contains the format of local timestamp that needs to be used and the corresponding timezone offset information. If a value isn't specified for localTimestamp, or if null, then the local timestamp will not be ingressed with the events."/>
+            <arg type="string" var="$parameters.Microsoft.EventHub.properties.localTimestamp.format" options="format">
+              <enum>
+                <item name="Embedded" value="&quot;Embedded&quot;"/>
+              </enum>
+            </arg>
+            <arg type="object" var="$parameters.Microsoft.EventHub.properties.localTimestamp.timeZoneOffset" options="time-zone-offset">
+              <arg type="string" var="$parameters.Microsoft.EventHub.properties.localTimestamp.timeZoneOffset.propertyName" options="property-name"/>
+            </arg>
           </arg>
           <arg type="string" var="$parameters.Microsoft.EventHub.properties.serviceBusNamespace" options="service-bus-namespace namespace" required="True" group="Properties">
             <help short="The name of the service bus that contains the event hub."/>
@@ -239,8 +247,16 @@
           <arg type="string" var="$parameters.Microsoft.IoTHub.properties.keyName" options="shared-access-policy-name key-name" required="True" group="Properties">
             <help short="The name of the Shared Access Policy key that grants the Time Series Insights service access to the iot hub. This shared access policy key must grant 'service connect' permissions to the iot hub."/>
           </arg>
-          <arg type="@LocalTimestamp_create" var="$parameters.Microsoft.IoTHub.properties.localTimestamp" options="local-timestamp" group="Properties">
+          <arg type="object" var="$parameters.Microsoft.IoTHub.properties.localTimestamp" options="local-timestamp" group="Properties">
             <help short="An object that represents the local timestamp property. It contains the format of local timestamp that needs to be used and the corresponding timezone offset information. If a value isn't specified for localTimestamp, or if null, then the local timestamp will not be ingressed with the events."/>
+            <arg type="string" var="$parameters.Microsoft.IoTHub.properties.localTimestamp.format" options="format">
+              <enum>
+                <item name="Embedded" value="&quot;Embedded&quot;"/>
+              </enum>
+            </arg>
+            <arg type="object" var="$parameters.Microsoft.IoTHub.properties.localTimestamp.timeZoneOffset" options="time-zone-offset">
+              <arg type="string" var="$parameters.Microsoft.IoTHub.properties.localTimestamp.timeZoneOffset.propertyName" options="property-name"/>
+            </arg>
           </arg>
           <arg type="string" var="$parameters.Microsoft.IoTHub.properties.sharedAccessKey" options="shared-access-key" required="True" group="Properties">
             <help short="The value of the Shared Access Policy key that grants the Time Series Insights service read access to the iot hub. This property is not shown in event source responses."/>
@@ -249,19 +265,15 @@
             <help short="The event property that will be used as the event source's timestamp. If a value isn't specified for timestampPropertyName, or if null or empty-string is specified, the event creation time will be used."/>
           </arg>
         </arg>
-        <arg type="object" var="$parameters.localTimestamp" options="local-timestamp" group="Parameters" cls="LocalTimestamp_create">
+        <arg type="object" var="$parameters.localTimestamp" options="local-timestamp" group="Parameters">
           <help short="An object that represents the local timestamp property. It contains the format of local timestamp that needs to be used and the corresponding timezone offset information. If a value isn't specified for localTimestamp, or if null, then the local timestamp will not be ingressed with the events."/>
-          <arg type="string" var="@LocalTimestamp_create.format" options="format">
-            <help short="An enum that represents the format of the local timestamp property that needs to be set."/>
+          <arg type="string" var="$parameters.localTimestamp.format" options="format">
             <enum>
               <item name="Embedded" value="&quot;Embedded&quot;"/>
             </enum>
           </arg>
-          <arg type="object" var="@LocalTimestamp_create.timeZoneOffset" options="time-zone-offset">
-            <help short="An object that represents the offset information for the local timestamp format specified. Should not be specified for LocalTimestampFormat - Embedded."/>
-            <arg type="string" var="@LocalTimestamp_create.timeZoneOffset.propertyName" options="property-name">
-              <help short="The event property that will be contain the offset information to calculate the local timestamp. When the LocalTimestampFormat is Iana, the property name will contain the name of the column which contains IANA Timezone Name (eg: Americas/Los Angeles). When LocalTimestampFormat is Timespan, it contains the name of property which contains values representing the offset (eg: P1D or 1.00:00:00)"/>
-            </arg>
+          <arg type="object" var="$parameters.localTimestamp.timeZoneOffset" options="time-zone-offset">
+            <arg type="string" var="$parameters.localTimestamp.timeZoneOffset.propertyName" options="property-name"/>
           </arg>
         </arg>
         <arg type="string" var="$parameters.location" options="location l" required="True" group="Parameters">
@@ -299,14 +311,14 @@
                       <item arg="$parameters.Microsoft.IoTHub" value="&quot;Microsoft.IoTHub&quot;"/>
                     </enum>
                   </prop>
-                  <prop type="object" name="localTimestamp" arg="$parameters.localTimestamp" cls="LocalTimestamp_create">
-                    <prop type="string" name="format" arg="@LocalTimestamp_create.format">
+                  <prop type="object" name="localTimestamp" arg="$parameters.localTimestamp">
+                    <prop type="string" name="format" arg="$parameters.localTimestamp.format">
                       <enum>
                         <item value="&quot;Embedded&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="timeZoneOffset" arg="@LocalTimestamp_create.timeZoneOffset">
-                      <prop type="string" name="propertyName" arg="@LocalTimestamp_create.timeZoneOffset.propertyName"/>
+                    <prop type="object" name="timeZoneOffset" arg="$parameters.localTimestamp.timeZoneOffset">
+                      <prop type="string" name="propertyName" arg="$parameters.localTimestamp.timeZoneOffset.propertyName"/>
                     </prop>
                   </prop>
                   <prop type="string" name="location" arg="$parameters.location" required="True"/>
@@ -331,7 +343,16 @@
                         </prop>
                       </prop>
                       <prop type="string" name="keyName" arg="$parameters.Microsoft.EventHub.properties.keyName" required="True"/>
-                      <prop type="@LocalTimestamp_create" name="localTimestamp" arg="$parameters.Microsoft.EventHub.properties.localTimestamp"/>
+                      <prop type="object" name="localTimestamp" arg="$parameters.Microsoft.EventHub.properties.localTimestamp">
+                        <prop type="string" name="format" arg="$parameters.Microsoft.EventHub.properties.localTimestamp.format">
+                          <enum>
+                            <item value="&quot;Embedded&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="timeZoneOffset" arg="$parameters.Microsoft.EventHub.properties.localTimestamp.timeZoneOffset">
+                          <prop type="string" name="propertyName" arg="$parameters.Microsoft.EventHub.properties.localTimestamp.timeZoneOffset.propertyName"/>
+                        </prop>
+                      </prop>
                       <prop type="string" name="serviceBusNamespace" arg="$parameters.Microsoft.EventHub.properties.serviceBusNamespace" required="True"/>
                       <prop type="string" name="sharedAccessKey" arg="$parameters.Microsoft.EventHub.properties.sharedAccessKey" required="True"/>
                       <prop type="string" name="timestampPropertyName" arg="$parameters.Microsoft.EventHub.properties.timestampPropertyName"/>
@@ -344,7 +365,16 @@
                       <prop type="@IngressStartAtProperties_create" name="ingressStartAt" arg="$parameters.Microsoft.IoTHub.properties.ingressStartAt" clientFlatten="True"/>
                       <prop type="string" name="iotHubName" arg="$parameters.Microsoft.IoTHub.properties.iotHubName" required="True"/>
                       <prop type="string" name="keyName" arg="$parameters.Microsoft.IoTHub.properties.keyName" required="True"/>
-                      <prop type="@LocalTimestamp_create" name="localTimestamp" arg="$parameters.Microsoft.IoTHub.properties.localTimestamp"/>
+                      <prop type="object" name="localTimestamp" arg="$parameters.Microsoft.IoTHub.properties.localTimestamp">
+                        <prop type="string" name="format" arg="$parameters.Microsoft.IoTHub.properties.localTimestamp.format">
+                          <enum>
+                            <item value="&quot;Embedded&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="timeZoneOffset" arg="$parameters.Microsoft.IoTHub.properties.localTimestamp.timeZoneOffset">
+                          <prop type="string" name="propertyName" arg="$parameters.Microsoft.IoTHub.properties.localTimestamp.timeZoneOffset.propertyName"/>
+                        </prop>
+                      </prop>
                       <prop type="string" name="sharedAccessKey" arg="$parameters.Microsoft.IoTHub.properties.sharedAccessKey" required="True"/>
                       <prop type="string" name="timestampPropertyName" arg="$parameters.Microsoft.IoTHub.properties.timestampPropertyName"/>
                     </prop>
@@ -493,8 +523,16 @@
           <arg type="string" var="$parameters.Microsoft.EventHub.properties.keyName" options="shared-access-policy-name key-name" hide="True" group="Properties">
             <help short="The name of the SAS key that grants the Time Series Insights service access to the event hub. The shared access policies for this key must grant 'Listen' permissions to the event hub."/>
           </arg>
-          <arg nullable="True" type="@LocalTimestamp_update" var="$parameters.Microsoft.EventHub.properties.localTimestamp" options="local-timestamp" group="Properties">
+          <arg nullable="True" type="object" var="$parameters.Microsoft.EventHub.properties.localTimestamp" options="local-timestamp" group="Properties">
             <help short="An object that represents the local timestamp property. It contains the format of local timestamp that needs to be used and the corresponding timezone offset information. If a value isn't specified for localTimestamp, or if null, then the local timestamp will not be ingressed with the events."/>
+            <arg nullable="True" type="string" var="$parameters.Microsoft.EventHub.properties.localTimestamp.format" options="format">
+              <enum>
+                <item name="Embedded" value="&quot;Embedded&quot;"/>
+              </enum>
+            </arg>
+            <arg nullable="True" type="object" var="$parameters.Microsoft.EventHub.properties.localTimestamp.timeZoneOffset" options="time-zone-offset">
+              <arg nullable="True" type="string" var="$parameters.Microsoft.EventHub.properties.localTimestamp.timeZoneOffset.propertyName" options="property-name"/>
+            </arg>
           </arg>
           <arg type="string" var="$parameters.Microsoft.EventHub.properties.serviceBusNamespace" options="service-bus-namespace namespace" hide="True" group="Properties">
             <help short="The name of the service bus that contains the event hub."/>
@@ -523,8 +561,16 @@
           <arg type="string" var="$parameters.Microsoft.IoTHub.properties.keyName" options="shared-access-policy-name key-name" hide="True" group="Properties">
             <help short="The name of the Shared Access Policy key that grants the Time Series Insights service access to the iot hub. This shared access policy key must grant 'service connect' permissions to the iot hub."/>
           </arg>
-          <arg nullable="True" type="@LocalTimestamp_update" var="$parameters.Microsoft.IoTHub.properties.localTimestamp" options="local-timestamp" group="Properties">
+          <arg nullable="True" type="object" var="$parameters.Microsoft.IoTHub.properties.localTimestamp" options="local-timestamp" group="Properties">
             <help short="An object that represents the local timestamp property. It contains the format of local timestamp that needs to be used and the corresponding timezone offset information. If a value isn't specified for localTimestamp, or if null, then the local timestamp will not be ingressed with the events."/>
+            <arg nullable="True" type="string" var="$parameters.Microsoft.IoTHub.properties.localTimestamp.format" options="format">
+              <enum>
+                <item name="Embedded" value="&quot;Embedded&quot;"/>
+              </enum>
+            </arg>
+            <arg nullable="True" type="object" var="$parameters.Microsoft.IoTHub.properties.localTimestamp.timeZoneOffset" options="time-zone-offset">
+              <arg nullable="True" type="string" var="$parameters.Microsoft.IoTHub.properties.localTimestamp.timeZoneOffset.propertyName" options="property-name"/>
+            </arg>
           </arg>
           <arg type="string" var="$parameters.Microsoft.IoTHub.properties.sharedAccessKey" options="shared-access-key" group="Properties">
             <help short="The value of the Shared Access Policy key that grants the Time Series Insights service read access to the iot hub. This property is not shown in event source responses."/>
@@ -533,19 +579,15 @@
             <help short="The event property that will be used as the event source's timestamp. If a value isn't specified for timestampPropertyName, or if null or empty-string is specified, the event creation time will be used."/>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$parameters.localTimestamp" options="local-timestamp" group="Parameters" cls="LocalTimestamp_update">
+        <arg nullable="True" type="object" var="$parameters.localTimestamp" options="local-timestamp" group="Parameters">
           <help short="An object that represents the local timestamp property. It contains the format of local timestamp that needs to be used and the corresponding timezone offset information. If a value isn't specified for localTimestamp, or if null, then the local timestamp will not be ingressed with the events."/>
-          <arg nullable="True" type="string" var="@LocalTimestamp_update.format" options="format">
-            <help short="An enum that represents the format of the local timestamp property that needs to be set."/>
+          <arg nullable="True" type="string" var="$parameters.localTimestamp.format" options="format">
             <enum>
               <item name="Embedded" value="&quot;Embedded&quot;"/>
             </enum>
           </arg>
-          <arg nullable="True" type="object" var="@LocalTimestamp_update.timeZoneOffset" options="time-zone-offset">
-            <help short="An object that represents the offset information for the local timestamp format specified. Should not be specified for LocalTimestampFormat - Embedded."/>
-            <arg nullable="True" type="string" var="@LocalTimestamp_update.timeZoneOffset.propertyName" options="property-name">
-              <help short="The event property that will be contain the offset information to calculate the local timestamp. When the LocalTimestampFormat is Iana, the property name will contain the name of the column which contains IANA Timezone Name (eg: Americas/Los Angeles). When LocalTimestampFormat is Timespan, it contains the name of property which contains values representing the offset (eg: P1D or 1.00:00:00)"/>
-            </arg>
+          <arg nullable="True" type="object" var="$parameters.localTimestamp.timeZoneOffset" options="time-zone-offset">
+            <arg nullable="True" type="string" var="$parameters.localTimestamp.timeZoneOffset.propertyName" options="property-name"/>
           </arg>
         </arg>
         <arg nullable="True" type="object" var="$parameters.tags" options="tags" group="Parameters">
@@ -677,14 +719,14 @@
                   <item arg="$parameters.Microsoft.IoTHub" value="&quot;Microsoft.IoTHub&quot;"/>
                 </enum>
               </prop>
-              <prop type="object" name="localTimestamp" arg="$parameters.localTimestamp" cls="LocalTimestamp_update">
-                <prop type="string" name="format" arg="@LocalTimestamp_update.format">
+              <prop type="object" name="localTimestamp" arg="$parameters.localTimestamp">
+                <prop type="string" name="format" arg="$parameters.localTimestamp.format">
                   <enum>
                     <item value="&quot;Embedded&quot;"/>
                   </enum>
                 </prop>
-                <prop type="object" name="timeZoneOffset" arg="@LocalTimestamp_update.timeZoneOffset">
-                  <prop type="string" name="propertyName" arg="@LocalTimestamp_update.timeZoneOffset.propertyName"/>
+                <prop type="object" name="timeZoneOffset" arg="$parameters.localTimestamp.timeZoneOffset">
+                  <prop type="string" name="propertyName" arg="$parameters.localTimestamp.timeZoneOffset.propertyName"/>
                 </prop>
               </prop>
               <prop type="object" name="tags" arg="$parameters.tags">
@@ -708,7 +750,16 @@
                     </prop>
                   </prop>
                   <prop type="string" name="keyName" arg="$parameters.Microsoft.EventHub.properties.keyName" required="True"/>
-                  <prop type="@LocalTimestamp_update" name="localTimestamp" arg="$parameters.Microsoft.EventHub.properties.localTimestamp"/>
+                  <prop type="object" name="localTimestamp" arg="$parameters.Microsoft.EventHub.properties.localTimestamp">
+                    <prop type="string" name="format" arg="$parameters.Microsoft.EventHub.properties.localTimestamp.format">
+                      <enum>
+                        <item value="&quot;Embedded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="timeZoneOffset" arg="$parameters.Microsoft.EventHub.properties.localTimestamp.timeZoneOffset">
+                      <prop type="string" name="propertyName" arg="$parameters.Microsoft.EventHub.properties.localTimestamp.timeZoneOffset.propertyName"/>
+                    </prop>
+                  </prop>
                   <prop type="string" name="serviceBusNamespace" arg="$parameters.Microsoft.EventHub.properties.serviceBusNamespace" required="True"/>
                   <prop type="string" name="sharedAccessKey" arg="$parameters.Microsoft.EventHub.properties.sharedAccessKey" required="True"/>
                   <prop type="string" name="timestampPropertyName" arg="$parameters.Microsoft.EventHub.properties.timestampPropertyName"/>
@@ -721,7 +772,16 @@
                   <prop type="@IngressStartAtProperties_update" name="ingressStartAt" arg="$parameters.Microsoft.IoTHub.properties.ingressStartAt" clientFlatten="True"/>
                   <prop type="string" name="iotHubName" arg="$parameters.Microsoft.IoTHub.properties.iotHubName" required="True"/>
                   <prop type="string" name="keyName" arg="$parameters.Microsoft.IoTHub.properties.keyName" required="True"/>
-                  <prop type="@LocalTimestamp_update" name="localTimestamp" arg="$parameters.Microsoft.IoTHub.properties.localTimestamp"/>
+                  <prop type="object" name="localTimestamp" arg="$parameters.Microsoft.IoTHub.properties.localTimestamp">
+                    <prop type="string" name="format" arg="$parameters.Microsoft.IoTHub.properties.localTimestamp.format">
+                      <enum>
+                        <item value="&quot;Embedded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="timeZoneOffset" arg="$parameters.Microsoft.IoTHub.properties.localTimestamp.timeZoneOffset">
+                      <prop type="string" name="propertyName" arg="$parameters.Microsoft.IoTHub.properties.localTimestamp.timeZoneOffset.propertyName"/>
+                    </prop>
+                  </prop>
                   <prop type="string" name="sharedAccessKey" arg="$parameters.Microsoft.IoTHub.properties.sharedAccessKey" required="True"/>
                   <prop type="string" name="timestampPropertyName" arg="$parameters.Microsoft.IoTHub.properties.timestampPropertyName"/>
                 </prop>
