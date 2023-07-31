@@ -47,6 +47,9 @@
 - [disk-encryption-set](/Commands/disk-encryption-set/readme.md)
 : Disk Encryption Set resource.
 
+- [dnc](/Commands/dnc/readme.md)
+: Manage Delegated Network.
+
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
 
