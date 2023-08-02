@@ -12,5 +12,23 @@ Manage Linux or Windows virtual machines.
 
 ## Commands
 
+- [convert](/Commands/vm/_convert.md)
+: Convert a VM with unmanaged disks to use managed disks.
+
+- [deallocate](/Commands/vm/_deallocate.md)
+: Deallocate a VM so that computing resources are no longer allocated (charges no longer apply). The status will change from 'Stopped' to 'Stopped (Deallocated)'.
+
+- [generalize](/Commands/vm/_generalize.md)
+: Mark a VM as generalized, allowing it to be imaged for multiple deployments.
+
+- [list-vm-resize-options](/Commands/vm/_list-vm-resize-options.md)
+: List available resizing options for VMs.
+
+- [perform-maintenance](/Commands/vm/_perform-maintenance.md)
+: The operation to perform maintenance on a virtual machine.
+
+- [redeploy](/Commands/vm/_redeploy.md)
+: Redeploy an existing VM.
+
 - [reimage](/Commands/vm/_reimage.md)
 : Reimage (upgrade the operating system) a virtual machine.
