@@ -1,0 +1,16 @@
+# [Command] _networkfabric tap show_
+
+Show details of the provided Network Tap resource
+
+## Versions
+
+### [2023-06-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrdGFwcy97fQ==/2023-06-15.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networktaps/{} 2023-06-15 -->
+
+#### examples
+
+- Show the Network Tap
+    ```bash
+        networkfabric tap show --resource-group "example-rg" --resource-name "example-networktap"
+    ```
