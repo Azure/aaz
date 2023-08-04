@@ -31,6 +31,12 @@ Manage Azure Network Fabric Management Service API
 - [internalnetwork](/Commands/networkfabric/internalnetwork/readme.md)
 : Manage Internal Network Resource
 
+- [internetgateway](/Commands/networkfabric/internetgateway/readme.md)
+: Manage Internet Gateway Resource
+
+- [internetgatewayrule](/Commands/networkfabric/internetgatewayrule/readme.md)
+: Manage Internet Gateway Rule Resource
+
 - [ipcommunity](/Commands/networkfabric/ipcommunity/readme.md)
 : Manage Ip Community Resource
 
@@ -46,8 +52,14 @@ Manage Azure Network Fabric Management Service API
 - [l3domain](/Commands/networkfabric/l3domain/readme.md)
 : Manage L3 Isolation Domain Resource
 
+- [neighborgroup](/Commands/networkfabric/neighborgroup/readme.md)
+: Manage Neighbor Group Resource
+
 - [nni](/Commands/networkfabric/nni/readme.md)
 : Manage Network To Network Interconnect Resource
+
+- [npb](/Commands/networkfabric/npb/readme.md)
+: Manage Network Packet Broker Resource
 
 - [rack](/Commands/networkfabric/rack/readme.md)
 : Manage Network Rack Resource
@@ -57,3 +69,9 @@ Manage Azure Network Fabric Management Service API
 
 - [routepolicy](/Commands/networkfabric/routepolicy/readme.md)
 : Manage Route Policy Resource
+
+- [tap](/Commands/networkfabric/tap/readme.md)
+: Manage Network Tap Resource
+
+- [taprule](/Commands/networkfabric/taprule/readme.md)
+: Manage Network Tap Rule Resource

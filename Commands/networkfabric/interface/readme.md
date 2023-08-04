@@ -8,16 +8,16 @@ Manage Network Interface Resource
 : Create a Network Interface resource.
 
 - [delete](/Commands/networkfabric/interface/_delete.md)
-: Delete the Network Interface resource.
+: Delete the Network Interface resource
 
 - [list](/Commands/networkfabric/interface/_list.md)
-: List all Network Interfaces in the provided resource group.
+: List all Network Interfaces in the provided resource group
 
 - [show](/Commands/networkfabric/interface/_show.md)
-: Show details of the provided Network Interface resource.
+: Show details of the provided Network Interface resource
 
 - [update](/Commands/networkfabric/interface/_update.md)
 : Update certain properties of the Network Interface resource.
 
 - [update-admin-state](/Commands/networkfabric/interface/_update-admin-state.md)
-: Update the admin state of the provided Network Interface resource.
+: Update the admin state of the Network Interface.
