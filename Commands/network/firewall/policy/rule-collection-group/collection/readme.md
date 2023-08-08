@@ -14,7 +14,7 @@ Currently, Azure Firewall policy support two kinds of rule collections which are
 : None
 
 - [list](/Commands/network/firewall/policy/rule-collection-group/collection/_list.md)
-: None
+: List all rule collections of an Azure firewall policy rule collection group.
 
 - [show](/Commands/network/firewall/policy/rule-collection-group/collection/_show.md)
 : None

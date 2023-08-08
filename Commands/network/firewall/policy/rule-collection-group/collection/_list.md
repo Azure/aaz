@@ -1,6 +1,6 @@
 # [Command] _network firewall policy rule-collection-group collection list_
 
-None
+List all rule collections of an Azure firewall policy rule collection group.
 
 ## Versions
 
