@@ -17,4 +17,4 @@ Manage Agent resource, which references a hybrid compute machine that can run jo
 : Unregisters an Agent resource.
 
 - [update](/Commands/storage-mover/agent/_update.md)
-: Updates an Agent resource, which references a hybrid compute machine that can run jobs.
+: Update an Agent resource, which references a hybrid compute machine that can run jobs.

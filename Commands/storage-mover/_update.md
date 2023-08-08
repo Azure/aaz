@@ -1,6 +1,6 @@
 # [Command] _storage-mover update_
 
-Update properties for a Storage Mover resource. Properties not specified in the request body will be unchanged.
+Update a top-level Storage Mover resource.
 
 ## Versions
 

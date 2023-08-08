@@ -1,6 +1,6 @@
 # [Command] _storage-mover job-definition update_
 
-Updates a Job Definition resource, which contains configuration for a single unit of managed data transfer.
+Update a Job Definition resource, which contains configuration for a single unit of managed data transfer.
 
 ## Versions
 
