@@ -17,4 +17,4 @@ Manage Project resource, which is a logical grouping of related jobs.
 : Gets a Project resource.
 
 - [update](/Commands/storage-mover/project/_update.md)
-: Updates a Project resource, which is a logical grouping of related jobs.
+: Update a Project resource, which is a logical grouping of related jobs.
