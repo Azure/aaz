@@ -38,6 +38,9 @@
 - [devcenter](/Commands/devcenter/readme.md)
 : Manage resources with devcenter.
 
+- [disk](/Commands/disk/readme.md)
+: Manage Azure Managed Disks.
+
 - [disk-access](/Commands/disk-access/readme.md)
 : Manage disk access resources.
 
@@ -145,6 +148,9 @@
 
 - [sig](/Commands/sig/readme.md)
 : Manage shared image gallery.
+
+- [snapshot](/Commands/snapshot/readme.md)
+: Manage point-in-time copies of managed disks, native blobs, or other snapshots.
 
 - [spatial-anchors-account](/Commands/spatial-anchors-account/readme.md)
 : Manage spatial anchor account with mixed reality.
