@@ -4,6 +4,9 @@ Manage and configure Azure firewall policy.
 
 ## Subgroups
 
+- [intrusion-detection](/Commands/network/firewall/policy/intrusion-detection/readme.md)
+: Manage intrusion signature rules and bypass rules
+
 - [rule-collection-group](/Commands/network/firewall/policy/rule-collection-group/readme.md)
 : Manage and configure Azure firewall policy rule collection group.
 
