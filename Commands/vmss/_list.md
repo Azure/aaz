@@ -1,6 +1,6 @@
 # [Command] _vmss list_
 
-List a list of all VM scale sets under a resource group.
+List all VM scale sets under a resource group.
 
 ## Versions
 

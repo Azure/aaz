@@ -1,6 +1,6 @@
 # [Command] _vmss list-skus_
 
-List a list of SKUs available for your VM scale set, including the minimum and maximum VM instances allowed for each SKU.
+List SKUs available for your VM scale set, including the minimum and maximum VM instances allowed for each SKU.
 
 ## Versions
 

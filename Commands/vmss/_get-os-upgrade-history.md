@@ -1,6 +1,6 @@
 # [Command] _vmss get-os-upgrade-history_
 
-List list of OS upgrades on a VM scale set instance.
+List the OS upgrades on a VM scale set instance.
 
 ## Versions
 
