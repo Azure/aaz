@@ -1,0 +1,97 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.storage/storageaccounts/{}/accountmigrations/{}" version="2023-01-01" swagger="mgmt-plane/storage/ResourceProviders/Microsoft.Storage/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RvcmFnZS9zdG9yYWdlQWNjb3VudHMve2FjY291bnROYW1lfS9hY2NvdW50TWlncmF0aW9ucy97bWlncmF0aW9uTmFtZX0=/V/MjAyMy0wMS0wMQ=="/>
+  <commandGroup name="storage account migration">
+    <command name="show" version="2023-01-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.storage/storageaccounts/{}/accountmigrations/{}" version="2023-01-01" swagger="mgmt-plane/storage/ResourceProviders/Microsoft.Storage/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RvcmFnZS9zdG9yYWdlQWNjb3VudHMve2FjY291bnROYW1lfS9hY2NvdW50TWlncmF0aW9ucy97bWlncmF0aW9uTmFtZX0=/V/MjAyMy0wMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.accountName" options="account-name" required="True" idPart="name">
+          <help short="The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only."/>
+          <format pattern="^[a-z0-9]+$" maxLength="24" minLength="3"/>
+        </arg>
+        <arg type="string" var="$Path.migrationName" options="migration-name name n" required="True" idPart="child_name_1">
+          <help short="The name of the Storage Account Migration. It should always be 'default'"/>
+          <format pattern="^[a-z][a-z0-9]*$"/>
+          <enum>
+            <item name="default" value="&quot;default&quot;"/>
+          </enum>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="StorageAccounts_GetCustomerInitiatedMigration">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/accountMigrations/{migrationName}">
+          <request method="get">
+            <path>
+              <param type="string" name="accountName" arg="$Path.accountName" required="True">
+                <format pattern="^[a-z0-9]+$" maxLength="24" minLength="3"/>
+              </param>
+              <param type="string" name="migrationName" arg="$Path.migrationName" required="True">
+                <format pattern="^[a-z][a-z0-9]*$"/>
+                <enum>
+                  <item value="&quot;default&quot;"/>
+                </enum>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-01-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="id"/>
+                  <prop type="string" name="name"/>
+                  <prop type="object" name="properties" required="True" clientFlatten="True">
+                    <prop readOnly="True" type="string" name="migrationFailedDetailedReason"/>
+                    <prop readOnly="True" type="string" name="migrationFailedReason"/>
+                    <prop readOnly="True" type="string" name="migrationStatus">
+                      <enum>
+                        <item value="&quot;Complete&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;InProgress&quot;"/>
+                        <item value="&quot;Invalid&quot;"/>
+                        <item value="&quot;SubmittedForConversion&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="targetSkuName" required="True">
+                      <enum>
+                        <item value="&quot;Premium_LRS&quot;"/>
+                        <item value="&quot;Premium_ZRS&quot;"/>
+                        <item value="&quot;Standard_GRS&quot;"/>
+                        <item value="&quot;Standard_GZRS&quot;"/>
+                        <item value="&quot;Standard_LRS&quot;"/>
+                        <item value="&quot;Standard_RAGRS&quot;"/>
+                        <item value="&quot;Standard_RAGZRS&quot;"/>
+                        <item value="&quot;Standard_ZRS&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
