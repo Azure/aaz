@@ -80,6 +80,9 @@
 - [logic](/Commands/logic/readme.md)
 : Manage logic
 
+- [maintenance](/Commands/maintenance/readme.md)
+: Manage Maintenance
+
 - [mobile-network](/Commands/mobile-network/readme.md)
 : Manage mobile network
 
