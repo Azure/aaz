@@ -1,8 +1,11 @@
 # [Group] _dataprotection backup-instance_
 
-Manage backup instance with dataprotection
+Manage backup instance with dataprotection.
 
 ## Subgroups
+
+- [deleted-backup-instance](/Commands/dataprotection/backup-instance/deleted-backup-instance/readme.md)
+: Perform operations on soft-deleted backup instances.
 
 - [restore](/Commands/dataprotection/backup-instance/restore/readme.md)
 : Restore backed up instances from recovery points in a backup vault
