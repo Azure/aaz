@@ -17,4 +17,4 @@ Manage Access Control List Resource
 : Show details of the provided Access Control List resource
 
 - [update](/Commands/networkfabric/acl/_update.md)
-: Update to update certain properties of the Access Control List resource.
+: Update the Access Control List resource
