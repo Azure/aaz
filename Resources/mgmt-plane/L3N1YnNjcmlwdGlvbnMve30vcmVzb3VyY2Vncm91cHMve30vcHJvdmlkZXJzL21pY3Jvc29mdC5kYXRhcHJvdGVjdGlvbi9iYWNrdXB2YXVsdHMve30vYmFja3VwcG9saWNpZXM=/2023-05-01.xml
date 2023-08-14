@@ -1,0 +1,266 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backuppolicies" version="2023-05-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9L2JhY2t1cFBvbGljaWVz/V/MjAyMy0wNS0wMQ=="/>
+  <commandGroup name="dataprotection backup-policy">
+    <command name="list" version="2023-05-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backuppolicies" version="2023-05-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9L2JhY2t1cFBvbGljaWVz/V/MjAyMy0wNS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vaultName" options="vault-name" required="True" idPart="name">
+          <help short="The name of the backup vault."/>
+        </arg>
+      </argGroup>
+      <operation operationId="BackupPolicies_List">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupPolicies">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vaultName" arg="$Path.vaultName" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-05-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.DataProtection/backupVaults/{}/backupPolicies/{}"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties">
+                        <prop type="array<string>" name="datasourceTypes" required="True">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="string" name="objectType" required="True">
+                          <enum>
+                            <item value="&quot;BackupPolicy&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="objectType" value="BackupPolicy">
+                          <prop type="array<object>" name="policyRules" required="True">
+                            <item type="object">
+                              <prop type="string" name="name" required="True"/>
+                              <prop type="string" name="objectType" required="True">
+                                <enum>
+                                  <item value="&quot;AzureBackupRule&quot;"/>
+                                  <item value="&quot;AzureRetentionRule&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="objectType" value="AzureBackupRule">
+                                <prop type="object" name="backupParameters">
+                                  <prop type="string" name="objectType" required="True">
+                                    <enum>
+                                      <item value="&quot;AzureBackupParams&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <discriminator property="objectType" value="AzureBackupParams">
+                                    <prop type="string" name="backupType" required="True"/>
+                                  </discriminator>
+                                </prop>
+                                <prop type="object" name="dataStore" required="True" cls="DataStoreInfoBase_read">
+                                  <prop type="string" name="dataStoreType" required="True">
+                                    <enum>
+                                      <item value="&quot;ArchiveStore&quot;"/>
+                                      <item value="&quot;OperationalStore&quot;"/>
+                                      <item value="&quot;VaultStore&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="string" name="objectType" required="True"/>
+                                </prop>
+                                <prop type="object" name="trigger" required="True">
+                                  <prop type="string" name="objectType" required="True">
+                                    <enum>
+                                      <item value="&quot;AdhocBasedTriggerContext&quot;"/>
+                                      <item value="&quot;ScheduleBasedTriggerContext&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <discriminator property="objectType" value="AdhocBasedTriggerContext">
+                                    <prop type="object" name="taggingCriteria" required="True">
+                                      <prop type="object" name="tagInfo" cls="RetentionTag_read">
+                                        <prop readOnly="True" type="string" name="eTag"/>
+                                        <prop readOnly="True" type="string" name="id"/>
+                                        <prop type="string" name="tagName" required="True"/>
+                                      </prop>
+                                    </prop>
+                                  </discriminator>
+                                  <discriminator property="objectType" value="ScheduleBasedTriggerContext">
+                                    <prop type="object" name="schedule" required="True">
+                                      <prop type="array<string>" name="repeatingTimeIntervals" required="True">
+                                        <item type="string"/>
+                                      </prop>
+                                      <prop type="string" name="timeZone"/>
+                                    </prop>
+                                    <prop type="array<object>" name="taggingCriteria" required="True">
+                                      <item type="object">
+                                        <prop type="array<object>" name="criteria">
+                                          <item type="object">
+                                            <prop type="string" name="objectType" required="True">
+                                              <enum>
+                                                <item value="&quot;ScheduleBasedBackupCriteria&quot;"/>
+                                              </enum>
+                                            </prop>
+                                            <discriminator property="objectType" value="ScheduleBasedBackupCriteria">
+                                              <prop type="array<string>" name="absoluteCriteria">
+                                                <item type="string">
+                                                  <enum>
+                                                    <item value="&quot;AllBackup&quot;"/>
+                                                    <item value="&quot;FirstOfDay&quot;"/>
+                                                    <item value="&quot;FirstOfMonth&quot;"/>
+                                                    <item value="&quot;FirstOfWeek&quot;"/>
+                                                    <item value="&quot;FirstOfYear&quot;"/>
+                                                  </enum>
+                                                </item>
+                                              </prop>
+                                              <prop type="array<object>" name="daysOfMonth">
+                                                <item type="object">
+                                                  <prop type="integer32" name="date"/>
+                                                  <prop type="boolean" name="isLast"/>
+                                                </item>
+                                              </prop>
+                                              <prop type="array<string>" name="daysOfTheWeek">
+                                                <item type="string">
+                                                  <enum>
+                                                    <item value="&quot;Friday&quot;"/>
+                                                    <item value="&quot;Monday&quot;"/>
+                                                    <item value="&quot;Saturday&quot;"/>
+                                                    <item value="&quot;Sunday&quot;"/>
+                                                    <item value="&quot;Thursday&quot;"/>
+                                                    <item value="&quot;Tuesday&quot;"/>
+                                                    <item value="&quot;Wednesday&quot;"/>
+                                                  </enum>
+                                                </item>
+                                              </prop>
+                                              <prop type="array<string>" name="monthsOfYear">
+                                                <item type="string">
+                                                  <enum>
+                                                    <item value="&quot;April&quot;"/>
+                                                    <item value="&quot;August&quot;"/>
+                                                    <item value="&quot;December&quot;"/>
+                                                    <item value="&quot;February&quot;"/>
+                                                    <item value="&quot;January&quot;"/>
+                                                    <item value="&quot;July&quot;"/>
+                                                    <item value="&quot;June&quot;"/>
+                                                    <item value="&quot;March&quot;"/>
+                                                    <item value="&quot;May&quot;"/>
+                                                    <item value="&quot;November&quot;"/>
+                                                    <item value="&quot;October&quot;"/>
+                                                    <item value="&quot;September&quot;"/>
+                                                  </enum>
+                                                </item>
+                                              </prop>
+                                              <prop type="array<dateTime>" name="scheduleTimes">
+                                                <item type="dateTime"/>
+                                              </prop>
+                                              <prop type="array<string>" name="weeksOfTheMonth">
+                                                <item type="string">
+                                                  <enum>
+                                                    <item value="&quot;First&quot;"/>
+                                                    <item value="&quot;Fourth&quot;"/>
+                                                    <item value="&quot;Last&quot;"/>
+                                                    <item value="&quot;Second&quot;"/>
+                                                    <item value="&quot;Third&quot;"/>
+                                                  </enum>
+                                                </item>
+                                              </prop>
+                                            </discriminator>
+                                          </item>
+                                        </prop>
+                                        <prop type="boolean" name="isDefault" required="True"/>
+                                        <prop type="@RetentionTag_read" name="tagInfo" required="True"/>
+                                        <prop type="integer64" name="taggingPriority" required="True"/>
+                                      </item>
+                                    </prop>
+                                  </discriminator>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="objectType" value="AzureRetentionRule">
+                                <prop type="boolean" name="isDefault"/>
+                                <prop type="array<object>" name="lifecycles" required="True">
+                                  <item type="object">
+                                    <prop type="object" name="deleteAfter" required="True">
+                                      <prop type="string" name="duration" required="True"/>
+                                      <prop type="string" name="objectType" required="True">
+                                        <enum>
+                                          <item value="&quot;AbsoluteDeleteOption&quot;"/>
+                                        </enum>
+                                      </prop>
+                                    </prop>
+                                    <prop type="@DataStoreInfoBase_read" name="sourceDataStore" required="True"/>
+                                    <prop type="array<object>" name="targetDataStoreCopySettings">
+                                      <item type="object">
+                                        <prop type="object" name="copyAfter" required="True">
+                                          <prop type="string" name="objectType" required="True">
+                                            <enum>
+                                              <item value="&quot;CopyOnExpiryOption&quot;"/>
+                                              <item value="&quot;CustomCopyOption&quot;"/>
+                                              <item value="&quot;ImmediateCopyOption&quot;"/>
+                                            </enum>
+                                          </prop>
+                                          <discriminator property="objectType" value="CustomCopyOption">
+                                            <prop type="string" name="duration"/>
+                                          </discriminator>
+                                        </prop>
+                                        <prop type="@DataStoreInfoBase_read" name="dataStore" required="True"/>
+                                      </item>
+                                    </prop>
+                                  </item>
+                                </prop>
+                              </discriminator>
+                            </item>
+                          </prop>
+                        </discriminator>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

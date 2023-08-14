@@ -12,7 +12,7 @@ Create a Neighbor Group resource
 
 - Create a Neighbor Group
     ```bash
-        networkfabric neighborgroup create --resource-group "example-rg" --location "westus3" --resource-name "example-neighborgroup" --destination "{ipv4Addresses:['10.10.10.10'],ipv6Addresses:['2F::/100']}"
+        networkfabric neighborgroup create --resource-group "example-rg" --location "westus3" --resource-name "example-neighborgroup" --destination "{ipv4Addresses:['10.10.10.10']}"
     ```
 
 - Help text for sub parameters under the specific parent can be viewed by using the shorthand syntax '??'. See https://github.com/Azure/azure-cli/tree/dev/doc/shorthand_syntax.md for more about shorthand syntax.
