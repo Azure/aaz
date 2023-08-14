@@ -83,6 +83,9 @@
 - [maintenance](/Commands/maintenance/readme.md)
 : Manage Maintenance
 
+- [mesh](/Commands/mesh/readme.md)
+: (PREVIEW) Manage Azure Service Fabric Mesh Resources.
+
 - [mobile-network](/Commands/mobile-network/readme.md)
 : Manage mobile network
 
