@@ -1,6 +1,6 @@
 # [Command] _vmss extension image list-names_
 
-List a list of virtual machine extension image types.
+List virtual machine extension image types.
 
 ## Versions
 
