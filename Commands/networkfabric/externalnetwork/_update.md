@@ -26,5 +26,5 @@ Update the External Networks resource.
 
 - Help text for sub parameters under the specific parent can be viewed by using the shorthand syntax '??'. See https://github.com/Azure/azure-cli/tree/dev/doc/shorthand_syntax.md for more about shorthand syntax.
     ```bash
-        networkfabric externalnetwork update --option-a-properties ??
+        networkfabric externalnetwork update --option-a-properties "??"
     ```

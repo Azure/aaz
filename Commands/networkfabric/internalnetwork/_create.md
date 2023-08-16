@@ -34,6 +34,6 @@ Create a Internal Network resource
 
 - Help text for sub parameters under the specific parent can be viewed by using the shorthand syntax '??'. See https://github.com/Azure/azure-cli/tree/dev/doc/shorthand_syntax.md for more about shorthand syntax.
     ```bash
-        networkfabric internalnetwork create --static-route-configuration ??
+        networkfabric internalnetwork create --static-route-configuration "??"
         networkfabric internalnetwork create --static-route-configuration "{ipv4-routes:??"
     ```

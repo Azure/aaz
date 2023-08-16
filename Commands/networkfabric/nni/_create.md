@@ -33,5 +33,5 @@ Create a Network To Network Interconnect resource
 
 - Help text for sub parameters under the specific parent can be viewed by using the shorthand syntax '??'. See https://github.com/Azure/azure-cli/tree/dev/doc/shorthand_syntax.md for more about shorthand syntax.
     ```bash
-        networkfabric nni create --layer2-configuration ??
+        networkfabric nni create --layer2-configuration "??"
     ```
