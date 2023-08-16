@@ -1,6 +1,6 @@
 # [Group] _eventhubs eventhub consumer-group_
 
-eventhubs eventhub consumer-group
+Manage Azure Event Hubs consumergroup.
 
 ## Commands
 
