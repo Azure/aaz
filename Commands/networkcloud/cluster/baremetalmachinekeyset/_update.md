@@ -26,7 +26,7 @@ Update properties of bare metal machine key set for the provided cluster, or upd
         networkcloud cluster baremetalmachinekeyset update --name "bareMetalMachineKeySetName" --expiration "2022-12-31T23:59:59.008Z" --jump-hosts-allowed "192.0.2.1" "192.0.2.5" --user-list "[{description:'User description',azureUserName:userABC,sshPublicKey:{keyData:'ssh-rsa AAtsE3njSONzDYRIZv/WLjVuMfrUSByHp+/ojNZfpB3af/YDzwQCZzXnblrv9d3q4c2tWmm/SyFqthaqd0= admin@vm'}}]" --tags key1="myvalue1" key2="myvalue2" --cluster-name "clusterName" --resource-group "resourceGroupName"
     ```
 
-### [2023-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvY2x1c3RlcnMve30vYmFyZW1ldGFsbWFjaGluZWtleXNldHMve30=/2023-07-01.xml) **Preview**
+### [2023-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvY2x1c3RlcnMve30vYmFyZW1ldGFsbWFjaGluZWtleXNldHMve30=/2023-07-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/clusters/{}/baremetalmachinekeysets/{} 2023-07-01 -->
 
