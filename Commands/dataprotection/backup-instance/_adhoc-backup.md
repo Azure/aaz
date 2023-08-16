@@ -21,7 +21,8 @@ Trigger adhoc backup.
 
 #### examples
 
-- Trigger Adhoc Backup
+- Fetch Backup Policy details for rule name and Trigger Adhoc Backup
     ```bash
+        dataprotection backup-policy show -g "000pikumar" --vault-name "PratikPrivatePreviewVault1" -n "backupPolicy"
         dataprotection backup-instance adhoc-backup --name "testInstance1" --rule-name "BackupWeekly" --retention-tag-override "yearly" --resource-group "000pikumar" --vault-name "PratikPrivatePreviewVault1"
     ```
