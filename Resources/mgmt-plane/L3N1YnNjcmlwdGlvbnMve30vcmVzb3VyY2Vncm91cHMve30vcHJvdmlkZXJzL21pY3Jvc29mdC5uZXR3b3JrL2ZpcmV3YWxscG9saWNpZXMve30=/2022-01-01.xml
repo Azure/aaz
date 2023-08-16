@@ -917,7 +917,7 @@
         <arg nullable="True" type="string" var="$parameters.properties.basePolicy.id" options="base-policy" hide="True" group="">
           <help short="The name or ID of parent firewall policy from which rules are inherited."/>
         </arg>
-        <arg nullable="True" type="string" var="$parameters.properties.sku.tier" options="sku" stage="Preview" group="">
+        <arg nullable="True" type="string" var="$parameters.properties.sku.tier" options="sku" group="">
           <help short="SKU of Firewall policy."/>
           <enum>
             <item name="Basic" value="&quot;Basic&quot;"/>
@@ -977,7 +977,7 @@
         </arg>
       </argGroup>
       <argGroup name="IntrusionDetection">
-        <arg nullable="True" type="object" var="$parameters.properties.intrusionDetection.configuration" options="configuration" hide="True" group="IntrusionDetection">
+        <arg nullable="True" type="object" var="$parameters.properties.intrusionDetection.configuration" options="configuration" group="IntrusionDetection">
           <help short="Intrusion detection configuration properties."/>
           <arg nullable="True" type="array<object>" var="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings" options="bypass-traffic-settings">
             <help short="List of rules for traffic to bypass."/>
@@ -1569,5 +1569,1277 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
+    <commandGroup name="intrusion-detection">
+      <command name="create" version="2022-01-01" confirmation="">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/firewallpolicies/{}" version="2022-01-01" subresource="properties.intrusionDetection.configuration" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9maXJld2FsbFBvbGljaWVzL3tmaXJld2FsbFBvbGljeU5hbWV9/V/MjAyMi0wMS0wMQ=="/>
+        <argGroup name="">
+          <arg type="string" var="$Path.firewallPolicyName" options="name" required="True" group="" idPart="name">
+            <help short="The name of the Firewall Policy."/>
+          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        </argGroup>
+        <argGroup name="Parameters.properties.intrusionDetection.configuration">
+          <arg type="array<object>" var="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings" options="bypass-traffic-settings" group="Parameters.properties.intrusionDetection.configuration">
+            <help short="List of rules for traffic to bypass."/>
+            <item type="object">
+              <arg type="string" var="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].description" options="description">
+                <help short="Description of the bypass traffic rule."/>
+              </arg>
+              <arg type="array<string>" var="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].destinationAddresses" options="destination-addresses">
+                <help short="List of destination IP addresses or ranges for this rule."/>
+                <item type="string"/>
+              </arg>
+              <arg type="array<string>" var="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].destinationIpGroups" options="destination-ip-groups">
+                <help short="List of destination IpGroups for this rule."/>
+                <item type="string"/>
+              </arg>
+              <arg type="array<string>" var="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].destinationPorts" options="destination-ports">
+                <help short="List of destination ports or ranges."/>
+                <item type="string"/>
+              </arg>
+              <arg type="string" var="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].name" options="name">
+                <help short="Name of the bypass traffic rule."/>
+              </arg>
+              <arg type="string" var="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].protocol" options="protocol">
+                <help short="The rule bypass protocol."/>
+                <enum>
+                  <item name="ANY" value="&quot;ANY&quot;"/>
+                  <item name="ICMP" value="&quot;ICMP&quot;"/>
+                  <item name="TCP" value="&quot;TCP&quot;"/>
+                  <item name="UDP" value="&quot;UDP&quot;"/>
+                </enum>
+              </arg>
+              <arg type="array<string>" var="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].sourceAddresses" options="source-addresses">
+                <help short="List of source IP addresses or ranges for this rule."/>
+                <item type="string"/>
+              </arg>
+              <arg type="array<string>" var="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].sourceIpGroups" options="source-ip-groups">
+                <help short="List of source IpGroups for this rule."/>
+                <item type="string"/>
+              </arg>
+            </item>
+          </arg>
+          <arg type="array<string>" var="$parameters.properties.intrusionDetection.configuration.privateRanges" options="private-ranges" group="Parameters.properties.intrusionDetection.configuration">
+            <help short="IDPS Private IP address ranges are used to identify traffic direction (i.e. inbound, outbound, etc.). By default, only ranges defined by IANA RFC 1918 are considered private IP addresses. To modify default ranges, specify your Private IP address ranges with this property"/>
+            <item type="string"/>
+          </arg>
+          <arg type="array<object>" var="$parameters.properties.intrusionDetection.configuration.signatureOverrides" options="signature-overrides" group="Parameters.properties.intrusionDetection.configuration">
+            <help short="List of specific signatures states."/>
+            <item type="object">
+              <arg type="string" var="$parameters.properties.intrusionDetection.configuration.signatureOverrides[].id" options="id">
+                <help short="Signature id."/>
+              </arg>
+              <arg type="string" var="$parameters.properties.intrusionDetection.configuration.signatureOverrides[].mode" options="mode">
+                <help short="The signature state."/>
+                <enum>
+                  <item name="Alert" value="&quot;Alert&quot;"/>
+                  <item name="Deny" value="&quot;Deny&quot;"/>
+                  <item name="Off" value="&quot;Off&quot;"/>
+                </enum>
+              </arg>
+            </item>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="parameters">
+            <prop type="object" name="properties.intrusionDetection.configuration"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="FirewallPolicies_Get">
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/firewallPolicies/{firewallPolicyName}">
+            <request method="get">
+              <path>
+                <param type="string" name="firewallPolicyName" arg="$Path.firewallPolicyName" required="True"/>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-01-01&quot;"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="FirewallPolicy_read">
+                    <prop readOnly="True" type="string" name="etag"/>
+                    <prop type="ResourceId" name="id">
+                      <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/firewallPolicies/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="string" name="principalId"/>
+                      <prop readOnly="True" type="string" name="tenantId"/>
+                      <prop type="string" name="type">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned, UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="clientId"/>
+                            <prop readOnly="True" type="string" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" clientFlatten="True">
+                      <prop type="@SubResource_read" name="basePolicy"/>
+                      <prop readOnly="True" type="array<@SubResource_read>" name="childPolicies">
+                        <item type="@SubResource_read"/>
+                      </prop>
+                      <prop type="object" name="dnsSettings">
+                        <prop type="boolean" name="enableProxy"/>
+                        <prop nullable="True" type="boolean" name="requireProxyForNetworkRules"/>
+                        <prop type="array<string>" name="servers">
+                          <item type="string"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="explicitProxy">
+                        <prop nullable="True" type="boolean" name="enableExplicitProxy"/>
+                        <prop nullable="True" type="boolean" name="enablePacFile"/>
+                        <prop type="integer32" name="httpPort">
+                          <format maximum="64000" minimum="0"/>
+                        </prop>
+                        <prop type="integer32" name="httpsPort">
+                          <format maximum="64000" minimum="0"/>
+                        </prop>
+                        <prop type="string" name="pacFile"/>
+                        <prop type="integer32" name="pacFilePort">
+                          <format maximum="64000" minimum="0"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="array<@SubResource_read>" name="firewalls">
+                        <item type="@SubResource_read"/>
+                      </prop>
+                      <prop type="object" name="insights">
+                        <prop type="boolean" name="isEnabled"/>
+                        <prop type="object" name="logAnalyticsResources">
+                          <prop type="@SubResource_read" name="defaultWorkspaceId"/>
+                          <prop type="array<object>" name="workspaces">
+                            <item type="object">
+                              <prop type="string" name="region"/>
+                              <prop type="@SubResource_read" name="workspaceId"/>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="integer32" name="retentionDays"/>
+                      </prop>
+                      <prop type="object" name="intrusionDetection">
+                        <prop type="object" name="configuration">
+                          <prop type="array<object>" name="bypassTrafficSettings">
+                            <item type="object">
+                              <prop type="string" name="description"/>
+                              <prop type="array<string>" name="destinationAddresses">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="array<string>" name="destinationIpGroups">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="array<string>" name="destinationPorts">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="name"/>
+                              <prop type="string" name="protocol">
+                                <enum>
+                                  <item value="&quot;ANY&quot;"/>
+                                  <item value="&quot;ICMP&quot;"/>
+                                  <item value="&quot;TCP&quot;"/>
+                                  <item value="&quot;UDP&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="array<string>" name="sourceAddresses">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="array<string>" name="sourceIpGroups">
+                                <item type="string"/>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="array<string>" name="privateRanges">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="array<object>" name="signatureOverrides">
+                            <item type="object">
+                              <prop type="string" name="id"/>
+                              <prop type="string" name="mode">
+                                <enum>
+                                  <item value="&quot;Alert&quot;"/>
+                                  <item value="&quot;Deny&quot;"/>
+                                  <item value="&quot;Off&quot;"/>
+                                </enum>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="mode">
+                          <enum>
+                            <item value="&quot;Alert&quot;"/>
+                            <item value="&quot;Deny&quot;"/>
+                            <item value="&quot;Off&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="array<object>" name="ruleCollectionGroups">
+                        <item type="object" cls="SubResource_read">
+                          <prop type="string" name="id"/>
+                        </item>
+                      </prop>
+                      <prop type="object" name="sku">
+                        <prop type="string" name="tier">
+                          <enum>
+                            <item value="&quot;Basic&quot;"/>
+                            <item value="&quot;Premium&quot;"/>
+                            <item value="&quot;Standard&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="snat">
+                        <prop type="string" name="autoLearnPrivateRanges">
+                          <enum>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<string>" name="privateRanges">
+                          <item type="string"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="sql">
+                        <prop type="boolean" name="allowSqlRedirect"/>
+                      </prop>
+                      <prop type="string" name="threatIntelMode">
+                        <enum>
+                          <item value="&quot;Alert&quot;"/>
+                          <item value="&quot;Deny&quot;"/>
+                          <item value="&quot;Off&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="threatIntelWhitelist">
+                        <prop type="array<string>" name="fqdns">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="array<string>" name="ipAddresses">
+                          <item type="string"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="transportSecurity">
+                        <prop type="object" name="certificateAuthority">
+                          <prop type="string" name="keyVaultSecretId"/>
+                          <prop type="string" name="name"/>
+                        </prop>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@ODataV4Format"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <operation>
+          <instanceCreate ref="$Subresource">
+            <json>
+              <schema type="object" name="parameters.properties.intrusionDetection.configuration" required="True">
+                <prop type="array<object>" name="bypassTrafficSettings" arg="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings">
+                  <item type="object">
+                    <prop type="string" name="description" arg="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].description"/>
+                    <prop type="array<string>" name="destinationAddresses" arg="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].destinationAddresses">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="array<string>" name="destinationIpGroups" arg="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].destinationIpGroups">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="array<string>" name="destinationPorts" arg="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].destinationPorts">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="string" name="name" arg="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].name"/>
+                    <prop type="string" name="protocol" arg="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].protocol">
+                      <enum>
+                        <item value="&quot;ANY&quot;"/>
+                        <item value="&quot;ICMP&quot;"/>
+                        <item value="&quot;TCP&quot;"/>
+                        <item value="&quot;UDP&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<string>" name="sourceAddresses" arg="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].sourceAddresses">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="array<string>" name="sourceIpGroups" arg="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].sourceIpGroups">
+                      <item type="string"/>
+                    </prop>
+                  </item>
+                </prop>
+                <prop type="array<string>" name="privateRanges" arg="$parameters.properties.intrusionDetection.configuration.privateRanges">
+                  <item type="string"/>
+                </prop>
+                <prop type="array<object>" name="signatureOverrides" arg="$parameters.properties.intrusionDetection.configuration.signatureOverrides">
+                  <item type="object">
+                    <prop type="string" name="id" arg="$parameters.properties.intrusionDetection.configuration.signatureOverrides[].id"/>
+                    <prop type="string" name="mode" arg="$parameters.properties.intrusionDetection.configuration.signatureOverrides[].mode">
+                      <enum>
+                        <item value="&quot;Alert&quot;"/>
+                        <item value="&quot;Deny&quot;"/>
+                        <item value="&quot;Off&quot;"/>
+                      </enum>
+                    </prop>
+                  </item>
+                </prop>
+              </schema>
+            </json>
+          </instanceCreate>
+        </operation>
+        <operation operationId="FirewallPolicies_CreateOrUpdate">
+          <longRunning finalStateVia="azure-async-operation"/>
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/firewallPolicies/{firewallPolicyName}">
+            <request method="put">
+              <path>
+                <param type="string" name="firewallPolicyName" arg="$Path.firewallPolicyName" required="True"/>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-01-01&quot;"/>
+                </const>
+              </query>
+              <body>
+                <json ref="$Instance"/>
+              </body>
+            </request>
+            <response statusCode="200 201">
+              <body>
+                <json var="$Instance">
+                  <schema type="@FirewallPolicy_read"/>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@ODataV4Format"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+      <command name="update" version="2022-01-01" confirmation="">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/firewallpolicies/{}" version="2022-01-01" subresource="properties.intrusionDetection.configuration" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9maXJld2FsbFBvbGljaWVzL3tmaXJld2FsbFBvbGljeU5hbWV9/V/MjAyMi0wMS0wMQ=="/>
+        <argGroup name="">
+          <arg type="string" var="$Path.firewallPolicyName" options="name" required="True" group="" idPart="name">
+            <help short="The name of the Firewall Policy."/>
+          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        </argGroup>
+        <argGroup name="Parameters.properties.intrusionDetection.configuration">
+          <arg nullable="True" type="array<object>" var="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings" options="bypass-traffic-settings" group="Parameters.properties.intrusionDetection.configuration">
+            <help short="List of rules for traffic to bypass."/>
+            <item nullable="True" type="object">
+              <arg nullable="True" type="string" var="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].description" options="description">
+                <help short="Description of the bypass traffic rule."/>
+              </arg>
+              <arg nullable="True" type="array<string>" var="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].destinationAddresses" options="destination-addresses">
+                <help short="List of destination IP addresses or ranges for this rule."/>
+                <item nullable="True" type="string"/>
+              </arg>
+              <arg nullable="True" type="array<string>" var="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].destinationIpGroups" options="destination-ip-groups">
+                <help short="List of destination IpGroups for this rule."/>
+                <item nullable="True" type="string"/>
+              </arg>
+              <arg nullable="True" type="array<string>" var="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].destinationPorts" options="destination-ports">
+                <help short="List of destination ports or ranges."/>
+                <item nullable="True" type="string"/>
+              </arg>
+              <arg nullable="True" type="string" var="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].name" options="name">
+                <help short="Name of the bypass traffic rule."/>
+              </arg>
+              <arg nullable="True" type="string" var="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].protocol" options="protocol">
+                <help short="The rule bypass protocol."/>
+                <enum>
+                  <item name="ANY" value="&quot;ANY&quot;"/>
+                  <item name="ICMP" value="&quot;ICMP&quot;"/>
+                  <item name="TCP" value="&quot;TCP&quot;"/>
+                  <item name="UDP" value="&quot;UDP&quot;"/>
+                </enum>
+              </arg>
+              <arg nullable="True" type="array<string>" var="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].sourceAddresses" options="source-addresses">
+                <help short="List of source IP addresses or ranges for this rule."/>
+                <item nullable="True" type="string"/>
+              </arg>
+              <arg nullable="True" type="array<string>" var="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].sourceIpGroups" options="source-ip-groups">
+                <help short="List of source IpGroups for this rule."/>
+                <item nullable="True" type="string"/>
+              </arg>
+            </item>
+          </arg>
+          <arg nullable="True" type="array<string>" var="$parameters.properties.intrusionDetection.configuration.privateRanges" options="private-ranges" group="Parameters.properties.intrusionDetection.configuration">
+            <help short="IDPS Private IP address ranges are used to identify traffic direction (i.e. inbound, outbound, etc.). By default, only ranges defined by IANA RFC 1918 are considered private IP addresses. To modify default ranges, specify your Private IP address ranges with this property"/>
+            <item nullable="True" type="string"/>
+          </arg>
+          <arg nullable="True" type="array<object>" var="$parameters.properties.intrusionDetection.configuration.signatureOverrides" options="signature-overrides" group="Parameters.properties.intrusionDetection.configuration">
+            <help short="List of specific signatures states."/>
+            <item nullable="True" type="object">
+              <arg nullable="True" type="string" var="$parameters.properties.intrusionDetection.configuration.signatureOverrides[].id" options="id">
+                <help short="Signature id."/>
+              </arg>
+              <arg nullable="True" type="string" var="$parameters.properties.intrusionDetection.configuration.signatureOverrides[].mode" options="mode">
+                <help short="The signature state."/>
+                <enum>
+                  <item name="Alert" value="&quot;Alert&quot;"/>
+                  <item name="Deny" value="&quot;Deny&quot;"/>
+                  <item name="Off" value="&quot;Off&quot;"/>
+                </enum>
+              </arg>
+            </item>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="parameters">
+            <prop type="object" name="properties.intrusionDetection.configuration"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="FirewallPolicies_Get">
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/firewallPolicies/{firewallPolicyName}">
+            <request method="get">
+              <path>
+                <param type="string" name="firewallPolicyName" arg="$Path.firewallPolicyName" required="True"/>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-01-01&quot;"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="FirewallPolicy_read">
+                    <prop readOnly="True" type="string" name="etag"/>
+                    <prop type="ResourceId" name="id">
+                      <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/firewallPolicies/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="string" name="principalId"/>
+                      <prop readOnly="True" type="string" name="tenantId"/>
+                      <prop type="string" name="type">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned, UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="clientId"/>
+                            <prop readOnly="True" type="string" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" clientFlatten="True">
+                      <prop type="@SubResource_read" name="basePolicy"/>
+                      <prop readOnly="True" type="array<@SubResource_read>" name="childPolicies">
+                        <item type="@SubResource_read"/>
+                      </prop>
+                      <prop type="object" name="dnsSettings">
+                        <prop type="boolean" name="enableProxy"/>
+                        <prop nullable="True" type="boolean" name="requireProxyForNetworkRules"/>
+                        <prop type="array<string>" name="servers">
+                          <item type="string"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="explicitProxy">
+                        <prop nullable="True" type="boolean" name="enableExplicitProxy"/>
+                        <prop nullable="True" type="boolean" name="enablePacFile"/>
+                        <prop type="integer32" name="httpPort">
+                          <format maximum="64000" minimum="0"/>
+                        </prop>
+                        <prop type="integer32" name="httpsPort">
+                          <format maximum="64000" minimum="0"/>
+                        </prop>
+                        <prop type="string" name="pacFile"/>
+                        <prop type="integer32" name="pacFilePort">
+                          <format maximum="64000" minimum="0"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="array<@SubResource_read>" name="firewalls">
+                        <item type="@SubResource_read"/>
+                      </prop>
+                      <prop type="object" name="insights">
+                        <prop type="boolean" name="isEnabled"/>
+                        <prop type="object" name="logAnalyticsResources">
+                          <prop type="@SubResource_read" name="defaultWorkspaceId"/>
+                          <prop type="array<object>" name="workspaces">
+                            <item type="object">
+                              <prop type="string" name="region"/>
+                              <prop type="@SubResource_read" name="workspaceId"/>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="integer32" name="retentionDays"/>
+                      </prop>
+                      <prop type="object" name="intrusionDetection">
+                        <prop type="object" name="configuration">
+                          <prop type="array<object>" name="bypassTrafficSettings">
+                            <item type="object">
+                              <prop type="string" name="description"/>
+                              <prop type="array<string>" name="destinationAddresses">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="array<string>" name="destinationIpGroups">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="array<string>" name="destinationPorts">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="name"/>
+                              <prop type="string" name="protocol">
+                                <enum>
+                                  <item value="&quot;ANY&quot;"/>
+                                  <item value="&quot;ICMP&quot;"/>
+                                  <item value="&quot;TCP&quot;"/>
+                                  <item value="&quot;UDP&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="array<string>" name="sourceAddresses">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="array<string>" name="sourceIpGroups">
+                                <item type="string"/>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="array<string>" name="privateRanges">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="array<object>" name="signatureOverrides">
+                            <item type="object">
+                              <prop type="string" name="id"/>
+                              <prop type="string" name="mode">
+                                <enum>
+                                  <item value="&quot;Alert&quot;"/>
+                                  <item value="&quot;Deny&quot;"/>
+                                  <item value="&quot;Off&quot;"/>
+                                </enum>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="mode">
+                          <enum>
+                            <item value="&quot;Alert&quot;"/>
+                            <item value="&quot;Deny&quot;"/>
+                            <item value="&quot;Off&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="array<object>" name="ruleCollectionGroups">
+                        <item type="object" cls="SubResource_read">
+                          <prop type="string" name="id"/>
+                        </item>
+                      </prop>
+                      <prop type="object" name="sku">
+                        <prop type="string" name="tier">
+                          <enum>
+                            <item value="&quot;Basic&quot;"/>
+                            <item value="&quot;Premium&quot;"/>
+                            <item value="&quot;Standard&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="snat">
+                        <prop type="string" name="autoLearnPrivateRanges">
+                          <enum>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<string>" name="privateRanges">
+                          <item type="string"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="sql">
+                        <prop type="boolean" name="allowSqlRedirect"/>
+                      </prop>
+                      <prop type="string" name="threatIntelMode">
+                        <enum>
+                          <item value="&quot;Alert&quot;"/>
+                          <item value="&quot;Deny&quot;"/>
+                          <item value="&quot;Off&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="threatIntelWhitelist">
+                        <prop type="array<string>" name="fqdns">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="array<string>" name="ipAddresses">
+                          <item type="string"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="transportSecurity">
+                        <prop type="object" name="certificateAuthority">
+                          <prop type="string" name="keyVaultSecretId"/>
+                          <prop type="string" name="name"/>
+                        </prop>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@ODataV4Format"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <operation>
+          <instanceUpdate ref="$Subresource">
+            <json>
+              <schema type="object" name="parameters.properties.intrusionDetection.configuration" required="True">
+                <prop type="array<object>" name="bypassTrafficSettings" arg="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings">
+                  <item type="object">
+                    <prop type="string" name="description" arg="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].description"/>
+                    <prop type="array<string>" name="destinationAddresses" arg="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].destinationAddresses">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="array<string>" name="destinationIpGroups" arg="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].destinationIpGroups">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="array<string>" name="destinationPorts" arg="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].destinationPorts">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="string" name="name" arg="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].name"/>
+                    <prop type="string" name="protocol" arg="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].protocol">
+                      <enum>
+                        <item value="&quot;ANY&quot;"/>
+                        <item value="&quot;ICMP&quot;"/>
+                        <item value="&quot;TCP&quot;"/>
+                        <item value="&quot;UDP&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<string>" name="sourceAddresses" arg="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].sourceAddresses">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="array<string>" name="sourceIpGroups" arg="$parameters.properties.intrusionDetection.configuration.bypassTrafficSettings[].sourceIpGroups">
+                      <item type="string"/>
+                    </prop>
+                  </item>
+                </prop>
+                <prop type="array<string>" name="privateRanges" arg="$parameters.properties.intrusionDetection.configuration.privateRanges">
+                  <item type="string"/>
+                </prop>
+                <prop type="array<object>" name="signatureOverrides" arg="$parameters.properties.intrusionDetection.configuration.signatureOverrides">
+                  <item type="object">
+                    <prop type="string" name="id" arg="$parameters.properties.intrusionDetection.configuration.signatureOverrides[].id"/>
+                    <prop type="string" name="mode" arg="$parameters.properties.intrusionDetection.configuration.signatureOverrides[].mode">
+                      <enum>
+                        <item value="&quot;Alert&quot;"/>
+                        <item value="&quot;Deny&quot;"/>
+                        <item value="&quot;Off&quot;"/>
+                      </enum>
+                    </prop>
+                  </item>
+                </prop>
+              </schema>
+            </json>
+          </instanceUpdate>
+        </operation>
+        <operation operationId="FirewallPolicies_CreateOrUpdate">
+          <longRunning finalStateVia="azure-async-operation"/>
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/firewallPolicies/{firewallPolicyName}">
+            <request method="put">
+              <path>
+                <param type="string" name="firewallPolicyName" arg="$Path.firewallPolicyName" required="True"/>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-01-01&quot;"/>
+                </const>
+              </query>
+              <body>
+                <json ref="$Instance"/>
+              </body>
+            </request>
+            <response statusCode="200 201">
+              <body>
+                <json var="$Instance">
+                  <schema type="@FirewallPolicy_read"/>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@ODataV4Format"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+      <command name="delete" version="2022-01-01" confirmation="Are you sure you want to perform this operation?">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/firewallpolicies/{}" version="2022-01-01" subresource="properties.intrusionDetection.configuration" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9maXJld2FsbFBvbGljaWVzL3tmaXJld2FsbFBvbGljeU5hbWV9/V/MjAyMi0wMS0wMQ=="/>
+        <argGroup name="">
+          <arg type="string" var="$Path.firewallPolicyName" options="name" required="True" group="" idPart="name">
+            <help short="The name of the Firewall Policy."/>
+          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="parameters">
+            <prop type="object" name="properties.intrusionDetection.configuration"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="FirewallPolicies_Get">
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/firewallPolicies/{firewallPolicyName}">
+            <request method="get">
+              <path>
+                <param type="string" name="firewallPolicyName" arg="$Path.firewallPolicyName" required="True"/>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-01-01&quot;"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="FirewallPolicy_read">
+                    <prop readOnly="True" type="string" name="etag"/>
+                    <prop type="ResourceId" name="id">
+                      <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/firewallPolicies/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="string" name="principalId"/>
+                      <prop readOnly="True" type="string" name="tenantId"/>
+                      <prop type="string" name="type">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned, UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="clientId"/>
+                            <prop readOnly="True" type="string" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" clientFlatten="True">
+                      <prop type="@SubResource_read" name="basePolicy"/>
+                      <prop readOnly="True" type="array<@SubResource_read>" name="childPolicies">
+                        <item type="@SubResource_read"/>
+                      </prop>
+                      <prop type="object" name="dnsSettings">
+                        <prop type="boolean" name="enableProxy"/>
+                        <prop nullable="True" type="boolean" name="requireProxyForNetworkRules"/>
+                        <prop type="array<string>" name="servers">
+                          <item type="string"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="explicitProxy">
+                        <prop nullable="True" type="boolean" name="enableExplicitProxy"/>
+                        <prop nullable="True" type="boolean" name="enablePacFile"/>
+                        <prop type="integer32" name="httpPort">
+                          <format maximum="64000" minimum="0"/>
+                        </prop>
+                        <prop type="integer32" name="httpsPort">
+                          <format maximum="64000" minimum="0"/>
+                        </prop>
+                        <prop type="string" name="pacFile"/>
+                        <prop type="integer32" name="pacFilePort">
+                          <format maximum="64000" minimum="0"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="array<@SubResource_read>" name="firewalls">
+                        <item type="@SubResource_read"/>
+                      </prop>
+                      <prop type="object" name="insights">
+                        <prop type="boolean" name="isEnabled"/>
+                        <prop type="object" name="logAnalyticsResources">
+                          <prop type="@SubResource_read" name="defaultWorkspaceId"/>
+                          <prop type="array<object>" name="workspaces">
+                            <item type="object">
+                              <prop type="string" name="region"/>
+                              <prop type="@SubResource_read" name="workspaceId"/>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="integer32" name="retentionDays"/>
+                      </prop>
+                      <prop type="object" name="intrusionDetection">
+                        <prop type="object" name="configuration">
+                          <prop type="array<object>" name="bypassTrafficSettings">
+                            <item type="object">
+                              <prop type="string" name="description"/>
+                              <prop type="array<string>" name="destinationAddresses">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="array<string>" name="destinationIpGroups">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="array<string>" name="destinationPorts">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="name"/>
+                              <prop type="string" name="protocol">
+                                <enum>
+                                  <item value="&quot;ANY&quot;"/>
+                                  <item value="&quot;ICMP&quot;"/>
+                                  <item value="&quot;TCP&quot;"/>
+                                  <item value="&quot;UDP&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="array<string>" name="sourceAddresses">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="array<string>" name="sourceIpGroups">
+                                <item type="string"/>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="array<string>" name="privateRanges">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="array<object>" name="signatureOverrides">
+                            <item type="object">
+                              <prop type="string" name="id"/>
+                              <prop type="string" name="mode">
+                                <enum>
+                                  <item value="&quot;Alert&quot;"/>
+                                  <item value="&quot;Deny&quot;"/>
+                                  <item value="&quot;Off&quot;"/>
+                                </enum>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="mode">
+                          <enum>
+                            <item value="&quot;Alert&quot;"/>
+                            <item value="&quot;Deny&quot;"/>
+                            <item value="&quot;Off&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="array<object>" name="ruleCollectionGroups">
+                        <item type="object" cls="SubResource_read">
+                          <prop type="string" name="id"/>
+                        </item>
+                      </prop>
+                      <prop type="object" name="sku">
+                        <prop type="string" name="tier">
+                          <enum>
+                            <item value="&quot;Basic&quot;"/>
+                            <item value="&quot;Premium&quot;"/>
+                            <item value="&quot;Standard&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="snat">
+                        <prop type="string" name="autoLearnPrivateRanges">
+                          <enum>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<string>" name="privateRanges">
+                          <item type="string"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="sql">
+                        <prop type="boolean" name="allowSqlRedirect"/>
+                      </prop>
+                      <prop type="string" name="threatIntelMode">
+                        <enum>
+                          <item value="&quot;Alert&quot;"/>
+                          <item value="&quot;Deny&quot;"/>
+                          <item value="&quot;Off&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="threatIntelWhitelist">
+                        <prop type="array<string>" name="fqdns">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="array<string>" name="ipAddresses">
+                          <item type="string"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="transportSecurity">
+                        <prop type="object" name="certificateAuthority">
+                          <prop type="string" name="keyVaultSecretId"/>
+                          <prop type="string" name="name"/>
+                        </prop>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@ODataV4Format"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <operation>
+          <instanceDelete ref="$Subresource">
+            <json/>
+          </instanceDelete>
+        </operation>
+        <operation operationId="FirewallPolicies_CreateOrUpdate">
+          <longRunning finalStateVia="azure-async-operation"/>
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/firewallPolicies/{firewallPolicyName}">
+            <request method="put">
+              <path>
+                <param type="string" name="firewallPolicyName" arg="$Path.firewallPolicyName" required="True"/>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-01-01&quot;"/>
+                </const>
+              </query>
+              <body>
+                <json ref="$Instance"/>
+              </body>
+            </request>
+            <response statusCode="200 201">
+              <body>
+                <json var="$Instance">
+                  <schema type="@FirewallPolicy_read"/>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@ODataV4Format"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+      </command>
+      <command name="show" version="2022-01-01" confirmation="">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/firewallpolicies/{}" version="2022-01-01" subresource="properties.intrusionDetection.configuration" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9maXJld2FsbFBvbGljaWVzL3tmaXJld2FsbFBvbGljeU5hbWV9/V/MjAyMi0wMS0wMQ=="/>
+        <argGroup name="">
+          <arg type="string" var="$Path.firewallPolicyName" options="name" required="True" group="" idPart="name">
+            <help short="The name of the Firewall Policy."/>
+          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="parameters">
+            <prop type="object" name="properties.intrusionDetection.configuration"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="FirewallPolicies_Get">
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/firewallPolicies/{firewallPolicyName}">
+            <request method="get">
+              <path>
+                <param type="string" name="firewallPolicyName" arg="$Path.firewallPolicyName" required="True"/>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-01-01&quot;"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="FirewallPolicy_read">
+                    <prop readOnly="True" type="string" name="etag"/>
+                    <prop type="ResourceId" name="id">
+                      <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/firewallPolicies/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="string" name="principalId"/>
+                      <prop readOnly="True" type="string" name="tenantId"/>
+                      <prop type="string" name="type">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned, UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="clientId"/>
+                            <prop readOnly="True" type="string" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" clientFlatten="True">
+                      <prop type="@SubResource_read" name="basePolicy"/>
+                      <prop readOnly="True" type="array<@SubResource_read>" name="childPolicies">
+                        <item type="@SubResource_read"/>
+                      </prop>
+                      <prop type="object" name="dnsSettings">
+                        <prop type="boolean" name="enableProxy"/>
+                        <prop nullable="True" type="boolean" name="requireProxyForNetworkRules"/>
+                        <prop type="array<string>" name="servers">
+                          <item type="string"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="explicitProxy">
+                        <prop nullable="True" type="boolean" name="enableExplicitProxy"/>
+                        <prop nullable="True" type="boolean" name="enablePacFile"/>
+                        <prop type="integer32" name="httpPort">
+                          <format maximum="64000" minimum="0"/>
+                        </prop>
+                        <prop type="integer32" name="httpsPort">
+                          <format maximum="64000" minimum="0"/>
+                        </prop>
+                        <prop type="string" name="pacFile"/>
+                        <prop type="integer32" name="pacFilePort">
+                          <format maximum="64000" minimum="0"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="array<@SubResource_read>" name="firewalls">
+                        <item type="@SubResource_read"/>
+                      </prop>
+                      <prop type="object" name="insights">
+                        <prop type="boolean" name="isEnabled"/>
+                        <prop type="object" name="logAnalyticsResources">
+                          <prop type="@SubResource_read" name="defaultWorkspaceId"/>
+                          <prop type="array<object>" name="workspaces">
+                            <item type="object">
+                              <prop type="string" name="region"/>
+                              <prop type="@SubResource_read" name="workspaceId"/>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="integer32" name="retentionDays"/>
+                      </prop>
+                      <prop type="object" name="intrusionDetection">
+                        <prop type="object" name="configuration">
+                          <prop type="array<object>" name="bypassTrafficSettings">
+                            <item type="object">
+                              <prop type="string" name="description"/>
+                              <prop type="array<string>" name="destinationAddresses">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="array<string>" name="destinationIpGroups">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="array<string>" name="destinationPorts">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="name"/>
+                              <prop type="string" name="protocol">
+                                <enum>
+                                  <item value="&quot;ANY&quot;"/>
+                                  <item value="&quot;ICMP&quot;"/>
+                                  <item value="&quot;TCP&quot;"/>
+                                  <item value="&quot;UDP&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="array<string>" name="sourceAddresses">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="array<string>" name="sourceIpGroups">
+                                <item type="string"/>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="array<string>" name="privateRanges">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="array<object>" name="signatureOverrides">
+                            <item type="object">
+                              <prop type="string" name="id"/>
+                              <prop type="string" name="mode">
+                                <enum>
+                                  <item value="&quot;Alert&quot;"/>
+                                  <item value="&quot;Deny&quot;"/>
+                                  <item value="&quot;Off&quot;"/>
+                                </enum>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="mode">
+                          <enum>
+                            <item value="&quot;Alert&quot;"/>
+                            <item value="&quot;Deny&quot;"/>
+                            <item value="&quot;Off&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="array<object>" name="ruleCollectionGroups">
+                        <item type="object" cls="SubResource_read">
+                          <prop type="string" name="id"/>
+                        </item>
+                      </prop>
+                      <prop type="object" name="sku">
+                        <prop type="string" name="tier">
+                          <enum>
+                            <item value="&quot;Basic&quot;"/>
+                            <item value="&quot;Premium&quot;"/>
+                            <item value="&quot;Standard&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="snat">
+                        <prop type="string" name="autoLearnPrivateRanges">
+                          <enum>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<string>" name="privateRanges">
+                          <item type="string"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="sql">
+                        <prop type="boolean" name="allowSqlRedirect"/>
+                      </prop>
+                      <prop type="string" name="threatIntelMode">
+                        <enum>
+                          <item value="&quot;Alert&quot;"/>
+                          <item value="&quot;Deny&quot;"/>
+                          <item value="&quot;Off&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="threatIntelWhitelist">
+                        <prop type="array<string>" name="fqdns">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="array<string>" name="ipAddresses">
+                          <item type="string"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="transportSecurity">
+                        <prop type="object" name="certificateAuthority">
+                          <prop type="string" name="keyVaultSecretId"/>
+                          <prop type="string" name="name"/>
+                        </prop>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@ODataV4Format"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+    </commandGroup>
   </commandGroup>
 </CodeGen>
