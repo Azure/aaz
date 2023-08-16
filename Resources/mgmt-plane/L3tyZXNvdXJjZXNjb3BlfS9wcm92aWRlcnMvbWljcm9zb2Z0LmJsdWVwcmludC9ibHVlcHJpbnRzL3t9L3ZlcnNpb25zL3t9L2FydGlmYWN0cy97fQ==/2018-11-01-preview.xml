@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/{resourcescope}/providers/microsoft.blueprint/blueprints/{}/versions/{}/artifacts/{}" version="2018-11-01-preview" swagger="mgmt-plane/blueprint/ResourceProviders/Microsoft.Blueprint/Paths/L3tyZXNvdXJjZVNjb3BlfS9wcm92aWRlcnMvTWljcm9zb2Z0LkJsdWVwcmludC9ibHVlcHJpbnRzL3tibHVlcHJpbnROYW1lfS92ZXJzaW9ucy97dmVyc2lvbklkfS9hcnRpZmFjdHMve2FydGlmYWN0TmFtZX0=/V/MjAxOC0xMS0wMS1wcmV2aWV3"/>
+  <commandGroup name="blueprint version artifact">
+    <command name="show" version="2018-11-01-preview" confirmation="">
+      <resource id="/{resourcescope}/providers/microsoft.blueprint/blueprints/{}/versions/{}/artifacts/{}" version="2018-11-01-preview" swagger="mgmt-plane/blueprint/ResourceProviders/Microsoft.Blueprint/Paths/L3tyZXNvdXJjZVNjb3BlfS9wcm92aWRlcnMvTWljcm9zb2Z0LkJsdWVwcmludC9ibHVlcHJpbnRzL3tibHVlcHJpbnROYW1lfS92ZXJzaW9ucy97dmVyc2lvbklkfS9hcnRpZmFjdHMve2FydGlmYWN0TmFtZX0=/V/MjAxOC0xMS0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.artifactName" options="artifact-name" required="True">
+          <help short="Name of the blueprint artifact."/>
+        </arg>
+        <arg type="string" var="$Path.blueprintName" options="blueprint-name" required="True">
+          <help short="Name of the blueprint definition."/>
+        </arg>
+        <arg type="string" var="$Path.resourceScope" options="resource-scope" required="True">
+          <help short="The scope of the resource. Valid scopes are: management group (format: '/providers/Microsoft.Management/managementGroups/{managementGroup}'), subscription (format: '/subscriptions/{subscriptionId}')."/>
+        </arg>
+        <arg type="string" var="$Path.versionId" options="version" required="True" group="">
+          <help short="Version of the published blueprint definition."/>
+        </arg>
+      </argGroup>
+      <operation operationId="PublishedArtifacts_Get">
+        <http path="/{resourceScope}/providers/Microsoft.Blueprint/blueprints/{blueprintName}/versions/{versionId}/artifacts/{artifactName}">
+          <request method="get">
+            <path>
+              <param type="string" name="artifactName" arg="$Path.artifactName" required="True"/>
+              <param type="string" name="blueprintName" arg="$Path.blueprintName" required="True"/>
+              <param type="string" name="resourceScope" arg="$Path.resourceScope" required="True" skipUrlEncoding="True"/>
+              <param type="string" name="versionId" arg="$Path.versionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2018-11-01-preview&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop type="string" name="kind" required="True">
+                    <enum>
+                      <item value="&quot;policyAssignment&quot;"/>
+                      <item value="&quot;roleAssignment&quot;"/>
+                      <item value="&quot;template&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop readOnly="True" type="string" name="type"/>
+                  <discriminator property="kind" value="policyAssignment">
+                    <prop type="object" name="properties" required="True" clientFlatten="True">
+                      <prop type="array<string>" name="dependsOn">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="string" name="description">
+                        <format maxLength="500"/>
+                      </prop>
+                      <prop type="string" name="displayName">
+                        <format maxLength="256"/>
+                      </prop>
+                      <prop type="object" name="parameters" required="True">
+                        <additionalProp>
+                          <item type="@ParameterValue_read"/>
+                        </additionalProp>
+                      </prop>
+                      <prop type="string" name="policyDefinitionId" required="True"/>
+                      <prop type="string" name="resourceGroup"/>
+                    </prop>
+                  </discriminator>
+                  <discriminator property="kind" value="roleAssignment">
+                    <prop type="object" name="properties" required="True" clientFlatten="True">
+                      <prop type="array<string>" name="dependsOn">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="string" name="description">
+                        <format maxLength="500"/>
+                      </prop>
+                      <prop type="string" name="displayName">
+                        <format maxLength="256"/>
+                      </prop>
+                      <prop type="string" name="resourceGroup"/>
+                      <prop type="string" name="roleDefinitionId" required="True"/>
+                    </prop>
+                  </discriminator>
+                  <discriminator property="kind" value="template">
+                    <prop type="object" name="properties" required="True" clientFlatten="True">
+                      <prop type="array<string>" name="dependsOn">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="string" name="description">
+                        <format maxLength="500"/>
+                      </prop>
+                      <prop type="string" name="displayName">
+                        <format maxLength="256"/>
+                      </prop>
+                      <prop type="object" name="parameters" required="True">
+                        <additionalProp>
+                          <item type="object" cls="ParameterValue_read">
+                            <prop type="object" name="reference">
+                              <prop type="object" name="keyVault" required="True">
+                                <prop type="string" name="id" required="True"/>
+                              </prop>
+                              <prop type="string" name="secretName" required="True"/>
+                              <prop type="string" name="secretVersion"/>
+                            </prop>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                      <prop type="string" name="resourceGroup"/>
+                    </prop>
+                  </discriminator>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
