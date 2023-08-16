@@ -36,3 +36,8 @@ Update an application gateway WAF policy custom rule.
     ```bash
         network application-gateway waf-policy custom-rule update --action Allow --name MyWAFPolicyRule --policy-name MyPolicy --priority 500 --resource-group MyResourceGroup --rule-type MatchRule
     ```
+
+- Update an application gateway WAF policy custom rule with user session identifier.
+    ```bash
+        network application-gateway waf-policy custom-rule create -g MyResourceGroup --policy-name MyPolicy -n MyRule --rate-limit-duration OneMin --rate-limit-threshold 10 --group-by-user-session "[{group-by-variables:[{variable-name:ClientAddr}]}]"
+    ```
