@@ -26,7 +26,7 @@ Update the Network Fabric resource.
 
 - Help text for sub parameters under the specific parent can be viewed by using the shorthand syntax '??'. See https://github.com/Azure/azure-cli/tree/dev/doc/shorthand_syntax.md for more about shorthand syntax.
     ```bash
-        networkfabric fabric update --ts-config ??
+        networkfabric fabric update --ts-config "??"
         networkfabric fabric update --managed-network-config "{infrastructureVpnConfiguration:??"
         networkfabric fabric update --managed-network-config "{infrastructureVpnConfiguration:{option-b-properties:??"
     ```
