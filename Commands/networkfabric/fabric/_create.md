@@ -45,7 +45,7 @@ Create a Network Fabric resource
 
 - Help text for sub parameters under the specific parent can be viewed by using the shorthand syntax '??'. See https://github.com/Azure/azure-cli/tree/dev/doc/shorthand_syntax.md for more about shorthand syntax.
     ```bash
-        networkfabric fabric create --ts-config ??
+        networkfabric fabric create --ts-config "??"
         networkfabric fabric create --managed-network-config "{infrastructureVpnConfiguration:??"
         networkfabric fabric create --managed-network-config "{infrastructureVpnConfiguration:{option-b-properties:??"
     ```

@@ -38,7 +38,7 @@ List volumes in the provided resource group or subscription.
         networkcloud volume list
     ```
 
-### [2023-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvdm9sdW1lcw==/2023-07-01.xml) **Preview**
+### [2023-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvdm9sdW1lcw==/2023-07-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.networkcloud/volumes 2023-07-01 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/volumes 2023-07-01 -->

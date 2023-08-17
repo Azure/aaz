@@ -34,4 +34,4 @@ Manage top-level Storage Mover resource.
 : Gets a Storage Mover resource.
 
 - [update](/Commands/storage-mover/_update.md)
-: Update properties for a Storage Mover resource. Properties not specified in the request body will be unchanged.
+: Update a top-level Storage Mover resource.

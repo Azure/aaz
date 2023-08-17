@@ -36,7 +36,7 @@ Create a new cluster or update the properties of the cluster if it exists.
         networkcloud cluster create --name "clusterName" -g "resourceGroupName" --extended-location name="/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/Microsoft.ExtendedLocation/customLocations/clusterManagerExtendedLocationName" type="CustomLocation" --location "eastus" --analytics-workspace-id "/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/microsoft.operationalInsights/workspaces/logAnalyticsWorkspaceName" --cluster-location "Foo Street, 3rd Floor, row 9" --cluster-service-principal application-id="12345678-1234-1234-1234-123456789012" password="password" principal-id="00000008-0004-0004-0004-000000000012" tenant-id="80000000-4000-4000-4000-120000000000" --cluster-type "SingleRack" --cluster-version "3.0.0" --compute-deployment-threshold type="PercentSuccess" grouping="PerCluster" value=90  --network-fabric-id "/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/Microsoft.Network/virtualNetworks/test-vnet/subnets/default" --aggregator-or-single-rack-definition ./aggregator-or-single-rack-definition.json --tags key1="myvalue1" key2="myvalue2
     ```
 
-### [2023-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvY2x1c3RlcnMve30=/2023-07-01.xml) **Preview**
+### [2023-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvY2x1c3RlcnMve30=/2023-07-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/clusters/{} 2023-07-01 -->
 

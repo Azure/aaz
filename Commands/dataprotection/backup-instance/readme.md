@@ -37,7 +37,7 @@ Manage backup instance with dataprotection
 : Update a backup instance in a backup vault
 
 - [validate-for-backup](/Commands/dataprotection/backup-instance/_validate-for-backup.md)
-: Validate whether configure backup will be successful or not.
+: Validate whether adhoc backup will be successful or not
 
 - [validate-for-restore](/Commands/dataprotection/backup-instance/_validate-for-restore.md)
-: Validates if restore can be triggered for a datasource
+: Validates if Restore can be triggered for a DataSource

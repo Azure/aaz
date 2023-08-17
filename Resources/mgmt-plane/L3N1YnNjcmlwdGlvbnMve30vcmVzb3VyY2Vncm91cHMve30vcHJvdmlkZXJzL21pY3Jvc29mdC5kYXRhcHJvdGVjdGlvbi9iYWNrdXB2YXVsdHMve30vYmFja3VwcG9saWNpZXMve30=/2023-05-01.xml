@@ -1,0 +1,1618 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backuppolicies/{}" version="2023-05-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9L2JhY2t1cFBvbGljaWVzL3tiYWNrdXBQb2xpY3lOYW1lfQ==/V/MjAyMy0wNS0wMQ=="/>
+  <commandGroup name="dataprotection backup-policy">
+    <command name="show" version="2023-05-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backuppolicies/{}" version="2023-05-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9L2JhY2t1cFBvbGljaWVzL3tiYWNrdXBQb2xpY3lOYW1lfQ==/V/MjAyMy0wNS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.backupPolicyName" options="backup-policy-name name n" required="True" group="" idPart="child_name_1">
+          <help short="Name of the policy"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vaultName" options="vault-name" required="True" idPart="name">
+          <help short="The name of the backup vault."/>
+        </arg>
+      </argGroup>
+      <operation operationId="BackupPolicies_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupPolicies/{backupPolicyName}">
+          <request method="get">
+            <path>
+              <param type="string" name="backupPolicyName" arg="$Path.backupPolicyName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vaultName" arg="$Path.vaultName" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-05-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.DataProtection/backupVaults/{}/backupPolicies/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="array<string>" name="datasourceTypes" required="True">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="string" name="objectType" required="True">
+                      <enum>
+                        <item value="&quot;BackupPolicy&quot;"/>
+                      </enum>
+                    </prop>
+                    <discriminator property="objectType" value="BackupPolicy">
+                      <prop type="array<object>" name="policyRules" required="True">
+                        <item type="object">
+                          <prop type="string" name="name" required="True"/>
+                          <prop type="string" name="objectType" required="True">
+                            <enum>
+                              <item value="&quot;AzureBackupRule&quot;"/>
+                              <item value="&quot;AzureRetentionRule&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="objectType" value="AzureBackupRule">
+                            <prop type="object" name="backupParameters">
+                              <prop type="string" name="objectType" required="True">
+                                <enum>
+                                  <item value="&quot;AzureBackupParams&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="objectType" value="AzureBackupParams">
+                                <prop type="string" name="backupType" required="True"/>
+                              </discriminator>
+                            </prop>
+                            <prop type="object" name="dataStore" required="True" cls="DataStoreInfoBase_read">
+                              <prop type="string" name="dataStoreType" required="True">
+                                <enum>
+                                  <item value="&quot;ArchiveStore&quot;"/>
+                                  <item value="&quot;OperationalStore&quot;"/>
+                                  <item value="&quot;VaultStore&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="objectType" required="True"/>
+                            </prop>
+                            <prop type="object" name="trigger" required="True">
+                              <prop type="string" name="objectType" required="True">
+                                <enum>
+                                  <item value="&quot;AdhocBasedTriggerContext&quot;"/>
+                                  <item value="&quot;ScheduleBasedTriggerContext&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="objectType" value="AdhocBasedTriggerContext">
+                                <prop type="object" name="taggingCriteria" required="True">
+                                  <prop type="object" name="tagInfo" cls="RetentionTag_read">
+                                    <prop readOnly="True" type="string" name="eTag"/>
+                                    <prop readOnly="True" type="string" name="id"/>
+                                    <prop type="string" name="tagName" required="True"/>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="objectType" value="ScheduleBasedTriggerContext">
+                                <prop type="object" name="schedule" required="True">
+                                  <prop type="array<string>" name="repeatingTimeIntervals" required="True">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="string" name="timeZone"/>
+                                </prop>
+                                <prop type="array<object>" name="taggingCriteria" required="True">
+                                  <item type="object">
+                                    <prop type="array<object>" name="criteria">
+                                      <item type="object">
+                                        <prop type="string" name="objectType" required="True">
+                                          <enum>
+                                            <item value="&quot;ScheduleBasedBackupCriteria&quot;"/>
+                                          </enum>
+                                        </prop>
+                                        <discriminator property="objectType" value="ScheduleBasedBackupCriteria">
+                                          <prop type="array<string>" name="absoluteCriteria">
+                                            <item type="string">
+                                              <enum>
+                                                <item value="&quot;AllBackup&quot;"/>
+                                                <item value="&quot;FirstOfDay&quot;"/>
+                                                <item value="&quot;FirstOfMonth&quot;"/>
+                                                <item value="&quot;FirstOfWeek&quot;"/>
+                                                <item value="&quot;FirstOfYear&quot;"/>
+                                              </enum>
+                                            </item>
+                                          </prop>
+                                          <prop type="array<object>" name="daysOfMonth">
+                                            <item type="object">
+                                              <prop type="integer32" name="date"/>
+                                              <prop type="boolean" name="isLast"/>
+                                            </item>
+                                          </prop>
+                                          <prop type="array<string>" name="daysOfTheWeek">
+                                            <item type="string">
+                                              <enum>
+                                                <item value="&quot;Friday&quot;"/>
+                                                <item value="&quot;Monday&quot;"/>
+                                                <item value="&quot;Saturday&quot;"/>
+                                                <item value="&quot;Sunday&quot;"/>
+                                                <item value="&quot;Thursday&quot;"/>
+                                                <item value="&quot;Tuesday&quot;"/>
+                                                <item value="&quot;Wednesday&quot;"/>
+                                              </enum>
+                                            </item>
+                                          </prop>
+                                          <prop type="array<string>" name="monthsOfYear">
+                                            <item type="string">
+                                              <enum>
+                                                <item value="&quot;April&quot;"/>
+                                                <item value="&quot;August&quot;"/>
+                                                <item value="&quot;December&quot;"/>
+                                                <item value="&quot;February&quot;"/>
+                                                <item value="&quot;January&quot;"/>
+                                                <item value="&quot;July&quot;"/>
+                                                <item value="&quot;June&quot;"/>
+                                                <item value="&quot;March&quot;"/>
+                                                <item value="&quot;May&quot;"/>
+                                                <item value="&quot;November&quot;"/>
+                                                <item value="&quot;October&quot;"/>
+                                                <item value="&quot;September&quot;"/>
+                                              </enum>
+                                            </item>
+                                          </prop>
+                                          <prop type="array<dateTime>" name="scheduleTimes">
+                                            <item type="dateTime"/>
+                                          </prop>
+                                          <prop type="array<string>" name="weeksOfTheMonth">
+                                            <item type="string">
+                                              <enum>
+                                                <item value="&quot;First&quot;"/>
+                                                <item value="&quot;Fourth&quot;"/>
+                                                <item value="&quot;Last&quot;"/>
+                                                <item value="&quot;Second&quot;"/>
+                                                <item value="&quot;Third&quot;"/>
+                                              </enum>
+                                            </item>
+                                          </prop>
+                                        </discriminator>
+                                      </item>
+                                    </prop>
+                                    <prop type="boolean" name="isDefault" required="True"/>
+                                    <prop type="@RetentionTag_read" name="tagInfo" required="True"/>
+                                    <prop type="integer64" name="taggingPriority" required="True"/>
+                                  </item>
+                                </prop>
+                              </discriminator>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="objectType" value="AzureRetentionRule">
+                            <prop type="boolean" name="isDefault"/>
+                            <prop type="array<object>" name="lifecycles" required="True">
+                              <item type="object">
+                                <prop type="object" name="deleteAfter" required="True">
+                                  <prop type="string" name="duration" required="True"/>
+                                  <prop type="string" name="objectType" required="True">
+                                    <enum>
+                                      <item value="&quot;AbsoluteDeleteOption&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                                <prop type="@DataStoreInfoBase_read" name="sourceDataStore" required="True"/>
+                                <prop type="array<object>" name="targetDataStoreCopySettings">
+                                  <item type="object">
+                                    <prop type="object" name="copyAfter" required="True">
+                                      <prop type="string" name="objectType" required="True">
+                                        <enum>
+                                          <item value="&quot;CopyOnExpiryOption&quot;"/>
+                                          <item value="&quot;CustomCopyOption&quot;"/>
+                                          <item value="&quot;ImmediateCopyOption&quot;"/>
+                                        </enum>
+                                      </prop>
+                                      <discriminator property="objectType" value="CustomCopyOption">
+                                        <prop type="string" name="duration"/>
+                                      </discriminator>
+                                    </prop>
+                                    <prop type="@DataStoreInfoBase_read" name="dataStore" required="True"/>
+                                  </item>
+                                </prop>
+                              </item>
+                            </prop>
+                          </discriminator>
+                        </item>
+                      </prop>
+                    </discriminator>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2023-05-01" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backuppolicies/{}" version="2023-05-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9L2JhY2t1cFBvbGljaWVzL3tiYWNrdXBQb2xpY3lOYW1lfQ==/V/MjAyMy0wNS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.backupPolicyName" options="backup-policy-name name n" required="True" group="" idPart="child_name_1">
+          <help short="Name of the policy"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vaultName" options="vault-name" required="True" idPart="name">
+          <help short="The name of the backup vault."/>
+        </arg>
+      </argGroup>
+      <operation operationId="BackupPolicies_Delete">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupPolicies/{backupPolicyName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="backupPolicyName" arg="$Path.backupPolicyName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vaultName" arg="$Path.vaultName" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-05-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200"/>
+          <response statusCode="204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="create" version="2023-05-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backuppolicies/{}" version="2023-05-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9L2JhY2t1cFBvbGljaWVzL3tiYWNrdXBQb2xpY3lOYW1lfQ==/V/MjAyMy0wNS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.backupPolicyName" options="backup-policy-name name n" required="True" group="" idPart="child_name_1">
+          <help short="Name of the policy"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vaultName" options="vault-name" required="True" idPart="name">
+          <help short="The name of the backup vault."/>
+        </arg>
+        <arg type="object" var="$parameters.properties.BackupPolicy" options="policy" group="">
+          <help short="Request body for operation Expected value: json-string/@json-file."/>
+          <arg type="array<object>" var="$parameters.properties.BackupPolicy.policyRules" options="policy-rules" required="True" group="Policy">
+            <help short="Policy rule dictionary that contains rules for each backuptype i.e Full/Incremental/Logs etc"/>
+            <item type="object">
+              <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule" options="azure-backup-rule">
+                <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.backupParameters.AzureBackupParams" options="azure-backup-params" group="AzureBackupRule">
+                  <arg type="string" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.backupParameters.AzureBackupParams.backupType" options="backup-type" required="True">
+                    <help short="BackupType ; Full/Incremental etc"/>
+                  </arg>
+                </arg>
+                <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.dataStore" options="data-store" required="True" group="AzureBackupRule" cls="DataStoreInfoBase_create">
+                  <help short="DataStoreInfo base"/>
+                  <arg type="string" var="@DataStoreInfoBase_create.dataStoreType" options="data-store-type" required="True">
+                    <help short="type of datastore; Operational/Vault/Archive"/>
+                    <enum>
+                      <item name="ArchiveStore" value="&quot;ArchiveStore&quot;"/>
+                      <item name="OperationalStore" value="&quot;OperationalStore&quot;"/>
+                      <item name="VaultStore" value="&quot;VaultStore&quot;"/>
+                    </enum>
+                  </arg>
+                  <arg type="string" var="@DataStoreInfoBase_create.objectType" options="object-type" required="True">
+                    <help short="Type of Datasource object, used to initialize the right inherited type"/>
+                  </arg>
+                </arg>
+                <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.AdhocBasedTriggerContext" options="adhoc-based-trigger-context" group="AzureBackupRule">
+                  <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.AdhocBasedTriggerContext.taggingCriteria" options="tagging-criteria" required="True">
+                    <help short="Tagging Criteria containing retention tag for adhoc backup."/>
+                    <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.AdhocBasedTriggerContext.taggingCriteria.tagInfo" options="tag-info" cls="RetentionTag_create">
+                      <help short="Retention tag information"/>
+                      <arg type="string" var="@RetentionTag_create.tagName" options="tag-name" required="True">
+                        <help short="Retention Tag Name to relate it to retention rule."/>
+                      </arg>
+                    </arg>
+                  </arg>
+                </arg>
+                <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext" options="schedule-based-trigger-context" group="AzureBackupRule">
+                  <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.schedule" options="schedule" required="True">
+                    <help short="Schedule for this backup"/>
+                    <arg type="array<string>" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.schedule.repeatingTimeIntervals" options="repeating-time-intervals" required="True">
+                      <help short="ISO 8601 repeating time interval format"/>
+                      <item type="string"/>
+                    </arg>
+                    <arg type="string" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.schedule.timeZone" options="time-zone">
+                      <help short="Time zone for a schedule. Example: Pacific Standard Time"/>
+                    </arg>
+                  </arg>
+                  <arg type="array<object>" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria" options="tagging-criteria" required="True">
+                    <help short="List of tags that can be applicable for given schedule."/>
+                    <item type="object">
+                      <arg type="array<object>" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria" options="criteria">
+                        <help short="Criteria which decides whether the tag can be applied to a triggered backup."/>
+                        <item type="object">
+                          <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria" options="schedule-based-backup-criteria">
+                            <arg type="array<string>" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.absoluteCriteria" options="absolute-criteria" group="">
+                              <help short="it contains absolute values like &quot;AllBackup&quot; / &quot;FirstOfDay&quot; / &quot;FirstOfWeek&quot; / &quot;FirstOfMonth&quot; and should be a part of AbsoluteMarker enum"/>
+                              <item type="string">
+                                <enum>
+                                  <item name="AllBackup" value="&quot;AllBackup&quot;"/>
+                                  <item name="FirstOfDay" value="&quot;FirstOfDay&quot;"/>
+                                  <item name="FirstOfMonth" value="&quot;FirstOfMonth&quot;"/>
+                                  <item name="FirstOfWeek" value="&quot;FirstOfWeek&quot;"/>
+                                  <item name="FirstOfYear" value="&quot;FirstOfYear&quot;"/>
+                                </enum>
+                              </item>
+                            </arg>
+                            <arg type="array<object>" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.daysOfMonth" options="days-of-month">
+                              <help short="This is day of the month from 1 to 28 other wise last of month"/>
+                              <item type="object">
+                                <arg type="integer32" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.daysOfMonth[].date" options="date">
+                                  <help short="Date of the month"/>
+                                </arg>
+                                <arg type="boolean" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.daysOfMonth[].isLast" options="is-last">
+                                  <help short="Whether Date is last date of month"/>
+                                </arg>
+                              </item>
+                            </arg>
+                            <arg type="array<string>" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.daysOfTheWeek" options="days-of-the-week">
+                              <help short="It should be Sunday/Monday/T..../Saturday"/>
+                              <item type="string">
+                                <enum>
+                                  <item name="Friday" value="&quot;Friday&quot;"/>
+                                  <item name="Monday" value="&quot;Monday&quot;"/>
+                                  <item name="Saturday" value="&quot;Saturday&quot;"/>
+                                  <item name="Sunday" value="&quot;Sunday&quot;"/>
+                                  <item name="Thursday" value="&quot;Thursday&quot;"/>
+                                  <item name="Tuesday" value="&quot;Tuesday&quot;"/>
+                                  <item name="Wednesday" value="&quot;Wednesday&quot;"/>
+                                </enum>
+                              </item>
+                            </arg>
+                            <arg type="array<string>" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.monthsOfYear" options="months-of-year">
+                              <help short="It should be January/February/....../December"/>
+                              <item type="string">
+                                <enum>
+                                  <item name="April" value="&quot;April&quot;"/>
+                                  <item name="August" value="&quot;August&quot;"/>
+                                  <item name="December" value="&quot;December&quot;"/>
+                                  <item name="February" value="&quot;February&quot;"/>
+                                  <item name="January" value="&quot;January&quot;"/>
+                                  <item name="July" value="&quot;July&quot;"/>
+                                  <item name="June" value="&quot;June&quot;"/>
+                                  <item name="March" value="&quot;March&quot;"/>
+                                  <item name="May" value="&quot;May&quot;"/>
+                                  <item name="November" value="&quot;November&quot;"/>
+                                  <item name="October" value="&quot;October&quot;"/>
+                                  <item name="September" value="&quot;September&quot;"/>
+                                </enum>
+                              </item>
+                            </arg>
+                            <arg type="array<dateTime>" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.scheduleTimes" options="schedule-times">
+                              <help short="List of schedule times for backup"/>
+                              <item type="dateTime"/>
+                            </arg>
+                            <arg type="array<string>" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.weeksOfTheMonth" options="weeks-of-the-month">
+                              <help short="It should be First/Second/Third/Fourth/Last"/>
+                              <item type="string">
+                                <enum>
+                                  <item name="First" value="&quot;First&quot;"/>
+                                  <item name="Fourth" value="&quot;Fourth&quot;"/>
+                                  <item name="Last" value="&quot;Last&quot;"/>
+                                  <item name="Second" value="&quot;Second&quot;"/>
+                                  <item name="Third" value="&quot;Third&quot;"/>
+                                </enum>
+                              </item>
+                            </arg>
+                          </arg>
+                        </item>
+                      </arg>
+                      <arg type="boolean" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].isDefault" options="is-default" required="True">
+                        <help short="Specifies if tag is default."/>
+                      </arg>
+                      <arg type="@RetentionTag_create" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].tagInfo" options="tag-info" required="True">
+                        <help short="Retention tag information"/>
+                      </arg>
+                      <arg type="integer64" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].taggingPriority" options="tagging-priority" required="True">
+                        <help short="Retention Tag priority."/>
+                      </arg>
+                    </item>
+                  </arg>
+                </arg>
+              </arg>
+              <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule" options="azure-retention-rule">
+                <arg type="boolean" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.isDefault" options="is-default"/>
+                <arg type="array<object>" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles" options="lifecycles" required="True">
+                  <item type="object">
+                    <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].deleteAfter" options="delete-after" required="True">
+                      <help short="Delete Option"/>
+                      <arg type="string" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].deleteAfter.duration" options="duration" required="True">
+                        <help short="Duration of deletion after given timespan"/>
+                      </arg>
+                      <arg type="string" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].deleteAfter.objectType" options="object-type" required="True">
+                        <help short="Type of the specific object - used for deserializing"/>
+                        <enum>
+                          <item name="AbsoluteDeleteOption" value="&quot;AbsoluteDeleteOption&quot;"/>
+                        </enum>
+                      </arg>
+                    </arg>
+                    <arg type="@DataStoreInfoBase_create" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].sourceDataStore" options="source-data-store" required="True"/>
+                    <arg type="array<object>" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings" options="target-data-store-copy-settings">
+                      <item type="object">
+                        <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings[].copyAfter" options="copy-after" required="True">
+                          <help short="It can be CustomCopyOption or ImmediateCopyOption."/>
+                          <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings[].copyAfter.CustomCopyOption" options="custom-copy-option">
+                            <arg type="string" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings[].copyAfter.CustomCopyOption.duration" options="duration">
+                              <help short="Data copied after given timespan"/>
+                            </arg>
+                          </arg>
+                        </arg>
+                        <arg type="@DataStoreInfoBase_create" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings[].dataStore" options="data-store" required="True">
+                          <help short="Info of target datastore"/>
+                        </arg>
+                      </item>
+                    </arg>
+                  </item>
+                </arg>
+              </arg>
+              <arg type="string" var="$parameters.properties.BackupPolicy.policyRules[].name" options="name" required="True"/>
+            </item>
+          </arg>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="array<string>" var="$parameters.properties.datasourceTypes" options="datasource-types" hide="True" group="Properties">
+          <help short="Type of datasource for the backup management"/>
+          <item type="string"/>
+        </arg>
+      </argGroup>
+      <operation operationId="BackupPolicies_CreateOrUpdate">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupPolicies/{backupPolicyName}">
+          <request method="put">
+            <path>
+              <param type="string" name="backupPolicyName" arg="$Path.backupPolicyName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vaultName" arg="$Path.vaultName" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-05-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="parameters" required="True" clientFlatten="True">
+                  <prop type="object" name="properties">
+                    <prop type="array<string>" name="datasourceTypes" arg="$parameters.properties.datasourceTypes" required="True">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="string" name="objectType" required="True">
+                      <enum>
+                        <item arg="$parameters.properties.BackupPolicy" value="&quot;BackupPolicy&quot;"/>
+                      </enum>
+                    </prop>
+                    <discriminator property="objectType" value="BackupPolicy">
+                      <prop type="array<object>" name="policyRules" arg="$parameters.properties.BackupPolicy.policyRules" required="True">
+                        <item type="object">
+                          <prop type="string" name="name" arg="$parameters.properties.BackupPolicy.policyRules[].name" required="True"/>
+                          <prop type="string" name="objectType" required="True">
+                            <enum>
+                              <item arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule" value="&quot;AzureBackupRule&quot;"/>
+                              <item arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule" value="&quot;AzureRetentionRule&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="objectType" value="AzureBackupRule">
+                            <prop type="object" name="backupParameters">
+                              <prop type="string" name="objectType" required="True">
+                                <enum>
+                                  <item arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.backupParameters.AzureBackupParams" value="&quot;AzureBackupParams&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="objectType" value="AzureBackupParams">
+                                <prop type="string" name="backupType" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.backupParameters.AzureBackupParams.backupType" required="True"/>
+                              </discriminator>
+                            </prop>
+                            <prop type="object" name="dataStore" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.dataStore" required="True" cls="DataStoreInfoBase_create">
+                              <prop type="string" name="dataStoreType" arg="@DataStoreInfoBase_create.dataStoreType" required="True">
+                                <enum>
+                                  <item value="&quot;ArchiveStore&quot;"/>
+                                  <item value="&quot;OperationalStore&quot;"/>
+                                  <item value="&quot;VaultStore&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="objectType" arg="@DataStoreInfoBase_create.objectType" required="True"/>
+                            </prop>
+                            <prop type="object" name="trigger" required="True">
+                              <prop type="string" name="objectType" required="True">
+                                <enum>
+                                  <item arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.AdhocBasedTriggerContext" value="&quot;AdhocBasedTriggerContext&quot;"/>
+                                  <item arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext" value="&quot;ScheduleBasedTriggerContext&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="objectType" value="AdhocBasedTriggerContext">
+                                <prop type="object" name="taggingCriteria" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.AdhocBasedTriggerContext.taggingCriteria" required="True">
+                                  <prop type="object" name="tagInfo" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.AdhocBasedTriggerContext.taggingCriteria.tagInfo" cls="RetentionTag_create">
+                                    <prop type="string" name="tagName" arg="@RetentionTag_create.tagName" required="True"/>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="objectType" value="ScheduleBasedTriggerContext">
+                                <prop type="object" name="schedule" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.schedule" required="True">
+                                  <prop type="array<string>" name="repeatingTimeIntervals" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.schedule.repeatingTimeIntervals" required="True">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="string" name="timeZone" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.schedule.timeZone"/>
+                                </prop>
+                                <prop type="array<object>" name="taggingCriteria" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria" required="True">
+                                  <item type="object">
+                                    <prop type="array<object>" name="criteria" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria">
+                                      <item type="object">
+                                        <prop type="string" name="objectType" required="True">
+                                          <enum>
+                                            <item arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria" value="&quot;ScheduleBasedBackupCriteria&quot;"/>
+                                          </enum>
+                                        </prop>
+                                        <discriminator property="objectType" value="ScheduleBasedBackupCriteria">
+                                          <prop type="array<string>" name="absoluteCriteria" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.absoluteCriteria">
+                                            <item type="string">
+                                              <enum>
+                                                <item value="&quot;AllBackup&quot;"/>
+                                                <item value="&quot;FirstOfDay&quot;"/>
+                                                <item value="&quot;FirstOfMonth&quot;"/>
+                                                <item value="&quot;FirstOfWeek&quot;"/>
+                                                <item value="&quot;FirstOfYear&quot;"/>
+                                              </enum>
+                                            </item>
+                                          </prop>
+                                          <prop type="array<object>" name="daysOfMonth" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.daysOfMonth">
+                                            <item type="object">
+                                              <prop type="integer32" name="date" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.daysOfMonth[].date"/>
+                                              <prop type="boolean" name="isLast" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.daysOfMonth[].isLast"/>
+                                            </item>
+                                          </prop>
+                                          <prop type="array<string>" name="daysOfTheWeek" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.daysOfTheWeek">
+                                            <item type="string">
+                                              <enum>
+                                                <item value="&quot;Friday&quot;"/>
+                                                <item value="&quot;Monday&quot;"/>
+                                                <item value="&quot;Saturday&quot;"/>
+                                                <item value="&quot;Sunday&quot;"/>
+                                                <item value="&quot;Thursday&quot;"/>
+                                                <item value="&quot;Tuesday&quot;"/>
+                                                <item value="&quot;Wednesday&quot;"/>
+                                              </enum>
+                                            </item>
+                                          </prop>
+                                          <prop type="array<string>" name="monthsOfYear" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.monthsOfYear">
+                                            <item type="string">
+                                              <enum>
+                                                <item value="&quot;April&quot;"/>
+                                                <item value="&quot;August&quot;"/>
+                                                <item value="&quot;December&quot;"/>
+                                                <item value="&quot;February&quot;"/>
+                                                <item value="&quot;January&quot;"/>
+                                                <item value="&quot;July&quot;"/>
+                                                <item value="&quot;June&quot;"/>
+                                                <item value="&quot;March&quot;"/>
+                                                <item value="&quot;May&quot;"/>
+                                                <item value="&quot;November&quot;"/>
+                                                <item value="&quot;October&quot;"/>
+                                                <item value="&quot;September&quot;"/>
+                                              </enum>
+                                            </item>
+                                          </prop>
+                                          <prop type="array<dateTime>" name="scheduleTimes" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.scheduleTimes">
+                                            <item type="dateTime"/>
+                                          </prop>
+                                          <prop type="array<string>" name="weeksOfTheMonth" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.weeksOfTheMonth">
+                                            <item type="string">
+                                              <enum>
+                                                <item value="&quot;First&quot;"/>
+                                                <item value="&quot;Fourth&quot;"/>
+                                                <item value="&quot;Last&quot;"/>
+                                                <item value="&quot;Second&quot;"/>
+                                                <item value="&quot;Third&quot;"/>
+                                              </enum>
+                                            </item>
+                                          </prop>
+                                        </discriminator>
+                                      </item>
+                                    </prop>
+                                    <prop type="boolean" name="isDefault" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].isDefault" required="True"/>
+                                    <prop type="@RetentionTag_create" name="tagInfo" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].tagInfo" required="True"/>
+                                    <prop type="integer64" name="taggingPriority" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].taggingPriority" required="True"/>
+                                  </item>
+                                </prop>
+                              </discriminator>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="objectType" value="AzureRetentionRule">
+                            <prop type="boolean" name="isDefault" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.isDefault"/>
+                            <prop type="array<object>" name="lifecycles" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles" required="True">
+                              <item type="object">
+                                <prop type="object" name="deleteAfter" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].deleteAfter" required="True">
+                                  <prop type="string" name="duration" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].deleteAfter.duration" required="True"/>
+                                  <prop type="string" name="objectType" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].deleteAfter.objectType" required="True">
+                                    <enum>
+                                      <item value="&quot;AbsoluteDeleteOption&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                                <prop type="@DataStoreInfoBase_create" name="sourceDataStore" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].sourceDataStore" required="True"/>
+                                <prop type="array<object>" name="targetDataStoreCopySettings" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings">
+                                  <item type="object">
+                                    <prop type="object" name="copyAfter" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings[].copyAfter" required="True">
+                                      <prop type="string" name="objectType" required="True">
+                                        <enum>
+                                          <item value="&quot;CopyOnExpiryOption&quot;"/>
+                                          <item arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings[].copyAfter.CustomCopyOption" value="&quot;CustomCopyOption&quot;"/>
+                                          <item value="&quot;ImmediateCopyOption&quot;"/>
+                                        </enum>
+                                      </prop>
+                                      <discriminator property="objectType" value="CustomCopyOption">
+                                        <prop type="string" name="duration" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings[].copyAfter.CustomCopyOption.duration"/>
+                                      </discriminator>
+                                    </prop>
+                                    <prop type="@DataStoreInfoBase_create" name="dataStore" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings[].dataStore" required="True"/>
+                                  </item>
+                                </prop>
+                              </item>
+                            </prop>
+                          </discriminator>
+                        </item>
+                      </prop>
+                    </discriminator>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.DataProtection/backupVaults/{}/backupPolicies/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="array<string>" name="datasourceTypes" required="True">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="string" name="objectType" required="True">
+                      <enum>
+                        <item value="&quot;BackupPolicy&quot;"/>
+                      </enum>
+                    </prop>
+                    <discriminator property="objectType" value="BackupPolicy">
+                      <prop type="array<object>" name="policyRules" required="True">
+                        <item type="object">
+                          <prop type="string" name="name" required="True"/>
+                          <prop type="string" name="objectType" required="True">
+                            <enum>
+                              <item value="&quot;AzureBackupRule&quot;"/>
+                              <item value="&quot;AzureRetentionRule&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="objectType" value="AzureBackupRule">
+                            <prop type="object" name="backupParameters">
+                              <prop type="string" name="objectType" required="True">
+                                <enum>
+                                  <item value="&quot;AzureBackupParams&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="objectType" value="AzureBackupParams">
+                                <prop type="string" name="backupType" required="True"/>
+                              </discriminator>
+                            </prop>
+                            <prop type="object" name="dataStore" required="True" cls="DataStoreInfoBase_read">
+                              <prop type="string" name="dataStoreType" required="True">
+                                <enum>
+                                  <item value="&quot;ArchiveStore&quot;"/>
+                                  <item value="&quot;OperationalStore&quot;"/>
+                                  <item value="&quot;VaultStore&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="objectType" required="True"/>
+                            </prop>
+                            <prop type="object" name="trigger" required="True">
+                              <prop type="string" name="objectType" required="True">
+                                <enum>
+                                  <item value="&quot;AdhocBasedTriggerContext&quot;"/>
+                                  <item value="&quot;ScheduleBasedTriggerContext&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="objectType" value="AdhocBasedTriggerContext">
+                                <prop type="object" name="taggingCriteria" required="True">
+                                  <prop type="object" name="tagInfo" cls="RetentionTag_read">
+                                    <prop readOnly="True" type="string" name="eTag"/>
+                                    <prop readOnly="True" type="string" name="id"/>
+                                    <prop type="string" name="tagName" required="True"/>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="objectType" value="ScheduleBasedTriggerContext">
+                                <prop type="object" name="schedule" required="True">
+                                  <prop type="array<string>" name="repeatingTimeIntervals" required="True">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="string" name="timeZone"/>
+                                </prop>
+                                <prop type="array<object>" name="taggingCriteria" required="True">
+                                  <item type="object">
+                                    <prop type="array<object>" name="criteria">
+                                      <item type="object">
+                                        <prop type="string" name="objectType" required="True">
+                                          <enum>
+                                            <item value="&quot;ScheduleBasedBackupCriteria&quot;"/>
+                                          </enum>
+                                        </prop>
+                                        <discriminator property="objectType" value="ScheduleBasedBackupCriteria">
+                                          <prop type="array<string>" name="absoluteCriteria">
+                                            <item type="string">
+                                              <enum>
+                                                <item value="&quot;AllBackup&quot;"/>
+                                                <item value="&quot;FirstOfDay&quot;"/>
+                                                <item value="&quot;FirstOfMonth&quot;"/>
+                                                <item value="&quot;FirstOfWeek&quot;"/>
+                                                <item value="&quot;FirstOfYear&quot;"/>
+                                              </enum>
+                                            </item>
+                                          </prop>
+                                          <prop type="array<object>" name="daysOfMonth">
+                                            <item type="object">
+                                              <prop type="integer32" name="date"/>
+                                              <prop type="boolean" name="isLast"/>
+                                            </item>
+                                          </prop>
+                                          <prop type="array<string>" name="daysOfTheWeek">
+                                            <item type="string">
+                                              <enum>
+                                                <item value="&quot;Friday&quot;"/>
+                                                <item value="&quot;Monday&quot;"/>
+                                                <item value="&quot;Saturday&quot;"/>
+                                                <item value="&quot;Sunday&quot;"/>
+                                                <item value="&quot;Thursday&quot;"/>
+                                                <item value="&quot;Tuesday&quot;"/>
+                                                <item value="&quot;Wednesday&quot;"/>
+                                              </enum>
+                                            </item>
+                                          </prop>
+                                          <prop type="array<string>" name="monthsOfYear">
+                                            <item type="string">
+                                              <enum>
+                                                <item value="&quot;April&quot;"/>
+                                                <item value="&quot;August&quot;"/>
+                                                <item value="&quot;December&quot;"/>
+                                                <item value="&quot;February&quot;"/>
+                                                <item value="&quot;January&quot;"/>
+                                                <item value="&quot;July&quot;"/>
+                                                <item value="&quot;June&quot;"/>
+                                                <item value="&quot;March&quot;"/>
+                                                <item value="&quot;May&quot;"/>
+                                                <item value="&quot;November&quot;"/>
+                                                <item value="&quot;October&quot;"/>
+                                                <item value="&quot;September&quot;"/>
+                                              </enum>
+                                            </item>
+                                          </prop>
+                                          <prop type="array<dateTime>" name="scheduleTimes">
+                                            <item type="dateTime"/>
+                                          </prop>
+                                          <prop type="array<string>" name="weeksOfTheMonth">
+                                            <item type="string">
+                                              <enum>
+                                                <item value="&quot;First&quot;"/>
+                                                <item value="&quot;Fourth&quot;"/>
+                                                <item value="&quot;Last&quot;"/>
+                                                <item value="&quot;Second&quot;"/>
+                                                <item value="&quot;Third&quot;"/>
+                                              </enum>
+                                            </item>
+                                          </prop>
+                                        </discriminator>
+                                      </item>
+                                    </prop>
+                                    <prop type="boolean" name="isDefault" required="True"/>
+                                    <prop type="@RetentionTag_read" name="tagInfo" required="True"/>
+                                    <prop type="integer64" name="taggingPriority" required="True"/>
+                                  </item>
+                                </prop>
+                              </discriminator>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="objectType" value="AzureRetentionRule">
+                            <prop type="boolean" name="isDefault"/>
+                            <prop type="array<object>" name="lifecycles" required="True">
+                              <item type="object">
+                                <prop type="object" name="deleteAfter" required="True">
+                                  <prop type="string" name="duration" required="True"/>
+                                  <prop type="string" name="objectType" required="True">
+                                    <enum>
+                                      <item value="&quot;AbsoluteDeleteOption&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                                <prop type="@DataStoreInfoBase_read" name="sourceDataStore" required="True"/>
+                                <prop type="array<object>" name="targetDataStoreCopySettings">
+                                  <item type="object">
+                                    <prop type="object" name="copyAfter" required="True">
+                                      <prop type="string" name="objectType" required="True">
+                                        <enum>
+                                          <item value="&quot;CopyOnExpiryOption&quot;"/>
+                                          <item value="&quot;CustomCopyOption&quot;"/>
+                                          <item value="&quot;ImmediateCopyOption&quot;"/>
+                                        </enum>
+                                      </prop>
+                                      <discriminator property="objectType" value="CustomCopyOption">
+                                        <prop type="string" name="duration"/>
+                                      </discriminator>
+                                    </prop>
+                                    <prop type="@DataStoreInfoBase_read" name="dataStore" required="True"/>
+                                  </item>
+                                </prop>
+                              </item>
+                            </prop>
+                          </discriminator>
+                        </item>
+                      </prop>
+                    </discriminator>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2023-05-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backuppolicies/{}" version="2023-05-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9L2JhY2t1cFBvbGljaWVzL3tiYWNrdXBQb2xpY3lOYW1lfQ==/V/MjAyMy0wNS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.backupPolicyName" options="backup-policy-name name n" required="True" group="" idPart="child_name_1">
+          <help short="Name of the policy"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vaultName" options="vault-name" required="True" idPart="name">
+          <help short="The name of the backup vault."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="object" var="$parameters.properties.BackupPolicy" options="policy" group="Properties">
+          <help short="Request body for operation Expected value: json-                                                 string/@json-file."/>
+          <arg type="array<object>" var="$parameters.properties.BackupPolicy.policyRules" options="policy-rules">
+            <help short="Policy rule dictionary that contains rules for each backuptype i.e Full/Incremental/Logs etc"/>
+            <item nullable="True" type="object">
+              <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule" options="azure-backup-rule">
+                <arg nullable="True" type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.backupParameters" options="backup-parameters">
+                  <help short="BackupParameters base"/>
+                  <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.backupParameters.AzureBackupParams" options="azure-backup-params">
+                    <arg type="string" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.backupParameters.AzureBackupParams.backupType" options="backup-type">
+                      <help short="BackupType ; Full/Incremental etc"/>
+                    </arg>
+                  </arg>
+                </arg>
+                <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.dataStore" options="data-store" cls="DataStoreInfoBase_update">
+                  <help short="DataStoreInfo base"/>
+                  <arg type="string" var="@DataStoreInfoBase_update.dataStoreType" options="data-store-type">
+                    <help short="type of datastore; Operational/Vault/Archive"/>
+                    <enum>
+                      <item name="ArchiveStore" value="&quot;ArchiveStore&quot;"/>
+                      <item name="OperationalStore" value="&quot;OperationalStore&quot;"/>
+                      <item name="VaultStore" value="&quot;VaultStore&quot;"/>
+                    </enum>
+                  </arg>
+                  <arg type="string" var="@DataStoreInfoBase_update.objectType" options="object-type">
+                    <help short="Type of Datasource object, used to initialize the right inherited type"/>
+                  </arg>
+                </arg>
+                <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger" options="trigger">
+                  <help short="Trigger context"/>
+                  <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.AdhocBasedTriggerContext" options="adhoc-based-trigger-context">
+                    <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.AdhocBasedTriggerContext.taggingCriteria" options="tagging-criteria">
+                      <help short="Tagging Criteria containing retention tag for adhoc backup."/>
+                      <arg nullable="True" type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.AdhocBasedTriggerContext.taggingCriteria.tagInfo" options="tag-info" cls="RetentionTag_update">
+                        <help short="Retention tag information"/>
+                        <arg type="string" var="@RetentionTag_update.tagName" options="tag-name">
+                          <help short="Retention Tag Name to relate it to retention rule."/>
+                        </arg>
+                      </arg>
+                    </arg>
+                  </arg>
+                  <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext" options="schedule-based-trigger-context">
+                    <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.schedule" options="schedule">
+                      <help short="Schedule for this backup"/>
+                      <arg type="array<string>" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.schedule.repeatingTimeIntervals" options="repeating-time-intervals">
+                        <help short="ISO 8601 repeating time interval format"/>
+                        <item nullable="True" type="string"/>
+                      </arg>
+                      <arg nullable="True" type="string" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.schedule.timeZone" options="time-zone">
+                        <help short="Time zone for a schedule. Example: Pacific Standard Time"/>
+                      </arg>
+                    </arg>
+                    <arg type="array<object>" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria" options="tagging-criteria">
+                      <help short="List of tags that can be applicable for given schedule."/>
+                      <item nullable="True" type="object">
+                        <arg nullable="True" type="array<object>" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria" options="criteria">
+                          <help short="Criteria which decides whether the tag can be applied to a triggered backup."/>
+                          <item nullable="True" type="object">
+                            <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria" options="schedule-based-backup-criteria">
+                              <arg nullable="True" type="array<string>" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.absoluteCriteria" options="absolute-criteria" group="">
+                                <help short="it contains absolute values like &quot;AllBackup&quot; / &quot;FirstOfDay&quot; / &quot;FirstOfWeek&quot; / &quot;FirstOfMonth&quot; and should be a part of AbsoluteMarker enum"/>
+                                <item nullable="True" type="string">
+                                  <enum>
+                                    <item name="AllBackup" value="&quot;AllBackup&quot;"/>
+                                    <item name="FirstOfDay" value="&quot;FirstOfDay&quot;"/>
+                                    <item name="FirstOfMonth" value="&quot;FirstOfMonth&quot;"/>
+                                    <item name="FirstOfWeek" value="&quot;FirstOfWeek&quot;"/>
+                                    <item name="FirstOfYear" value="&quot;FirstOfYear&quot;"/>
+                                  </enum>
+                                </item>
+                              </arg>
+                              <arg nullable="True" type="array<object>" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.daysOfMonth" options="days-of-month">
+                                <help short="This is day of the month from 1 to 28 other wise last of month"/>
+                                <item nullable="True" type="object">
+                                  <arg nullable="True" type="integer32" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.daysOfMonth[].date" options="date">
+                                    <help short="Date of the month"/>
+                                  </arg>
+                                  <arg nullable="True" type="boolean" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.daysOfMonth[].isLast" options="is-last">
+                                    <help short="Whether Date is last date of month"/>
+                                  </arg>
+                                </item>
+                              </arg>
+                              <arg nullable="True" type="array<string>" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.daysOfTheWeek" options="days-of-the-week">
+                                <help short="It should be Sunday/Monday/T..../Saturday"/>
+                                <item nullable="True" type="string">
+                                  <enum>
+                                    <item name="Friday" value="&quot;Friday&quot;"/>
+                                    <item name="Monday" value="&quot;Monday&quot;"/>
+                                    <item name="Saturday" value="&quot;Saturday&quot;"/>
+                                    <item name="Sunday" value="&quot;Sunday&quot;"/>
+                                    <item name="Thursday" value="&quot;Thursday&quot;"/>
+                                    <item name="Tuesday" value="&quot;Tuesday&quot;"/>
+                                    <item name="Wednesday" value="&quot;Wednesday&quot;"/>
+                                  </enum>
+                                </item>
+                              </arg>
+                              <arg nullable="True" type="array<string>" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.monthsOfYear" options="months-of-year">
+                                <help short="It should be January/February/....../December"/>
+                                <item nullable="True" type="string">
+                                  <enum>
+                                    <item name="April" value="&quot;April&quot;"/>
+                                    <item name="August" value="&quot;August&quot;"/>
+                                    <item name="December" value="&quot;December&quot;"/>
+                                    <item name="February" value="&quot;February&quot;"/>
+                                    <item name="January" value="&quot;January&quot;"/>
+                                    <item name="July" value="&quot;July&quot;"/>
+                                    <item name="June" value="&quot;June&quot;"/>
+                                    <item name="March" value="&quot;March&quot;"/>
+                                    <item name="May" value="&quot;May&quot;"/>
+                                    <item name="November" value="&quot;November&quot;"/>
+                                    <item name="October" value="&quot;October&quot;"/>
+                                    <item name="September" value="&quot;September&quot;"/>
+                                  </enum>
+                                </item>
+                              </arg>
+                              <arg nullable="True" type="array<dateTime>" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.scheduleTimes" options="schedule-times">
+                                <help short="List of schedule times for backup"/>
+                                <item nullable="True" type="dateTime"/>
+                              </arg>
+                              <arg nullable="True" type="array<string>" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.weeksOfTheMonth" options="weeks-of-the-month">
+                                <help short="It should be First/Second/Third/Fourth/Last"/>
+                                <item nullable="True" type="string">
+                                  <enum>
+                                    <item name="First" value="&quot;First&quot;"/>
+                                    <item name="Fourth" value="&quot;Fourth&quot;"/>
+                                    <item name="Last" value="&quot;Last&quot;"/>
+                                    <item name="Second" value="&quot;Second&quot;"/>
+                                    <item name="Third" value="&quot;Third&quot;"/>
+                                  </enum>
+                                </item>
+                              </arg>
+                            </arg>
+                          </item>
+                        </arg>
+                        <arg type="boolean" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].isDefault" options="is-default">
+                          <help short="Specifies if tag is default."/>
+                        </arg>
+                        <arg type="@RetentionTag_update" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].tagInfo" options="tag-info">
+                          <help short="Retention tag information"/>
+                        </arg>
+                        <arg type="integer64" var="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].taggingPriority" options="tagging-priority">
+                          <help short="Retention Tag priority."/>
+                        </arg>
+                      </item>
+                    </arg>
+                  </arg>
+                </arg>
+              </arg>
+              <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule" options="azure-retention-rule">
+                <arg nullable="True" type="boolean" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.isDefault" options="is-default"/>
+                <arg type="array<object>" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles" options="lifecycles">
+                  <item nullable="True" type="object">
+                    <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].deleteAfter" options="delete-after">
+                      <help short="Delete Option"/>
+                      <arg type="string" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].deleteAfter.duration" options="duration">
+                        <help short="Duration of deletion after given timespan"/>
+                      </arg>
+                      <arg type="string" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].deleteAfter.objectType" options="object-type">
+                        <help short="Type of the specific object - used for deserializing"/>
+                        <enum>
+                          <item name="AbsoluteDeleteOption" value="&quot;AbsoluteDeleteOption&quot;"/>
+                        </enum>
+                      </arg>
+                    </arg>
+                    <arg type="@DataStoreInfoBase_update" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].sourceDataStore" options="source-data-store"/>
+                    <arg nullable="True" type="array<object>" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings" options="target-data-store-copy-settings">
+                      <item nullable="True" type="object">
+                        <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings[].copyAfter" options="copy-after">
+                          <help short="It can be CustomCopyOption or ImmediateCopyOption."/>
+                          <arg type="object" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings[].copyAfter.CustomCopyOption" options="custom-copy-option">
+                            <arg nullable="True" type="string" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings[].copyAfter.CustomCopyOption.duration" options="duration">
+                              <help short="Data copied after given timespan"/>
+                            </arg>
+                          </arg>
+                        </arg>
+                        <arg type="@DataStoreInfoBase_update" var="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings[].dataStore" options="data-store">
+                          <help short="Info of target datastore"/>
+                        </arg>
+                      </item>
+                    </arg>
+                  </item>
+                </arg>
+              </arg>
+              <arg type="string" var="$parameters.properties.BackupPolicy.policyRules[].name" options="name"/>
+            </item>
+          </arg>
+        </arg>
+        <arg type="array<string>" var="$parameters.properties.datasourceTypes" options="datasource-types" group="Properties">
+          <help short="Type of datasource for the backup management"/>
+          <item nullable="True" type="string"/>
+        </arg>
+      </argGroup>
+      <operation operationId="BackupPolicies_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupPolicies/{backupPolicyName}">
+          <request method="get">
+            <path>
+              <param type="string" name="backupPolicyName" arg="$Path.backupPolicyName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vaultName" arg="$Path.vaultName" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-05-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="BaseBackupPolicyResource_read">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.DataProtection/backupVaults/{}/backupPolicies/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="array<string>" name="datasourceTypes" required="True">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="string" name="objectType" required="True">
+                      <enum>
+                        <item value="&quot;BackupPolicy&quot;"/>
+                      </enum>
+                    </prop>
+                    <discriminator property="objectType" value="BackupPolicy">
+                      <prop type="array<object>" name="policyRules" required="True">
+                        <item type="object">
+                          <prop type="string" name="name" required="True"/>
+                          <prop type="string" name="objectType" required="True">
+                            <enum>
+                              <item value="&quot;AzureBackupRule&quot;"/>
+                              <item value="&quot;AzureRetentionRule&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="objectType" value="AzureBackupRule">
+                            <prop type="object" name="backupParameters">
+                              <prop type="string" name="objectType" required="True">
+                                <enum>
+                                  <item value="&quot;AzureBackupParams&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="objectType" value="AzureBackupParams">
+                                <prop type="string" name="backupType" required="True"/>
+                              </discriminator>
+                            </prop>
+                            <prop type="object" name="dataStore" required="True" cls="DataStoreInfoBase_read">
+                              <prop type="string" name="dataStoreType" required="True">
+                                <enum>
+                                  <item value="&quot;ArchiveStore&quot;"/>
+                                  <item value="&quot;OperationalStore&quot;"/>
+                                  <item value="&quot;VaultStore&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="objectType" required="True"/>
+                            </prop>
+                            <prop type="object" name="trigger" required="True">
+                              <prop type="string" name="objectType" required="True">
+                                <enum>
+                                  <item value="&quot;AdhocBasedTriggerContext&quot;"/>
+                                  <item value="&quot;ScheduleBasedTriggerContext&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="objectType" value="AdhocBasedTriggerContext">
+                                <prop type="object" name="taggingCriteria" required="True">
+                                  <prop type="object" name="tagInfo" cls="RetentionTag_read">
+                                    <prop readOnly="True" type="string" name="eTag"/>
+                                    <prop readOnly="True" type="string" name="id"/>
+                                    <prop type="string" name="tagName" required="True"/>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="objectType" value="ScheduleBasedTriggerContext">
+                                <prop type="object" name="schedule" required="True">
+                                  <prop type="array<string>" name="repeatingTimeIntervals" required="True">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="string" name="timeZone"/>
+                                </prop>
+                                <prop type="array<object>" name="taggingCriteria" required="True">
+                                  <item type="object">
+                                    <prop type="array<object>" name="criteria">
+                                      <item type="object">
+                                        <prop type="string" name="objectType" required="True">
+                                          <enum>
+                                            <item value="&quot;ScheduleBasedBackupCriteria&quot;"/>
+                                          </enum>
+                                        </prop>
+                                        <discriminator property="objectType" value="ScheduleBasedBackupCriteria">
+                                          <prop type="array<string>" name="absoluteCriteria">
+                                            <item type="string">
+                                              <enum>
+                                                <item value="&quot;AllBackup&quot;"/>
+                                                <item value="&quot;FirstOfDay&quot;"/>
+                                                <item value="&quot;FirstOfMonth&quot;"/>
+                                                <item value="&quot;FirstOfWeek&quot;"/>
+                                                <item value="&quot;FirstOfYear&quot;"/>
+                                              </enum>
+                                            </item>
+                                          </prop>
+                                          <prop type="array<object>" name="daysOfMonth">
+                                            <item type="object">
+                                              <prop type="integer32" name="date"/>
+                                              <prop type="boolean" name="isLast"/>
+                                            </item>
+                                          </prop>
+                                          <prop type="array<string>" name="daysOfTheWeek">
+                                            <item type="string">
+                                              <enum>
+                                                <item value="&quot;Friday&quot;"/>
+                                                <item value="&quot;Monday&quot;"/>
+                                                <item value="&quot;Saturday&quot;"/>
+                                                <item value="&quot;Sunday&quot;"/>
+                                                <item value="&quot;Thursday&quot;"/>
+                                                <item value="&quot;Tuesday&quot;"/>
+                                                <item value="&quot;Wednesday&quot;"/>
+                                              </enum>
+                                            </item>
+                                          </prop>
+                                          <prop type="array<string>" name="monthsOfYear">
+                                            <item type="string">
+                                              <enum>
+                                                <item value="&quot;April&quot;"/>
+                                                <item value="&quot;August&quot;"/>
+                                                <item value="&quot;December&quot;"/>
+                                                <item value="&quot;February&quot;"/>
+                                                <item value="&quot;January&quot;"/>
+                                                <item value="&quot;July&quot;"/>
+                                                <item value="&quot;June&quot;"/>
+                                                <item value="&quot;March&quot;"/>
+                                                <item value="&quot;May&quot;"/>
+                                                <item value="&quot;November&quot;"/>
+                                                <item value="&quot;October&quot;"/>
+                                                <item value="&quot;September&quot;"/>
+                                              </enum>
+                                            </item>
+                                          </prop>
+                                          <prop type="array<dateTime>" name="scheduleTimes">
+                                            <item type="dateTime"/>
+                                          </prop>
+                                          <prop type="array<string>" name="weeksOfTheMonth">
+                                            <item type="string">
+                                              <enum>
+                                                <item value="&quot;First&quot;"/>
+                                                <item value="&quot;Fourth&quot;"/>
+                                                <item value="&quot;Last&quot;"/>
+                                                <item value="&quot;Second&quot;"/>
+                                                <item value="&quot;Third&quot;"/>
+                                              </enum>
+                                            </item>
+                                          </prop>
+                                        </discriminator>
+                                      </item>
+                                    </prop>
+                                    <prop type="boolean" name="isDefault" required="True"/>
+                                    <prop type="@RetentionTag_read" name="tagInfo" required="True"/>
+                                    <prop type="integer64" name="taggingPriority" required="True"/>
+                                  </item>
+                                </prop>
+                              </discriminator>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="objectType" value="AzureRetentionRule">
+                            <prop type="boolean" name="isDefault"/>
+                            <prop type="array<object>" name="lifecycles" required="True">
+                              <item type="object">
+                                <prop type="object" name="deleteAfter" required="True">
+                                  <prop type="string" name="duration" required="True"/>
+                                  <prop type="string" name="objectType" required="True">
+                                    <enum>
+                                      <item value="&quot;AbsoluteDeleteOption&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                                <prop type="@DataStoreInfoBase_read" name="sourceDataStore" required="True"/>
+                                <prop type="array<object>" name="targetDataStoreCopySettings">
+                                  <item type="object">
+                                    <prop type="object" name="copyAfter" required="True">
+                                      <prop type="string" name="objectType" required="True">
+                                        <enum>
+                                          <item value="&quot;CopyOnExpiryOption&quot;"/>
+                                          <item value="&quot;CustomCopyOption&quot;"/>
+                                          <item value="&quot;ImmediateCopyOption&quot;"/>
+                                        </enum>
+                                      </prop>
+                                      <discriminator property="objectType" value="CustomCopyOption">
+                                        <prop type="string" name="duration"/>
+                                      </discriminator>
+                                    </prop>
+                                    <prop type="@DataStoreInfoBase_read" name="dataStore" required="True"/>
+                                  </item>
+                                </prop>
+                              </item>
+                            </prop>
+                          </discriminator>
+                        </item>
+                      </prop>
+                    </discriminator>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate ref="$Instance">
+          <json>
+            <schema type="object" name="parameters" required="True" clientFlatten="True">
+              <prop type="object" name="properties">
+                <prop type="array<string>" name="datasourceTypes" arg="$parameters.properties.datasourceTypes" required="True">
+                  <item type="string"/>
+                </prop>
+                <prop type="string" name="objectType" required="True">
+                  <enum>
+                    <item arg="$parameters.properties.BackupPolicy" value="&quot;BackupPolicy&quot;"/>
+                  </enum>
+                </prop>
+                <discriminator property="objectType" value="BackupPolicy">
+                  <prop type="array<object>" name="policyRules" arg="$parameters.properties.BackupPolicy.policyRules" required="True">
+                    <item type="object">
+                      <prop type="string" name="name" arg="$parameters.properties.BackupPolicy.policyRules[].name" required="True"/>
+                      <prop type="string" name="objectType" required="True">
+                        <enum>
+                          <item arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule" value="&quot;AzureBackupRule&quot;"/>
+                          <item arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule" value="&quot;AzureRetentionRule&quot;"/>
+                        </enum>
+                      </prop>
+                      <discriminator property="objectType" value="AzureBackupRule">
+                        <prop type="object" name="backupParameters" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.backupParameters">
+                          <prop type="string" name="objectType" required="True">
+                            <enum>
+                              <item arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.backupParameters.AzureBackupParams" value="&quot;AzureBackupParams&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="objectType" value="AzureBackupParams">
+                            <prop type="string" name="backupType" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.backupParameters.AzureBackupParams.backupType" required="True"/>
+                          </discriminator>
+                        </prop>
+                        <prop type="object" name="dataStore" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.dataStore" required="True" cls="DataStoreInfoBase_update">
+                          <prop type="string" name="dataStoreType" arg="@DataStoreInfoBase_update.dataStoreType" required="True">
+                            <enum>
+                              <item value="&quot;ArchiveStore&quot;"/>
+                              <item value="&quot;OperationalStore&quot;"/>
+                              <item value="&quot;VaultStore&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="objectType" arg="@DataStoreInfoBase_update.objectType" required="True"/>
+                        </prop>
+                        <prop type="object" name="trigger" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger" required="True">
+                          <prop type="string" name="objectType" required="True">
+                            <enum>
+                              <item arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.AdhocBasedTriggerContext" value="&quot;AdhocBasedTriggerContext&quot;"/>
+                              <item arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext" value="&quot;ScheduleBasedTriggerContext&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="objectType" value="AdhocBasedTriggerContext">
+                            <prop type="object" name="taggingCriteria" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.AdhocBasedTriggerContext.taggingCriteria" required="True">
+                              <prop type="object" name="tagInfo" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.AdhocBasedTriggerContext.taggingCriteria.tagInfo" cls="RetentionTag_update">
+                                <prop type="string" name="tagName" arg="@RetentionTag_update.tagName" required="True"/>
+                              </prop>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="objectType" value="ScheduleBasedTriggerContext">
+                            <prop type="object" name="schedule" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.schedule" required="True">
+                              <prop type="array<string>" name="repeatingTimeIntervals" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.schedule.repeatingTimeIntervals" required="True">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="timeZone" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.schedule.timeZone"/>
+                            </prop>
+                            <prop type="array<object>" name="taggingCriteria" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria" required="True">
+                              <item type="object">
+                                <prop type="array<object>" name="criteria" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria">
+                                  <item type="object">
+                                    <prop type="string" name="objectType" required="True">
+                                      <enum>
+                                        <item arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria" value="&quot;ScheduleBasedBackupCriteria&quot;"/>
+                                      </enum>
+                                    </prop>
+                                    <discriminator property="objectType" value="ScheduleBasedBackupCriteria">
+                                      <prop type="array<string>" name="absoluteCriteria" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.absoluteCriteria">
+                                        <item type="string">
+                                          <enum>
+                                            <item value="&quot;AllBackup&quot;"/>
+                                            <item value="&quot;FirstOfDay&quot;"/>
+                                            <item value="&quot;FirstOfMonth&quot;"/>
+                                            <item value="&quot;FirstOfWeek&quot;"/>
+                                            <item value="&quot;FirstOfYear&quot;"/>
+                                          </enum>
+                                        </item>
+                                      </prop>
+                                      <prop type="array<object>" name="daysOfMonth" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.daysOfMonth">
+                                        <item type="object">
+                                          <prop type="integer32" name="date" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.daysOfMonth[].date"/>
+                                          <prop type="boolean" name="isLast" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.daysOfMonth[].isLast"/>
+                                        </item>
+                                      </prop>
+                                      <prop type="array<string>" name="daysOfTheWeek" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.daysOfTheWeek">
+                                        <item type="string">
+                                          <enum>
+                                            <item value="&quot;Friday&quot;"/>
+                                            <item value="&quot;Monday&quot;"/>
+                                            <item value="&quot;Saturday&quot;"/>
+                                            <item value="&quot;Sunday&quot;"/>
+                                            <item value="&quot;Thursday&quot;"/>
+                                            <item value="&quot;Tuesday&quot;"/>
+                                            <item value="&quot;Wednesday&quot;"/>
+                                          </enum>
+                                        </item>
+                                      </prop>
+                                      <prop type="array<string>" name="monthsOfYear" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.monthsOfYear">
+                                        <item type="string">
+                                          <enum>
+                                            <item value="&quot;April&quot;"/>
+                                            <item value="&quot;August&quot;"/>
+                                            <item value="&quot;December&quot;"/>
+                                            <item value="&quot;February&quot;"/>
+                                            <item value="&quot;January&quot;"/>
+                                            <item value="&quot;July&quot;"/>
+                                            <item value="&quot;June&quot;"/>
+                                            <item value="&quot;March&quot;"/>
+                                            <item value="&quot;May&quot;"/>
+                                            <item value="&quot;November&quot;"/>
+                                            <item value="&quot;October&quot;"/>
+                                            <item value="&quot;September&quot;"/>
+                                          </enum>
+                                        </item>
+                                      </prop>
+                                      <prop type="array<dateTime>" name="scheduleTimes" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.scheduleTimes">
+                                        <item type="dateTime"/>
+                                      </prop>
+                                      <prop type="array<string>" name="weeksOfTheMonth" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].criteria[].ScheduleBasedBackupCriteria.weeksOfTheMonth">
+                                        <item type="string">
+                                          <enum>
+                                            <item value="&quot;First&quot;"/>
+                                            <item value="&quot;Fourth&quot;"/>
+                                            <item value="&quot;Last&quot;"/>
+                                            <item value="&quot;Second&quot;"/>
+                                            <item value="&quot;Third&quot;"/>
+                                          </enum>
+                                        </item>
+                                      </prop>
+                                    </discriminator>
+                                  </item>
+                                </prop>
+                                <prop type="boolean" name="isDefault" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].isDefault" required="True"/>
+                                <prop type="@RetentionTag_update" name="tagInfo" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].tagInfo" required="True"/>
+                                <prop type="integer64" name="taggingPriority" arg="$parameters.properties.BackupPolicy.policyRules[].AzureBackupRule.trigger.ScheduleBasedTriggerContext.taggingCriteria[].taggingPriority" required="True"/>
+                              </item>
+                            </prop>
+                          </discriminator>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="objectType" value="AzureRetentionRule">
+                        <prop type="boolean" name="isDefault" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.isDefault"/>
+                        <prop type="array<object>" name="lifecycles" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles" required="True">
+                          <item type="object">
+                            <prop type="object" name="deleteAfter" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].deleteAfter" required="True">
+                              <prop type="string" name="duration" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].deleteAfter.duration" required="True"/>
+                              <prop type="string" name="objectType" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].deleteAfter.objectType" required="True">
+                                <enum>
+                                  <item value="&quot;AbsoluteDeleteOption&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="@DataStoreInfoBase_update" name="sourceDataStore" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].sourceDataStore" required="True"/>
+                            <prop type="array<object>" name="targetDataStoreCopySettings" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings">
+                              <item type="object">
+                                <prop type="object" name="copyAfter" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings[].copyAfter" required="True">
+                                  <prop type="string" name="objectType" required="True">
+                                    <enum>
+                                      <item value="&quot;CopyOnExpiryOption&quot;"/>
+                                      <item arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings[].copyAfter.CustomCopyOption" value="&quot;CustomCopyOption&quot;"/>
+                                      <item value="&quot;ImmediateCopyOption&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <discriminator property="objectType" value="CustomCopyOption">
+                                    <prop type="string" name="duration" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings[].copyAfter.CustomCopyOption.duration"/>
+                                  </discriminator>
+                                </prop>
+                                <prop type="@DataStoreInfoBase_update" name="dataStore" arg="$parameters.properties.BackupPolicy.policyRules[].AzureRetentionRule.lifecycles[].targetDataStoreCopySettings[].dataStore" required="True"/>
+                              </item>
+                            </prop>
+                          </item>
+                        </prop>
+                      </discriminator>
+                    </item>
+                  </prop>
+                </discriminator>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="BackupPolicies_CreateOrUpdate">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupPolicies/{backupPolicyName}">
+          <request method="put">
+            <path>
+              <param type="string" name="backupPolicyName" arg="$Path.backupPolicyName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vaultName" arg="$Path.vaultName" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-05-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="@BaseBackupPolicyResource_read"/>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

@@ -1,0 +1,134 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backupinstances/{}/recoverypoints" version="2023-05-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9L2JhY2t1cEluc3RhbmNlcy97YmFja3VwSW5zdGFuY2VOYW1lfS9yZWNvdmVyeVBvaW50cw==/V/MjAyMy0wNS0wMQ=="/>
+  <commandGroup name="dataprotection recovery-point">
+    <command name="list" version="2023-05-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backupinstances/{}/recoverypoints" version="2023-05-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9L2JhY2t1cEluc3RhbmNlcy97YmFja3VwSW5zdGFuY2VOYW1lfS9yZWNvdmVyeVBvaW50cw==/V/MjAyMy0wNS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.backupInstanceName" options="backup-instance-name" required="True" idPart="child_name_1">
+          <help short="The name of the backup instance."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vaultName" options="vault-name" required="True" idPart="name">
+          <help short="The name of the backup vault."/>
+        </arg>
+        <arg type="string" var="$Query.filter" options="filter">
+          <help short="OData filter options."/>
+        </arg>
+        <arg type="string" var="$Query.skipToken" options="skip-token">
+          <help short="skipToken Filter."/>
+        </arg>
+      </argGroup>
+      <operation operationId="RecoveryPoints_List">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupInstances/{backupInstanceName}/recoveryPoints">
+          <request method="get">
+            <path>
+              <param type="string" name="backupInstanceName" arg="$Path.backupInstanceName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vaultName" arg="$Path.vaultName" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="$filter" arg="$Query.filter"/>
+              <param type="string" name="$skipToken" arg="$Query.skipToken"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-05-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.DataProtection/backupVaults/{}/backupInstances/{}/recoveryPoints/{}"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties">
+                        <prop type="string" name="objectType" required="True">
+                          <enum>
+                            <item value="&quot;AzureBackupDiscreteRecoveryPoint&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="objectType" value="AzureBackupDiscreteRecoveryPoint">
+                          <prop readOnly="True" type="dateTime" name="expiryTime"/>
+                          <prop type="string" name="friendlyName"/>
+                          <prop type="string" name="policyName"/>
+                          <prop type="string" name="policyVersion"/>
+                          <prop type="array<object>" name="recoveryPointDataStoresDetails">
+                            <item type="object">
+                              <prop type="dateTime" name="creationTime"/>
+                              <prop type="dateTime" name="expiryTime"/>
+                              <prop type="string" name="id"/>
+                              <prop type="string" name="metaData"/>
+                              <prop readOnly="True" type="dateTime" name="rehydrationExpiryTime"/>
+                              <prop readOnly="True" type="string" name="rehydrationStatus">
+                                <enum>
+                                  <item value="&quot;COMPLETED&quot;"/>
+                                  <item value="&quot;CREATE_IN_PROGRESS&quot;"/>
+                                  <item value="&quot;DELETED&quot;"/>
+                                  <item value="&quot;DELETE_IN_PROGRESS&quot;"/>
+                                  <item value="&quot;FAILED&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="state"/>
+                              <prop type="string" name="type"/>
+                              <prop type="boolean" name="visible"/>
+                            </item>
+                          </prop>
+                          <prop type="string" name="recoveryPointId"/>
+                          <prop type="dateTime" name="recoveryPointTime" required="True"/>
+                          <prop type="string" name="recoveryPointType"/>
+                          <prop type="string" name="retentionTagName"/>
+                          <prop type="string" name="retentionTagVersion"/>
+                        </discriminator>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

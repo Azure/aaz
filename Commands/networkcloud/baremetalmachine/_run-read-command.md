@@ -26,7 +26,7 @@ Run one or more read-only commands on the provided bare metal machine. The URL t
         networkcloud baremetalmachine run-read-command --bare-metal-machine-name "bareMetalMachineName" --limit-time-seconds 60 --commands '[{"command":"kubectl get","arguments":["pods","-A"]},{"command":"ping", "arguments":["192.168.0.99","-c","3"]}]' --resource-group "resourceGroupName"
     ```
 
-### [2023-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvYmFyZW1ldGFsbWFjaGluZXMve30vcnVucmVhZGNvbW1hbmRz/2023-07-01.xml) **Preview**
+### [2023-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvYmFyZW1ldGFsbWFjaGluZXMve30vcnVucmVhZGNvbW1hbmRz/2023-07-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/baremetalmachines/{}/runreadcommands 2023-07-01 -->
 

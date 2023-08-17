@@ -26,7 +26,7 @@ Run one or more data extractions on the provided bare metal machine. The URL to 
         networkcloud baremetalmachine run-data-extract --bare-metal-machine-name "bareMetalMachineName" --limit-time-seconds 360 --commands "[{arguments:['SysInfo','TTYLog'],command:'hardware-support-data-collection'}]" --resource-group "resourceGroupName"
     ```
 
-### [2023-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvYmFyZW1ldGFsbWFjaGluZXMve30vcnVuZGF0YWV4dHJhY3Rz/2023-07-01.xml) **Preview**
+### [2023-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvYmFyZW1ldGFsbWFjaGluZXMve30vcnVuZGF0YWV4dHJhY3Rz/2023-07-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/baremetalmachines/{}/rundataextracts 2023-07-01 -->
 
