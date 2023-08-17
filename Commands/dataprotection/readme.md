@@ -1,11 +1,11 @@
 # [Group] _dataprotection_
 
-Manage dataprotection
+Manage dataprotection.
 
 ## Subgroups
 
 - [backup-instance](/Commands/dataprotection/backup-instance/readme.md)
-: Manage backup instance with dataprotection
+: Manage backup instance with dataprotection.
 
 - [backup-policy](/Commands/dataprotection/backup-policy/readme.md)
 : Manage backup policy with dataprotection.
