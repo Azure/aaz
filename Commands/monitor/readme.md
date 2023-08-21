@@ -7,6 +7,9 @@ Manage the Azure Monitor Service.
 - [account](/Commands/monitor/account/readme.md)
 : Manage monitor account
 
+- [app-insights](/Commands/monitor/app-insights/readme.md)
+: Commands for querying data in Application Insights applications.
+
 - [autoscale](/Commands/monitor/autoscale/readme.md)
 : Manage autoscale settings
 
