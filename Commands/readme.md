@@ -29,6 +29,9 @@
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
 
+- [consumption](/Commands/consumption/readme.md)
+: Manage consumption of Azure resources.
+
 - [databox](/Commands/databox/readme.md)
 : Manage data box
 
