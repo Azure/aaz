@@ -10,6 +10,9 @@ Manage devcenter admin resources.
 - [catalog](/Commands/devcenter/admin/catalog/readme.md)
 : Manage catalogs.
 
+- [catalog-devbox-definition](/Commands/devcenter/admin/catalog-devbox-definition/readme.md)
+: Manage catalog dev box definitions.
+
 - [check-name-availability](/Commands/devcenter/admin/check-name-availability/readme.md)
 : Manage check name availability.
 
