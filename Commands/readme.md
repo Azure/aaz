@@ -17,12 +17,9 @@
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
-<<<<<<< HEAD
-=======
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
 
->>>>>>> 5a5413971a561818e788004da17a251669a03b0f
 - [connectedmachine](/Commands/connectedmachine/readme.md)
 : Manage an Azure Arc-Enabled Server.
 
