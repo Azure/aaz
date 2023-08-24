@@ -18,3 +18,9 @@ Manage the Azure Monitor Service.
 
 - [log-profiles](/Commands/monitor/log-profiles/readme.md)
 : Manage log profiles.
+
+- [metrics](/Commands/monitor/metrics/readme.md)
+: View Azure resource metrics.
+
+- [private-link-scope](/Commands/monitor/private-link-scope/readme.md)
+: Manage monitor private link scope resource.

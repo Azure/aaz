@@ -29,6 +29,9 @@
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
 
+- [consumption](/Commands/consumption/readme.md)
+: Manage consumption of Azure resources.
+
 - [databox](/Commands/databox/readme.md)
 : Manage data box
 
@@ -36,7 +39,7 @@
 : Manage databricks workspaces.
 
 - [dataprotection](/Commands/dataprotection/readme.md)
-: Manage dataprotection
+: Manage dataprotection.
 
 - [devcenter](/Commands/devcenter/readme.md)
 : Manage resources with devcenter.
@@ -85,6 +88,9 @@
 
 - [maintenance](/Commands/maintenance/readme.md)
 : Manage Maintenance
+
+- [mesh](/Commands/mesh/readme.md)
+: (PREVIEW) Manage Azure Service Fabric Mesh Resources.
 
 - [mobile-network](/Commands/mobile-network/readme.md)
 : Manage mobile network
