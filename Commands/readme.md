@@ -29,6 +29,9 @@
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
 
+- [connectedmachine](/Commands/connectedmachine/readme.md)
+: Manage an Azure Arc-Enabled Server.
+
 - [consumption](/Commands/consumption/readme.md)
 : Manage consumption of Azure resources.
 
