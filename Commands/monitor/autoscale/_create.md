@@ -26,5 +26,5 @@ For more information on autoscaling, visit: https://docs.microsoft.com/azure/mon
 
 - Create new autoscale settings.
     ```bash
-        monitor autoscale create --count 3 --max-count 5 --min-count 2 --name MyAutoscaleSettings --resource myScaleSet --resource-group MyResourceGroup --resource-type Microsoft.Compute/virtualMachineScaleSets
+        monitor autoscale create --count 3 --max-count 5 --min-count 2 --name {MyAutoscaleSettings} --resource {myScaleSet} --resource-group {MyResourceGroup} --resource-type Microsoft.Compute/virtualMachineScaleSets
     ```
