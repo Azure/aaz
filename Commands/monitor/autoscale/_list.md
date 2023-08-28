@@ -1,6 +1,6 @@
 # [Command] _monitor autoscale list_
 
-Lists the autoscale settings for a resource group.
+Lists the autoscale settings for a resource group
 
 ## Versions
 
