@@ -12,5 +12,5 @@ Get an autoscale setting
 
 - Show autoscale setting details.
     ```bash
-        monitor autoscale show --name {MyAutoscaleSettings} --resource-group {MyResourceGroup}
+        monitor autoscale show --name MyAutoscaleSettings --resource-group MyResourceGroup
     ```

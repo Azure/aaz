@@ -14,15 +14,15 @@ For more information on autoscaling, visit: https://docs.microsoft.com/azure/mon
 
 - Update autoscale settings to use a fixed 3 instances by default.
     ```bash
-        monitor autoscale update -g {myrg} -n {autoscale-name} --count 3
+        monitor autoscale update -g myrg -n autoscale-name --count 3
     ```
 
 - Update autoscale settings to remove an email notification.
     ```bash
-        monitor autoscale update -g {myrg} -n {autoscale-name} \ --remove-action email bob@contoso.com
+        monitor autoscale update -g myrg -n autoscale-name \ --remove-action email bob@contoso.com
     ```
 
 - Update autoscale settings.
     ```bash
-        monitor autoscale update --count 3 --email-administrator true --enabled true --max-count 5 --min-count 2 --name {MyAutoscaleSettings} --resource-group {MyResourceGroup} --tags key[=value]
+        monitor autoscale update --count 3 --email-administrator true --enabled true --max-count 5 --min-count 2 --name MyAutoscaleSettings --resource-group MyResourceGroup --tags key[=value]
     ```
