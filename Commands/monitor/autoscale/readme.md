@@ -11,7 +11,7 @@ Manage autoscale settings
 : Delete and autoscale setting
 
 - [list](/Commands/monitor/autoscale/_list.md)
-: List the autoscale settings for a subscription
+: Lists the autoscale settings for a resource group.
 
 - [show](/Commands/monitor/autoscale/_show.md)
 : Get an autoscale setting
