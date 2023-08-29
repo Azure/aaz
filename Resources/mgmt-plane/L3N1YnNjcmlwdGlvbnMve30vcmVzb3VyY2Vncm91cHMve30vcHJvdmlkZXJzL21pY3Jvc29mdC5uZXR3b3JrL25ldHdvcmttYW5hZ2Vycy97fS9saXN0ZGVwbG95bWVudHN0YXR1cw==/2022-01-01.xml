@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networkmanagers/{}/listdeploymentstatus" version="2022-01-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9uZXR3b3JrTWFuYWdlcnMve25ldHdvcmtNYW5hZ2VyTmFtZX0vbGlzdERlcGxveW1lbnRTdGF0dXM=/V/MjAyMi0wMS0wMQ=="/>
+  <commandGroup name="network manager">
+    <command name="list-deploy-status" version="2022-01-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networkmanagers/{}/listdeploymentstatus" version="2022-01-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9uZXR3b3JrTWFuYWdlcnMve25ldHdvcmtNYW5hZ2VyTmFtZX0vbGlzdERlcGxveW1lbnRTdGF0dXM=/V/MjAyMi0wMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.networkManagerName" options="network-manager-name name n" required="True" group="" idPart="name">
+          <help short="The name of the network manager."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Parameters">
+        <arg type="array<string>" var="$parameters.deploymentTypes" options="deployment-types" group="Parameters">
+          <help short="List of deployment types."/>
+          <item type="string">
+            <enum>
+              <item name="Connectivity" value="&quot;Connectivity&quot;"/>
+              <item name="SecurityAdmin" value="&quot;SecurityAdmin&quot;"/>
+            </enum>
+          </item>
+        </arg>
+        <arg type="array<string>" var="$parameters.regions" options="regions" group="Parameters">
+          <help short="List of locations."/>
+          <item type="string"/>
+        </arg>
+        <arg type="string" var="$parameters.skipToken" options="skip-token" group="Parameters">
+          <help short="Continuation token for pagination, capturing the next page size and offset, as well as the context of the query."/>
+        </arg>
+      </argGroup>
+      <operation operationId="NetworkManagerDeploymentStatus_List">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkManagers/{networkManagerName}/listDeploymentStatus">
+          <request method="post">
+            <path>
+              <param type="string" name="networkManagerName" arg="$Path.networkManagerName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-01-01&quot;"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="parameters" required="True" clientFlatten="True">
+                  <prop type="array<string>" name="deploymentTypes" arg="$parameters.deploymentTypes">
+                    <item type="string">
+                      <enum>
+                        <item value="&quot;Connectivity&quot;"/>
+                        <item value="&quot;SecurityAdmin&quot;"/>
+                      </enum>
+                    </item>
+                  </prop>
+                  <prop type="array<string>" name="regions" arg="$parameters.regions">
+                    <item type="string"/>
+                  </prop>
+                  <prop type="string" name="skipToken" arg="$parameters.skipToken"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="skipToken"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop type="dateTime" name="commitTime"/>
+                      <prop type="array<string>" name="configurationIds">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="string" name="deploymentStatus">
+                        <enum>
+                          <item value="&quot;Deployed&quot;"/>
+                          <item value="&quot;Deploying&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;NotStarted&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="deploymentType">
+                        <enum>
+                          <item value="&quot;Connectivity&quot;"/>
+                          <item value="&quot;SecurityAdmin&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="errorMessage"/>
+                      <prop type="string" name="region"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
