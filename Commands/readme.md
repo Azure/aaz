@@ -167,6 +167,9 @@
 - [sig](/Commands/sig/readme.md)
 : Manage shared image gallery.
 
+- [site-recovery](/Commands/site-recovery/readme.md)
+: Manage Site Recovery Service
+
 - [snapshot](/Commands/snapshot/readme.md)
 : Manage point-in-time copies of managed disks, native blobs, or other snapshots.
 

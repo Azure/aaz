@@ -1,0 +1,582 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.recoveryservices/vaults/{}/replicationfabrics" version="2022-08-01" swagger="mgmt-plane/recoveryservicessiterecovery/ResourceProviders/Microsoft.RecoveryServices/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuUmVjb3ZlcnlTZXJ2aWNlcy92YXVsdHMve3Jlc291cmNlTmFtZX0vcmVwbGljYXRpb25GYWJyaWNz/V/MjAyMi0wOC0wMQ=="/>
+  <commandGroup name="site-recovery fabric">
+    <command name="list" version="2022-08-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.recoveryservices/vaults/{}/replicationfabrics" version="2022-08-01" swagger="mgmt-plane/recoveryservicessiterecovery/ResourceProviders/Microsoft.RecoveryServices/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuUmVjb3ZlcnlTZXJ2aWNlcy92YXVsdHMve3Jlc291cmNlTmFtZX0vcmVwbGljYXRpb25GYWJyaWNz/V/MjAyMi0wOC0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.resourceName" options="vault-name" required="True" group="" idPart="name">
+          <help short="The name of the recovery services vault."/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="ReplicationFabrics_List">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationFabrics">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="resourceName" arg="$Path.resourceName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-08-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.RecoveryServices/vaults/{}/replicationFabrics/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties">
+                        <prop type="string" name="bcdrState"/>
+                        <prop type="object" name="customDetails">
+                          <prop type="string" name="instanceType" required="True">
+                            <enum>
+                              <item value="&quot;Azure&quot;"/>
+                              <item value="&quot;HyperVSite&quot;"/>
+                              <item value="&quot;InMageRcm&quot;"/>
+                              <item value="&quot;VMM&quot;"/>
+                              <item value="&quot;VMware&quot;"/>
+                              <item value="&quot;VMwareV2&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="instanceType" value="Azure">
+                            <prop type="array<string>" name="containerIds">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="string" name="location"/>
+                            <prop type="array<object>" name="zones">
+                              <item type="object">
+                                <prop type="string" name="source"/>
+                                <prop type="string" name="target"/>
+                              </item>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="instanceType" value="HyperVSite">
+                            <prop type="array<object>" name="hyperVHosts">
+                              <item type="object">
+                                <prop readOnly="True" type="string" name="id"/>
+                                <prop readOnly="True" type="string" name="marsAgentVersion"/>
+                                <prop readOnly="True" type="string" name="name"/>
+                              </item>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="instanceType" value="InMageRcm">
+                            <prop readOnly="True" type="array<object>" name="agentDetails">
+                              <item type="object">
+                                <prop readOnly="True" type="string" name="agentId"/>
+                                <prop readOnly="True" type="string" name="biosId"/>
+                                <prop readOnly="True" type="array<object>" name="disks">
+                                  <item type="object">
+                                    <prop readOnly="True" type="integer64" name="capacityInBytes"/>
+                                    <prop readOnly="True" type="string" name="diskId"/>
+                                    <prop readOnly="True" type="string" name="diskName"/>
+                                    <prop readOnly="True" type="string" name="isOSDisk"/>
+                                    <prop readOnly="True" type="integer32" name="lunId"/>
+                                  </item>
+                                </prop>
+                                <prop readOnly="True" type="string" name="fqdn"/>
+                                <prop readOnly="True" type="string" name="machineId"/>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="string" name="controlPlaneUri"/>
+                            <prop readOnly="True" type="string" name="dataPlaneUri"/>
+                            <prop readOnly="True" type="array<object>" name="dras">
+                              <item type="object">
+                                <prop readOnly="True" type="string" name="biosId"/>
+                                <prop readOnly="True" type="integer32" name="forwardProtectedItemCount"/>
+                                <prop readOnly="True" type="string" name="health">
+                                  <enum>
+                                    <item value="&quot;Critical&quot;"/>
+                                    <item value="&quot;None&quot;"/>
+                                    <item value="&quot;Normal&quot;"/>
+                                    <item value="&quot;Warning&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="array<@HealthError_read>" name="healthErrors">
+                                  <item type="@HealthError_read"/>
+                                </prop>
+                                <prop readOnly="True" type="string" name="id"/>
+                                <prop readOnly="True" type="dateTime" name="lastHeartbeatUtc"/>
+                                <prop readOnly="True" type="string" name="name"/>
+                                <prop readOnly="True" type="integer32" name="reverseProtectedItemCount"/>
+                                <prop readOnly="True" type="string" name="version"/>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="array<object>" name="marsAgents">
+                              <item type="object">
+                                <prop readOnly="True" type="string" name="biosId"/>
+                                <prop readOnly="True" type="string" name="fabricObjectId"/>
+                                <prop readOnly="True" type="string" name="fqdn"/>
+                                <prop readOnly="True" type="string" name="health">
+                                  <enum>
+                                    <item value="&quot;Critical&quot;"/>
+                                    <item value="&quot;None&quot;"/>
+                                    <item value="&quot;Normal&quot;"/>
+                                    <item value="&quot;Warning&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="array<@HealthError_read>" name="healthErrors">
+                                  <item type="@HealthError_read"/>
+                                </prop>
+                                <prop readOnly="True" type="string" name="id"/>
+                                <prop readOnly="True" type="dateTime" name="lastHeartbeatUtc"/>
+                                <prop readOnly="True" type="string" name="name"/>
+                                <prop readOnly="True" type="string" name="version"/>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="string" name="physicalSiteId"/>
+                            <prop readOnly="True" type="array<object>" name="processServers">
+                              <item type="object" cls="ProcessServerDetails_read">
+                                <prop readOnly="True" type="integer64" name="availableMemoryInBytes"/>
+                                <prop readOnly="True" type="integer64" name="availableSpaceInBytes"/>
+                                <prop readOnly="True" type="string" name="biosId"/>
+                                <prop readOnly="True" type="string" name="diskUsageStatus">
+                                  <enum>
+                                    <item value="&quot;Critical&quot;"/>
+                                    <item value="&quot;Healthy&quot;"/>
+                                    <item value="&quot;Unknown&quot;"/>
+                                    <item value="&quot;Warning&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="string" name="fabricObjectId"/>
+                                <prop readOnly="True" type="string" name="fqdn"/>
+                                <prop readOnly="True" type="float64" name="freeSpacePercentage"/>
+                                <prop readOnly="True" type="string" name="health">
+                                  <enum>
+                                    <item value="&quot;Critical&quot;"/>
+                                    <item value="&quot;None&quot;"/>
+                                    <item value="&quot;Normal&quot;"/>
+                                    <item value="&quot;Warning&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="array<object>" name="healthErrors">
+                                  <item type="object" cls="HealthError_read">
+                                    <prop type="dateTime" name="creationTimeUtc"/>
+                                    <prop type="string" name="customerResolvability">
+                                      <enum>
+                                        <item value="&quot;Allowed&quot;"/>
+                                        <item value="&quot;NotAllowed&quot;"/>
+                                      </enum>
+                                    </prop>
+                                    <prop type="string" name="entityId"/>
+                                    <prop type="string" name="errorCategory"/>
+                                    <prop type="string" name="errorCode"/>
+                                    <prop type="string" name="errorId"/>
+                                    <prop type="string" name="errorLevel"/>
+                                    <prop type="string" name="errorMessage"/>
+                                    <prop type="string" name="errorSource"/>
+                                    <prop type="string" name="errorType"/>
+                                    <prop type="array<object>" name="innerHealthErrors">
+                                      <item type="object">
+                                        <prop type="dateTime" name="creationTimeUtc"/>
+                                        <prop type="string" name="customerResolvability">
+                                          <enum>
+                                            <item value="&quot;Allowed&quot;"/>
+                                            <item value="&quot;NotAllowed&quot;"/>
+                                          </enum>
+                                        </prop>
+                                        <prop type="string" name="entityId"/>
+                                        <prop type="string" name="errorCategory"/>
+                                        <prop type="string" name="errorCode"/>
+                                        <prop type="string" name="errorId"/>
+                                        <prop type="string" name="errorLevel"/>
+                                        <prop type="string" name="errorMessage"/>
+                                        <prop type="string" name="errorSource"/>
+                                        <prop type="string" name="errorType"/>
+                                        <prop type="string" name="possibleCauses"/>
+                                        <prop type="string" name="recommendedAction"/>
+                                        <prop type="string" name="recoveryProviderErrorMessage"/>
+                                        <prop type="string" name="summaryMessage"/>
+                                      </item>
+                                    </prop>
+                                    <prop type="string" name="possibleCauses"/>
+                                    <prop type="string" name="recommendedAction"/>
+                                    <prop type="string" name="recoveryProviderErrorMessage"/>
+                                    <prop type="string" name="summaryMessage"/>
+                                  </item>
+                                </prop>
+                                <prop readOnly="True" type="string" name="historicHealth">
+                                  <enum>
+                                    <item value="&quot;Critical&quot;"/>
+                                    <item value="&quot;None&quot;"/>
+                                    <item value="&quot;Normal&quot;"/>
+                                    <item value="&quot;Warning&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="string" name="id"/>
+                                <prop readOnly="True" type="array<string>" name="ipAddresses">
+                                  <item type="string"/>
+                                </prop>
+                                <prop readOnly="True" type="dateTime" name="lastHeartbeatUtc"/>
+                                <prop readOnly="True" type="float64" name="memoryUsagePercentage"/>
+                                <prop readOnly="True" type="string" name="memoryUsageStatus">
+                                  <enum>
+                                    <item value="&quot;Critical&quot;"/>
+                                    <item value="&quot;Healthy&quot;"/>
+                                    <item value="&quot;Unknown&quot;"/>
+                                    <item value="&quot;Warning&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="string" name="name"/>
+                                <prop readOnly="True" type="float64" name="processorUsagePercentage"/>
+                                <prop readOnly="True" type="string" name="processorUsageStatus">
+                                  <enum>
+                                    <item value="&quot;Critical&quot;"/>
+                                    <item value="&quot;Healthy&quot;"/>
+                                    <item value="&quot;Unknown&quot;"/>
+                                    <item value="&quot;Warning&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="integer32" name="protectedItemCount"/>
+                                <prop readOnly="True" type="integer64" name="systemLoad"/>
+                                <prop readOnly="True" type="string" name="systemLoadStatus">
+                                  <enum>
+                                    <item value="&quot;Critical&quot;"/>
+                                    <item value="&quot;Healthy&quot;"/>
+                                    <item value="&quot;Unknown&quot;"/>
+                                    <item value="&quot;Warning&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="integer64" name="throughputInBytes"/>
+                                <prop readOnly="True" type="string" name="throughputStatus">
+                                  <enum>
+                                    <item value="&quot;Critical&quot;"/>
+                                    <item value="&quot;Healthy&quot;"/>
+                                    <item value="&quot;Unknown&quot;"/>
+                                    <item value="&quot;Warning&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="integer64" name="throughputUploadPendingDataInBytes"/>
+                                <prop readOnly="True" type="integer64" name="totalMemoryInBytes"/>
+                                <prop readOnly="True" type="integer64" name="totalSpaceInBytes"/>
+                                <prop readOnly="True" type="integer64" name="usedMemoryInBytes"/>
+                                <prop readOnly="True" type="integer64" name="usedSpaceInBytes"/>
+                                <prop readOnly="True" type="string" name="version"/>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="array<object>" name="pushInstallers">
+                              <item type="object">
+                                <prop readOnly="True" type="string" name="biosId"/>
+                                <prop readOnly="True" type="string" name="fabricObjectId"/>
+                                <prop readOnly="True" type="string" name="fqdn"/>
+                                <prop readOnly="True" type="string" name="health">
+                                  <enum>
+                                    <item value="&quot;Critical&quot;"/>
+                                    <item value="&quot;None&quot;"/>
+                                    <item value="&quot;Normal&quot;"/>
+                                    <item value="&quot;Warning&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="array<@HealthError_read>" name="healthErrors">
+                                  <item type="@HealthError_read"/>
+                                </prop>
+                                <prop readOnly="True" type="string" name="id"/>
+                                <prop readOnly="True" type="dateTime" name="lastHeartbeatUtc"/>
+                                <prop readOnly="True" type="string" name="name"/>
+                                <prop readOnly="True" type="string" name="version"/>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="array<object>" name="rcmProxies">
+                              <item type="object">
+                                <prop readOnly="True" type="string" name="biosId"/>
+                                <prop readOnly="True" type="string" name="clientAuthenticationType"/>
+                                <prop readOnly="True" type="string" name="fabricObjectId"/>
+                                <prop readOnly="True" type="string" name="fqdn"/>
+                                <prop readOnly="True" type="string" name="health">
+                                  <enum>
+                                    <item value="&quot;Critical&quot;"/>
+                                    <item value="&quot;None&quot;"/>
+                                    <item value="&quot;Normal&quot;"/>
+                                    <item value="&quot;Warning&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="array<@HealthError_read>" name="healthErrors">
+                                  <item type="@HealthError_read"/>
+                                </prop>
+                                <prop readOnly="True" type="string" name="id"/>
+                                <prop readOnly="True" type="dateTime" name="lastHeartbeatUtc"/>
+                                <prop readOnly="True" type="string" name="name"/>
+                                <prop readOnly="True" type="string" name="version"/>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="array<object>" name="replicationAgents">
+                              <item type="object">
+                                <prop readOnly="True" type="string" name="biosId"/>
+                                <prop readOnly="True" type="string" name="fabricObjectId"/>
+                                <prop readOnly="True" type="string" name="fqdn"/>
+                                <prop readOnly="True" type="string" name="health">
+                                  <enum>
+                                    <item value="&quot;Critical&quot;"/>
+                                    <item value="&quot;None&quot;"/>
+                                    <item value="&quot;Normal&quot;"/>
+                                    <item value="&quot;Warning&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="array<@HealthError_read>" name="healthErrors">
+                                  <item type="@HealthError_read"/>
+                                </prop>
+                                <prop readOnly="True" type="string" name="id"/>
+                                <prop readOnly="True" type="dateTime" name="lastHeartbeatUtc"/>
+                                <prop readOnly="True" type="string" name="name"/>
+                                <prop readOnly="True" type="string" name="version"/>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="array<object>" name="reprotectAgents">
+                              <item type="object">
+                                <prop readOnly="True" type="array<string>" name="accessibleDatastores">
+                                  <item type="string"/>
+                                </prop>
+                                <prop readOnly="True" type="string" name="biosId"/>
+                                <prop readOnly="True" type="string" name="fabricObjectId"/>
+                                <prop readOnly="True" type="string" name="fqdn"/>
+                                <prop readOnly="True" type="string" name="health">
+                                  <enum>
+                                    <item value="&quot;Critical&quot;"/>
+                                    <item value="&quot;None&quot;"/>
+                                    <item value="&quot;Normal&quot;"/>
+                                    <item value="&quot;Warning&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="array<@HealthError_read>" name="healthErrors">
+                                  <item type="@HealthError_read"/>
+                                </prop>
+                                <prop readOnly="True" type="string" name="id"/>
+                                <prop readOnly="True" type="dateTime" name="lastDiscoveryInUtc"/>
+                                <prop readOnly="True" type="dateTime" name="lastHeartbeatUtc"/>
+                                <prop readOnly="True" type="string" name="name"/>
+                                <prop readOnly="True" type="integer32" name="protectedItemCount"/>
+                                <prop readOnly="True" type="string" name="vcenterId"/>
+                                <prop readOnly="True" type="string" name="version"/>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="string" name="serviceContainerId"/>
+                            <prop readOnly="True" type="string" name="serviceEndpoint"/>
+                            <prop readOnly="True" type="string" name="serviceResourceId"/>
+                            <prop type="object" name="sourceAgentIdentityDetails">
+                              <prop type="string" name="aadAuthority"/>
+                              <prop type="string" name="applicationId"/>
+                              <prop type="string" name="audience"/>
+                              <prop type="string" name="objectId"/>
+                              <prop type="string" name="tenantId"/>
+                            </prop>
+                            <prop readOnly="True" type="string" name="vmwareSiteId"/>
+                          </discriminator>
+                          <discriminator property="instanceType" value="VMware">
+                            <prop type="string" name="agentCount"/>
+                            <prop type="dateTime" name="agentExpiryDate"/>
+                            <prop type="string" name="agentVersion"/>
+                            <prop type="@VersionDetails_read" name="agentVersionDetails"/>
+                            <prop type="integer64" name="availableMemoryInBytes"/>
+                            <prop type="integer64" name="availableSpaceInBytes"/>
+                            <prop type="string" name="cpuLoad"/>
+                            <prop type="string" name="cpuLoadStatus"/>
+                            <prop type="string" name="csServiceStatus"/>
+                            <prop type="string" name="databaseServerLoad"/>
+                            <prop type="string" name="databaseServerLoadStatus"/>
+                            <prop type="string" name="hostName"/>
+                            <prop type="string" name="ipAddress"/>
+                            <prop type="dateTime" name="lastHeartbeat"/>
+                            <prop type="array<object>" name="masterTargetServers">
+                              <item type="object">
+                                <prop type="dateTime" name="agentExpiryDate"/>
+                                <prop type="string" name="agentVersion"/>
+                                <prop type="@VersionDetails_read" name="agentVersionDetails"/>
+                                <prop type="array<object>" name="dataStores">
+                                  <item type="object">
+                                    <prop type="string" name="capacity"/>
+                                    <prop type="string" name="freeSpace"/>
+                                    <prop type="string" name="symbolicName"/>
+                                    <prop type="string" name="type"/>
+                                    <prop type="string" name="uuid"/>
+                                  </item>
+                                </prop>
+                                <prop type="integer32" name="diskCount"/>
+                                <prop type="array<@HealthError_read>" name="healthErrors">
+                                  <item type="@HealthError_read"/>
+                                </prop>
+                                <prop type="string" name="id"/>
+                                <prop type="string" name="ipAddress"/>
+                                <prop type="dateTime" name="lastHeartbeat"/>
+                                <prop type="dateTime" name="marsAgentExpiryDate"/>
+                                <prop type="string" name="marsAgentVersion"/>
+                                <prop type="@VersionDetails_read" name="marsAgentVersionDetails"/>
+                                <prop type="string" name="name"/>
+                                <prop type="string" name="osType"/>
+                                <prop type="string" name="osVersion"/>
+                                <prop type="array<object>" name="retentionVolumes">
+                                  <item type="object">
+                                    <prop type="integer64" name="capacityInBytes"/>
+                                    <prop type="integer64" name="freeSpaceInBytes"/>
+                                    <prop type="integer32" name="thresholdPercentage"/>
+                                    <prop type="string" name="volumeName"/>
+                                  </item>
+                                </prop>
+                                <prop type="array<@HealthError_read>" name="validationErrors">
+                                  <item type="@HealthError_read"/>
+                                </prop>
+                                <prop type="string" name="versionStatus"/>
+                              </item>
+                            </prop>
+                            <prop type="string" name="memoryUsageStatus"/>
+                            <prop type="string" name="processServerCount"/>
+                            <prop type="array<object>" name="processServers">
+                              <item type="object">
+                                <prop type="dateTime" name="agentExpiryDate"/>
+                                <prop type="string" name="agentVersion"/>
+                                <prop type="object" name="agentVersionDetails" cls="VersionDetails_read">
+                                  <prop type="dateTime" name="expiryDate"/>
+                                  <prop type="string" name="status">
+                                    <enum>
+                                      <item value="&quot;Deprecated&quot;"/>
+                                      <item value="&quot;NotSupported&quot;"/>
+                                      <item value="&quot;SecurityUpdateRequired&quot;"/>
+                                      <item value="&quot;Supported&quot;"/>
+                                      <item value="&quot;UpdateRequired&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="string" name="version"/>
+                                </prop>
+                                <prop type="integer64" name="availableMemoryInBytes"/>
+                                <prop type="integer64" name="availableSpaceInBytes"/>
+                                <prop type="string" name="cpuLoad"/>
+                                <prop type="string" name="cpuLoadStatus"/>
+                                <prop type="string" name="friendlyName"/>
+                                <prop readOnly="True" type="string" name="health">
+                                  <enum>
+                                    <item value="&quot;Critical&quot;"/>
+                                    <item value="&quot;None&quot;"/>
+                                    <item value="&quot;Normal&quot;"/>
+                                    <item value="&quot;Warning&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="array<@HealthError_read>" name="healthErrors">
+                                  <item type="@HealthError_read"/>
+                                </prop>
+                                <prop type="string" name="hostId"/>
+                                <prop type="string" name="id"/>
+                                <prop type="string" name="ipAddress"/>
+                                <prop type="dateTime" name="lastHeartbeat"/>
+                                <prop type="string" name="machineCount"/>
+                                <prop readOnly="True" type="string" name="marsCommunicationStatus"/>
+                                <prop readOnly="True" type="string" name="marsRegistrationStatus"/>
+                                <prop type="string" name="memoryUsageStatus"/>
+                                <prop type="array<object>" name="mobilityServiceUpdates">
+                                  <item type="object">
+                                    <prop type="string" name="osType"/>
+                                    <prop type="string" name="rebootStatus"/>
+                                    <prop type="string" name="version"/>
+                                  </item>
+                                </prop>
+                                <prop type="string" name="osType"/>
+                                <prop type="string" name="osVersion"/>
+                                <prop type="string" name="psServiceStatus"/>
+                                <prop readOnly="True" type="dateTime" name="psStatsRefreshTime"/>
+                                <prop type="string" name="replicationPairCount"/>
+                                <prop type="string" name="spaceUsageStatus"/>
+                                <prop type="dateTime" name="sslCertExpiryDate"/>
+                                <prop type="integer32" name="sslCertExpiryRemainingDays"/>
+                                <prop type="string" name="systemLoad"/>
+                                <prop type="string" name="systemLoadStatus"/>
+                                <prop readOnly="True" type="integer64" name="throughputInBytes"/>
+                                <prop readOnly="True" type="integer64" name="throughputInMBps"/>
+                                <prop readOnly="True" type="string" name="throughputStatus"/>
+                                <prop readOnly="True" type="integer64" name="throughputUploadPendingDataInBytes"/>
+                                <prop type="integer64" name="totalMemoryInBytes"/>
+                                <prop type="integer64" name="totalSpaceInBytes"/>
+                                <prop type="string" name="versionStatus"/>
+                              </item>
+                            </prop>
+                            <prop type="string" name="protectedServers"/>
+                            <prop type="string" name="psTemplateVersion"/>
+                            <prop type="string" name="replicationPairCount"/>
+                            <prop type="array<object>" name="runAsAccounts">
+                              <item type="object">
+                                <prop type="string" name="accountId"/>
+                                <prop type="string" name="accountName"/>
+                              </item>
+                            </prop>
+                            <prop type="string" name="spaceUsageStatus"/>
+                            <prop type="dateTime" name="sslCertExpiryDate"/>
+                            <prop type="integer32" name="sslCertExpiryRemainingDays"/>
+                            <prop type="array<object>" name="switchProviderBlockingErrorDetails">
+                              <item type="object">
+                                <prop readOnly="True" type="string" name="errorCode"/>
+                                <prop readOnly="True" type="string" name="errorMessage"/>
+                                <prop readOnly="True" type="object" name="errorMessageParameters">
+                                  <additionalProp readOnly="True">
+                                    <item type="string"/>
+                                  </additionalProp>
+                                </prop>
+                                <prop readOnly="True" type="object" name="errorTags">
+                                  <additionalProp readOnly="True">
+                                    <item type="string"/>
+                                  </additionalProp>
+                                </prop>
+                                <prop readOnly="True" type="string" name="possibleCauses"/>
+                                <prop readOnly="True" type="string" name="recommendedAction"/>
+                              </item>
+                            </prop>
+                            <prop type="string" name="systemLoad"/>
+                            <prop type="string" name="systemLoadStatus"/>
+                            <prop type="integer64" name="totalMemoryInBytes"/>
+                            <prop type="integer64" name="totalSpaceInBytes"/>
+                            <prop type="string" name="versionStatus"/>
+                            <prop type="string" name="webLoad"/>
+                            <prop type="string" name="webLoadStatus"/>
+                          </discriminator>
+                          <discriminator property="instanceType" value="VMwareV2">
+                            <prop readOnly="True" type="string" name="migrationSolutionId"/>
+                            <prop readOnly="True" type="string" name="physicalSiteId"/>
+                            <prop readOnly="True" type="array<@ProcessServerDetails_read>" name="processServers">
+                              <item type="@ProcessServerDetails_read"/>
+                            </prop>
+                            <prop readOnly="True" type="string" name="serviceContainerId"/>
+                            <prop readOnly="True" type="string" name="serviceEndpoint"/>
+                            <prop readOnly="True" type="string" name="serviceResourceId"/>
+                            <prop readOnly="True" type="string" name="vmwareSiteId"/>
+                          </discriminator>
+                        </prop>
+                        <prop type="object" name="encryptionDetails" cls="EncryptionDetails_read">
+                          <prop type="dateTime" name="kekCertExpiryDate"/>
+                          <prop type="string" name="kekCertThumbprint"/>
+                          <prop type="string" name="kekState"/>
+                        </prop>
+                        <prop type="string" name="friendlyName"/>
+                        <prop type="string" name="health"/>
+                        <prop type="array<@HealthError_read>" name="healthErrorDetails">
+                          <item type="@HealthError_read"/>
+                        </prop>
+                        <prop type="string" name="internalIdentifier"/>
+                        <prop type="@EncryptionDetails_read" name="rolloverEncryptionDetails"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
