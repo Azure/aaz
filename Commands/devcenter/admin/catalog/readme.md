@@ -4,6 +4,9 @@ Manage catalogs.
 
 ## Commands
 
+- [connect](/Commands/devcenter/admin/catalog/_connect.md)
+: Connects a catalog to enable syncing.
+
 - [create](/Commands/devcenter/admin/catalog/_create.md)
 : Create a catalog.
 
