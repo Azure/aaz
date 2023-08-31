@@ -7,6 +7,9 @@ Manage the Azure Monitor Service.
 - [account](/Commands/monitor/account/readme.md)
 : Manage monitor account
 
+- [action-group](/Commands/monitor/action-group/readme.md)
+: Manage action groups.
+
 - [autoscale](/Commands/monitor/autoscale/readme.md)
 : Manage autoscale settings
 
@@ -24,3 +27,6 @@ Manage the Azure Monitor Service.
 
 - [private-link-scope](/Commands/monitor/private-link-scope/readme.md)
 : Manage monitor private link scope resource.
+
+- [tenant-action-group](/Commands/monitor/tenant-action-group/readme.md)
+: monitor tenant-action-group
