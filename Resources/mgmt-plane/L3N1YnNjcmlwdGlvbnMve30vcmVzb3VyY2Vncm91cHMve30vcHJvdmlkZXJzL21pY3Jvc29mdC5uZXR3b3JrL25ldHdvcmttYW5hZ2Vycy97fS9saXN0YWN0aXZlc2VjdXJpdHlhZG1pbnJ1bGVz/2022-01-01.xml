@@ -1,0 +1,213 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networkmanagers/{}/listactivesecurityadminrules" version="2022-01-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9uZXR3b3JrTWFuYWdlcnMve25ldHdvcmtNYW5hZ2VyTmFtZX0vbGlzdEFjdGl2ZVNlY3VyaXR5QWRtaW5SdWxlcw==/V/MjAyMi0wMS0wMQ=="/>
+  <commandGroup name="network manager">
+    <command name="list-active-security-admin-rule" version="2022-01-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networkmanagers/{}/listactivesecurityadminrules" version="2022-01-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9uZXR3b3JrTWFuYWdlcnMve25ldHdvcmtNYW5hZ2VyTmFtZX0vbGlzdEFjdGl2ZVNlY3VyaXR5QWRtaW5SdWxlcw==/V/MjAyMi0wMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.networkManagerName" options="network-manager-name name n" required="True" group="" idPart="name">
+          <help short="The name of the network manager."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Parameters">
+        <arg type="array<string>" var="$parameters.regions" options="regions" group="Parameters">
+          <help short="List of regions."/>
+          <item type="string"/>
+        </arg>
+        <arg type="string" var="$parameters.skipToken" options="skip-token" group="Parameters">
+          <help short="When present, the value can be passed to a subsequent query call (together with the same query and scopes used in the current request) to retrieve the next page of data."/>
+        </arg>
+      </argGroup>
+      <operation operationId="ListActiveSecurityAdminRules">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkManagers/{networkManagerName}/listActiveSecurityAdminRules">
+          <request method="post">
+            <path>
+              <param type="string" name="networkManagerName" arg="$Path.networkManagerName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-01-01&quot;"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="parameters" required="True" clientFlatten="True">
+                  <prop type="array<string>" name="regions" arg="$parameters.regions">
+                    <item type="string"/>
+                  </prop>
+                  <prop type="string" name="skipToken" arg="$parameters.skipToken"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="skipToken"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop type="dateTime" name="commitTime"/>
+                      <prop type="string" name="configurationDescription"/>
+                      <prop type="string" name="id"/>
+                      <prop type="string" name="kind" required="True">
+                        <enum>
+                          <item value="&quot;Custom&quot;"/>
+                          <item value="&quot;Default&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="region"/>
+                      <prop type="array<object>" name="ruleCollectionAppliesToGroups">
+                        <item type="object">
+                          <prop type="string" name="networkGroupId" required="True"/>
+                        </item>
+                      </prop>
+                      <prop type="string" name="ruleCollectionDescription"/>
+                      <prop type="array<object>" name="ruleGroups">
+                        <item type="object">
+                          <prop type="string" name="id"/>
+                          <prop type="object" name="properties" clientFlatten="True">
+                            <prop type="string" name="description"/>
+                            <prop readOnly="True" type="string" name="provisioningState">
+                              <enum>
+                                <item value="&quot;Deleting&quot;"/>
+                                <item value="&quot;Failed&quot;"/>
+                                <item value="&quot;Succeeded&quot;"/>
+                                <item value="&quot;Updating&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                        </item>
+                      </prop>
+                      <discriminator property="kind" value="Custom">
+                        <prop type="object" name="properties" clientFlatten="True">
+                          <prop type="string" name="access" required="True">
+                            <enum>
+                              <item value="&quot;Allow&quot;"/>
+                              <item value="&quot;AlwaysAllow&quot;"/>
+                              <item value="&quot;Deny&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="description"/>
+                          <prop type="array<string>" name="destinationPortRanges">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="array<@AddressPrefixItem_read>" name="destinations" identifiers="addressPrefix">
+                            <item type="@AddressPrefixItem_read"/>
+                          </prop>
+                          <prop type="string" name="direction" required="True">
+                            <enum>
+                              <item value="&quot;Inbound&quot;"/>
+                              <item value="&quot;Outbound&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="integer32" name="priority" required="True">
+                            <format maximum="4096" minimum="1"/>
+                          </prop>
+                          <prop type="string" name="protocol" required="True">
+                            <enum>
+                              <item value="&quot;Ah&quot;"/>
+                              <item value="&quot;Any&quot;"/>
+                              <item value="&quot;Esp&quot;"/>
+                              <item value="&quot;Icmp&quot;"/>
+                              <item value="&quot;Tcp&quot;"/>
+                              <item value="&quot;Udp&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="string" name="provisioningState">
+                            <enum>
+                              <item value="&quot;Deleting&quot;"/>
+                              <item value="&quot;Failed&quot;"/>
+                              <item value="&quot;Succeeded&quot;"/>
+                              <item value="&quot;Updating&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="array<string>" name="sourcePortRanges">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="array<object>" name="sources" identifiers="addressPrefix">
+                            <item type="object" cls="AddressPrefixItem_read">
+                              <prop type="string" name="addressPrefix"/>
+                              <prop type="string" name="addressPrefixType">
+                                <enum>
+                                  <item value="&quot;IPPrefix&quot;"/>
+                                  <item value="&quot;ServiceTag&quot;"/>
+                                </enum>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="kind" value="Default">
+                        <prop type="object" name="properties" clientFlatten="True">
+                          <prop type="string" name="access">
+                            <enum>
+                              <item value="&quot;Allow&quot;"/>
+                              <item value="&quot;AlwaysAllow&quot;"/>
+                              <item value="&quot;Deny&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="string" name="description"/>
+                          <prop readOnly="True" type="array<string>" name="destinationPortRanges">
+                            <item type="string"/>
+                          </prop>
+                          <prop readOnly="True" type="array<@AddressPrefixItem_read>" name="destinations" identifiers="addressPrefix">
+                            <item type="@AddressPrefixItem_read"/>
+                          </prop>
+                          <prop type="string" name="direction">
+                            <enum>
+                              <item value="&quot;Inbound&quot;"/>
+                              <item value="&quot;Outbound&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="flag"/>
+                          <prop readOnly="True" type="integer32" name="priority"/>
+                          <prop type="string" name="protocol">
+                            <enum>
+                              <item value="&quot;Ah&quot;"/>
+                              <item value="&quot;Any&quot;"/>
+                              <item value="&quot;Esp&quot;"/>
+                              <item value="&quot;Icmp&quot;"/>
+                              <item value="&quot;Tcp&quot;"/>
+                              <item value="&quot;Udp&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="string" name="provisioningState">
+                            <enum>
+                              <item value="&quot;Deleting&quot;"/>
+                              <item value="&quot;Failed&quot;"/>
+                              <item value="&quot;Succeeded&quot;"/>
+                              <item value="&quot;Updating&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="array<string>" name="sourcePortRanges">
+                            <item type="string"/>
+                          </prop>
+                          <prop readOnly="True" type="array<@AddressPrefixItem_read>" name="sources" identifiers="addressPrefix">
+                            <item type="@AddressPrefixItem_read"/>
+                          </prop>
+                        </prop>
+                      </discriminator>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

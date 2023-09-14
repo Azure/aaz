@@ -31,6 +31,9 @@ Manage Azure Network resources.
 - [firewall](/Commands/network/firewall/readme.md)
 : Manage and configure Azure Firewalls.
 
+- [ip-group](/Commands/network/ip-group/readme.md)
+: Commands to manage IP group.
+
 - [lb](/Commands/network/lb/readme.md)
 : Manage and configure load balancers.
 
