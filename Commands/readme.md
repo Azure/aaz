@@ -2,6 +2,9 @@
 
 ## Groups
 
+- [account](/Commands/account/readme.md)
+: Manage Azure subscription information.
+
 - [alerts-management](/Commands/alerts-management/readme.md)
 : Manage Azure Alerts Management Service Resource.
 
