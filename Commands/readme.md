@@ -29,6 +29,12 @@
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
 
+- [connectedmachine](/Commands/connectedmachine/readme.md)
+: Manage an Azure Arc-Enabled Server.
+
+- [consumption](/Commands/consumption/readme.md)
+: Manage consumption of Azure resources.
+
 - [databox](/Commands/databox/readme.md)
 : Manage data box
 
@@ -86,6 +92,9 @@
 - [maintenance](/Commands/maintenance/readme.md)
 : Manage Maintenance
 
+- [mesh](/Commands/mesh/readme.md)
+: (PREVIEW) Manage Azure Service Fabric Mesh Resources.
+
 - [mobile-network](/Commands/mobile-network/readme.md)
 : Manage mobile network
 
@@ -131,6 +140,9 @@
 - [redisenterprise](/Commands/redisenterprise/readme.md)
 : Manage the redisenterprise cache
 
+- [relay](/Commands/relay/readme.md)
+: Manage Azure Relay Service namespaces, WCF relays, hybrid connections, and rules.
+
 - [remote-rendering-account](/Commands/remote-rendering-account/readme.md)
 : Manage remote rendering account with mixed reality.
 
@@ -154,6 +166,9 @@
 
 - [sig](/Commands/sig/readme.md)
 : Manage shared image gallery.
+
+- [site-recovery](/Commands/site-recovery/readme.md)
+: Manage Site Recovery Service
 
 - [snapshot](/Commands/snapshot/readme.md)
 : Manage point-in-time copies of managed disks, native blobs, or other snapshots.
@@ -181,6 +196,9 @@
 
 - [vmss](/Commands/vmss/readme.md)
 : Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS).
+
+- [vmware](/Commands/vmware/readme.md)
+: Commands to manage Azure VMware Solution.
 
 - [voice-service](/Commands/voice-service/readme.md)
 : Manage voice services

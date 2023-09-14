@@ -18,5 +18,5 @@ Display information for an extension.
 - Show the latest version of the Docker extension.
     ```bash
         vm extension image list-versions --publisher Microsoft.Azure.Extensions -l westus -n DockerExtension --query "[].name" -o tsv | sort | tail -n 1
-        vm extension image show -l westus \\ --publisher Microsoft.Azure.Extensions -n DockerExtension --version LatestVersion
+        vm extension image show -l westus --publisher Microsoft.Azure.Extensions -n DockerExtension --version LatestVersion
     ```

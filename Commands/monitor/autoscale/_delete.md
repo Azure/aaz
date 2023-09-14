@@ -1,6 +1,6 @@
 # [Command] _monitor autoscale delete_
 
-Delete and autoscale setting
+Delete an autoscale setting
 
 ## Versions
 
