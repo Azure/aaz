@@ -10,10 +10,10 @@ Manage Azure Cosmos DB for PostgreSQL clusters.
 ## Commands
 
 - [create](/Commands/cosmosdb/postgres/cluster/_create.md)
-: Create a new cluster with servers.
+: Create a new cluster with nodes.
 
 - [delete](/Commands/cosmosdb/postgres/cluster/_delete.md)
-: Delete a cluster together with servers in it.
+: Delete a cluster together with nodes in it.
 
 - [list](/Commands/cosmosdb/postgres/cluster/_list.md)
 : List all clusters in a subscription or a resource group.
