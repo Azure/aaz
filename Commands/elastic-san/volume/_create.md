@@ -34,5 +34,5 @@ Create a Volume.
 
 - Create a Volume.
     ```bash
-        elastic-san volume create -g {rg} -e {san_name} -v {vg_name} -n {volume_name} --size-gib 2
+        elastic-san volume create -g "rg" -e "san_name" -v "vg_name" -n "volume_name" --size-gib 2
     ```

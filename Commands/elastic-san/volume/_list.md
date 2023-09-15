@@ -34,5 +34,5 @@ List Volumes in a Volume Group.
 
 - List Volumes in a Volume Group.
     ```bash
-        elastic-san volume list -g {rg} -e {san_name} -v {vg_name}
+        elastic-san volume list -g "rg" -e "san_name" -v "vg_name"
     ```

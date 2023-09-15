@@ -34,5 +34,5 @@ Delete an Elastic SAN.
 
 - Delete an Elastic SAN.
     ```bash
-        elastic-san delete -g {rg} -n {san_name}
+        elastic-san delete -g "rg" -n "san_name"
     ```

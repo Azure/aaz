@@ -34,5 +34,5 @@ List Volume Groups.
 
 - List Volume Groups.
     ```bash
-        elastic-san volume-group list -g {rg} -e {san_name}
+        elastic-san volume-group list -g "rg" -e "san_name"
     ```

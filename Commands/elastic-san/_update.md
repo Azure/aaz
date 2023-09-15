@@ -34,5 +34,5 @@ Update an Elastic SAN.
 
 - Update an Elastic SAN.
     ```bash
-        elastic-san update -n {san_name} -g {rg} --tags "{key1710:bbbb}" --base-size-tib 25 --extended-capacity-size-tib 15
+        elastic-san update -n "san_name" -g "rg" --tags '{key1710:bbbb}' --base-size-tib 25 --extended-capacity-size-tib 15
     ```

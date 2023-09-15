@@ -34,5 +34,5 @@ Get an Elastic SAN.
 
 - Get an Elastic SAN.
     ```bash
-        elastic-san show -g {rg} -n {san_name}
+        elastic-san show -g "rg" -n "san_name"
     ```

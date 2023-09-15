@@ -34,5 +34,5 @@ Update a Volume.
 
 - Update a Volume.
     ```bash
-        elastic-san volume update -g {rg} -e {san_name} -v {vg_name} -n {volume_name} --size-gib 3
+        elastic-san volume update -g "rg" -e "san_name" -v "vg_name" -n "volume_name" --size-gib 3
     ```

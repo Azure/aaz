@@ -37,5 +37,5 @@ Get a list of Elastic SANs in a subscription.
 
 - Get a list of Elastic SANs in a subscription.
     ```bash
-        elastic-san list -g {rg}
+        elastic-san list -g "rg"
     ```

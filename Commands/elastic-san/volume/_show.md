@@ -34,5 +34,5 @@ Get a Volume.
 
 - Get a Volume.
     ```bash
-        elastic-san volume show -g {rg} -e {san_name} -v {vg_name} -n {volume_name}
+        elastic-san volume show -g "rg" -e "san_name" -v "vg_name" -n "volume_name"
     ```

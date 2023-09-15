@@ -34,5 +34,5 @@ Delete a Volume Group.
 
 - Delete a Volume Group.
     ```bash
-        elastic-san volume-group delete -g {rg} -e {san_name} -n {vg_name}
+        elastic-san volume-group delete -g "rg" -e "san_name" -n "vg_name"
     ```
