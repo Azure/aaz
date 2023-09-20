@@ -16,5 +16,8 @@ Manage resource guard with dataprotection.
 - [show](/Commands/dataprotection/resource-guard/_show.md)
 : Returns a ResourceGuard belonging to a resource group.
 
+- [unlock](/Commands/dataprotection/resource-guard/_unlock.md)
+: Unlocks the critical operation which is protected by the resource guard
+
 - [update](/Commands/dataprotection/resource-guard/_update.md)
 : Updates protected operations associated with a ResourceGuard.
