@@ -2,6 +2,8 @@
 
 List all the Move Collections in the subscription.
 
+The 'az resource-mover move-collection list' command remains same for both 'RegionToRegion' and 'RegionToZone' type move collections.
+
 ## Versions
 
 ### [2023-08-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5taWdyYXRlL21vdmVjb2xsZWN0aW9ucw==/2023-08-01.xml) **Stable**
