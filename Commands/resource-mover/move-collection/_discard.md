@@ -2,6 +2,8 @@
 
 Discards the set of resources included in the request body. The discard operation is triggered on the moveResources in the moveState 'CommitPending' or 'DiscardFailed', on a successful completion the moveResource moveState do a transition to MovePending. To aid the user to prerequisite the operation the client can call operation with validateOnly property set to true.
 
+The 'az resource-mover move-collection discard' command is not applicable on move collections with move-type 'RegionToZone' since discard is not a valid operation for region to zone move scenario.
+
 ## Versions
 
 ### [2023-08-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5taWdyYXRlL21vdmVjb2xsZWN0aW9ucy97fS9kaXNjYXJk/2023-08-01.xml) **Stable**

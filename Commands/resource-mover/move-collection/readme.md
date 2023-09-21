@@ -29,7 +29,7 @@ Manage move-collection.
 : List of the move resources for which an arm resource is required for.
 
 - [list-unresolved-dependency](/Commands/resource-mover/move-collection/_list-unresolved-dependency.md)
-: List a list of unresolved dependencies.
+: Lists a list of unresolved dependencies.
 
 - [prepare](/Commands/resource-mover/move-collection/_prepare.md)
 : Initiates prepare for the set of resources included in the request body. The prepare operation is on the moveResources that are in the moveState 'PreparePending' or 'PrepareFailed', on a successful completion the moveResource moveState do a transition to MovePending. To aid the user to prerequisite the operation the client can call operation with validateOnly property set to true.

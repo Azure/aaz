@@ -1,6 +1,8 @@
 # [Command] _resource-mover move-collection list-unresolved-dependency_
 
-List a list of unresolved dependencies.
+Lists a list of unresolved dependencies.
+
+The 'az resource-mover move-collection list-unresolved-dependency' command is applicable for 'RegionToRegion' type move collections. However, for move collections with move-type 'RegionToZone' dependencies are automatically added to the move collection once 'az resource-mover move-collection resolve-dependency' is executed. Please refer to 'az resource-mover move-collection resolve-dependency' command documentation for additional details.
 
 ## Versions
 
