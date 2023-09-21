@@ -152,6 +152,9 @@
 - [reservations](/Commands/reservations/readme.md)
 : Azure Reservations
 
+- [resource-mover](/Commands/resource-mover/readme.md)
+: Manage Resource Mover Service API.
+
 - [restore-point](/Commands/restore-point/readme.md)
 : Manage restore point with res.
 
