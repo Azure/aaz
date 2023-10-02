@@ -101,6 +101,9 @@
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
 
+- [netappfiles](/Commands/netappfiles/readme.md)
+: Manage backups under a Backup Vault
+
 - [network](/Commands/network/readme.md)
 : Manage Azure Network resources.
 
