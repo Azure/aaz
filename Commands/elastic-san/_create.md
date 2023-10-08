@@ -34,5 +34,5 @@ Create an Elastic SAN.
 
 - Create an Elastic SAN.
     ```bash
-        elastic-san create -n "san_name" -g "rg" --tags '{key1810:aaaa}' -l southcentralusstg --base-size-tib 23 --extended-capacity-size-tib 14 --sku '{name:Premium_LRS,tier:Premium}'
+        elastic-san create -n "san_name" -g "rg" --tags '{key1810:aaaa}' -l southcentralusstg --base-size-tib 23 --extended-capacity-size-tib 14 --sku '{name:Premium_LRS,tier:Premium}' --public-network-access Enabled
     ```

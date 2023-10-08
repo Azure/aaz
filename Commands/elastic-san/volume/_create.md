@@ -36,3 +36,8 @@ Create a Volume.
     ```bash
         elastic-san volume create -g "rg" -e "san_name" -v "vg_name" -n "volume_name" --size-gib 2
     ```
+
+- Create a Volume from snapshot.
+    ```bash
+        elastic-san volume create -g "rg" -e "san_name" -v "vg_name" -n "volume_name_2" --size-gib 2 --creation-data '{source-id:"snapshot_id",create-source:VolumeSnapshot}'
+    ```

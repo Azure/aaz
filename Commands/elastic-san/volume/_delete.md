@@ -36,3 +36,8 @@ Delete a Volume.
     ```bash
         elastic-san volume delete -g "rg" -e "san_name" -v "vg_name" -n "volume_name"
     ```
+
+- Delete a volume with its snapshot
+    ```bash
+        elastic-san volume delete -g "rg" -e "san_name" -v "vg_name" -n "volume_name" -y --x-ms-delete-snapshots true --x-ms-force-delete true
+    ```

@@ -36,3 +36,23 @@ Update a Volume Group.
     ```bash
         elastic-san volume-group update -e "san_name" -n "vg_name" -g "rg" --protocol-type None --network-acls '{virtual-network-rules:[{id:"subnet_id_2",action:Allow}]}'
     ```
+
+- Update volume group to use CustomerManagedKey with keyvault details
+    ```bash
+        elastic-san volume-group update -e "san_name" -n "vg_name" -g "rg" --encryption EncryptionAtRestWithCustomerManagedKey --encryption-properties '{key-vault-properties:{key-name:"key_name",key-vault-uri:"vault_uri"}}'
+    ```
+
+- Update volume group to use another UserAssignedIdentity
+    ```bash
+        elastic-san volume-group update -e "san_name" -n "vg_name" -g "rg" --identity '{type:UserAssigned,user-assigned-identity:"uai_2_id"}' --encryption-properties '{key-vault-properties:{key-name:"key_name",key-vault-uri:"vault_uri"},identity:{user-assigned-identity:"uai_2_id"}}'
+    ```
+
+- Update volume group back to PlatformManagedKey
+    ```bash
+        elastic-san volume-group update -e "san_name" -n "vg_name" -g "rg" --encryption EncryptionAtRestWithPlatformKey
+    ```
+
+- Update volume group back to SystemAssignedIdentity
+    ```bash
+        elastic-san volume-group update -e "san_name" -n "vg_name" -g "rg" --identity '{type:SystemAssigned}'
+    ```

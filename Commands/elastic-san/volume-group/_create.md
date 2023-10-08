@@ -32,7 +32,12 @@ Create a Volume Group.
 
 #### examples
 
-- Create a Volume Group.
+- Create a Volume Group with PlaformManagedkey and SystemAssignedIdentity
     ```bash
-        elastic-san volume-group create -e "san_name" -n "vg_name" -g "rg" --tags '{key1910:bbbb}' --encryption EncryptionAtRestWithPlatformKey --protocol-type Iscsi --network-acls '{virtual-network-rules:[{id:"subnet_id",action:Allow}]}'
+        elastic-san volume-group create -e "san_name" -n "vg_name" -g "rg" --tags '{key1910:bbbb}' --encryption EncryptionAtRestWithPlatformKey --protocol-type Iscsi --network-acls '{virtual-network-rules:[{id:"subnet_id",action:Allow}]}' --identity '{type:SystemAssigned}'
+    ```
+
+- Create a volume group with CustomerManagedKey and UserAssignedIdentity
+    ```bash
+        elastic-san volume-group create -e "san_name" -n "vg_name" -g "rg" --encryption EncryptionAtRestWithCustomerManagedKey --protocol-type Iscsi --identity '{type:UserAssigned,user-assigned-identity:"uai_id"}' --encryption-properties '{key-vault-properties:{key-name:"key_name",key-vault-uri:"vault_uri"},identity:{user-assigned-identity:"uai_id"}}'
     ```
