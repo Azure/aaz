@@ -12,5 +12,5 @@ Create a static member.
 
 - Create network manager group static-member
     ```bash
-        network manager group static-member create --network-group-name "testNetworkManagerGroup" --network-manager-name "testNetworkManager" --resource-group "rg1" --static-member-name "testStaticMember" --resource_id "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/ Microsoft.Network/virtualnetworks/virtual_network"
+        network manager group static-member create --network-group-name "testNetworkManagerGroup" --network-manager-name "testNetworkManager" --resource-group "rg1" --static-member-name "testStaticMember" --resource-id "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg/providers/ Microsoft.Network/virtualnetworks/virtual_network"
     ```
