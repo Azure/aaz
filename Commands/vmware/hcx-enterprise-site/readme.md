@@ -15,3 +15,6 @@ Commands to manage HCX Enterprise Sites in a private cloud.
 
 - [show](/Commands/vmware/hcx-enterprise-site/_show.md)
 : Get an HCX Enterprise Site by name in a private cloud
+
+- [update](/Commands/vmware/hcx-enterprise-site/_update.md)
+: Update an activation key for on-premises HCX site
