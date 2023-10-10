@@ -1,6 +1,6 @@
 # [Command] _network manager group static-member list_
 
-List the specified static member.
+List the static members within a specific network group.
 
 ## Versions
 
