@@ -10,6 +10,9 @@ Manage the Azure Monitor Service.
 - [action-group](/Commands/monitor/action-group/readme.md)
 : Manage action groups.
 
+- [activity-log](/Commands/monitor/activity-log/readme.md)
+: Manage activity logs.
+
 - [app-insights](/Commands/monitor/app-insights/readme.md)
 : Commands for querying data in Application Insights applications.
 
