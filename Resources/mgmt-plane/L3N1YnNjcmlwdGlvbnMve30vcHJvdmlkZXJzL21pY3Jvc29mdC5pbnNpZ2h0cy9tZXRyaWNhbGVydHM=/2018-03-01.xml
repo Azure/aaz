@@ -1,0 +1,411 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.insights/metricalerts" version="2018-03-01" swagger="mgmt-plane/monitor/ResourceProviders/Microsoft.Insights/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lkluc2lnaHRzL21ldHJpY0FsZXJ0cw==/V/MjAxOC0wMy0wMQ=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.insights/metricalerts" version="2018-03-01" swagger="mgmt-plane/monitor/ResourceProviders/Microsoft.Insights/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuSW5zaWdodHMvbWV0cmljQWxlcnRz/V/MjAxOC0wMy0wMQ=="/>
+  <commandGroup name="monitor metrics alert">
+    <command name="list" version="2018-03-01" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.insights/metricalerts" version="2018-03-01" swagger="mgmt-plane/monitor/ResourceProviders/Microsoft.Insights/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lkluc2lnaHRzL21ldHJpY0FsZXJ0cw==/V/MjAxOC0wMy0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.insights/metricalerts" version="2018-03-01" swagger="mgmt-plane/monitor/ResourceProviders/Microsoft.Insights/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuSW5zaWdodHMvbWV0cmljQWxlcnRz/V/MjAxOC0wMy0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <condition var="$Condition_MetricAlerts_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <condition var="$Condition_MetricAlerts_ListBySubscription">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <operation when="$Condition_MetricAlerts_ListByResourceGroup" operationId="MetricAlerts_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/metricAlerts">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2018-03-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Insights/metricAlerts/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" required="True" clientFlatten="True">
+                        <prop type="array<object>" name="actions" identifiers="actionGroupId">
+                          <item type="object">
+                            <prop type="string" name="actionGroupId"/>
+                            <prop type="object" name="webHookProperties">
+                              <additionalProp>
+                                <item type="string"/>
+                              </additionalProp>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="boolean" name="autoMitigate"/>
+                        <prop type="object" name="criteria" required="True">
+                          <prop type="string" name="odata.type" required="True">
+                            <enum>
+                              <item value="&quot;Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria&quot;"/>
+                              <item value="&quot;Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria&quot;"/>
+                              <item value="&quot;Microsoft.Azure.Monitor.WebtestLocationAvailabilityCriteria&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="odata.type" value="Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria">
+                            <prop type="array<object>" name="allOf" identifiers="name">
+                              <item type="object">
+                                <prop type="string" name="criterionType" required="True">
+                                  <enum>
+                                    <item value="&quot;DynamicThresholdCriterion&quot;"/>
+                                    <item value="&quot;StaticThresholdCriterion&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="array<@MetricDimension_read>" name="dimensions" identifiers="name">
+                                  <item type="@MetricDimension_read"/>
+                                </prop>
+                                <prop type="string" name="metricName" required="True"/>
+                                <prop type="string" name="metricNamespace"/>
+                                <prop type="string" name="name" required="True"/>
+                                <prop type="boolean" name="skipMetricValidation"/>
+                                <prop type="string" name="timeAggregation" required="True">
+                                  <enum>
+                                    <item value="&quot;Average&quot;"/>
+                                    <item value="&quot;Count&quot;"/>
+                                    <item value="&quot;Maximum&quot;"/>
+                                    <item value="&quot;Minimum&quot;"/>
+                                    <item value="&quot;Total&quot;"/>
+                                  </enum>
+                                </prop>
+                                <discriminator property="criterionType" value="DynamicThresholdCriterion">
+                                  <prop type="string" name="alertSensitivity" required="True">
+                                    <enum>
+                                      <item value="&quot;High&quot;"/>
+                                      <item value="&quot;Low&quot;"/>
+                                      <item value="&quot;Medium&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="object" name="failingPeriods" required="True">
+                                    <prop type="float" name="minFailingPeriodsToAlert" required="True"/>
+                                    <prop type="float" name="numberOfEvaluationPeriods" required="True"/>
+                                  </prop>
+                                  <prop type="dateTime" name="ignoreDataBefore"/>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;GreaterOrLessThan&quot;"/>
+                                      <item value="&quot;GreaterThan&quot;"/>
+                                      <item value="&quot;LessThan&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </discriminator>
+                                <discriminator property="criterionType" value="StaticThresholdCriterion">
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Equals&quot;"/>
+                                      <item value="&quot;GreaterThan&quot;"/>
+                                      <item value="&quot;GreaterThanOrEqual&quot;"/>
+                                      <item value="&quot;LessThan&quot;"/>
+                                      <item value="&quot;LessThanOrEqual&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="float64" name="threshold" required="True"/>
+                                </discriminator>
+                              </item>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="odata.type" value="Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria">
+                            <prop type="array<object>" name="allOf" identifiers="name">
+                              <item type="object">
+                                <prop const="True" type="string" name="criterionType" required="True">
+                                  <default value="&quot;StaticThresholdCriterion&quot;"/>
+                                  <enum>
+                                    <item value="&quot;DynamicThresholdCriterion&quot;"/>
+                                    <item value="&quot;StaticThresholdCriterion&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="array<object>" name="dimensions" identifiers="name">
+                                  <item type="object" cls="MetricDimension_read">
+                                    <prop type="string" name="name" required="True"/>
+                                    <prop type="string" name="operator" required="True"/>
+                                    <prop type="array<string>" name="values" required="True">
+                                      <item type="string"/>
+                                    </prop>
+                                  </item>
+                                </prop>
+                                <prop type="string" name="metricName" required="True"/>
+                                <prop type="string" name="metricNamespace"/>
+                                <prop type="string" name="name" required="True"/>
+                                <prop type="string" name="operator" required="True">
+                                  <enum>
+                                    <item value="&quot;Equals&quot;"/>
+                                    <item value="&quot;GreaterThan&quot;"/>
+                                    <item value="&quot;GreaterThanOrEqual&quot;"/>
+                                    <item value="&quot;LessThan&quot;"/>
+                                    <item value="&quot;LessThanOrEqual&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="boolean" name="skipMetricValidation"/>
+                                <prop type="float64" name="threshold" required="True"/>
+                                <prop type="string" name="timeAggregation" required="True">
+                                  <enum>
+                                    <item value="&quot;Average&quot;"/>
+                                    <item value="&quot;Count&quot;"/>
+                                    <item value="&quot;Maximum&quot;"/>
+                                    <item value="&quot;Minimum&quot;"/>
+                                    <item value="&quot;Total&quot;"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="odata.type" value="Microsoft.Azure.Monitor.WebtestLocationAvailabilityCriteria">
+                            <prop type="string" name="componentId" required="True"/>
+                            <prop type="float" name="failedLocationCount" required="True"/>
+                            <prop type="string" name="webTestId" required="True"/>
+                          </discriminator>
+                        </prop>
+                        <prop type="string" name="description"/>
+                        <prop type="boolean" name="enabled" required="True"/>
+                        <prop type="duration" name="evaluationFrequency" required="True"/>
+                        <prop readOnly="True" type="boolean" name="isMigrated"/>
+                        <prop readOnly="True" type="dateTime" name="lastUpdatedTime"/>
+                        <prop type="array<string>" name="scopes" required="True">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="integer32" name="severity" required="True"/>
+                        <prop type="string" name="targetResourceRegion"/>
+                        <prop type="string" name="targetResourceType"/>
+                        <prop type="duration" name="windowSize" required="True"/>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_MetricAlerts_ListBySubscription" operationId="MetricAlerts_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Insights/metricAlerts">
+          <request method="get">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2018-03-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Insights/metricAlerts/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" required="True" clientFlatten="True">
+                        <prop type="array<object>" name="actions" identifiers="actionGroupId">
+                          <item type="object">
+                            <prop type="string" name="actionGroupId"/>
+                            <prop type="object" name="webHookProperties">
+                              <additionalProp>
+                                <item type="string"/>
+                              </additionalProp>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="boolean" name="autoMitigate"/>
+                        <prop type="object" name="criteria" required="True">
+                          <prop type="string" name="odata.type" required="True">
+                            <enum>
+                              <item value="&quot;Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria&quot;"/>
+                              <item value="&quot;Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria&quot;"/>
+                              <item value="&quot;Microsoft.Azure.Monitor.WebtestLocationAvailabilityCriteria&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="odata.type" value="Microsoft.Azure.Monitor.MultipleResourceMultipleMetricCriteria">
+                            <prop type="array<object>" name="allOf" identifiers="name">
+                              <item type="object">
+                                <prop type="string" name="criterionType" required="True">
+                                  <enum>
+                                    <item value="&quot;DynamicThresholdCriterion&quot;"/>
+                                    <item value="&quot;StaticThresholdCriterion&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="array<@MetricDimension_read>" name="dimensions" identifiers="name">
+                                  <item type="@MetricDimension_read"/>
+                                </prop>
+                                <prop type="string" name="metricName" required="True"/>
+                                <prop type="string" name="metricNamespace"/>
+                                <prop type="string" name="name" required="True"/>
+                                <prop type="boolean" name="skipMetricValidation"/>
+                                <prop type="string" name="timeAggregation" required="True">
+                                  <enum>
+                                    <item value="&quot;Average&quot;"/>
+                                    <item value="&quot;Count&quot;"/>
+                                    <item value="&quot;Maximum&quot;"/>
+                                    <item value="&quot;Minimum&quot;"/>
+                                    <item value="&quot;Total&quot;"/>
+                                  </enum>
+                                </prop>
+                                <discriminator property="criterionType" value="DynamicThresholdCriterion">
+                                  <prop type="string" name="alertSensitivity" required="True">
+                                    <enum>
+                                      <item value="&quot;High&quot;"/>
+                                      <item value="&quot;Low&quot;"/>
+                                      <item value="&quot;Medium&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="object" name="failingPeriods" required="True">
+                                    <prop type="float" name="minFailingPeriodsToAlert" required="True"/>
+                                    <prop type="float" name="numberOfEvaluationPeriods" required="True"/>
+                                  </prop>
+                                  <prop type="dateTime" name="ignoreDataBefore"/>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;GreaterOrLessThan&quot;"/>
+                                      <item value="&quot;GreaterThan&quot;"/>
+                                      <item value="&quot;LessThan&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </discriminator>
+                                <discriminator property="criterionType" value="StaticThresholdCriterion">
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Equals&quot;"/>
+                                      <item value="&quot;GreaterThan&quot;"/>
+                                      <item value="&quot;GreaterThanOrEqual&quot;"/>
+                                      <item value="&quot;LessThan&quot;"/>
+                                      <item value="&quot;LessThanOrEqual&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="float64" name="threshold" required="True"/>
+                                </discriminator>
+                              </item>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="odata.type" value="Microsoft.Azure.Monitor.SingleResourceMultipleMetricCriteria">
+                            <prop type="array<object>" name="allOf" identifiers="name">
+                              <item type="object">
+                                <prop const="True" type="string" name="criterionType" required="True">
+                                  <default value="&quot;StaticThresholdCriterion&quot;"/>
+                                  <enum>
+                                    <item value="&quot;DynamicThresholdCriterion&quot;"/>
+                                    <item value="&quot;StaticThresholdCriterion&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="array<@MetricDimension_read>" name="dimensions" identifiers="name">
+                                  <item type="@MetricDimension_read"/>
+                                </prop>
+                                <prop type="string" name="metricName" required="True"/>
+                                <prop type="string" name="metricNamespace"/>
+                                <prop type="string" name="name" required="True"/>
+                                <prop type="string" name="operator" required="True">
+                                  <enum>
+                                    <item value="&quot;Equals&quot;"/>
+                                    <item value="&quot;GreaterThan&quot;"/>
+                                    <item value="&quot;GreaterThanOrEqual&quot;"/>
+                                    <item value="&quot;LessThan&quot;"/>
+                                    <item value="&quot;LessThanOrEqual&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="boolean" name="skipMetricValidation"/>
+                                <prop type="float64" name="threshold" required="True"/>
+                                <prop type="string" name="timeAggregation" required="True">
+                                  <enum>
+                                    <item value="&quot;Average&quot;"/>
+                                    <item value="&quot;Count&quot;"/>
+                                    <item value="&quot;Maximum&quot;"/>
+                                    <item value="&quot;Minimum&quot;"/>
+                                    <item value="&quot;Total&quot;"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="odata.type" value="Microsoft.Azure.Monitor.WebtestLocationAvailabilityCriteria">
+                            <prop type="string" name="componentId" required="True"/>
+                            <prop type="float" name="failedLocationCount" required="True"/>
+                            <prop type="string" name="webTestId" required="True"/>
+                          </discriminator>
+                        </prop>
+                        <prop type="string" name="description"/>
+                        <prop type="boolean" name="enabled" required="True"/>
+                        <prop type="duration" name="evaluationFrequency" required="True"/>
+                        <prop readOnly="True" type="boolean" name="isMigrated"/>
+                        <prop readOnly="True" type="dateTime" name="lastUpdatedTime"/>
+                        <prop type="array<string>" name="scopes" required="True">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="integer32" name="severity" required="True"/>
+                        <prop type="string" name="targetResourceRegion"/>
+                        <prop type="string" name="targetResourceType"/>
+                        <prop type="duration" name="windowSize" required="True"/>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
