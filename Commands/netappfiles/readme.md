@@ -1,8 +1,8 @@
 # [Group] _netappfiles_
 
-Manage backups under a Backup Vault
+Manage Azure NetApp Files (ANF) Resources
 
-ANF backups are manged in a BackupVault independent from volumes
+Manage Azure NetApp Files (ANF) Resources.
 
 ## Subgroups
 

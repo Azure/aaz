@@ -102,7 +102,7 @@
 : Manage the Azure Monitor Service.
 
 - [netappfiles](/Commands/netappfiles/readme.md)
-: Manage backups under a Backup Vault
+: Manage Azure NetApp Files (ANF) Resources
 
 - [network](/Commands/network/readme.md)
 : Manage Azure Network resources.
