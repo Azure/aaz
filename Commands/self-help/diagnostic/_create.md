@@ -1,6 +1,6 @@
 # [Command] _self-help diagnostic create_
 
-Create a diagnostic for the specific resource using solutionId and requiredInputs* from discovery solutions. <br/>Diagnostics tells you precisely the root cause of the issue and the steps to address it. You can get diagnostics once you discover the relevant solution for your Azure issue. <br/><br/> <b>Note: </b> requiredInputs’ from Discovery solutions response must be passed via ‘additionalParameters’ as an input to Diagnostics API.
+Create a diagnostic for the specific resource using solutionId and requiredInputs* from discovery solutions. <br/>Diagnostics tells you precisely the root cause of the issue and the steps to address it. You can get diagnostics once you discover the relevant solution for your Azure issue. <br/><br/> <b>Note: </b> requiredInputsï¿½ from Discovery solutions response must be passed via ï¿½additionalParametersï¿½ as an input to Diagnostics API.
 
 ## Versions
 
@@ -23,5 +23,5 @@ Create a diagnostic for the specific resource using solutionId and requiredInput
 
 - Create Diagnostic at Resource Level
     ```bash
-        self-help diagnostic create --diagnostic-resource-name {diagnostic-resource-name}  --insights [{solutionId:Demo2InsightV2}] --scope {scope}
+        self-help diagnostic create --diagnostic-name {diagnostic-name}  --insights [{solutionId:Demo2InsightV2}] --scope {scope}
     ```

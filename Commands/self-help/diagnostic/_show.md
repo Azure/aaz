@@ -23,5 +23,5 @@ Get the diagnostics using the 'diagnosticsResourceName' you chose while creating
 
 - Show Diagnostic at Resource Level
     ```bash
-        self-help diagnostic show --diagnostic-resource-name {diagnostic-resource-name} --scope {scope}
+        self-help diagnostic show --diagnostic-name {diagnostic-name} --scope {scope}
     ```

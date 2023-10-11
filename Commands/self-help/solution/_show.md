@@ -12,5 +12,5 @@ Get the solution using the applicable solutionResourceName while creating the so
 
 - Show Solution at Resource Level
     ```bash
-        self-help solution show --solution-resource-name {solution-resource-name} --scope {scope}
+        self-help solution show --solution-name {solution-name} --scope {scope}
     ```
