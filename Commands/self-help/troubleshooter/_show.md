@@ -1,6 +1,6 @@
 # [Command] _self-help troubleshooter show_
 
-Get troubleshooter instance result which includes the step status/result of the troubleshooter resource name that is being executed.<br/> Get API is used to retrieve the result of a Troubleshooter instance, which includes the status and result of each step in the Troubleshooter workflow. This API requires the Troubleshooter resource name that was created using the Create API.
+Get troubleshooter instance result which includes the step status/result of the troubleshooter resource name that is being executed.
 
 ## Versions
 

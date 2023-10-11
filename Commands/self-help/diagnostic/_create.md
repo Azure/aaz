@@ -1,6 +1,6 @@
 # [Command] _self-help diagnostic create_
 
-Create a diagnostic for the specific resource using solutionId and requiredInputs* from discovery solutions. <br/>Diagnostics tells you precisely the root cause of the issue and the steps to address it. You can get diagnostics once you discover the relevant solution for your Azure issue. <br/><br/> <b>Note: </b> requiredInputs� from Discovery solutions response must be passed via �additionalParameters� as an input to Diagnostics API.
+Creates a diagnostics that will help you troubleshoot an issue with your azure resource.
 
 ## Versions
 

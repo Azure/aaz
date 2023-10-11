@@ -1,6 +1,6 @@
 # [Command] _self-help troubleshooter continue_
 
-Uses ‘stepId’ and ‘responses’ as the trigger to continue the troubleshooting steps for the respective troubleshooter resource name. <br/>Continue API is used to provide inputs that are required for the specific troubleshooter to progress into the next step in the process. This API is used after the Troubleshooter has been created using the Create API.
+Continue the troubleshooting steps for the respective troubleshooter resource name.
 
 ## Versions
 

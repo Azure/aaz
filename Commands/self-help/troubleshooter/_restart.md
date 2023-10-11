@@ -1,6 +1,6 @@
 # [Command] _self-help troubleshooter restart_
 
-Restarts the troubleshooter API using applicable troubleshooter resource name as the input.<br/> It returns new resource name which should be used in subsequent request. The old resource name is obsolete after this API is invoked.
+Restarts the troubleshooter API using applicable troubleshooter resource name as the input.
 
 ## Versions
 
