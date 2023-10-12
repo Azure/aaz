@@ -63,3 +63,15 @@ List load balancers.
     ```bash
         network lb list -g MyResourceGroup
     ```
+
+### [2023-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL2xvYWRiYWxhbmNlcnM=/2023-04-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.network/loadbalancers 2023-04-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/loadbalancers 2023-04-01 -->
+
+#### examples
+
+- List load balancers.
+    ```bash
+        network lb list -g MyResourceGroup
+    ```
