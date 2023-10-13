@@ -1,6 +1,6 @@
 # [Command] _self-help discovery-solution list_
 
-List the existing available solutions for the problemClassificationId or the resourceUri for the Azure resource.
+List the relevant Azure diagnostics and solutions using problemClassificationId API AND resourceUri or resourceType.
 
 ## Versions
 

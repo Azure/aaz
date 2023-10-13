@@ -12,5 +12,5 @@ Restarts the troubleshooter API using applicable troubleshooter resource name as
 
 - End Troubleshooter at Resource Level
     ```bash
-        self-help troubleshooter end --troubleshooter-name {troubleshooter-name} --scope {scope}
+        self-help troubleshooter restart --troubleshooter-name {troubleshooter-name} --scope {scope}
     ```

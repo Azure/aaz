@@ -1,6 +1,6 @@
 # [Command] _self-help solution update_
 
-Update a solution for the specific Azure resource or subscription using the triggering criteria.
+Update a solution for the specific Azure resource or subscription using the triggering criteria from discovery solutions.
 
 ## Versions
 
@@ -12,5 +12,5 @@ Update a solution for the specific Azure resource or subscription using the trig
 
 - Update Solution at Resource Level
     ```bash
-        self-help solution update --solution-name {solution-name} --trigger-criteria [{key:ReplacementKey,value:{replacement-key}}] --parameters {SearchText:{search-text},SymptomId:{symptom-id}} --scope {scope}
+        self-help solution update --solution-name {solution-name} --trigger-criteria {trigger-criteria} --parameters {parameters} --scope {scope}
     ```

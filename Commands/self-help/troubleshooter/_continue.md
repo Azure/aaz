@@ -1,6 +1,6 @@
 # [Command] _self-help troubleshooter continue_
 
-Continue the troubleshooting steps for the respective troubleshooter resource name.
+Uses stepId and responses as the trigger to continue the troubleshooting steps for the respective troubleshooter resource name.
 
 ## Versions
 

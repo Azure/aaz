@@ -5,7 +5,7 @@ troubleshooter command will help you create troubleshooters for azure resources.
 ## Commands
 
 - [continue](/Commands/self-help/troubleshooter/_continue.md)
-: Continue the troubleshooting steps for the respective troubleshooter resource name.
+: Uses stepId and responses as the trigger to continue the troubleshooting steps for the respective troubleshooter resource name.
 
 - [create](/Commands/self-help/troubleshooter/_create.md)
 : Create the specific troubleshooter action under a resource or subscription.
