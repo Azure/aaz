@@ -12,5 +12,5 @@ Create the specific troubleshooter action under a resource or subscription.
 
 - Create Troubleshooter at Resource Level
     ```bash
-        self-help troubleshooter create --troubleshooter-name {troubleshooter-name} --solution-id {solution-id} --parameters {{ResourceURI:subscriptions/mySubscription/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-rp}} --scope {scope}
+        self-help troubleshooter create --troubleshooter-name {troubleshooter-name} --solution-id {solution-id} --parameters {ResourceURI:subscriptions/mySubscription/resourcegroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-rp} --scope {scope}
     ```

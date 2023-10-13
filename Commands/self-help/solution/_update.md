@@ -12,5 +12,5 @@ Update a solution for the specific Azure resource or subscription using the trig
 
 - Update Solution at Resource Level
     ```bash
-        self-help solution update --solution-name {solution-name} --trigger-criteria [{key:ReplacementKey,value:{replacement-key}}] --parameters {{SearchText:{search-text}},{SymptomId:{symptom-id}} --scope {scope}
+        self-help solution update --solution-name {solution-name} --trigger-criteria [{key:ReplacementKey,value:{replacement-key}}] --parameters {SearchText:{search-text},SymptomId:{symptom-id}} --scope {scope}
     ```

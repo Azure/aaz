@@ -12,5 +12,5 @@ Continue the troubleshooting steps for the respective troubleshooter resource na
 
 - Continue Troubleshooter at Resource Level
     ```bash
-        self-help troubleshooter continue --troubleshooter-name {troubleshooter-name} --step-id {step-id} --responses [{questionId:SampleQuestionId,questionType:Text,response:ConnectionException}] --scope {scope}
+        self-help troubleshooter continue --troubleshooter-name {troubleshooter-name} --step-id {step-id} --responses [] --scope {scope}
     ```

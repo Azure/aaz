@@ -12,5 +12,5 @@ Create a solution for the specific Azure resource or subscription using the trig
 
 - Create Solution at Resource Level
     ```bash
-        self-help solution create --solution-name {solution-name} --trigger-criteria [{name:solutionid,value:Demo2InsightV2}] --scope {scope}
+        self-help solution create --solution-name {solution-name} --trigger-criteria [{name:solutionid,value:Demo2InsightV2}] --parameters {} --scope {scope}
     ```
