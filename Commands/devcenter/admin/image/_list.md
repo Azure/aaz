@@ -37,3 +37,20 @@ List images for a dev center or gallery.
     ```bash
         devcenter admin image list --dev-center-name "Contoso" --gallery-name "DevGallery" --resource-group "rg1"
     ```
+
+### [2023-06-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvZGV2Y2VudGVycy97fS9nYWxsZXJpZXMve30vaW1hZ2Vz/2023-06-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/devcenters/{}/galleries/{}/images 2023-06-01-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/devcenters/{}/images 2023-06-01-preview -->
+
+#### examples
+
+- List by dev center
+    ```bash
+        devcenter admin image list --dev-center-name "Contoso" --resource-group "rg1"
+    ```
+
+- List by gallery
+    ```bash
+        devcenter admin image list --dev-center-name "Contoso" --gallery-name "DevGallery" --resource-group "rg1"
+    ```

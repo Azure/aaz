@@ -1,6 +1,6 @@
 # [Group] _eventhubs namespace authorization-rule_
 
-eventhub namespace authorization-rule
+Eventhub namespace authorization-rule.
 
 ## Subgroups
 

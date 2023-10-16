@@ -8,7 +8,10 @@ Manage Azure Stack HCI.
 : Manage arc setting with stack hci.
 
 - [cluster](/Commands/stack-hci/cluster/readme.md)
-: cluster with stack hci.
+: Manage cluster with stack hci.
+
+- [cluster-update](/Commands/stack-hci/cluster-update/readme.md)
+: Manage cluster updates
 
 - [extension](/Commands/stack-hci/extension/readme.md)
 : Manage extension with stack hci.
