@@ -72,7 +72,7 @@
 : Manage Elastic SAN.
 
 - [eventgrid](/Commands/eventgrid/readme.md)
-: Manage Azure Event Grid topics, domains, domain topics, system topics partner     topics, event subscriptions, system topic event subscriptions and partner topic event     subscriptions.
+: Manage Azure Event Grid topics, domains, domain topics, system topics, partner topics, event subscriptions, system topic event subscriptions, partner topic event subscriptions, and namespaces resources.
 
 - [eventhubs](/Commands/eventhubs/readme.md)
 : eventhub
