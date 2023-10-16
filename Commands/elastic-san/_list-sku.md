@@ -25,3 +25,14 @@ Get a list of Elastic SAN skus.
     ```bash
         elastic-san list-sku
     ```
+
+### [2023-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljc2FuL3NrdXM=/2023-01-01.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.elasticsan/skus 2023-01-01 -->
+
+#### examples
+
+- Get a list of Elastic SAN skus.
+    ```bash
+        elastic-san list-sku
+    ```
