@@ -10,7 +10,7 @@ Restarts the troubleshooter API using applicable troubleshooter resource name as
 
 #### examples
 
-- End Troubleshooter at Resource Level
+- Restart Troubleshooter at Resource Level
     ```bash
         self-help troubleshooter restart --troubleshooter-name {troubleshooter-name} --scope {scope}
     ```
