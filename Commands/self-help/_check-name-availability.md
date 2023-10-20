@@ -25,5 +25,5 @@ This API is used to check the uniqueness of a resource name used for a diagnosti
     ```bash
         self-help check-name-availability --scope subscriptions/12345678-BBBb-cCCCC-0000-123456789012 --name diagnostic-name --type 'Microsoft.Help/diagnostics'
         self-help check-name-availability --scope subscriptions/12345678-BBBb-cCCCC-0000-123456789012 --name solution-name --type 'Microsoft.Help/solutions'
-        self-help check-name-availability --scope subscriptions/12345678-BBBb-cCCCC-0000-123456789012 --name troubleshooter-name --type 'Microsoft.Help/troubleshooters'
+        self-help check-name-availability --scope subscriptions/12345678-BBBb-cCCCC-0000-123456789012 --name abf168ed-1b54-454a-86f6-e4b62253d3b1 --type 'Microsoft.Help/troubleshooters'
     ```
