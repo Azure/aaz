@@ -12,5 +12,5 @@ Restarts the troubleshooter API using applicable troubleshooter resource name as
 
 - Restart Troubleshooter at Resource Level
     ```bash
-        self-help troubleshooter restart --troubleshooter-name {troubleshooter-name} --scope {scope}
+        self-help troubleshooter restart --troubleshooter-name 12345678-BBBb-cCCCC-0000-123456789012 --scope 'subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourceGroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read'
     ```

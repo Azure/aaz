@@ -23,5 +23,5 @@ List the relevant Azure diagnostics and solutions using problemClassificationId 
 
 - List DiscoverySolution results for a resource
     ```bash
-        self-help discovery-solution list --scope {scope}
+        self-help discovery-solution list --filter "ProblemClassificationId eq '00000000-0000-0000-0000-000000000000'" --scope 'subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourceGroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read'
     ```
