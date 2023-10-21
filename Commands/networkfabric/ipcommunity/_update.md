@@ -16,5 +16,5 @@ Update to update certain properties of the IP Community resource.
 
 - Update IP Community
     ```bash
-        networkfabric ipcommunity update --resource-group "example-rg" --resource-name "example-ipcommunity" --ip-comm-rules "[{action:Permit,communityMembers:['1:1'],sequenceNumber:1234,wellKnownCommunities:[Internet,GShut]}]"
+        networkfabric ipcommunity update --resource-group "example-rg" --resource-name "example-ipcommunity" --ip-community-rules "[{action:Permit,communityMembers:['1:1'],sequenceNumber:1234,wellKnownCommunities:[Internet,GShut]}]"
     ```

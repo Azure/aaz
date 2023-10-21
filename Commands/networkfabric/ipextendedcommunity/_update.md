@@ -16,5 +16,5 @@ Update to update certain properties of the IP Extended Community resource.
 
 - Update IP Extended Community
     ```bash
-        networkfabric ipextendedcommunity update --resource-group "example-rg" --resource-name "example-ipextendedcommunity" --ip-ext-comm-rules "[{action:Permit,sequenceNumber:1234,routeTargets:['1024:219','1001:200']}]"
+        networkfabric ipextendedcommunity update --resource-group "example-rg" --resource-name "example-ipextendedcommunity" --ip-extended-community-rules "[{action:Permit,sequenceNumber:1234,routeTargets:['1024:219','1001:200']}]"
     ```

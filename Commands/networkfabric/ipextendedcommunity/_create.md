@@ -23,10 +23,10 @@ Create a Ip Extended Community resource
 
 - Create a Ip Extended Community
     ```bash
-        networkfabric ipextendedcommunity create --resource-group "example-rg" --location "westus3" --resource-name "example-ipextendedcommunity" --ip-ext-comm-rules "[{action:Permit,sequenceNumber:1234,routeTargets:['1024:219','1001:200']}]"
+        networkfabric ipextendedcommunity create --resource-group "example-rg" --location "westus3" --resource-name "example-ipextendedcommunity" --ip-extended-community-rules "[{action:Permit,sequenceNumber:1234,routeTargets:['1024:219','1001:200']}]"
     ```
 
 - Help text for sub parameters under the specific parent can be viewed by using the shorthand syntax '??'. See https://github.com/Azure/azure-cli/tree/dev/doc/shorthand_syntax.md for more about shorthand syntax.
     ```bash
-        networkfabric ipextendedcommunity create --ip-ext-comm-rules "??"
+        networkfabric ipextendedcommunity create --ip-extended-community-rules "??"
     ```
