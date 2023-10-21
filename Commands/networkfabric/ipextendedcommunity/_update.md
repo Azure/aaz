@@ -11,3 +11,10 @@ Update to update certain properties of the IP Extended Community resource.
 ### [2023-06-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9pcGV4dGVuZGVkY29tbXVuaXRpZXMve30=/2023-06-15.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/ipextendedcommunities/{} 2023-06-15 -->
+
+#### examples
+
+- Update IP Extended Community
+    ```bash
+        networkfabric ipextendedcommunity update --resource-group "example-rg" --resource-name "example-ipextendedcommunity" --ip-extended-community-rules "[{action:Permit,sequenceNumber:1234,routeTargets:['1024:219','1001:200']}]"
+    ```
