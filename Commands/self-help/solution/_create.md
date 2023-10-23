@@ -12,5 +12,5 @@ Create a solution for the specific Azure resource or subscription using the trig
 
 - Create Solution at Resource Level
     ```bash
-        self-help solution create --solution-name solution-name --trigger-criteria [{name:solutionid,value:Demo2InsightV2}] --parameters {} --scope 'subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourceGroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read'
+        self-help solution create --solution-name solution-name --trigger-criteria [{name:solutionid,value:Demo2InsightV2}] --parameters {} --scope 'subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read'
     ```

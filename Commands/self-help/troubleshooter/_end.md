@@ -12,5 +12,5 @@ Ends the troubleshooter action
 
 - End Troubleshooter at Resource Level
     ```bash
-        self-help troubleshooter end --troubleshooter-name 12345678-BBBb-cCCCC-0000-123456789012 --scope 'subscriptions/0d0fcd2e-c4fd-4349-8497-200edb3923c6/resourceGroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read'
+        self-help troubleshooter end --troubleshooter-name 12345678-BBBb-cCCCC-0000-123456789012 --scope 'subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read'
     ```
