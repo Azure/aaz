@@ -90,7 +90,7 @@ Update the properties of the provided cluster, or update the tags associated wit
 
 - Patch cluster runtime protection configuration
     ```bash
-        az networkcloud cluster update --name "clusterName" --resource-group "resourceGroupName" --runtime-protection-configuration enforcement-level="OnDemand"
+        az networkcloud cluster update --name "clusterName" --resource-group "resourceGroupName" --runtime-protection-config enforcement-level="OnDemand"
     ```
 
 - Patch secret archive
