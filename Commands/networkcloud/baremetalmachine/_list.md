@@ -55,7 +55,7 @@ List bare metal machines in the provided resource group or subscription.
         networkcloud baremetalmachine list
     ```
 
-### [2023-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvYmFyZW1ldGFsbWFjaGluZXM=/2023-10-01-preview.xml) **Stable**
+### [2023-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvYmFyZW1ldGFsbWFjaGluZXM=/2023-10-01-preview.xml) **Preview**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.networkcloud/baremetalmachines 2023-10-01-preview -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/baremetalmachines 2023-10-01-preview -->

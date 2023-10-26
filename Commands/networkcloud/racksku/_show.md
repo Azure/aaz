@@ -37,7 +37,7 @@ Get the properties of the provided rack SKU.
         networkcloud racksku show --name "rackSkuName"
     ```
 
-### [2023-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvcmFja3NrdXMve30=/2023-10-01-preview.xml) **Stable**
+### [2023-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvcmFja3NrdXMve30=/2023-10-01-preview.xml) **Preview**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.networkcloud/rackskus/{} 2023-10-01-preview -->
 

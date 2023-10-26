@@ -37,7 +37,7 @@ Delete the bare metal machine key set of the provided cluster.
         networkcloud cluster baremetalmachinekeyset delete --name "bareMetalMachineKeySetName" --cluster-name "clusterName" --resource-group "resourceGroupName
     ```
 
-### [2023-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvY2x1c3RlcnMve30vYmFyZW1ldGFsbWFjaGluZWtleXNldHMve30=/2023-10-01-preview.xml) **Stable**
+### [2023-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvY2x1c3RlcnMve30vYmFyZW1ldGFsbWFjaGluZWtleXNldHMve30=/2023-10-01-preview.xml) **Preview**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/clusters/{}/baremetalmachinekeysets/{} 2023-10-01-preview -->
 
