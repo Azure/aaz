@@ -54,3 +54,20 @@ List bare metal machines in the provided resource group or subscription.
     ```bash
         networkcloud baremetalmachine list
     ```
+
+### [2023-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvYmFyZW1ldGFsbWFjaGluZXM=/2023-10-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.networkcloud/baremetalmachines 2023-10-01-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/baremetalmachines 2023-10-01-preview -->
+
+#### examples
+
+- List bare metal machines for resource group
+    ```bash
+        networkcloud baremetalmachine list --resource-group "resourceGroupName"
+    ```
+
+- List bare metal machines for subscription
+    ```bash
+        networkcloud baremetalmachine list
+    ```
