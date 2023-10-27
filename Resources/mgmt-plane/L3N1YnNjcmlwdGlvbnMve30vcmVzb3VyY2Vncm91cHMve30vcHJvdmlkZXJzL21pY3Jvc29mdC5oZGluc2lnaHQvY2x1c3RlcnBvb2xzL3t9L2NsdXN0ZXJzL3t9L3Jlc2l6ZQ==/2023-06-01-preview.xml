@@ -1,0 +1,460 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.hdinsight/clusterpools/{}/clusters/{}/resize" version="2023-06-01-preview" swagger="mgmt-plane/hdinsight/ResourceProviders/Microsoft.HDInsight/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuSERJbnNpZ2h0L2NsdXN0ZXJwb29scy97Y2x1c3RlclBvb2xOYW1lfS9jbHVzdGVycy97Y2x1c3Rlck5hbWV9L3Jlc2l6ZQ==/V/MjAyMy0wNi0wMS1wcmV2aWV3"/>
+  <commandGroup name="hdinsightonaks cluster">
+    <command name="resize" version="2023-06-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.hdinsight/clusterpools/{}/clusters/{}/resize" version="2023-06-01-preview" swagger="mgmt-plane/hdinsight/ResourceProviders/Microsoft.HDInsight/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuSERJbnNpZ2h0L2NsdXN0ZXJwb29scy97Y2x1c3RlclBvb2xOYW1lfS9jbHVzdGVycy97Y2x1c3Rlck5hbWV9L3Jlc2l6ZQ==/V/MjAyMy0wNi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.clusterName" options="cluster-name" required="True" idPart="child_name_1">
+          <help short="The name of the HDInsight cluster."/>
+        </arg>
+        <arg type="string" var="$Path.clusterPoolName" options="cluster-pool-name" required="True" idPart="name">
+          <help short="The name of the cluster pool."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="ClusterResizeRequest">
+        <arg type="ResourceLocation" var="$ClusterResizeRequest.location" options="location l" required="True" group="ClusterResizeRequest">
+          <help short="The geo-location where the resource lives"/>
+        </arg>
+        <arg type="object" var="$ClusterResizeRequest.tags" options="tags" group="ClusterResizeRequest">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="integer32" var="$ClusterResizeRequest.properties.targetWorkerNodeCount" options="target-worker-node-count" group="Properties">
+          <help short="Target node count of worker node."/>
+        </arg>
+      </argGroup>
+      <operation operationId="Clusters_Resize">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HDInsight/clusterpools/{clusterPoolName}/clusters/{clusterName}/resize">
+          <request method="post">
+            <path>
+              <param type="string" name="clusterName" arg="$Path.clusterName" required="True"/>
+              <param type="string" name="clusterPoolName" arg="$Path.clusterPoolName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-06-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="ClusterResizeRequest" required="True" clientFlatten="True">
+                  <prop type="ResourceLocation" name="location" arg="$ClusterResizeRequest.location" required="True"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="integer32" name="targetWorkerNodeCount" arg="$ClusterResizeRequest.properties.targetWorkerNodeCount" required="True"/>
+                  </prop>
+                  <prop type="object" name="tags" arg="$ClusterResizeRequest.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.HDInsight/clusterpools/{}/clusters/{}"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="object" name="clusterProfile" required="True">
+                      <prop type="object" name="authorizationProfile" required="True">
+                        <prop type="array<string>" name="groupIds">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="array<string>" name="userIds">
+                          <item type="string"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="autoscaleProfile">
+                        <prop type="string" name="autoscaleType">
+                          <enum>
+                            <item value="&quot;LoadBased&quot;"/>
+                            <item value="&quot;ScheduleBased&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="boolean" name="enabled" required="True"/>
+                        <prop type="integer32" name="gracefulDecommissionTimeout"/>
+                        <prop type="object" name="loadBasedConfig">
+                          <prop type="integer32" name="cooldownPeriod"/>
+                          <prop type="integer32" name="maxNodes" required="True"/>
+                          <prop type="integer32" name="minNodes" required="True"/>
+                          <prop type="integer32" name="pollInterval"/>
+                          <prop type="array<object>" name="scalingRules" required="True">
+                            <item type="object">
+                              <prop type="string" name="actionType" required="True">
+                                <enum>
+                                  <item value="&quot;scaledown&quot;"/>
+                                  <item value="&quot;scaleup&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="object" name="comparisonRule" required="True">
+                                <prop type="string" name="operator" required="True">
+                                  <enum>
+                                    <item value="&quot;greaterThan&quot;"/>
+                                    <item value="&quot;greaterThanOrEqual&quot;"/>
+                                    <item value="&quot;lessThan&quot;"/>
+                                    <item value="&quot;lessThanOrEqual&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="float" name="threshold" required="True"/>
+                              </prop>
+                              <prop type="integer32" name="evaluationCount" required="True"/>
+                              <prop type="string" name="scalingMetric" required="True"/>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="scheduleBasedConfig">
+                          <prop type="integer32" name="defaultCount" required="True"/>
+                          <prop type="array<object>" name="schedules" required="True">
+                            <item type="object">
+                              <prop type="integer32" name="count" required="True"/>
+                              <prop type="array<string>" name="days" required="True">
+                                <item type="string">
+                                  <enum>
+                                    <item value="&quot;Friday&quot;"/>
+                                    <item value="&quot;Monday&quot;"/>
+                                    <item value="&quot;Saturday&quot;"/>
+                                    <item value="&quot;Sunday&quot;"/>
+                                    <item value="&quot;Thursday&quot;"/>
+                                    <item value="&quot;Tuesday&quot;"/>
+                                    <item value="&quot;Wednesday&quot;"/>
+                                  </enum>
+                                </item>
+                              </prop>
+                              <prop type="string" name="endTime" required="True">
+                                <format pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"/>
+                              </prop>
+                              <prop type="string" name="startTime" required="True">
+                                <format pattern="^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$"/>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="string" name="timeZone" required="True"/>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="clusterVersion" required="True">
+                        <format pattern="^(0|[1-9][0-9]{0,18})\.(0|[1-9][0-9]{0,18})\.(0|[1-9][0-9]{0,18})(?:\.(0|[1-9][0-9]{0,18}))?$"/>
+                      </prop>
+                      <prop readOnly="True" type="array<object>" name="components">
+                        <item type="object">
+                          <prop type="string" name="name"/>
+                          <prop type="string" name="version"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="object" name="connectivityProfile">
+                        <prop type="array<object>" name="ssh">
+                          <item type="object">
+                            <prop type="string" name="endpoint" required="True"/>
+                          </item>
+                        </prop>
+                        <prop type="object" name="web" required="True">
+                          <prop type="string" name="fqdn" required="True"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="flinkProfile">
+                        <prop type="object" name="catalogOptions">
+                          <prop type="object" name="hive">
+                            <prop type="string" name="metastoreDbConnectionPasswordSecret" required="True"/>
+                            <prop type="string" name="metastoreDbConnectionURL" required="True"/>
+                            <prop type="string" name="metastoreDbConnectionUserName" required="True"/>
+                          </prop>
+                        </prop>
+                        <prop type="@ComputeResourceDefinition_read" name="historyServer"/>
+                        <prop type="object" name="jobManager" required="True" cls="ComputeResourceDefinition_read">
+                          <prop type="float32" name="cpu" required="True"/>
+                          <prop type="integer64" name="memory" required="True"/>
+                        </prop>
+                        <prop type="integer32" name="numReplicas"/>
+                        <prop type="object" name="storage" required="True">
+                          <prop type="string" name="storageUri" required="True">
+                            <format pattern="^(\w{4,5})://(.*)@(.*).\b(blob|dfs)\b\.core\.windows\.net$"/>
+                          </prop>
+                          <prop type="string" name="storagekey" secret="True"/>
+                        </prop>
+                        <prop type="@ComputeResourceDefinition_read" name="taskManager" required="True"/>
+                      </prop>
+                      <prop type="object" name="identityProfile" required="True">
+                        <prop type="string" name="msiClientId" required="True">
+                          <format pattern="^[{(]?[0-9A-Fa-f]{8}[-]?(?:[0-9A-Fa-f]{4}[-]?){3}[0-9A-Fa-f]{12}[)}]?$"/>
+                        </prop>
+                        <prop type="string" name="msiObjectId" required="True">
+                          <format pattern="^[{(]?[0-9A-Fa-f]{8}[-]?(?:[0-9A-Fa-f]{4}[-]?){3}[0-9A-Fa-f]{12}[)}]?$"/>
+                        </prop>
+                        <prop type="ResourceId" name="msiResourceId" required="True"/>
+                      </prop>
+                      <prop type="object" name="kafkaProfile">
+                        <additionalProp anyType="True"/>
+                      </prop>
+                      <prop type="object" name="llapProfile">
+                        <additionalProp anyType="True"/>
+                      </prop>
+                      <prop type="object" name="logAnalyticsProfile">
+                        <prop type="object" name="applicationLogs">
+                          <prop type="boolean" name="stdErrorEnabled"/>
+                          <prop type="boolean" name="stdOutEnabled"/>
+                        </prop>
+                        <prop type="boolean" name="enabled" required="True"/>
+                        <prop type="boolean" name="metricsEnabled"/>
+                      </prop>
+                      <prop type="string" name="ossVersion" required="True">
+                        <format pattern="^(0|[1-9][0-9]{0,18})\.(0|[1-9][0-9]{0,18})\.(0|[1-9][0-9]{0,18})$"/>
+                      </prop>
+                      <prop type="object" name="prometheusProfile">
+                        <prop type="boolean" name="enabled" required="True">
+                          <default value="false"/>
+                        </prop>
+                      </prop>
+                      <prop type="array<object>" name="scriptActionProfiles">
+                        <item type="object">
+                          <prop type="string" name="name" required="True"/>
+                          <prop type="string" name="parameters"/>
+                          <prop type="array<string>" name="services" required="True">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="boolean" name="shouldPersist">
+                            <default value="true"/>
+                          </prop>
+                          <prop type="integer32" name="timeoutInMinutes"/>
+                          <prop type="string" name="type" required="True"/>
+                          <prop type="string" name="url" required="True">
+                            <format pattern="^(https)|(http)|(abfss)|(abfs)|(wasbs)|(wasb)://.*$"/>
+                          </prop>
+                        </item>
+                      </prop>
+                      <prop type="object" name="secretsProfile">
+                        <prop type="ResourceId" name="keyVaultResourceId" required="True"/>
+                        <prop type="array<object>" name="secrets">
+                          <item type="object">
+                            <prop type="string" name="keyVaultObjectName" required="True">
+                              <format pattern="^[a-zA-Z][a-zA-Z0-9-]{1,126}$"/>
+                            </prop>
+                            <prop type="string" name="referenceName" required="True"/>
+                            <prop type="string" name="type" required="True">
+                              <enum>
+                                <item value="&quot;Certificate&quot;"/>
+                                <item value="&quot;Key&quot;"/>
+                                <item value="&quot;Secret&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="version"/>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop type="array<object>" name="serviceConfigsProfiles">
+                        <item type="object">
+                          <prop type="array<object>" name="configs" required="True">
+                            <item type="object">
+                              <prop type="string" name="component" required="True"/>
+                              <prop type="array<object>" name="files" required="True">
+                                <item type="object">
+                                  <prop type="string" name="content"/>
+                                  <prop type="string" name="encoding">
+                                    <enum>
+                                      <item value="&quot;Base64&quot;"/>
+                                      <item value="&quot;None&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="string" name="fileName" required="True"/>
+                                  <prop type="string" name="path"/>
+                                  <prop type="object" name="values">
+                                    <additionalProp>
+                                      <item type="string"/>
+                                    </additionalProp>
+                                  </prop>
+                                </item>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="string" name="serviceName" required="True"/>
+                        </item>
+                      </prop>
+                      <prop type="object" name="sparkProfile">
+                        <prop type="string" name="defaultStorageUrl"/>
+                        <prop type="object" name="metastoreSpec">
+                          <prop type="string" name="dbName" required="True"/>
+                          <prop type="string" name="dbPasswordSecretName" required="True"/>
+                          <prop type="string" name="dbServerHost" required="True"/>
+                          <prop type="string" name="dbUserName" required="True"/>
+                          <prop type="string" name="keyVaultId" required="True"/>
+                          <prop type="string" name="thriftUrl"/>
+                        </prop>
+                        <prop type="object" name="userPluginsSpec">
+                          <prop type="array<object>" name="plugins">
+                            <item type="object">
+                              <prop type="string" name="path" required="True">
+                                <format pattern="^(https)|(abfss)://.*$" minLength="1"/>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="sshProfile">
+                        <prop type="integer32" name="count" required="True">
+                          <format maximum="5" minimum="0"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="podPrefix"/>
+                      </prop>
+                      <prop type="object" name="stubProfile">
+                        <additionalProp anyType="True"/>
+                      </prop>
+                      <prop type="object" name="trinoProfile">
+                        <prop type="object" name="catalogOptions">
+                          <prop type="array<object>" name="hive">
+                            <item type="object">
+                              <prop type="string" name="catalogName" required="True">
+                                <format minLength="1"/>
+                              </prop>
+                              <prop type="string" name="metastoreDbConnectionPasswordSecret" required="True"/>
+                              <prop type="string" name="metastoreDbConnectionURL" required="True"/>
+                              <prop type="string" name="metastoreDbConnectionUserName" required="True"/>
+                              <prop type="string" name="metastoreWarehouseDir" required="True"/>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="coordinator">
+                          <prop type="object" name="debug" cls="TrinoDebugConfig_read" clientFlatten="True">
+                            <prop type="boolean" name="enable">
+                              <default value="false"/>
+                            </prop>
+                            <prop type="integer32" name="port">
+                              <default value="8008"/>
+                            </prop>
+                            <prop type="boolean" name="suspend">
+                              <default value="false"/>
+                            </prop>
+                          </prop>
+                          <prop type="boolean" name="highAvailabilityEnabled">
+                            <default value="true"/>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="userPluginsSpec">
+                          <prop type="array<object>" name="plugins">
+                            <item type="object">
+                              <prop type="boolean" name="enabled"/>
+                              <prop type="string" name="name">
+                                <format minLength="1"/>
+                              </prop>
+                              <prop type="string" name="path">
+                                <format pattern="^(https)|(abfss)://.*$" minLength="1"/>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="userTelemetrySpec">
+                          <prop type="object" name="storage">
+                            <prop type="string" name="hivecatalogName">
+                              <format minLength="1"/>
+                            </prop>
+                            <prop type="string" name="hivecatalogSchema">
+                              <default value="&quot;trinologs&quot;"/>
+                            </prop>
+                            <prop type="integer32" name="partitionRetentionInDays">
+                              <default value="365"/>
+                            </prop>
+                            <prop type="string" name="path">
+                              <format minLength="1"/>
+                            </prop>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="worker">
+                          <prop type="@TrinoDebugConfig_read" name="debug" clientFlatten="True"/>
+                        </prop>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="clusterType" required="True">
+                      <format pattern="^[a-zA-Z][a-zA-Z0-9]{0,31}$"/>
+                    </prop>
+                    <prop type="object" name="computeProfile" required="True">
+                      <prop type="array<object>" name="nodes" required="True">
+                        <item type="object">
+                          <prop type="integer32" name="count" required="True">
+                            <format minimum="1"/>
+                          </prop>
+                          <prop type="string" name="type" required="True">
+                            <format pattern="^(head|Head|HEAD|worker|Worker|WORKER)$"/>
+                          </prop>
+                          <prop type="string" name="vmSize" required="True">
+                            <format pattern="^[a-zA-Z0-9_\-]{0,256}$"/>
+                          </prop>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="deploymentId"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="status"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="location"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
