@@ -12,5 +12,5 @@ Get details of the API deployment.
 
 - Show API deployment details
     ```bash
-        apic api deployment show -g api-center-test -s contoso --name production
+        apic api deployment show -g api-center-test -s contoso --name production --api-name echo-api
     ```

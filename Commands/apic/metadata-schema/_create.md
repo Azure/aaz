@@ -12,5 +12,5 @@ Create new or updates existing metadata schema.
 
 - Create schema
     ```bash
-        apic metadata-schema create -g api-center-test -s contosoeuap --name approver --schema {"type":"string","title":"Approver",pattern:"^[a-zA-Z0-9]+$\"}
+        az apic metadata-schema create --resource-group api-center-test --service-name contoso --name "test1" --schema '{\"type\":\"string\", \"title\":\"First name\", \"pattern\": \"^[a-zA-Z0-9]+$\"}'
     ```

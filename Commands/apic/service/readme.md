@@ -10,9 +10,6 @@ API Center service
 - [delete](/Commands/apic/service/_delete.md)
 : Delete service
 
-- [export-metadata-schema](/Commands/apic/service/_export-metadata-schema.md)
-: Exports the effective metadata schema.
-
 - [list](/Commands/apic/service/_list.md)
 : List services within an Azure subscription.
 

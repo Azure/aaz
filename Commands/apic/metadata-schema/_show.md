@@ -10,7 +10,12 @@ Get details of the metadata schema.
 
 #### examples
 
-- Show schema details
+- Show schema details 1
     ```bash
         apic metadata-schema show -g api-center-test -s contosoeuap --name approver
+    ```
+
+- Show schema details 2
+    ```bash
+        az apic metadata-schema show --resource-group api-center-test --service-name contoso --name "testchoices"
     ```

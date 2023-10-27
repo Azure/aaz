@@ -12,5 +12,5 @@ Delete API deployment.
 
 - Delete API deployment
     ```bash
-        apic api deployment delete -g api-center-test -s contoso --name production
+        apic api deployment delete -g api-center-test -s contoso --name production --api-name echo-api
     ```
