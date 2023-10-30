@@ -83,6 +83,9 @@
 - [graph-services](/Commands/graph-services/readme.md)
 : Make operations on Microsoft.GraphServices resource types
 
+- [hdinsightonaks](/Commands/hdinsightonaks/readme.md)
+: HDInsight on Aks CLI.
+
 - [image](/Commands/image/readme.md)
 : Manage custom virtual machine images.
 
