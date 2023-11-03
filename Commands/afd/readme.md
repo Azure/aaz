@@ -19,6 +19,9 @@ Manage Azure Front Door Standard/Premium.
 - [origin-group](/Commands/afd/origin-group/readme.md)
 : Manage origin groups under the specified profile.
 
+- [profile](/Commands/afd/profile/readme.md)
+: Manage AFD profiles.
+
 - [route](/Commands/afd/route/readme.md)
 : Manage routes under an AFD endpoint.
 
