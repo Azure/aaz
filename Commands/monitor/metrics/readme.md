@@ -2,6 +2,11 @@
 
 View Azure resource metrics.
 
+## Subgroups
+
+- [alert](/Commands/monitor/metrics/alert/readme.md)
+: Manage near-realtime metric alert rules.
+
 ## Commands
 
 - [list](/Commands/monitor/metrics/_list.md)

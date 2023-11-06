@@ -2,6 +2,9 @@
 
 ## Groups
 
+- [account](/Commands/account/readme.md)
+: Manage Azure subscription information.
+
 - [alerts-management](/Commands/alerts-management/readme.md)
 : Manage Azure Alerts Management Service Resource.
 
@@ -104,8 +107,14 @@
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
 
+- [netappfiles](/Commands/netappfiles/readme.md)
+: Manage Azure NetApp Files (ANF) Resources
+
 - [network](/Commands/network/readme.md)
 : Manage Azure Network resources.
+
+- [network-analytics](/Commands/network-analytics/readme.md)
+: Network Analytics command group Azure Operator Insights resource manipulation.
 
 - [network-function](/Commands/network-function/readme.md)
 : Manage network function

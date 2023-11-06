@@ -11,7 +11,7 @@ Manage static members with network manager group.
 : Delete a static member.
 
 - [list](/Commands/network/manager/group/static-member/_list.md)
-: List the specified static member.
+: List the static members within a specific network group.
 
 - [show](/Commands/network/manager/group/static-member/_show.md)
 : Get the specified static member.

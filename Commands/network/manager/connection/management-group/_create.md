@@ -12,5 +12,5 @@ Create a network manager connection on this management group.
 
 - Create network manager connection management-group
     ```bash
-        network manager connection management-group create --management-group-id "testManagementGroupId" --connection-name "testNetworkManagerConnection" --network-manager "testNetworkManagerId" --description "A sample policy"
+        network manager connection management-group create --management-group-id "testManagementGroupId" --connection-name "testNetworkManagerConnection" --network-manager "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testGroup/providers/Microsoft.Network/networkManagers/testNm" --description "A sample connection."
     ```
