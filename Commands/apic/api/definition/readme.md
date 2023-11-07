@@ -10,8 +10,14 @@ API definition
 - [delete](/Commands/apic/api/definition/_delete.md)
 : Delete specified API definition.
 
+- [export-specification](/Commands/apic/api/definition/_export-specification.md)
+: Exports the API specification.
+
 - [head](/Commands/apic/api/definition/_head.md)
 : Checks if specified API definition exists.
+
+- [import-specification](/Commands/apic/api/definition/_import-specification.md)
+: Imports the API specification.
 
 - [list](/Commands/apic/api/definition/_list.md)
 : List a collection of API definitions.

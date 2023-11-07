@@ -12,5 +12,5 @@ Get details of the API definition.
 
 - Show API definition details
     ```bash
-        apic api version definition show -g api-center-test -s contosoeuap --api-name echo-api --version 2023-01-01 --name "openapi"
+        apic api definition show -g api-center-test -s contosoeuap --api-name echo-api --version 2023-01-01 --name "openapi"
     ```
