@@ -1,6 +1,6 @@
 # [Command] _devcenter admin network-connection update_
 
-Update a Network Connections resource
+Update a network connection.
 
 ## Versions
 
@@ -40,3 +40,10 @@ Update a Network Connections resource
 ### [2023-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvbmV0d29ya2Nvbm5lY3Rpb25zL3t9/2023-10-01-preview.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/networkconnections/{} 2023-10-01-preview -->
+
+#### examples
+
+- Update
+    ```bash
+        devcenter admin network-connection update --domain-password "New Password value for user" --name "networkConnection" --resource-group "rg1"
+    ```
