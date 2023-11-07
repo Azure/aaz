@@ -12,5 +12,5 @@ Exports the API specification.
 
 - Export Specification
     ```bash
-        az apic api version definition export-specification -g api-center-test -s contosoeuap --api-name echo-api --version-name 2023-01-01 --definition-name default
+        apic api version definition export-specification -g api-center-test -s contosoeuap --api-name echo-api --version-name 2023-01-01 --definition-name default
     ```
