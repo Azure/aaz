@@ -17,6 +17,9 @@
 - [automation](/Commands/automation/readme.md)
 : Manage Automation Account
 
+- [billing](/Commands/billing/readme.md)
+: Manage Azure Billing.
+
 - [billing-benefits](/Commands/billing-benefits/readme.md)
 : Azure billing benefits commands
 
