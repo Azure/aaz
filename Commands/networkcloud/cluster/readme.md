@@ -27,6 +27,9 @@ Manage cluster
 - [list](/Commands/networkcloud/cluster/_list.md)
 : List clusters in the provided resource group or subscription.
 
+- [scan-runtime](/Commands/networkcloud/cluster/_scan-runtime.md)
+: Trigger the execution of a runtime protection scan to detect and remediate detected issues, in accordance with the cluster configuration.
+
 - [show](/Commands/networkcloud/cluster/_show.md)
 : Get properties of the provided cluster.
 

@@ -36,3 +36,14 @@ Update an environment type.
     ```bash
         devcenter admin environment-type update --tags Owner="superuser" --dev-center-name "Contoso" --name "DevTest" --resource-group "rg1"
     ```
+
+### [2023-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvZGV2Y2VudGVycy97fS9lbnZpcm9ubWVudHR5cGVzL3t9/2023-10-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/devcenters/{}/environmenttypes/{} 2023-10-01-preview -->
+
+#### examples
+
+- Update
+    ```bash
+        devcenter admin environment-type update --tags Owner="superuser" --dev-center-name "Contoso" --name "DevTest" --resource-group "rg1"
+    ```
