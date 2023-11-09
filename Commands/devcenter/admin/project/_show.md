@@ -36,3 +36,14 @@ Get a project.
     ```bash
         devcenter admin project show --name "DevProject" --resource-group "rg1"
     ```
+
+### [2023-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvcHJvamVjdHMve30=/2023-10-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/projects/{} 2023-10-01-preview -->
+
+#### examples
+
+- Get
+    ```bash
+        devcenter admin project show --name "DevProject" --resource-group "rg1"
+    ```
