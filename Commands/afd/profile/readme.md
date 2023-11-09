@@ -18,3 +18,6 @@ Manage AFD profiles.
 
 - [update](/Commands/afd/profile/_update.md)
 : Update a new Azure Front Door Standard or Azure Front Door Premium or CDN profile with a profile name under the specified subscription and resource group.
+
+- [usage](/Commands/afd/profile/_usage.md)
+: Checks the quota and actual usage of endpoints under the given Azure Front Door profile..
