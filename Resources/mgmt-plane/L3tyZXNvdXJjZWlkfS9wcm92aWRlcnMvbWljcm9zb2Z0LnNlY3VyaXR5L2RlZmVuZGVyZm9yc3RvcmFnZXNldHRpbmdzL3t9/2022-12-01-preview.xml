@@ -1,0 +1,356 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/{resourceid}/providers/microsoft.security/defenderforstoragesettings/{}" version="2022-12-01-preview" swagger="mgmt-plane/security/ResourceProviders/Microsoft.Security/Paths/L3tyZXNvdXJjZUlkfS9wcm92aWRlcnMvTWljcm9zb2Z0LlNlY3VyaXR5L2RlZmVuZGVyRm9yU3RvcmFnZVNldHRpbmdzL3tzZXR0aW5nTmFtZX0=/V/MjAyMi0xMi0wMS1wcmV2aWV3"/>
+  <commandGroup name="security defender-for-storage settings">
+    <command name="show" version="2022-12-01-preview">
+      <resource id="/{resourceid}/providers/microsoft.security/defenderforstoragesettings/{}" version="2022-12-01-preview" swagger="mgmt-plane/security/ResourceProviders/Microsoft.Security/Paths/L3tyZXNvdXJjZUlkfS9wcm92aWRlcnMvTWljcm9zb2Z0LlNlY3VyaXR5L2RlZmVuZGVyRm9yU3RvcmFnZVNldHRpbmdzL3tzZXR0aW5nTmFtZX0=/V/MjAyMi0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.resourceId" options="resource-id" required="True">
+          <help short="The identifier of the resource."/>
+        </arg>
+        <arg type="string" var="$Path.settingName" options="setting-name" required="True">
+          <help short="Defender for Storage setting name."/>
+          <format pattern="^[a-z][a-z0-9]*$"/>
+          <enum>
+            <item name="current" value="&quot;current&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <operation operationId="DefenderForStorage_Get">
+        <http path="/{resourceId}/providers/Microsoft.Security/defenderForStorageSettings/{settingName}">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceId" arg="$Path.resourceId" required="True" skipUrlEncoding="True"/>
+              <param type="string" name="settingName" arg="$Path.settingName" required="True">
+                <format pattern="^[a-z][a-z0-9]*$"/>
+                <enum>
+                  <item value="&quot;current&quot;"/>
+                </enum>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-12-01-preview&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/{resourceId}/providers/Microsoft.Security/defenderForStorageSettings/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="boolean" name="isEnabled"/>
+                    <prop type="object" name="malwareScanning" clientFlatten="True">
+                      <prop type="object" name="onUpload" clientFlatten="True">
+                        <prop type="integer32" name="capGBPerMonth"/>
+                        <prop type="boolean" name="isEnabled"/>
+                      </prop>
+                      <prop type="object" name="operationStatus" cls="OperationStatus_read">
+                        <prop type="string" name="code"/>
+                        <prop type="string" name="message"/>
+                      </prop>
+                      <prop type="string" name="scanResultsEventGridTopicResourceId"/>
+                    </prop>
+                    <prop type="boolean" name="overrideSubscriptionLevelSettings"/>
+                    <prop type="object" name="sensitiveDataDiscovery" clientFlatten="True">
+                      <prop type="boolean" name="isEnabled"/>
+                      <prop readOnly="True" type="@OperationStatus_read" name="operationStatus"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="create" version="2022-12-01-preview">
+      <resource id="/{resourceid}/providers/microsoft.security/defenderforstoragesettings/{}" version="2022-12-01-preview" swagger="mgmt-plane/security/ResourceProviders/Microsoft.Security/Paths/L3tyZXNvdXJjZUlkfS9wcm92aWRlcnMvTWljcm9zb2Z0LlNlY3VyaXR5L2RlZmVuZGVyRm9yU3RvcmFnZVNldHRpbmdzL3tzZXR0aW5nTmFtZX0=/V/MjAyMi0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.resourceId" options="resource-id" required="True">
+          <help short="The identifier of the resource."/>
+        </arg>
+        <arg type="string" var="$Path.settingName" options="setting-name" required="True">
+          <help short="Defender for Storage setting name."/>
+          <format pattern="^[a-z][a-z0-9]*$"/>
+          <enum>
+            <item name="current" value="&quot;current&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <argGroup name="MalwareScanning">
+        <arg type="string" var="$defenderForStorageSetting.properties.malwareScanning.scanResultsEventGridTopicResourceId" options="scan-results-event-grid-topic-resource-id" group="MalwareScanning">
+          <help short="Optional. Resource id of an Event Grid Topic to send scan results to."/>
+        </arg>
+      </argGroup>
+      <argGroup name="OnUpload">
+        <arg type="integer32" var="$defenderForStorageSetting.properties.malwareScanning.onUpload.capGBPerMonth" options="cap-gb-per-month" group="OnUpload">
+          <help short="Defines the max GB to be scanned per Month. Set to -1 if no capping is needed."/>
+        </arg>
+        <arg type="boolean" var="$defenderForStorageSetting.properties.malwareScanning.onUpload.isEnabled" options="is-enabled" group="OnUpload">
+          <help short="Indicates whether On Upload malware scanning should be enabled."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="boolean" var="$defenderForStorageSetting.properties.overrideSubscriptionLevelSettings" options="override-subscription-level-settings" group="Properties">
+          <help short="Indicates whether the settings defined for this storage account should override the settings defined for the subscription."/>
+        </arg>
+      </argGroup>
+      <argGroup name="SensitiveDataDiscovery">
+        <arg type="boolean" var="$defenderForStorageSetting.properties.sensitiveDataDiscovery.isEnabled" options="is-enabled" group="SensitiveDataDiscovery">
+          <help short="Indicates whether Sensitive Data Discovery should be enabled."/>
+        </arg>
+      </argGroup>
+      <operation operationId="DefenderForStorage_Create">
+        <http path="/{resourceId}/providers/Microsoft.Security/defenderForStorageSettings/{settingName}">
+          <request method="put">
+            <path>
+              <param type="string" name="resourceId" arg="$Path.resourceId" required="True" skipUrlEncoding="True"/>
+              <param type="string" name="settingName" arg="$Path.settingName" required="True">
+                <format pattern="^[a-z][a-z0-9]*$"/>
+                <enum>
+                  <item value="&quot;current&quot;"/>
+                </enum>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-12-01-preview&quot;"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="defenderForStorageSetting" required="True" clientFlatten="True">
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="boolean" name="isEnabled" arg="$defenderForStorageSetting.properties.malwareScanning.onUpload.isEnabled"/>
+                    <prop type="object" name="malwareScanning" clientFlatten="True">
+                      <prop type="object" name="onUpload" clientFlatten="True">
+                        <prop type="integer32" name="capGBPerMonth" arg="$defenderForStorageSetting.properties.malwareScanning.onUpload.capGBPerMonth"/>
+                        <prop type="boolean" name="isEnabled" arg="$defenderForStorageSetting.properties.sensitiveDataDiscovery.isEnabled"/>
+                      </prop>
+                      <prop type="string" name="scanResultsEventGridTopicResourceId" arg="$defenderForStorageSetting.properties.malwareScanning.scanResultsEventGridTopicResourceId"/>
+                    </prop>
+                    <prop type="boolean" name="overrideSubscriptionLevelSettings" arg="$defenderForStorageSetting.properties.overrideSubscriptionLevelSettings"/>
+                    <prop type="object" name="sensitiveDataDiscovery" clientFlatten="True">
+                      <prop type="boolean" name="isEnabled" arg="$defenderForStorageSetting.properties.sensitiveDataDiscovery.isEnabled"/>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/{resourceId}/providers/Microsoft.Security/defenderForStorageSettings/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="boolean" name="isEnabled"/>
+                    <prop type="object" name="malwareScanning" clientFlatten="True">
+                      <prop type="object" name="onUpload" clientFlatten="True">
+                        <prop type="integer32" name="capGBPerMonth"/>
+                        <prop type="boolean" name="isEnabled"/>
+                      </prop>
+                      <prop type="object" name="operationStatus" cls="OperationStatus_read">
+                        <prop type="string" name="code"/>
+                        <prop type="string" name="message"/>
+                      </prop>
+                      <prop type="string" name="scanResultsEventGridTopicResourceId"/>
+                    </prop>
+                    <prop type="boolean" name="overrideSubscriptionLevelSettings"/>
+                    <prop type="object" name="sensitiveDataDiscovery" clientFlatten="True">
+                      <prop type="boolean" name="isEnabled"/>
+                      <prop readOnly="True" type="@OperationStatus_read" name="operationStatus"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2022-12-01-preview">
+      <resource id="/{resourceid}/providers/microsoft.security/defenderforstoragesettings/{}" version="2022-12-01-preview" swagger="mgmt-plane/security/ResourceProviders/Microsoft.Security/Paths/L3tyZXNvdXJjZUlkfS9wcm92aWRlcnMvTWljcm9zb2Z0LlNlY3VyaXR5L2RlZmVuZGVyRm9yU3RvcmFnZVNldHRpbmdzL3tzZXR0aW5nTmFtZX0=/V/MjAyMi0xMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.resourceId" options="resource-id" required="True">
+          <help short="The identifier of the resource."/>
+        </arg>
+        <arg type="string" var="$Path.settingName" options="setting-name" required="True">
+          <help short="Defender for Storage setting name."/>
+          <format pattern="^[a-z][a-z0-9]*$"/>
+          <enum>
+            <item name="current" value="&quot;current&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <argGroup name="MalwareScanning">
+        <arg nullable="True" type="string" var="$defenderForStorageSetting.properties.malwareScanning.scanResultsEventGridTopicResourceId" options="scan-results-event-grid-topic-resource-id" group="MalwareScanning">
+          <help short="Optional. Resource id of an Event Grid Topic to send scan results to."/>
+        </arg>
+      </argGroup>
+      <argGroup name="OnUpload">
+        <arg nullable="True" type="integer32" var="$defenderForStorageSetting.properties.malwareScanning.onUpload.capGBPerMonth" options="cap-gb-per-month" group="OnUpload">
+          <help short="Defines the max GB to be scanned per Month. Set to -1 if no capping is needed."/>
+        </arg>
+        <arg nullable="True" type="boolean" var="$defenderForStorageSetting.properties.malwareScanning.onUpload.isEnabled" options="is-enabled" group="OnUpload">
+          <help short="Indicates whether On Upload malware scanning should be enabled."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg nullable="True" type="boolean" var="$defenderForStorageSetting.properties.overrideSubscriptionLevelSettings" options="override-subscription-level-settings" group="Properties">
+          <help short="Indicates whether the settings defined for this storage account should override the settings defined for the subscription."/>
+        </arg>
+      </argGroup>
+      <argGroup name="SensitiveDataDiscovery">
+        <arg nullable="True" type="boolean" var="$defenderForStorageSetting.properties.sensitiveDataDiscovery.isEnabled" options="is-enabled" group="SensitiveDataDiscovery">
+          <help short="Indicates whether Sensitive Data Discovery should be enabled."/>
+        </arg>
+      </argGroup>
+      <operation operationId="DefenderForStorage_Get">
+        <http path="/{resourceId}/providers/Microsoft.Security/defenderForStorageSettings/{settingName}">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceId" arg="$Path.resourceId" required="True" skipUrlEncoding="True"/>
+              <param type="string" name="settingName" arg="$Path.settingName" required="True">
+                <format pattern="^[a-z][a-z0-9]*$"/>
+                <enum>
+                  <item value="&quot;current&quot;"/>
+                </enum>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-12-01-preview&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="DefenderForStorageSetting_read">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/{resourceId}/providers/Microsoft.Security/defenderForStorageSettings/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="boolean" name="isEnabled"/>
+                    <prop type="object" name="malwareScanning" clientFlatten="True">
+                      <prop type="object" name="onUpload" clientFlatten="True">
+                        <prop type="integer32" name="capGBPerMonth"/>
+                        <prop type="boolean" name="isEnabled"/>
+                      </prop>
+                      <prop type="object" name="operationStatus" cls="OperationStatus_read">
+                        <prop type="string" name="code"/>
+                        <prop type="string" name="message"/>
+                      </prop>
+                      <prop type="string" name="scanResultsEventGridTopicResourceId"/>
+                    </prop>
+                    <prop type="boolean" name="overrideSubscriptionLevelSettings"/>
+                    <prop type="object" name="sensitiveDataDiscovery" clientFlatten="True">
+                      <prop type="boolean" name="isEnabled"/>
+                      <prop readOnly="True" type="@OperationStatus_read" name="operationStatus"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate ref="$Instance">
+          <json>
+            <schema type="object" name="defenderForStorageSetting" required="True" clientFlatten="True">
+              <prop type="object" name="properties" clientFlatten="True">
+                <prop type="boolean" name="isEnabled" arg="$defenderForStorageSetting.properties.malwareScanning.onUpload.isEnabled"/>
+                <prop type="object" name="malwareScanning" clientFlatten="True">
+                  <prop type="object" name="onUpload" clientFlatten="True">
+                    <prop type="integer32" name="capGBPerMonth" arg="$defenderForStorageSetting.properties.malwareScanning.onUpload.capGBPerMonth"/>
+                    <prop type="boolean" name="isEnabled" arg="$defenderForStorageSetting.properties.sensitiveDataDiscovery.isEnabled"/>
+                  </prop>
+                  <prop type="string" name="scanResultsEventGridTopicResourceId" arg="$defenderForStorageSetting.properties.malwareScanning.scanResultsEventGridTopicResourceId"/>
+                </prop>
+                <prop type="boolean" name="overrideSubscriptionLevelSettings" arg="$defenderForStorageSetting.properties.overrideSubscriptionLevelSettings"/>
+                <prop type="object" name="sensitiveDataDiscovery" clientFlatten="True">
+                  <prop type="boolean" name="isEnabled" arg="$defenderForStorageSetting.properties.sensitiveDataDiscovery.isEnabled"/>
+                </prop>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="DefenderForStorage_Create">
+        <http path="/{resourceId}/providers/Microsoft.Security/defenderForStorageSettings/{settingName}">
+          <request method="put">
+            <path>
+              <param type="string" name="resourceId" arg="$Path.resourceId" required="True" skipUrlEncoding="True"/>
+              <param type="string" name="settingName" arg="$Path.settingName" required="True">
+                <format pattern="^[a-z][a-z0-9]*$"/>
+                <enum>
+                  <item value="&quot;current&quot;"/>
+                </enum>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-12-01-preview&quot;"/>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="@DefenderForStorageSetting_read"/>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
