@@ -237,32 +237,30 @@
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Properties">
-        <arg type="object" var="$route.properties.cacheConfiguration" options="cache-configuration" group="Properties">
-          <help short="The caching configuration for this route. To disable caching, do not provide a cacheConfiguration object."/>
-          <arg type="object" var="$route.properties.cacheConfiguration.compressionSettings" options="compression-settings">
-            <help short="compression settings."/>
-            <arg type="array<string>" var="$route.properties.cacheConfiguration.compressionSettings.contentTypesToCompress" options="content-types-to-compress">
-              <help short="List of content types on which compression applies. The value should be a valid MIME type."/>
-              <item type="string"/>
-            </arg>
-            <arg type="boolean" var="$route.properties.cacheConfiguration.compressionSettings.isCompressionEnabled" options="is-compression-enabled">
-              <help short="Indicates whether content compression is enabled on AzureFrontDoor. Default value is false. If compression is enabled, content will be served as compressed if user requests for a compressed version. Content won't be compressed on AzureFrontDoor when requested content is smaller than 1 byte or larger than 1 MB."/>
-            </arg>
-          </arg>
-          <arg type="string" var="$route.properties.cacheConfiguration.queryParameters" options="query-parameters">
-            <help short="query parameters to include or exclude (comma separated)."/>
-          </arg>
-          <arg type="string" var="$route.properties.cacheConfiguration.queryStringCachingBehavior" options="query-string-caching-behavior">
-            <help short="Defines how Frontdoor caches requests that include query strings. You can ignore any query strings when caching, ignore specific query strings, cache every request with a unique URL, or cache specific query strings."/>
-            <enum>
-              <item name="IgnoreQueryString" value="&quot;IgnoreQueryString&quot;"/>
-              <item name="IgnoreSpecifiedQueryStrings" value="&quot;IgnoreSpecifiedQueryStrings&quot;"/>
-              <item name="IncludeSpecifiedQueryStrings" value="&quot;IncludeSpecifiedQueryStrings&quot;"/>
-              <item name="UseQueryString" value="&quot;UseQueryString&quot;"/>
-            </enum>
-          </arg>
+      <argGroup name="CacheConfiguration">
+        <arg type="string" var="$route.properties.cacheConfiguration.queryParameters" options="query-parameters" group="CacheConfiguration">
+          <help short="query parameters to include or exclude (comma separated)."/>
         </arg>
+        <arg type="string" var="$route.properties.cacheConfiguration.queryStringCachingBehavior" options="query-string-caching-behavior" group="CacheConfiguration">
+          <help short="Defines how Frontdoor caches requests that include query strings. You can ignore any query strings when caching, ignore specific query strings, cache every request with a unique URL, or cache specific query strings."/>
+          <enum>
+            <item name="IgnoreQueryString" value="&quot;IgnoreQueryString&quot;"/>
+            <item name="IgnoreSpecifiedQueryStrings" value="&quot;IgnoreSpecifiedQueryStrings&quot;"/>
+            <item name="IncludeSpecifiedQueryStrings" value="&quot;IncludeSpecifiedQueryStrings&quot;"/>
+            <item name="UseQueryString" value="&quot;UseQueryString&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <argGroup name="CompressionSettings">
+        <arg type="array<string>" var="$route.properties.cacheConfiguration.compressionSettings.contentTypesToCompress" options="content-types-to-compress" group="CompressionSettings">
+          <help short="List of content types on which compression applies. The value should be a valid MIME type."/>
+          <item type="string"/>
+        </arg>
+        <arg type="boolean" var="$route.properties.cacheConfiguration.compressionSettings.isCompressionEnabled" options="enable-compression" group="CompressionSettings">
+          <help short="Indicates whether content compression is enabled on AzureFrontDoor. Default value is false. If compression is enabled, content will be served as compressed if user requests for a compressed version. Content won't be compressed on AzureFrontDoor when requested content is smaller than 1 byte or larger than 1 MB."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
         <arg type="array<object>" var="$route.properties.customDomains" options="custom-domains" group="Properties">
           <help short="Domains referenced by this endpoint."/>
           <item type="object">
@@ -353,8 +351,8 @@
               <json>
                 <schema type="object" name="route" required="True" clientFlatten="True">
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop type="object" name="cacheConfiguration" arg="$route.properties.cacheConfiguration">
-                      <prop type="object" name="compressionSettings" arg="$route.properties.cacheConfiguration.compressionSettings">
+                    <prop type="object" name="cacheConfiguration">
+                      <prop type="object" name="compressionSettings">
                         <prop type="array<string>" name="contentTypesToCompress" arg="$route.properties.cacheConfiguration.compressionSettings.contentTypesToCompress">
                           <item type="string"/>
                         </prop>
@@ -588,32 +586,30 @@
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Properties">
-        <arg nullable="True" type="object" var="$route.properties.cacheConfiguration" options="cache-configuration" group="Properties">
-          <help short="The caching configuration for this route. To disable caching, do not provide a cacheConfiguration object."/>
-          <arg nullable="True" type="object" var="$route.properties.cacheConfiguration.compressionSettings" options="compression-settings">
-            <help short="compression settings."/>
-            <arg nullable="True" type="array<string>" var="$route.properties.cacheConfiguration.compressionSettings.contentTypesToCompress" options="content-types-to-compress">
-              <help short="List of content types on which compression applies. The value should be a valid MIME type."/>
-              <item nullable="True" type="string"/>
-            </arg>
-            <arg nullable="True" type="boolean" var="$route.properties.cacheConfiguration.compressionSettings.isCompressionEnabled" options="is-compression-enabled">
-              <help short="Indicates whether content compression is enabled on AzureFrontDoor. Default value is false. If compression is enabled, content will be served as compressed if user requests for a compressed version. Content won't be compressed on AzureFrontDoor when requested content is smaller than 1 byte or larger than 1 MB."/>
-            </arg>
-          </arg>
-          <arg nullable="True" type="string" var="$route.properties.cacheConfiguration.queryParameters" options="query-parameters">
-            <help short="query parameters to include or exclude (comma separated)."/>
-          </arg>
-          <arg nullable="True" type="string" var="$route.properties.cacheConfiguration.queryStringCachingBehavior" options="query-string-caching-behavior">
-            <help short="Defines how Frontdoor caches requests that include query strings. You can ignore any query strings when caching, ignore specific query strings, cache every request with a unique URL, or cache specific query strings."/>
-            <enum>
-              <item name="IgnoreQueryString" value="&quot;IgnoreQueryString&quot;"/>
-              <item name="IgnoreSpecifiedQueryStrings" value="&quot;IgnoreSpecifiedQueryStrings&quot;"/>
-              <item name="IncludeSpecifiedQueryStrings" value="&quot;IncludeSpecifiedQueryStrings&quot;"/>
-              <item name="UseQueryString" value="&quot;UseQueryString&quot;"/>
-            </enum>
-          </arg>
+      <argGroup name="CacheConfiguration">
+        <arg nullable="True" type="string" var="$route.properties.cacheConfiguration.queryParameters" options="query-parameters" group="CacheConfiguration">
+          <help short="query parameters to include or exclude (comma separated)."/>
         </arg>
+        <arg nullable="True" type="string" var="$route.properties.cacheConfiguration.queryStringCachingBehavior" options="query-string-caching-behavior" group="CacheConfiguration">
+          <help short="Defines how Frontdoor caches requests that include query strings. You can ignore any query strings when caching, ignore specific query strings, cache every request with a unique URL, or cache specific query strings."/>
+          <enum>
+            <item name="IgnoreQueryString" value="&quot;IgnoreQueryString&quot;"/>
+            <item name="IgnoreSpecifiedQueryStrings" value="&quot;IgnoreSpecifiedQueryStrings&quot;"/>
+            <item name="IncludeSpecifiedQueryStrings" value="&quot;IncludeSpecifiedQueryStrings&quot;"/>
+            <item name="UseQueryString" value="&quot;UseQueryString&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <argGroup name="CompressionSettings">
+        <arg nullable="True" type="array<string>" var="$route.properties.cacheConfiguration.compressionSettings.contentTypesToCompress" options="content-types-to-compress" group="CompressionSettings">
+          <help short="List of content types on which compression applies. The value should be a valid MIME type."/>
+          <item nullable="True" type="string"/>
+        </arg>
+        <arg nullable="True" type="boolean" var="$route.properties.cacheConfiguration.compressionSettings.isCompressionEnabled" options="enable-compression" group="CompressionSettings">
+          <help short="Indicates whether content compression is enabled on AzureFrontDoor. Default value is false. If compression is enabled, content will be served as compressed if user requests for a compressed version. Content won't be compressed on AzureFrontDoor when requested content is smaller than 1 byte or larger than 1 MB."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
         <arg nullable="True" type="array<object>" var="$route.properties.customDomains" options="custom-domains" group="Properties">
           <help short="Domains referenced by this endpoint."/>
           <item nullable="True" type="object">
@@ -835,8 +831,8 @@
           <json>
             <schema type="object" name="route" required="True" clientFlatten="True">
               <prop type="object" name="properties" clientFlatten="True">
-                <prop type="object" name="cacheConfiguration" arg="$route.properties.cacheConfiguration">
-                  <prop type="object" name="compressionSettings" arg="$route.properties.cacheConfiguration.compressionSettings">
+                <prop type="object" name="cacheConfiguration">
+                  <prop type="object" name="compressionSettings">
                     <prop type="array<string>" name="contentTypesToCompress" arg="$route.properties.cacheConfiguration.compressionSettings.contentTypesToCompress">
                       <item type="string"/>
                     </prop>

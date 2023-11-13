@@ -190,45 +190,43 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="HealthProbeSettings">
+        <arg type="integer32" var="$originGroup.properties.healthProbeSettings.probeIntervalInSeconds" options="probe-interval-in-seconds" group="HealthProbeSettings">
+          <help short="The number of seconds between health probes.Default is 240sec."/>
+          <format maximum="255" minimum="1"/>
+        </arg>
+        <arg type="string" var="$originGroup.properties.healthProbeSettings.probePath" options="probe-path" group="HealthProbeSettings">
+          <help short="The path relative to the origin that is used to determine the health of the origin."/>
+        </arg>
+        <arg type="string" var="$originGroup.properties.healthProbeSettings.probeProtocol" options="probe-protocol" group="HealthProbeSettings">
+          <help short="Protocol to use for health probe."/>
+          <enum>
+            <item name="Http" value="&quot;Http&quot;"/>
+            <item name="Https" value="&quot;Https&quot;"/>
+            <item name="NotSet" value="&quot;NotSet&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$originGroup.properties.healthProbeSettings.probeRequestType" options="probe-request-type" group="HealthProbeSettings">
+          <help short="The type of health probe request that is made."/>
+          <enum>
+            <item name="GET" value="&quot;GET&quot;"/>
+            <item name="HEAD" value="&quot;HEAD&quot;"/>
+            <item name="NotSet" value="&quot;NotSet&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <argGroup name="LoadBalancingSettings">
+        <arg type="integer32" var="$originGroup.properties.loadBalancingSettings.additionalLatencyInMilliseconds" options="additional-latency-in-milliseconds" group="LoadBalancingSettings">
+          <help short="The additional latency in milliseconds for probes to fall into the lowest latency bucket"/>
+        </arg>
+        <arg type="integer32" var="$originGroup.properties.loadBalancingSettings.sampleSize" options="sample-size" group="LoadBalancingSettings">
+          <help short="The number of samples to consider for load balancing decisions"/>
+        </arg>
+        <arg type="integer32" var="$originGroup.properties.loadBalancingSettings.successfulSamplesRequired" options="successful-samples-required" group="LoadBalancingSettings">
+          <help short="The number of samples within the sample period that must succeed"/>
+        </arg>
+      </argGroup>
       <argGroup name="Properties">
-        <arg type="object" var="$originGroup.properties.healthProbeSettings" options="health-probe-settings" group="Properties">
-          <help short="Health probe settings to the origin that is used to determine the health of the origin."/>
-          <arg type="integer32" var="$originGroup.properties.healthProbeSettings.probeIntervalInSeconds" options="probe-interval-in-seconds">
-            <help short="The number of seconds between health probes.Default is 240sec."/>
-            <format maximum="255" minimum="1"/>
-          </arg>
-          <arg type="string" var="$originGroup.properties.healthProbeSettings.probePath" options="probe-path">
-            <help short="The path relative to the origin that is used to determine the health of the origin."/>
-          </arg>
-          <arg type="string" var="$originGroup.properties.healthProbeSettings.probeProtocol" options="probe-protocol">
-            <help short="Protocol to use for health probe."/>
-            <enum>
-              <item name="Http" value="&quot;Http&quot;"/>
-              <item name="Https" value="&quot;Https&quot;"/>
-              <item name="NotSet" value="&quot;NotSet&quot;"/>
-            </enum>
-          </arg>
-          <arg type="string" var="$originGroup.properties.healthProbeSettings.probeRequestType" options="probe-request-type">
-            <help short="The type of health probe request that is made."/>
-            <enum>
-              <item name="GET" value="&quot;GET&quot;"/>
-              <item name="HEAD" value="&quot;HEAD&quot;"/>
-              <item name="NotSet" value="&quot;NotSet&quot;"/>
-            </enum>
-          </arg>
-        </arg>
-        <arg type="object" var="$originGroup.properties.loadBalancingSettings" options="load-balancing-settings" group="Properties">
-          <help short="Load balancing settings for a backend pool"/>
-          <arg type="integer32" var="$originGroup.properties.loadBalancingSettings.additionalLatencyInMilliseconds" options="additional-latency-in-milliseconds">
-            <help short="The additional latency in milliseconds for probes to fall into the lowest latency bucket"/>
-          </arg>
-          <arg type="integer32" var="$originGroup.properties.loadBalancingSettings.sampleSize" options="sample-size">
-            <help short="The number of samples to consider for load balancing decisions"/>
-          </arg>
-          <arg type="integer32" var="$originGroup.properties.loadBalancingSettings.successfulSamplesRequired" options="successful-samples-required">
-            <help short="The number of samples within the sample period that must succeed"/>
-          </arg>
-        </arg>
         <arg type="string" var="$originGroup.properties.sessionAffinityState" options="session-affinity-state" group="Properties">
           <help short="Whether to allow session affinity on this host. Valid options are 'Enabled' or 'Disabled'"/>
           <enum>
@@ -262,7 +260,7 @@
               <json>
                 <schema type="object" name="originGroup" required="True" clientFlatten="True">
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop type="object" name="healthProbeSettings" arg="$originGroup.properties.healthProbeSettings">
+                    <prop type="object" name="healthProbeSettings">
                       <prop type="integer32" name="probeIntervalInSeconds" arg="$originGroup.properties.healthProbeSettings.probeIntervalInSeconds">
                         <format maximum="255" minimum="1"/>
                       </prop>
@@ -282,7 +280,7 @@
                         </enum>
                       </prop>
                     </prop>
-                    <prop type="object" name="loadBalancingSettings" arg="$originGroup.properties.loadBalancingSettings">
+                    <prop type="object" name="loadBalancingSettings">
                       <prop type="integer32" name="additionalLatencyInMilliseconds" arg="$originGroup.properties.loadBalancingSettings.additionalLatencyInMilliseconds"/>
                       <prop type="integer32" name="sampleSize" arg="$originGroup.properties.loadBalancingSettings.sampleSize"/>
                       <prop type="integer32" name="successfulSamplesRequired" arg="$originGroup.properties.loadBalancingSettings.successfulSamplesRequired"/>
@@ -423,45 +421,43 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="HealthProbeSettings">
+        <arg nullable="True" type="integer32" var="$originGroup.properties.healthProbeSettings.probeIntervalInSeconds" options="probe-interval-in-seconds" group="HealthProbeSettings">
+          <help short="The number of seconds between health probes.Default is 240sec."/>
+          <format maximum="255" minimum="1"/>
+        </arg>
+        <arg nullable="True" type="string" var="$originGroup.properties.healthProbeSettings.probePath" options="probe-path" group="HealthProbeSettings">
+          <help short="The path relative to the origin that is used to determine the health of the origin."/>
+        </arg>
+        <arg nullable="True" type="string" var="$originGroup.properties.healthProbeSettings.probeProtocol" options="probe-protocol" group="HealthProbeSettings">
+          <help short="Protocol to use for health probe."/>
+          <enum>
+            <item name="Http" value="&quot;Http&quot;"/>
+            <item name="Https" value="&quot;Https&quot;"/>
+            <item name="NotSet" value="&quot;NotSet&quot;"/>
+          </enum>
+        </arg>
+        <arg nullable="True" type="string" var="$originGroup.properties.healthProbeSettings.probeRequestType" options="probe-request-type" group="HealthProbeSettings">
+          <help short="The type of health probe request that is made."/>
+          <enum>
+            <item name="GET" value="&quot;GET&quot;"/>
+            <item name="HEAD" value="&quot;HEAD&quot;"/>
+            <item name="NotSet" value="&quot;NotSet&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <argGroup name="LoadBalancingSettings">
+        <arg nullable="True" type="integer32" var="$originGroup.properties.loadBalancingSettings.additionalLatencyInMilliseconds" options="additional-latency-in-milliseconds" group="LoadBalancingSettings">
+          <help short="The additional latency in milliseconds for probes to fall into the lowest latency bucket"/>
+        </arg>
+        <arg nullable="True" type="integer32" var="$originGroup.properties.loadBalancingSettings.sampleSize" options="sample-size" group="LoadBalancingSettings">
+          <help short="The number of samples to consider for load balancing decisions"/>
+        </arg>
+        <arg nullable="True" type="integer32" var="$originGroup.properties.loadBalancingSettings.successfulSamplesRequired" options="successful-samples-required" group="LoadBalancingSettings">
+          <help short="The number of samples within the sample period that must succeed"/>
+        </arg>
+      </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="object" var="$originGroup.properties.healthProbeSettings" options="health-probe-settings" group="Properties">
-          <help short="Health probe settings to the origin that is used to determine the health of the origin."/>
-          <arg nullable="True" type="integer32" var="$originGroup.properties.healthProbeSettings.probeIntervalInSeconds" options="probe-interval-in-seconds">
-            <help short="The number of seconds between health probes.Default is 240sec."/>
-            <format maximum="255" minimum="1"/>
-          </arg>
-          <arg nullable="True" type="string" var="$originGroup.properties.healthProbeSettings.probePath" options="probe-path">
-            <help short="The path relative to the origin that is used to determine the health of the origin."/>
-          </arg>
-          <arg nullable="True" type="string" var="$originGroup.properties.healthProbeSettings.probeProtocol" options="probe-protocol">
-            <help short="Protocol to use for health probe."/>
-            <enum>
-              <item name="Http" value="&quot;Http&quot;"/>
-              <item name="Https" value="&quot;Https&quot;"/>
-              <item name="NotSet" value="&quot;NotSet&quot;"/>
-            </enum>
-          </arg>
-          <arg nullable="True" type="string" var="$originGroup.properties.healthProbeSettings.probeRequestType" options="probe-request-type">
-            <help short="The type of health probe request that is made."/>
-            <enum>
-              <item name="GET" value="&quot;GET&quot;"/>
-              <item name="HEAD" value="&quot;HEAD&quot;"/>
-              <item name="NotSet" value="&quot;NotSet&quot;"/>
-            </enum>
-          </arg>
-        </arg>
-        <arg nullable="True" type="object" var="$originGroup.properties.loadBalancingSettings" options="load-balancing-settings" group="Properties">
-          <help short="Load balancing settings for a backend pool"/>
-          <arg nullable="True" type="integer32" var="$originGroup.properties.loadBalancingSettings.additionalLatencyInMilliseconds" options="additional-latency-in-milliseconds">
-            <help short="The additional latency in milliseconds for probes to fall into the lowest latency bucket"/>
-          </arg>
-          <arg nullable="True" type="integer32" var="$originGroup.properties.loadBalancingSettings.sampleSize" options="sample-size">
-            <help short="The number of samples to consider for load balancing decisions"/>
-          </arg>
-          <arg nullable="True" type="integer32" var="$originGroup.properties.loadBalancingSettings.successfulSamplesRequired" options="successful-samples-required">
-            <help short="The number of samples within the sample period that must succeed"/>
-          </arg>
-        </arg>
         <arg nullable="True" type="string" var="$originGroup.properties.sessionAffinityState" options="session-affinity-state" group="Properties">
           <help short="Whether to allow session affinity on this host. Valid options are 'Enabled' or 'Disabled'"/>
           <enum>
@@ -594,7 +590,7 @@
           <json>
             <schema type="object" name="originGroup" required="True" clientFlatten="True">
               <prop type="object" name="properties" clientFlatten="True">
-                <prop type="object" name="healthProbeSettings" arg="$originGroup.properties.healthProbeSettings">
+                <prop type="object" name="healthProbeSettings">
                   <prop type="integer32" name="probeIntervalInSeconds" arg="$originGroup.properties.healthProbeSettings.probeIntervalInSeconds">
                     <format maximum="255" minimum="1"/>
                   </prop>
@@ -614,7 +610,7 @@
                     </enum>
                   </prop>
                 </prop>
-                <prop type="object" name="loadBalancingSettings" arg="$originGroup.properties.loadBalancingSettings">
+                <prop type="object" name="loadBalancingSettings">
                   <prop type="integer32" name="additionalLatencyInMilliseconds" arg="$originGroup.properties.loadBalancingSettings.additionalLatencyInMilliseconds"/>
                   <prop type="integer32" name="sampleSize" arg="$originGroup.properties.loadBalancingSettings.sampleSize"/>
                   <prop type="integer32" name="successfulSamplesRequired" arg="$originGroup.properties.loadBalancingSettings.successfulSamplesRequired"/>
