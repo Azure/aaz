@@ -89,6 +89,12 @@
 - [image](/Commands/image/readme.md)
 : Manage custom virtual machine images.
 
+- [large-instance](/Commands/large-instance/readme.md)
+: Handle Operations for Compute Azure Large Instances.
+
+- [large-storage-instance](/Commands/large-storage-instance/readme.md)
+: Handle Operations for Storage Azure Large Instances.
+
 - [load](/Commands/load/readme.md)
 : Manage Azure Load Testing resources.
 
