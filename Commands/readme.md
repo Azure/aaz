@@ -149,6 +149,9 @@
 - [qumulo](/Commands/qumulo/readme.md)
 : Manage qumulo
 
+- [quota](/Commands/quota/readme.md)
+: Manag quota for Azure resource providers.
+
 - [redisenterprise](/Commands/redisenterprise/readme.md)
 : Manage the redisenterprise cache
 
