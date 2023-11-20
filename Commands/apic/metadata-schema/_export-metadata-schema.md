@@ -12,15 +12,15 @@ Exports the effective metadata schema.
 
 - Export Metadata Schema assigned to api
     ```bash
-        apic metadata-schema export-metadata-schema -g api-center-test -s contosoeuap --assigned-to api --file-name C:\Users\arpishah\examples\cli-examples\exported-results\exported-schema-3.json
+        apic metadata-schema export-metadata-schema -g api-center-test -s contosoeuap --assigned-to api --file-name filepath
     ```
 
 - Export Metadata Schema assigned to deployment
     ```bash
-        apic metadata-schema export-metadata-schema -g api-center-test -s contosoeuap --assigned-to deployment --file-name C:\Users\arpishah\examples\cli-examples\exported-results\exported-schema-5.json
+        apic metadata-schema export-metadata-schema -g api-center-test -s contosoeuap --assigned-to deployment --file-name filepath
     ```
 
 - Export Metadata Schema assigned to environment
     ```bash
-        apic metadata-schema export-metadata-schema -g api-center-test -s contosoeuap --assigned-to environment --file-name C:\Users\arpishah\examples\cli-examples\exported-results\exported-schema-6.json
+        apic metadata-schema export-metadata-schema -g api-center-test -s contosoeuap --assigned-to environment --file-name filepath
     ```

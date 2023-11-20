@@ -14,8 +14,3 @@ Create new or updates existing environment.
     ```bash
         apic environment create -g api-center-test -s contosoeuap --name public --title "Public cloud" --kind "development"
     ```
-
-- Create environment with server information
-    ```bash
-        apic environment create -g api-center-test -s contosoeuap --name public-3 --title "Public cloud" --kind "development" --server "C:\Users\arpishah\examples\cli-examples\payload-examples\envcreate1.json" Where envcreate1.json contains { "type": "Azure API Management", "managementPortalUri": [ "management.azure.com/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-resource-group/providers/Microsoft.ApiManagement/service/my-api-management-service" ] }
-    ```
