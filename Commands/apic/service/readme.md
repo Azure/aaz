@@ -10,6 +10,9 @@ API Center service
 - [delete](/Commands/apic/service/_delete.md)
 : Delete service
 
+- [import-from-apim](/Commands/apic/service/_import-from-apim.md)
+: Imports from APIM instance.
+
 - [list](/Commands/apic/service/_list.md)
 : List services within an Azure subscription.
 
