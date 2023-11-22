@@ -86,6 +86,9 @@
 - [graph-services](/Commands/graph-services/readme.md)
 : Make operations on Microsoft.GraphServices resource types
 
+- [hybrid-compute](/Commands/hybrid-compute/readme.md)
+: hhhh
+
 - [image](/Commands/image/readme.md)
 : Manage custom virtual machine images.
 

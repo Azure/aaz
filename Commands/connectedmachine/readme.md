@@ -7,6 +7,21 @@ Manage an Azure Arc-Enabled Server.
 - [extension](/Commands/connectedmachine/extension/readme.md)
 : Manage a VM extension on an Azure Arc-Enabled Server.
 
+- [license](/Commands/connectedmachine/license/readme.md)
+: Manage Extended Security Update (ESU) licenses.
+
+- [license-profile](/Commands/connectedmachine/license-profile/readme.md)
+: Manage the association of Arc-Enabled Servers with Extended Security Update (ESU) licenses.
+
+- [network-configuration](/Commands/connectedmachine/network-configuration/readme.md)
+: Manage the Network Configuration for an Arc-Enabled Server.
+
+- [network-profile](/Commands/connectedmachine/network-profile/readme.md)
+: Manage a Network Profile for an Arc-Enabled Server.
+
+- [os-type](/Commands/connectedmachine/os-type/readme.md)
+: Manage the operation system of an Azure Arc-Enabled Server.
+
 - [private-endpoint-connection](/Commands/connectedmachine/private-endpoint-connection/readme.md)
 : Manage private endpoint connection with an Azure Arc-Enabled Server.
 
@@ -15,6 +30,9 @@ Manage an Azure Arc-Enabled Server.
 
 - [private-link-scope](/Commands/connectedmachine/private-link-scope/readme.md)
 : Manage private link scope of an Azure Arc-Enabled Server.
+
+- [run-command](/Commands/connectedmachine/run-command/readme.md)
+: Manage run commands on an Azure Arc-Enabled Server.
 
 ## Commands
 
@@ -38,3 +56,6 @@ Manage an Azure Arc-Enabled Server.
 
 - [update](/Commands/connectedmachine/_update.md)
 : Update an Azure Arc-Enabled Server. Please note some properties can be set only during machine creation.
+
+- [upgrade-extension](/Commands/connectedmachine/_upgrade-extension.md)
+: The operation to upgrade Machine Extensions.

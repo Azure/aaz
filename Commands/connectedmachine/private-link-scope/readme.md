@@ -2,6 +2,11 @@
 
 Manage private link scope of an Azure Arc-Enabled Server.
 
+## Subgroups
+
+- [network-security-perimeter-configuration](/Commands/connectedmachine/private-link-scope/network-security-perimeter-configuration/readme.md)
+: Manage network security perimeter configuration of an Azure Arc-Enabled Server.
+
 ## Commands
 
 - [create](/Commands/connectedmachine/private-link-scope/_create.md)
