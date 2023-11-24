@@ -12,5 +12,5 @@ Update an integration account.
 
 - Update an integration account
     ```bash
-        logic integration-account update --sku name=Basic --tag atag=123 --name integration-account-name --resource-group rg
+        logic integration-account update --sku Basic --tag atag=123 --name integration-account-name --resource-group rg
     ```

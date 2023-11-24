@@ -10,7 +10,7 @@ Update a workflow.
 
 #### examples
 
-- Show workflow
+- Update workflow
     ```bash
-        logic workflow update --resource-group rg --definition workflow.json --name workflow
+        logic workflow update --resource-group rg --name workflow --definition workflow.json
     ```

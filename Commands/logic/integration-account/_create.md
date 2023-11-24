@@ -12,5 +12,5 @@ Create an integration account.
 
 - Create integration account
     ```bash
-        logic integration-account create --sku name=Standard --name integration-account-name --resource-group rg
+        logic integration-account create --sku Standard --name integration-account-name --resource-group rg
     ```

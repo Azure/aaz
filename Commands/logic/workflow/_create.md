@@ -10,7 +10,7 @@ Create a workflow.
 
 #### examples
 
-- Create a workflow
+- Create workflow
     ```bash
         logic workflow create --resource-group rg --name workflow --definition workflow.json
     ```
