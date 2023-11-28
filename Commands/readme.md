@@ -11,6 +11,9 @@
 - [amlfs](/Commands/amlfs/readme.md)
 : Manage lustre file system
 
+- [apic](/Commands/apic/readme.md)
+: API Center
+
 - [automanage](/Commands/automanage/readme.md)
 : Manage Automanage
 
