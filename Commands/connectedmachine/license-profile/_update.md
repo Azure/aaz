@@ -12,5 +12,5 @@ Update operation to create or update a license profile.
 
 - Sample command for license-profile update
     ```bash
-        connectedmachine licence-profile-update --license-name "myLicenseName" --resource-group "myResourceGroup" --subscription "mySubscription" --software-assurance-customer true --assigned-license "myLicenseResourceId" --subscription-status "Enable" --product-type "WindowsServer" --product-features "{{"name": "HotPatching", "subscriptionStatus": "Enable"}}"
+        connectedmachine licence-profile-update --license-name "myLicenseName" --resource-group "myResourceGroup" --subscription "mySubscription" --software-assurance-customer true --assigned-license "myLicenseResourceId" --subscription-status "Enable" --product-type "WindowsServer" --product-features "[{"name": "HotPatching", "subscriptionStatus": "Enable"}]"
     ```
