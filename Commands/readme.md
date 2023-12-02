@@ -23,9 +23,6 @@
 - [cache](/Commands/cache/readme.md)
 : Azure Cache for Redis
 
-- [blueprint](/Commands/blueprint/readme.md)
-: Commands to manage blueprint.
-
 - [capacity](/Commands/capacity/readme.md)
 : Manage capacity.
 
