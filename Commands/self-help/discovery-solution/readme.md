@@ -5,4 +5,4 @@ discovery-solution command will help you discover available solutions based on y
 ## Commands
 
 - [list](/Commands/self-help/discovery-solution/_list.md)
-: list the existing available solutions for the problemClassificationId or the resourceUri for the Azure resource.
+: List the relevant Azure diagnostics and solutions using problemClassificationId API AND resourceUri or resourceType.
