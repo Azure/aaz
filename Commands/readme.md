@@ -11,11 +11,17 @@
 - [amlfs](/Commands/amlfs/readme.md)
 : Manage lustre file system
 
+- [apic](/Commands/apic/readme.md)
+: API Center
+
 - [automanage](/Commands/automanage/readme.md)
 : Manage Automanage
 
 - [automation](/Commands/automation/readme.md)
 : Manage Automation Account
+
+- [billing](/Commands/billing/readme.md)
+: Manage Azure Billing.
 
 - [billing-benefits](/Commands/billing-benefits/readme.md)
 : Azure billing benefits commands
@@ -76,6 +82,9 @@
 
 - [elastic-san](/Commands/elastic-san/readme.md)
 : Manage Elastic SAN.
+
+- [eventgrid](/Commands/eventgrid/readme.md)
+: Manage Azure Event Grid topics, domains, domain topics, system topics, partner topics, event subscriptions, system topic event subscriptions, partner topic event subscriptions, and namespaces resources.
 
 - [eventhubs](/Commands/eventhubs/readme.md)
 : eventhub
