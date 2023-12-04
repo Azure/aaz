@@ -29,9 +29,6 @@
 - [cache](/Commands/cache/readme.md)
 : Azure Cache for Redis
 
-- [cache](/Commands/cache/readme.md)
-: Azure Cache for Redis
-
 - [capacity](/Commands/capacity/readme.md)
 : Manage capacity.
 
