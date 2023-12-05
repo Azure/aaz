@@ -26,6 +26,9 @@
 - [billing-benefits](/Commands/billing-benefits/readme.md)
 : Azure billing benefits commands
 
+- [blueprint](/Commands/blueprint/readme.md)
+: Commands to manage blueprint.
+
 - [cache](/Commands/cache/readme.md)
 : Azure Cache for Redis
 
