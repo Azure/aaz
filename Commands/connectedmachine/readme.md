@@ -16,6 +16,9 @@ Manage an Azure Arc-Enabled Server.
 - [private-link-scope](/Commands/connectedmachine/private-link-scope/readme.md)
 : Manage private link scope of an Azure Arc-Enabled Server.
 
+- [run-command](/Commands/connectedmachine/run-command/readme.md)
+: Manage run commands on an Azure Arc-Enabled Server.
+
 ## Commands
 
 - [assess-patches](/Commands/connectedmachine/_assess-patches.md)
