@@ -12,5 +12,5 @@ Create operation to create or update a license profile.
 
 - Sample command for license-profile create
     ```bash
-        connectedmachine license-profile create --license-profile-name "myLicenseProfileName" --resource-group "myResourceGroup" --subscription "mySubscription" --machine-name "myMachine"
+        connectedmachine license-profile create --license-profile-name "myLicenseProfileName" --resource-group "myResourceGroup" --subscription "mySubscription" --machine-name "myMachine" --license-profile-name "default" --location "eastus2euap" --software-assurance-customer true --assigned-license "myLicenseId" --subscription-status "Enabled" --product-features [{"name":"HotPatching","subscriptionStatus":"Enabled"}]  --product-type "WindowsServer"
     ```
