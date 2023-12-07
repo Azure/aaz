@@ -45,5 +45,5 @@ Update properties of baseboard management controller key set for the provided cl
 
 - Patch baseboard management controller key set of cluster
     ```bash
-        networkcloud cluster bmckeyset update --name "bmcKeySetName" --expiration "2022-12-31T23:59:59.008Z" --user-list "[{description:'User description',azureUserName:userABC,sshPublicKey:{keyData:'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDWtG2RiEGfXs+RK19HU/G8EdEnbTlkl8Kkb5xv6nm+ttTb9FrW/dc9RQvai24VEFJmG4Fmi6Ow/yjxq+jTDuWOSs+LovQpOKm9D8p05JcIOpdCPGA5S+dWIVL+a9jsQmzBbWYx= admin@vm'}}]" --tags key1="myvalue1" key2="myvalue2" --cluster-name "clusterName" --resource-group "resourceGroupName"
+        networkcloud cluster bmckeyset update --name "bmcKeySetName" --expiration "2022-12-31T23:59:59.008Z" --user-list "[{description:'User description',azureUserName:userABC,userPrincipalName:'userABC@myorg.com',sshPublicKey:{keyData:'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDWtG2RiEGfXs+RK19HU/G8EdEnbTlkl8Kkb5xv6nm+ttTb9FrW/dc9RQvai24VEFJmG4Fmi6Ow/yjxq+jTDuWOSs+LovQpOKm9D8p05JcIOpdCPGA5S+dWIVL+a9jsQmzBbWYx= admin@vm'}}]" --tags key1="myvalue1" key2="myvalue2" --cluster-name "clusterName" --resource-group "resourceGroupName"
     ```
