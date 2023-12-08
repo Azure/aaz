@@ -4,7 +4,7 @@ Adds a new attestation policy certificate to the set of policy     management ce
 
 ## Versions
 
-### [2022-08-01](/Resources/data-plane:microsoft.attestation/L2NlcnRpZmljYXRlczphZGQ=/2022-08-01.xml) **Stable**
+### [2022-08-01](/Resources/data-plane/microsoft.attestation/L2NlcnRpZmljYXRlczphZGQ=/2022-08-01.xml) **Stable**
 
 <!-- data-plane:microsoft.attestation /certificates:add 2022-08-01 -->
 

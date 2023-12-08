@@ -4,7 +4,7 @@ Retrieves the set of certificates used to express policy for the     current ten
 
 ## Versions
 
-### [2022-08-01](/Resources/data-plane:microsoft.attestation/L2NlcnRpZmljYXRlcw==/2022-08-01.xml) **Stable**
+### [2022-08-01](/Resources/data-plane/microsoft.attestation/L2NlcnRpZmljYXRlcw==/2022-08-01.xml) **Stable**
 
 <!-- data-plane:microsoft.attestation /certificates 2022-08-01 -->
 
