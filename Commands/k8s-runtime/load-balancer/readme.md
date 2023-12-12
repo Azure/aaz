@@ -15,6 +15,3 @@ Manage load balancers of Arc Kubernetes clusters
 
 - [show](/Commands/k8s-runtime/load-balancer/_show.md)
 : Get a LoadBalancer
-
-- [update](/Commands/k8s-runtime/load-balancer/_update.md)
-: Update a LoadBalancer

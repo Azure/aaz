@@ -15,6 +15,3 @@ Manage BGP peers of Arc Kubernetes clusters
 
 - [show](/Commands/k8s-runtime/bgp-peer/_show.md)
 : Get a BgpPeer
-
-- [update](/Commands/k8s-runtime/bgp-peer/_update.md)
-: Update a BgpPeer
