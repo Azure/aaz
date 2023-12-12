@@ -11,17 +11,26 @@
 - [amlfs](/Commands/amlfs/readme.md)
 : Manage lustre file system
 
+- [apic](/Commands/apic/readme.md)
+: API Center
+
 - [automanage](/Commands/automanage/readme.md)
 : Manage Automanage
 
 - [automation](/Commands/automation/readme.md)
 : Manage Automation Account
 
+- [billing](/Commands/billing/readme.md)
+: Manage Azure Billing.
+
 - [billing-benefits](/Commands/billing-benefits/readme.md)
 : Azure billing benefits commands
 
 - [blueprint](/Commands/blueprint/readme.md)
 : Commands to manage blueprint.
+
+- [cache](/Commands/cache/readme.md)
+: Azure Cache for Redis
 
 - [capacity](/Commands/capacity/readme.md)
 : Manage capacity.
@@ -77,6 +86,9 @@
 - [elastic-san](/Commands/elastic-san/readme.md)
 : Manage Elastic SAN.
 
+- [eventgrid](/Commands/eventgrid/readme.md)
+: Manage Azure Event Grid topics, domains, domain topics, system topics, partner topics, event subscriptions, system topic event subscriptions, partner topic event subscriptions, and namespaces resources.
+
 - [eventhubs](/Commands/eventhubs/readme.md)
 : eventhub
 
@@ -113,8 +125,14 @@
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
 
+- [netappfiles](/Commands/netappfiles/readme.md)
+: Manage Azure NetApp Files (ANF) Resources
+
 - [network](/Commands/network/readme.md)
 : Manage Azure Network resources.
+
+- [network-analytics](/Commands/network-analytics/readme.md)
+: Network Analytics command group Azure Operator Insights resource manipulation.
 
 - [network-function](/Commands/network-function/readme.md)
 : Manage network function
@@ -148,6 +166,9 @@
 
 - [qumulo](/Commands/qumulo/readme.md)
 : Manage qumulo
+
+- [quota](/Commands/quota/readme.md)
+: Manag quota for Azure resource providers.
 
 - [redisenterprise](/Commands/redisenterprise/readme.md)
 : Manage the redisenterprise cache

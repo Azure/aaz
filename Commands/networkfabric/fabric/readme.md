@@ -4,6 +4,9 @@ Manage Network Fabric Resource
 
 ## Commands
 
+- [commit-configuration](/Commands/networkfabric/fabric/_commit-configuration.md)
+: Atomic update of the given Network Fabric instance. Sync update of NFA resources at Fabric level.
+
 - [create](/Commands/networkfabric/fabric/_create.md)
 : Create a Network Fabric resource
 
