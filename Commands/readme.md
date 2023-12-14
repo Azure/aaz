@@ -14,6 +14,9 @@
 - [apic](/Commands/apic/readme.md)
 : API Center
 
+- [attestation](/Commands/attestation/readme.md)
+: Manage Microsoft Azure Attestation (MAA).
+
 - [automanage](/Commands/automanage/readme.md)
 : Manage Automanage
 
