@@ -1,17 +1,11 @@
 # [Group] _monitor log-analytics workspace_
 
-monitor log-analytics workspace
+Manage Azure log analytics workspace
 
 ## Subgroups
 
-- [available-service-tier](/Commands/monitor/log-analytics/workspace/available-service-tier/readme.md)
-: monitor workspace available-service-tier
-
 - [data-export](/Commands/monitor/log-analytics/workspace/data-export/readme.md)
 : Manage data export ruls for log analytics workspace.
-
-- [link-target](/Commands/monitor/log-analytics/workspace/link-target/readme.md)
-: monitor workspace link-target
 
 - [linked-service](/Commands/monitor/log-analytics/workspace/linked-service/readme.md)
 : Manage linked service for log analytics workspace.
@@ -45,8 +39,14 @@ monitor log-analytics workspace
 - [list](/Commands/monitor/log-analytics/workspace/_list.md)
 : Get a list of workspaces under a resource group or a subscription.
 
+- [list-available-service-tier](/Commands/monitor/log-analytics/workspace/_list-available-service-tier.md)
+: List the available service tiers for the workspace.
+
 - [list-deleted-workspaces](/Commands/monitor/log-analytics/workspace/_list-deleted-workspaces.md)
 : Get a list of deleted workspaces that can be recovered in a subscription or a resource group.
+
+- [list-link-target](/Commands/monitor/log-analytics/workspace/_list-link-target.md)
+: List a list of workspaces which the current user has administrator privileges and are not associated with an Azure Subscription. The subscriptionId parameter in the Url is ignored.
 
 - [list-management-groups](/Commands/monitor/log-analytics/workspace/_list-management-groups.md)
 : Get a list of management groups connected to a workspace.

@@ -1,4 +1,4 @@
-# [Command] _monitor log-analytics workspace available-service-tier list_
+# [Command] _monitor log-analytics workspace list-available-service-tier_
 
 List the available service tiers for the workspace.
 

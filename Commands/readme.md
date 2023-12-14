@@ -117,7 +117,7 @@
 : Manage mobile network
 
 - [monitor](/Commands/monitor/readme.md)
-: monitor
+: Manage the Azure Monitor Service.
 
 - [netappfiles](/Commands/netappfiles/readme.md)
 : Manage Azure NetApp Files (ANF) Resources

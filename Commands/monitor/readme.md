@@ -1,6 +1,6 @@
 # [Group] _monitor_
 
-monitor
+Manage the Azure Monitor Service.
 
 ## Subgroups
 
