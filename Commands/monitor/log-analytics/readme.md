@@ -14,4 +14,4 @@ Manage Azure log analytics.
 : Commands to manage monitor log-analytics solution.
 
 - [workspace](/Commands/monitor/log-analytics/workspace/readme.md)
-: Manage Azure log analytics workspace
+: monitor log-analytics workspace

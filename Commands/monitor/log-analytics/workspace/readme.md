@@ -1,11 +1,17 @@
 # [Group] _monitor log-analytics workspace_
 
-Manage Azure log analytics workspace
+monitor log-analytics workspace
 
 ## Subgroups
 
+- [available-service-tier](/Commands/monitor/log-analytics/workspace/available-service-tier/readme.md)
+: monitor workspace available-service-tier
+
 - [data-export](/Commands/monitor/log-analytics/workspace/data-export/readme.md)
 : Manage data export ruls for log analytics workspace.
+
+- [link-target](/Commands/monitor/log-analytics/workspace/link-target/readme.md)
+: monitor workspace link-target
 
 - [linked-service](/Commands/monitor/log-analytics/workspace/linked-service/readme.md)
 : Manage linked service for log analytics workspace.
