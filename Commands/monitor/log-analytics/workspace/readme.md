@@ -39,8 +39,14 @@ Manage Azure log analytics workspace
 - [list](/Commands/monitor/log-analytics/workspace/_list.md)
 : Get a list of workspaces under a resource group or a subscription.
 
+- [list-available-service-tier](/Commands/monitor/log-analytics/workspace/_list-available-service-tier.md)
+: List the available service tiers for the workspace.
+
 - [list-deleted-workspaces](/Commands/monitor/log-analytics/workspace/_list-deleted-workspaces.md)
 : Get a list of deleted workspaces that can be recovered in a subscription or a resource group.
+
+- [list-link-target](/Commands/monitor/log-analytics/workspace/_list-link-target.md)
+: List a list of workspaces which the current user has administrator privileges and are not associated with an Azure Subscription.
 
 - [list-management-groups](/Commands/monitor/log-analytics/workspace/_list-management-groups.md)
 : Get a list of management groups connected to a workspace.
