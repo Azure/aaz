@@ -1,6 +1,6 @@
 # [Group] _maintenance_
 
-Manage Maintenance
+maintenance
 
 ## Subgroups
 
