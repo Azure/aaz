@@ -41,9 +41,6 @@
 - [capacity](/Commands/capacity/readme.md)
 : Manage capacity.
 
-- [cdn](/Commands/cdn/readme.md)
-: Manage Azure Content Delivery Networks (CDNs).
-
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
