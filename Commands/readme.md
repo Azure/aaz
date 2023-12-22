@@ -5,6 +5,9 @@
 - [account](/Commands/account/readme.md)
 : Manage Azure subscription information.
 
+- [afd](/Commands/afd/readme.md)
+: Manage Azure Front Door Standard/Premium.
+
 - [alerts-management](/Commands/alerts-management/readme.md)
 : Manage Azure Alerts Management Service Resource.
 
