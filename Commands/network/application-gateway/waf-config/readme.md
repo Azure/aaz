@@ -6,5 +6,8 @@ These commands are only applicable to application gateways with an SKU type of W
 
 ## Commands
 
+- [list-dynamic-rule-sets](/Commands/network/application-gateway/waf-config/_list-dynamic-rule-sets.md)
+: List the regional application gateway waf manifest.
+
 - [list-rule-sets](/Commands/network/application-gateway/waf-config/_list-rule-sets.md)
 : Get information on available WAF rule sets, rule groups, and rule IDs.

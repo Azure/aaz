@@ -5,9 +5,6 @@
 - [account](/Commands/account/readme.md)
 : Manage Azure subscription information.
 
-- [afd](/Commands/afd/readme.md)
-: Manage Azure Front Door Standard/Premium.
-
 - [alerts-management](/Commands/alerts-management/readme.md)
 : Manage Azure Alerts Management Service Resource.
 
@@ -16,6 +13,9 @@
 
 - [apic](/Commands/apic/readme.md)
 : API Center
+
+- [attestation](/Commands/attestation/readme.md)
+: Manage Microsoft Azure Attestation (MAA).
 
 - [automanage](/Commands/automanage/readme.md)
 : Manage Automanage
@@ -37,9 +37,6 @@
 
 - [capacity](/Commands/capacity/readme.md)
 : Manage capacity.
-
-- [cdn](/Commands/cdn/readme.md)
-: Manage Azure Content Delivery Networks (CDNs).
 
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources

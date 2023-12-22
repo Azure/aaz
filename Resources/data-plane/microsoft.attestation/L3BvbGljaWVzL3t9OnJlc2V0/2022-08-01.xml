@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.attestation">
+  <resource id="/policies/{}:reset" version="2022-08-01" swagger="data-plane:microsoft.attestation/attestation/ResourceProviders/Microsoft.Attestation/Paths/L3BvbGljaWVzL3thdHRlc3RhdGlvblR5cGV9OnJlc2V0/V/MjAyMi0wOC0wMQ=="/>
+  <commandGroup name="attestation policy">
+    <command name="reset" version="2022-08-01" confirmation="">
+      <resource id="/policies/{}:reset" version="2022-08-01" swagger="data-plane:microsoft.attestation/attestation/ResourceProviders/Microsoft.Attestation/Paths/L3BvbGljaWVzL3thdHRlc3RhdGlvblR5cGV9OnJlc2V0/V/MjAyMi0wOC0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.attestationType" options="attestation-type" required="True" group="">
+          <help short="Type of the attestation."/>
+          <enum>
+            <item name="OpenEnclave" value="&quot;OpenEnclave&quot;"/>
+            <item name="SevSnpVm" value="&quot;SevSnpVm&quot;"/>
+            <item name="SgxEnclave" value="&quot;SgxEnclave&quot;"/>
+            <item name="Tpm" value="&quot;Tpm&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$PolicyJws" options="policy-jws" required="True" group="">
+          <help short="JSON Web Signature with an empty policy document."/>
+          <default value="&quot;eyJhbGciOiJub25lIn0..&quot;"/>
+          <format pattern="[A-Za-z0-9_-]+\.[A-Za-z0-9_-]*\.[A-Za-z0-9_-]*"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Policy_Reset">
+        <http path="/policies/{attestationType}:reset">
+          <request method="post">
+            <path>
+              <param type="string" name="attestationType" arg="$Path.attestationType" required="True">
+                <enum>
+                  <item value="&quot;OpenEnclave&quot;"/>
+                  <item value="&quot;SevSnpVm&quot;"/>
+                  <item value="&quot;SgxEnclave&quot;"/>
+                  <item value="&quot;Tpm&quot;"/>
+                </enum>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-08-01&quot;"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="string" name="PolicyJws" arg="$PolicyJws" required="True">
+                  <format pattern="[A-Za-z0-9_-]+\.[A-Za-z0-9_-]*\.[A-Za-z0-9_-]*"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="token">
+                    <format pattern="[A-Za-z0-9_-]+\.[A-Za-z0-9_-]*\.[A-Za-z0-9_-]*"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
