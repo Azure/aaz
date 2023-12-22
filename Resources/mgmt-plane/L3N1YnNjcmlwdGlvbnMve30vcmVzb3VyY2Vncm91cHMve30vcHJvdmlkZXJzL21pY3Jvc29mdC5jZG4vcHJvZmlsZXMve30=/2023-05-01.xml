@@ -152,7 +152,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="delete" version="2023-05-01" confirmation="Are you sure you want to perform this operation?">
+    <command name="delete" version="2023-05-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}" version="2023-05-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0=/V/MjAyMy0wNS0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.profileName" options="profile-name name n" required="True" idPart="name">
@@ -205,7 +205,7 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Profile">
-        <arg type="object" var="$profile.identity" options="identity" group="Profile">
+        <arg type="object" var="$profile.identity" options="identity" hide="True" group="Profile">
           <help short="Managed service identity (system assigned and/or user assigned identities)."/>
           <arg type="string" var="$profile.identity.type" options="type" required="True">
             <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
@@ -228,27 +228,6 @@
         <arg type="ResourceLocation" var="$profile.location" options="location l" required="True" group="Profile">
           <help short="Resource location."/>
         </arg>
-        <arg type="object" var="$profile.sku" options="sku" required="True" group="Profile">
-          <help short="The pricing tier (defines Azure Front Door Standard or Premium or a CDN provider, feature list and rate) of the profile."/>
-          <arg type="string" var="$profile.sku.name" options="name">
-            <help short="Name of the pricing tier."/>
-            <enum>
-              <item name="Custom_Verizon" value="&quot;Custom_Verizon&quot;"/>
-              <item name="Premium_AzureFrontDoor" value="&quot;Premium_AzureFrontDoor&quot;"/>
-              <item name="Premium_Verizon" value="&quot;Premium_Verizon&quot;"/>
-              <item name="StandardPlus_955BandWidth_ChinaCdn" value="&quot;StandardPlus_955BandWidth_ChinaCdn&quot;"/>
-              <item name="StandardPlus_AvgBandWidth_ChinaCdn" value="&quot;StandardPlus_AvgBandWidth_ChinaCdn&quot;"/>
-              <item name="StandardPlus_ChinaCdn" value="&quot;StandardPlus_ChinaCdn&quot;"/>
-              <item name="Standard_955BandWidth_ChinaCdn" value="&quot;Standard_955BandWidth_ChinaCdn&quot;"/>
-              <item name="Standard_Akamai" value="&quot;Standard_Akamai&quot;"/>
-              <item name="Standard_AvgBandWidth_ChinaCdn" value="&quot;Standard_AvgBandWidth_ChinaCdn&quot;"/>
-              <item name="Standard_AzureFrontDoor" value="&quot;Standard_AzureFrontDoor&quot;"/>
-              <item name="Standard_ChinaCdn" value="&quot;Standard_ChinaCdn&quot;"/>
-              <item name="Standard_Microsoft" value="&quot;Standard_Microsoft&quot;"/>
-              <item name="Standard_Verizon" value="&quot;Standard_Verizon&quot;"/>
-            </enum>
-          </arg>
-        </arg>
         <arg type="object" var="$profile.tags" options="tags" group="Profile">
           <help short="Resource tags."/>
           <additionalProp>
@@ -260,6 +239,26 @@
         <arg type="integer32" var="$profile.properties.originResponseTimeoutSeconds" options="origin-response-timeout-seconds" group="Properties">
           <help short="Send and receive timeout on forwarding request to the origin. When timeout is reached, the request fails and returns."/>
           <format minimum="16"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Sku">
+        <arg type="string" var="$profile.sku.name" options="sku" group="Sku">
+          <help short="Name of the pricing tier."/>
+          <enum>
+            <item name="Custom_Verizon" value="&quot;Custom_Verizon&quot;"/>
+            <item name="Premium_AzureFrontDoor" value="&quot;Premium_AzureFrontDoor&quot;"/>
+            <item name="Premium_Verizon" value="&quot;Premium_Verizon&quot;"/>
+            <item name="StandardPlus_955BandWidth_ChinaCdn" value="&quot;StandardPlus_955BandWidth_ChinaCdn&quot;"/>
+            <item name="StandardPlus_AvgBandWidth_ChinaCdn" value="&quot;StandardPlus_AvgBandWidth_ChinaCdn&quot;"/>
+            <item name="StandardPlus_ChinaCdn" value="&quot;StandardPlus_ChinaCdn&quot;"/>
+            <item name="Standard_955BandWidth_ChinaCdn" value="&quot;Standard_955BandWidth_ChinaCdn&quot;"/>
+            <item name="Standard_Akamai" value="&quot;Standard_Akamai&quot;"/>
+            <item name="Standard_AvgBandWidth_ChinaCdn" value="&quot;Standard_AvgBandWidth_ChinaCdn&quot;"/>
+            <item name="Standard_AzureFrontDoor" value="&quot;Standard_AzureFrontDoor&quot;"/>
+            <item name="Standard_ChinaCdn" value="&quot;Standard_ChinaCdn&quot;"/>
+            <item name="Standard_Microsoft" value="&quot;Standard_Microsoft&quot;"/>
+            <item name="Standard_Verizon" value="&quot;Standard_Verizon&quot;"/>
+          </enum>
         </arg>
       </argGroup>
       <operation operationId="Profiles_Create">
@@ -302,7 +301,7 @@
                       <format minimum="16"/>
                     </prop>
                   </prop>
-                  <prop type="object" name="sku" arg="$profile.sku" required="True">
+                  <prop type="object" name="sku" required="True">
                     <prop type="string" name="name" arg="$profile.sku.name">
                       <enum>
                         <item value="&quot;Custom_Verizon&quot;"/>
@@ -475,7 +474,7 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Profile">
-        <arg nullable="True" type="object" var="$profile.identity" options="identity" group="Profile">
+        <arg nullable="True" type="object" var="$profile.identity" options="identity" hide="True" group="Profile">
           <help short="Managed service identity (system assigned and/or user assigned identities)."/>
           <arg type="string" var="$profile.identity.type" options="type">
             <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
@@ -498,27 +497,6 @@
         <arg type="ResourceLocation" var="$profile.location" options="location l" group="Profile">
           <help short="Resource location."/>
         </arg>
-        <arg type="object" var="$profile.sku" options="sku" group="Profile">
-          <help short="The pricing tier (defines Azure Front Door Standard or Premium or a CDN provider, feature list and rate) of the profile."/>
-          <arg nullable="True" type="string" var="$profile.sku.name" options="name">
-            <help short="Name of the pricing tier."/>
-            <enum>
-              <item name="Custom_Verizon" value="&quot;Custom_Verizon&quot;"/>
-              <item name="Premium_AzureFrontDoor" value="&quot;Premium_AzureFrontDoor&quot;"/>
-              <item name="Premium_Verizon" value="&quot;Premium_Verizon&quot;"/>
-              <item name="StandardPlus_955BandWidth_ChinaCdn" value="&quot;StandardPlus_955BandWidth_ChinaCdn&quot;"/>
-              <item name="StandardPlus_AvgBandWidth_ChinaCdn" value="&quot;StandardPlus_AvgBandWidth_ChinaCdn&quot;"/>
-              <item name="StandardPlus_ChinaCdn" value="&quot;StandardPlus_ChinaCdn&quot;"/>
-              <item name="Standard_955BandWidth_ChinaCdn" value="&quot;Standard_955BandWidth_ChinaCdn&quot;"/>
-              <item name="Standard_Akamai" value="&quot;Standard_Akamai&quot;"/>
-              <item name="Standard_AvgBandWidth_ChinaCdn" value="&quot;Standard_AvgBandWidth_ChinaCdn&quot;"/>
-              <item name="Standard_AzureFrontDoor" value="&quot;Standard_AzureFrontDoor&quot;"/>
-              <item name="Standard_ChinaCdn" value="&quot;Standard_ChinaCdn&quot;"/>
-              <item name="Standard_Microsoft" value="&quot;Standard_Microsoft&quot;"/>
-              <item name="Standard_Verizon" value="&quot;Standard_Verizon&quot;"/>
-            </enum>
-          </arg>
-        </arg>
         <arg nullable="True" type="object" var="$profile.tags" options="tags" group="Profile">
           <help short="Resource tags."/>
           <additionalProp>
@@ -530,6 +508,26 @@
         <arg nullable="True" type="integer32" var="$profile.properties.originResponseTimeoutSeconds" options="origin-response-timeout-seconds" group="Properties">
           <help short="Send and receive timeout on forwarding request to the origin. When timeout is reached, the request fails and returns."/>
           <format minimum="16"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Sku">
+        <arg nullable="True" type="string" var="$profile.sku.name" options="sku" group="Sku">
+          <help short="Name of the pricing tier."/>
+          <enum>
+            <item name="Custom_Verizon" value="&quot;Custom_Verizon&quot;"/>
+            <item name="Premium_AzureFrontDoor" value="&quot;Premium_AzureFrontDoor&quot;"/>
+            <item name="Premium_Verizon" value="&quot;Premium_Verizon&quot;"/>
+            <item name="StandardPlus_955BandWidth_ChinaCdn" value="&quot;StandardPlus_955BandWidth_ChinaCdn&quot;"/>
+            <item name="StandardPlus_AvgBandWidth_ChinaCdn" value="&quot;StandardPlus_AvgBandWidth_ChinaCdn&quot;"/>
+            <item name="StandardPlus_ChinaCdn" value="&quot;StandardPlus_ChinaCdn&quot;"/>
+            <item name="Standard_955BandWidth_ChinaCdn" value="&quot;Standard_955BandWidth_ChinaCdn&quot;"/>
+            <item name="Standard_Akamai" value="&quot;Standard_Akamai&quot;"/>
+            <item name="Standard_AvgBandWidth_ChinaCdn" value="&quot;Standard_AvgBandWidth_ChinaCdn&quot;"/>
+            <item name="Standard_AzureFrontDoor" value="&quot;Standard_AzureFrontDoor&quot;"/>
+            <item name="Standard_ChinaCdn" value="&quot;Standard_ChinaCdn&quot;"/>
+            <item name="Standard_Microsoft" value="&quot;Standard_Microsoft&quot;"/>
+            <item name="Standard_Verizon" value="&quot;Standard_Verizon&quot;"/>
+          </enum>
         </arg>
       </argGroup>
       <operation operationId="Profiles_Get">
@@ -696,7 +694,7 @@
                   <format minimum="16"/>
                 </prop>
               </prop>
-              <prop type="object" name="sku" arg="$profile.sku" required="True">
+              <prop type="object" name="sku" required="True">
                 <prop type="string" name="name" arg="$profile.sku.name">
                   <enum>
                     <item value="&quot;Custom_Verizon&quot;"/>

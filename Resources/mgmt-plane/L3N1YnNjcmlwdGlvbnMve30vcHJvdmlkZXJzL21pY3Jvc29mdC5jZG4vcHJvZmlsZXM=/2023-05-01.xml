@@ -2,14 +2,20 @@
 <CodeGen plane="mgmt-plane">
   <resource id="/subscriptions/{}/providers/microsoft.cdn/profiles" version="2023-05-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNkbi9wcm9maWxlcw==/V/MjAyMy0wNS0wMQ=="/>
   <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles" version="2023-05-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVz/V/MjAyMy0wNS0wMQ=="/>
-  <commandGroup name="cdn profile">
-    <command name="list" version="2023-05-01">
+  <commandGroup name="afd profile">
+    <command name="list" version="2023-05-01" confirmation="">
       <resource id="/subscriptions/{}/providers/microsoft.cdn/profiles" version="2023-05-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNkbi9wcm9maWxlcw==/V/MjAyMy0wNS0wMQ=="/>
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles" version="2023-05-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVz/V/MjAyMy0wNS0wMQ=="/>
       <argGroup name="">
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <condition var="$Condition_Profiles_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
       <condition var="$Condition_Profiles_List">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -18,16 +24,13 @@
           </operator>
         </operator>
       </condition>
-      <condition var="$Condition_Profiles_ListByResourceGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
-      <operation when="$Condition_Profiles_List" operationId="Profiles_List">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Cdn/profiles">
+      <operation when="$Condition_Profiles_ListByResourceGroup" operationId="Profiles_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+              </param>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -164,13 +167,10 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_Profiles_ListByResourceGroup" operationId="Profiles_ListByResourceGroup">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles">
+      <operation when="$Condition_Profiles_List" operationId="Profiles_List">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Cdn/profiles">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
-              </param>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>

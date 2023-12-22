@@ -11,7 +11,7 @@ Manage AFD profiles.
 : Delete an existing  Azure Front Door Standard or Azure Front Door Premium or CDN profile with the specified parameters. Deleting a profile will result in the deletion of all of the sub-resources including endpoints, origins and custom domains.
 
 - [list](/Commands/afd/profile/_list.md)
-: List all of the Azure Front Door Standard, Azure Front Door Premium, and CDN profiles within a resource group.
+: List all of the Azure Front Door Standard, Azure Front Door Premium, and CDN profiles within an Azure subscription.
 
 - [show](/Commands/afd/profile/_show.md)
 : Get an Azure Front Door Standard or Azure Front Door Premium or CDN profile with the specified profile name under the specified subscription and resource group.

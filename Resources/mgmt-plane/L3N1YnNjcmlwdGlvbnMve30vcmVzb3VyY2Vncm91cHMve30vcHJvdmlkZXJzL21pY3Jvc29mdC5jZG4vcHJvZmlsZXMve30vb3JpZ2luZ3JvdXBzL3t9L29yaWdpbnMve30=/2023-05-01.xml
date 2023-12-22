@@ -210,13 +210,8 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="PrivateLinkResource">
-        <arg type="string" var="$origin.properties.sharedPrivateLinkResource.privateLink.id" options="private-link-resource" group="PrivateLinkResource">
-          <help short="The resource ID of the origin that will be connected to using the private link."/>
-        </arg>
-      </argGroup>
       <argGroup name="Properties">
-        <arg type="object" var="$origin.properties.azureOrigin" options="azure-origin" group="Properties" cls="ResourceReference_create">
+        <arg type="object" var="$origin.properties.azureOrigin" options="azure-origin" hide="True" group="Properties" cls="ResourceReference_create">
           <help short="Resource reference to the Azure origin resource."/>
           <arg type="string" var="@ResourceReference_create.id" options="id">
             <help short="Resource ID."/>
@@ -253,30 +248,34 @@
           <help short="Priority of origin in given origin group for load balancing. Higher priorities will not be used for load balancing if any lower priority origin is healthy.Must be between 1 and 5"/>
           <format maximum="5" minimum="1"/>
         </arg>
+        <arg type="object" var="$origin.properties.sharedPrivateLinkResource" options="shared-private-link-resource" group="Properties">
+          <help short="The properties of the private link resource for private origin."/>
+          <arg type="string" var="$origin.properties.sharedPrivateLinkResource.groupId" options="group-id">
+            <help short="The group id from the provider of resource the shared private link resource is for."/>
+          </arg>
+          <arg type="@ResourceReference_create" var="$origin.properties.sharedPrivateLinkResource.privateLink" options="private-link">
+            <help short="The resource id of the resource the shared private link resource is for."/>
+          </arg>
+          <arg type="string" var="$origin.properties.sharedPrivateLinkResource.privateLinkLocation" options="private-link-location">
+            <help short="The location of the shared private link resource"/>
+          </arg>
+          <arg type="string" var="$origin.properties.sharedPrivateLinkResource.requestMessage" options="request-message">
+            <help short="The request message for requesting approval of the shared private link resource."/>
+          </arg>
+          <arg type="string" var="$origin.properties.sharedPrivateLinkResource.status" options="status">
+            <help short="Status of the shared private link resource. Can be Pending, Approved, Rejected, Disconnected, or Timeout."/>
+            <enum>
+              <item name="Approved" value="&quot;Approved&quot;"/>
+              <item name="Disconnected" value="&quot;Disconnected&quot;"/>
+              <item name="Pending" value="&quot;Pending&quot;"/>
+              <item name="Rejected" value="&quot;Rejected&quot;"/>
+              <item name="Timeout" value="&quot;Timeout&quot;"/>
+            </enum>
+          </arg>
+        </arg>
         <arg type="integer32" var="$origin.properties.weight" options="weight" group="Properties">
           <help short="Weight of the origin in given origin group for load balancing. Must be between 1 and 1000"/>
           <format maximum="1000" minimum="1"/>
-        </arg>
-      </argGroup>
-      <argGroup name="SharedPrivateLinkResource">
-        <arg type="string" var="$origin.properties.sharedPrivateLinkResource.groupId" options="private-link-sub-resource-type" group="SharedPrivateLinkResource">
-          <help short="The group id from the provider of resource the shared private link resource is for."/>
-        </arg>
-        <arg type="string" var="$origin.properties.sharedPrivateLinkResource.privateLinkLocation" options="private-link-location" group="SharedPrivateLinkResource">
-          <help short="The location of the shared private link resource"/>
-        </arg>
-        <arg type="string" var="$origin.properties.sharedPrivateLinkResource.requestMessage" options="private-link-request-message" group="SharedPrivateLinkResource">
-          <help short="The request message for requesting approval of the shared private link resource."/>
-        </arg>
-        <arg type="string" var="$origin.properties.sharedPrivateLinkResource.status" options="status" hide="True" group="SharedPrivateLinkResource">
-          <help short="Status of the shared private link resource. Can be Pending, Approved, Rejected, Disconnected, or Timeout."/>
-          <enum>
-            <item name="Approved" value="&quot;Approved&quot;"/>
-            <item name="Disconnected" value="&quot;Disconnected&quot;"/>
-            <item name="Pending" value="&quot;Pending&quot;"/>
-            <item name="Rejected" value="&quot;Rejected&quot;"/>
-            <item name="Timeout" value="&quot;Timeout&quot;"/>
-          </enum>
         </arg>
       </argGroup>
       <operation operationId="AFDOrigins_Create">
@@ -326,11 +325,9 @@
                     <prop type="integer32" name="priority" arg="$origin.properties.priority">
                       <format maximum="5" minimum="1"/>
                     </prop>
-                    <prop type="object" name="sharedPrivateLinkResource">
+                    <prop type="object" name="sharedPrivateLinkResource" arg="$origin.properties.sharedPrivateLinkResource">
                       <prop type="string" name="groupId" arg="$origin.properties.sharedPrivateLinkResource.groupId"/>
-                      <prop type="object" name="privateLink">
-                        <prop type="string" name="id" arg="$origin.properties.sharedPrivateLinkResource.privateLink.id"/>
-                      </prop>
+                      <prop type="@ResourceReference_create" name="privateLink" arg="$origin.properties.sharedPrivateLinkResource.privateLink"/>
                       <prop type="string" name="privateLinkLocation" arg="$origin.properties.sharedPrivateLinkResource.privateLinkLocation"/>
                       <prop type="string" name="requestMessage" arg="$origin.properties.sharedPrivateLinkResource.requestMessage"/>
                       <prop type="string" name="status" arg="$origin.properties.sharedPrivateLinkResource.status">
@@ -485,13 +482,8 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="PrivateLink">
-        <arg nullable="True" type="string" var="$origin.properties.sharedPrivateLinkResource.privateLink.id" options="private-link-resource" group="PrivateLink">
-          <help short="The resource ID of the origin that will be connected to using the private link."/>
-        </arg>
-      </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="object" var="$origin.properties.azureOrigin" options="azure-origin" group="Properties" cls="ResourceReference_update">
+        <arg nullable="True" type="object" var="$origin.properties.azureOrigin" options="azure-origin" hide="True" group="Properties" cls="ResourceReference_update">
           <help short="Resource reference to the Azure origin resource."/>
           <arg nullable="True" type="string" var="@ResourceReference_update.id" options="id">
             <help short="Resource ID."/>
@@ -525,30 +517,34 @@
           <help short="Priority of origin in given origin group for load balancing. Higher priorities will not be used for load balancing if any lower priority origin is healthy.Must be between 1 and 5"/>
           <format maximum="5" minimum="1"/>
         </arg>
+        <arg nullable="True" type="object" var="$origin.properties.sharedPrivateLinkResource" options="shared-private-link-resource" group="Properties">
+          <help short="The properties of the private link resource for private origin."/>
+          <arg nullable="True" type="string" var="$origin.properties.sharedPrivateLinkResource.groupId" options="group-id">
+            <help short="The group id from the provider of resource the shared private link resource is for."/>
+          </arg>
+          <arg nullable="True" type="@ResourceReference_update" var="$origin.properties.sharedPrivateLinkResource.privateLink" options="private-link">
+            <help short="The resource id of the resource the shared private link resource is for."/>
+          </arg>
+          <arg nullable="True" type="string" var="$origin.properties.sharedPrivateLinkResource.privateLinkLocation" options="private-link-location">
+            <help short="The location of the shared private link resource"/>
+          </arg>
+          <arg nullable="True" type="string" var="$origin.properties.sharedPrivateLinkResource.requestMessage" options="request-message">
+            <help short="The request message for requesting approval of the shared private link resource."/>
+          </arg>
+          <arg nullable="True" type="string" var="$origin.properties.sharedPrivateLinkResource.status" options="status">
+            <help short="Status of the shared private link resource. Can be Pending, Approved, Rejected, Disconnected, or Timeout."/>
+            <enum>
+              <item name="Approved" value="&quot;Approved&quot;"/>
+              <item name="Disconnected" value="&quot;Disconnected&quot;"/>
+              <item name="Pending" value="&quot;Pending&quot;"/>
+              <item name="Rejected" value="&quot;Rejected&quot;"/>
+              <item name="Timeout" value="&quot;Timeout&quot;"/>
+            </enum>
+          </arg>
+        </arg>
         <arg nullable="True" type="integer32" var="$origin.properties.weight" options="weight" group="Properties">
           <help short="Weight of the origin in given origin group for load balancing. Must be between 1 and 1000"/>
           <format maximum="1000" minimum="1"/>
-        </arg>
-      </argGroup>
-      <argGroup name="SharedPrivateLinkResource">
-        <arg nullable="True" type="string" var="$origin.properties.sharedPrivateLinkResource.groupId" options="private-link-sub-resource-type" group="SharedPrivateLinkResource">
-          <help short="The group id from the provider of resource the shared private link resource is for."/>
-        </arg>
-        <arg nullable="True" type="string" var="$origin.properties.sharedPrivateLinkResource.privateLinkLocation" options="private-link-location" group="SharedPrivateLinkResource">
-          <help short="The location of the shared private link resource"/>
-        </arg>
-        <arg nullable="True" type="string" var="$origin.properties.sharedPrivateLinkResource.requestMessage" options="private-link-request-message" group="SharedPrivateLinkResource">
-          <help short="The request message for requesting approval of the shared private link resource."/>
-        </arg>
-        <arg nullable="True" type="string" var="$origin.properties.sharedPrivateLinkResource.status" options="status" hide="True" group="SharedPrivateLinkResource">
-          <help short="Status of the shared private link resource. Can be Pending, Approved, Rejected, Disconnected, or Timeout."/>
-          <enum>
-            <item name="Approved" value="&quot;Approved&quot;"/>
-            <item name="Disconnected" value="&quot;Disconnected&quot;"/>
-            <item name="Pending" value="&quot;Pending&quot;"/>
-            <item name="Rejected" value="&quot;Rejected&quot;"/>
-            <item name="Timeout" value="&quot;Timeout&quot;"/>
-          </enum>
         </arg>
       </argGroup>
       <operation operationId="AFDOrigins_Get">
@@ -706,11 +702,9 @@
                 <prop type="integer32" name="priority" arg="$origin.properties.priority">
                   <format maximum="5" minimum="1"/>
                 </prop>
-                <prop type="object" name="sharedPrivateLinkResource">
+                <prop type="object" name="sharedPrivateLinkResource" arg="$origin.properties.sharedPrivateLinkResource">
                   <prop type="string" name="groupId" arg="$origin.properties.sharedPrivateLinkResource.groupId"/>
-                  <prop type="object" name="privateLink">
-                    <prop type="string" name="id" arg="$origin.properties.sharedPrivateLinkResource.privateLink.id"/>
-                  </prop>
+                  <prop type="@ResourceReference_update" name="privateLink" arg="$origin.properties.sharedPrivateLinkResource.privateLink"/>
                   <prop type="string" name="privateLinkLocation" arg="$origin.properties.sharedPrivateLinkResource.privateLinkLocation"/>
                   <prop type="string" name="requestMessage" arg="$origin.properties.sharedPrivateLinkResource.requestMessage"/>
                   <prop type="string" name="status" arg="$origin.properties.sharedPrivateLinkResource.status">

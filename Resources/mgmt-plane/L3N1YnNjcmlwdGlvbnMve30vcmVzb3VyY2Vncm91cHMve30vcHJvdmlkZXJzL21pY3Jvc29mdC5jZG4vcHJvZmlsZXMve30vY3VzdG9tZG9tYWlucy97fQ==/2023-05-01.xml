@@ -199,11 +199,13 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Properties">
-        <arg type="@ResourceReference_create" var="$customDomain.properties.azureDnsZone" options="azure-dns-zone" group="Properties">
-          <help short="Resource reference to the Azure DNS zone"/>
+      <argGroup name="AzureDnsZone">
+        <arg type="string" var="$customDomain.properties.azureDnsZone.id" options="azure-dns-zone" group="AzureDnsZone">
+          <help short="ID of the Azure DNS zone."/>
         </arg>
-        <arg type="object" var="$customDomain.properties.extendedProperties" options="extended-properties" group="Properties">
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="object" var="$customDomain.properties.extendedProperties" options="extended-properties" hide="True" group="Properties">
           <help short="Key-Value pair representing migration properties for domains."/>
           <additionalProp>
             <item type="string"/>
@@ -212,8 +214,16 @@
         <arg type="string" var="$customDomain.properties.hostName" options="host-name" group="Properties">
           <help short="The host name of the domain. Must be a domain name."/>
         </arg>
-        <arg type="@ResourceReference_create" var="$customDomain.properties.preValidatedCustomDomainResourceId" options="pre-validated-custom-domain-resource-id" group="Properties">
+        <arg type="object" var="$customDomain.properties.preValidatedCustomDomainResourceId" options="pre-validated-custom-domain-resource-id" hide="True" group="Properties" cls="ResourceReference_create">
           <help short="Resource reference to the Azure resource where custom domain ownership was prevalidated"/>
+          <arg type="string" var="@ResourceReference_create.id" options="id">
+            <help short="Resource ID."/>
+          </arg>
+        </arg>
+      </argGroup>
+      <argGroup name="Secret">
+        <arg type="string" var="$customDomain.properties.tlsSettings.secret.id" options="secret" group="Secret">
+          <help short="Resource reference to the secret. ie. subs/rg/profile/secret"/>
         </arg>
       </argGroup>
       <argGroup name="TlsSettings">
@@ -231,12 +241,6 @@
             <item name="TLS10" value="&quot;TLS10&quot;"/>
             <item name="TLS12" value="&quot;TLS12&quot;"/>
           </enum>
-        </arg>
-        <arg type="object" var="$customDomain.properties.tlsSettings.secret" options="secret" group="TlsSettings" cls="ResourceReference_create">
-          <help short="Resource reference to the secret. ie. subs/rg/profile/secret"/>
-          <arg type="string" var="@ResourceReference_create.id" options="id">
-            <help short="Resource ID."/>
-          </arg>
         </arg>
       </argGroup>
       <operation operationId="AFDCustomDomains_Create">
@@ -260,14 +264,18 @@
               <json>
                 <schema type="object" name="customDomain" required="True" clientFlatten="True">
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop type="@ResourceReference_create" name="azureDnsZone" arg="$customDomain.properties.azureDnsZone"/>
+                    <prop type="object" name="azureDnsZone">
+                      <prop type="string" name="id" arg="$customDomain.properties.azureDnsZone.id"/>
+                    </prop>
                     <prop type="object" name="extendedProperties" arg="$customDomain.properties.extendedProperties">
                       <additionalProp>
                         <item type="string"/>
                       </additionalProp>
                     </prop>
                     <prop type="string" name="hostName" arg="$customDomain.properties.hostName" required="True"/>
-                    <prop type="@ResourceReference_create" name="preValidatedCustomDomainResourceId" arg="$customDomain.properties.preValidatedCustomDomainResourceId"/>
+                    <prop type="object" name="preValidatedCustomDomainResourceId" arg="$customDomain.properties.preValidatedCustomDomainResourceId" cls="ResourceReference_create">
+                      <prop type="string" name="id" arg="@ResourceReference_create.id"/>
+                    </prop>
                     <prop type="object" name="tlsSettings">
                       <prop type="string" name="certificateType" arg="$customDomain.properties.tlsSettings.certificateType" required="True">
                         <enum>
@@ -282,8 +290,8 @@
                           <item value="&quot;TLS12&quot;"/>
                         </enum>
                       </prop>
-                      <prop type="object" name="secret" arg="$customDomain.properties.tlsSettings.secret" cls="ResourceReference_create">
-                        <prop type="string" name="id" arg="@ResourceReference_create.id"/>
+                      <prop type="object" name="secret">
+                        <prop type="string" name="id" arg="$customDomain.properties.tlsSettings.secret.id"/>
                       </prop>
                     </prop>
                   </prop>
@@ -419,21 +427,31 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Properties">
-        <arg nullable="True" type="@ResourceReference_update" var="$customDomain.properties.azureDnsZone" options="azure-dns-zone" group="Properties">
-          <help short="Resource reference to the Azure DNS zone"/>
+      <argGroup name="AzureDnsZone">
+        <arg nullable="True" type="string" var="$customDomain.properties.azureDnsZone.id" options="azure-dns-zone" group="AzureDnsZone">
+          <help short="ID of the Azure DNS zone."/>
         </arg>
-        <arg nullable="True" type="object" var="$customDomain.properties.extendedProperties" options="extended-properties" group="Properties">
+      </argGroup>
+      <argGroup name="Properties">
+        <arg nullable="True" type="object" var="$customDomain.properties.extendedProperties" options="extended-properties" hide="True" group="Properties">
           <help short="Key-Value pair representing migration properties for domains."/>
           <additionalProp>
             <item nullable="True" type="string"/>
           </additionalProp>
         </arg>
-        <arg type="string" var="$customDomain.properties.hostName" options="host-name" group="Properties">
+        <arg type="string" var="$customDomain.properties.hostName" options="host-name" hide="True" group="Properties">
           <help short="The host name of the domain. Must be a domain name."/>
         </arg>
-        <arg nullable="True" type="@ResourceReference_update" var="$customDomain.properties.preValidatedCustomDomainResourceId" options="pre-validated-custom-domain-resource-id" group="Properties">
+        <arg nullable="True" type="object" var="$customDomain.properties.preValidatedCustomDomainResourceId" options="pre-validated-custom-domain-resource-id" hide="True" group="Properties" cls="ResourceReference_update">
           <help short="Resource reference to the Azure resource where custom domain ownership was prevalidated"/>
+          <arg nullable="True" type="string" var="@ResourceReference_update.id" options="id">
+            <help short="Resource ID."/>
+          </arg>
+        </arg>
+      </argGroup>
+      <argGroup name="Secret">
+        <arg nullable="True" type="string" var="$customDomain.properties.tlsSettings.secret.id" options="secret" group="Secret">
+          <help short="Resource reference to the secret. ie. subs/rg/profile/secret"/>
         </arg>
       </argGroup>
       <argGroup name="TlsSettings">
@@ -451,12 +469,6 @@
             <item name="TLS10" value="&quot;TLS10&quot;"/>
             <item name="TLS12" value="&quot;TLS12&quot;"/>
           </enum>
-        </arg>
-        <arg nullable="True" type="object" var="$customDomain.properties.tlsSettings.secret" options="secret" group="TlsSettings" cls="ResourceReference_update">
-          <help short="Resource reference to the secret. ie. subs/rg/profile/secret"/>
-          <arg nullable="True" type="string" var="@ResourceReference_update.id" options="id">
-            <help short="Resource ID."/>
-          </arg>
         </arg>
       </argGroup>
       <operation operationId="AFDCustomDomains_Get">
@@ -588,14 +600,18 @@
           <json>
             <schema type="object" name="customDomain" required="True" clientFlatten="True">
               <prop type="object" name="properties" clientFlatten="True">
-                <prop type="@ResourceReference_update" name="azureDnsZone" arg="$customDomain.properties.azureDnsZone"/>
+                <prop type="object" name="azureDnsZone">
+                  <prop type="string" name="id" arg="$customDomain.properties.azureDnsZone.id"/>
+                </prop>
                 <prop type="object" name="extendedProperties" arg="$customDomain.properties.extendedProperties">
                   <additionalProp>
                     <item type="string"/>
                   </additionalProp>
                 </prop>
                 <prop type="string" name="hostName" arg="$customDomain.properties.hostName" required="True"/>
-                <prop type="@ResourceReference_update" name="preValidatedCustomDomainResourceId" arg="$customDomain.properties.preValidatedCustomDomainResourceId"/>
+                <prop type="object" name="preValidatedCustomDomainResourceId" arg="$customDomain.properties.preValidatedCustomDomainResourceId" cls="ResourceReference_update">
+                  <prop type="string" name="id" arg="@ResourceReference_update.id"/>
+                </prop>
                 <prop type="object" name="tlsSettings">
                   <prop type="string" name="certificateType" arg="$customDomain.properties.tlsSettings.certificateType" required="True">
                     <enum>
@@ -610,8 +626,8 @@
                       <item value="&quot;TLS12&quot;"/>
                     </enum>
                   </prop>
-                  <prop type="object" name="secret" arg="$customDomain.properties.tlsSettings.secret" cls="ResourceReference_update">
-                    <prop type="string" name="id" arg="@ResourceReference_update.id"/>
+                  <prop type="object" name="secret">
+                    <prop type="string" name="id" arg="$customDomain.properties.tlsSettings.secret.id"/>
                   </prop>
                 </prop>
               </prop>

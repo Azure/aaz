@@ -222,7 +222,7 @@
         </http>
       </operation>
     </command>
-    <command name="create" version="2023-05-01">
+    <command name="create" version="2023-05-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/afdendpoints/{}/routes/{}" version="2023-05-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0vYWZkRW5kcG9pbnRzL3tlbmRwb2ludE5hbWV9L3JvdXRlcy97cm91dGVOYW1lfQ==/V/MjAyMy0wNS0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.endpointName" options="endpoint-name" required="True" idPart="child_name_1">
@@ -237,31 +237,38 @@
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="CacheConfiguration">
-        <arg type="string" var="$route.properties.cacheConfiguration.queryParameters" options="query-parameters" group="CacheConfiguration">
-          <help short="query parameters to include or exclude (comma separated)."/>
-        </arg>
-        <arg type="string" var="$route.properties.cacheConfiguration.queryStringCachingBehavior" options="query-string-caching-behavior" group="CacheConfiguration">
-          <help short="Defines how Frontdoor caches requests that include query strings. You can ignore any query strings when caching, ignore specific query strings, cache every request with a unique URL, or cache specific query strings."/>
-          <enum>
-            <item name="IgnoreQueryString" value="&quot;IgnoreQueryString&quot;"/>
-            <item name="IgnoreSpecifiedQueryStrings" value="&quot;IgnoreSpecifiedQueryStrings&quot;"/>
-            <item name="IncludeSpecifiedQueryStrings" value="&quot;IncludeSpecifiedQueryStrings&quot;"/>
-            <item name="UseQueryString" value="&quot;UseQueryString&quot;"/>
-          </enum>
-        </arg>
-      </argGroup>
-      <argGroup name="CompressionSettings">
-        <arg type="array<string>" var="$route.properties.cacheConfiguration.compressionSettings.contentTypesToCompress" options="content-types-to-compress" group="CompressionSettings">
-          <help short="List of content types on which compression applies. The value should be a valid MIME type."/>
-          <item type="string"/>
-        </arg>
-        <arg type="boolean" var="$route.properties.cacheConfiguration.compressionSettings.isCompressionEnabled" options="enable-compression" group="CompressionSettings">
-          <help short="Indicates whether content compression is enabled on AzureFrontDoor. Default value is false. If compression is enabled, content will be served as compressed if user requests for a compressed version. Content won't be compressed on AzureFrontDoor when requested content is smaller than 1 byte or larger than 1 MB."/>
+      <argGroup name="OriginGroup">
+        <arg type="string" var="$route.properties.originGroup.id" options="origin-group" group="OriginGroup">
+          <help short="Name or ID of the origin group to be associated with."/>
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg type="array<object>" var="$route.properties.customDomains" options="custom-domains" group="Properties">
+        <arg type="object" var="$route.properties.cacheConfiguration" options="cache-configuration" group="Properties">
+          <help short="The caching configuration for this route. To disable caching, do not provide a cacheConfiguration object."/>
+          <arg type="object" var="$route.properties.cacheConfiguration.compressionSettings" options="compression-settings">
+            <help short="compression settings."/>
+            <arg type="array<string>" var="$route.properties.cacheConfiguration.compressionSettings.contentTypesToCompress" options="content-types-to-compress">
+              <help short="List of content types on which compression applies. The value should be a valid MIME type."/>
+              <item type="string"/>
+            </arg>
+            <arg type="boolean" var="$route.properties.cacheConfiguration.compressionSettings.isCompressionEnabled" options="is-compression-enabled">
+              <help short="Indicates whether content compression is enabled on AzureFrontDoor. Default value is false. If compression is enabled, content will be served as compressed if user requests for a compressed version. Content won't be compressed on AzureFrontDoor when requested content is smaller than 1 byte or larger than 1 MB."/>
+            </arg>
+          </arg>
+          <arg type="string" var="$route.properties.cacheConfiguration.queryParameters" options="query-parameters">
+            <help short="query parameters to include or exclude (comma separated)."/>
+          </arg>
+          <arg type="string" var="$route.properties.cacheConfiguration.queryStringCachingBehavior" options="query-string-caching-behavior">
+            <help short="Defines how Frontdoor caches requests that include query strings. You can ignore any query strings when caching, ignore specific query strings, cache every request with a unique URL, or cache specific query strings."/>
+            <enum>
+              <item name="IgnoreQueryString" value="&quot;IgnoreQueryString&quot;"/>
+              <item name="IgnoreSpecifiedQueryStrings" value="&quot;IgnoreSpecifiedQueryStrings&quot;"/>
+              <item name="IncludeSpecifiedQueryStrings" value="&quot;IncludeSpecifiedQueryStrings&quot;"/>
+              <item name="UseQueryString" value="&quot;UseQueryString&quot;"/>
+            </enum>
+          </arg>
+        </arg>
+        <arg type="array<object>" var="$route.properties.customDomains" options="formatted-custom-domains" group="Properties">
           <help short="Domains referenced by this endpoint."/>
           <item type="object">
             <arg type="string" var="$route.properties.customDomains[].id" options="id">
@@ -301,12 +308,6 @@
             <item name="Enabled" value="&quot;Enabled&quot;"/>
           </enum>
         </arg>
-        <arg type="object" var="$route.properties.originGroup" options="origin-group" group="Properties" cls="ResourceReference_create">
-          <help short="A reference to the origin group."/>
-          <arg type="string" var="@ResourceReference_create.id" options="id">
-            <help short="Resource ID."/>
-          </arg>
-        </arg>
         <arg type="string" var="$route.properties.originPath" options="origin-path" group="Properties">
           <help short="A directory path on the origin that AzureFrontDoor can use to retrieve content from, e.g. contoso.cloudapp.net/originpath."/>
         </arg>
@@ -314,9 +315,13 @@
           <help short="The route patterns of the rule."/>
           <item type="string"/>
         </arg>
-        <arg type="array<@ResourceReference_create>" var="$route.properties.ruleSets" options="rule-sets" group="Properties">
+        <arg type="array<object>" var="$route.properties.ruleSets" options="formatted-rule-sets" group="Properties">
           <help short="rule sets referenced by this endpoint."/>
-          <item type="@ResourceReference_create"/>
+          <item type="object" cls="ResourceReference_create">
+            <arg type="string" var="@ResourceReference_create.id" options="id">
+              <help short="Resource ID."/>
+            </arg>
+          </item>
         </arg>
         <arg type="array<string>" var="$route.properties.supportedProtocols" options="supported-protocols" group="Properties">
           <help short="List of supported protocols for this route."/>
@@ -351,8 +356,8 @@
               <json>
                 <schema type="object" name="route" required="True" clientFlatten="True">
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop type="object" name="cacheConfiguration">
-                      <prop type="object" name="compressionSettings">
+                    <prop type="object" name="cacheConfiguration" arg="$route.properties.cacheConfiguration">
+                      <prop type="object" name="compressionSettings" arg="$route.properties.cacheConfiguration.compressionSettings">
                         <prop type="array<string>" name="contentTypesToCompress" arg="$route.properties.cacheConfiguration.compressionSettings.contentTypesToCompress">
                           <item type="string"/>
                         </prop>
@@ -401,15 +406,17 @@
                         <item value="&quot;Enabled&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="originGroup" arg="$route.properties.originGroup" required="True" cls="ResourceReference_create">
-                      <prop type="string" name="id" arg="@ResourceReference_create.id"/>
+                    <prop type="object" name="originGroup" required="True">
+                      <prop type="string" name="id" arg="$route.properties.originGroup.id"/>
                     </prop>
                     <prop type="string" name="originPath" arg="$route.properties.originPath"/>
                     <prop type="array<string>" name="patternsToMatch" arg="$route.properties.patternsToMatch">
                       <item type="string"/>
                     </prop>
-                    <prop type="array<@ResourceReference_create>" name="ruleSets" arg="$route.properties.ruleSets">
-                      <item type="@ResourceReference_create"/>
+                    <prop type="array<object>" name="ruleSets" arg="$route.properties.ruleSets">
+                      <item type="object" cls="ResourceReference_create">
+                        <prop type="string" name="id" arg="@ResourceReference_create.id"/>
+                      </item>
                     </prop>
                     <prop type="array<string>" name="supportedProtocols" arg="$route.properties.supportedProtocols">
                       <default value="[&quot;Http&quot;,&quot;Https&quot;]"/>
@@ -586,31 +593,38 @@
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="CacheConfiguration">
-        <arg nullable="True" type="string" var="$route.properties.cacheConfiguration.queryParameters" options="query-parameters" group="CacheConfiguration">
-          <help short="query parameters to include or exclude (comma separated)."/>
-        </arg>
-        <arg nullable="True" type="string" var="$route.properties.cacheConfiguration.queryStringCachingBehavior" options="query-string-caching-behavior" group="CacheConfiguration">
-          <help short="Defines how Frontdoor caches requests that include query strings. You can ignore any query strings when caching, ignore specific query strings, cache every request with a unique URL, or cache specific query strings."/>
-          <enum>
-            <item name="IgnoreQueryString" value="&quot;IgnoreQueryString&quot;"/>
-            <item name="IgnoreSpecifiedQueryStrings" value="&quot;IgnoreSpecifiedQueryStrings&quot;"/>
-            <item name="IncludeSpecifiedQueryStrings" value="&quot;IncludeSpecifiedQueryStrings&quot;"/>
-            <item name="UseQueryString" value="&quot;UseQueryString&quot;"/>
-          </enum>
-        </arg>
-      </argGroup>
-      <argGroup name="CompressionSettings">
-        <arg nullable="True" type="array<string>" var="$route.properties.cacheConfiguration.compressionSettings.contentTypesToCompress" options="content-types-to-compress" group="CompressionSettings">
-          <help short="List of content types on which compression applies. The value should be a valid MIME type."/>
-          <item nullable="True" type="string"/>
-        </arg>
-        <arg nullable="True" type="boolean" var="$route.properties.cacheConfiguration.compressionSettings.isCompressionEnabled" options="enable-compression" group="CompressionSettings">
-          <help short="Indicates whether content compression is enabled on AzureFrontDoor. Default value is false. If compression is enabled, content will be served as compressed if user requests for a compressed version. Content won't be compressed on AzureFrontDoor when requested content is smaller than 1 byte or larger than 1 MB."/>
+      <argGroup name="OriginGroup">
+        <arg nullable="True" type="string" var="$route.properties.originGroup.id" options="origin-group" group="OriginGroup">
+          <help short="Name or ID of the origin group to be associated with."/>
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="array<object>" var="$route.properties.customDomains" options="custom-domains" group="Properties">
+        <arg nullable="True" type="object" var="$route.properties.cacheConfiguration" options="cache-configuration" group="Properties">
+          <help short="The caching configuration for this route. To disable caching, do not provide a cacheConfiguration object."/>
+          <arg nullable="True" type="object" var="$route.properties.cacheConfiguration.compressionSettings" options="compression-settings">
+            <help short="compression settings."/>
+            <arg nullable="True" type="array<string>" var="$route.properties.cacheConfiguration.compressionSettings.contentTypesToCompress" options="content-types-to-compress">
+              <help short="List of content types on which compression applies. The value should be a valid MIME type."/>
+              <item nullable="True" type="string"/>
+            </arg>
+            <arg nullable="True" type="boolean" var="$route.properties.cacheConfiguration.compressionSettings.isCompressionEnabled" options="is-compression-enabled">
+              <help short="Indicates whether content compression is enabled on AzureFrontDoor. Default value is false. If compression is enabled, content will be served as compressed if user requests for a compressed version. Content won't be compressed on AzureFrontDoor when requested content is smaller than 1 byte or larger than 1 MB."/>
+            </arg>
+          </arg>
+          <arg nullable="True" type="string" var="$route.properties.cacheConfiguration.queryParameters" options="query-parameters">
+            <help short="query parameters to include or exclude (comma separated)."/>
+          </arg>
+          <arg nullable="True" type="string" var="$route.properties.cacheConfiguration.queryStringCachingBehavior" options="query-string-caching-behavior">
+            <help short="Defines how Frontdoor caches requests that include query strings. You can ignore any query strings when caching, ignore specific query strings, cache every request with a unique URL, or cache specific query strings."/>
+            <enum>
+              <item name="IgnoreQueryString" value="&quot;IgnoreQueryString&quot;"/>
+              <item name="IgnoreSpecifiedQueryStrings" value="&quot;IgnoreSpecifiedQueryStrings&quot;"/>
+              <item name="IncludeSpecifiedQueryStrings" value="&quot;IncludeSpecifiedQueryStrings&quot;"/>
+              <item name="UseQueryString" value="&quot;UseQueryString&quot;"/>
+            </enum>
+          </arg>
+        </arg>
+        <arg nullable="True" type="array<object>" var="$route.properties.customDomains" options="formatted-custom-domains" group="Properties">
           <help short="Domains referenced by this endpoint."/>
           <item nullable="True" type="object">
             <arg nullable="True" type="string" var="$route.properties.customDomains[].id" options="id">
@@ -647,12 +661,6 @@
             <item name="Enabled" value="&quot;Enabled&quot;"/>
           </enum>
         </arg>
-        <arg type="object" var="$route.properties.originGroup" options="origin-group" group="Properties" cls="ResourceReference_update">
-          <help short="A reference to the origin group."/>
-          <arg nullable="True" type="string" var="@ResourceReference_update.id" options="id">
-            <help short="Resource ID."/>
-          </arg>
-        </arg>
         <arg nullable="True" type="string" var="$route.properties.originPath" options="origin-path" group="Properties">
           <help short="A directory path on the origin that AzureFrontDoor can use to retrieve content from, e.g. contoso.cloudapp.net/originpath."/>
         </arg>
@@ -660,9 +668,13 @@
           <help short="The route patterns of the rule."/>
           <item nullable="True" type="string"/>
         </arg>
-        <arg nullable="True" type="array<@ResourceReference_update>" var="$route.properties.ruleSets" options="rule-sets" group="Properties">
+        <arg nullable="True" type="array<object>" var="$route.properties.ruleSets" options="formatted-rule-sets" group="Properties">
           <help short="rule sets referenced by this endpoint."/>
-          <item nullable="True" type="@ResourceReference_update"/>
+          <item nullable="True" type="object" cls="ResourceReference_update">
+            <arg nullable="True" type="string" var="@ResourceReference_update.id" options="id">
+              <help short="Resource ID."/>
+            </arg>
+          </item>
         </arg>
         <arg nullable="True" type="array<string>" var="$route.properties.supportedProtocols" options="supported-protocols" group="Properties">
           <help short="List of supported protocols for this route."/>
@@ -831,8 +843,8 @@
           <json>
             <schema type="object" name="route" required="True" clientFlatten="True">
               <prop type="object" name="properties" clientFlatten="True">
-                <prop type="object" name="cacheConfiguration">
-                  <prop type="object" name="compressionSettings">
+                <prop type="object" name="cacheConfiguration" arg="$route.properties.cacheConfiguration">
+                  <prop type="object" name="compressionSettings" arg="$route.properties.cacheConfiguration.compressionSettings">
                     <prop type="array<string>" name="contentTypesToCompress" arg="$route.properties.cacheConfiguration.compressionSettings.contentTypesToCompress">
                       <item type="string"/>
                     </prop>
@@ -881,15 +893,17 @@
                     <item value="&quot;Enabled&quot;"/>
                   </enum>
                 </prop>
-                <prop type="object" name="originGroup" arg="$route.properties.originGroup" required="True" cls="ResourceReference_update">
-                  <prop type="string" name="id" arg="@ResourceReference_update.id"/>
+                <prop type="object" name="originGroup" required="True">
+                  <prop type="string" name="id" arg="$route.properties.originGroup.id"/>
                 </prop>
                 <prop type="string" name="originPath" arg="$route.properties.originPath"/>
                 <prop type="array<string>" name="patternsToMatch" arg="$route.properties.patternsToMatch">
                   <item type="string"/>
                 </prop>
-                <prop type="array<@ResourceReference_update>" name="ruleSets" arg="$route.properties.ruleSets">
-                  <item type="@ResourceReference_update"/>
+                <prop type="array<object>" name="ruleSets" arg="$route.properties.ruleSets">
+                  <item type="object" cls="ResourceReference_update">
+                    <prop type="string" name="id" arg="@ResourceReference_update.id"/>
+                  </item>
                 </prop>
                 <prop type="array<string>" name="supportedProtocols" arg="$route.properties.supportedProtocols">
                   <default value="[&quot;Http&quot;,&quot;Https&quot;]"/>
