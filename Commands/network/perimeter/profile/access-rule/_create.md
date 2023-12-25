@@ -15,6 +15,11 @@ Creates or updates a network access rule.
         network perimeter profile access-rule create -n MyAccessRule --profile-name MyProfile --perimeter-name MyPerimeter -g MyResourceGroup --address-prefixes "[10.10.0.0/16]"
     ```
 
+- Create NSP based access rule
+    ```bash
+        network perimeter profile access-rule create -n MyAccessRule --profile-name MyProfile --perimeter-name MyPerimeter -g MyResourceGroup --nsp "[{id:<NSP_ARM_ID>}]"
+    ```
+
 - Create FQDN based access rule
     ```bash
         network perimeter profile access-rule create -n MyAccessRule --profile-name MyProfile --perimeter-name MyPerimeter -g MyResourceGroup --fqdn "['www.abc.com', 'www.google.com']" --direction "Outbound"
