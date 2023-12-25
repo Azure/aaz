@@ -12,5 +12,5 @@ Account Migration request can be triggered for a storage account to change its r
 
 - migration start
     ```bash
-        storage account migration start --account-name "storage_account_name" -g "resource_group_name" --sku Standard_ZRS --no-wait
+        storage account migration start --account-name "storage_account_name" -g "resource_group_name" --sku Standard_ZRS --name default --no-wait
     ```
