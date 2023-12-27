@@ -1,6 +1,6 @@
 # [Group] _monitor_
 
-Manage the Azure Monitor Service.
+Monitor.
 
 ## Subgroups
 
@@ -18,6 +18,9 @@ Manage the Azure Monitor Service.
 
 - [autoscale](/Commands/monitor/autoscale/readme.md)
 : Manage autoscale settings
+
+- [data-collection](/Commands/monitor/data-collection/readme.md)
+: Manage data collection for monitor control service.
 
 - [diagnostic-settings](/Commands/monitor/diagnostic-settings/readme.md)
 : Manage service diagnostic settings.
