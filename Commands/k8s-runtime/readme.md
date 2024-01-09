@@ -10,5 +10,8 @@ Manage Arc Kubernetes Runtime resources
 - [load-balancer](/Commands/k8s-runtime/load-balancer/readme.md)
 : Manage load balancers of Arc Kubernetes clusters
 
+- [service](/Commands/k8s-runtime/service/readme.md)
+: Manage Kubernetes runtime services of Arc Kubernetes clusters
+
 - [storage-class](/Commands/k8s-runtime/storage-class/readme.md)
 : Manage storage classes of Arc Kubernetes clusters
