@@ -200,6 +200,9 @@
 - [storage-mover](/Commands/storage-mover/readme.md)
 : Manage top-level Storage Mover resource.
 
+- [support](/Commands/support/readme.md)
+: The Azure Support REST API enables you to create and manage Azure support tickets programmatically.
+
 - [tsi](/Commands/tsi/readme.md)
 : Manage Azure Time Series Insights.
 
