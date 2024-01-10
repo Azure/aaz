@@ -12,5 +12,5 @@ Creates a new file workspace.
 
 - Create a file workspace
     ```bash
-        support file-workspace create --file-workspace-name "TestWorkspaceName"
+        support no-subscription file-workspace create --file-workspace-name "TestWorkspaceName"
     ```

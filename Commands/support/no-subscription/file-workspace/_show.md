@@ -12,5 +12,5 @@ Gets details for a specific file workspace.
 
 - Create a file workspace
     ```bash
-        support file-workspace show --file-workspace-name "TestWorkspaceName"
+        support no-subscription file-workspace show --file-workspace-name "TestWorkspaceName"
     ```
