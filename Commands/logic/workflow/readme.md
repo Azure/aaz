@@ -15,6 +15,9 @@ Manage workflow
 - [delete](/Commands/logic/workflow/_delete.md)
 : Delete a workflow.
 
+- [generate-upgraded-definition](/Commands/logic/workflow/_generate-upgraded-definition.md)
+: Generates the upgraded definition for a workflow.
+
 - [list](/Commands/logic/workflow/_list.md)
 : List workflows
 
