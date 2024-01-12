@@ -16,7 +16,7 @@ Manage logic integration account
 : Delete an integration account.
 
 - [list](/Commands/logic/integration-account/_list.md)
-: List a list of integration accounts by subscription.
+: List integration accounts
 
 - [show](/Commands/logic/integration-account/_show.md)
 : Show an integration account.

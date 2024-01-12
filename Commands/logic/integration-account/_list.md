@@ -1,6 +1,6 @@
 # [Command] _logic integration-account list_
 
-List a list of integration accounts by subscription.
+List integration accounts
 
 ## Versions
 

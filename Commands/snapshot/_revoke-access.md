@@ -36,3 +36,14 @@ Revoke access to a snapshot.
     ```bash
         snapshot revoke-access --name MySnapshot --resource-group MyResourceGroup
     ```
+
+### [2023-04-02](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlL3NuYXBzaG90cy97fS9lbmRnZXRhY2Nlc3M=/2023-04-02.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/snapshots/{}/endgetaccess 2023-04-02 -->
+
+#### examples
+
+- Revoke read access to a snapshot.
+    ```bash
+        snapshot revoke-access --name MySnapshot --resource-group MyResourceGroup
+    ```

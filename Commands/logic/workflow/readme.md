@@ -16,10 +16,10 @@ Manage workflow
 : Delete a workflow.
 
 - [list](/Commands/logic/workflow/_list.md)
-: List a list of workflows by subscription.
+: List workflows
 
 - [show](/Commands/logic/workflow/_show.md)
-: Get a workflow.
+: Show a workflow.
 
 - [update](/Commands/logic/workflow/_update.md)
 : Update a workflow.

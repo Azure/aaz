@@ -5,6 +5,9 @@
 - [account](/Commands/account/readme.md)
 : Manage Azure subscription information.
 
+- [afd](/Commands/afd/readme.md)
+: Manage Azure Front Door Standard/Premium.
+
 - [alerts-management](/Commands/alerts-management/readme.md)
 : Manage Azure Alerts Management Service Resource.
 
@@ -120,7 +123,7 @@
 : Manage mobile network
 
 - [monitor](/Commands/monitor/readme.md)
-: Manage the Azure Monitor Service.
+: Monitor.
 
 - [netappfiles](/Commands/netappfiles/readme.md)
 : Manage Azure NetApp Files (ANF) Resources
