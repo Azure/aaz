@@ -18,6 +18,9 @@ Manage private link services.
 - [list](/Commands/network/private-link-service/_list.md)
 : List private link services.
 
+- [list-auto-approved](/Commands/network/private-link-service/_list-auto-approved.md)
+: List all of the private link service ids that can be linked to a Private Endpoint with auto approved in this subscription in this region.
+
 - [show](/Commands/network/private-link-service/_show.md)
 : Get the details of a private link service.
 
