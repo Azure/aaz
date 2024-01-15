@@ -24,7 +24,7 @@
 : Manage Automanage
 
 - [automation](/Commands/automation/readme.md)
-: Manage Automation Account
+: Manage Automation Account.
 
 - [billing](/Commands/billing/readme.md)
 : Manage Azure Billing.

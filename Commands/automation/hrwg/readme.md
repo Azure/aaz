@@ -1,11 +1,11 @@
 # [Group] _automation hrwg_
 
-Hrwg
+Automation Hybrid Runbook Worker Group.
 
 ## Subgroups
 
 - [hrw](/Commands/automation/hrwg/hrw/readme.md)
-: hrw
+: Manage Automation Hybrid Runbook Worker.
 
 ## Commands
 
