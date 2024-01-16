@@ -2,14 +2,6 @@
 
 Automation Account.
 
-## Subgroups
-
-- [node](/Commands/automation/account/node/readme.md)
-: Manage Dsc Node.
-
-- [runtime-environment](/Commands/automation/account/runtime-environment/readme.md)
-: Manage RuntimeEnvironment.
-
 ## Commands
 
 - [list-keys](/Commands/automation/account/_list-keys.md)
