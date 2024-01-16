@@ -5,4 +5,4 @@ Manage public IP ddos protection statu.
 ## Commands
 
 - [show](/Commands/network/public-ip/ddos-protection-statu/_show.md)
-: Gets the Ddos Protection Status of a Public IP Address
+: Get the Ddos Protection Status of a Public IP Address
