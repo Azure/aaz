@@ -12,5 +12,5 @@ Imports from APIM instance.
 
 - Import From APIM
     ```bash
-        az apic service import-from-apim -g api-center-test --service-name contosoeuap --source-resource-ids '/subscriptions/a200340d-6b82-494d-9dbf-687ba6e33f9e/resourceGroups/servicegroup/providers/Microsoft.ApiManagement/service/contoso/apis/contosoapi
+        apic service import-from-apim -g api-center-test --service-name contosoeuap --source-resource-ids '/subscriptions/a200340d-6b82-494d-9dbf-687ba6e33f9e/resourceGroups/servicegroup/providers/Microsoft.ApiManagement/service/contoso/apis/contosoapi
     ```

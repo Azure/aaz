@@ -2,6 +2,11 @@
 
 API Center service
 
+## Subgroups
+
+- [portal](/Commands/apic/service/portal/readme.md)
+: API Center Service Portal
+
 ## Commands
 
 - [create](/Commands/apic/service/_create.md)
