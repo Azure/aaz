@@ -1,20 +1,20 @@
 # [Group] _apic_
 
-API Center
+Manage Azure API Center services
 
 ## Subgroups
 
 - [api](/Commands/apic/api/readme.md)
-: API
+: Commands to manage APIs in API Center
 
 - [environment](/Commands/apic/environment/readme.md)
-: Environment
+: Commands to manage Environments in API Center
 
 - [metadata-schema](/Commands/apic/metadata-schema/readme.md)
-: Metadata schema
+: Commands to manage Metadata Schemas in API Center
 
 - [service](/Commands/apic/service/readme.md)
-: API Center service
+: API Center
 
 - [workspace](/Commands/apic/workspace/readme.md)
 : Workspace

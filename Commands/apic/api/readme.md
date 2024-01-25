@@ -1,17 +1,17 @@
 # [Group] _apic api_
 
-API
+Commands to manage APIs in API Center
 
 ## Subgroups
 
 - [definition](/Commands/apic/api/definition/readme.md)
-: API definition
+: Commands to manage API Definitions in API Center
 
 - [deployment](/Commands/apic/api/deployment/readme.md)
-: API deployment
+: Commands to manage API deployments in API Center
 
 - [version](/Commands/apic/api/version/readme.md)
-: API version
+: Commands to manage API Versions in API Center
 
 ## Commands
 

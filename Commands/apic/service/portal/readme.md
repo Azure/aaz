@@ -1,6 +1,6 @@
 # [Group] _apic service portal_
 
-API Center Service Portal
+Commands to manage API Center Service Portal Configuration in API Center
 
 ## Subgroups
 

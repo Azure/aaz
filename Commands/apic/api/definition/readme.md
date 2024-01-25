@@ -1,6 +1,6 @@
 # [Group] _apic api definition_
 
-API definition
+Commands to manage API Definitions in API Center
 
 ## Commands
 
