@@ -12,5 +12,5 @@ Update new or updates existing portal configuration.
 
 - Update Default Portal Configuration
     ```bash
-        apic service portal default update -g contoso-resources --service-name contoso --title "Contoso" --is-published false  --authentication'{"clientId":"00000000-0000-0000-0000-000000000000","tenantId":"00000000-0000-0000-0000-000000000000"}'
+        apic service portal default update -g contoso-resources --service-name contoso --title "Contoso" --enabled false  --authentication'{"clientId":"00000000-0000-0000-0000-000000000000","tenantId":"00000000-0000-0000-0000-000000000000"}'
     ```

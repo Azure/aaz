@@ -44,13 +44,23 @@
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties" clientFlatten="True">
                     <prop type="object" name="authentication">
-                      <prop type="string" name="clientId"/>
-                      <prop type="string" name="tenantId"/>
+                      <prop readOnly="True" type="string" name="azureAdInstance"/>
+                      <prop type="string" name="clientId" required="True">
+                        <format maxLength="50" minLength="1"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="scopes"/>
+                      <prop type="string" name="tenantId">
+                        <format maxLength="50"/>
+                      </prop>
                     </prop>
+                    <prop type="dateTime" name="created"/>
+                    <prop type="string" name="createdBy"/>
                     <prop type="string" name="dataApiHostName"/>
                     <prop type="boolean" name="enabled"/>
                     <prop type="string" name="portalDefaultHostName"/>
                     <prop type="string" name="title"/>
+                    <prop type="dateTime" name="updated"/>
+                    <prop type="string" name="updatedBy"/>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
                     <prop type="dateTime" name="createdAt"/>
@@ -155,18 +165,21 @@
       <argGroup name="Properties">
         <arg type="object" var="$payload.properties.authentication" options="authentication" group="Properties">
           <help short="Authentication configuration."/>
-          <arg type="string" var="$payload.properties.authentication.clientId" options="client-id">
+          <arg type="string" var="$payload.properties.authentication.clientId" options="client-id" required="True">
             <help short="The Azure Active Directory application client id."/>
+            <format maxLength="50" minLength="1"/>
           </arg>
           <arg type="string" var="$payload.properties.authentication.tenantId" options="tenant-id">
             <help short="The Azure Active Directory application Tenant id."/>
+            <format maxLength="50"/>
           </arg>
         </arg>
-        <arg type="boolean" var="$payload.properties.isPublished" options="is-published" group="Properties">
-          <help short="Indicates whether the portal is published."/>
+        <arg type="boolean" var="$payload.properties.enabled" options="enabled" group="Properties">
+          <help short="Flag indicating whether or not portal is enabled."/>
         </arg>
         <arg type="string" var="$payload.properties.title" options="title" group="Properties">
           <help short="Portal configuration Title."/>
+          <format maxLength="50"/>
         </arg>
       </argGroup>
       <operation operationId="PortalConfiguration_CreateOrUpdate">
@@ -192,12 +205,18 @@
                 <schema type="object" name="payload" required="True" clientFlatten="True">
                   <prop type="ResourceLocation" name="location" arg="$payload.location" required="True"/>
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop type="object" name="authentication" arg="$payload.properties.authentication">
-                      <prop type="string" name="clientId" arg="$payload.properties.authentication.clientId"/>
-                      <prop type="string" name="tenantId" arg="$payload.properties.authentication.tenantId"/>
+                    <prop type="object" name="authentication" arg="$payload.properties.authentication" required="True">
+                      <prop type="string" name="clientId" arg="$payload.properties.authentication.clientId" required="True">
+                        <format maxLength="50" minLength="1"/>
+                      </prop>
+                      <prop type="string" name="tenantId" arg="$payload.properties.authentication.tenantId">
+                        <format maxLength="50"/>
+                      </prop>
                     </prop>
-                    <prop type="boolean" name="isPublished" arg="$payload.properties.isPublished"/>
-                    <prop type="string" name="title" arg="$payload.properties.title"/>
+                    <prop type="boolean" name="enabled" arg="$payload.properties.enabled"/>
+                    <prop type="string" name="title" arg="$payload.properties.title" required="True">
+                      <format maxLength="50"/>
+                    </prop>
                   </prop>
                   <prop type="object" name="tags" arg="$payload.tags">
                     <additionalProp>
@@ -221,13 +240,23 @@
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties" clientFlatten="True">
                     <prop type="object" name="authentication">
-                      <prop type="string" name="clientId"/>
-                      <prop type="string" name="tenantId"/>
+                      <prop readOnly="True" type="string" name="azureAdInstance"/>
+                      <prop type="string" name="clientId" required="True">
+                        <format maxLength="50" minLength="1"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="scopes"/>
+                      <prop type="string" name="tenantId">
+                        <format maxLength="50"/>
+                      </prop>
                     </prop>
+                    <prop type="dateTime" name="created"/>
+                    <prop type="string" name="createdBy"/>
                     <prop type="string" name="dataApiHostName"/>
                     <prop type="boolean" name="enabled"/>
                     <prop type="string" name="portalDefaultHostName"/>
                     <prop type="string" name="title"/>
+                    <prop type="dateTime" name="updated"/>
+                    <prop type="string" name="updatedBy"/>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
                     <prop type="dateTime" name="createdAt"/>
@@ -286,20 +315,23 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="object" var="$payload.properties.authentication" options="authentication" group="Properties">
+        <arg type="object" var="$payload.properties.authentication" options="authentication" group="Properties">
           <help short="Authentication configuration."/>
-          <arg nullable="True" type="string" var="$payload.properties.authentication.clientId" options="client-id">
+          <arg type="string" var="$payload.properties.authentication.clientId" options="client-id">
             <help short="The Azure Active Directory application client id."/>
+            <format maxLength="50" minLength="1"/>
           </arg>
           <arg nullable="True" type="string" var="$payload.properties.authentication.tenantId" options="tenant-id">
             <help short="The Azure Active Directory application Tenant id."/>
+            <format maxLength="50"/>
           </arg>
         </arg>
-        <arg nullable="True" type="boolean" var="$payload.properties.isPublished" options="is-published" group="Properties">
-          <help short="Indicates whether the portal is published."/>
+        <arg nullable="True" type="boolean" var="$payload.properties.enabled" options="enabled" group="Properties">
+          <help short="Flag indicating whether or not portal is enabled."/>
         </arg>
-        <arg nullable="True" type="string" var="$payload.properties.title" options="title" group="Properties">
+        <arg type="string" var="$payload.properties.title" options="title" group="Properties">
           <help short="Portal configuration Title."/>
+          <format maxLength="50"/>
         </arg>
       </argGroup>
       <operation operationId="PortalConfiguration_Get">
@@ -334,13 +366,23 @@
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties" clientFlatten="True">
                     <prop type="object" name="authentication">
-                      <prop type="string" name="clientId"/>
-                      <prop type="string" name="tenantId"/>
+                      <prop readOnly="True" type="string" name="azureAdInstance"/>
+                      <prop type="string" name="clientId" required="True">
+                        <format maxLength="50" minLength="1"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="scopes"/>
+                      <prop type="string" name="tenantId">
+                        <format maxLength="50"/>
+                      </prop>
                     </prop>
+                    <prop type="dateTime" name="created"/>
+                    <prop type="string" name="createdBy"/>
                     <prop type="string" name="dataApiHostName"/>
                     <prop type="boolean" name="enabled"/>
                     <prop type="string" name="portalDefaultHostName"/>
                     <prop type="string" name="title"/>
+                    <prop type="dateTime" name="updated"/>
+                    <prop type="string" name="updatedBy"/>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
                     <prop type="dateTime" name="createdAt"/>
@@ -383,12 +425,18 @@
           <json>
             <schema type="object" name="payload" required="True" clientFlatten="True">
               <prop type="object" name="properties" clientFlatten="True">
-                <prop type="object" name="authentication" arg="$payload.properties.authentication">
-                  <prop type="string" name="clientId" arg="$payload.properties.authentication.clientId"/>
-                  <prop type="string" name="tenantId" arg="$payload.properties.authentication.tenantId"/>
+                <prop type="object" name="authentication" arg="$payload.properties.authentication" required="True">
+                  <prop type="string" name="clientId" arg="$payload.properties.authentication.clientId" required="True">
+                    <format maxLength="50" minLength="1"/>
+                  </prop>
+                  <prop type="string" name="tenantId" arg="$payload.properties.authentication.tenantId">
+                    <format maxLength="50"/>
+                  </prop>
                 </prop>
-                <prop type="boolean" name="isPublished" arg="$payload.properties.isPublished"/>
-                <prop type="string" name="title" arg="$payload.properties.title"/>
+                <prop type="boolean" name="enabled" arg="$payload.properties.enabled"/>
+                <prop type="string" name="title" arg="$payload.properties.title" required="True">
+                  <format maxLength="50"/>
+                </prop>
               </prop>
               <prop type="object" name="tags" arg="$payload.tags">
                 <additionalProp>

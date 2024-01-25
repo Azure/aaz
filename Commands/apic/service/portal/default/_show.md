@@ -12,5 +12,5 @@ Get portal configuration.
 
 - Show APIC Default Portal Configuration
     ```bash
-        apic service portal default update -g contoso-resources --service-name contoso
+        apic service portal default show -g contoso-resources --service-name contoso
     ```
