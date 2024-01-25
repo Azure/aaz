@@ -56,6 +56,9 @@
 - [cosmosdb](/Commands/cosmosdb/readme.md)
 : Manage Azure Cosmos DB database accounts.
 
+- [costmanagement](/Commands/costmanagement/readme.md)
+: costmanagement
+
 - [databox](/Commands/databox/readme.md)
 : Manage data box
 
