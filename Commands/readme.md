@@ -15,7 +15,7 @@
 : Manage lustre file system
 
 - [apic](/Commands/apic/readme.md)
-: API Center
+: Manage Azure API Center services
 
 - [attestation](/Commands/attestation/readme.md)
 : Manage Microsoft Azure Attestation (MAA).
