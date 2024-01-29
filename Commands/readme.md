@@ -188,6 +188,9 @@
 - [restore-point](/Commands/restore-point/readme.md)
 : Manage restore point with res.
 
+- [security](/Commands/security/readme.md)
+: Manage your security posture with Microsoft Defender for Cloud.
+
 - [self-help](/Commands/self-help/readme.md)
 : Azure SelfHelp will help you troubleshoot issues with Azure resources.
 
