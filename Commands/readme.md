@@ -227,6 +227,9 @@
 - [storage-mover](/Commands/storage-mover/readme.md)
 : Manage top-level Storage Mover resource.
 
+- [storagesync](/Commands/storagesync/readme.md)
+: Manage Azure File Sync.
+
 - [tsi](/Commands/tsi/readme.md)
 : Manage Azure Time Series Insights.
 
