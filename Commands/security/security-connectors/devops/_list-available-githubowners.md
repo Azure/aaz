@@ -1,6 +1,8 @@
 # [Command] _security security-connectors devops list-available-githubowners_
 
-Returns a list of all GitHub owners accessible by the user token consumed by the connector.
+Returns a list of all GitHub owners accessible by the user token consumed by the connector. Returns 401 if connector was created by different user or identity.
+
+Returns 401 if connector was created by different user or identity.
 
 ## Versions
 

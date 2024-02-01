@@ -1,6 +1,8 @@
 # [Command] _security security-connectors devops list-available-azuredevopsorgs_
 
-Returns a list of all Azure DevOps organizations accessible by the user token consumed by the connector.
+Returns a list of all Azure DevOps organizations accessible by the user token consumed by the connector. Returns 401 if connector was created by different user or identity.
+
+Returns 401 if connector was created by different user or identity.
 
 ## Versions
 

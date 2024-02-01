@@ -12,7 +12,7 @@ GitLab Groups.
 - [list](/Commands/security/security-connectors/devops/gitlabgroups/_list.md)
 : List GitLab groups onboarded to the connector.
 
-- [list-subgroup](/Commands/security/security-connectors/devops/gitlabgroups/_list-subgroup.md)
+- [list-subgroups](/Commands/security/security-connectors/devops/gitlabgroups/_list-subgroups.md)
 : Gets nested subgroups of given GitLab Group which are onboarded to the connector.
 
 - [show](/Commands/security/security-connectors/devops/gitlabgroups/_show.md)

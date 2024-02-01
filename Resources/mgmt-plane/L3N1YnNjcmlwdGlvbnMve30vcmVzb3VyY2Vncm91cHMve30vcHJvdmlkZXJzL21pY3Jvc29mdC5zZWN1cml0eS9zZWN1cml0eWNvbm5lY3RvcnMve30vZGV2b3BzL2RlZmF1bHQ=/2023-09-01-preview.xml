@@ -157,7 +157,7 @@
       </argGroup>
       <argGroup name="Authorization">
         <arg type="string" var="$devOpsConfiguration.properties.authorization.code" options="authorization-code" group="Authorization">
-          <help short="Gets or sets one-time OAuth code to exchange for refresh and access tokens. Only used during PUT/PATCH operations. The secret is cleared during GET."/>
+          <help short="Sets one-time OAuth code to exchange for refresh and access tokens."/>
         </arg>
       </argGroup>
       <argGroup name="Properties">
@@ -170,7 +170,7 @@
           </enum>
         </arg>
         <arg type="string" var="$devOpsConfiguration.properties.provisioningState" options="provisioning-state" hide="True" group="Properties">
-          <help short="The provisioning state of the resource.&#13; &#13; Pending - Provisioning pending.&#13; Failed - Provisioning failed.&#13; Succeeded - Successful provisioning.&#13; Canceled - Provisioning canceled.&#13; PendingDeletion - Deletion pending.&#13; DeletionSuccess - Deletion successful.&#13; DeletionFailure - Deletion failure."/>
+          <help short="The provisioning state of the resource. Pending - Provisioning pending. Failed - Provisioning failed. Succeeded - Successful provisioning. Canceled - Provisioning canceled. PendingDeletion - Deletion pending. DeletionSuccess - Deletion successful. DeletionFailure - Deletion failure."/>
           <enum>
             <item name="Canceled" value="&quot;Canceled&quot;"/>
             <item name="DeletionFailure" value="&quot;DeletionFailure&quot;"/>
@@ -181,7 +181,7 @@
             <item name="Succeeded" value="&quot;Succeeded&quot;"/>
           </enum>
         </arg>
-        <arg type="array<string>" var="$devOpsConfiguration.properties.topLevelInventoryList" options="top-level-inventory-list" group="Properties">
+        <arg type="array<string>" var="$devOpsConfiguration.properties.topLevelInventoryList" options="inventory-list" group="Properties">
           <help short="List of top-level inventory to select when AutoDiscovery is disabled. This field is ignored when AutoDiscovery is enabled."/>
           <item type="string"/>
         </arg>
@@ -329,12 +329,12 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Authorization">
-        <arg nullable="True" type="string" var="$devOpsConfiguration.properties.authorization.code" options="authorization-code" group="Authorization">
-          <help short="Gets or sets one-time OAuth code to exchange for refresh and access tokens. Only used during PUT/PATCH operations. The secret is cleared during GET."/>
+        <arg type="string" var="$devOpsConfiguration.properties.authorization.code" options="authorization-code" group="Authorization">
+          <help short="Sets one-time OAuth code to exchange for refresh and access tokens. Optional if connector was created by the same identity."/>
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="string" var="$devOpsConfiguration.properties.autoDiscovery" options="auto-discovery" group="Properties">
+        <arg type="string" var="$devOpsConfiguration.properties.autoDiscovery" options="auto-discovery" group="Properties">
           <help short="AutoDiscovery states."/>
           <enum>
             <item name="Disabled" value="&quot;Disabled&quot;"/>
@@ -342,8 +342,8 @@
             <item name="NotApplicable" value="&quot;NotApplicable&quot;"/>
           </enum>
         </arg>
-        <arg nullable="True" type="string" var="$devOpsConfiguration.properties.provisioningState" options="provisioning-state" hide="True" group="Properties">
-          <help short="The provisioning state of the resource.&#13; &#13; Pending - Provisioning pending.&#13; Failed - Provisioning failed.&#13; Succeeded - Successful provisioning.&#13; Canceled - Provisioning canceled.&#13; PendingDeletion - Deletion pending.&#13; DeletionSuccess - Deletion successful.&#13; DeletionFailure - Deletion failure."/>
+        <arg type="string" var="$devOpsConfiguration.properties.provisioningState" options="provisioning-state" hide="True" group="Properties">
+          <help short="The provisioning state of the resource. Pending - Provisioning pending. Failed - Provisioning failed. Succeeded - Successful provisioning. Canceled - Provisioning canceled. PendingDeletion - Deletion pending. DeletionSuccess - Deletion successful. DeletionFailure - Deletion failure."/>
           <enum>
             <item name="Canceled" value="&quot;Canceled&quot;"/>
             <item name="DeletionFailure" value="&quot;DeletionFailure&quot;"/>
@@ -354,14 +354,15 @@
             <item name="Succeeded" value="&quot;Succeeded&quot;"/>
           </enum>
         </arg>
-        <arg nullable="True" type="array<string>" var="$devOpsConfiguration.properties.topLevelInventoryList" options="top-level-inventory-list" group="Properties">
+        <arg type="array<string>" var="$devOpsConfiguration.properties.topLevelInventoryList" options="inventory-list" group="Properties">
           <help short="List of top-level inventory to select when AutoDiscovery is disabled. This field is ignored when AutoDiscovery is enabled."/>
-          <item nullable="True" type="string"/>
+          <item type="string"/>
         </arg>
       </argGroup>
-      <operation operationId="DevOpsConfigurations_Get">
+      <operation operationId="DevOpsConfigurations_Update">
+        <longRunning finalStateVia="azure-async-operation"/>
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName}/devops/default">
-          <request method="get">
+          <request method="patch">
             <path>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
                 <format maxLength="90" minLength="1"/>
@@ -377,6 +378,38 @@
                 <format minLength="1"/>
               </const>
             </query>
+            <body>
+              <json>
+                <schema type="object" name="devOpsConfiguration" required="True" clientFlatten="True">
+                  <prop type="object" name="properties">
+                    <prop type="object" name="authorization">
+                      <prop type="string" name="code" arg="$devOpsConfiguration.properties.authorization.code" secret="True"/>
+                    </prop>
+                    <prop type="string" name="autoDiscovery" arg="$devOpsConfiguration.properties.autoDiscovery">
+                      <enum>
+                        <item value="&quot;Disabled&quot;"/>
+                        <item value="&quot;Enabled&quot;"/>
+                        <item value="&quot;NotApplicable&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="provisioningState" arg="$devOpsConfiguration.properties.provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;DeletionFailure&quot;"/>
+                        <item value="&quot;DeletionSuccess&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Pending&quot;"/>
+                        <item value="&quot;PendingDeletion&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<string>" name="topLevelInventoryList" arg="$devOpsConfiguration.properties.topLevelInventoryList">
+                      <item type="string"/>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
           </request>
           <response statusCode="200">
             <body>
@@ -438,79 +471,6 @@
                   </prop>
                   <prop readOnly="True" type="string" name="type"/>
                 </schema>
-              </json>
-            </body>
-          </response>
-          <response isError="True">
-            <body>
-              <json>
-                <schema type="@MgmtErrorFormat"/>
-              </json>
-            </body>
-          </response>
-        </http>
-      </operation>
-      <operation>
-        <instanceUpdate ref="$Instance">
-          <json>
-            <schema type="object" name="devOpsConfiguration" required="True" clientFlatten="True">
-              <prop type="object" name="properties">
-                <prop type="object" name="authorization">
-                  <prop type="string" name="code" arg="$devOpsConfiguration.properties.authorization.code" secret="True"/>
-                </prop>
-                <prop type="string" name="autoDiscovery" arg="$devOpsConfiguration.properties.autoDiscovery">
-                  <enum>
-                    <item value="&quot;Disabled&quot;"/>
-                    <item value="&quot;Enabled&quot;"/>
-                    <item value="&quot;NotApplicable&quot;"/>
-                  </enum>
-                </prop>
-                <prop type="string" name="provisioningState" arg="$devOpsConfiguration.properties.provisioningState">
-                  <enum>
-                    <item value="&quot;Canceled&quot;"/>
-                    <item value="&quot;DeletionFailure&quot;"/>
-                    <item value="&quot;DeletionSuccess&quot;"/>
-                    <item value="&quot;Failed&quot;"/>
-                    <item value="&quot;Pending&quot;"/>
-                    <item value="&quot;PendingDeletion&quot;"/>
-                    <item value="&quot;Succeeded&quot;"/>
-                  </enum>
-                </prop>
-                <prop type="array<string>" name="topLevelInventoryList" arg="$devOpsConfiguration.properties.topLevelInventoryList">
-                  <item type="string"/>
-                </prop>
-              </prop>
-            </schema>
-          </json>
-        </instanceUpdate>
-      </operation>
-      <operation operationId="DevOpsConfigurations_CreateOrUpdate">
-        <longRunning finalStateVia="azure-async-operation"/>
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors/{securityConnectorName}/devops/default">
-          <request method="put">
-            <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
-              <param type="string" name="securityConnectorName" arg="$Path.securityConnectorName" required="True"/>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
-                <format minLength="1"/>
-              </param>
-            </path>
-            <query>
-              <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="&quot;2023-09-01-preview&quot;"/>
-                <format minLength="1"/>
-              </const>
-            </query>
-            <body>
-              <json ref="$Instance"/>
-            </body>
-          </request>
-          <response statusCode="200 201">
-            <body>
-              <json var="$Instance">
-                <schema type="@DevOpsConfiguration_read"/>
               </json>
             </body>
           </response>

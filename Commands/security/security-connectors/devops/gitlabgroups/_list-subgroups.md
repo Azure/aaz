@@ -1,4 +1,4 @@
-# [Command] _security security-connectors devops gitlabgroups list-subgroup_
+# [Command] _security security-connectors devops gitlabgroups list-subgroups_
 
 Gets nested subgroups of given GitLab Group which are onboarded to the connector.
 
