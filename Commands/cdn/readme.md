@@ -21,6 +21,9 @@ Manage Azure Content Delivery Networks (CDNs).
 
 ## Commands
 
+- [check-name-availability](/Commands/cdn/_check-name-availability.md)
+: Check the availability of a resource name. This is needed for resources where name is globally unique, such as a CDN endpoint.
+
 - [name-exists](/Commands/cdn/_name-exists.md)
 : Check the availability of a resource name. This is needed for resources where name is globally unique, such as a CDN endpoint.
 

@@ -10,10 +10,10 @@ Manage Azure CDN Custom Domains to provide custom host names for endpoints.
 - [delete](/Commands/cdn/custom-domain/_delete.md)
 : Delete an existing custom domain within an endpoint.
 
-- [disable-custom-http](/Commands/cdn/custom-domain/_disable-custom-http.md)
+- [disable-https](/Commands/cdn/custom-domain/_disable-https.md)
 : Disable https delivery of the custom domain.
 
-- [enable-custom-http](/Commands/cdn/custom-domain/_enable-custom-http.md)
+- [enable-https](/Commands/cdn/custom-domain/_enable-https.md)
 : Enable https delivery of the custom domain.
 
 - [list](/Commands/cdn/custom-domain/_list.md)

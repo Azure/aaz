@@ -5,7 +5,7 @@
     <command name="show" version="2023-05-01">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/endpoints/{}" version="2023-05-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0vZW5kcG9pbnRzL3tlbmRwb2ludE5hbWV9/V/MjAyMy0wNS0wMQ=="/>
       <argGroup name="">
-        <arg type="string" var="$Path.endpointName" options="endpoint-name name n" required="True" idPart="child_name_1">
+        <arg type="string" var="$Path.endpointName" options="endpoint-name name n" required="True" group="" idPart="child_name_1">
           <help short="Name of the endpoint under the profile which is unique globally."/>
         </arg>
         <arg type="string" var="$Path.profileName" options="profile-name" required="True" idPart="name">
@@ -1255,10 +1255,10 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="delete" version="2023-05-01" confirmation="Are you sure you want to perform this operation?">
+    <command name="delete" version="2023-05-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/endpoints/{}" version="2023-05-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0vZW5kcG9pbnRzL3tlbmRwb2ludE5hbWV9/V/MjAyMy0wNS0wMQ=="/>
       <argGroup name="">
-        <arg type="string" var="$Path.endpointName" options="endpoint-name name n" required="True" idPart="child_name_1">
+        <arg type="string" var="$Path.endpointName" options="endpoint-name name n" required="True" group="" idPart="child_name_1">
           <help short="Name of the endpoint under the profile which is unique globally."/>
         </arg>
         <arg type="string" var="$Path.profileName" options="profile-name" required="True" idPart="name">
@@ -1305,7 +1305,7 @@
     <command name="create" version="2023-05-01">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/endpoints/{}" version="2023-05-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0vZW5kcG9pbnRzL3tlbmRwb2ludE5hbWV9/V/MjAyMy0wNS0wMQ=="/>
       <argGroup name="">
-        <arg type="string" var="$Path.endpointName" options="endpoint-name name n" required="True" idPart="child_name_1">
+        <arg type="string" var="$Path.endpointName" options="endpoint-name name n" required="True" group="" idPart="child_name_1">
           <help short="Name of the endpoint under the profile which is unique globally."/>
         </arg>
         <arg type="string" var="$Path.profileName" options="profile-name" required="True" idPart="name">
@@ -1313,6 +1313,11 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="DefaultOriginGroup">
+        <arg type="string" var="$endpoint.properties.defaultOriginGroup.id" options="default-origin-group" group="DefaultOriginGroup">
+          <help short="The origin group to use for origins not explicitly included in an origin group. Can be specified as a resource ID or the name of an origin group of this endpoint."/>
+        </arg>
       </argGroup>
       <argGroup name="Endpoint">
         <arg type="ResourceLocation" var="$endpoint.location" options="location l" required="True" group="Endpoint">
@@ -1329,12 +1334,6 @@
         <arg type="array<string>" var="$endpoint.properties.contentTypesToCompress" options="content-types-to-compress" group="Properties">
           <help short="List of content types on which compression applies. The value should be a valid MIME type."/>
           <item type="string"/>
-        </arg>
-        <arg type="object" var="$endpoint.properties.defaultOriginGroup" options="default-origin-group" group="Properties" cls="ResourceReference_create">
-          <help short="A reference to the origin group."/>
-          <arg type="string" var="@ResourceReference_create.id" options="id">
-            <help short="Resource ID."/>
-          </arg>
         </arg>
         <arg type="object" var="$endpoint.properties.deliveryPolicy" options="delivery-policy" group="Properties">
           <help short="A policy that specifies the delivery rules to be used for an endpoint."/>
@@ -1428,8 +1427,11 @@
                   <arg type="object" var="$endpoint.properties.deliveryPolicy.rules[].actions[].OriginGroupOverride" options="origin-group-override">
                     <arg type="object" var="$endpoint.properties.deliveryPolicy.rules[].actions[].OriginGroupOverride.parameters" options="parameters" required="True">
                       <help short="Defines the parameters for the action."/>
-                      <arg type="@ResourceReference_create" var="$endpoint.properties.deliveryPolicy.rules[].actions[].OriginGroupOverride.parameters.originGroup" options="origin-group" required="True">
+                      <arg type="object" var="$endpoint.properties.deliveryPolicy.rules[].actions[].OriginGroupOverride.parameters.originGroup" options="origin-group" required="True" cls="ResourceReference_create">
                         <help short="defines the OriginGroup that would override the DefaultOriginGroup."/>
+                        <arg type="string" var="@ResourceReference_create.id" options="id">
+                          <help short="Resource ID."/>
+                        </arg>
                       </arg>
                       <arg type="string" var="$endpoint.properties.deliveryPolicy.rules[].actions[].OriginGroupOverride.parameters.typeName" options="type-name" required="True">
                         <enum>
@@ -2688,8 +2690,8 @@
                     <prop type="array<string>" name="contentTypesToCompress" arg="$endpoint.properties.contentTypesToCompress">
                       <item type="string"/>
                     </prop>
-                    <prop type="object" name="defaultOriginGroup" arg="$endpoint.properties.defaultOriginGroup" cls="ResourceReference_create">
-                      <prop type="string" name="id" arg="@ResourceReference_create.id"/>
+                    <prop type="object" name="defaultOriginGroup">
+                      <prop type="string" name="id" arg="$endpoint.properties.defaultOriginGroup.id"/>
                     </prop>
                     <prop type="object" name="deliveryPolicy" arg="$endpoint.properties.deliveryPolicy">
                       <prop type="string" name="description" arg="$endpoint.properties.deliveryPolicy.description"/>
@@ -2773,7 +2775,9 @@
                               </discriminator>
                               <discriminator property="name" value="OriginGroupOverride">
                                 <prop type="object" name="parameters" arg="$endpoint.properties.deliveryPolicy.rules[].actions[].OriginGroupOverride.parameters" required="True">
-                                  <prop type="@ResourceReference_create" name="originGroup" arg="$endpoint.properties.deliveryPolicy.rules[].actions[].OriginGroupOverride.parameters.originGroup" required="True"/>
+                                  <prop type="object" name="originGroup" arg="$endpoint.properties.deliveryPolicy.rules[].actions[].OriginGroupOverride.parameters.originGroup" required="True" cls="ResourceReference_create">
+                                    <prop type="string" name="id" arg="@ResourceReference_create.id"/>
+                                  </prop>
                                   <prop type="string" name="typeName" arg="$endpoint.properties.deliveryPolicy.rules[].actions[].OriginGroupOverride.parameters.typeName" required="True">
                                     <enum>
                                       <item value="&quot;DeliveryRuleOriginGroupOverrideActionParameters&quot;"/>
@@ -5064,7 +5068,7 @@
     <command name="update" version="2023-05-01">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/endpoints/{}" version="2023-05-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0vZW5kcG9pbnRzL3tlbmRwb2ludE5hbWV9/V/MjAyMy0wNS0wMQ=="/>
       <argGroup name="">
-        <arg type="string" var="$Path.endpointName" options="endpoint-name name n" required="True" idPart="child_name_1">
+        <arg type="string" var="$Path.endpointName" options="endpoint-name name n" required="True" group="" idPart="child_name_1">
           <help short="Name of the endpoint under the profile which is unique globally."/>
         </arg>
         <arg type="string" var="$Path.profileName" options="profile-name" required="True" idPart="name">
@@ -5072,6 +5076,11 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="DefaultOriginGroup">
+        <arg nullable="True" type="string" var="$endpoint.properties.defaultOriginGroup.id" options="default-origin-group" group="DefaultOriginGroup">
+          <help short="The origin group to use for origins not explicitly included in an origin group. Can be specified as a resource ID or the name of an origin group of this endpoint."/>
+        </arg>
       </argGroup>
       <argGroup name="Endpoint">
         <arg type="ResourceLocation" var="$endpoint.location" options="location l" group="Endpoint">
@@ -5088,12 +5097,6 @@
         <arg nullable="True" type="array<string>" var="$endpoint.properties.contentTypesToCompress" options="content-types-to-compress" group="Properties">
           <help short="List of content types on which compression applies. The value should be a valid MIME type."/>
           <item nullable="True" type="string"/>
-        </arg>
-        <arg nullable="True" type="object" var="$endpoint.properties.defaultOriginGroup" options="default-origin-group" group="Properties" cls="ResourceReference_update">
-          <help short="A reference to the origin group."/>
-          <arg nullable="True" type="string" var="@ResourceReference_update.id" options="id">
-            <help short="Resource ID."/>
-          </arg>
         </arg>
         <arg nullable="True" type="object" var="$endpoint.properties.deliveryPolicy" options="delivery-policy" group="Properties">
           <help short="A policy that specifies the delivery rules to be used for an endpoint."/>
@@ -5187,8 +5190,11 @@
                   <arg type="object" var="$endpoint.properties.deliveryPolicy.rules[].actions[].OriginGroupOverride" options="origin-group-override">
                     <arg type="object" var="$endpoint.properties.deliveryPolicy.rules[].actions[].OriginGroupOverride.parameters" options="parameters">
                       <help short="Defines the parameters for the action."/>
-                      <arg type="@ResourceReference_update" var="$endpoint.properties.deliveryPolicy.rules[].actions[].OriginGroupOverride.parameters.originGroup" options="origin-group">
+                      <arg type="object" var="$endpoint.properties.deliveryPolicy.rules[].actions[].OriginGroupOverride.parameters.originGroup" options="origin-group" cls="ResourceReference_update">
                         <help short="defines the OriginGroup that would override the DefaultOriginGroup."/>
+                        <arg nullable="True" type="string" var="@ResourceReference_update.id" options="id">
+                          <help short="Resource ID."/>
+                        </arg>
                       </arg>
                       <arg type="string" var="$endpoint.properties.deliveryPolicy.rules[].actions[].OriginGroupOverride.parameters.typeName" options="type-name">
                         <enum>
@@ -7648,8 +7654,8 @@
                 <prop type="array<string>" name="contentTypesToCompress" arg="$endpoint.properties.contentTypesToCompress">
                   <item type="string"/>
                 </prop>
-                <prop type="object" name="defaultOriginGroup" arg="$endpoint.properties.defaultOriginGroup" cls="ResourceReference_update">
-                  <prop type="string" name="id" arg="@ResourceReference_update.id"/>
+                <prop type="object" name="defaultOriginGroup">
+                  <prop type="string" name="id" arg="$endpoint.properties.defaultOriginGroup.id"/>
                 </prop>
                 <prop type="object" name="deliveryPolicy" arg="$endpoint.properties.deliveryPolicy">
                   <prop type="string" name="description" arg="$endpoint.properties.deliveryPolicy.description"/>
@@ -7733,7 +7739,9 @@
                           </discriminator>
                           <discriminator property="name" value="OriginGroupOverride">
                             <prop type="object" name="parameters" arg="$endpoint.properties.deliveryPolicy.rules[].actions[].OriginGroupOverride.parameters" required="True">
-                              <prop type="@ResourceReference_update" name="originGroup" arg="$endpoint.properties.deliveryPolicy.rules[].actions[].OriginGroupOverride.parameters.originGroup" required="True"/>
+                              <prop type="object" name="originGroup" arg="$endpoint.properties.deliveryPolicy.rules[].actions[].OriginGroupOverride.parameters.originGroup" required="True" cls="ResourceReference_update">
+                                <prop type="string" name="id" arg="@ResourceReference_update.id"/>
+                              </prop>
                               <prop type="string" name="typeName" arg="$endpoint.properties.deliveryPolicy.rules[].actions[].OriginGroupOverride.parameters.typeName" required="True">
                                 <enum>
                                   <item value="&quot;DeliveryRuleOriginGroupOverrideActionParameters&quot;"/>
