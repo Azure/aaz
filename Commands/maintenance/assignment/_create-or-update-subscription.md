@@ -12,5 +12,5 @@ Create configuration for resource.
 
 - ConfigurationAssignments_CreateOrUpdateSubscription
     ```bash
-        maintenance assignment create-or-update-subscription  --maintenance-configuration-id "/subscriptions/00000000-0000-0000-0000-00000000/resourcegroups/exmaplerg2/providers/Microsoft. Maintenance/maintenanceConfigurations/config1"  --name assignmentname  --filter-locations eastus2euap centraluseuap  --filter-os-types windows linux  --filter-tags "{{tagKey1:[tagKey1Val1,tagKey1Val2],tagKey2:[tagKey2Val1,tagKey2Val2]}}"  --filter-tags-operator All
+        maintenance assignment create-or-update-subscription  --maintenance-configuration-id "/subscriptions/00000000-0000-0000-0000-00000000/resourcegroups/exmaplerg2/providers/Microsoft. Maintenance/maintenanceConfigurations/config1"  --name assignmentname  --filter-locations eastus2euap centraluseuap  --filter-os-types windows linux  --filter-tags "{tagKey1:[tagKey1Val1,tagKey1Val2],tagKey2:[tagKey2Val1,tagKey2Val2]}"  --filter-tags-operator All
     ```
