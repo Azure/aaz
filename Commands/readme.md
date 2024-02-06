@@ -101,6 +101,9 @@
 - [eventhubs](/Commands/eventhubs/readme.md)
 : eventhub
 
+- [firmwareanalysis](/Commands/firmwareanalysis/readme.md)
+: Commands to manage firmware analysis.
+
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
 
