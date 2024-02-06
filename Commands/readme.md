@@ -117,7 +117,7 @@
 : Manage logic
 
 - [maintenance](/Commands/maintenance/readme.md)
-: Manage Maintenance
+: maintenance
 
 - [mesh](/Commands/mesh/readme.md)
 : (PREVIEW) Manage Azure Service Fabric Mesh Resources.
