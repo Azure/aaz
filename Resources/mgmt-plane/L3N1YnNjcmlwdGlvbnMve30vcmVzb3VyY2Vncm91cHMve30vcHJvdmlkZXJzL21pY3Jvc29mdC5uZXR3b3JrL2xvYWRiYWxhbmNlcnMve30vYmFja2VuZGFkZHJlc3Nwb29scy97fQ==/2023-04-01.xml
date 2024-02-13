@@ -1178,7 +1178,7 @@
                     <prop readOnly="True" type="array<@SubResource_read>" name="inboundNatRules">
                       <item type="@SubResource_read"/>
                     </prop>
-                    <prop type="array<object>" name="loadBalancerBackendAddresses" identifiers="name">
+                    <prop type="array<object>" name="loadBalancerBackendAddresses">
                       <item type="object">
                         <prop type="string" name="name"/>
                         <prop type="object" name="properties" clientFlatten="True">
@@ -1394,11 +1394,10 @@
             </arg>
           </item>
         </arg>
-        <arg type="object" var="$parameters.properties.virtualNetwork" options="virtual-network" hide="True" group="Properties" cls="SubResource_create">
+      </argGroup>
+      <argGroup name="VirtualNetwork">
+        <arg type="string" var="$parameters.properties.virtualNetwork.id" options="vnet-id" group="VirtualNetwork">
           <help short="A reference to a virtual network."/>
-          <arg type="string" var="@SubResource_create.id" options="id">
-            <help short="Resource ID."/>
-          </arg>
         </arg>
       </argGroup>
       <operation operationId="LoadBalancerBackendAddressPools_CreateOrUpdate">
@@ -1425,7 +1424,7 @@
                   <prop type="string" name="name" arg="$Path.backendAddressPoolName"/>
                   <prop type="object" name="properties" clientFlatten="True">
                     <prop type="integer32" name="drainPeriodInSeconds" arg="$parameters.properties.drainPeriodInSeconds"/>
-                    <prop type="array<object>" name="loadBalancerBackendAddresses" arg="$parameters.properties.loadBalancerBackendAddresses" identifiers="name">
+                    <prop type="array<object>" name="loadBalancerBackendAddresses" arg="$parameters.properties.loadBalancerBackendAddresses">
                       <item type="object">
                         <prop type="string" name="name" arg="$parameters.properties.loadBalancerBackendAddresses[].name"/>
                         <prop type="object" name="properties" clientFlatten="True">
@@ -1476,8 +1475,8 @@
                         </prop>
                       </item>
                     </prop>
-                    <prop type="object" name="virtualNetwork" arg="$parameters.properties.virtualNetwork" cls="SubResource_create">
-                      <prop type="string" name="id" arg="@SubResource_create.id"/>
+                    <prop type="object" name="virtualNetwork">
+                      <prop type="string" name="id" arg="$parameters.properties.virtualNetwork.id"/>
                     </prop>
                   </prop>
                 </schema>
@@ -2633,7 +2632,7 @@
                     <prop readOnly="True" type="array<@SubResource_read>" name="inboundNatRules">
                       <item type="@SubResource_read"/>
                     </prop>
-                    <prop type="array<object>" name="loadBalancerBackendAddresses" identifiers="name">
+                    <prop type="array<object>" name="loadBalancerBackendAddresses">
                       <item type="object">
                         <prop type="string" name="name"/>
                         <prop type="object" name="properties" clientFlatten="True">
@@ -2808,11 +2807,10 @@
             </arg>
           </item>
         </arg>
-        <arg nullable="True" type="object" var="$parameters.properties.virtualNetwork" options="virtual-network" hide="True" group="Properties" cls="SubResource_update">
+      </argGroup>
+      <argGroup name="VirtualNetwork">
+        <arg nullable="True" type="string" var="$parameters.properties.virtualNetwork.id" options="vnet-id" group="VirtualNetwork">
           <help short="A reference to a virtual network."/>
-          <arg nullable="True" type="string" var="@SubResource_update.id" options="id">
-            <help short="Resource ID."/>
-          </arg>
         </arg>
       </argGroup>
       <operation operationId="LoadBalancerBackendAddressPools_Get">
@@ -3979,7 +3977,7 @@
                     <prop readOnly="True" type="array<@SubResource_read>" name="inboundNatRules">
                       <item type="@SubResource_read"/>
                     </prop>
-                    <prop type="array<object>" name="loadBalancerBackendAddresses" identifiers="name">
+                    <prop type="array<object>" name="loadBalancerBackendAddresses">
                       <item type="object">
                         <prop type="string" name="name"/>
                         <prop type="object" name="properties" clientFlatten="True">
@@ -4075,7 +4073,7 @@
               <prop type="string" name="name" arg="$Path.backendAddressPoolName"/>
               <prop type="object" name="properties" clientFlatten="True">
                 <prop type="integer32" name="drainPeriodInSeconds" arg="$parameters.properties.drainPeriodInSeconds"/>
-                <prop type="array<object>" name="loadBalancerBackendAddresses" arg="$parameters.properties.loadBalancerBackendAddresses" identifiers="name">
+                <prop type="array<object>" name="loadBalancerBackendAddresses" arg="$parameters.properties.loadBalancerBackendAddresses">
                   <item type="object">
                     <prop type="string" name="name" arg="$parameters.properties.loadBalancerBackendAddresses[].name"/>
                     <prop type="object" name="properties" clientFlatten="True">
@@ -4126,8 +4124,8 @@
                     </prop>
                   </item>
                 </prop>
-                <prop type="object" name="virtualNetwork" arg="$parameters.properties.virtualNetwork" cls="SubResource_update">
-                  <prop type="string" name="id" arg="@SubResource_update.id"/>
+                <prop type="object" name="virtualNetwork">
+                  <prop type="string" name="id" arg="$parameters.properties.virtualNetwork.id"/>
                 </prop>
               </prop>
             </schema>
@@ -5353,7 +5351,7 @@
                       <prop readOnly="True" type="array<@SubResource_read>" name="inboundNatRules">
                         <item type="@SubResource_read"/>
                       </prop>
-                      <prop type="array<object>" name="loadBalancerBackendAddresses" identifiers="name">
+                      <prop type="array<object>" name="loadBalancerBackendAddresses">
                         <item type="object">
                           <prop type="string" name="name"/>
                           <prop type="object" name="properties" clientFlatten="True">
@@ -5452,7 +5450,8 @@
           </arg>
           <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-          <arg type="string" var="$parameters.properties.loadBalancerBackendAddresses[].name" options="name n" required="True" group="">
+          <arg type="integer" var="$parameters.properties.loadBalancerBackendAddresses[Index]" options="load-balancer-backend-address-index"/>
+          <arg type="string" var="$parameters.properties.loadBalancerBackendAddresses[].name" options="name n" group="">
             <help short="Name of the backend address."/>
           </arg>
         </argGroup>
@@ -5482,7 +5481,7 @@
           <json type="object" name="parameters">
             <prop type="array" name="properties.loadBalancerBackendAddresses">
               <item type="object"/>
-              <identifier type="string" name="[].name" arg="$parameters.properties.loadBalancerBackendAddresses[].name" required="True"/>
+              <identifier type="integer" name="[Index]" arg="$parameters.properties.loadBalancerBackendAddresses[Index]"/>
             </prop>
           </json>
         </subresourceSelector>
@@ -6650,7 +6649,7 @@
                       <prop readOnly="True" type="array<@SubResource_read>" name="inboundNatRules">
                         <item type="@SubResource_read"/>
                       </prop>
-                      <prop type="array<object>" name="loadBalancerBackendAddresses" identifiers="name">
+                      <prop type="array<object>" name="loadBalancerBackendAddresses">
                         <item type="object">
                           <prop type="string" name="name"/>
                           <prop type="object" name="properties" clientFlatten="True">
@@ -6812,7 +6811,8 @@
           </arg>
           <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-          <arg type="string" var="$parameters.properties.loadBalancerBackendAddresses[].name" options="name n" required="True" group="">
+          <arg type="integer" var="$parameters.properties.loadBalancerBackendAddresses[Index]" options="load-balancer-backend-address-index" required="True"/>
+          <arg nullable="True" type="string" var="$parameters.properties.loadBalancerBackendAddresses[].name" options="name n" group="">
             <help short="Name of the backend address."/>
           </arg>
         </argGroup>
@@ -6842,7 +6842,7 @@
           <json type="object" name="parameters">
             <prop type="array" name="properties.loadBalancerBackendAddresses">
               <item type="object"/>
-              <identifier type="string" name="[].name" arg="$parameters.properties.loadBalancerBackendAddresses[].name" required="True"/>
+              <identifier type="integer" name="[Index]" arg="$parameters.properties.loadBalancerBackendAddresses[Index]" required="True"/>
             </prop>
           </json>
         </subresourceSelector>
@@ -8010,7 +8010,7 @@
                       <prop readOnly="True" type="array<@SubResource_read>" name="inboundNatRules">
                         <item type="@SubResource_read"/>
                       </prop>
-                      <prop type="array<object>" name="loadBalancerBackendAddresses" identifiers="name">
+                      <prop type="array<object>" name="loadBalancerBackendAddresses">
                         <item type="object">
                           <prop type="string" name="name"/>
                           <prop type="object" name="properties" clientFlatten="True">
@@ -8172,15 +8172,13 @@
           </arg>
           <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-          <arg type="string" var="$parameters.properties.loadBalancerBackendAddresses[].name" options="name n" required="True" group="">
-            <help short="Name of the backend address."/>
-          </arg>
+          <arg type="integer" var="$parameters.properties.loadBalancerBackendAddresses[Index]" options="load-balancer-backend-address-index" required="True"/>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
           <json type="object" name="parameters">
             <prop type="array" name="properties.loadBalancerBackendAddresses">
               <item type="object"/>
-              <identifier type="string" name="[].name" arg="$parameters.properties.loadBalancerBackendAddresses[].name" required="True"/>
+              <identifier type="integer" name="[Index]" arg="$parameters.properties.loadBalancerBackendAddresses[Index]" required="True"/>
             </prop>
           </json>
         </subresourceSelector>
@@ -9348,7 +9346,7 @@
                       <prop readOnly="True" type="array<@SubResource_read>" name="inboundNatRules">
                         <item type="@SubResource_read"/>
                       </prop>
-                      <prop type="array<object>" name="loadBalancerBackendAddresses" identifiers="name">
+                      <prop type="array<object>" name="loadBalancerBackendAddresses">
                         <item type="object">
                           <prop type="string" name="name"/>
                           <prop type="object" name="properties" clientFlatten="True">
@@ -9486,15 +9484,13 @@
           </arg>
           <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-          <arg type="string" var="$parameters.properties.loadBalancerBackendAddresses[].name" options="name n" required="True" group="">
-            <help short="Name of the backend address."/>
-          </arg>
+          <arg type="integer" var="$parameters.properties.loadBalancerBackendAddresses[Index]" options="load-balancer-backend-address-index" required="True"/>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
           <json type="object" name="parameters">
             <prop type="array" name="properties.loadBalancerBackendAddresses">
               <item type="object"/>
-              <identifier type="string" name="[].name" arg="$parameters.properties.loadBalancerBackendAddresses[].name" required="True"/>
+              <identifier type="integer" name="[Index]" arg="$parameters.properties.loadBalancerBackendAddresses[Index]" required="True"/>
             </prop>
           </json>
         </subresourceSelector>
@@ -10662,7 +10658,7 @@
                       <prop readOnly="True" type="array<@SubResource_read>" name="inboundNatRules">
                         <item type="@SubResource_read"/>
                       </prop>
-                      <prop type="array<object>" name="loadBalancerBackendAddresses" identifiers="name">
+                      <prop type="array<object>" name="loadBalancerBackendAddresses">
                         <item type="object">
                           <prop type="string" name="name"/>
                           <prop type="object" name="properties" clientFlatten="True">
@@ -11933,7 +11929,7 @@
                       <prop readOnly="True" type="array<@SubResource_read>" name="inboundNatRules">
                         <item type="@SubResource_read"/>
                       </prop>
-                      <prop type="array<object>" name="loadBalancerBackendAddresses" identifiers="name">
+                      <prop type="array<object>" name="loadBalancerBackendAddresses">
                         <item type="object">
                           <prop type="string" name="name"/>
                           <prop type="object" name="properties" clientFlatten="True">
@@ -13232,7 +13228,7 @@
                       <prop readOnly="True" type="array<@SubResource_read>" name="inboundNatRules">
                         <item type="@SubResource_read"/>
                       </prop>
-                      <prop type="array<object>" name="loadBalancerBackendAddresses" identifiers="name">
+                      <prop type="array<object>" name="loadBalancerBackendAddresses">
                         <item type="object">
                           <prop type="string" name="name"/>
                           <prop type="object" name="properties" clientFlatten="True">
@@ -14590,7 +14586,7 @@
                       <prop readOnly="True" type="array<@SubResource_read>" name="inboundNatRules">
                         <item type="@SubResource_read"/>
                       </prop>
-                      <prop type="array<object>" name="loadBalancerBackendAddresses" identifiers="name">
+                      <prop type="array<object>" name="loadBalancerBackendAddresses">
                         <item type="object">
                           <prop type="string" name="name"/>
                           <prop type="object" name="properties" clientFlatten="True">
@@ -15924,7 +15920,7 @@
                       <prop readOnly="True" type="array<@SubResource_read>" name="inboundNatRules">
                         <item type="@SubResource_read"/>
                       </prop>
-                      <prop type="array<object>" name="loadBalancerBackendAddresses" identifiers="name">
+                      <prop type="array<object>" name="loadBalancerBackendAddresses">
                         <item type="object">
                           <prop type="string" name="name"/>
                           <prop type="object" name="properties" clientFlatten="True">
@@ -17238,7 +17234,7 @@
                       <prop readOnly="True" type="array<@SubResource_read>" name="inboundNatRules">
                         <item type="@SubResource_read"/>
                       </prop>
-                      <prop type="array<object>" name="loadBalancerBackendAddresses" identifiers="name">
+                      <prop type="array<object>" name="loadBalancerBackendAddresses">
                         <item type="object">
                           <prop type="string" name="name"/>
                           <prop type="object" name="properties" clientFlatten="True">

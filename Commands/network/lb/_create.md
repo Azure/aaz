@@ -187,5 +187,5 @@ Create a load balancer.
 
 - Create a standard zone flavored public-facing load balancer, through provisioning a zonal frontend ip configuration and Vnet.
     ```bash
-        etwork lb create -g MyResourceGroup -n MyLb --sku Standard --frontend-ip-zone 1 --vnet-name MyVnet --subnet MySubnet
+        network lb create -g MyResourceGroup -n MyLb --sku Standard --frontend-ip-zone 1 --vnet-name MyVnet --subnet MySubnet
     ```

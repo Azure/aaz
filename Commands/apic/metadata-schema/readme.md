@@ -1,6 +1,6 @@
 # [Group] _apic metadata-schema_
 
-Metadata schema
+Commands to manage Metadata Schemas in API Center
 
 ## Commands
 

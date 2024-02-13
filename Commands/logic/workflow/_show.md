@@ -1,6 +1,6 @@
 # [Command] _logic workflow show_
 
-Get a workflow.
+Show a workflow.
 
 ## Versions
 

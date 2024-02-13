@@ -15,11 +15,14 @@ Manage workflow
 - [delete](/Commands/logic/workflow/_delete.md)
 : Delete a workflow.
 
+- [generate-upgraded-definition](/Commands/logic/workflow/_generate-upgraded-definition.md)
+: Generates the upgraded definition for a workflow.
+
 - [list](/Commands/logic/workflow/_list.md)
-: List a list of workflows by subscription.
+: List workflows
 
 - [show](/Commands/logic/workflow/_show.md)
-: Get a workflow.
+: Show a workflow.
 
 - [update](/Commands/logic/workflow/_update.md)
 : Update a workflow.

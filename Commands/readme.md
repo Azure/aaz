@@ -15,7 +15,7 @@
 : Manage lustre file system
 
 - [apic](/Commands/apic/readme.md)
-: API Center
+: Manage Azure API Center services
 
 - [attestation](/Commands/attestation/readme.md)
 : Manage Microsoft Azure Attestation (MAA).
@@ -55,6 +55,9 @@
 
 - [cosmosdb](/Commands/cosmosdb/readme.md)
 : Manage Azure Cosmos DB database accounts.
+
+- [costmanagement](/Commands/costmanagement/readme.md)
+: costmanagement
 
 - [databox](/Commands/databox/readme.md)
 : Manage data box
@@ -223,6 +226,9 @@
 
 - [storage-mover](/Commands/storage-mover/readme.md)
 : Manage top-level Storage Mover resource.
+
+- [storagesync](/Commands/storagesync/readme.md)
+: Manage Azure File Sync.
 
 - [tsi](/Commands/tsi/readme.md)
 : Manage Azure Time Series Insights.

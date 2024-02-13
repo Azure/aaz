@@ -1,6 +1,6 @@
 # [Command] _logic workflow list_
 
-List a list of workflows by subscription.
+List workflows
 
 ## Versions
 

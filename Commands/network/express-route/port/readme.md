@@ -4,6 +4,9 @@ Manage ExpressRoute ports.
 
 ## Subgroups
 
+- [authorization](/Commands/network/express-route/port/authorization/readme.md)
+: Manage ExpressRoute ports authorzation.
+
 - [identity](/Commands/network/express-route/port/identity/readme.md)
 : Manage the managed service identity of an ExpressRoute Port.
 

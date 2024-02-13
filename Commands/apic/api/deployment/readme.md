@@ -1,6 +1,6 @@
 # [Group] _apic api deployment_
 
-API deployment
+Commands to manage API deployments in API Center
 
 ## Commands
 

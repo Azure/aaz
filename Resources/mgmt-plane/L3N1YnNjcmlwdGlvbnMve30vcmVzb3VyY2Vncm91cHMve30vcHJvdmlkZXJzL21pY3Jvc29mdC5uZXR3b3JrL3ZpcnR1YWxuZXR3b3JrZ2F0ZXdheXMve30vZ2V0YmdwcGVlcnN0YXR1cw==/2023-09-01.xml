@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/virtualnetworkgateways/{}/getbgppeerstatus" version="2023-09-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay92aXJ0dWFsTmV0d29ya0dhdGV3YXlzL3t2aXJ0dWFsTmV0d29ya0dhdGV3YXlOYW1lfS9nZXRCZ3BQZWVyU3RhdHVz/V/MjAyMy0wOS0wMQ=="/>
+  <commandGroup name="network vnet-gateway">
+    <command name="list-bgp-peer-status" version="2023-09-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/virtualnetworkgateways/{}/getbgppeerstatus" version="2023-09-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay92aXJ0dWFsTmV0d29ya0dhdGV3YXlzL3t2aXJ0dWFsTmV0d29ya0dhdGV3YXlOYW1lfS9nZXRCZ3BQZWVyU3RhdHVz/V/MjAyMy0wOS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.virtualNetworkGatewayName" options="name n" required="True" group="" idPart="name">
+          <help short="Name of the VNet gateway."/>
+        </arg>
+        <arg type="string" var="$Query.peer" options="peer" group="">
+          <help short="The IP address of the peer to retrieve the status of. Default value is None."/>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualNetworkGateways_GetBgpPeerStatus">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/getBgpPeerStatus">
+          <request method="post">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="virtualNetworkGatewayName" arg="$Path.virtualNetworkGatewayName" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="peer" arg="$Query.peer"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-09-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="integer64" name="asn">
+                        <format maximum="4294967295" minimum="0"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="connectedDuration"/>
+                      <prop readOnly="True" type="string" name="localAddress"/>
+                      <prop readOnly="True" type="integer64" name="messagesReceived"/>
+                      <prop readOnly="True" type="integer64" name="messagesSent"/>
+                      <prop readOnly="True" type="string" name="neighbor"/>
+                      <prop readOnly="True" type="integer64" name="routesReceived"/>
+                      <prop readOnly="True" type="string" name="state">
+                        <enum>
+                          <item value="&quot;Connected&quot;"/>
+                          <item value="&quot;Connecting&quot;"/>
+                          <item value="&quot;Idle&quot;"/>
+                          <item value="&quot;Stopped&quot;"/>
+                          <item value="&quot;Unknown&quot;"/>
+                        </enum>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
