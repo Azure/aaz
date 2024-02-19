@@ -18,3 +18,6 @@ Manage Network Device Resource
 
 - [update](/Commands/networkfabric/device/_update.md)
 : Update the Network Device resource.
+
+- [upgrade](/Commands/networkfabric/device/_upgrade.md)
+: Upgrades the version of the Network Device.
