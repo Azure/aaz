@@ -27,3 +27,9 @@ Manage Network Fabric Resource
 
 - [update](/Commands/networkfabric/fabric/_update.md)
 : Update the Network Fabric resource.
+
+- [upgrade](/Commands/networkfabric/fabric/_upgrade.md)
+: Upgrades the version of the underlying resources in the given Network Fabric instance.
+
+- [validate-configuration](/Commands/networkfabric/fabric/_validate-configuration.md)
+: Validates the configuration of the underlying resources in the given Network Fabric instance.

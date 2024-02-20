@@ -13,6 +13,9 @@ Manage Network Tap Resource
 - [list](/Commands/networkfabric/tap/_list.md)
 : List all Network Taps in the provided resource group or subscription
 
+- [resync](/Commands/networkfabric/tap/_resync.md)
+: Implements the operation to the underlying resources.
+
 - [show](/Commands/networkfabric/tap/_show.md)
 : Show details of the provided Network Tap resource
 
