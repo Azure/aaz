@@ -2,6 +2,8 @@
 
 Get the specified network interface in a virtual machine scale set.
 
+This command is Uniform-specific and will not work for Flexible VMSS. If you want to get information about Flexible VMSS, please use "az network nic" command instead.
+
 ## Versions
 
 ### [2016-03-30](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlL3ZpcnR1YWxtYWNoaW5lc2NhbGVzZXRzL3t9L3ZpcnR1YWxtYWNoaW5lcy97fS9uZXR3b3JraW50ZXJmYWNlcy97fQ==/2016-03-30.xml) **Stable**
