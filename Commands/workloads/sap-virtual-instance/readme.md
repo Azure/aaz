@@ -2,6 +2,17 @@
 
 Manage virtual instance
 
+## Subgroups
+
+- [application-instance](/Commands/workloads/sap-virtual-instance/application-instance/readme.md)
+: Update the SAP Application Server Instance resource. This will be used by service only. PUT by end user will return a Bad Request error.
+
+- [central-instance](/Commands/workloads/sap-virtual-instance/central-instance/readme.md)
+: Update the SAP Central Services Instance resource. This will be used by service only. PUT operation on this resource by end user will return a Bad Request error.
+
+- [database-instance](/Commands/workloads/sap-virtual-instance/database-instance/readme.md)
+: Update the Database resource corresponding to the Virtual Instance for SAP solutions resource.This will be used by service only. PUT by end user will return a Bad Request error.
+
 ## Commands
 
 - [create](/Commands/workloads/sap-virtual-instance/_create.md)
