@@ -1,6 +1,6 @@
 # [Group] _automation hrwg hrw_
 
-hrw
+Manage Automation Hybrid Runbook Worker.
 
 ## Commands
 

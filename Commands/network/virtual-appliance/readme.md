@@ -4,6 +4,9 @@ Manage Azure Network Virtual Appliance.
 
 ## Subgroups
 
+- [connection](/Commands/network/virtual-appliance/connection/readme.md)
+: Manage Azure Network Virtual Appliance Connection.
+
 - [site](/Commands/network/virtual-appliance/site/readme.md)
 : Manage Azure Network Virtual Appliance Site.
 

@@ -70,7 +70,9 @@
                     <prop type="integer64" name="fabricASN" required="True">
                       <format maximum="4294967295" minimum="1"/>
                     </prop>
-                    <prop readOnly="True" type="string" name="fabricVersion"/>
+                    <prop type="string" name="fabricVersion">
+                      <format minLength="1"/>
+                    </prop>
                     <prop type="string" name="ipv4Prefix" required="True">
                       <format minLength="1"/>
                     </prop>
@@ -120,9 +122,9 @@
                             <format maximum="4294967295" minimum="1"/>
                           </prop>
                           <prop type="string" name="primaryIpv4Prefix"/>
-                          <prop type="string" name="primaryIpv6Prefix"/>
+                          <prop nullable="True" type="string" name="primaryIpv6Prefix"/>
                           <prop type="string" name="secondaryIpv4Prefix"/>
-                          <prop type="string" name="secondaryIpv6Prefix"/>
+                          <prop nullable="True" type="string" name="secondaryIpv6Prefix"/>
                           <prop type="integer32" name="vlanId" required="True">
                             <format maximum="4094" minimum="501"/>
                           </prop>
@@ -198,9 +200,9 @@
                         <format minLength="1"/>
                       </prop>
                       <prop type="string" name="primaryIpv4Prefix" required="True"/>
-                      <prop type="string" name="primaryIpv6Prefix"/>
+                      <prop nullable="True" type="string" name="primaryIpv6Prefix"/>
                       <prop type="string" name="secondaryIpv4Prefix" required="True"/>
-                      <prop type="string" name="secondaryIpv6Prefix"/>
+                      <prop nullable="True" type="string" name="secondaryIpv6Prefix"/>
                       <prop type="string" name="serialNumber">
                         <format minLength="1"/>
                       </prop>
@@ -332,6 +334,10 @@
           <help short="ASN of CE devices for CE/PE connectivity. The value should be between 1 to 4294967295. Example: 65123"/>
           <format maximum="4294967295" minimum="1"/>
         </arg>
+        <arg type="string" var="$body.properties.fabricVersion" options="fabric-version" group="Properties">
+          <help short="The version of Network Fabric."/>
+          <format minLength="1"/>
+        </arg>
         <arg type="string" var="$body.properties.ipv4Prefix" options="ipv4-prefix" required="True" group="Properties">
           <help short="IPv4Prefix for Management Network. Example: 10.1.0.0/19."/>
           <format minLength="1"/>
@@ -369,13 +375,13 @@
               <arg type="string" var="@VpnConfigurationProperties_create.optionAProperties.primaryIpv4Prefix" options="primary-ipv4-prefix" group="">
                 <help short="IPv4 Address Prefix. Example: 172.31.0.0/31."/>
               </arg>
-              <arg type="string" var="@VpnConfigurationProperties_create.optionAProperties.primaryIpv6Prefix" options="primary-ipv6-prefix" group="">
+              <arg nullable="True" type="string" var="@VpnConfigurationProperties_create.optionAProperties.primaryIpv6Prefix" options="primary-ipv6-prefix" group="">
                 <help short="IPv6 Address Prefix. Example: 3FFE:FFFF:0:CD30::a0/127."/>
               </arg>
               <arg type="string" var="@VpnConfigurationProperties_create.optionAProperties.secondaryIpv4Prefix" options="secondary-ipv4-prefix" group="">
                 <help short="Secondary IPv4 Address Prefix. Example: 172.31.0.20/31."/>
               </arg>
-              <arg type="string" var="@VpnConfigurationProperties_create.optionAProperties.secondaryIpv6Prefix" options="secondary-ipv6-prefix" group="">
+              <arg nullable="True" type="string" var="@VpnConfigurationProperties_create.optionAProperties.secondaryIpv6Prefix" options="secondary-ipv6-prefix" group="">
                 <help short="Secondary IPv6 Address Prefix. Example: 3FFE:FFFF:0:CD30::a4/127."/>
               </arg>
               <arg type="integer32" var="@VpnConfigurationProperties_create.optionAProperties.vlanId" options="vlan-id" required="True" group="">
@@ -457,13 +463,13 @@
           <arg type="string" var="$body.properties.terminalServerConfiguration.primaryIpv4Prefix" options="primary-ipv4-prefix" required="True" group="">
             <help short="IPv4 Address Prefix. Example:172.31.0.0/30."/>
           </arg>
-          <arg type="string" var="$body.properties.terminalServerConfiguration.primaryIpv6Prefix" options="primary-ipv6-prefix" group="">
+          <arg nullable="True" type="string" var="$body.properties.terminalServerConfiguration.primaryIpv6Prefix" options="primary-ipv6-prefix" group="">
             <help short="IPv6 Address Prefix. Example: 3FFE:FFFF:0:CD30::a0/127."/>
           </arg>
           <arg type="string" var="$body.properties.terminalServerConfiguration.secondaryIpv4Prefix" options="secondary-ipv4-prefix" required="True" group="">
             <help short="Secondary IPv4 Address Prefix. Example:172.31.0.20/30."/>
           </arg>
-          <arg type="string" var="$body.properties.terminalServerConfiguration.secondaryIpv6Prefix" options="secondary-ipv6-prefix" group="">
+          <arg nullable="True" type="string" var="$body.properties.terminalServerConfiguration.secondaryIpv6Prefix" options="secondary-ipv6-prefix" group="">
             <help short="Secondary IPv6 Address Prefix. Example: 3FFE:FFFF:0:CD30::a4/127."/>
           </arg>
           <arg type="string" var="$body.properties.terminalServerConfiguration.serialNumber" options="serial-number">
@@ -502,6 +508,9 @@
                     <prop type="integer64" name="fabricASN" arg="$body.properties.fabricASN" required="True">
                       <format maximum="4294967295" minimum="1"/>
                     </prop>
+                    <prop type="string" name="fabricVersion" arg="$body.properties.fabricVersion">
+                      <format minLength="1"/>
+                    </prop>
                     <prop type="string" name="ipv4Prefix" arg="$body.properties.ipv4Prefix" required="True">
                       <format minLength="1"/>
                     </prop>
@@ -528,9 +537,9 @@
                             <format maximum="4294967295" minimum="1"/>
                           </prop>
                           <prop type="string" name="primaryIpv4Prefix" arg="@VpnConfigurationProperties_create.optionAProperties.primaryIpv4Prefix"/>
-                          <prop type="string" name="primaryIpv6Prefix" arg="@VpnConfigurationProperties_create.optionAProperties.primaryIpv6Prefix"/>
+                          <prop nullable="True" type="string" name="primaryIpv6Prefix" arg="@VpnConfigurationProperties_create.optionAProperties.primaryIpv6Prefix"/>
                           <prop type="string" name="secondaryIpv4Prefix" arg="@VpnConfigurationProperties_create.optionAProperties.secondaryIpv4Prefix"/>
-                          <prop type="string" name="secondaryIpv6Prefix" arg="@VpnConfigurationProperties_create.optionAProperties.secondaryIpv6Prefix"/>
+                          <prop nullable="True" type="string" name="secondaryIpv6Prefix" arg="@VpnConfigurationProperties_create.optionAProperties.secondaryIpv6Prefix"/>
                           <prop type="integer32" name="vlanId" arg="@VpnConfigurationProperties_create.optionAProperties.vlanId" required="True">
                             <format maximum="4094" minimum="501"/>
                           </prop>
@@ -589,9 +598,9 @@
                         <format minLength="1"/>
                       </prop>
                       <prop type="string" name="primaryIpv4Prefix" arg="$body.properties.terminalServerConfiguration.primaryIpv4Prefix" required="True"/>
-                      <prop type="string" name="primaryIpv6Prefix" arg="$body.properties.terminalServerConfiguration.primaryIpv6Prefix"/>
+                      <prop nullable="True" type="string" name="primaryIpv6Prefix" arg="$body.properties.terminalServerConfiguration.primaryIpv6Prefix"/>
                       <prop type="string" name="secondaryIpv4Prefix" arg="$body.properties.terminalServerConfiguration.secondaryIpv4Prefix" required="True"/>
-                      <prop type="string" name="secondaryIpv6Prefix" arg="$body.properties.terminalServerConfiguration.secondaryIpv6Prefix"/>
+                      <prop nullable="True" type="string" name="secondaryIpv6Prefix" arg="$body.properties.terminalServerConfiguration.secondaryIpv6Prefix"/>
                       <prop type="string" name="serialNumber" arg="$body.properties.terminalServerConfiguration.serialNumber">
                         <format minLength="1"/>
                       </prop>
@@ -647,7 +656,9 @@
                     <prop type="integer64" name="fabricASN" required="True">
                       <format maximum="4294967295" minimum="1"/>
                     </prop>
-                    <prop readOnly="True" type="string" name="fabricVersion"/>
+                    <prop type="string" name="fabricVersion">
+                      <format minLength="1"/>
+                    </prop>
                     <prop type="string" name="ipv4Prefix" required="True">
                       <format minLength="1"/>
                     </prop>
@@ -697,9 +708,9 @@
                             <format maximum="4294967295" minimum="1"/>
                           </prop>
                           <prop type="string" name="primaryIpv4Prefix"/>
-                          <prop type="string" name="primaryIpv6Prefix"/>
+                          <prop nullable="True" type="string" name="primaryIpv6Prefix"/>
                           <prop type="string" name="secondaryIpv4Prefix"/>
-                          <prop type="string" name="secondaryIpv6Prefix"/>
+                          <prop nullable="True" type="string" name="secondaryIpv6Prefix"/>
                           <prop type="integer32" name="vlanId" required="True">
                             <format maximum="4094" minimum="501"/>
                           </prop>
@@ -775,9 +786,9 @@
                         <format minLength="1"/>
                       </prop>
                       <prop type="string" name="primaryIpv4Prefix" required="True"/>
-                      <prop type="string" name="primaryIpv6Prefix"/>
+                      <prop nullable="True" type="string" name="primaryIpv6Prefix"/>
                       <prop type="string" name="secondaryIpv4Prefix" required="True"/>
-                      <prop type="string" name="secondaryIpv6Prefix"/>
+                      <prop nullable="True" type="string" name="secondaryIpv6Prefix"/>
                       <prop type="string" name="serialNumber">
                         <format minLength="1"/>
                       </prop>
@@ -895,13 +906,13 @@
               <arg type="string" var="@VpnConfigurationPatchableProperties_update.optionAProperties.primaryIpv4Prefix" options="primary-ipv4-prefix" group="">
                 <help short="IPv4 Address Prefix. Example: 172.31.0.0/31."/>
               </arg>
-              <arg type="string" var="@VpnConfigurationPatchableProperties_update.optionAProperties.primaryIpv6Prefix" options="primary-ipv6-prefix" group="">
+              <arg nullable="True" type="string" var="@VpnConfigurationPatchableProperties_update.optionAProperties.primaryIpv6Prefix" options="primary-ipv6-prefix" group="">
                 <help short="IPv6 Address Prefix. Example: 3FFE:FFFF:0:CD30::a0/127."/>
               </arg>
               <arg type="string" var="@VpnConfigurationPatchableProperties_update.optionAProperties.secondaryIpv4Prefix" options="secondary-ipv4-prefix" group="">
                 <help short="Secondary IPv4 Address Prefix. Example: 172.31.0.20/31."/>
               </arg>
-              <arg type="string" var="@VpnConfigurationPatchableProperties_update.optionAProperties.secondaryIpv6Prefix" options="secondary-ipv6-prefix" group="">
+              <arg nullable="True" type="string" var="@VpnConfigurationPatchableProperties_update.optionAProperties.secondaryIpv6Prefix" options="secondary-ipv6-prefix" group="">
                 <help short="Secondary IPv6 Address Prefix. Example: 3FFE:FFFF:0:CD30::a4/127"/>
               </arg>
               <arg type="integer32" var="@VpnConfigurationPatchableProperties_update.optionAProperties.vlanId" options="vlan-id" group="">
@@ -976,13 +987,13 @@
           <arg type="string" var="$body.properties.terminalServerConfiguration.primaryIpv4Prefix" options="primary-ipv4-prefix" group="">
             <help short="IPv4 Address Prefix. Example:172.31.0.0/30."/>
           </arg>
-          <arg type="string" var="$body.properties.terminalServerConfiguration.primaryIpv6Prefix" options="primary-ipv6-prefix" group="">
+          <arg nullable="True" type="string" var="$body.properties.terminalServerConfiguration.primaryIpv6Prefix" options="primary-ipv6-prefix" group="">
             <help short="IPv6 Address Prefix. Example: 3FFE:FFFF:0:CD30::a0/127."/>
           </arg>
           <arg type="string" var="$body.properties.terminalServerConfiguration.secondaryIpv4Prefix" options="secondary-ipv4-prefix" group="">
             <help short="Secondary IPv4 Address Prefix. Example:172.31.0.20/30."/>
           </arg>
-          <arg type="string" var="$body.properties.terminalServerConfiguration.secondaryIpv6Prefix" options="secondary-ipv6-prefix" group="">
+          <arg nullable="True" type="string" var="$body.properties.terminalServerConfiguration.secondaryIpv6Prefix" options="secondary-ipv6-prefix" group="">
             <help short="Secondary IPv6 Address Prefix. Example: 3FFE:FFFF:0:CD30::a4/127."/>
           </arg>
           <arg type="string" var="$body.properties.terminalServerConfiguration.serialNumber" options="serial-number">
@@ -1046,9 +1057,9 @@
                             <format maximum="4294967295" minimum="1"/>
                           </prop>
                           <prop type="string" name="primaryIpv4Prefix" arg="@VpnConfigurationPatchableProperties_update.optionAProperties.primaryIpv4Prefix"/>
-                          <prop type="string" name="primaryIpv6Prefix" arg="@VpnConfigurationPatchableProperties_update.optionAProperties.primaryIpv6Prefix"/>
+                          <prop nullable="True" type="string" name="primaryIpv6Prefix" arg="@VpnConfigurationPatchableProperties_update.optionAProperties.primaryIpv6Prefix"/>
                           <prop type="string" name="secondaryIpv4Prefix" arg="@VpnConfigurationPatchableProperties_update.optionAProperties.secondaryIpv4Prefix"/>
-                          <prop type="string" name="secondaryIpv6Prefix" arg="@VpnConfigurationPatchableProperties_update.optionAProperties.secondaryIpv6Prefix"/>
+                          <prop nullable="True" type="string" name="secondaryIpv6Prefix" arg="@VpnConfigurationPatchableProperties_update.optionAProperties.secondaryIpv6Prefix"/>
                           <prop type="integer32" name="vlanId" arg="@VpnConfigurationPatchableProperties_update.optionAProperties.vlanId">
                             <format maximum="4094" minimum="501"/>
                           </prop>
@@ -1103,9 +1114,9 @@
                         <format minLength="1"/>
                       </prop>
                       <prop type="string" name="primaryIpv4Prefix" arg="$body.properties.terminalServerConfiguration.primaryIpv4Prefix"/>
-                      <prop type="string" name="primaryIpv6Prefix" arg="$body.properties.terminalServerConfiguration.primaryIpv6Prefix"/>
+                      <prop nullable="True" type="string" name="primaryIpv6Prefix" arg="$body.properties.terminalServerConfiguration.primaryIpv6Prefix"/>
                       <prop type="string" name="secondaryIpv4Prefix" arg="$body.properties.terminalServerConfiguration.secondaryIpv4Prefix"/>
-                      <prop type="string" name="secondaryIpv6Prefix" arg="$body.properties.terminalServerConfiguration.secondaryIpv6Prefix"/>
+                      <prop nullable="True" type="string" name="secondaryIpv6Prefix" arg="$body.properties.terminalServerConfiguration.secondaryIpv6Prefix"/>
                       <prop type="string" name="serialNumber" arg="$body.properties.terminalServerConfiguration.serialNumber">
                         <format minLength="1"/>
                       </prop>
@@ -1161,7 +1172,9 @@
                     <prop type="integer64" name="fabricASN" required="True">
                       <format maximum="4294967295" minimum="1"/>
                     </prop>
-                    <prop readOnly="True" type="string" name="fabricVersion"/>
+                    <prop type="string" name="fabricVersion">
+                      <format minLength="1"/>
+                    </prop>
                     <prop type="string" name="ipv4Prefix" required="True">
                       <format minLength="1"/>
                     </prop>
@@ -1211,9 +1224,9 @@
                             <format maximum="4294967295" minimum="1"/>
                           </prop>
                           <prop type="string" name="primaryIpv4Prefix"/>
-                          <prop type="string" name="primaryIpv6Prefix"/>
+                          <prop nullable="True" type="string" name="primaryIpv6Prefix"/>
                           <prop type="string" name="secondaryIpv4Prefix"/>
-                          <prop type="string" name="secondaryIpv6Prefix"/>
+                          <prop nullable="True" type="string" name="secondaryIpv6Prefix"/>
                           <prop type="integer32" name="vlanId" required="True">
                             <format maximum="4094" minimum="501"/>
                           </prop>
@@ -1289,9 +1302,9 @@
                         <format minLength="1"/>
                       </prop>
                       <prop type="string" name="primaryIpv4Prefix" required="True"/>
-                      <prop type="string" name="primaryIpv6Prefix"/>
+                      <prop nullable="True" type="string" name="primaryIpv6Prefix"/>
                       <prop type="string" name="secondaryIpv4Prefix" required="True"/>
-                      <prop type="string" name="secondaryIpv6Prefix"/>
+                      <prop nullable="True" type="string" name="secondaryIpv6Prefix"/>
                       <prop type="string" name="serialNumber">
                         <format minLength="1"/>
                       </prop>

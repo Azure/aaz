@@ -24,7 +24,7 @@
 : Manage Automanage
 
 - [automation](/Commands/automation/readme.md)
-: Manage Automation Account
+: Manage Automation Account.
 
 - [billing](/Commands/billing/readme.md)
 : Manage Azure Billing.
@@ -43,6 +43,9 @@
 
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
+
+- [communication](/Commands/communication/readme.md)
+: communication
 
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
@@ -100,6 +103,9 @@
 
 - [eventhubs](/Commands/eventhubs/readme.md)
 : eventhub
+
+- [firmwareanalysis](/Commands/firmwareanalysis/readme.md)
+: Commands to manage firmware analysis.
 
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
@@ -190,6 +196,9 @@
 
 - [restore-point](/Commands/restore-point/readme.md)
 : Manage restore point with res.
+
+- [security](/Commands/security/readme.md)
+: Manage your security posture with Microsoft Defender for Cloud.
 
 - [self-help](/Commands/self-help/readme.md)
 : Azure SelfHelp will help you troubleshoot issues with Azure resources.
