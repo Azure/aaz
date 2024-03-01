@@ -17,6 +17,9 @@
 - [apic](/Commands/apic/readme.md)
 : Manage Azure API Center services
 
+- [astronomer](/Commands/astronomer/readme.md)
+: Manage Azure Astronomer resources.
+
 - [attestation](/Commands/attestation/readme.md)
 : Manage Microsoft Azure Attestation (MAA).
 
