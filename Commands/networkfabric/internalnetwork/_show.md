@@ -25,3 +25,14 @@ Show details of the provided Internal Network resource
     ```bash
         networkfabric internalnetwork show --resource-group "example-rg" --resource-name "example-internalnetwork" --l3domain "example-l3domain"
     ```
+
+### [2024-02-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9sM2lzb2xhdGlvbmRvbWFpbnMve30vaW50ZXJuYWxuZXR3b3Jrcy97fQ==/2024-02-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/l3isolationdomains/{}/internalnetworks/{} 2024-02-15-preview -->
+
+#### examples
+
+- Show the Internal Network
+    ```bash
+        networkfabric internalnetwork show --resource-group "example-rg" --resource-name "example-internalnetwork" --l3domain "example-l3domain"
+    ```
