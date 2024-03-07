@@ -18,6 +18,3 @@ Manage NGINX configuration resources
 
 - [show](/Commands/nginx/deployment/configuration/_show.md)
 : Get the properties of a specific NGINX configuration
-
-- [update](/Commands/nginx/deployment/configuration/_update.md)
-: Update an NGINX configuration
