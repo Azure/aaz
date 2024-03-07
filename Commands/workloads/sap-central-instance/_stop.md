@@ -40,8 +40,3 @@ Stops the SAP Central Services Instance.
     ```bash
         workloads sap-central-instance stop --sap-virtual-instance-name <vis-name> -g <resource-group-name> -n <cs-instance-name> --deallocate-vm
     ```
-
-- Soft Stop Central services instance of the SAP system
-    ```bash
-        workloads sap-central-instance stop --sap-virtual-instance-name <vis-name> -g <resource-group-name> -n <cs-instance-name> --soft-stop-timeout-seconds <timeout-in-seconds>
-    ```
