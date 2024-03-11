@@ -35,3 +35,8 @@ Update a Virtual Instance for SAP solutions (VIS) resource
     ```bash
         workloads sap-virtual-instance update --id <resource-id> --tags tag=test1
     ```
+
+- Add/Change Identity and Managed Resource Network Access for an existing Virtual Instance for SAP Solutions (VIS) resource
+    ```bash
+        workloads sap-virtual-instance update -g <resource-group-name> -n <vis-name> --identity "{type:UserAssigned,userAssignedIdentities:{<managed-identity-resource-id>:{}}}" --managed-resources-network-access-type <public/private>
+    ```
