@@ -53,6 +53,9 @@
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
 
+- [confluent](/Commands/confluent/readme.md)
+: Manage confluent organization
+
 - [connectedmachine](/Commands/connectedmachine/readme.md)
 : Manage an Azure Arc-Enabled Server.
 
