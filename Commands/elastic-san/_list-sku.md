@@ -26,7 +26,7 @@ Get a list of Elastic SAN skus.
         elastic-san list-sku
     ```
 
-### [2023-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljc2FuL3NrdXM=/2023-01-01.xml) **Preview**
+### [2023-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljc2FuL3NrdXM=/2023-01-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.elasticsan/skus 2023-01-01 -->
 

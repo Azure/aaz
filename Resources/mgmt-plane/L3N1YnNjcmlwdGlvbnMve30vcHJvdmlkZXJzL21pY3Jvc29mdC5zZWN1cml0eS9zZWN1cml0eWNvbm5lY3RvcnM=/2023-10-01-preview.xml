@@ -1,0 +1,971 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.security/securityconnectors" version="2023-10-01-preview" swagger="mgmt-plane/security/ResourceProviders/Microsoft.Security/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LlNlY3VyaXR5L3NlY3VyaXR5Q29ubmVjdG9ycw==/V/MjAyMy0xMC0wMS1wcmV2aWV3"/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.security/securityconnectors" version="2023-10-01-preview" swagger="mgmt-plane/security/ResourceProviders/Microsoft.Security/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU2VjdXJpdHkvc2VjdXJpdHlDb25uZWN0b3Jz/V/MjAyMy0xMC0wMS1wcmV2aWV3"/>
+  <commandGroup name="security security-connector">
+    <command name="list" version="2023-10-01-preview" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.security/securityconnectors" version="2023-10-01-preview" swagger="mgmt-plane/security/ResourceProviders/Microsoft.Security/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LlNlY3VyaXR5L3NlY3VyaXR5Q29ubmVjdG9ycw==/V/MjAyMy0xMC0wMS1wcmV2aWV3"/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.security/securityconnectors" version="2023-10-01-preview" swagger="mgmt-plane/security/ResourceProviders/Microsoft.Security/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU2VjdXJpdHkvc2VjdXJpdHlDb25uZWN0b3Jz/V/MjAyMy0xMC0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <condition var="$Condition_SecurityConnectors_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <condition var="$Condition_SecurityConnectors_List">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <operation when="$Condition_SecurityConnectors_ListByResourceGroup" operationId="SecurityConnectors_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Security/securityConnectors">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format pattern="^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-10-01-preview&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop type="string" name="etag"/>
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Security/securityConnectors/{}"/>
+                      </prop>
+                      <prop type="string" name="kind"/>
+                      <prop type="ResourceLocation" name="location"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="object" name="environmentData">
+                          <prop type="string" name="environmentType" required="True">
+                            <enum>
+                              <item value="&quot;AwsAccount&quot;"/>
+                              <item value="&quot;AzureDevOpsScope&quot;"/>
+                              <item value="&quot;GcpProject&quot;"/>
+                              <item value="&quot;GithubScope&quot;"/>
+                              <item value="&quot;GitlabScope&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="environmentType" value="AwsAccount">
+                            <prop readOnly="True" type="string" name="accountName"/>
+                            <prop type="object" name="organizationalData">
+                              <prop type="string" name="organizationMembershipType" required="True">
+                                <enum>
+                                  <item value="&quot;Member&quot;"/>
+                                  <item value="&quot;Organization&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="organizationMembershipType" value="Member">
+                                <prop type="string" name="parentHierarchyId"/>
+                              </discriminator>
+                              <discriminator property="organizationMembershipType" value="Organization">
+                                <prop type="array<string>" name="excludedAccountIds">
+                                  <item type="string"/>
+                                </prop>
+                                <prop type="string" name="stacksetName"/>
+                              </discriminator>
+                            </prop>
+                            <prop type="array<string>" name="regions">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="integer64" name="scanInterval"/>
+                          </discriminator>
+                          <discriminator property="environmentType" value="AzureDevOpsScope"/>
+                          <discriminator property="environmentType" value="GcpProject">
+                            <prop type="object" name="organizationalData">
+                              <prop type="string" name="organizationMembershipType" required="True">
+                                <enum>
+                                  <item value="&quot;Member&quot;"/>
+                                  <item value="&quot;Organization&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="organizationMembershipType" value="Member">
+                                <prop type="string" name="managementProjectNumber"/>
+                                <prop type="string" name="parentHierarchyId"/>
+                              </discriminator>
+                              <discriminator property="organizationMembershipType" value="Organization">
+                                <prop type="array<string>" name="excludedProjectNumbers">
+                                  <item type="string"/>
+                                </prop>
+                                <prop readOnly="True" type="string" name="organizationName"/>
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </discriminator>
+                            </prop>
+                            <prop type="object" name="projectDetails">
+                              <prop type="string" name="projectId"/>
+                              <prop readOnly="True" type="string" name="projectName"/>
+                              <prop type="string" name="projectNumber"/>
+                              <prop readOnly="True" type="string" name="workloadIdentityPoolId"/>
+                            </prop>
+                            <prop type="integer64" name="scanInterval"/>
+                          </discriminator>
+                          <discriminator property="environmentType" value="GithubScope"/>
+                          <discriminator property="environmentType" value="GitlabScope"/>
+                        </prop>
+                        <prop type="string" name="environmentName">
+                          <enum>
+                            <item value="&quot;AWS&quot;"/>
+                            <item value="&quot;Azure&quot;"/>
+                            <item value="&quot;AzureDevOps&quot;"/>
+                            <item value="&quot;GCP&quot;"/>
+                            <item value="&quot;GitLab&quot;"/>
+                            <item value="&quot;Github&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="hierarchyIdentifier"/>
+                        <prop readOnly="True" type="dateTime" name="hierarchyIdentifierTrialEndDate"/>
+                        <prop type="array<object>" name="offerings">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="description"/>
+                            <prop type="string" name="offeringType" required="True">
+                              <enum>
+                                <item value="&quot;CspmMonitorAws&quot;"/>
+                                <item value="&quot;CspmMonitorAzureDevOps&quot;"/>
+                                <item value="&quot;CspmMonitorGcp&quot;"/>
+                                <item value="&quot;CspmMonitorGitLab&quot;"/>
+                                <item value="&quot;CspmMonitorGithub&quot;"/>
+                                <item value="&quot;DefenderCspmAws&quot;"/>
+                                <item value="&quot;DefenderCspmGcp&quot;"/>
+                                <item value="&quot;DefenderForContainersAws&quot;"/>
+                                <item value="&quot;DefenderForContainersGcp&quot;"/>
+                                <item value="&quot;DefenderForDatabasesAws&quot;"/>
+                                <item value="&quot;DefenderForDatabasesGcp&quot;"/>
+                                <item value="&quot;DefenderForDevOpsAzureDevOps&quot;"/>
+                                <item value="&quot;DefenderForDevOpsGitLab&quot;"/>
+                                <item value="&quot;DefenderForDevOpsGithub&quot;"/>
+                                <item value="&quot;DefenderForServersAws&quot;"/>
+                                <item value="&quot;DefenderForServersGcp&quot;"/>
+                                <item value="&quot;InformationProtectionAws&quot;"/>
+                              </enum>
+                            </prop>
+                            <discriminator property="offeringType" value="CspmMonitorAws">
+                              <prop type="object" name="nativeCloudConnection">
+                                <prop type="string" name="cloudRoleArn"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="offeringType" value="CspmMonitorAzureDevOps"/>
+                            <discriminator property="offeringType" value="CspmMonitorGcp">
+                              <prop type="object" name="nativeCloudConnection">
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="offeringType" value="CspmMonitorGitLab"/>
+                            <discriminator property="offeringType" value="CspmMonitorGithub"/>
+                            <discriminator property="offeringType" value="DefenderCspmAws">
+                              <prop type="object" name="ciem">
+                                <prop type="object" name="ciemDiscovery">
+                                  <prop type="string" name="cloudRoleArn"/>
+                                </prop>
+                                <prop type="object" name="ciemOidc">
+                                  <prop type="string" name="azureActiveDirectoryAppName"/>
+                                  <prop type="string" name="cloudRoleArn"/>
+                                </prop>
+                              </prop>
+                              <prop type="object" name="dataSensitivityDiscovery">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="databasesDspm">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="mdcContainersAgentlessDiscoveryK8s">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="mdcContainersImageAssessment">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="vmScanners">
+                                <prop type="object" name="configuration">
+                                  <prop type="string" name="cloudRoleArn"/>
+                                  <prop type="object" name="exclusionTags">
+                                    <additionalProp>
+                                      <item type="string"/>
+                                    </additionalProp>
+                                  </prop>
+                                  <prop type="string" name="scanningMode">
+                                    <enum>
+                                      <item value="&quot;Default&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="offeringType" value="DefenderCspmGcp">
+                              <prop type="object" name="ciemDiscovery">
+                                <prop type="string" name="azureActiveDirectoryAppName"/>
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                              <prop type="object" name="dataSensitivityDiscovery">
+                                <prop type="boolean" name="enabled"/>
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                              <prop type="object" name="mdcContainersAgentlessDiscoveryK8s">
+                                <prop type="boolean" name="enabled"/>
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                              <prop type="object" name="mdcContainersImageAssessment">
+                                <prop type="boolean" name="enabled"/>
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                              <prop type="object" name="vmScanners">
+                                <prop type="object" name="configuration">
+                                  <prop type="object" name="exclusionTags">
+                                    <additionalProp>
+                                      <item type="string"/>
+                                    </additionalProp>
+                                  </prop>
+                                  <prop type="string" name="scanningMode">
+                                    <enum>
+                                      <item value="&quot;Default&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="offeringType" value="DefenderForContainersAws">
+                              <prop type="boolean" name="autoProvisioning"/>
+                              <prop type="object" name="cloudWatchToKinesis">
+                                <prop type="string" name="cloudRoleArn"/>
+                              </prop>
+                              <prop type="object" name="containerVulnerabilityAssessment">
+                                <prop type="string" name="cloudRoleArn"/>
+                              </prop>
+                              <prop type="object" name="containerVulnerabilityAssessmentTask">
+                                <prop type="string" name="cloudRoleArn"/>
+                              </prop>
+                              <prop type="boolean" name="enableContainerVulnerabilityAssessment"/>
+                              <prop type="object" name="kinesisToS3">
+                                <prop type="string" name="cloudRoleArn"/>
+                              </prop>
+                              <prop type="integer64" name="kubeAuditRetentionTime"/>
+                              <prop type="object" name="kubernetesScubaReader">
+                                <prop type="string" name="cloudRoleArn"/>
+                              </prop>
+                              <prop type="object" name="kubernetesService">
+                                <prop type="string" name="cloudRoleArn"/>
+                              </prop>
+                              <prop type="object" name="mdcContainersAgentlessDiscoveryK8s">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="mdcContainersImageAssessment">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="string" name="scubaExternalId"/>
+                            </discriminator>
+                            <discriminator property="offeringType" value="DefenderForContainersGcp">
+                              <prop type="boolean" name="auditLogsAutoProvisioningFlag"/>
+                              <prop type="object" name="dataPipelineNativeCloudConnection">
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                              <prop type="boolean" name="defenderAgentAutoProvisioningFlag"/>
+                              <prop type="object" name="mdcContainersAgentlessDiscoveryK8s">
+                                <prop type="boolean" name="enabled"/>
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                              <prop type="object" name="mdcContainersImageAssessment">
+                                <prop type="boolean" name="enabled"/>
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                              <prop type="object" name="nativeCloudConnection">
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                              <prop type="boolean" name="policyAgentAutoProvisioningFlag"/>
+                            </discriminator>
+                            <discriminator property="offeringType" value="DefenderForDatabasesAws">
+                              <prop type="object" name="arcAutoProvisioning">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="object" name="configuration">
+                                  <prop type="string" name="privateLinkScope"/>
+                                  <prop type="string" name="proxy"/>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="databasesDspm">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="rds">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="offeringType" value="DefenderForDatabasesGcp">
+                              <prop type="object" name="arcAutoProvisioning">
+                                <prop type="object" name="configuration">
+                                  <prop type="string" name="privateLinkScope"/>
+                                  <prop type="string" name="proxy"/>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="defenderForDatabasesArcAutoProvisioning">
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="offeringType" value="DefenderForDevOpsAzureDevOps"/>
+                            <discriminator property="offeringType" value="DefenderForDevOpsGitLab"/>
+                            <discriminator property="offeringType" value="DefenderForDevOpsGithub"/>
+                            <discriminator property="offeringType" value="DefenderForServersAws">
+                              <prop type="object" name="arcAutoProvisioning">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="object" name="configuration">
+                                  <prop type="string" name="privateLinkScope"/>
+                                  <prop type="string" name="proxy"/>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="defenderForServers">
+                                <prop type="string" name="cloudRoleArn"/>
+                              </prop>
+                              <prop type="object" name="mdeAutoProvisioning">
+                                <prop type="object" name="configuration"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="subPlan">
+                                <prop type="string" name="type">
+                                  <enum>
+                                    <item value="&quot;P1&quot;"/>
+                                    <item value="&quot;P2&quot;"/>
+                                  </enum>
+                                </prop>
+                              </prop>
+                              <prop type="object" name="vaAutoProvisioning">
+                                <prop type="object" name="configuration">
+                                  <prop type="string" name="type">
+                                    <enum>
+                                      <item value="&quot;Qualys&quot;"/>
+                                      <item value="&quot;TVM&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="vmScanners">
+                                <prop type="object" name="configuration">
+                                  <prop type="string" name="cloudRoleArn"/>
+                                  <prop type="object" name="exclusionTags">
+                                    <additionalProp>
+                                      <item type="string"/>
+                                    </additionalProp>
+                                  </prop>
+                                  <prop type="string" name="scanningMode">
+                                    <enum>
+                                      <item value="&quot;Default&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="offeringType" value="DefenderForServersGcp">
+                              <prop type="object" name="arcAutoProvisioning">
+                                <prop type="object" name="configuration">
+                                  <prop type="string" name="privateLinkScope"/>
+                                  <prop type="string" name="proxy"/>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="defenderForServers">
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                              <prop type="object" name="mdeAutoProvisioning">
+                                <prop type="object" name="configuration"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="subPlan">
+                                <prop type="string" name="type">
+                                  <enum>
+                                    <item value="&quot;P1&quot;"/>
+                                    <item value="&quot;P2&quot;"/>
+                                  </enum>
+                                </prop>
+                              </prop>
+                              <prop type="object" name="vaAutoProvisioning">
+                                <prop type="object" name="configuration">
+                                  <prop type="string" name="type">
+                                    <enum>
+                                      <item value="&quot;Qualys&quot;"/>
+                                      <item value="&quot;TVM&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="vmScanners">
+                                <prop type="object" name="configuration">
+                                  <prop type="object" name="exclusionTags">
+                                    <additionalProp>
+                                      <item type="string"/>
+                                    </additionalProp>
+                                  </prop>
+                                  <prop type="string" name="scanningMode">
+                                    <enum>
+                                      <item value="&quot;Default&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="offeringType" value="InformationProtectionAws">
+                              <prop type="object" name="informationProtection">
+                                <prop type="string" name="cloudRoleArn"/>
+                              </prop>
+                            </discriminator>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_SecurityConnectors_List" operationId="SecurityConnectors_List">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Security/securityConnectors">
+          <request method="get">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format pattern="^[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-10-01-preview&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop type="string" name="etag"/>
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Security/securityConnectors/{}"/>
+                      </prop>
+                      <prop type="string" name="kind"/>
+                      <prop type="ResourceLocation" name="location"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="object" name="environmentData">
+                          <prop type="string" name="environmentType" required="True">
+                            <enum>
+                              <item value="&quot;AwsAccount&quot;"/>
+                              <item value="&quot;AzureDevOpsScope&quot;"/>
+                              <item value="&quot;GcpProject&quot;"/>
+                              <item value="&quot;GithubScope&quot;"/>
+                              <item value="&quot;GitlabScope&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="environmentType" value="AwsAccount">
+                            <prop readOnly="True" type="string" name="accountName"/>
+                            <prop type="object" name="organizationalData">
+                              <prop type="string" name="organizationMembershipType" required="True">
+                                <enum>
+                                  <item value="&quot;Member&quot;"/>
+                                  <item value="&quot;Organization&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="organizationMembershipType" value="Member">
+                                <prop type="string" name="parentHierarchyId"/>
+                              </discriminator>
+                              <discriminator property="organizationMembershipType" value="Organization">
+                                <prop type="array<string>" name="excludedAccountIds">
+                                  <item type="string"/>
+                                </prop>
+                                <prop type="string" name="stacksetName"/>
+                              </discriminator>
+                            </prop>
+                            <prop type="array<string>" name="regions">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="integer64" name="scanInterval"/>
+                          </discriminator>
+                          <discriminator property="environmentType" value="AzureDevOpsScope"/>
+                          <discriminator property="environmentType" value="GcpProject">
+                            <prop type="object" name="organizationalData">
+                              <prop type="string" name="organizationMembershipType" required="True">
+                                <enum>
+                                  <item value="&quot;Member&quot;"/>
+                                  <item value="&quot;Organization&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="organizationMembershipType" value="Member">
+                                <prop type="string" name="managementProjectNumber"/>
+                                <prop type="string" name="parentHierarchyId"/>
+                              </discriminator>
+                              <discriminator property="organizationMembershipType" value="Organization">
+                                <prop type="array<string>" name="excludedProjectNumbers">
+                                  <item type="string"/>
+                                </prop>
+                                <prop readOnly="True" type="string" name="organizationName"/>
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </discriminator>
+                            </prop>
+                            <prop type="object" name="projectDetails">
+                              <prop type="string" name="projectId"/>
+                              <prop readOnly="True" type="string" name="projectName"/>
+                              <prop type="string" name="projectNumber"/>
+                              <prop readOnly="True" type="string" name="workloadIdentityPoolId"/>
+                            </prop>
+                            <prop type="integer64" name="scanInterval"/>
+                          </discriminator>
+                          <discriminator property="environmentType" value="GithubScope"/>
+                          <discriminator property="environmentType" value="GitlabScope"/>
+                        </prop>
+                        <prop type="string" name="environmentName">
+                          <enum>
+                            <item value="&quot;AWS&quot;"/>
+                            <item value="&quot;Azure&quot;"/>
+                            <item value="&quot;AzureDevOps&quot;"/>
+                            <item value="&quot;GCP&quot;"/>
+                            <item value="&quot;GitLab&quot;"/>
+                            <item value="&quot;Github&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="hierarchyIdentifier"/>
+                        <prop readOnly="True" type="dateTime" name="hierarchyIdentifierTrialEndDate"/>
+                        <prop type="array<object>" name="offerings">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="description"/>
+                            <prop type="string" name="offeringType" required="True">
+                              <enum>
+                                <item value="&quot;CspmMonitorAws&quot;"/>
+                                <item value="&quot;CspmMonitorAzureDevOps&quot;"/>
+                                <item value="&quot;CspmMonitorGcp&quot;"/>
+                                <item value="&quot;CspmMonitorGitLab&quot;"/>
+                                <item value="&quot;CspmMonitorGithub&quot;"/>
+                                <item value="&quot;DefenderCspmAws&quot;"/>
+                                <item value="&quot;DefenderCspmGcp&quot;"/>
+                                <item value="&quot;DefenderForContainersAws&quot;"/>
+                                <item value="&quot;DefenderForContainersGcp&quot;"/>
+                                <item value="&quot;DefenderForDatabasesAws&quot;"/>
+                                <item value="&quot;DefenderForDatabasesGcp&quot;"/>
+                                <item value="&quot;DefenderForDevOpsAzureDevOps&quot;"/>
+                                <item value="&quot;DefenderForDevOpsGitLab&quot;"/>
+                                <item value="&quot;DefenderForDevOpsGithub&quot;"/>
+                                <item value="&quot;DefenderForServersAws&quot;"/>
+                                <item value="&quot;DefenderForServersGcp&quot;"/>
+                                <item value="&quot;InformationProtectionAws&quot;"/>
+                              </enum>
+                            </prop>
+                            <discriminator property="offeringType" value="CspmMonitorAws">
+                              <prop type="object" name="nativeCloudConnection">
+                                <prop type="string" name="cloudRoleArn"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="offeringType" value="CspmMonitorAzureDevOps"/>
+                            <discriminator property="offeringType" value="CspmMonitorGcp">
+                              <prop type="object" name="nativeCloudConnection">
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="offeringType" value="CspmMonitorGitLab"/>
+                            <discriminator property="offeringType" value="CspmMonitorGithub"/>
+                            <discriminator property="offeringType" value="DefenderCspmAws">
+                              <prop type="object" name="ciem">
+                                <prop type="object" name="ciemDiscovery">
+                                  <prop type="string" name="cloudRoleArn"/>
+                                </prop>
+                                <prop type="object" name="ciemOidc">
+                                  <prop type="string" name="azureActiveDirectoryAppName"/>
+                                  <prop type="string" name="cloudRoleArn"/>
+                                </prop>
+                              </prop>
+                              <prop type="object" name="dataSensitivityDiscovery">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="databasesDspm">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="mdcContainersAgentlessDiscoveryK8s">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="mdcContainersImageAssessment">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="vmScanners">
+                                <prop type="object" name="configuration">
+                                  <prop type="string" name="cloudRoleArn"/>
+                                  <prop type="object" name="exclusionTags">
+                                    <additionalProp>
+                                      <item type="string"/>
+                                    </additionalProp>
+                                  </prop>
+                                  <prop type="string" name="scanningMode">
+                                    <enum>
+                                      <item value="&quot;Default&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="offeringType" value="DefenderCspmGcp">
+                              <prop type="object" name="ciemDiscovery">
+                                <prop type="string" name="azureActiveDirectoryAppName"/>
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                              <prop type="object" name="dataSensitivityDiscovery">
+                                <prop type="boolean" name="enabled"/>
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                              <prop type="object" name="mdcContainersAgentlessDiscoveryK8s">
+                                <prop type="boolean" name="enabled"/>
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                              <prop type="object" name="mdcContainersImageAssessment">
+                                <prop type="boolean" name="enabled"/>
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                              <prop type="object" name="vmScanners">
+                                <prop type="object" name="configuration">
+                                  <prop type="object" name="exclusionTags">
+                                    <additionalProp>
+                                      <item type="string"/>
+                                    </additionalProp>
+                                  </prop>
+                                  <prop type="string" name="scanningMode">
+                                    <enum>
+                                      <item value="&quot;Default&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="offeringType" value="DefenderForContainersAws">
+                              <prop type="boolean" name="autoProvisioning"/>
+                              <prop type="object" name="cloudWatchToKinesis">
+                                <prop type="string" name="cloudRoleArn"/>
+                              </prop>
+                              <prop type="object" name="containerVulnerabilityAssessment">
+                                <prop type="string" name="cloudRoleArn"/>
+                              </prop>
+                              <prop type="object" name="containerVulnerabilityAssessmentTask">
+                                <prop type="string" name="cloudRoleArn"/>
+                              </prop>
+                              <prop type="boolean" name="enableContainerVulnerabilityAssessment"/>
+                              <prop type="object" name="kinesisToS3">
+                                <prop type="string" name="cloudRoleArn"/>
+                              </prop>
+                              <prop type="integer64" name="kubeAuditRetentionTime"/>
+                              <prop type="object" name="kubernetesScubaReader">
+                                <prop type="string" name="cloudRoleArn"/>
+                              </prop>
+                              <prop type="object" name="kubernetesService">
+                                <prop type="string" name="cloudRoleArn"/>
+                              </prop>
+                              <prop type="object" name="mdcContainersAgentlessDiscoveryK8s">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="mdcContainersImageAssessment">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="string" name="scubaExternalId"/>
+                            </discriminator>
+                            <discriminator property="offeringType" value="DefenderForContainersGcp">
+                              <prop type="boolean" name="auditLogsAutoProvisioningFlag"/>
+                              <prop type="object" name="dataPipelineNativeCloudConnection">
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                              <prop type="boolean" name="defenderAgentAutoProvisioningFlag"/>
+                              <prop type="object" name="mdcContainersAgentlessDiscoveryK8s">
+                                <prop type="boolean" name="enabled"/>
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                              <prop type="object" name="mdcContainersImageAssessment">
+                                <prop type="boolean" name="enabled"/>
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                              <prop type="object" name="nativeCloudConnection">
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                              <prop type="boolean" name="policyAgentAutoProvisioningFlag"/>
+                            </discriminator>
+                            <discriminator property="offeringType" value="DefenderForDatabasesAws">
+                              <prop type="object" name="arcAutoProvisioning">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="object" name="configuration">
+                                  <prop type="string" name="privateLinkScope"/>
+                                  <prop type="string" name="proxy"/>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="databasesDspm">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="rds">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="offeringType" value="DefenderForDatabasesGcp">
+                              <prop type="object" name="arcAutoProvisioning">
+                                <prop type="object" name="configuration">
+                                  <prop type="string" name="privateLinkScope"/>
+                                  <prop type="string" name="proxy"/>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="defenderForDatabasesArcAutoProvisioning">
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="offeringType" value="DefenderForDevOpsAzureDevOps"/>
+                            <discriminator property="offeringType" value="DefenderForDevOpsGitLab"/>
+                            <discriminator property="offeringType" value="DefenderForDevOpsGithub"/>
+                            <discriminator property="offeringType" value="DefenderForServersAws">
+                              <prop type="object" name="arcAutoProvisioning">
+                                <prop type="string" name="cloudRoleArn"/>
+                                <prop type="object" name="configuration">
+                                  <prop type="string" name="privateLinkScope"/>
+                                  <prop type="string" name="proxy"/>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="defenderForServers">
+                                <prop type="string" name="cloudRoleArn"/>
+                              </prop>
+                              <prop type="object" name="mdeAutoProvisioning">
+                                <prop type="object" name="configuration"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="subPlan">
+                                <prop type="string" name="type">
+                                  <enum>
+                                    <item value="&quot;P1&quot;"/>
+                                    <item value="&quot;P2&quot;"/>
+                                  </enum>
+                                </prop>
+                              </prop>
+                              <prop type="object" name="vaAutoProvisioning">
+                                <prop type="object" name="configuration">
+                                  <prop type="string" name="type">
+                                    <enum>
+                                      <item value="&quot;Qualys&quot;"/>
+                                      <item value="&quot;TVM&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="vmScanners">
+                                <prop type="object" name="configuration">
+                                  <prop type="string" name="cloudRoleArn"/>
+                                  <prop type="object" name="exclusionTags">
+                                    <additionalProp>
+                                      <item type="string"/>
+                                    </additionalProp>
+                                  </prop>
+                                  <prop type="string" name="scanningMode">
+                                    <enum>
+                                      <item value="&quot;Default&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="offeringType" value="DefenderForServersGcp">
+                              <prop type="object" name="arcAutoProvisioning">
+                                <prop type="object" name="configuration">
+                                  <prop type="string" name="privateLinkScope"/>
+                                  <prop type="string" name="proxy"/>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="defenderForServers">
+                                <prop type="string" name="serviceAccountEmailAddress"/>
+                                <prop type="string" name="workloadIdentityProviderId"/>
+                              </prop>
+                              <prop type="object" name="mdeAutoProvisioning">
+                                <prop type="object" name="configuration"/>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="subPlan">
+                                <prop type="string" name="type">
+                                  <enum>
+                                    <item value="&quot;P1&quot;"/>
+                                    <item value="&quot;P2&quot;"/>
+                                  </enum>
+                                </prop>
+                              </prop>
+                              <prop type="object" name="vaAutoProvisioning">
+                                <prop type="object" name="configuration">
+                                  <prop type="string" name="type">
+                                    <enum>
+                                      <item value="&quot;Qualys&quot;"/>
+                                      <item value="&quot;TVM&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                              <prop type="object" name="vmScanners">
+                                <prop type="object" name="configuration">
+                                  <prop type="object" name="exclusionTags">
+                                    <additionalProp>
+                                      <item type="string"/>
+                                    </additionalProp>
+                                  </prop>
+                                  <prop type="string" name="scanningMode">
+                                    <enum>
+                                      <item value="&quot;Default&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                                <prop type="boolean" name="enabled"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="offeringType" value="InformationProtectionAws">
+                              <prop type="object" name="informationProtection">
+                                <prop type="string" name="cloudRoleArn"/>
+                              </prop>
+                            </discriminator>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

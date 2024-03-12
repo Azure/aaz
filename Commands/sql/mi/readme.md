@@ -18,3 +18,8 @@ Manage SQL managed instances.
 
 - [server-configuration-option](/Commands/sql/mi/server-configuration-option/readme.md)
 : Server configuration option management commands.
+
+## Commands
+
+- [refresh-external-governance-status](/Commands/sql/mi/_refresh-external-governance-status.md)
+: Refresh external governance enablement status.
