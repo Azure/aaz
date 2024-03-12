@@ -24,6 +24,9 @@ Manage SQL managed instances.
 
 ## Commands
 
+- [refresh-external-governance-status](/Commands/sql/mi/_refresh-external-governance-status.md)
+: Refresh external governance enablement status.
+
 - [start](/Commands/sql/mi/_start.md)
 : Starts the managed instance.
 
