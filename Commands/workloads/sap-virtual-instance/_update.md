@@ -33,7 +33,7 @@ Update a Virtual Instance for SAP solutions (VIS) resource
 
 - Add tags for an existing Virtual Instance for SAP solutions (VIS) resource using the Azure resource ID of the VIS
     ```bash
-        workloads sap-virtual-instance update --id <resource-id> --tags tag=test1
+        workloads sap-virtual-instance update --id <resource-id> --tags tag1=test1
     ```
 
 - Add/Change Identity and Managed Resource Network Access for an existing Virtual Instance for SAP Solutions (VIS) resource
