@@ -36,7 +36,7 @@ Stops the SAP Central Services Instance.
         workloads sap-central-instance stop --id <resource-id>
     ```
 
-- Stop Central services instance of the SAP system with Virtual Machine
+- Stop Central services instance of the SAP system and its underlying Virtual Machine
     ```bash
         workloads sap-central-instance stop --sap-virtual-instance-name <vis-name> -g <resource-group-name> -n <cs-instance-name> --deallocate-vm
     ```

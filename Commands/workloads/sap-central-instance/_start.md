@@ -36,7 +36,7 @@ Starts the SAP Central Services Instance.
         workloads sap-central-instance start --id <resource-id>
     ```
 
-- Start Central services instance of the SAP system with Virtual Machine
+- Start Central services instance of the SAP system and its underlying Virtual Machine
     ```bash
         workloads sap-central-instance start --sap-virtual-instance-name <vis-name> -g <resource-group-name> -n <cs-instance-name> --start-vm
     ```

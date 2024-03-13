@@ -36,7 +36,7 @@ Starts the SAP Application Server Instance.
         workloads sap-application-server-instance start --id <resource-id>
     ```
 
-- Start an Application server instance of the SAP system with Virtual Machine
+- Start an Application server instance of the SAP system and its underlying Virtual Machine
     ```bash
         workloads sap-application-server-instance start --sap-virtual-instance-name <vis-name> -g <resource-group-name> -n <app-instance-name> --start-vm
     ```

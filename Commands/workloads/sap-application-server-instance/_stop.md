@@ -36,7 +36,7 @@ Stops the SAP Application Server Instance.
         workloads sap-application-server-instance stop --id <resource-id>
     ```
 
-- Stop Application server instance of the SAP system with Virtual Machine
+- Stop Application server instance of the SAP system and its underlying Virtual Machine
     ```bash
         workloads sap-application-server-instance stop --sap-virtual-instance-name <vis-name> -g <resource-group-name> -n <app-instance-name> --deallocate-vm
     ```
