@@ -17,6 +17,9 @@
 - [apic](/Commands/apic/readme.md)
 : Manage Azure API Center services
 
+- [astronomer](/Commands/astronomer/readme.md)
+: Manage Azure Astronomer resources.
+
 - [attestation](/Commands/attestation/readme.md)
 : Manage Microsoft Azure Attestation (MAA).
 
@@ -44,11 +47,17 @@
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
+- [cloud-service](/Commands/cloud-service/readme.md)
+: Manage cloud service
+
 - [communication](/Commands/communication/readme.md)
 : communication
 
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
+
+- [confluent](/Commands/confluent/readme.md)
+: Manage confluent organization
 
 - [connectedmachine](/Commands/connectedmachine/readme.md)
 : Manage an Azure Arc-Enabled Server.

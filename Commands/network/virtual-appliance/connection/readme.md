@@ -9,3 +9,6 @@ Manage Azure Network Virtual Appliance Connection.
 
 - [show](/Commands/network/virtual-appliance/connection/_show.md)
 : Get the details of specified NVA connection.
+
+- [update](/Commands/network/virtual-appliance/connection/_update.md)
+: Update existing connection to Network Virtual Appliance
