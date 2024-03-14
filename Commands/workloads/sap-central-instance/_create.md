@@ -14,3 +14,14 @@ Create the SAP Central Services Instance resource. This will be used by service 
     ```bash
         workloads sap-central-instance create -g rg -n instance-name --vis-name name
     ```
+
+### [2023-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC53b3JrbG9hZHMvc2FwdmlydHVhbGluc3RhbmNlcy97fS9jZW50cmFsaW5zdGFuY2VzL3t9/2023-10-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.workloads/sapvirtualinstances/{}/centralinstances/{} 2023-10-01-preview -->
+
+#### examples
+
+- Create workloads sap-central-instance
+    ```bash
+        workloads sap-central-instance create -g <resource-group-name> -n <cs-instance-name> --vis-name <vis-name>
+    ```
