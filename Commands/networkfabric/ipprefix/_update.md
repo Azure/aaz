@@ -18,3 +18,14 @@ Update to update certain properties of the IP Prefix resource.
     ```bash
         networkfabric ipprefix update  -g "example-rg" --resource-name "example-ipprefix" --ip-prefix-rules "[{action:Permit,sequenceNumber:4155123341,networkPrefix:'10.10.10.10/30',condition:GreaterThanOrEqualTo,subnetMaskLength:10}]"
     ```
+
+### [2024-02-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9pcHByZWZpeGVzL3t9/2024-02-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/ipprefixes/{} 2024-02-15-preview -->
+
+#### examples
+
+- Update IP prefix
+    ```bash
+        networkfabric ipprefix update  -g "example-rg" --resource-name "example-ipprefix" --ip-prefix-rules "[{action:Permit,sequenceNumber:4155123341,networkPrefix:'10.10.10.10/30',condition:GreaterThanOrEqualTo,subnetMaskLength:10}]"
+    ```
