@@ -14,3 +14,14 @@ List all Network Fabric SKUs in the provided subscription.
     ```bash
         networkfabric fabricsku list --subscription <subscriptionId>
     ```
+
+### [2024-02-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrZmFicmljc2t1cw==/2024-02-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.managednetworkfabric/networkfabricskus 2024-02-15-preview -->
+
+#### examples
+
+- List the FabricSKU for Subscription
+    ```bash
+        networkfabric fabricsku list --subscription <subscriptionId>
+    ```

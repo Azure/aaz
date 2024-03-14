@@ -50,6 +50,9 @@
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
+- [cloud-service](/Commands/cloud-service/readme.md)
+: Manage cloud service
+
 - [communication](/Commands/communication/readme.md)
 : communication
 
