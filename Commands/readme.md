@@ -53,6 +53,9 @@
 - [communication](/Commands/communication/readme.md)
 : communication
 
+- [compute](/Commands/compute/readme.md)
+: Mange azure compute vm config
+
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
 
