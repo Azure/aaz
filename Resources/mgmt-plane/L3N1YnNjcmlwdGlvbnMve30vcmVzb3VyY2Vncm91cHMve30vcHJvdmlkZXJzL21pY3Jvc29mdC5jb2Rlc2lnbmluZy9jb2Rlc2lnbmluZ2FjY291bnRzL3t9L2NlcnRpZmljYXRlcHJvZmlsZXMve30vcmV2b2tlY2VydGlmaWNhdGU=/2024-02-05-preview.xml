@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.codesigning/codesigningaccounts/{}/certificateprofiles/{}/revokecertificate" version="2024-02-05-preview" swagger="mgmt-plane/codesigning/ResourceProviders/Microsoft.CodeSigning/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29kZVNpZ25pbmcvY29kZVNpZ25pbmdBY2NvdW50cy97YWNjb3VudE5hbWV9L2NlcnRpZmljYXRlUHJvZmlsZXMve3Byb2ZpbGVOYW1lfS9yZXZva2VDZXJ0aWZpY2F0ZQ==/V/MjAyNC0wMi0wNS1wcmV2aWV3"/>
+  <commandGroup name="codesigning certificate-profile">
+    <command name="revoke-certificate" version="2024-02-05-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.codesigning/codesigningaccounts/{}/certificateprofiles/{}/revokecertificate" version="2024-02-05-preview" swagger="mgmt-plane/codesigning/ResourceProviders/Microsoft.CodeSigning/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29kZVNpZ25pbmcvY29kZVNpZ25pbmdBY2NvdW50cy97YWNjb3VudE5hbWV9L2NlcnRpZmljYXRlUHJvZmlsZXMve3Byb2ZpbGVOYW1lfS9yZXZva2VDZXJ0aWZpY2F0ZQ==/V/MjAyNC0wMi0wNS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.accountName" options="account-name" required="True" idPart="name">
+          <help short="Trusted Signing account name."/>
+          <format pattern="^(?=.{3,24}$)[^0-9][A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"/>
+        </arg>
+        <arg type="string" var="$Path.profileName" options="profile-name" required="True" idPart="child_name_1">
+          <help short="Certificate profile name."/>
+          <format pattern="^(?=.{5,100}$)[^0-9][A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription s" required="True" group="" idPart="subscription">
+          <help short=""/>
+        </arg>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="dateTime" var="$body.effectiveAt" options="effective-at" required="True" group="Body">
+          <help short="The timestamp when the revocation is effective."/>
+        </arg>
+        <arg type="string" var="$body.reason" options="reason" required="True" group="Body">
+          <help short="Reason for the revocation."/>
+        </arg>
+        <arg type="string" var="$body.remarks" options="remarks" group="Body">
+          <help short="Remarks for the revocation."/>
+        </arg>
+        <arg type="string" var="$body.serialNumber" options="serial-number" required="True" group="Body">
+          <help short="Serial number of the certificate."/>
+        </arg>
+        <arg type="string" var="$body.thumbprint" options="thumbprint" required="True" group="Body">
+          <help short="Thumbprint of the certificate."/>
+        </arg>
+      </argGroup>
+      <operation operationId="CertificateProfiles_RevokeCertificate">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CodeSigning/codeSigningAccounts/{accountName}/certificateProfiles/{profileName}/revokeCertificate">
+          <request method="post">
+            <path>
+              <param type="string" name="accountName" arg="$Path.accountName" required="True">
+                <format pattern="^(?=.{3,24}$)[^0-9][A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"/>
+              </param>
+              <param type="string" name="profileName" arg="$Path.profileName" required="True">
+                <format pattern="^(?=.{5,100}$)[^0-9][A-Za-z0-9]+(?:-[A-Za-z0-9]+)*$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-02-05-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="dateTime" name="effectiveAt" arg="$body.effectiveAt" required="True"/>
+                  <prop type="string" name="reason" arg="$body.reason" required="True"/>
+                  <prop type="string" name="remarks" arg="$body.remarks"/>
+                  <prop type="string" name="serialNumber" arg="$body.serialNumber" required="True"/>
+                  <prop type="string" name="thumbprint" arg="$body.thumbprint" required="True"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>
