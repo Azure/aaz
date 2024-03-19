@@ -74,6 +74,9 @@
 - [databox](/Commands/databox/readme.md)
 : Manage data box
 
+- [databoxedge](/Commands/databoxedge/readme.md)
+: Manage device with databoxedge.
+
 - [databricks](/Commands/databricks/readme.md)
 : Manage databricks workspaces.
 
