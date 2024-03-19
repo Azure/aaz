@@ -20,6 +20,9 @@
 - [code-signing](/Commands/code-signing/readme.md)
 : Manage code signing account
 
+- [codesigning](/Commands/codesigning/readme.md)
+: Manage trusted signing account
+
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
 
