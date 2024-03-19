@@ -83,6 +83,9 @@
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage dataprotection.
 
+- [desktopvirtualization](/Commands/desktopvirtualization/readme.md)
+: Manage desktop virtualization.
+
 - [devcenter](/Commands/devcenter/readme.md)
 : Manage resources with devcenter.
 
