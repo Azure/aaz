@@ -56,6 +56,9 @@
 - [compute](/Commands/compute/readme.md)
 : Mange azure compute vm config
 
+- [compute-diagnostic](/Commands/compute-diagnostic/readme.md)
+: Mange vm sku recommender info
+
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
 
