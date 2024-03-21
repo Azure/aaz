@@ -12,9 +12,6 @@ Manage communication service with communication.
 
 ## Commands
 
-- [check-name-availability](/Commands/communication/_check-name-availability.md)
-: Checks that the CommunicationService name is valid and is not already in use.
-
 - [create](/Commands/communication/_create.md)
 : Create a new CommunicationService or update an existing CommunicationService.
 
@@ -29,9 +26,6 @@ Manage communication service with communication.
 
 - [list-key](/Commands/communication/_list-key.md)
 : Get the access keys of the CommunicationService resource.
-
-- [list-verified-exchange-online-domain](/Commands/communication/_list-verified-exchange-online-domain.md)
-: Get a list of domains that are fully verified in Exchange Online.
 
 - [regenerate-key](/Commands/communication/_regenerate-key.md)
 : Regenerate CommunicationService access key. PrimaryKey and SecondaryKey cannot be regenerated at the same time.
