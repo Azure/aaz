@@ -58,6 +58,9 @@ Manage Azure Network resources.
 - [nsg](/Commands/network/nsg/readme.md)
 : Manage Azure Network Security Groups (NSGs).
 
+- [p2s-vpn-gateway](/Commands/network/p2s-vpn-gateway/readme.md)
+: Manage point-to-site VPN gateway.
+
 - [perimeter](/Commands/network/perimeter/readme.md)
 : Manage Network Security Perimeters
 

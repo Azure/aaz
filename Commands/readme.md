@@ -44,6 +44,9 @@
 - [capacity](/Commands/capacity/readme.md)
 : Manage capacity.
 
+- [cdn](/Commands/cdn/readme.md)
+: Manage Azure Content Delivery Networks (CDNs).
+
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
@@ -74,11 +77,17 @@
 - [databox](/Commands/databox/readme.md)
 : Manage data box
 
+- [databoxedge](/Commands/databoxedge/readme.md)
+: Manage device with databoxedge.
+
 - [databricks](/Commands/databricks/readme.md)
 : Manage databricks workspaces.
 
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage dataprotection.
+
+- [desktopvirtualization](/Commands/desktopvirtualization/readme.md)
+: Manage desktop virtualization.
 
 - [devcenter](/Commands/devcenter/readme.md)
 : Manage resources with devcenter.
