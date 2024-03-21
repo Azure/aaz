@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.communication/checknameavailability" version="2023-04-01-preview" swagger="mgmt-plane/communication/ResourceProviders/Microsoft.Communication/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNvbW11bmljYXRpb24vY2hlY2tOYW1lQXZhaWxhYmlsaXR5/V/MjAyMy0wNC0wMS1wcmV2aWV3"/>
+  <commandGroup name="communication">
+    <command name="check-name-availability" version="2023-04-01-preview">
+      <resource id="/subscriptions/{}/providers/microsoft.communication/checknameavailability" version="2023-04-01-preview" swagger="mgmt-plane/communication/ResourceProviders/Microsoft.Communication/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNvbW11bmljYXRpb24vY2hlY2tOYW1lQXZhaWxhYmlsaXR5/V/MjAyMy0wNC0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="NameAvailabilityParameters">
+        <arg type="string" var="$nameAvailabilityParameters.name" options="name" required="True" group="NameAvailabilityParameters">
+          <help short="The name of the resource for which availability needs to be checked."/>
+        </arg>
+        <arg type="string" var="$nameAvailabilityParameters.type" options="type" required="True" group="NameAvailabilityParameters">
+          <help short="The resource type."/>
+        </arg>
+      </argGroup>
+      <operation operationId="CommunicationServices_CheckNameAvailability">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Communication/checkNameAvailability">
+          <request method="post">
+            <path>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-04-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="nameAvailabilityParameters" required="True" clientFlatten="True">
+                  <prop type="string" name="name" arg="$nameAvailabilityParameters.name" required="True"/>
+                  <prop type="string" name="type" arg="$nameAvailabilityParameters.type" required="True"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="message"/>
+                  <prop type="boolean" name="nameAvailable"/>
+                  <prop type="string" name="reason">
+                    <enum>
+                      <item value="&quot;AlreadyExists&quot;"/>
+                      <item value="&quot;Invalid&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

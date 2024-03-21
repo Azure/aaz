@@ -17,6 +17,9 @@
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
+- [communication](/Commands/communication/readme.md)
+: Manage communication service with communication.
+
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
 
