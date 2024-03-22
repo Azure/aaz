@@ -1,6 +1,6 @@
 # [Command] _communication identity delete_
 
-sdsdsdg
+Delete communication identity
 
 ## Versions
 
