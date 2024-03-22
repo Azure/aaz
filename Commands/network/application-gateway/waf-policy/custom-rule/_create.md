@@ -36,3 +36,8 @@ Create an application gateway WAF policy custom rule.
     ```bash
         network application-gateway waf-policy custom-rule create --action Allow --name MyWafPolicyRule --policy-name MyPolicy --priority 500 --resource-group MyResourceGroup --rule-type MatchRule
     ```
+
+- Create an application gateway WAF policy custom rule with user session identifier.
+    ```bash
+        network application-gateway waf-policy custom-rule create -g MyResourceGroup --policy-name MyPolicy -n MyRule --priority 3 --action Block --rule-type RateLimitRule --rate-limit-duration FiveMins --rate-limit-threshold 15 --group-by-user-session "[{group-by-variables:[{variable-name:GeoLocation}]}]"
+    ```

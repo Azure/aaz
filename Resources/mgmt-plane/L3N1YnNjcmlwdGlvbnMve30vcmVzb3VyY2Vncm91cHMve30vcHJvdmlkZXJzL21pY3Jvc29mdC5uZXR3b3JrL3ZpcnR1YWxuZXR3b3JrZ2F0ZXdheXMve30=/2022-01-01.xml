@@ -440,6 +440,9 @@
         <arg type="ResourceLocation" var="$parameters.location" options="location l" group="">
           <help short="Location. Values from: `az account list-locations`. You can configure the default location using `az configure --defaults location=<location>`."/>
         </arg>
+        <arg type="boolean" var="$parameters.properties.enablePrivateIpAddress" options="enable-private-ip" group="">
+          <help short="Whether private IP needs to be enabled on this gateway for connections or not."/>
+        </arg>
         <arg type="string" var="$parameters.properties.gatewayDefaultSite.id" options="gateway-default-site" group="">
           <help short="Name or ID of a local network gateway representing a local network site with default routes."/>
         </arg>
@@ -652,9 +655,6 @@
         </arg>
         <arg type="boolean" var="$parameters.properties.enableDnsForwarding" options="enable-dns-forwarding" hide="True" group="Properties">
           <help short="Whether dns forwarding is enabled or not."/>
-        </arg>
-        <arg type="boolean" var="$parameters.properties.enablePrivateIpAddress" options="enable-private-ip-address" hide="True" group="Properties">
-          <help short="Whether private IP needs to be enabled on this gateway for connections or not."/>
         </arg>
         <arg type="string" var="$parameters.properties.sku.tier" options="sku-tier" group="Properties">
           <help short="Gateway SKU tier."/>
@@ -1531,6 +1531,9 @@
         <arg nullable="True" type="ResourceLocation" var="$parameters.location" options="location l" hide="True" group="">
           <help short="Location. Values from: `az account list-locations`. You can configure the default location using `az configure --defaults location=<location>`."/>
         </arg>
+        <arg nullable="True" type="boolean" var="$parameters.properties.enablePrivateIpAddress" options="enable-private-ip" group="">
+          <help short="Whether private IP needs to be enabled on this gateway for connections or not."/>
+        </arg>
         <arg nullable="True" type="string" var="$parameters.properties.gatewayDefaultSite.id" options="gateway-default-site" group="">
           <help short="Name or ID of a local network gateway representing a local network site with default routes."/>
         </arg>
@@ -1656,9 +1659,6 @@
         </arg>
         <arg nullable="True" type="boolean" var="$parameters.properties.enableDnsForwarding" options="enable-dns-forwarding" hide="True" group="Properties">
           <help short="Whether dns forwarding is enabled or not."/>
-        </arg>
-        <arg nullable="True" type="boolean" var="$parameters.properties.enablePrivateIpAddress" options="enable-private-ip-address" hide="True" group="Properties">
-          <help short="Whether private IP needs to be enabled on this gateway for connections or not."/>
         </arg>
         <arg nullable="True" type="array<object>" var="$parameters.properties.ipConfigurations" options="ip-configurations" group="Properties">
           <help short="IP configurations for virtual network gateway."/>
@@ -6519,402 +6519,6 @@
         </operation>
         <output type="object" ref="$Subresource" clientFlatten="True"/>
       </command>
-      <command name="show" version="2022-01-01" confirmation="">
-        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/virtualnetworkgateways/{}" version="2022-01-01" subresource="properties.vpnClientConfiguration.vpnClientIpsecPolicies[]" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay92aXJ0dWFsTmV0d29ya0dhdGV3YXlzL3t2aXJ0dWFsTmV0d29ya0dhdGV3YXlOYW1lfQ==/V/MjAyMi0wMS0wMQ=="/>
-        <argGroup name="">
-          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
-          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-          <arg type="string" var="$Path.virtualNetworkGatewayName" options="gateway-name" required="True" group="" idPart="name">
-            <help short="Virtual network gateway name."/>
-          </arg>
-          <arg type="integer" var="$parameters.properties.vpnClientConfiguration.vpnClientIpsecPolicies[Index]" options="vpn-client-ipsec-policy-index" required="True"/>
-        </argGroup>
-        <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="parameters">
-            <prop type="array" name="properties.vpnClientConfiguration.vpnClientIpsecPolicies">
-              <item type="object"/>
-              <identifier type="integer" name="[Index]" arg="$parameters.properties.vpnClientConfiguration.vpnClientIpsecPolicies[Index]" required="True"/>
-            </prop>
-          </json>
-        </subresourceSelector>
-        <operation operationId="VirtualNetworkGateways_Get">
-          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}">
-            <request method="get">
-              <path>
-                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
-                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
-                <param type="string" name="virtualNetworkGatewayName" arg="$Path.virtualNetworkGatewayName" required="True"/>
-              </path>
-              <query>
-                <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                  <default value="&quot;2022-01-01&quot;"/>
-                </const>
-              </query>
-            </request>
-            <response statusCode="200">
-              <body>
-                <json var="$Instance">
-                  <schema type="object" cls="VirtualNetworkGateway_read">
-                    <prop readOnly="True" type="string" name="etag"/>
-                    <prop type="object" name="extendedLocation">
-                      <prop type="string" name="name"/>
-                      <prop type="string" name="type">
-                        <enum>
-                          <item value="&quot;EdgeZone&quot;"/>
-                        </enum>
-                      </prop>
-                    </prop>
-                    <prop type="ResourceId" name="id">
-                      <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/virtualNetworkGateways/{}"/>
-                    </prop>
-                    <prop type="ResourceLocation" name="location"/>
-                    <prop readOnly="True" type="string" name="name"/>
-                    <prop type="object" name="properties" required="True" clientFlatten="True">
-                      <prop type="boolean" name="activeActive"/>
-                      <prop type="object" name="bgpSettings">
-                        <prop type="integer64" name="asn">
-                          <format maximum="4294967295" minimum="0"/>
-                        </prop>
-                        <prop type="string" name="bgpPeeringAddress"/>
-                        <prop type="array<object>" name="bgpPeeringAddresses">
-                          <item type="object">
-                            <prop type="array<string>" name="customBgpIpAddresses">
-                              <item type="string"/>
-                            </prop>
-                            <prop readOnly="True" type="array<string>" name="defaultBgpIpAddresses">
-                              <item type="string"/>
-                            </prop>
-                            <prop type="string" name="ipconfigurationId"/>
-                            <prop readOnly="True" type="array<string>" name="tunnelIpAddresses">
-                              <item type="string"/>
-                            </prop>
-                          </item>
-                        </prop>
-                        <prop type="integer32" name="peerWeight"/>
-                      </prop>
-                      <prop type="@AddressSpace_read" name="customRoutes"/>
-                      <prop type="boolean" name="disableIPSecReplayProtection"/>
-                      <prop type="boolean" name="enableBgp"/>
-                      <prop type="boolean" name="enableBgpRouteTranslationForNat"/>
-                      <prop type="boolean" name="enableDnsForwarding"/>
-                      <prop type="boolean" name="enablePrivateIpAddress"/>
-                      <prop type="@SubResource_read" name="gatewayDefaultSite"/>
-                      <prop type="string" name="gatewayType">
-                        <enum>
-                          <item value="&quot;ExpressRoute&quot;"/>
-                          <item value="&quot;LocalGateway&quot;"/>
-                          <item value="&quot;Vpn&quot;"/>
-                        </enum>
-                      </prop>
-                      <prop readOnly="True" type="string" name="inboundDnsForwardingEndpoint"/>
-                      <prop type="array<object>" name="ipConfigurations">
-                        <item type="object">
-                          <prop readOnly="True" type="string" name="etag"/>
-                          <prop type="string" name="id"/>
-                          <prop type="string" name="name"/>
-                          <prop type="object" name="properties" clientFlatten="True">
-                            <prop readOnly="True" type="string" name="privateIPAddress"/>
-                            <prop type="string" name="privateIPAllocationMethod">
-                              <enum>
-                                <item value="&quot;Dynamic&quot;"/>
-                                <item value="&quot;Static&quot;"/>
-                              </enum>
-                            </prop>
-                            <prop readOnly="True" type="string" name="provisioningState">
-                              <enum>
-                                <item value="&quot;Deleting&quot;"/>
-                                <item value="&quot;Failed&quot;"/>
-                                <item value="&quot;Succeeded&quot;"/>
-                                <item value="&quot;Updating&quot;"/>
-                              </enum>
-                            </prop>
-                            <prop type="@SubResource_read" name="publicIPAddress"/>
-                            <prop type="object" name="subnet" cls="SubResource_read">
-                              <prop type="string" name="id"/>
-                            </prop>
-                          </prop>
-                        </item>
-                      </prop>
-                      <prop type="array<object>" name="natRules">
-                        <item type="object">
-                          <prop readOnly="True" type="string" name="etag"/>
-                          <prop type="ResourceId" name="id">
-                            <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/virtualNetworkGateways/{}/natRules/{}"/>
-                          </prop>
-                          <prop type="string" name="name"/>
-                          <prop type="object" name="properties" clientFlatten="True">
-                            <prop type="array<@VpnNatRuleMapping_read>" name="externalMappings">
-                              <item type="@VpnNatRuleMapping_read"/>
-                            </prop>
-                            <prop type="array<object>" name="internalMappings">
-                              <item type="object" cls="VpnNatRuleMapping_read">
-                                <prop type="string" name="addressSpace"/>
-                                <prop type="string" name="portRange"/>
-                              </item>
-                            </prop>
-                            <prop type="string" name="ipConfigurationId"/>
-                            <prop type="string" name="mode">
-                              <enum>
-                                <item value="&quot;EgressSnat&quot;"/>
-                                <item value="&quot;IngressSnat&quot;"/>
-                              </enum>
-                            </prop>
-                            <prop readOnly="True" type="string" name="provisioningState">
-                              <enum>
-                                <item value="&quot;Deleting&quot;"/>
-                                <item value="&quot;Failed&quot;"/>
-                                <item value="&quot;Succeeded&quot;"/>
-                                <item value="&quot;Updating&quot;"/>
-                              </enum>
-                            </prop>
-                            <prop type="string" name="type">
-                              <enum>
-                                <item value="&quot;Dynamic&quot;"/>
-                                <item value="&quot;Static&quot;"/>
-                              </enum>
-                            </prop>
-                          </prop>
-                          <prop readOnly="True" type="string" name="type"/>
-                        </item>
-                      </prop>
-                      <prop readOnly="True" type="string" name="provisioningState">
-                        <enum>
-                          <item value="&quot;Deleting&quot;"/>
-                          <item value="&quot;Failed&quot;"/>
-                          <item value="&quot;Succeeded&quot;"/>
-                          <item value="&quot;Updating&quot;"/>
-                        </enum>
-                      </prop>
-                      <prop readOnly="True" type="string" name="resourceGuid"/>
-                      <prop type="object" name="sku">
-                        <prop readOnly="True" type="integer32" name="capacity"/>
-                        <prop type="string" name="name">
-                          <enum>
-                            <item value="&quot;Basic&quot;"/>
-                            <item value="&quot;ErGw1AZ&quot;"/>
-                            <item value="&quot;ErGw2AZ&quot;"/>
-                            <item value="&quot;ErGw3AZ&quot;"/>
-                            <item value="&quot;HighPerformance&quot;"/>
-                            <item value="&quot;Standard&quot;"/>
-                            <item value="&quot;UltraPerformance&quot;"/>
-                            <item value="&quot;VpnGw1&quot;"/>
-                            <item value="&quot;VpnGw1AZ&quot;"/>
-                            <item value="&quot;VpnGw2&quot;"/>
-                            <item value="&quot;VpnGw2AZ&quot;"/>
-                            <item value="&quot;VpnGw3&quot;"/>
-                            <item value="&quot;VpnGw3AZ&quot;"/>
-                            <item value="&quot;VpnGw4&quot;"/>
-                            <item value="&quot;VpnGw4AZ&quot;"/>
-                            <item value="&quot;VpnGw5&quot;"/>
-                            <item value="&quot;VpnGw5AZ&quot;"/>
-                          </enum>
-                        </prop>
-                        <prop type="string" name="tier">
-                          <enum>
-                            <item value="&quot;Basic&quot;"/>
-                            <item value="&quot;ErGw1AZ&quot;"/>
-                            <item value="&quot;ErGw2AZ&quot;"/>
-                            <item value="&quot;ErGw3AZ&quot;"/>
-                            <item value="&quot;HighPerformance&quot;"/>
-                            <item value="&quot;Standard&quot;"/>
-                            <item value="&quot;UltraPerformance&quot;"/>
-                            <item value="&quot;VpnGw1&quot;"/>
-                            <item value="&quot;VpnGw1AZ&quot;"/>
-                            <item value="&quot;VpnGw2&quot;"/>
-                            <item value="&quot;VpnGw2AZ&quot;"/>
-                            <item value="&quot;VpnGw3&quot;"/>
-                            <item value="&quot;VpnGw3AZ&quot;"/>
-                            <item value="&quot;VpnGw4&quot;"/>
-                            <item value="&quot;VpnGw4AZ&quot;"/>
-                            <item value="&quot;VpnGw5&quot;"/>
-                            <item value="&quot;VpnGw5AZ&quot;"/>
-                          </enum>
-                        </prop>
-                      </prop>
-                      <prop type="string" name="vNetExtendedLocationResourceId"/>
-                      <prop type="object" name="vpnClientConfiguration">
-                        <prop type="string" name="aadAudience"/>
-                        <prop type="string" name="aadIssuer"/>
-                        <prop type="string" name="aadTenant"/>
-                        <prop type="string" name="radiusServerAddress"/>
-                        <prop type="string" name="radiusServerSecret"/>
-                        <prop type="array<object>" name="radiusServers">
-                          <item type="object">
-                            <prop type="string" name="radiusServerAddress" required="True"/>
-                            <prop type="integer64" name="radiusServerScore"/>
-                            <prop type="string" name="radiusServerSecret"/>
-                          </item>
-                        </prop>
-                        <prop type="array<string>" name="vpnAuthenticationTypes">
-                          <item type="string">
-                            <enum>
-                              <item value="&quot;AAD&quot;"/>
-                              <item value="&quot;Certificate&quot;"/>
-                              <item value="&quot;Radius&quot;"/>
-                            </enum>
-                          </item>
-                        </prop>
-                        <prop type="object" name="vpnClientAddressPool" cls="AddressSpace_read">
-                          <prop type="array<string>" name="addressPrefixes">
-                            <item type="string"/>
-                          </prop>
-                        </prop>
-                        <prop type="array<object>" name="vpnClientIpsecPolicies">
-                          <item type="object">
-                            <prop type="string" name="dhGroup" required="True">
-                              <enum>
-                                <item value="&quot;DHGroup1&quot;"/>
-                                <item value="&quot;DHGroup14&quot;"/>
-                                <item value="&quot;DHGroup2&quot;"/>
-                                <item value="&quot;DHGroup2048&quot;"/>
-                                <item value="&quot;DHGroup24&quot;"/>
-                                <item value="&quot;ECP256&quot;"/>
-                                <item value="&quot;ECP384&quot;"/>
-                                <item value="&quot;None&quot;"/>
-                              </enum>
-                            </prop>
-                            <prop type="string" name="ikeEncryption" required="True">
-                              <enum>
-                                <item value="&quot;AES128&quot;"/>
-                                <item value="&quot;AES192&quot;"/>
-                                <item value="&quot;AES256&quot;"/>
-                                <item value="&quot;DES&quot;"/>
-                                <item value="&quot;DES3&quot;"/>
-                                <item value="&quot;GCMAES128&quot;"/>
-                                <item value="&quot;GCMAES256&quot;"/>
-                              </enum>
-                            </prop>
-                            <prop type="string" name="ikeIntegrity" required="True">
-                              <enum>
-                                <item value="&quot;GCMAES128&quot;"/>
-                                <item value="&quot;GCMAES256&quot;"/>
-                                <item value="&quot;MD5&quot;"/>
-                                <item value="&quot;SHA1&quot;"/>
-                                <item value="&quot;SHA256&quot;"/>
-                                <item value="&quot;SHA384&quot;"/>
-                              </enum>
-                            </prop>
-                            <prop type="string" name="ipsecEncryption" required="True">
-                              <enum>
-                                <item value="&quot;AES128&quot;"/>
-                                <item value="&quot;AES192&quot;"/>
-                                <item value="&quot;AES256&quot;"/>
-                                <item value="&quot;DES&quot;"/>
-                                <item value="&quot;DES3&quot;"/>
-                                <item value="&quot;GCMAES128&quot;"/>
-                                <item value="&quot;GCMAES192&quot;"/>
-                                <item value="&quot;GCMAES256&quot;"/>
-                                <item value="&quot;None&quot;"/>
-                              </enum>
-                            </prop>
-                            <prop type="string" name="ipsecIntegrity" required="True">
-                              <enum>
-                                <item value="&quot;GCMAES128&quot;"/>
-                                <item value="&quot;GCMAES192&quot;"/>
-                                <item value="&quot;GCMAES256&quot;"/>
-                                <item value="&quot;MD5&quot;"/>
-                                <item value="&quot;SHA1&quot;"/>
-                                <item value="&quot;SHA256&quot;"/>
-                              </enum>
-                            </prop>
-                            <prop type="string" name="pfsGroup" required="True">
-                              <enum>
-                                <item value="&quot;ECP256&quot;"/>
-                                <item value="&quot;ECP384&quot;"/>
-                                <item value="&quot;None&quot;"/>
-                                <item value="&quot;PFS1&quot;"/>
-                                <item value="&quot;PFS14&quot;"/>
-                                <item value="&quot;PFS2&quot;"/>
-                                <item value="&quot;PFS2048&quot;"/>
-                                <item value="&quot;PFS24&quot;"/>
-                                <item value="&quot;PFSMM&quot;"/>
-                              </enum>
-                            </prop>
-                            <prop type="integer32" name="saDataSizeKilobytes" required="True"/>
-                            <prop type="integer32" name="saLifeTimeSeconds" required="True"/>
-                          </item>
-                        </prop>
-                        <prop type="array<string>" name="vpnClientProtocols">
-                          <item type="string">
-                            <enum>
-                              <item value="&quot;IkeV2&quot;"/>
-                              <item value="&quot;OpenVPN&quot;"/>
-                              <item value="&quot;SSTP&quot;"/>
-                            </enum>
-                          </item>
-                        </prop>
-                        <prop type="array<object>" name="vpnClientRevokedCertificates">
-                          <item type="object">
-                            <prop readOnly="True" type="string" name="etag"/>
-                            <prop type="string" name="id"/>
-                            <prop type="string" name="name"/>
-                            <prop type="object" name="properties" clientFlatten="True">
-                              <prop readOnly="True" type="string" name="provisioningState">
-                                <enum>
-                                  <item value="&quot;Deleting&quot;"/>
-                                  <item value="&quot;Failed&quot;"/>
-                                  <item value="&quot;Succeeded&quot;"/>
-                                  <item value="&quot;Updating&quot;"/>
-                                </enum>
-                              </prop>
-                              <prop type="string" name="thumbprint"/>
-                            </prop>
-                          </item>
-                        </prop>
-                        <prop type="array<object>" name="vpnClientRootCertificates">
-                          <item type="object">
-                            <prop readOnly="True" type="string" name="etag"/>
-                            <prop type="string" name="id"/>
-                            <prop type="string" name="name"/>
-                            <prop type="object" name="properties" required="True" clientFlatten="True">
-                              <prop readOnly="True" type="string" name="provisioningState">
-                                <enum>
-                                  <item value="&quot;Deleting&quot;"/>
-                                  <item value="&quot;Failed&quot;"/>
-                                  <item value="&quot;Succeeded&quot;"/>
-                                  <item value="&quot;Updating&quot;"/>
-                                </enum>
-                              </prop>
-                              <prop type="string" name="publicCertData" required="True"/>
-                            </prop>
-                          </item>
-                        </prop>
-                      </prop>
-                      <prop type="string" name="vpnGatewayGeneration">
-                        <enum>
-                          <item value="&quot;Generation1&quot;"/>
-                          <item value="&quot;Generation2&quot;"/>
-                          <item value="&quot;None&quot;"/>
-                        </enum>
-                      </prop>
-                      <prop type="string" name="vpnType">
-                        <enum>
-                          <item value="&quot;PolicyBased&quot;"/>
-                          <item value="&quot;RouteBased&quot;"/>
-                        </enum>
-                      </prop>
-                    </prop>
-                    <prop type="object" name="tags">
-                      <additionalProp>
-                        <item type="string"/>
-                      </additionalProp>
-                    </prop>
-                    <prop readOnly="True" type="string" name="type"/>
-                  </schema>
-                </json>
-              </body>
-            </response>
-            <response isError="True">
-              <body>
-                <json>
-                  <schema type="@ODataV4Format"/>
-                </json>
-              </body>
-            </response>
-          </http>
-        </operation>
-        <output type="object" ref="$Subresource" clientFlatten="True"/>
-      </command>
       <command name="remove" version="2022-01-01" confirmation="">
         <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/virtualnetworkgateways/{}" version="2022-01-01" subresource="properties.vpnClientConfiguration.vpnClientIpsecPolicies[]" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay92aXJ0dWFsTmV0d29ya0dhdGV3YXlzL3t2aXJ0dWFsTmV0d29ya0dhdGV3YXlOYW1lfQ==/V/MjAyMi0wMS0wMQ=="/>
         <argGroup name="">
@@ -7348,6 +6952,402 @@
             </response>
           </http>
         </operation>
+      </command>
+      <command name="show" version="2022-01-01" confirmation="">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/virtualnetworkgateways/{}" version="2022-01-01" subresource="properties.vpnClientConfiguration.vpnClientIpsecPolicies[]" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay92aXJ0dWFsTmV0d29ya0dhdGV3YXlzL3t2aXJ0dWFsTmV0d29ya0dhdGV3YXlOYW1lfQ==/V/MjAyMi0wMS0wMQ=="/>
+        <argGroup name="">
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+          <arg type="string" var="$Path.virtualNetworkGatewayName" options="gateway-name" required="True" group="" idPart="name">
+            <help short="Virtual network gateway name."/>
+          </arg>
+          <arg type="integer" var="$parameters.properties.vpnClientConfiguration.vpnClientIpsecPolicies[Index]" options="vpn-client-ipsec-policy-index" required="True"/>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="parameters">
+            <prop type="array" name="properties.vpnClientConfiguration.vpnClientIpsecPolicies">
+              <item type="object"/>
+              <identifier type="integer" name="[Index]" arg="$parameters.properties.vpnClientConfiguration.vpnClientIpsecPolicies[Index]" required="True"/>
+            </prop>
+          </json>
+        </subresourceSelector>
+        <operation operationId="VirtualNetworkGateways_Get">
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}">
+            <request method="get">
+              <path>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+                <param type="string" name="virtualNetworkGatewayName" arg="$Path.virtualNetworkGatewayName" required="True"/>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-01-01&quot;"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="VirtualNetworkGateway_read">
+                    <prop readOnly="True" type="string" name="etag"/>
+                    <prop type="object" name="extendedLocation">
+                      <prop type="string" name="name"/>
+                      <prop type="string" name="type">
+                        <enum>
+                          <item value="&quot;EdgeZone&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceId" name="id">
+                      <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/virtualNetworkGateways/{}"/>
+                    </prop>
+                    <prop type="ResourceLocation" name="location"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" required="True" clientFlatten="True">
+                      <prop type="boolean" name="activeActive"/>
+                      <prop type="object" name="bgpSettings">
+                        <prop type="integer64" name="asn">
+                          <format maximum="4294967295" minimum="0"/>
+                        </prop>
+                        <prop type="string" name="bgpPeeringAddress"/>
+                        <prop type="array<object>" name="bgpPeeringAddresses">
+                          <item type="object">
+                            <prop type="array<string>" name="customBgpIpAddresses">
+                              <item type="string"/>
+                            </prop>
+                            <prop readOnly="True" type="array<string>" name="defaultBgpIpAddresses">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="string" name="ipconfigurationId"/>
+                            <prop readOnly="True" type="array<string>" name="tunnelIpAddresses">
+                              <item type="string"/>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="integer32" name="peerWeight"/>
+                      </prop>
+                      <prop type="@AddressSpace_read" name="customRoutes"/>
+                      <prop type="boolean" name="disableIPSecReplayProtection"/>
+                      <prop type="boolean" name="enableBgp"/>
+                      <prop type="boolean" name="enableBgpRouteTranslationForNat"/>
+                      <prop type="boolean" name="enableDnsForwarding"/>
+                      <prop type="boolean" name="enablePrivateIpAddress"/>
+                      <prop type="@SubResource_read" name="gatewayDefaultSite"/>
+                      <prop type="string" name="gatewayType">
+                        <enum>
+                          <item value="&quot;ExpressRoute&quot;"/>
+                          <item value="&quot;LocalGateway&quot;"/>
+                          <item value="&quot;Vpn&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="inboundDnsForwardingEndpoint"/>
+                      <prop type="array<object>" name="ipConfigurations">
+                        <item type="object">
+                          <prop readOnly="True" type="string" name="etag"/>
+                          <prop type="string" name="id"/>
+                          <prop type="string" name="name"/>
+                          <prop type="object" name="properties" clientFlatten="True">
+                            <prop readOnly="True" type="string" name="privateIPAddress"/>
+                            <prop type="string" name="privateIPAllocationMethod">
+                              <enum>
+                                <item value="&quot;Dynamic&quot;"/>
+                                <item value="&quot;Static&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="string" name="provisioningState">
+                              <enum>
+                                <item value="&quot;Deleting&quot;"/>
+                                <item value="&quot;Failed&quot;"/>
+                                <item value="&quot;Succeeded&quot;"/>
+                                <item value="&quot;Updating&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="@SubResource_read" name="publicIPAddress"/>
+                            <prop type="object" name="subnet" cls="SubResource_read">
+                              <prop type="string" name="id"/>
+                            </prop>
+                          </prop>
+                        </item>
+                      </prop>
+                      <prop type="array<object>" name="natRules">
+                        <item type="object">
+                          <prop readOnly="True" type="string" name="etag"/>
+                          <prop type="ResourceId" name="id">
+                            <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/virtualNetworkGateways/{}/natRules/{}"/>
+                          </prop>
+                          <prop type="string" name="name"/>
+                          <prop type="object" name="properties" clientFlatten="True">
+                            <prop type="array<@VpnNatRuleMapping_read>" name="externalMappings">
+                              <item type="@VpnNatRuleMapping_read"/>
+                            </prop>
+                            <prop type="array<object>" name="internalMappings">
+                              <item type="object" cls="VpnNatRuleMapping_read">
+                                <prop type="string" name="addressSpace"/>
+                                <prop type="string" name="portRange"/>
+                              </item>
+                            </prop>
+                            <prop type="string" name="ipConfigurationId"/>
+                            <prop type="string" name="mode">
+                              <enum>
+                                <item value="&quot;EgressSnat&quot;"/>
+                                <item value="&quot;IngressSnat&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="string" name="provisioningState">
+                              <enum>
+                                <item value="&quot;Deleting&quot;"/>
+                                <item value="&quot;Failed&quot;"/>
+                                <item value="&quot;Succeeded&quot;"/>
+                                <item value="&quot;Updating&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="type">
+                              <enum>
+                                <item value="&quot;Dynamic&quot;"/>
+                                <item value="&quot;Static&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop readOnly="True" type="string" name="type"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="resourceGuid"/>
+                      <prop type="object" name="sku">
+                        <prop readOnly="True" type="integer32" name="capacity"/>
+                        <prop type="string" name="name">
+                          <enum>
+                            <item value="&quot;Basic&quot;"/>
+                            <item value="&quot;ErGw1AZ&quot;"/>
+                            <item value="&quot;ErGw2AZ&quot;"/>
+                            <item value="&quot;ErGw3AZ&quot;"/>
+                            <item value="&quot;HighPerformance&quot;"/>
+                            <item value="&quot;Standard&quot;"/>
+                            <item value="&quot;UltraPerformance&quot;"/>
+                            <item value="&quot;VpnGw1&quot;"/>
+                            <item value="&quot;VpnGw1AZ&quot;"/>
+                            <item value="&quot;VpnGw2&quot;"/>
+                            <item value="&quot;VpnGw2AZ&quot;"/>
+                            <item value="&quot;VpnGw3&quot;"/>
+                            <item value="&quot;VpnGw3AZ&quot;"/>
+                            <item value="&quot;VpnGw4&quot;"/>
+                            <item value="&quot;VpnGw4AZ&quot;"/>
+                            <item value="&quot;VpnGw5&quot;"/>
+                            <item value="&quot;VpnGw5AZ&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="tier">
+                          <enum>
+                            <item value="&quot;Basic&quot;"/>
+                            <item value="&quot;ErGw1AZ&quot;"/>
+                            <item value="&quot;ErGw2AZ&quot;"/>
+                            <item value="&quot;ErGw3AZ&quot;"/>
+                            <item value="&quot;HighPerformance&quot;"/>
+                            <item value="&quot;Standard&quot;"/>
+                            <item value="&quot;UltraPerformance&quot;"/>
+                            <item value="&quot;VpnGw1&quot;"/>
+                            <item value="&quot;VpnGw1AZ&quot;"/>
+                            <item value="&quot;VpnGw2&quot;"/>
+                            <item value="&quot;VpnGw2AZ&quot;"/>
+                            <item value="&quot;VpnGw3&quot;"/>
+                            <item value="&quot;VpnGw3AZ&quot;"/>
+                            <item value="&quot;VpnGw4&quot;"/>
+                            <item value="&quot;VpnGw4AZ&quot;"/>
+                            <item value="&quot;VpnGw5&quot;"/>
+                            <item value="&quot;VpnGw5AZ&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="vNetExtendedLocationResourceId"/>
+                      <prop type="object" name="vpnClientConfiguration">
+                        <prop type="string" name="aadAudience"/>
+                        <prop type="string" name="aadIssuer"/>
+                        <prop type="string" name="aadTenant"/>
+                        <prop type="string" name="radiusServerAddress"/>
+                        <prop type="string" name="radiusServerSecret"/>
+                        <prop type="array<object>" name="radiusServers">
+                          <item type="object">
+                            <prop type="string" name="radiusServerAddress" required="True"/>
+                            <prop type="integer64" name="radiusServerScore"/>
+                            <prop type="string" name="radiusServerSecret"/>
+                          </item>
+                        </prop>
+                        <prop type="array<string>" name="vpnAuthenticationTypes">
+                          <item type="string">
+                            <enum>
+                              <item value="&quot;AAD&quot;"/>
+                              <item value="&quot;Certificate&quot;"/>
+                              <item value="&quot;Radius&quot;"/>
+                            </enum>
+                          </item>
+                        </prop>
+                        <prop type="object" name="vpnClientAddressPool" cls="AddressSpace_read">
+                          <prop type="array<string>" name="addressPrefixes">
+                            <item type="string"/>
+                          </prop>
+                        </prop>
+                        <prop type="array<object>" name="vpnClientIpsecPolicies">
+                          <item type="object">
+                            <prop type="string" name="dhGroup" required="True">
+                              <enum>
+                                <item value="&quot;DHGroup1&quot;"/>
+                                <item value="&quot;DHGroup14&quot;"/>
+                                <item value="&quot;DHGroup2&quot;"/>
+                                <item value="&quot;DHGroup2048&quot;"/>
+                                <item value="&quot;DHGroup24&quot;"/>
+                                <item value="&quot;ECP256&quot;"/>
+                                <item value="&quot;ECP384&quot;"/>
+                                <item value="&quot;None&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="ikeEncryption" required="True">
+                              <enum>
+                                <item value="&quot;AES128&quot;"/>
+                                <item value="&quot;AES192&quot;"/>
+                                <item value="&quot;AES256&quot;"/>
+                                <item value="&quot;DES&quot;"/>
+                                <item value="&quot;DES3&quot;"/>
+                                <item value="&quot;GCMAES128&quot;"/>
+                                <item value="&quot;GCMAES256&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="ikeIntegrity" required="True">
+                              <enum>
+                                <item value="&quot;GCMAES128&quot;"/>
+                                <item value="&quot;GCMAES256&quot;"/>
+                                <item value="&quot;MD5&quot;"/>
+                                <item value="&quot;SHA1&quot;"/>
+                                <item value="&quot;SHA256&quot;"/>
+                                <item value="&quot;SHA384&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="ipsecEncryption" required="True">
+                              <enum>
+                                <item value="&quot;AES128&quot;"/>
+                                <item value="&quot;AES192&quot;"/>
+                                <item value="&quot;AES256&quot;"/>
+                                <item value="&quot;DES&quot;"/>
+                                <item value="&quot;DES3&quot;"/>
+                                <item value="&quot;GCMAES128&quot;"/>
+                                <item value="&quot;GCMAES192&quot;"/>
+                                <item value="&quot;GCMAES256&quot;"/>
+                                <item value="&quot;None&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="ipsecIntegrity" required="True">
+                              <enum>
+                                <item value="&quot;GCMAES128&quot;"/>
+                                <item value="&quot;GCMAES192&quot;"/>
+                                <item value="&quot;GCMAES256&quot;"/>
+                                <item value="&quot;MD5&quot;"/>
+                                <item value="&quot;SHA1&quot;"/>
+                                <item value="&quot;SHA256&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="pfsGroup" required="True">
+                              <enum>
+                                <item value="&quot;ECP256&quot;"/>
+                                <item value="&quot;ECP384&quot;"/>
+                                <item value="&quot;None&quot;"/>
+                                <item value="&quot;PFS1&quot;"/>
+                                <item value="&quot;PFS14&quot;"/>
+                                <item value="&quot;PFS2&quot;"/>
+                                <item value="&quot;PFS2048&quot;"/>
+                                <item value="&quot;PFS24&quot;"/>
+                                <item value="&quot;PFSMM&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="integer32" name="saDataSizeKilobytes" required="True"/>
+                            <prop type="integer32" name="saLifeTimeSeconds" required="True"/>
+                          </item>
+                        </prop>
+                        <prop type="array<string>" name="vpnClientProtocols">
+                          <item type="string">
+                            <enum>
+                              <item value="&quot;IkeV2&quot;"/>
+                              <item value="&quot;OpenVPN&quot;"/>
+                              <item value="&quot;SSTP&quot;"/>
+                            </enum>
+                          </item>
+                        </prop>
+                        <prop type="array<object>" name="vpnClientRevokedCertificates">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="etag"/>
+                            <prop type="string" name="id"/>
+                            <prop type="string" name="name"/>
+                            <prop type="object" name="properties" clientFlatten="True">
+                              <prop readOnly="True" type="string" name="provisioningState">
+                                <enum>
+                                  <item value="&quot;Deleting&quot;"/>
+                                  <item value="&quot;Failed&quot;"/>
+                                  <item value="&quot;Succeeded&quot;"/>
+                                  <item value="&quot;Updating&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="thumbprint"/>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="array<object>" name="vpnClientRootCertificates">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="etag"/>
+                            <prop type="string" name="id"/>
+                            <prop type="string" name="name"/>
+                            <prop type="object" name="properties" required="True" clientFlatten="True">
+                              <prop readOnly="True" type="string" name="provisioningState">
+                                <enum>
+                                  <item value="&quot;Deleting&quot;"/>
+                                  <item value="&quot;Failed&quot;"/>
+                                  <item value="&quot;Succeeded&quot;"/>
+                                  <item value="&quot;Updating&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="publicCertData" required="True"/>
+                            </prop>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="vpnGatewayGeneration">
+                        <enum>
+                          <item value="&quot;Generation1&quot;"/>
+                          <item value="&quot;Generation2&quot;"/>
+                          <item value="&quot;None&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="vpnType">
+                        <enum>
+                          <item value="&quot;PolicyBased&quot;"/>
+                          <item value="&quot;RouteBased&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@ODataV4Format"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
       </command>
     </commandGroup>
     <commandGroup name="nat-rule">

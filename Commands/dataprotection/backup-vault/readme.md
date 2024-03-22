@@ -2,6 +2,11 @@
 
 Manage backup vault with dataprotection.
 
+## Subgroups
+
+- [resource-guard-mapping](/Commands/dataprotection/backup-vault/resource-guard-mapping/readme.md)
+: Manage ResourceGuard mappings for a backup vault.
+
 ## Commands
 
 - [create](/Commands/dataprotection/backup-vault/_create.md)

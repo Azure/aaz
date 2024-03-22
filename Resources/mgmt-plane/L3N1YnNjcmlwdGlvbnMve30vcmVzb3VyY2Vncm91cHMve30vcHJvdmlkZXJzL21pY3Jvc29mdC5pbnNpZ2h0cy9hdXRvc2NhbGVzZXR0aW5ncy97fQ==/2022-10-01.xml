@@ -5,7 +5,7 @@
     <command name="show" version="2022-10-01">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.insights/autoscalesettings/{}" version="2022-10-01" swagger="mgmt-plane/monitor/ResourceProviders/Microsoft.Insights/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZWdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuSW5zaWdodHMvYXV0b3NjYWxlc2V0dGluZ3Mve2F1dG9zY2FsZVNldHRpbmdOYW1lfQ==/V/MjAyMi0xMC0wMQ=="/>
       <argGroup name="">
-        <arg type="string" var="$Path.autoscaleSettingName" options="autoscale-setting-name name n" required="True" idPart="name">
+        <arg type="string" var="$Path.autoscaleSettingName" options="autoscale-name name n" required="True" group="" idPart="name">
           <help short="The autoscale setting name."/>
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
@@ -207,9 +207,9 @@
                     <prop type="string" name="targetResourceUri"/>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData" cls="SystemData_read">
-                    <prop readOnly="True" type="dateTime" name="createdAt"/>
-                    <prop readOnly="True" type="string" name="createdBy"/>
-                    <prop readOnly="True" type="string" name="createdByType">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
                       <enum>
                         <item value="&quot;Application&quot;"/>
                         <item value="&quot;Key&quot;"/>
@@ -217,9 +217,9 @@
                         <item value="&quot;User&quot;"/>
                       </enum>
                     </prop>
-                    <prop readOnly="True" type="dateTime" name="lastModifiedAt"/>
-                    <prop readOnly="True" type="string" name="lastModifiedBy"/>
-                    <prop readOnly="True" type="string" name="lastModifiedByType">
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
                       <enum>
                         <item value="&quot;Application&quot;"/>
                         <item value="&quot;Key&quot;"/>
@@ -249,10 +249,10 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="delete" version="2022-10-01" confirmation="Are you sure you want to perform this operation?">
+    <command name="delete" version="2022-10-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.insights/autoscalesettings/{}" version="2022-10-01" swagger="mgmt-plane/monitor/ResourceProviders/Microsoft.Insights/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZWdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuSW5zaWdodHMvYXV0b3NjYWxlc2V0dGluZ3Mve2F1dG9zY2FsZVNldHRpbmdOYW1lfQ==/V/MjAyMi0xMC0wMQ=="/>
       <argGroup name="">
-        <arg type="string" var="$Path.autoscaleSettingName" options="autoscale-setting-name name n" required="True" idPart="name">
+        <arg type="string" var="$Path.autoscaleSettingName" options="autoscale-name name n" required="True" group="" idPart="name">
           <help short="The autoscale setting name."/>
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
@@ -289,31 +289,42 @@
         </http>
       </operation>
     </command>
-    <command name="create" version="2022-10-01">
+    <command name="create" version="2022-10-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.insights/autoscalesettings/{}" version="2022-10-01" swagger="mgmt-plane/monitor/ResourceProviders/Microsoft.Insights/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZWdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuSW5zaWdodHMvYXV0b3NjYWxlc2V0dGluZ3Mve2F1dG9zY2FsZVNldHRpbmdOYW1lfQ==/V/MjAyMi0xMC0wMQ=="/>
       <argGroup name="">
-        <arg type="string" var="$Path.autoscaleSettingName" options="autoscale-setting-name name n" required="True" idPart="name">
+        <arg type="string" var="$Path.autoscaleSettingName" options="autoscale-name name n" required="True" group="" idPart="name">
           <help short="The autoscale setting name."/>
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-      </argGroup>
-      <argGroup name="Parameters">
-        <arg type="ResourceLocation" var="$parameters.location" options="location l" required="True" group="Parameters">
+        <arg type="ResourceLocation" var="$parameters.location" options="location l" required="True" group="">
           <help short="Resource location"/>
         </arg>
-        <arg type="object" var="$parameters.tags" options="tags" group="Parameters">
+        <arg type="boolean" var="$parameters.properties.enabled" options="enabled" group="">
+          <help short="the enabled flag. Specifies whether automatic scaling is enabled for the resource. The default value is 'false'."/>
+          <default value="false"/>
+        </arg>
+        <arg type="object" var="$parameters.tags" options="tags" group="">
           <help short="Gets or sets a list of key value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater in length than 128 characters and a value no greater in length than 256 characters."/>
           <additionalProp>
             <item type="string"/>
           </additionalProp>
         </arg>
       </argGroup>
-      <argGroup name="Properties">
-        <arg type="boolean" var="$parameters.properties.enabled" options="enabled" group="Properties">
-          <help short="the enabled flag. Specifies whether automatic scaling is enabled for the resource. The default value is 'false'."/>
-          <default value="false"/>
+      <argGroup name="Predictive Policy">
+        <arg type="duration" var="$parameters.properties.predictiveAutoscalePolicy.scaleLookAheadTime" options="scale-look-ahead-time" group="Predictive Policy">
+          <help short="the amount of time to specify by which instances are launched in advance. It must be between 1 minute and 60 minutes in ISO 8601 format (for example, 100 days would be P100D)."/>
         </arg>
+        <arg type="string" var="$parameters.properties.predictiveAutoscalePolicy.scaleMode" options="scale-mode" group="Predictive Policy">
+          <help short="the predictive autoscale mode"/>
+          <enum>
+            <item name="Disabled" value="&quot;Disabled&quot;"/>
+            <item name="Enabled" value="&quot;Enabled&quot;"/>
+            <item name="ForecastOnly" value="&quot;ForecastOnly&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
         <arg type="array<object>" var="$parameters.properties.notifications" options="notifications" group="Properties">
           <help short="the collection of notifications."/>
           <item type="object">
@@ -341,26 +352,18 @@
             <arg type="array<object>" var="$parameters.properties.notifications[].webhooks" options="webhooks">
               <help short="the collection of webhook notifications."/>
               <item type="object">
+                <arg type="object" var="$parameters.properties.notifications[].webhooks[].properties" options="properties">
+                  <help short="a property bag of settings. This value can be empty."/>
+                  <additionalProp>
+                    <item type="string"/>
+                  </additionalProp>
+                </arg>
                 <arg type="string" var="$parameters.properties.notifications[].webhooks[].serviceUri" options="service-uri">
                   <help short="the service address to receive the notification."/>
                 </arg>
               </item>
             </arg>
           </item>
-        </arg>
-        <arg type="object" var="$parameters.properties.predictiveAutoscalePolicy" options="predictive-autoscale-policy" group="Properties">
-          <help short="the predictive autoscale policy mode."/>
-          <arg type="duration" var="$parameters.properties.predictiveAutoscalePolicy.scaleLookAheadTime" options="scale-look-ahead-time">
-            <help short="the amount of time to specify by which instances are launched in advance. It must be between 1 minute and 60 minutes in ISO 8601 format."/>
-          </arg>
-          <arg type="string" var="$parameters.properties.predictiveAutoscalePolicy.scaleMode" options="scale-mode" required="True">
-            <help short="the predictive autoscale mode"/>
-            <enum>
-              <item name="Disabled" value="&quot;Disabled&quot;"/>
-              <item name="Enabled" value="&quot;Enabled&quot;"/>
-              <item name="ForecastOnly" value="&quot;ForecastOnly&quot;"/>
-            </enum>
-          </arg>
         </arg>
         <arg type="array<object>" var="$parameters.properties.profiles" options="profiles" required="True" group="Properties">
           <help short="the collection of automatic scaling profiles that specify different scaling parameters for different time periods. A maximum of 20 profiles can be specified."/>
@@ -592,7 +595,7 @@
                         </prop>
                         <prop type="array<object>" name="webhooks" arg="$parameters.properties.notifications[].webhooks">
                           <item type="object">
-                            <prop type="object" name="properties">
+                            <prop type="object" name="properties" arg="$parameters.properties.notifications[].webhooks[].properties">
                               <additionalProp>
                                 <item type="string"/>
                               </additionalProp>
@@ -602,7 +605,7 @@
                         </prop>
                       </item>
                     </prop>
-                    <prop type="object" name="predictiveAutoscalePolicy" arg="$parameters.properties.predictiveAutoscalePolicy">
+                    <prop type="object" name="predictiveAutoscalePolicy">
                       <prop type="duration" name="scaleLookAheadTime" arg="$parameters.properties.predictiveAutoscalePolicy.scaleLookAheadTime"/>
                       <prop type="string" name="scaleMode" arg="$parameters.properties.predictiveAutoscalePolicy.scaleMode" required="True">
                         <enum>
@@ -920,9 +923,9 @@
                     <prop type="string" name="targetResourceUri"/>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData" cls="SystemData_read">
-                    <prop readOnly="True" type="dateTime" name="createdAt"/>
-                    <prop readOnly="True" type="string" name="createdBy"/>
-                    <prop readOnly="True" type="string" name="createdByType">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
                       <enum>
                         <item value="&quot;Application&quot;"/>
                         <item value="&quot;Key&quot;"/>
@@ -930,9 +933,9 @@
                         <item value="&quot;User&quot;"/>
                       </enum>
                     </prop>
-                    <prop readOnly="True" type="dateTime" name="lastModifiedAt"/>
-                    <prop readOnly="True" type="string" name="lastModifiedBy"/>
-                    <prop readOnly="True" type="string" name="lastModifiedByType">
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
                       <enum>
                         <item value="&quot;Application&quot;"/>
                         <item value="&quot;Key&quot;"/>
@@ -962,27 +965,38 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="update" version="2022-10-01">
+    <command name="update" version="2022-10-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.insights/autoscalesettings/{}" version="2022-10-01" swagger="mgmt-plane/monitor/ResourceProviders/Microsoft.Insights/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZWdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuSW5zaWdodHMvYXV0b3NjYWxlc2V0dGluZ3Mve2F1dG9zY2FsZVNldHRpbmdOYW1lfQ==/V/MjAyMi0xMC0wMQ=="/>
       <argGroup name="">
-        <arg type="string" var="$Path.autoscaleSettingName" options="autoscale-setting-name name n" required="True" idPart="name">
+        <arg type="string" var="$Path.autoscaleSettingName" options="autoscale-name name n" required="True" group="" idPart="name">
           <help short="The autoscale setting name."/>
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-      </argGroup>
-      <argGroup name="Parameters">
-        <arg nullable="True" type="object" var="$parameters.tags" options="tags" group="Parameters">
+        <arg nullable="True" type="boolean" var="$parameters.properties.enabled" options="enabled" group="">
+          <help short="the enabled flag. Specifies whether automatic scaling is enabled for the resource. The default value is 'false'."/>
+        </arg>
+        <arg nullable="True" type="object" var="$parameters.tags" options="tags" group="">
           <help short="Gets or sets a list of key value pairs that describe the resource. These tags can be used in viewing and grouping this resource (across resource groups). A maximum of 15 tags can be provided for a resource. Each tag must have a key no greater in length than 128 characters and a value no greater in length than 256 characters."/>
           <additionalProp>
             <item nullable="True" type="string"/>
           </additionalProp>
         </arg>
       </argGroup>
-      <argGroup name="Properties">
-        <arg nullable="True" type="boolean" var="$parameters.properties.enabled" options="enabled" group="Properties">
-          <help short="the enabled flag. Specifies whether automatic scaling is enabled for the resource. The default value is 'false'."/>
+      <argGroup name="Predictive Policy">
+        <arg nullable="True" type="duration" var="$parameters.properties.predictiveAutoscalePolicy.scaleLookAheadTime" options="scale-look-ahead-time" group="Predictive Policy">
+          <help short="the amount of time to specify by which instances are launched in advance. It must be between 1 minute and 60 minutes in ISO 8601 format (for example, 100 days would be P100D)."/>
         </arg>
+        <arg type="string" var="$parameters.properties.predictiveAutoscalePolicy.scaleMode" options="scale-mode" group="Predictive Policy">
+          <help short="the predictive autoscale mode"/>
+          <enum>
+            <item name="Disabled" value="&quot;Disabled&quot;"/>
+            <item name="Enabled" value="&quot;Enabled&quot;"/>
+            <item name="ForecastOnly" value="&quot;ForecastOnly&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
         <arg nullable="True" type="array<object>" var="$parameters.properties.notifications" options="notifications" group="Properties">
           <help short="the collection of notifications."/>
           <item nullable="True" type="object">
@@ -1008,26 +1022,18 @@
             <arg nullable="True" type="array<object>" var="$parameters.properties.notifications[].webhooks" options="webhooks">
               <help short="the collection of webhook notifications."/>
               <item nullable="True" type="object">
+                <arg nullable="True" type="object" var="$parameters.properties.notifications[].webhooks[].properties" options="properties">
+                  <help short="a property bag of settings. This value can be empty."/>
+                  <additionalProp>
+                    <item nullable="True" type="string"/>
+                  </additionalProp>
+                </arg>
                 <arg nullable="True" type="string" var="$parameters.properties.notifications[].webhooks[].serviceUri" options="service-uri">
                   <help short="the service address to receive the notification."/>
                 </arg>
               </item>
             </arg>
           </item>
-        </arg>
-        <arg nullable="True" type="object" var="$parameters.properties.predictiveAutoscalePolicy" options="predictive-autoscale-policy" group="Properties">
-          <help short="the predictive autoscale policy mode."/>
-          <arg nullable="True" type="duration" var="$parameters.properties.predictiveAutoscalePolicy.scaleLookAheadTime" options="scale-look-ahead-time">
-            <help short="the amount of time to specify by which instances are launched in advance. It must be between 1 minute and 60 minutes in ISO 8601 format."/>
-          </arg>
-          <arg type="string" var="$parameters.properties.predictiveAutoscalePolicy.scaleMode" options="scale-mode">
-            <help short="the predictive autoscale mode"/>
-            <enum>
-              <item name="Disabled" value="&quot;Disabled&quot;"/>
-              <item name="Enabled" value="&quot;Enabled&quot;"/>
-              <item name="ForecastOnly" value="&quot;ForecastOnly&quot;"/>
-            </enum>
-          </arg>
         </arg>
         <arg type="array<object>" var="$parameters.properties.profiles" options="profiles" group="Properties">
           <help short="the collection of automatic scaling profiles that specify different scaling parameters for different time periods. A maximum of 20 profiles can be specified."/>
@@ -1407,9 +1413,9 @@
                     <prop type="string" name="targetResourceUri"/>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData" cls="SystemData_read">
-                    <prop readOnly="True" type="dateTime" name="createdAt"/>
-                    <prop readOnly="True" type="string" name="createdBy"/>
-                    <prop readOnly="True" type="string" name="createdByType">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
                       <enum>
                         <item value="&quot;Application&quot;"/>
                         <item value="&quot;Key&quot;"/>
@@ -1417,9 +1423,9 @@
                         <item value="&quot;User&quot;"/>
                       </enum>
                     </prop>
-                    <prop readOnly="True" type="dateTime" name="lastModifiedAt"/>
-                    <prop readOnly="True" type="string" name="lastModifiedBy"/>
-                    <prop readOnly="True" type="string" name="lastModifiedByType">
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
                       <enum>
                         <item value="&quot;Application&quot;"/>
                         <item value="&quot;Key&quot;"/>
@@ -1448,7 +1454,7 @@
         </http>
       </operation>
       <operation>
-        <instanceUpdate instance="$Instance">
+        <instanceUpdate ref="$Instance">
           <json>
             <schema type="object" name="parameters" required="True" clientFlatten="True">
               <prop type="object" name="properties" required="True" clientFlatten="True">
@@ -1476,7 +1482,7 @@
                     </prop>
                     <prop type="array<object>" name="webhooks" arg="$parameters.properties.notifications[].webhooks">
                       <item type="object">
-                        <prop type="object" name="properties">
+                        <prop type="object" name="properties" arg="$parameters.properties.notifications[].webhooks[].properties">
                           <additionalProp>
                             <item type="string"/>
                           </additionalProp>
@@ -1486,7 +1492,7 @@
                     </prop>
                   </item>
                 </prop>
-                <prop type="object" name="predictiveAutoscalePolicy" arg="$parameters.properties.predictiveAutoscalePolicy">
+                <prop type="object" name="predictiveAutoscalePolicy">
                   <prop type="duration" name="scaleLookAheadTime" arg="$parameters.properties.predictiveAutoscalePolicy.scaleLookAheadTime"/>
                   <prop type="string" name="scaleMode" arg="$parameters.properties.predictiveAutoscalePolicy.scaleMode" required="True">
                     <enum>
