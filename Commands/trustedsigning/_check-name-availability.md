@@ -10,7 +10,12 @@ Checks that the trusted signing account name is valid and is not already in use.
 
 #### examples
 
-- Check if account name is available
+- Check if trusted signing account name is available
     ```bash
-        trustedsigning check-name-availability --name MyAccount
+        trustedsigning check-name-availability --name MyAccount --type Microsoft.CodeSigning/codeSigningAccounts
+    ```
+
+- Check if certificate profile name is available
+    ```bash
+        trustedsigning check-name-availability --name MyAccount/MyProfile --type Microsoft.CodeSigning/codeSigningAccounts/certificateProfiles
     ```
