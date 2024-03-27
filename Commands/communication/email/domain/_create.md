@@ -11,7 +11,6 @@ Create a new Domains resource under the parent EmailService resource or update a
 #### examples
 
 - Create a domain with tags
-
     ```bash
         communication email domain create --domain-name DomainName --email-service-name ResourceName -g ResourceGroup --location global --domain-management AzureManaged/CustomerManaged --tags "{tag:tag}" --user-engmnt-tracking Enabled/Disabled
     ```

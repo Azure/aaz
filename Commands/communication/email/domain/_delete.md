@@ -11,7 +11,6 @@ Delete to delete a Domains resource.
 #### examples
 
 - Delete a domain resource
-
     ```bash
         communication email domain delete --domain-name DomainName --email-service-name ResourceName -g ResourceGroup
     ```

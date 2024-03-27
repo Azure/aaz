@@ -11,7 +11,6 @@ Create a new SenderUsername resource under the parent Domains resource or update
 #### examples
 
 - Create a sender username
-
     ```bash
         communication email domain sender-username create --domain-name DomainName --email-service-name ResourceName -g ResourceGroup --sender-username SenderUsername --username Username --display-name DisplayName
     ```

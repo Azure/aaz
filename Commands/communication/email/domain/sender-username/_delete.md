@@ -11,7 +11,6 @@ Delete to delete a SenderUsernames resource.
 #### examples
 
 - Delete a sender username resource
-
     ```bash
         communication email domain sender-username delete --domain-name DomainName --email-service-name ResourceName -g ResourceGroup --sender-username SenderUsername
     ```

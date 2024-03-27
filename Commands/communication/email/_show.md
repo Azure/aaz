@@ -11,7 +11,6 @@ Get the EmailService and its properties.
 #### examples
 
 - Get a email service's properties
-
     ```bash
         communication email show -n ResourceName -g ResourceGroup
     ```

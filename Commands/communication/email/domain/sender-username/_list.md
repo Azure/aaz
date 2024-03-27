@@ -11,7 +11,6 @@ List all valid sender usernames for a domains resource.
 #### examples
 
 - Get all sender usernames from a domain resource
-
-```bash
+    ```bash
         communication email domain sender-username list --domain-name DomainName --email-service-name ResourceName -g ResourceGroup
     ```

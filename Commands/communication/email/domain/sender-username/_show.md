@@ -11,7 +11,6 @@ Get a valid sender username for a domains resource.
 #### examples
 
 - Get a sender username's properties
-
-```bash
+    ```bash
         communication email domain sender-username show --domain-name DomainName --email-service-name ResourceName -g ResourceGroup --sender-username SenderUsername
     ```

@@ -11,7 +11,6 @@ Update a new EmailService or update an existing EmailService.
 #### examples
 
 - Update a email resource with tags
-
     ```bash
         communication email update -n ResourceName -g ResourceGroup --tags "{tag:tag}"
     ```

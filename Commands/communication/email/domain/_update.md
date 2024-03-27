@@ -11,7 +11,6 @@ Update a new Domains resource under the parent EmailService resource or update a
 #### examples
 
 - Update a domain with tags
-
     ```bash
         communication email domain update --domain-name DomainName  --email-service-name ResourceName -g ResourceGroup --tags "{tag:tag}" --user-engmnt-tracking Enabled/Disabled
     ```

@@ -11,7 +11,6 @@ Get the Domains resource and its properties.
 #### examples
 
 - Get all domains from a email resource
-
-```bash
+    ```bash
         communication email domain show --domain-name DomainName --email-service-name ResourceName -g ResourceGroup
     ```
