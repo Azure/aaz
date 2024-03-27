@@ -157,7 +157,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="delete" version="2022-01-01" confirmation="">
+    <command name="delete" version="2022-01-01" confirmation="Are you sure you want to perform this operation?">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/expressrouteports/{}" version="2022-01-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9FeHByZXNzUm91dGVQb3J0cy97ZXhwcmVzc1JvdXRlUG9ydE5hbWV9/V/MjAyMi0wMS0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.expressRoutePortName" options="name n" required="True" group="" idPart="name">
@@ -875,400 +875,6 @@
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
     <commandGroup name="identity">
-      <command name="update" version="2022-01-01" confirmation="">
-        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/expressrouteports/{}" version="2022-01-01" subresource="identity" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9FeHByZXNzUm91dGVQb3J0cy97ZXhwcmVzc1JvdXRlUG9ydE5hbWV9/V/MjAyMi0wMS0wMQ=="/>
-        <argGroup name="">
-          <arg type="string" var="$Path.expressRoutePortName" options="name" required="True" group="" idPart="name">
-            <help short="ExpressRoute port name."/>
-          </arg>
-          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
-          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        </argGroup>
-        <argGroup name="Parameters.identity">
-          <arg nullable="True" type="string" var="$parameters.identity.type" options="type" group="Parameters.identity">
-            <help short="The type of identity used for the resource. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the virtual machine."/>
-            <enum>
-              <item name="None" value="&quot;None&quot;"/>
-              <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
-              <item name="SystemAssigned, UserAssigned" value="&quot;SystemAssigned, UserAssigned&quot;"/>
-              <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
-            </enum>
-          </arg>
-          <arg nullable="True" type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-identities" group="Parameters.identity">
-            <help short="The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."/>
-            <additionalProp>
-              <item nullable="True" type="object">
-                <blank value="{}"/>
-              </item>
-            </additionalProp>
-          </arg>
-        </argGroup>
-        <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="parameters">
-            <prop type="object" name="identity"/>
-          </json>
-        </subresourceSelector>
-        <operation operationId="ExpressRoutePorts_Get">
-          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ExpressRoutePorts/{expressRoutePortName}">
-            <request method="get">
-              <path>
-                <param type="string" name="expressRoutePortName" arg="$Path.expressRoutePortName" required="True"/>
-                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
-                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
-              </path>
-              <query>
-                <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                  <default value="&quot;2022-01-01&quot;"/>
-                </const>
-              </query>
-            </request>
-            <response statusCode="200">
-              <body>
-                <json var="$Instance">
-                  <schema type="object" cls="ExpressRoutePort_read">
-                    <prop readOnly="True" type="string" name="etag"/>
-                    <prop type="ResourceId" name="id">
-                      <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/ExpressRoutePorts/{}"/>
-                    </prop>
-                    <prop type="IdentityObject" name="identity">
-                      <prop readOnly="True" type="string" name="principalId"/>
-                      <prop readOnly="True" type="string" name="tenantId"/>
-                      <prop type="string" name="type">
-                        <enum>
-                          <item value="&quot;None&quot;"/>
-                          <item value="&quot;SystemAssigned&quot;"/>
-                          <item value="&quot;SystemAssigned, UserAssigned&quot;"/>
-                          <item value="&quot;UserAssigned&quot;"/>
-                        </enum>
-                      </prop>
-                      <prop type="object" name="userAssignedIdentities">
-                        <additionalProp>
-                          <item type="object">
-                            <prop readOnly="True" type="string" name="clientId"/>
-                            <prop readOnly="True" type="string" name="principalId"/>
-                          </item>
-                        </additionalProp>
-                      </prop>
-                    </prop>
-                    <prop type="ResourceLocation" name="location"/>
-                    <prop readOnly="True" type="string" name="name"/>
-                    <prop type="object" name="properties" clientFlatten="True">
-                      <prop readOnly="True" type="string" name="allocationDate"/>
-                      <prop type="integer" name="bandwidthInGbps"/>
-                      <prop readOnly="True" type="array<object>" name="circuits">
-                        <item type="object">
-                          <prop type="string" name="id"/>
-                        </item>
-                      </prop>
-                      <prop type="string" name="encapsulation">
-                        <enum>
-                          <item value="&quot;Dot1Q&quot;"/>
-                          <item value="&quot;QinQ&quot;"/>
-                        </enum>
-                      </prop>
-                      <prop readOnly="True" type="string" name="etherType"/>
-                      <prop type="array<object>" name="links" identifiers="name">
-                        <item type="object">
-                          <prop readOnly="True" type="string" name="etag"/>
-                          <prop type="ResourceId" name="id">
-                            <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/ExpressRoutePorts/{}/links/{}"/>
-                          </prop>
-                          <prop type="string" name="name"/>
-                          <prop type="object" name="properties" clientFlatten="True">
-                            <prop type="string" name="adminState">
-                              <enum>
-                                <item value="&quot;Disabled&quot;"/>
-                                <item value="&quot;Enabled&quot;"/>
-                              </enum>
-                            </prop>
-                            <prop readOnly="True" type="string" name="connectorType">
-                              <enum>
-                                <item value="&quot;LC&quot;"/>
-                                <item value="&quot;SC&quot;"/>
-                              </enum>
-                            </prop>
-                            <prop readOnly="True" type="string" name="interfaceName"/>
-                            <prop type="object" name="macSecConfig">
-                              <prop type="string" name="cakSecretIdentifier"/>
-                              <prop type="string" name="cipher">
-                                <enum>
-                                  <item value="&quot;GcmAes128&quot;"/>
-                                  <item value="&quot;GcmAes256&quot;"/>
-                                  <item value="&quot;GcmAesXpn128&quot;"/>
-                                  <item value="&quot;GcmAesXpn256&quot;"/>
-                                </enum>
-                              </prop>
-                              <prop type="string" name="cknSecretIdentifier"/>
-                              <prop type="string" name="sciState">
-                                <enum>
-                                  <item value="&quot;Disabled&quot;"/>
-                                  <item value="&quot;Enabled&quot;"/>
-                                </enum>
-                              </prop>
-                            </prop>
-                            <prop readOnly="True" type="string" name="patchPanelId"/>
-                            <prop readOnly="True" type="string" name="provisioningState">
-                              <enum>
-                                <item value="&quot;Deleting&quot;"/>
-                                <item value="&quot;Failed&quot;"/>
-                                <item value="&quot;Succeeded&quot;"/>
-                                <item value="&quot;Updating&quot;"/>
-                              </enum>
-                            </prop>
-                            <prop readOnly="True" type="string" name="rackId"/>
-                            <prop readOnly="True" type="string" name="routerName"/>
-                          </prop>
-                        </item>
-                      </prop>
-                      <prop readOnly="True" type="string" name="mtu"/>
-                      <prop type="string" name="peeringLocation"/>
-                      <prop readOnly="True" type="float" name="provisionedBandwidthInGbps"/>
-                      <prop readOnly="True" type="string" name="provisioningState">
-                        <enum>
-                          <item value="&quot;Deleting&quot;"/>
-                          <item value="&quot;Failed&quot;"/>
-                          <item value="&quot;Succeeded&quot;"/>
-                          <item value="&quot;Updating&quot;"/>
-                        </enum>
-                      </prop>
-                      <prop readOnly="True" type="string" name="resourceGuid"/>
-                    </prop>
-                    <prop type="object" name="tags">
-                      <additionalProp>
-                        <item type="string"/>
-                      </additionalProp>
-                    </prop>
-                    <prop readOnly="True" type="string" name="type"/>
-                  </schema>
-                </json>
-              </body>
-            </response>
-            <response isError="True">
-              <body>
-                <json>
-                  <schema type="@ODataV4Format"/>
-                </json>
-              </body>
-            </response>
-          </http>
-        </operation>
-        <operation>
-          <instanceUpdate ref="$Subresource">
-            <json>
-              <schema type="IdentityObject" name="parameters.identity" required="True">
-                <prop type="string" name="type" arg="$parameters.identity.type">
-                  <enum>
-                    <item value="&quot;None&quot;"/>
-                    <item value="&quot;SystemAssigned&quot;"/>
-                    <item value="&quot;SystemAssigned, UserAssigned&quot;"/>
-                    <item value="&quot;UserAssigned&quot;"/>
-                  </enum>
-                </prop>
-                <prop type="object" name="userAssignedIdentities" arg="$parameters.identity.userAssignedIdentities">
-                  <additionalProp>
-                    <item type="object"/>
-                  </additionalProp>
-                </prop>
-              </schema>
-            </json>
-          </instanceUpdate>
-        </operation>
-        <operation operationId="ExpressRoutePorts_CreateOrUpdate">
-          <longRunning finalStateVia="azure-async-operation"/>
-          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ExpressRoutePorts/{expressRoutePortName}">
-            <request method="put">
-              <path>
-                <param type="string" name="expressRoutePortName" arg="$Path.expressRoutePortName" required="True"/>
-                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
-                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
-              </path>
-              <query>
-                <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                  <default value="&quot;2022-01-01&quot;"/>
-                </const>
-              </query>
-              <body>
-                <json ref="$Instance"/>
-              </body>
-            </request>
-            <response statusCode="200 201">
-              <body>
-                <json var="$Instance">
-                  <schema type="@ExpressRoutePort_read"/>
-                </json>
-              </body>
-            </response>
-            <response isError="True">
-              <body>
-                <json>
-                  <schema type="@ODataV4Format"/>
-                </json>
-              </body>
-            </response>
-          </http>
-        </operation>
-        <output type="object" ref="$Subresource" clientFlatten="True"/>
-      </command>
-      <command name="show" version="2022-01-01" confirmation="">
-        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/expressrouteports/{}" version="2022-01-01" subresource="identity" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9FeHByZXNzUm91dGVQb3J0cy97ZXhwcmVzc1JvdXRlUG9ydE5hbWV9/V/MjAyMi0wMS0wMQ=="/>
-        <argGroup name="">
-          <arg type="string" var="$Path.expressRoutePortName" options="name n" required="True" group="" idPart="name">
-            <help short="ExpressRoute port name."/>
-          </arg>
-          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
-          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        </argGroup>
-        <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="parameters">
-            <prop type="object" name="identity"/>
-          </json>
-        </subresourceSelector>
-        <operation operationId="ExpressRoutePorts_Get">
-          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ExpressRoutePorts/{expressRoutePortName}">
-            <request method="get">
-              <path>
-                <param type="string" name="expressRoutePortName" arg="$Path.expressRoutePortName" required="True"/>
-                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
-                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
-              </path>
-              <query>
-                <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                  <default value="&quot;2022-01-01&quot;"/>
-                </const>
-              </query>
-            </request>
-            <response statusCode="200">
-              <body>
-                <json var="$Instance">
-                  <schema type="object" cls="ExpressRoutePort_read">
-                    <prop readOnly="True" type="string" name="etag"/>
-                    <prop type="ResourceId" name="id">
-                      <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/ExpressRoutePorts/{}"/>
-                    </prop>
-                    <prop type="IdentityObject" name="identity">
-                      <prop readOnly="True" type="string" name="principalId"/>
-                      <prop readOnly="True" type="string" name="tenantId"/>
-                      <prop type="string" name="type">
-                        <enum>
-                          <item value="&quot;None&quot;"/>
-                          <item value="&quot;SystemAssigned&quot;"/>
-                          <item value="&quot;SystemAssigned, UserAssigned&quot;"/>
-                          <item value="&quot;UserAssigned&quot;"/>
-                        </enum>
-                      </prop>
-                      <prop type="object" name="userAssignedIdentities">
-                        <additionalProp>
-                          <item type="object">
-                            <prop readOnly="True" type="string" name="clientId"/>
-                            <prop readOnly="True" type="string" name="principalId"/>
-                          </item>
-                        </additionalProp>
-                      </prop>
-                    </prop>
-                    <prop type="ResourceLocation" name="location"/>
-                    <prop readOnly="True" type="string" name="name"/>
-                    <prop type="object" name="properties" clientFlatten="True">
-                      <prop readOnly="True" type="string" name="allocationDate"/>
-                      <prop type="integer" name="bandwidthInGbps"/>
-                      <prop readOnly="True" type="array<object>" name="circuits">
-                        <item type="object">
-                          <prop type="string" name="id"/>
-                        </item>
-                      </prop>
-                      <prop type="string" name="encapsulation">
-                        <enum>
-                          <item value="&quot;Dot1Q&quot;"/>
-                          <item value="&quot;QinQ&quot;"/>
-                        </enum>
-                      </prop>
-                      <prop readOnly="True" type="string" name="etherType"/>
-                      <prop type="array<object>" name="links" identifiers="name">
-                        <item type="object">
-                          <prop readOnly="True" type="string" name="etag"/>
-                          <prop type="ResourceId" name="id">
-                            <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/ExpressRoutePorts/{}/links/{}"/>
-                          </prop>
-                          <prop type="string" name="name"/>
-                          <prop type="object" name="properties" clientFlatten="True">
-                            <prop type="string" name="adminState">
-                              <enum>
-                                <item value="&quot;Disabled&quot;"/>
-                                <item value="&quot;Enabled&quot;"/>
-                              </enum>
-                            </prop>
-                            <prop readOnly="True" type="string" name="connectorType">
-                              <enum>
-                                <item value="&quot;LC&quot;"/>
-                                <item value="&quot;SC&quot;"/>
-                              </enum>
-                            </prop>
-                            <prop readOnly="True" type="string" name="interfaceName"/>
-                            <prop type="object" name="macSecConfig">
-                              <prop type="string" name="cakSecretIdentifier"/>
-                              <prop type="string" name="cipher">
-                                <enum>
-                                  <item value="&quot;GcmAes128&quot;"/>
-                                  <item value="&quot;GcmAes256&quot;"/>
-                                  <item value="&quot;GcmAesXpn128&quot;"/>
-                                  <item value="&quot;GcmAesXpn256&quot;"/>
-                                </enum>
-                              </prop>
-                              <prop type="string" name="cknSecretIdentifier"/>
-                              <prop type="string" name="sciState">
-                                <enum>
-                                  <item value="&quot;Disabled&quot;"/>
-                                  <item value="&quot;Enabled&quot;"/>
-                                </enum>
-                              </prop>
-                            </prop>
-                            <prop readOnly="True" type="string" name="patchPanelId"/>
-                            <prop readOnly="True" type="string" name="provisioningState">
-                              <enum>
-                                <item value="&quot;Deleting&quot;"/>
-                                <item value="&quot;Failed&quot;"/>
-                                <item value="&quot;Succeeded&quot;"/>
-                                <item value="&quot;Updating&quot;"/>
-                              </enum>
-                            </prop>
-                            <prop readOnly="True" type="string" name="rackId"/>
-                            <prop readOnly="True" type="string" name="routerName"/>
-                          </prop>
-                        </item>
-                      </prop>
-                      <prop readOnly="True" type="string" name="mtu"/>
-                      <prop type="string" name="peeringLocation"/>
-                      <prop readOnly="True" type="float" name="provisionedBandwidthInGbps"/>
-                      <prop readOnly="True" type="string" name="provisioningState">
-                        <enum>
-                          <item value="&quot;Deleting&quot;"/>
-                          <item value="&quot;Failed&quot;"/>
-                          <item value="&quot;Succeeded&quot;"/>
-                          <item value="&quot;Updating&quot;"/>
-                        </enum>
-                      </prop>
-                      <prop readOnly="True" type="string" name="resourceGuid"/>
-                    </prop>
-                    <prop type="object" name="tags">
-                      <additionalProp>
-                        <item type="string"/>
-                      </additionalProp>
-                    </prop>
-                    <prop readOnly="True" type="string" name="type"/>
-                  </schema>
-                </json>
-              </body>
-            </response>
-            <response isError="True">
-              <body>
-                <json>
-                  <schema type="@ODataV4Format"/>
-                </json>
-              </body>
-            </response>
-          </http>
-        </operation>
-        <output type="object" ref="$Subresource" clientFlatten="True"/>
-      </command>
       <command name="assign" version="2022-01-01" confirmation="">
         <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/expressrouteports/{}" version="2022-01-01" subresource="identity" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9FeHByZXNzUm91dGVQb3J0cy97ZXhwcmVzc1JvdXRlUG9ydE5hbWV9/V/MjAyMi0wMS0wMQ=="/>
         <argGroup name="">
@@ -1504,6 +1110,240 @@
         </operation>
         <output type="object" ref="$Subresource" clientFlatten="True"/>
       </command>
+      <command name="update" version="2022-01-01" confirmation="">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/expressrouteports/{}" version="2022-01-01" subresource="identity" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9FeHByZXNzUm91dGVQb3J0cy97ZXhwcmVzc1JvdXRlUG9ydE5hbWV9/V/MjAyMi0wMS0wMQ=="/>
+        <argGroup name="">
+          <arg type="string" var="$Path.expressRoutePortName" options="name" required="True" group="" idPart="name">
+            <help short="ExpressRoute port name."/>
+          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        </argGroup>
+        <argGroup name="Parameters.identity">
+          <arg nullable="True" type="string" var="$parameters.identity.type" options="type" group="Parameters.identity">
+            <help short="The type of identity used for the resource. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the virtual machine."/>
+            <enum>
+              <item name="None" value="&quot;None&quot;"/>
+              <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
+              <item name="SystemAssigned, UserAssigned" value="&quot;SystemAssigned, UserAssigned&quot;"/>
+              <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
+            </enum>
+          </arg>
+          <arg nullable="True" type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-identities" group="Parameters.identity">
+            <help short="The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."/>
+            <additionalProp>
+              <item nullable="True" type="object">
+                <blank value="{}"/>
+              </item>
+            </additionalProp>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="parameters">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="ExpressRoutePorts_Get">
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ExpressRoutePorts/{expressRoutePortName}">
+            <request method="get">
+              <path>
+                <param type="string" name="expressRoutePortName" arg="$Path.expressRoutePortName" required="True"/>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-01-01&quot;"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="ExpressRoutePort_read">
+                    <prop readOnly="True" type="string" name="etag"/>
+                    <prop type="ResourceId" name="id">
+                      <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/ExpressRoutePorts/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="string" name="principalId"/>
+                      <prop readOnly="True" type="string" name="tenantId"/>
+                      <prop type="string" name="type">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned, UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="clientId"/>
+                            <prop readOnly="True" type="string" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" clientFlatten="True">
+                      <prop readOnly="True" type="string" name="allocationDate"/>
+                      <prop type="integer" name="bandwidthInGbps"/>
+                      <prop readOnly="True" type="array<object>" name="circuits">
+                        <item type="object">
+                          <prop type="string" name="id"/>
+                        </item>
+                      </prop>
+                      <prop type="string" name="encapsulation">
+                        <enum>
+                          <item value="&quot;Dot1Q&quot;"/>
+                          <item value="&quot;QinQ&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="etherType"/>
+                      <prop type="array<object>" name="links" identifiers="name">
+                        <item type="object">
+                          <prop readOnly="True" type="string" name="etag"/>
+                          <prop type="ResourceId" name="id">
+                            <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/ExpressRoutePorts/{}/links/{}"/>
+                          </prop>
+                          <prop type="string" name="name"/>
+                          <prop type="object" name="properties" clientFlatten="True">
+                            <prop type="string" name="adminState">
+                              <enum>
+                                <item value="&quot;Disabled&quot;"/>
+                                <item value="&quot;Enabled&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="string" name="connectorType">
+                              <enum>
+                                <item value="&quot;LC&quot;"/>
+                                <item value="&quot;SC&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="string" name="interfaceName"/>
+                            <prop type="object" name="macSecConfig">
+                              <prop type="string" name="cakSecretIdentifier"/>
+                              <prop type="string" name="cipher">
+                                <enum>
+                                  <item value="&quot;GcmAes128&quot;"/>
+                                  <item value="&quot;GcmAes256&quot;"/>
+                                  <item value="&quot;GcmAesXpn128&quot;"/>
+                                  <item value="&quot;GcmAesXpn256&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="cknSecretIdentifier"/>
+                              <prop type="string" name="sciState">
+                                <enum>
+                                  <item value="&quot;Disabled&quot;"/>
+                                  <item value="&quot;Enabled&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop readOnly="True" type="string" name="patchPanelId"/>
+                            <prop readOnly="True" type="string" name="provisioningState">
+                              <enum>
+                                <item value="&quot;Deleting&quot;"/>
+                                <item value="&quot;Failed&quot;"/>
+                                <item value="&quot;Succeeded&quot;"/>
+                                <item value="&quot;Updating&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="string" name="rackId"/>
+                            <prop readOnly="True" type="string" name="routerName"/>
+                          </prop>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="string" name="mtu"/>
+                      <prop type="string" name="peeringLocation"/>
+                      <prop readOnly="True" type="float" name="provisionedBandwidthInGbps"/>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="resourceGuid"/>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@ODataV4Format"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <operation>
+          <instanceUpdate ref="$Subresource">
+            <json>
+              <schema type="IdentityObject" name="parameters.identity" required="True">
+                <prop type="string" name="type" arg="$parameters.identity.type">
+                  <enum>
+                    <item value="&quot;None&quot;"/>
+                    <item value="&quot;SystemAssigned&quot;"/>
+                    <item value="&quot;SystemAssigned, UserAssigned&quot;"/>
+                    <item value="&quot;UserAssigned&quot;"/>
+                  </enum>
+                </prop>
+                <prop type="object" name="userAssignedIdentities" arg="$parameters.identity.userAssignedIdentities">
+                  <additionalProp>
+                    <item type="object"/>
+                  </additionalProp>
+                </prop>
+              </schema>
+            </json>
+          </instanceUpdate>
+        </operation>
+        <operation operationId="ExpressRoutePorts_CreateOrUpdate">
+          <longRunning finalStateVia="azure-async-operation"/>
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ExpressRoutePorts/{expressRoutePortName}">
+            <request method="put">
+              <path>
+                <param type="string" name="expressRoutePortName" arg="$Path.expressRoutePortName" required="True"/>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-01-01&quot;"/>
+                </const>
+              </query>
+              <body>
+                <json ref="$Instance"/>
+              </body>
+            </request>
+            <response statusCode="200 201">
+              <body>
+                <json var="$Instance">
+                  <schema type="@ExpressRoutePort_read"/>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@ODataV4Format"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
       <command name="remove" version="2022-01-01" confirmation="">
         <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/expressrouteports/{}" version="2022-01-01" subresource="identity" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9FeHByZXNzUm91dGVQb3J0cy97ZXhwcmVzc1JvdXRlUG9ydE5hbWV9/V/MjAyMi0wMS0wMQ=="/>
         <argGroup name="">
@@ -1701,6 +1541,166 @@
             </response>
           </http>
         </operation>
+      </command>
+      <command name="show" version="2022-01-01" confirmation="">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/expressrouteports/{}" version="2022-01-01" subresource="identity" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9FeHByZXNzUm91dGVQb3J0cy97ZXhwcmVzc1JvdXRlUG9ydE5hbWV9/V/MjAyMi0wMS0wMQ=="/>
+        <argGroup name="">
+          <arg type="string" var="$Path.expressRoutePortName" options="name n" required="True" group="" idPart="name">
+            <help short="ExpressRoute port name."/>
+          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="parameters">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="ExpressRoutePorts_Get">
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/ExpressRoutePorts/{expressRoutePortName}">
+            <request method="get">
+              <path>
+                <param type="string" name="expressRoutePortName" arg="$Path.expressRoutePortName" required="True"/>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-01-01&quot;"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="ExpressRoutePort_read">
+                    <prop readOnly="True" type="string" name="etag"/>
+                    <prop type="ResourceId" name="id">
+                      <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/ExpressRoutePorts/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="string" name="principalId"/>
+                      <prop readOnly="True" type="string" name="tenantId"/>
+                      <prop type="string" name="type">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned, UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="clientId"/>
+                            <prop readOnly="True" type="string" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" clientFlatten="True">
+                      <prop readOnly="True" type="string" name="allocationDate"/>
+                      <prop type="integer" name="bandwidthInGbps"/>
+                      <prop readOnly="True" type="array<object>" name="circuits">
+                        <item type="object">
+                          <prop type="string" name="id"/>
+                        </item>
+                      </prop>
+                      <prop type="string" name="encapsulation">
+                        <enum>
+                          <item value="&quot;Dot1Q&quot;"/>
+                          <item value="&quot;QinQ&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="etherType"/>
+                      <prop type="array<object>" name="links" identifiers="name">
+                        <item type="object">
+                          <prop readOnly="True" type="string" name="etag"/>
+                          <prop type="ResourceId" name="id">
+                            <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/ExpressRoutePorts/{}/links/{}"/>
+                          </prop>
+                          <prop type="string" name="name"/>
+                          <prop type="object" name="properties" clientFlatten="True">
+                            <prop type="string" name="adminState">
+                              <enum>
+                                <item value="&quot;Disabled&quot;"/>
+                                <item value="&quot;Enabled&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="string" name="connectorType">
+                              <enum>
+                                <item value="&quot;LC&quot;"/>
+                                <item value="&quot;SC&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="string" name="interfaceName"/>
+                            <prop type="object" name="macSecConfig">
+                              <prop type="string" name="cakSecretIdentifier"/>
+                              <prop type="string" name="cipher">
+                                <enum>
+                                  <item value="&quot;GcmAes128&quot;"/>
+                                  <item value="&quot;GcmAes256&quot;"/>
+                                  <item value="&quot;GcmAesXpn128&quot;"/>
+                                  <item value="&quot;GcmAesXpn256&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="cknSecretIdentifier"/>
+                              <prop type="string" name="sciState">
+                                <enum>
+                                  <item value="&quot;Disabled&quot;"/>
+                                  <item value="&quot;Enabled&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop readOnly="True" type="string" name="patchPanelId"/>
+                            <prop readOnly="True" type="string" name="provisioningState">
+                              <enum>
+                                <item value="&quot;Deleting&quot;"/>
+                                <item value="&quot;Failed&quot;"/>
+                                <item value="&quot;Succeeded&quot;"/>
+                                <item value="&quot;Updating&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="string" name="rackId"/>
+                            <prop readOnly="True" type="string" name="routerName"/>
+                          </prop>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="string" name="mtu"/>
+                      <prop type="string" name="peeringLocation"/>
+                      <prop readOnly="True" type="float" name="provisionedBandwidthInGbps"/>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="resourceGuid"/>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@ODataV4Format"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
       </command>
     </commandGroup>
     <commandGroup name="link">

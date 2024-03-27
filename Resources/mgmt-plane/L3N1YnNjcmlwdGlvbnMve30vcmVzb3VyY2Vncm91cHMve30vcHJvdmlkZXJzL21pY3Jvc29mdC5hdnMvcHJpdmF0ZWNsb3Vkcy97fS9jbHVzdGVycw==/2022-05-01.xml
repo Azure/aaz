@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.avs/privateclouds/{}/clusters" version="2022-05-01" swagger="mgmt-plane/vmware/ResourceProviders/Microsoft.AVS/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQVZTL3ByaXZhdGVDbG91ZHMve3ByaXZhdGVDbG91ZE5hbWV9L2NsdXN0ZXJz/V/MjAyMi0wNS0wMQ=="/>
+  <commandGroup name="vmware cluster">
+    <command name="list" version="2022-05-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.avs/privateclouds/{}/clusters" version="2022-05-01" swagger="mgmt-plane/vmware/ResourceProviders/Microsoft.AVS/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQVZTL3ByaXZhdGVDbG91ZHMve3ByaXZhdGVDbG91ZE5hbWV9L2NsdXN0ZXJz/V/MjAyMi0wNS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.privateCloudName" options="private-cloud c" required="True" group="" idPart="name">
+          <help short="The name of the private cloud."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="Clusters_List">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/clusters">
+          <request method="get">
+            <path>
+              <param type="string" name="privateCloudName" arg="$Path.privateCloudName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-05-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="nextLink"/>
+                  <prop readOnly="True" type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.AVS/privateClouds/{}/clusters/{}"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop readOnly="True" type="integer32" name="clusterId"/>
+                        <prop type="integer32" name="clusterSize"/>
+                        <prop type="array<string>" name="hosts">
+                          <item type="string"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Cancelled&quot;"/>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="sku" required="True">
+                        <prop type="string" name="name" required="True"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

@@ -14,3 +14,14 @@ Show the SAP Central Services Instance resource.
     ```bash
         workloads sap-central-instance show --id <ResourceID>
     ```
+
+### [2023-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC53b3JrbG9hZHMvc2FwdmlydHVhbGluc3RhbmNlcy97fS9jZW50cmFsaW5zdGFuY2VzL3t9/2023-10-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.workloads/sapvirtualinstances/{}/centralinstances/{} 2023-10-01-preview -->
+
+#### examples
+
+- Get an overview of a Central service Instance using the Azure resource ID of the instance
+    ```bash
+        workloads sap-central-instance show --id <resource-id>
+    ```

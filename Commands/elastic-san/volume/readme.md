@@ -2,6 +2,11 @@
 
 Manage Elastic SAN Volume.
 
+## Subgroups
+
+- [snapshot](/Commands/elastic-san/volume/snapshot/readme.md)
+: Manage volume snapshot
+
 ## Commands
 
 - [create](/Commands/elastic-san/volume/_create.md)

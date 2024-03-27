@@ -4,6 +4,9 @@ Manage NGINX configuration resources
 
 ## Commands
 
+- [analyze](/Commands/nginx/deployment/configuration/_analyze.md)
+: Analyze an NGINX configuration without applying it to the NGINXaaS deployment
+
 - [create](/Commands/nginx/deployment/configuration/_create.md)
 : Create a configuration for an NGINX deployment
 

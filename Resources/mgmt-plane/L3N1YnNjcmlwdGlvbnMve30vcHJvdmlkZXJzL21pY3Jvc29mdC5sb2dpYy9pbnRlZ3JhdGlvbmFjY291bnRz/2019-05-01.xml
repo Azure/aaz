@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.logic/integrationaccounts" version="2019-05-01" swagger="mgmt-plane/logic/ResourceProviders/Microsoft.Logic/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkxvZ2ljL2ludGVncmF0aW9uQWNjb3VudHM=/V/MjAxOS0wNS0wMQ=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.logic/integrationaccounts" version="2019-05-01" swagger="mgmt-plane/logic/ResourceProviders/Microsoft.Logic/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTG9naWMvaW50ZWdyYXRpb25BY2NvdW50cw==/V/MjAxOS0wNS0wMQ=="/>
+  <commandGroup name="logic integration-account">
+    <command name="list" version="2019-05-01" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.logic/integrationaccounts" version="2019-05-01" swagger="mgmt-plane/logic/ResourceProviders/Microsoft.Logic/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkxvZ2ljL2ludGVncmF0aW9uQWNjb3VudHM=/V/MjAxOS0wNS0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.logic/integrationaccounts" version="2019-05-01" swagger="mgmt-plane/logic/ResourceProviders/Microsoft.Logic/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTG9naWMvaW50ZWdyYXRpb25BY2NvdW50cw==/V/MjAxOS0wNS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="integer32" var="$Query.top" options="top">
+          <help short="The number of items to be included in the result."/>
+        </arg>
+      </argGroup>
+      <condition var="$Condition_IntegrationAccounts_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <condition var="$Condition_IntegrationAccounts_ListBySubscription">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <operation when="$Condition_IntegrationAccounts_ListByResourceGroup" operationId="IntegrationAccounts_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/integrationAccounts">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <param type="integer32" name="$top" arg="$Query.top"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2019-05-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Logic/integrationAccounts/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="object" name="integrationServiceEnvironment">
+                          <prop type="string" name="id"/>
+                          <prop readOnly="True" type="string" name="name"/>
+                          <prop readOnly="True" type="string" name="type"/>
+                        </prop>
+                        <prop type="string" name="state">
+                          <enum>
+                            <item value="&quot;Completed&quot;"/>
+                            <item value="&quot;Deleted&quot;"/>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                            <item value="&quot;NotSpecified&quot;"/>
+                            <item value="&quot;Suspended&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="sku">
+                        <prop type="string" name="name" required="True">
+                          <enum>
+                            <item value="&quot;Basic&quot;"/>
+                            <item value="&quot;Free&quot;"/>
+                            <item value="&quot;NotSpecified&quot;"/>
+                            <item value="&quot;Standard&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_IntegrationAccounts_ListBySubscription" operationId="IntegrationAccounts_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Logic/integrationAccounts">
+          <request method="get">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <param type="integer32" name="$top" arg="$Query.top"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2019-05-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Logic/integrationAccounts/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="object" name="integrationServiceEnvironment">
+                          <prop type="string" name="id"/>
+                          <prop readOnly="True" type="string" name="name"/>
+                          <prop readOnly="True" type="string" name="type"/>
+                        </prop>
+                        <prop type="string" name="state">
+                          <enum>
+                            <item value="&quot;Completed&quot;"/>
+                            <item value="&quot;Deleted&quot;"/>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                            <item value="&quot;NotSpecified&quot;"/>
+                            <item value="&quot;Suspended&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="sku">
+                        <prop type="string" name="name" required="True">
+                          <enum>
+                            <item value="&quot;Basic&quot;"/>
+                            <item value="&quot;Free&quot;"/>
+                            <item value="&quot;NotSpecified&quot;"/>
+                            <item value="&quot;Standard&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

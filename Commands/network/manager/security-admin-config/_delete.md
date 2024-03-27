@@ -12,5 +12,5 @@ Delete a network manager security admin configuration.
 
 - Delete a network manager security admin configuration.
     ```bash
-        network manager security-admin-config delete --configuration-name "myTestSecurityConfig" --network-manager-name "testNetworkManager" --resource-group "rg1" --force
+        network manager security-admin-config delete --configuration-name "myTestSecurityConfig" --network-manager-name "testNetworkManager" --resource-group "rg1" --force n
     ```
