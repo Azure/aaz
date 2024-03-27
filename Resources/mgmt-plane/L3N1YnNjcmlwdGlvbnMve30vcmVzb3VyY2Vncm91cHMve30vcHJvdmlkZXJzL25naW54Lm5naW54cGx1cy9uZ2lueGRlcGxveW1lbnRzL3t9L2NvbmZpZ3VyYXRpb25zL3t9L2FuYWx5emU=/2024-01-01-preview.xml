@@ -16,30 +16,27 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Body">
-        <arg type="object" var="$body.config" options="config" group="Body">
-          <help short="Config details to analyze (package, files, and/or protected files)" lines="file>&quot;,&quot;virtual-path&quot;:&quot;<path>&quot;}]' string>,protected-files:<Base64 files='[{&quot;content&quot;:&quot;<Base64 package='{data:<Base64 root-file=nginx.conf root-file=nginx.conf string>}' --config --config content Usage: config of |"/>
-          <arg type="array<object>" var="$body.config.files" options="files" group="">
-            <help short="Config files. Cannot be used with package, only protected-files"/>
-            <item type="object" cls="NginxConfigurationFile_create">
-              <arg type="string" var="@NginxConfigurationFile_create.content" options="content"/>
-              <arg type="string" var="@NginxConfigurationFile_create.virtualPath" options="virtual-path"/>
-            </item>
+      <argGroup name="Config">
+        <arg type="array<object>" var="$body.config.files" options="files" group="Config">
+          <help short="Config files. Cannot be used with package, only protected-files"/>
+          <item type="object" cls="NginxConfigurationFile_create">
+            <arg type="string" var="@NginxConfigurationFile_create.content" options="content"/>
+            <arg type="string" var="@NginxConfigurationFile_create.virtualPath" options="virtual-path"/>
+          </item>
+        </arg>
+        <arg type="object" var="$body.config.package" options="package" group="Config">
+          <help short="Compressed files. Cannot be used with files or protected-files"/>
+          <arg type="string" var="$body.config.package.data" options="data"/>
+          <arg type="array<string>" var="$body.config.package.protectedFiles" options="protected-files">
+            <item type="string"/>
           </arg>
-          <arg type="object" var="$body.config.package" options="package" group="">
-            <help short="Compressed files. Cannot be used with files or protected-files"/>
-            <arg type="string" var="$body.config.package.data" options="data"/>
-            <arg type="array<string>" var="$body.config.package.protectedFiles" options="protected-files">
-              <item type="string"/>
-            </arg>
-          </arg>
-          <arg type="array<@NginxConfigurationFile_create>" var="$body.config.protectedFiles" options="protected-files" group="">
-            <help short="Cannot be used with package, only files"/>
-            <item type="@NginxConfigurationFile_create"/>
-          </arg>
-          <arg type="string" var="$body.config.rootFile" options="root-file">
-            <help short="The root file of the NGINX config file(s). It must match one of the files' filepath."/>
-          </arg>
+        </arg>
+        <arg type="array<@NginxConfigurationFile_create>" var="$body.config.protectedFiles" options="protected-files" group="Config">
+          <help short="Cannot be used with package, only files"/>
+          <item type="@NginxConfigurationFile_create"/>
+        </arg>
+        <arg type="string" var="$body.config.rootFile" options="root-file" group="Config">
+          <help short="The root file of the NGINX config file(s). It must match one of the files' filepath."/>
         </arg>
       </argGroup>
       <operation operationId="Configurations_Analysis">
@@ -66,7 +63,7 @@
             <body>
               <json>
                 <schema type="object" name="body" clientFlatten="True">
-                  <prop type="object" name="config" arg="$body.config" required="True">
+                  <prop type="object" name="config" required="True">
                     <prop type="array<object>" name="files" arg="$body.config.files">
                       <item type="object" cls="NginxConfigurationFile_create">
                         <prop type="string" name="content" arg="@NginxConfigurationFile_create.content"/>
