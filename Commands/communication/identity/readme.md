@@ -8,7 +8,7 @@ Manage the Communication Resource's managed identities.
 : Assign a managed identity to the Communication Resource.
 
 - [delete](/Commands/communication/identity/_delete.md)
-: sdsdsdg
+: Delete communication identity
 
 - [remove](/Commands/communication/identity/_remove.md)
 : Remove a managed identity from the communication resource.
