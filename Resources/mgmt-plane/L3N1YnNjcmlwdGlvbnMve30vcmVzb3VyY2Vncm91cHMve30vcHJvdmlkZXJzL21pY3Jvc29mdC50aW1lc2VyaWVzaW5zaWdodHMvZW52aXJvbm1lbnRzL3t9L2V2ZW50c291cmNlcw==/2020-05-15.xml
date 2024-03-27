@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.timeseriesinsights/environments/{}/eventsources" version="2020-05-15" swagger="mgmt-plane/timeseriesinsights/ResourceProviders/Microsoft.TimeSeriesInsights/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuVGltZVNlcmllc0luc2lnaHRzL2Vudmlyb25tZW50cy97ZW52aXJvbm1lbnROYW1lfS9ldmVudFNvdXJjZXM=/V/MjAyMC0wNS0xNQ=="/>
+  <commandGroup name="tsi event-source">
+    <command name="list" version="2020-05-15">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.timeseriesinsights/environments/{}/eventsources" version="2020-05-15" swagger="mgmt-plane/timeseriesinsights/ResourceProviders/Microsoft.TimeSeriesInsights/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuVGltZVNlcmllc0luc2lnaHRzL2Vudmlyb25tZW50cy97ZW52aXJvbm1lbnROYW1lfS9ldmVudFNvdXJjZXM=/V/MjAyMC0wNS0xNQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.environmentName" options="environment-name" required="True" idPart="name">
+          <help short="The name of the Time Series Insights environment associated with the specified resource group."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="EventSources_ListByEnvironment">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.TimeSeriesInsights/environments/{environmentName}/eventSources">
+          <request method="get">
+            <path>
+              <param type="string" name="environmentName" arg="$Path.environmentName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2020-05-15&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.TimeSeriesInsights/environments/{}/eventSources/{}"/>
+                      </prop>
+                      <prop type="string" name="kind" required="True">
+                        <enum>
+                          <item value="&quot;Microsoft.EventHub&quot;"/>
+                          <item value="&quot;Microsoft.IoTHub&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                      <discriminator property="kind" value="Microsoft.EventHub">
+                        <prop type="object" name="properties" required="True" clientFlatten="True">
+                          <prop type="string" name="consumerGroupName" required="True"/>
+                          <prop readOnly="True" type="dateTime" name="creationTime"/>
+                          <prop type="string" name="eventHubName" required="True"/>
+                          <prop type="string" name="eventSourceResourceId" required="True"/>
+                          <prop type="object" name="ingressStartAt" cls="IngressStartAtProperties_read" clientFlatten="True">
+                            <prop type="string" name="time"/>
+                            <prop type="string" name="type">
+                              <enum>
+                                <item value="&quot;CustomEnqueuedTime&quot;"/>
+                                <item value="&quot;EarliestAvailable&quot;"/>
+                                <item value="&quot;EventSourceCreationTime&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop type="string" name="keyName" required="True"/>
+                          <prop type="object" name="localTimestamp" cls="LocalTimestamp_read">
+                            <prop type="string" name="format">
+                              <enum>
+                                <item value="&quot;Embedded&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="object" name="timeZoneOffset">
+                              <prop type="string" name="propertyName"/>
+                            </prop>
+                          </prop>
+                          <prop readOnly="True" type="string" name="provisioningState">
+                            <enum>
+                              <item value="&quot;Accepted&quot;"/>
+                              <item value="&quot;Creating&quot;"/>
+                              <item value="&quot;Deleting&quot;"/>
+                              <item value="&quot;Failed&quot;"/>
+                              <item value="&quot;Succeeded&quot;"/>
+                              <item value="&quot;Updating&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="serviceBusNamespace" required="True"/>
+                          <prop type="string" name="timestampPropertyName"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="kind" value="Microsoft.IoTHub">
+                        <prop type="object" name="properties" required="True" clientFlatten="True">
+                          <prop type="string" name="consumerGroupName" required="True"/>
+                          <prop readOnly="True" type="dateTime" name="creationTime"/>
+                          <prop type="string" name="eventSourceResourceId" required="True"/>
+                          <prop type="@IngressStartAtProperties_read" name="ingressStartAt" clientFlatten="True"/>
+                          <prop type="string" name="iotHubName" required="True"/>
+                          <prop type="string" name="keyName" required="True"/>
+                          <prop type="@LocalTimestamp_read" name="localTimestamp"/>
+                          <prop readOnly="True" type="string" name="provisioningState">
+                            <enum>
+                              <item value="&quot;Accepted&quot;"/>
+                              <item value="&quot;Creating&quot;"/>
+                              <item value="&quot;Deleting&quot;"/>
+                              <item value="&quot;Failed&quot;"/>
+                              <item value="&quot;Succeeded&quot;"/>
+                              <item value="&quot;Updating&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="timestampPropertyName"/>
+                        </prop>
+                      </discriminator>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

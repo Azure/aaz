@@ -25,3 +25,25 @@ Create an attached network connection.
     ```bash
         devcenter admin attached-network create --attached-network-connection-name "network-uswest3" --network-connection-id "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/rg1/providers/Microsoft.DevCenter/NetworkConnections/network-uswest3" --dev-center-name "Contoso" --resource-group "rg1"
     ```
+
+### [2023-06-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvZGV2Y2VudGVycy97fS9hdHRhY2hlZG5ldHdvcmtzL3t9/2023-06-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/devcenters/{}/attachednetworks/{} 2023-06-01-preview -->
+
+#### examples
+
+- Create
+    ```bash
+        devcenter admin attached-network create --attached-network-connection-name "network-uswest3" --network-connection-id "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/rg1/providers/Microsoft.DevCenter/NetworkConnections/network-uswest3" --dev-center-name "Contoso" --resource-group "rg1"
+    ```
+
+### [2023-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvZGV2Y2VudGVycy97fS9hdHRhY2hlZG5ldHdvcmtzL3t9/2023-10-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/devcenters/{}/attachednetworks/{} 2023-10-01-preview -->
+
+#### examples
+
+- Create
+    ```bash
+        devcenter admin attached-network create --attached-network-connection-name "network-uswest3" --network-connection-id "/subscriptions/0ac520ee-14c0-480f-b6c9-0a90c58ffff/resourceGroups/rg1/providers/Microsoft.DevCenter/NetworkConnections/network-uswest3" --dev-center-name "Contoso" --resource-group "rg1"
+    ```

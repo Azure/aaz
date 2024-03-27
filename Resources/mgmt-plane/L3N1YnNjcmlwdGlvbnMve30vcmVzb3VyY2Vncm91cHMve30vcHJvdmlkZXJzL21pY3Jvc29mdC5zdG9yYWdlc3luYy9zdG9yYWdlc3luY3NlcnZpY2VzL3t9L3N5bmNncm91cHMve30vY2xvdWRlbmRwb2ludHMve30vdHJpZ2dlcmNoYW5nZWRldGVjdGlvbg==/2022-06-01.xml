@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.storagesync/storagesyncservices/{}/syncgroups/{}/cloudendpoints/{}/triggerchangedetection" version="2022-06-01" swagger="mgmt-plane/storagesync/ResourceProviders/Microsoft.StorageSync/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RvcmFnZVN5bmMvc3RvcmFnZVN5bmNTZXJ2aWNlcy97c3RvcmFnZVN5bmNTZXJ2aWNlTmFtZX0vc3luY0dyb3Vwcy97c3luY0dyb3VwTmFtZX0vY2xvdWRFbmRwb2ludHMve2Nsb3VkRW5kcG9pbnROYW1lfS90cmlnZ2VyQ2hhbmdlRGV0ZWN0aW9u/V/MjAyMi0wNi0wMQ=="/>
+  <commandGroup name="storagesync sync-group cloud-endpoint">
+    <command name="trigger-change-detection" version="2022-06-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.storagesync/storagesyncservices/{}/syncgroups/{}/cloudendpoints/{}/triggerchangedetection" version="2022-06-01" swagger="mgmt-plane/storagesync/ResourceProviders/Microsoft.StorageSync/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RvcmFnZVN5bmMvc3RvcmFnZVN5bmNTZXJ2aWNlcy97c3RvcmFnZVN5bmNTZXJ2aWNlTmFtZX0vc3luY0dyb3Vwcy97c3luY0dyb3VwTmFtZX0vY2xvdWRFbmRwb2ludHMve2Nsb3VkRW5kcG9pbnROYW1lfS90cmlnZ2VyQ2hhbmdlRGV0ZWN0aW9u/V/MjAyMi0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.cloudEndpointName" options="cloud-endpoint-name name n" required="True" group="" idPart="child_name_2">
+          <help short="Name of Cloud Endpoint object."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.storageSyncServiceName" options="storage-sync-service-name storage-sync-service" required="True" group="" idPart="name">
+          <help short="Name of Storage Sync Service resource."/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.syncGroupName" options="sync-group-name" required="True" idPart="child_name_1">
+          <help short="Name of Sync Group resource."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Parameters">
+        <arg type="string" var="$parameters.changeDetectionMode" options="change-detection-mode" group="Parameters">
+          <help short="Change Detection Mode. Applies to a directory specified in directoryPath parameter."/>
+          <enum>
+            <item name="Default" value="&quot;Default&quot;"/>
+            <item name="Recursive" value="&quot;Recursive&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$parameters.directoryPath" options="directory-path" group="Parameters">
+          <help short="Relative path to a directory Azure File share for which change detection is to be performed."/>
+        </arg>
+        <arg type="array<string>" var="$parameters.paths" options="paths" group="Parameters">
+          <help short="Array of relative paths on the Azure File share to be included in the change detection. Can be files and directories."/>
+          <item type="string"/>
+        </arg>
+      </argGroup>
+      <operation operationId="CloudEndpoints_TriggerChangeDetection">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageSync/storageSyncServices/{storageSyncServiceName}/syncGroups/{syncGroupName}/cloudEndpoints/{cloudEndpointName}/triggerChangeDetection">
+          <request method="post">
+            <path>
+              <param type="string" name="cloudEndpointName" arg="$Path.cloudEndpointName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="storageSyncServiceName" arg="$Path.storageSyncServiceName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+              <param type="string" name="syncGroupName" arg="$Path.syncGroupName" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="parameters" required="True" clientFlatten="True">
+                  <prop type="string" name="changeDetectionMode" arg="$parameters.changeDetectionMode">
+                    <enum>
+                      <item value="&quot;Default&quot;"/>
+                      <item value="&quot;Recursive&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="string" name="directoryPath" arg="$parameters.directoryPath"/>
+                  <prop type="array<string>" name="paths" arg="$parameters.paths">
+                    <item type="string"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200"/>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="x-ms-correlation-request-id"/>
+              <item name="x-ms-request-id"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>

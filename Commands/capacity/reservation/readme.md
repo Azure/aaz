@@ -1,11 +1,11 @@
 # [Group] _capacity reservation_
 
-Manage capacity reservation resources.
+Manage capacity reservation.
 
 ## Subgroups
 
 - [group](/Commands/capacity/reservation/group/readme.md)
-: test
+: Manage capacity reservation group.
 
 ## Commands
 

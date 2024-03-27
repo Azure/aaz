@@ -1,0 +1,353 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.logic/workflows" version="2019-05-01" swagger="mgmt-plane/logic/ResourceProviders/Microsoft.Logic/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkxvZ2ljL3dvcmtmbG93cw==/V/MjAxOS0wNS0wMQ=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.logic/workflows" version="2019-05-01" swagger="mgmt-plane/logic/ResourceProviders/Microsoft.Logic/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTG9naWMvd29ya2Zsb3dz/V/MjAxOS0wNS0wMQ=="/>
+  <commandGroup name="logic workflow">
+    <command name="list" version="2019-05-01" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.logic/workflows" version="2019-05-01" swagger="mgmt-plane/logic/ResourceProviders/Microsoft.Logic/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkxvZ2ljL3dvcmtmbG93cw==/V/MjAxOS0wNS0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.logic/workflows" version="2019-05-01" swagger="mgmt-plane/logic/ResourceProviders/Microsoft.Logic/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTG9naWMvd29ya2Zsb3dz/V/MjAxOS0wNS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Query.filter" options="filter">
+          <help short="The filter to apply on the operation. Options for filters include: State, Trigger, and ReferencedResourceId."/>
+        </arg>
+        <arg type="integer32" var="$Query.top" options="top">
+          <help short="The number of items to be included in the result."/>
+        </arg>
+      </argGroup>
+      <condition var="$Condition_Workflows_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <condition var="$Condition_Workflows_ListBySubscription">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <operation when="$Condition_Workflows_ListByResourceGroup" operationId="Workflows_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Logic/workflows">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="$filter" arg="$Query.filter"/>
+              <param type="integer32" name="$top" arg="$Query.top"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2019-05-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Logic/workflows/{}"/>
+                      </prop>
+                      <prop type="IdentityObject" name="identity">
+                        <prop readOnly="True" type="uuid" name="principalId"/>
+                        <prop readOnly="True" type="uuid" name="tenantId"/>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;None&quot;"/>
+                            <item value="&quot;SystemAssigned&quot;"/>
+                            <item value="&quot;UserAssigned&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="userAssignedIdentities">
+                          <additionalProp>
+                            <item type="object">
+                              <prop readOnly="True" type="string" name="clientId"/>
+                              <prop readOnly="True" type="string" name="principalId"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                      </prop>
+                      <prop type="ResourceLocation" name="location"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="object" name="accessControl">
+                          <prop type="@FlowAccessControlConfigurationPolicy_read" name="actions"/>
+                          <prop type="@FlowAccessControlConfigurationPolicy_read" name="contents"/>
+                          <prop type="object" name="triggers" cls="FlowAccessControlConfigurationPolicy_read">
+                            <prop type="array<object>" name="allowedCallerIpAddresses">
+                              <item type="object">
+                                <prop type="string" name="addressRange"/>
+                              </item>
+                            </prop>
+                            <prop type="object" name="openAuthenticationPolicies">
+                              <prop type="object" name="policies">
+                                <additionalProp>
+                                  <item type="object">
+                                    <prop type="array<object>" name="claims" identifiers="name">
+                                      <item type="object">
+                                        <prop type="string" name="name"/>
+                                        <prop type="string" name="value"/>
+                                      </item>
+                                    </prop>
+                                    <prop type="string" name="type">
+                                      <enum>
+                                        <item value="&quot;AAD&quot;"/>
+                                      </enum>
+                                    </prop>
+                                  </item>
+                                </additionalProp>
+                              </prop>
+                            </prop>
+                          </prop>
+                          <prop type="@FlowAccessControlConfigurationPolicy_read" name="workflowManagement"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="accessEndpoint"/>
+                        <prop readOnly="True" type="dateTime" name="changedTime"/>
+                        <prop readOnly="True" type="dateTime" name="createdTime"/>
+                        <prop type="object" name="definition">
+                          <additionalProp anyType="True"/>
+                        </prop>
+                        <prop type="object" name="endpointsConfiguration">
+                          <prop type="@FlowEndpoints_read" name="connector"/>
+                          <prop type="object" name="workflow" cls="FlowEndpoints_read">
+                            <prop type="array<@IpAddress_read>" name="accessEndpointIpAddresses" identifiers="address">
+                              <item type="@IpAddress_read"/>
+                            </prop>
+                            <prop type="array<object>" name="outgoingIpAddresses" identifiers="address">
+                              <item type="object" cls="IpAddress_read">
+                                <prop type="string" name="address"/>
+                              </item>
+                            </prop>
+                          </prop>
+                        </prop>
+                        <prop type="@ResourceReference_read" name="integrationAccount"/>
+                        <prop type="@ResourceReference_read" name="integrationServiceEnvironment"/>
+                        <prop type="object" name="parameters">
+                          <additionalProp anyType="True"/>
+                        </prop>
+                        <prop type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Accepted&quot;"/>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Completed&quot;"/>
+                            <item value="&quot;Created&quot;"/>
+                            <item value="&quot;Creating&quot;"/>
+                            <item value="&quot;Deleted&quot;"/>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;InProgress&quot;"/>
+                            <item value="&quot;Moving&quot;"/>
+                            <item value="&quot;NotSpecified&quot;"/>
+                            <item value="&quot;Pending&quot;"/>
+                            <item value="&quot;Ready&quot;"/>
+                            <item value="&quot;Registered&quot;"/>
+                            <item value="&quot;Registering&quot;"/>
+                            <item value="&quot;Renewing&quot;"/>
+                            <item value="&quot;Running&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Unregistered&quot;"/>
+                            <item value="&quot;Unregistering&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                            <item value="&quot;Waiting&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="sku">
+                          <prop type="string" name="name" required="True">
+                            <enum>
+                              <item value="&quot;Basic&quot;"/>
+                              <item value="&quot;Free&quot;"/>
+                              <item value="&quot;NotSpecified&quot;"/>
+                              <item value="&quot;Premium&quot;"/>
+                              <item value="&quot;Shared&quot;"/>
+                              <item value="&quot;Standard&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="object" name="plan" cls="ResourceReference_read">
+                            <prop type="string" name="id"/>
+                            <prop readOnly="True" type="string" name="name"/>
+                            <prop readOnly="True" type="string" name="type"/>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="state">
+                          <enum>
+                            <item value="&quot;Completed&quot;"/>
+                            <item value="&quot;Deleted&quot;"/>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                            <item value="&quot;NotSpecified&quot;"/>
+                            <item value="&quot;Suspended&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="version"/>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_Workflows_ListBySubscription" operationId="Workflows_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Logic/workflows">
+          <request method="get">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="$filter" arg="$Query.filter"/>
+              <param type="integer32" name="$top" arg="$Query.top"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2019-05-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Logic/workflows/{}"/>
+                      </prop>
+                      <prop type="IdentityObject" name="identity">
+                        <prop readOnly="True" type="uuid" name="principalId"/>
+                        <prop readOnly="True" type="uuid" name="tenantId"/>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;None&quot;"/>
+                            <item value="&quot;SystemAssigned&quot;"/>
+                            <item value="&quot;UserAssigned&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="userAssignedIdentities">
+                          <additionalProp>
+                            <item type="object">
+                              <prop readOnly="True" type="string" name="clientId"/>
+                              <prop readOnly="True" type="string" name="principalId"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                      </prop>
+                      <prop type="ResourceLocation" name="location"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="object" name="accessControl">
+                          <prop type="@FlowAccessControlConfigurationPolicy_read" name="actions"/>
+                          <prop type="@FlowAccessControlConfigurationPolicy_read" name="contents"/>
+                          <prop type="@FlowAccessControlConfigurationPolicy_read" name="triggers"/>
+                          <prop type="@FlowAccessControlConfigurationPolicy_read" name="workflowManagement"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="accessEndpoint"/>
+                        <prop readOnly="True" type="dateTime" name="changedTime"/>
+                        <prop readOnly="True" type="dateTime" name="createdTime"/>
+                        <prop type="object" name="definition">
+                          <additionalProp anyType="True"/>
+                        </prop>
+                        <prop type="object" name="endpointsConfiguration">
+                          <prop type="@FlowEndpoints_read" name="connector"/>
+                          <prop type="@FlowEndpoints_read" name="workflow"/>
+                        </prop>
+                        <prop type="@ResourceReference_read" name="integrationAccount"/>
+                        <prop type="@ResourceReference_read" name="integrationServiceEnvironment"/>
+                        <prop type="object" name="parameters">
+                          <additionalProp anyType="True"/>
+                        </prop>
+                        <prop type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Accepted&quot;"/>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Completed&quot;"/>
+                            <item value="&quot;Created&quot;"/>
+                            <item value="&quot;Creating&quot;"/>
+                            <item value="&quot;Deleted&quot;"/>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;InProgress&quot;"/>
+                            <item value="&quot;Moving&quot;"/>
+                            <item value="&quot;NotSpecified&quot;"/>
+                            <item value="&quot;Pending&quot;"/>
+                            <item value="&quot;Ready&quot;"/>
+                            <item value="&quot;Registered&quot;"/>
+                            <item value="&quot;Registering&quot;"/>
+                            <item value="&quot;Renewing&quot;"/>
+                            <item value="&quot;Running&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Unregistered&quot;"/>
+                            <item value="&quot;Unregistering&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                            <item value="&quot;Waiting&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="sku">
+                          <prop type="string" name="name" required="True">
+                            <enum>
+                              <item value="&quot;Basic&quot;"/>
+                              <item value="&quot;Free&quot;"/>
+                              <item value="&quot;NotSpecified&quot;"/>
+                              <item value="&quot;Premium&quot;"/>
+                              <item value="&quot;Shared&quot;"/>
+                              <item value="&quot;Standard&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="@ResourceReference_read" name="plan"/>
+                        </prop>
+                        <prop type="string" name="state">
+                          <enum>
+                            <item value="&quot;Completed&quot;"/>
+                            <item value="&quot;Deleted&quot;"/>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                            <item value="&quot;NotSpecified&quot;"/>
+                            <item value="&quot;Suspended&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="version"/>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

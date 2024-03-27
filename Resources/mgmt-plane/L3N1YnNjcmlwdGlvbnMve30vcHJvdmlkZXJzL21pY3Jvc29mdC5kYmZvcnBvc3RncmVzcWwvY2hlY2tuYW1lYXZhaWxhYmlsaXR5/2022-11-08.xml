@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.dbforpostgresql/checknameavailability" version="2022-11-08" swagger="mgmt-plane/postgresqlhsc/ResourceProviders/Microsoft.DBforPostgreSQL/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkRCZm9yUG9zdGdyZVNRTC9jaGVja05hbWVBdmFpbGFiaWxpdHk=/V/MjAyMi0xMS0wOA=="/>
+  <commandGroup name="cosmosdb postgres">
+    <command name="check-name-availability" version="2022-11-08">
+      <resource id="/subscriptions/{}/providers/microsoft.dbforpostgresql/checknameavailability" version="2022-11-08" swagger="mgmt-plane/postgresqlhsc/ResourceProviders/Microsoft.DBforPostgreSQL/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkRCZm9yUG9zdGdyZVNRTC9jaGVja05hbWVBdmFpbGFiaWxpdHk=/V/MjAyMi0xMS0wOA=="/>
+      <argGroup name="">
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="NameAvailabilityRequest">
+        <arg type="string" var="$nameAvailabilityRequest.name" options="name" required="True" group="NameAvailabilityRequest">
+          <help short="Cluster name to verify."/>
+        </arg>
+        <arg type="string" var="$nameAvailabilityRequest.type" options="type" required="True" group="NameAvailabilityRequest">
+          <help short="Resource type used for verification."/>
+          <enum>
+            <item name="Microsoft.DBforPostgreSQL/serverGroupsv2" value="&quot;Microsoft.DBforPostgreSQL/serverGroupsv2&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <operation operationId="Clusters_CheckNameAvailability">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.DBforPostgreSQL/checkNameAvailability">
+          <request method="post">
+            <path>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-11-08&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="nameAvailabilityRequest" required="True" clientFlatten="True">
+                  <prop type="string" name="name" arg="$nameAvailabilityRequest.name" required="True"/>
+                  <prop type="string" name="type" arg="$nameAvailabilityRequest.type" required="True">
+                    <enum>
+                      <item value="&quot;Microsoft.DBforPostgreSQL/serverGroupsv2&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="message"/>
+                  <prop type="string" name="name"/>
+                  <prop type="boolean" name="nameAvailable"/>
+                  <prop type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

@@ -8,3 +8,11 @@ List requests to list all resources in a subscription.
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.communication/emailservices 2023-04-01 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.communication/emailservices 2023-04-01 -->
+
+#### examples
+
+- Get all resources from a subscription/resource group
+    ```bash
+        communication email list --subscription SubscriptionId
+        communication email list -g ResourceGroup
+    ```

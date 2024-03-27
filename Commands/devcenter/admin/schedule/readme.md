@@ -13,9 +13,6 @@ Manage schedules.
 - [list](/Commands/devcenter/admin/schedule/_list.md)
 : List schedules for a pool.
 
-- [list-test](/Commands/devcenter/admin/schedule/_list-test.md)
-: List schedules for a pool
-
 - [show](/Commands/devcenter/admin/schedule/_show.md)
 : Get a schedule.
 

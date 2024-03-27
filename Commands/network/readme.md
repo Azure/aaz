@@ -4,6 +4,9 @@ Manage Azure Network resources.
 
 ## Subgroups
 
+- [alb](/Commands/network/alb/readme.md)
+: Manage and Configure Application Gateway for Containers
+
 - [application-gateway](/Commands/network/application-gateway/readme.md)
 : Manage application-level routing and load balancing services.
 
@@ -25,8 +28,17 @@ Manage Azure Network resources.
 - [express-route](/Commands/network/express-route/readme.md)
 : Manage dedicated private network fiber connections to Azure.
 
+- [express-route-cross-connection](/Commands/network/express-route-cross-connection/readme.md)
+: Manage express route cross connection
+
+- [express-route-port](/Commands/network/express-route-port/readme.md)
+: Manage express route port
+
 - [firewall](/Commands/network/firewall/readme.md)
 : Manage and configure Azure Firewalls.
+
+- [ip-group](/Commands/network/ip-group/readme.md)
+: Commands to manage IP group.
 
 - [lb](/Commands/network/lb/readme.md)
 : Manage and configure load balancers.
@@ -46,8 +58,14 @@ Manage Azure Network resources.
 - [nsg](/Commands/network/nsg/readme.md)
 : Manage Azure Network Security Groups (NSGs).
 
+- [p2s-vpn-gateway](/Commands/network/p2s-vpn-gateway/readme.md)
+: Manage point-to-site VPN gateway.
+
 - [perimeter](/Commands/network/perimeter/readme.md)
 : Manage Network Security Perimeters
+
+- [private-dns](/Commands/network/private-dns/readme.md)
+: Manage Private DNS domains in Azure.
 
 - [private-endpoint](/Commands/network/private-endpoint/readme.md)
 : Manage private endpoints.

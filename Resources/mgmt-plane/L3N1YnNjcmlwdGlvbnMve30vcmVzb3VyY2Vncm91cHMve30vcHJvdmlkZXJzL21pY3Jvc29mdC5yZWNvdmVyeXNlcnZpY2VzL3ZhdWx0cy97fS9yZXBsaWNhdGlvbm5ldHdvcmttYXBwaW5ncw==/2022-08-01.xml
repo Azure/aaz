@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.recoveryservices/vaults/{}/replicationnetworkmappings" version="2022-08-01" swagger="mgmt-plane/recoveryservicessiterecovery/ResourceProviders/Microsoft.RecoveryServices/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuUmVjb3ZlcnlTZXJ2aWNlcy92YXVsdHMve3Jlc291cmNlTmFtZX0vcmVwbGljYXRpb25OZXR3b3JrTWFwcGluZ3M=/V/MjAyMi0wOC0wMQ=="/>
+  <commandGroup name="site-recovery vault">
+    <command name="list-network-mapping" version="2022-08-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.recoveryservices/vaults/{}/replicationnetworkmappings" version="2022-08-01" swagger="mgmt-plane/recoveryservicessiterecovery/ResourceProviders/Microsoft.RecoveryServices/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuUmVjb3ZlcnlTZXJ2aWNlcy92YXVsdHMve3Jlc291cmNlTmFtZX0vcmVwbGljYXRpb25OZXR3b3JrTWFwcGluZ3M=/V/MjAyMi0wOC0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.resourceName" options="vault-name" required="True" group="" idPart="name">
+          <help short="The name of the recovery services vault."/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="ReplicationNetworkMappings_List">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.RecoveryServices/vaults/{resourceName}/replicationNetworkMappings">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="resourceName" arg="$Path.resourceName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-08-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.RecoveryServices/vaults/{}/replicationFabrics/{}/replicationNetworks/{}/replicationNetworkMappings/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties">
+                        <prop type="object" name="fabricSpecificSettings">
+                          <prop type="string" name="instanceType" required="True">
+                            <enum>
+                              <item value="&quot;AzureToAzure&quot;"/>
+                              <item value="&quot;VmmToAzure&quot;"/>
+                              <item value="&quot;VmmToVmm&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="instanceType" value="AzureToAzure">
+                            <prop type="string" name="primaryFabricLocation"/>
+                            <prop type="string" name="recoveryFabricLocation"/>
+                          </discriminator>
+                        </prop>
+                        <prop type="string" name="primaryFabricFriendlyName"/>
+                        <prop type="string" name="primaryNetworkFriendlyName"/>
+                        <prop type="string" name="primaryNetworkId"/>
+                        <prop type="string" name="recoveryFabricArmId"/>
+                        <prop type="string" name="recoveryFabricFriendlyName"/>
+                        <prop type="string" name="recoveryNetworkFriendlyName"/>
+                        <prop type="string" name="recoveryNetworkId"/>
+                        <prop type="string" name="state"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

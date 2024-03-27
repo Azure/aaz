@@ -25,8 +25,3 @@ Create azure databricks accessConnector.
     ```bash
         databricks access-connector create --resource-group MyResourceGroup --name MyAccessConnector --location westus --identity-type SystemAssigned
     ```
-
-- Create a databricks accessConnector with identities
-    ```bash
-        databricks access-connector create --resource-group MyResourceGroup --name MyAccessConnector --location westus --identity-type UserAssigned --user-assigned-identities {"/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}":{}}
-    ```
