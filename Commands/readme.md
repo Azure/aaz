@@ -54,7 +54,7 @@
 : Manage cloud service
 
 - [communication](/Commands/communication/readme.md)
-: communication
+: Manage communication service with communication.
 
 - [compute](/Commands/compute/readme.md)
 : Mange azure compute vm config
