@@ -1,6 +1,6 @@
 # [Command] _mdp pool list_
 
-List pool resources by subscription ID
+List all pool resources
 
 ## Versions
 
