@@ -12,5 +12,5 @@ Update a pool
 
 - Update
     ```bash
-        az mdp pool update --name "cli-contoso-pool" --resource-group "rg1" --tags CostCode="12345"
+        mdp pool update --name "cli-contoso-pool" --resource-group "rg1" --tags CostCode="12345"
     ```

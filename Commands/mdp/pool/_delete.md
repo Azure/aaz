@@ -8,10 +8,9 @@ Delete a pool
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devopsinfrastructure/pools/{} 2023-12-13-preview -->
 
-
 #### examples
 
 - Delete
     ```bash
-        az mdp pool delete --name "cli-contoso-pool" --resource-group "rg1"
+        mdp pool delete --name "cli-contoso-pool" --resource-group "rg1"
     ```

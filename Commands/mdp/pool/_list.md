@@ -13,10 +13,10 @@ List all pool resources
 
 - List by resource group
     ```bash
-        az mdp pool list --resource-group "rg1"
+        mdp pool list --resource-group "rg1"
     ```
 
 - List by subscription
     ```bash
-        az mdp pool list
+        mdp pool list
     ```

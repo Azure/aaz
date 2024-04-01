@@ -12,5 +12,5 @@ Get a pool
 
 - Get
     ```bash
-        az mdp pool show --name "cli-contoso-pool" --resource-group "rg1"
+        mdp pool show --name "cli-contoso-pool" --resource-group "rg1"
     ```
