@@ -116,6 +116,9 @@
 - [dynatrace](/Commands/dynatrace/readme.md)
 : Manage dynatrace
 
+- [edge-zones](/Commands/edge-zones/readme.md)
+: Manage Edge Zone resources
+
 - [elastic](/Commands/elastic/readme.md)
 : Manage Microsoft Elastic.
 
