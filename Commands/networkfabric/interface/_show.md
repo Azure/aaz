@@ -25,3 +25,14 @@ Show details of the provided Network Interface resource
     ```bash
         networkfabric interface show -g "example-rg" --network-device-name "example-device" --resource-name "example-interface"
     ```
+
+### [2024-02-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrZGV2aWNlcy97fS9uZXR3b3JraW50ZXJmYWNlcy97fQ==/2024-02-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkdevices/{}/networkinterfaces/{} 2024-02-15-preview -->
+
+#### examples
+
+- Show the Network Interface
+    ```bash
+        networkfabric interface show -g "example-rg" --network-device-name "example-device" --resource-name "example-interface"
+    ```

@@ -18,3 +18,14 @@ Update to update certain properties of the IP Community resource.
     ```bash
         networkfabric ipcommunity update --resource-group "example-rg" --resource-name "example-ipcommunity" --ip-community-rules "[{action:Permit,communityMembers:['1:1'],sequenceNumber:1234,wellKnownCommunities:[Internet,GShut]}]"
     ```
+
+### [2024-02-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9pcGNvbW11bml0aWVzL3t9/2024-02-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/ipcommunities/{} 2024-02-15-preview -->
+
+#### examples
+
+- Update IP Community
+    ```bash
+        networkfabric ipcommunity update --resource-group "example-rg" --resource-name "example-ipcommunity" --ip-community-rules "[{action:Permit,communityMembers:['1:1'],sequenceNumber:1234,wellKnownCommunities:[Internet,GShut]}]"
+    ```

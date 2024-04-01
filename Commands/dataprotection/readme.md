@@ -13,6 +13,9 @@ Manage dataprotection.
 - [backup-vault](/Commands/dataprotection/backup-vault/readme.md)
 : Manage backup vault with dataprotection.
 
+- [cross-region-restore](/Commands/dataprotection/cross-region-restore/readme.md)
+: Hidden command group to manage cross region restores in dataprotection
+
 - [job](/Commands/dataprotection/job/readme.md)
 : Manage job with dataprotection.
 

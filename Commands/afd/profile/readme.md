@@ -2,6 +2,11 @@
 
 Manage AFD profiles.
 
+## Subgroups
+
+- [log-scrubbing](/Commands/afd/profile/log-scrubbing/readme.md)
+: Defines rules that scrub sensitive fields in the Azure Front Door profile logs.
+
 ## Commands
 
 - [create](/Commands/afd/profile/_create.md)

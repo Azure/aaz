@@ -59,16 +59,18 @@
                   </prop>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop type="object" name="errors" cls="Error_read">
-                      <prop readOnly="True" type="string" name="code"/>
-                      <prop readOnly="True" type="array<@Error_read>" name="details">
-                        <item type="@Error_read"/>
+                    <prop readOnly="True" type="object" name="errors">
+                      <prop type="string" name="code"/>
+                      <prop type="array<object>" name="details">
+                        <item type="object">
+                          <prop type="string" name="code"/>
+                          <prop type="string" name="message"/>
+                          <prop type="string" name="target"/>
+                        </item>
                       </prop>
-                      <prop readOnly="True" type="object" name="innerError">
-                        <prop type="@Error_read" name="innerError"/>
-                      </prop>
-                      <prop readOnly="True" type="string" name="message"/>
-                      <prop readOnly="True" type="string" name="target"/>
+                      <prop type="string" name="innerError"/>
+                      <prop type="string" name="message"/>
+                      <prop type="string" name="target"/>
                     </prop>
                     <prop type="object" name="providerSettings">
                       <prop type="string" name="providerType" required="True">
@@ -83,7 +85,7 @@
                       </prop>
                       <discriminator property="providerType" value="Db2">
                         <prop type="string" name="dbName"/>
-                        <prop type="string" name="dbPassword"/>
+                        <prop type="string" name="dbPassword" secret="True"/>
                         <prop type="string" name="dbPasswordUri"/>
                         <prop type="string" name="dbPort"/>
                         <prop type="string" name="dbUsername"/>
@@ -99,7 +101,7 @@
                         </prop>
                       </discriminator>
                       <discriminator property="providerType" value="MsSqlServer">
-                        <prop type="string" name="dbPassword"/>
+                        <prop type="string" name="dbPassword" secret="True"/>
                         <prop type="string" name="dbPasswordUri"/>
                         <prop type="string" name="dbPort"/>
                         <prop type="string" name="dbUsername"/>
@@ -142,7 +144,7 @@
                       </discriminator>
                       <discriminator property="providerType" value="SapHana">
                         <prop type="string" name="dbName"/>
-                        <prop type="string" name="dbPassword"/>
+                        <prop type="string" name="dbPassword" secret="True"/>
                         <prop type="string" name="dbPasswordUri"/>
                         <prop type="string" name="dbUsername"/>
                         <prop type="string" name="hostname"/>
@@ -166,7 +168,7 @@
                         </prop>
                         <prop type="string" name="sapHostname"/>
                         <prop type="string" name="sapInstanceNr"/>
-                        <prop type="string" name="sapPassword"/>
+                        <prop type="string" name="sapPassword" secret="True"/>
                         <prop type="string" name="sapPasswordUri"/>
                         <prop type="string" name="sapPortNumber"/>
                         <prop type="string" name="sapSid"/>
@@ -264,7 +266,39 @@
               </const>
             </query>
           </request>
-          <response statusCode="200"/>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="OperationStatusResult_read">
+                  <prop type="dateTime" name="endTime"/>
+                  <prop type="object" name="error" cls="ErrorDetail_read">
+                    <prop readOnly="True" type="array<object>" name="additionalInfo">
+                      <item type="object">
+                        <prop readOnly="True" type="object" name="info"/>
+                        <prop readOnly="True" type="string" name="type"/>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="string" name="code"/>
+                    <prop readOnly="True" type="array<@ErrorDetail_read>" name="details" identifiers="message target">
+                      <item type="@ErrorDetail_read"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="message"/>
+                    <prop readOnly="True" type="string" name="target"/>
+                  </prop>
+                  <prop type="string" name="id"/>
+                  <prop type="string" name="name"/>
+                  <prop type="array<@OperationStatusResult_read>" name="operations">
+                    <item type="@OperationStatusResult_read"/>
+                  </prop>
+                  <prop type="float" name="percentComplete">
+                    <format maximum="100.0" minimum="0.0"/>
+                  </prop>
+                  <prop type="dateTime" name="startTime"/>
+                  <prop type="string" name="status" required="True"/>
+                </schema>
+              </json>
+            </body>
+          </response>
           <response statusCode="202"/>
           <response statusCode="204"/>
           <response isError="True">
@@ -276,6 +310,7 @@
           </response>
         </http>
       </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
     <command name="create" version="2023-04-01">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.workloads/monitors/{}/providerinstances/{}" version="2023-04-01" swagger="mgmt-plane/workloads/ResourceProviders/Microsoft.Workloads/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuV29ya2xvYWRzL21vbml0b3JzL3ttb25pdG9yTmFtZX0vcHJvdmlkZXJJbnN0YW5jZXMve3Byb3ZpZGVySW5zdGFuY2VOYW1lfQ==/V/MjAyMy0wNC0wMQ=="/>
@@ -554,7 +589,7 @@
                       </prop>
                       <discriminator property="providerType" value="Db2">
                         <prop type="string" name="dbName" arg="$providerInstanceParameter.properties.providerSettings.Db2.dbName"/>
-                        <prop type="string" name="dbPassword" arg="$providerInstanceParameter.properties.providerSettings.Db2.dbPassword"/>
+                        <prop type="string" name="dbPassword" arg="$providerInstanceParameter.properties.providerSettings.Db2.dbPassword" secret="True"/>
                         <prop type="string" name="dbPasswordUri" arg="$providerInstanceParameter.properties.providerSettings.Db2.dbPasswordUri"/>
                         <prop type="string" name="dbPort" arg="$providerInstanceParameter.properties.providerSettings.Db2.dbPort"/>
                         <prop type="string" name="dbUsername" arg="$providerInstanceParameter.properties.providerSettings.Db2.dbUsername"/>
@@ -570,7 +605,7 @@
                         </prop>
                       </discriminator>
                       <discriminator property="providerType" value="MsSqlServer">
-                        <prop type="string" name="dbPassword" arg="$providerInstanceParameter.properties.providerSettings.MsSqlServer.dbPassword"/>
+                        <prop type="string" name="dbPassword" arg="$providerInstanceParameter.properties.providerSettings.MsSqlServer.dbPassword" secret="True"/>
                         <prop type="string" name="dbPasswordUri" arg="$providerInstanceParameter.properties.providerSettings.MsSqlServer.dbPasswordUri"/>
                         <prop type="string" name="dbPort" arg="$providerInstanceParameter.properties.providerSettings.MsSqlServer.dbPort"/>
                         <prop type="string" name="dbUsername" arg="$providerInstanceParameter.properties.providerSettings.MsSqlServer.dbUsername"/>
@@ -613,7 +648,7 @@
                       </discriminator>
                       <discriminator property="providerType" value="SapHana">
                         <prop type="string" name="dbName" arg="$providerInstanceParameter.properties.providerSettings.SapHana.dbName"/>
-                        <prop type="string" name="dbPassword" arg="$providerInstanceParameter.properties.providerSettings.SapHana.dbPassword"/>
+                        <prop type="string" name="dbPassword" arg="$providerInstanceParameter.properties.providerSettings.SapHana.dbPassword" secret="True"/>
                         <prop type="string" name="dbPasswordUri" arg="$providerInstanceParameter.properties.providerSettings.SapHana.dbPasswordUri"/>
                         <prop type="string" name="dbUsername" arg="$providerInstanceParameter.properties.providerSettings.SapHana.dbUsername"/>
                         <prop type="string" name="hostname" arg="$providerInstanceParameter.properties.providerSettings.SapHana.hostname"/>
@@ -637,7 +672,7 @@
                         </prop>
                         <prop type="string" name="sapHostname" arg="$providerInstanceParameter.properties.providerSettings.SapNetWeaver.sapHostname"/>
                         <prop type="string" name="sapInstanceNr" arg="$providerInstanceParameter.properties.providerSettings.SapNetWeaver.sapInstanceNr"/>
-                        <prop type="string" name="sapPassword" arg="$providerInstanceParameter.properties.providerSettings.SapNetWeaver.sapPassword"/>
+                        <prop type="string" name="sapPassword" arg="$providerInstanceParameter.properties.providerSettings.SapNetWeaver.sapPassword" secret="True"/>
                         <prop type="string" name="sapPasswordUri" arg="$providerInstanceParameter.properties.providerSettings.SapNetWeaver.sapPasswordUri"/>
                         <prop type="string" name="sapPortNumber" arg="$providerInstanceParameter.properties.providerSettings.SapNetWeaver.sapPortNumber"/>
                         <prop type="string" name="sapSid" arg="$providerInstanceParameter.properties.providerSettings.SapNetWeaver.sapSid"/>
@@ -682,16 +717,18 @@
                   </prop>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop type="object" name="errors" cls="Error_read">
-                      <prop readOnly="True" type="string" name="code"/>
-                      <prop readOnly="True" type="array<@Error_read>" name="details">
-                        <item type="@Error_read"/>
+                    <prop readOnly="True" type="object" name="errors">
+                      <prop type="string" name="code"/>
+                      <prop type="array<object>" name="details">
+                        <item type="object">
+                          <prop type="string" name="code"/>
+                          <prop type="string" name="message"/>
+                          <prop type="string" name="target"/>
+                        </item>
                       </prop>
-                      <prop readOnly="True" type="object" name="innerError">
-                        <prop type="@Error_read" name="innerError"/>
-                      </prop>
-                      <prop readOnly="True" type="string" name="message"/>
-                      <prop readOnly="True" type="string" name="target"/>
+                      <prop type="string" name="innerError"/>
+                      <prop type="string" name="message"/>
+                      <prop type="string" name="target"/>
                     </prop>
                     <prop type="object" name="providerSettings">
                       <prop type="string" name="providerType" required="True">
@@ -706,7 +743,7 @@
                       </prop>
                       <discriminator property="providerType" value="Db2">
                         <prop type="string" name="dbName"/>
-                        <prop type="string" name="dbPassword"/>
+                        <prop type="string" name="dbPassword" secret="True"/>
                         <prop type="string" name="dbPasswordUri"/>
                         <prop type="string" name="dbPort"/>
                         <prop type="string" name="dbUsername"/>
@@ -722,7 +759,7 @@
                         </prop>
                       </discriminator>
                       <discriminator property="providerType" value="MsSqlServer">
-                        <prop type="string" name="dbPassword"/>
+                        <prop type="string" name="dbPassword" secret="True"/>
                         <prop type="string" name="dbPasswordUri"/>
                         <prop type="string" name="dbPort"/>
                         <prop type="string" name="dbUsername"/>
@@ -765,7 +802,7 @@
                       </discriminator>
                       <discriminator property="providerType" value="SapHana">
                         <prop type="string" name="dbName"/>
-                        <prop type="string" name="dbPassword"/>
+                        <prop type="string" name="dbPassword" secret="True"/>
                         <prop type="string" name="dbPasswordUri"/>
                         <prop type="string" name="dbUsername"/>
                         <prop type="string" name="hostname"/>
@@ -789,7 +826,7 @@
                         </prop>
                         <prop type="string" name="sapHostname"/>
                         <prop type="string" name="sapInstanceNr"/>
-                        <prop type="string" name="sapPassword"/>
+                        <prop type="string" name="sapPassword" secret="True"/>
                         <prop type="string" name="sapPasswordUri"/>
                         <prop type="string" name="sapPortNumber"/>
                         <prop type="string" name="sapSid"/>
@@ -1126,16 +1163,18 @@
                   </prop>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop type="object" name="errors" cls="Error_read">
-                      <prop readOnly="True" type="string" name="code"/>
-                      <prop readOnly="True" type="array<@Error_read>" name="details">
-                        <item type="@Error_read"/>
+                    <prop readOnly="True" type="object" name="errors">
+                      <prop type="string" name="code"/>
+                      <prop type="array<object>" name="details">
+                        <item type="object">
+                          <prop type="string" name="code"/>
+                          <prop type="string" name="message"/>
+                          <prop type="string" name="target"/>
+                        </item>
                       </prop>
-                      <prop readOnly="True" type="object" name="innerError">
-                        <prop type="@Error_read" name="innerError"/>
-                      </prop>
-                      <prop readOnly="True" type="string" name="message"/>
-                      <prop readOnly="True" type="string" name="target"/>
+                      <prop type="string" name="innerError"/>
+                      <prop type="string" name="message"/>
+                      <prop type="string" name="target"/>
                     </prop>
                     <prop type="object" name="providerSettings">
                       <prop type="string" name="providerType" required="True">
@@ -1150,7 +1189,7 @@
                       </prop>
                       <discriminator property="providerType" value="Db2">
                         <prop type="string" name="dbName"/>
-                        <prop type="string" name="dbPassword"/>
+                        <prop type="string" name="dbPassword" secret="True"/>
                         <prop type="string" name="dbPasswordUri"/>
                         <prop type="string" name="dbPort"/>
                         <prop type="string" name="dbUsername"/>
@@ -1166,7 +1205,7 @@
                         </prop>
                       </discriminator>
                       <discriminator property="providerType" value="MsSqlServer">
-                        <prop type="string" name="dbPassword"/>
+                        <prop type="string" name="dbPassword" secret="True"/>
                         <prop type="string" name="dbPasswordUri"/>
                         <prop type="string" name="dbPort"/>
                         <prop type="string" name="dbUsername"/>
@@ -1209,7 +1248,7 @@
                       </discriminator>
                       <discriminator property="providerType" value="SapHana">
                         <prop type="string" name="dbName"/>
-                        <prop type="string" name="dbPassword"/>
+                        <prop type="string" name="dbPassword" secret="True"/>
                         <prop type="string" name="dbPasswordUri"/>
                         <prop type="string" name="dbUsername"/>
                         <prop type="string" name="hostname"/>
@@ -1233,7 +1272,7 @@
                         </prop>
                         <prop type="string" name="sapHostname"/>
                         <prop type="string" name="sapInstanceNr"/>
-                        <prop type="string" name="sapPassword"/>
+                        <prop type="string" name="sapPassword" secret="True"/>
                         <prop type="string" name="sapPasswordUri"/>
                         <prop type="string" name="sapPortNumber"/>
                         <prop type="string" name="sapSid"/>
@@ -1317,7 +1356,7 @@
                 <prop type="object" name="providerSettings" arg="$providerInstanceParameter.properties.providerSettings">
                   <discriminator property="providerType" value="Db2">
                     <prop type="string" name="dbName" arg="$providerInstanceParameter.properties.providerSettings.Db2.dbName"/>
-                    <prop type="string" name="dbPassword" arg="$providerInstanceParameter.properties.providerSettings.Db2.dbPassword"/>
+                    <prop type="string" name="dbPassword" arg="$providerInstanceParameter.properties.providerSettings.Db2.dbPassword" secret="True"/>
                     <prop type="string" name="dbPasswordUri" arg="$providerInstanceParameter.properties.providerSettings.Db2.dbPasswordUri"/>
                     <prop type="string" name="dbPort" arg="$providerInstanceParameter.properties.providerSettings.Db2.dbPort"/>
                     <prop type="string" name="dbUsername" arg="$providerInstanceParameter.properties.providerSettings.Db2.dbUsername"/>
@@ -1333,7 +1372,7 @@
                     </prop>
                   </discriminator>
                   <discriminator property="providerType" value="MsSqlServer">
-                    <prop type="string" name="dbPassword" arg="$providerInstanceParameter.properties.providerSettings.MsSqlServer.dbPassword"/>
+                    <prop type="string" name="dbPassword" arg="$providerInstanceParameter.properties.providerSettings.MsSqlServer.dbPassword" secret="True"/>
                     <prop type="string" name="dbPasswordUri" arg="$providerInstanceParameter.properties.providerSettings.MsSqlServer.dbPasswordUri"/>
                     <prop type="string" name="dbPort" arg="$providerInstanceParameter.properties.providerSettings.MsSqlServer.dbPort"/>
                     <prop type="string" name="dbUsername" arg="$providerInstanceParameter.properties.providerSettings.MsSqlServer.dbUsername"/>
@@ -1376,7 +1415,7 @@
                   </discriminator>
                   <discriminator property="providerType" value="SapHana">
                     <prop type="string" name="dbName" arg="$providerInstanceParameter.properties.providerSettings.SapHana.dbName"/>
-                    <prop type="string" name="dbPassword" arg="$providerInstanceParameter.properties.providerSettings.SapHana.dbPassword"/>
+                    <prop type="string" name="dbPassword" arg="$providerInstanceParameter.properties.providerSettings.SapHana.dbPassword" secret="True"/>
                     <prop type="string" name="dbPasswordUri" arg="$providerInstanceParameter.properties.providerSettings.SapHana.dbPasswordUri"/>
                     <prop type="string" name="dbUsername" arg="$providerInstanceParameter.properties.providerSettings.SapHana.dbUsername"/>
                     <prop type="string" name="hostname" arg="$providerInstanceParameter.properties.providerSettings.SapHana.hostname"/>
@@ -1400,7 +1439,7 @@
                     </prop>
                     <prop type="string" name="sapHostname" arg="$providerInstanceParameter.properties.providerSettings.SapNetWeaver.sapHostname"/>
                     <prop type="string" name="sapInstanceNr" arg="$providerInstanceParameter.properties.providerSettings.SapNetWeaver.sapInstanceNr"/>
-                    <prop type="string" name="sapPassword" arg="$providerInstanceParameter.properties.providerSettings.SapNetWeaver.sapPassword"/>
+                    <prop type="string" name="sapPassword" arg="$providerInstanceParameter.properties.providerSettings.SapNetWeaver.sapPassword" secret="True"/>
                     <prop type="string" name="sapPasswordUri" arg="$providerInstanceParameter.properties.providerSettings.SapNetWeaver.sapPasswordUri"/>
                     <prop type="string" name="sapPortNumber" arg="$providerInstanceParameter.properties.providerSettings.SapNetWeaver.sapPortNumber"/>
                     <prop type="string" name="sapSid" arg="$providerInstanceParameter.properties.providerSettings.SapNetWeaver.sapSid"/>
