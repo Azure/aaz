@@ -47,3 +47,6 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 
 - [update](/Commands/vmss/_update.md)
 : Update a VM scale set.
+
+- [update-domain-walk](/Commands/vmss/_update-domain-walk.md)
+: Manual platform update domain walk to update virtual machines in a service fabric virtual machine scale set.

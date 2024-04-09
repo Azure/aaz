@@ -20,3 +20,20 @@ List all Network Packet Brokers in the provided resource group or subscription
     ```bash
         networkfabric npb list --subscription "<subscriptionId>"
     ```
+
+### [2024-02-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrcGFja2V0YnJva2Vycw==/2024-02-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.managednetworkfabric/networkpacketbrokers 2024-02-15-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkpacketbrokers 2024-02-15-preview -->
+
+#### examples
+
+- List the Network Packet Broker for Resource group
+    ```bash
+        networkfabric npb list --resource-group "example-rg"
+    ```
+
+- List the Network Packet Broker for Subscription
+    ```bash
+        networkfabric npb list --subscription "<subscriptionId>"
+    ```

@@ -44,14 +44,29 @@
 - [capacity](/Commands/capacity/readme.md)
 : Manage capacity.
 
+- [cdn](/Commands/cdn/readme.md)
+: Manage Azure Content Delivery Networks (CDNs).
+
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
+- [cloud-service](/Commands/cloud-service/readme.md)
+: Manage cloud service
+
 - [communication](/Commands/communication/readme.md)
-: communication
+: Manage communication service with communication.
+
+- [compute](/Commands/compute/readme.md)
+: Mange azure compute vm config
+
+- [compute-diagnostic](/Commands/compute-diagnostic/readme.md)
+: Mange vm sku recommender info
 
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
+
+- [confluent](/Commands/confluent/readme.md)
+: Manage confluent organization
 
 - [connectedmachine](/Commands/connectedmachine/readme.md)
 : Manage an Azure Arc-Enabled Server.
@@ -68,11 +83,17 @@
 - [databox](/Commands/databox/readme.md)
 : Manage data box
 
+- [databoxedge](/Commands/databoxedge/readme.md)
+: Manage device with databoxedge.
+
 - [databricks](/Commands/databricks/readme.md)
 : Manage databricks workspaces.
 
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage dataprotection.
+
+- [desktopvirtualization](/Commands/desktopvirtualization/readme.md)
+: Manage desktop virtualization.
 
 - [devcenter](/Commands/devcenter/readme.md)
 : Manage resources with devcenter.
@@ -127,6 +148,9 @@
 
 - [maintenance](/Commands/maintenance/readme.md)
 : Manage Maintenance
+
+- [mdp](/Commands/mdp/readme.md)
+: Manage resources of Managed DevOps pools
 
 - [mesh](/Commands/mesh/readme.md)
 : (PREVIEW) Manage Azure Service Fabric Mesh Resources.
