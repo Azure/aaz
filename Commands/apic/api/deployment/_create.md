@@ -1,6 +1,6 @@
 # [Command] _apic api deployment create_
 
-Create new or updates existing API deployment.
+Create a new API deployment.
 
 ## Versions
 
@@ -12,7 +12,7 @@ Create new or updates existing API deployment.
 
 - Create deployment
     ```bash
-        apic api deployment create -g api-center-test -s contoso --name production --title "Production deployment" --description "Public cloud production deployment." --api echo-api --environmentId "/workspaces/default/environments/production" --definitionId "/workspaces/default/apis/echo-api/versions/2023-01-01/definitions/openapi"
+        apic api deployment create -g api-center-test -s contoso --deployment-id production --title "Production deployment" --description "Public cloud production deployment." --api-id echo-api --environment-id "/workspaces/default/environments/production" --definition-id "/workspaces/default/apis/echo-api/versions/2023-01-01/definitions/openapi"
     ```
 
 ### [2024-03-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5hcGljZW50ZXIvc2VydmljZXMve30vd29ya3NwYWNlcy97fS9hcGlzL3t9L2RlcGxveW1lbnRzL3t9/2024-03-15-preview.xml) **Stable**

@@ -1,6 +1,6 @@
 # [Command] _apic service list_
 
-List services within an Azure subscription.
+Lists Azure API Center services within an Azure subscription.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _apic service update_
 
-Update service
+Update an instance of an Azure API Center service.
 
 ## Versions
 

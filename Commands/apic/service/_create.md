@@ -1,6 +1,6 @@
 # [Command] _apic service create_
 
-Create an instance of Azure API Center service.
+Creates an instance of an Azure API Center service.
 
 ## Versions
 

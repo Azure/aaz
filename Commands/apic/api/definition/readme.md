@@ -1,11 +1,14 @@
 # [Group] _apic api definition_
 
-Commands to manage API Definitions in API Center
+Commands to manage API definitions in API Center
 
 ## Commands
 
+- [check-exists](/Commands/apic/api/definition/_check-exists.md)
+: Checks if specified API definition exists.
+
 - [create](/Commands/apic/api/definition/_create.md)
-: Create new or updates existing API definition.
+: Create a new API definition.
 
 - [delete](/Commands/apic/api/definition/_delete.md)
 : Delete specified API definition.
@@ -26,4 +29,4 @@ Commands to manage API Definitions in API Center
 : Get details of the API definition.
 
 - [update](/Commands/apic/api/definition/_update.md)
-: Update new or updates existing API definition.
+: Update existing API definition.

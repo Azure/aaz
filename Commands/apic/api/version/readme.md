@@ -1,11 +1,14 @@
 # [Group] _apic api version_
 
-Commands to manage API Versions in API Center
+Commands to manage API versions in API Center
 
 ## Commands
 
+- [check-exists](/Commands/apic/api/version/_check-exists.md)
+: Checks if specified API version exists.
+
 - [create](/Commands/apic/api/version/_create.md)
-: Create new or update existing API version.
+: Create a new API version.
 
 - [delete](/Commands/apic/api/version/_delete.md)
 : Delete specified API version
@@ -20,4 +23,4 @@ Commands to manage API Versions in API Center
 : Get details of the API version.
 
 - [update](/Commands/apic/api/version/_update.md)
-: Update new or updates existing API version.
+: Update existing API version.
