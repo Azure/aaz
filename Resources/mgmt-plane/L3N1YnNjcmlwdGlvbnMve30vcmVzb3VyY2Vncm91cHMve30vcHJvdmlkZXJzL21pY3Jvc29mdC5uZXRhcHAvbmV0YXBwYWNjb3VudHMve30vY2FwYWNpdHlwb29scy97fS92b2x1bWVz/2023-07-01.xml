@@ -15,6 +15,12 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Query.skipToken" options="skip-token">
+          <help short="The page-continuation token to use with a paged version of this API."/>
+        </arg>
+        <arg type="integer32" var="$Query.top" options="top">
+          <help short="The number of recommendations per page if a paged version of this API is being used."/>
+        </arg>
       </argGroup>
       <operation operationId="Volumes_List">
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes">
@@ -32,6 +38,8 @@
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
+              <param type="string" name="$skipToken" arg="$Query.skipToken"/>
+              <param type="integer32" name="$top" arg="$Query.top"/>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
                 <default value="&quot;2023-07-01&quot;"/>
                 <format minLength="1"/>
