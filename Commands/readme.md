@@ -14,6 +14,9 @@
 - [amlfs](/Commands/amlfs/readme.md)
 : Manage lustre file system
 
+- [aosm](/Commands/aosm/readme.md)
+: Manage Azure Operator Service Manager resources.
+
 - [apic](/Commands/apic/readme.md)
 : Manage Azure API Center services
 
