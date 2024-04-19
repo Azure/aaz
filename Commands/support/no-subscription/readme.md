@@ -11,7 +11,7 @@ Manage Azure support resource without a subscription.
 : Manage support ticket communications
 
 - [file](/Commands/support/no-subscription/file/readme.md)
-: File operations
+: File operations for no subscription
 
 - [file-workspace](/Commands/support/no-subscription/file-workspace/readme.md)
 : File workspaces for Azure Support.

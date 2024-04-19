@@ -1,6 +1,6 @@
 # [Command] _support no-subscription file list_
 
-List all the Files information under a workspace for an Azure subscription.
+List all the Files information under a workspace.
 
 ## Versions
 
