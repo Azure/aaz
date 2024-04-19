@@ -12,5 +12,5 @@ Create a trusted Signing Account.
 
 - Create an account
     ```bash
-        trustedsigning create -n MyAccount -l westus -g MyResourceGroup  -sku Basic
+        trustedsigning create -n MyAccount -l westus -g MyResourceGroup --sku Basic
     ```

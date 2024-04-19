@@ -12,5 +12,5 @@ List certificate profiles under a trusted signing account.
 
 - Lists certificate profile under a trusted signing account
     ```bash
-        trustedsigning certificate-profile list -g MyResourceGroup --account-name
+        trustedsigning certificate-profile list -g MyResourceGroup --account-name MyAccount
     ```
