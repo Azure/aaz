@@ -266,6 +266,9 @@
 - [storagesync](/Commands/storagesync/readme.md)
 : Manage Azure File Sync.
 
+- [support](/Commands/support/readme.md)
+: Manage Azure support resource.
+
 - [tsi](/Commands/tsi/readme.md)
 : Manage Azure Time Series Insights.
 
