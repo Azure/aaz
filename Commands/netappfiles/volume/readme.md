@@ -15,6 +15,9 @@ Generated Create update delete operations for Azure NetApp Files (ANF) Volumes
 - [latest-backup-status](/Commands/netappfiles/volume/latest-backup-status/readme.md)
 : Get the latest backup status of a volume
 
+- [latest-restore-status](/Commands/netappfiles/volume/latest-restore-status/readme.md)
+: Get the latest backup status of a volume
+
 - [quota-rule](/Commands/netappfiles/volume/quota-rule/readme.md)
 : Manage Azure NetApp Files (ANF) Volume Quota Rules Resources.
 
