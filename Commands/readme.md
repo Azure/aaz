@@ -56,11 +56,8 @@
 - [communication](/Commands/communication/readme.md)
 : Manage communication service with communication.
 
-- [compute](/Commands/compute/readme.md)
-: Mange azure compute vm config
-
-- [compute-diagnostic](/Commands/compute-diagnostic/readme.md)
-: Mange vm sku recommender info
+- [compute-sku-recommender](/Commands/compute-sku-recommender/readme.md)
+: Manage compute resource sku recommender info
 
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
