@@ -54,7 +54,13 @@
 : Manage cloud service
 
 - [communication](/Commands/communication/readme.md)
-: communication
+: Manage communication service with communication.
+
+- [compute](/Commands/compute/readme.md)
+: Mange azure compute vm config
+
+- [compute-diagnostic](/Commands/compute-diagnostic/readme.md)
+: Mange vm sku recommender info
 
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
@@ -142,6 +148,9 @@
 
 - [maintenance](/Commands/maintenance/readme.md)
 : Manage Maintenance
+
+- [mdp](/Commands/mdp/readme.md)
+: Manage resources of Managed DevOps pools
 
 - [mesh](/Commands/mesh/readme.md)
 : (PREVIEW) Manage Azure Service Fabric Mesh Resources.

@@ -14,3 +14,14 @@ Delete an existing AzureFrontDoor rule set with the specified rule set name unde
     ```bash
         afd rule-set delete -g group --rule-set-name ruleset1 --profile-name profile
     ```
+
+### [2024-02-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vcnVsZXNldHMve30=/2024-02-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/rulesets/{} 2024-02-01 -->
+
+#### examples
+
+- Delete a rule set with the name ruleset1.
+    ```bash
+        afd rule-set delete -g group --rule-set-name ruleset1 --profile-name profile
+    ```
