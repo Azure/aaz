@@ -7,12 +7,12 @@
       <argGroup name="">
         <arg type="string" var="$Path.metadataSchemaName" options="metadata-schema-name metadata-schema name" required="True" group="" idPart="child_name_1">
           <help short="The name of the metadata schema."/>
-          <format maxLength="90" minLength="1"/>
+          <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="string" var="$Path.serviceName" options="service-name service s" required="True" group="" idPart="name">
           <help short="The name of the API Center service."/>
-          <format maxLength="90" minLength="1"/>
+          <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
@@ -21,13 +21,13 @@
           <request method="get">
             <path>
               <param type="string" name="metadataSchemaName" arg="$Path.metadataSchemaName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
                 <format maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="serviceName" arg="$Path.serviceName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -49,8 +49,8 @@
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.ApiCenter/services/{}/metadataSchemas/{}"/>
                   </prop>
                   <prop readOnly="True" type="string" name="name"/>
-                  <prop type="object" name="properties" clientFlatten="True">
-                    <prop type="array<object>" name="assignedTo" identifiers="entity">
+                  <prop type="object" name="properties" required="True" clientFlatten="True">
+                    <prop type="array<object>" name="assignedTo">
                       <item type="object">
                         <prop type="boolean" name="deprecated"/>
                         <prop type="string" name="entity">
@@ -108,12 +108,12 @@
       <argGroup name="">
         <arg type="string" var="$Path.metadataSchemaName" options="metadata-schema-name metadata-schema name" required="True" group="" idPart="child_name_1">
           <help short="The name of the metadata schema."/>
-          <format maxLength="90" minLength="1"/>
+          <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="string" var="$Path.serviceName" options="service-name service s" required="True" group="" idPart="name">
           <help short="The name of the API Center service."/>
-          <format maxLength="90" minLength="1"/>
+          <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
@@ -122,13 +122,13 @@
           <request method="delete">
             <path>
               <param type="string" name="metadataSchemaName" arg="$Path.metadataSchemaName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
                 <format maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="serviceName" arg="$Path.serviceName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -156,12 +156,12 @@
       <argGroup name="">
         <arg type="string" var="$Path.metadataSchemaName" options="metadata-schema-name metadata-schema name" required="True" group="" idPart="child_name_1">
           <help short="The name of the metadata schema."/>
-          <format maxLength="90" minLength="1"/>
+          <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="string" var="$Path.serviceName" options="service-name service s" required="True" group="" idPart="name">
           <help short="The name of the API Center service."/>
-          <format maxLength="90" minLength="1"/>
+          <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
@@ -169,7 +169,9 @@
         <arg type="array<object>" var="$payload.properties.assignedTo" options="assignments" group="Properties">
           <help short="Defines the assignment scope for the custom metadata, e.g. &quot;[{entity:api,required:true,deprecated:false}]&quot;. The available entity values are: api, deployment, environment."/>
           <item type="object">
-            <arg type="boolean" var="$payload.properties.assignedTo[].deprecated" options="deprecated"/>
+            <arg type="boolean" var="$payload.properties.assignedTo[].deprecated" options="deprecated">
+              <help short="Deprecated assignment"/>
+            </arg>
             <arg type="string" var="$payload.properties.assignedTo[].entity" options="entity">
               <help short="The entities this metadata schema component gets applied to."/>
               <enum>
@@ -178,10 +180,12 @@
                 <item name="environment" value="&quot;environment&quot;"/>
               </enum>
             </arg>
-            <arg type="boolean" var="$payload.properties.assignedTo[].required" options="required"/>
+            <arg type="boolean" var="$payload.properties.assignedTo[].required" options="required">
+              <help short="Required assignment"/>
+            </arg>
           </item>
         </arg>
-        <arg type="string" var="$payload.properties.schema" options="schema" group="Properties">
+        <arg type="string" var="$payload.properties.schema" options="schema" required="True" group="Properties">
           <help short="JSON schema defining the type."/>
         </arg>
       </argGroup>
@@ -190,13 +194,13 @@
           <request method="put">
             <path>
               <param type="string" name="metadataSchemaName" arg="$Path.metadataSchemaName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
                 <format maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="serviceName" arg="$Path.serviceName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -209,8 +213,8 @@
             <body>
               <json>
                 <schema type="object" name="payload" required="True" clientFlatten="True">
-                  <prop type="object" name="properties" clientFlatten="True">
-                    <prop type="array<object>" name="assignedTo" arg="$payload.properties.assignedTo" identifiers="entity">
+                  <prop type="object" name="properties" required="True" clientFlatten="True">
+                    <prop type="array<object>" name="assignedTo" arg="$payload.properties.assignedTo">
                       <item type="object">
                         <prop type="boolean" name="deprecated" arg="$payload.properties.assignedTo[].deprecated"/>
                         <prop type="string" name="entity" arg="$payload.properties.assignedTo[].entity">
@@ -240,8 +244,8 @@
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.ApiCenter/services/{}/metadataSchemas/{}"/>
                   </prop>
                   <prop readOnly="True" type="string" name="name"/>
-                  <prop type="object" name="properties" clientFlatten="True">
-                    <prop type="array<object>" name="assignedTo" identifiers="entity">
+                  <prop type="object" name="properties" required="True" clientFlatten="True">
+                    <prop type="array<object>" name="assignedTo">
                       <item type="object">
                         <prop type="boolean" name="deprecated"/>
                         <prop type="string" name="entity">
@@ -299,12 +303,12 @@
       <argGroup name="">
         <arg type="string" var="$Path.metadataSchemaName" options="metadata-schema-name metadata-schema name" required="True" group="" idPart="child_name_1">
           <help short="The name of the metadata schema."/>
-          <format maxLength="90" minLength="1"/>
+          <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="string" var="$Path.serviceName" options="service-name service s" required="True" group="" idPart="name">
           <help short="The name of the API Center service."/>
-          <format maxLength="90" minLength="1"/>
+          <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
@@ -313,13 +317,13 @@
           <request method="head">
             <path>
               <param type="string" name="metadataSchemaName" arg="$Path.metadataSchemaName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
                 <format maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="serviceName" arg="$Path.serviceName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -346,12 +350,12 @@
       <argGroup name="">
         <arg type="string" var="$Path.metadataSchemaName" options="metadata-schema-name metadata-schema name" required="True" group="" idPart="child_name_1">
           <help short="The name of the metadata schema."/>
-          <format maxLength="90" minLength="1"/>
+          <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="string" var="$Path.serviceName" options="service-name service s" required="True" group="" idPart="name">
           <help short="The name of the API Center service."/>
-          <format maxLength="90" minLength="1"/>
+          <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
@@ -359,7 +363,9 @@
         <arg nullable="True" type="array<object>" var="$payload.properties.assignedTo" options="assignments" group="Properties">
           <help short="Defines the assignment scope for the custom metadata, e.g. &quot;[{entity:api,required:true,deprecated:false}]&quot;. The available entity values are: api, deployment, environment."/>
           <item nullable="True" type="object">
-            <arg nullable="True" type="boolean" var="$payload.properties.assignedTo[].deprecated" options="deprecated"/>
+            <arg nullable="True" type="boolean" var="$payload.properties.assignedTo[].deprecated" options="deprecated">
+              <help short="Deprecated assignment"/>
+            </arg>
             <arg nullable="True" type="string" var="$payload.properties.assignedTo[].entity" options="entity">
               <help short="The entities this metadata schema component gets applied to."/>
               <enum>
@@ -368,7 +374,9 @@
                 <item name="environment" value="&quot;environment&quot;"/>
               </enum>
             </arg>
-            <arg nullable="True" type="boolean" var="$payload.properties.assignedTo[].required" options="required"/>
+            <arg nullable="True" type="boolean" var="$payload.properties.assignedTo[].required" options="required">
+              <help short="Required assignment"/>
+            </arg>
           </item>
         </arg>
         <arg type="string" var="$payload.properties.schema" options="schema" group="Properties">
@@ -380,13 +388,13 @@
           <request method="get">
             <path>
               <param type="string" name="metadataSchemaName" arg="$Path.metadataSchemaName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
                 <format maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="serviceName" arg="$Path.serviceName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -408,8 +416,8 @@
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.ApiCenter/services/{}/metadataSchemas/{}"/>
                   </prop>
                   <prop readOnly="True" type="string" name="name"/>
-                  <prop type="object" name="properties" clientFlatten="True">
-                    <prop type="array<object>" name="assignedTo" identifiers="entity">
+                  <prop type="object" name="properties" required="True" clientFlatten="True">
+                    <prop type="array<object>" name="assignedTo">
                       <item type="object">
                         <prop type="boolean" name="deprecated"/>
                         <prop type="string" name="entity">
@@ -464,8 +472,8 @@
         <instanceUpdate ref="$Instance">
           <json>
             <schema type="object" name="payload" required="True" clientFlatten="True">
-              <prop type="object" name="properties" clientFlatten="True">
-                <prop type="array<object>" name="assignedTo" arg="$payload.properties.assignedTo" identifiers="entity">
+              <prop type="object" name="properties" required="True" clientFlatten="True">
+                <prop type="array<object>" name="assignedTo" arg="$payload.properties.assignedTo">
                   <item type="object">
                     <prop type="boolean" name="deprecated" arg="$payload.properties.assignedTo[].deprecated"/>
                     <prop type="string" name="entity" arg="$payload.properties.assignedTo[].entity">
@@ -489,13 +497,13 @@
           <request method="put">
             <path>
               <param type="string" name="metadataSchemaName" arg="$Path.metadataSchemaName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
                 <format maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="serviceName" arg="$Path.serviceName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>

@@ -8,7 +8,7 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="string" var="$Path.serviceName" options="service-name service name s" required="True" group="" idPart="name">
           <help short="The name of the API Center service."/>
-          <format maxLength="90" minLength="1"/>
+          <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
@@ -20,7 +20,7 @@
                 <format maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="serviceName" arg="$Path.serviceName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -61,6 +61,7 @@
                   <prop type="ResourceLocation" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties" clientFlatten="True">
+                    <prop readOnly="True" type="string" name="dataApiHostname"/>
                     <prop readOnly="True" type="string" name="provisioningState">
                       <enum>
                         <item value="&quot;Canceled&quot;"/>
@@ -118,7 +119,7 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="string" var="$Path.serviceName" options="service-name service name s" required="True" group="" idPart="name">
           <help short="The name of the API Center service."/>
-          <format maxLength="90" minLength="1"/>
+          <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
@@ -130,7 +131,7 @@
                 <format maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="serviceName" arg="$Path.serviceName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -159,12 +160,12 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="string" var="$Path.serviceName" options="service-name service name s" required="True" group="" idPart="name">
           <help short="The name of the API Center service."/>
-          <format maxLength="90" minLength="1"/>
+          <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="object" var="$payload.identity" options="identity" group="">
-          <help short="Managed service identity (system assigned and/or user assigned identities)"/>
-          <arg type="string" var="$payload.identity.type" options="type" required="True">
+        <arg type="object" var="$resource.identity" options="identity" group="">
+          <help short="The managed service identities assigned to this resource."/>
+          <arg type="string" var="$resource.identity.type" options="type" required="True">
             <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
             <enum>
               <item name="None" value="&quot;None&quot;"/>
@@ -173,7 +174,7 @@
               <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
             </enum>
           </arg>
-          <arg type="object" var="$payload.identity.userAssignedIdentities" options="user-assigned-identities">
+          <arg type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities">
             <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
             <additionalProp>
               <item nullable="True" type="object">
@@ -182,10 +183,10 @@
             </additionalProp>
           </arg>
         </arg>
-        <arg type="ResourceLocation" var="$payload.location" options="location l" group="">
+        <arg type="ResourceLocation" var="$resource.location" options="location l" required="True" group="">
           <help short="The geo-location where the resource lives"/>
         </arg>
-        <arg type="object" var="$payload.tags" options="tags" group="">
+        <arg type="object" var="$resource.tags" options="tags" group="">
           <help short="Resource tags."/>
           <additionalProp>
             <item type="string"/>
@@ -200,7 +201,7 @@
                 <format maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="serviceName" arg="$Path.serviceName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -212,9 +213,9 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="payload" clientFlatten="True">
-                  <prop type="IdentityObject" name="identity" arg="$payload.identity">
-                    <prop type="string" name="type" arg="$payload.identity.type" required="True">
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="IdentityObject" name="identity" arg="$resource.identity">
+                    <prop type="string" name="type" arg="$resource.identity.type" required="True">
                       <enum>
                         <item value="&quot;None&quot;"/>
                         <item value="&quot;SystemAssigned&quot;"/>
@@ -222,14 +223,14 @@
                         <item value="&quot;UserAssigned&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="userAssignedIdentities" arg="$payload.identity.userAssignedIdentities">
+                    <prop type="object" name="userAssignedIdentities" arg="$resource.identity.userAssignedIdentities">
                       <additionalProp>
                         <item nullable="True" type="object"/>
                       </additionalProp>
                     </prop>
                   </prop>
-                  <prop type="ResourceLocation" name="location" arg="$payload.location" required="True"/>
-                  <prop type="object" name="tags" arg="$payload.tags">
+                  <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
+                  <prop type="object" name="tags" arg="$resource.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>
@@ -268,6 +269,7 @@
                   <prop type="ResourceLocation" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties" clientFlatten="True">
+                    <prop readOnly="True" type="string" name="dataApiHostname"/>
                     <prop readOnly="True" type="string" name="provisioningState">
                       <enum>
                         <item value="&quot;Canceled&quot;"/>
@@ -325,14 +327,12 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="string" var="$Path.serviceName" options="service-name service name s" required="True" group="" idPart="name">
           <help short="The name of the API Center service."/>
-          <format maxLength="90" minLength="1"/>
+          <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-      </argGroup>
-      <argGroup name="Payload">
-        <arg nullable="True" type="object" var="$payload.identity" options="identity" group="Payload">
-          <help short="Managed service identity (system assigned and/or user assigned identities)"/>
-          <arg type="string" var="$payload.identity.type" options="type">
+        <arg nullable="True" type="object" var="$resource.identity" options="identity" group="">
+          <help short="The managed service identities assigned to this resource."/>
+          <arg type="string" var="$resource.identity.type" options="type">
             <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
             <enum>
               <item name="None" value="&quot;None&quot;"/>
@@ -341,7 +341,7 @@
               <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
             </enum>
           </arg>
-          <arg nullable="True" type="object" var="$payload.identity.userAssignedIdentities" options="user-assigned-identities">
+          <arg nullable="True" type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities">
             <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
             <additionalProp>
               <item nullable="True" type="object">
@@ -350,7 +350,7 @@
             </additionalProp>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$payload.tags" options="tags" group="Payload">
+        <arg nullable="True" type="object" var="$resource.tags" options="tags" group="">
           <help short="Resource tags."/>
           <additionalProp>
             <item nullable="True" type="string"/>
@@ -365,7 +365,7 @@
                 <format maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="serviceName" arg="$Path.serviceName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -406,6 +406,7 @@
                   <prop type="ResourceLocation" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties" clientFlatten="True">
+                    <prop readOnly="True" type="string" name="dataApiHostname"/>
                     <prop readOnly="True" type="string" name="provisioningState">
                       <enum>
                         <item value="&quot;Canceled&quot;"/>
@@ -458,9 +459,9 @@
       <operation>
         <instanceUpdate ref="$Instance">
           <json>
-            <schema type="object" name="payload" clientFlatten="True">
-              <prop type="IdentityObject" name="identity" arg="$payload.identity">
-                <prop type="string" name="type" arg="$payload.identity.type" required="True">
+            <schema type="object" name="resource" required="True" clientFlatten="True">
+              <prop type="IdentityObject" name="identity" arg="$resource.identity">
+                <prop type="string" name="type" arg="$resource.identity.type" required="True">
                   <enum>
                     <item value="&quot;None&quot;"/>
                     <item value="&quot;SystemAssigned&quot;"/>
@@ -468,13 +469,13 @@
                     <item value="&quot;UserAssigned&quot;"/>
                   </enum>
                 </prop>
-                <prop type="object" name="userAssignedIdentities" arg="$payload.identity.userAssignedIdentities">
+                <prop type="object" name="userAssignedIdentities" arg="$resource.identity.userAssignedIdentities">
                   <additionalProp>
                     <item nullable="True" type="object"/>
                   </additionalProp>
                 </prop>
               </prop>
-              <prop type="object" name="tags" arg="$payload.tags">
+              <prop type="object" name="tags" arg="$resource.tags">
                 <additionalProp>
                   <item type="string"/>
                 </additionalProp>
@@ -491,7 +492,7 @@
                 <format maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="serviceName" arg="$Path.serviceName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>

@@ -8,7 +8,7 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="string" var="$Path.serviceName" options="service-name service name s" required="True" group="" idPart="name">
           <help short="The name of the API Center service."/>
-          <format maxLength="90" minLength="1"/>
+          <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
@@ -31,7 +31,7 @@
                 <format maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="serviceName" arg="$Path.serviceName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -70,7 +70,12 @@
               </json>
             </body>
           </response>
-          <response statusCode="202"/>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
           <response isError="True">
             <body>
               <json>
