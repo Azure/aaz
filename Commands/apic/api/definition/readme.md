@@ -8,7 +8,7 @@ Commands to manage API definitions in API Center
 : Checks if specified API definition exists.
 
 - [create](/Commands/apic/api/definition/_create.md)
-: Create a new API definition.
+: Create a new API definition or update an existing API definition.
 
 - [delete](/Commands/apic/api/definition/_delete.md)
 : Delete specified API definition.

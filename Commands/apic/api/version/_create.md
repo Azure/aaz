@@ -1,6 +1,6 @@
 # [Command] _apic api version create_
 
-Create a new API version.
+Create a new API version or update an existing API version.
 
 ## Versions
 

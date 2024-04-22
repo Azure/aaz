@@ -1,6 +1,6 @@
 # [Command] _apic metadata create_
 
-Create a new metadata schema.
+Create a new metadata schema or update an existing metadata schema.
 
 ## Versions
 

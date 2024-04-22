@@ -1,6 +1,6 @@
 # [Command] _apic api deployment create_
 
-Create a new API deployment.
+Create a new API deployment or update an existing API deployment.
 
 ## Versions
 

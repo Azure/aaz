@@ -8,7 +8,7 @@ Commands to manage API versions in API Center
 : Checks if specified API version exists.
 
 - [create](/Commands/apic/api/version/_create.md)
-: Create a new API version.
+: Create a new API version or update an existing API version.
 
 - [delete](/Commands/apic/api/version/_delete.md)
 : Delete specified API version

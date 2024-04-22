@@ -1,6 +1,6 @@
 # [Command] _apic api definition create_
 
-Create a new API definition.
+Create a new API definition or update an existing API definition.
 
 ## Versions
 

@@ -8,7 +8,7 @@ Commands to manage API deployments in API Center
 : Checks if specified API deployment exists.
 
 - [create](/Commands/apic/api/deployment/_create.md)
-: Create a new API deployment.
+: Create a new API deployment or update an existing API deployment.
 
 - [delete](/Commands/apic/api/deployment/_delete.md)
 : Delete API deployment.

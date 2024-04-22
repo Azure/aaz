@@ -1,6 +1,6 @@
 # [Command] _apic api create_
 
-Register a new API.
+Register a new API or update an existing API.
 
 ## Versions
 

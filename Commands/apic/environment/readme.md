@@ -8,7 +8,7 @@ Commands to manage environments in API Center
 : Checks if specified environment exists.
 
 - [create](/Commands/apic/environment/_create.md)
-: Create a new environment.
+: Create a new environment or update an existing environment.
 
 - [delete](/Commands/apic/environment/_delete.md)
 : Delete the environment.

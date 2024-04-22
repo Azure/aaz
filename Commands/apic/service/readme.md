@@ -10,7 +10,7 @@ Manage an Azure API Center service instance.
 ## Commands
 
 - [create](/Commands/apic/service/_create.md)
-: Creates an instance of an Azure API Center service.
+: Creates an instance or update an existing instance of an Azure API Center service.
 
 - [delete](/Commands/apic/service/_delete.md)
 : Deletes an instance of an Azure API Center service.

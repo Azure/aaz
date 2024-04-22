@@ -8,7 +8,7 @@ Commands to manage metadata schemas in API Center
 : Checks if specified metadata schema exists.
 
 - [create](/Commands/apic/metadata/_create.md)
-: Create a new metadata schema.
+: Create a new metadata schema or update an existing metadata schema.
 
 - [delete](/Commands/apic/metadata/_delete.md)
 : Delete specified metadata schema.

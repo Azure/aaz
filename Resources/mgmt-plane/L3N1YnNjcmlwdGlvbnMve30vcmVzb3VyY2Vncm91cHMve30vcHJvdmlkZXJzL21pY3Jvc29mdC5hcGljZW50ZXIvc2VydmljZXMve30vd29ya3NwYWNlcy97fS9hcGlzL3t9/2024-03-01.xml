@@ -71,9 +71,7 @@
                         </prop>
                       </item>
                     </prop>
-                    <prop type="object" name="customProperties">
-                      <additionalProp anyType="True"/>
-                    </prop>
+                    <prop type="object" name="customProperties"/>
                     <prop type="string" name="description">
                       <format maxLength="1000"/>
                     </prop>
@@ -268,7 +266,6 @@
         <arg type="object" var="$payload.properties.customProperties" options="custom-properties" group="Properties">
           <blank value="{}"/>
           <help short="The custom metadata defined for API catalog entities."/>
-          <additionalProp anyType="True"/>
         </arg>
         <arg type="string" var="$payload.properties.description" options="description" group="Properties">
           <help short="Description of the API."/>
@@ -374,9 +371,7 @@
                         </prop>
                       </item>
                     </prop>
-                    <prop type="object" name="customProperties" arg="$payload.properties.customProperties">
-                      <additionalProp anyType="True"/>
-                    </prop>
+                    <prop type="object" name="customProperties" arg="$payload.properties.customProperties"/>
                     <prop type="string" name="description" arg="$payload.properties.description">
                       <format maxLength="1000"/>
                     </prop>
@@ -455,9 +450,7 @@
                         </prop>
                       </item>
                     </prop>
-                    <prop type="object" name="customProperties">
-                      <additionalProp anyType="True"/>
-                    </prop>
+                    <prop type="object" name="customProperties"/>
                     <prop type="string" name="description">
                       <format maxLength="1000"/>
                     </prop>
@@ -556,6 +549,61 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
+    <command name="check-exists" version="2024-03-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.apicenter/services/{}/workspaces/{}/apis/{}" version="2024-03-01" swagger="mgmt-plane/apicenter/ResourceProviders/Microsoft.ApiCenter/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXBpQ2VudGVyL3NlcnZpY2VzL3tzZXJ2aWNlTmFtZX0vd29ya3NwYWNlcy97d29ya3NwYWNlTmFtZX0vYXBpcy97YXBpTmFtZX0=/V/MjAyNC0wMy0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.apiName" options="api-id" required="True" group="" idPart="child_name_2">
+          <help short="The id of the API."/>
+          <format maxLength="90" minLength="1"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.serviceName" options="service-name service s" required="True" group="" idPart="name">
+          <help short="The name of the API Center service."/>
+          <format maxLength="90" minLength="1"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.workspaceName" options="workspace-name workspace w" required="True" group="" idPart="child_name_1">
+          <help short="The name of the workspace."/>
+          <default value="&quot;default&quot;"/>
+          <format maxLength="90" minLength="1"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Apis_Head">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}">
+          <request method="head">
+            <path>
+              <param type="string" name="apiName" arg="$Path.apiName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="serviceName" arg="$Path.serviceName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="workspaceName" arg="$Path.workspaceName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-03-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
     <command name="update" version="2024-03-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.apicenter/services/{}/workspaces/{}/apis/{}" version="2024-03-01" swagger="mgmt-plane/apicenter/ResourceProviders/Microsoft.ApiCenter/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXBpQ2VudGVyL3NlcnZpY2VzL3tzZXJ2aWNlTmFtZX0vd29ya3NwYWNlcy97d29ya3NwYWNlTmFtZX0vYXBpcy97YXBpTmFtZX0=/V/MjAyNC0wMy0wMQ=="/>
       <argGroup name="">
@@ -595,7 +643,6 @@
         <arg nullable="True" type="object" var="$payload.properties.customProperties" options="custom-properties" group="Properties">
           <blank value="{}"/>
           <help short="The custom metadata defined for API catalog entities."/>
-          <additionalProp anyType="True"/>
         </arg>
         <arg nullable="True" type="string" var="$payload.properties.description" options="description" group="Properties">
           <help short="Description of the API."/>
@@ -710,9 +757,7 @@
                         </prop>
                       </item>
                     </prop>
-                    <prop type="object" name="customProperties">
-                      <additionalProp anyType="True"/>
-                    </prop>
+                    <prop type="object" name="customProperties"/>
                     <prop type="string" name="description">
                       <format maxLength="1000"/>
                     </prop>
@@ -827,9 +872,7 @@
                     </prop>
                   </item>
                 </prop>
-                <prop type="object" name="customProperties" arg="$payload.properties.customProperties">
-                  <additionalProp anyType="True"/>
-                </prop>
+                <prop type="object" name="customProperties" arg="$payload.properties.customProperties"/>
                 <prop type="string" name="description" arg="$payload.properties.description">
                   <format maxLength="1000"/>
                 </prop>
@@ -931,61 +974,6 @@
         </http>
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
-    </command>
-    <command name="check-exists" version="2024-03-01" confirmation="">
-      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.apicenter/services/{}/workspaces/{}/apis/{}" version="2024-03-01" swagger="mgmt-plane/apicenter/ResourceProviders/Microsoft.ApiCenter/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXBpQ2VudGVyL3NlcnZpY2VzL3tzZXJ2aWNlTmFtZX0vd29ya3NwYWNlcy97d29ya3NwYWNlTmFtZX0vYXBpcy97YXBpTmFtZX0=/V/MjAyNC0wMy0wMQ=="/>
-      <argGroup name="">
-        <arg type="string" var="$Path.apiName" options="api-id" required="True" group="" idPart="child_name_2">
-          <help short="The id of the API."/>
-          <format maxLength="90" minLength="1"/>
-        </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
-        <arg type="string" var="$Path.serviceName" options="service-name service s" required="True" group="" idPart="name">
-          <help short="The name of the API Center service."/>
-          <format maxLength="90" minLength="1"/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-        <arg type="string" var="$Path.workspaceName" options="workspace-name workspace w" required="True" group="" idPart="child_name_1">
-          <help short="The name of the workspace."/>
-          <default value="&quot;default&quot;"/>
-          <format maxLength="90" minLength="1"/>
-        </arg>
-      </argGroup>
-      <operation operationId="Apis_Head">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/services/{serviceName}/workspaces/{workspaceName}/apis/{apiName}">
-          <request method="head">
-            <path>
-              <param type="string" name="apiName" arg="$Path.apiName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
-              <param type="string" name="serviceName" arg="$Path.serviceName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
-              <param type="string" name="workspaceName" arg="$Path.workspaceName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
-            </path>
-            <query>
-              <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="&quot;2024-03-01&quot;"/>
-                <format minLength="1"/>
-              </const>
-            </query>
-          </request>
-          <response statusCode="200"/>
-          <response isError="True">
-            <body>
-              <json>
-                <schema type="@MgmtErrorFormat"/>
-              </json>
-            </body>
-          </response>
-        </http>
-      </operation>
     </command>
   </commandGroup>
 </CodeGen>

@@ -1,6 +1,6 @@
 # [Command] _apic environment create_
 
-Create a new environment.
+Create a new environment or update an existing environment.
 
 ## Versions
 

@@ -19,7 +19,7 @@ Commands to manage APIs in API Center
 : Checks if specified API exists.
 
 - [create](/Commands/apic/api/_create.md)
-: Register a new API.
+: Register a new API or update an existing API.
 
 - [delete](/Commands/apic/api/_delete.md)
 : Delete specified API.
