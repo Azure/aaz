@@ -266,6 +266,9 @@
 - [storagesync](/Commands/storagesync/readme.md)
 : Manage Azure File Sync.
 
+- [trustedsigning](/Commands/trustedsigning/readme.md)
+: Manage trusted signing account
+
 - [tsi](/Commands/tsi/readme.md)
 : Manage Azure Time Series Insights.
 
