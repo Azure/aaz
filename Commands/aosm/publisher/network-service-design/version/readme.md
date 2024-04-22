@@ -11,7 +11,7 @@ Commands to manage network service design version resources.
 : Delete the specified network service design version.
 
 - [list](/Commands/aosm/publisher/network-service-design/version/_list.md)
-: List information about a list of network service design versions under a network service design group.
+: List information about the network service design versions available under the specified network service design group.
 
 - [show](/Commands/aosm/publisher/network-service-design/version/_show.md)
 : Get information about a network service design version.

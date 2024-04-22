@@ -11,7 +11,7 @@ Commands to manage network function definition version resources.
 : Delete the specified network function definition version.
 
 - [list](/Commands/aosm/publisher/network-function-definition/version/_list.md)
-: List information about a list of network function definition versions under a network function definition group.
+: List information about the network function definition versions available in the specified network function definition group.
 
 - [show](/Commands/aosm/publisher/network-function-definition/version/_show.md)
 : Get information about a network function definition version.
