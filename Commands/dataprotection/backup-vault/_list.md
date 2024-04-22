@@ -72,7 +72,7 @@ Gets list of backup vault in a subscription or in a resource group.
         dataprotection backup-vault list -g sarath-rg
     ```
 
-### [2024-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhcHJvdGVjdGlvbi9iYWNrdXB2YXVsdHM=/2024-04-01.xml) **Experimental**
+### [2024-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhcHJvdGVjdGlvbi9iYWNrdXB2YXVsdHM=/2024-04-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.dataprotection/backupvaults 2024-04-01 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults 2024-04-01 -->

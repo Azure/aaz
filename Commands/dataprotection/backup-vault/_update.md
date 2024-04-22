@@ -48,7 +48,7 @@ Updates a BackupVault resource belonging to a resource group. For example, updat
         dataprotection backup-vault update --azure-monitor-alerts-for-job-failures "Enabled" --tags newKey="newVal" --resource-group "SampleResourceGroup" --vault-name "swaggerExample"
     ```
 
-### [2024-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhcHJvdGVjdGlvbi9iYWNrdXB2YXVsdHMve30=/2024-04-01.xml) **Experimental**
+### [2024-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhcHJvdGVjdGlvbi9iYWNrdXB2YXVsdHMve30=/2024-04-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{} 2024-04-01 -->
 
