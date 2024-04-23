@@ -1,6 +1,6 @@
 # [Group] _self-help simplified-solution_
 
-solution command will help you create simplified solutions for azure resources.
+Solution command will help you create simplified solutions for azure resources.
 
 ## Commands
 

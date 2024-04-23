@@ -4,13 +4,13 @@ Get Self Help Solutions for a given solutionId. Self Help Solutions consist of r
 
 ## Versions
 
-### [2024-03-01-preview](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuaGVscC9zZWxmaGVscC97fQ==/2024-03-01-preview.xml) **Stable**
+### [2024-03-01-preview](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuaGVscC9zZWxmaGVscC97fQ==/2024-03-01-preview.xml) **Preview**
 
 <!-- mgmt-plane /providers/microsoft.help/selfhelp/{} 2024-03-01-preview -->
 
 #### examples
 
-- Create Simplified Solution at Resource Level
+- Get self help solution result
   ```bash
       self-help solution-self-help show --solution-id solution-id
   ```

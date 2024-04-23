@@ -5,24 +5,24 @@ Azure SelfHelp will help you troubleshoot issues with Azure resources.
 ## Subgroups
 
 - [diagnostic](/Commands/self-help/diagnostic/readme.md)
-: diagnostic command will help you create diagnostics for azure resources.
+  : diagnostic command will help you create diagnostics for azure resources.
 
 - [discovery-solution](/Commands/self-help/discovery-solution/readme.md)
-: discovery-solution command will help you discover available solutions based on your resource type and problem classification Id.
+  : discovery-solution command will help you discover available solutions based on your resource type and problem classification Id.
 
 - [simplified-solution](/Commands/self-help/simplified-solution/readme.md)
-: solution command will help you create simplified solutions for azure resources.
+  : Solution command will help you create simplified solutions for azure resources.
 
 - [solution](/Commands/self-help/solution/readme.md)
-: solution command will help you create solutions for azure resources.
+  : solution command will help you create solutions for azure resources.
 
 - [solution-self-help](/Commands/self-help/solution-self-help/readme.md)
-: solution command will help you get self help solutions for azure resources.
+  : solution command will help you get self help solutions for azure resources.
 
 - [troubleshooter](/Commands/self-help/troubleshooter/readme.md)
-: troubleshooter command will help you create troubleshooters for azure resources.
+  : troubleshooter command will help you create troubleshooters for azure resources.
 
 ## Commands
 
 - [check-name-availability](/Commands/self-help/_check-name-availability.md)
-: This API is used to check the uniqueness of a resource name used for a diagnostic, troubleshooter or solutions
+  : This API is used to check the uniqueness of a resource name used for a diagnostic, troubleshooter or solutions
