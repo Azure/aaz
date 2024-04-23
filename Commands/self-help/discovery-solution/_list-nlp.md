@@ -4,7 +4,7 @@ Search for relevant Azure Diagnostics, Solutions and Troubleshooters using a nat
 
 ## Versions
 
-### [2024-03-01-preview](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuaGVscC9kaXNjb3ZlcnNvbHV0aW9ucw==/2024-03-01-preview.xml) **Stable**
+### [2024-03-01-preview](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuaGVscC9kaXNjb3ZlcnNvbHV0aW9ucw==/2024-03-01-preview.xml) **Preview**
 
 <!-- mgmt-plane /providers/microsoft.help/discoversolutions 2024-03-01-preview -->
 

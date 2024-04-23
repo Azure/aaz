@@ -4,7 +4,7 @@ Warm up the solution resource by preloading asynchronous diagnostics results int
 
 ## Versions
 
-### [2024-03-01-preview](/Resources/mgmt-plane/L3tzY29wZX0vcHJvdmlkZXJzL21pY3Jvc29mdC5oZWxwL3NvbHV0aW9ucy97fS93YXJtdXA=/2024-03-01-preview.xml) **Stable**
+### [2024-03-01-preview](/Resources/mgmt-plane/L3tzY29wZX0vcHJvdmlkZXJzL21pY3Jvc29mdC5oZWxwL3NvbHV0aW9ucy97fS93YXJtdXA=/2024-03-01-preview.xml) **Preview**
 
 <!-- mgmt-plane /{scope}/providers/microsoft.help/solutions/{}/warmup 2024-03-01-preview -->
 

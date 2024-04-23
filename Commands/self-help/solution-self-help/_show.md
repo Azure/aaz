@@ -11,6 +11,6 @@ Get Self Help Solutions for a given solutionId. Self Help Solutions consist of r
 #### examples
 
 - Get self help solution result
-  ```bash
-      self-help solution-self-help show --solution-id solution-id
-  ```
+    ```bash
+        self-help solution-self-help show --solution-id solution-id
+    ```

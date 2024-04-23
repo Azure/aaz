@@ -11,6 +11,6 @@ Get the simplified Solutions using the applicable solutionResourceName while cre
 #### examples
 
 - Show simplified Solution at Resource Level
-  ```bash
-      self-help simplified-solution show --solution-name solution-name --scope 'subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read'
-  ```
+    ```bash
+        self-help simplified-solution show --solution-name solution-name --scope 'subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read'
+    ```
