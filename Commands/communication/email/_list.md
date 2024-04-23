@@ -11,8 +11,12 @@ List requests to list all resources in a subscription.
 
 #### examples
 
-- Get all resources from a subscription/resource group
+- Get all resources from a subscription
     ```bash
         communication email list --subscription SubscriptionId
+    ```
+
+- Get all resources from a resource group
+    ```bash
         communication email list -g ResourceGroup
     ```
