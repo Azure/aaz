@@ -25,3 +25,14 @@ List the relevant Azure diagnostics and solutions using problemClassificationId 
     ```bash
         self-help discovery-solution list --filter "ProblemClassificationId eq '00000000-0000-0000-0000-000000000000'" --scope 'subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read'
     ```
+
+### [2024-03-01-preview](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuaGVscC9kaXNjb3Zlcnlzb2x1dGlvbnM=/2024-03-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /providers/microsoft.help/discoverysolutions 2024-03-01-preview -->
+
+#### examples
+
+- Discover Solutions
+    ```bash
+        self-help discovery-solution list --filter "ProblemClassificationId eq '00000000-0000-0000-0000-000000000000'" --scope 'subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read'
+    ```
