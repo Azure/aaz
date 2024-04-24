@@ -1,6 +1,6 @@
 # [Command] _apic service import-from-apim_
 
-Imports from APIM instance.
+Imports APIs from an Azure API Management service instance.
 
 ## Versions
 

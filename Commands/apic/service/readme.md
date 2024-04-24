@@ -16,7 +16,7 @@ Manage an Azure API Center service instance.
 : Deletes an instance of an Azure API Center service.
 
 - [import-from-apim](/Commands/apic/service/_import-from-apim.md)
-: Imports from APIM instance.
+: Imports APIs from an Azure API Management service instance.
 
 - [list](/Commands/apic/service/_list.md)
 : Lists Azure API Center services within an Azure subscription.
