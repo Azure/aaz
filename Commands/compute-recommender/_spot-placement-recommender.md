@@ -1,6 +1,6 @@
 # [Command] _compute-recommender spot-placement-recommender_
 
-Generates placement scores for Spot VM skus.
+Generate placement scores for Spot VM skus.
 
 ## Versions
 
