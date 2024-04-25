@@ -17,7 +17,7 @@ Get details of the metadata schema.
 
 - Show schema details 2
     ```bash
-        az apic metadata show --resource-group api-center-test --service-name contoso --name "testchoices"
+        apic metadata show --resource-group api-center-test --service-name contoso --name "testchoices"
     ```
 
 ### [2024-05-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5hcGljZW50ZXIvc2VydmljZXMve30vbWV0YWRhdGFzY2hlbWFzL3t9/2024-05-01.xml) **Stable**

@@ -12,7 +12,7 @@ Delete specified metadata schema.
 
 - Delete Metadata Schema
     ```bash
-        az apic metadata delete --resource-group api-center-test --service-name contoso --name "test1"
+        apic metadata delete --resource-group api-center-test --service-name contoso --name "test1"
     ```
 
 - Delete schema
