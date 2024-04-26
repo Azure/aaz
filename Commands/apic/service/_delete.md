@@ -1,6 +1,6 @@
 # [Command] _apic service delete_
 
-Delete service
+Deletes an instance of an Azure API Center service.
 
 ## Versions
 
