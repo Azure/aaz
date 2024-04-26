@@ -140,6 +140,9 @@
 - [image](/Commands/image/readme.md)
 : Manage custom virtual machine images.
 
+- [k8s-runtime](/Commands/k8s-runtime/readme.md)
+: Manage Arc Kubernetes Runtime resources
+
 - [load](/Commands/load/readme.md)
 : Manage Azure Load Testing resources.
 
