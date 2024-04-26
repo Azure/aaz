@@ -10,9 +10,13 @@ Create a new metadata schema or update an existing metadata schema.
 
 #### examples
 
-- Create schema
+- Create metadata example 1
     ```bash
         apic metadata create --resource-group api-center-test --service-name contoso --name "test1" --schema '{\"type\":\"string\", \"title\":\"First name\", \"pattern\": \"^[a-zA-Z0-9]+$\"}' --assignments '[{entity:api,required:true,deprecated:false}]'
+    ```
+
+- Create metadata example 2
+    ```bash
         apic metadata create --resource-group api-center-test --service-name contoso  --name testregion --schema '{\"type\":\"string\",\"title\":\"testregion\",\"oneOf\":[{\"const\":\"Region1\",\"description\":\"\"},{\"const\":\"Region2\",\"description\":\"\"},{\"const\":\"Region3\",\"description\":\"\"}]}' --assignments '[{entity:api,required:true,deprecated:false},{entity:environment,required:true,deprecated:false}]'
     ```
 
