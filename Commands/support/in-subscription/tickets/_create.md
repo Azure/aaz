@@ -37,7 +37,7 @@ Creates a new support ticket for Quota increase, Technical, Billing, and Subscri
 
 - Create a ticket to request an increase in Batch accounts quota for a subscription
     ```bash
-        support in-subscription tickets create --contact-country "USA" --contact-email "abc@contoso.com" --contact-first-name "abc" --contact-language "en-us" --contact-last-name "xyz" --contact-method "email" --contact-timezone "Pacific Standard Time" --description "my description" --advanced-diagnostic-consent "Yes" --problem-classification "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/machine_learning_service_problemClassification_guid" --severity "moderate" --ticket-name "BatchAccountQuotaIncreaseRequest" --title "Request for Batch Accounts Quota Increase"
+        support in-subscription tickets create --contact-country "USA" --contact-email "abc@contoso.com" --contact-first-name "abc" --contact-language "en-us" --contact-last-name "xyz" --contact-method "email" --contact-timezone "Pacific Standard Time" --description "my description" --advanced-diagnostic-consent "Yes" --problem-classification "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/batch_problemClassification_guid" --severity "moderate" --ticket-name "BatchAccountQuotaIncreaseRequest" --title "Request for Batch Accounts Quota Increase"
     ```
 
 - Create a ticket to request an increase in Compute VM Cores quota
@@ -52,7 +52,7 @@ Creates a new support ticket for Quota increase, Technical, Billing, and Subscri
 
 - Create a ticket to request an increase in DTUs for SQL Database
     ```bash
-        support in-subscription tickets create --contact-country "USA" --contact-email "abc@contoso.com" --contact-first-name "abc" --contact-language "en-us" --contact-last-name "xyz" --contact-method "email" --contact-timezone "Pacific Standard Time" --description "my description" --advanced-diagnostic-consent "Yes" --problem-classification "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/sql_database_problemClassification_guid" --severity "moderate" --ticket-name "SQLDatabaseDTUsQuotaIncreaseRequest" --title "Request for DTUs Quota Increase in SQL Database" --quota-change-version "1.0" --quota-change-request-sub-type "DTUs" --quota-change-requests '[{"region":"EastUS","payload":"{"ServerName":"testserver","NewLimit":54000}"}]'
+        support in-subscription tickets create --contact-country "USA" --contact-email "abc@contoso.com" --contact-first-name "abc" --contact-language "en-us" --contact-last-name "xyz" --contact-method "email" --contact-timezone "Pacific Standard Time" --description "my description" --advanced-diagnostic-consent "Yes" --problem-classification "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/sql_database_problemClassification_guid" --severity "moderate" --ticket-name "SQLDatabaseDTUsQuotaIncreaseRequest" --title "Request for DTUs Quota Increase in SQL Database" --quota-change-version "1.0" --quota-change-subtype "DTUs" --quota-change-requests "[{region:'EastUS',payload:'{ServerName:testserver,NewLimit:54000}'}]"
     ```
 
 - Create a ticket to request an increase in Low-priority cores for a Batch account
@@ -62,7 +62,7 @@ Creates a new support ticket for Quota increase, Technical, Billing, and Subscri
 
 - Create a ticket to request an increase in Low-priority cores for Machine Learning service
     ```bash
-        support in-subscription tickets create --contact-country "USA" --contact-email "abc@contoso.com" --contact-first-name "abc" --contact-language "en-us" --contact-last-name "xyz" --contact-method "email" --contact-timezone "Pacific Standard Time" --description "my description" --advanced-diagnostic-consent  "Yes" --problem-classification "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/batch_problemClassification_guid" --severity "moderate" --ticket-name "MachineLearningLowPriorityCoresQuotaIncreaseRequest" --title "Request for Low-priority Cores Quota Increase in Machine Learning Service" --quota-change-version "1.0" --quota-change-subtype "BatchAml" --quota-change-requests "[{region:'EastUS',payload:'{NewLimit:200,Type:LowPriority}'}]"
+        support in-subscription tickets create --contact-country "USA" --contact-email "abc@contoso.com" --contact-first-name "abc" --contact-language "en-us" --contact-last-name "xyz" --contact-method "email" --contact-timezone "Pacific Standard Time" --description "my description" --advanced-diagnostic-consent  "Yes" --problem-classification "/providers/Microsoft.Support/services/quota_service_guid/problemClassifications/machine_learning_service_problemClassification_guid" --severity "moderate" --ticket-name "MachineLearningLowPriorityCoresQuotaIncreaseRequest" --title "Request for Low-priority Cores Quota Increase in Machine Learning Service" --quota-change-version "1.0" --quota-change-subtype "BatchAml" --quota-change-requests "[{region:'EastUS',payload:'{NewLimit:200,Type:LowPriority}'}]"
     ```
 
 - Create a ticket for Generic Quota increase for any Azure Service
