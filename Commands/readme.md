@@ -116,6 +116,9 @@
 - [dynatrace](/Commands/dynatrace/readme.md)
 : Manage dynatrace
 
+- [edge-zones](/Commands/edge-zones/readme.md)
+: Manage Edge Zone resources
+
 - [elastic](/Commands/elastic/readme.md)
 : Manage Microsoft Elastic.
 
@@ -139,6 +142,9 @@
 
 - [image](/Commands/image/readme.md)
 : Manage custom virtual machine images.
+
+- [k8s-runtime](/Commands/k8s-runtime/readme.md)
+: Manage Arc Kubernetes Runtime resources
 
 - [load](/Commands/load/readme.md)
 : Manage Azure Load Testing resources.
@@ -265,6 +271,9 @@
 
 - [storagesync](/Commands/storagesync/readme.md)
 : Manage Azure File Sync.
+
+- [trustedsigning](/Commands/trustedsigning/readme.md)
+: Manage trusted signing account
 
 - [tsi](/Commands/tsi/readme.md)
 : Manage Azure Time Series Insights.

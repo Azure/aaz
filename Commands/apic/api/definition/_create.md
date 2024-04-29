@@ -1,6 +1,6 @@
 # [Command] _apic api definition create_
 
-Create new or updates existing API definition.
+Create a new API definition or update an existing API definition.
 
 ## Versions
 
@@ -12,7 +12,7 @@ Create new or updates existing API definition.
 
 - Create API definition
     ```bash
-        apic api definition create -g api-center-test -s contosoeuap --api-name echo-api --version 2023-01-01 --name "openapi" --title "OpenAPI"
+        apic api definition create -g api-center-test -s contosoeuap --api-id echo-api --version-id 2023-01-01 --definition-id "openapi" --title "OpenAPI"
     ```
 
 ### [2024-03-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5hcGljZW50ZXIvc2VydmljZXMve30vd29ya3NwYWNlcy97fS9hcGlzL3t9L3ZlcnNpb25zL3t9L2RlZmluaXRpb25zL3t9/2024-03-15-preview.xml) **Stable**
