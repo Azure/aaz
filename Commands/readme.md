@@ -54,7 +54,7 @@
 : Manage cloud service
 
 - [communication](/Commands/communication/readme.md)
-: communication
+: Manage communication service with communication.
 
 - [compute](/Commands/compute/readme.md)
 : Mange azure compute vm config
@@ -148,6 +148,9 @@
 
 - [maintenance](/Commands/maintenance/readme.md)
 : Manage Maintenance
+
+- [mdp](/Commands/mdp/readme.md)
+: Manage resources of Managed DevOps pools
 
 - [mesh](/Commands/mesh/readme.md)
 : (PREVIEW) Manage Azure Service Fabric Mesh Resources.
