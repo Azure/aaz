@@ -23,5 +23,5 @@ Implements the operation to the underlying resources.
 
 - Resync Operation
     ```bash
-        networkfabric tap resync --resource-group "example-rg" --network-tap-name "example-networktap"
+        networkfabric tap resync --resource-group "example-rg" --resource-name "example-networktap"
     ```
