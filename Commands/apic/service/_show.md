@@ -1,6 +1,6 @@
 # [Command] _apic service show_
 
-Show service details
+Show details of an Azure API Center service instance.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _apic api create_
 
-Create new or updates existing API.
+Register a new API or update an existing API.
 
 ## Versions
 
@@ -12,7 +12,12 @@ Create new or updates existing API.
 
 - Create API
     ```bash
-        apic api create -g contoso-resources -s contoso --name echo-api --title "Echo API"
+        apic api create -g contoso-resources -s contoso --api-id echo-api --title "Echo API" --type REST
+    ```
+
+- Create API with custom properties
+    ```bash
+        apic api create -g contoso-resources -s contoso --api-id echo-api --title "Echo API" --type REST --custom-properties '{\"public-facing\":true}'
     ```
 
 ### [2024-03-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5hcGljZW50ZXIvc2VydmljZXMve30vd29ya3NwYWNlcy97fS9hcGlzL3t9/2024-03-15-preview.xml) **Stable**
