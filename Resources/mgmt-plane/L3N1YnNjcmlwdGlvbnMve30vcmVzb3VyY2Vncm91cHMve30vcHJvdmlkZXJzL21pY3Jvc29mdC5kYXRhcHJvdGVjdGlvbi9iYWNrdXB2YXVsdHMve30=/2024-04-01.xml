@@ -287,7 +287,9 @@
     <command name="create" version="2024-04-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}" version="2024-04-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9/V/MjAyNC0wNC0wMQ=="/>
       <argGroup name="">
-        <arg type="string" var="$Header.x-ms-authorization-auxiliary" options="x-ms-authorization-auxiliary"/>
+        <arg type="string" var="$Header.x-ms-authorization-auxiliary" options="x-ms-authorization-auxiliary" hide="True" group="">
+          <help short="."/>
+        </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         <arg type="string" var="$Path.vaultName" options="vault-name v" required="True" group="" idPart="name">
@@ -304,14 +306,14 @@
         </arg>
       </argGroup>
       <argGroup name="EncryptionSettings">
-        <arg type="string" var="$parameters.properties.securitySettings.encryptionSettings.infrastructureEncryption" options="cmk-infrastructure-encryption" group="EncryptionSettings">
+        <arg type="string" var="$parameters.properties.securitySettings.encryptionSettings.infrastructureEncryption" options="cmk-infrastructure-encryption cmk-infra-encryption" group="EncryptionSettings">
           <help short="Enable/Disable infrastructure encryption with CMK on this vault. Infrastructure encryption must be configured only when creating the vault."/>
           <enum>
             <item name="Disabled" value="&quot;Disabled&quot;"/>
             <item name="Enabled" value="&quot;Enabled&quot;"/>
           </enum>
         </arg>
-        <arg type="string" var="$parameters.properties.securitySettings.encryptionSettings.kekIdentity.identityId" options="cmk-user-assigned-identity-id" group="EncryptionSettings">
+        <arg type="string" var="$parameters.properties.securitySettings.encryptionSettings.kekIdentity.identityId" options="cmk-user-assigned-identity-id cmk-uami" group="EncryptionSettings">
           <help short="This parameter is required if the identity type is UserAssigned. Add the user assigned managed identity id to be used which has access permissions to the Key Vault."/>
         </arg>
         <arg type="string" var="$parameters.properties.securitySettings.encryptionSettings.kekIdentity.identityType" options="cmk-identity-type" group="EncryptionSettings">
@@ -345,9 +347,9 @@
       </argGroup>
       <argGroup name="Identity">
         <arg type="string" var="$parameters.identity.type" options="type" group="Identity">
-          <help short="The identityType which can be either SystemAssigned or None"/>
+          <help short="The identityType which can be &quot;SystemAssigned&quot;, &quot;UserAssigned&quot;, &quot;SystemAssigned,UserAssigned&quot; or &quot;None&quot;"/>
         </arg>
-        <arg type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-identities" group="Identity">
+        <arg type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-identities uami" group="Identity">
           <help short="Gets or sets the user assigned identities."/>
           <additionalProp>
             <item type="object">
@@ -384,7 +386,7 @@
           <help short="List of replicated regions for Backup Vault"/>
           <item type="string"/>
         </arg>
-        <arg type="array<string>" var="$parameters.properties.resourceGuardOperationRequests" options="resource-guard-operation-requests" group="Properties">
+        <arg type="array<string>" var="$parameters.properties.resourceGuardOperationRequests" options="resource-guard-operation-requests" hide="True" group="Properties">
           <help short="ResourceGuardOperationRequests on which LAC check will be performed"/>
           <item type="string"/>
         </arg>
@@ -799,7 +801,9 @@
     <command name="update" version="2024-04-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}" version="2024-04-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9/V/MjAyNC0wNC0wMQ=="/>
       <argGroup name="">
-        <arg type="string" var="$Header.x-ms-authorization-auxiliary" options="x-ms-authorization-auxiliary"/>
+        <arg type="string" var="$Header.x-ms-authorization-auxiliary" options="x-ms-authorization-auxiliary" hide="True" group="">
+          <help short="."/>
+        </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         <arg type="string" var="$Path.vaultName" options="vault-name v" required="True" group="" idPart="name">
@@ -823,7 +827,7 @@
             <item name="Enabled" value="&quot;Enabled&quot;"/>
           </enum>
         </arg>
-        <arg nullable="True" type="string" var="$parameters.properties.securitySettings.encryptionSettings.kekIdentity.identityId" options="cmk-user-assigned-identity-id" group="EncryptionSettings">
+        <arg nullable="True" type="string" var="$parameters.properties.securitySettings.encryptionSettings.kekIdentity.identityId" options="cmk-user-assigned-identity-id cmk-uami" group="EncryptionSettings">
           <help short="This parameter is required if the identity type is UserAssigned. Add the user assigned managed identity id to be used which has access permissions to the Key Vault."/>
         </arg>
         <arg nullable="True" type="string" var="$parameters.properties.securitySettings.encryptionSettings.kekIdentity.identityType" options="cmk-identity-type" group="EncryptionSettings">
@@ -857,9 +861,9 @@
       </argGroup>
       <argGroup name="Identity">
         <arg nullable="True" type="string" var="$parameters.identity.type" options="type" group="Identity">
-          <help short="The identityType which can be either SystemAssigned or None"/>
+          <help short="The identityType which can be &quot;SystemAssigned&quot;, &quot;UserAssigned&quot;, &quot;SystemAssigned,UserAssigned&quot; or &quot;None&quot;"/>
         </arg>
-        <arg nullable="True" type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-identities" group="Identity">
+        <arg nullable="True" type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-identities uami" group="Identity">
           <help short="Gets or sets the user assigned identities."/>
           <additionalProp>
             <item nullable="True" type="object">
@@ -896,7 +900,7 @@
           <help short="List of replicated regions for Backup Vault"/>
           <item nullable="True" type="string"/>
         </arg>
-        <arg nullable="True" type="array<string>" var="$parameters.properties.resourceGuardOperationRequests" options="resource-guard-operation-requests" group="Properties">
+        <arg nullable="True" type="array<string>" var="$parameters.properties.resourceGuardOperationRequests" options="resource-guard-operation-requests" group="Properties" singularOptions="operation-requests">
           <help short="ResourceGuardOperationRequests on which LAC check will be performed"/>
           <item nullable="True" type="string"/>
         </arg>
