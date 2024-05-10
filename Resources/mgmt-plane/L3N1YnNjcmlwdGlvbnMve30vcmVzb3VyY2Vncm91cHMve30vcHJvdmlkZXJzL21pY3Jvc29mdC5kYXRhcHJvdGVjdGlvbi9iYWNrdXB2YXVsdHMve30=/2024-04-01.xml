@@ -305,6 +305,36 @@
           </enum>
         </arg>
       </argGroup>
+      <argGroup name="EncryptionSettings">
+        <arg type="string" var="$parameters.properties.securitySettings.encryptionSettings.infrastructureEncryption" options="cmk-infrastructure-encryption cmk-infra-encryption" group="EncryptionSettings">
+          <help short="Enable/Disable infrastructure encryption with CMK on this vault. Infrastructure encryption must be configured only when creating the vault."/>
+          <enum>
+            <item name="Disabled" value="&quot;Disabled&quot;"/>
+            <item name="Enabled" value="&quot;Enabled&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$parameters.properties.securitySettings.encryptionSettings.kekIdentity.identityId" options="cmk-user-assigned-identity-id cmk-uami" group="EncryptionSettings">
+          <help short="This parameter is required if the identity type is UserAssigned. Add the user assigned managed identity id to be used which has access permissions to the Key Vault."/>
+        </arg>
+        <arg type="string" var="$parameters.properties.securitySettings.encryptionSettings.kekIdentity.identityType" options="cmk-identity-type" group="EncryptionSettings">
+          <help short="The identity type to be used for CMK encryption - SystemAssigned or UserAssigned Identity."/>
+          <enum>
+            <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
+            <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$parameters.properties.securitySettings.encryptionSettings.keyVaultProperties.keyUri" options="cmk-encryption-key-uri" group="EncryptionSettings">
+          <help short="The Key URI of the CMK key to be used for encryption.  To enable auto-rotation of keys, exclude the version component from the Key URI."/>
+        </arg>
+        <arg type="string" var="$parameters.properties.securitySettings.encryptionSettings.state" options="cmk-encryption-state" group="EncryptionSettings">
+          <help short="Enable CMK encryption state for a Backup Vault."/>
+          <enum>
+            <item name="Disabled" value="&quot;Disabled&quot;"/>
+            <item name="Enabled" value="&quot;Enabled&quot;"/>
+            <item name="Inconsistent" value="&quot;Inconsistent&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
       <argGroup name="FeatureSettings">
         <arg type="string" var="$parameters.properties.featureSettings.crossSubscriptionRestoreSettings.state" options="cross-subscription-restore-state csr-state" group="FeatureSettings">
           <help short="CrossSubscriptionRestore state"/>
@@ -317,9 +347,9 @@
       </argGroup>
       <argGroup name="Identity">
         <arg type="string" var="$parameters.identity.type" options="type" group="Identity">
-          <help short="The identityType which can be either SystemAssigned or None"/>
+          <help short="The identityType which can be &quot;SystemAssigned&quot;, &quot;UserAssigned&quot;, &quot;SystemAssigned,UserAssigned&quot; or &quot;None&quot;"/>
         </arg>
-        <arg type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+        <arg type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-identities uami" group="Identity">
           <help short="Gets or sets the user assigned identities."/>
           <additionalProp>
             <item type="object">
@@ -383,43 +413,6 @@
         </arg>
       </argGroup>
       <argGroup name="SecuritySettings">
-        <arg type="object" var="$parameters.properties.securitySettings.encryptionSettings" options="encryption-settings" hide="True" group="SecuritySettings">
-          <help short="Customer Managed Key details of the resource."/>
-          <arg type="string" var="$parameters.properties.securitySettings.encryptionSettings.infrastructureEncryption" options="infrastructure-encryption">
-            <help short="Enabling/Disabling the Double Encryption state"/>
-            <enum>
-              <item name="Disabled" value="&quot;Disabled&quot;"/>
-              <item name="Enabled" value="&quot;Enabled&quot;"/>
-            </enum>
-          </arg>
-          <arg type="object" var="$parameters.properties.securitySettings.encryptionSettings.kekIdentity" options="kek-identity">
-            <help short="The details of the managed identity used for CMK"/>
-            <arg type="string" var="$parameters.properties.securitySettings.encryptionSettings.kekIdentity.identityId" options="identity-id">
-              <help short="The managed identity to be used which has access permissions to the Key Vault. Provide a value here in case identity types: 'UserAssigned' only."/>
-            </arg>
-            <arg type="string" var="$parameters.properties.securitySettings.encryptionSettings.kekIdentity.identityType" options="identity-type">
-              <help short="The identity type. 'SystemAssigned' and 'UserAssigned' are mutually exclusive. 'SystemAssigned' will use implicitly created managed identity."/>
-              <enum>
-                <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
-                <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
-              </enum>
-            </arg>
-          </arg>
-          <arg type="object" var="$parameters.properties.securitySettings.encryptionSettings.keyVaultProperties" options="key-vault-properties">
-            <help short="The properties of the Key Vault which hosts CMK"/>
-            <arg type="string" var="$parameters.properties.securitySettings.encryptionSettings.keyVaultProperties.keyUri" options="key-uri">
-              <help short="The key uri of the Customer Managed Key"/>
-            </arg>
-          </arg>
-          <arg type="string" var="$parameters.properties.securitySettings.encryptionSettings.state" options="state">
-            <help short="Encryption state of the Backup Vault."/>
-            <enum>
-              <item name="Disabled" value="&quot;Disabled&quot;"/>
-              <item name="Enabled" value="&quot;Enabled&quot;"/>
-              <item name="Inconsistent" value="&quot;Inconsistent&quot;"/>
-            </enum>
-          </arg>
-        </arg>
         <arg type="string" var="$parameters.properties.securitySettings.immutabilitySettings.state" options="immutability-state" group="SecuritySettings">
           <help short="Immutability state" lines="Use this parameter to configure immutability settings for the vault. Allowed values are Disabled, Unlocked and Locked. By default, immutability is &quot;Disabled&quot; for the vault. &quot;Unlocked&quot; means that immutability is enabled for the vault and can be reversed. &quot;Locked&quot; means that immutability is enabled for the vault and cannot be reversed."/>
           <enum>
@@ -514,14 +507,14 @@
                       <item type="string"/>
                     </prop>
                     <prop type="object" name="securitySettings">
-                      <prop type="object" name="encryptionSettings" arg="$parameters.properties.securitySettings.encryptionSettings">
+                      <prop type="object" name="encryptionSettings">
                         <prop type="string" name="infrastructureEncryption" arg="$parameters.properties.securitySettings.encryptionSettings.infrastructureEncryption">
                           <enum>
                             <item value="&quot;Disabled&quot;"/>
                             <item value="&quot;Enabled&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="object" name="kekIdentity" arg="$parameters.properties.securitySettings.encryptionSettings.kekIdentity">
+                        <prop type="object" name="kekIdentity">
                           <prop type="string" name="identityId" arg="$parameters.properties.securitySettings.encryptionSettings.kekIdentity.identityId"/>
                           <prop type="string" name="identityType" arg="$parameters.properties.securitySettings.encryptionSettings.kekIdentity.identityType">
                             <enum>
@@ -530,7 +523,7 @@
                             </enum>
                           </prop>
                         </prop>
-                        <prop type="object" name="keyVaultProperties" arg="$parameters.properties.securitySettings.encryptionSettings.keyVaultProperties">
+                        <prop type="object" name="keyVaultProperties">
                           <prop type="string" name="keyUri" arg="$parameters.properties.securitySettings.encryptionSettings.keyVaultProperties.keyUri"/>
                         </prop>
                         <prop type="string" name="state" arg="$parameters.properties.securitySettings.encryptionSettings.state">
@@ -826,6 +819,36 @@
           </enum>
         </arg>
       </argGroup>
+      <argGroup name="EncryptionSettings">
+        <arg nullable="True" type="string" var="$parameters.properties.securitySettings.encryptionSettings.infrastructureEncryption" options="cmk-infrastructure-encryption" hide="True" group="EncryptionSettings">
+          <help short="Enable/Disable infrastructure encryption with CMK on this vault. Infrastructure encryption must be configured only when creating the vault."/>
+          <enum>
+            <item name="Disabled" value="&quot;Disabled&quot;"/>
+            <item name="Enabled" value="&quot;Enabled&quot;"/>
+          </enum>
+        </arg>
+        <arg nullable="True" type="string" var="$parameters.properties.securitySettings.encryptionSettings.kekIdentity.identityId" options="cmk-user-assigned-identity-id cmk-uami" group="EncryptionSettings">
+          <help short="This parameter is required if the identity type is UserAssigned. Add the user assigned managed identity id to be used which has access permissions to the Key Vault."/>
+        </arg>
+        <arg nullable="True" type="string" var="$parameters.properties.securitySettings.encryptionSettings.kekIdentity.identityType" options="cmk-identity-type" group="EncryptionSettings">
+          <help short="The identity type to be used for CMK encryption - SystemAssigned or UserAssigned Identity."/>
+          <enum>
+            <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
+            <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
+          </enum>
+        </arg>
+        <arg nullable="True" type="string" var="$parameters.properties.securitySettings.encryptionSettings.keyVaultProperties.keyUri" options="cmk-encryption-key-uri" group="EncryptionSettings">
+          <help short="The key uri of the Customer Managed Key"/>
+        </arg>
+        <arg nullable="True" type="string" var="$parameters.properties.securitySettings.encryptionSettings.state" options="cmk-encryption-state" group="EncryptionSettings">
+          <help short="Enable CMK encryption state for a Backup Vault."/>
+          <enum>
+            <item name="Disabled" value="&quot;Disabled&quot;"/>
+            <item name="Enabled" value="&quot;Enabled&quot;"/>
+            <item name="Inconsistent" value="&quot;Inconsistent&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
       <argGroup name="FeatureSettings">
         <arg nullable="True" type="string" var="$parameters.properties.featureSettings.crossSubscriptionRestoreSettings.state" options="cross-subscription-restore-state csr-state" group="FeatureSettings">
           <help short="CrossSubscriptionRestore state"/>
@@ -838,9 +861,9 @@
       </argGroup>
       <argGroup name="Identity">
         <arg nullable="True" type="string" var="$parameters.identity.type" options="type" group="Identity">
-          <help short="The identityType which can be either SystemAssigned or None"/>
+          <help short="The identityType which can be &quot;SystemAssigned&quot;, &quot;UserAssigned&quot;, &quot;SystemAssigned,UserAssigned&quot; or &quot;None&quot;"/>
         </arg>
-        <arg nullable="True" type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+        <arg nullable="True" type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-identities uami" group="Identity">
           <help short="Gets or sets the user assigned identities."/>
           <additionalProp>
             <item nullable="True" type="object">
@@ -878,7 +901,7 @@
           <item nullable="True" type="string"/>
         </arg>
         <arg nullable="True" type="array<string>" var="$parameters.properties.resourceGuardOperationRequests" options="resource-guard-operation-requests" group="Properties" singularOptions="operation-requests">
-          <help short="Critical operation request which is protected by the resourceGuard"/>
+          <help short="ResourceGuardOperationRequests on which LAC check will be performed"/>
           <item nullable="True" type="string"/>
         </arg>
         <arg type="array<object>" var="$parameters.properties.storageSettings" options="storage-settings" hide="True" group="Properties" singularOptions="storage-settings">
@@ -904,43 +927,6 @@
         </arg>
       </argGroup>
       <argGroup name="SecuritySettings">
-        <arg nullable="True" type="object" var="$parameters.properties.securitySettings.encryptionSettings" options="encryption-settings" hide="True" group="SecuritySettings">
-          <help short="Customer Managed Key details of the resource."/>
-          <arg nullable="True" type="string" var="$parameters.properties.securitySettings.encryptionSettings.infrastructureEncryption" options="infrastructure-encryption">
-            <help short="Enabling/Disabling the Double Encryption state"/>
-            <enum>
-              <item name="Disabled" value="&quot;Disabled&quot;"/>
-              <item name="Enabled" value="&quot;Enabled&quot;"/>
-            </enum>
-          </arg>
-          <arg nullable="True" type="object" var="$parameters.properties.securitySettings.encryptionSettings.kekIdentity" options="kek-identity">
-            <help short="The details of the managed identity used for CMK"/>
-            <arg nullable="True" type="string" var="$parameters.properties.securitySettings.encryptionSettings.kekIdentity.identityId" options="identity-id">
-              <help short="The managed identity to be used which has access permissions to the Key Vault. Provide a value here in case identity types: 'UserAssigned' only."/>
-            </arg>
-            <arg nullable="True" type="string" var="$parameters.properties.securitySettings.encryptionSettings.kekIdentity.identityType" options="identity-type">
-              <help short="The identity type. 'SystemAssigned' and 'UserAssigned' are mutually exclusive. 'SystemAssigned' will use implicitly created managed identity."/>
-              <enum>
-                <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
-                <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
-              </enum>
-            </arg>
-          </arg>
-          <arg nullable="True" type="object" var="$parameters.properties.securitySettings.encryptionSettings.keyVaultProperties" options="key-vault-properties">
-            <help short="The properties of the Key Vault which hosts CMK"/>
-            <arg nullable="True" type="string" var="$parameters.properties.securitySettings.encryptionSettings.keyVaultProperties.keyUri" options="key-uri">
-              <help short="The key uri of the Customer Managed Key"/>
-            </arg>
-          </arg>
-          <arg nullable="True" type="string" var="$parameters.properties.securitySettings.encryptionSettings.state" options="state">
-            <help short="Encryption state of the Backup Vault."/>
-            <enum>
-              <item name="Disabled" value="&quot;Disabled&quot;"/>
-              <item name="Enabled" value="&quot;Enabled&quot;"/>
-              <item name="Inconsistent" value="&quot;Inconsistent&quot;"/>
-            </enum>
-          </arg>
-        </arg>
         <arg nullable="True" type="string" var="$parameters.properties.securitySettings.immutabilitySettings.state" options="immutability-state" group="SecuritySettings">
           <help short="Immutability state" lines="Use this parameter to configure immutability settings for the vault. Allowed values are Disabled, Unlocked and Locked. By default, immutability is &quot;Disabled&quot; for the vault. &quot;Unlocked&quot; means that immutability is enabled for the vault and can be reversed. &quot;Locked&quot; means that immutability is enabled for the vault and cannot be reversed."/>
           <enum>
@@ -1245,14 +1231,14 @@
                   <item type="string"/>
                 </prop>
                 <prop type="object" name="securitySettings">
-                  <prop type="object" name="encryptionSettings" arg="$parameters.properties.securitySettings.encryptionSettings">
+                  <prop type="object" name="encryptionSettings">
                     <prop type="string" name="infrastructureEncryption" arg="$parameters.properties.securitySettings.encryptionSettings.infrastructureEncryption">
                       <enum>
                         <item value="&quot;Disabled&quot;"/>
                         <item value="&quot;Enabled&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="kekIdentity" arg="$parameters.properties.securitySettings.encryptionSettings.kekIdentity">
+                    <prop type="object" name="kekIdentity">
                       <prop type="string" name="identityId" arg="$parameters.properties.securitySettings.encryptionSettings.kekIdentity.identityId"/>
                       <prop type="string" name="identityType" arg="$parameters.properties.securitySettings.encryptionSettings.kekIdentity.identityType">
                         <enum>
@@ -1261,7 +1247,7 @@
                         </enum>
                       </prop>
                     </prop>
-                    <prop type="object" name="keyVaultProperties" arg="$parameters.properties.securitySettings.encryptionSettings.keyVaultProperties">
+                    <prop type="object" name="keyVaultProperties">
                       <prop type="string" name="keyUri" arg="$parameters.properties.securitySettings.encryptionSettings.keyVaultProperties.keyUri"/>
                     </prop>
                     <prop type="string" name="state" arg="$parameters.properties.securitySettings.encryptionSettings.state">
