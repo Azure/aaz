@@ -25,3 +25,14 @@ List the regional application gateway waf manifest.
     ```bash
         network application-gateway waf-config list-dynamic-rule-sets -l  westus
     ```
+
+### [2023-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL2xvY2F0aW9ucy97fS9hcHBsaWNhdGlvbmdhdGV3YXl3YWZkeW5hbWljbWFuaWZlc3Rz/2023-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.network/locations/{}/applicationgatewaywafdynamicmanifests 2023-11-01 -->
+
+#### examples
+
+- List application gateway waf manifest in the regional.
+    ```bash
+        network application-gateway waf-config list-dynamic-rule-sets -l  westus
+    ```
