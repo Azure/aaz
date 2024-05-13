@@ -37,6 +37,9 @@ Manage Azure Network resources.
 - [firewall](/Commands/network/firewall/readme.md)
 : Manage and configure Azure Firewalls.
 
+- [front-door](/Commands/network/front-door/readme.md)
+: Manage Classical Azure Front Doors. For managing Azure Front Door Standard/Premium, please refer https://docs.microsoft.com/en-us/cli/azure/afd?view=azure-cli-latest.
+
 - [ip-group](/Commands/network/ip-group/readme.md)
 : Commands to manage IP group.
 
