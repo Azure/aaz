@@ -14,6 +14,9 @@
 - [amlfs](/Commands/amlfs/readme.md)
 : Manage lustre file system
 
+- [aosm](/Commands/aosm/readme.md)
+: Manage Azure Operator Service Manager resources.
+
 - [apic](/Commands/apic/readme.md)
 : Manage Azure API Center services
 
@@ -274,6 +277,9 @@
 
 - [storagesync](/Commands/storagesync/readme.md)
 : Manage Azure File Sync.
+
+- [support](/Commands/support/readme.md)
+: Manage Azure support resource.
 
 - [trustedsigning](/Commands/trustedsigning/readme.md)
 : Manage trusted signing account
