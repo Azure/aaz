@@ -36,3 +36,14 @@ List the current usages and limits in this location for the provided subscriptio
     ```bash
         devcenter admin usage list --location "westus3"
     ```
+
+### [2024-05-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvbG9jYXRpb25zL3t9L3VzYWdlcw==/2024-05-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.devcenter/locations/{}/usages 2024-05-01-preview -->
+
+#### examples
+
+- List
+    ```bash
+        devcenter admin usage list --location "westus3"
+    ```

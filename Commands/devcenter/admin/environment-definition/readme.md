@@ -1,6 +1,6 @@
 # [Group] _devcenter admin environment-definition_
 
-Mange environment definitions in the catalog.
+Manage environment definitions in the catalog.
 
 ## Commands
 
