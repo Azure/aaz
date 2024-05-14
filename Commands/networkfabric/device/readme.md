@@ -25,5 +25,8 @@ Manage Network Device Resource
 - [update](/Commands/networkfabric/device/_update.md)
 : Update the Network Device resource.
 
+- [update-admin-state](/Commands/networkfabric/device/_update-admin-state.md)
+: Updates the Administrative state of the Network Device.
+
 - [upgrade](/Commands/networkfabric/device/_upgrade.md)
 : Upgrades the version of the Network Device.
