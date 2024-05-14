@@ -272,6 +272,9 @@
 - [storagesync](/Commands/storagesync/readme.md)
 : Manage Azure File Sync.
 
+- [support](/Commands/support/readme.md)
+: Manage Azure support resource.
+
 - [trustedsigning](/Commands/trustedsigning/readme.md)
 : Manage trusted signing account
 
