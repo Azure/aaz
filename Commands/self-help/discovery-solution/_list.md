@@ -1,6 +1,6 @@
 # [Command] _self-help discovery-solution list_
 
-List the relevant Azure diagnostics and solutions using problemClassificationId API AND resourceUri or resourceType.
+List the relevant Azure diagnostics and solutions using problemClassificationId
 
 ## Versions
 
@@ -34,5 +34,5 @@ List the relevant Azure diagnostics and solutions using problemClassificationId 
 
 - Discover Solutions
     ```bash
-        self-help discovery-solution list --filter "ProblemClassificationId eq '00000000-0000-0000-0000-000000000000'" --scope 'subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myresourceGroup/providers/Microsoft.KeyVault/vaults/test-keyvault-non-read'
+        self-help discovery-solution list --filter "ProblemClassificationId eq '00000000-0000-0000-0000-000000000000'"
     ```
