@@ -13,6 +13,9 @@ Manage Access Rules of a Profile inside an NSP
 - [list](/Commands/network/perimeter/profile/access-rule/_list.md)
 : Lists the NSP access rules in the specified NSP profile.
 
+- [reconcile](/Commands/network/perimeter/profile/access-rule/_reconcile.md)
+: Reconcile NSP access rules
+
 - [show](/Commands/network/perimeter/profile/access-rule/_show.md)
 : Gets the specified NSP access rule by name.
 
