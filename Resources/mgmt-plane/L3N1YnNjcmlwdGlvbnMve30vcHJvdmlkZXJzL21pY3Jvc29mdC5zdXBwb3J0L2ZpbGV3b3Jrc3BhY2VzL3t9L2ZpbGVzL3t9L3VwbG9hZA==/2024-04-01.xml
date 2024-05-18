@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.support/fileworkspaces/{}/files/{}/upload" version="2024-04-01" swagger="mgmt-plane/support/ResourceProviders/Microsoft.Support/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LlN1cHBvcnQvZmlsZVdvcmtzcGFjZXMve2ZpbGVXb3Jrc3BhY2VOYW1lfS9maWxlcy97ZmlsZU5hbWV9L3VwbG9hZA==/V/MjAyNC0wNC0wMQ=="/>
+  <commandGroup name="support in-subscription file">
+    <command name="upload" version="2024-04-01" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.support/fileworkspaces/{}/files/{}/upload" version="2024-04-01" swagger="mgmt-plane/support/ResourceProviders/Microsoft.Support/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LlN1cHBvcnQvZmlsZVdvcmtzcGFjZXMve2ZpbGVXb3Jrc3BhY2VOYW1lfS9maWxlcy97ZmlsZU5hbWV9L3VwbG9hZA==/V/MjAyNC0wNC0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.fileName" options="file-name" required="True" group="" idPart="child_name_1">
+          <help short="File Name"/>
+        </arg>
+        <arg type="string" var="$Path.fileWorkspaceName" options="file-workspace-name" required="True" idPart="name">
+          <help short="File WorkspaceName"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="UploadFile">
+        <arg type="integer32" var="$uploadFile.chunkIndex" options="chunk-index" group="UploadFile">
+          <help short="Index of the uploaded chunk (Index starts at 0)"/>
+        </arg>
+        <arg type="string" var="$uploadFile.content" options="content" group="UploadFile">
+          <help short="File Content in base64 encoded format"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Files_Upload">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Support/fileWorkspaces/{fileWorkspaceName}/files/{fileName}/upload">
+          <request method="post">
+            <path>
+              <param type="string" name="fileName" arg="$Path.fileName" required="True"/>
+              <param type="string" name="fileWorkspaceName" arg="$Path.fileWorkspaceName" required="True"/>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-04-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="uploadFile" required="True" clientFlatten="True">
+                  <prop type="integer32" name="chunkIndex" arg="$uploadFile.chunkIndex"/>
+                  <prop type="string" name="content" arg="$uploadFile.content"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>
