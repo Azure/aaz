@@ -8,3 +8,10 @@ List all the storage tasks available under the subscription.
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.storageactions/storagetasks 2023-01-01 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.storageactions/storagetasks 2023-01-01 -->
+
+#### examples
+
+- storage-actions task list
+    ```bash
+        storage-actions task list -g rgteststorageactions
+    ```
