@@ -14,6 +14,9 @@
 - [amlfs](/Commands/amlfs/readme.md)
 : Manage lustre file system
 
+- [aosm](/Commands/aosm/readme.md)
+: Manage Azure Operator Service Manager resources.
+
 - [apic](/Commands/apic/readme.md)
 : Manage Azure API Center services
 
@@ -61,6 +64,9 @@
 
 - [compute-diagnostic](/Commands/compute-diagnostic/readme.md)
 : Mange vm sku recommender info
+
+- [compute-recommender](/Commands/compute-recommender/readme.md)
+: Manage sku/zone/region recommender info for compute resources
 
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
@@ -271,6 +277,9 @@
 
 - [storagesync](/Commands/storagesync/readme.md)
 : Manage Azure File Sync.
+
+- [support](/Commands/support/readme.md)
+: Manage Azure support resource.
 
 - [trustedsigning](/Commands/trustedsigning/readme.md)
 : Manage trusted signing account

@@ -1,6 +1,6 @@
 # [Command] _maintenance scheduledevent acknowledge_
 
-Post Scheduled Event Acknowledgement
+Acknowledge Scheduled Event
 
 ## Versions
 
@@ -10,17 +10,20 @@ Post Scheduled Event Acknowledgement
 
 #### examples
 
-- Acknowledge scheduled event of a VM
+- Acknowledge scheduled event of a VirtualMachine
     ```bash
-        --resource-group {resourceGroup} --resource-name {VMname} --scheduled-event-id {GuidEventId} --subscription {subscriptionId}
+        maintenance scheduledevent acknowledge --resource-group {resourceGroupName} --resource-type "virtualMachines" --resource-name {VMname} --scheduled-event-id {scheduledEventId} --subscription {subscriptionId}
+        maintenance scheduledevent acknowledge --ids /subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.compute/virtualMachines/{resourceName}/providers/microsoft.maintenance/scheduledevents/{scheduledEventId}
     ```
 
-- Acknowledge scheduled event of a VMSS
+- Acknowledge scheduled event of a VirtualMachineScaleSets
     ```bash
-        --resource-group {resourceGroup} --resource-name {VMSSname} --scheduled-event-id {GuidEventId} --subscription {subscriptionId}
+        maintenance scheduledevent acknowledge --resource-group {resourceGroup} --resource-type "virtualMachineScaleSets" --resource-name {VMSSname} --scheduled-event-id {scheduledEventId} --subscription {subscriptionId}
+        maintenance scheduledevent acknowledge --ids /subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.compute/virtualMachineScaleSets/{resourceName}/providers/microsoft.maintenance/scheduledevents/{scheduledEventId}
     ```
 
 - Acknowledge scheduled event of a AvailabilitySet
     ```bash
-        --resource-group {resourceGroup} --resource-name {AVSetname} --scheduled-event-id {GuidEventId} --subscription {subscriptionId}
+        maintenance scheduledevent acknowledge--resource-group {resourceGroupName} --resource-type "availabilitySets"--resource-name {AVSetname} --scheduled-event-id {scheduledEventId} --subscription {subscriptionId}
+        maintenance scheduledevent acknowledge --ids /subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.compute/AvalabilitySets/{resourceName}/providers/microsoft.maintenance/scheduledevents/{scheduledEventId}
     ```
