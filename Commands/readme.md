@@ -272,6 +272,9 @@
 - [storage](/Commands/storage/readme.md)
 : Manage Azure Cloud Storage resources.
 
+- [storage-actions](/Commands/storage-actions/readme.md)
+: Manage StorageActions
+
 - [storage-mover](/Commands/storage-mover/readme.md)
 : Manage top-level Storage Mover resource.
 
