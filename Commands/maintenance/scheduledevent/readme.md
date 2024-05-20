@@ -1,8 +1,8 @@
 # [Group] _maintenance scheduledevent_
 
-Scheduled event actions
+ScheduledEvents action
 
 ## Commands
 
 - [acknowledge](/Commands/maintenance/scheduledevent/_acknowledge.md)
-: Post Scheduled Event Acknowledgement
+: Acknowledge Scheduled Event

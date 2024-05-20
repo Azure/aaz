@@ -1,6 +1,6 @@
 # [Command] _apic environment update_
 
-Update new or updates existing environment.
+Update existing environment.
 
 ## Versions
 
@@ -12,7 +12,7 @@ Update new or updates existing environment.
 
 - Update environment
     ```bash
-        apic environment update -g api-center-test -s contosoeuap --name public --title "Public cloud"
+        apic environment update -g api-center-test -s contosoeuap --environment-id public --title "Public cloud"
     ```
 
 ### [2024-03-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5hcGljZW50ZXIvc2VydmljZXMve30vd29ya3NwYWNlcy97fS9lbnZpcm9ubWVudHMve30=/2024-03-15-preview.xml) **Stable**
