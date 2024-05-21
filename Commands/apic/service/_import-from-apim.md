@@ -10,9 +10,19 @@ Imports APIs from an Azure API Management service instance.
 
 #### examples
 
-- Import From APIM
+- Import all APIs from APIM in same resource group
     ```bash
-        apic service import-from-apim -g api-center-test --service-name contosoeuap --source-resource-ids '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/servicegroup/providers/Microsoft.ApiManagement/service/contoso/apis/contosoapi'
+        apic service import-from-apim -g api-center-test --service-name contoso-apic --apim-name contoso-apim --apim-apis *
+    ```
+
+- Import selected APIs from APIM in same resource group
+    ```bash
+        apic service import-from-apim -g api-center-test --service-name contoso-apic --apim-name contoso-apim --apim-apis [echo,foo]
+    ```
+
+- Import all APIs from APIM in another subscription and resource group
+    ```bash
+        apic service import-from-apim -g api-center-test --service-name contoso-apic --apim-subscription 00000000-0000-0000-0000-000000000000 --apim-resource-group apim-rg --apim-name contoso-apim --apim-apis *
     ```
 
 ### [2024-03-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5hcGljZW50ZXIvc2VydmljZXMve30vaW1wb3J0ZnJvbWFwaW0=/2024-03-15-preview.xml) **Stable**
