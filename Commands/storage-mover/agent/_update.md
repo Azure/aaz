@@ -36,3 +36,14 @@ Update an Agent resource, which references a hybrid compute machine that can run
     ```bash
         storage-mover agent update -g {rg} -n {agent_name} --storage-mover-name {mover_name} --description 123
     ```
+
+### [2024-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zdG9yYWdlbW92ZXIvc3RvcmFnZW1vdmVycy97fS9hZ2VudHMve30=/2024-07-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.storagemover/storagemovers/{}/agents/{} 2024-07-01 -->
+
+#### examples
+
+- agent update
+    ```bash
+        storage-mover agent update -g {rg} -n {agent_name} --storage-mover-name {mover_name} --description 123
+    ```
