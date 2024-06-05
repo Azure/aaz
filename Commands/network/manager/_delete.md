@@ -14,3 +14,14 @@ Delete a network manager.
     ```bash
         network manager delete --name "testNetworkManager" --resource-group "rg1"
     ```
+
+### [2023-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL25ldHdvcmttYW5hZ2Vycy97fQ==/2023-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networkmanagers/{} 2023-09-01 -->
+
+#### examples
+
+- Delete Azure Virtual Network Manager
+    ```bash
+        network manager delete --name "testNetworkManager" --resource-group "rg1"
+    ```
