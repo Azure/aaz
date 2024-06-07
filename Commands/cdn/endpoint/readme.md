@@ -29,7 +29,7 @@ Manage CDN endpoints.
 : Stops an existing running CDN endpoint.
 
 - [update](/Commands/cdn/endpoint/_update.md)
-: Update a new CDN endpoint with the specified endpoint name under the specified subscription, resource group and profile.
+: Update an existing CDN endpoint with the specified endpoint name under the specified subscription, resource group and profile. Only tags can be updated after creating an endpoint. To update origins, use the Update Origin operation. To update origin groups, use the Update Origin group operation. To update custom domains, use the Update Custom Domain operation.
 
 - [validate-custom-domain](/Commands/cdn/endpoint/_validate-custom-domain.md)
 : Validates the custom domain mapping to ensure it maps to the correct CDN endpoint in DNS.
