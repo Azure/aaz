@@ -47,3 +47,18 @@ Update an Agent resource, which references a hybrid compute machine that can run
     ```bash
         storage-mover agent update -g {rg} -n {agent_name} --storage-mover-name {mover_name} --description 123
     ```
+
+- add upload-limit-schedule
+    ```bash
+        storage-mover agent update -g test-storagemover-rg2 -n agent2 --storage-mover-name teststoragemover2 --upload-limit-schedule "{weekly-recurrences:[{days:[Monday,Wednesday],start-time:{hour:10,minute:0},end-time:{hour:12,minute:30},limit-in-mbps:20}]}"
+    ```
+
+- add another weekly-recurrence to existing upload-limit-schedule list
+    ```bash
+        storage-mover agent update -g test-storagemover-rg2 -n agent2 --storage-mover-name teststoragemover2 --upload-limit-schedule weekly-recurrences[1]="{days:[Tuesday,Thursday],start-time:{hour:10,minute:0},end-time:{hour:12,minute:30},limit-in-mbps:20}"
+    ```
+
+- clear upload-limit-schedule
+    ```bash
+        storage-mover agent update -g test-storagemover-rg2 -n agent2 --storage-mover-name teststoragemover2 --upload-limit-schedule null
+    ```
