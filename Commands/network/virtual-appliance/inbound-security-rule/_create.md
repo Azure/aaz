@@ -28,10 +28,10 @@ Create the specified Network Virtual Appliance Inbound Security Rules.
 
 - Create Inbound Security Rule of Permanent Rule Type
     ```bash
-        network virtual-appliance inbound-security-rule create  --network-virtual-appliance-name "MyName" -g "MyRG" --subscription {subID} --rule-type "Permanent" --name "PermanentRuleCollection" --rules "[{name:'inboundRule',protocol:'TCP',destination-port-ranges:['80-120'],applies-on:['slbIP'],source-address-prefix:'*'}]"
+        network virtual-appliance inbound-security-rule create  --nva-name "MyName" -g "MyRG" --subscription {subID} --rule-type "Permanent" --name "PermanentRuleCollection" --rules "[{name:'inboundRule',protocol:'TCP',destination-port-ranges:['80-120'],applies-on:['slbIP'],source-address-prefix:'*'}]"
     ```
 
 - Create Inbound Security Rule of AutoExpire Rule Type
     ```bash
-        network virtual-appliance inbound-security-rule create  --network-virtual-appliance-name "MyName" -g "MyRG" --subscription {subID} --rule-type "AutoExpire" --name "TemporaryRuleCollection" --rules "[{name:'inboundRule',protocol:'TCP',destination-port-ranges:['80-120'],applies-on:['publicnicipconfig'],source-address-prefix:'20.0.0.0/32'}]"
+        network virtual-appliance inbound-security-rule create  --nva-name "MyName" -g "MyRG" --subscription {subID} --rule-type "AutoExpire" --name "TemporaryRuleCollection" --rules "[{name:'inboundRule',protocol:'TCP',destination-port-ranges:['80-120'],applies-on:['publicnicipconfig'],source-address-prefix:'20.0.0.0/32'}]"
     ```
