@@ -12,5 +12,5 @@ Get the available specified Network Virtual Appliance Inbound Security Rules Col
 
 - Get Inbound Security Rule
     ```bash
-        network virtual-appliance inbound-security-rule show --network-virtual-appliance-name "MyName" -g "MyRG" --subscription {subID} --name "InboundRuleCollection"
+        network virtual-appliance inbound-security-rule show --nva-name "MyName" -g "MyRG" --subscription {subID} --name "InboundRuleCollection"
     ```
