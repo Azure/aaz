@@ -152,6 +152,12 @@
 - [k8s-runtime](/Commands/k8s-runtime/readme.md)
 : Manage Arc Kubernetes Runtime resources
 
+- [large-instance](/Commands/large-instance/readme.md)
+: Handle Operations for Compute Azure Large Instances.
+
+- [large-storage-instance](/Commands/large-storage-instance/readme.md)
+: Handle Operations for Storage Azure Large Instances.
+
 - [load](/Commands/load/readme.md)
 : Manage Azure Load Testing resources.
 
