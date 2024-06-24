@@ -13,6 +13,9 @@ Manage NSP Associations
 - [list](/Commands/network/perimeter/association/_list.md)
 : Lists the NSP resource associations.
 
+- [reconcile](/Commands/network/perimeter/association/_reconcile.md)
+: Reconcile NSP association
+
 - [show](/Commands/network/perimeter/association/_show.md)
 : Gets the specified NSP association by name.
 
