@@ -2,6 +2,8 @@
 
 Lists Azure API Center services within an Azure subscription.
 
+There is a known issue that listing all resources under a subscription does not work. Please list resources by resource group.
+
 ## Versions
 
 ### [2024-03-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5hcGljZW50ZXIvc2VydmljZXM=/2024-03-01.xml) **Stable**
