@@ -21,3 +21,23 @@ Manage Azure API Center services
 
 - [workspace](/Commands/apic/workspace/readme.md)
 : Workspace
+
+## Commands
+
+- [create](/Commands/apic/_create.md)
+: Creates an instance or update an existing instance of an Azure API Center service.
+
+- [delete](/Commands/apic/_delete.md)
+: Deletes an instance of an Azure API Center service.
+
+- [import-from-apim](/Commands/apic/_import-from-apim.md)
+: Imports APIs from an Azure API Management service instance.
+
+- [list](/Commands/apic/_list.md)
+: Lists Azure API Center services within an Azure subscription.
+
+- [show](/Commands/apic/_show.md)
+: Show details of an Azure API Center service instance.
+
+- [update](/Commands/apic/_update.md)
+: Update an instance of an Azure API Center service.

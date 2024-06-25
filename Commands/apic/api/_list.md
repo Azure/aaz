@@ -12,7 +12,12 @@ List a collection of APIs.
 
 - List APIs
     ```bash
-        apic api list -g contoso-resources -s contoso
+        apic api list -g contoso-resources -n contoso
+    ```
+
+- List APIs with filter
+    ```bash
+        apic api list -g contoso-resources -n contoso --filter "kind eq 'rest'"
     ```
 
 ### [2024-03-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5hcGljZW50ZXIvc2VydmljZXMve30vd29ya3NwYWNlcy97fS9hcGlz/2024-03-15-preview.xml) **Stable**

@@ -12,5 +12,5 @@ List a collection of metadata schemas.
 
 - List schemas
     ```bash
-        apic metadata list -g api-center-test -s contosoeuap
+        apic metadata list -g api-center-test -n contosoeuap
     ```
