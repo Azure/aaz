@@ -58,5 +58,5 @@ Creates or updates a network access rule.
 
 - Create ServiceTags based access rule
     ```bash
-        network perimeter profile access-rule create -n MyAccessRule --profile-name MyProfile --perimeter-name MyPerimeter -g MyResourceGroup --service-tags  "['st1'']" direction "Inbound"
+        network perimeter profile access-rule create -n MyAccessRule --profile-name MyProfile --perimeter-name MyPerimeter -g MyResourceGroup --service-tags  "[st1,st2]"
     ```
