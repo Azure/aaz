@@ -1,0 +1,144 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.storage/storageaccounts/{}/storagetaskassignments" version="2023-05-01" swagger="mgmt-plane/storage/ResourceProviders/Microsoft.Storage/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RvcmFnZS9zdG9yYWdlQWNjb3VudHMve2FjY291bnROYW1lfS9zdG9yYWdlVGFza0Fzc2lnbm1lbnRz/V/MjAyMy0wNS0wMQ=="/>
+  <commandGroup name="storage account task-assignment">
+    <command name="list" version="2023-05-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.storage/storageaccounts/{}/storagetaskassignments" version="2023-05-01" swagger="mgmt-plane/storage/ResourceProviders/Microsoft.Storage/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RvcmFnZS9zdG9yYWdlQWNjb3VudHMve2FjY291bnROYW1lfS9zdG9yYWdlVGFza0Fzc2lnbm1lbnRz/V/MjAyMy0wNS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.accountName" options="account-name" required="True" idPart="name">
+          <help short="The name of the storage account within the specified resource group. Storage account names must be between 3 and 24 characters in length and use numbers and lower-case letters only."/>
+          <format pattern="^[a-z0-9]+$" maxLength="24" minLength="3"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="integer32" var="$Query.maxpagesize" options="maxpagesize">
+          <help short="Optional, specifies the maximum number of storage task assignment Ids to be included in the list response."/>
+        </arg>
+      </argGroup>
+      <operation operationId="StorageTaskAssignments_List">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Storage/storageAccounts/{accountName}/storageTaskAssignments">
+          <request method="get">
+            <path>
+              <param type="string" name="accountName" arg="$Path.accountName" required="True">
+                <format pattern="^[a-z0-9]+$" maxLength="24" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <param type="integer32" name="$maxpagesize" arg="$Query.maxpagesize"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-05-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="nextLink"/>
+                  <prop readOnly="True" type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Storage/storageAccounts/{}/storageTaskAssignments/{}"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" required="True">
+                        <prop type="string" name="description" required="True"/>
+                        <prop type="boolean" name="enabled" required="True"/>
+                        <prop type="object" name="executionContext" required="True">
+                          <prop type="object" name="target">
+                            <prop type="array<string>" name="excludePrefix">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="array<string>" name="prefix">
+                              <item type="string"/>
+                            </prop>
+                          </prop>
+                          <prop type="object" name="trigger" required="True">
+                            <prop type="object" name="parameters" required="True">
+                              <prop type="dateTime" name="endBy"/>
+                              <prop type="integer32" name="interval">
+                                <format minimum="1"/>
+                              </prop>
+                              <prop type="string" name="intervalUnit">
+                                <enum>
+                                  <item value="&quot;Days&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="dateTime" name="startFrom"/>
+                              <prop type="dateTime" name="startOn"/>
+                            </prop>
+                            <prop type="string" name="type" required="True">
+                              <enum>
+                                <item value="&quot;OnSchedule&quot;"/>
+                                <item value="&quot;RunOnce&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Creating&quot;"/>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;ValidateSubscriptionQuotaBegin&quot;"/>
+                            <item value="&quot;ValidateSubscriptionQuotaEnd&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="report" required="True">
+                          <prop type="string" name="prefix" required="True"/>
+                        </prop>
+                        <prop type="object" name="runStatus">
+                          <prop readOnly="True" type="string" name="finishTime"/>
+                          <prop readOnly="True" type="string" name="objectFailedCount"/>
+                          <prop readOnly="True" type="string" name="objectsOperatedOnCount"/>
+                          <prop readOnly="True" type="string" name="objectsSucceededCount"/>
+                          <prop readOnly="True" type="string" name="objectsTargetedCount"/>
+                          <prop readOnly="True" type="string" name="runResult">
+                            <enum>
+                              <item value="&quot;Failed&quot;"/>
+                              <item value="&quot;Succeeded&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="string" name="runStatusEnum">
+                            <enum>
+                              <item value="&quot;Finished&quot;"/>
+                              <item value="&quot;InProgress&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="string" name="runStatusError"/>
+                          <prop readOnly="True" type="string" name="startTime"/>
+                          <prop readOnly="True" type="ResourceId" name="storageAccountId"/>
+                          <prop readOnly="True" type="string" name="summaryReportPath"/>
+                          <prop readOnly="True" type="ResourceId" name="taskAssignmentId"/>
+                          <prop readOnly="True" type="ResourceId" name="taskId"/>
+                          <prop readOnly="True" type="string" name="taskVersion"/>
+                        </prop>
+                        <prop type="ResourceId" name="taskId" required="True"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
