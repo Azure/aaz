@@ -12,7 +12,7 @@ Create a new environment or update an existing environment.
 
 - Create environment
     ```bash
-        apic environment create -g api-center-test -s contosoeuap --environment-id public --title "Public cloud" --type "development"
+        apic environment create -g api-center-test -n contosoeuap --environment-id public --title "Public cloud" --type "development"
     ```
 
 ### [2024-03-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5hcGljZW50ZXIvc2VydmljZXMve30vd29ya3NwYWNlcy97fS9lbnZpcm9ubWVudHMve30=/2024-03-15-preview.xml) **Stable**
