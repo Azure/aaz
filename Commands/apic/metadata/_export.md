@@ -12,15 +12,15 @@ Exports the metadata schema.
 
 - Export Metadata Schema assigned to api
     ```bash
-        apic metadata export -g api-center-test -s contosoeuap --assignments api --file-name filename.json
+        apic metadata export -g api-center-test -n contosoeuap --assignments api --file-name filename.json
     ```
 
 - Export Metadata Schema assigned to deployment
     ```bash
-        apic metadata export -g api-center-test -s contosoeuap --assignments deployment --file-name filename.json
+        apic metadata export -g api-center-test -n contosoeuap --assignments deployment --file-name filename.json
     ```
 
 - Export Metadata Schema assigned to environment
     ```bash
-        apic metadata export -g api-center-test -s contosoeuap --assignments environment --file-name filename.json
+        apic metadata export -g api-center-test -n contosoeuap --assignments environment --file-name filename.json
     ```

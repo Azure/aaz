@@ -6,3 +6,6 @@ Manage Azure Network Virtual Appliance Inbound Security Rules.
 
 - [create](/Commands/network/virtual-appliance/inbound-security-rule/_create.md)
 : Create the specified Network Virtual Appliance Inbound Security Rules.
+
+- [show](/Commands/network/virtual-appliance/inbound-security-rule/_show.md)
+: Get the available specified Network Virtual Appliance Inbound Security Rules Collection.
