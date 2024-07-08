@@ -27,6 +27,9 @@ Manage Azure Network Virtual Appliance.
 - [list](/Commands/network/virtual-appliance/_list.md)
 : List all Azure network virtual appliance.
 
+- [restart](/Commands/network/virtual-appliance/_restart.md)
+: Restarts one or more VMs belonging to the specified Network Virtual Appliance.
+
 - [show](/Commands/network/virtual-appliance/_show.md)
 : Show the detail of an Azure network virtual appliance.
 

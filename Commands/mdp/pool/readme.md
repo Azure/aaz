@@ -2,6 +2,11 @@
 
 Manage a pool resource
 
+## Subgroups
+
+- [agent](/Commands/mdp/pool/agent/readme.md)
+: Manage pool resource agents
+
 ## Commands
 
 - [create](/Commands/mdp/pool/_create.md)
@@ -11,7 +16,7 @@ Manage a pool resource
 : Delete a pool
 
 - [list](/Commands/mdp/pool/_list.md)
-: List all pool resources
+: List all pools
 
 - [show](/Commands/mdp/pool/_show.md)
 : Get a pool
