@@ -25,3 +25,14 @@ List vnet peerings under a workspace.
     ```bash
         databricks workspace vnet-peering list --resource-group MyResourceGroup --workspace-name MyWorkspace
     ```
+
+### [2024-05-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhYnJpY2tzL3dvcmtzcGFjZXMve30vdmlydHVhbG5ldHdvcmtwZWVyaW5ncw==/2024-05-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.databricks/workspaces/{}/virtualnetworkpeerings 2024-05-01 -->
+
+#### examples
+
+- List vnet peerings under a workspace.
+    ```bash
+        databricks workspace vnet-peering list --resource-group MyResourceGroup --workspace-name MyWorkspace
+    ```
