@@ -10,7 +10,7 @@ Get the sku details for the given resource type and sku name.
 
 #### examples
 
-- sku nested-resource-type-third show
+- providerhub sku nested-resource-type-third show
     ```bash
         providerhub sku nested-resource-type-third show --nested-resource-type-first "nestedResourceTypeFirst" --nested-resource-type-second "nestedResourceTypeSecond" --nested-resource-type-third "nestedResourceTypeThird" --provider-namespace "{providerNamespace}" --resource-type "{resourceType}" --sku "{skuName}"
     ```

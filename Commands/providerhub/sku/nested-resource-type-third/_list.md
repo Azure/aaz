@@ -10,7 +10,7 @@ List the list of skus for the given resource type.
 
 #### examples
 
-- sku nested-resource-type-third list
+- providerhub sku nested-resource-type-third list
     ```bash
         providerhub sku nested-resource-type-third list --nested-resource-type-first "nestedResourceTypeFirst" --nested-resource-type-second "nestedResourceTypeSecond" --nested-resource-type-third "nestedResourceTypeThird" --provider-namespace "{providerNamespace}" --resource-type "{resourceType}"
     ```

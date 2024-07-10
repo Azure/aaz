@@ -10,7 +10,7 @@ Update the resource type skus in the given resource type.
 
 #### examples
 
-- sku nested-resource-type-third update
+- providerhub sku nested-resource-type-third update
     ```bash
         providerhub sku nested-resource-type-third update --nested-resource-type-first "nestedResourceTypeFirst" --nested-resource-type-second "nestedResourceTypeSecond" --nested-resource-type-third "nestedResourceTypeThird" --sku-settings [{"name":"freeSku","kind":"Standard","tier":"Tier1"},{"name":"premiumSku","costs":[{"meterId":"xxx"}],"kind":"Premium","tier":"Tier2"}] --provider-namespace "{providerNamespace}" --resource-type "{resourceType}" --sku "{skuName}"
     ```
