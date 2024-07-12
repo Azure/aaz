@@ -19,6 +19,9 @@ Manage Azure Content Delivery Networks (CDNs).
 - [origin-group](/Commands/cdn/origin-group/readme.md)
 : Manage origin groups of an endpoint.
 
+- [profile-migration](/Commands/cdn/profile-migration/readme.md)
+: Classic cdn profile migration operations
+
 ## Commands
 
 - [check-name-availability](/Commands/cdn/_check-name-availability.md)
