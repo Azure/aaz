@@ -10,6 +10,12 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <condition var="$Condition_Profiles_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
       <condition var="$Condition_Profiles_List">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -18,16 +24,13 @@
           </operator>
         </operator>
       </condition>
-      <condition var="$Condition_Profiles_ListByResourceGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
-      <operation when="$Condition_Profiles_List" operationId="Profiles_List">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Cdn/profiles">
+      <operation when="$Condition_Profiles_ListByResourceGroup" operationId="Profiles_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+              </param>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -195,13 +198,10 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_Profiles_ListByResourceGroup" operationId="Profiles_ListByResourceGroup">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles">
+      <operation when="$Condition_Profiles_List" operationId="Profiles_List">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Cdn/profiles">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
-              </param>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
