@@ -20,6 +20,9 @@
 - [apic](/Commands/apic/readme.md)
 : Manage Azure API Center services
 
+- [arc](/Commands/arc/readme.md)
+: Manage Azure Arc Machines.
+
 - [astronomer](/Commands/astronomer/readme.md)
 : Manage Azure Astronomer resources.
 
@@ -75,7 +78,7 @@
 : Manage confluent organization
 
 - [connectedmachine](/Commands/connectedmachine/readme.md)
-: Manage an Azure Arc-Enabled Server.
+: Manage Azure Arc-Enabled Server.
 
 - [consumption](/Commands/consumption/readme.md)
 : Manage consumption of Azure resources.
