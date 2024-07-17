@@ -2,6 +2,9 @@
 
 ## Groups
 
+- [acat](/Commands/acat/readme.md)
+: ACAT command group
+
 - [account](/Commands/account/readme.md)
 : Manage Azure subscription information.
 

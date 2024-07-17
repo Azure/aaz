@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/providers/microsoft.appcomplianceautomation/reports/{}/snapshots/{}/download" version="2024-06-27" swagger="mgmt-plane/appcomplianceautomation/ResourceProviders/Microsoft.AppComplianceAutomation/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXBwQ29tcGxpYW5jZUF1dG9tYXRpb24vcmVwb3J0cy97cmVwb3J0TmFtZX0vc25hcHNob3RzL3tzbmFwc2hvdE5hbWV9L2Rvd25sb2Fk/V/MjAyNC0wNi0yNw=="/>
+  <commandGroup name="acat report snapshot">
+    <command name="download" version="2024-06-27">
+      <resource id="/providers/microsoft.appcomplianceautomation/reports/{}/snapshots/{}/download" version="2024-06-27" swagger="mgmt-plane/appcomplianceautomation/ResourceProviders/Microsoft.AppComplianceAutomation/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXBwQ29tcGxpYW5jZUF1dG9tYXRpb24vcmVwb3J0cy97cmVwb3J0TmFtZX0vc25hcHNob3RzL3tzbmFwc2hvdE5hbWV9L2Rvd25sb2Fk/V/MjAyNC0wNi0yNw=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.reportName" options="report-name" required="True">
+          <help short="Report Name."/>
+          <format pattern="^[-a-zA-Z0-9_]{1,50}$"/>
+        </arg>
+        <arg type="string" var="$Path.snapshotName" options="snapshot-name" required="True">
+          <help short="Snapshot Name."/>
+          <format pattern="^[a-zA-Z0-9-_]{1,64}$"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Parameters">
+        <arg type="string" var="$parameters.downloadType" options="download-type" required="True" group="Parameters">
+          <help short="Indicates the download type."/>
+          <enum>
+            <item name="ComplianceDetailedPdfReport" value="&quot;ComplianceDetailedPdfReport&quot;"/>
+            <item name="CompliancePdfReport" value="&quot;CompliancePdfReport&quot;"/>
+            <item name="ComplianceReport" value="&quot;ComplianceReport&quot;"/>
+            <item name="ResourceList" value="&quot;ResourceList&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$parameters.offerGuid" options="offer-guid" group="Parameters">
+          <help short="The offerGuid which mapping to the reports."/>
+          <format minLength="1"/>
+        </arg>
+        <arg type="string" var="$parameters.reportCreatorTenantId" options="tenant" group="Parameters">
+          <help short="Tenant id."/>
+        </arg>
+      </argGroup>
+      <operation operationId="Snapshot_Download">
+        <longRunning finalStateVia="location"/>
+        <http path="/providers/Microsoft.AppComplianceAutomation/reports/{reportName}/snapshots/{snapshotName}/download">
+          <request method="post">
+            <path>
+              <param type="string" name="reportName" arg="$Path.reportName" required="True">
+                <format pattern="^[-a-zA-Z0-9_]{1,50}$"/>
+              </param>
+              <param type="string" name="snapshotName" arg="$Path.snapshotName" required="True">
+                <format pattern="^[a-zA-Z0-9-_]{1,64}$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-27&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="parameters" required="True" clientFlatten="True">
+                  <prop type="string" name="downloadType" arg="$parameters.downloadType" required="True">
+                    <enum>
+                      <item value="&quot;ComplianceDetailedPdfReport&quot;"/>
+                      <item value="&quot;CompliancePdfReport&quot;"/>
+                      <item value="&quot;ComplianceReport&quot;"/>
+                      <item value="&quot;ResourceList&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="string" name="offerGuid" arg="$parameters.offerGuid">
+                    <format minLength="1"/>
+                  </prop>
+                  <prop type="string" name="reportCreatorTenantId" arg="$parameters.reportCreatorTenantId"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="object" name="complianceDetailedPdfReport">
+                    <prop readOnly="True" type="string" name="sasUri"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="compliancePdfReport">
+                    <prop readOnly="True" type="string" name="sasUri"/>
+                  </prop>
+                  <prop readOnly="True" type="array<object>" name="complianceReport" identifiers="controlId">
+                    <item type="object">
+                      <prop readOnly="True" type="string" name="categoryName"/>
+                      <prop readOnly="True" type="string" name="controlFamilyName"/>
+                      <prop readOnly="True" type="string" name="controlId"/>
+                      <prop readOnly="True" type="string" name="controlName"/>
+                      <prop readOnly="True" type="string" name="controlStatus">
+                        <enum>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;NotApplicable&quot;"/>
+                          <item value="&quot;Passed&quot;"/>
+                          <item value="&quot;PendingApproval&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="resourceId"/>
+                      <prop readOnly="True" type="string" name="resourceOrigin">
+                        <enum>
+                          <item value="&quot;AWS&quot;"/>
+                          <item value="&quot;Azure&quot;"/>
+                          <item value="&quot;GCP&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="resourceStatus">
+                        <enum>
+                          <item value="&quot;Healthy&quot;"/>
+                          <item value="&quot;Unhealthy&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="dateTime" name="resourceStatusChangeDate"/>
+                      <prop readOnly="True" type="string" name="resourceType"/>
+                      <prop readOnly="True" type="string" name="responsibilityDescription"/>
+                      <prop readOnly="True" type="string" name="responsibilityTitle"/>
+                    </item>
+                  </prop>
+                  <prop readOnly="True" type="array<object>" name="resourceList" identifiers="resourceId">
+                    <item type="object">
+                      <prop readOnly="True" type="string" name="resourceGroup"/>
+                      <prop readOnly="True" type="string" name="resourceId"/>
+                      <prop readOnly="True" type="string" name="resourceType"/>
+                      <prop readOnly="True" type="string" name="subscriptionId"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
