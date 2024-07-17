@@ -7,3 +7,7 @@ List associations for the specified resource.
 ### [2022-06-01](/Resources/mgmt-plane/L3tyZXNvdXJjZXVyaX0vcHJvdmlkZXJzL21pY3Jvc29mdC5pbnNpZ2h0cy9kYXRhY29sbGVjdGlvbnJ1bGVhc3NvY2lhdGlvbnM=/2022-06-01.xml) **Stable**
 
 <!-- mgmt-plane /{resourceuri}/providers/microsoft.insights/datacollectionruleassociations 2022-06-01 -->
+
+### [2023-03-11](/Resources/mgmt-plane/L3tyZXNvdXJjZXVyaX0vcHJvdmlkZXJzL21pY3Jvc29mdC5pbnNpZ2h0cy9kYXRhY29sbGVjdGlvbnJ1bGVhc3NvY2lhdGlvbnM=/2023-03-11.xml) **Stable**
+
+<!-- mgmt-plane /{resourceuri}/providers/microsoft.insights/datacollectionruleassociations 2023-03-11 -->
