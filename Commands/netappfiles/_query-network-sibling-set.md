@@ -21,17 +21,6 @@ Get details of the specified network sibling set
         netappfiles query-network-sibling-set -l westus2 --network-sibling-set-id {SIBLIING_SET_ID} --subnet-id {SUBNET_ID}
     ```
 
-### [2023-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbG9jYXRpb25zL3t9L3F1ZXJ5bmV0d29ya3NpYmxpbmdzZXQ=/2023-11-01.xml) **Stable**
-
-<!-- mgmt-plane /subscriptions/{}/providers/microsoft.netapp/locations/{}/querynetworksiblingset 2023-11-01 -->
-
-#### examples
-
-- Query network sibling set
-    ```bash
-        netappfiles query-network-sibling-set -l westus2 --network-sibling-set-id {SIBLIING_SET_ID} --subnet-id {SUBNET_ID}
-    ```
-
 ### [2024-03-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbG9jYXRpb25zL3t9L3F1ZXJ5bmV0d29ya3NpYmxpbmdzZXQ=/2024-03-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.netapp/locations/{}/querynetworksiblingset 2024-03-01 -->
