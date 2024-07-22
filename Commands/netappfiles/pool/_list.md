@@ -38,3 +38,14 @@ List the ANF capacity pools for the specified account.
     ```bash
         netappfiles pool list -g mygroup --account-name myname
     ```
+
+### [2024-03-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbmV0YXBwYWNjb3VudHMve30vY2FwYWNpdHlwb29scw==/2024-03-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.netapp/netappaccounts/{}/capacitypools 2024-03-01 -->
+
+#### examples
+
+- List the pools for the ANF account
+    ```bash
+        netappfiles pool list -g mygroup --account-name myname
+    ```
