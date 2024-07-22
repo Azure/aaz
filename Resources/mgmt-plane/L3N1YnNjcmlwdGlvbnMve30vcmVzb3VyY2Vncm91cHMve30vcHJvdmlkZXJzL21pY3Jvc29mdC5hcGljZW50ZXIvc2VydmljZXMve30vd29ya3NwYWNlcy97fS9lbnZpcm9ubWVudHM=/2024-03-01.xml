@@ -6,15 +6,15 @@
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.apicenter/services/{}/workspaces/{}/environments" version="2024-03-01" swagger="mgmt-plane/apicenter/ResourceProviders/Microsoft.ApiCenter/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXBpQ2VudGVyL3NlcnZpY2VzL3tzZXJ2aWNlTmFtZX0vd29ya3NwYWNlcy97d29ya3NwYWNlTmFtZX0vZW52aXJvbm1lbnRz/V/MjAyNC0wMy0wMQ=="/>
       <argGroup name="">
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
-        <arg type="string" var="$Path.serviceName" options="service-name service s" required="True" group="" idPart="name">
-          <help short="The name of the API Center service."/>
-          <format maxLength="90" minLength="1"/>
+        <arg type="string" var="$Path.serviceName" options="service-name n" required="True" group="" idPart="name">
+          <help short="The name of Azure API Center service."/>
+          <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         <arg type="string" var="$Path.workspaceName" options="workspace-name workspace w" required="True" group="" idPart="child_name_1">
           <help short="The name of the workspace."/>
           <default value="&quot;default&quot;"/>
-          <format maxLength="90" minLength="1"/>
+          <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
         </arg>
         <arg type="string" var="$Query.filter" options="filter">
           <help short="OData filter parameter."/>
@@ -28,11 +28,11 @@
                 <format maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="serviceName" arg="$Path.serviceName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
               <param type="string" name="workspaceName" arg="$Path.workspaceName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
             </path>
             <query>
@@ -48,14 +48,16 @@
               <json var="$Instance">
                 <schema type="object">
                   <prop readOnly="True" type="string" name="nextLink"/>
-                  <prop readOnly="True" type="array<object>" name="value">
+                  <prop readOnly="True" type="array<object>" name="value" required="True">
                     <item type="object">
                       <prop readOnly="True" type="ResourceId" name="id">
                         <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.ApiCenter/services/{}/workspaces/{}/environments/{}"/>
                       </prop>
                       <prop readOnly="True" type="string" name="name"/>
-                      <prop type="object" name="properties" clientFlatten="True">
-                        <prop type="object" name="customProperties"/>
+                      <prop type="object" name="properties" required="True" clientFlatten="True">
+                        <prop type="object" name="customProperties">
+                          <additionalProp anyType="True"/>
+                        </prop>
                         <prop type="string" name="description"/>
                         <prop type="string" name="kind" required="True">
                           <enum>

@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='utf-8'?>
 <CodeGen plane="mgmt-plane">
   <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.apicenter/services/{}/exportmetadataschema" version="2024-03-01" swagger="mgmt-plane/apicenter/ResourceProviders/Microsoft.ApiCenter/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXBpQ2VudGVyL3NlcnZpY2VzL3tzZXJ2aWNlTmFtZX0vZXhwb3J0TWV0YWRhdGFTY2hlbWE=/V/MjAyNC0wMy0wMQ=="/>
-  <commandGroup name="apic metadata-schema">
-    <command name="export-metadata-schema" version="2024-03-01" confirmation="">
+  <commandGroup name="apic metadata">
+    <command name="export" version="2024-03-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.apicenter/services/{}/exportmetadataschema" version="2024-03-01" swagger="mgmt-plane/apicenter/ResourceProviders/Microsoft.ApiCenter/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXBpQ2VudGVyL3NlcnZpY2VzL3tzZXJ2aWNlTmFtZX0vZXhwb3J0TWV0YWRhdGFTY2hlbWE=/V/MjAyNC0wMy0wMQ=="/>
       <argGroup name="">
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
-        <arg type="string" var="$Path.serviceName" options="service-name service name s" required="True" group="" idPart="name">
+        <arg type="string" var="$Path.serviceName" options="service-name n" required="True" group="" idPart="name">
           <help short="The name of the API Center service."/>
-          <format maxLength="90" minLength="1"/>
+          <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Payload">
-        <arg type="string" var="$payload.assignedTo" options="assigned-to" group="Payload">
+        <arg type="string" var="$payload.assignedTo" options="assignments" group="Payload">
           <help short="An entity the metadata schema is requested for."/>
           <enum>
             <item name="api" value="&quot;api&quot;"/>
@@ -31,7 +31,7 @@
                 <format maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="serviceName" arg="$Path.serviceName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
               </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
@@ -70,7 +70,12 @@
               </json>
             </body>
           </response>
-          <response statusCode="202"/>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
           <response isError="True">
             <body>
               <json>

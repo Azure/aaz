@@ -2,6 +2,9 @@
 
 ## Groups
 
+- [acat](/Commands/acat/readme.md)
+: ACAT command group
+
 - [account](/Commands/account/readme.md)
 : Manage Azure subscription information.
 
@@ -13,6 +16,9 @@
 
 - [amlfs](/Commands/amlfs/readme.md)
 : Manage lustre file system
+
+- [aosm](/Commands/aosm/readme.md)
+: Manage Azure Operator Service Manager resources.
 
 - [apic](/Commands/apic/readme.md)
 : Manage Azure API Center services
@@ -61,6 +67,9 @@
 
 - [compute-diagnostic](/Commands/compute-diagnostic/readme.md)
 : Mange vm sku recommender info
+
+- [compute-recommender](/Commands/compute-recommender/readme.md)
+: Manage sku/zone/region recommender info for compute resources
 
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
@@ -116,6 +125,9 @@
 - [dynatrace](/Commands/dynatrace/readme.md)
 : Manage dynatrace
 
+- [edge-zones](/Commands/edge-zones/readme.md)
+: Manage Edge Zone resources
+
 - [elastic](/Commands/elastic/readme.md)
 : Manage Microsoft Elastic.
 
@@ -139,6 +151,18 @@
 
 - [image](/Commands/image/readme.md)
 : Manage custom virtual machine images.
+
+- [informatica](/Commands/informatica/readme.md)
+: Manage Informatica
+
+- [k8s-runtime](/Commands/k8s-runtime/readme.md)
+: Manage Arc Kubernetes Runtime resources
+
+- [large-instance](/Commands/large-instance/readme.md)
+: Handle Operations for Compute Azure Large Instances.
+
+- [large-storage-instance](/Commands/large-storage-instance/readme.md)
+: Handle Operations for Storage Azure Large Instances.
 
 - [load](/Commands/load/readme.md)
 : Manage Azure Load Testing resources.
@@ -260,11 +284,20 @@
 - [storage](/Commands/storage/readme.md)
 : Manage Azure Cloud Storage resources.
 
+- [storage-actions](/Commands/storage-actions/readme.md)
+: Manage StorageActions
+
 - [storage-mover](/Commands/storage-mover/readme.md)
 : Manage top-level Storage Mover resource.
 
 - [storagesync](/Commands/storagesync/readme.md)
 : Manage Azure File Sync.
+
+- [support](/Commands/support/readme.md)
+: Manage Azure support resource.
+
+- [trustedsigning](/Commands/trustedsigning/readme.md)
+: Manage trusted signing account
 
 - [tsi](/Commands/tsi/readme.md)
 : Manage Azure Time Series Insights.
