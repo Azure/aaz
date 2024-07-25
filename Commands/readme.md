@@ -2,6 +2,9 @@
 
 ## Groups
 
+- [acat](/Commands/acat/readme.md)
+: ACAT command group
+
 - [account](/Commands/account/readme.md)
 : Manage Azure subscription information.
 
@@ -149,6 +152,9 @@
 - [image](/Commands/image/readme.md)
 : Manage custom virtual machine images.
 
+- [informatica](/Commands/informatica/readme.md)
+: Manage Informatica
+
 - [k8s-runtime](/Commands/k8s-runtime/readme.md)
 : Manage Arc Kubernetes Runtime resources
 
@@ -205,6 +211,9 @@
 
 - [notification-hub](/Commands/notification-hub/readme.md)
 : Manage notification hubs.
+
+- [oracle-database](/Commands/oracle-database/readme.md)
+: Command Modules for RP Oracle.Database
 
 - [orbital](/Commands/orbital/readme.md)
 : Azure Orbital Ground Station as-a-Service (GSaaS).

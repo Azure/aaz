@@ -11,7 +11,8 @@ Handle Operations for Compute Azure Large Instances.
 : The operation to restart an Azure Large Instance (only for compute instances)
 
 - [show](/Commands/large-instance/_show.md)
-: Get an Azure Large Instance for the specified subscription, resource group, and instance name.
+: Get an Azure Large Instance for the specified subscription, resource group,
+and instance name.
 
 - [shutdown](/Commands/large-instance/_shutdown.md)
 : The operation to shutdown an Azure Large Instance (only for compute instances)
@@ -20,4 +21,5 @@ Handle Operations for Compute Azure Large Instances.
 : The operation to start an Azure Large Instance (only for compute instances)
 
 - [update](/Commands/large-instance/_update.md)
-: Update the Tags field of an Azure Large Instance for the specified subscription, resource group, and instance name.
+: Update the Tags field of an Azure Large Instance for the specified
+subscription, resource group, and instance name.

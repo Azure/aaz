@@ -12,10 +12,10 @@ Get details of the metadata schema.
 
 - Show schema details 1
     ```bash
-        apic metadata show -g api-center-test -s contosoeuap --name approver
+        apic metadata show -g api-center-test -n contosoeuap --metadata-name approver
     ```
 
 - Show schema details 2
     ```bash
-        apic metadata show --resource-group api-center-test --service-name contoso --name "testchoices"
+        apic metadata show --resource-group api-center-test --service-name contoso --metadata-name "testchoices"
     ```
