@@ -1,11 +1,14 @@
 # [Group] _network firewall policy rule-collection-group_
 
-Manage and configure Azure firewall policy rule collection group.
+Manage and configure Azure firewall policy rule-collection-group.
 
 ## Subgroups
 
 - [collection](/Commands/network/firewall/policy/rule-collection-group/collection/readme.md)
 : Manage and configure Azure firewall policy rule collections in the rule collection group.
+
+- [draft](/Commands/network/firewall/policy/rule-collection-group/draft/readme.md)
+: Manage and configure Azure firewall policy rule-collection-group draft.
 
 ## Commands
 
