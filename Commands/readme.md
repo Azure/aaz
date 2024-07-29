@@ -227,6 +227,9 @@
 - [ppg](/Commands/ppg/readme.md)
 : Manage Proximity Placement Groups.
 
+- [providerhub](/Commands/providerhub/readme.md)
+: Manage resources with ProviderHub.
+
 - [qumulo](/Commands/qumulo/readme.md)
 : Manage qumulo
 
