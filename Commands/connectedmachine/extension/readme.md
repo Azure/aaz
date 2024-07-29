@@ -10,16 +10,16 @@ Manage a VM extension on an Azure Arc-Enabled Server.
 ## Commands
 
 - [create](/Commands/connectedmachine/extension/_create.md)
-: The operation to create the extension.
+: Create an extension.
 
 - [delete](/Commands/connectedmachine/extension/_delete.md)
-: The operation to delete the extension.
+: Delete an extension.
 
 - [list](/Commands/connectedmachine/extension/_list.md)
-: The operation to get all extensions of a Non-Azure machine.
+: Get all extensions of a Non-Azure machine.
 
 - [show](/Commands/connectedmachine/extension/_show.md)
-: The operation to create or update the extension.
+: Show an extension of a Non-Azure machine.
 
 - [update](/Commands/connectedmachine/extension/_update.md)
-: Update operation to update the extension.
+: Update an extension.
