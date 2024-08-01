@@ -109,7 +109,7 @@ Create the specified volume within the capacity pool
 
 - Create an ANF volume
     ```bash
-        netappfiles volume create -g group --account-name aname --pool-name pname --volume-name vname -l location --service-level "Premium" --usage-threshold 107374182400 --creation-token "unique-token" --protocol-types NFSv3 --vnet myvnet --subnet-id "/subscriptions/mysubsid/resourceGroups/myrg/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/default" --rules '[{"allowed_clients":"0.0.0.0/0","rule_index":"1","unix_read_only":"true","unix_read_write":"false","cifs":"false","nfsv3":"true","nfsv41":"false"}]'
+        netappfiles volume create -g group --account-name aname --pool-name pname --volume-name vname -l location --service-level "Premium" --usage-threshold 100 --creation-token "unique-token" --protocol-types NFSv3 --vnet myvnet --subnet-id "/subscriptions/mysubsid/resourceGroups/myrg/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/default" --rules '[{"allowed_clients":"0.0.0.0/0","rule_index":"1","unix_read_only":"true","unix_read_write":"false","cifs":"false","nfsv3":"true","nfsv41":"false"}]'
     ```
 
 - Create an ANF volume with zones (Availability Zone) specified
@@ -130,7 +130,7 @@ Create the specified volume within the capacity pool
 
 - Create an ANF volume
     ```bash
-        netappfiles volume create -g group --account-name aname --pool-name pname --volume-name vname -l location --service-level "Premium" --usage-threshold 107374182400 --creation-token "unique-token" --protocol-types NFSv3 --vnet myvnet --subnet-id "/subscriptions/mysubsid/resourceGroups/myrg/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/default" --rules '[{"allowed_clients":"0.0.0.0/0","rule_index":"1","unix_read_only":"true","unix_read_write":"false","cifs":"false","nfsv3":"true","nfsv41":"false"}]'
+        netappfiles volume create -g group --account-name aname --pool-name pname --volume-name vname -l location --service-level "Premium" --usage-threshold 100 --creation-token "unique-token" --protocol-types NFSv3 --vnet myvnet --subnet-id "/subscriptions/mysubsid/resourceGroups/myrg/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/default" --rules '[{"allowed_clients":"0.0.0.0/0","rule_index":"1","unix_read_only":"true","unix_read_write":"false","cifs":"false","nfsv3":"true","nfsv41":"false"}]'
     ```
 
 - Create an ANF volume with zones (Availability Zone) specified
