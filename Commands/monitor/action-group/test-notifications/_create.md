@@ -12,5 +12,5 @@ Create an action group test-notifications.
 
 - Create an action group test-notifications with action group
     ```bash
-        monitor action-group test-notifications create --action-group MyActionGroup \ --resource-group MyResourceGroup -a email alice alice@example.com usecommonalertsChema --alert-type budget
+        monitor action-group test-notifications create --action-group MyActionGroup --resource-group MyResourceGroup -a email alice alice@example.com usecommonalertsChema --alert-type budget
     ```
