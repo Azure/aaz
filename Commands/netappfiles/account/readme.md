@@ -30,6 +30,9 @@ Manage Azure NetApp Files (ANF) Account Resources.
 - [list](/Commands/netappfiles/account/_list.md)
 : List and describe all NetApp accounts in the subscription.
 
+- [migrate-backup](/Commands/netappfiles/account/_migrate-backup.md)
+: Migrate the backups under a NetApp account to backup vault
+
 - [renew-credentials](/Commands/netappfiles/account/_renew-credentials.md)
 : Renew identity credentials that are used to authenticate to key vault, for customer-managed key encryption. If encryption.identity.principalId does not match identity.principalId, running this operation will fix it.
 
