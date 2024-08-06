@@ -81,5 +81,5 @@ Update a load balancing rule.
 
 - Update a load balancing rule to support HA ports.
     ```bash
-        network lb rule update -g MyResourceGroup --lb-name MyLb -n MyLbRule \ --protocol All --frontend-port 0 --backend-port 0
+        network lb rule update -g MyResourceGroup --lb-name MyLb -n MyLbRule --protocol All --frontend-port 0 --backend-port 0
     ```

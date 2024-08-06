@@ -14,9 +14,9 @@ For more information on autoscaling, visit: https://docs.microsoft.com/azure/mon
 
 - Create autoscale settings to scale between 2 and 5 instances (3 as default). Email the administrator when scaling occurs.
     ```bash
-        monitor autoscale create -g myrg --resource resource-id --min-count 2 --max-count 5 \ --count 3 --email-administrator
-        monitor autoscale rule create -g myrg --autoscale-name resource-name --scale out 1 \ --condition "Percentage CPU > 75 avg 5m"
-        monitor autoscale rule create -g myrg --autoscale-name resource-name --scale in 1 \ --condition "Percentage CPU < 25 avg 5m"
+        monitor autoscale create -g myrg --resource resource-id --min-count 2 --max-count 5 --count 3 --email-administrator
+        monitor autoscale rule create -g myrg --autoscale-name resource-name --scale out 1 --condition "Percentage CPU > 75 avg 5m"
+        monitor autoscale rule create -g myrg --autoscale-name resource-name --scale in 1 --condition "Percentage CPU < 25 avg 5m"
     ```
 
 - Create autoscale settings for exactly 4 instances.
