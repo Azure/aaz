@@ -1,0 +1,175 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networkvirtualappliances/{}/inboundsecurityrules/{}" version="2023-11-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9uZXR3b3JrVmlydHVhbEFwcGxpYW5jZXMve25ldHdvcmtWaXJ0dWFsQXBwbGlhbmNlTmFtZX0vaW5ib3VuZFNlY3VyaXR5UnVsZXMve3J1bGVDb2xsZWN0aW9uTmFtZX0=/V/MjAyMy0xMS0wMQ=="/>
+  <commandGroup name="network virtual-appliance inbound-security-rule">
+    <command name="create" version="2023-11-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networkvirtualappliances/{}/inboundsecurityrules/{}" version="2023-11-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9uZXR3b3JrVmlydHVhbEFwcGxpYW5jZXMve25ldHdvcmtWaXJ0dWFsQXBwbGlhbmNlTmFtZX0vaW5ib3VuZFNlY3VyaXR5UnVsZXMve3J1bGVDb2xsZWN0aW9uTmFtZX0=/V/MjAyMy0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.networkVirtualApplianceName" options="nva-name" required="True" group="" idPart="name">
+          <help short="The name of the Network Virtual Appliance."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.ruleCollectionName" options="rule-collection-name name n" required="True" idPart="child_name_1">
+          <help short="The name of security rule collection."/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Parameters">
+        <arg type="string" var="$parameters.id" options="id" group="Parameters">
+          <help short="Resource ID."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="string" var="$parameters.properties.ruleType" options="rule-type" group="Properties">
+          <help short="Rule Type. This should be either AutoExpire or Permanent. Auto Expire Rule only creates NSG rules. Permanent Rule creates NSG rule and SLB LB Rule."/>
+          <enum>
+            <item name="AutoExpire" value="&quot;AutoExpire&quot;"/>
+            <item name="Permanent" value="&quot;Permanent&quot;"/>
+          </enum>
+        </arg>
+        <arg type="array<object>" var="$parameters.properties.rules" options="rules" group="Properties">
+          <help short="List of allowed rules."/>
+          <item type="object">
+            <arg type="array<string>" var="$parameters.properties.rules[].appliesOn" options="applies-on">
+              <help short="Public IP name in case of Permanent Rule type & Interface Name in case of Auto Expire Rule type"/>
+              <item type="string"/>
+            </arg>
+            <arg type="integer32" var="$parameters.properties.rules[].destinationPortRange" options="destination-port-range">
+              <help short="NVA port ranges to be opened up. One needs to provide specific ports."/>
+              <format maximum="65535" minimum="0"/>
+            </arg>
+            <arg type="array<string>" var="$parameters.properties.rules[].destinationPortRanges" options="destination-port-ranges">
+              <help short="NVA port ranges to be opened up. One can provide a range of ports. Allowed port value between 0 and 65535."/>
+              <item type="string"/>
+            </arg>
+            <arg type="string" var="$parameters.properties.rules[].name" options="name">
+              <help short="Name of the rule."/>
+            </arg>
+            <arg type="string" var="$parameters.properties.rules[].protocol" options="protocol">
+              <help short="Protocol. This should be either TCP or UDP."/>
+              <enum>
+                <item name="TCP" value="&quot;TCP&quot;"/>
+                <item name="UDP" value="&quot;UDP&quot;"/>
+              </enum>
+            </arg>
+            <arg type="string" var="$parameters.properties.rules[].sourceAddressPrefix" options="source-address-prefix">
+              <help short="The CIDR or source IP range."/>
+            </arg>
+          </item>
+        </arg>
+      </argGroup>
+      <operation operationId="InboundSecurityRule_CreateOrUpdate">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkVirtualAppliances/{networkVirtualApplianceName}/inboundSecurityRules/{ruleCollectionName}">
+          <request method="put">
+            <path>
+              <param type="string" name="networkVirtualApplianceName" arg="$Path.networkVirtualApplianceName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="ruleCollectionName" arg="$Path.ruleCollectionName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-11-01&quot;"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="parameters" required="True" clientFlatten="True">
+                  <prop type="string" name="id" arg="$parameters.id"/>
+                  <prop type="string" name="name" arg="$Path.ruleCollectionName"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="string" name="ruleType" arg="$parameters.properties.ruleType">
+                      <enum>
+                        <item value="&quot;AutoExpire&quot;"/>
+                        <item value="&quot;Permanent&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<object>" name="rules" arg="$parameters.properties.rules">
+                      <item type="object">
+                        <prop type="array<string>" name="appliesOn" arg="$parameters.properties.rules[].appliesOn">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="integer32" name="destinationPortRange" arg="$parameters.properties.rules[].destinationPortRange">
+                          <format maximum="65535" minimum="0"/>
+                        </prop>
+                        <prop type="array<string>" name="destinationPortRanges" arg="$parameters.properties.rules[].destinationPortRanges">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="string" name="name" arg="$parameters.properties.rules[].name"/>
+                        <prop type="string" name="protocol" arg="$parameters.properties.rules[].protocol">
+                          <enum>
+                            <item value="&quot;TCP&quot;"/>
+                            <item value="&quot;UDP&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="sourceAddressPrefix" arg="$parameters.properties.rules[].sourceAddressPrefix"/>
+                      </item>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="etag"/>
+                  <prop type="string" name="id"/>
+                  <prop type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="ruleType">
+                      <enum>
+                        <item value="&quot;AutoExpire&quot;"/>
+                        <item value="&quot;Permanent&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<object>" name="rules">
+                      <item type="object">
+                        <prop type="array<string>" name="appliesOn">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="integer32" name="destinationPortRange">
+                          <format maximum="65535" minimum="0"/>
+                        </prop>
+                        <prop type="array<string>" name="destinationPortRanges">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="string" name="name"/>
+                        <prop type="string" name="protocol">
+                          <enum>
+                            <item value="&quot;TCP&quot;"/>
+                            <item value="&quot;UDP&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="sourceAddressPrefix"/>
+                      </item>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

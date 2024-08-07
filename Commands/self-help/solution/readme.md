@@ -12,3 +12,6 @@ solution command will help you create solutions for azure resources.
 
 - [update](/Commands/self-help/solution/_update.md)
 : Update a solution for the specific Azure resource or subscription using the triggering criteria from discovery solutions.
+
+- [warmup](/Commands/self-help/solution/_warmup.md)
+: Warm up the solution resource by preloading asynchronous diagnostics results into cache

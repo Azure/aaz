@@ -2,6 +2,9 @@
 
 ## Groups
 
+- [acat](/Commands/acat/readme.md)
+: ACAT command group
+
 - [account](/Commands/account/readme.md)
 : Manage Azure subscription information.
 
@@ -14,8 +17,14 @@
 - [amlfs](/Commands/amlfs/readme.md)
 : Manage lustre file system
 
+- [aosm](/Commands/aosm/readme.md)
+: Manage Azure Operator Service Manager resources.
+
 - [apic](/Commands/apic/readme.md)
 : Manage Azure API Center services
+
+- [astronomer](/Commands/astronomer/readme.md)
+: Manage Azure Astronomer resources.
 
 - [attestation](/Commands/attestation/readme.md)
 : Manage Microsoft Azure Attestation (MAA).
@@ -41,14 +50,32 @@
 - [capacity](/Commands/capacity/readme.md)
 : Manage capacity.
 
+- [cdn](/Commands/cdn/readme.md)
+: Manage Azure Content Delivery Networks (CDNs).
+
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
+- [cloud-service](/Commands/cloud-service/readme.md)
+: Manage cloud service
+
 - [communication](/Commands/communication/readme.md)
-: communication
+: Manage communication service with communication.
+
+- [compute](/Commands/compute/readme.md)
+: Mange azure compute vm config
+
+- [compute-diagnostic](/Commands/compute-diagnostic/readme.md)
+: Mange vm sku recommender info
+
+- [compute-recommender](/Commands/compute-recommender/readme.md)
+: Manage sku/zone/region recommender info for compute resources
 
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
+
+- [confluent](/Commands/confluent/readme.md)
+: Manage confluent organization
 
 - [connectedmachine](/Commands/connectedmachine/readme.md)
 : Manage an Azure Arc-Enabled Server.
@@ -65,11 +92,17 @@
 - [databox](/Commands/databox/readme.md)
 : Manage data box
 
+- [databoxedge](/Commands/databoxedge/readme.md)
+: Manage device with databoxedge.
+
 - [databricks](/Commands/databricks/readme.md)
 : Manage databricks workspaces.
 
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage dataprotection.
+
+- [desktopvirtualization](/Commands/desktopvirtualization/readme.md)
+: Manage desktop virtualization.
 
 - [devcenter](/Commands/devcenter/readme.md)
 : Manage resources with devcenter.
@@ -92,6 +125,9 @@
 - [dynatrace](/Commands/dynatrace/readme.md)
 : Manage dynatrace
 
+- [edge-zones](/Commands/edge-zones/readme.md)
+: Manage Edge Zone resources
+
 - [elastic](/Commands/elastic/readme.md)
 : Manage Microsoft Elastic.
 
@@ -110,14 +146,23 @@
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
 
-- [grafana](/Commands/grafana/readme.md)
-: Commands to manage Azure Managed Grafana resources.
-
 - [graph-services](/Commands/graph-services/readme.md)
 : Make operations on Microsoft.GraphServices resource types
 
 - [image](/Commands/image/readme.md)
 : Manage custom virtual machine images.
+
+- [informatica](/Commands/informatica/readme.md)
+: Manage Informatica
+
+- [k8s-runtime](/Commands/k8s-runtime/readme.md)
+: Manage Arc Kubernetes Runtime resources
+
+- [large-instance](/Commands/large-instance/readme.md)
+: Handle Operations for Compute Azure Large Instances.
+
+- [large-storage-instance](/Commands/large-storage-instance/readme.md)
+: Handle Operations for Storage Azure Large Instances.
 
 - [load](/Commands/load/readme.md)
 : Manage Azure Load Testing resources.
@@ -127,6 +172,9 @@
 
 - [maintenance](/Commands/maintenance/readme.md)
 : Manage Maintenance
+
+- [mdp](/Commands/mdp/readme.md)
+: Manage resources of Managed DevOps pools
 
 - [mesh](/Commands/mesh/readme.md)
 : (PREVIEW) Manage Azure Service Fabric Mesh Resources.
@@ -163,6 +211,9 @@
 
 - [notification-hub](/Commands/notification-hub/readme.md)
 : Manage notification hubs.
+
+- [oracle-database](/Commands/oracle-database/readme.md)
+: Command Modules for RP Oracle.Database
 
 - [orbital](/Commands/orbital/readme.md)
 : Azure Orbital Ground Station as-a-Service (GSaaS).
@@ -236,11 +287,20 @@
 - [storage](/Commands/storage/readme.md)
 : Manage Azure Cloud Storage resources.
 
+- [storage-actions](/Commands/storage-actions/readme.md)
+: Manage StorageActions
+
 - [storage-mover](/Commands/storage-mover/readme.md)
 : Manage top-level Storage Mover resource.
 
 - [storagesync](/Commands/storagesync/readme.md)
 : Manage Azure File Sync.
+
+- [support](/Commands/support/readme.md)
+: Manage Azure support resource.
+
+- [trustedsigning](/Commands/trustedsigning/readme.md)
+: Manage trusted signing account
 
 - [tsi](/Commands/tsi/readme.md)
 : Manage Azure Time Series Insights.

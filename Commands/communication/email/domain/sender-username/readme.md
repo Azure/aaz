@@ -1,6 +1,6 @@
 # [Group] _communication email domain sender-username_
 
-communication email domain sender-username
+Manage Communication Email Domain Sender-Username
 
 ## Commands
 

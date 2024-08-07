@@ -13,6 +13,9 @@ Manage network-manager with network.
 - [group](/Commands/network/manager/group/readme.md)
 : Manage networkgroup with network.
 
+- [routing-config](/Commands/network/manager/routing-config/readme.md)
+: Manage network-manager routing-config with network.
+
 - [scope-connection](/Commands/network/manager/scope-connection/readme.md)
 : Manage scope connection with network.
 

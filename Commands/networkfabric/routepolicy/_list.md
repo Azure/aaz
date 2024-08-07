@@ -37,3 +37,20 @@ List all Route Policies in the provided resource group or subscription
     ```bash
         networkfabric routepolicy list --subscription "<subscriptionId>"
     ```
+
+### [2024-02-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9yb3V0ZXBvbGljaWVz/2024-02-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.managednetworkfabric/routepolicies 2024-02-15-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/routepolicies 2024-02-15-preview -->
+
+#### examples
+
+- List the Route Policies for Resource Group
+    ```bash
+        networkfabric routepolicy list --resource-group "example-rg"
+    ```
+
+- List the Route Policies for Subscription
+    ```bash
+        networkfabric routepolicy list --subscription "<subscriptionId>"
+    ```

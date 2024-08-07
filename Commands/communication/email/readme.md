@@ -1,11 +1,11 @@
 # [Group] _communication email_
 
-communication email
+Manage Communication Email
 
 ## Subgroups
 
 - [domain](/Commands/communication/email/domain/readme.md)
-: communication email domain
+: Manage Communication Email Domain
 
 ## Commands
 

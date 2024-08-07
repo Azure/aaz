@@ -35,4 +35,4 @@ Manage network connections.
 : Get health check status details.
 
 - [update](/Commands/devcenter/admin/network-connection/_update.md)
-: Update a network connection.
+: Update a Network Connections resource

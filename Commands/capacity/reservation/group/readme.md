@@ -10,6 +10,9 @@ Manage capacity reservation group.
 - [delete](/Commands/capacity/reservation/group/_delete.md)
 : Delete operation to delete a capacity reservation group. This operation is allowed only if all the associated resources are disassociated from the reservation group and all capacity reservations under the reservation group have also been deleted. Please refer to https://aka.ms/CapacityReservation for more details.
 
+- [list](/Commands/capacity/reservation/group/_list.md)
+: List the capacity reservation groups.
+
 - [show](/Commands/capacity/reservation/group/_show.md)
 : Get operation that retrieves information about a capacity reservation group.
 

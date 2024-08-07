@@ -18,3 +18,17 @@ Manage SQL managed instances.
 
 - [server-configuration-option](/Commands/sql/mi/server-configuration-option/readme.md)
 : Server configuration option management commands.
+
+- [startstopschedule](/Commands/sql/mi/startstopschedule/readme.md)
+: Manage the managed instance's start stop schedule.
+
+## Commands
+
+- [refresh-external-governance-status](/Commands/sql/mi/_refresh-external-governance-status.md)
+: Refresh external governance enablement status.
+
+- [start](/Commands/sql/mi/_start.md)
+: Starts the managed instance.
+
+- [stop](/Commands/sql/mi/_stop.md)
+: Stops the managed instance.

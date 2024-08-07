@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backupresourceguardproxies/{}/unlockdelete" version="2023-11-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9L2JhY2t1cFJlc291cmNlR3VhcmRQcm94aWVzL3tyZXNvdXJjZUd1YXJkUHJveHlOYW1lfS91bmxvY2tEZWxldGU=/V/MjAyMy0xMS0wMQ=="/>
+  <commandGroup name="dataprotection resource-guard">
+    <command name="unlock" version="2023-11-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backupresourceguardproxies/{}/unlockdelete" version="2023-11-01" swagger="mgmt-plane/dataprotection/ResourceProviders/Microsoft.DataProtection/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YVByb3RlY3Rpb24vYmFja3VwVmF1bHRzL3t2YXVsdE5hbWV9L2JhY2t1cFJlc291cmNlR3VhcmRQcm94aWVzL3tyZXNvdXJjZUd1YXJkUHJveHlOYW1lfS91bmxvY2tEZWxldGU=/V/MjAyMy0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.resourceGuardProxyName" options="resource-guard-mapping-name name n" required="True" group="" idPart="child_name_1">
+          <help short="The name of the resource guard mapping"/>
+          <default value="&quot;DppResourceGuardProxy&quot;"/>
+          <format pattern="^[A-Za-z0-9]*$"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vaultName" options="vault-name v" required="True" group="" idPart="name">
+          <help short="The name of the backup vault."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Parameters">
+        <arg type="array<string>" var="$parameters.resourceGuardOperationRequests" options="resource-guard-operation-requests" group="Parameters" singularOptions="operation-requests">
+          <help short="List of critical operations which are protected by the resourceGuard and need to be unlocked. Supported values are DeleteBackupInstance, DisableMUA"/>
+          <item type="string"/>
+        </arg>
+        <arg type="string" var="$parameters.resourceToBeDeleted" options="resource-to-be-deleted" group="Parameters">
+          <help short="ARM Id of the resource that need to be unlocked for performing critical operation"/>
+        </arg>
+      </argGroup>
+      <operation operationId="DppResourceGuardProxy_UnlockDelete">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataProtection/backupVaults/{vaultName}/backupResourceGuardProxies/{resourceGuardProxyName}/unlockDelete">
+          <request method="post">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="resourceGuardProxyName" arg="$Path.resourceGuardProxyName" required="True">
+                <format pattern="^[A-Za-z0-9]*$"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vaultName" arg="$Path.vaultName" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="parameters" required="True" clientFlatten="True">
+                  <prop type="array<string>" name="resourceGuardOperationRequests" arg="$parameters.resourceGuardOperationRequests">
+                    <item type="string"/>
+                  </prop>
+                  <prop type="string" name="resourceToBeDeleted" arg="$parameters.resourceToBeDeleted"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="unlockDeleteExpiryTime"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

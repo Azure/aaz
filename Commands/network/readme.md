@@ -37,6 +37,9 @@ Manage Azure Network resources.
 - [firewall](/Commands/network/firewall/readme.md)
 : Manage and configure Azure Firewalls.
 
+- [front-door](/Commands/network/front-door/readme.md)
+: Manage Classical Azure Front Doors. For managing Azure Front Door Standard/Premium, please refer https://docs.microsoft.com/en-us/cli/azure/afd?view=azure-cli-latest.
+
 - [ip-group](/Commands/network/ip-group/readme.md)
 : Commands to manage IP group.
 
@@ -52,11 +55,17 @@ Manage Azure Network resources.
 - [nat](/Commands/network/nat/readme.md)
 : Manage NAT resources.
 
+- [network-watcher](/Commands/network/network-watcher/readme.md)
+: Manage network watcher and its sub-resources.
+
 - [nic](/Commands/network/nic/readme.md)
 : Manage network interfaces.
 
 - [nsg](/Commands/network/nsg/readme.md)
 : Manage Azure Network Security Groups (NSGs).
+
+- [p2s-vpn-gateway](/Commands/network/p2s-vpn-gateway/readme.md)
+: Manage point-to-site VPN gateway.
 
 - [perimeter](/Commands/network/perimeter/readme.md)
 : Manage Network Security Perimeters

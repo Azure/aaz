@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/providers/microsoft.appcomplianceautomation/triggerevaluation" version="2024-06-27" swagger="mgmt-plane/appcomplianceautomation/ResourceProviders/Microsoft.AppComplianceAutomation/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXBwQ29tcGxpYW5jZUF1dG9tYXRpb24vdHJpZ2dlckV2YWx1YXRpb24=/V/MjAyNC0wNi0yNw=="/>
+  <commandGroup name="acat">
+    <command name="trigger-evaluation" version="2024-06-27">
+      <resource id="/providers/microsoft.appcomplianceautomation/triggerevaluation" version="2024-06-27" swagger="mgmt-plane/appcomplianceautomation/ResourceProviders/Microsoft.AppComplianceAutomation/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXBwQ29tcGxpYW5jZUF1dG9tYXRpb24vdHJpZ2dlckV2YWx1YXRpb24=/V/MjAyNC0wNi0yNw=="/>
+      <argGroup name="Parameters">
+        <arg type="array<string>" var="$parameters.resourceIds" options="resource-ids" required="True" group="Parameters">
+          <help short="List of resource ids to be evaluated"/>
+          <item type="string"/>
+        </arg>
+      </argGroup>
+      <operation operationId="ProviderActions_TriggerEvaluation">
+        <longRunning finalStateVia="location"/>
+        <http path="/providers/Microsoft.AppComplianceAutomation/triggerEvaluation">
+          <request method="post">
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-27&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="parameters" required="True" clientFlatten="True">
+                  <prop type="array<string>" name="resourceIds" arg="$parameters.resourceIds" required="True">
+                    <item type="string"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="object" name="properties">
+                    <prop readOnly="True" type="dateTime" name="evaluationEndTime"/>
+                    <prop type="array<object>" name="quickAssessments" identifiers="resourceId">
+                      <item type="object">
+                        <prop readOnly="True" type="string" name="description"/>
+                        <prop readOnly="True" type="string" name="displayName"/>
+                        <prop readOnly="True" type="string" name="remediationLink"/>
+                        <prop readOnly="True" type="string" name="resourceId"/>
+                        <prop readOnly="True" type="string" name="resourceStatus">
+                          <enum>
+                            <item value="&quot;Healthy&quot;"/>
+                            <item value="&quot;Unhealthy&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="responsibilityId"/>
+                        <prop readOnly="True" type="dateTime" name="timestamp"/>
+                      </item>
+                    </prop>
+                    <prop type="array<string>" name="resourceIds">
+                      <item type="string"/>
+                    </prop>
+                    <prop readOnly="True" type="dateTime" name="triggerTime"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

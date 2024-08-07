@@ -14,3 +14,14 @@ Delete a data collection endpoint.
     ```bash
         monitor data-collection endpoint delete --name "myCollectionEndpoint" --resource-group "myResourceGroup"
     ```
+
+### [2023-03-11](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5pbnNpZ2h0cy9kYXRhY29sbGVjdGlvbmVuZHBvaW50cy97fQ==/2023-03-11.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.insights/datacollectionendpoints/{} 2023-03-11 -->
+
+#### examples
+
+- Delete data collection endpoint
+    ```bash
+        monitor data-collection endpoint delete --name "myCollectionEndpoint" --resource-group "myResourceGroup"
+    ```
