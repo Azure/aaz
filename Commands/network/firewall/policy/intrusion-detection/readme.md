@@ -5,10 +5,10 @@ Manage intrusion signature rules and bypass rules
 ## Commands
 
 - [create](/Commands/network/firewall/policy/intrusion-detection/_create.md)
-: None
+: Add intrusion detection configuration (override for intrusion signature, bypass rule or private ranges list)
 
 - [delete](/Commands/network/firewall/policy/intrusion-detection/_delete.md)
-: None
+: Delete intrusion detection configuration
 
 - [show](/Commands/network/firewall/policy/intrusion-detection/_show.md)
 : List all intrusion detection configuration
