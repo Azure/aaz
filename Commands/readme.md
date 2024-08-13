@@ -146,6 +146,9 @@
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
 
+- [grafana](/Commands/grafana/readme.md)
+: Commands to manage Azure Grafana instances
+
 - [graph-services](/Commands/graph-services/readme.md)
 : Make operations on Microsoft.GraphServices resource types
 
