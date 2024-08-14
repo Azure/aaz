@@ -22,9 +22,6 @@ Manage Azure Arc-Enabled Server.
 - [run-command](/Commands/connectedmachine/run-command/readme.md)
 : Manage run commands on an Azure Arc-Enabled Server.
 
-- [setting](/Commands/connectedmachine/setting/readme.md)
-: Manage Settings for Azure Arc-Enabled Server.
-
 ## Commands
 
 - [assess-patches](/Commands/connectedmachine/_assess-patches.md)
