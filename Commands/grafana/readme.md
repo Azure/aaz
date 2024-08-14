@@ -8,6 +8,7 @@ Commands to manage Azure Managed Grafana resources.
 : Commands to manage managed private endpoints.
 
 - [private-endpoint-connection](/Commands/grafana/private-endpoint-connection/readme.md)
+: Commands to manage private endpoint connections.
 
 ## Commands
 
