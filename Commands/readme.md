@@ -23,6 +23,9 @@
 - [apic](/Commands/apic/readme.md)
 : Manage Azure API Center services
 
+- [arc](/Commands/arc/readme.md)
+: Manage Azure Arc Machines.
+
 - [astronomer](/Commands/astronomer/readme.md)
 : Manage Azure Astronomer resources.
 
