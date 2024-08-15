@@ -78,7 +78,7 @@
 : Manage confluent organization
 
 - [connectedmachine](/Commands/connectedmachine/readme.md)
-: Manage Azure Arc-Enabled Server.
+: Manage an Azure Arc-Enabled Server.
 
 - [consumption](/Commands/consumption/readme.md)
 : Manage consumption of Azure resources.
@@ -146,6 +146,9 @@
 - [fluid-relay](/Commands/fluid-relay/readme.md)
 : Manage Fluid Relay
 
+- [grafana](/Commands/grafana/readme.md)
+: Commands to manage Azure Managed Grafana resources.
+
 - [graph-services](/Commands/graph-services/readme.md)
 : Make operations on Microsoft.GraphServices resource types
 
@@ -211,6 +214,9 @@
 
 - [notification-hub](/Commands/notification-hub/readme.md)
 : Manage notification hubs.
+
+- [oracle-database](/Commands/oracle-database/readme.md)
+: Command Modules for RP Oracle.Database
 
 - [orbital](/Commands/orbital/readme.md)
 : Azure Orbital Ground Station as-a-Service (GSaaS).
