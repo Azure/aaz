@@ -45,12 +45,12 @@ This command will create a default activity log with one condition which compare
 
 - Create an alert rule with condition about error level service health log.
     ```bash
-        monitor activity-log alert create -n AlertName -g ResourceGroup \ --condition category=ServiceHealth and level=Error
+        monitor activity-log alert create -n AlertName -g ResourceGroup --condition category=ServiceHealth and level=Error
     ```
 
 - Create an alert rule with an action group and specify webhook properties.
     ```bash
-        monitor activity-log alert create -n AlertName -g ResourceGroup \ -a /subscriptions/{SubID}/resourceGroups/{ResourceGroup}/providers/microsoft.insights/acti onGroups/{ActionGroup} \ -w usage=test owner=jane
+        monitor activity-log alert create -n AlertName -g ResourceGroup -a /subscriptions/{SubID}/resourceGroups/{ResourceGroup}/providers/microsoft.insights/actionGroups/{ActionGroup} -w usage=test owner=jane
     ```
 
 - Create an alert rule which is initially disabled.

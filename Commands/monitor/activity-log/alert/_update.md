@@ -38,7 +38,7 @@ Update a new activity log alert or update an existing one.
 
 - Update the condition
     ```bash
-        monitor activity-log alert update -n AlertName -g ResourceGroup \ --condition category=ServiceHealth and level=Error
+        monitor activity-log alert update -n AlertName -g ResourceGroup --condition category=ServiceHealth and level=Error
     ```
 
 - Disable an alert rule.
