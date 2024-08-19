@@ -47,3 +47,47 @@ Replace the provided bare metal machine.
     ```bash
         networkcloud baremetalmachine replace --bare-metal-machine-name "bareMetalMachineName" --bmc-credentials password="{password}" username="bmcuser" --bmc-mac-address "00:00:4f:00:57:ad" --boot-mac-address "00:00:4e:00:58:af" --machine-name "name" --serial-number "BM1219XXX" --resource-group "resourceGroupName"
     ```
+
+### [2023-12-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvYmFyZW1ldGFsbWFjaGluZXMve30vcmVwbGFjZQ==/2023-12-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/baremetalmachines/{}/replace 2023-12-01-preview -->
+
+#### examples
+
+- Replace bare metal machine
+    ```bash
+        networkcloud baremetalmachine replace --bare-metal-machine-name "bareMetalMachineName" --bmc-credentials password="{password}" username="bmcuser" --bmc-mac-address "00:00:4f:00:57:ad" --boot-mac-address "00:00:4e:00:58:af" --machine-name "name" --serial-number "BM1219XXX" --resource-group "resourceGroupName"
+    ```
+
+### [2024-03-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvYmFyZW1ldGFsbWFjaGluZXMve30vcmVwbGFjZQ==/2024-03-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/baremetalmachines/{}/replace 2024-03-01-preview -->
+
+#### examples
+
+- Replace bare metal machine
+    ```bash
+        networkcloud baremetalmachine replace --bare-metal-machine-name "bareMetalMachineName" --bmc-credentials password="{password}" username="bmcuser" --bmc-mac-address "00:00:4f:00:57:ad" --boot-mac-address "00:00:4e:00:58:af" --machine-name "name" --serial-number "BM1219XXX" --resource-group "resourceGroupName"
+    ```
+
+### [2024-05-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvYmFyZW1ldGFsbWFjaGluZXMve30vcmVwbGFjZQ==/2024-05-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/baremetalmachines/{}/replace 2024-05-01-preview -->
+
+#### examples
+
+- Replace bare metal machine
+    ```bash
+        networkcloud baremetalmachine replace --bare-metal-machine-name "bareMetalMachineName" --bmc-credentials password="{password}" username="bmcuser" --bmc-mac-address "00:00:4f:00:57:ad" --boot-mac-address "00:00:4e:00:58:af" --machine-name "name" --serial-number "BM1219XXX" --resource-group "resourceGroupName"
+    ```
+
+### [2024-06-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvYmFyZW1ldGFsbWFjaGluZXMve30vcmVwbGFjZQ==/2024-06-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/baremetalmachines/{}/replace 2024-06-01-preview -->
+
+#### examples
+
+- Replace bare metal machine
+    ```bash
+        networkcloud baremetalmachine replace --bare-metal-machine-name "bareMetalMachineName" --bmc-credentials password="{password}" username="bmcuser" --bmc-mac-address "00:00:4f:00:57:ad" --boot-mac-address "00:00:4e:00:58:af" --machine-name "name" --serial-number "BM1219XXX" --resource-group "resourceGroupName"
+    ```

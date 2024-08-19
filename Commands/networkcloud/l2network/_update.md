@@ -47,3 +47,47 @@ Update tags associated with the provided layer 2 (L2) network.
     ```bash
         networkcloud l2network update --name "l2NetworkName" --tags key1="myvalue1" key2="myvalue2" --resource-group "resourceGroupName"
     ```
+
+### [2023-12-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvbDJuZXR3b3Jrcy97fQ==/2023-12-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/l2networks/{} 2023-12-01-preview -->
+
+#### examples
+
+- Update tags for L2 network
+    ```bash
+        networkcloud l2network update --name "l2NetworkName" --tags key1="myvalue1" key2="myvalue2" --resource-group "resourceGroupName"
+    ```
+
+### [2024-03-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvbDJuZXR3b3Jrcy97fQ==/2024-03-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/l2networks/{} 2024-03-01-preview -->
+
+#### examples
+
+- Update tags for L2 network
+    ```bash
+        networkcloud l2network update --name "l2NetworkName" --tags key1="myvalue1" key2="myvalue2" --resource-group "resourceGroupName"
+    ```
+
+### [2024-05-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvbDJuZXR3b3Jrcy97fQ==/2024-05-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/l2networks/{} 2024-05-01-preview -->
+
+#### examples
+
+- Update tags for L2 network
+    ```bash
+        networkcloud l2network update --name "l2NetworkName" --tags key1="myvalue1" key2="myvalue2" --resource-group "resourceGroupName"
+    ```
+
+### [2024-06-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvbDJuZXR3b3Jrcy97fQ==/2024-06-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/l2networks/{} 2024-06-01-preview -->
+
+#### examples
+
+- Update tags for L2 network
+    ```bash
+        networkcloud l2network update --name "l2NetworkName" --tags key1="myvalue1" key2="myvalue2" --resource-group "resourceGroupName"
+    ```
