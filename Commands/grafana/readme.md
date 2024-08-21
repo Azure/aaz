@@ -4,7 +4,7 @@ Commands to manage Azure Managed Grafana resources.
 
 ## Subgroups
 
-- [managed-private-endpoint](/Commands/grafana/managed-private-endpoint/readme.md)
+- [mpe](/Commands/grafana/mpe/readme.md)
 : Commands to manage managed private endpoints.
 
 - [private-endpoint-connection](/Commands/grafana/private-endpoint-connection/readme.md)
