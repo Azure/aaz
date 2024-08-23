@@ -38,6 +38,12 @@
 - [automation](/Commands/automation/readme.md)
 : Manage Automation Account.
 
+- [baremetalinstance](/Commands/baremetalinstance/readme.md)
+: Handle Operations for Compute Azure Bare Instances.
+
+- [baremetalstorageinstance](/Commands/baremetalstorageinstance/readme.md)
+: Handle Operations for Storage Azure Bare Metal Instances.
+
 - [billing](/Commands/billing/readme.md)
 : Manage Azure Billing.
 
