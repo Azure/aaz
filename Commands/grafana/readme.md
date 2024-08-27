@@ -2,6 +2,11 @@
 
 Commands to manage Azure Managed Grafana resources.
 
+## Subgroups
+
+- [plugins](/Commands/grafana/plugins/readme.md)
+: Commands to manage the plugins of a specific workspace for Grafana resource.
+
 ## Commands
 
 - [create](/Commands/grafana/_create.md)
@@ -12,9 +17,6 @@ Commands to manage Azure Managed Grafana resources.
 
 - [list](/Commands/grafana/_list.md)
 : List all resources of workspaces for Grafana under the specified subscription.
-
-- [list-available-plugin](/Commands/grafana/_list-available-plugin.md)
-: list all the available plugins
 
 - [show](/Commands/grafana/_show.md)
 : Get the properties of a specific workspace for Grafana resource.
