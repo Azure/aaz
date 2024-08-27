@@ -14,14 +14,3 @@ Get the details of a private link service.
     ```bash
         network private-link-service show --name MyPrivateLinkService --resource-group MyResourceGroup
     ```
-
-### [2024-03-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL3ByaXZhdGVsaW5rc2VydmljZXMve30=/2024-03-01.xml) **Stable**
-
-<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/privatelinkservices/{} 2024-03-01 -->
-
-#### examples
-
-- Get the details of a private link service.
-    ```bash
-        network private-link-service show --name MyPrivateLinkService --resource-group MyResourceGroup
-    ```
