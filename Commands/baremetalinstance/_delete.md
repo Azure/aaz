@@ -12,5 +12,5 @@ Delete an Azure Bare Metal Instance for the specified subscription, resource gro
 
 - Delete a compute resource
     ```bash
-        baremetalinstance delete --resource-group myResourceGroup --instance-name myAzureBareMetalInstance
+        baremetalinstance delete -g myResourceGroup -n myAzureBareMetalInstance
     ```

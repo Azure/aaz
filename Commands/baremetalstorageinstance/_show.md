@@ -12,5 +12,5 @@ Get an Azure Bare Metal Storage instance for the specified subscription, resourc
 
 - Get an AzureBareMetalStorage instance
     ```bash
-        baremetalstorageinstance show --resource-group myResourceGroup --instance-name myAzureBareMetalStorageInstance
+        baremetalstorageinstance show -g myResourceGroup -n myAzureBareMetalStorageInstance
     ```

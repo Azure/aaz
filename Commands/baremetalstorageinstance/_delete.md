@@ -12,5 +12,5 @@ Delete an Azure Bare Metal Storage Instance for the specified subscription, reso
 
 - Delete a storage resource
     ```bash
-        baremetalstorageinstance delete --resource-group myResourceGroup --instance-name myAzureBareMetalStorageInstance
+        baremetalstorageinstance delete -g myResourceGroup -n myAzureBareMetalStorageInstance
     ```

@@ -12,5 +12,5 @@ The operation to restart an Azure Bare Metal Instance
 
 - Restart an Azure Bare Metal Instance
     ```bash
-        baremetalinstance restart --resource-group myResourceGroup --instance-name myABMInstance
+        baremetalinstance restart -g myResourceGroup -n myABMInstance
     ```

@@ -12,5 +12,5 @@ Get an Azure Bare Metal Instance for the specified subscription, resource group,
 
 - Get an Azure Bare Metal Instance
     ```bash
-        baremetalinstance show --resource-group myResourceGroup --instance-name myAzureBareMetalInstance
+        baremetalinstance show -g myResourceGroup -n myAzureBareMetalInstance
     ```

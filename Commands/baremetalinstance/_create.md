@@ -12,5 +12,5 @@ Create an Azure Bare Metal Instance for the specified subscription, resource gro
 
 - Create a compute resource
     ```bash
-        baremetalinstance create --resource-group myResourceGroup --instance-name myBMIInstance --location westus --azure-bare-metal-instance-id 23415635-4d7e-41dc-9598-8194f22c24e1 --hw-revision Rev 3 --hardware-profile "{hardware-type:Cisco_UCS,azure-bare-metal-instance-size:S72}"
+        baremetalinstance create -g myResourceGroup -name myBMIInstance --location westus --bmi-id 23415635-4d7e-41dc-9598-8194f22c24e1 --hw-revision Rev 3 --hardware-profile "{hardware-type:Cisco_UCS,azure-bare-metal-instance-size:S72}"
     ```

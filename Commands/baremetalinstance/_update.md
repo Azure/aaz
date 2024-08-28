@@ -12,7 +12,7 @@ Update an Azure Bare Metal Instance for the specified subscription, resource gro
 
 - To add a key-value pair to the Tags field of a specific BareMetal instance:
     ```bash
-        baremetalinstance update --resource-group $RESOURCE_GROUP --instance-name $BM_INSTANCE_NAME --set tags.newKey=value
+        baremetalinstance update -g $RESOURCE_GROUP -n $BM_INSTANCE_NAME --set tags.newKey=value
     ```
 
 - To update a key-value pair in the Tags field of a specific BareMetal instance:
