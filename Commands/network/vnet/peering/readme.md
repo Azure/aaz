@@ -19,4 +19,4 @@ To learn more about virtual network peering visit https://learn.microsoft.com/en
 : Show details of a peering.
 
 - [update](/Commands/network/vnet/peering/_update.md)
-: Update a peering.
+: Update a peering in the specified virtual network.
