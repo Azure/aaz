@@ -179,6 +179,9 @@
 - [maintenance](/Commands/maintenance/readme.md)
 : Manage Maintenance
 
+- [managedservices](/Commands/managedservices/readme.md)
+: Manage the registration assignments and definitions in Azure.
+
 - [mdp](/Commands/mdp/readme.md)
 : Manage resources of Managed DevOps pools
 
