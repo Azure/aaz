@@ -1,6 +1,6 @@
-# [Command] _grafana plugins fetch_
+# [Command] _grafana list-available-plugin_
 
-List all the available plugins of a specific workspace for a Grafana resource.
+list all the available plugins
 
 ## Versions
 
