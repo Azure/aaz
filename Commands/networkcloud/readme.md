@@ -19,6 +19,18 @@ Manage Network Cloud resources
 - [defaultcninetwork](/Commands/networkcloud/defaultcninetwork/readme.md)
 : Manage default CNI network
 
+- [edgecluster](/Commands/networkcloud/edgecluster/readme.md)
+: Manage Edge cluster
+
+- [edgeclustermachinesku](/Commands/networkcloud/edgeclustermachinesku/readme.md)
+: Manage Edge cluster machine SKU
+
+- [edgeclusterruntimeversion](/Commands/networkcloud/edgeclusterruntimeversion/readme.md)
+: Manage Edge cluster runtime version
+
+- [edgeclustersku](/Commands/networkcloud/edgeclustersku/readme.md)
+: Manage Edge cluster SKU
+
 - [hybridakscluster](/Commands/networkcloud/hybridakscluster/readme.md)
 : Manage additional details of Hybrid AKS provisioned cluster
 
@@ -36,6 +48,9 @@ Manage Network Cloud resources
 
 - [racksku](/Commands/networkcloud/racksku/readme.md)
 : Manage rack SKU
+
+- [registrationhub](/Commands/networkcloud/registrationhub/readme.md)
+: Manage Registration Hub
 
 - [storageappliance](/Commands/networkcloud/storageappliance/readme.md)
 : Manage storage appliance
