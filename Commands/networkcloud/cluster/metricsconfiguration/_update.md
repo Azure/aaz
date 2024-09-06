@@ -47,3 +47,47 @@ Update properties of metrics configuration for the provided cluster, or update t
     ```bash
         networkcloud cluster metricsconfiguration update --cluster-name "clusterName" --collection-interval 15 --enabled-metrics "metric1" "metric2" --tags key1="myvalue1" key2="myvalue2" --resource-group "resourceGroupName"
     ```
+
+### [2023-12-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvY2x1c3RlcnMve30vbWV0cmljc2NvbmZpZ3VyYXRpb25zL3t9/2023-12-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/clusters/{}/metricsconfigurations/{} 2023-12-01-preview -->
+
+#### examples
+
+- Patch metrics configuration of cluster
+    ```bash
+        networkcloud cluster metricsconfiguration update --cluster-name "clusterName" --collection-interval 15 --enabled-metrics "metric1" "metric2" --tags key1="myvalue1" key2="myvalue2" --resource-group "resourceGroupName"
+    ```
+
+### [2024-03-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvY2x1c3RlcnMve30vbWV0cmljc2NvbmZpZ3VyYXRpb25zL3t9/2024-03-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/clusters/{}/metricsconfigurations/{} 2024-03-01-preview -->
+
+#### examples
+
+- Patch metrics configuration of cluster
+    ```bash
+        networkcloud cluster metricsconfiguration update --cluster-name "clusterName" --collection-interval 15 --enabled-metrics "metric1" "metric2" --tags key1="myvalue1" key2="myvalue2" --resource-group "resourceGroupName"
+    ```
+
+### [2024-05-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvY2x1c3RlcnMve30vbWV0cmljc2NvbmZpZ3VyYXRpb25zL3t9/2024-05-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/clusters/{}/metricsconfigurations/{} 2024-05-01-preview -->
+
+#### examples
+
+- Patch metrics configuration of cluster
+    ```bash
+        networkcloud cluster metricsconfiguration update --cluster-name "clusterName" --collection-interval 15 --enabled-metrics "metric1" "metric2" --tags key1="myvalue1" key2="myvalue2" --resource-group "resourceGroupName"
+    ```
+
+### [2024-06-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvY2x1c3RlcnMve30vbWV0cmljc2NvbmZpZ3VyYXRpb25zL3t9/2024-06-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/clusters/{}/metricsconfigurations/{} 2024-06-01-preview -->
+
+#### examples
+
+- Patch metrics configuration of cluster
+    ```bash
+        networkcloud cluster metricsconfiguration update --cluster-name "clusterName" --collection-interval 15 --enabled-metrics "metric1" "metric2" --tags key1="myvalue1" key2="myvalue2" --resource-group "resourceGroupName"
+    ```

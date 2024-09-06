@@ -1,6 +1,6 @@
 # [Command] _network vnet peering update_
 
-Update a peering.
+Update a peering in the specified virtual network.
 
 ## Versions
 

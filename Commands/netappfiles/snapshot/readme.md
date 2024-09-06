@@ -25,4 +25,4 @@ Manage Azure NetApp Files (ANF) Snapshot Resources.
 : Get details of the specified snapshot
 
 - [update](/Commands/netappfiles/snapshot/_update.md)
-: Update a snapshot
+: Update the specified snapshot within the given volume

@@ -15,15 +15,3 @@ List private link services.
     ```bash
         network private-link-service list --resource-group MyResourceGroup
     ```
-
-### [2024-03-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL3ByaXZhdGVsaW5rc2VydmljZXM=/2024-03-01.xml) **Stable**
-
-<!-- mgmt-plane /subscriptions/{}/providers/microsoft.network/privatelinkservices 2024-03-01 -->
-<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/privatelinkservices 2024-03-01 -->
-
-#### examples
-
-- List private link services.
-    ```bash
-        network private-link-service list --resource-group MyResourceGroup
-    ```

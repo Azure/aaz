@@ -37,3 +37,20 @@ Get all the workspaces.
     ```bash
         databricks workspace list
     ```
+
+### [2024-05-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhYnJpY2tzL3dvcmtzcGFjZXM=/2024-05-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.databricks/workspaces 2024-05-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.databricks/workspaces 2024-05-01 -->
+
+#### examples
+
+- List workspaces within a resource group
+    ```bash
+        databricks workspace list --resource-group MyResourceGroup
+    ```
+
+- List workspaces within the default subscription
+    ```bash
+        databricks workspace list
+    ```
