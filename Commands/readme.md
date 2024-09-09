@@ -38,6 +38,15 @@
 - [automation](/Commands/automation/readme.md)
 : Manage Automation Account.
 
+- [azure-terraform](/Commands/azure-terraform/readme.md)
+: Azure Terraform experience
+
+- [baremetalinstance](/Commands/baremetalinstance/readme.md)
+: Handle Operations for Compute Azure Bare Instances.
+
+- [baremetalstorageinstance](/Commands/baremetalstorageinstance/readme.md)
+: Handle Operations for Storage Azure Bare Metal Instances.
+
 - [billing](/Commands/billing/readme.md)
 : Manage Azure Billing.
 

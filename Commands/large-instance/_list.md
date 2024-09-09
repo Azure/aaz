@@ -37,3 +37,20 @@ Gets a list of Azure Large Instances in the specified subscription. The operatio
     ```bash
         large-instance list --subscription $SUBSCRIPTION_ID --resource-group $RESOURCE_GROUP
     ```
+
+### [2024-08-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5henVyZWxhcmdlaW5zdGFuY2UvYXp1cmVsYXJnZWluc3RhbmNlcw==/2024-08-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.azurelargeinstance/azurelargeinstances 2024-08-01-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.azurelargeinstance/azurelargeinstances 2024-08-01-preview -->
+
+#### examples
+
+- To list Azure Large Instances in a subscription
+    ```bash
+        large-instance list --subscription $SUBSCRIPTION_ID
+    ```
+
+- To list Azure Large Instances in a specific subscription and resource group
+    ```bash
+        large-instance list --subscription $SUBSCRIPTION_ID --resource-group $RESOURCE_GROUP
+    ```

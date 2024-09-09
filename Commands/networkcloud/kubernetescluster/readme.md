@@ -7,6 +7,9 @@ Manage Kubernetes cluster
 - [agentpool](/Commands/networkcloud/kubernetescluster/agentpool/readme.md)
 : Manage Kubernetes cluster's agent pool
 
+- [feature](/Commands/networkcloud/kubernetescluster/feature/readme.md)
+: Manage Kubernetes cluster's feature
+
 ## Commands
 
 - [create](/Commands/networkcloud/kubernetescluster/_create.md)
