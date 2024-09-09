@@ -68,5 +68,8 @@ Generated Create update delete operations for Azure NetApp Files (ANF) Volumes
 - [show](/Commands/netappfiles/volume/_show.md)
 : Get the details of the specified volume
 
+- [splitclonefromparent](/Commands/netappfiles/volume/_splitclonefromparent.md)
+: Split operation to convert clone volume to an independent volume.
+
 - [update](/Commands/netappfiles/volume/_update.md)
 : Update the specified volume within the capacity pool
