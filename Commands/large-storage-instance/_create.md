@@ -11,7 +11,7 @@ resource group, and instance name.
 
 #### examples
 
-- AzureLargeStorageInstance_Create
+- Create an Azure Large Storage Instance
     ```bash
-        large-storage-instance create -g myResourceGroup -n myAzureLargeStorageInstance -l westus2 --tags "{key:value}" --instance-id 23415635-4d7e-41dc-9598-8194f22c24e9 --storage-properties "{offering-type:EPIC,storage-type:FC,generation:Gen4,hardware-type:NetApp,workload-type:ODB,storage-billing-properties:{billing-mode:PAYG,sku:}}"
+        large-storage-instance create -g myResourceGroup -n myAzureLargeStorageInstance -l westus2 --sku S72
     ```
