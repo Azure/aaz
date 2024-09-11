@@ -12,5 +12,5 @@ Create an Azure Bare Metal Storage Instance for the specified subscription, reso
 
 - Create a storage resource
     ```bash
-        baremetalstorageinstance create -g myResourceGroup -n myAzureBareMetalStorageInstance --location westus2 --sku S72
+        baremetalstorageinstance create -g myResourceGroup -n myAzureBareMetalStorageInstance --location westus2 --tags "{key:value}" --bmsi-id 23415635-4d7e-41dc-9598-8194f22c24e9 --storage-properties "{offering-type:EPIC,storage-type:FC,generation:Gen4,hardware-type:NetApp,workload-type:ODB,storage-billing-properties:{billing-mode:PAYG,azure-bare-metal-storage-instance-size:}}"
     ```
