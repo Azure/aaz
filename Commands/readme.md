@@ -173,6 +173,9 @@
 - [k8s-runtime](/Commands/k8s-runtime/readme.md)
 : Manage Arc Kubernetes Runtime resources
 
+- [lab](/Commands/lab/readme.md)
+: Manage azure devtest labs.
+
 - [large-instance](/Commands/large-instance/readme.md)
 : Handle Operations for Compute Azure Large Instances.
 
