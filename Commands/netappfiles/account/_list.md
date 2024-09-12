@@ -51,3 +51,14 @@ List and describe all NetApp accounts in the subscription.
     ```bash
         netappfiles account list -g mygroup
     ```
+
+### [2024-03-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbmV0YXBwYWNjb3VudHM=/2024-03-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.netapp/netappaccounts 2024-03-01-preview -->
+
+#### examples
+
+- List ANF accounts within a resource group
+    ```bash
+        netappfiles account list -g mygroup
+    ```
