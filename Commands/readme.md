@@ -26,6 +26,9 @@
 - [arc](/Commands/arc/readme.md)
 : Manage Azure Arc Machines.
 
+- [arc-multicloud](/Commands/arc-multicloud/readme.md)
+: commands for arc-multicloud
+
 - [astronomer](/Commands/astronomer/readme.md)
 : Manage Azure Astronomer resources.
 

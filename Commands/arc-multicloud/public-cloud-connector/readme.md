@@ -1,0 +1,23 @@
+# [Group] _arc-multicloud public-cloud-connector_
+
+commands for multicloudConnector
+
+## Commands
+
+- [create](/Commands/arc-multicloud/public-cloud-connector/_create.md)
+: Create a PublicCloudConnector
+
+- [delete](/Commands/arc-multicloud/public-cloud-connector/_delete.md)
+: Delete a PublicCloudConnector
+
+- [list](/Commands/arc-multicloud/public-cloud-connector/_list.md)
+: List PublicCloudConnector resources by subscription ID
+
+- [show](/Commands/arc-multicloud/public-cloud-connector/_show.md)
+: Get a PublicCloudConnector
+
+- [test-permission](/Commands/arc-multicloud/public-cloud-connector/_test-permission.md)
+: A long-running resource action.
+
+- [update](/Commands/arc-multicloud/public-cloud-connector/_update.md)
+: Update a PublicCloudConnector
