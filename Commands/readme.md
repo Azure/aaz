@@ -134,6 +134,9 @@
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
 
+- [durabletask](/Commands/durabletask/readme.md)
+: Commands to manage Durabletasks.
+
 - [dynatrace](/Commands/dynatrace/readme.md)
 : Manage dynatrace
 
