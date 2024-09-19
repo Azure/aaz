@@ -14,3 +14,14 @@ Fetch User API Key from internal database, if it was generated and stored while 
     ```bash
         elastic get-organization-api-key --email-id id
     ```
+
+### [2024-06-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL2dldG9yZ2FuaXphdGlvbmFwaWtleQ==/2024-06-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.elastic/getorganizationapikey 2024-06-15-preview -->
+
+#### examples
+
+- Get organization api key
+    ```bash
+        elastic get-organization-api-key --email-id id
+    ```
