@@ -39,3 +39,6 @@ Manage the Azure Monitor Service.
 
 - [tenant-action-group](/Commands/monitor/tenant-action-group/readme.md)
 : monitor tenant-action-group
+
+- [pipeline-group](/Commands/monitor/pipeline-group/readme.md)
+: Manage Pipeline Groups
