@@ -10,12 +10,7 @@ Creates an instance or update an existing instance of an Azure API Center servic
 
 #### examples
 
-- Create service Example 1
+- Create service Example
     ```bash
         apic create -g contoso-resources -n contoso -l eastus
-    ```
-
-- Create Service Example 2
-    ```bash
-        apic create --resource-group contoso-resources --name contoso --location eastus
     ```
