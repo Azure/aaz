@@ -14,3 +14,8 @@ Creates an instance or update an existing instance of an Azure API Center servic
     ```bash
         apic create -g contoso-resources -n contoso -l eastus
     ```
+
+- Create Service With System Assigned Identity Example
+    ```bash
+        apic create -g contoso-resources -n contoso -l eastus --identity '{type:systemassigned}'
+    ```
