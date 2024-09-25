@@ -91,3 +91,14 @@ Disable remote vendor management of the provided storage appliance.
     ```bash
         networkcloud storageappliance disable-remote-vendor-management --resource-group "resourceGroupName" --storage-appliance-name "storageApplianceName"
     ```
+
+### [2024-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvc3RvcmFnZWFwcGxpYW5jZXMve30vZGlzYWJsZXJlbW90ZXZlbmRvcm1hbmFnZW1lbnQ=/2024-07-01.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/storageappliances/{}/disableremotevendormanagement 2024-07-01 -->
+
+#### examples
+
+- Turn off remote vendor management for storage appliance
+    ```bash
+        networkcloud storageappliance disable-remote-vendor-management --resource-group "resourceGroupName" --storage-appliance-name "storageApplianceName"
+    ```
