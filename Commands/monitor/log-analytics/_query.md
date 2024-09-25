@@ -18,3 +18,8 @@ Query a Log Analytics workspace
     ```bash
         monitor log-analytics query -w workspace-customId --analytics-query "AzureActivity | summarize count() by bin(TimeGenerated, 1h)" -t P3DT12H
     ```
+
+- Execute a saved query in workspace
+    ```bash
+        monitor log-analytics query -w workspace-customId --analytics-query $(az monitor log-analytics workspace saved-search show -g resource-group --workspace-name workspace-name -n query-name --query query --output tsv)
+    ```
