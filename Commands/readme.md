@@ -323,6 +323,9 @@
 - [support](/Commands/support/readme.md)
 : Manage Azure support resource.
 
+- [terraform](/Commands/terraform/readme.md)
+: Azure Terraform experience
+
 - [trustedsigning](/Commands/trustedsigning/readme.md)
 : Manage trusted signing account
 
