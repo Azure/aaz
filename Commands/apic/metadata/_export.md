@@ -27,5 +27,5 @@ Exports the metadata schema.
 
 - Export Custom Metadata Schema Only
     ```bash
-        apic metadata export -g contoso-resources -n contoso --assignments api --file-name filename.json --custom-metadata-only
+        apic metadata export -g api-center-test -n contosoeuap --assignments api --file-name filename.json --custom-metadata-only
     ```
