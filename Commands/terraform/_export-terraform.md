@@ -1,4 +1,4 @@
-# [Command] _azure-terraform export-terraform_
+# [Command] _terraform export-terraform_
 
 Exports the Terraform configuration of the specified resource(s)
 
@@ -12,15 +12,15 @@ Exports the Terraform configuration of the specified resource(s)
 
 - Export a resource group targeting to `azurerm` provider
     ```bash
-        azure-terraform export-terraform --export-resource-group '{resource-group-name:my-rg}'
+        terraform export-terraform --export-resource-group '{resource-group-name:my-rg}'
     ```
 
 - Export a list of resources targeting to `azapi` provider
     ```bash
-        azure-terraform export-terraform --full-properties false --target-provider azapi --export-resource '{resource-ids:[id1,id2,id3]}'
+        terraform export-terraform --full-properties false --target-provider azapi --export-resource '{resource-ids:[id1,id2,id3]}'
     ```
 
 - Export all virtual networks in the current subscription, together with their child resources (e.g. subnets) targeting `azapi` provider
     ```bash
-        azure-terraform export-terraform --full-properties false --target-provider azapi --export-query "{query:'type =~ \"microsoft.network/virtualnetworks\"',recursive:true}"
+        terraform export-terraform --full-properties false --target-provider azapi --export-query "{query:'type =~ \"microsoft.network/virtualnetworks\"',recursive:true}"
     ```
