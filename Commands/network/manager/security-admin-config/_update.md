@@ -23,5 +23,5 @@ Update a network manager security admin configuration.
 
 - Update a network manager security admin configuration.
     ```bash
-        network manager security-admin-config update --configuration-name "myTestSecurityConfig" --network-manager-name "testNetworkManager" --resource-group "rg1" --description "A sample policy" --apply-on None
+        network manager security-admin-config update --configuration-name "myTestSecurityConfig" --network-manager-name "TestNetworkManager" --resource-group "rg1" --description "A sample policy" --apply-on None
     ```

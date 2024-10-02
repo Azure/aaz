@@ -23,5 +23,5 @@ Update an admin rule.
 
 - Update security admin rule
     ```bash
-        network manager security-admin-config rule-collection rule update --configuration-name "myTestSecurityConfig" --network-manager-name "testNetworkManager" --resource-group "rg1" --rule-collection-name "myTestCollection" --rule-name "SampleAdminRule" --access "Deny"
+        network manager security-admin-config rule-collection rule update --configuration-name "myTestSecurityConfig" --network-manager-name "TestNetworkManager" --resource-group "rg1" --rule-collection-name "myTestCollection" --rule-name "SampleAdminRule" --access "Deny"
     ```

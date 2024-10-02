@@ -23,5 +23,5 @@ Create an admin rule.
 
 - Create security admin rules
     ```bash
-        network manager security-admin-config rule-collection rule create --configuration-name "myTestSecurityConfig" --network-manager-name "testNetworkManager" --resource-group "rg1" --rule-collection-name "myTestCollection" --rule-name "SampleAdminRule" --kind "Custom" --protocol "Tcp" --access "Allow" --priority 32 --direction "Inbound" --destinations address-prefix="*" address-prefix-type="IPPrefix"  --dest-port-ranges 22
+        network manager security-admin-config rule-collection rule create --configuration-name "myTestSecurityConfig" --network-manager-name "TestNetworkManager" --resource-group "rg1" --rule-collection-name "myTestCollection" --rule-name "SampleAdminRule" --kind "Custom" --protocol "Tcp" --access "Allow" --priority 32 --direction "Inbound" --destinations address-prefix="*" address-prefix-type="IPPrefix"  --dest-port-ranges 22
     ```

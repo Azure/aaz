@@ -12,5 +12,5 @@ Create Verifier Workspace.
 
 - VerifierWorkspaceCreate
     ```bash
-        network manager verifier-workspace create --name "myVerifierWorkspace" --network-manager-name "myAVNM" --resource-group "myAVNMResourceGroup" --subscription "00000000-0000-0000-0000-000000000000" --description “hello world workspace” --tags [“color”: “blue”]
+        network manager verifier-workspace create --name "myVerifierWorkspace" --network-manager-name "myAVNM" --resource-group "myAVNMResourceGroup" --subscription "00000000-0000-0000-0000-000000000000" --description “hello world workspace” --tags [“color”: “blue”] --location "eastus"
     ```
