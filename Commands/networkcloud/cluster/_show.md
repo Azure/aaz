@@ -91,3 +91,14 @@ Get properties of the provided cluster.
     ```bash
         networkcloud cluster show --name "clusterName" --resource-group "resourceGroupName"
     ```
+
+### [2024-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvY2x1c3RlcnMve30=/2024-07-01.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/clusters/{} 2024-07-01 -->
+
+#### examples
+
+- Get cluster
+    ```bash
+        networkcloud cluster show --name "clusterName" --resource-group "resourceGroupName"
+    ```
