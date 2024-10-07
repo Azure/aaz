@@ -8,6 +8,9 @@
 - [account](/Commands/account/readme.md)
 : Manage Azure subscription information.
 
+- [acr](/Commands/acr/readme.md)
+: test
+
 - [afd](/Commands/afd/readme.md)
 : Manage Azure Front Door Standard/Premium.
 
