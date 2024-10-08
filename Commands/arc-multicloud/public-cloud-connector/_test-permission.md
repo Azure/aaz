@@ -12,5 +12,5 @@ A long-running resource action.
 
 - PublicCloudConnectors_TestPermissions
     ```bash
-        arc-multicloud public-cloud-connector test-permission --resource-group rgpublicCloud --name sjuahmnojgachluzcbhxhwkxwugbsi
+        arc-multicloud public-cloud-connector test-permission --resource-group rgpublicCloud --name myConnector
     ```

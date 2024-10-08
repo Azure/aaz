@@ -12,5 +12,10 @@ Create a SolutionConfiguration
 
 - SolutionConfigurations_CreateOrUpdate
     ```bash
-        arc-multicloud solution-configuration create --connector-id ymuj --name keebwujt --solution-type nmtqllkyohwtsthxaimsye --solution-settings "{}"
+        arc-multicloud solution-configuration create --connector-id /subscriptions/{}/resourceGroups/{}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{} --name mySolutionConfig --solution-type "Microsoft.AssetManagement" --solution-settings periodicSync="true" cloudProviderServiceTypes="ec2,s3" awsGlobalReadOnly="true" cloudProviderRegions="us-east-1,us-east-2" periodicSyncTime="1"
+    ```
+
+- SolutionConfigurations_CreateOrUpdate
+    ```bash
+        arc-multicloud solution-configuration create --connector-id /subscriptions/{}/resourceGroups/{}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{} --name mySolutionConfig --solution-type "Microsoft.HybridCompute.Onboard" --solution-settings periodicSync="true" cloudProviderRegions="us-east-1,us-east-2" periodicSyncTime="1"
     ```
