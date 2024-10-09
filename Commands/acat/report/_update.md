@@ -12,7 +12,7 @@ Update a new AppComplianceAutomation report or update an exiting AppComplianceAu
 
 - update acat report
     ```bash
-        acat report update --reportName testName     --offer-guid " 00000000-0000-0000-0000-000000000001"
+        acat report update --reportName testName     --offer-guid "00000000-0000-0000-0000-000000000001"
     ```
 
 - update resource list
