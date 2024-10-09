@@ -13,10 +13,5 @@ List the AppComplianceAutomation report list for the tenant.
 - Report_List
     ```bash
         acat report list --skip-token 1 --top 100 --offer-guid 00000000-0000-0000-0000-000000000000 --tenant 00000000-0000-0000-0000-000000000000
-    ```
-
-- Report_List
-    ```bash
-        acat report list --skip-token 1 --top 100 --offer-guid 00000000-0000-0000-0000-000000000000 --tenant 00000000-0000-0000-0000-000000000000
         acat report list
     ```

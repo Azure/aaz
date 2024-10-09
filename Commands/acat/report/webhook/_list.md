@@ -13,10 +13,5 @@ List the AppComplianceAutomation webhook list.
 - Webhook_List
     ```bash
         acat report webhook list --skip-token 1 --top 100 --report-name testReportName
-    ```
-
-- Webhook_List
-    ```bash
-        acat report webhook list --skip-token 1 --top 100 --report-name testReportName
         acat report webhook list --report-name testReportName
     ```
