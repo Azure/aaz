@@ -104,6 +104,9 @@
 - [costmanagement](/Commands/costmanagement/readme.md)
 : costmanagement
 
+- [data-boundary](/Commands/data-boundary/readme.md)
+: data boundary operations
+
 - [databox](/Commands/databox/readme.md)
 : Manage data box
 
