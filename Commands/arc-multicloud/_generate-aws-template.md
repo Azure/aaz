@@ -12,5 +12,5 @@ Retrieve AWS Cloud Formation template
 
 - GenerateAwsTemplate_Post
     ```bash
-        arc-multicloud generate-aws-template --connector-id pnxcfjidglabnwxit --solution-types "[{solution-type:hjyownzpfxwiufmd,solution-settings:{}}]"
+        arc-multicloud generate-aws-template --connector-id /subscriptions/{}/resourceGroups/{}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{} --output-directory example_folder/templates
     ```

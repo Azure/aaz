@@ -13,6 +13,9 @@ Manage network-manager with network.
 - [group](/Commands/network/manager/group/readme.md)
 : Manage networkgroup with network.
 
+- [ipam-pool](/Commands/network/manager/ipam-pool/readme.md)
+: Manage IPAM pool with network.
+
 - [routing-config](/Commands/network/manager/routing-config/readme.md)
 : Manage network-manager routing-config with network.
 
@@ -21,6 +24,9 @@ Manage network-manager with network.
 
 - [security-admin-config](/Commands/network/manager/security-admin-config/readme.md)
 : Manage security admin configuration with network.
+
+- [verifier-workspace](/Commands/network/manager/verifier-workspace/readme.md)
+: Manage verifier workspace with network.
 
 ## Commands
 

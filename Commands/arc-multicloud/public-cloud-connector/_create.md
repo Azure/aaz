@@ -12,5 +12,5 @@ Create a PublicCloudConnector
 
 - PublicCloudConnectors_CreateOrUpdate
     ```bash
-        arc-multicloud public-cloud-connector create --resource-group rgpublicCloud --name advjwoakdusalamomg --aws-cloud-profile "{account-id:snbnuxckevyqpm,excluded-accounts:[rwgqpukglvbqmogqcliqolucp],is-organizational-account:True}" --host-type AWS --tags "{}" --location jpiglusfxynfcewcjwvvnn
+        arc-multicloud public-cloud-connector create --resource-group rgpublicCloud --name myConnector--aws-cloud-profile "{account-id:123456789123,excluded-accounts:[123456789124,123456789125],is-organizational-account:True}" --host-type AWS --tags "{a:b}" --location eastus
     ```

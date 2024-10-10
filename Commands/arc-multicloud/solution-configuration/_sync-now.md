@@ -12,5 +12,5 @@ Trigger immediate sync with source cloud
 
 - SolutionConfigurations_SyncNow
     ```bash
-        arc-multicloud solution-configuration sync-now --connector-id ymuj --name tks
+        arc-multicloud solution-configuration sync-now --connector-id /subscriptions/{}/resourceGroups/{}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{} --name mySolutionConfig
     ```

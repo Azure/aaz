@@ -12,5 +12,5 @@ Get a SolutionTypeResource
 
 - SolutionTypes_Get
     ```bash
-        arc-multicloud solution-type show --resource-group rgpublicCloud --name lulzqllpu
+        arc-multicloud solution-type show --resource-group rgpublicCloud --name "Microsoft.AssetManagement"
     ```

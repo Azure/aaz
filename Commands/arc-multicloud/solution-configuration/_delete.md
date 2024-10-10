@@ -12,5 +12,5 @@ Delete a SolutionConfiguration
 
 - SolutionConfigurations_Delete
     ```bash
-        arc-multicloud solution-configuration delete --connector-id ymuj --name stu
+        arc-multicloud solution-configuration delete --connector-id  /subscriptions/{}/resourceGroups/{}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{} --name mySolutionConfig
     ```

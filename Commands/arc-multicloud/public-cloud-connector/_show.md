@@ -12,5 +12,5 @@ Get a PublicCloudConnector
 
 - publicCloudConnectors_Get
     ```bash
-        arc-multicloud public-cloud-connector show --resource-group rgpublicCloud --name rzygvnpsnrdylwzdbsscjazvamyxmh
+        arc-multicloud public-cloud-connector show --resource-group rgpublicCloud --name myConnector
     ```

@@ -11,7 +11,7 @@ commands for solution-configuration
 : Delete a SolutionConfiguration
 
 - [list](/Commands/arc-multicloud/solution-configuration/_list.md)
-: List SolutionConfiguration resources by parent
+: List SolutionConfiguration resources by parent public cloud connector
 
 - [show](/Commands/arc-multicloud/solution-configuration/_show.md)
 : Get a SolutionConfiguration

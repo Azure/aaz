@@ -12,5 +12,5 @@ Update a PublicCloudConnector
 
 - publicCloudConnectors_Update
     ```bash
-        arc-multicloud public-cloud-connector update --resource-group rgpublicCloud --name advjwoakdusalamomg --aws-cloud-profile "{excluded-accounts:[rwgqpukglvbqmogqcliqolucp]}" --host-type AWS --tags "{}" --location jpiglusfxynfcewcjwvvnn
+        arc-multicloud public-cloud-connector update --resource-group rgpublicCloud --name myConnector --aws-cloud-profile "{excluded-accounts:[123456789123,123456789124]}" --tags "{}"
     ```

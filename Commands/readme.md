@@ -41,9 +41,6 @@
 - [automation](/Commands/automation/readme.md)
 : Manage Automation Account.
 
-- [azure-terraform](/Commands/azure-terraform/readme.md)
-: Azure Terraform experience
-
 - [baremetalinstance](/Commands/baremetalinstance/readme.md)
 : Handle Operations for Compute Azure Bare Instances.
 
@@ -200,6 +197,9 @@
 - [managedservices](/Commands/managedservices/readme.md)
 : Manage the registration assignments and definitions in Azure.
 
+- [managementpartner](/Commands/managementpartner/readme.md)
+: Allows the partners to associate a Microsoft Partner Network(MPN) ID to a user or service principal in the customer's Azure directory.
+
 - [mdp](/Commands/mdp/readme.md)
 : Manage resources of Managed DevOps pools
 
@@ -325,6 +325,9 @@
 
 - [support](/Commands/support/readme.md)
 : Manage Azure support resource.
+
+- [terraform](/Commands/terraform/readme.md)
+: Azure Terraform experience
 
 - [trustedsigning](/Commands/trustedsigning/readme.md)
 : Manage trusted signing account
