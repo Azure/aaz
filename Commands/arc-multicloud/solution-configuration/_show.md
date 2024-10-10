@@ -12,5 +12,5 @@ Get a SolutionConfiguration
 
 - SolutionConfigurations_Get
     ```bash
-        arc-multicloud solution-configuration show --connector-id ymuj --name tks
+        arc-multicloud solution-configuration show --connector-id /subscriptions/{}/resourceGroups/{}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{} --name mySolutionConfig
     ```

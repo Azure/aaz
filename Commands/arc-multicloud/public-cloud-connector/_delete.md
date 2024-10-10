@@ -12,5 +12,5 @@ Delete a PublicCloudConnector
 
 - PublicCloudConnectors_Delete
     ```bash
-        arc-multicloud public-cloud-connector delete --resource-group rgpublicCloud --name skcfyjvflkhibdywjay
+        arc-multicloud public-cloud-connector delete --resource-group rgpublicCloud --name myConnector
     ```
