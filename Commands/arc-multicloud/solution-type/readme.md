@@ -1,6 +1,8 @@
 # [Group] _arc-multicloud solution-type_
 
-commands for solution-type
+Commands for solution-type
+
+For additional details, please visit the https://learn.microsoft.com/en-us/cli/azure/arc-multicloud?view=azure-cli-latest
 
 ## Commands
 
