@@ -2,6 +2,8 @@
 
 List SolutionConfiguration resources by parent public cloud connector
 
+For additional details, please visit the https://learn.microsoft.com/en-us/cli/azure/arc-multicloud?view=azure-cli-latest
+
 ## Versions
 
 ### [2024-12-01](/Resources/mgmt-plane/L3tyZXNvdXJjZXVyaX0vcHJvdmlkZXJzL21pY3Jvc29mdC5oeWJyaWRjb25uZWN0aXZpdHkvc29sdXRpb25jb25maWd1cmF0aW9ucw==/2024-12-01.xml) **Stable**
