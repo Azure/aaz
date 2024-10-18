@@ -113,6 +113,9 @@
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage dataprotection.
 
+- [deid](/Commands/deid/readme.md)
+: Health Data service for providing de-identification of health PHI data (Features: Surrogation, multi-modality)
+
 - [desktopvirtualization](/Commands/desktopvirtualization/readme.md)
 : Manage desktop virtualization.
 
@@ -166,6 +169,9 @@
 
 - [graph-services](/Commands/graph-services/readme.md)
 : Make operations on Microsoft.GraphServices resource types
+
+- [health-data-ai-services](/Commands/health-data-ai-services/readme.md)
+: Health Data service for providing de-identification of health PHI data (Features: Surrogation, multi-modality)
 
 - [image](/Commands/image/readme.md)
 : Manage custom virtual machine images.
