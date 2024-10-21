@@ -12,5 +12,5 @@ Create a Task Hub
 
 - Create a taskhub in a namespace
     ```bash
-        durabletask taskhub create -g resource-grou-name -s testnamespace -n taskhub-name
+        durabletask taskhub create -g resource-group-name -s testnamespace -n taskhub-name
     ```
