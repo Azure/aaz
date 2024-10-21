@@ -12,5 +12,5 @@ Delete a Neon Resource
 
 - Organizations_Delete
     ```bash
-        neon postgres organization delete --resource-group demoResourceGroup --organization-name DemoOrg
+        neon postgres organization delete --subscription <subscription-id> --resource-group <resource-group-name> --name <organization-name>
     ```

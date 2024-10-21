@@ -13,5 +13,5 @@ List Neon resources by subscription ID
 
 - Organizations_ListBySubscription
     ```bash
-        neon postgres organization list
+        neon postgres organization list --subscription <subscription-id> --resource-group <resource-group-name>
     ```
