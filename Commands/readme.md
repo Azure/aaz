@@ -113,7 +113,7 @@
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage dataprotection.
 
-- [deid](/Commands/deid/readme.md)
+- [deidservice](/Commands/deidservice/readme.md)
 : Health Data service for providing de-identification of health PHI data (Features: Surrogation, multi-modality)
 
 - [desktopvirtualization](/Commands/desktopvirtualization/readme.md)
