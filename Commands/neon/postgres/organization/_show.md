@@ -12,5 +12,5 @@ Get a Neon Resource
 
 - Organizations_Get
     ```bash
-        neon postgres organization show --subscription <subscription-id> --resource-group <resource-group-name> --name <resource-name>
+        neon postgres organization show --subscription 12345678-1234-1234-1234-123456789abc --resource-group demoResourceGroup --name demoNeonResource
     ```
