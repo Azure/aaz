@@ -16,6 +16,9 @@ Manage Azure Network resources.
 - [bastion](/Commands/network/bastion/readme.md)
 : Manage Azure Bastion host machines.
 
+- [cross-connection](/Commands/network/cross-connection/readme.md)
+: Manage express route cross connection
+
 - [custom-ip](/Commands/network/custom-ip/readme.md)
 : Manage custom IP.
 
