@@ -2,14 +2,6 @@
 
 Health Data service for providing de-identification of health PHI data (Features: Surrogation, multi-modality)
 
-## Subgroups
-
-- [private-endpoint-connection](/Commands/deidservice/private-endpoint-connection/readme.md)
-: DeidService private endpoint connection
-
-- [private-link-resource](/Commands/deidservice/private-link-resource/readme.md)
-: DeidService private link to resource
-
 ## Commands
 
 - [create](/Commands/deidservice/_create.md)
