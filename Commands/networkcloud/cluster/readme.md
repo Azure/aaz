@@ -15,6 +15,9 @@ Manage cluster
 
 ## Commands
 
+- [continue-update-version](/Commands/networkcloud/cluster/_continue-update-version.md)
+: Trigger the continuation of an update for a cluster with a matching update strategy that has paused after completing a segment of the update.
+
 - [create](/Commands/networkcloud/cluster/_create.md)
 : Create a new cluster or update the properties of the cluster if it exists.
 

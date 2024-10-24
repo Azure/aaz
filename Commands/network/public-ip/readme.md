@@ -6,6 +6,9 @@ To learn more about public IP addresses visit https://docs.microsoft.com/azure/v
 
 ## Subgroups
 
+- [ddos-protection](/Commands/network/public-ip/ddos-protection/readme.md)
+: Manage public IP DDoS protection.
+
 - [ddos-protection-statu](/Commands/network/public-ip/ddos-protection-statu/readme.md)
 : Manage public IP ddos protection statu.
 

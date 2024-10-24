@@ -2,6 +2,14 @@
 
 Manage site-to-site VPN gateways.
 
+## Subgroups
+
+- [connection](/Commands/network/vpn-gateway/connection/readme.md)
+: Manage site-to-site VPN gateway connections.
+
+- [nat-rule](/Commands/network/vpn-gateway/nat-rule/readme.md)
+: Manage site-to-site VPN gateway nat rule.
+
 ## Commands
 
 - [create](/Commands/network/vpn-gateway/_create.md)

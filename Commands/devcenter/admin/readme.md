@@ -19,6 +19,9 @@ Manage devcenter admin resources.
 - [check-name-availability](/Commands/devcenter/admin/check-name-availability/readme.md)
 : Manage check name availability.
 
+- [check-scoped-name-availability](/Commands/devcenter/admin/check-scoped-name-availability/readme.md)
+: Manage check scoped name availability.
+
 - [devbox-definition](/Commands/devcenter/admin/devbox-definition/readme.md)
 : Manage dev box definitions.
 
@@ -26,7 +29,7 @@ Manage devcenter admin resources.
 : Manage dev centers.
 
 - [environment-definition](/Commands/devcenter/admin/environment-definition/readme.md)
-: Mange environment definitions in the catalog.
+: Manage environment definitions in the catalog.
 
 - [environment-type](/Commands/devcenter/admin/environment-type/readme.md)
 : Manage environment types.
@@ -46,6 +49,12 @@ Manage devcenter admin resources.
 - [network-connection](/Commands/devcenter/admin/network-connection/readme.md)
 : Manage network connections.
 
+- [plan](/Commands/devcenter/admin/plan/readme.md)
+: Manage plans.
+
+- [plan-member](/Commands/devcenter/admin/plan-member/readme.md)
+: Manage plan members.
+
 - [pool](/Commands/devcenter/admin/pool/readme.md)
 : Manage pools.
 
@@ -54,6 +63,12 @@ Manage devcenter admin resources.
 
 - [project-allowed-environment-type](/Commands/devcenter/admin/project-allowed-environment-type/readme.md)
 : Manage project allowed environment types.
+
+- [project-catalog](/Commands/devcenter/admin/project-catalog/readme.md)
+: Manage project catalogs
+
+- [project-environment-definition](/Commands/devcenter/admin/project-environment-definition/readme.md)
+: Manage environment definitions in the project catalog.
 
 - [project-environment-type](/Commands/devcenter/admin/project-environment-type/readme.md)
 : Manage project environment types.

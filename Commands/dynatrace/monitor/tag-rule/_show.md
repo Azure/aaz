@@ -14,3 +14,14 @@ Show a tag rule
     ```bash
         dynatrace monitor tag-rule show -g rg --monitor-name monitor -n default
     ```
+
+### [2023-04-27](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL2R5bmF0cmFjZS5vYnNlcnZhYmlsaXR5L21vbml0b3JzL3t9L3RhZ3J1bGVzL3t9/2023-04-27.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/dynatrace.observability/monitors/{}/tagrules/{} 2023-04-27 -->
+
+#### examples
+
+- Show tag-rule
+    ```bash
+        dynatrace monitor tag-rule show -g rg --monitor-name monitor -n default
+    ```

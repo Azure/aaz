@@ -11,3 +11,7 @@ List the list of endpoints that VNET Injected Workspace calls Azure Databricks C
 ### [2023-02-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhYnJpY2tzL3dvcmtzcGFjZXMve30vb3V0Ym91bmRuZXR3b3JrZGVwZW5kZW5jaWVzZW5kcG9pbnRz/2023-02-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.databricks/workspaces/{}/outboundnetworkdependenciesendpoints 2023-02-01 -->
+
+### [2024-05-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhYnJpY2tzL3dvcmtzcGFjZXMve30vb3V0Ym91bmRuZXR3b3JrZGVwZW5kZW5jaWVzZW5kcG9pbnRz/2024-05-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.databricks/workspaces/{}/outboundnetworkdependenciesendpoints 2024-05-01 -->

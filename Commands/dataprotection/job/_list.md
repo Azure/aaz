@@ -36,3 +36,14 @@ Returns list of jobs belonging to a backup vault.
     ```bash
         dataprotection job list --resource-group "BugBash1" --vault-name "BugBashVaultForCCYv11"
     ```
+
+### [2024-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhcHJvdGVjdGlvbi9iYWNrdXB2YXVsdHMve30vYmFja3Vwam9icw==/2024-04-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/backupvaults/{}/backupjobs 2024-04-01 -->
+
+#### examples
+
+- Get Jobs
+    ```bash
+        dataprotection job list --resource-group "BugBash1" --vault-name "BugBashVaultForCCYv11"
+    ```

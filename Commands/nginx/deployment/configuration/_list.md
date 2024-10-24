@@ -25,3 +25,25 @@ List all configurations under the specified deployment and resource group
     ```bash
         nginx deployment configuration list --deployment-name myDeployment --resource-group myResourceGroup
     ```
+
+### [2024-01-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL25naW54Lm5naW54cGx1cy9uZ2lueGRlcGxveW1lbnRzL3t9L2NvbmZpZ3VyYXRpb25z/2024-01-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/nginx.nginxplus/nginxdeployments/{}/configurations 2024-01-01-preview -->
+
+#### examples
+
+- Configuration ListByDeployment
+    ```bash
+        nginx deployment configuration list --deployment-name myDeployment --resource-group myResourceGroup
+    ```
+
+### [2024-06-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL25naW54Lm5naW54cGx1cy9uZ2lueGRlcGxveW1lbnRzL3t9L2NvbmZpZ3VyYXRpb25z/2024-06-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/nginx.nginxplus/nginxdeployments/{}/configurations 2024-06-01-preview -->
+
+#### examples
+
+- Configuration ListByDeployment
+    ```bash
+        nginx deployment configuration list --deployment-name myDeployment --resource-group myResourceGroup
+    ```

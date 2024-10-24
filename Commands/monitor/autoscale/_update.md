@@ -19,7 +19,7 @@ For more information on autoscaling, visit: https://docs.microsoft.com/azure/mon
 
 - Update autoscale settings to remove an email notification.
     ```bash
-        monitor autoscale update -g myrg -n autoscale-name \ --remove-action email bob@contoso.com
+        monitor autoscale update -g myrg -n autoscale-name --remove-action email bob@contoso.com
     ```
 
 - Update autoscale settings.

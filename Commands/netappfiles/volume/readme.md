@@ -15,6 +15,9 @@ Generated Create update delete operations for Azure NetApp Files (ANF) Volumes
 - [latest-backup-status](/Commands/netappfiles/volume/latest-backup-status/readme.md)
 : Get the latest backup status of a volume
 
+- [latest-restore-status](/Commands/netappfiles/volume/latest-restore-status/readme.md)
+: Get the latest backup status of a volume
+
 - [quota-rule](/Commands/netappfiles/volume/quota-rule/readme.md)
 : Manage Azure NetApp Files (ANF) Volume Quota Rules Resources.
 
@@ -64,6 +67,9 @@ Generated Create update delete operations for Azure NetApp Files (ANF) Volumes
 
 - [show](/Commands/netappfiles/volume/_show.md)
 : Get the details of the specified volume
+
+- [splitclonefromparent](/Commands/netappfiles/volume/_splitclonefromparent.md)
+: Split operation to convert clone volume to an independent volume.
 
 - [update](/Commands/netappfiles/volume/_update.md)
 : Update the specified volume within the capacity pool
