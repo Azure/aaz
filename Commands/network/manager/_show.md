@@ -14,3 +14,25 @@ Get the specified Network Manager.
     ```bash
         network manager show --name "testNetworkManager" --resource-group "rg1"
     ```
+
+### [2023-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL25ldHdvcmttYW5hZ2Vycy97fQ==/2023-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networkmanagers/{} 2023-09-01 -->
+
+#### examples
+
+- Get Azure Virtual Network Manager
+    ```bash
+        network manager show --name "testNetworkManager" --resource-group "rg1"
+    ```
+
+### [2024-01-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL25ldHdvcmttYW5hZ2Vycy97fQ==/2024-01-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networkmanagers/{} 2024-01-01-preview -->
+
+#### examples
+
+- Get Azure Virtual Network Manager
+    ```bash
+        network manager show --name "testNetworkManager" --resource-group "rg1"
+    ```

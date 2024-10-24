@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.support/supporttickets/{}/communications" version="2024-04-01" swagger="mgmt-plane/support/ResourceProviders/Microsoft.Support/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LlN1cHBvcnQvc3VwcG9ydFRpY2tldHMve3N1cHBvcnRUaWNrZXROYW1lfS9jb21tdW5pY2F0aW9ucw==/V/MjAyNC0wNC0wMQ=="/>
+  <commandGroup name="support in-subscription communication">
+    <command name="list" version="2024-04-01">
+      <resource id="/subscriptions/{}/providers/microsoft.support/supporttickets/{}/communications" version="2024-04-01" swagger="mgmt-plane/support/ResourceProviders/Microsoft.Support/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LlN1cHBvcnQvc3VwcG9ydFRpY2tldHMve3N1cHBvcnRUaWNrZXROYW1lfS9jb21tdW5pY2F0aW9ucw==/V/MjAyNC0wNC0wMQ=="/>
+      <argGroup name="">
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.supportTicketName" options="ticket-name" required="True" group="" idPart="name">
+          <help short="Support ticket name."/>
+        </arg>
+        <arg type="string" var="$Query.filter" options="filter">
+          <help short="The filter to apply on the operation. You can filter by communicationType and createdDate properties. CommunicationType supports Equals ('eq') operator and createdDate supports Greater Than ('gt') and Greater Than or Equals ('ge') operators. You may combine the CommunicationType and CreatedDate filters by Logical And ('and') operator."/>
+        </arg>
+        <arg type="integer32" var="$Query.top" options="top" hide="True" group="">
+          <help short="The number of values to return in the collection. Default is 10 and max is 10."/>
+        </arg>
+      </argGroup>
+      <operation operationId="Communications_List">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Support/supportTickets/{supportTicketName}/communications">
+          <request method="get">
+            <path>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="supportTicketName" arg="$Path.supportTicketName" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="$filter" arg="$Query.filter"/>
+              <param type="integer32" name="$top" arg="$Query.top"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-04-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" required="True" clientFlatten="True">
+                        <prop type="string" name="body" required="True"/>
+                        <prop readOnly="True" type="string" name="communicationDirection">
+                          <enum>
+                            <item value="&quot;inbound&quot;"/>
+                            <item value="&quot;outbound&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="communicationType">
+                          <enum>
+                            <item value="&quot;phone&quot;"/>
+                            <item value="&quot;web&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="createdDate"/>
+                        <prop type="string" name="sender"/>
+                        <prop type="string" name="subject" required="True"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

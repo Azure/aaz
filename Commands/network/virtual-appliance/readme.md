@@ -7,6 +7,9 @@ Manage Azure Network Virtual Appliance.
 - [connection](/Commands/network/virtual-appliance/connection/readme.md)
 : Manage Azure Network Virtual Appliance Connection.
 
+- [inbound-security-rule](/Commands/network/virtual-appliance/inbound-security-rule/readme.md)
+: Manage Azure Network Virtual Appliance Inbound Security Rules.
+
 - [site](/Commands/network/virtual-appliance/site/readme.md)
 : Manage Azure Network Virtual Appliance Site.
 
@@ -23,6 +26,9 @@ Manage Azure Network Virtual Appliance.
 
 - [list](/Commands/network/virtual-appliance/_list.md)
 : List all Azure network virtual appliance.
+
+- [restart](/Commands/network/virtual-appliance/_restart.md)
+: Restarts one or more VMs belonging to the specified Network Virtual Appliance.
 
 - [show](/Commands/network/virtual-appliance/_show.md)
 : Show the detail of an Azure network virtual appliance.

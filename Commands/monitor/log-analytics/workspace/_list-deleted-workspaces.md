@@ -27,3 +27,15 @@ Get a list of deleted workspaces that can be recovered in a subscription or a re
     ```bash
         monitor log-analytics workspace list-deleted-workspaces --resource-group MyResourceGroup
     ```
+
+### [2023-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5vcGVyYXRpb25hbGluc2lnaHRzL2RlbGV0ZWR3b3Jrc3BhY2Vz/2023-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.operationalinsights/deletedworkspaces 2023-09-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.operationalinsights/deletedworkspaces 2023-09-01 -->
+
+#### examples
+
+- Get a list of deleted workspaces that can be recovered in a resource group
+    ```bash
+        monitor log-analytics workspace list-deleted-workspaces --resource-group MyResourceGroup
+    ```

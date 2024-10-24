@@ -17,7 +17,7 @@ Update a load balancing rule.
 
 - Update a load balancing rule to support HA ports.
     ```bash
-        network lb rule update -g MyResourceGroup --lb-name MyLb -n MyLbRule \ --protocol All --frontend-port 0 --backend-port 0
+        network lb rule update -g MyResourceGroup --lb-name MyLb -n MyLbRule --protocol All --frontend-port 0 --backend-port 0
     ```
 
 ### [2017-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL2xvYWRiYWxhbmNlcnMve30=/2017-10-01.xml) **Stable**
@@ -33,7 +33,7 @@ Update a load balancing rule.
 
 - Update a load balancing rule to support HA ports.
     ```bash
-        network lb rule update -g MyResourceGroup --lb-name MyLb -n MyLbRule \ --protocol All --frontend-port 0 --backend-port 0
+        network lb rule update -g MyResourceGroup --lb-name MyLb -n MyLbRule --protocol All --frontend-port 0 --backend-port 0
     ```
 
 ### [2018-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL2xvYWRiYWxhbmNlcnMve30=/2018-11-01.xml) **Stable**
@@ -49,7 +49,7 @@ Update a load balancing rule.
 
 - Update a load balancing rule to support HA ports.
     ```bash
-        network lb rule update -g MyResourceGroup --lb-name MyLb -n MyLbRule \ --protocol All --frontend-port 0 --backend-port 0
+        network lb rule update -g MyResourceGroup --lb-name MyLb -n MyLbRule --protocol All --frontend-port 0 --backend-port 0
     ```
 
 ### [2022-05-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL2xvYWRiYWxhbmNlcnMve30=/2022-05-01.xml) **Stable**
@@ -65,7 +65,7 @@ Update a load balancing rule.
 
 - Update a load balancing rule to support HA ports.
     ```bash
-        network lb rule update -g MyResourceGroup --lb-name MyLb -n MyLbRule \ --protocol All --frontend-port 0 --backend-port 0
+        network lb rule update -g MyResourceGroup --lb-name MyLb -n MyLbRule --protocol All --frontend-port 0 --backend-port 0
     ```
 
 ### [2023-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL2xvYWRiYWxhbmNlcnMve30=/2023-04-01.xml) **Stable**
@@ -81,5 +81,5 @@ Update a load balancing rule.
 
 - Update a load balancing rule to support HA ports.
     ```bash
-        network lb rule update -g MyResourceGroup --lb-name MyLb -n MyLbRule \ --protocol All --frontend-port 0 --backend-port 0
+        network lb rule update -g MyResourceGroup --lb-name MyLb -n MyLbRule --protocol All --frontend-port 0 --backend-port 0
     ```

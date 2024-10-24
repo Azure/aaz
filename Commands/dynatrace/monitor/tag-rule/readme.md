@@ -17,4 +17,4 @@ Manage dynatrace monitor tag-rule
 : Show a tag rule
 
 - [update](/Commands/dynatrace/monitor/tag-rule/_update.md)
-: Update a tag rule
+: Update a TagRule

@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.operationalinsights">
+  <resource id="/workspaces/{}/query" version="v1" swagger="data-plane:microsoft.operationalinsights/operationalinsights/ResourceProviders/Microsoft.OperationalInsights/Paths/L3dvcmtzcGFjZXMve3dvcmtzcGFjZUlkfS9xdWVyeQ==/V/djE="/>
+  <commandGroup name="monitor log-analytics">
+    <command name="show" version="v1">
+      <resource id="/workspaces/{}/query" version="v1" swagger="data-plane:microsoft.operationalinsights/operationalinsights/ResourceProviders/Microsoft.OperationalInsights/Paths/L3dvcmtzcGFjZXMve3dvcmtzcGFjZUlkfS9xdWVyeQ==/V/djE="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.workspaceId" options="workspace w" required="True" group="">
+          <help short="GUID of the Log Analytics Workspace"/>
+        </arg>
+        <arg type="string" var="$Query.query" options="analytics-query" required="True" group="">
+          <help short="The Analytics query. Learn more about the [Analytics query syntax](https://azure.microsoft.com/documentation/articles/app-insights-analytics-reference/)"/>
+        </arg>
+        <arg type="duration" var="$Query.timespan" options="timespan">
+          <help short="Optional. The timespan over which to query data. This is an ISO8601 time period value.  This timespan is applied in addition to any that are specified in the query expression."/>
+        </arg>
+      </argGroup>
+      <operation operationId="Query_Get">
+        <http path="/workspaces/{workspaceId}/query">
+          <request method="get">
+            <path>
+              <param type="string" name="workspaceId" arg="$Path.workspaceId" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="query" arg="$Query.query" required="True"/>
+              <param type="duration" name="timespan" arg="$Query.timespan"/>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="tables" required="True">
+                    <item type="object">
+                      <additionalProp anyType="True"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="query" version="v1" confirmation="">
+      <resource id="/workspaces/{}/query" version="v1" swagger="data-plane:microsoft.operationalinsights/operationalinsights/ResourceProviders/Microsoft.OperationalInsights/Paths/L3dvcmtzcGFjZXMve3dvcmtzcGFjZUlkfS9xdWVyeQ==/V/djE="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.workspaceId" options="workspace w" required="True" group="">
+          <help short="GUID of the Log Analytics Workspace"/>
+        </arg>
+        <arg type="string" var="$body.query" options="analytics-query" required="True" group="">
+          <help short="Query to execute over Log Analytics data."/>
+        </arg>
+        <arg type="string" var="$body.timespan" options="timespan t" group="">
+          <help short="Timespan over which to query. Defaults to querying all available data."/>
+        </arg>
+        <arg type="array<string>" var="$body.workspaces" options="workspaces" group="">
+          <help short="Additional workspaces to union data for querying. Specify additional workspace IDs separated by space."/>
+          <item type="string"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Query_Execute">
+        <http path="/workspaces/{workspaceId}/query">
+          <request method="post">
+            <path>
+              <param type="string" name="workspaceId" arg="$Path.workspaceId" required="True"/>
+            </path>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="string" name="query" arg="$body.query" required="True"/>
+                  <prop type="string" name="timespan" arg="$body.timespan"/>
+                  <prop type="array<string>" name="workspaces" arg="$body.workspaces">
+                    <item type="string"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="tables" required="True">
+                    <item type="object">
+                      <additionalProp anyType="True"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
