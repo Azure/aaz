@@ -1,6 +1,8 @@
 # [Command] _arc-multicloud solution-type list_
 
-List SolutionTypeResource resources by subscription ID
+List SolutionTypeResource within the current subscription, and limit to the specified resource group if one is provided.
+
+For additional details, please visit the https://learn.microsoft.com/en-us/cli/azure/arc-multicloud?view=azure-cli-latest
 
 ## Versions
 
@@ -13,5 +15,5 @@ List SolutionTypeResource resources by subscription ID
 
 - SolutionTypes_ListBySubscription
     ```bash
-        arc-multicloud solution-type list --resource-group dfgsd --subscription trtjvcvbst
+        arc-multicloud solution-type list --resource-group multiCloudRG --subscription 2c60e476-6048-5ff0-9635-373175a378d9
     ```

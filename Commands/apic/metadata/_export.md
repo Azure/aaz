@@ -24,3 +24,8 @@ Exports the metadata schema.
     ```bash
         apic metadata export -g api-center-test -n contosoeuap --assignments environment --file-name filename.json
     ```
+
+- Export Custom Metadata Schema Only
+    ```bash
+        apic metadata export -g api-center-test -n contosoeuap --assignments api --file-name filename.json --custom-metadata-only
+    ```

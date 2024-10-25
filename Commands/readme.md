@@ -27,7 +27,7 @@
 : Manage Azure Arc Machines.
 
 - [arc-multicloud](/Commands/arc-multicloud/readme.md)
-: commands for arc-multicloud
+: Commands for arc-multicloud
 
 - [arcgateway](/Commands/arcgateway/readme.md)
 : Manage gateway connection on Arc machine
@@ -43,9 +43,6 @@
 
 - [automation](/Commands/automation/readme.md)
 : Manage Automation Account.
-
-- [azure-terraform](/Commands/azure-terraform/readme.md)
-: Azure Terraform experience
 
 - [baremetalinstance](/Commands/baremetalinstance/readme.md)
 : Handle Operations for Compute Azure Bare Instances.
@@ -203,6 +200,12 @@
 - [managedservices](/Commands/managedservices/readme.md)
 : Manage the registration assignments and definitions in Azure.
 
+- [managementpartner](/Commands/managementpartner/readme.md)
+: Allows the partners to associate a Microsoft Partner Network(MPN) ID to a user or service principal in the customer's Azure directory.
+
+- [mcc](/Commands/mcc/readme.md)
+: Microsoft Connected Cache CLI Commands
+
 - [mdp](/Commands/mdp/readme.md)
 : Manage resources of Managed DevOps pools
 
@@ -214,6 +217,9 @@
 
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
+
+- [neon](/Commands/neon/readme.md)
+: Manage Neon Postgres
 
 - [netappfiles](/Commands/netappfiles/readme.md)
 : Manage Azure NetApp Files (ANF) Resources
@@ -328,6 +334,9 @@
 
 - [support](/Commands/support/readme.md)
 : Manage Azure support resource.
+
+- [terraform](/Commands/terraform/readme.md)
+: Azure Terraform experience
 
 - [trustedsigning](/Commands/trustedsigning/readme.md)
 : Manage trusted signing account

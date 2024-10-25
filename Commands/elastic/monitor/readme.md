@@ -4,6 +4,12 @@ Manage monitor with elastic.
 
 ## Subgroups
 
+- [monitored-subscription](/Commands/elastic/monitor/monitored-subscription/readme.md)
+: Manage monitored subscription with elastic
+
+- [open-ai-integration](/Commands/elastic/monitor/open-ai-integration/readme.md)
+: Manage open-ai Integration with elastic
+
 - [tag-rule](/Commands/elastic/monitor/tag-rule/readme.md)
 : Manage tag rule with elastic.
 
@@ -36,6 +42,9 @@ Manage monitor with elastic.
 - [detach-traffic-filter](/Commands/elastic/monitor/_detach-traffic-filter.md)
 : Detach traffic filter
 
+- [get-billing-info](/Commands/elastic/monitor/_get-billing-info.md)
+: Get marketplace and organization info mapped to the given monitor.
+
 - [list](/Commands/elastic/monitor/_list.md)
 : List all monitors under the specified resource group. And List all                                monitors under the specified subscription.
 
@@ -44,6 +53,9 @@ Manage monitor with elastic.
 
 - [list-associated-traffic-filter](/Commands/elastic/monitor/_list-associated-traffic-filter.md)
 : List associated traffic filter
+
+- [list-connected-partner-resource](/Commands/elastic/monitor/_list-connected-partner-resource.md)
+: List of all active deployments that are associated with the marketplace subscription linked to the given monitor.
 
 - [list-deployment-info](/Commands/elastic/monitor/_list-deployment-info.md)
 : Fetch information regarding Elastic cloud deployment corresponding to                                the Elastic monitor resource.

@@ -1,6 +1,8 @@
 # [Command] _arc-multicloud public-cloud-connector list_
 
-List PublicCloudConnector resources by subscription ID
+List PublicCloudConnector resources within the current subscription, and limit to the specified resource group if one is provided.
+
+For additional details, please visit the https://learn.microsoft.com/en-us/cli/azure/arc-multicloud?view=azure-cli-latest
 
 ## Versions
 
@@ -13,5 +15,5 @@ List PublicCloudConnector resources by subscription ID
 
 - PublicCloudConnectors_ListBySubscription
     ```bash
-        arc-multicloud public-cloud-connector list --resource-group rgpublicCloud
+        arc-multicloud public-cloud-connector list --resource-group multiCloudRG
     ```
