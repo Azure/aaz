@@ -29,6 +29,9 @@
 - [arc-multicloud](/Commands/arc-multicloud/readme.md)
 : commands for arc-multicloud
 
+- [arcgateway](/Commands/arcgateway/readme.md)
+: Manage gateway connection on Arc machine
+
 - [astronomer](/Commands/astronomer/readme.md)
 : Manage Azure Astronomer resources.
 
