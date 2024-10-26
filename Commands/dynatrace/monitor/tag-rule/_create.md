@@ -23,5 +23,5 @@ Create a tag rule
 
 - Create tag-rule
     ```bash
-        dynatrace monitor tag-rule create -g rg --monitor-name monitor -n default --log-rules "{send-aad-logs:enabled,send-subscription-logs:enabled,send-activity-logs:enabled,filtering-tags:[{name:env,value:prod,action:include},{name:env,value:dev,action:exclude}]}" --metric-rules "{filtering-tags:[{name:env,value:prod,action:include}]}"
+        dynatrace monitor tag-rule create -g rg --monitor-name monitor -n default --log-rules "{send-aad-logs:enabled,send-subscription-logs:enabled,send-activity-logs:enabled,filtering-tags:[{name:env,value:prod,action:include},{name:env,value:dev,action:exclude}]}" --metric-rules "{sending-metrics:enabled,filtering-tags:[{name:env,value:prod,action:include}]}"
     ```
