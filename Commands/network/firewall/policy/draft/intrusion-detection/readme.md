@@ -11,7 +11,7 @@ Manage intrusion signature rules and bypass rules
 : None
 
 - [show](/Commands/network/firewall/policy/draft/intrusion-detection/_show.md)
-: List all intrusion detection configuration
+: None
 
 - [update](/Commands/network/firewall/policy/draft/intrusion-detection/_update.md)
 : None
