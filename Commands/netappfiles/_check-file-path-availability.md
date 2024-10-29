@@ -21,3 +21,7 @@ Check if a file path is available
 ### [2024-03-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbG9jYXRpb25zL3t9L2NoZWNrZmlsZXBhdGhhdmFpbGFiaWxpdHk=/2024-03-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.netapp/locations/{}/checkfilepathavailability 2024-03-01 -->
+
+### [2024-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbG9jYXRpb25zL3t9L2NoZWNrZmlsZXBhdGhhdmFpbGFiaWxpdHk=/2024-07-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.netapp/locations/{}/checkfilepathavailability 2024-07-01 -->
