@@ -23,5 +23,5 @@ Create the Pool resource.
 
 - IpamPools_Create
     ```bash
-        network manager ipam-pool create --name "myIpamPool" --network-manager-name "myAVNM" --resource-group "myAVNMResourceGroup" --address-prefixes "['10.0.0.0/16', '10.1.0.0/16']" --parent-pool-name "myParentIpamPool" --display-name "myIpamPoolDisplayName" --description "Description"
+        network manager ipam-pool create --name "myIpamPool" --network-manager-name "myAVNM" --resource-group "myAVNMResourceGroup" --address-prefixes "['10.0.0.0/16', '10.1.0.0/16']" --parent-pool-name "myParentIpamPool" --display-name "myIpamPoolDisplayName" --description "New Description"
     ```
