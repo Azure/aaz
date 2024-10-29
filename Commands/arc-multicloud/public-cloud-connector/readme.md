@@ -1,6 +1,8 @@
 # [Group] _arc-multicloud public-cloud-connector_
 
-commands for multicloudConnector
+Commands for multicloudConnector
+
+For additional details, please visit the https://learn.microsoft.com/en-us/cli/azure/arc-multicloud?view=azure-cli-latest
 
 ## Commands
 

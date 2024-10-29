@@ -27,7 +27,10 @@
 : Manage Azure Arc Machines.
 
 - [arc-multicloud](/Commands/arc-multicloud/readme.md)
-: commands for arc-multicloud
+: Commands for arc-multicloud
+
+- [arcgateway](/Commands/arcgateway/readme.md)
+: Manage gateway connection on Arc machine
 
 - [astronomer](/Commands/astronomer/readme.md)
 : Manage Azure Astronomer resources.
@@ -200,6 +203,9 @@
 - [managementpartner](/Commands/managementpartner/readme.md)
 : Allows the partners to associate a Microsoft Partner Network(MPN) ID to a user or service principal in the customer's Azure directory.
 
+- [mcc](/Commands/mcc/readme.md)
+: Microsoft Connected Cache CLI Commands
+
 - [mdp](/Commands/mdp/readme.md)
 : Manage resources of Managed DevOps pools
 
@@ -211,6 +217,9 @@
 
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
+
+- [neon](/Commands/neon/readme.md)
+: Manage Neon Postgres
 
 - [netappfiles](/Commands/netappfiles/readme.md)
 : Manage Azure NetApp Files (ANF) Resources

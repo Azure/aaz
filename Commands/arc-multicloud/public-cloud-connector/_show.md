@@ -2,6 +2,8 @@
 
 Get a PublicCloudConnector
 
+For additional details, please visit the https://learn.microsoft.com/en-us/cli/azure/arc-multicloud?view=azure-cli-latest
+
 ## Versions
 
 ### [2024-12-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5oeWJyaWRjb25uZWN0aXZpdHkvcHVibGljY2xvdWRjb25uZWN0b3JzL3t9/2024-12-01.xml) **Stable**
@@ -12,5 +14,5 @@ Get a PublicCloudConnector
 
 - publicCloudConnectors_Get
     ```bash
-        arc-multicloud public-cloud-connector show --resource-group rgpublicCloud --name myConnector
+        arc-multicloud public-cloud-connector show --resource-group multiCloudRG --name awsConnector
     ```
