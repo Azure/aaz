@@ -80,9 +80,6 @@
 - [compute](/Commands/compute/readme.md)
 : Mange azure compute vm config
 
-- [compute-diagnostic](/Commands/compute-diagnostic/readme.md)
-: Mange vm sku recommender info
-
 - [compute-recommender](/Commands/compute-recommender/readme.md)
 : Manage sku/zone/region recommender info for compute resources
 
