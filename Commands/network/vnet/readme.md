@@ -12,6 +12,9 @@ To learn more about Virtual Networks visit https://docs.microsoft.com/azure/virt
 - [subnet](/Commands/network/vnet/subnet/readme.md)
 : Manage subnets in an Azure Virtual Network.
 
+- [tap](/Commands/network/vnet/tap/readme.md)
+: Manage virtual network taps.
+
 ## Commands
 
 - [check-ip-address](/Commands/network/vnet/_check-ip-address.md)

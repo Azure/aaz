@@ -9,6 +9,9 @@ To learn more about network interfaces in Azure, visit https://learn.microsoft.c
 - [ip-config](/Commands/network/nic/ip-config/readme.md)
 : Manage IP configurations of a network interface.
 
+- [vtap-config](/Commands/network/nic/vtap-config/readme.md)
+: Manage virtual network tap configurations.
+
 ## Commands
 
 - [create](/Commands/network/nic/_create.md)
