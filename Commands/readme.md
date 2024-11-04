@@ -171,7 +171,7 @@
 : Make operations on Microsoft.GraphServices resource types
 
 - [healthcareapis](/Commands/healthcareapis/readme.md)
-: healthcare-apis test
+: Azure Healthcare APIs is a secure cloud platform for managing health data, supporting analytics, machine learning, and scalable solutions.
 
 - [image](/Commands/image/readme.md)
 : Manage custom virtual machine images.

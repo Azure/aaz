@@ -1,6 +1,6 @@
 # [Group] _healthcareapis_
 
-healthcare-apis test
+Azure Healthcare APIs is a secure cloud platform for managing health data, supporting analytics, machine learning, and scalable solutions.
 
 ## Subgroups
 

@@ -12,5 +12,5 @@ Update a DeidService by name
 
 - deidservice_update
     ```bash
-        deidservice update --name deidTest -g rgopenapi --tags tag=test
+        healthcareapis deidservice update --name deidTest -g rgopenapi --tags tag=test
     ```
