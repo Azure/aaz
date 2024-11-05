@@ -80,6 +80,9 @@
 - [compute](/Commands/compute/readme.md)
 : Mange azure compute vm config
 
+- [compute-fleet](/Commands/compute-fleet/readme.md)
+: Manage for Azure Compute Fleet
+
 - [compute-recommender](/Commands/compute-recommender/readme.md)
 : Manage sku/zone/region recommender info for compute resources
 
