@@ -83,6 +83,9 @@
 - [compute-diagnostic](/Commands/compute-diagnostic/readme.md)
 : Mange vm sku recommender info
 
+- [compute-fleet](/Commands/compute-fleet/readme.md)
+: Manage for Azure Compute Fleet
+
 - [compute-recommender](/Commands/compute-recommender/readme.md)
 : Manage sku/zone/region recommender info for compute resources
 
