@@ -8,7 +8,7 @@ Azure Unmanaged Data Disks have a maximum size of 4095 GB. To use disks larger t
 ## Commands
 
 - [create](/Commands/disk/_create.md)
-: Create a disk.
+: Create a managed disk.
 
 - [delete](/Commands/disk/_delete.md)
 : Delete a managed disk.
@@ -23,4 +23,4 @@ Azure Unmanaged Data Disks have a maximum size of 4095 GB. To use disks larger t
 : Get information about a disk.
 
 - [update](/Commands/disk/_update.md)
-: Update a disk.
+: Update a managed disk.
