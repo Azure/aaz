@@ -80,8 +80,8 @@
 - [compute](/Commands/compute/readme.md)
 : Mange azure compute vm config
 
-- [compute-diagnostic](/Commands/compute-diagnostic/readme.md)
-: Mange vm sku recommender info
+- [compute-fleet](/Commands/compute-fleet/readme.md)
+: Manage for Azure Compute Fleet
 
 - [compute-recommender](/Commands/compute-recommender/readme.md)
 : Manage sku/zone/region recommender info for compute resources
@@ -115,6 +115,9 @@
 
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage dataprotection.
+
+- [deidservice](/Commands/deidservice/readme.md)
+: Health Data service for providing de-identification of health PHI data (Features: Surrogation, multi-modality)
 
 - [desktopvirtualization](/Commands/desktopvirtualization/readme.md)
 : Manage desktop virtualization.
