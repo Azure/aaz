@@ -20,6 +20,11 @@ Update existing API.
         apic api update -g contoso-resources -n contoso --api-id echo-api --custom-properties '{\"public-facing\":true}'
     ```
 
+- Update custom properties using json file
+    ```bash
+        apic api update -g contoso-resources -n contoso --api-id echo-api --custom-properties '@customProperities.json'
+    ```
+
 - Update single custom metadata
     ```bash
         apic api update -g contoso-resources -n contoso --api-id echo-api --set customProperties.internal=false
