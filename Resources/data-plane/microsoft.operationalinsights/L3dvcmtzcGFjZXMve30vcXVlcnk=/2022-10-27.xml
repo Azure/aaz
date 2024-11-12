@@ -1,0 +1,219 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.operationalinsights">
+  <resource id="/workspaces/{}/query" version="2022-10-27" swagger="data-plane:microsoft.operationalinsights/operationalinsights/ResourceProviders/Microsoft.OperationalInsights/Paths/L3dvcmtzcGFjZXMve3dvcmtzcGFjZUlkfS9xdWVyeQ==/V/MjAyMi0xMC0yNw=="/>
+  <commandGroup name="monitor log-analytics">
+    <command name="show" version="2022-10-27">
+      <resource id="/workspaces/{}/query" version="2022-10-27" swagger="data-plane:microsoft.operationalinsights/operationalinsights/ResourceProviders/Microsoft.OperationalInsights/Paths/L3dvcmtzcGFjZXMve3dvcmtzcGFjZUlkfS9xdWVyeQ==/V/MjAyMi0xMC0yNw=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.workspaceId" options="workspace w" required="True" group="">
+          <help short="ID of the workspace. This is Workspace ID from the Properties blade in the Azure portal."/>
+        </arg>
+        <arg type="string" var="$Query.query" options="analytics-query" required="True" group="">
+          <help short="The Analytics query. Learn more about the [Analytics query syntax](https://azure.microsoft.com/documentation/articles/app-insights-analytics-reference/)"/>
+        </arg>
+        <arg type="duration" var="$Query.timespan" options="timespan">
+          <help short="Optional. The timespan over which to query data. This is an ISO8601 time period value.  This timespan is applied in addition to any that are specified in the query expression."/>
+        </arg>
+      </argGroup>
+      <operation operationId="Query_Get">
+        <http path="/workspaces/{workspaceId}/query">
+          <request method="get">
+            <path>
+              <param type="string" name="workspaceId" arg="$Path.workspaceId" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="query" arg="$Query.query" required="True"/>
+              <param type="duration" name="timespan" arg="$Query.timespan"/>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="object" name="error" cls="ErrorInfo_read">
+                    <prop type="object" name="additionalInfo">
+                      <additionalProp anyType="True"/>
+                    </prop>
+                    <prop type="string" name="code" required="True"/>
+                    <prop type="array<object>" name="details">
+                      <item type="object">
+                        <prop type="object" name="additionalProperties">
+                          <additionalProp anyType="True"/>
+                        </prop>
+                        <prop type="string" name="code" required="True"/>
+                        <prop type="string" name="message" required="True"/>
+                        <prop type="array<string>" name="resources">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="string" name="target"/>
+                        <prop type="string" name="value"/>
+                      </item>
+                    </prop>
+                    <prop type="@ErrorInfo_read" name="innererror"/>
+                    <prop type="string" name="message" required="True"/>
+                  </prop>
+                  <prop type="object" name="render"/>
+                  <prop type="object" name="statistics"/>
+                  <prop type="array<object>" name="tables" required="True">
+                    <item type="object">
+                      <prop type="array<object>" name="columns" required="True">
+                        <item type="object">
+                          <prop type="string" name="name"/>
+                          <prop type="string" name="type">
+                            <enum>
+                              <item value="&quot;bool&quot;"/>
+                              <item value="&quot;datetime&quot;"/>
+                              <item value="&quot;decimal&quot;"/>
+                              <item value="&quot;dynamic&quot;"/>
+                              <item value="&quot;guid&quot;"/>
+                              <item value="&quot;int&quot;"/>
+                              <item value="&quot;long&quot;"/>
+                              <item value="&quot;real&quot;"/>
+                              <item value="&quot;string&quot;"/>
+                              <item value="&quot;timespan&quot;"/>
+                            </enum>
+                          </prop>
+                        </item>
+                      </prop>
+                      <prop type="string" name="name" required="True"/>
+                      <prop type="array<array<object>>" name="rows" required="True">
+                        <item type="array<object>">
+                          <item type="object">
+                            <additionalProp anyType="True"/>
+                          </item>
+                        </item>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="query" version="2022-10-27" confirmation="">
+      <resource id="/workspaces/{}/query" version="2022-10-27" swagger="data-plane:microsoft.operationalinsights/operationalinsights/ResourceProviders/Microsoft.OperationalInsights/Paths/L3dvcmtzcGFjZXMve3dvcmtzcGFjZUlkfS9xdWVyeQ==/V/MjAyMi0xMC0yNw=="/>
+      <argGroup name="">
+        <arg type="string" var="$Header.Prefer" options="prefer">
+          <help short="Optional. The prefer header to set server timeout, query statistics and visualization information."/>
+        </arg>
+        <arg type="string" var="$Path.workspaceId" options="workspace w" required="True" group="">
+          <help short="ID of the workspace. This is Workspace ID from the Properties blade in the Azure portal."/>
+        </arg>
+        <arg type="string" var="$body.query" options="analytics-query" required="True" group="">
+          <help short="The query to execute."/>
+        </arg>
+        <arg type="string" var="$body.timespan" options="timespan t" group="">
+          <help short="Optional. The timespan over which to query data. This is an ISO8601 time period value.  This timespan is applied in addition to any that are specified in the query expression."/>
+        </arg>
+        <arg type="array<string>" var="$body.workspaces" options="workspaces" group="">
+          <help short="A list of workspaces that are included in the query."/>
+          <item type="string"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Query_Execute">
+        <http path="/workspaces/{workspaceId}/query">
+          <request method="post">
+            <path>
+              <param type="string" name="workspaceId" arg="$Path.workspaceId" required="True"/>
+            </path>
+            <header>
+              <param type="string" name="Prefer" arg="$Header.Prefer"/>
+            </header>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="string" name="query" arg="$body.query" required="True"/>
+                  <prop type="string" name="timespan" arg="$body.timespan"/>
+                  <prop type="array<string>" name="workspaces" arg="$body.workspaces">
+                    <item type="string"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="object" name="error" cls="ErrorInfo_read">
+                    <prop type="object" name="additionalInfo">
+                      <additionalProp anyType="True"/>
+                    </prop>
+                    <prop type="string" name="code" required="True"/>
+                    <prop type="array<object>" name="details">
+                      <item type="object">
+                        <prop type="object" name="additionalProperties">
+                          <additionalProp anyType="True"/>
+                        </prop>
+                        <prop type="string" name="code" required="True"/>
+                        <prop type="string" name="message" required="True"/>
+                        <prop type="array<string>" name="resources">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="string" name="target"/>
+                        <prop type="string" name="value"/>
+                      </item>
+                    </prop>
+                    <prop type="@ErrorInfo_read" name="innererror"/>
+                    <prop type="string" name="message" required="True"/>
+                  </prop>
+                  <prop type="object" name="render"/>
+                  <prop type="object" name="statistics"/>
+                  <prop type="array<object>" name="tables" required="True">
+                    <item type="object">
+                      <prop type="array<object>" name="columns" required="True">
+                        <item type="object">
+                          <prop type="string" name="name"/>
+                          <prop type="string" name="type">
+                            <enum>
+                              <item value="&quot;bool&quot;"/>
+                              <item value="&quot;datetime&quot;"/>
+                              <item value="&quot;decimal&quot;"/>
+                              <item value="&quot;dynamic&quot;"/>
+                              <item value="&quot;guid&quot;"/>
+                              <item value="&quot;int&quot;"/>
+                              <item value="&quot;long&quot;"/>
+                              <item value="&quot;real&quot;"/>
+                              <item value="&quot;string&quot;"/>
+                              <item value="&quot;timespan&quot;"/>
+                            </enum>
+                          </prop>
+                        </item>
+                      </prop>
+                      <prop type="string" name="name" required="True"/>
+                      <prop type="array<array<object>>" name="rows" required="True">
+                        <item type="array<object>">
+                          <item type="object">
+                            <additionalProp anyType="True"/>
+                          </item>
+                        </item>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

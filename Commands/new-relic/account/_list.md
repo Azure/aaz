@@ -14,3 +14,14 @@ List all the existing accounts
     ```bash
         new-relic account list --location eastus2euap --user-email UserEmail@123.com
     ```
+
+### [2024-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL25ld3JlbGljLm9ic2VydmFiaWxpdHkvYWNjb3VudHM=/2024-01-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/newrelic.observability/accounts 2024-01-01 -->
+
+#### examples
+
+- List all the existing accounts.
+    ```bash
+        new-relic account list --location eastus2euap --user-email UserEmail@123.com
+    ```
