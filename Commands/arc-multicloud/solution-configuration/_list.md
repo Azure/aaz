@@ -1,6 +1,8 @@
 # [Command] _arc-multicloud solution-configuration list_
 
-List SolutionConfiguration resources by parent
+List SolutionConfiguration resources by parent public cloud connector
+
+For additional details, please visit the https://learn.microsoft.com/en-us/cli/azure/arc-multicloud?view=azure-cli-latest
 
 ## Versions
 
@@ -12,5 +14,5 @@ List SolutionConfiguration resources by parent
 
 - SolutionConfigurations_List
     ```bash
-        arc-multicloud solution-configuration list --connector-id ymuj
+        arc-multicloud solution-configuration list --connector-id /subscriptions/{}/resourceGroups/{}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{}
     ```

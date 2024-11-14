@@ -91,3 +91,14 @@ Update properties of the provided rack, or update the tags associated with the r
     ```bash
         networkcloud rack update --name "rackName" --rack-location "Rack 2B" --rack-serial-number "RACK_SERIAL_NUMBER" --tags key1="myvalue1" key2="myvalue2" --resource-group "resourceGroupName"
     ```
+
+### [2024-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvcmFja3Mve30=/2024-07-01.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/racks/{} 2024-07-01 -->
+
+#### examples
+
+- Patch rack
+    ```bash
+        networkcloud rack update --name "rackName" --rack-location "Rack 2B" --rack-serial-number "RACK_SERIAL_NUMBER" --tags key1="myvalue1" key2="myvalue2" --resource-group "resourceGroupName"
+    ```

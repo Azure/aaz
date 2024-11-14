@@ -14,3 +14,14 @@ Return the payload that need to be passed in the request body for installing Dyn
     ```bash
         dynatrace monitor get-vm-host-payload -g rg --monitor-name monitor
     ```
+
+### [2023-04-27](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL2R5bmF0cmFjZS5vYnNlcnZhYmlsaXR5L21vbml0b3JzL3t9L2dldHZtaG9zdHBheWxvYWQ=/2023-04-27.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/dynatrace.observability/monitors/{}/getvmhostpayload 2023-04-27 -->
+
+#### examples
+
+- Get-vm-host-payload
+    ```bash
+        dynatrace monitor get-vm-host-payload -g rg --monitor-name monitor
+    ```

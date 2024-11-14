@@ -34,11 +34,11 @@ Manage the Azure Monitor Service.
 - [metrics](/Commands/monitor/metrics/readme.md)
 : View Azure resource metrics.
 
+- [pipeline-group](/Commands/monitor/pipeline-group/readme.md)
+: Manage Pipeline Groups
+
 - [private-link-scope](/Commands/monitor/private-link-scope/readme.md)
 : Manage monitor private link scope resource.
 
 - [tenant-action-group](/Commands/monitor/tenant-action-group/readme.md)
 : monitor tenant-action-group
-
-- [pipeline-group](/Commands/monitor/pipeline-group/readme.md)
-: Manage Pipeline Groups

@@ -2,7 +2,7 @@
 <CodeGen plane="mgmt-plane">
   <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridconnectivity/publiccloudconnectors/{}/testpermissions" version="2024-12-01" swagger="mgmt-plane/hybridconnectivity/ResourceProviders/Microsoft.HybridConnectivity/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuSHlicmlkQ29ubmVjdGl2aXR5L3B1YmxpY0Nsb3VkQ29ubmVjdG9ycy97cHVibGljQ2xvdWRDb25uZWN0b3J9L3Rlc3RQZXJtaXNzaW9ucw==/V/MjAyNC0xMi0wMQ=="/>
   <commandGroup name="arc-multicloud public-cloud-connector">
-    <command name="test-permission" version="2024-12-01">
+    <command name="test-permission" version="2024-12-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridconnectivity/publiccloudconnectors/{}/testpermissions" version="2024-12-01" swagger="mgmt-plane/hybridconnectivity/ResourceProviders/Microsoft.HybridConnectivity/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuSHlicmlkQ29ubmVjdGl2aXR5L3B1YmxpY0Nsb3VkQ29ubmVjdG9ycy97cHVibGljQ2xvdWRDb25uZWN0b3J9L3Rlc3RQZXJtaXNzaW9ucw==/V/MjAyNC0xMi0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.publicCloudConnector" options="name n" required="True" group="" idPart="name">
@@ -35,25 +35,33 @@
           <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="object">
-                  <prop type="array<object>" name="solutionTypes" required="True">
-                    <item type="object">
-                      <prop type="string" name="solutionType" required="True">
-                        <enum>
-                          <item value="&quot;Microsoft.AssetManagement&quot;"/>
-                          <item value="&quot;Microsoft.HybridCompute.Onboard&quot;"/>
-                          <item value="&quot;Microsoft.HybridNetwork.VWan.Provision&quot;"/>
-                        </enum>
-                      </prop>
-                      <prop type="string" name="status" required="True">
-                        <enum>
-                          <item value="&quot;Connected&quot;"/>
-                          <item value="&quot;Disconnected&quot;"/>
-                        </enum>
-                      </prop>
-                      <prop type="string" name="statusDetails" required="True"/>
-                    </item>
+                <schema type="object" cls="OperationStatusResult_read">
+                  <prop type="dateTime" name="endTime"/>
+                  <prop type="object" name="error" cls="ErrorDetail_read">
+                    <prop readOnly="True" type="array<object>" name="additionalInfo">
+                      <item type="object">
+                        <prop readOnly="True" type="object" name="info"/>
+                        <prop readOnly="True" type="string" name="type"/>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="string" name="code"/>
+                    <prop readOnly="True" type="array<@ErrorDetail_read>" name="details" identifiers="message target">
+                      <item type="@ErrorDetail_read"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="message"/>
+                    <prop readOnly="True" type="string" name="target"/>
                   </prop>
+                  <prop type="ResourceId" name="id"/>
+                  <prop type="string" name="name"/>
+                  <prop type="array<@OperationStatusResult_read>" name="operations">
+                    <item type="@OperationStatusResult_read"/>
+                  </prop>
+                  <prop type="float" name="percentComplete">
+                    <format maximum="100.0" minimum="0.0"/>
+                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="resourceId"/>
+                  <prop type="dateTime" name="startTime"/>
+                  <prop type="string" name="status" required="True"/>
                 </schema>
               </json>
             </body>

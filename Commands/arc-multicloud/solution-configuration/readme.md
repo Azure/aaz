@@ -1,6 +1,8 @@
 # [Group] _arc-multicloud solution-configuration_
 
-commands for solution-configuration
+Commands for solution-configuration
+
+For additional details, please visit the https://learn.microsoft.com/en-us/cli/azure/arc-multicloud?view=azure-cli-latest
 
 ## Commands
 
@@ -11,7 +13,7 @@ commands for solution-configuration
 : Delete a SolutionConfiguration
 
 - [list](/Commands/arc-multicloud/solution-configuration/_list.md)
-: List SolutionConfiguration resources by parent
+: List SolutionConfiguration resources by parent public cloud connector
 
 - [show](/Commands/arc-multicloud/solution-configuration/_show.md)
 : Get a SolutionConfiguration

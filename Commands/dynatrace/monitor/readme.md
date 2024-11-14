@@ -18,6 +18,9 @@ Manage dynatrace monitor
 - [delete](/Commands/dynatrace/monitor/_delete.md)
 : Delete a monitor resource
 
+- [get-metric-status](/Commands/dynatrace/monitor/_get-metric-status.md)
+: Get metric status
+
 - [get-sso-detail](/Commands/dynatrace/monitor/_get-sso-detail.md)
 : Get the SSO configuration details from the partner
 
@@ -43,4 +46,4 @@ Manage dynatrace monitor
 : Show a monitor resource
 
 - [update](/Commands/dynatrace/monitor/_update.md)
-: Update a monitor resource
+: Update a MonitorResource

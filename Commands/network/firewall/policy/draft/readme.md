@@ -2,6 +2,11 @@
 
 Manage and configure Azure firewall policy draft,
 
+## Subgroups
+
+- [intrusion-detection](/Commands/network/firewall/policy/draft/intrusion-detection/readme.md)
+: Manage intrusion signature rules and bypass rules
+
 ## Commands
 
 - [create](/Commands/network/firewall/policy/draft/_create.md)
