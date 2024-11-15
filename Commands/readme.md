@@ -137,6 +137,12 @@
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
 
+- [dns-resolver-domain-list](/Commands/dns-resolver-domain-list/readme.md)
+: Manage DNS Resolver Domain List
+
+- [dns-resolver-policy](/Commands/dns-resolver-policy/readme.md)
+: Manage DNS Resolver Policy (DNS Security Policy)
+
 - [durabletask](/Commands/durabletask/readme.md)
 : Commands to manage Durabletasks.
 
