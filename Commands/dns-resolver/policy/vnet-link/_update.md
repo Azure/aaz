@@ -12,5 +12,5 @@ Update a DNS resolver policy virtual network link.
 
 - Update DNS resolver policy vnet link
     ```bash
-        dns-resolver policy vnet-link update --resource-group sampleResourceGroup --dns-resolver-policy-name sampleDnsResolverPolicy --dns-resolver-policy-virtual-network-link-name sampleVirtualNetworkLink --location westus2 --tags "{key2:value2}"
+        dns-resolver policy vnet-link update --resource-group sampleResourceGroup --policy-name sampleDnsResolverPolicy --dns-resolver-policy-virtual-network-link-name sampleVirtualNetworkLink --location westus2 --tags "{key2:value2}"
     ```

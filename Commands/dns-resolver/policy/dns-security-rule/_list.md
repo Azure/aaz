@@ -12,5 +12,5 @@ List DNS security rules for a DNS resolver policy.
 
 - List DNS security rules by DNS resolver policy
     ```bash
-        dns-resolver policy dns-security-rule list --resource-group sampleResourceGroup --dns-resolver-policy-name sampleDnsResolverPolicy
+        dns-resolver policy dns-security-rule list --resource-group sampleResourceGroup --policy-name sampleDnsResolverPolicy
     ```

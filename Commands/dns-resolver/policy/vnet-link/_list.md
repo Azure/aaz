@@ -12,5 +12,5 @@ List DNS resolver policy virtual network links.
 
 - List DNS resolver policy virtual network links by DNS resolver policy
     ```bash
-        dns-resolver policy dns-resolver-policy-link list --resource-group sampleResourceGroup --dns-resolver-policy-name sampleDnsResolverPolicy
+        dns-resolver policy dns-resolver-policy-link list --resource-group sampleResourceGroup --policy-name sampleDnsResolverPolicy
     ```

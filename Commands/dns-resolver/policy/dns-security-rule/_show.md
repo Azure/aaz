@@ -12,5 +12,5 @@ Get properties of a DNS security rule for a DNS resolver policy.
 
 - Retrieve DNS security rule for DNS resolver policy
     ```bash
-        dns-resolver policy dns-security-rule show --resource-group sampleResourceGroup --dns-resolver-policy-name sampleDnsResolverPolicy --dns-security-rule-name sampleDnsSecurityRule
+        dns-resolver policy dns-security-rule show --resource-group sampleResourceGroup --policy-name sampleDnsResolverPolicy --dns-security-rule-name sampleDnsSecurityRule
     ```

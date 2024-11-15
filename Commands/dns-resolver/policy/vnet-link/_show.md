@@ -12,5 +12,5 @@ Get properties of a DNS resolver policy virtual network link.
 
 - Retrieve DNS resolver policy virtual network link
     ```bash
-        dns-resolver policy dns-resolver-policy-link show --resource-group sampleResourceGroup --dns-resolver-policy-name sampleDnsResolverPolicy --dns-resolver-policy-virtual-network-link-name sampleVirtualNetworkLink
+        dns-resolver policy dns-resolver-policy-link show --resource-group sampleResourceGroup --policy-name sampleDnsResolverPolicy --dns-resolver-policy-virtual-network-link-name sampleVirtualNetworkLink
     ```

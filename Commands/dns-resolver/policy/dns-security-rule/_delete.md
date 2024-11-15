@@ -12,5 +12,5 @@ Delete a DNS security rule for a DNS resolver policy. WARNING: This operation ca
 
 - Delete DNS security rule for DNS resolver policy
     ```bash
-        dns-resolver policy dns-security-rule delete --resource-group sampleResourceGroup --dns-resolver-policy-name sampleDnsDnsResolverPolicy --dns-security-rule-name sampleDnsSecurityRule
+        dns-resolver policy dns-security-rule delete --resource-group sampleResourceGroup --policy-name sampleDnsDnsResolverPolicy --dns-security-rule-name sampleDnsSecurityRule
     ```
