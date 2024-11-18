@@ -1,11 +1,11 @@
 # [Group] _connectedmachine license-profile_
 
----
+Manages all Pay-As-You-Go licenses for an Azure Arc-Enabled Server.
 
 ## Commands
 
 - [create](/Commands/connectedmachine/license-profile/_create.md)
-: Create operation to create or update a license profile.
+: Create operation to create a license profile.
 
 - [delete](/Commands/connectedmachine/license-profile/_delete.md)
 : Delete operation to delete a license profile.
@@ -17,4 +17,4 @@
 : Get information about the view of a license profile.
 
 - [update](/Commands/connectedmachine/license-profile/_update.md)
-: Update operation to create or update a license profile.
+: Update operation to update a license profile.

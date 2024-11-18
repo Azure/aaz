@@ -14,3 +14,14 @@ Lists outbound endpoints for a DNS resolver.
     ```bash
         dns-resolver outbound-endpoint list --dns-resolver-name "sampleDnsResolver" --resource- group "sampleResourceGroup"
     ```
+
+### [2023-07-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL2Ruc3Jlc29sdmVycy97fS9vdXRib3VuZGVuZHBvaW50cw==/2023-07-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/dnsresolvers/{}/outboundendpoints 2023-07-01-preview -->
+
+#### examples
+
+- List outbound endpoints by DNS resolver
+    ```bash
+        dns-resolver outbound-endpoint list --dns-resolver-name "sampleDnsResolver" --resource- group "sampleResourceGroup"
+    ```
