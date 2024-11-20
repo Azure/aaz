@@ -192,7 +192,7 @@
                             <item value="&quot;UserAssignedIdentity&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="ResourceId" name="userAssignedIdentityResourceId"/>
+                        <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId"/>
                       </prop>
                       <prop type="string" name="containerUrl"/>
                     </prop>
@@ -454,6 +454,10 @@
         </arg>
         <arg type="object" var="$clusterParameters.identity" options="identity" group="ClusterParameters">
           <help short="The identity for the resource."/>
+          <arg type="string" var="$clusterParameters.identity.systemAssigned" options="mi-system-assigned system-assigned">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
           <arg type="string" var="$clusterParameters.identity.type" options="type" required="True">
             <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
             <enum>
@@ -462,6 +466,11 @@
               <item name="SystemAssigned,UserAssigned" value="&quot;SystemAssigned,UserAssigned&quot;"/>
               <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
             </enum>
+          </arg>
+          <arg type="array<string>" var="$clusterParameters.identity.userAssigned" options="mi-user-assigned user-assigned">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
           </arg>
           <arg type="object" var="$clusterParameters.identity.userAssignedIdentities" options="user-assigned-identities">
             <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
@@ -604,7 +613,7 @@
               <item name="UserAssignedIdentity" value="&quot;UserAssignedIdentity&quot;"/>
             </enum>
           </arg>
-          <arg type="ResourceId" var="$clusterParameters.properties.commandOutputSettings.associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
+          <arg nullable="True" type="ResourceId" var="$clusterParameters.properties.commandOutputSettings.associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
             <help short="The user assigned managed identity resource ID to use. Mutually exclusive with a system assigned identity type."/>
           </arg>
           <arg type="string" var="$clusterParameters.properties.commandOutputSettings.containerUrl" options="container-url">
@@ -748,6 +757,10 @@
                         <item nullable="True" type="object"/>
                       </additionalProp>
                     </prop>
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$clusterParameters.identity.userAssigned">
+                      <item action="create" type="string"/>
+                    </userAssigned>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$clusterParameters.identity.systemAssigned"/>
                   </prop>
                   <prop type="ResourceLocation" name="location" arg="$clusterParameters.location" required="True"/>
                   <prop type="object" name="properties" required="True" clientFlatten="True">
@@ -831,7 +844,7 @@
                             <item value="&quot;UserAssignedIdentity&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterParameters.properties.commandOutputSettings.associatedIdentity.userAssignedIdentityResourceId"/>
+                        <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterParameters.properties.commandOutputSettings.associatedIdentity.userAssignedIdentityResourceId"/>
                       </prop>
                       <prop type="string" name="containerUrl" arg="$clusterParameters.properties.commandOutputSettings.containerUrl"/>
                     </prop>
@@ -1079,7 +1092,7 @@
                             <item value="&quot;UserAssignedIdentity&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="ResourceId" name="userAssignedIdentityResourceId"/>
+                        <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId"/>
                       </prop>
                       <prop type="string" name="containerUrl"/>
                     </prop>
@@ -1243,6 +1256,10 @@
       <argGroup name="ClusterUpdateParameters">
         <arg type="object" var="$clusterUpdateParameters.identity" options="identity" group="ClusterUpdateParameters">
           <help short="The identity for the resource."/>
+          <arg type="string" var="$clusterUpdateParameters.identity.systemAssigned" options="mi-system-assigned system-assigned">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
           <arg type="string" var="$clusterUpdateParameters.identity.type" options="type" required="True">
             <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
             <enum>
@@ -1251,6 +1268,11 @@
               <item name="SystemAssigned,UserAssigned" value="&quot;SystemAssigned,UserAssigned&quot;"/>
               <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
             </enum>
+          </arg>
+          <arg type="array<string>" var="$clusterUpdateParameters.identity.userAssigned" options="mi-user-assigned user-assigned">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
           </arg>
           <arg type="object" var="$clusterUpdateParameters.identity.userAssignedIdentities" options="user-assigned-identities">
             <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
@@ -1352,7 +1374,7 @@
         <arg type="string" var="$clusterUpdateParameters.properties.clusterLocation" options="cluster-location" group="Properties">
           <help short="The customer-provided location information to identify where the cluster resides."/>
         </arg>
-        <arg type="object" var="$clusterUpdateParameters.properties.clusterServicePrincipal" options="cluster-service-principal" group="Properties">
+        <arg nullable="True" type="object" var="$clusterUpdateParameters.properties.clusterServicePrincipal" options="cluster-service-principal" group="Properties">
           <help short="The service principal to be used by the cluster during Arc Appliance installation."/>
           <arg type="string" var="$clusterUpdateParameters.properties.clusterServicePrincipal.applicationId" options="application-id" required="True">
             <help short="The application ID, also known as client ID, of the service principal."/>
@@ -1367,7 +1389,7 @@
             <help short="The tenant ID, also known as the directory ID, of the tenant in which the service principal is created."/>
           </arg>
         </arg>
-        <arg type="object" var="$clusterUpdateParameters.properties.commandOutputSettings" options="command-output-settings co-settings" group="Properties">
+        <arg nullable="True" type="object" var="$clusterUpdateParameters.properties.commandOutputSettings" options="command-output-settings co-settings" group="Properties">
           <help short="The settings for commands run in this cluster, such as bare metal machine run read only commands and data extracts."/>
           <arg type="string" var="$clusterUpdateParameters.properties.commandOutputSettings.associatedIdentity.identityType" options="identity-type" group="AssociatedIdentity">
             <help short="The type of managed identity that is being selected."/>
@@ -1376,14 +1398,14 @@
               <item name="UserAssignedIdentity" value="&quot;UserAssignedIdentity&quot;"/>
             </enum>
           </arg>
-          <arg type="ResourceId" var="$clusterUpdateParameters.properties.commandOutputSettings.associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
+          <arg nullable="True" type="ResourceId" var="$clusterUpdateParameters.properties.commandOutputSettings.associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
             <help short="The user assigned managed identity resource ID to use. Mutually exclusive with a system assigned identity type."/>
           </arg>
           <arg type="string" var="$clusterUpdateParameters.properties.commandOutputSettings.containerUrl" options="container-url">
             <help short="The URL of the storage account container that is to be used by the specified identities."/>
           </arg>
         </arg>
-        <arg type="object" var="$clusterUpdateParameters.properties.computeDeploymentThreshold" options="compute-deployment-threshold" group="Properties">
+        <arg nullable="True" type="object" var="$clusterUpdateParameters.properties.computeDeploymentThreshold" options="compute-deployment-threshold" group="Properties">
           <help short="The validation threshold indicating the allowable failures of compute machines during environment validation and deployment."/>
           <arg type="string" var="$clusterUpdateParameters.properties.computeDeploymentThreshold.grouping" options="grouping" required="True">
             <help short="Selection of how the type evaluation is applied to the cluster calculation."/>
@@ -1408,7 +1430,7 @@
           <help short="The list of rack definitions for the compute racks in a multi-rack cluster, or an empty list in a single-rack cluster."/>
           <item type="@RackDefinition_update"/>
         </arg>
-        <arg type="object" var="$clusterUpdateParameters.properties.runtimeProtectionConfiguration" options="runtime-protection" group="Properties">
+        <arg nullable="True" type="object" var="$clusterUpdateParameters.properties.runtimeProtectionConfiguration" options="runtime-protection" group="Properties">
           <help short="The settings for cluster runtime protection."/>
           <arg type="string" var="$clusterUpdateParameters.properties.runtimeProtectionConfiguration.enforcementLevel" options="enforcement-level">
             <help short="The mode of operation for runtime protection."/>
@@ -1422,7 +1444,7 @@
             </enum>
           </arg>
         </arg>
-        <arg type="object" var="$clusterUpdateParameters.properties.secretArchive" options="secret-archive" group="Properties">
+        <arg nullable="True" type="object" var="$clusterUpdateParameters.properties.secretArchive" options="secret-archive" group="Properties">
           <help short="The configuration for use of a key vault to store secrets for later retrieval by the operator."/>
           <arg type="ResourceId" var="$clusterUpdateParameters.properties.secretArchive.keyVaultId" options="key-vault-id" required="True">
             <help short="The resource ID of the key vault to archive the secrets of the cluster."/>
@@ -1436,7 +1458,7 @@
             </enum>
           </arg>
         </arg>
-        <arg type="object" var="$clusterUpdateParameters.properties.updateStrategy" options="update-strategy" group="Properties">
+        <arg nullable="True" type="object" var="$clusterUpdateParameters.properties.updateStrategy" options="update-strategy" group="Properties">
           <help short="The strategy for updating the cluster."/>
           <arg type="integer64" var="$clusterUpdateParameters.properties.updateStrategy.maxUnavailable" options="max-unavailable">
             <help short="The maximum number of worker nodes that can be offline within the increment of update, e.g., rack-by-rack. Limited by the maximum number of machines in the increment. Defaults to the whole increment size."/>
@@ -1503,6 +1525,10 @@
                         <item nullable="True" type="object"/>
                       </additionalProp>
                     </prop>
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$clusterUpdateParameters.identity.userAssigned">
+                      <item action="create" type="string"/>
+                    </userAssigned>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$clusterUpdateParameters.identity.systemAssigned"/>
                   </prop>
                   <prop type="object" name="properties" clientFlatten="True">
                     <prop type="object" name="aggregatorOrSingleRackDefinition" arg="$clusterUpdateParameters.properties.aggregatorOrSingleRackDefinition" cls="RackDefinition_update">
@@ -1561,13 +1587,13 @@
                       </prop>
                     </prop>
                     <prop type="string" name="clusterLocation" arg="$clusterUpdateParameters.properties.clusterLocation"/>
-                    <prop type="object" name="clusterServicePrincipal" arg="$clusterUpdateParameters.properties.clusterServicePrincipal">
+                    <prop nullable="True" type="object" name="clusterServicePrincipal" arg="$clusterUpdateParameters.properties.clusterServicePrincipal">
                       <prop type="string" name="applicationId" arg="$clusterUpdateParameters.properties.clusterServicePrincipal.applicationId" required="True"/>
                       <prop type="string" name="password" arg="$clusterUpdateParameters.properties.clusterServicePrincipal.password" required="True" secret="True"/>
                       <prop type="string" name="principalId" arg="$clusterUpdateParameters.properties.clusterServicePrincipal.principalId" required="True"/>
                       <prop type="string" name="tenantId" arg="$clusterUpdateParameters.properties.clusterServicePrincipal.tenantId" required="True"/>
                     </prop>
-                    <prop type="object" name="commandOutputSettings" arg="$clusterUpdateParameters.properties.commandOutputSettings">
+                    <prop nullable="True" type="object" name="commandOutputSettings" arg="$clusterUpdateParameters.properties.commandOutputSettings">
                       <prop type="object" name="associatedIdentity">
                         <prop type="string" name="identityType" arg="$clusterUpdateParameters.properties.commandOutputSettings.associatedIdentity.identityType">
                           <enum>
@@ -1575,11 +1601,11 @@
                             <item value="&quot;UserAssignedIdentity&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterUpdateParameters.properties.commandOutputSettings.associatedIdentity.userAssignedIdentityResourceId"/>
+                        <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterUpdateParameters.properties.commandOutputSettings.associatedIdentity.userAssignedIdentityResourceId"/>
                       </prop>
                       <prop type="string" name="containerUrl" arg="$clusterUpdateParameters.properties.commandOutputSettings.containerUrl"/>
                     </prop>
-                    <prop type="object" name="computeDeploymentThreshold" arg="$clusterUpdateParameters.properties.computeDeploymentThreshold">
+                    <prop nullable="True" type="object" name="computeDeploymentThreshold" arg="$clusterUpdateParameters.properties.computeDeploymentThreshold">
                       <prop type="string" name="grouping" arg="$clusterUpdateParameters.properties.computeDeploymentThreshold.grouping" required="True">
                         <enum>
                           <item value="&quot;PerCluster&quot;"/>
@@ -1599,7 +1625,7 @@
                     <prop type="array<@RackDefinition_update>" name="computeRackDefinitions" arg="$clusterUpdateParameters.properties.computeRackDefinitions" identifiers="networkRackId">
                       <item type="@RackDefinition_update"/>
                     </prop>
-                    <prop type="object" name="runtimeProtectionConfiguration" arg="$clusterUpdateParameters.properties.runtimeProtectionConfiguration">
+                    <prop nullable="True" type="object" name="runtimeProtectionConfiguration" arg="$clusterUpdateParameters.properties.runtimeProtectionConfiguration">
                       <prop type="string" name="enforcementLevel" arg="$clusterUpdateParameters.properties.runtimeProtectionConfiguration.enforcementLevel">
                         <default value="&quot;Disabled&quot;"/>
                         <enum>
@@ -1611,7 +1637,7 @@
                         </enum>
                       </prop>
                     </prop>
-                    <prop type="object" name="secretArchive" arg="$clusterUpdateParameters.properties.secretArchive">
+                    <prop nullable="True" type="object" name="secretArchive" arg="$clusterUpdateParameters.properties.secretArchive">
                       <prop type="ResourceId" name="keyVaultId" arg="$clusterUpdateParameters.properties.secretArchive.keyVaultId" required="True"/>
                       <prop type="string" name="useKeyVault" arg="$clusterUpdateParameters.properties.secretArchive.useKeyVault">
                         <default value="&quot;False&quot;"/>
@@ -1621,7 +1647,7 @@
                         </enum>
                       </prop>
                     </prop>
-                    <prop type="object" name="updateStrategy" arg="$clusterUpdateParameters.properties.updateStrategy">
+                    <prop nullable="True" type="object" name="updateStrategy" arg="$clusterUpdateParameters.properties.updateStrategy">
                       <prop type="integer64" name="maxUnavailable" arg="$clusterUpdateParameters.properties.updateStrategy.maxUnavailable">
                         <format minimum="1"/>
                       </prop>
@@ -1816,7 +1842,7 @@
                             <item value="&quot;UserAssignedIdentity&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="ResourceId" name="userAssignedIdentityResourceId"/>
+                        <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId"/>
                       </prop>
                       <prop type="string" name="containerUrl"/>
                     </prop>

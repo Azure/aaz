@@ -10,12 +10,6 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <condition var="$Condition_KubernetesClusters_ListByResourceGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_KubernetesClusters_ListBySubscription">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -24,13 +18,16 @@
           </operator>
         </operator>
       </condition>
-      <operation when="$Condition_KubernetesClusters_ListByResourceGroup" operationId="KubernetesClusters_ListByResourceGroup">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters">
+      <condition var="$Condition_KubernetesClusters_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_KubernetesClusters_ListBySubscription" operationId="KubernetesClusters_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/kubernetesClusters">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -486,10 +483,13 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_KubernetesClusters_ListBySubscription" operationId="KubernetesClusters_ListBySubscription">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/kubernetesClusters">
+      <operation when="$Condition_KubernetesClusters_ListByResourceGroup" operationId="KubernetesClusters_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/kubernetesClusters">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
