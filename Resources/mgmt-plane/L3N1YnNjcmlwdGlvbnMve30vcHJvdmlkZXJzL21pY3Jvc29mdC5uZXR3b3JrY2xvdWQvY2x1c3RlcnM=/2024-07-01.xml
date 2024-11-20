@@ -10,12 +10,6 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <condition var="$Condition_Clusters_ListByResourceGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_Clusters_ListBySubscription">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -24,13 +18,16 @@
           </operator>
         </operator>
       </condition>
-      <operation when="$Condition_Clusters_ListByResourceGroup" operationId="Clusters_ListByResourceGroup">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters">
+      <condition var="$Condition_Clusters_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_Clusters_ListBySubscription" operationId="Clusters_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/clusters">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -204,7 +201,7 @@
                                 <item value="&quot;UserAssignedIdentity&quot;"/>
                               </enum>
                             </prop>
-                            <prop type="ResourceId" name="userAssignedIdentityResourceId"/>
+                            <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId"/>
                           </prop>
                           <prop type="string" name="containerUrl"/>
                         </prop>
@@ -355,10 +352,13 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_Clusters_ListBySubscription" operationId="Clusters_ListBySubscription">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/clusters">
+      <operation when="$Condition_Clusters_ListByResourceGroup" operationId="Clusters_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/clusters">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -474,7 +474,7 @@
                                 <item value="&quot;UserAssignedIdentity&quot;"/>
                               </enum>
                             </prop>
-                            <prop type="ResourceId" name="userAssignedIdentityResourceId"/>
+                            <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId"/>
                           </prop>
                           <prop type="string" name="containerUrl"/>
                         </prop>
