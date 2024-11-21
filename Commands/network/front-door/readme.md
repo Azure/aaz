@@ -1,6 +1,6 @@
 # [Group] _network front-door_
 
-Manage Classical Azure Front Doors. For managing Azure Front Door Standard/Premium, please refer https://docs.microsoft.com/en-us/cli/azure/afd?view=azure-cli-latest.
+Manage Classical Azure Front Doors. For managing Azure Front Door Standard/Premium, please refer https://learn.microsoft.com/en-us/cli/azure/afd?view=azure-cli-latest.
 
 ## Subgroups
 

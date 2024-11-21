@@ -13,7 +13,7 @@ Manage service diagnostic settings.
 ## Commands
 
 - [create](/Commands/monitor/diagnostic-settings/_create.md)
-: Create diagnostic settings for the specified resource. For more information, visit: https://docs.microsoft.com/rest/api/monitor/diagnosticsettings/createorupdate#metricsettings.
+: Create diagnostic settings for the specified resource. For more information, visit: https://learn.microsoft.com/rest/api/monitor/diagnosticsettings/createorupdate#metricsettings.
 
 - [delete](/Commands/monitor/diagnostic-settings/_delete.md)
 : Deletes existing diagnostic settings for the specified resource.

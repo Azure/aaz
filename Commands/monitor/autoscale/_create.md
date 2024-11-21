@@ -2,7 +2,7 @@
 
 Create an autoscale setting.
 
-For more information on autoscaling, visit: https://docs.microsoft.com/azure/monitoring-and-diagnostics/monitoring-understanding-autoscale-settings.
+For more information on autoscaling, visit: https://learn.microsoft.com/azure/monitoring-and-diagnostics/monitoring-understanding-autoscale-settings.
 
 ## Versions
 
