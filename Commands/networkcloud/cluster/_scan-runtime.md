@@ -59,7 +59,7 @@ Trigger the execution of a runtime protection scan to detect and remediate detec
         networkcloud cluster scan-runtime -n "clusterName" -g "resourceGroupName" --scan-activity "Scan"
     ```
 
-### [2024-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvY2x1c3RlcnMve30vc2NhbnJ1bnRpbWU=/2024-07-01.xml) **Preview**
+### [2024-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvY2x1c3RlcnMve30vc2NhbnJ1bnRpbWU=/2024-07-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/clusters/{}/scanruntime 2024-07-01 -->
 
