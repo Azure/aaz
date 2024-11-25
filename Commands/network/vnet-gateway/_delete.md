@@ -2,7 +2,7 @@
 
 Delete a virtual network gateway.
 
-In order to delete a Virtual Network Gateway, you must first delete ALL Connection objects in Azure that are connected to the Gateway. After deleting the Gateway, proceed to delete other resources now not in use. For more information, follow the order of instructions on this page: https://docs.microsoft.com/azure/vpn-gateway/vpn-gateway-delete-vnet-gateway-portal
+In order to delete a Virtual Network Gateway, you must first delete ALL Connection objects in Azure that are connected to the Gateway. After deleting the Gateway, proceed to delete other resources now not in use. For more information, follow the order of instructions on this page: https://learn.microsoft.com/azure/vpn-gateway/vpn-gateway-delete-vnet-gateway-portal
 
 ## Versions
 
