@@ -192,7 +192,9 @@
                   <prop readOnly="True" type="object" name="error" cls="ErrorDetail_read">
                     <prop readOnly="True" type="array<object>" name="additionalInfo">
                       <item type="object">
-                        <prop readOnly="True" type="object" name="info"/>
+                        <prop readOnly="True" type="object" name="info">
+                          <additionalProp readOnly="True" anyType="True"/>
+                        </prop>
                         <prop readOnly="True" type="string" name="type"/>
                       </item>
                     </prop>
@@ -248,6 +250,10 @@
       <argGroup name="ClusterManagerParameters">
         <arg type="object" var="$clusterManagerParameters.identity" options="identity" group="ClusterManagerParameters">
           <help short="The identity of the cluster manager."/>
+          <arg type="string" var="$clusterManagerParameters.identity.systemAssigned" options="mi-system-assigned system-assigned">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
           <arg type="string" var="$clusterManagerParameters.identity.type" options="type" required="True">
             <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
             <enum>
@@ -256,6 +262,11 @@
               <item name="SystemAssigned,UserAssigned" value="&quot;SystemAssigned,UserAssigned&quot;"/>
               <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
             </enum>
+          </arg>
+          <arg type="array<string>" var="$clusterManagerParameters.identity.userAssigned" options="mi-user-assigned user-assigned">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
           </arg>
           <arg type="object" var="$clusterManagerParameters.identity.userAssignedIdentities" options="user-assigned-identities">
             <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
@@ -337,6 +348,10 @@
                         <item nullable="True" type="object"/>
                       </additionalProp>
                     </prop>
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$clusterManagerParameters.identity.userAssigned">
+                      <item action="create" type="string"/>
+                    </userAssigned>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$clusterManagerParameters.identity.systemAssigned"/>
                   </prop>
                   <prop type="ResourceLocation" name="location" arg="$clusterManagerParameters.location" required="True"/>
                   <prop type="object" name="properties" required="True" clientFlatten="True">
@@ -492,6 +507,10 @@
       <argGroup name="ClusterManagerUpdateParameters">
         <arg type="object" var="$clusterManagerUpdateParameters.identity" options="identity" group="ClusterManagerUpdateParameters">
           <help short="The identity for the resource."/>
+          <arg type="string" var="$clusterManagerUpdateParameters.identity.systemAssigned" options="mi-system-assigned system-assigned">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
           <arg type="string" var="$clusterManagerUpdateParameters.identity.type" options="type" required="True">
             <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
             <enum>
@@ -500,6 +519,11 @@
               <item name="SystemAssigned,UserAssigned" value="&quot;SystemAssigned,UserAssigned&quot;"/>
               <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
             </enum>
+          </arg>
+          <arg type="array<string>" var="$clusterManagerUpdateParameters.identity.userAssigned" options="mi-user-assigned user-assigned">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
           </arg>
           <arg type="object" var="$clusterManagerUpdateParameters.identity.userAssignedIdentities" options="user-assigned-identities">
             <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
@@ -552,6 +576,10 @@
                         <item nullable="True" type="object"/>
                       </additionalProp>
                     </prop>
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$clusterManagerUpdateParameters.identity.userAssigned">
+                      <item action="create" type="string"/>
+                    </userAssigned>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$clusterManagerUpdateParameters.identity.systemAssigned"/>
                   </prop>
                   <prop type="object" name="tags" arg="$clusterManagerUpdateParameters.tags">
                     <additionalProp>

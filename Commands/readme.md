@@ -80,8 +80,8 @@
 - [compute](/Commands/compute/readme.md)
 : Mange azure compute vm config
 
-- [compute-diagnostic](/Commands/compute-diagnostic/readme.md)
-: Mange vm sku recommender info
+- [compute-fleet](/Commands/compute-fleet/readme.md)
+: Manage for Azure Compute Fleet
 
 - [compute-recommender](/Commands/compute-recommender/readme.md)
 : Manage sku/zone/region recommender info for compute resources
@@ -169,6 +169,9 @@
 
 - [graph-services](/Commands/graph-services/readme.md)
 : Make operations on Microsoft.GraphServices resource types
+
+- [healthcareapis](/Commands/healthcareapis/readme.md)
+: Azure Healthcare APIs is a secure cloud platform for managing health data, supporting analytics, machine learning, and scalable solutions.
 
 - [image](/Commands/image/readme.md)
 : Manage custom virtual machine images.
