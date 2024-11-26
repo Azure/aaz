@@ -13,6 +13,12 @@ Manage Network Device Resource
 - [list](/Commands/networkfabric/device/_list.md)
 : List all Network Devices in the provided resource group or subscription
 
+- [reboot](/Commands/networkfabric/device/_reboot.md)
+: Reboot the Network Device.
+
+- [refresh-configuration](/Commands/networkfabric/device/_refresh-configuration.md)
+: Refreshes the configuration the Network Device.
+
 - [run-ro](/Commands/networkfabric/device/_run-ro.md)
 : Run the RO Command on the Network Device.
 
