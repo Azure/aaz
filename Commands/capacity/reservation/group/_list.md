@@ -16,7 +16,7 @@ List the capacity reservation groups.
         capacity reservation group list -g rg
     ```
 
-- List the capacity reservation groups containing VM instances and VMSS instance which are     associated to capacity reservation group
+- List the capacity reservation groups containing VM instances and VMSS instance which are associated to capacity reservation group
     ```bash
         capacity reservation group list -g rg --vm-instance --vmss-instance
     ```
