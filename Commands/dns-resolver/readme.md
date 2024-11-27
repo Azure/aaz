@@ -4,6 +4,9 @@ Manage Dns Resolver
 
 ## Subgroups
 
+- [domain-list](/Commands/dns-resolver/domain-list/readme.md)
+: Manage DNS Resolver Domain List
+
 - [forwarding-rule](/Commands/dns-resolver/forwarding-rule/readme.md)
 : Manage forwarding rule with dns resolver
 
@@ -15,6 +18,9 @@ Manage Dns Resolver
 
 - [outbound-endpoint](/Commands/dns-resolver/outbound-endpoint/readme.md)
 : Manage outbound endpoint with dns resolver
+
+- [policy](/Commands/dns-resolver/policy/readme.md)
+: Manage DNS Resolver Policy (DNS Security Policy)
 
 - [vnet-link](/Commands/dns-resolver/vnet-link/readme.md)
 : Manage vnet link with dns resolver

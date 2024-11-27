@@ -10,12 +10,6 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <condition var="$Condition_NetworkFabricControllers_ListByResourceGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_NetworkFabricControllers_ListBySubscription">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -24,13 +18,16 @@
           </operator>
         </operator>
       </condition>
-      <operation when="$Condition_NetworkFabricControllers_ListByResourceGroup" operationId="NetworkFabricControllers_ListByResourceGroup">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkFabricControllers">
+      <condition var="$Condition_NetworkFabricControllers_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_NetworkFabricControllers_ListBySubscription" operationId="NetworkFabricControllers_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.ManagedNetworkFabric/networkFabricControllers">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -111,7 +108,7 @@
                           <item type="@ExpressRouteConnectionInformation_read"/>
                         </prop>
                         <prop readOnly="True" type="boolean" name="workloadManagementNetwork"/>
-                        <prop type="@ControllerServices_read" name="workloadServices"/>
+                        <prop readOnly="True" type="@ControllerServices_read" name="workloadServices"/>
                       </prop>
                       <prop readOnly="True" type="object" name="systemData">
                         <prop type="dateTime" name="createdAt"/>
@@ -156,10 +153,13 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_NetworkFabricControllers_ListBySubscription" operationId="NetworkFabricControllers_ListBySubscription">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.ManagedNetworkFabric/networkFabricControllers">
+      <operation when="$Condition_NetworkFabricControllers_ListByResourceGroup" operationId="NetworkFabricControllers_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkFabricControllers">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -230,7 +230,7 @@
                           <item type="@ExpressRouteConnectionInformation_read"/>
                         </prop>
                         <prop readOnly="True" type="boolean" name="workloadManagementNetwork"/>
-                        <prop type="@ControllerServices_read" name="workloadServices"/>
+                        <prop readOnly="True" type="@ControllerServices_read" name="workloadServices"/>
                       </prop>
                       <prop readOnly="True" type="object" name="systemData">
                         <prop type="dateTime" name="createdAt"/>

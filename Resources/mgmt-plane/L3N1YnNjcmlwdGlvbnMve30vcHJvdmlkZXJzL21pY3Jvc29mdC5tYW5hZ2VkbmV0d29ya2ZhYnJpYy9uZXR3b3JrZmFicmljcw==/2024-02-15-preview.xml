@@ -10,12 +10,6 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <condition var="$Condition_NetworkFabrics_ListByResourceGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_NetworkFabrics_ListBySubscription">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -24,13 +18,16 @@
           </operator>
         </operator>
       </condition>
-      <operation when="$Condition_NetworkFabrics_ListByResourceGroup" operationId="NetworkFabrics_ListByResourceGroup">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkFabrics">
+      <condition var="$Condition_NetworkFabrics_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_NetworkFabrics_ListBySubscription" operationId="NetworkFabrics_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.ManagedNetworkFabric/networkFabrics">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -143,21 +140,25 @@
                               </prop>
                               <prop type="object" name="routeTargets">
                                 <prop type="array<string>" name="exportIpv4RouteTargets">
+                                  <format minLength="1"/>
                                   <item type="string">
                                     <format minLength="1"/>
                                   </item>
                                 </prop>
                                 <prop type="array<string>" name="exportIpv6RouteTargets">
+                                  <format minLength="1"/>
                                   <item type="string">
                                     <format minLength="1"/>
                                   </item>
                                 </prop>
                                 <prop type="array<string>" name="importIpv4RouteTargets">
+                                  <format minLength="1"/>
                                   <item type="string">
                                     <format minLength="1"/>
                                   </item>
                                 </prop>
                                 <prop type="array<string>" name="importIpv6RouteTargets">
+                                  <format minLength="1"/>
                                   <item type="string">
                                     <format minLength="1"/>
                                   </item>
@@ -259,10 +260,13 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_NetworkFabrics_ListBySubscription" operationId="NetworkFabrics_ListBySubscription">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.ManagedNetworkFabric/networkFabrics">
+      <operation when="$Condition_NetworkFabrics_ListByResourceGroup" operationId="NetworkFabrics_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkFabrics">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>

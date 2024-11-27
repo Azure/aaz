@@ -2,7 +2,7 @@
 
 Manage network security group flow logging.
 
-For more information about configuring flow logs visit https://docs.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-cli.
+For more information about configuring flow logs visit https://learn.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-cli.
 
 ## Commands
 
