@@ -1,6 +1,6 @@
 # [Command] _support no-subscription tickets list_
 
-List all the support tickets. <br/><br/>You can also filter the support tickets by <i>Status</i>, <i>CreatedDate</i>, <i>ServiceId</i>, and <i>ProblemClassificationId</i> using the $filter parameter. Output will be a paged result with <i>nextLink</i>, using which you can retrieve the next set of support tickets. <br/><br/>Support ticket data is available for 18 months after ticket creation. If a ticket was created more than 18 months ago, a request for data might cause an error. Default is CreatedDate >= one week.
+List all the support tickets. You can also filter the support tickets by Status, CreatedDate, ServiceId, and ProblemClassificationId using the --filter parameter. Output will be a paged result with nextLink, using which you can retrieve the next set of support tickets.   Support ticket data is available for 18 months after ticket creation. If a ticket was created more than 18 months ago, a request for data might cause an error. Default is CreatedDate >= one week.
 
 ## Versions
 
