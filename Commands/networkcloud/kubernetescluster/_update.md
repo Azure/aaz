@@ -131,7 +131,7 @@ Update the properties of the provided Kubernetes cluster, or update the tags ass
         networkcloud kubernetescluster update --name "kubernetesClusterName" --resource-group "resourceGroupName" --control-plane-node-configuration ssh-key-values="['ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgt5SjWU= admin@vm']"
     ```
 
-### [2024-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQva3ViZXJuZXRlc2NsdXN0ZXJzL3t9/2024-07-01.xml) **Preview**
+### [2024-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQva3ViZXJuZXRlc2NsdXN0ZXJzL3t9/2024-07-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/kubernetesclusters/{} 2024-07-01 -->
 
