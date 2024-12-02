@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/networkconnections/{}/outboundnetworkdependenciesendpoints" version="2024-10-01-preview" swagger="mgmt-plane/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGV2Q2VudGVyL25ldHdvcmtDb25uZWN0aW9ucy97bmV0d29ya0Nvbm5lY3Rpb25OYW1lfS9vdXRib3VuZE5ldHdvcmtEZXBlbmRlbmNpZXNFbmRwb2ludHM=/V/MjAyNC0xMC0wMS1wcmV2aWV3"/>
+  <commandGroup name="devcenter admin network-connection">
+    <command name="list-outbound-network-dependencies-endpoint" version="2024-10-01-preview" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/networkconnections/{}/outboundnetworkdependenciesendpoints" version="2024-10-01-preview" swagger="mgmt-plane/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGV2Q2VudGVyL25ldHdvcmtDb25uZWN0aW9ucy97bmV0d29ya0Nvbm5lY3Rpb25OYW1lfS9vdXRib3VuZE5ldHdvcmtEZXBlbmRlbmNpZXNFbmRwb2ludHM=/V/MjAyNC0xMC0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.networkConnectionName" options="network-connection-name name n" required="True" group="" idPart="name">
+          <help short="Name of the network connection that can be applied to a pool."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="integer32" var="$Query.top" options="top" hide="True" group="">
+          <help short="The maximum number of resources to return from the operation. Example: '$top=10'."/>
+        </arg>
+      </argGroup>
+      <operation operationId="NetworkConnections_ListOutboundNetworkDependenciesEndpoints">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DevCenter/networkConnections/{networkConnectionName}/outboundNetworkDependenciesEndpoints">
+          <request method="get">
+            <path>
+              <param type="string" name="networkConnectionName" arg="$Path.networkConnectionName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <param type="integer32" name="$top" arg="$Query.top"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-10-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop readOnly="True" type="array<object>" name="value" identifiers="category">
+                    <item type="object">
+                      <prop readOnly="True" type="string" name="category"/>
+                      <prop readOnly="True" type="array<object>" name="endpoints" identifiers="domainName">
+                        <item type="object">
+                          <prop readOnly="True" type="string" name="description"/>
+                          <prop readOnly="True" type="string" name="domainName"/>
+                          <prop readOnly="True" type="array<object>" name="endpointDetails">
+                            <item type="object">
+                              <prop readOnly="True" type="integer32" name="port"/>
+                            </item>
+                          </prop>
+                        </item>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
