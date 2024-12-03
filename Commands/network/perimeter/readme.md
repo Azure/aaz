@@ -13,6 +13,9 @@ Manage Network Security Perimeters
 - [link-reference](/Commands/network/perimeter/link-reference/readme.md)
 : Manage network security perimeter link reference
 
+- [logging-configuration](/Commands/network/perimeter/logging-configuration/readme.md)
+: Manage Network Security Perimeter Logging Configuration
+
 - [onboarded-resources](/Commands/network/perimeter/onboarded-resources/readme.md)
 : Manage resources onboarded to NSP
 
