@@ -4,6 +4,9 @@ Manage NGINX deployment resources
 
 ## Subgroups
 
+- [api-key](/Commands/nginx/deployment/api-key/readme.md)
+: Managing Nginxaas deployment API Keys
+
 - [certificate](/Commands/nginx/deployment/certificate/readme.md)
 : Manage NGINX certificate resources
 
