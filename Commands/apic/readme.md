@@ -10,6 +10,9 @@ Manage Azure API Center services
 - [environment](/Commands/apic/environment/readme.md)
 : Commands to manage environments in API Center
 
+- [integration](/Commands/apic/integration/readme.md)
+: Manages integrations in Azure API Center
+
 - [metadata](/Commands/apic/metadata/readme.md)
 : Commands to manage metadata schemas in API Center
 
