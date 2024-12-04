@@ -17,7 +17,7 @@ Imports the API specification.
 
 - Import specification example 2
     ```bash
-        apic api definition import-specification -g api-center-test -n contoso --api-id echo-api --version-id 2023-11-01 --definition-id openapi --format "link" --value 'https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.0/petstore.json' --specification '{"name":"openapi","version":"3.0.0"}'
+        apic api definition import-specification -g api-center-test -n contoso --api-id echo-api --version-id 2023-11-01 --definition-id openapi --format "link" --value 'https://petstore3.swagger.io/api/v3/openapi.json' --specification '{"name":"openapi","version":"3.0.0"}'
     ```
 
 - Import specification from file example
