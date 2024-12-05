@@ -7,6 +7,9 @@ Manage the redisenterprise cache
 - [database](/Commands/redisenterprise/database/readme.md)
 : Manage Redis Enterprise databases
 
+- [identity](/Commands/redisenterprise/identity/readme.md)
+: Manage user or system assigned identities for redisenterprise cluster.
+
 - [operation-status](/Commands/redisenterprise/operation-status/readme.md)
 : Get the status of an operation
 
