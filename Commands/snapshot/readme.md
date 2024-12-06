@@ -10,6 +10,9 @@ Manage point-in-time copies of managed disks, native blobs, or other snapshots.
 - [delete](/Commands/snapshot/_delete.md)
 : Delete a snapshot.
 
+- [grant-access](/Commands/snapshot/_grant-access.md)
+: Grant read access to a snapshot.
+
 - [list](/Commands/snapshot/_list.md)
 : List snapshots under a resource group.
 
