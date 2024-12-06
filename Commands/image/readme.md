@@ -10,7 +10,7 @@ Manage custom virtual machine images.
 ## Commands
 
 - [create](/Commands/image/_create.md)
-: Create an image.
+: Create a custom Virtual Machine Image from managed disks or snapshots.
 
 - [delete](/Commands/image/_delete.md)
 : Delete an Image.
@@ -22,4 +22,4 @@ Manage custom virtual machine images.
 : Get an image.
 
 - [update](/Commands/image/_update.md)
-: Update an image.
+: Update custom VM images.
