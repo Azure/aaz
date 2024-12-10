@@ -1,6 +1,6 @@
 # [Group] _durabletask_
 
-Commands to manage Durabletasks.
+Commands to manage Durabletask schedulers and taskhubs
 
 ## Subgroups
 
