@@ -10,12 +10,6 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <condition var="$Condition_NetworkTaps_ListByResourceGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_NetworkTaps_ListBySubscription">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -24,13 +18,16 @@
           </operator>
         </operator>
       </condition>
-      <operation when="$Condition_NetworkTaps_ListByResourceGroup" operationId="NetworkTaps_ListByResourceGroup">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkTaps">
+      <condition var="$Condition_NetworkTaps_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_NetworkTaps_ListBySubscription" operationId="NetworkTaps_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.ManagedNetworkFabric/networkTaps">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -79,6 +76,7 @@
                           </enum>
                         </prop>
                         <prop type="array<object>" name="destinations" required="True">
+                          <format minLength="1"/>
                           <item type="object">
                             <prop type="ResourceId" name="destinationId" required="True"/>
                             <prop type="ResourceId" name="destinationTapRuleId"/>
@@ -168,10 +166,13 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_NetworkTaps_ListBySubscription" operationId="NetworkTaps_ListBySubscription">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.ManagedNetworkFabric/networkTaps">
+      <operation when="$Condition_NetworkTaps_ListByResourceGroup" operationId="NetworkTaps_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkTaps">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -220,6 +221,7 @@
                           </enum>
                         </prop>
                         <prop type="array<object>" name="destinations" required="True">
+                          <format minLength="1"/>
                           <item type="object">
                             <prop type="ResourceId" name="destinationId" required="True"/>
                             <prop type="ResourceId" name="destinationTapRuleId"/>

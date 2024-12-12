@@ -3,7 +3,7 @@
 Get the schema for a given workspace.
 
 Schema represents the internal structure of the workspace, which can be used during the query.\
-For more information, visit: https://docs.microsoft.com/en-us/rest/api/loganalytics/workspace-schema/get
+For more information, visit: https://learn.microsoft.com/en-us/rest/api/loganalytics/workspace-schema/get
 
 ## Versions
 

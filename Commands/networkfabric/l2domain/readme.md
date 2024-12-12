@@ -4,6 +4,9 @@ Manage L2 Isolation Domain Resource
 
 ## Commands
 
+- [commit-configuration](/Commands/networkfabric/l2domain/_commit-configuration.md)
+: Commits the configuration of the given resources.
+
 - [create](/Commands/networkfabric/l2domain/_create.md)
 : Create a L2 Isolation Domain resource
 
@@ -21,3 +24,6 @@ Manage L2 Isolation Domain Resource
 
 - [update-admin-state](/Commands/networkfabric/l2domain/_update-admin-state.md)
 : Enables isolation domain across the fabric or on specified racks.
+
+- [validate-configuration](/Commands/networkfabric/l2domain/_validate-configuration.md)
+: Validates the configuration of the resources.

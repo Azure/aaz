@@ -10,12 +10,6 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <condition var="$Condition_NetworkTapRules_ListByResourceGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_NetworkTapRules_ListBySubscription">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -24,13 +18,16 @@
           </operator>
         </operator>
       </condition>
-      <operation when="$Condition_NetworkTapRules_ListByResourceGroup" operationId="NetworkTapRules_ListByResourceGroup">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkTapRules">
+      <condition var="$Condition_NetworkTapRules_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_NetworkTapRules_ListBySubscription" operationId="NetworkTapRules_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.ManagedNetworkFabric/networkTapRules">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -85,8 +82,10 @@
                           </enum>
                         </prop>
                         <prop type="array<object>" name="dynamicMatchConfigurations">
+                          <format minLength="1"/>
                           <item type="object">
                             <prop type="array<object>" name="ipGroups">
+                              <format minLength="1"/>
                               <item type="object">
                                 <prop type="string" name="ipAddressType">
                                   <format minLength="1"/>
@@ -96,6 +95,7 @@
                                   </enum>
                                 </prop>
                                 <prop type="array<string>" name="ipPrefixes">
+                                  <format minLength="1"/>
                                   <item type="string">
                                     <format minLength="1"/>
                                   </item>
@@ -106,11 +106,13 @@
                               </item>
                             </prop>
                             <prop type="array<object>" name="portGroups">
+                              <format minLength="1"/>
                               <item type="object">
                                 <prop type="string" name="name">
                                   <format minLength="1"/>
                                 </prop>
                                 <prop type="array<string>" name="ports">
+                                  <format minLength="1"/>
                                   <item type="string">
                                     <format minLength="1"/>
                                   </item>
@@ -118,11 +120,13 @@
                               </item>
                             </prop>
                             <prop type="array<object>" name="vlanGroups">
+                              <format minLength="1"/>
                               <item type="object">
                                 <prop type="string" name="name">
                                   <format minLength="1"/>
                                 </prop>
                                 <prop type="array<string>" name="vlans">
+                                  <format minLength="1"/>
                                   <item type="string">
                                     <format minLength="1"/>
                                   </item>
@@ -133,8 +137,10 @@
                         </prop>
                         <prop readOnly="True" type="dateTime" name="lastSyncedTime"/>
                         <prop type="array<object>" name="matchConfigurations">
+                          <format minLength="1"/>
                           <item type="object">
                             <prop type="array<object>" name="actions">
+                              <format minLength="1"/>
                               <item type="object">
                                 <prop type="ResourceId" name="destinationId"/>
                                 <prop type="string" name="isTimestampEnabled">
@@ -171,6 +177,7 @@
                               </enum>
                             </prop>
                             <prop type="array<object>" name="matchConditions">
+                              <format minLength="1"/>
                               <item type="object">
                                 <prop type="string" name="encapsulationType">
                                   <format minLength="1"/>
@@ -181,11 +188,13 @@
                                 </prop>
                                 <prop type="object" name="ipCondition">
                                   <prop type="array<string>" name="ipGroupNames">
+                                    <format minLength="1"/>
                                     <item type="string">
                                       <format minLength="1"/>
                                     </item>
                                   </prop>
                                   <prop type="array<string>" name="ipPrefixValues">
+                                    <format minLength="1"/>
                                     <item type="string">
                                       <format minLength="1"/>
                                     </item>
@@ -214,6 +223,7 @@
                                     </enum>
                                   </prop>
                                   <prop type="array<string>" name="portGroupNames">
+                                    <format minLength="1"/>
                                     <item type="string">
                                       <format minLength="1"/>
                                     </item>
@@ -226,28 +236,33 @@
                                     </enum>
                                   </prop>
                                   <prop type="array<string>" name="ports">
+                                    <format minLength="1"/>
                                     <item type="string">
                                       <format minLength="1"/>
                                     </item>
                                   </prop>
                                 </prop>
                                 <prop type="array<string>" name="protocolTypes">
+                                  <format minLength="1"/>
                                   <item type="string">
                                     <format minLength="1"/>
                                   </item>
                                 </prop>
                                 <prop type="object" name="vlanMatchCondition">
                                   <prop type="array<string>" name="innerVlans">
+                                    <format minLength="1"/>
                                     <item type="string">
                                       <format minLength="1"/>
                                     </item>
                                   </prop>
                                   <prop type="array<string>" name="vlanGroupNames">
+                                    <format minLength="1"/>
                                     <item type="string">
                                       <format minLength="1"/>
                                     </item>
                                   </prop>
                                   <prop type="array<string>" name="vlans">
+                                    <format minLength="1"/>
                                     <item type="string">
                                       <format minLength="1"/>
                                     </item>
@@ -329,10 +344,13 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_NetworkTapRules_ListBySubscription" operationId="NetworkTapRules_ListBySubscription">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.ManagedNetworkFabric/networkTapRules">
+      <operation when="$Condition_NetworkTapRules_ListByResourceGroup" operationId="NetworkTapRules_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkTapRules">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -387,8 +405,10 @@
                           </enum>
                         </prop>
                         <prop type="array<object>" name="dynamicMatchConfigurations">
+                          <format minLength="1"/>
                           <item type="object">
                             <prop type="array<object>" name="ipGroups">
+                              <format minLength="1"/>
                               <item type="object">
                                 <prop type="string" name="ipAddressType">
                                   <format minLength="1"/>
@@ -398,6 +418,7 @@
                                   </enum>
                                 </prop>
                                 <prop type="array<string>" name="ipPrefixes">
+                                  <format minLength="1"/>
                                   <item type="string">
                                     <format minLength="1"/>
                                   </item>
@@ -408,11 +429,13 @@
                               </item>
                             </prop>
                             <prop type="array<object>" name="portGroups">
+                              <format minLength="1"/>
                               <item type="object">
                                 <prop type="string" name="name">
                                   <format minLength="1"/>
                                 </prop>
                                 <prop type="array<string>" name="ports">
+                                  <format minLength="1"/>
                                   <item type="string">
                                     <format minLength="1"/>
                                   </item>
@@ -420,11 +443,13 @@
                               </item>
                             </prop>
                             <prop type="array<object>" name="vlanGroups">
+                              <format minLength="1"/>
                               <item type="object">
                                 <prop type="string" name="name">
                                   <format minLength="1"/>
                                 </prop>
                                 <prop type="array<string>" name="vlans">
+                                  <format minLength="1"/>
                                   <item type="string">
                                     <format minLength="1"/>
                                   </item>
@@ -435,8 +460,10 @@
                         </prop>
                         <prop readOnly="True" type="dateTime" name="lastSyncedTime"/>
                         <prop type="array<object>" name="matchConfigurations">
+                          <format minLength="1"/>
                           <item type="object">
                             <prop type="array<object>" name="actions">
+                              <format minLength="1"/>
                               <item type="object">
                                 <prop type="ResourceId" name="destinationId"/>
                                 <prop type="string" name="isTimestampEnabled">
@@ -473,6 +500,7 @@
                               </enum>
                             </prop>
                             <prop type="array<object>" name="matchConditions">
+                              <format minLength="1"/>
                               <item type="object">
                                 <prop type="string" name="encapsulationType">
                                   <format minLength="1"/>
@@ -483,11 +511,13 @@
                                 </prop>
                                 <prop type="object" name="ipCondition">
                                   <prop type="array<string>" name="ipGroupNames">
+                                    <format minLength="1"/>
                                     <item type="string">
                                       <format minLength="1"/>
                                     </item>
                                   </prop>
                                   <prop type="array<string>" name="ipPrefixValues">
+                                    <format minLength="1"/>
                                     <item type="string">
                                       <format minLength="1"/>
                                     </item>
@@ -516,6 +546,7 @@
                                     </enum>
                                   </prop>
                                   <prop type="array<string>" name="portGroupNames">
+                                    <format minLength="1"/>
                                     <item type="string">
                                       <format minLength="1"/>
                                     </item>
@@ -528,28 +559,33 @@
                                     </enum>
                                   </prop>
                                   <prop type="array<string>" name="ports">
+                                    <format minLength="1"/>
                                     <item type="string">
                                       <format minLength="1"/>
                                     </item>
                                   </prop>
                                 </prop>
                                 <prop type="array<string>" name="protocolTypes">
+                                  <format minLength="1"/>
                                   <item type="string">
                                     <format minLength="1"/>
                                   </item>
                                 </prop>
                                 <prop type="object" name="vlanMatchCondition">
                                   <prop type="array<string>" name="innerVlans">
+                                    <format minLength="1"/>
                                     <item type="string">
                                       <format minLength="1"/>
                                     </item>
                                   </prop>
                                   <prop type="array<string>" name="vlanGroupNames">
+                                    <format minLength="1"/>
                                     <item type="string">
                                       <format minLength="1"/>
                                     </item>
                                   </prop>
                                   <prop type="array<string>" name="vlans">
+                                    <format minLength="1"/>
                                     <item type="string">
                                       <format minLength="1"/>
                                     </item>

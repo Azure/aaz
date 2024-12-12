@@ -3,7 +3,7 @@
 Update a data export rule for a given workspace.
 
 For more information, see\
-https://docs.microsoft.com/azure/azure-monitor/platform/logs-data-export
+https://learn.microsoft.com/azure/azure-monitor/platform/logs-data-export
 
 ## Versions
 

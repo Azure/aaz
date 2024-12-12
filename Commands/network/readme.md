@@ -41,7 +41,7 @@ Manage Azure Network resources.
 : Manage and configure Azure Firewalls.
 
 - [front-door](/Commands/network/front-door/readme.md)
-: Manage Classical Azure Front Doors. For managing Azure Front Door Standard/Premium, please refer https://docs.microsoft.com/en-us/cli/azure/afd?view=azure-cli-latest.
+: Manage Classical Azure Front Doors. For managing Azure Front Door Standard/Premium, please refer https://learn.microsoft.com/en-us/cli/azure/afd?view=azure-cli-latest.
 
 - [ip-group](/Commands/network/ip-group/readme.md)
 : Commands to manage IP group.
@@ -125,7 +125,7 @@ Manage Azure Network resources.
 : Manage site-to-site VPN gateways.
 
 - [watcher](/Commands/network/watcher/readme.md)
-: Manage the Azure Network Watcher. Network Watcher assists with monitoring and diagnosing conditions at a network scenario level. To learn more visit https://docs.microsoft.com/azure/network-watcher/.
+: Manage the Azure Network Watcher. Network Watcher assists with monitoring and diagnosing conditions at a network scenario level. To learn more visit https://learn.microsoft.com/azure/network-watcher/.
 
 ## Commands
 

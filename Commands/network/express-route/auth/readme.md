@@ -2,7 +2,7 @@
 
 Manage authentication of an ExpressRoute circuit.
 
-To learn more about ExpressRoute circuit authentication visit https://docs.microsoft.com/azure/expressroute/howto-linkvnet-cli#connect-a-virtual-network-in-a-different-subscription-to-a-circuit.
+To learn more about ExpressRoute circuit authentication visit https://learn.microsoft.com/azure/expressroute/howto-linkvnet-cli#connect-a-virtual-network-in-a-different-subscription-to-a-circuit.
 
 ## Commands
 

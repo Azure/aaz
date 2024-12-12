@@ -150,7 +150,7 @@
               <json var="$Instance">
                 <schema type="object">
                   <prop readOnly="True" type="dateTime" name="endTime"/>
-                  <prop type="object" name="error">
+                  <prop readOnly="True" type="object" name="error">
                     <prop type="string" name="code"/>
                     <prop type="array<object>" name="details">
                       <item type="object">
@@ -186,7 +186,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="create" version="2017-12-01">
+    <command name="create" version="2017-12-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/images/{}" version="2017-12-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9pbWFnZXMve2ltYWdlTmFtZX0=/V/MjAxNy0xMi0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.imageName" options="image-name name n" required="True" idPart="name">
@@ -207,16 +207,16 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg type="object" var="$parameters.properties.sourceVirtualMachine" options="source-virtual-machine" group="Properties" cls="SubResource_create">
+        <arg type="object" var="$parameters.properties.sourceVirtualMachine" options="source-virtual-machine" group="Properties">
           <help short="The source virtual machine from which Image is created."/>
-          <arg type="string" var="@SubResource_create.id" options="id">
+          <arg type="string" var="$parameters.properties.sourceVirtualMachine.id" options="id">
             <help short="Resource Id"/>
           </arg>
         </arg>
         <arg type="object" var="$parameters.properties.storageProfile" options="storage-profile" group="Properties">
           <help short="Specifies the storage settings for the virtual machine disks."/>
-          <arg type="array<object>" var="$parameters.properties.storageProfile.dataDisks" options="data-disks">
-            <help short="Specifies the parameters that are used to add a data disk to a virtual machine. <br><br> For more information about disks, see [About disks and VHDs for Azure virtual machines](https://docs.microsoft.com/azure/virtual-machines/managed-disks-overview)."/>
+          <arg type="array<object>" var="$parameters.properties.storageProfile.dataDisks" options="data-disks" group="">
+            <help short="Specifies the parameters that are used to add a data disk to a virtual machine. <br><br> For more information about disks, see [About disks and VHDs for Azure virtual machines](https://learn.microsoft.com/azure/virtual-machines/managed-disks-overview)."/>
             <item type="object">
               <arg type="string" var="$parameters.properties.storageProfile.dataDisks[].blobUri" options="blob-uri">
                 <help short="The Virtual Hard Disk."/>
@@ -235,11 +235,17 @@
               <arg type="integer32" var="$parameters.properties.storageProfile.dataDisks[].lun" options="lun" required="True">
                 <help short="Specifies the logical unit number of the data disk. This value is used to identify data disks within the VM and therefore must be unique for each data disk attached to a VM."/>
               </arg>
-              <arg type="@SubResource_create" var="$parameters.properties.storageProfile.dataDisks[].managedDisk" options="managed-disk">
+              <arg type="object" var="$parameters.properties.storageProfile.dataDisks[].managedDisk" options="managed-disk">
                 <help short="The managedDisk."/>
+                <arg type="string" var="$parameters.properties.storageProfile.dataDisks[].managedDisk.id" options="id">
+                  <help short="Resource Id"/>
+                </arg>
               </arg>
-              <arg type="@SubResource_create" var="$parameters.properties.storageProfile.dataDisks[].snapshot" options="snapshot">
+              <arg type="object" var="$parameters.properties.storageProfile.dataDisks[].snapshot" options="snapshot">
                 <help short="The snapshot."/>
+                <arg type="string" var="$parameters.properties.storageProfile.dataDisks[].snapshot.id" options="id">
+                  <help short="Resource Id"/>
+                </arg>
               </arg>
               <arg type="string" var="$parameters.properties.storageProfile.dataDisks[].storageAccountType" options="storage-account-type">
                 <help short="Specifies the storage account type for the managed disk. NOTE: UltraSSD_LRS can only be used with data disks, it cannot be used with OS Disk."/>
@@ -250,8 +256,8 @@
               </arg>
             </item>
           </arg>
-          <arg type="object" var="$parameters.properties.storageProfile.osDisk" options="os-disk">
-            <help short="Specifies information about the operating system disk used by the virtual machine. <br><br> For more information about disks, see [About disks and VHDs for Azure virtual machines](https://docs.microsoft.com/azure/virtual-machines/managed-disks-overview)."/>
+          <arg type="object" var="$parameters.properties.storageProfile.osDisk" options="os-disk" group="">
+            <help short="Specifies information about the operating system disk used by the virtual machine. <br><br> For more information about disks, see [About disks and VHDs for Azure virtual machines](https://learn.microsoft.com/azure/virtual-machines/managed-disks-overview)."/>
             <arg type="string" var="$parameters.properties.storageProfile.osDisk.blobUri" options="blob-uri">
               <help short="The Virtual Hard Disk."/>
             </arg>
@@ -266,8 +272,11 @@
             <arg type="integer32" var="$parameters.properties.storageProfile.osDisk.diskSizeGB" options="disk-size-gb">
               <help short="Specifies the size of empty data disks in gigabytes. This element can be used to overwrite the name of the disk in a virtual machine image. <br><br> This value cannot be larger than 1023 GB"/>
             </arg>
-            <arg type="@SubResource_create" var="$parameters.properties.storageProfile.osDisk.managedDisk" options="managed-disk">
+            <arg type="object" var="$parameters.properties.storageProfile.osDisk.managedDisk" options="managed-disk" cls="SubResource_create">
               <help short="The managedDisk."/>
+              <arg type="string" var="@SubResource_create.id" options="id">
+                <help short="Resource Id"/>
+              </arg>
             </arg>
             <arg type="string" var="$parameters.properties.storageProfile.osDisk.osState" options="os-state" required="True">
               <help short="The OS State. For managed images, use Generalized."/>
@@ -283,8 +292,11 @@
                 <item name="Windows" value="&quot;Windows&quot;"/>
               </enum>
             </arg>
-            <arg type="@SubResource_create" var="$parameters.properties.storageProfile.osDisk.snapshot" options="snapshot">
+            <arg type="object" var="$parameters.properties.storageProfile.osDisk.snapshot" options="snapshot">
               <help short="The snapshot."/>
+              <arg type="string" var="$parameters.properties.storageProfile.osDisk.snapshot.id" options="id">
+                <help short="Resource Id"/>
+              </arg>
             </arg>
             <arg type="string" var="$parameters.properties.storageProfile.osDisk.storageAccountType" options="storage-account-type">
               <help short="Specifies the storage account type for the managed disk. NOTE: UltraSSD_LRS can only be used with data disks, it cannot be used with OS Disk."/>
@@ -318,8 +330,8 @@
                 <schema type="object" name="parameters" required="True" clientFlatten="True">
                   <prop type="ResourceLocation" name="location" arg="$parameters.location" required="True"/>
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop type="object" name="sourceVirtualMachine" arg="$parameters.properties.sourceVirtualMachine" cls="SubResource_create">
-                      <prop type="string" name="id" arg="@SubResource_create.id"/>
+                    <prop type="object" name="sourceVirtualMachine" arg="$parameters.properties.sourceVirtualMachine">
+                      <prop type="string" name="id" arg="$parameters.properties.sourceVirtualMachine.id"/>
                     </prop>
                     <prop type="object" name="storageProfile" arg="$parameters.properties.storageProfile">
                       <prop type="array<object>" name="dataDisks" arg="$parameters.properties.storageProfile.dataDisks">
@@ -334,8 +346,12 @@
                           </prop>
                           <prop type="integer32" name="diskSizeGB" arg="$parameters.properties.storageProfile.dataDisks[].diskSizeGB"/>
                           <prop type="integer32" name="lun" arg="$parameters.properties.storageProfile.dataDisks[].lun" required="True"/>
-                          <prop type="@SubResource_create" name="managedDisk" arg="$parameters.properties.storageProfile.dataDisks[].managedDisk"/>
-                          <prop type="@SubResource_create" name="snapshot" arg="$parameters.properties.storageProfile.dataDisks[].snapshot"/>
+                          <prop type="object" name="managedDisk" arg="$parameters.properties.storageProfile.dataDisks[].managedDisk">
+                            <prop type="string" name="id" arg="$parameters.properties.storageProfile.dataDisks[].managedDisk.id"/>
+                          </prop>
+                          <prop type="object" name="snapshot" arg="$parameters.properties.storageProfile.dataDisks[].snapshot">
+                            <prop type="string" name="id" arg="$parameters.properties.storageProfile.dataDisks[].snapshot.id"/>
+                          </prop>
                           <prop type="string" name="storageAccountType" arg="$parameters.properties.storageProfile.dataDisks[].storageAccountType">
                             <enum>
                               <item value="&quot;Premium_LRS&quot;"/>
@@ -354,7 +370,9 @@
                           </enum>
                         </prop>
                         <prop type="integer32" name="diskSizeGB" arg="$parameters.properties.storageProfile.osDisk.diskSizeGB"/>
-                        <prop type="@SubResource_create" name="managedDisk" arg="$parameters.properties.storageProfile.osDisk.managedDisk"/>
+                        <prop type="object" name="managedDisk" arg="$parameters.properties.storageProfile.osDisk.managedDisk" cls="SubResource_create">
+                          <prop type="string" name="id" arg="@SubResource_create.id"/>
+                        </prop>
                         <prop type="string" name="osState" arg="$parameters.properties.storageProfile.osDisk.osState" required="True">
                           <enum>
                             <item value="&quot;Generalized&quot;"/>
@@ -367,7 +385,9 @@
                             <item value="&quot;Windows&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="@SubResource_create" name="snapshot" arg="$parameters.properties.storageProfile.osDisk.snapshot"/>
+                        <prop type="object" name="snapshot" arg="$parameters.properties.storageProfile.osDisk.snapshot">
+                          <prop type="string" name="id" arg="$parameters.properties.storageProfile.osDisk.snapshot.id"/>
+                        </prop>
                         <prop type="string" name="storageAccountType" arg="$parameters.properties.storageProfile.osDisk.storageAccountType">
                           <enum>
                             <item value="&quot;Premium_LRS&quot;"/>
@@ -479,7 +499,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="update" version="2017-12-01">
+    <command name="update" version="2017-12-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/images/{}" version="2017-12-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9pbWFnZXMve2ltYWdlTmFtZX0=/V/MjAxNy0xMi0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.imageName" options="image-name name n" required="True" idPart="name">
@@ -489,7 +509,7 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Parameters">
-        <arg type="ResourceLocation" var="$parameters.location" options="location l" group="Parameters">
+        <arg type="ResourceLocation" var="$parameters.location" options="location l" hide="True" group="Parameters">
           <help short="Resource location"/>
         </arg>
         <arg nullable="True" type="object" var="$parameters.tags" options="tags" group="Parameters">
@@ -500,13 +520,13 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="object" var="$parameters.properties.sourceVirtualMachine" options="source-virtual-machine" group="Properties" cls="SubResource_update">
+        <arg nullable="True" type="object" var="$parameters.properties.sourceVirtualMachine" options="source-virtual-machine" hide="True" group="Properties">
           <help short="The source virtual machine from which Image is created."/>
-          <arg nullable="True" type="string" var="@SubResource_update.id" options="id">
+          <arg nullable="True" type="string" var="$parameters.properties.sourceVirtualMachine.id" options="id">
             <help short="Resource Id"/>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$parameters.properties.storageProfile" options="storage-profile" group="Properties">
+        <arg nullable="True" type="object" var="$parameters.properties.storageProfile" options="storage-profile" hide="True" group="Properties">
           <help short="Specifies the storage settings for the virtual machine disks."/>
           <arg nullable="True" type="array<object>" var="$parameters.properties.storageProfile.dataDisks" options="data-disks">
             <help short="Specifies the parameters that are used to add a data disk to a virtual machine. <br><br> For more information about disks, see [About disks and VHDs for Azure virtual machines](https://docs.microsoft.com/azure/virtual-machines/managed-disks-overview)."/>
@@ -528,8 +548,11 @@
               <arg type="integer32" var="$parameters.properties.storageProfile.dataDisks[].lun" options="lun">
                 <help short="Specifies the logical unit number of the data disk. This value is used to identify data disks within the VM and therefore must be unique for each data disk attached to a VM."/>
               </arg>
-              <arg nullable="True" type="@SubResource_update" var="$parameters.properties.storageProfile.dataDisks[].managedDisk" options="managed-disk">
+              <arg nullable="True" type="object" var="$parameters.properties.storageProfile.dataDisks[].managedDisk" options="managed-disk" cls="SubResource_update">
                 <help short="The managedDisk."/>
+                <arg nullable="True" type="string" var="@SubResource_update.id" options="id">
+                  <help short="Resource Id"/>
+                </arg>
               </arg>
               <arg nullable="True" type="@SubResource_update" var="$parameters.properties.storageProfile.dataDisks[].snapshot" options="snapshot">
                 <help short="The snapshot."/>
@@ -702,8 +725,8 @@
             <schema type="object" name="parameters" required="True" clientFlatten="True">
               <prop type="ResourceLocation" name="location" arg="$parameters.location" required="True"/>
               <prop type="object" name="properties" clientFlatten="True">
-                <prop type="object" name="sourceVirtualMachine" arg="$parameters.properties.sourceVirtualMachine" cls="SubResource_update">
-                  <prop type="string" name="id" arg="@SubResource_update.id"/>
+                <prop type="object" name="sourceVirtualMachine" arg="$parameters.properties.sourceVirtualMachine">
+                  <prop type="string" name="id" arg="$parameters.properties.sourceVirtualMachine.id"/>
                 </prop>
                 <prop type="object" name="storageProfile" arg="$parameters.properties.storageProfile">
                   <prop type="array<object>" name="dataDisks" arg="$parameters.properties.storageProfile.dataDisks">
@@ -718,7 +741,9 @@
                       </prop>
                       <prop type="integer32" name="diskSizeGB" arg="$parameters.properties.storageProfile.dataDisks[].diskSizeGB"/>
                       <prop type="integer32" name="lun" arg="$parameters.properties.storageProfile.dataDisks[].lun" required="True"/>
-                      <prop type="@SubResource_update" name="managedDisk" arg="$parameters.properties.storageProfile.dataDisks[].managedDisk"/>
+                      <prop type="object" name="managedDisk" arg="$parameters.properties.storageProfile.dataDisks[].managedDisk" cls="SubResource_update">
+                        <prop type="string" name="id" arg="@SubResource_update.id"/>
+                      </prop>
                       <prop type="@SubResource_update" name="snapshot" arg="$parameters.properties.storageProfile.dataDisks[].snapshot"/>
                       <prop type="string" name="storageAccountType" arg="$parameters.properties.storageProfile.dataDisks[].storageAccountType">
                         <enum>
