@@ -24,6 +24,9 @@ Manage shared image gallery.
 - [list](/Commands/sig/_list.md)
 : List galleries under a resource group.
 
+- [list-shared](/Commands/sig/_list-shared.md)
+: List all shared galleries shared directly to your subscription or tenant
+
 - [show](/Commands/sig/_show.md)
 : Retrieve information about a Shared Image Gallery.
 
