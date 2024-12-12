@@ -16,7 +16,7 @@ Manage shared image gallery.
 ## Commands
 
 - [create](/Commands/sig/_create.md)
-: Create a Shared Image Gallery.
+: Create a shared image gallery.
 
 - [delete](/Commands/sig/_delete.md)
 : Delete a Shared Image Gallery.
@@ -25,7 +25,7 @@ Manage shared image gallery.
 : List galleries under a resource group.
 
 - [show](/Commands/sig/_show.md)
-: Get information about a Shared Image Gallery.
+: Retrieve information about a Shared Image Gallery.
 
 - [show-community](/Commands/sig/_show-community.md)
 : Get a community gallery by gallery public name.
@@ -34,4 +34,4 @@ Manage shared image gallery.
 : Get a gallery that has been shared directly to your subscription or tenant.
 
 - [update](/Commands/sig/_update.md)
-: Update a Shared Image Gallery.
+: Update a share image gallery.
