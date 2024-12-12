@@ -2,7 +2,18 @@
 
 Manage L3 Isolation Domain Resource
 
+## Subgroups
+
+- [external-network](/Commands/networkfabric/l3domain/external-network/readme.md)
+: TBD
+
+- [internal-network](/Commands/networkfabric/l3domain/internal-network/readme.md)
+: TBD
+
 ## Commands
+
+- [commit-configuration](/Commands/networkfabric/l3domain/_commit-configuration.md)
+: Commits the configuration of the given resources.
 
 - [create](/Commands/networkfabric/l3domain/_create.md)
 : Create a L3 Isolation Domain resource
@@ -21,3 +32,6 @@ Manage L3 Isolation Domain Resource
 
 - [update-admin-state](/Commands/networkfabric/l3domain/_update-admin-state.md)
 : Enables racks for this Isolation Domain.
+
+- [validate-configuration](/Commands/networkfabric/l3domain/_validate-configuration.md)
+: Validates the configuration of the resources.

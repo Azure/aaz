@@ -2,19 +2,24 @@
 
 Manage qumulo storage file system
 
+## Subgroups
+
+- [identity](/Commands/qumulo/storage/file-system/identity/readme.md)
+: Manage the user or system managed identities.
+
 ## Commands
 
 - [create](/Commands/qumulo/storage/file-system/_create.md)
-: Create file system resource
+: Create a FileSystemResource
 
 - [delete](/Commands/qumulo/storage/file-system/_delete.md)
-: Delete file system resource
+: Delete a FileSystemResource
 
 - [list](/Commands/qumulo/storage/file-system/_list.md)
 : List file system resources
 
 - [show](/Commands/qumulo/storage/file-system/_show.md)
-: Show file system resource
+: Get a FileSystemResource
 
 - [update](/Commands/qumulo/storage/file-system/_update.md)
-: Update file system resource
+: Update a FileSystemResource

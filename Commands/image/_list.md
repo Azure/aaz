@@ -23,3 +23,8 @@ List the list of images under a resource group.
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.compute/images 2022-11-01 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/images 2022-11-01 -->
+
+### [2024-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlL2ltYWdlcw==/2024-07-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.compute/images 2024-07-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/images 2024-07-01 -->
