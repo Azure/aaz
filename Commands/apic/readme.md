@@ -33,6 +33,9 @@ Manage Azure API Center services
 - [delete](/Commands/apic/_delete.md)
 : Deletes an instance of an Azure API Center service.
 
+- [import](/Commands/apic/_import.md)
+: Imports from the API source (one-time import).
+
 - [import-from-apim](/Commands/apic/_import-from-apim.md)
 : Imports APIs from an Azure API Management service instance.
 
