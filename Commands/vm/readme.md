@@ -16,6 +16,9 @@ Manage Linux or Windows virtual machines.
 - [host](/Commands/vm/host/readme.md)
 : Manage Dedicated Hosts for Virtual Machines
 
+- [image](/Commands/vm/image/readme.md)
+: Information on available virtual machine images.
+
 ## Commands
 
 - [assess-patches](/Commands/vm/_assess-patches.md)
