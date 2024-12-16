@@ -1,6 +1,6 @@
 # [Command] _sig update_
 
-Update a share image gallery.
+Update a Shared Image Gallery.
 
 ## Versions
 
