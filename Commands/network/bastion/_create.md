@@ -38,5 +38,5 @@ Create the specified Bastion Host.
 
 - Create Developer SKU Bastion with Network ACLs IP rules
     ```bash
-        network bastion create --name MyBastion --resource-group MyResourceGroup --sku Developer --vnet-name MyVnet --network-acls-ips '[{"addressPrefix":"1.1.1.1/16"},{"addressPrefix":"100.64.0.0/10"}]'
+        network bastion create --name MyBastion --resource-group MyResourceGroup --sku Developer --vnet-name MyVnet --network-acls-ips "1.1.1.1/16 100.64.0.0/10"
     ```
