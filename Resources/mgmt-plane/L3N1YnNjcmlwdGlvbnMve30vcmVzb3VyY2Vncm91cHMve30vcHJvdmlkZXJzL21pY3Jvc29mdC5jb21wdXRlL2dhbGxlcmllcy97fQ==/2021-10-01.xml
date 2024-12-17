@@ -2,7 +2,7 @@
 <CodeGen plane="mgmt-plane">
   <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/galleries/{}" version="2021-10-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9nYWxsZXJpZXMve2dhbGxlcnlOYW1lfQ==/V/MjAyMS0xMC0wMQ=="/>
   <commandGroup name="sig">
-    <command name="show" version="2021-10-01">
+    <command name="show" version="2021-10-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/galleries/{}" version="2021-10-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9nYWxsZXJpZXMve2dhbGxlcnlOYW1lfQ==/V/MjAyMS0xMC0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.galleryName" options="gallery-name r" required="True" group="" idPart="name">
@@ -16,7 +16,7 @@
             <item name="SharingProfile/Groups" value="&quot;SharingProfile/Groups&quot;"/>
           </enum>
         </arg>
-        <arg type="string" var="$Query.select" options="select">
+        <arg type="string" var="$Query.select" options="select" group="">
           <help short="The select expression to apply on the operation."/>
           <enum>
             <item name="Permissions" value="&quot;Permissions&quot;"/>
@@ -98,12 +98,13 @@
                       </prop>
                       <prop type="string" name="permissions">
                         <enum>
+                          <item value="&quot;Community&quot;"/>
                           <item value="&quot;Groups&quot;"/>
                           <item value="&quot;Private&quot;"/>
                         </enum>
                       </prop>
                     </prop>
-                    <prop type="object" name="sharingStatus">
+                    <prop readOnly="True" type="object" name="sharingStatus">
                       <prop readOnly="True" type="string" name="aggregatedState">
                         <enum>
                           <item value="&quot;Failed&quot;"/>
@@ -189,7 +190,7 @@
         </http>
       </operation>
     </command>
-    <command name="create" version="2021-10-01">
+    <command name="create" version="2021-10-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/galleries/{}" version="2021-10-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9nYWxsZXJpZXMve2dhbGxlcnlOYW1lfQ==/V/MjAyMS0xMC0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.galleryName" options="gallery-name r" required="True" group="" idPart="name">
@@ -198,12 +199,26 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="CommunityGalleryInfo">
+        <arg type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.eula" options="eula" group="CommunityGalleryInfo">
+          <help short="Community gallery publisher eula"/>
+        </arg>
+        <arg type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.publicNamePrefix" options="public-name-prefix" group="CommunityGalleryInfo">
+          <help short="Community gallery public name prefix"/>
+        </arg>
+        <arg type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.publisherContact" options="publisher-contact publisher-email" group="CommunityGalleryInfo">
+          <help short="Community gallery publisher contact email"/>
+        </arg>
+        <arg type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.publisherUri" options="publisher-uri" group="CommunityGalleryInfo">
+          <help short="Community gallery publisher uri"/>
+        </arg>
+      </argGroup>
       <argGroup name="Gallery">
         <arg type="ResourceLocation" var="$gallery.location" options="location l" required="True" group="Gallery">
           <help short="Resource location"/>
         </arg>
         <arg type="object" var="$gallery.tags" options="tags" group="Gallery">
-          <help short="Resource tags"/>
+          <help short="Space-separated tags: key[=value] [key[=value] ...]. Use &quot;&quot; to clear existing tags."/>
           <additionalProp>
             <item type="string"/>
           </additionalProp>
@@ -211,38 +226,22 @@
       </argGroup>
       <argGroup name="Properties">
         <arg type="string" var="$gallery.properties.description" options="description" group="Properties">
-          <help short="The description of this Shared Image Gallery resource. This property is updatable."/>
+          <help short="The description of the gallery."/>
         </arg>
-        <arg type="object" var="$gallery.properties.sharingProfile" options="sharing-profile" group="Properties">
-          <help short="Profile for gallery sharing to subscription or tenant"/>
-          <arg type="object" var="$gallery.properties.sharingProfile.communityGalleryInfo" options="community-gallery-info">
-            <help short="Information of community gallery if current gallery is shared to community."/>
-            <arg type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.eula" options="eula">
-              <help short="Community gallery publisher eula"/>
-            </arg>
-            <arg type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.publicNamePrefix" options="public-name-prefix">
-              <help short="Community gallery public name prefix"/>
-            </arg>
-            <arg type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.publisherContact" options="publisher-contact">
-              <help short="Community gallery publisher contact email"/>
-            </arg>
-            <arg type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.publisherUri" options="publisher-uri">
-              <help short="Community gallery publisher uri"/>
-            </arg>
-          </arg>
-          <arg type="string" var="$gallery.properties.sharingProfile.permissions" options="permissions">
-            <help short="This property allows you to specify the permission of sharing gallery. <br><br> Possible values are: <br><br> **Private** <br><br> **Groups**"/>
-            <enum>
-              <item name="Groups" value="&quot;Groups&quot;"/>
-              <item name="Private" value="&quot;Private&quot;"/>
-            </enum>
-          </arg>
+      </argGroup>
+      <argGroup name="SharingProfile">
+        <arg type="string" var="$gallery.properties.sharingProfile.permissions" options="permissions" group="SharingProfile">
+          <help short="This property allows you to specify the permission of sharing gallery."/>
+          <enum>
+            <item name="Community" value="&quot;Community&quot;"/>
+            <item name="Groups" value="&quot;Groups&quot;"/>
+            <item name="Private" value="&quot;Private&quot;"/>
+          </enum>
         </arg>
-        <arg type="object" var="$gallery.properties.softDeletePolicy" options="soft-delete-policy" group="Properties">
-          <help short="Contains information about the soft deletion policy of the gallery."/>
-          <arg type="boolean" var="$gallery.properties.softDeletePolicy.isSoftDeleteEnabled" options="is-soft-delete-enabled">
-            <help short="Enables soft-deletion for resources in this gallery, allowing them to be recovered within retention time."/>
-          </arg>
+      </argGroup>
+      <argGroup name="SoftDeletePolicy">
+        <arg type="boolean" var="$gallery.properties.softDeletePolicy.isSoftDeleteEnabled" options="soft-delete" group="SoftDeletePolicy">
+          <help short="Enable soft-deletion for resources in this gallery, allowing them to be recovered within retention time."/>
         </arg>
       </argGroup>
       <operation operationId="Galleries_CreateOrUpdate">
@@ -265,8 +264,8 @@
                   <prop type="ResourceLocation" name="location" arg="$gallery.location" required="True"/>
                   <prop type="object" name="properties" clientFlatten="True">
                     <prop type="string" name="description" arg="$gallery.properties.description"/>
-                    <prop type="object" name="sharingProfile" arg="$gallery.properties.sharingProfile">
-                      <prop type="object" name="communityGalleryInfo" arg="$gallery.properties.sharingProfile.communityGalleryInfo">
+                    <prop type="object" name="sharingProfile">
+                      <prop type="object" name="communityGalleryInfo">
                         <prop type="string" name="eula" arg="$gallery.properties.sharingProfile.communityGalleryInfo.eula"/>
                         <prop type="string" name="publicNamePrefix" arg="$gallery.properties.sharingProfile.communityGalleryInfo.publicNamePrefix"/>
                         <prop type="string" name="publisherContact" arg="$gallery.properties.sharingProfile.communityGalleryInfo.publisherContact"/>
@@ -274,12 +273,13 @@
                       </prop>
                       <prop type="string" name="permissions" arg="$gallery.properties.sharingProfile.permissions">
                         <enum>
+                          <item value="&quot;Community&quot;"/>
                           <item value="&quot;Groups&quot;"/>
                           <item value="&quot;Private&quot;"/>
                         </enum>
                       </prop>
                     </prop>
-                    <prop type="object" name="softDeletePolicy" arg="$gallery.properties.softDeletePolicy">
+                    <prop type="object" name="softDeletePolicy">
                       <prop type="boolean" name="isSoftDeleteEnabled" arg="$gallery.properties.softDeletePolicy.isSoftDeleteEnabled"/>
                     </prop>
                   </prop>
@@ -343,12 +343,13 @@
                       </prop>
                       <prop type="string" name="permissions">
                         <enum>
+                          <item value="&quot;Community&quot;"/>
                           <item value="&quot;Groups&quot;"/>
                           <item value="&quot;Private&quot;"/>
                         </enum>
                       </prop>
                     </prop>
-                    <prop type="object" name="sharingStatus">
+                    <prop readOnly="True" type="object" name="sharingStatus">
                       <prop readOnly="True" type="string" name="aggregatedState">
                         <enum>
                           <item value="&quot;Failed&quot;"/>
@@ -404,7 +405,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="update" version="2021-10-01">
+    <command name="update" version="2021-10-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/galleries/{}" version="2021-10-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9nYWxsZXJpZXMve2dhbGxlcnlOYW1lfQ==/V/MjAyMS0xMC0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.galleryName" options="gallery-name r" required="True" group="" idPart="name">
@@ -413,11 +414,25 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="CommunityGalleryInfo">
+        <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.eula" options="eula" group="CommunityGalleryInfo">
+          <help short="Community gallery publisher eula"/>
+        </arg>
+        <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.publicNamePrefix" options="public-name-prefix" group="CommunityGalleryInfo">
+          <help short="Community gallery public name prefix"/>
+        </arg>
+        <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.publisherContact" options="publisher-contact publisher-email" group="CommunityGalleryInfo">
+          <help short="Community gallery publisher contact email"/>
+        </arg>
+        <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.publisherUri" options="publisher-uri" group="CommunityGalleryInfo">
+          <help short="Community gallery publisher uri"/>
+        </arg>
+      </argGroup>
       <argGroup name="Gallery">
         <arg type="ResourceLocation" var="$gallery.location" options="location l" group="Gallery">
           <help short="Resource location"/>
         </arg>
-        <arg nullable="True" type="object" var="$gallery.tags" options="tags" group="Gallery">
+        <arg nullable="True" type="object" var="$gallery.tags" options="tags" hide="True" group="Gallery">
           <help short="Resource tags"/>
           <additionalProp>
             <item nullable="True" type="string"/>
@@ -425,39 +440,23 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="string" var="$gallery.properties.description" options="description" group="Properties">
+        <arg nullable="True" type="string" var="$gallery.properties.description" options="description" hide="True" group="Properties">
           <help short="The description of this Shared Image Gallery resource. This property is updatable."/>
         </arg>
-        <arg nullable="True" type="object" var="$gallery.properties.sharingProfile" options="sharing-profile" group="Properties">
-          <help short="Profile for gallery sharing to subscription or tenant"/>
-          <arg nullable="True" type="object" var="$gallery.properties.sharingProfile.communityGalleryInfo" options="community-gallery-info">
-            <help short="Information of community gallery if current gallery is shared to community."/>
-            <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.eula" options="eula">
-              <help short="Community gallery publisher eula"/>
-            </arg>
-            <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.publicNamePrefix" options="public-name-prefix">
-              <help short="Community gallery public name prefix"/>
-            </arg>
-            <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.publisherContact" options="publisher-contact">
-              <help short="Community gallery publisher contact email"/>
-            </arg>
-            <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.publisherUri" options="publisher-uri">
-              <help short="Community gallery publisher uri"/>
-            </arg>
-          </arg>
-          <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.permissions" options="permissions">
-            <help short="This property allows you to specify the permission of sharing gallery. <br><br> Possible values are: <br><br> **Private** <br><br> **Groups**"/>
-            <enum>
-              <item name="Groups" value="&quot;Groups&quot;"/>
-              <item name="Private" value="&quot;Private&quot;"/>
-            </enum>
-          </arg>
+      </argGroup>
+      <argGroup name="SharingProfile">
+        <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.permissions" options="permissions" group="SharingProfile">
+          <help short="This property allows you to specify the permission of sharing gallery."/>
+          <enum>
+            <item name="Community" value="&quot;Community&quot;"/>
+            <item name="Groups" value="&quot;Groups&quot;"/>
+            <item name="Private" value="&quot;Private&quot;"/>
+          </enum>
         </arg>
-        <arg nullable="True" type="object" var="$gallery.properties.softDeletePolicy" options="soft-delete-policy" group="Properties">
-          <help short="Contains information about the soft deletion policy of the gallery."/>
-          <arg nullable="True" type="boolean" var="$gallery.properties.softDeletePolicy.isSoftDeleteEnabled" options="is-soft-delete-enabled">
-            <help short="Enables soft-deletion for resources in this gallery, allowing them to be recovered within retention time."/>
-          </arg>
+      </argGroup>
+      <argGroup name="SoftDeletePolicy">
+        <arg nullable="True" type="boolean" var="$gallery.properties.softDeletePolicy.isSoftDeleteEnabled" options="soft-delete" group="SoftDeletePolicy">
+          <help short="Enable soft-deletion for resources in this gallery, allowing them to be recovered within retention time."/>
         </arg>
       </argGroup>
       <operation operationId="Galleries_Get">
@@ -525,12 +524,13 @@
                       </prop>
                       <prop type="string" name="permissions">
                         <enum>
+                          <item value="&quot;Community&quot;"/>
                           <item value="&quot;Groups&quot;"/>
                           <item value="&quot;Private&quot;"/>
                         </enum>
                       </prop>
                     </prop>
-                    <prop type="object" name="sharingStatus">
+                    <prop readOnly="True" type="object" name="sharingStatus">
                       <prop readOnly="True" type="string" name="aggregatedState">
                         <enum>
                           <item value="&quot;Failed&quot;"/>
@@ -584,8 +584,8 @@
               <prop type="ResourceLocation" name="location" arg="$gallery.location" required="True"/>
               <prop type="object" name="properties" clientFlatten="True">
                 <prop type="string" name="description" arg="$gallery.properties.description"/>
-                <prop type="object" name="sharingProfile" arg="$gallery.properties.sharingProfile">
-                  <prop type="object" name="communityGalleryInfo" arg="$gallery.properties.sharingProfile.communityGalleryInfo">
+                <prop type="object" name="sharingProfile">
+                  <prop type="object" name="communityGalleryInfo">
                     <prop type="string" name="eula" arg="$gallery.properties.sharingProfile.communityGalleryInfo.eula"/>
                     <prop type="string" name="publicNamePrefix" arg="$gallery.properties.sharingProfile.communityGalleryInfo.publicNamePrefix"/>
                     <prop type="string" name="publisherContact" arg="$gallery.properties.sharingProfile.communityGalleryInfo.publisherContact"/>
@@ -593,12 +593,13 @@
                   </prop>
                   <prop type="string" name="permissions" arg="$gallery.properties.sharingProfile.permissions">
                     <enum>
+                      <item value="&quot;Community&quot;"/>
                       <item value="&quot;Groups&quot;"/>
                       <item value="&quot;Private&quot;"/>
                     </enum>
                   </prop>
                 </prop>
-                <prop type="object" name="softDeletePolicy" arg="$gallery.properties.softDeletePolicy">
+                <prop type="object" name="softDeletePolicy">
                   <prop type="boolean" name="isSoftDeleteEnabled" arg="$gallery.properties.softDeletePolicy.isSoftDeleteEnabled"/>
                 </prop>
               </prop>
