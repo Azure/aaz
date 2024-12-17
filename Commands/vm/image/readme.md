@@ -16,10 +16,10 @@ Information on available virtual machine images.
 : List a list of virtual machine image offers for the specified location and publisher.
 
 - [list-publishers](/Commands/vm/image/_list-publishers.md)
-: List a list of virtual machine image publishers for the specified Azure location.
+: List the VM image publishers available in the Azure Marketplace.
 
 - [list-skus](/Commands/vm/image/_list-skus.md)
-: List a list of virtual machine image SKUs for the specified location, publisher, and offer.
+: List the VM image SKUs available in the Azure Marketplace.
 
 - [show](/Commands/vm/image/_show.md)
 : Get a virtual machine image.
