@@ -186,7 +186,7 @@
         </http>
       </operation>
     </command>
-    <command name="create" version="2024-01-01">
+    <command name="create" version="2024-01-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/bastionhosts/{}" version="2024-01-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9iYXN0aW9uSG9zdHMve2Jhc3Rpb25Ib3N0TmFtZX0=/V/MjAyNC0wMS0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.bastionHostName" options="bastion-host-name name n" required="True" idPart="name">
@@ -198,6 +198,16 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
           <help short="Subscription Id where the Bastion host is present."/>
         </arg>
+        <arg type="string" var="$parameters.sku.name" options="sku" group="">
+          <help short="The name of the sku of this Bastion Host."/>
+          <default value="&quot;Standard&quot;"/>
+          <enum>
+            <item name="Basic" value="&quot;Basic&quot;"/>
+            <item name="Developer" value="&quot;Developer&quot;"/>
+            <item name="Premium" value="&quot;Premium&quot;"/>
+            <item name="Standard" value="&quot;Standard&quot;"/>
+          </enum>
+        </arg>
       </argGroup>
       <argGroup name="Parameters">
         <arg type="ResourceId" var="$parameters.id" options="id" hide="True" group="Parameters">
@@ -207,21 +217,9 @@
         <arg type="ResourceLocation" var="$parameters.location" options="location l" group="Parameters">
           <help short="Resource location."/>
         </arg>
-        <arg type="object" var="$parameters.sku" options="sku" group="Parameters">
-          <help short="The sku of this Bastion Host."/>
-          <arg type="string" var="$parameters.sku.name" options="name">
-            <help short="The name of the sku of this Bastion Host."/>
-            <default value="&quot;Standard&quot;"/>
-            <enum>
-              <item name="Basic" value="&quot;Basic&quot;"/>
-              <item name="Developer" value="&quot;Developer&quot;"/>
-              <item name="Premium" value="&quot;Premium&quot;"/>
-              <item name="Standard" value="&quot;Standard&quot;"/>
-            </enum>
-          </arg>
-        </arg>
         <arg type="object" var="$parameters.tags" options="tags" group="Parameters">
           <help short="Resource tags."/>
+          <default value="{}"/>
           <additionalProp>
             <item type="string"/>
           </additionalProp>
@@ -290,19 +288,17 @@
             </arg>
           </item>
         </arg>
-        <arg type="object" var="$parameters.properties.networkAcls" options="network-acls" hide="True" group="Properties">
-          <help short="ACL rules for Developer Bastion Host."/>
-          <arg type="array<object>" var="$parameters.properties.networkAcls.ipRules" options="ip-rules">
-            <help short="Sets the IP ACL rules for Developer Bastion Host."/>
-            <item type="object">
-              <arg type="string" var="$parameters.properties.networkAcls.ipRules[].addressPrefix" options="address-prefix">
-                <help short="Specifies the IP or IP range in CIDR format. Only IPV4 address is allowed."/>
-              </arg>
-            </item>
-          </arg>
+        <arg type="array<object>" var="$parameters.properties.networkAcls.ipRules" options="network-acls" group="Properties">
+          <help short="[Supported in Developer SKU only] The Network ACLs IP rules."/>
+          <item type="object">
+            <arg type="string" var="$parameters.properties.networkAcls.ipRules[].addressPrefix" options="address-prefix">
+              <help short="Specifies the IP or IP range in CIDR format. Only IPV4 address is allowed."/>
+            </arg>
+          </item>
         </arg>
         <arg type="integer32" var="$parameters.properties.scaleUnits" options="scale-units" group="Properties">
           <help short="The scale units for the Bastion Host resource."/>
+          <default value="2"/>
           <format maximum="50" minimum="2"/>
         </arg>
         <arg type="@SubResource_create" var="$parameters.properties.virtualNetwork" options="virtual-network" group="Properties">
@@ -371,7 +367,7 @@
                         </prop>
                       </item>
                     </prop>
-                    <prop type="object" name="networkAcls" arg="$parameters.properties.networkAcls">
+                    <prop type="object" name="networkAcls">
                       <prop type="array<object>" name="ipRules" arg="$parameters.properties.networkAcls.ipRules">
                         <item type="object">
                           <prop type="string" name="addressPrefix" arg="$parameters.properties.networkAcls.ipRules[].addressPrefix"/>
@@ -383,7 +379,7 @@
                     </prop>
                     <prop type="@SubResource_create" name="virtualNetwork" arg="$parameters.properties.virtualNetwork"/>
                   </prop>
-                  <prop type="object" name="sku" arg="$parameters.sku">
+                  <prop type="object" name="sku">
                     <prop type="string" name="name" arg="$parameters.sku.name">
                       <default value="&quot;Standard&quot;"/>
                       <enum>

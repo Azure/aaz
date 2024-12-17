@@ -30,3 +30,13 @@ Create the specified Bastion Host.
     ```bash
         network bastion create --location westus2 --name MyBastionHost --public-ip-address MyPublicIpAddress --resource-group MyResourceGroup --vnet-name MyVnet --zones 1 2 3 --sku Premium --session-recording
     ```
+
+- Create Developer SKU Bastion
+    ```bash
+        network bastion create --name MyBastion --resource-group MyResourceGroup --sku Developer --vnet-name MyVnet
+    ```
+
+- Create Developer SKU Bastion with Network ACLs IP rules
+    ```bash
+        network bastion create --name MyBastion --resource-group MyResourceGroup --sku Developer --vnet-name MyVnet --network-acls-ips "1.1.1.1/16 100.64.0.0/10"
+    ```
