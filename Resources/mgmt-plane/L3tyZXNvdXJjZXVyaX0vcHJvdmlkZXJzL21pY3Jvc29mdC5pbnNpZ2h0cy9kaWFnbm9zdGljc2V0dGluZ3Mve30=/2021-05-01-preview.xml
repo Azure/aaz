@@ -155,7 +155,7 @@
           <help short="Name or ID an event hub. If none is specified, the default event hub will be selected."/>
         </arg>
         <arg type="string" var="$parameters.properties.logAnalyticsDestinationType" options="log-analytics-destination-type" group="">
-          <help short="A string indicating whether the export to Log Analytics should use the default destination type, i.e. AzureDiagnostics, or use a destination type constructed as follows: <normalized service identity>_<normalized category name>. Possible values are: Dedicated and null (null is default.)"/>
+          <help short="A string indicating whether the export to Log Analytics should use the default destination type, i.e. AzureDiagnostics, or use a destination type constructed as follows: `<normalized service identity>_<normalized category name>`. Possible values are: Dedicated and null (null is default.)"/>
         </arg>
         <arg type="array<object>" var="$parameters.properties.logs" options="logs" group="">
           <help short="JSON encoded list of logs settings. Use '@{file}' to load from a file.For more information, visit: https://learn.microsoft.com/rest/api/monitor/diagnosticsettings/createorupdate#logsettings."/>
@@ -351,6 +351,9 @@
         <arg type="string" var="$Path.resourceUri" options="resource" required="True" group="">
           <help short="Name or ID of the target resource."/>
         </arg>
+        <arg nullable="True" type="string" var="$parameters.properties.logAnalyticsDestinationType" options="log-analytics-destination-type" group="">
+          <help short="A string indicating whether the export to Log Analytics should use the default destination type, i.e. AzureDiagnostics, or use a destination type constructed as follows: `<normalized service identity>_<normalized category name>`. Possible values are: Dedicated and null (null is default.)"/>
+        </arg>
       </argGroup>
       <argGroup name="Properties">
         <arg nullable="True" type="string" var="$parameters.properties.eventHubAuthorizationRuleId" options="event-hub-rule" group="Properties">
@@ -358,9 +361,6 @@
         </arg>
         <arg nullable="True" type="string" var="$parameters.properties.eventHubName" options="event-hub" group="Properties">
           <help short="The name of the event hub. If none is specified, the default event hub will be selected."/>
-        </arg>
-        <arg nullable="True" type="string" var="$parameters.properties.logAnalyticsDestinationType" options="log-analytics-destination-type" group="Properties">
-          <help short="A string indicating whether the export to Log Analytics should use the default destination type, i.e. AzureDiagnostics, or use a destination type constructed as follows: <normalized service identity>_<normalized category name>. Possible values are: Dedicated and null (null is default.)"/>
         </arg>
         <arg nullable="True" type="array<object>" var="$parameters.properties.logs" options="logs" group="Properties">
           <help short="The list of logs settings."/>
@@ -505,7 +505,7 @@
         </http>
       </operation>
       <operation>
-        <instanceUpdate instance="$Instance">
+        <instanceUpdate ref="$Instance">
           <json>
             <schema type="object" name="parameters" required="True" clientFlatten="True">
               <prop type="object" name="properties" clientFlatten="True">
