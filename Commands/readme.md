@@ -141,7 +141,7 @@
 : Manage Dns Resolver
 
 - [durabletask](/Commands/durabletask/readme.md)
-: Commands to manage Durabletasks.
+: Commands to manage Durabletask schedulers and taskhubs
 
 - [dynatrace](/Commands/dynatrace/readme.md)
 : Manage dynatrace
