@@ -6,3 +6,6 @@ Manage resources with devcenter.
 
 - [admin](/Commands/devcenter/admin/readme.md)
 : Manage devcenter admin resources.
+
+- [dev](/Commands/devcenter/dev/readme.md)
+: Manage devcenter developer resources.
