@@ -16,6 +16,12 @@
           <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
         </arg>
       </argGroup>
+      <condition var="$Condition_DevBoxes_ListSchedulesByPool">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.poolName"/>
+          <operator type="hasValue" arg="$Path.projectName"/>
+        </operator>
+      </condition>
       <condition var="$Condition_DevBoxes_ListSchedulesByProject">
         <operator type="and">
           <operator type="hasValue" arg="$Path.projectName"/>
@@ -24,16 +30,13 @@
           </operator>
         </operator>
       </condition>
-      <condition var="$Condition_DevBoxes_ListSchedulesByPool">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.poolName"/>
-          <operator type="hasValue" arg="$Path.projectName"/>
-        </operator>
-      </condition>
-      <operation when="$Condition_DevBoxes_ListSchedulesByProject" operationId="DevBoxes_ListSchedulesByProject">
-        <http path="/projects/{projectName}/schedules">
+      <operation when="$Condition_DevBoxes_ListSchedulesByPool" operationId="DevBoxes_ListSchedulesByPool">
+        <http path="/projects/{projectName}/pools/{poolName}/schedules">
           <request method="get">
             <path>
+              <param type="string" name="poolName" arg="$Path.poolName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+              </param>
               <param type="string" name="projectName" arg="$Path.projectName" required="True">
                 <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
               </param>
@@ -92,13 +95,10 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_DevBoxes_ListSchedulesByPool" operationId="DevBoxes_ListSchedulesByPool">
-        <http path="/projects/{projectName}/pools/{poolName}/schedules">
+      <operation when="$Condition_DevBoxes_ListSchedulesByProject" operationId="DevBoxes_ListSchedulesByProject">
+        <http path="/projects/{projectName}/schedules">
           <request method="get">
             <path>
-              <param type="string" name="poolName" arg="$Path.poolName" required="True">
-                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
-              </param>
               <param type="string" name="projectName" arg="$Path.projectName" required="True">
                 <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
               </param>
