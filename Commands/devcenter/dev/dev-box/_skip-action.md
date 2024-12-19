@@ -12,5 +12,5 @@ Skips an occurrence of an action.
 
 - Skip action
     ```bash
-        devcenter dev dev-box skip-action --endpoint "https://8a40af38-3b4c-4672-a6a4-5e964b1870ed- contosodevcenter.centralus.devcenter.azure.com/" --project-name "DevProject" --name "myDevBox" --action-name "schedule-default" --user-id "00000000-0000-0000-0000-000000000000"
+        devcenter dev dev-box skip-action --endpoint "https://8a40af38-3b4c-4672-a6a4-5e964b1870ed-contosodevcenter.centralus.devcenter.azure.com/" --project-name "DevProject" --name "myDevBox" --action-name "schedule-default" --user-id "00000000-0000-0000-0000-000000000000"
     ```

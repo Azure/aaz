@@ -12,5 +12,5 @@ Update an environment.
 
 - Update
     ```bash
-        devcenter dev environment update-expiration-date --endpoint "https://8a40af38-3b4c-4672-a6a4-5e964b1870ed- contosodevcenter.centralus.devcenter.azure.com/" --name "mydevenv" --project-name "DevProject" --user-id "00000000-0000-0000-0000-000000000000" --expiration "2025-11-30T22:35:00+00:00"
+        devcenter dev environment update-expiration-date --endpoint "https://8a40af38-3b4c-4672-a6a4-5e964b1870ed-contosodevcenter.centralus.devcenter.azure.com/" --name "mydevenv" --project-name "DevProject" --user-id "00000000-0000-0000-0000-000000000000" --expiration "2025-11-30T22:35:00+00:00"
     ```

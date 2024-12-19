@@ -12,5 +12,5 @@ List Dev Boxes that the caller has access to in the DevCenter.
 
 - List all dev boxes
     ```bash
-        devcenter dev dev-box list-all --endpoint "https://8a40af38-3b4c-4672-a6a4-5e964b1870ed- contosodevcenter.centralus.devcenter.azure.com/"
+        devcenter dev dev-box list-all --endpoint "https://8a40af38-3b4c-4672-a6a4-5e964b1870ed-contosodevcenter.centralus.devcenter.azure.com/"
     ```

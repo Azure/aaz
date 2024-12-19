@@ -12,5 +12,5 @@ Get the signed-in user's permitted abilities in an environment type.
 
 - List
     ```bash
-        devcenter dev environment-type show --endpoint "https://8a40af38-3b4c-4672-a6a4-5e964b1870ed- contosodevcenter.centralus.devcenter.azure.com/" --project-name "DevProject" --environment-type-name "dev" --user-id "00000000-0000-0000-0000-000000000000"
+        devcenter dev environment-type show --endpoint "https://8a40af38-3b4c-4672-a6a4-5e964b1870ed-contosodevcenter.centralus.devcenter.azure.com/" --project-name "DevProject" --environment-type-name "dev" --user-id "00000000-0000-0000-0000-000000000000"
     ```

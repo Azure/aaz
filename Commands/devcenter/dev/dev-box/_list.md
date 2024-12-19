@@ -13,10 +13,10 @@ List dev boxes for a user or list all dev boxes for a user in a specific project
 
 - List by user
     ```bash
-        devcenter dev dev-box list --endpoint "https://8a40af38-3b4c-4672-a6a4-5e964b1870ed- contosodevcenter.centralus.devcenter.azure.com/" --user-id "00000000-0000-0000-0000-000000000000"
+        devcenter dev dev-box list --endpoint "https://8a40af38-3b4c-4672-a6a4-5e964b1870ed-contosodevcenter.centralus.devcenter.azure.com/" --user-id "00000000-0000-0000-0000-000000000000"
     ```
 
 - List by user and project
     ```bash
-        devcenter dev dev-box list --endpoint "https://8a40af38-3b4c-4672-a6a4-5e964b1870ed- contosodevcenter.centralus.devcenter.azure.com/" --project-name "DevProject" --user-id "00000000-0000-0000-0000-000000000000"
+        devcenter dev dev-box list --endpoint "https://8a40af38-3b4c-4672-a6a4-5e964b1870ed-contosodevcenter.centralus.devcenter.azure.com/" --project-name "DevProject" --user-id "00000000-0000-0000-0000-000000000000"
     ```

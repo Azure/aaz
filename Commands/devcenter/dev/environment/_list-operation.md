@@ -12,5 +12,5 @@ List operations on the environment which have occurred within the past 90 days
 
 - List
     ```bash
-        devcenter dev environment list-operation --endpoint "https://8a40af38-3b4c-4672-a6a4-5e964b1870ed- contosodevcenter.centralus.devcenter.azure.com/" --name "mydevenv" --project-name "DevProject" --user-id "00000000-0000-0000-0000-000000000000"
+        devcenter dev environment list-operation --endpoint "https://8a40af38-3b4c-4672-a6a4-5e964b1870ed-contosodevcenter.centralus.devcenter.azure.com/" --name "mydevenv" --project-name "DevProject" --user-id "00000000-0000-0000-0000-000000000000"
     ```

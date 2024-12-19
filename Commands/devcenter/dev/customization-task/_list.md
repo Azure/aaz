@@ -12,5 +12,5 @@ List all customization tasks available to the project.
 
 - List
     ```bash
-        devcenter dev customization-task list --endpoint "https://8a40af38-3b4c-4672-a6a4-5e964b1870ed- contosodevcenter.centralus.devcenter.azure.com/" --project-name "DevProject"
+        devcenter dev customization-task list --endpoint "https://8a40af38-3b4c-4672-a6a4-5e964b1870ed-contosodevcenter.centralus.devcenter.azure.com/" --project-name "DevProject"
     ```
