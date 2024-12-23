@@ -14,3 +14,14 @@ Get Configuration records within a subscription
     ```bash
         maintenance applyupdate list
     ```
+
+### [2023-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYWludGVuYW5jZS9hcHBseXVwZGF0ZXM=/2023-10-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.maintenance/applyupdates 2023-10-01-preview -->
+
+#### examples
+
+- ApplyUpdates_List
+    ```bash
+        maintenance applyupdate list
+    ```

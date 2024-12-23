@@ -14,3 +14,14 @@ Apply maintenance updates to resource
     ```bash
         maintenance applyupdate create --provider-name "Microsoft.Compute" --resource-group "examplerg" --resource-name "smdtest1" --resource-type "virtualMachineScaleSets"
     ```
+
+### [2023-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL3t9L3t9L3t9L3Byb3ZpZGVycy9taWNyb3NvZnQubWFpbnRlbmFuY2UvYXBwbHl1cGRhdGVzL2RlZmF1bHQ=/2023-10-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/{}/{}/{}/providers/microsoft.maintenance/applyupdates/default 2023-10-01-preview -->
+
+#### examples
+
+- ApplyUpdates_CreateOrUpdate
+    ```bash
+        maintenance applyupdate create --provider-name "Microsoft.Compute" --resource-group "examplerg" --resource-name "smdtest1" --resource-type "virtualMachineScaleSets"
+    ```
