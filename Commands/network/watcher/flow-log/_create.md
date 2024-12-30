@@ -141,3 +141,8 @@ Create a flow log on a network security group.
     ```bash
         network watcher flow-log create --location westus --name MyFlowLog --nic MyNetworkInterfaceID --storage-account account
     ```
+
+- Create or update flow log
+    ```bash
+        network watcher flow-log create --location westus --resource-group MtRGContainingVNet --name MyVNetName-flowlog --vnet MyVNetName --storage-account MyStorageAccountName  --filtering-criteria "dstip=20.252.145.59 || DstPort=443"
+    ```
