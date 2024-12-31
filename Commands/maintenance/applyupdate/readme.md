@@ -7,6 +7,9 @@ Manage apply update with maintenance
 - [create](/Commands/maintenance/applyupdate/_create.md)
 : Apply maintenance updates to resource
 
+- [create-or-update](/Commands/maintenance/applyupdate/_create-or-update.md)
+: Create maintenance updates to resource
+
 - [create-or-update-parent](/Commands/maintenance/applyupdate/_create-or-update-parent.md)
 : Apply maintenance updates to resource with parent
 
@@ -18,3 +21,6 @@ Manage apply update with maintenance
 
 - [show-parent](/Commands/maintenance/applyupdate/_show-parent.md)
 : Track maintenance updates to resource with parent
+
+- [update](/Commands/maintenance/applyupdate/_update.md)
+: Update maintenance updates to resource
