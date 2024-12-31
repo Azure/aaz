@@ -263,6 +263,9 @@
 - [palo-alto](/Commands/palo-alto/readme.md)
 : Manage palo-alto networks resource
 
+- [portal](/Commands/portal/readme.md)
+: Manage Portal.
+
 - [powerbi](/Commands/powerbi/readme.md)
 : Manage PowerBI resources.
 
