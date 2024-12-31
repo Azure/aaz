@@ -263,6 +263,9 @@
 - [palo-alto](/Commands/palo-alto/readme.md)
 : Manage palo-alto networks resource
 
+- [playwright-testing](/Commands/playwright-testing/readme.md)
+: Manage Microsoft Playwright Testing service
+
 - [powerbi](/Commands/powerbi/readme.md)
 : Manage PowerBI resources.
 
