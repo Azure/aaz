@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.devcenter">
+  <resource id="/projects/{}/users/{}/environments/{}/operations/{}" version="2024-10-01-preview" swagger="data-plane:microsoft.devcenter/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3Byb2plY3RzL3twcm9qZWN0TmFtZX0vdXNlcnMve3VzZXJJZH0vZW52aXJvbm1lbnRzL3tlbnZpcm9ubWVudE5hbWV9L29wZXJhdGlvbnMve29wZXJhdGlvbklkfQ==/V/MjAyNC0xMC0wMS1wcmV2aWV3"/>
+  <commandGroup name="devcenter dev environment">
+    <command name="show-operation" version="2024-10-01-preview" confirmation="">
+      <resource id="/projects/{}/users/{}/environments/{}/operations/{}" version="2024-10-01-preview" swagger="data-plane:microsoft.devcenter/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3Byb2plY3RzL3twcm9qZWN0TmFtZX0vdXNlcnMve3VzZXJJZH0vZW52aXJvbm1lbnRzL3tlbnZpcm9ubWVudE5hbWV9L29wZXJhdGlvbnMve29wZXJhdGlvbklkfQ==/V/MjAyNC0xMC0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.environmentName" options="environment-name" required="True">
+          <help short="Environment name."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+        </arg>
+        <arg type="uuid" var="$Path.operationId" options="operation-id" required="True">
+          <help short="Unique identifier for the environment operation."/>
+          <format pattern="^[a-zA-Z0-9]{8}-([a-zA-Z0-9]{4}-){3}[a-zA-Z0-9]{12}$" maxLength="36" minLength="36"/>
+        </arg>
+        <arg type="string" var="$Path.userId" options="user-id" required="True" group="">
+          <help short="The AAD object id of the user. If value is 'me', the identity is taken from the authentication context."/>
+          <default value="&quot;me&quot;"/>
+          <format pattern="^[a-zA-Z0-9]{8}-([a-zA-Z0-9]{4}-){3}[a-zA-Z0-9]{12}$|^me$" maxLength="36" minLength="2"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Default">
+        <arg type="string" var="$Path.projectName" options="project-name project" required="True" group="Default">
+          <help short="The name of the project. Use az configure -d project=<project_name> to configure a default."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Environments_GetOperation">
+        <http path="/projects/{projectName}/users/{userId}/environments/{environmentName}/operations/{operationId}">
+          <request method="get">
+            <path>
+              <param type="string" name="environmentName" arg="$Path.environmentName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+              </param>
+              <param type="uuid" name="operationId" arg="$Path.operationId" required="True">
+                <format pattern="^[a-zA-Z0-9]{8}-([a-zA-Z0-9]{4}-){3}[a-zA-Z0-9]{12}$" maxLength="36" minLength="36"/>
+              </param>
+              <param type="string" name="projectName" arg="$Path.projectName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+              </param>
+              <param type="string" name="userId" arg="$Path.userId" required="True">
+                <format pattern="^[a-zA-Z0-9]{8}-([a-zA-Z0-9]{4}-){3}[a-zA-Z0-9]{12}$|^me$" maxLength="36" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-10-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="uuid" name="createdByObjectId"/>
+                  <prop type="dateTime" name="endTime"/>
+                  <prop type="object" name="environmentParameters">
+                    <additionalProp anyType="True"/>
+                  </prop>
+                  <prop type="object" name="error" cls="AzureCoreFoundationsError_read">
+                    <prop type="string" name="code" required="True"/>
+                    <prop type="array<@AzureCoreFoundationsError_read>" name="details">
+                      <item type="@AzureCoreFoundationsError_read"/>
+                    </prop>
+                    <prop type="object" name="innererror" cls="AzureCoreFoundationsInnerError_read">
+                      <prop type="string" name="code"/>
+                      <prop type="@AzureCoreFoundationsInnerError_read" name="innererror"/>
+                    </prop>
+                    <prop type="string" name="message" required="True"/>
+                    <prop type="string" name="target"/>
+                  </prop>
+                  <prop type="string" name="kind" required="True">
+                    <enum>
+                      <item value="&quot;Delete&quot;"/>
+                      <item value="&quot;Deploy&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="uuid" name="operationId" required="True">
+                    <format pattern="^[a-zA-Z0-9]{8}-([a-zA-Z0-9]{4}-){3}[a-zA-Z0-9]{12}$" maxLength="36" minLength="36"/>
+                  </prop>
+                  <prop type="dateTime" name="startTime"/>
+                  <prop type="string" name="status" required="True">
+                    <enum>
+                      <item value="&quot;Canceled&quot;"/>
+                      <item value="&quot;Failed&quot;"/>
+                      <item value="&quot;NotStarted&quot;"/>
+                      <item value="&quot;Running&quot;"/>
+                      <item value="&quot;Succeeded&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="string" name="uri" required="True"/>
+                  <discriminator property="kind" value="Delete"/>
+                  <discriminator property="kind" value="Deploy"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
