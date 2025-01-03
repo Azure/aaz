@@ -13,6 +13,9 @@ Manage shared image gallery.
 - [image-version](/Commands/sig/image-version/readme.md)
 : Manage shared gallery image version with VM
 
+- [share](/Commands/sig/share/readme.md)
+: Manage gallery sharing profile.
+
 ## Commands
 
 - [create](/Commands/sig/_create.md)
