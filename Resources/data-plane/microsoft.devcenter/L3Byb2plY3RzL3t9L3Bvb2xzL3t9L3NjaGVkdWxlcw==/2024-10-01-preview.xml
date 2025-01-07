@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.devcenter">
+  <resource id="/projects/{}/pools/{}/schedules" version="2024-10-01-preview" swagger="data-plane:microsoft.devcenter/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3Byb2plY3RzL3twcm9qZWN0TmFtZX0vcG9vbHMve3Bvb2xOYW1lfS9zY2hlZHVsZXM=/V/MjAyNC0xMC0wMS1wcmV2aWV3"/>
+  <resource id="/projects/{}/schedules" version="2024-10-01-preview" swagger="data-plane:microsoft.devcenter/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3Byb2plY3RzL3twcm9qZWN0TmFtZX0vc2NoZWR1bGVz/V/MjAyNC0xMC0wMS1wcmV2aWV3"/>
+  <commandGroup name="devcenter dev schedule">
+    <command name="list" version="2024-10-01-preview" confirmation="">
+      <resource id="/projects/{}/pools/{}/schedules" version="2024-10-01-preview" swagger="data-plane:microsoft.devcenter/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3Byb2plY3RzL3twcm9qZWN0TmFtZX0vcG9vbHMve3Bvb2xOYW1lfS9zY2hlZHVsZXM=/V/MjAyNC0xMC0wMS1wcmV2aWV3"/>
+      <resource id="/projects/{}/schedules" version="2024-10-01-preview" swagger="data-plane:microsoft.devcenter/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3Byb2plY3RzL3twcm9qZWN0TmFtZX0vc2NoZWR1bGVz/V/MjAyNC0xMC0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.poolName" options="pool-name">
+          <help short="The name of a pool of Dev Boxes."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+        </arg>
+        <arg type="string" var="$Path.projectName" options="project-name" required="True">
+          <help short="The DevCenter Project upon which to execute operations."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+        </arg>
+      </argGroup>
+      <condition var="$Condition_DevBoxes_ListSchedulesByPool">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.poolName"/>
+          <operator type="hasValue" arg="$Path.projectName"/>
+        </operator>
+      </condition>
+      <condition var="$Condition_DevBoxes_ListSchedulesByProject">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.projectName"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.poolName"/>
+          </operator>
+        </operator>
+      </condition>
+      <operation when="$Condition_DevBoxes_ListSchedulesByPool" operationId="DevBoxes_ListSchedulesByPool">
+        <http path="/projects/{projectName}/pools/{poolName}/schedules">
+          <request method="get">
+            <path>
+              <param type="string" name="poolName" arg="$Path.poolName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+              </param>
+              <param type="string" name="projectName" arg="$Path.projectName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-10-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop type="string" name="frequency" required="True">
+                        <enum>
+                          <item value="&quot;Daily&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="name">
+                        <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+                      </prop>
+                      <prop type="string" name="sourceType" required="True">
+                        <enum>
+                          <item value="&quot;Pool&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="sourceUri" required="True"/>
+                      <prop type="string" name="time" required="True"/>
+                      <prop type="string" name="timeZone" required="True"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;StopDevBox&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="uri" required="True"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_DevBoxes_ListSchedulesByProject" operationId="DevBoxes_ListSchedulesByProject">
+        <http path="/projects/{projectName}/schedules">
+          <request method="get">
+            <path>
+              <param type="string" name="projectName" arg="$Path.projectName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-10-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop type="string" name="frequency" required="True">
+                        <enum>
+                          <item value="&quot;Daily&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="name">
+                        <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+                      </prop>
+                      <prop type="string" name="sourceType" required="True">
+                        <enum>
+                          <item value="&quot;Pool&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="sourceUri" required="True"/>
+                      <prop type="string" name="time" required="True"/>
+                      <prop type="string" name="timeZone" required="True"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;StopDevBox&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="uri" required="True"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

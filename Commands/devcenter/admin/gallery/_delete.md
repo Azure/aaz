@@ -58,3 +58,14 @@ Delete a gallery.
     ```bash
         devcenter admin gallery delete --dev-center-name "Contoso" --name "StandardGallery" --resource-group "rg1"
     ```
+
+### [2024-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvZGV2Y2VudGVycy97fS9nYWxsZXJpZXMve30=/2024-10-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/devcenters/{}/galleries/{} 2024-10-01-preview -->
+
+#### examples
+
+- Delete
+    ```bash
+        devcenter admin gallery delete --dev-center-name "Contoso" --name "StandardGallery" --resource-group "rg1"
+    ```
