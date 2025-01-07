@@ -10,7 +10,7 @@ Create a Scheduler
 
 #### examples
 
-- Create a scheduler in eastus
+- Create a scheduler in northcentralus
     ```bash
-        durable-task scheduler create --resource-group testrg --scheduler-name testscheduler --location eastus --ip-allowlist "[0.0.0.0/0]" --sku "{capacity: 1, name:Dedicated, redundancyState: None}" --tags "{}"
+        durable-task scheduler create --resource-group testrg --scheduler-name testscheduler --location northcentralus --ip-allowlist "[0.0.0.0/0]" --sku-capacity "1", --sku-name "Dedicated" --tags "{}"
     ```
