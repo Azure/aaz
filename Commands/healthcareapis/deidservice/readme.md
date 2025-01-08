@@ -16,7 +16,7 @@ Health Data service for providing de-identification of health PHI data (Features
 : Delete a DeidService by name
 
 - [list](/Commands/healthcareapis/deidservice/_list.md)
-: List DeidService resources by subscription Id
+: List DeidService resources by subscription ID
 
 - [show](/Commands/healthcareapis/deidservice/_show.md)
 : Get a DeidService by name
