@@ -1,6 +1,6 @@
 # [Group] _durabletask taskhub_
 
-Commands to manage Durabletask taskhubs.
+Commands to manage Durabletask taskhubs
 
 ## Commands
 
