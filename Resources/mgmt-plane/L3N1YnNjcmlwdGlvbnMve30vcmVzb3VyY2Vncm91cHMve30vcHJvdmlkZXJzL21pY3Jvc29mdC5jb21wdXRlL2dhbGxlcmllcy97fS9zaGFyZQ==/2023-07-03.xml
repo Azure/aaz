@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/galleries/{}/share" version="2023-07-03" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9nYWxsZXJpZXMve2dhbGxlcnlOYW1lfS9zaGFyZQ==/V/MjAyMy0wNy0wMw=="/>
+  <commandGroup name="sig share">
+    <command name="update" version="2023-07-03" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/galleries/{}/share" version="2023-07-03" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9nYWxsZXJpZXMve2dhbGxlcnlOYW1lfS9zaGFyZQ==/V/MjAyMy0wNy0wMw=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.galleryName" options="gallery-name r" required="True" group="" idPart="name">
+          <help short="The name of the Shared Image Gallery."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="SharingUpdate">
+        <arg type="array<object>" var="$sharingUpdate.groups" options="groups" group="SharingUpdate">
+          <help short="A list of sharing profile groups."/>
+          <item type="object">
+            <arg type="array<string>" var="$sharingUpdate.groups[].ids" options="ids">
+              <help short="A list of subscription/tenant ids the gallery is aimed to be shared to."/>
+              <item type="string"/>
+            </arg>
+            <arg type="string" var="$sharingUpdate.groups[].type" options="type">
+              <help short="This property allows you to specify the type of sharing group. Possible values are: **Subscriptions,** **AADTenants.**"/>
+              <enum>
+                <item name="AADTenants" value="&quot;AADTenants&quot;"/>
+                <item name="Subscriptions" value="&quot;Subscriptions&quot;"/>
+              </enum>
+            </arg>
+          </item>
+        </arg>
+        <arg type="string" var="$sharingUpdate.operationType" options="operation-type" required="True" group="SharingUpdate">
+          <help short="Specify the operation type of gallery sharing update. Possible values are: Add, Remove, Reset, EnableCommunity."/>
+          <enum>
+            <item name="Add" value="&quot;Add&quot;"/>
+            <item name="EnableCommunity" value="&quot;EnableCommunity&quot;"/>
+            <item name="Remove" value="&quot;Remove&quot;"/>
+            <item name="Reset" value="&quot;Reset&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <operation operationId="GallerySharingProfile_Update">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/share">
+          <request method="post">
+            <path>
+              <param type="string" name="galleryName" arg="$Path.galleryName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-07-03&quot;"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="sharingUpdate" required="True" clientFlatten="True">
+                  <prop type="array<object>" name="groups" arg="$sharingUpdate.groups">
+                    <item type="object">
+                      <prop type="array<string>" name="ids" arg="$sharingUpdate.groups[].ids">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="string" name="type" arg="$sharingUpdate.groups[].type">
+                        <enum>
+                          <item value="&quot;AADTenants&quot;"/>
+                          <item value="&quot;Subscriptions&quot;"/>
+                        </enum>
+                      </prop>
+                    </item>
+                  </prop>
+                  <prop type="string" name="operationType" arg="$sharingUpdate.operationType" required="True">
+                    <enum>
+                      <item value="&quot;Add&quot;"/>
+                      <item value="&quot;EnableCommunity&quot;"/>
+                      <item value="&quot;Remove&quot;"/>
+                      <item value="&quot;Reset&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="SharingUpdate_read">
+                  <prop type="array<object>" name="groups">
+                    <item type="object">
+                      <prop type="array<string>" name="ids">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="string" name="type">
+                        <enum>
+                          <item value="&quot;AADTenants&quot;"/>
+                          <item value="&quot;Subscriptions&quot;"/>
+                        </enum>
+                      </prop>
+                    </item>
+                  </prop>
+                  <prop type="string" name="operationType" required="True">
+                    <enum>
+                      <item value="&quot;Add&quot;"/>
+                      <item value="&quot;EnableCommunity&quot;"/>
+                      <item value="&quot;Remove&quot;"/>
+                      <item value="&quot;Reset&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <body>
+              <json var="$Instance">
+                <schema type="@SharingUpdate_read"/>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
