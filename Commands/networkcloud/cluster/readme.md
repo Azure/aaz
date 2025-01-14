@@ -10,6 +10,9 @@ Manage cluster
 - [bmckeyset](/Commands/networkcloud/cluster/bmckeyset/readme.md)
 : Manage cluster's baseboard management controller key set
 
+- [identity](/Commands/networkcloud/cluster/identity/readme.md)
+: Manage cluster's identity
+
 - [metricsconfiguration](/Commands/networkcloud/cluster/metricsconfiguration/readme.md)
 : Manage cluster's metrics configuration
 
