@@ -37,4 +37,4 @@ Manage shared image gallery.
 : Get a gallery that has been shared directly to your subscription or tenant.
 
 - [update](/Commands/sig/_update.md)
-: Update a share image gallery.
+: Update a Shared Image Gallery.
