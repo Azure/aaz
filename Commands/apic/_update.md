@@ -17,5 +17,5 @@ Update an instance of an Azure API Center service.
 
 - Update Service With System Assigned Identity Example
     ```bash
-        apic create -g contoso-resources -n contoso --identity '{type:systemassigned}'
+        apic update -g contoso-resources -n contoso --identity '{type:systemassigned}'
     ```

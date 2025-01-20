@@ -17,7 +17,12 @@ Imports the API specification.
 
 - Import specification example 2
     ```bash
-        apic api definition import-specification -g api-center-test -n contoso --api-id echo-api --version-id 2023-11-01 --definition-id openapi --format "link" --value 'https://raw.githubusercontent.com/OAI/OpenAPI-Specification/main/examples/v3.0/petstore.json' --specification '{"name":"openapi","version":"3.0.0"}'
+        apic api definition import-specification -g api-center-test -n contoso --api-id echo-api --version-id 2023-11-01 --definition-id openapi --format "link" --value 'https://petstore3.swagger.io/api/v3/openapi.json' --specification '{"name":"openapi","version":"3.0.0"}'
+    ```
+
+- Import specification from file example
+    ```bash
+        apic api definition import-specification -g api-center-test -n contosoeuap --api-id echo-api --version-id 2023-08-01 --definition-id openapi --format "inline" --value '@petstore.json'
     ```
 
 ### [2024-03-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5hcGljZW50ZXIvc2VydmljZXMve30vd29ya3NwYWNlcy97fS9hcGlzL3t9L3ZlcnNpb25zL3t9L2RlZmluaXRpb25zL3t9L2ltcG9ydHNwZWNpZmljYXRpb24=/2024-03-15-preview.xml) **Stable**
