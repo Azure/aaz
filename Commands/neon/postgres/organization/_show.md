@@ -1,6 +1,6 @@
 # [Command] _neon postgres organization show_
 
-Get a Neon Resource
+Get a Neon Organization
 
 ## Versions
 

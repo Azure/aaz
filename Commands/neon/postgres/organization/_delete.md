@@ -1,6 +1,6 @@
 # [Command] _neon postgres organization delete_
 
-Delete a Neon Resource
+Delete a Neon organization
 
 ## Versions
 
