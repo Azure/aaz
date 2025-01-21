@@ -7,6 +7,9 @@ Manage Azure API Center services
 - [api](/Commands/apic/api/readme.md)
 : Commands to manage APIs in API Center
 
+- [api-analysis](/Commands/apic/api-analysis/readme.md)
+: Manage Azure API Center service api analysis features
+
 - [environment](/Commands/apic/environment/readme.md)
 : Commands to manage environments in API Center
 
