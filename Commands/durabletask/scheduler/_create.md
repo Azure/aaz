@@ -12,5 +12,5 @@ Create a Scheduler
 
 - Create a scheduler in eastus
     ```bash
-        durabletask scheduler create --resource-group testrg --scheduler-name testscheduler --location eastus --ip-allowlist "[0.0.0.0/0]" --sku-capacity 1, --sku-name "Dedicated" --tags "{}"
+        durabletask scheduler create --resource-group testrg --name testscheduler --location eastus --ip-allowlist "[0.0.0.0/0]" --sku-capacity 1, --sku-name "Dedicated" --tags "{}"
     ```

@@ -12,5 +12,5 @@ Delete a Scheduler
 
 - Delete a scheduler
     ```bash
-        durabletask scheduler delete --resource-group testrg --scheduler-name testscheduler
+        durabletask scheduler delete --resource-group testrg --name testscheduler
     ```
