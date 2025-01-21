@@ -2,7 +2,7 @@
 
 Manage subnets in an Azure Virtual Network.
 
-To learn more about subnets visit https://docs.microsoft.com/azure/virtual-network/virtual-network-manage-subnet.
+To learn more about subnets visit https://learn.microsoft.com/azure/virtual-network/virtual-network-manage-subnet.
 
 ## Commands
 

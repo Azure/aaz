@@ -174,46 +174,6 @@
         <arg type="string" var="$requestBodyParameters.properties.azureBareMetalStorageInstanceUniqueIdentifier" options="instance-id bmsi-id" group="Properties">
           <help short="Specifies the AzureBareMetaStorageInstance unique ID."/>
         </arg>
-        <arg type="object" var="$requestBodyParameters.properties.storageProperties" options="storage-properties" group="Properties">
-          <help short="Specifies the storage properties for the AzureBareMetalStorage instance."/>
-          <arg type="string" var="$requestBodyParameters.properties.storageProperties.generation" options="generation">
-            <help short="the kind of storage instance"/>
-          </arg>
-          <arg type="string" var="$requestBodyParameters.properties.storageProperties.hardwareType" options="hardware-type">
-            <help short="the hardware type of the storage instance"/>
-          </arg>
-          <arg type="string" var="$requestBodyParameters.properties.storageProperties.offeringType" options="offering-type">
-            <help short="the offering type for which the resource is getting provisioned"/>
-          </arg>
-          <arg type="string" var="$requestBodyParameters.properties.storageProperties.provisioningState" options="provisioning-state">
-            <help short="State of provisioning of the AzureBareMetalStorageInstance"/>
-            <enum>
-              <item name="Accepted" value="&quot;Accepted&quot;"/>
-              <item name="Canceled" value="&quot;Canceled&quot;"/>
-              <item name="Creating" value="&quot;Creating&quot;"/>
-              <item name="Deleting" value="&quot;Deleting&quot;"/>
-              <item name="Failed" value="&quot;Failed&quot;"/>
-              <item name="Migrating" value="&quot;Migrating&quot;"/>
-              <item name="Succeeded" value="&quot;Succeeded&quot;"/>
-              <item name="Updating" value="&quot;Updating&quot;"/>
-            </enum>
-          </arg>
-          <arg type="object" var="$requestBodyParameters.properties.storageProperties.storageBillingProperties" options="storage-billing-properties">
-            <help short="the billing related information for the resource"/>
-            <arg type="string" var="$requestBodyParameters.properties.storageProperties.storageBillingProperties.azureBareMetalStorageInstanceSize" options="azure-bare-metal-storage-instance-size">
-              <help short="the SKU type that is provisioned"/>
-            </arg>
-            <arg type="string" var="$requestBodyParameters.properties.storageProperties.storageBillingProperties.billingMode" options="billing-mode">
-              <help short="the billing mode for the storage instance"/>
-            </arg>
-          </arg>
-          <arg type="string" var="$requestBodyParameters.properties.storageProperties.storageType" options="storage-type">
-            <help short="the storage protocol for which the resource is getting provisioned"/>
-          </arg>
-          <arg type="string" var="$requestBodyParameters.properties.storageProperties.workloadType" options="workload-type">
-            <help short="the workload for which the resource is getting provisioned"/>
-          </arg>
-        </arg>
       </argGroup>
       <argGroup name="RequestBodyParameters">
         <arg type="object" var="$requestBodyParameters.identity" options="identity" group="RequestBodyParameters">
@@ -234,6 +194,44 @@
           <additionalProp>
             <item type="string"/>
           </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="StorageBillingProperties">
+        <arg type="string" var="$requestBodyParameters.properties.storageProperties.storageBillingProperties.azureBareMetalStorageInstanceSize" options="azure-bare-metal-storage-instance-size sku" group="StorageBillingProperties">
+          <help short="the SKU type that is provisioned"/>
+        </arg>
+        <arg type="string" var="$requestBodyParameters.properties.storageProperties.storageBillingProperties.billingMode" options="billing-mode" group="StorageBillingProperties">
+          <help short="the billing mode for the storage instance"/>
+        </arg>
+      </argGroup>
+      <argGroup name="StorageProperties">
+        <arg type="string" var="$requestBodyParameters.properties.storageProperties.generation" options="generation" group="StorageProperties">
+          <help short="the kind of storage instance"/>
+        </arg>
+        <arg type="string" var="$requestBodyParameters.properties.storageProperties.hardwareType" options="hardware-type" group="StorageProperties">
+          <help short="the hardware type of the storage instance"/>
+        </arg>
+        <arg type="string" var="$requestBodyParameters.properties.storageProperties.offeringType" options="offering-type" group="StorageProperties">
+          <help short="the offering type for which the resource is getting provisioned"/>
+        </arg>
+        <arg type="string" var="$requestBodyParameters.properties.storageProperties.provisioningState" options="provisioning-state" group="StorageProperties">
+          <help short="State of provisioning of the AzureBareMetalStorageInstance"/>
+          <enum>
+            <item name="Accepted" value="&quot;Accepted&quot;"/>
+            <item name="Canceled" value="&quot;Canceled&quot;"/>
+            <item name="Creating" value="&quot;Creating&quot;"/>
+            <item name="Deleting" value="&quot;Deleting&quot;"/>
+            <item name="Failed" value="&quot;Failed&quot;"/>
+            <item name="Migrating" value="&quot;Migrating&quot;"/>
+            <item name="Succeeded" value="&quot;Succeeded&quot;"/>
+            <item name="Updating" value="&quot;Updating&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$requestBodyParameters.properties.storageProperties.storageType" options="storage-type" group="StorageProperties">
+          <help short="the storage protocol for which the resource is getting provisioned"/>
+        </arg>
+        <arg type="string" var="$requestBodyParameters.properties.storageProperties.workloadType" options="workload-type" group="StorageProperties">
+          <help short="the workload for which the resource is getting provisioned"/>
         </arg>
       </argGroup>
       <operation operationId="AzureBareMetalStorageInstances_Create">
@@ -268,7 +266,7 @@
                   <prop type="ResourceLocation" name="location" arg="$requestBodyParameters.location" required="True"/>
                   <prop type="object" name="properties" clientFlatten="True">
                     <prop type="string" name="azureBareMetalStorageInstanceUniqueIdentifier" arg="$requestBodyParameters.properties.azureBareMetalStorageInstanceUniqueIdentifier"/>
-                    <prop type="object" name="storageProperties" arg="$requestBodyParameters.properties.storageProperties">
+                    <prop type="object" name="storageProperties">
                       <prop type="string" name="generation" arg="$requestBodyParameters.properties.storageProperties.generation"/>
                       <prop type="string" name="hardwareType" arg="$requestBodyParameters.properties.storageProperties.hardwareType"/>
                       <prop type="string" name="offeringType" arg="$requestBodyParameters.properties.storageProperties.offeringType"/>
@@ -284,7 +282,7 @@
                           <item value="&quot;Updating&quot;"/>
                         </enum>
                       </prop>
-                      <prop type="object" name="storageBillingProperties" arg="$requestBodyParameters.properties.storageProperties.storageBillingProperties">
+                      <prop type="object" name="storageBillingProperties">
                         <prop type="string" name="azureBareMetalStorageInstanceSize" arg="$requestBodyParameters.properties.storageProperties.storageBillingProperties.azureBareMetalStorageInstanceSize"/>
                         <prop type="string" name="billingMode" arg="$requestBodyParameters.properties.storageProperties.storageBillingProperties.billingMode"/>
                       </prop>
@@ -429,7 +427,7 @@
           </arg>
           <arg nullable="True" type="object" var="$requestBodyParameters.properties.storageProperties.storageBillingProperties" options="storage-billing-properties">
             <help short="the billing related information for the resource"/>
-            <arg nullable="True" type="string" var="$requestBodyParameters.properties.storageProperties.storageBillingProperties.azureBareMetalStorageInstanceSize" options="azure-bare-metal-storage-instance-size">
+            <arg nullable="True" type="string" var="$requestBodyParameters.properties.storageProperties.storageBillingProperties.azureBareMetalStorageInstanceSize" options="azure-bare-metal-storage-instance-size sku" group="StorageBillingProperties">
               <help short="the SKU type that is provisioned"/>
             </arg>
             <arg nullable="True" type="string" var="$requestBodyParameters.properties.storageProperties.storageBillingProperties.billingMode" options="billing-mode">

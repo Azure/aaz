@@ -44,6 +44,9 @@ Generated Create update delete operations for Azure NetApp Files (ANF) Volumes
 - [list](/Commands/netappfiles/volume/_list.md)
 : List all volumes within the capacity pool
 
+- [list-quota-report](/Commands/netappfiles/volume/_list-quota-report.md)
+: Returns report of quotas for the volume
+
 - [migrate-backup](/Commands/netappfiles/volume/_migrate-backup.md)
 : Migrate the backups under volume to backup vault
 
@@ -67,6 +70,9 @@ Generated Create update delete operations for Azure NetApp Files (ANF) Volumes
 
 - [show](/Commands/netappfiles/volume/_show.md)
 : Get the details of the specified volume
+
+- [splitclonefromparent](/Commands/netappfiles/volume/_splitclonefromparent.md)
+: Split operation to convert clone volume to an independent volume.
 
 - [update](/Commands/netappfiles/volume/_update.md)
 : Update the specified volume within the capacity pool

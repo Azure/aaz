@@ -18,3 +18,14 @@ List upgradable version
     ```bash
         elastic monitor list-upgradable-version --monitor-name name -g rg
     ```
+
+### [2024-06-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9L2xpc3R1cGdyYWRhYmxldmVyc2lvbnM=/2024-06-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/listupgradableversions 2024-06-15-preview -->
+
+#### examples
+
+- List upgradable version
+    ```bash
+        elastic monitor list-upgradable-version --monitor-name name -g rg
+    ```

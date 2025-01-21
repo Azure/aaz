@@ -47,3 +47,25 @@ List the active directories of an account
     ```bash
         netappfiles account ad list -g mygroup -a myname
     ```
+
+### [2024-03-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbmV0YXBwYWNjb3VudHMve30=/2024-03-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.netapp/netappaccounts/{} 2024-03-01-preview properties.activeDirectories -->
+
+#### examples
+
+- List the active directories of an account.
+    ```bash
+        netappfiles account ad list -g mygroup -a myname
+    ```
+
+### [2024-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbmV0YXBwYWNjb3VudHMve30=/2024-07-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.netapp/netappaccounts/{} 2024-07-01 properties.activeDirectories -->
+
+#### examples
+
+- List the active directories of an account.
+    ```bash
+        netappfiles account ad list -g mygroup -a myname
+    ```

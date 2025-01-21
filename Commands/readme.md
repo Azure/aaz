@@ -26,6 +26,12 @@
 - [arc](/Commands/arc/readme.md)
 : Manage Azure Arc Machines.
 
+- [arc-multicloud](/Commands/arc-multicloud/readme.md)
+: Commands for arc-multicloud
+
+- [arcgateway](/Commands/arcgateway/readme.md)
+: Manage gateway connection on Arc machine
+
 - [astronomer](/Commands/astronomer/readme.md)
 : Manage Azure Astronomer resources.
 
@@ -37,9 +43,6 @@
 
 - [automation](/Commands/automation/readme.md)
 : Manage Automation Account.
-
-- [azure-terraform](/Commands/azure-terraform/readme.md)
-: Azure Terraform experience
 
 - [baremetalinstance](/Commands/baremetalinstance/readme.md)
 : Handle Operations for Compute Azure Bare Instances.
@@ -77,8 +80,8 @@
 - [compute](/Commands/compute/readme.md)
 : Mange azure compute vm config
 
-- [compute-diagnostic](/Commands/compute-diagnostic/readme.md)
-: Mange vm sku recommender info
+- [compute-fleet](/Commands/compute-fleet/readme.md)
+: Manage for Azure Compute Fleet
 
 - [compute-recommender](/Commands/compute-recommender/readme.md)
 : Manage sku/zone/region recommender info for compute resources
@@ -100,6 +103,9 @@
 
 - [costmanagement](/Commands/costmanagement/readme.md)
 : costmanagement
+
+- [data-boundary](/Commands/data-boundary/readme.md)
+: data boundary operations
 
 - [databox](/Commands/databox/readme.md)
 : Manage data box
@@ -134,6 +140,9 @@
 - [dns-resolver](/Commands/dns-resolver/readme.md)
 : Manage Dns Resolver
 
+- [durabletask](/Commands/durabletask/readme.md)
+: Commands to manage Durabletask schedulers and taskhubs
+
 - [dynatrace](/Commands/dynatrace/readme.md)
 : Manage dynatrace
 
@@ -164,6 +173,9 @@
 - [graph-services](/Commands/graph-services/readme.md)
 : Make operations on Microsoft.GraphServices resource types
 
+- [healthcareapis](/Commands/healthcareapis/readme.md)
+: Azure Healthcare APIs is a secure cloud platform for managing health data, supporting analytics, machine learning, and scalable solutions.
+
 - [image](/Commands/image/readme.md)
 : Manage custom virtual machine images.
 
@@ -172,6 +184,9 @@
 
 - [k8s-runtime](/Commands/k8s-runtime/readme.md)
 : Manage Arc Kubernetes Runtime resources
+
+- [lab](/Commands/lab/readme.md)
+: Manage azure devtest labs.
 
 - [large-instance](/Commands/large-instance/readme.md)
 : Handle Operations for Compute Azure Large Instances.
@@ -191,6 +206,12 @@
 - [managedservices](/Commands/managedservices/readme.md)
 : Manage the registration assignments and definitions in Azure.
 
+- [managementpartner](/Commands/managementpartner/readme.md)
+: Allows the partners to associate a Microsoft Partner Network(MPN) ID to a user or service principal in the customer's Azure directory.
+
+- [mcc](/Commands/mcc/readme.md)
+: Microsoft Connected Cache CLI Commands
+
 - [mdp](/Commands/mdp/readme.md)
 : Manage resources of Managed DevOps pools
 
@@ -202,6 +223,9 @@
 
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
+
+- [neon](/Commands/neon/readme.md)
+: Manage Neon Postgres
 
 - [netappfiles](/Commands/netappfiles/readme.md)
 : Manage Azure NetApp Files (ANF) Resources
@@ -238,6 +262,9 @@
 
 - [palo-alto](/Commands/palo-alto/readme.md)
 : Manage palo-alto networks resource
+
+- [playwright-testing](/Commands/playwright-testing/readme.md)
+: Manage Microsoft Playwright Testing service
 
 - [powerbi](/Commands/powerbi/readme.md)
 : Manage PowerBI resources.
@@ -316,6 +343,9 @@
 
 - [support](/Commands/support/readme.md)
 : Manage Azure support resource.
+
+- [terraform](/Commands/terraform/readme.md)
+: Azure Terraform experience
 
 - [trustedsigning](/Commands/trustedsigning/readme.md)
 : Manage trusted signing account

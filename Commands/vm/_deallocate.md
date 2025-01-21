@@ -2,7 +2,7 @@
 
 Deallocate a VM so that computing resources are no longer allocated (charges no longer apply). The status will change from 'Stopped' to 'Stopped (Deallocated)'.
 
-For an end-to-end tutorial, see https://docs.microsoft.com/azure/virtual-machines/linux/capture-image
+For an end-to-end tutorial, see https://learn.microsoft.com/azure/virtual-machines/linux/capture-image
 
 ## Versions
 

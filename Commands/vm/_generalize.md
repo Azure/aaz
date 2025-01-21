@@ -2,7 +2,7 @@
 
 Mark a VM as generalized, allowing it to be imaged for multiple deployments.
 
-For an end-to-end tutorial, see https://docs.microsoft.com/azure/virtual-machines/linux/capture-image
+For an end-to-end tutorial, see https://learn.microsoft.com/azure/virtual-machines/linux/capture-image
 
 ## Versions
 

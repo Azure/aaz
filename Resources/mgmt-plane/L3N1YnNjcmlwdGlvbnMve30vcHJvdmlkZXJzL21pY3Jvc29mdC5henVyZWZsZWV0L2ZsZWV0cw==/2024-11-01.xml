@@ -1,0 +1,1082 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.azurefleet/fleets" version="2024-11-01" swagger="mgmt-plane/azurefleet/ResourceProviders/Microsoft.AzureFleet/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlRmxlZXQvZmxlZXRz/V/MjAyNC0xMS0wMQ=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.azurefleet/fleets" version="2024-11-01" swagger="mgmt-plane/azurefleet/ResourceProviders/Microsoft.AzureFleet/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXp1cmVGbGVldC9mbGVldHM=/V/MjAyNC0xMS0wMQ=="/>
+  <commandGroup name="compute-fleet">
+    <command name="list" version="2024-11-01" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.azurefleet/fleets" version="2024-11-01" swagger="mgmt-plane/azurefleet/ResourceProviders/Microsoft.AzureFleet/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlRmxlZXQvZmxlZXRz/V/MjAyNC0xMS0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.azurefleet/fleets" version="2024-11-01" swagger="mgmt-plane/azurefleet/ResourceProviders/Microsoft.AzureFleet/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXp1cmVGbGVldC9mbGVldHM=/V/MjAyNC0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription s" required="True" group="" idPart="subscription">
+          <help short=""/>
+        </arg>
+      </argGroup>
+      <condition var="$Condition_Fleets_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <condition var="$Condition_Fleets_ListBySubscription">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <operation when="$Condition_Fleets_ListByResourceGroup" operationId="Fleets_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureFleet/fleets">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.AzureFleet/fleets/{}"/>
+                      </prop>
+                      <prop type="IdentityObject" name="identity">
+                        <prop readOnly="True" type="uuid" name="principalId"/>
+                        <prop readOnly="True" type="uuid" name="tenantId"/>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;None&quot;"/>
+                            <item value="&quot;SystemAssigned&quot;"/>
+                            <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                            <item value="&quot;UserAssigned&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="userAssignedIdentities">
+                          <additionalProp>
+                            <item nullable="True" type="object">
+                              <prop readOnly="True" type="uuid" name="clientId"/>
+                              <prop readOnly="True" type="uuid" name="principalId"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="plan">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="product" required="True"/>
+                        <prop type="string" name="promotionCode"/>
+                        <prop type="string" name="publisher" required="True"/>
+                        <prop type="string" name="version"/>
+                      </prop>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="object" name="additionalLocationsProfile">
+                          <prop type="array<object>" name="locationProfiles" required="True">
+                            <item type="object">
+                              <prop type="string" name="location" required="True"/>
+                              <prop type="object" name="virtualMachineProfileOverride" cls="BaseVirtualMachineProfile_read">
+                                <prop type="object" name="applicationProfile">
+                                  <prop type="array<object>" name="galleryApplications" identifiers="packageReferenceId">
+                                    <item type="object">
+                                      <prop type="string" name="configurationReference"/>
+                                      <prop type="boolean" name="enableAutomaticUpgrade"/>
+                                      <prop type="integer32" name="order"/>
+                                      <prop type="ResourceId" name="packageReferenceId" required="True"/>
+                                      <prop type="string" name="tags"/>
+                                      <prop type="boolean" name="treatFailureAsDeploymentFailure"/>
+                                    </item>
+                                  </prop>
+                                </prop>
+                                <prop type="object" name="capacityReservation">
+                                  <prop type="@SubResource_read" name="capacityReservationGroup"/>
+                                </prop>
+                                <prop type="object" name="diagnosticsProfile">
+                                  <prop type="object" name="bootDiagnostics">
+                                    <prop type="boolean" name="enabled"/>
+                                    <prop type="string" name="storageUri"/>
+                                  </prop>
+                                </prop>
+                                <prop type="object" name="extensionProfile">
+                                  <prop type="array<object>" name="extensions">
+                                    <item type="object">
+                                      <prop readOnly="True" type="ResourceId" name="id"/>
+                                      <prop type="string" name="name"/>
+                                      <prop type="object" name="properties">
+                                        <prop type="boolean" name="autoUpgradeMinorVersion"/>
+                                        <prop type="boolean" name="enableAutomaticUpgrade"/>
+                                        <prop type="string" name="forceUpdateTag"/>
+                                        <prop type="object" name="protectedSettingsFromKeyVault">
+                                          <prop type="string" name="secretUrl" required="True"/>
+                                          <prop type="@SubResource_read" name="sourceVault" required="True"/>
+                                        </prop>
+                                        <prop type="array<string>" name="provisionAfterExtensions">
+                                          <item type="string"/>
+                                        </prop>
+                                        <prop readOnly="True" type="string" name="provisioningState"/>
+                                        <prop type="string" name="publisher"/>
+                                        <prop type="object" name="settings">
+                                          <additionalProp anyType="True"/>
+                                        </prop>
+                                        <prop type="boolean" name="suppressFailures"/>
+                                        <prop type="string" name="type"/>
+                                        <prop type="string" name="typeHandlerVersion"/>
+                                      </prop>
+                                      <prop readOnly="True" type="string" name="type"/>
+                                    </item>
+                                  </prop>
+                                  <prop type="string" name="extensionsTimeBudget"/>
+                                </prop>
+                                <prop type="object" name="hardwareProfile">
+                                  <prop type="object" name="vmSizeProperties">
+                                    <prop type="integer32" name="vCPUsAvailable"/>
+                                    <prop type="integer32" name="vCPUsPerCore"/>
+                                  </prop>
+                                </prop>
+                                <prop type="string" name="licenseType"/>
+                                <prop type="object" name="networkProfile">
+                                  <prop type="object" name="healthProbe" cls="ApiEntityReference_read">
+                                    <prop type="ResourceId" name="id"/>
+                                  </prop>
+                                  <prop type="string" name="networkApiVersion">
+                                    <enum>
+                                      <item value="&quot;2020-11-01&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="array<object>" name="networkInterfaceConfigurations">
+                                    <item type="object">
+                                      <prop type="string" name="name" required="True"/>
+                                      <prop type="object" name="properties">
+                                        <prop type="string" name="auxiliaryMode">
+                                          <enum>
+                                            <item value="&quot;AcceleratedConnections&quot;"/>
+                                            <item value="&quot;Floating&quot;"/>
+                                            <item value="&quot;None&quot;"/>
+                                          </enum>
+                                        </prop>
+                                        <prop type="string" name="auxiliarySku">
+                                          <enum>
+                                            <item value="&quot;A1&quot;"/>
+                                            <item value="&quot;A2&quot;"/>
+                                            <item value="&quot;A4&quot;"/>
+                                            <item value="&quot;A8&quot;"/>
+                                            <item value="&quot;None&quot;"/>
+                                          </enum>
+                                        </prop>
+                                        <prop type="string" name="deleteOption">
+                                          <enum>
+                                            <item value="&quot;Delete&quot;"/>
+                                            <item value="&quot;Detach&quot;"/>
+                                          </enum>
+                                        </prop>
+                                        <prop type="boolean" name="disableTcpStateTracking"/>
+                                        <prop type="object" name="dnsSettings">
+                                          <prop type="array<string>" name="dnsServers">
+                                            <item type="string"/>
+                                          </prop>
+                                        </prop>
+                                        <prop type="boolean" name="enableAcceleratedNetworking"/>
+                                        <prop type="boolean" name="enableFpga"/>
+                                        <prop type="boolean" name="enableIPForwarding"/>
+                                        <prop type="array<object>" name="ipConfigurations" required="True" identifiers="name">
+                                          <item type="object">
+                                            <prop type="string" name="name" required="True"/>
+                                            <prop type="object" name="properties">
+                                              <prop type="array<@SubResource_read>" name="applicationGatewayBackendAddressPools">
+                                                <item type="@SubResource_read"/>
+                                              </prop>
+                                              <prop type="array<@SubResource_read>" name="applicationSecurityGroups">
+                                                <item type="@SubResource_read"/>
+                                              </prop>
+                                              <prop type="array<@SubResource_read>" name="loadBalancerBackendAddressPools">
+                                                <item type="@SubResource_read"/>
+                                              </prop>
+                                              <prop type="array<@SubResource_read>" name="loadBalancerInboundNatPools">
+                                                <item type="@SubResource_read"/>
+                                              </prop>
+                                              <prop type="boolean" name="primary"/>
+                                              <prop type="string" name="privateIPAddressVersion">
+                                                <enum>
+                                                  <item value="&quot;IPv4&quot;"/>
+                                                  <item value="&quot;IPv6&quot;"/>
+                                                </enum>
+                                              </prop>
+                                              <prop type="object" name="publicIPAddressConfiguration">
+                                                <prop type="string" name="name" required="True"/>
+                                                <prop type="object" name="properties">
+                                                  <prop type="string" name="deleteOption">
+                                                    <enum>
+                                                      <item value="&quot;Delete&quot;"/>
+                                                      <item value="&quot;Detach&quot;"/>
+                                                    </enum>
+                                                  </prop>
+                                                  <prop type="object" name="dnsSettings">
+                                                    <prop type="string" name="domainNameLabel" required="True"/>
+                                                    <prop type="string" name="domainNameLabelScope">
+                                                      <enum>
+                                                        <item value="&quot;NoReuse&quot;"/>
+                                                        <item value="&quot;ResourceGroupReuse&quot;"/>
+                                                        <item value="&quot;SubscriptionReuse&quot;"/>
+                                                        <item value="&quot;TenantReuse&quot;"/>
+                                                      </enum>
+                                                    </prop>
+                                                  </prop>
+                                                  <prop type="integer32" name="idleTimeoutInMinutes"/>
+                                                  <prop type="array<object>" name="ipTags">
+                                                    <item type="object">
+                                                      <prop type="string" name="ipTagType"/>
+                                                      <prop type="string" name="tag"/>
+                                                    </item>
+                                                  </prop>
+                                                  <prop type="string" name="publicIPAddressVersion">
+                                                    <enum>
+                                                      <item value="&quot;IPv4&quot;"/>
+                                                      <item value="&quot;IPv6&quot;"/>
+                                                    </enum>
+                                                  </prop>
+                                                  <prop type="@SubResource_read" name="publicIPPrefix"/>
+                                                </prop>
+                                                <prop type="object" name="sku">
+                                                  <prop type="string" name="name">
+                                                    <enum>
+                                                      <item value="&quot;Basic&quot;"/>
+                                                      <item value="&quot;Standard&quot;"/>
+                                                    </enum>
+                                                  </prop>
+                                                  <prop type="string" name="tier">
+                                                    <enum>
+                                                      <item value="&quot;Global&quot;"/>
+                                                      <item value="&quot;Regional&quot;"/>
+                                                    </enum>
+                                                  </prop>
+                                                </prop>
+                                              </prop>
+                                              <prop type="@ApiEntityReference_read" name="subnet"/>
+                                            </prop>
+                                          </item>
+                                        </prop>
+                                        <prop type="@SubResource_read" name="networkSecurityGroup"/>
+                                        <prop type="boolean" name="primary"/>
+                                      </prop>
+                                    </item>
+                                  </prop>
+                                </prop>
+                                <prop type="object" name="osProfile">
+                                  <prop type="string" name="adminUsername"/>
+                                  <prop type="boolean" name="allowExtensionOperations"/>
+                                  <prop type="string" name="computerNamePrefix"/>
+                                  <prop type="object" name="linuxConfiguration">
+                                    <prop type="boolean" name="disablePasswordAuthentication"/>
+                                    <prop type="boolean" name="enableVMAgentPlatformUpdates"/>
+                                    <prop type="object" name="patchSettings">
+                                      <prop type="string" name="assessmentMode">
+                                        <enum>
+                                          <item value="&quot;AutomaticByPlatform&quot;"/>
+                                          <item value="&quot;ImageDefault&quot;"/>
+                                        </enum>
+                                      </prop>
+                                      <prop type="object" name="automaticByPlatformSettings">
+                                        <prop type="boolean" name="bypassPlatformSafetyChecksOnUserSchedule"/>
+                                        <prop type="string" name="rebootSetting">
+                                          <enum>
+                                            <item value="&quot;Always&quot;"/>
+                                            <item value="&quot;IfRequired&quot;"/>
+                                            <item value="&quot;Never&quot;"/>
+                                            <item value="&quot;Unknown&quot;"/>
+                                          </enum>
+                                        </prop>
+                                      </prop>
+                                      <prop type="string" name="patchMode">
+                                        <enum>
+                                          <item value="&quot;AutomaticByPlatform&quot;"/>
+                                          <item value="&quot;ImageDefault&quot;"/>
+                                        </enum>
+                                      </prop>
+                                    </prop>
+                                    <prop type="boolean" name="provisionVMAgent"/>
+                                    <prop type="object" name="ssh">
+                                      <prop type="array<object>" name="publicKeys" identifiers="path">
+                                        <item type="object">
+                                          <prop type="string" name="keyData"/>
+                                          <prop type="string" name="path"/>
+                                        </item>
+                                      </prop>
+                                    </prop>
+                                  </prop>
+                                  <prop type="boolean" name="requireGuestProvisionSignal"/>
+                                  <prop type="array<object>" name="secrets">
+                                    <item type="object">
+                                      <prop type="object" name="sourceVault" cls="SubResource_read">
+                                        <prop type="ResourceId" name="id"/>
+                                      </prop>
+                                      <prop type="array<object>" name="vaultCertificates" identifiers="certificateUrl">
+                                        <item type="object">
+                                          <prop type="string" name="certificateStore"/>
+                                          <prop type="string" name="certificateUrl"/>
+                                        </item>
+                                      </prop>
+                                    </item>
+                                  </prop>
+                                  <prop type="object" name="windowsConfiguration">
+                                    <prop type="array<object>" name="additionalUnattendContent">
+                                      <item type="object">
+                                        <prop type="string" name="componentName">
+                                          <enum>
+                                            <item value="&quot;Microsoft-Windows-Shell-Setup&quot;"/>
+                                          </enum>
+                                        </prop>
+                                        <prop type="string" name="passName">
+                                          <enum>
+                                            <item value="&quot;OobeSystem&quot;"/>
+                                          </enum>
+                                        </prop>
+                                        <prop type="string" name="settingName">
+                                          <enum>
+                                            <item value="&quot;AutoLogon&quot;"/>
+                                            <item value="&quot;FirstLogonCommands&quot;"/>
+                                          </enum>
+                                        </prop>
+                                      </item>
+                                    </prop>
+                                    <prop type="boolean" name="enableAutomaticUpdates"/>
+                                    <prop type="boolean" name="enableVMAgentPlatformUpdates"/>
+                                    <prop type="object" name="patchSettings">
+                                      <prop type="string" name="assessmentMode">
+                                        <enum>
+                                          <item value="&quot;AutomaticByPlatform&quot;"/>
+                                          <item value="&quot;ImageDefault&quot;"/>
+                                        </enum>
+                                      </prop>
+                                      <prop type="object" name="automaticByPlatformSettings">
+                                        <prop type="boolean" name="bypassPlatformSafetyChecksOnUserSchedule"/>
+                                        <prop type="string" name="rebootSetting">
+                                          <enum>
+                                            <item value="&quot;Always&quot;"/>
+                                            <item value="&quot;IfRequired&quot;"/>
+                                            <item value="&quot;Never&quot;"/>
+                                            <item value="&quot;Unknown&quot;"/>
+                                          </enum>
+                                        </prop>
+                                      </prop>
+                                      <prop type="boolean" name="enableHotpatching"/>
+                                      <prop type="string" name="patchMode">
+                                        <enum>
+                                          <item value="&quot;AutomaticByOS&quot;"/>
+                                          <item value="&quot;AutomaticByPlatform&quot;"/>
+                                          <item value="&quot;Manual&quot;"/>
+                                        </enum>
+                                      </prop>
+                                    </prop>
+                                    <prop type="boolean" name="provisionVMAgent"/>
+                                    <prop type="string" name="timeZone"/>
+                                    <prop type="object" name="winRM">
+                                      <prop type="array<object>" name="listeners">
+                                        <item type="object">
+                                          <prop type="string" name="certificateUrl"/>
+                                          <prop type="string" name="protocol">
+                                            <enum>
+                                              <item value="&quot;Http&quot;"/>
+                                              <item value="&quot;Https&quot;"/>
+                                            </enum>
+                                          </prop>
+                                        </item>
+                                      </prop>
+                                    </prop>
+                                  </prop>
+                                </prop>
+                                <prop type="object" name="scheduledEventsProfile">
+                                  <prop type="object" name="osImageNotificationProfile">
+                                    <prop type="boolean" name="enable"/>
+                                    <prop type="string" name="notBeforeTimeout"/>
+                                  </prop>
+                                  <prop type="object" name="terminateNotificationProfile">
+                                    <prop type="boolean" name="enable"/>
+                                    <prop type="string" name="notBeforeTimeout"/>
+                                  </prop>
+                                </prop>
+                                <prop type="object" name="securityPostureReference">
+                                  <prop type="array<string>" name="excludeExtensions">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="string" name="id"/>
+                                  <prop type="boolean" name="isOverridable"/>
+                                </prop>
+                                <prop type="object" name="securityProfile">
+                                  <prop type="boolean" name="encryptionAtHost"/>
+                                  <prop type="object" name="encryptionIdentity">
+                                    <prop type="ResourceId" name="userAssignedIdentityResourceId"/>
+                                  </prop>
+                                  <prop type="object" name="proxyAgentSettings">
+                                    <prop type="boolean" name="enabled"/>
+                                    <prop type="integer32" name="keyIncarnationId"/>
+                                    <prop type="string" name="mode">
+                                      <enum>
+                                        <item value="&quot;Audit&quot;"/>
+                                        <item value="&quot;Enforce&quot;"/>
+                                      </enum>
+                                    </prop>
+                                  </prop>
+                                  <prop type="string" name="securityType">
+                                    <enum>
+                                      <item value="&quot;ConfidentialVM&quot;"/>
+                                      <item value="&quot;TrustedLaunch&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="object" name="uefiSettings">
+                                    <prop type="boolean" name="secureBootEnabled"/>
+                                    <prop type="boolean" name="vTpmEnabled"/>
+                                  </prop>
+                                </prop>
+                                <prop type="object" name="serviceArtifactReference">
+                                  <prop type="ResourceId" name="id"/>
+                                </prop>
+                                <prop type="object" name="storageProfile">
+                                  <prop type="array<object>" name="dataDisks" identifiers="name lun">
+                                    <item type="object">
+                                      <prop type="string" name="caching">
+                                        <enum>
+                                          <item value="&quot;None&quot;"/>
+                                          <item value="&quot;ReadOnly&quot;"/>
+                                          <item value="&quot;ReadWrite&quot;"/>
+                                        </enum>
+                                      </prop>
+                                      <prop type="string" name="createOption" required="True">
+                                        <enum>
+                                          <item value="&quot;Attach&quot;"/>
+                                          <item value="&quot;Copy&quot;"/>
+                                          <item value="&quot;Empty&quot;"/>
+                                          <item value="&quot;FromImage&quot;"/>
+                                          <item value="&quot;Restore&quot;"/>
+                                        </enum>
+                                      </prop>
+                                      <prop type="string" name="deleteOption">
+                                        <enum>
+                                          <item value="&quot;Delete&quot;"/>
+                                          <item value="&quot;Detach&quot;"/>
+                                        </enum>
+                                      </prop>
+                                      <prop type="integer64" name="diskIOPSReadWrite"/>
+                                      <prop type="integer64" name="diskMBpsReadWrite"/>
+                                      <prop type="integer32" name="diskSizeGB"/>
+                                      <prop type="integer32" name="lun" required="True"/>
+                                      <prop type="@VirtualMachineScaleSetManagedDiskParameters_read" name="managedDisk"/>
+                                      <prop type="string" name="name"/>
+                                      <prop type="boolean" name="writeAcceleratorEnabled"/>
+                                    </item>
+                                  </prop>
+                                  <prop type="string" name="diskControllerType">
+                                    <enum>
+                                      <item value="&quot;NVMe&quot;"/>
+                                      <item value="&quot;SCSI&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="object" name="imageReference">
+                                    <prop type="string" name="communityGalleryImageId"/>
+                                    <prop readOnly="True" type="string" name="exactVersion"/>
+                                    <prop type="ResourceId" name="id"/>
+                                    <prop type="string" name="offer"/>
+                                    <prop type="string" name="publisher"/>
+                                    <prop type="string" name="sharedGalleryImageId"/>
+                                    <prop type="string" name="sku"/>
+                                    <prop type="string" name="version"/>
+                                  </prop>
+                                  <prop type="object" name="osDisk">
+                                    <prop type="string" name="caching">
+                                      <enum>
+                                        <item value="&quot;None&quot;"/>
+                                        <item value="&quot;ReadOnly&quot;"/>
+                                        <item value="&quot;ReadWrite&quot;"/>
+                                      </enum>
+                                    </prop>
+                                    <prop type="string" name="createOption" required="True">
+                                      <enum>
+                                        <item value="&quot;Attach&quot;"/>
+                                        <item value="&quot;Copy&quot;"/>
+                                        <item value="&quot;Empty&quot;"/>
+                                        <item value="&quot;FromImage&quot;"/>
+                                        <item value="&quot;Restore&quot;"/>
+                                      </enum>
+                                    </prop>
+                                    <prop type="string" name="deleteOption">
+                                      <enum>
+                                        <item value="&quot;Delete&quot;"/>
+                                        <item value="&quot;Detach&quot;"/>
+                                      </enum>
+                                    </prop>
+                                    <prop type="object" name="diffDiskSettings">
+                                      <prop type="string" name="option">
+                                        <enum>
+                                          <item value="&quot;Local&quot;"/>
+                                        </enum>
+                                      </prop>
+                                      <prop type="string" name="placement">
+                                        <enum>
+                                          <item value="&quot;CacheDisk&quot;"/>
+                                          <item value="&quot;NvmeDisk&quot;"/>
+                                          <item value="&quot;ResourceDisk&quot;"/>
+                                        </enum>
+                                      </prop>
+                                    </prop>
+                                    <prop type="integer32" name="diskSizeGB"/>
+                                    <prop type="object" name="image">
+                                      <prop type="string" name="uri"/>
+                                    </prop>
+                                    <prop type="object" name="managedDisk" cls="VirtualMachineScaleSetManagedDiskParameters_read">
+                                      <prop type="object" name="diskEncryptionSet" cls="DiskEncryptionSetParameters_read">
+                                        <prop type="ResourceId" name="id"/>
+                                      </prop>
+                                      <prop type="object" name="securityProfile">
+                                        <prop type="@DiskEncryptionSetParameters_read" name="diskEncryptionSet"/>
+                                        <prop type="string" name="securityEncryptionType">
+                                          <enum>
+                                            <item value="&quot;DiskWithVMGuestState&quot;"/>
+                                            <item value="&quot;NonPersistedTPM&quot;"/>
+                                            <item value="&quot;VMGuestStateOnly&quot;"/>
+                                          </enum>
+                                        </prop>
+                                      </prop>
+                                      <prop type="string" name="storageAccountType">
+                                        <enum>
+                                          <item value="&quot;PremiumV2_LRS&quot;"/>
+                                          <item value="&quot;Premium_LRS&quot;"/>
+                                          <item value="&quot;Premium_ZRS&quot;"/>
+                                          <item value="&quot;StandardSSD_LRS&quot;"/>
+                                          <item value="&quot;StandardSSD_ZRS&quot;"/>
+                                          <item value="&quot;Standard_LRS&quot;"/>
+                                          <item value="&quot;UltraSSD_LRS&quot;"/>
+                                        </enum>
+                                      </prop>
+                                    </prop>
+                                    <prop type="string" name="name"/>
+                                    <prop type="string" name="osType">
+                                      <enum>
+                                        <item value="&quot;Linux&quot;"/>
+                                        <item value="&quot;Windows&quot;"/>
+                                      </enum>
+                                    </prop>
+                                    <prop type="array<string>" name="vhdContainers">
+                                      <item type="string"/>
+                                    </prop>
+                                    <prop type="boolean" name="writeAcceleratorEnabled"/>
+                                  </prop>
+                                </prop>
+                                <prop readOnly="True" type="dateTime" name="timeCreated"/>
+                                <prop type="string" name="userData"/>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="computeProfile" required="True">
+                          <prop type="object" name="additionalVirtualMachineCapabilities">
+                            <prop type="boolean" name="hibernationEnabled"/>
+                            <prop type="boolean" name="ultraSSDEnabled"/>
+                          </prop>
+                          <prop type="@BaseVirtualMachineProfile_read" name="baseVirtualMachineProfile" required="True"/>
+                          <prop type="string" name="computeApiVersion"/>
+                          <prop type="integer32" name="platformFaultDomainCount"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Creating&quot;"/>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Migrating&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="regularPriorityProfile">
+                          <prop type="string" name="allocationStrategy">
+                            <enum>
+                              <item value="&quot;LowestPrice&quot;"/>
+                              <item value="&quot;Prioritized&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="integer32" name="capacity">
+                            <format minimum="0"/>
+                          </prop>
+                          <prop type="integer32" name="minCapacity">
+                            <format minimum="0"/>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="spotPriorityProfile">
+                          <prop type="string" name="allocationStrategy">
+                            <enum>
+                              <item value="&quot;CapacityOptimized&quot;"/>
+                              <item value="&quot;LowestPrice&quot;"/>
+                              <item value="&quot;PriceCapacityOptimized&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="integer32" name="capacity">
+                            <format minimum="0"/>
+                          </prop>
+                          <prop type="string" name="evictionPolicy">
+                            <enum>
+                              <item value="&quot;Deallocate&quot;"/>
+                              <item value="&quot;Delete&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="boolean" name="maintain"/>
+                          <prop type="float32" name="maxPricePerVM"/>
+                          <prop type="integer32" name="minCapacity">
+                            <format minimum="0"/>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="timeCreated"/>
+                        <prop readOnly="True" type="string" name="uniqueId"/>
+                        <prop type="object" name="vmAttributes">
+                          <prop type="@VMAttributeMinMaxInteger_read" name="acceleratorCount"/>
+                          <prop type="array<string>" name="acceleratorManufacturers">
+                            <item type="string">
+                              <enum>
+                                <item value="&quot;AMD&quot;"/>
+                                <item value="&quot;Nvidia&quot;"/>
+                                <item value="&quot;Xilinx&quot;"/>
+                              </enum>
+                            </item>
+                          </prop>
+                          <prop type="string" name="acceleratorSupport">
+                            <enum>
+                              <item value="&quot;Excluded&quot;"/>
+                              <item value="&quot;Included&quot;"/>
+                              <item value="&quot;Required&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="array<string>" name="acceleratorTypes">
+                            <item type="string">
+                              <enum>
+                                <item value="&quot;FPGA&quot;"/>
+                                <item value="&quot;GPU&quot;"/>
+                              </enum>
+                            </item>
+                          </prop>
+                          <prop type="array<string>" name="architectureTypes">
+                            <item type="string">
+                              <enum>
+                                <item value="&quot;ARM64&quot;"/>
+                                <item value="&quot;X64&quot;"/>
+                              </enum>
+                            </item>
+                          </prop>
+                          <prop type="string" name="burstableSupport">
+                            <enum>
+                              <item value="&quot;Excluded&quot;"/>
+                              <item value="&quot;Included&quot;"/>
+                              <item value="&quot;Required&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="array<string>" name="cpuManufacturers">
+                            <item type="string">
+                              <enum>
+                                <item value="&quot;AMD&quot;"/>
+                                <item value="&quot;Ampere&quot;"/>
+                                <item value="&quot;Intel&quot;"/>
+                                <item value="&quot;Microsoft&quot;"/>
+                              </enum>
+                            </item>
+                          </prop>
+                          <prop type="@VMAttributeMinMaxInteger_read" name="dataDiskCount"/>
+                          <prop type="array<string>" name="excludedVMSizes">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="array<string>" name="localStorageDiskTypes">
+                            <item type="string">
+                              <enum>
+                                <item value="&quot;HDD&quot;"/>
+                                <item value="&quot;SSD&quot;"/>
+                              </enum>
+                            </item>
+                          </prop>
+                          <prop type="@VMAttributeMinMaxDouble_read" name="localStorageInGiB"/>
+                          <prop type="string" name="localStorageSupport">
+                            <enum>
+                              <item value="&quot;Excluded&quot;"/>
+                              <item value="&quot;Included&quot;"/>
+                              <item value="&quot;Required&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="object" name="memoryInGiB" required="True" cls="VMAttributeMinMaxDouble_read">
+                            <prop type="float64" name="max">
+                              <format minimum="0.0"/>
+                            </prop>
+                            <prop type="float64" name="min">
+                              <format minimum="0.0"/>
+                            </prop>
+                          </prop>
+                          <prop type="@VMAttributeMinMaxDouble_read" name="memoryInGiBPerVCpu"/>
+                          <prop type="@VMAttributeMinMaxDouble_read" name="networkBandwidthInMbps"/>
+                          <prop type="@VMAttributeMinMaxInteger_read" name="networkInterfaceCount"/>
+                          <prop type="@VMAttributeMinMaxInteger_read" name="rdmaNetworkInterfaceCount"/>
+                          <prop type="string" name="rdmaSupport">
+                            <enum>
+                              <item value="&quot;Excluded&quot;"/>
+                              <item value="&quot;Included&quot;"/>
+                              <item value="&quot;Required&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="object" name="vCpuCount" required="True" cls="VMAttributeMinMaxInteger_read">
+                            <prop type="integer32" name="max">
+                              <format minimum="0"/>
+                            </prop>
+                            <prop type="integer32" name="min">
+                              <format minimum="0"/>
+                            </prop>
+                          </prop>
+                          <prop type="array<string>" name="vmCategories">
+                            <item type="string">
+                              <enum>
+                                <item value="&quot;ComputeOptimized&quot;"/>
+                                <item value="&quot;FpgaAccelerated&quot;"/>
+                                <item value="&quot;GeneralPurpose&quot;"/>
+                                <item value="&quot;GpuAccelerated&quot;"/>
+                                <item value="&quot;HighPerformanceCompute&quot;"/>
+                                <item value="&quot;MemoryOptimized&quot;"/>
+                                <item value="&quot;StorageOptimized&quot;"/>
+                              </enum>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="array<object>" name="vmSizesProfile" required="True">
+                          <item type="object">
+                            <prop type="string" name="name" required="True"/>
+                            <prop type="integer32" name="rank">
+                              <format maximum="65535" minimum="0"/>
+                            </prop>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                      <prop type="array<string>" name="zones">
+                        <item type="string"/>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_Fleets_ListBySubscription" operationId="Fleets_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.AzureFleet/fleets">
+          <request method="get">
+            <path>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.AzureFleet/fleets/{}"/>
+                      </prop>
+                      <prop type="IdentityObject" name="identity">
+                        <prop readOnly="True" type="uuid" name="principalId"/>
+                        <prop readOnly="True" type="uuid" name="tenantId"/>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;None&quot;"/>
+                            <item value="&quot;SystemAssigned&quot;"/>
+                            <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                            <item value="&quot;UserAssigned&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="userAssignedIdentities">
+                          <additionalProp>
+                            <item nullable="True" type="object">
+                              <prop readOnly="True" type="uuid" name="clientId"/>
+                              <prop readOnly="True" type="uuid" name="principalId"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="plan">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="product" required="True"/>
+                        <prop type="string" name="promotionCode"/>
+                        <prop type="string" name="publisher" required="True"/>
+                        <prop type="string" name="version"/>
+                      </prop>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="object" name="additionalLocationsProfile">
+                          <prop type="array<object>" name="locationProfiles" required="True">
+                            <item type="object">
+                              <prop type="string" name="location" required="True"/>
+                              <prop type="@BaseVirtualMachineProfile_read" name="virtualMachineProfileOverride"/>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="computeProfile" required="True">
+                          <prop type="object" name="additionalVirtualMachineCapabilities">
+                            <prop type="boolean" name="hibernationEnabled"/>
+                            <prop type="boolean" name="ultraSSDEnabled"/>
+                          </prop>
+                          <prop type="@BaseVirtualMachineProfile_read" name="baseVirtualMachineProfile" required="True"/>
+                          <prop type="string" name="computeApiVersion"/>
+                          <prop type="integer32" name="platformFaultDomainCount"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Creating&quot;"/>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Migrating&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="regularPriorityProfile">
+                          <prop type="string" name="allocationStrategy">
+                            <enum>
+                              <item value="&quot;LowestPrice&quot;"/>
+                              <item value="&quot;Prioritized&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="integer32" name="capacity">
+                            <format minimum="0"/>
+                          </prop>
+                          <prop type="integer32" name="minCapacity">
+                            <format minimum="0"/>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="spotPriorityProfile">
+                          <prop type="string" name="allocationStrategy">
+                            <enum>
+                              <item value="&quot;CapacityOptimized&quot;"/>
+                              <item value="&quot;LowestPrice&quot;"/>
+                              <item value="&quot;PriceCapacityOptimized&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="integer32" name="capacity">
+                            <format minimum="0"/>
+                          </prop>
+                          <prop type="string" name="evictionPolicy">
+                            <enum>
+                              <item value="&quot;Deallocate&quot;"/>
+                              <item value="&quot;Delete&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="boolean" name="maintain"/>
+                          <prop type="float32" name="maxPricePerVM"/>
+                          <prop type="integer32" name="minCapacity">
+                            <format minimum="0"/>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="timeCreated"/>
+                        <prop readOnly="True" type="string" name="uniqueId"/>
+                        <prop type="object" name="vmAttributes">
+                          <prop type="@VMAttributeMinMaxInteger_read" name="acceleratorCount"/>
+                          <prop type="array<string>" name="acceleratorManufacturers">
+                            <item type="string">
+                              <enum>
+                                <item value="&quot;AMD&quot;"/>
+                                <item value="&quot;Nvidia&quot;"/>
+                                <item value="&quot;Xilinx&quot;"/>
+                              </enum>
+                            </item>
+                          </prop>
+                          <prop type="string" name="acceleratorSupport">
+                            <enum>
+                              <item value="&quot;Excluded&quot;"/>
+                              <item value="&quot;Included&quot;"/>
+                              <item value="&quot;Required&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="array<string>" name="acceleratorTypes">
+                            <item type="string">
+                              <enum>
+                                <item value="&quot;FPGA&quot;"/>
+                                <item value="&quot;GPU&quot;"/>
+                              </enum>
+                            </item>
+                          </prop>
+                          <prop type="array<string>" name="architectureTypes">
+                            <item type="string">
+                              <enum>
+                                <item value="&quot;ARM64&quot;"/>
+                                <item value="&quot;X64&quot;"/>
+                              </enum>
+                            </item>
+                          </prop>
+                          <prop type="string" name="burstableSupport">
+                            <enum>
+                              <item value="&quot;Excluded&quot;"/>
+                              <item value="&quot;Included&quot;"/>
+                              <item value="&quot;Required&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="array<string>" name="cpuManufacturers">
+                            <item type="string">
+                              <enum>
+                                <item value="&quot;AMD&quot;"/>
+                                <item value="&quot;Ampere&quot;"/>
+                                <item value="&quot;Intel&quot;"/>
+                                <item value="&quot;Microsoft&quot;"/>
+                              </enum>
+                            </item>
+                          </prop>
+                          <prop type="@VMAttributeMinMaxInteger_read" name="dataDiskCount"/>
+                          <prop type="array<string>" name="excludedVMSizes">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="array<string>" name="localStorageDiskTypes">
+                            <item type="string">
+                              <enum>
+                                <item value="&quot;HDD&quot;"/>
+                                <item value="&quot;SSD&quot;"/>
+                              </enum>
+                            </item>
+                          </prop>
+                          <prop type="@VMAttributeMinMaxDouble_read" name="localStorageInGiB"/>
+                          <prop type="string" name="localStorageSupport">
+                            <enum>
+                              <item value="&quot;Excluded&quot;"/>
+                              <item value="&quot;Included&quot;"/>
+                              <item value="&quot;Required&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="@VMAttributeMinMaxDouble_read" name="memoryInGiB" required="True"/>
+                          <prop type="@VMAttributeMinMaxDouble_read" name="memoryInGiBPerVCpu"/>
+                          <prop type="@VMAttributeMinMaxDouble_read" name="networkBandwidthInMbps"/>
+                          <prop type="@VMAttributeMinMaxInteger_read" name="networkInterfaceCount"/>
+                          <prop type="@VMAttributeMinMaxInteger_read" name="rdmaNetworkInterfaceCount"/>
+                          <prop type="string" name="rdmaSupport">
+                            <enum>
+                              <item value="&quot;Excluded&quot;"/>
+                              <item value="&quot;Included&quot;"/>
+                              <item value="&quot;Required&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="@VMAttributeMinMaxInteger_read" name="vCpuCount" required="True"/>
+                          <prop type="array<string>" name="vmCategories">
+                            <item type="string">
+                              <enum>
+                                <item value="&quot;ComputeOptimized&quot;"/>
+                                <item value="&quot;FpgaAccelerated&quot;"/>
+                                <item value="&quot;GeneralPurpose&quot;"/>
+                                <item value="&quot;GpuAccelerated&quot;"/>
+                                <item value="&quot;HighPerformanceCompute&quot;"/>
+                                <item value="&quot;MemoryOptimized&quot;"/>
+                                <item value="&quot;StorageOptimized&quot;"/>
+                              </enum>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="array<object>" name="vmSizesProfile" required="True">
+                          <item type="object">
+                            <prop type="string" name="name" required="True"/>
+                            <prop type="integer32" name="rank">
+                              <format maximum="65535" minimum="0"/>
+                            </prop>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                      <prop type="array<string>" name="zones">
+                        <item type="string"/>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

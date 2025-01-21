@@ -1,6 +1,6 @@
 # [Command] _monitor diagnostic-settings create_
 
-Create diagnostic settings for the specified resource. For more information, visit: https://docs.microsoft.com/rest/api/monitor/diagnosticsettings/createorupdate#metricsettings.
+Create diagnostic settings for the specified resource. For more information, visit: https://learn.microsoft.com/rest/api/monitor/diagnosticsettings/createorupdate#metricsettings.
 
 ## Versions
 

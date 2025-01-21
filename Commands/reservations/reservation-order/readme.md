@@ -2,11 +2,6 @@
 
 reservations reservation-order
 
-## Subgroups
-
-- [reservation](/Commands/reservations/reservation-order/reservation/readme.md)
-: reservations reservation-order reservation
-
 ## Commands
 
 - [calculate](/Commands/reservations/reservation-order/_calculate.md)

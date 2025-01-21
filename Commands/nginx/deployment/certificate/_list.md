@@ -36,3 +36,25 @@ List all certificates under the specified deployment and resource group
     ```bash
         nginx deployment certificate list --deployment-name myDeployment --resource-group myResourceGroup
     ```
+
+### [2024-06-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL25naW54Lm5naW54cGx1cy9uZ2lueGRlcGxveW1lbnRzL3t9L2NlcnRpZmljYXRlcw==/2024-06-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/nginx.nginxplus/nginxdeployments/{}/certificates 2024-06-01-preview -->
+
+#### examples
+
+- Certificate ListByDeployment
+    ```bash
+        nginx deployment certificate list --deployment-name myDeployment --resource-group myResourceGroup
+    ```
+
+### [2024-09-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL25naW54Lm5naW54cGx1cy9uZ2lueGRlcGxveW1lbnRzL3t9L2NlcnRpZmljYXRlcw==/2024-09-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/nginx.nginxplus/nginxdeployments/{}/certificates 2024-09-01-preview -->
+
+#### examples
+
+- Certificate ListByDeployment
+    ```bash
+        nginx deployment certificate list --deployment-name myDeployment --resource-group myResourceGroup
+    ```

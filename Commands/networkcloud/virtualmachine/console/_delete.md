@@ -91,3 +91,14 @@ Delete the provided virtual machine console.
     ```bash
         networkcloud virtualmachine console delete --resource-group "resourceGroupName" --virtual-machine-name "virtualMachineName"
     ```
+
+### [2024-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvdmlydHVhbG1hY2hpbmVzL3t9L2NvbnNvbGVzL3t9/2024-07-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/virtualmachines/{}/consoles/{} 2024-07-01 -->
+
+#### examples
+
+- Delete virtual machine console
+    ```bash
+        networkcloud virtualmachine console delete --resource-group "resourceGroupName" --virtual-machine-name "virtualMachineName"
+    ```

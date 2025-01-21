@@ -7,8 +7,23 @@ Manage Azure NetApp Files (ANF) Volume replication
 - [approve](/Commands/netappfiles/volume/replication/_approve.md)
 : Authorize source volume replication
 
+- [authorize-external-replication](/Commands/netappfiles/volume/replication/_authorize-external-replication.md)
+: Starts SVM peering and returns a command to be run on the external ONTAP to accept it.  Once the SVM have been peered a SnapMirror will be created
+
+- [finalize-external-replication](/Commands/netappfiles/volume/replication/_finalize-external-replication.md)
+: Finalizes the migration of an external volume by releasing the replication and breaking the external cluster peering if no other migration is active.
+
 - [list](/Commands/netappfiles/volume/replication/_list.md)
 : List all replications for a specified volume
+
+- [peer-external-cluster](/Commands/netappfiles/volume/replication/_peer-external-cluster.md)
+: Starts peering the external cluster for this migration volume
+
+- [perform-replication-transfer](/Commands/netappfiles/volume/replication/_perform-replication-transfer.md)
+: Performs an adhoc replication transfer on a volume with volumeType Migration
+
+- [populate-availability-zone](/Commands/netappfiles/volume/replication/_populate-availability-zone.md)
+: This operation will populate availability zone information for a volume
 
 - [re-initialize](/Commands/netappfiles/volume/replication/_re-initialize.md)
 : Re-Initializes the replication connection on the destination volume

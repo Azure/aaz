@@ -10,12 +10,6 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <condition var="$Condition_Images_ListByResourceGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_Images_List">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -24,11 +18,16 @@
           </operator>
         </operator>
       </condition>
-      <operation when="$Condition_Images_ListByResourceGroup" operationId="Images_ListByResourceGroup">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/images">
+      <condition var="$Condition_Images_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_Images_List" operationId="Images_List">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Compute/images">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -131,10 +130,11 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_Images_List" operationId="Images_List">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Compute/images">
+      <operation when="$Condition_Images_ListByResourceGroup" operationId="Images_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/images">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
