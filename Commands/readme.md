@@ -86,6 +86,9 @@
 - [compute-recommender](/Commands/compute-recommender/readme.md)
 : Manage sku/zone/region recommender info for compute resources
 
+- [compute-schedule](/Commands/compute-schedule/readme.md)
+: Computeschedule batch virtual machine operations
+
 - [confidentialledger](/Commands/confidentialledger/readme.md)
 : Deploy and manage Azure confidential ledgers.
 
