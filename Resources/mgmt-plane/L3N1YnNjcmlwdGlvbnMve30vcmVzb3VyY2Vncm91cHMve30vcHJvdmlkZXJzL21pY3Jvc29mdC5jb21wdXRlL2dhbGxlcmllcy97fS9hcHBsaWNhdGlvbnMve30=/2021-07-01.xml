@@ -11,12 +11,8 @@
         <arg type="string" var="$Path.galleryName" options="gallery-name r" required="True" group="" idPart="name">
           <help short="Gallery name."/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-          <help short="Name of resource group. You can configure the default group using `az configure --defaults group=<name>`."/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
-          <help short="Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`."/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <operation operationId="GalleryApplications_Get">
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/galleries/{galleryName}/applications/{galleryApplicationName}">
@@ -47,6 +43,16 @@
                     <prop type="dateTime" name="endOfLifeDate"/>
                     <prop type="string" name="eula"/>
                     <prop type="string" name="privacyStatementUri"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Creating&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Migrating&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
                     <prop type="string" name="releaseNoteUri"/>
                     <prop type="string" name="supportedOSType" required="True">
                       <enum>
@@ -85,12 +91,8 @@
         <arg type="string" var="$Path.galleryName" options="gallery-name r" required="True" group="" idPart="name">
           <help short="Gallery name."/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-          <help short="Name of resource group. You can configure the default group using `az configure --defaults group=<name>`."/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
-          <help short="Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`."/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <operation operationId="GalleryApplications_Delete">
         <longRunning finalStateVia="azure-async-operation"/>
@@ -130,18 +132,22 @@
         <arg type="string" var="$Path.galleryName" options="gallery-name r" required="True" group="" idPart="name">
           <help short="Gallery name."/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-          <help short="Name of resource group. You can configure the default group using `az configure --defaults group=<name>`."/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
-          <help short="Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`."/>
-        </arg>
-      </argGroup>
-      <argGroup name="GalleryApplication">
-        <arg type="ResourceLocation" var="$galleryApplication.location" options="location l" required="True" group="GalleryApplication">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="ResourceLocation" var="$galleryApplication.location" options="location l" required="True" group="">
           <help short="Resource location"/>
         </arg>
-        <arg type="object" var="$galleryApplication.tags" options="tags" group="GalleryApplication">
+        <arg type="string" var="$galleryApplication.properties.description" options="description" group="">
+          <help short="The description of this gallery Application Definition resource. This property is updatable."/>
+        </arg>
+        <arg type="string" var="$galleryApplication.properties.supportedOSType" options="os-type" group="">
+          <help short="This property allows you to specify the supported type of the OS that application is built for. <br><br> Possible values are: <br><br> **Windows** <br><br> **Linux**"/>
+          <enum>
+            <item name="Linux" value="&quot;Linux&quot;"/>
+            <item name="Windows" value="&quot;Windows&quot;"/>
+          </enum>
+        </arg>
+        <arg type="object" var="$galleryApplication.tags" options="tags" group="">
           <help short="Resource tags"/>
           <additionalProp>
             <item type="string"/>
@@ -149,27 +155,17 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg type="string" var="$galleryApplication.properties.description" options="description" group="Properties">
-          <help short="The description of this gallery Application Definition resource. This property is updatable."/>
-        </arg>
-        <arg type="dateTime" var="$galleryApplication.properties.endOfLifeDate" options="end-of-life-date" group="Properties">
+        <arg type="dateTime" var="$galleryApplication.properties.endOfLifeDate" options="end-of-life-date" hide="True" group="Properties">
           <help short="The end of life date of the gallery Application Definition. This property can be used for decommissioning purposes. This property is updatable."/>
         </arg>
-        <arg type="string" var="$galleryApplication.properties.eula" options="eula" group="Properties">
+        <arg type="string" var="$galleryApplication.properties.eula" options="eula" hide="True" group="Properties">
           <help short="The Eula agreement for the gallery Application Definition."/>
         </arg>
-        <arg type="string" var="$galleryApplication.properties.privacyStatementUri" options="privacy-statement-uri" group="Properties">
+        <arg type="string" var="$galleryApplication.properties.privacyStatementUri" options="privacy-statement-uri" hide="True" group="Properties">
           <help short="The privacy statement uri."/>
         </arg>
-        <arg type="string" var="$galleryApplication.properties.releaseNoteUri" options="release-note-uri" group="Properties">
+        <arg type="string" var="$galleryApplication.properties.releaseNoteUri" options="release-note-uri" hide="True" group="Properties">
           <help short="The release note uri."/>
-        </arg>
-        <arg type="string" var="$galleryApplication.properties.supportedOSType" options="supported-os-type" group="Properties">
-          <help short="This property allows you to specify the supported type of the OS that application is built for. <br><br> Possible values are: <br><br> **Windows** <br><br> **Linux**"/>
-          <enum>
-            <item name="Linux" value="&quot;Linux&quot;"/>
-            <item name="Windows" value="&quot;Windows&quot;"/>
-          </enum>
         </arg>
       </argGroup>
       <operation operationId="GalleryApplications_CreateOrUpdate">
@@ -227,6 +223,16 @@
                     <prop type="dateTime" name="endOfLifeDate"/>
                     <prop type="string" name="eula"/>
                     <prop type="string" name="privacyStatementUri"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Creating&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Migrating&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
                     <prop type="string" name="releaseNoteUri"/>
                     <prop type="string" name="supportedOSType" required="True">
                       <enum>
@@ -272,18 +278,22 @@
         <arg type="string" var="$Path.galleryName" options="gallery-name r" required="True" group="" idPart="name">
           <help short="Gallery name."/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-          <help short="Name of resource group. You can configure the default group using `az configure --defaults group=<name>`."/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
-          <help short="Name or ID of subscription. You can configure the default subscription using `az account set -s NAME_OR_ID`."/>
-        </arg>
-      </argGroup>
-      <argGroup name="GalleryApplication">
-        <arg type="ResourceLocation" var="$galleryApplication.location" options="location l" group="GalleryApplication">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="ResourceLocation" var="$galleryApplication.location" options="location l" group="">
           <help short="Resource location"/>
         </arg>
-        <arg nullable="True" type="object" var="$galleryApplication.tags" options="tags" group="GalleryApplication">
+        <arg nullable="True" type="string" var="$galleryApplication.properties.description" options="description" group="">
+          <help short="The description of this gallery Application Definition resource. This property is updatable."/>
+        </arg>
+        <arg type="string" var="$galleryApplication.properties.supportedOSType" options="os-type" hide="True" group="">
+          <help short="This property allows you to specify the supported type of the OS that application is built for. <br><br> Possible values are: <br><br> **Windows** <br><br> **Linux**"/>
+          <enum>
+            <item name="Linux" value="&quot;Linux&quot;"/>
+            <item name="Windows" value="&quot;Windows&quot;"/>
+          </enum>
+        </arg>
+        <arg nullable="True" type="object" var="$galleryApplication.tags" options="tags" group="">
           <help short="Resource tags"/>
           <additionalProp>
             <item nullable="True" type="string"/>
@@ -291,27 +301,17 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="string" var="$galleryApplication.properties.description" options="description" group="Properties">
-          <help short="The description of this gallery Application Definition resource. This property is updatable."/>
-        </arg>
-        <arg nullable="True" type="dateTime" var="$galleryApplication.properties.endOfLifeDate" options="end-of-life-date" group="Properties">
+        <arg nullable="True" type="dateTime" var="$galleryApplication.properties.endOfLifeDate" options="end-of-life-date" hide="True" group="Properties">
           <help short="The end of life date of the gallery Application Definition. This property can be used for decommissioning purposes. This property is updatable."/>
         </arg>
-        <arg nullable="True" type="string" var="$galleryApplication.properties.eula" options="eula" group="Properties">
+        <arg nullable="True" type="string" var="$galleryApplication.properties.eula" options="eula" hide="True" group="Properties">
           <help short="The Eula agreement for the gallery Application Definition."/>
         </arg>
-        <arg nullable="True" type="string" var="$galleryApplication.properties.privacyStatementUri" options="privacy-statement-uri" group="Properties">
+        <arg nullable="True" type="string" var="$galleryApplication.properties.privacyStatementUri" options="privacy-statement-uri" hide="True" group="Properties">
           <help short="The privacy statement uri."/>
         </arg>
-        <arg nullable="True" type="string" var="$galleryApplication.properties.releaseNoteUri" options="release-note-uri" group="Properties">
+        <arg nullable="True" type="string" var="$galleryApplication.properties.releaseNoteUri" options="release-note-uri" hide="True" group="Properties">
           <help short="The release note uri."/>
-        </arg>
-        <arg type="string" var="$galleryApplication.properties.supportedOSType" options="supported-os-type" group="Properties">
-          <help short="This property allows you to specify the supported type of the OS that application is built for. <br><br> Possible values are: <br><br> **Windows** <br><br> **Linux**"/>
-          <enum>
-            <item name="Linux" value="&quot;Linux&quot;"/>
-            <item name="Windows" value="&quot;Windows&quot;"/>
-          </enum>
         </arg>
       </argGroup>
       <operation operationId="GalleryApplications_Get">
@@ -343,6 +343,16 @@
                     <prop type="dateTime" name="endOfLifeDate"/>
                     <prop type="string" name="eula"/>
                     <prop type="string" name="privacyStatementUri"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Creating&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Migrating&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
                     <prop type="string" name="releaseNoteUri"/>
                     <prop type="string" name="supportedOSType" required="True">
                       <enum>
