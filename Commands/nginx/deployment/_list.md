@@ -71,3 +71,16 @@ List all Nginx Deployments under the specified resource group
         nginx deployment list
         nginx deployment list --resource-group myResourceGroup
     ```
+
+### [2024-11-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL25naW54Lm5naW54cGx1cy9uZ2lueGRlcGxveW1lbnRz/2024-11-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/nginx.nginxplus/nginxdeployments 2024-11-01-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/nginx.nginxplus/nginxdeployments 2024-11-01-preview -->
+
+#### examples
+
+- Deployment List
+    ```bash
+        nginx deployment list
+        nginx deployment list --resource-group myResourceGroup
+    ```
