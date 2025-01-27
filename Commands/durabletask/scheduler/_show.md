@@ -12,5 +12,5 @@ Get a Scheduler
 
 - Show information on a particular scheduler
     ```bash
-        durable-task scheduler show --resource-group testrg --scheduler-name testscheduler
+        durabletask scheduler show --resource-group testrg --name testscheduler
     ```

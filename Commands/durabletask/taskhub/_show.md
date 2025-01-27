@@ -23,5 +23,5 @@ Get a Task Hub
 
 - Show information on a particular taskhub
     ```bash
-        durabletask taskhub show --resource-group testrg --scheduler-name testscheduler --task-hub-name testtuskhub
+        durabletask taskhub show --resource-group testrg --scheduler-name testscheduler --name testtuskhub
     ```
