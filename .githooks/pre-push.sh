@@ -15,7 +15,7 @@ Modules=$(echo "$ChangedFiles" |
     cut -d '/' -f 1 |  # Extract the module
     sort -u)  # Ensure uniqueness
 
-echo -e "${GREEN}Verifying command models...${NC}"
+echo "${GREEN}Verifying command models...${NC}"
 
 # Get Git root directory
 GitRoot=$(git rev-parse --show-toplevel)
@@ -29,6 +29,6 @@ for Module in $Modules; do
     fi
 done
 
-echo -e "\n${GREEN}All models are consistent.${NC}"
+echo "\n${GREEN}All models are consistent.${NC}"
 
 exit 0
