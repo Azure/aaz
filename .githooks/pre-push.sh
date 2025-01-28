@@ -6,7 +6,7 @@ YELLOW="\033[0;33m"
 NC="\033[0m"  # no color
 
 # Get the list of changed files
-ChangedFiles=$(git status --porcelain | sed -E 's/^\s*\S+\s+//')
+ChangedFiles=$(git status --porcelain | awk '{print $2}')
 
 # Extract modified modules
 Modules=$(echo "$ChangedFiles" | 
@@ -22,7 +22,7 @@ GitRoot=$(git rev-parse --show-toplevel)
 
 # Iterate through the modules
 for Module in $Modules; do
-    echo -e "${YELLOW}Running: aaz-dev command-model verify -a $GitRoot -t $Module${NC}" # For logging
+    echo "${YELLOW}Running: aaz-dev command-model verify -a $GitRoot -t $Module${NC}" # For logging
     aaz-dev command-model verify -a "$GitRoot" -t "$Module"
     if [[ $? -ne 0 ]]; then
         exit 1
