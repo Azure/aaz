@@ -58,3 +58,14 @@ Delete an Nginx configuration
     ```bash
         nginx deployment configuration delete --name default --deployment-name myDeployment --resource-group myResourceGroup
     ```
+
+### [2024-11-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL25naW54Lm5naW54cGx1cy9uZ2lueGRlcGxveW1lbnRzL3t9L2NvbmZpZ3VyYXRpb25zL3t9/2024-11-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/nginx.nginxplus/nginxdeployments/{}/configurations/{} 2024-11-01-preview -->
+
+#### examples
+
+- Configuration Delete
+    ```bash
+        nginx deployment configuration delete --name default --deployment-name myDeployment --resource-group myResourceGroup
+    ```
