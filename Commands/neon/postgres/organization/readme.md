@@ -5,13 +5,13 @@ Manage a Neon organization
 ## Commands
 
 - [delete](/Commands/neon/postgres/organization/_delete.md)
-: Delete a Neon Resource
+: Delete a Neon organization
 
 - [list](/Commands/neon/postgres/organization/_list.md)
-: List Neon resources by subscription ID
+: List Neon organizations by subscription ID
 
 - [show](/Commands/neon/postgres/organization/_show.md)
-: Get a Neon Resource
+: Get a Neon Organization
 
 - [update](/Commands/neon/postgres/organization/_update.md)
-: Update a Neon Resource
+: Update a Neon organization
