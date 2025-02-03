@@ -1,6 +1,6 @@
 # [Command] _neon postgres organization list_
 
-List Neon resources by subscription ID
+List Neon organizations by subscription ID
 
 ## Versions
 

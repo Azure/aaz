@@ -1,6 +1,6 @@
 # [Command] _neon postgres create_
 
-Create a Neon Resource
+Create a Neon organization
 
 ## Versions
 
