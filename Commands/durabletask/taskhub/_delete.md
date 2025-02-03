@@ -23,5 +23,5 @@ Delete a Task Hub
 
 - Delete a taskhub in a scheduler
     ```bash
-        durabletask taskhub delete --resource-group testrg --scheduler-name testscheduler --task-hub-name testtuskhub
+        durabletask taskhub delete --resource-group testrg --scheduler-name testscheduler --name testtuskhub
     ```

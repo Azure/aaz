@@ -2,6 +2,11 @@
 
 Manage cluster manager
 
+## Subgroups
+
+- [identity](/Commands/networkcloud/clustermanager/identity/readme.md)
+: Manage cluster manager's identity
+
 ## Commands
 
 - [create](/Commands/networkcloud/clustermanager/_create.md)

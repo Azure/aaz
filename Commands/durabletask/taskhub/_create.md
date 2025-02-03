@@ -23,5 +23,5 @@ Create a Task Hub
 
 - Create a taskhub in a scheduler
     ```bash
-        durabletask taskhub create --resource-group testrg--scheduler-name testscheduler --task-hub-name testtaskhub
+        durabletask taskhub create --resource-group testrg --scheduler-name testscheduler --name testtaskhub
     ```

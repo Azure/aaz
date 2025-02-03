@@ -102,3 +102,14 @@ Start the provided virtual machine.
     ```bash
         networkcloud virtualmachine start --resource-group "resourceGroupName" --name "virtualMachineName"
     ```
+
+### [2024-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvdmlydHVhbG1hY2hpbmVzL3t9L3N0YXJ0/2024-10-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/virtualmachines/{}/start 2024-10-01-preview -->
+
+#### examples
+
+- Start virtual machine
+    ```bash
+        networkcloud virtualmachine start --resource-group "resourceGroupName" --name "virtualMachineName"
+    ```
