@@ -10,4 +10,4 @@ Manage Neon Postgres
 ## Commands
 
 - [create](/Commands/neon/postgres/_create.md)
-: Create a Neon Resource
+: Create a Neon organization
