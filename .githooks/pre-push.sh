@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # define color codes
+RED="\033[0;31m"
 GREEN="\033[0;32m"
 YELLOW="\033[0;33m"
 NC="\033[0m"  # no color
@@ -25,10 +26,11 @@ for Module in $Modules; do
     echo "${YELLOW}Running: aaz-dev command-model verify -a $GitRoot -t $Module${NC}" # For logging
     aaz-dev command-model verify -a "$GitRoot" -t "$Module"
     if [[ $? -ne 0 ]]; then
+        echo "${RED}Please pull the latest <Main> branch, and <Export> your command model again.${NC}"
         exit 1
     fi
 done
 
-echo "\n${GREEN}All models are consistent.${NC}"
+echo "${GREEN}All models are consistent.${NC}"
 
 exit 0

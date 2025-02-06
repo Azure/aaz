@@ -20,10 +20,11 @@ $Modules | ForEach-Object {
     Write-Host "Running: aaz-dev command-model verify -a $GitRoot -t $_" -ForegroundColor Yellow # For logging
     aaz-dev command-model verify -a $GitRoot -t $_
     if ($LASTEXITCODE -ne 0) {
+        Write-Host "Please pull the latest <Main> branch, and <Export> your command model again." -ForegroundColor Red
         exit 1
     }
 }
 
-Write-Host "`nAll models are consistent." -ForegroundColor Green
+Write-Host "All models are consistent." -ForegroundColor Green
 
 exit 0
