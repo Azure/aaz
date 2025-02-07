@@ -1,0 +1,546 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.networkcloud/virtualmachines" version="2025-02-01" swagger="mgmt-plane/networkcloud/ResourceProviders/Microsoft.NetworkCloud/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk5ldHdvcmtDbG91ZC92aXJ0dWFsTWFjaGluZXM=/V/MjAyNS0wMi0wMQ=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/virtualmachines" version="2025-02-01" swagger="mgmt-plane/networkcloud/ResourceProviders/Microsoft.NetworkCloud/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29ya0Nsb3VkL3ZpcnR1YWxNYWNoaW5lcw==/V/MjAyNS0wMi0wMQ=="/>
+  <commandGroup name="networkcloud virtualmachine">
+    <command name="list" version="2025-02-01" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.networkcloud/virtualmachines" version="2025-02-01" swagger="mgmt-plane/networkcloud/ResourceProviders/Microsoft.NetworkCloud/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk5ldHdvcmtDbG91ZC92aXJ0dWFsTWFjaGluZXM=/V/MjAyNS0wMi0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/virtualmachines" version="2025-02-01" swagger="mgmt-plane/networkcloud/ResourceProviders/Microsoft.NetworkCloud/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29ya0Nsb3VkL3ZpcnR1YWxNYWNoaW5lcw==/V/MjAyNS0wMi0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <condition var="$Condition_VirtualMachines_ListBySubscription">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <condition var="$Condition_VirtualMachines_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_VirtualMachines_ListBySubscription" operationId="VirtualMachines_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.NetworkCloud/virtualMachines">
+          <request method="get">
+            <path>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-02-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="string" name="etag"/>
+                      <prop type="object" name="extendedLocation" required="True" cls="ExtendedLocation_read">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="type" required="True"/>
+                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/virtualMachines/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" required="True" clientFlatten="True">
+                        <prop type="string" name="adminUsername" required="True">
+                          <format pattern="^[a-z_][a-z0-9_]{0,31}$" maxLength="32" minLength="1"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="availabilityZone"/>
+                        <prop readOnly="True" type="ResourceId" name="bareMetalMachineId"/>
+                        <prop type="string" name="bootMethod">
+                          <default value="&quot;UEFI&quot;"/>
+                          <enum>
+                            <item value="&quot;BIOS&quot;"/>
+                            <item value="&quot;UEFI&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="cloudServicesNetworkAttachment" required="True">
+                          <prop type="ResourceId" name="attachedNetworkId" required="True"/>
+                          <prop type="string" name="defaultGateway">
+                            <enum>
+                              <item value="&quot;False&quot;"/>
+                              <item value="&quot;True&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="ipAllocationMethod" required="True">
+                            <enum>
+                              <item value="&quot;Disabled&quot;"/>
+                              <item value="&quot;Dynamic&quot;"/>
+                              <item value="&quot;Static&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="ipv4Address"/>
+                          <prop type="string" name="ipv6Address"/>
+                          <prop readOnly="True" type="string" name="macAddress"/>
+                          <prop type="string" name="networkAttachmentName">
+                            <format maxLength="15"/>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="ResourceId" name="clusterId"/>
+                        <prop type="@ExtendedLocation_read" name="consoleExtendedLocation"/>
+                        <prop type="integer64" name="cpuCores" required="True">
+                          <format minimum="2"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="detailedStatus">
+                          <enum>
+                            <item value="&quot;Available&quot;"/>
+                            <item value="&quot;Error&quot;"/>
+                            <item value="&quot;Provisioning&quot;"/>
+                            <item value="&quot;Running&quot;"/>
+                            <item value="&quot;Scheduling&quot;"/>
+                            <item value="&quot;Stopped&quot;"/>
+                            <item value="&quot;Terminating&quot;"/>
+                            <item value="&quot;Unknown&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="detailedStatusMessage"/>
+                        <prop type="string" name="isolateEmulatorThread">
+                          <default value="&quot;True&quot;"/>
+                          <enum>
+                            <item value="&quot;False&quot;"/>
+                            <item value="&quot;True&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="integer64" name="memorySizeGB" required="True">
+                          <format minimum="1"/>
+                        </prop>
+                        <prop type="array<object>" name="networkAttachments">
+                          <item type="object">
+                            <prop type="ResourceId" name="attachedNetworkId" required="True"/>
+                            <prop type="string" name="defaultGateway">
+                              <enum>
+                                <item value="&quot;False&quot;"/>
+                                <item value="&quot;True&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="ipAllocationMethod" required="True">
+                              <enum>
+                                <item value="&quot;Disabled&quot;"/>
+                                <item value="&quot;Dynamic&quot;"/>
+                                <item value="&quot;Static&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="ipv4Address"/>
+                            <prop type="string" name="ipv6Address"/>
+                            <prop readOnly="True" type="string" name="macAddress"/>
+                            <prop type="string" name="networkAttachmentName">
+                              <format maxLength="15"/>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="string" name="networkData"/>
+                        <prop type="array<object>" name="placementHints">
+                          <item type="object">
+                            <prop type="string" name="hintType" required="True">
+                              <enum>
+                                <item value="&quot;Affinity&quot;"/>
+                                <item value="&quot;AntiAffinity&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="ResourceId" name="resourceId" required="True"/>
+                            <prop type="string" name="schedulingExecution" required="True">
+                              <enum>
+                                <item value="&quot;Hard&quot;"/>
+                                <item value="&quot;Soft&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="scope" required="True">
+                              <enum>
+                                <item value="&quot;Machine&quot;"/>
+                                <item value="&quot;Rack&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="string" name="powerState">
+                          <enum>
+                            <item value="&quot;Off&quot;"/>
+                            <item value="&quot;On&quot;"/>
+                            <item value="&quot;Unknown&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Accepted&quot;"/>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Provisioning&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<object>" name="sshPublicKeys">
+                          <item type="object">
+                            <prop type="string" name="keyData" required="True">
+                              <format minLength="1"/>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="object" name="storageProfile" required="True">
+                          <prop type="object" name="osDisk" required="True">
+                            <prop type="string" name="createOption">
+                              <default value="&quot;Ephemeral&quot;"/>
+                              <enum>
+                                <item value="&quot;Ephemeral&quot;"/>
+                                <item value="&quot;Persistent&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="deleteOption">
+                              <default value="&quot;Delete&quot;"/>
+                              <enum>
+                                <item value="&quot;Delete&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="integer64" name="diskSizeGB" required="True"/>
+                          </prop>
+                          <prop type="array<string>" name="volumeAttachments">
+                            <item type="string"/>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="userData"/>
+                        <prop type="string" name="virtioInterface">
+                          <default value="&quot;Modern&quot;"/>
+                          <enum>
+                            <item value="&quot;Modern&quot;"/>
+                            <item value="&quot;Transitional&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="vmDeviceModel">
+                          <default value="&quot;T2&quot;"/>
+                          <enum>
+                            <item value="&quot;T1&quot;"/>
+                            <item value="&quot;T2&quot;"/>
+                            <item value="&quot;T3&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="vmImage" required="True"/>
+                        <prop type="object" name="vmImageRepositoryCredentials">
+                          <prop type="string" name="password" required="True" secret="True">
+                            <format minLength="1"/>
+                          </prop>
+                          <prop type="string" name="registryUrl" required="True"/>
+                          <prop type="string" name="username" required="True">
+                            <format minLength="1"/>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="array<string>" name="volumes">
+                          <item type="string"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_VirtualMachines_ListByResourceGroup" operationId="VirtualMachines_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetworkCloud/virtualMachines">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-02-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="string" name="etag"/>
+                      <prop type="@ExtendedLocation_read" name="extendedLocation" required="True"/>
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/virtualMachines/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" required="True" clientFlatten="True">
+                        <prop type="string" name="adminUsername" required="True">
+                          <format pattern="^[a-z_][a-z0-9_]{0,31}$" maxLength="32" minLength="1"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="availabilityZone"/>
+                        <prop readOnly="True" type="ResourceId" name="bareMetalMachineId"/>
+                        <prop type="string" name="bootMethod">
+                          <default value="&quot;UEFI&quot;"/>
+                          <enum>
+                            <item value="&quot;BIOS&quot;"/>
+                            <item value="&quot;UEFI&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="cloudServicesNetworkAttachment" required="True">
+                          <prop type="ResourceId" name="attachedNetworkId" required="True"/>
+                          <prop type="string" name="defaultGateway">
+                            <enum>
+                              <item value="&quot;False&quot;"/>
+                              <item value="&quot;True&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="ipAllocationMethod" required="True">
+                            <enum>
+                              <item value="&quot;Disabled&quot;"/>
+                              <item value="&quot;Dynamic&quot;"/>
+                              <item value="&quot;Static&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="ipv4Address"/>
+                          <prop type="string" name="ipv6Address"/>
+                          <prop readOnly="True" type="string" name="macAddress"/>
+                          <prop type="string" name="networkAttachmentName">
+                            <format maxLength="15"/>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="ResourceId" name="clusterId"/>
+                        <prop type="@ExtendedLocation_read" name="consoleExtendedLocation"/>
+                        <prop type="integer64" name="cpuCores" required="True">
+                          <format minimum="2"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="detailedStatus">
+                          <enum>
+                            <item value="&quot;Available&quot;"/>
+                            <item value="&quot;Error&quot;"/>
+                            <item value="&quot;Provisioning&quot;"/>
+                            <item value="&quot;Running&quot;"/>
+                            <item value="&quot;Scheduling&quot;"/>
+                            <item value="&quot;Stopped&quot;"/>
+                            <item value="&quot;Terminating&quot;"/>
+                            <item value="&quot;Unknown&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="detailedStatusMessage"/>
+                        <prop type="string" name="isolateEmulatorThread">
+                          <default value="&quot;True&quot;"/>
+                          <enum>
+                            <item value="&quot;False&quot;"/>
+                            <item value="&quot;True&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="integer64" name="memorySizeGB" required="True">
+                          <format minimum="1"/>
+                        </prop>
+                        <prop type="array<object>" name="networkAttachments">
+                          <item type="object">
+                            <prop type="ResourceId" name="attachedNetworkId" required="True"/>
+                            <prop type="string" name="defaultGateway">
+                              <enum>
+                                <item value="&quot;False&quot;"/>
+                                <item value="&quot;True&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="ipAllocationMethod" required="True">
+                              <enum>
+                                <item value="&quot;Disabled&quot;"/>
+                                <item value="&quot;Dynamic&quot;"/>
+                                <item value="&quot;Static&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="ipv4Address"/>
+                            <prop type="string" name="ipv6Address"/>
+                            <prop readOnly="True" type="string" name="macAddress"/>
+                            <prop type="string" name="networkAttachmentName">
+                              <format maxLength="15"/>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="string" name="networkData"/>
+                        <prop type="array<object>" name="placementHints">
+                          <item type="object">
+                            <prop type="string" name="hintType" required="True">
+                              <enum>
+                                <item value="&quot;Affinity&quot;"/>
+                                <item value="&quot;AntiAffinity&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="ResourceId" name="resourceId" required="True"/>
+                            <prop type="string" name="schedulingExecution" required="True">
+                              <enum>
+                                <item value="&quot;Hard&quot;"/>
+                                <item value="&quot;Soft&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="scope" required="True">
+                              <enum>
+                                <item value="&quot;Machine&quot;"/>
+                                <item value="&quot;Rack&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="string" name="powerState">
+                          <enum>
+                            <item value="&quot;Off&quot;"/>
+                            <item value="&quot;On&quot;"/>
+                            <item value="&quot;Unknown&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Accepted&quot;"/>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Provisioning&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<object>" name="sshPublicKeys">
+                          <item type="object">
+                            <prop type="string" name="keyData" required="True">
+                              <format minLength="1"/>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="object" name="storageProfile" required="True">
+                          <prop type="object" name="osDisk" required="True">
+                            <prop type="string" name="createOption">
+                              <default value="&quot;Ephemeral&quot;"/>
+                              <enum>
+                                <item value="&quot;Ephemeral&quot;"/>
+                                <item value="&quot;Persistent&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="deleteOption">
+                              <default value="&quot;Delete&quot;"/>
+                              <enum>
+                                <item value="&quot;Delete&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="integer64" name="diskSizeGB" required="True"/>
+                          </prop>
+                          <prop type="array<string>" name="volumeAttachments">
+                            <item type="string"/>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="userData"/>
+                        <prop type="string" name="virtioInterface">
+                          <default value="&quot;Modern&quot;"/>
+                          <enum>
+                            <item value="&quot;Modern&quot;"/>
+                            <item value="&quot;Transitional&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="vmDeviceModel">
+                          <default value="&quot;T2&quot;"/>
+                          <enum>
+                            <item value="&quot;T1&quot;"/>
+                            <item value="&quot;T2&quot;"/>
+                            <item value="&quot;T3&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="vmImage" required="True"/>
+                        <prop type="object" name="vmImageRepositoryCredentials">
+                          <prop type="string" name="password" required="True" secret="True">
+                            <format minLength="1"/>
+                          </prop>
+                          <prop type="string" name="registryUrl" required="True"/>
+                          <prop type="string" name="username" required="True">
+                            <format minLength="1"/>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="array<string>" name="volumes">
+                          <item type="string"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
