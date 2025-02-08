@@ -25,4 +25,4 @@ Manage and configure Azure firewall policy rule-collection-group.
 : Show an Azure firewall policy rule collection group.
 
 - [update](/Commands/network/firewall/policy/rule-collection-group/_update.md)
-: Update an Azure firewall policy rule collection group.
+: Update the specified FirewallPolicyRuleCollectionGroup.

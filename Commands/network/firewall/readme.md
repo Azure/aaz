@@ -24,6 +24,9 @@ Manage and configure Azure Firewalls.
 - [list-fqdn-tags](/Commands/network/firewall/_list-fqdn-tags.md)
 : Gets all the Azure Firewall FQDN Tags in a subscription.
 
+- [packet-capture](/Commands/network/firewall/_packet-capture.md)
+: Runs a packet capture on AzureFirewall.
+
 - [show](/Commands/network/firewall/_show.md)
 : Get the details of an Azure Firewall.
 
