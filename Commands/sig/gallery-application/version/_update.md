@@ -1,6 +1,6 @@
 # [Command] _sig gallery-application version update_
 
-Update a gallery Application Version.
+Update a gallery application version.
 
 ## Versions
 
