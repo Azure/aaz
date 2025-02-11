@@ -27,7 +27,10 @@
 : Manage Azure Arc Machines.
 
 - [arc-multicloud](/Commands/arc-multicloud/readme.md)
-: commands for arc-multicloud
+: Commands for arc-multicloud
+
+- [arcgateway](/Commands/arcgateway/readme.md)
+: Manage gateway connection on Arc machine
 
 - [astronomer](/Commands/astronomer/readme.md)
 : Manage Azure Astronomer resources.
@@ -77,8 +80,8 @@
 - [compute](/Commands/compute/readme.md)
 : Mange azure compute vm config
 
-- [compute-diagnostic](/Commands/compute-diagnostic/readme.md)
-: Mange vm sku recommender info
+- [compute-fleet](/Commands/compute-fleet/readme.md)
+: Manage for Azure Compute Fleet
 
 - [compute-recommender](/Commands/compute-recommender/readme.md)
 : Manage sku/zone/region recommender info for compute resources
@@ -100,6 +103,9 @@
 
 - [costmanagement](/Commands/costmanagement/readme.md)
 : costmanagement
+
+- [data-boundary](/Commands/data-boundary/readme.md)
+: data boundary operations
 
 - [databox](/Commands/databox/readme.md)
 : Manage data box
@@ -135,7 +141,7 @@
 : Manage Dns Resolver
 
 - [durabletask](/Commands/durabletask/readme.md)
-: Commands to manage Durabletasks.
+: Commands to manage Durabletask schedulers and taskhubs
 
 - [dynatrace](/Commands/dynatrace/readme.md)
 : Manage dynatrace
@@ -166,6 +172,9 @@
 
 - [graph-services](/Commands/graph-services/readme.md)
 : Make operations on Microsoft.GraphServices resource types
+
+- [healthcareapis](/Commands/healthcareapis/readme.md)
+: Azure Healthcare APIs is a secure cloud platform for managing health data, supporting analytics, machine learning, and scalable solutions.
 
 - [image](/Commands/image/readme.md)
 : Manage custom virtual machine images.
@@ -200,6 +209,9 @@
 - [managementpartner](/Commands/managementpartner/readme.md)
 : Allows the partners to associate a Microsoft Partner Network(MPN) ID to a user or service principal in the customer's Azure directory.
 
+- [mcc](/Commands/mcc/readme.md)
+: Microsoft Connected Cache CLI Commands
+
 - [mdp](/Commands/mdp/readme.md)
 : Manage resources of Managed DevOps pools
 
@@ -211,6 +223,9 @@
 
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
+
+- [neon](/Commands/neon/readme.md)
+: Manage Neon Postgres
 
 - [netappfiles](/Commands/netappfiles/readme.md)
 : Manage Azure NetApp Files (ANF) Resources
@@ -247,6 +262,9 @@
 
 - [palo-alto](/Commands/palo-alto/readme.md)
 : Manage palo-alto networks resource
+
+- [playwright-testing](/Commands/playwright-testing/readme.md)
+: Manage Microsoft Playwright Testing service
 
 - [powerbi](/Commands/powerbi/readme.md)
 : Manage PowerBI resources.

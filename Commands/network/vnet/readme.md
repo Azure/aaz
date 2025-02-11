@@ -2,7 +2,7 @@
 
 Check if a private IP address is available for use within a virtual network.
 
-To learn more about Virtual Networks visit https://docs.microsoft.com/azure/virtual-network/virtual-network-manage-network.
+To learn more about Virtual Networks visit https://learn.microsoft.com/azure/virtual-network/virtual-network-manage-network.
 
 ## Subgroups
 
@@ -11,6 +11,9 @@ To learn more about Virtual Networks visit https://docs.microsoft.com/azure/virt
 
 - [subnet](/Commands/network/vnet/subnet/readme.md)
 : Manage subnets in an Azure Virtual Network.
+
+- [tap](/Commands/network/vnet/tap/readme.md)
+: Manage virtual network taps.
 
 ## Commands
 

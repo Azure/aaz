@@ -19,3 +19,8 @@ Create a new metadata schema or update an existing metadata schema.
     ```bash
         apic metadata create --resource-group api-center-test --service-name contoso  --metadata-name testregion --schema '{\"type\":\"string\",\"title\":\"testregion\",\"oneOf\":[{\"const\":\"Region1\",\"description\":\"\"},{\"const\":\"Region2\",\"description\":\"\"},{\"const\":\"Region3\",\"description\":\"\"}]}' --assignments '[{entity:api,required:true,deprecated:false},{entity:environment,required:true,deprecated:false}]'
     ```
+
+- Create metadata using json file schema and assignments example
+    ```bash
+        apic metadata create --resource-group api-center-test --service-name contoso --metadata-name "test" --schema '@schema.json' --assignments '@assignments.json'
+    ```

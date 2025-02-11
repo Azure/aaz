@@ -5,21 +5,25 @@
     <command name="spot-placement-recommender" version="2024-06-01-preview" confirmation="">
       <resource id="/subscriptions/{}/providers/microsoft.compute/locations/{}/placementscores/spot/generate" version="2024-06-01-preview" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNvbXB1dGUvbG9jYXRpb25zL3tsb2NhdGlvbn0vcGxhY2VtZW50U2NvcmVzL3Nwb3QvZ2VuZXJhdGU=/V/MjAyNC0wNi0wMS1wcmV2aWV3"/>
       <argGroup name="">
-        <arg type="ResourceLocation" var="$Path.location" options="location l" required="True" idPart="name"/>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="ResourceLocation" var="$Path.location" options="location l" required="True" stage="Preview" group="" idPart="name">
+          <help short="the Azure region where the recommendation will be generated"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" stage="Preview" group="" idPart="subscription">
+          <help short="the Azure subscription ID to be used for the recommendation"/>
+        </arg>
       </argGroup>
       <argGroup name="SpotPlacementScoresInput">
-        <arg type="boolean" var="$spotPlacementScoresInput.availabilityZones" options="availability-zones" group="SpotPlacementScoresInput">
+        <arg type="boolean" var="$spotPlacementScoresInput.availabilityZones" options="availability-zones" stage="Preview" group="SpotPlacementScoresInput">
           <help short="Defines if the scope is zonal or regional."/>
         </arg>
-        <arg type="integer32" var="$spotPlacementScoresInput.desiredCount" options="desired-count" group="SpotPlacementScoresInput">
+        <arg type="integer32" var="$spotPlacementScoresInput.desiredCount" options="desired-count" required="True" stage="Preview" group="SpotPlacementScoresInput">
           <help short="Desired instance count per region/zone based on the scope."/>
         </arg>
-        <arg type="array<string>" var="$spotPlacementScoresInput.desiredLocations" options="desired-locations" group="SpotPlacementScoresInput">
+        <arg type="array<string>" var="$spotPlacementScoresInput.desiredLocations" options="desired-locations" required="True" stage="Preview" group="SpotPlacementScoresInput">
           <help short="The desired regions"/>
           <item type="string"/>
         </arg>
-        <arg type="array<object>" var="$spotPlacementScoresInput.desiredSizes" options="desired-sizes" group="SpotPlacementScoresInput">
+        <arg type="array<object>" var="$spotPlacementScoresInput.desiredSizes" options="desired-sizes" required="True" stage="Preview" group="SpotPlacementScoresInput">
           <help short="The desired resource SKUs."/>
           <item type="object">
             <arg type="string" var="$spotPlacementScoresInput.desiredSizes[].sku" options="sku">
@@ -47,11 +51,11 @@
               <json>
                 <schema type="object" name="spotPlacementScoresInput" required="True" clientFlatten="True">
                   <prop type="boolean" name="availabilityZones" arg="$spotPlacementScoresInput.availabilityZones"/>
-                  <prop type="integer32" name="desiredCount" arg="$spotPlacementScoresInput.desiredCount"/>
-                  <prop type="array<string>" name="desiredLocations" arg="$spotPlacementScoresInput.desiredLocations">
+                  <prop type="integer32" name="desiredCount" arg="$spotPlacementScoresInput.desiredCount" required="True"/>
+                  <prop type="array<string>" name="desiredLocations" arg="$spotPlacementScoresInput.desiredLocations" required="True">
                     <item type="string"/>
                   </prop>
-                  <prop type="array<object>" name="desiredSizes" arg="$spotPlacementScoresInput.desiredSizes">
+                  <prop type="array<object>" name="desiredSizes" arg="$spotPlacementScoresInput.desiredSizes" required="True">
                     <item type="object">
                       <prop type="string" name="sku" arg="$spotPlacementScoresInput.desiredSizes[].sku"/>
                     </item>
