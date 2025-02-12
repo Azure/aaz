@@ -36,7 +36,7 @@ Show SAP sizing recommendations by providing input SAPS for application tier and
         workloads sap-sizing-recommendation --app-location "eastus" --database-type "HANA" --db-memory 1024 --deployment-type "ThreeTier" --environment "Prod" --sap-product "S4HANA" --saps 20000 --location "northeurope" --db-scale-method ScaleUp
     ```
 
-### [2024-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC53b3JrbG9hZHMvbG9jYXRpb25zL3t9L3NhcHZpcnR1YWxpbnN0YW5jZW1ldGFkYXRhL2RlZmF1bHQvZ2V0c2l6aW5ncmVjb21tZW5kYXRpb25z/2024-09-01.xml) **Preview**
+### [2024-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC53b3JrbG9hZHMvbG9jYXRpb25zL3t9L3NhcHZpcnR1YWxpbnN0YW5jZW1ldGFkYXRhL2RlZmF1bHQvZ2V0c2l6aW5ncmVjb21tZW5kYXRpb25z/2024-09-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.workloads/locations/{}/sapvirtualinstancemetadata/default/getsizingrecommendations 2024-09-01 -->
 

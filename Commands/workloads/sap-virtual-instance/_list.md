@@ -27,7 +27,7 @@ List all Virtual Instances for SAP solutions resources in a Resource Group.
         workloads sap-virtual-instance list -g <resource-group-name>
     ```
 
-### [2024-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC53b3JrbG9hZHMvc2FwdmlydHVhbGluc3RhbmNlcw==/2024-09-01.xml) **Preview**
+### [2024-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC53b3JrbG9hZHMvc2FwdmlydHVhbGluc3RhbmNlcw==/2024-09-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.workloads/sapvirtualinstances 2024-09-01 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.workloads/sapvirtualinstances 2024-09-01 -->

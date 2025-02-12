@@ -76,7 +76,7 @@ Create a Virtual Instance for SAP solutions (VIS) resource
         workloads sap-virtual-instance create -g <resource-group-name> -n <vis-name> --environment NonProd --sap-product s4hana --configuration <payload-file-path> --identity "{type:UserAssigned,userAssignedIdentities:{<managed-identity-resource-id>:{}}}"
     ```
 
-### [2024-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC53b3JrbG9hZHMvc2FwdmlydHVhbGluc3RhbmNlcy97fQ==/2024-09-01.xml) **Preview**
+### [2024-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC53b3JrbG9hZHMvc2FwdmlydHVhbGluc3RhbmNlcy97fQ==/2024-09-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.workloads/sapvirtualinstances/{} 2024-09-01 -->
 
