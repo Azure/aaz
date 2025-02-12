@@ -2,7 +2,7 @@
 
 List which services support VNet service tunneling in a given region.
 
-To learn more about service endpoints visit https://docs.microsoft.com/azure/virtual-network/virtual-network-service-endpoints-configure#azure-cli.
+To learn more about service endpoints visit https://learn.microsoft.com/azure/virtual-network/virtual-network-service-endpoints-configure#azure-cli.
 
 ## Versions
 

@@ -10,6 +10,9 @@ Manage Azure Arc-Enabled Server.
 - [license](/Commands/connectedmachine/license/readme.md)
 : Manage ESU license on an Azure Arc-Enabled Server.
 
+- [license-profile](/Commands/connectedmachine/license-profile/readme.md)
+: Manages all Pay-As-You-Go licenses for an Azure Arc-Enabled Server.
+
 - [private-endpoint-connection](/Commands/connectedmachine/private-endpoint-connection/readme.md)
 : Manage private endpoint connection with an Azure Arc-Enabled Server.
 

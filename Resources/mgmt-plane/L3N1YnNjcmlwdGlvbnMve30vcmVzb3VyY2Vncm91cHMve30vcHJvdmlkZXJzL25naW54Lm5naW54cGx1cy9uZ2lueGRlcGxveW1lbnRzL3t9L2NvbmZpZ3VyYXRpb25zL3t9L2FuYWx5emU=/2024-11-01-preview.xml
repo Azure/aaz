@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/nginx.nginxplus/nginxdeployments/{}/configurations/{}/analyze" version="2024-11-01-preview" swagger="mgmt-plane/nginx/ResourceProviders/NGINX.NGINXPLUS/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9OZ2lueC5OZ2lueFBsdXMvbmdpbnhEZXBsb3ltZW50cy97ZGVwbG95bWVudE5hbWV9L2NvbmZpZ3VyYXRpb25zL3tjb25maWd1cmF0aW9uTmFtZX0vYW5hbHl6ZQ==/V/MjAyNC0xMS0wMS1wcmV2aWV3"/>
+  <commandGroup name="nginx deployment configuration">
+    <command name="analyze" version="2024-11-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/nginx.nginxplus/nginxdeployments/{}/configurations/{}/analyze" version="2024-11-01-preview" swagger="mgmt-plane/nginx/ResourceProviders/NGINX.NGINXPLUS/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9OZ2lueC5OZ2lueFBsdXMvbmdpbnhEZXBsb3ltZW50cy97ZGVwbG95bWVudE5hbWV9L2NvbmZpZ3VyYXRpb25zL3tjb25maWd1cmF0aW9uTmFtZX0vYW5hbHl6ZQ==/V/MjAyNC0xMS0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.configurationName" options="configuration-name name n" required="True" group="" idPart="child_name_1">
+          <help short="The name of configuration, only 'default' is supported value due to the singleton of NGINX conf"/>
+          <format pattern="^[a-z][a-z0-9]*$"/>
+        </arg>
+        <arg type="string" var="$Path.deploymentName" options="deployment-name" required="True" idPart="name">
+          <help short="The name of targeted NGINX deployment"/>
+          <format pattern="^([a-z0-9A-Z][a-z0-9A-Z-]{0,28}[a-z0-9A-Z]|[a-z0-9A-Z])$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Config">
+        <arg type="array<object>" var="$body.config.files" options="files" group="Config">
+          <help short="Config files. Cannot be used with package, only protected-files"/>
+          <item type="object">
+            <arg type="string" var="$body.config.files[].content" options="content"/>
+            <arg type="string" var="$body.config.files[].virtualPath" options="virtual-path"/>
+          </item>
+        </arg>
+        <arg type="object" var="$body.config.package" options="package" group="Config">
+          <help short="Compressed files. Cannot be used with files or protected-files"/>
+          <arg type="string" var="$body.config.package.data" options="data"/>
+          <arg type="array<string>" var="$body.config.package.protectedFiles" options="protected-files">
+            <item type="string"/>
+          </arg>
+        </arg>
+        <arg type="array<object>" var="$body.config.protectedFiles" options="protected-files" group="Config">
+          <help short="Cannot be used with package, only files"/>
+          <item type="object">
+            <arg type="string" var="$body.config.protectedFiles[].content" options="content">
+              <help short="The content of the protected file. This value is a PUT only value. If you perform a GET request on this value, it will be empty because it is a protected file."/>
+            </arg>
+            <arg type="string" var="$body.config.protectedFiles[].contentHash" options="content-hash">
+              <help short="The hash of the content of the file. This value is used to determine if the file has changed."/>
+            </arg>
+            <arg type="string" var="$body.config.protectedFiles[].virtualPath" options="virtual-path">
+              <help short="The virtual path of the protected file."/>
+            </arg>
+          </item>
+        </arg>
+        <arg type="string" var="$body.config.rootFile" options="root-file" group="Config">
+          <help short="The root file of the NGINX config file(s). It must match one of the files' filepath."/>
+        </arg>
+      </argGroup>
+      <operation operationId="Configurations_Analysis">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/configurations/{configurationName}/analyze">
+          <request method="post">
+            <path>
+              <param type="string" name="configurationName" arg="$Path.configurationName" required="True">
+                <format pattern="^[a-z][a-z0-9]*$"/>
+              </param>
+              <param type="string" name="deploymentName" arg="$Path.deploymentName" required="True">
+                <format pattern="^([a-z0-9A-Z][a-z0-9A-Z-]{0,28}[a-z0-9A-Z]|[a-z0-9A-Z])$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" clientFlatten="True">
+                  <prop type="object" name="config" required="True">
+                    <prop type="array<object>" name="files" arg="$body.config.files">
+                      <item type="object">
+                        <prop type="string" name="content" arg="$body.config.files[].content"/>
+                        <prop type="string" name="virtualPath" arg="$body.config.files[].virtualPath"/>
+                      </item>
+                    </prop>
+                    <prop type="object" name="package" arg="$body.config.package">
+                      <prop type="string" name="data" arg="$body.config.package.data"/>
+                      <prop type="array<string>" name="protectedFiles" arg="$body.config.package.protectedFiles">
+                        <item type="string"/>
+                      </prop>
+                    </prop>
+                    <prop type="array<object>" name="protectedFiles" arg="$body.config.protectedFiles">
+                      <item type="object">
+                        <prop type="string" name="content" arg="$body.config.protectedFiles[].content" secret="True"/>
+                        <prop type="string" name="contentHash" arg="$body.config.protectedFiles[].contentHash"/>
+                        <prop type="string" name="virtualPath" arg="$body.config.protectedFiles[].virtualPath"/>
+                      </item>
+                    </prop>
+                    <prop type="string" name="rootFile" arg="$body.config.rootFile"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="object" name="data">
+                    <prop type="array<object>" name="diagnostics">
+                      <item type="object">
+                        <prop type="string" name="category"/>
+                        <prop type="string" name="description" required="True"/>
+                        <prop type="string" name="directive" required="True"/>
+                        <prop type="string" name="file" required="True"/>
+                        <prop type="string" name="id"/>
+                        <prop type="string" name="level" required="True">
+                          <enum>
+                            <item value="&quot;Info&quot;"/>
+                            <item value="&quot;Warning&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="float" name="line" required="True"/>
+                        <prop type="string" name="message" required="True"/>
+                        <prop type="string" name="rule" required="True"/>
+                      </item>
+                    </prop>
+                    <prop type="array<object>" name="errors">
+                      <item type="object">
+                        <prop type="string" name="description" required="True"/>
+                        <prop type="string" name="directive" required="True"/>
+                        <prop type="string" name="file" required="True"/>
+                        <prop type="string" name="id"/>
+                        <prop type="float" name="line" required="True"/>
+                        <prop type="string" name="message" required="True"/>
+                        <prop type="string" name="rule" required="True"/>
+                      </item>
+                    </prop>
+                  </prop>
+                  <prop type="string" name="status" required="True"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

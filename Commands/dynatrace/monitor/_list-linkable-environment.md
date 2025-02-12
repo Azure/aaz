@@ -14,3 +14,14 @@ Get all the dynatrace environments that a user can link a azure resource to
     ```bash
         dynatrace monitor list-linkable-environment -g rg --monitor-name monitor --user-principal Alice@microsoft.com --region eastus2euap
     ```
+
+### [2023-04-27](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL2R5bmF0cmFjZS5vYnNlcnZhYmlsaXR5L21vbml0b3JzL3t9L2xpc3RsaW5rYWJsZWVudmlyb25tZW50cw==/2023-04-27.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/dynatrace.observability/monitors/{}/listlinkableenvironments 2023-04-27 -->
+
+#### examples
+
+- List-linkable-environment
+    ```bash
+        dynatrace monitor list-linkable-environment -g rg --monitor-name monitor --user-principal Alice@microsoft.com --region eastus2euap
+    ```

@@ -7,11 +7,17 @@ Manage Linux or Windows virtual machines.
 - [availability-set](/Commands/vm/availability-set/readme.md)
 : Group resources into availability sets.
 
+- [disk](/Commands/vm/disk/readme.md)
+: Manage the managed data disks attached to a VM.
+
 - [extension](/Commands/vm/extension/readme.md)
 : Manage extensions on VMs.
 
 - [host](/Commands/vm/host/readme.md)
 : Manage Dedicated Hosts for Virtual Machines
+
+- [image](/Commands/vm/image/readme.md)
+: Information on available virtual machine images.
 
 ## Commands
 

@@ -13,10 +13,13 @@ Manage shared image gallery.
 - [image-version](/Commands/sig/image-version/readme.md)
 : Manage shared gallery image version with VM
 
+- [share](/Commands/sig/share/readme.md)
+: Manage gallery sharing profile.
+
 ## Commands
 
 - [create](/Commands/sig/_create.md)
-: Create a Shared Image Gallery.
+: Create a shared image gallery.
 
 - [delete](/Commands/sig/_delete.md)
 : Delete a Shared Image Gallery.
@@ -24,8 +27,11 @@ Manage shared image gallery.
 - [list](/Commands/sig/_list.md)
 : List galleries under a resource group.
 
+- [list-shared](/Commands/sig/_list-shared.md)
+: List all shared galleries shared directly to your subscription or tenant
+
 - [show](/Commands/sig/_show.md)
-: Get information about a Shared Image Gallery.
+: Retrieve information about a Shared Image Gallery.
 
 - [show-community](/Commands/sig/_show-community.md)
 : Get a community gallery by gallery public name.

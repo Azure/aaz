@@ -13,11 +13,17 @@ Manage shared gallery image with VM
 - [list](/Commands/sig/image-definition/_list.md)
 : List gallery image definitions in a gallery.
 
+- [list-community](/Commands/sig/image-definition/_list-community.md)
+: List VM Image definitions in a gallery community
+
 - [show](/Commands/sig/image-definition/_show.md)
 : Get information about a gallery image definition.
+
+- [show-community](/Commands/sig/image-definition/_show-community.md)
+: Get a community gallery image.
 
 - [show-shared](/Commands/sig/image-definition/_show-shared.md)
 : Get a shared gallery image
 
 - [update](/Commands/sig/image-definition/_update.md)
-: Update a gallery image definition.
+: Update a VM Image definition.

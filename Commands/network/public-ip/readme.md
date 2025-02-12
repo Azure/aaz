@@ -2,9 +2,12 @@
 
 Manage public IP addresses.
 
-To learn more about public IP addresses visit https://docs.microsoft.com/azure/virtual-network/virtual-network-public-ip-address.
+To learn more about public IP addresses visit https://learn.microsoft.com/azure/virtual-network/virtual-network-public-ip-address.
 
 ## Subgroups
+
+- [ddos-protection](/Commands/network/public-ip/ddos-protection/readme.md)
+: Manage public IP DDoS protection.
 
 - [ddos-protection-statu](/Commands/network/public-ip/ddos-protection-statu/readme.md)
 : Manage public IP ddos protection statu.

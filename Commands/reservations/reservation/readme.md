@@ -2,11 +2,6 @@
 
 reservations reservation
 
-## Subgroups
-
-- [service-admin](/Commands/reservations/reservation/service-admin/readme.md)
-: service-admin
-
 ## Commands
 
 - [archive](/Commands/reservations/reservation/_archive.md)
