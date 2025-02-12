@@ -405,22 +405,32 @@ Update the properties of the provided cluster, or update the tags associated wit
         networkcloud cluster update --name "clusterName" --resource-group "resourceGroupName" --update-strategy strategy-type="Rack" threshold-type="CountSuccess" threshold-value=4 max-unavailable=4 wait-time-minutes=10
     ```
 
-- Add user assigned identity and command output settings to cluster
+- Set user assigned identity (removes system assigned if was added earlier)
     ```bash
-        networkcloud cluster update --name "clusterName" --resource-group "resourceGroupName" --mi-user-assigned "/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUAI" --command-output-settings identity-type="UserAssignedIdentity" identity-resource-id="/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUAI" container-url="https://myaccount.blob.core.windows.net/mycontainer?restype=container"
+        networkcloud cluster update --name "clusterName" --resource-group "resourceGroupName" --mi-user-assigned "/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUAI"
     ```
 
-- Add system assigned identity to cluster
+- Set system assigned identity (removes user assigned if was added earlier)
     ```bash
         networkcloud cluster update --name "clusterName" --resource-group "resourceGroupName" --mi-system-assigned
     ```
 
-- Add user assigned identity and log analytics output settings to cluster
+- Set system assigned and user assigned identities to cluster
     ```bash
-        networkcloud cluster update --name "clusterName" --resource-group "resourceGroupName" --mi-user-assigned "/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userAssignedIdentity" --analytics-output-settings analytics-workspace-id="/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/microsoft.operationalInsights/workspaces/logAnalyticsWorkspaceName" identity-type="UserAssignedIdentity" identity-resource-id="/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userIdentity"
+        networkcloud cluster update --name "clusterName" --resource-group "resourceGroupName" --mi-system-assigned --mi-user-assigned "/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUAI"
     ```
 
-- Add user assigned identity and secret archive settings to cluster
+- Patch secret archive settings (cluster identity is set prior)
     ```bash
         networkcloud cluster update --name "clusterName" --resource-group "resourceGroupName" --secret-archive-settings identity-type="UserAssignedIdentity" identity-resource-id="/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUAI" vault_uri="https://keyvaultname.vault.azure.net/"
+    ```
+
+- Patch command output settings (cluster identity is set prior)
+    ```bash
+        networkcloud cluster update --name "clusterName" --resource-group "resourceGroupName" --command-output-settings identity-type="UserAssignedIdentity" identity-resource-id="/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUAI" container-url="https://myaccount.blob.core.windows.net/mycontainer?restype=container"
+    ```
+
+- Patch log analytics output settings (cluster identity is set prior)
+    ```bash
+        networkcloud cluster update --name "clusterName" --resource-group "resourceGroupName" --analytics-output-settings analytics-workspace-id="/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/microsoft.operationalInsights/workspaces/logAnalyticsWorkspaceName" identity-type="UserAssignedIdentity" identity-resource-id="/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userIdentity"
     ```
