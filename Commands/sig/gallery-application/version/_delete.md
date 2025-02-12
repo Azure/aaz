@@ -1,6 +1,6 @@
 # [Command] _sig gallery-application version delete_
 
-Delete a gallery Application Version.
+Delete a gallery application version.
 
 ## Versions
 
