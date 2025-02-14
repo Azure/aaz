@@ -1,6 +1,6 @@
 # [Command] _sig gallery-application version create_
 
-Create a gallery Application Version.
+Create a gallery application version.
 
 ## Versions
 
