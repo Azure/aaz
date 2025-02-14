@@ -266,6 +266,9 @@
 - [playwright-testing](/Commands/playwright-testing/readme.md)
 : Manage Microsoft Playwright Testing service
 
+- [portal](/Commands/portal/readme.md)
+: Manage Portal.
+
 - [powerbi](/Commands/powerbi/readme.md)
 : Manage PowerBI resources.
 
