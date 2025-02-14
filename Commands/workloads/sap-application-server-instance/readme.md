@@ -23,4 +23,4 @@ Manage application instance
 : Stops the SAP Application Server Instance.
 
 - [update](/Commands/workloads/sap-application-server-instance/_update.md)
-: Update the SAP Application Server Instance resource.
+: Update the SAP Application Server Instance resource. This will be used by service only. PUT by end user will return a Bad Request error.

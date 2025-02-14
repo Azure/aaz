@@ -35,3 +35,19 @@ Show the SAP Application Server Instance corresponding to the Virtual Instance f
     ```bash
         workloads sap-application-server-instance show --id <resource-id>
     ```
+
+### [2024-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC53b3JrbG9hZHMvc2FwdmlydHVhbGluc3RhbmNlcy97fS9hcHBsaWNhdGlvbmluc3RhbmNlcy97fQ==/2024-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.workloads/sapvirtualinstances/{}/applicationinstances/{} 2024-09-01 -->
+
+#### examples
+
+- Get an overview of an App Server Instance
+    ```bash
+        workloads sap-application-server-instance show -g <resource-group-name> --sap-virtual-instance-name <vis-name> -n <app-instance-name>
+    ```
+
+- Get an overview of an App Server Instance using the Azure resource ID of the instance
+    ```bash
+        workloads sap-application-server-instance show --id <resource-id>
+    ```
