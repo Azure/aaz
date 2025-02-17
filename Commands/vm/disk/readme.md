@@ -19,5 +19,8 @@ Azure Virtual Machines use disks as a place to store an operating system, applic
 
 ## Commands
 
+- [attach-detach](/Commands/vm/disk/_attach-detach.md)
+: Attach and detach data disks to/from the virtual machine.
+
 - [attach-detach-data-disk](/Commands/vm/disk/_attach-detach-data-disk.md)
 : Attach and detach data disks to/from the virtual machine.
