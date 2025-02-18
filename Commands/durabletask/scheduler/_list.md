@@ -13,5 +13,5 @@ List Schedulers by subscription
 
 - List all schedulers in a resource group
     ```bash
-        durable-task scheduler list -g testrg
+        durabletask scheduler list -g testrg
     ```

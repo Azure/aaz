@@ -25,6 +25,9 @@ Manage azure devtest labs.
 - [gallery-image](/Commands/lab/gallery-image/readme.md)
 : Manage lab gallery image
 
+- [global-schedule](/Commands/lab/global-schedule/readme.md)
+: Manage global schedules.
+
 - [secret](/Commands/lab/secret/readme.md)
 : Manage secrets of an azure devtest lab.
 
