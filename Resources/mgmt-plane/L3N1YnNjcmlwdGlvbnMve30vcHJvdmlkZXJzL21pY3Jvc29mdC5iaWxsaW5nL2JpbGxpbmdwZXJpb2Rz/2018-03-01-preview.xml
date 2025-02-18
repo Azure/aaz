@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.billing/billingperiods" version="2018-03-01-preview" swagger="mgmt-plane/billing/ResourceProviders/Microsoft.Billing/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkJpbGxpbmcvYmlsbGluZ1BlcmlvZHM=/V/MjAxOC0wMy0wMS1wcmV2aWV3"/>
+  <commandGroup name="billing period">
+    <command name="list" version="2018-03-01-preview" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.billing/billingperiods" version="2018-03-01-preview" swagger="mgmt-plane/billing/ResourceProviders/Microsoft.Billing/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkJpbGxpbmcvYmlsbGluZ1BlcmlvZHM=/V/MjAxOC0wMy0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Query.filter" options="filter">
+          <help short="May be used to filter billing periods by billingPeriodEndDate. The filter supports 'eq', 'lt', 'gt', 'le', 'ge', and 'and'. It does not currently support 'ne', 'or', or 'not'."/>
+        </arg>
+        <arg type="string" var="$Query.skiptoken" options="skiptoken">
+          <help short="Skiptoken is only used if a previous operation returned a partial result. If a previous response contains a nextLink element, the value of the nextLink element will include a skiptoken parameter that specifies a starting point to use for subsequent calls."/>
+        </arg>
+        <arg type="integer32" var="$Query.top" options="top">
+          <help short="May be used to limit the number of results to the most recent N billing periods."/>
+          <format maximum="100" minimum="1"/>
+        </arg>
+      </argGroup>
+      <operation operationId="BillingPeriods_List">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Billing/billingPeriods">
+          <request method="get">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="$filter" arg="$Query.filter"/>
+              <param type="string" name="$skiptoken" arg="$Query.skiptoken"/>
+              <param type="integer32" name="$top" arg="$Query.top">
+                <format maximum="100" minimum="1"/>
+              </param>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2018-03-01-preview&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="nextLink"/>
+                  <prop readOnly="True" type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/providers/Microsoft.Billing/billingPeriods/{}"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop readOnly="True" type="date" name="billingPeriodEndDate"/>
+                        <prop readOnly="True" type="date" name="billingPeriodStartDate"/>
+                        <prop readOnly="True" type="array<string>" name="invoiceIds">
+                          <item type="string"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

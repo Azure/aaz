@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/providers/microsoft.billing/billingaccounts/{}/reservations" version="2020-05-01" swagger="mgmt-plane/billing/ResourceProviders/Microsoft.Billing/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuQmlsbGluZy9iaWxsaW5nQWNjb3VudHMve2JpbGxpbmdBY2NvdW50TmFtZX0vcmVzZXJ2YXRpb25z/V/MjAyMC0wNS0wMQ=="/>
+  <commandGroup name="billing account reservation">
+    <command name="list" version="2020-05-01">
+      <resource id="/providers/microsoft.billing/billingaccounts/{}/reservations" version="2020-05-01" swagger="mgmt-plane/billing/ResourceProviders/Microsoft.Billing/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuQmlsbGluZy9iaWxsaW5nQWNjb3VudHMve2JpbGxpbmdBY2NvdW50TmFtZX0vcmVzZXJ2YXRpb25z/V/MjAyMC0wNS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.billingAccountName" options="billing-account-name" required="True">
+          <help short="The ID that uniquely identifies a billing account."/>
+        </arg>
+        <arg type="string" var="$Query.filter" options="filter">
+          <help short="May be used to filter by reservation properties. The filter supports 'eq', 'or', and 'and'. It does not currently support 'ne', 'gt', 'le', 'ge', or 'not'."/>
+        </arg>
+        <arg type="string" var="$Query.orderby" options="orderby">
+          <help short="May be used to sort order by reservation properties."/>
+        </arg>
+        <arg type="string" var="$Query.refreshSummary" options="refresh-summary">
+          <help short="To indicate whether to refresh the roll up counts of the reservations group by provisioning states"/>
+        </arg>
+        <arg type="string" var="$Query.selectedState" options="selected-state">
+          <help short="The selected provisioning state"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Reservations_ListByBillingAccount">
+        <http path="/providers/Microsoft.Billing/billingAccounts/{billingAccountName}/reservations">
+          <request method="get">
+            <path>
+              <param type="string" name="billingAccountName" arg="$Path.billingAccountName" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="$filter" arg="$Query.filter"/>
+              <param type="string" name="$orderby" arg="$Query.orderby"/>
+              <param type="string" name="refreshSummary" arg="$Query.refreshSummary"/>
+              <param type="string" name="selectedState" arg="$Query.selectedState"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2020-05-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="nextLink"/>
+                  <prop type="object" name="summary">
+                    <prop readOnly="True" type="float" name="cancelledCount"/>
+                    <prop readOnly="True" type="float" name="expiredCount"/>
+                    <prop readOnly="True" type="float" name="expiringCount"/>
+                    <prop readOnly="True" type="float" name="failedCount"/>
+                    <prop readOnly="True" type="float" name="pendingCount"/>
+                    <prop readOnly="True" type="float" name="succeededCount"/>
+                  </prop>
+                  <prop readOnly="True" type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="string" name="id"/>
+                      <prop readOnly="True" type="string" name="location"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop readOnly="True" type="string" name="appliedScopeType"/>
+                        <prop type="array<string>" name="appliedScopes">
+                          <item readOnly="True" type="string"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="displayName"/>
+                        <prop readOnly="True" type="string" name="displayProvisioningState"/>
+                        <prop readOnly="True" type="string" name="effectiveDateTime"/>
+                        <prop readOnly="True" type="string" name="expiryDate"/>
+                        <prop readOnly="True" type="string" name="provisioningState"/>
+                        <prop readOnly="True" type="string" name="provisioningSubState"/>
+                        <prop readOnly="True" type="float" name="quantity"/>
+                        <prop readOnly="True" type="boolean" name="renew"/>
+                        <prop readOnly="True" type="string" name="renewSource"/>
+                        <prop readOnly="True" type="string" name="reservedResourceType"/>
+                        <prop readOnly="True" type="string" name="skuDescription"/>
+                        <prop readOnly="True" type="string" name="term"/>
+                        <prop readOnly="True" type="string" name="userFriendlyAppliedScopeType"/>
+                        <prop readOnly="True" type="string" name="userFriendlyRenewState"/>
+                        <prop readOnly="True" type="object" name="utilization">
+                          <prop type="array<object>" name="aggregates">
+                            <item type="object">
+                              <prop readOnly="True" type="float" name="grain"/>
+                              <prop readOnly="True" type="string" name="grainUnit"/>
+                              <prop readOnly="True" type="float" name="value"/>
+                              <prop readOnly="True" type="string" name="valueUnit"/>
+                            </item>
+                          </prop>
+                          <prop readOnly="True" type="string" name="trend"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="sku">
+                        <prop readOnly="True" type="string" name="name"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
