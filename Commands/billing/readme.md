@@ -11,7 +11,7 @@ Manage Azure Billing.
 : Manage enrollment account
 
 - [invoice](/Commands/billing/invoice/readme.md)
-: Manage invoice
+: Manage invoice.
 
 - [period](/Commands/billing/period/readme.md)
 : Manage billing periods for a subscription.
