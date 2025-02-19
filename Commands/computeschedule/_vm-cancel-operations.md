@@ -12,5 +12,5 @@ VirtualMachinesCancelOperations: Cancel a previously submitted (start/deallocate
 
 - VirtualMachinesCancelOperations
     ```bash
-        compute-schedule vm-cancel-operations --location eastus2euap --operation-ids "[23480d2f-1dca-4610-afb4-dd25eec1f34r]" --correlationid 23480d2f-1dca-4610-afb4-gg25eec1f34r
+        computeschedule vm-cancel-operations --location eastus2euap --operation-ids "[23480d2f-1dca-4610-afb4-dd25eec1f34r]" --correlationid 23480d2f-1dca-4610-afb4-gg25eec1f34r
     ```

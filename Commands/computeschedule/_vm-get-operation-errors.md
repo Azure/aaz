@@ -12,5 +12,5 @@ VirtualMachinesGetOperationErrors: Get error details on operation errors (like t
 
 - VirtualMachinesGetOperationErrors
     ```bash
-        compute-schedule vm-get-operation-errors --location eastus2euap --operation-ids "[23480d2f-1dca-4610-afb4-dd25eec1f34r]"
+        computeschedule vm-get-operation-errors --location eastus2euap --operation-ids "[23480d2f-1dca-4610-afb4-dd25eec1f34r]"
     ```

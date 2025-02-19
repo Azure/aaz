@@ -12,5 +12,5 @@ VirtualMachinesGetOperationStatus: Polling endpoint to read status of operations
 
 - VirtualMachinesGetOperationStatus
     ```bash
-        compute-schedule vm-get-operation-status --location eastus2euap --operation-ids "[23480d2f-1dca-4610-afb4-dd25eec1f34r]" --correlationid 35780d2f-1dca-4610-afb4-dd25eec1f34r
+        computeschedule vm-get-operation-status --location eastus2euap --operation-ids "[23480d2f-1dca-4610-afb4-dd25eec1f34r]" --correlationid 35780d2f-1dca-4610-afb4-dd25eec1f34r
     ```
