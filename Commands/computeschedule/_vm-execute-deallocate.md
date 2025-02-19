@@ -1,4 +1,4 @@
-# [Command] _compute-schedule vm-execute-deallocate_
+# [Command] _computeschedule vm-execute-deallocate_
 
 VirtualMachinesExecuteDeallocate: Execute deallocate operation for a batch of virtual machines, this operation is triggered as soon as Computeschedule receives it.
 

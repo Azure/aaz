@@ -1,4 +1,4 @@
-# [Command] _compute-schedule vm-execute-start_
+# [Command] _computeschedule vm-execute-start_
 
 VirtualMachinesExecuteStart: Execute start operation for a batch of virtual machines, this operation is triggered as soon as Computeschedule receives it.
 

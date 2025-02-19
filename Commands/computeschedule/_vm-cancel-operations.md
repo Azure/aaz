@@ -1,4 +1,4 @@
-# [Command] _compute-schedule vm-cancel-operations_
+# [Command] _computeschedule vm-cancel-operations_
 
 VirtualMachinesCancelOperations: Cancel a previously submitted (start/deallocate/hibernate) request
 

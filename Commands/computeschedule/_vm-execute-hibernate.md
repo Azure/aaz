@@ -1,4 +1,4 @@
-# [Command] _compute-schedule vm-execute-hibernate_
+# [Command] _computeschedule vm-execute-hibernate_
 
 VirtualMachinesExecuteHibernate: Execute hibernate operation for a batch of virtual machines, this operation is triggered as soon as Computeschedule receives it.
 

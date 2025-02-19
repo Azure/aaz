@@ -1,4 +1,4 @@
-# [Command] _compute-schedule vm-get-operation-errors_
+# [Command] _computeschedule vm-get-operation-errors_
 
 VirtualMachinesGetOperationErrors: Get error details on operation errors (like transient errors encountered, additional logs) if they exist.
 
