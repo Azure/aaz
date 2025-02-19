@@ -1,4 +1,4 @@
-# [Command] _compute-schedule vm-submit-deallocate_
+# [Command] _computeschedule vm-submit-deallocate_
 
 VirtualMachinesSubmitDeallocate: Schedule deallocate operation for a batch of virtual machines at datetime in future.
 

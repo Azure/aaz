@@ -1,4 +1,4 @@
-# [Command] _compute-schedule vm-submit-hibernate_
+# [Command] _computeschedule vm-submit-hibernate_
 
 VirtualMachinesSubmitHibernate: Schedule hibernate operation for a batch of virtual machines at datetime in future.
 

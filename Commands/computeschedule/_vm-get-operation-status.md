@@ -1,4 +1,4 @@
-# [Command] _compute-schedule vm-get-operation-status_
+# [Command] _computeschedule vm-get-operation-status_
 
 VirtualMachinesGetOperationStatus: Polling endpoint to read status of operations performed on virtual machines
 

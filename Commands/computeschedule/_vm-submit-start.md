@@ -1,4 +1,4 @@
-# [Command] _compute-schedule vm-submit-start_
+# [Command] _computeschedule vm-submit-start_
 
 VirtualMachinesSubmitStart: Schedule start operation for a batch of virtual machines at datetime in future.
 
