@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.compute/proximityplacementgroups" version="2024-07-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNvbXB1dGUvcHJveGltaXR5UGxhY2VtZW50R3JvdXBz/V/MjAyNC0wNy0wMQ=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/proximityplacementgroups" version="2024-07-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9wcm94aW1pdHlQbGFjZW1lbnRHcm91cHM=/V/MjAyNC0wNy0wMQ=="/>
+  <commandGroup name="ppg">
+    <command name="list" version="2024-07-01" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.compute/proximityplacementgroups" version="2024-07-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNvbXB1dGUvcHJveGltaXR5UGxhY2VtZW50R3JvdXBz/V/MjAyNC0wNy0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/proximityplacementgroups" version="2024-07-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9wcm94aW1pdHlQbGFjZW1lbnRHcm91cHM=/V/MjAyNC0wNy0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <condition var="$Condition_ProximityPlacementGroups_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <condition var="$Condition_ProximityPlacementGroups_ListBySubscription">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <operation when="$Condition_ProximityPlacementGroups_ListByResourceGroup" operationId="ProximityPlacementGroups_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/proximityPlacementGroups">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-07-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/proximityPlacementGroups/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop readOnly="True" type="array<@SubResourceWithColocationStatus_read>" name="availabilitySets">
+                          <item type="@SubResourceWithColocationStatus_read"/>
+                        </prop>
+                        <prop type="@InstanceViewStatus_read" name="colocationStatus"/>
+                        <prop type="object" name="intent">
+                          <prop type="array<string>" name="vmSizes">
+                            <item type="string"/>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="proximityPlacementGroupType">
+                          <enum>
+                            <item value="&quot;Standard&quot;"/>
+                            <item value="&quot;Ultra&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="array<@SubResourceWithColocationStatus_read>" name="virtualMachineScaleSets">
+                          <item type="@SubResourceWithColocationStatus_read"/>
+                        </prop>
+                        <prop readOnly="True" type="array<object>" name="virtualMachines">
+                          <item type="object" cls="SubResourceWithColocationStatus_read">
+                            <prop type="object" name="colocationStatus" cls="InstanceViewStatus_read">
+                              <prop type="string" name="code"/>
+                              <prop type="string" name="displayStatus"/>
+                              <prop type="string" name="level">
+                                <enum>
+                                  <item value="&quot;Error&quot;"/>
+                                  <item value="&quot;Info&quot;"/>
+                                  <item value="&quot;Warning&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="message"/>
+                              <prop type="dateTime" name="time"/>
+                            </prop>
+                            <prop type="string" name="id"/>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                      <prop type="array<string>" name="zones">
+                        <item type="string"/>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_ProximityPlacementGroups_ListBySubscription" operationId="ProximityPlacementGroups_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Compute/proximityPlacementGroups">
+          <request method="get">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-07-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/proximityPlacementGroups/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop readOnly="True" type="array<@SubResourceWithColocationStatus_read>" name="availabilitySets">
+                          <item type="@SubResourceWithColocationStatus_read"/>
+                        </prop>
+                        <prop type="@InstanceViewStatus_read" name="colocationStatus"/>
+                        <prop type="object" name="intent">
+                          <prop type="array<string>" name="vmSizes">
+                            <item type="string"/>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="proximityPlacementGroupType">
+                          <enum>
+                            <item value="&quot;Standard&quot;"/>
+                            <item value="&quot;Ultra&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="array<@SubResourceWithColocationStatus_read>" name="virtualMachineScaleSets">
+                          <item type="@SubResourceWithColocationStatus_read"/>
+                        </prop>
+                        <prop readOnly="True" type="array<@SubResourceWithColocationStatus_read>" name="virtualMachines">
+                          <item type="@SubResourceWithColocationStatus_read"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                      <prop type="array<string>" name="zones">
+                        <item type="string"/>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
