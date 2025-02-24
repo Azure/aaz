@@ -65,3 +65,15 @@ To list network interfaces attached to VMs in VM scale sets use `az vmss nic lis
     ```bash
         network nic list --query "[?dnsSettings.internalDomainNameSuffix=`{dnsSuffix}`]"
     ```
+
+### [2023-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL25ldHdvcmtpbnRlcmZhY2Vz/2023-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.network/networkinterfaces 2023-11-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networkinterfaces 2023-11-01 -->
+
+#### examples
+
+- List all NICs by internal DNS suffix.
+    ```bash
+        network nic list --query "[?dnsSettings.internalDomainNameSuffix=`{dnsSuffix}`]"
+    ```
