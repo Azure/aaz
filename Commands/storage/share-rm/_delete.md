@@ -17,3 +17,28 @@ BREAKING CHANGE: Snapshot can not be deleted by default and we have added a new 
     ```bash
         storage share-rm delete -g MyResourceGroup --storage-account mystorageaccount --name myfileshare
     ```
+
+- Delete an Azure file share 'myfileshare' under the storage account 'mystorageaccount' (account id).
+    ```bash
+        storage share-rm delete --storage-account mystorageaccount --name myfileshare
+    ```
+
+- Delete an Azure file share by resource id.
+    ```bash
+        storage share-rm delete --ids file-share-id
+    ```
+
+- Delete an Azure file share snapshot.
+    ```bash
+        storage share-rm delete --ids file-share-id --snapshot "2021-03-25T05:29:56.0000000Z"
+    ```
+
+- Delete an Azure file share and all its snapshots.
+    ```bash
+        storage share-rm delete --include snapshots -g MyResourceGroup --storage-account mystorageaccount --name myfileshare
+    ```
+
+- Delete an Azure file share and all its snapshots (leased/unleased).
+    ```bash
+        storage share-rm delete --include leased-snapshots -g MyResourceGroup --storage-account mystorageaccount --name myfileshare
+    ```

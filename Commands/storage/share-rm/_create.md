@@ -14,3 +14,20 @@ Create a new share under the specified account as described by request body. The
     ```bash
         storage share-rm create -g MyResourceGroup --storage-account mystorageaccount --name myfileshare --quota 10 --metadata key1=value1 key2=value2
     ```
+
+- Create a new Azure file share 'myfileshare' with metadata and quota as 6000 GB under the storage account 'mystorageaccount'(account name) which enables large file share in resource group 'MyResourceGroup'.
+    ```bash
+        storage account update -g MyResourceGroup --name mystorageaccount --enable-large-file-share
+        storage share-rm create -g MyResourceGroup --storage-account mystorageaccount --name myfileshare --quota 6000 --metadata key1=value1 key2=value2
+    ```
+
+- Create a new Azure file share 'myfileshare' with metadata and quota as 10 GB under the storage account 'mystorageaccount' (account id).
+    ```bash
+        storage share-rm create --storage-account mystorageaccount --name myfileshare --quota 10 --metadata key1=value1 key2=value2
+    ```
+
+- Create a new Azure file share 'myfileshare' under the storage account 'mystorageaccount' which enables provisionedv2 in resource group 'MyResourceGroup'.
+    ```bash
+        storage account create -g res3376 --name sto328 --sku StandardV2_LRS --kind FileStorage
+        storage share-rm create --storage-account sto328  -g res3376  -n share1 --provisioned-bandwidth-mibps 60 --provisioned-iops 500
+    ```

@@ -14,3 +14,13 @@ Update a new share under the specified account as described by request body. The
     ```bash
         storage share-rm update -g MyResourceGroup --storage-account mystorageaccount --name myfileshare --quota 3 --metadata key1=value1 key2=value2
     ```
+
+- Update the properties for an Azure file share 'myfileshare' under the storage account 'mystorageaccount' (account id).
+    ```bash
+        storage share-rm update --storage-account mystorageaccount --name myfileshare --quota 3 --metadata key1=value1 key2=value2
+    ```
+
+- Update the properties for an Azure file shares by resource id.
+    ```bash
+        storage share-rm update --ids file-share-id --quota 3 --metadata key1=value1 key2=value2
+    ```

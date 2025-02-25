@@ -10,7 +10,27 @@ List all shares.
 
 #### examples
 
-- ListSharesList the Azure file shares under the storage account 'mystorageaccount' (account name) in resource group 'MyResourceGroup'.
+- List the Azure file shares under the storage account 'mystorageaccount' (account name) in resource group 'MyResourceGroup'.
     ```bash
         storage share-rm list -g MyResourceGroup --storage-account mystorageaccount
+    ```
+
+- List the Azure file shares under the storage account 'mystorageaccount' (account id).
+    ```bash
+        storage share-rm list --storage-account mystorageaccount
+    ```
+
+- List all file shares include deleted under the storage account 'mystorageaccount' .
+    ```bash
+        storage share-rm list --storage-account mystorageaccount --include-deleted
+    ```
+
+- List all file shares include its all snapshots under the storage account 'mystorageaccount'
+    ```bash
+        storage share-rm list --storage-account mystorageaccount --include-snapshot
+    ```
+
+- List all file shares include its all snapshots and deleted file shares under the storage account 'mystorageaccount'
+    ```bash
+        storage share-rm list --storage-account mystorageaccount --include-deleted --include-snapshot
     ```

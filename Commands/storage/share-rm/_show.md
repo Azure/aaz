@@ -10,7 +10,22 @@ Show the properties for a specified Azure file share or share snapshot.
 
 #### examples
 
-- GetSharesShow the properties for an Azure file share 'myfileshare' under the storage account 'mystorageaccount' (account name) in resource group 'MyResourceGroup'.
+- Show the properties for an Azure file share 'myfileshare' under the storage account 'mystorageaccount' (account name) in resource group 'MyResourceGroup'.
     ```bash
         storage share-rm show -g MyResourceGroup --storage-account mystorageaccount --name myfileshare
+    ```
+
+- Show the properties for an Azure file share 'myfileshare' under the storage account 'mystorageaccount' (account id).
+    ```bash
+        storage share-rm show --storage-account mystorageaccount --name myfileshare
+    ```
+
+- Show the properties of an Azure file share by resource id.
+    ```bash
+        storage share-rm show --ids file-share-id
+    ```
+
+- Show the properties of an Azure file share snapshot
+    ```bash
+        storage share-rm show --ids file-share-id --snapshot "2021-03-25T05:29:56.0000000Z"
     ```
