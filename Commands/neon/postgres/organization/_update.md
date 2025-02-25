@@ -1,6 +1,6 @@
 # [Command] _neon postgres organization update_
 
-Update a Neon Resource
+Update a Neon organization
 
 ## Versions
 

@@ -10,6 +10,9 @@ Manage and Configure Application Gateway for Containers
 - [frontend](/Commands/network/alb/frontend/readme.md)
 : Manage and Configure Frontends for Application Gateway for Containers resource
 
+- [security-policy](/Commands/network/alb/security-policy/readme.md)
+: Manage and Configure Security Policies for Application Gateway for Containers resource
+
 ## Commands
 
 - [create](/Commands/network/alb/_create.md)
