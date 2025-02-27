@@ -1,0 +1,217 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.compute/diskencryptionsets" version="2023-04-02" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNvbXB1dGUvZGlza0VuY3J5cHRpb25TZXRz/V/MjAyMy0wNC0wMg=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/diskencryptionsets" version="2023-04-02" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9kaXNrRW5jcnlwdGlvblNldHM=/V/MjAyMy0wNC0wMg=="/>
+  <commandGroup name="disk-encryption-set">
+    <command name="list" version="2023-04-02" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.compute/diskencryptionsets" version="2023-04-02" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNvbXB1dGUvZGlza0VuY3J5cHRpb25TZXRz/V/MjAyMy0wNC0wMg=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/diskencryptionsets" version="2023-04-02" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9kaXNrRW5jcnlwdGlvblNldHM=/V/MjAyMy0wNC0wMg=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <condition var="$Condition_DiskEncryptionSets_List">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <condition var="$Condition_DiskEncryptionSets_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_DiskEncryptionSets_List" operationId="DiskEncryptionSets_List">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Compute/diskEncryptionSets">
+          <request method="get">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-04-02&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/diskEncryptionSets/{}"/>
+                      </prop>
+                      <prop type="IdentityObject" name="identity">
+                        <prop readOnly="True" type="string" name="principalId"/>
+                        <prop readOnly="True" type="string" name="tenantId"/>
+                        <prop type="string" name="type">
+                          <enum>
+                            <item value="&quot;None&quot;"/>
+                            <item value="&quot;SystemAssigned&quot;"/>
+                            <item value="&quot;SystemAssigned, UserAssigned&quot;"/>
+                            <item value="&quot;UserAssigned&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="userAssignedIdentities">
+                          <additionalProp>
+                            <item type="object">
+                              <prop readOnly="True" type="string" name="clientId"/>
+                              <prop readOnly="True" type="string" name="principalId"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="object" name="activeKey" cls="KeyForDiskEncryptionSet_read">
+                          <prop type="string" name="keyUrl" required="True"/>
+                          <prop type="object" name="sourceVault">
+                            <prop type="string" name="id"/>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="object" name="autoKeyRotationError" cls="ApiError_read">
+                          <prop type="string" name="code"/>
+                          <prop type="array<object>" name="details" identifiers="message target">
+                            <item type="object">
+                              <prop type="string" name="code"/>
+                              <prop type="string" name="message"/>
+                              <prop type="string" name="target"/>
+                            </item>
+                          </prop>
+                          <prop type="object" name="innererror">
+                            <prop type="string" name="errordetail"/>
+                            <prop type="string" name="exceptiontype"/>
+                          </prop>
+                          <prop type="string" name="message"/>
+                          <prop type="string" name="target"/>
+                        </prop>
+                        <prop type="string" name="encryptionType">
+                          <enum>
+                            <item value="&quot;ConfidentialVmEncryptedWithCustomerKey&quot;"/>
+                            <item value="&quot;EncryptionAtRestWithCustomerKey&quot;"/>
+                            <item value="&quot;EncryptionAtRestWithPlatformAndCustomerKeys&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="federatedClientId"/>
+                        <prop readOnly="True" type="dateTime" name="lastKeyRotationTimestamp"/>
+                        <prop readOnly="True" type="array<@KeyForDiskEncryptionSet_read>" name="previousKeys">
+                          <item type="@KeyForDiskEncryptionSet_read"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState"/>
+                        <prop type="boolean" name="rotationToLatestKeyVersionEnabled"/>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_DiskEncryptionSets_ListByResourceGroup" operationId="DiskEncryptionSets_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/diskEncryptionSets">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2023-04-02&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/diskEncryptionSets/{}"/>
+                      </prop>
+                      <prop type="IdentityObject" name="identity">
+                        <prop readOnly="True" type="string" name="principalId"/>
+                        <prop readOnly="True" type="string" name="tenantId"/>
+                        <prop type="string" name="type">
+                          <enum>
+                            <item value="&quot;None&quot;"/>
+                            <item value="&quot;SystemAssigned&quot;"/>
+                            <item value="&quot;SystemAssigned, UserAssigned&quot;"/>
+                            <item value="&quot;UserAssigned&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="userAssignedIdentities">
+                          <additionalProp>
+                            <item type="object">
+                              <prop readOnly="True" type="string" name="clientId"/>
+                              <prop readOnly="True" type="string" name="principalId"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="@KeyForDiskEncryptionSet_read" name="activeKey"/>
+                        <prop readOnly="True" type="@ApiError_read" name="autoKeyRotationError"/>
+                        <prop type="string" name="encryptionType">
+                          <enum>
+                            <item value="&quot;ConfidentialVmEncryptedWithCustomerKey&quot;"/>
+                            <item value="&quot;EncryptionAtRestWithCustomerKey&quot;"/>
+                            <item value="&quot;EncryptionAtRestWithPlatformAndCustomerKeys&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="federatedClientId"/>
+                        <prop readOnly="True" type="dateTime" name="lastKeyRotationTimestamp"/>
+                        <prop readOnly="True" type="array<@KeyForDiskEncryptionSet_read>" name="previousKeys">
+                          <item type="@KeyForDiskEncryptionSet_read"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState"/>
+                        <prop type="boolean" name="rotationToLatestKeyVersionEnabled"/>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

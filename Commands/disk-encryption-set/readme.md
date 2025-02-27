@@ -2,6 +2,11 @@
 
 Disk Encryption Set resource.
 
+## Subgroups
+
+- [identity](/Commands/disk-encryption-set/identity/readme.md)
+: Manage identities of a disk encryption set.
+
 ## Commands
 
 - [create](/Commands/disk-encryption-set/_create.md)
