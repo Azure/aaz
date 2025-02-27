@@ -23,4 +23,4 @@ Manage central instance
 : Stops the SAP Central Services Instance.
 
 - [update](/Commands/workloads/sap-central-instance/_update.md)
-: Update the SAP Central Services Instance resource. This can be used to update tags on the resource.
+: Update the SAP Central Services Instance resource. This will be used by service only. PUT operation on this resource by end user will return a Bad Request error.

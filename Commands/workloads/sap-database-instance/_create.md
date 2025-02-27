@@ -25,3 +25,14 @@ Create the Database resource corresponding to the Virtual Instance for SAP solut
     ```bash
         workloads sap-database-instance create -g <resource-group-name> --vis-name <vis-name> -n <db-instance-name>
     ```
+
+### [2024-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC53b3JrbG9hZHMvc2FwdmlydHVhbGluc3RhbmNlcy97fS9kYXRhYmFzZWluc3RhbmNlcy97fQ==/2024-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.workloads/sapvirtualinstances/{}/databaseinstances/{} 2024-09-01 -->
+
+#### examples
+
+- Create workloads sap database instance
+    ```bash
+        workloads sap-database-instance create -g <resource-group-name> --vis-name <vis-name> -n <db-instance-name>
+    ```
