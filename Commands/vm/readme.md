@@ -16,6 +16,9 @@ Manage Linux or Windows virtual machines.
 - [host](/Commands/vm/host/readme.md)
 : Manage Dedicated Hosts for Virtual Machines
 
+- [identity](/Commands/vm/identity/readme.md)
+: Manage service identities of a VM
+
 - [image](/Commands/vm/image/readme.md)
 : Information on available virtual machine images.
 
@@ -27,8 +30,14 @@ Manage Linux or Windows virtual machines.
 - [convert](/Commands/vm/_convert.md)
 : Convert a VM with unmanaged disks to use managed disks.
 
+- [create](/Commands/vm/_create.md)
+: Create operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
+
 - [deallocate](/Commands/vm/_deallocate.md)
 : Deallocate a VM so that computing resources are no longer allocated (charges no longer apply). The status will change from 'Stopped' to 'Stopped (Deallocated)'.
+
+- [delete](/Commands/vm/_delete.md)
+: Delete operation to delete a virtual machine.
 
 - [generalize](/Commands/vm/_generalize.md)
 : Mark a VM as generalized, allowing it to be imaged for multiple deployments.
@@ -51,8 +60,14 @@ Manage Linux or Windows virtual machines.
 - [reimage](/Commands/vm/_reimage.md)
 : Reimage (upgrade the operating system) a virtual machine.
 
+- [show](/Commands/vm/_show.md)
+: Get information about the model view or the instance view of a virtual machine.
+
 - [simulate-eviction](/Commands/vm/_simulate-eviction.md)
 : Simulate the eviction of a Spot VM.
 
 - [start](/Commands/vm/_start.md)
 : Start a stopped VM.
+
+- [update](/Commands/vm/_update.md)
+: Update operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
