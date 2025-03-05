@@ -16,9 +16,6 @@ Manage Linux or Windows virtual machines.
 - [host](/Commands/vm/host/readme.md)
 : Manage Dedicated Hosts for Virtual Machines
 
-- [identity](/Commands/vm/identity/readme.md)
-: Manage service identities of a VM
-
 - [image](/Commands/vm/image/readme.md)
 : Information on available virtual machine images.
 
