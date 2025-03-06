@@ -1,0 +1,652 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.workloads/sapvirtualinstances" version="2024-09-01" swagger="mgmt-plane/workloads/ResourceProviders/Microsoft.Workloads/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lldvcmtsb2Fkcy9zYXBWaXJ0dWFsSW5zdGFuY2Vz/V/MjAyNC0wOS0wMQ=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.workloads/sapvirtualinstances" version="2024-09-01" swagger="mgmt-plane/workloads/ResourceProviders/Microsoft.Workloads/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuV29ya2xvYWRzL3NhcFZpcnR1YWxJbnN0YW5jZXM=/V/MjAyNC0wOS0wMQ=="/>
+  <commandGroup name="workloads sap-virtual-instance">
+    <command name="list" version="2024-09-01" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.workloads/sapvirtualinstances" version="2024-09-01" swagger="mgmt-plane/workloads/ResourceProviders/Microsoft.Workloads/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lldvcmtsb2Fkcy9zYXBWaXJ0dWFsSW5zdGFuY2Vz/V/MjAyNC0wOS0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.workloads/sapvirtualinstances" version="2024-09-01" swagger="mgmt-plane/workloads/ResourceProviders/Microsoft.Workloads/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuV29ya2xvYWRzL3NhcFZpcnR1YWxJbnN0YW5jZXM=/V/MjAyNC0wOS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <condition var="$Condition_SapVirtualInstances_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <condition var="$Condition_SapVirtualInstances_ListBySubscription">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <operation when="$Condition_SapVirtualInstances_ListByResourceGroup" operationId="SapVirtualInstances_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-09-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Workloads/sapVirtualInstances/{}"/>
+                      </prop>
+                      <prop type="IdentityObject" name="identity">
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;None&quot;"/>
+                            <item value="&quot;UserAssigned&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="userAssignedIdentities">
+                          <additionalProp>
+                            <item nullable="True" type="object">
+                              <prop readOnly="True" type="uuid" name="clientId"/>
+                              <prop readOnly="True" type="uuid" name="principalId"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="object" name="configuration" required="True">
+                          <prop type="string" name="configurationType" required="True">
+                            <enum>
+                              <item value="&quot;Deployment&quot;"/>
+                              <item value="&quot;DeploymentWithOSConfig&quot;"/>
+                              <item value="&quot;Discovery&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="configurationType" value="Deployment">
+                            <prop type="string" name="appLocation"/>
+                            <prop type="object" name="infrastructureConfiguration" cls="InfrastructureConfiguration_read">
+                              <prop type="string" name="appResourceGroup" required="True"/>
+                              <prop type="string" name="deploymentType" required="True">
+                                <enum>
+                                  <item value="&quot;SingleServer&quot;"/>
+                                  <item value="&quot;ThreeTier&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="deploymentType" value="SingleServer">
+                                <prop type="object" name="customResourceNames">
+                                  <prop type="string" name="namingPatternType" required="True">
+                                    <enum>
+                                      <item value="&quot;FullResourceName&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <discriminator property="namingPatternType" value="FullResourceName">
+                                    <prop type="object" name="virtualMachine" cls="VirtualMachineResourceNames_read">
+                                      <prop type="object" name="dataDiskNames">
+                                        <additionalProp>
+                                          <item type="array<string>">
+                                            <item type="string"/>
+                                          </item>
+                                        </additionalProp>
+                                      </prop>
+                                      <prop type="string" name="hostName"/>
+                                      <prop type="array<object>" name="networkInterfaces">
+                                        <item type="object">
+                                          <prop type="string" name="networkInterfaceName"/>
+                                        </item>
+                                      </prop>
+                                      <prop type="string" name="osDiskName"/>
+                                      <prop type="string" name="vmName"/>
+                                    </prop>
+                                  </discriminator>
+                                </prop>
+                                <prop type="string" name="databaseType">
+                                  <enum>
+                                    <item value="&quot;DB2&quot;"/>
+                                    <item value="&quot;HANA&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="object" name="dbDiskConfiguration" cls="DiskConfiguration_read">
+                                  <prop type="object" name="diskVolumeConfigurations">
+                                    <additionalProp>
+                                      <item type="object">
+                                        <prop type="integer64" name="count"/>
+                                        <prop type="integer64" name="sizeGB"/>
+                                        <prop type="object" name="sku">
+                                          <prop type="string" name="name">
+                                            <enum>
+                                              <item value="&quot;PremiumV2_LRS&quot;"/>
+                                              <item value="&quot;Premium_LRS&quot;"/>
+                                              <item value="&quot;Premium_ZRS&quot;"/>
+                                              <item value="&quot;StandardSSD_LRS&quot;"/>
+                                              <item value="&quot;StandardSSD_ZRS&quot;"/>
+                                              <item value="&quot;Standard_LRS&quot;"/>
+                                              <item value="&quot;UltraSSD_LRS&quot;"/>
+                                            </enum>
+                                          </prop>
+                                        </prop>
+                                      </item>
+                                    </additionalProp>
+                                  </prop>
+                                </prop>
+                                <prop type="object" name="networkConfiguration" cls="NetworkConfiguration_read">
+                                  <prop type="boolean" name="isSecondaryIpEnabled">
+                                    <default value="false"/>
+                                  </prop>
+                                </prop>
+                                <prop type="string" name="subnetId" required="True"/>
+                                <prop type="object" name="virtualMachineConfiguration" required="True" cls="VirtualMachineConfiguration_read">
+                                  <prop type="object" name="imageReference" required="True">
+                                    <prop type="ResourceId" name="id"/>
+                                    <prop type="string" name="offer"/>
+                                    <prop type="string" name="publisher"/>
+                                    <prop type="string" name="sku"/>
+                                    <prop type="string" name="version"/>
+                                  </prop>
+                                  <prop type="object" name="osProfile" required="True">
+                                    <prop type="password" name="adminPassword" secret="True"/>
+                                    <prop type="string" name="adminUsername"/>
+                                    <prop type="object" name="osConfiguration">
+                                      <prop type="string" name="osType" required="True">
+                                        <enum>
+                                          <item value="&quot;Linux&quot;"/>
+                                          <item value="&quot;Windows&quot;"/>
+                                        </enum>
+                                      </prop>
+                                      <discriminator property="osType" value="Linux">
+                                        <prop type="boolean" name="disablePasswordAuthentication"/>
+                                        <prop type="object" name="ssh">
+                                          <prop type="array<object>" name="publicKeys">
+                                            <item type="object">
+                                              <prop type="string" name="keyData"/>
+                                            </item>
+                                          </prop>
+                                        </prop>
+                                        <prop type="object" name="sshKeyPair">
+                                          <prop type="password" name="privateKey" secret="True"/>
+                                          <prop type="string" name="publicKey"/>
+                                        </prop>
+                                      </discriminator>
+                                      <discriminator property="osType" value="Windows"/>
+                                    </prop>
+                                  </prop>
+                                  <prop type="string" name="vmSize" required="True"/>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="deploymentType" value="ThreeTier">
+                                <prop type="object" name="applicationServer" required="True">
+                                  <prop type="integer64" name="instanceCount" required="True"/>
+                                  <prop type="string" name="subnetId" required="True"/>
+                                  <prop type="@VirtualMachineConfiguration_read" name="virtualMachineConfiguration" required="True"/>
+                                </prop>
+                                <prop type="object" name="centralServer" required="True">
+                                  <prop type="integer64" name="instanceCount" required="True"/>
+                                  <prop type="string" name="subnetId" required="True"/>
+                                  <prop type="@VirtualMachineConfiguration_read" name="virtualMachineConfiguration" required="True"/>
+                                </prop>
+                                <prop type="object" name="customResourceNames">
+                                  <prop type="string" name="namingPatternType" required="True">
+                                    <enum>
+                                      <item value="&quot;FullResourceName&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <discriminator property="namingPatternType" value="FullResourceName">
+                                    <prop type="object" name="applicationServer">
+                                      <prop type="string" name="availabilitySetName"/>
+                                      <prop type="array<@VirtualMachineResourceNames_read>" name="virtualMachines">
+                                        <item type="@VirtualMachineResourceNames_read"/>
+                                      </prop>
+                                    </prop>
+                                    <prop type="object" name="centralServer">
+                                      <prop type="string" name="availabilitySetName"/>
+                                      <prop type="object" name="loadBalancer" cls="LoadBalancerResourceNames_read">
+                                        <prop type="array<string>" name="backendPoolNames">
+                                          <item type="string"/>
+                                        </prop>
+                                        <prop type="array<string>" name="frontendIpConfigurationNames">
+                                          <item type="string"/>
+                                        </prop>
+                                        <prop type="array<string>" name="healthProbeNames">
+                                          <item type="string"/>
+                                        </prop>
+                                        <prop type="string" name="loadBalancerName"/>
+                                      </prop>
+                                      <prop type="array<@VirtualMachineResourceNames_read>" name="virtualMachines">
+                                        <item type="@VirtualMachineResourceNames_read"/>
+                                      </prop>
+                                    </prop>
+                                    <prop type="object" name="databaseServer">
+                                      <prop type="string" name="availabilitySetName"/>
+                                      <prop type="@LoadBalancerResourceNames_read" name="loadBalancer"/>
+                                      <prop type="array<@VirtualMachineResourceNames_read>" name="virtualMachines">
+                                        <item type="@VirtualMachineResourceNames_read"/>
+                                      </prop>
+                                    </prop>
+                                    <prop type="object" name="sharedStorage">
+                                      <prop type="string" name="sharedStorageAccountName"/>
+                                      <prop type="string" name="sharedStorageAccountPrivateEndPointName"/>
+                                    </prop>
+                                  </discriminator>
+                                </prop>
+                                <prop type="object" name="databaseServer" required="True">
+                                  <prop type="string" name="databaseType">
+                                    <enum>
+                                      <item value="&quot;DB2&quot;"/>
+                                      <item value="&quot;HANA&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="@DiskConfiguration_read" name="diskConfiguration"/>
+                                  <prop type="integer64" name="instanceCount" required="True"/>
+                                  <prop type="string" name="subnetId" required="True"/>
+                                  <prop type="@VirtualMachineConfiguration_read" name="virtualMachineConfiguration" required="True"/>
+                                </prop>
+                                <prop type="object" name="highAvailabilityConfig">
+                                  <prop type="string" name="highAvailabilityType" required="True">
+                                    <enum>
+                                      <item value="&quot;AvailabilitySet&quot;"/>
+                                      <item value="&quot;AvailabilityZone&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                                <prop type="@NetworkConfiguration_read" name="networkConfiguration"/>
+                                <prop type="object" name="storageConfiguration">
+                                  <prop type="object" name="transportFileShareConfiguration">
+                                    <prop type="string" name="configurationType" required="True">
+                                      <enum>
+                                        <item value="&quot;CreateAndMount&quot;"/>
+                                        <item value="&quot;Mount&quot;"/>
+                                        <item value="&quot;Skip&quot;"/>
+                                      </enum>
+                                    </prop>
+                                    <discriminator property="configurationType" value="CreateAndMount">
+                                      <prop type="string" name="resourceGroup"/>
+                                      <prop type="string" name="storageAccountName"/>
+                                    </discriminator>
+                                    <discriminator property="configurationType" value="Mount">
+                                      <prop type="string" name="id" required="True"/>
+                                      <prop type="string" name="privateEndpointId" required="True"/>
+                                    </discriminator>
+                                    <discriminator property="configurationType" value="Skip"/>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                            </prop>
+                            <prop type="object" name="softwareConfiguration" cls="SoftwareConfiguration_read">
+                              <prop type="string" name="softwareInstallationType" required="True">
+                                <enum>
+                                  <item value="&quot;External&quot;"/>
+                                  <item value="&quot;SAPInstallWithoutOSConfig&quot;"/>
+                                  <item value="&quot;ServiceInitiated&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="softwareInstallationType" value="External">
+                                <prop type="string" name="centralServerVmId"/>
+                              </discriminator>
+                              <discriminator property="softwareInstallationType" value="SAPInstallWithoutOSConfig">
+                                <prop type="string" name="bomUrl" required="True"/>
+                                <prop type="object" name="highAvailabilitySoftwareConfiguration" cls="HighAvailabilitySoftwareConfiguration_read">
+                                  <prop type="string" name="fencingClientId" required="True"/>
+                                  <prop type="password" name="fencingClientPassword" required="True" secret="True"/>
+                                </prop>
+                                <prop type="string" name="sapBitsStorageAccountId" required="True"/>
+                                <prop type="string" name="softwareVersion" required="True"/>
+                              </discriminator>
+                              <discriminator property="softwareInstallationType" value="ServiceInitiated">
+                                <prop type="string" name="bomUrl" required="True"/>
+                                <prop type="@HighAvailabilitySoftwareConfiguration_read" name="highAvailabilitySoftwareConfiguration"/>
+                                <prop type="string" name="sapBitsStorageAccountId" required="True"/>
+                                <prop type="string" name="sapFqdn" required="True"/>
+                                <prop type="string" name="softwareVersion" required="True"/>
+                                <prop type="password" name="sshPrivateKey" required="True" secret="True"/>
+                              </discriminator>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="configurationType" value="DeploymentWithOSConfig">
+                            <prop type="string" name="appLocation"/>
+                            <prop type="@InfrastructureConfiguration_read" name="infrastructureConfiguration"/>
+                            <prop type="object" name="osSapConfiguration">
+                              <prop type="object" name="deployerVmPackages">
+                                <prop type="string" name="storageAccountId"/>
+                                <prop type="string" name="url"/>
+                              </prop>
+                              <prop type="string" name="sapFqdn"/>
+                            </prop>
+                            <prop type="@SoftwareConfiguration_read" name="softwareConfiguration"/>
+                          </discriminator>
+                          <discriminator property="configurationType" value="Discovery">
+                            <prop readOnly="True" type="string" name="appLocation"/>
+                            <prop type="string" name="centralServerVmId"/>
+                            <prop type="string" name="managedRgStorageAccountName">
+                              <format maxLength="24" minLength="3"/>
+                            </prop>
+                          </discriminator>
+                        </prop>
+                        <prop type="string" name="environment" required="True">
+                          <enum>
+                            <item value="&quot;NonProd&quot;"/>
+                            <item value="&quot;Prod&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="object" name="errors">
+                          <prop type="object" name="properties" cls="ErrorDefinition_read">
+                            <prop readOnly="True" type="string" name="code"/>
+                            <prop readOnly="True" type="array<@ErrorDefinition_read>" name="details">
+                              <item type="@ErrorDefinition_read"/>
+                            </prop>
+                            <prop readOnly="True" type="string" name="message"/>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="string" name="health">
+                          <enum>
+                            <item value="&quot;Degraded&quot;"/>
+                            <item value="&quot;Healthy&quot;"/>
+                            <item value="&quot;Unhealthy&quot;"/>
+                            <item value="&quot;Unknown&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="managedResourceGroupConfiguration">
+                          <prop type="string" name="name"/>
+                        </prop>
+                        <prop type="string" name="managedResourcesNetworkAccessType">
+                          <enum>
+                            <item value="&quot;Private&quot;"/>
+                            <item value="&quot;Public&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Creating&quot;"/>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="sapProduct" required="True">
+                          <enum>
+                            <item value="&quot;ECC&quot;"/>
+                            <item value="&quot;Other&quot;"/>
+                            <item value="&quot;S4HANA&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="state">
+                          <enum>
+                            <item value="&quot;ACSSInstallationBlocked&quot;"/>
+                            <item value="&quot;DiscoveryFailed&quot;"/>
+                            <item value="&quot;DiscoveryInProgress&quot;"/>
+                            <item value="&quot;DiscoveryPending&quot;"/>
+                            <item value="&quot;InfrastructureDeploymentFailed&quot;"/>
+                            <item value="&quot;InfrastructureDeploymentInProgress&quot;"/>
+                            <item value="&quot;InfrastructureDeploymentPending&quot;"/>
+                            <item value="&quot;RegistrationComplete&quot;"/>
+                            <item value="&quot;SoftwareDetectionFailed&quot;"/>
+                            <item value="&quot;SoftwareDetectionInProgress&quot;"/>
+                            <item value="&quot;SoftwareInstallationFailed&quot;"/>
+                            <item value="&quot;SoftwareInstallationInProgress&quot;"/>
+                            <item value="&quot;SoftwareInstallationPending&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="status">
+                          <enum>
+                            <item value="&quot;Offline&quot;"/>
+                            <item value="&quot;PartiallyRunning&quot;"/>
+                            <item value="&quot;Running&quot;"/>
+                            <item value="&quot;SoftShutdown&quot;"/>
+                            <item value="&quot;Starting&quot;"/>
+                            <item value="&quot;Stopping&quot;"/>
+                            <item value="&quot;Unavailable&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_SapVirtualInstances_ListBySubscription" operationId="SapVirtualInstances_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Workloads/sapVirtualInstances">
+          <request method="get">
+            <path>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-09-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Workloads/sapVirtualInstances/{}"/>
+                      </prop>
+                      <prop type="IdentityObject" name="identity">
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;None&quot;"/>
+                            <item value="&quot;UserAssigned&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="userAssignedIdentities">
+                          <additionalProp>
+                            <item nullable="True" type="object">
+                              <prop readOnly="True" type="uuid" name="clientId"/>
+                              <prop readOnly="True" type="uuid" name="principalId"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="object" name="configuration" required="True">
+                          <prop type="string" name="configurationType" required="True">
+                            <enum>
+                              <item value="&quot;Deployment&quot;"/>
+                              <item value="&quot;DeploymentWithOSConfig&quot;"/>
+                              <item value="&quot;Discovery&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="configurationType" value="Deployment">
+                            <prop type="string" name="appLocation"/>
+                            <prop type="@InfrastructureConfiguration_read" name="infrastructureConfiguration"/>
+                            <prop type="@SoftwareConfiguration_read" name="softwareConfiguration"/>
+                          </discriminator>
+                          <discriminator property="configurationType" value="DeploymentWithOSConfig">
+                            <prop type="string" name="appLocation"/>
+                            <prop type="@InfrastructureConfiguration_read" name="infrastructureConfiguration"/>
+                            <prop type="object" name="osSapConfiguration">
+                              <prop type="object" name="deployerVmPackages">
+                                <prop type="string" name="storageAccountId"/>
+                                <prop type="string" name="url"/>
+                              </prop>
+                              <prop type="string" name="sapFqdn"/>
+                            </prop>
+                            <prop type="@SoftwareConfiguration_read" name="softwareConfiguration"/>
+                          </discriminator>
+                          <discriminator property="configurationType" value="Discovery">
+                            <prop readOnly="True" type="string" name="appLocation"/>
+                            <prop type="string" name="centralServerVmId"/>
+                            <prop type="string" name="managedRgStorageAccountName">
+                              <format maxLength="24" minLength="3"/>
+                            </prop>
+                          </discriminator>
+                        </prop>
+                        <prop type="string" name="environment" required="True">
+                          <enum>
+                            <item value="&quot;NonProd&quot;"/>
+                            <item value="&quot;Prod&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="object" name="errors">
+                          <prop type="@ErrorDefinition_read" name="properties"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="health">
+                          <enum>
+                            <item value="&quot;Degraded&quot;"/>
+                            <item value="&quot;Healthy&quot;"/>
+                            <item value="&quot;Unhealthy&quot;"/>
+                            <item value="&quot;Unknown&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="managedResourceGroupConfiguration">
+                          <prop type="string" name="name"/>
+                        </prop>
+                        <prop type="string" name="managedResourcesNetworkAccessType">
+                          <enum>
+                            <item value="&quot;Private&quot;"/>
+                            <item value="&quot;Public&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Creating&quot;"/>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="sapProduct" required="True">
+                          <enum>
+                            <item value="&quot;ECC&quot;"/>
+                            <item value="&quot;Other&quot;"/>
+                            <item value="&quot;S4HANA&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="state">
+                          <enum>
+                            <item value="&quot;ACSSInstallationBlocked&quot;"/>
+                            <item value="&quot;DiscoveryFailed&quot;"/>
+                            <item value="&quot;DiscoveryInProgress&quot;"/>
+                            <item value="&quot;DiscoveryPending&quot;"/>
+                            <item value="&quot;InfrastructureDeploymentFailed&quot;"/>
+                            <item value="&quot;InfrastructureDeploymentInProgress&quot;"/>
+                            <item value="&quot;InfrastructureDeploymentPending&quot;"/>
+                            <item value="&quot;RegistrationComplete&quot;"/>
+                            <item value="&quot;SoftwareDetectionFailed&quot;"/>
+                            <item value="&quot;SoftwareDetectionInProgress&quot;"/>
+                            <item value="&quot;SoftwareInstallationFailed&quot;"/>
+                            <item value="&quot;SoftwareInstallationInProgress&quot;"/>
+                            <item value="&quot;SoftwareInstallationPending&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="status">
+                          <enum>
+                            <item value="&quot;Offline&quot;"/>
+                            <item value="&quot;PartiallyRunning&quot;"/>
+                            <item value="&quot;Running&quot;"/>
+                            <item value="&quot;SoftShutdown&quot;"/>
+                            <item value="&quot;Starting&quot;"/>
+                            <item value="&quot;Stopping&quot;"/>
+                            <item value="&quot;Unavailable&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
