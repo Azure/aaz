@@ -113,3 +113,14 @@ Delete the provided virtual machine.
     ```bash
         networkcloud virtualmachine delete --resource-group "resourceGroupName" --name "virtualMachineName"
     ```
+
+### [2025-02-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvdmlydHVhbG1hY2hpbmVzL3t9/2025-02-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/virtualmachines/{} 2025-02-01 -->
+
+#### examples
+
+- Delete virtual machine
+    ```bash
+        networkcloud virtualmachine delete --resource-group "resourceGroupName" --name "virtualMachineName"
+    ```
