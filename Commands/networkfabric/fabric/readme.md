@@ -4,10 +4,19 @@ Manage Network Fabric Resource
 
 ## Subgroups
 
+- [identity](/Commands/networkfabric/fabric/identity/readme.md)
+: Manage Network Fabric Identity Resource
+
 - [network-to-network](/Commands/networkfabric/fabric/network-to-network/readme.md)
 : TBD
 
 ## Commands
+
+- [arm-configuration-diff](/Commands/networkfabric/fabric/_arm-configuration-diff.md)
+: Post action: Triggers diff of NetworkFabric ARM Configuration.
+
+- [commit-batch-status](/Commands/networkfabric/fabric/_commit-batch-status.md)
+: Post action: Returns a status of commit batch operation.
 
 - [commit-configuration](/Commands/networkfabric/fabric/_commit-configuration.md)
 : Atomic update of the given Network Fabric instance. Sync update of NFA resources at Fabric level.
@@ -21,11 +30,17 @@ Manage Network Fabric Resource
 - [deprovision](/Commands/networkfabric/fabric/_deprovision.md)
 : Deprovisions the underlying resources in the given Network Fabric instance.
 
+- [discard-commit-batch](/Commands/networkfabric/fabric/_discard-commit-batch.md)
+: Post action: Discards a Batch operation in progress.
+
 - [get-topology](/Commands/networkfabric/fabric/_get-topology.md)
 : Gets Topology of the underlying resources in the given Network Fabric instance.
 
 - [list](/Commands/networkfabric/fabric/_list.md)
 : List all Network Fabrics in the provided resource group or subscription
+
+- [lock-fabric](/Commands/networkfabric/fabric/_lock-fabric.md)
+: Post action: Triggers network fabric lock operation.
 
 - [provision](/Commands/networkfabric/fabric/_provision.md)
 : Provisions the underlying resources in the given Network Fabric instance.
@@ -50,3 +65,6 @@ Manage Network Fabric Resource
 
 - [validate-configuration](/Commands/networkfabric/fabric/_validate-configuration.md)
 : Validates the configuration of the underlying resources in the given Network Fabric instance.
+
+- [view-device-configuration](/Commands/networkfabric/fabric/_view-device-configuration.md)
+: Post action: Triggers view of network fabric configuration.

@@ -21,3 +21,6 @@ Manage External Network Resource
 
 - [update-admin-state](/Commands/networkfabric/externalnetwork/_update-admin-state.md)
 : Update the admin state of the provided External Network resource.
+
+- [update-bfd-administrative-state](/Commands/networkfabric/externalnetwork/_update-bfd-administrative-state.md)
+: BFD administrative state for either static or bgp for internalNetwork.
