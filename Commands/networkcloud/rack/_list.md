@@ -173,3 +173,20 @@ List racks in the provided resource group or subscription.
     ```bash
         networkcloud rack list --resource-group "resourceGroupName"
     ```
+
+### [2025-02-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvcmFja3M=/2025-02-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.networkcloud/racks 2025-02-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/racks 2025-02-01 -->
+
+#### examples
+
+- List racks for subscription
+    ```bash
+        networkcloud rack list
+    ```
+
+- List racks for resource group
+    ```bash
+        networkcloud rack list --resource-group "resourceGroupName"
+    ```
