@@ -12,5 +12,5 @@ Retrieve the boot diagnostic logs for a VM instance belonging to the specified N
 
 - Get boot diagnostic logs
     ```bash
-        network virtual-appliance get-boot-diagnostic-log --resource-group rg --network-virtual-appliance-name name
+        network virtual-appliance get-boot-diagnostic-log --resource-group rg --network-virtual-appliance-name name --scs-sas-url serialconsole-sas-url --css-sas-url consoleScreenshot-sas-url
     ```
