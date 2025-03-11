@@ -98,6 +98,9 @@
 - [consumption](/Commands/consumption/readme.md)
 : Manage consumption of Azure resources.
 
+- [container-registry](/Commands/container-registry/readme.md)
+: container-registry
+
 - [cosmosdb](/Commands/cosmosdb/readme.md)
 : Manage Azure Cosmos DB database accounts.
 
