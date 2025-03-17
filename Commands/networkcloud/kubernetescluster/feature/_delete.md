@@ -62,3 +62,14 @@ Delete the provided Kubernetes cluster feature.
     ```bash
         networkcloud kubernetescluster feature delete --name "featureName" --kubernetes-cluster-name "kubernetesClusterName" --resource-group "resourceGroupName"
     ```
+
+### [2025-02-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQva3ViZXJuZXRlc2NsdXN0ZXJzL3t9L2ZlYXR1cmVzL3t9/2025-02-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/kubernetesclusters/{}/features/{} 2025-02-01 -->
+
+#### examples
+
+- Delete Kubernetes cluster feature
+    ```bash
+        networkcloud kubernetescluster feature delete --name "featureName" --kubernetes-cluster-name "kubernetesClusterName" --resource-group "resourceGroupName"
+    ```

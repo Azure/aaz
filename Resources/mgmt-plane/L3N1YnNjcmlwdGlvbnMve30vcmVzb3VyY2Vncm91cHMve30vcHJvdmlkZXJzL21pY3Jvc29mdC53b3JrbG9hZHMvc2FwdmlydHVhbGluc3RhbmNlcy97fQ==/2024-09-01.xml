@@ -1,0 +1,2227 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.workloads/sapvirtualinstances/{}" version="2024-09-01" swagger="mgmt-plane/workloads/ResourceProviders/Microsoft.Workloads/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuV29ya2xvYWRzL3NhcFZpcnR1YWxJbnN0YW5jZXMve3NhcFZpcnR1YWxJbnN0YW5jZU5hbWV9/V/MjAyNC0wOS0wMQ=="/>
+  <commandGroup name="workloads sap-virtual-instance">
+    <command name="show" version="2024-09-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.workloads/sapvirtualinstances/{}" version="2024-09-01" swagger="mgmt-plane/workloads/ResourceProviders/Microsoft.Workloads/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuV29ya2xvYWRzL3NhcFZpcnR1YWxJbnN0YW5jZXMve3NhcFZpcnR1YWxJbnN0YW5jZU5hbWV9/V/MjAyNC0wOS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.sapVirtualInstanceName" options="sap-virtual-instance-name name n" required="True" idPart="name">
+          <help short="The name of the Virtual Instances for SAP solutions resource"/>
+          <format pattern="^[a-zA-Z][a-zA-Z0-9]{2}$"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="SapVirtualInstances_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="sapVirtualInstanceName" arg="$Path.sapVirtualInstanceName" required="True">
+                <format pattern="^[a-zA-Z][a-zA-Z0-9]{2}$"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-09-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Workloads/sapVirtualInstances/{}"/>
+                  </prop>
+                  <prop type="IdentityObject" name="identity">
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;None&quot;"/>
+                        <item value="&quot;UserAssigned&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="userAssignedIdentities">
+                      <additionalProp>
+                        <item nullable="True" type="object">
+                          <prop readOnly="True" type="uuid" name="clientId"/>
+                          <prop readOnly="True" type="uuid" name="principalId"/>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="object" name="configuration" required="True">
+                      <prop type="string" name="configurationType" required="True">
+                        <enum>
+                          <item value="&quot;Deployment&quot;"/>
+                          <item value="&quot;DeploymentWithOSConfig&quot;"/>
+                          <item value="&quot;Discovery&quot;"/>
+                        </enum>
+                      </prop>
+                      <discriminator property="configurationType" value="Deployment">
+                        <prop type="string" name="appLocation"/>
+                        <prop type="object" name="infrastructureConfiguration" cls="InfrastructureConfiguration_read">
+                          <prop type="string" name="appResourceGroup" required="True"/>
+                          <prop type="string" name="deploymentType" required="True">
+                            <enum>
+                              <item value="&quot;SingleServer&quot;"/>
+                              <item value="&quot;ThreeTier&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="deploymentType" value="SingleServer">
+                            <prop type="object" name="customResourceNames">
+                              <prop type="string" name="namingPatternType" required="True">
+                                <enum>
+                                  <item value="&quot;FullResourceName&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="namingPatternType" value="FullResourceName">
+                                <prop type="object" name="virtualMachine" cls="VirtualMachineResourceNames_read">
+                                  <prop type="object" name="dataDiskNames">
+                                    <additionalProp>
+                                      <item type="array<string>">
+                                        <item type="string"/>
+                                      </item>
+                                    </additionalProp>
+                                  </prop>
+                                  <prop type="string" name="hostName"/>
+                                  <prop type="array<object>" name="networkInterfaces">
+                                    <item type="object">
+                                      <prop type="string" name="networkInterfaceName"/>
+                                    </item>
+                                  </prop>
+                                  <prop type="string" name="osDiskName"/>
+                                  <prop type="string" name="vmName"/>
+                                </prop>
+                              </discriminator>
+                            </prop>
+                            <prop type="string" name="databaseType">
+                              <enum>
+                                <item value="&quot;DB2&quot;"/>
+                                <item value="&quot;HANA&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="object" name="dbDiskConfiguration" cls="DiskConfiguration_read">
+                              <prop type="object" name="diskVolumeConfigurations">
+                                <additionalProp>
+                                  <item type="object">
+                                    <prop type="integer64" name="count"/>
+                                    <prop type="integer64" name="sizeGB"/>
+                                    <prop type="object" name="sku">
+                                      <prop type="string" name="name">
+                                        <enum>
+                                          <item value="&quot;PremiumV2_LRS&quot;"/>
+                                          <item value="&quot;Premium_LRS&quot;"/>
+                                          <item value="&quot;Premium_ZRS&quot;"/>
+                                          <item value="&quot;StandardSSD_LRS&quot;"/>
+                                          <item value="&quot;StandardSSD_ZRS&quot;"/>
+                                          <item value="&quot;Standard_LRS&quot;"/>
+                                          <item value="&quot;UltraSSD_LRS&quot;"/>
+                                        </enum>
+                                      </prop>
+                                    </prop>
+                                  </item>
+                                </additionalProp>
+                              </prop>
+                            </prop>
+                            <prop type="object" name="networkConfiguration" cls="NetworkConfiguration_read">
+                              <prop type="boolean" name="isSecondaryIpEnabled">
+                                <default value="false"/>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="subnetId" required="True"/>
+                            <prop type="object" name="virtualMachineConfiguration" required="True" cls="VirtualMachineConfiguration_read">
+                              <prop type="object" name="imageReference" required="True">
+                                <prop type="ResourceId" name="id"/>
+                                <prop type="string" name="offer"/>
+                                <prop type="string" name="publisher"/>
+                                <prop type="string" name="sku"/>
+                                <prop type="string" name="version"/>
+                              </prop>
+                              <prop type="object" name="osProfile" required="True">
+                                <prop type="password" name="adminPassword" secret="True"/>
+                                <prop type="string" name="adminUsername"/>
+                                <prop type="object" name="osConfiguration">
+                                  <prop type="string" name="osType" required="True">
+                                    <enum>
+                                      <item value="&quot;Linux&quot;"/>
+                                      <item value="&quot;Windows&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <discriminator property="osType" value="Linux">
+                                    <prop type="boolean" name="disablePasswordAuthentication"/>
+                                    <prop type="object" name="ssh">
+                                      <prop type="array<object>" name="publicKeys">
+                                        <item type="object">
+                                          <prop type="string" name="keyData"/>
+                                        </item>
+                                      </prop>
+                                    </prop>
+                                    <prop type="object" name="sshKeyPair">
+                                      <prop type="password" name="privateKey" secret="True"/>
+                                      <prop type="string" name="publicKey"/>
+                                    </prop>
+                                  </discriminator>
+                                  <discriminator property="osType" value="Windows"/>
+                                </prop>
+                              </prop>
+                              <prop type="string" name="vmSize" required="True"/>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="deploymentType" value="ThreeTier">
+                            <prop type="object" name="applicationServer" required="True">
+                              <prop type="integer64" name="instanceCount" required="True"/>
+                              <prop type="string" name="subnetId" required="True"/>
+                              <prop type="@VirtualMachineConfiguration_read" name="virtualMachineConfiguration" required="True"/>
+                            </prop>
+                            <prop type="object" name="centralServer" required="True">
+                              <prop type="integer64" name="instanceCount" required="True"/>
+                              <prop type="string" name="subnetId" required="True"/>
+                              <prop type="@VirtualMachineConfiguration_read" name="virtualMachineConfiguration" required="True"/>
+                            </prop>
+                            <prop type="object" name="customResourceNames">
+                              <prop type="string" name="namingPatternType" required="True">
+                                <enum>
+                                  <item value="&quot;FullResourceName&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="namingPatternType" value="FullResourceName">
+                                <prop type="object" name="applicationServer">
+                                  <prop type="string" name="availabilitySetName"/>
+                                  <prop type="array<@VirtualMachineResourceNames_read>" name="virtualMachines">
+                                    <item type="@VirtualMachineResourceNames_read"/>
+                                  </prop>
+                                </prop>
+                                <prop type="object" name="centralServer">
+                                  <prop type="string" name="availabilitySetName"/>
+                                  <prop type="object" name="loadBalancer" cls="LoadBalancerResourceNames_read">
+                                    <prop type="array<string>" name="backendPoolNames">
+                                      <item type="string"/>
+                                    </prop>
+                                    <prop type="array<string>" name="frontendIpConfigurationNames">
+                                      <item type="string"/>
+                                    </prop>
+                                    <prop type="array<string>" name="healthProbeNames">
+                                      <item type="string"/>
+                                    </prop>
+                                    <prop type="string" name="loadBalancerName"/>
+                                  </prop>
+                                  <prop type="array<@VirtualMachineResourceNames_read>" name="virtualMachines">
+                                    <item type="@VirtualMachineResourceNames_read"/>
+                                  </prop>
+                                </prop>
+                                <prop type="object" name="databaseServer">
+                                  <prop type="string" name="availabilitySetName"/>
+                                  <prop type="@LoadBalancerResourceNames_read" name="loadBalancer"/>
+                                  <prop type="array<@VirtualMachineResourceNames_read>" name="virtualMachines">
+                                    <item type="@VirtualMachineResourceNames_read"/>
+                                  </prop>
+                                </prop>
+                                <prop type="object" name="sharedStorage">
+                                  <prop type="string" name="sharedStorageAccountName"/>
+                                  <prop type="string" name="sharedStorageAccountPrivateEndPointName"/>
+                                </prop>
+                              </discriminator>
+                            </prop>
+                            <prop type="object" name="databaseServer" required="True">
+                              <prop type="string" name="databaseType">
+                                <enum>
+                                  <item value="&quot;DB2&quot;"/>
+                                  <item value="&quot;HANA&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="@DiskConfiguration_read" name="diskConfiguration"/>
+                              <prop type="integer64" name="instanceCount" required="True"/>
+                              <prop type="string" name="subnetId" required="True"/>
+                              <prop type="@VirtualMachineConfiguration_read" name="virtualMachineConfiguration" required="True"/>
+                            </prop>
+                            <prop type="object" name="highAvailabilityConfig">
+                              <prop type="string" name="highAvailabilityType" required="True">
+                                <enum>
+                                  <item value="&quot;AvailabilitySet&quot;"/>
+                                  <item value="&quot;AvailabilityZone&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="@NetworkConfiguration_read" name="networkConfiguration"/>
+                            <prop type="object" name="storageConfiguration">
+                              <prop type="object" name="transportFileShareConfiguration">
+                                <prop type="string" name="configurationType" required="True">
+                                  <enum>
+                                    <item value="&quot;CreateAndMount&quot;"/>
+                                    <item value="&quot;Mount&quot;"/>
+                                    <item value="&quot;Skip&quot;"/>
+                                  </enum>
+                                </prop>
+                                <discriminator property="configurationType" value="CreateAndMount">
+                                  <prop type="string" name="resourceGroup"/>
+                                  <prop type="string" name="storageAccountName"/>
+                                </discriminator>
+                                <discriminator property="configurationType" value="Mount">
+                                  <prop type="string" name="id" required="True"/>
+                                  <prop type="string" name="privateEndpointId" required="True"/>
+                                </discriminator>
+                                <discriminator property="configurationType" value="Skip"/>
+                              </prop>
+                            </prop>
+                          </discriminator>
+                        </prop>
+                        <prop type="object" name="softwareConfiguration" cls="SoftwareConfiguration_read">
+                          <prop type="string" name="softwareInstallationType" required="True">
+                            <enum>
+                              <item value="&quot;External&quot;"/>
+                              <item value="&quot;SAPInstallWithoutOSConfig&quot;"/>
+                              <item value="&quot;ServiceInitiated&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="softwareInstallationType" value="External">
+                            <prop type="string" name="centralServerVmId"/>
+                          </discriminator>
+                          <discriminator property="softwareInstallationType" value="SAPInstallWithoutOSConfig">
+                            <prop type="string" name="bomUrl" required="True"/>
+                            <prop type="object" name="highAvailabilitySoftwareConfiguration" cls="HighAvailabilitySoftwareConfiguration_read">
+                              <prop type="string" name="fencingClientId" required="True"/>
+                              <prop type="password" name="fencingClientPassword" required="True" secret="True"/>
+                            </prop>
+                            <prop type="string" name="sapBitsStorageAccountId" required="True"/>
+                            <prop type="string" name="softwareVersion" required="True"/>
+                          </discriminator>
+                          <discriminator property="softwareInstallationType" value="ServiceInitiated">
+                            <prop type="string" name="bomUrl" required="True"/>
+                            <prop type="@HighAvailabilitySoftwareConfiguration_read" name="highAvailabilitySoftwareConfiguration"/>
+                            <prop type="string" name="sapBitsStorageAccountId" required="True"/>
+                            <prop type="string" name="sapFqdn" required="True"/>
+                            <prop type="string" name="softwareVersion" required="True"/>
+                            <prop type="password" name="sshPrivateKey" required="True" secret="True"/>
+                          </discriminator>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="configurationType" value="DeploymentWithOSConfig">
+                        <prop type="string" name="appLocation"/>
+                        <prop type="@InfrastructureConfiguration_read" name="infrastructureConfiguration"/>
+                        <prop type="object" name="osSapConfiguration">
+                          <prop type="object" name="deployerVmPackages">
+                            <prop type="string" name="storageAccountId"/>
+                            <prop type="string" name="url"/>
+                          </prop>
+                          <prop type="string" name="sapFqdn"/>
+                        </prop>
+                        <prop type="@SoftwareConfiguration_read" name="softwareConfiguration"/>
+                      </discriminator>
+                      <discriminator property="configurationType" value="Discovery">
+                        <prop readOnly="True" type="string" name="appLocation"/>
+                        <prop type="string" name="centralServerVmId"/>
+                        <prop type="string" name="managedRgStorageAccountName">
+                          <format maxLength="24" minLength="3"/>
+                        </prop>
+                      </discriminator>
+                    </prop>
+                    <prop type="string" name="environment" required="True">
+                      <enum>
+                        <item value="&quot;NonProd&quot;"/>
+                        <item value="&quot;Prod&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="object" name="errors">
+                      <prop type="object" name="properties" cls="ErrorDefinition_read">
+                        <prop readOnly="True" type="string" name="code"/>
+                        <prop readOnly="True" type="array<@ErrorDefinition_read>" name="details">
+                          <item type="@ErrorDefinition_read"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="message"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="health">
+                      <enum>
+                        <item value="&quot;Degraded&quot;"/>
+                        <item value="&quot;Healthy&quot;"/>
+                        <item value="&quot;Unhealthy&quot;"/>
+                        <item value="&quot;Unknown&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="managedResourceGroupConfiguration">
+                      <prop type="string" name="name"/>
+                    </prop>
+                    <prop type="string" name="managedResourcesNetworkAccessType">
+                      <enum>
+                        <item value="&quot;Private&quot;"/>
+                        <item value="&quot;Public&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Creating&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="sapProduct" required="True">
+                      <enum>
+                        <item value="&quot;ECC&quot;"/>
+                        <item value="&quot;Other&quot;"/>
+                        <item value="&quot;S4HANA&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="state">
+                      <enum>
+                        <item value="&quot;ACSSInstallationBlocked&quot;"/>
+                        <item value="&quot;DiscoveryFailed&quot;"/>
+                        <item value="&quot;DiscoveryInProgress&quot;"/>
+                        <item value="&quot;DiscoveryPending&quot;"/>
+                        <item value="&quot;InfrastructureDeploymentFailed&quot;"/>
+                        <item value="&quot;InfrastructureDeploymentInProgress&quot;"/>
+                        <item value="&quot;InfrastructureDeploymentPending&quot;"/>
+                        <item value="&quot;RegistrationComplete&quot;"/>
+                        <item value="&quot;SoftwareDetectionFailed&quot;"/>
+                        <item value="&quot;SoftwareDetectionInProgress&quot;"/>
+                        <item value="&quot;SoftwareInstallationFailed&quot;"/>
+                        <item value="&quot;SoftwareInstallationInProgress&quot;"/>
+                        <item value="&quot;SoftwareInstallationPending&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="status">
+                      <enum>
+                        <item value="&quot;Offline&quot;"/>
+                        <item value="&quot;PartiallyRunning&quot;"/>
+                        <item value="&quot;Running&quot;"/>
+                        <item value="&quot;SoftShutdown&quot;"/>
+                        <item value="&quot;Starting&quot;"/>
+                        <item value="&quot;Stopping&quot;"/>
+                        <item value="&quot;Unavailable&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2024-09-01" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.workloads/sapvirtualinstances/{}" version="2024-09-01" swagger="mgmt-plane/workloads/ResourceProviders/Microsoft.Workloads/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuV29ya2xvYWRzL3NhcFZpcnR1YWxJbnN0YW5jZXMve3NhcFZpcnR1YWxJbnN0YW5jZU5hbWV9/V/MjAyNC0wOS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.sapVirtualInstanceName" options="sap-virtual-instance-name name n" required="True" idPart="name">
+          <help short="The name of the Virtual Instances for SAP solutions resource"/>
+          <format pattern="^[a-zA-Z][a-zA-Z0-9]{2}$"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="SapVirtualInstances_Delete">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="sapVirtualInstanceName" arg="$Path.sapVirtualInstanceName" required="True">
+                <format pattern="^[a-zA-Z][a-zA-Z0-9]{2}$"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-09-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response statusCode="204"/>
+          <response statusCode="200 201"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="create" version="2024-09-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.workloads/sapvirtualinstances/{}" version="2024-09-01" swagger="mgmt-plane/workloads/ResourceProviders/Microsoft.Workloads/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuV29ya2xvYWRzL3NhcFZpcnR1YWxJbnN0YW5jZXMve3NhcFZpcnR1YWxJbnN0YW5jZU5hbWV9/V/MjAyNC0wOS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.sapVirtualInstanceName" options="sap-virtual-instance-name name n" required="True" idPart="name">
+          <help short="The name of the Virtual Instances for SAP solutions resource"/>
+          <format pattern="^[a-zA-Z][a-zA-Z0-9]{2}$"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Configuration">
+        <arg type="object" var="$resource.properties.configuration.Deployment" options="configuration-org" group="Configuration">
+          <help short="Path to the configuration file. Support json-file and yaml-file."/>
+          <arg type="string" var="$resource.properties.configuration.Deployment.appLocation" options="app-location">
+            <help short="The geo-location where the SAP system is to be created."/>
+          </arg>
+          <arg type="object" var="$resource.properties.configuration.Deployment.infrastructureConfiguration" options="infrastructure-configuration" cls="InfrastructureConfiguration_create">
+            <help short="The infrastructure configuration."/>
+            <arg type="object" var="@InfrastructureConfiguration_create.SingleServer" options="single-server">
+              <arg type="object" var="@InfrastructureConfiguration_create.SingleServer.customResourceNames" options="custom-resource-names">
+                <help short="The set of custom names to be used for underlying azure resources that are part of the SAP system."/>
+                <arg type="object" var="@InfrastructureConfiguration_create.SingleServer.customResourceNames.FullResourceName" options="full-resource-name">
+                  <arg type="object" var="@InfrastructureConfiguration_create.SingleServer.customResourceNames.FullResourceName.virtualMachine" options="virtual-machine" cls="VirtualMachineResourceNames_create">
+                    <help short="The resource names object for virtual machine and related resources."/>
+                    <arg type="object" var="@VirtualMachineResourceNames_create.dataDiskNames" options="data-disk-names">
+                      <help short="The full resource names for virtual machine data disks. This is a dictionary containing list of names of data disks per volume. Currently supported volumes for database layer are ['hana/data', 'hana/log', hana/shared', 'usr/sap', 'os', 'backup']. For application and cs layers, only 'default' volume is supported"/>
+                      <additionalProp>
+                        <item type="array<string>">
+                          <item type="string"/>
+                        </item>
+                      </additionalProp>
+                    </arg>
+                    <arg type="string" var="@VirtualMachineResourceNames_create.hostName" options="host-name">
+                      <help short="The full name for virtual-machine's host (computer name). Currently, ACSS only supports host names which are less than or equal to 13 characters long. If this value is not provided, vmName will be used as host name."/>
+                    </arg>
+                    <arg type="array<object>" var="@VirtualMachineResourceNames_create.networkInterfaces" options="network-interfaces">
+                      <help short="The list of network interface name objects for the selected virtual machine. Currently, only one network interface is supported per virtual machine."/>
+                      <item type="object">
+                        <arg type="string" var="@VirtualMachineResourceNames_create.networkInterfaces[].networkInterfaceName" options="network-interface-name">
+                          <help short="The full name for network interface. If name is not provided, service uses a default name based on the deployment type. For SingleServer, default name is {SID}-Nic. In case of HA-AvZone systems, default name will be {SID}-{App/ASCS/DB}-Zone{A/B}-Nic with an incrementor at the end in case of more than 1 instance per layer. For distributed and HA-AvSet systems, default name will be {SID}-{App/ASCS/DB}-Nic with an incrementor at the end in case of more than 1 instance per layer."/>
+                        </arg>
+                      </item>
+                    </arg>
+                    <arg type="string" var="@VirtualMachineResourceNames_create.osDiskName" options="os-disk-name">
+                      <help short="The full name for OS disk attached to the VM. If this value is not provided, it will be named by ARM as per its default naming standards (prefixed with vm name). There is only one OS disk attached per Virtual Machine."/>
+                    </arg>
+                    <arg type="string" var="@VirtualMachineResourceNames_create.vmName" options="vm-name">
+                      <help short="The full name for virtual machine. The length of this field can be upto 64 characters. If name is not provided, service uses a default name based on the deployment type. For SingleServer, default name is {SID}vm. In case of HA-AvZone systems, default name will be {SID}{app/ascs/db}z{a/b}vm with an incrementor at the end in case of more than 1 vm per layer. For distributed and HA-AvSet systems, default name will be {SID}{app/ascs/db}vm with an incrementor at the end in case of more than 1 vm per layer."/>
+                    </arg>
+                  </arg>
+                </arg>
+              </arg>
+              <arg type="string" var="@InfrastructureConfiguration_create.SingleServer.databaseType" options="database-type">
+                <help short="The database type."/>
+                <enum>
+                  <item name="DB2" value="&quot;DB2&quot;"/>
+                  <item name="HANA" value="&quot;HANA&quot;"/>
+                </enum>
+              </arg>
+              <arg type="object" var="@InfrastructureConfiguration_create.SingleServer.dbDiskConfiguration" options="db-disk-configuration" cls="DiskConfiguration_create">
+                <help short="Gets or sets the disk configuration."/>
+                <arg type="object" var="@DiskConfiguration_create.diskVolumeConfigurations" options="disk-volume-configurations">
+                  <help short="The disk configuration for the db volume. For HANA, Required volumes are: ['hana/data', 'hana/log', hana/shared', 'usr/sap', 'os'], Optional volume : ['backup']."/>
+                  <additionalProp>
+                    <item type="object">
+                      <arg type="integer64" var="@DiskConfiguration_create.diskVolumeConfigurations{}.count" options="count">
+                        <help short="The total number of disks required for the concerned volume."/>
+                      </arg>
+                      <arg type="integer64" var="@DiskConfiguration_create.diskVolumeConfigurations{}.sizeGB" options="size-gb">
+                        <help short="The disk size in GB."/>
+                      </arg>
+                      <arg type="object" var="@DiskConfiguration_create.diskVolumeConfigurations{}.sku" options="sku">
+                        <help short="The disk SKU details."/>
+                        <arg type="string" var="@DiskConfiguration_create.diskVolumeConfigurations{}.sku.name" options="name">
+                          <help short="Defines the disk sku name."/>
+                          <enum>
+                            <item name="PremiumV2_LRS" value="&quot;PremiumV2_LRS&quot;"/>
+                            <item name="Premium_LRS" value="&quot;Premium_LRS&quot;"/>
+                            <item name="Premium_ZRS" value="&quot;Premium_ZRS&quot;"/>
+                            <item name="StandardSSD_LRS" value="&quot;StandardSSD_LRS&quot;"/>
+                            <item name="StandardSSD_ZRS" value="&quot;StandardSSD_ZRS&quot;"/>
+                            <item name="Standard_LRS" value="&quot;Standard_LRS&quot;"/>
+                            <item name="UltraSSD_LRS" value="&quot;UltraSSD_LRS&quot;"/>
+                          </enum>
+                        </arg>
+                      </arg>
+                    </item>
+                  </additionalProp>
+                </arg>
+              </arg>
+              <arg type="object" var="@InfrastructureConfiguration_create.SingleServer.networkConfiguration" options="network-configuration" cls="NetworkConfiguration_create">
+                <help short="Network configuration for the server"/>
+                <arg type="boolean" var="@NetworkConfiguration_create.isSecondaryIpEnabled" options="is-secondary-ip-enabled">
+                  <help short="Specifies whether a secondary IP address should be added to the network interface on all VMs of the SAP system being deployed"/>
+                  <default value="false"/>
+                </arg>
+              </arg>
+              <arg type="string" var="@InfrastructureConfiguration_create.SingleServer.subnetId" options="subnet-id" required="True">
+                <help short="The subnet id."/>
+              </arg>
+              <arg type="object" var="@InfrastructureConfiguration_create.SingleServer.virtualMachineConfiguration" options="virtual-machine-configuration" required="True" cls="VirtualMachineConfiguration_create">
+                <help short="Gets or sets the virtual machine configuration."/>
+                <arg type="object" var="@VirtualMachineConfiguration_create.imageReference" options="image-reference" required="True">
+                  <help short="The image reference."/>
+                  <arg type="ResourceId" var="@VirtualMachineConfiguration_create.imageReference.id" options="id">
+                    <help short="Specifies the ARM resource ID of the Azure Compute Gallery image version used for creating ACSS VMs. You will need to provide this input when you choose to deploy virtual machines in ACSS with OS image from the Azure Compute gallery."/>
+                  </arg>
+                  <arg type="string" var="@VirtualMachineConfiguration_create.imageReference.offer" options="offer">
+                    <help short="Specifies the offer of the platform image or marketplace image used to create the virtual machine."/>
+                  </arg>
+                  <arg type="string" var="@VirtualMachineConfiguration_create.imageReference.publisher" options="publisher">
+                    <help short="The image publisher."/>
+                  </arg>
+                  <arg type="string" var="@VirtualMachineConfiguration_create.imageReference.sku" options="sku">
+                    <help short="The image SKU."/>
+                  </arg>
+                  <arg type="string" var="@VirtualMachineConfiguration_create.imageReference.version" options="version">
+                    <help short="Specifies the version of the platform image or marketplace image used to create the virtual machine. The allowed formats are Major.Minor.Build or 'latest'. Major, Minor, and Build are decimal numbers. Specify 'latest' to use the latest version of an image available at deploy time. Even if you use 'latest', the VM image will not automatically update after deploy time even if a new version becomes available."/>
+                  </arg>
+                </arg>
+                <arg type="object" var="@VirtualMachineConfiguration_create.osProfile" options="os-profile" required="True">
+                  <help short="The OS profile."/>
+                  <arg type="password" var="@VirtualMachineConfiguration_create.osProfile.adminPassword" options="admin-password">
+                    <help short="Specifies the password of the administrator account. <br><br> **Minimum-length (Windows):** 8 characters <br><br> **Minimum-length (Linux):** 6 characters <br><br> **Max-length (Windows):** 123 characters <br><br> **Max-length (Linux):** 72 characters <br><br> **Complexity requirements:** 3 out of 4 conditions below need to be fulfilled <br> Has lower characters <br>Has upper characters <br> Has a digit <br> Has a special character (Regex match [\W_]) <br><br> **Disallowed values:** &quot;abc@123&quot;, &quot;P@$$w0rd&quot;, &quot;P@ssw0rd&quot;, &quot;P@ssword123&quot;, &quot;Pa$$word&quot;, &quot;pass@word1&quot;, &quot;Password!&quot;, &quot;Password1&quot;, &quot;Password22&quot;, &quot;iloveyou!&quot; <br><br> For resetting the password, see [How to reset the Remote Desktop service or its login password in a Windows VM](https://docs.microsoft.com/troubleshoot/azure/virtual-machines/reset-rdp) <br><br> For resetting root password, see [Manage users, SSH, and check or repair disks on Azure Linux VMs using the VMAccess Extension](https://docs.microsoft.com/troubleshoot/azure/virtual-machines/troubleshoot-ssh-connection)"/>
+                    <prompt msg="Password:"/>
+                  </arg>
+                  <arg type="string" var="@VirtualMachineConfiguration_create.osProfile.adminUsername" options="admin-username">
+                    <help short="Specifies the name of the administrator account. <br><br> This property cannot be updated after the VM is created. <br><br> **Windows-only restriction:** Cannot end in &quot;.&quot; <br><br> **Disallowed values:** &quot;administrator&quot;, &quot;admin&quot;, &quot;user&quot;, &quot;user1&quot;, &quot;test&quot;, &quot;user2&quot;, &quot;test1&quot;, &quot;user3&quot;, &quot;admin1&quot;, &quot;1&quot;, &quot;123&quot;, &quot;a&quot;, &quot;actuser&quot;, &quot;adm&quot;, &quot;admin2&quot;, &quot;aspnet&quot;, &quot;backup&quot;, &quot;console&quot;, &quot;david&quot;, &quot;guest&quot;, &quot;john&quot;, &quot;owner&quot;, &quot;root&quot;, &quot;server&quot;, &quot;sql&quot;, &quot;support&quot;, &quot;support_388945a0&quot;, &quot;sys&quot;, &quot;test2&quot;, &quot;test3&quot;, &quot;user4&quot;, &quot;user5&quot;. <br><br> **Minimum-length (Linux):** 1  character <br><br> **Max-length (Linux):** 64 characters <br><br> **Max-length (Windows):** 20 characters."/>
+                  </arg>
+                  <arg type="object" var="@VirtualMachineConfiguration_create.osProfile.osConfiguration" options="os-configuration">
+                    <help short="Specifies Windows operating system settings on the virtual machine."/>
+                    <arg type="object" var="@VirtualMachineConfiguration_create.osProfile.osConfiguration.Linux" options="linux">
+                      <arg type="boolean" var="@VirtualMachineConfiguration_create.osProfile.osConfiguration.Linux.disablePasswordAuthentication" options="disable-password-authentication">
+                        <help short="Specifies whether password authentication should be disabled."/>
+                      </arg>
+                      <arg type="object" var="@VirtualMachineConfiguration_create.osProfile.osConfiguration.Linux.ssh" options="ssh">
+                        <help short="Specifies the ssh key configuration for a Linux OS. (This property is deprecated, please use 'sshKeyPair' instead)"/>
+                        <arg type="array<object>" var="@VirtualMachineConfiguration_create.osProfile.osConfiguration.Linux.ssh.publicKeys" options="public-keys">
+                          <help short="The list of SSH public keys used to authenticate with linux based VMs."/>
+                          <item type="object">
+                            <arg type="string" var="@VirtualMachineConfiguration_create.osProfile.osConfiguration.Linux.ssh.publicKeys[].keyData" options="key-data">
+                              <help short="SSH public key certificate used to authenticate with the VM through ssh. The key needs to be at least 2048-bit and in ssh-rsa format. <br><br> For creating ssh keys, see [Create SSH keys on Linux and Mac for Linux VMs in Azure](https://docs.microsoft.com/azure/virtual-machines/linux/create-ssh-keys-detailed)."/>
+                            </arg>
+                          </item>
+                        </arg>
+                      </arg>
+                      <arg type="object" var="@VirtualMachineConfiguration_create.osProfile.osConfiguration.Linux.sshKeyPair" options="ssh-key-pair">
+                        <help short="The SSH Key-pair used to authenticate with the VM's."/>
+                        <arg type="password" var="@VirtualMachineConfiguration_create.osProfile.osConfiguration.Linux.sshKeyPair.privateKey" options="private-key">
+                          <help short="SSH private key."/>
+                          <prompt msg="Password:"/>
+                        </arg>
+                        <arg type="string" var="@VirtualMachineConfiguration_create.osProfile.osConfiguration.Linux.sshKeyPair.publicKey" options="public-key">
+                          <help short="SSH public key"/>
+                        </arg>
+                      </arg>
+                    </arg>
+                    <arg type="object" var="@VirtualMachineConfiguration_create.osProfile.osConfiguration.Windows" options="windows">
+                      <blank value="{}"/>
+                    </arg>
+                  </arg>
+                </arg>
+                <arg type="string" var="@VirtualMachineConfiguration_create.vmSize" options="vm-size" required="True">
+                  <help short="The virtual machine size."/>
+                </arg>
+              </arg>
+            </arg>
+            <arg type="object" var="@InfrastructureConfiguration_create.ThreeTier" options="three-tier">
+              <arg type="object" var="@InfrastructureConfiguration_create.ThreeTier.applicationServer" options="application-server" required="True">
+                <help short="The application server configuration."/>
+                <arg type="integer64" var="@InfrastructureConfiguration_create.ThreeTier.applicationServer.instanceCount" options="instance-count" required="True">
+                  <help short="The number of app server instances."/>
+                </arg>
+                <arg type="string" var="@InfrastructureConfiguration_create.ThreeTier.applicationServer.subnetId" options="subnet-id" required="True">
+                  <help short="The subnet id."/>
+                </arg>
+                <arg type="@VirtualMachineConfiguration_create" var="@InfrastructureConfiguration_create.ThreeTier.applicationServer.virtualMachineConfiguration" options="virtual-machine-configuration" required="True">
+                  <help short="Gets or sets the virtual machine configuration."/>
+                </arg>
+              </arg>
+              <arg type="object" var="@InfrastructureConfiguration_create.ThreeTier.centralServer" options="central-server" required="True">
+                <help short="The central server configuration."/>
+                <arg type="integer64" var="@InfrastructureConfiguration_create.ThreeTier.centralServer.instanceCount" options="instance-count" required="True">
+                  <help short="The number of central server VMs."/>
+                </arg>
+                <arg type="string" var="@InfrastructureConfiguration_create.ThreeTier.centralServer.subnetId" options="subnet-id" required="True">
+                  <help short="The subnet id."/>
+                </arg>
+                <arg type="@VirtualMachineConfiguration_create" var="@InfrastructureConfiguration_create.ThreeTier.centralServer.virtualMachineConfiguration" options="virtual-machine-configuration" required="True">
+                  <help short="Gets or sets the virtual machine configuration."/>
+                </arg>
+              </arg>
+              <arg type="object" var="@InfrastructureConfiguration_create.ThreeTier.customResourceNames" options="custom-resource-names">
+                <help short="The set of custom names to be used for underlying azure resources that are part of the SAP system."/>
+                <arg type="object" var="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName" options="full-resource-name">
+                  <arg type="object" var="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.applicationServer" options="application-server">
+                    <help short="The full resource names object for application layer resources. The number of entries in this list should be equal to the number VMs to be created for application layer."/>
+                    <arg type="string" var="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.applicationServer.availabilitySetName" options="availability-set-name">
+                      <help short="The full name for availability set. In case name is not provided, it will be defaulted to {SID}-App-AvSet."/>
+                    </arg>
+                    <arg type="array<@VirtualMachineResourceNames_create>" var="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.applicationServer.virtualMachines" options="virtual-machines">
+                      <help short="The list of virtual machine naming details."/>
+                      <item type="@VirtualMachineResourceNames_create"/>
+                    </arg>
+                  </arg>
+                  <arg type="object" var="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.centralServer" options="central-server">
+                    <help short="The full resource names object for central server layer resources."/>
+                    <arg type="string" var="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.centralServer.availabilitySetName" options="availability-set-name">
+                      <help short="The full name for availability set. In case name is not provided, it will be defaulted to {SID}-ASCS-AvSet."/>
+                    </arg>
+                    <arg type="object" var="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.centralServer.loadBalancer" options="load-balancer" cls="LoadBalancerResourceNames_create">
+                      <help short="The resource names object for load balancer and related resources."/>
+                      <arg type="array<string>" var="@LoadBalancerResourceNames_create.backendPoolNames" options="backend-pool-names">
+                        <help short="The list of backend pool names. Currently, ACSS deploys only one backend pool and hence, size of this list should be 1"/>
+                        <item type="string"/>
+                      </arg>
+                      <arg type="array<string>" var="@LoadBalancerResourceNames_create.frontendIpConfigurationNames" options="frontend-ip-configuration-names">
+                        <help short="The list of frontend IP configuration names. If provided as input, size of this list should be 2 for cs layer and should be 1 for database layer."/>
+                        <item type="string"/>
+                      </arg>
+                      <arg type="array<string>" var="@LoadBalancerResourceNames_create.healthProbeNames" options="health-probe-names">
+                        <help short="The list of health probe names. If provided as input, size of this list should be 2 for cs layer and should be 1 for database layer."/>
+                        <item type="string"/>
+                      </arg>
+                      <arg type="string" var="@LoadBalancerResourceNames_create.loadBalancerName" options="load-balancer-name">
+                        <help short="The full resource name for load balancer. If this value is not provided, load balancer will be name as {ASCS/DB}-loadBalancer."/>
+                      </arg>
+                    </arg>
+                    <arg type="array<@VirtualMachineResourceNames_create>" var="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.centralServer.virtualMachines" options="virtual-machines">
+                      <help short="The list of names for all ASCS virtual machines to be deployed. The number of entries in this list should be equal to the number VMs to be created for ASCS layer. At maximum, there can be two virtual machines at this layer: ASCS and ERS."/>
+                      <item type="@VirtualMachineResourceNames_create"/>
+                    </arg>
+                  </arg>
+                  <arg type="object" var="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.databaseServer" options="database-server">
+                    <help short="The full resource names object for database layer resources. The number of entries in this list should be equal to the number VMs to be created for database layer."/>
+                    <arg type="string" var="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.databaseServer.availabilitySetName" options="availability-set-name">
+                      <help short="The full name for availability set. In case name is not provided, it will be defaulted to {SID}-DB-AvSet."/>
+                    </arg>
+                    <arg type="@LoadBalancerResourceNames_create" var="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.databaseServer.loadBalancer" options="load-balancer">
+                      <help short="The resource names object for load balancer and related resources."/>
+                    </arg>
+                    <arg type="array<@VirtualMachineResourceNames_create>" var="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.databaseServer.virtualMachines" options="virtual-machines">
+                      <help short="The list of virtual machine naming details."/>
+                      <item type="@VirtualMachineResourceNames_create"/>
+                    </arg>
+                  </arg>
+                  <arg type="object" var="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.sharedStorage" options="shared-storage">
+                    <help short="The resource names object for shared storage."/>
+                    <arg type="string" var="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.sharedStorage.sharedStorageAccountName" options="shared-storage-account-name">
+                      <help short="The full name of the shared storage account. If it is not provided, it will be defaulted to {SID}nfs{guid of 15 chars}."/>
+                    </arg>
+                    <arg type="string" var="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.sharedStorage.sharedStorageAccountPrivateEndPointName" options="shared-storage-account-private-end-point-name">
+                      <help short="The full name of private end point for the shared storage account. If it is not provided, it will be defaulted to {storageAccountName}_pe"/>
+                    </arg>
+                  </arg>
+                </arg>
+              </arg>
+              <arg type="object" var="@InfrastructureConfiguration_create.ThreeTier.databaseServer" options="database-server" required="True">
+                <help short="The database configuration."/>
+                <arg type="string" var="@InfrastructureConfiguration_create.ThreeTier.databaseServer.databaseType" options="database-type">
+                  <help short="The database type."/>
+                  <enum>
+                    <item name="DB2" value="&quot;DB2&quot;"/>
+                    <item name="HANA" value="&quot;HANA&quot;"/>
+                  </enum>
+                </arg>
+                <arg type="@DiskConfiguration_create" var="@InfrastructureConfiguration_create.ThreeTier.databaseServer.diskConfiguration" options="disk-configuration">
+                  <help short="Gets or sets the disk configuration."/>
+                </arg>
+                <arg type="integer64" var="@InfrastructureConfiguration_create.ThreeTier.databaseServer.instanceCount" options="instance-count" required="True">
+                  <help short="The number of database VMs."/>
+                </arg>
+                <arg type="string" var="@InfrastructureConfiguration_create.ThreeTier.databaseServer.subnetId" options="subnet-id" required="True">
+                  <help short="The subnet id."/>
+                </arg>
+                <arg type="@VirtualMachineConfiguration_create" var="@InfrastructureConfiguration_create.ThreeTier.databaseServer.virtualMachineConfiguration" options="virtual-machine-configuration" required="True">
+                  <help short="Gets or sets the virtual machine configuration."/>
+                </arg>
+              </arg>
+              <arg type="object" var="@InfrastructureConfiguration_create.ThreeTier.highAvailabilityConfig" options="high-availability-config">
+                <help short="The high availability configuration."/>
+                <arg type="string" var="@InfrastructureConfiguration_create.ThreeTier.highAvailabilityConfig.highAvailabilityType" options="high-availability-type" required="True">
+                  <help short="The high availability type."/>
+                  <enum>
+                    <item name="AvailabilitySet" value="&quot;AvailabilitySet&quot;"/>
+                    <item name="AvailabilityZone" value="&quot;AvailabilityZone&quot;"/>
+                  </enum>
+                </arg>
+              </arg>
+              <arg type="@NetworkConfiguration_create" var="@InfrastructureConfiguration_create.ThreeTier.networkConfiguration" options="network-configuration">
+                <help short="Network configuration common to all servers"/>
+              </arg>
+              <arg type="object" var="@InfrastructureConfiguration_create.ThreeTier.storageConfiguration" options="storage-configuration">
+                <help short="The storage configuration."/>
+                <arg type="object" var="@InfrastructureConfiguration_create.ThreeTier.storageConfiguration.transportFileShareConfiguration" options="transport-file-share-configuration">
+                  <help short="The properties of the transport directory attached to the VIS. The default for transportFileShareConfiguration is the createAndMount flow if storage configuration is missing."/>
+                  <arg type="object" var="@InfrastructureConfiguration_create.ThreeTier.storageConfiguration.transportFileShareConfiguration.CreateAndMount" options="create-and-mount">
+                    <arg type="string" var="@InfrastructureConfiguration_create.ThreeTier.storageConfiguration.transportFileShareConfiguration.CreateAndMount.resourceGroup" options="resource-group">
+                      <help short="The name of transport file share resource group. This should be pre created by the customer. The app rg is used in case of missing input."/>
+                    </arg>
+                    <arg type="string" var="@InfrastructureConfiguration_create.ThreeTier.storageConfiguration.transportFileShareConfiguration.CreateAndMount.storageAccountName" options="storage-account-name">
+                      <help short="The name of file share storage account name . A custom name is used in case of missing input."/>
+                    </arg>
+                  </arg>
+                  <arg type="object" var="@InfrastructureConfiguration_create.ThreeTier.storageConfiguration.transportFileShareConfiguration.Mount" options="mount">
+                    <arg type="string" var="@InfrastructureConfiguration_create.ThreeTier.storageConfiguration.transportFileShareConfiguration.Mount.id" options="id" required="True">
+                      <help short="The fileshare resource ID"/>
+                    </arg>
+                    <arg type="string" var="@InfrastructureConfiguration_create.ThreeTier.storageConfiguration.transportFileShareConfiguration.Mount.privateEndpointId" options="private-endpoint-id" required="True">
+                      <help short="The private endpoint resource ID"/>
+                    </arg>
+                  </arg>
+                  <arg type="object" var="@InfrastructureConfiguration_create.ThreeTier.storageConfiguration.transportFileShareConfiguration.Skip" options="skip">
+                    <blank value="{}"/>
+                  </arg>
+                </arg>
+              </arg>
+            </arg>
+            <arg type="string" var="@InfrastructureConfiguration_create.appResourceGroup" options="app-resource-group" required="True">
+              <help short="The application resource group where SAP system resources will be deployed."/>
+            </arg>
+          </arg>
+          <arg type="object" var="$resource.properties.configuration.Deployment.softwareConfiguration" options="software-configuration" cls="SoftwareConfiguration_create">
+            <help short="The software configuration."/>
+            <arg type="object" var="@SoftwareConfiguration_create.External" options="external">
+              <arg type="string" var="@SoftwareConfiguration_create.External.centralServerVmId" options="central-server-vm-id">
+                <help short="The resource ID of the virtual machine containing the central server instance."/>
+              </arg>
+            </arg>
+            <arg type="object" var="@SoftwareConfiguration_create.SAPInstallWithoutOSConfig" options="sap-install-without-os-config">
+              <arg type="string" var="@SoftwareConfiguration_create.SAPInstallWithoutOSConfig.bomUrl" options="bom-url" required="True">
+                <help short="The URL to the SAP Build of Materials(BOM) file."/>
+              </arg>
+              <arg type="object" var="@SoftwareConfiguration_create.SAPInstallWithoutOSConfig.highAvailabilitySoftwareConfiguration" options="high-availability-software-configuration" cls="HighAvailabilitySoftwareConfiguration_create">
+                <help short="Gets or sets the HA software configuration."/>
+                <arg type="string" var="@HighAvailabilitySoftwareConfiguration_create.fencingClientId" options="fencing-client-id" required="True">
+                  <help short="The fencing client id."/>
+                </arg>
+                <arg type="password" var="@HighAvailabilitySoftwareConfiguration_create.fencingClientPassword" options="fencing-client-password" required="True">
+                  <help short="The fencing client id secret/password. The secret should never expire. This will be used pacemaker to start/stop the cluster VMs."/>
+                  <prompt msg="Password:"/>
+                </arg>
+              </arg>
+              <arg type="string" var="@SoftwareConfiguration_create.SAPInstallWithoutOSConfig.sapBitsStorageAccountId" options="sap-bits-storage-account-id" required="True">
+                <help short="The SAP bits storage account id."/>
+              </arg>
+              <arg type="string" var="@SoftwareConfiguration_create.SAPInstallWithoutOSConfig.softwareVersion" options="software-version" required="True">
+                <help short="The software version to install."/>
+              </arg>
+            </arg>
+            <arg type="object" var="@SoftwareConfiguration_create.ServiceInitiated" options="service-initiated">
+              <arg type="string" var="@SoftwareConfiguration_create.ServiceInitiated.bomUrl" options="bom-url" required="True">
+                <help short="The URL to the SAP Build of Materials(BOM) file."/>
+              </arg>
+              <arg type="@HighAvailabilitySoftwareConfiguration_create" var="@SoftwareConfiguration_create.ServiceInitiated.highAvailabilitySoftwareConfiguration" options="high-availability-software-configuration">
+                <help short="Gets or sets the HA software configuration."/>
+              </arg>
+              <arg type="string" var="@SoftwareConfiguration_create.ServiceInitiated.sapBitsStorageAccountId" options="sap-bits-storage-account-id" required="True">
+                <help short="The SAP bits storage account id."/>
+              </arg>
+              <arg type="string" var="@SoftwareConfiguration_create.ServiceInitiated.sapFqdn" options="sap-fqdn" required="True">
+                <help short="The FQDN to set for the SAP system during install."/>
+              </arg>
+              <arg type="string" var="@SoftwareConfiguration_create.ServiceInitiated.softwareVersion" options="software-version" required="True">
+                <help short="The software version to install."/>
+              </arg>
+              <arg type="password" var="@SoftwareConfiguration_create.ServiceInitiated.sshPrivateKey" options="ssh-private-key" required="True">
+                <help short="The SSH private key."/>
+                <prompt msg="Password:"/>
+              </arg>
+            </arg>
+          </arg>
+        </arg>
+        <arg type="object" var="$resource.properties.configuration.DeploymentWithOSConfig" options="deployment-with-os-config" hide="True" group="Configuration">
+          <help short="deployment with os config"/>
+          <arg type="string" var="$resource.properties.configuration.DeploymentWithOSConfig.appLocation" options="app-location">
+            <help short="The geo-location where the SAP system is to be created."/>
+          </arg>
+          <arg type="@InfrastructureConfiguration_create" var="$resource.properties.configuration.DeploymentWithOSConfig.infrastructureConfiguration" options="infrastructure-configuration">
+            <help short="The infrastructure configuration."/>
+          </arg>
+          <arg type="object" var="$resource.properties.configuration.DeploymentWithOSConfig.osSapConfiguration" options="os-sap-configuration">
+            <help short="The OS and SAP configuration."/>
+            <arg type="object" var="$resource.properties.configuration.DeploymentWithOSConfig.osSapConfiguration.deployerVmPackages" options="deployer-vm-packages">
+              <help short="The url and storage account ID where deployer VM packages are uploaded"/>
+              <arg type="string" var="$resource.properties.configuration.DeploymentWithOSConfig.osSapConfiguration.deployerVmPackages.storageAccountId" options="storage-account-id">
+                <help short="The deployer VM packages storage account id"/>
+              </arg>
+              <arg type="string" var="$resource.properties.configuration.DeploymentWithOSConfig.osSapConfiguration.deployerVmPackages.url" options="url">
+                <help short="The URL to the deployer VM packages file."/>
+              </arg>
+            </arg>
+            <arg type="string" var="$resource.properties.configuration.DeploymentWithOSConfig.osSapConfiguration.sapFqdn" options="sap-fqdn">
+              <help short="The FQDN to set for the SAP system"/>
+            </arg>
+          </arg>
+          <arg type="@SoftwareConfiguration_create" var="$resource.properties.configuration.DeploymentWithOSConfig.softwareConfiguration" options="software-configuration">
+            <help short="The software configuration."/>
+          </arg>
+        </arg>
+        <arg type="object" var="$resource.properties.configuration.Discovery" options="discovery-org" group="Configuration">
+          <help short="discovery"/>
+          <arg type="string" var="$resource.properties.configuration.Discovery.centralServerVmId" options="central-server-vm-id">
+            <help short="The virtual machine ID of the Central Server."/>
+          </arg>
+          <arg type="string" var="$resource.properties.configuration.Discovery.managedRgStorageAccountName" options="managed-rg-storage-account-name">
+            <help short="The custom storage account name for the storage account created by the service in the managed resource group created as part of VIS deployment.<br><br>Refer to the storage account naming rules [here](https://learn.microsoft.com/azure/azure-resource-manager/management/resource-name-rules#microsoftstorage).<br><br>If not provided, the service will create the storage account with a random name."/>
+            <format maxLength="24" minLength="3"/>
+          </arg>
+        </arg>
+      </argGroup>
+      <argGroup name="ManagedResourceGroupConfiguration">
+        <arg type="string" var="$resource.properties.managedResourceGroupConfiguration.name" options="managed-rg-name" group="ManagedResourceGroupConfiguration">
+          <help short="Managed resource group name"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="string" var="$resource.properties.environment" options="environment" group="Properties">
+          <help short="Defines the environment type - Production/Non Production."/>
+          <enum>
+            <item name="NonProd" value="&quot;NonProd&quot;"/>
+            <item name="Prod" value="&quot;Prod&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$resource.properties.managedResourcesNetworkAccessType" options="managed-resources-network-access-type mrg-network-access-typ" group="Properties">
+          <help short="Specifies the network access configuration for the resources that will be deployed in the Managed Resource Group. The options to choose from are Public and Private. If 'Private' is chosen, the Storage Account service tag should be enabled on the subnets in which the SAP VMs exist. This is required for establishing connectivity between VM extensions and the managed resource group storage account. This setting is currently applicable only to Storage Account. Learn more here https://go.microsoft.com/fwlink/?linkid=2247228"/>
+          <enum>
+            <item name="Private" value="&quot;Private&quot;"/>
+            <item name="Public" value="&quot;Public&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$resource.properties.sapProduct" options="sap-product" group="Properties">
+          <help short="Defines the SAP Product type."/>
+          <enum>
+            <item name="ECC" value="&quot;ECC&quot;"/>
+            <item name="Other" value="&quot;Other&quot;"/>
+            <item name="S4HANA" value="&quot;S4HANA&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <argGroup name="Resource">
+        <arg type="object" var="$resource.identity" options="identity" group="Resource">
+          <help short="The managed service identities assigned to this resource."/>
+          <arg type="string" var="$resource.identity.type" options="type" required="True">
+            <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
+            <enum>
+              <item name="None" value="&quot;None&quot;"/>
+              <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
+            </enum>
+          </arg>
+          <arg type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities">
+            <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
+            <additionalProp>
+              <item nullable="True" type="object">
+                <blank value="{}"/>
+              </item>
+            </additionalProp>
+          </arg>
+        </arg>
+        <arg type="ResourceLocation" var="$resource.location" options="location l" required="True" group="Resource">
+          <help short="The geo-location where the resource lives"/>
+        </arg>
+        <arg type="object" var="$resource.tags" options="tags" group="Resource">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="SapVirtualInstances_Create">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}">
+          <request method="put">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="sapVirtualInstanceName" arg="$Path.sapVirtualInstanceName" required="True">
+                <format pattern="^[a-zA-Z][a-zA-Z0-9]{2}$"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-09-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="IdentityObject" name="identity" arg="$resource.identity">
+                    <prop type="string" name="type" arg="$resource.identity.type" required="True">
+                      <enum>
+                        <item value="&quot;None&quot;"/>
+                        <item value="&quot;UserAssigned&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="userAssignedIdentities" arg="$resource.identity.userAssignedIdentities">
+                      <additionalProp>
+                        <item nullable="True" type="object"/>
+                      </additionalProp>
+                    </prop>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="object" name="configuration" required="True">
+                      <prop type="string" name="configurationType" required="True">
+                        <enum>
+                          <item arg="$resource.properties.configuration.Deployment" value="&quot;Deployment&quot;"/>
+                          <item arg="$resource.properties.configuration.DeploymentWithOSConfig" value="&quot;DeploymentWithOSConfig&quot;"/>
+                          <item arg="$resource.properties.configuration.Discovery" value="&quot;Discovery&quot;"/>
+                        </enum>
+                      </prop>
+                      <discriminator property="configurationType" value="Deployment">
+                        <prop type="string" name="appLocation" arg="$resource.properties.configuration.Deployment.appLocation"/>
+                        <prop type="object" name="infrastructureConfiguration" arg="$resource.properties.configuration.Deployment.infrastructureConfiguration" cls="InfrastructureConfiguration_create">
+                          <prop type="string" name="appResourceGroup" arg="@InfrastructureConfiguration_create.appResourceGroup" required="True"/>
+                          <prop type="string" name="deploymentType" required="True">
+                            <enum>
+                              <item arg="@InfrastructureConfiguration_create.SingleServer" value="&quot;SingleServer&quot;"/>
+                              <item arg="@InfrastructureConfiguration_create.ThreeTier" value="&quot;ThreeTier&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="deploymentType" value="SingleServer">
+                            <prop type="object" name="customResourceNames" arg="@InfrastructureConfiguration_create.SingleServer.customResourceNames">
+                              <prop type="string" name="namingPatternType" required="True">
+                                <enum>
+                                  <item arg="@InfrastructureConfiguration_create.SingleServer.customResourceNames.FullResourceName" value="&quot;FullResourceName&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="namingPatternType" value="FullResourceName">
+                                <prop type="object" name="virtualMachine" arg="@InfrastructureConfiguration_create.SingleServer.customResourceNames.FullResourceName.virtualMachine" cls="VirtualMachineResourceNames_create">
+                                  <prop type="object" name="dataDiskNames" arg="@VirtualMachineResourceNames_create.dataDiskNames">
+                                    <additionalProp>
+                                      <item type="array<string>">
+                                        <item type="string"/>
+                                      </item>
+                                    </additionalProp>
+                                  </prop>
+                                  <prop type="string" name="hostName" arg="@VirtualMachineResourceNames_create.hostName"/>
+                                  <prop type="array<object>" name="networkInterfaces" arg="@VirtualMachineResourceNames_create.networkInterfaces">
+                                    <item type="object">
+                                      <prop type="string" name="networkInterfaceName" arg="@VirtualMachineResourceNames_create.networkInterfaces[].networkInterfaceName"/>
+                                    </item>
+                                  </prop>
+                                  <prop type="string" name="osDiskName" arg="@VirtualMachineResourceNames_create.osDiskName"/>
+                                  <prop type="string" name="vmName" arg="@VirtualMachineResourceNames_create.vmName"/>
+                                </prop>
+                              </discriminator>
+                            </prop>
+                            <prop type="string" name="databaseType" arg="@InfrastructureConfiguration_create.SingleServer.databaseType">
+                              <enum>
+                                <item value="&quot;DB2&quot;"/>
+                                <item value="&quot;HANA&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="object" name="dbDiskConfiguration" arg="@InfrastructureConfiguration_create.SingleServer.dbDiskConfiguration" cls="DiskConfiguration_create">
+                              <prop type="object" name="diskVolumeConfigurations" arg="@DiskConfiguration_create.diskVolumeConfigurations">
+                                <additionalProp>
+                                  <item type="object">
+                                    <prop type="integer64" name="count" arg="@DiskConfiguration_create.diskVolumeConfigurations{}.count"/>
+                                    <prop type="integer64" name="sizeGB" arg="@DiskConfiguration_create.diskVolumeConfigurations{}.sizeGB"/>
+                                    <prop type="object" name="sku" arg="@DiskConfiguration_create.diskVolumeConfigurations{}.sku">
+                                      <prop type="string" name="name" arg="@DiskConfiguration_create.diskVolumeConfigurations{}.sku.name">
+                                        <enum>
+                                          <item value="&quot;PremiumV2_LRS&quot;"/>
+                                          <item value="&quot;Premium_LRS&quot;"/>
+                                          <item value="&quot;Premium_ZRS&quot;"/>
+                                          <item value="&quot;StandardSSD_LRS&quot;"/>
+                                          <item value="&quot;StandardSSD_ZRS&quot;"/>
+                                          <item value="&quot;Standard_LRS&quot;"/>
+                                          <item value="&quot;UltraSSD_LRS&quot;"/>
+                                        </enum>
+                                      </prop>
+                                    </prop>
+                                  </item>
+                                </additionalProp>
+                              </prop>
+                            </prop>
+                            <prop type="object" name="networkConfiguration" arg="@InfrastructureConfiguration_create.SingleServer.networkConfiguration" cls="NetworkConfiguration_create">
+                              <prop type="boolean" name="isSecondaryIpEnabled" arg="@NetworkConfiguration_create.isSecondaryIpEnabled">
+                                <default value="false"/>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="subnetId" arg="@InfrastructureConfiguration_create.SingleServer.subnetId" required="True"/>
+                            <prop type="object" name="virtualMachineConfiguration" arg="@InfrastructureConfiguration_create.SingleServer.virtualMachineConfiguration" required="True" cls="VirtualMachineConfiguration_create">
+                              <prop type="object" name="imageReference" arg="@VirtualMachineConfiguration_create.imageReference" required="True">
+                                <prop type="ResourceId" name="id" arg="@VirtualMachineConfiguration_create.imageReference.id"/>
+                                <prop type="string" name="offer" arg="@VirtualMachineConfiguration_create.imageReference.offer"/>
+                                <prop type="string" name="publisher" arg="@VirtualMachineConfiguration_create.imageReference.publisher"/>
+                                <prop type="string" name="sku" arg="@VirtualMachineConfiguration_create.imageReference.sku"/>
+                                <prop type="string" name="version" arg="@VirtualMachineConfiguration_create.imageReference.version"/>
+                              </prop>
+                              <prop type="object" name="osProfile" arg="@VirtualMachineConfiguration_create.osProfile" required="True">
+                                <prop type="password" name="adminPassword" arg="@VirtualMachineConfiguration_create.osProfile.adminPassword" secret="True"/>
+                                <prop type="string" name="adminUsername" arg="@VirtualMachineConfiguration_create.osProfile.adminUsername"/>
+                                <prop type="object" name="osConfiguration" arg="@VirtualMachineConfiguration_create.osProfile.osConfiguration">
+                                  <prop type="string" name="osType" required="True">
+                                    <enum>
+                                      <item arg="@VirtualMachineConfiguration_create.osProfile.osConfiguration.Linux" value="&quot;Linux&quot;"/>
+                                      <item arg="@VirtualMachineConfiguration_create.osProfile.osConfiguration.Windows" value="&quot;Windows&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <discriminator property="osType" value="Linux">
+                                    <prop type="boolean" name="disablePasswordAuthentication" arg="@VirtualMachineConfiguration_create.osProfile.osConfiguration.Linux.disablePasswordAuthentication"/>
+                                    <prop type="object" name="ssh" arg="@VirtualMachineConfiguration_create.osProfile.osConfiguration.Linux.ssh">
+                                      <prop type="array<object>" name="publicKeys" arg="@VirtualMachineConfiguration_create.osProfile.osConfiguration.Linux.ssh.publicKeys">
+                                        <item type="object">
+                                          <prop type="string" name="keyData" arg="@VirtualMachineConfiguration_create.osProfile.osConfiguration.Linux.ssh.publicKeys[].keyData"/>
+                                        </item>
+                                      </prop>
+                                    </prop>
+                                    <prop type="object" name="sshKeyPair" arg="@VirtualMachineConfiguration_create.osProfile.osConfiguration.Linux.sshKeyPair">
+                                      <prop type="password" name="privateKey" arg="@VirtualMachineConfiguration_create.osProfile.osConfiguration.Linux.sshKeyPair.privateKey" secret="True"/>
+                                      <prop type="string" name="publicKey" arg="@VirtualMachineConfiguration_create.osProfile.osConfiguration.Linux.sshKeyPair.publicKey"/>
+                                    </prop>
+                                  </discriminator>
+                                  <discriminator property="osType" value="Windows"/>
+                                </prop>
+                              </prop>
+                              <prop type="string" name="vmSize" arg="@VirtualMachineConfiguration_create.vmSize" required="True"/>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="deploymentType" value="ThreeTier">
+                            <prop type="object" name="applicationServer" arg="@InfrastructureConfiguration_create.ThreeTier.applicationServer" required="True">
+                              <prop type="integer64" name="instanceCount" arg="@InfrastructureConfiguration_create.ThreeTier.applicationServer.instanceCount" required="True"/>
+                              <prop type="string" name="subnetId" arg="@InfrastructureConfiguration_create.ThreeTier.applicationServer.subnetId" required="True"/>
+                              <prop type="@VirtualMachineConfiguration_create" name="virtualMachineConfiguration" arg="@InfrastructureConfiguration_create.ThreeTier.applicationServer.virtualMachineConfiguration" required="True"/>
+                            </prop>
+                            <prop type="object" name="centralServer" arg="@InfrastructureConfiguration_create.ThreeTier.centralServer" required="True">
+                              <prop type="integer64" name="instanceCount" arg="@InfrastructureConfiguration_create.ThreeTier.centralServer.instanceCount" required="True"/>
+                              <prop type="string" name="subnetId" arg="@InfrastructureConfiguration_create.ThreeTier.centralServer.subnetId" required="True"/>
+                              <prop type="@VirtualMachineConfiguration_create" name="virtualMachineConfiguration" arg="@InfrastructureConfiguration_create.ThreeTier.centralServer.virtualMachineConfiguration" required="True"/>
+                            </prop>
+                            <prop type="object" name="customResourceNames" arg="@InfrastructureConfiguration_create.ThreeTier.customResourceNames">
+                              <prop type="string" name="namingPatternType" required="True">
+                                <enum>
+                                  <item arg="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName" value="&quot;FullResourceName&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="namingPatternType" value="FullResourceName">
+                                <prop type="object" name="applicationServer" arg="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.applicationServer">
+                                  <prop type="string" name="availabilitySetName" arg="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.applicationServer.availabilitySetName"/>
+                                  <prop type="array<@VirtualMachineResourceNames_create>" name="virtualMachines" arg="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.applicationServer.virtualMachines">
+                                    <item type="@VirtualMachineResourceNames_create"/>
+                                  </prop>
+                                </prop>
+                                <prop type="object" name="centralServer" arg="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.centralServer">
+                                  <prop type="string" name="availabilitySetName" arg="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.centralServer.availabilitySetName"/>
+                                  <prop type="object" name="loadBalancer" arg="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.centralServer.loadBalancer" cls="LoadBalancerResourceNames_create">
+                                    <prop type="array<string>" name="backendPoolNames" arg="@LoadBalancerResourceNames_create.backendPoolNames">
+                                      <item type="string"/>
+                                    </prop>
+                                    <prop type="array<string>" name="frontendIpConfigurationNames" arg="@LoadBalancerResourceNames_create.frontendIpConfigurationNames">
+                                      <item type="string"/>
+                                    </prop>
+                                    <prop type="array<string>" name="healthProbeNames" arg="@LoadBalancerResourceNames_create.healthProbeNames">
+                                      <item type="string"/>
+                                    </prop>
+                                    <prop type="string" name="loadBalancerName" arg="@LoadBalancerResourceNames_create.loadBalancerName"/>
+                                  </prop>
+                                  <prop type="array<@VirtualMachineResourceNames_create>" name="virtualMachines" arg="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.centralServer.virtualMachines">
+                                    <item type="@VirtualMachineResourceNames_create"/>
+                                  </prop>
+                                </prop>
+                                <prop type="object" name="databaseServer" arg="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.databaseServer">
+                                  <prop type="string" name="availabilitySetName" arg="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.databaseServer.availabilitySetName"/>
+                                  <prop type="@LoadBalancerResourceNames_create" name="loadBalancer" arg="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.databaseServer.loadBalancer"/>
+                                  <prop type="array<@VirtualMachineResourceNames_create>" name="virtualMachines" arg="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.databaseServer.virtualMachines">
+                                    <item type="@VirtualMachineResourceNames_create"/>
+                                  </prop>
+                                </prop>
+                                <prop type="object" name="sharedStorage" arg="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.sharedStorage">
+                                  <prop type="string" name="sharedStorageAccountName" arg="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.sharedStorage.sharedStorageAccountName"/>
+                                  <prop type="string" name="sharedStorageAccountPrivateEndPointName" arg="@InfrastructureConfiguration_create.ThreeTier.customResourceNames.FullResourceName.sharedStorage.sharedStorageAccountPrivateEndPointName"/>
+                                </prop>
+                              </discriminator>
+                            </prop>
+                            <prop type="object" name="databaseServer" arg="@InfrastructureConfiguration_create.ThreeTier.databaseServer" required="True">
+                              <prop type="string" name="databaseType" arg="@InfrastructureConfiguration_create.ThreeTier.databaseServer.databaseType">
+                                <enum>
+                                  <item value="&quot;DB2&quot;"/>
+                                  <item value="&quot;HANA&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="@DiskConfiguration_create" name="diskConfiguration" arg="@InfrastructureConfiguration_create.ThreeTier.databaseServer.diskConfiguration"/>
+                              <prop type="integer64" name="instanceCount" arg="@InfrastructureConfiguration_create.ThreeTier.databaseServer.instanceCount" required="True"/>
+                              <prop type="string" name="subnetId" arg="@InfrastructureConfiguration_create.ThreeTier.databaseServer.subnetId" required="True"/>
+                              <prop type="@VirtualMachineConfiguration_create" name="virtualMachineConfiguration" arg="@InfrastructureConfiguration_create.ThreeTier.databaseServer.virtualMachineConfiguration" required="True"/>
+                            </prop>
+                            <prop type="object" name="highAvailabilityConfig" arg="@InfrastructureConfiguration_create.ThreeTier.highAvailabilityConfig">
+                              <prop type="string" name="highAvailabilityType" arg="@InfrastructureConfiguration_create.ThreeTier.highAvailabilityConfig.highAvailabilityType" required="True">
+                                <enum>
+                                  <item value="&quot;AvailabilitySet&quot;"/>
+                                  <item value="&quot;AvailabilityZone&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="@NetworkConfiguration_create" name="networkConfiguration" arg="@InfrastructureConfiguration_create.ThreeTier.networkConfiguration"/>
+                            <prop type="object" name="storageConfiguration" arg="@InfrastructureConfiguration_create.ThreeTier.storageConfiguration">
+                              <prop type="object" name="transportFileShareConfiguration" arg="@InfrastructureConfiguration_create.ThreeTier.storageConfiguration.transportFileShareConfiguration">
+                                <prop type="string" name="configurationType" required="True">
+                                  <enum>
+                                    <item arg="@InfrastructureConfiguration_create.ThreeTier.storageConfiguration.transportFileShareConfiguration.CreateAndMount" value="&quot;CreateAndMount&quot;"/>
+                                    <item arg="@InfrastructureConfiguration_create.ThreeTier.storageConfiguration.transportFileShareConfiguration.Mount" value="&quot;Mount&quot;"/>
+                                    <item arg="@InfrastructureConfiguration_create.ThreeTier.storageConfiguration.transportFileShareConfiguration.Skip" value="&quot;Skip&quot;"/>
+                                  </enum>
+                                </prop>
+                                <discriminator property="configurationType" value="CreateAndMount">
+                                  <prop type="string" name="resourceGroup" arg="@InfrastructureConfiguration_create.ThreeTier.storageConfiguration.transportFileShareConfiguration.CreateAndMount.resourceGroup"/>
+                                  <prop type="string" name="storageAccountName" arg="@InfrastructureConfiguration_create.ThreeTier.storageConfiguration.transportFileShareConfiguration.CreateAndMount.storageAccountName"/>
+                                </discriminator>
+                                <discriminator property="configurationType" value="Mount">
+                                  <prop type="string" name="id" arg="@InfrastructureConfiguration_create.ThreeTier.storageConfiguration.transportFileShareConfiguration.Mount.id" required="True"/>
+                                  <prop type="string" name="privateEndpointId" arg="@InfrastructureConfiguration_create.ThreeTier.storageConfiguration.transportFileShareConfiguration.Mount.privateEndpointId" required="True"/>
+                                </discriminator>
+                                <discriminator property="configurationType" value="Skip"/>
+                              </prop>
+                            </prop>
+                          </discriminator>
+                        </prop>
+                        <prop type="object" name="softwareConfiguration" arg="$resource.properties.configuration.Deployment.softwareConfiguration" cls="SoftwareConfiguration_create">
+                          <prop type="string" name="softwareInstallationType" required="True">
+                            <enum>
+                              <item arg="@SoftwareConfiguration_create.External" value="&quot;External&quot;"/>
+                              <item arg="@SoftwareConfiguration_create.SAPInstallWithoutOSConfig" value="&quot;SAPInstallWithoutOSConfig&quot;"/>
+                              <item arg="@SoftwareConfiguration_create.ServiceInitiated" value="&quot;ServiceInitiated&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="softwareInstallationType" value="External">
+                            <prop type="string" name="centralServerVmId" arg="@SoftwareConfiguration_create.External.centralServerVmId"/>
+                          </discriminator>
+                          <discriminator property="softwareInstallationType" value="SAPInstallWithoutOSConfig">
+                            <prop type="string" name="bomUrl" arg="@SoftwareConfiguration_create.SAPInstallWithoutOSConfig.bomUrl" required="True"/>
+                            <prop type="object" name="highAvailabilitySoftwareConfiguration" arg="@SoftwareConfiguration_create.SAPInstallWithoutOSConfig.highAvailabilitySoftwareConfiguration" cls="HighAvailabilitySoftwareConfiguration_create">
+                              <prop type="string" name="fencingClientId" arg="@HighAvailabilitySoftwareConfiguration_create.fencingClientId" required="True"/>
+                              <prop type="password" name="fencingClientPassword" arg="@HighAvailabilitySoftwareConfiguration_create.fencingClientPassword" required="True" secret="True"/>
+                            </prop>
+                            <prop type="string" name="sapBitsStorageAccountId" arg="@SoftwareConfiguration_create.SAPInstallWithoutOSConfig.sapBitsStorageAccountId" required="True"/>
+                            <prop type="string" name="softwareVersion" arg="@SoftwareConfiguration_create.SAPInstallWithoutOSConfig.softwareVersion" required="True"/>
+                          </discriminator>
+                          <discriminator property="softwareInstallationType" value="ServiceInitiated">
+                            <prop type="string" name="bomUrl" arg="@SoftwareConfiguration_create.ServiceInitiated.bomUrl" required="True"/>
+                            <prop type="@HighAvailabilitySoftwareConfiguration_create" name="highAvailabilitySoftwareConfiguration" arg="@SoftwareConfiguration_create.ServiceInitiated.highAvailabilitySoftwareConfiguration"/>
+                            <prop type="string" name="sapBitsStorageAccountId" arg="@SoftwareConfiguration_create.ServiceInitiated.sapBitsStorageAccountId" required="True"/>
+                            <prop type="string" name="sapFqdn" arg="@SoftwareConfiguration_create.ServiceInitiated.sapFqdn" required="True"/>
+                            <prop type="string" name="softwareVersion" arg="@SoftwareConfiguration_create.ServiceInitiated.softwareVersion" required="True"/>
+                            <prop type="password" name="sshPrivateKey" arg="@SoftwareConfiguration_create.ServiceInitiated.sshPrivateKey" required="True" secret="True"/>
+                          </discriminator>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="configurationType" value="DeploymentWithOSConfig">
+                        <prop type="string" name="appLocation" arg="$resource.properties.configuration.DeploymentWithOSConfig.appLocation"/>
+                        <prop type="@InfrastructureConfiguration_create" name="infrastructureConfiguration" arg="$resource.properties.configuration.DeploymentWithOSConfig.infrastructureConfiguration"/>
+                        <prop type="object" name="osSapConfiguration" arg="$resource.properties.configuration.DeploymentWithOSConfig.osSapConfiguration">
+                          <prop type="object" name="deployerVmPackages" arg="$resource.properties.configuration.DeploymentWithOSConfig.osSapConfiguration.deployerVmPackages">
+                            <prop type="string" name="storageAccountId" arg="$resource.properties.configuration.DeploymentWithOSConfig.osSapConfiguration.deployerVmPackages.storageAccountId"/>
+                            <prop type="string" name="url" arg="$resource.properties.configuration.DeploymentWithOSConfig.osSapConfiguration.deployerVmPackages.url"/>
+                          </prop>
+                          <prop type="string" name="sapFqdn" arg="$resource.properties.configuration.DeploymentWithOSConfig.osSapConfiguration.sapFqdn"/>
+                        </prop>
+                        <prop type="@SoftwareConfiguration_create" name="softwareConfiguration" arg="$resource.properties.configuration.DeploymentWithOSConfig.softwareConfiguration"/>
+                      </discriminator>
+                      <discriminator property="configurationType" value="Discovery">
+                        <prop type="string" name="centralServerVmId" arg="$resource.properties.configuration.Discovery.centralServerVmId"/>
+                        <prop type="string" name="managedRgStorageAccountName" arg="$resource.properties.configuration.Discovery.managedRgStorageAccountName">
+                          <format maxLength="24" minLength="3"/>
+                        </prop>
+                      </discriminator>
+                    </prop>
+                    <prop type="string" name="environment" arg="$resource.properties.environment" required="True">
+                      <enum>
+                        <item value="&quot;NonProd&quot;"/>
+                        <item value="&quot;Prod&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="managedResourceGroupConfiguration">
+                      <prop type="string" name="name" arg="$resource.properties.managedResourceGroupConfiguration.name"/>
+                    </prop>
+                    <prop type="string" name="managedResourcesNetworkAccessType" arg="$resource.properties.managedResourcesNetworkAccessType">
+                      <enum>
+                        <item value="&quot;Private&quot;"/>
+                        <item value="&quot;Public&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="sapProduct" arg="$resource.properties.sapProduct" required="True">
+                      <enum>
+                        <item value="&quot;ECC&quot;"/>
+                        <item value="&quot;Other&quot;"/>
+                        <item value="&quot;S4HANA&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags" arg="$resource.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Workloads/sapVirtualInstances/{}"/>
+                  </prop>
+                  <prop type="IdentityObject" name="identity">
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;None&quot;"/>
+                        <item value="&quot;UserAssigned&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="userAssignedIdentities">
+                      <additionalProp>
+                        <item nullable="True" type="object">
+                          <prop readOnly="True" type="uuid" name="clientId"/>
+                          <prop readOnly="True" type="uuid" name="principalId"/>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="object" name="configuration" required="True">
+                      <prop type="string" name="configurationType" required="True">
+                        <enum>
+                          <item value="&quot;Deployment&quot;"/>
+                          <item value="&quot;DeploymentWithOSConfig&quot;"/>
+                          <item value="&quot;Discovery&quot;"/>
+                        </enum>
+                      </prop>
+                      <discriminator property="configurationType" value="Deployment">
+                        <prop type="string" name="appLocation"/>
+                        <prop type="object" name="infrastructureConfiguration" cls="InfrastructureConfiguration_read">
+                          <prop type="string" name="appResourceGroup" required="True"/>
+                          <prop type="string" name="deploymentType" required="True">
+                            <enum>
+                              <item value="&quot;SingleServer&quot;"/>
+                              <item value="&quot;ThreeTier&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="deploymentType" value="SingleServer">
+                            <prop type="object" name="customResourceNames">
+                              <prop type="string" name="namingPatternType" required="True">
+                                <enum>
+                                  <item value="&quot;FullResourceName&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="namingPatternType" value="FullResourceName">
+                                <prop type="object" name="virtualMachine" cls="VirtualMachineResourceNames_read">
+                                  <prop type="object" name="dataDiskNames">
+                                    <additionalProp>
+                                      <item type="array<string>">
+                                        <item type="string"/>
+                                      </item>
+                                    </additionalProp>
+                                  </prop>
+                                  <prop type="string" name="hostName"/>
+                                  <prop type="array<object>" name="networkInterfaces">
+                                    <item type="object">
+                                      <prop type="string" name="networkInterfaceName"/>
+                                    </item>
+                                  </prop>
+                                  <prop type="string" name="osDiskName"/>
+                                  <prop type="string" name="vmName"/>
+                                </prop>
+                              </discriminator>
+                            </prop>
+                            <prop type="string" name="databaseType">
+                              <enum>
+                                <item value="&quot;DB2&quot;"/>
+                                <item value="&quot;HANA&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="object" name="dbDiskConfiguration" cls="DiskConfiguration_read">
+                              <prop type="object" name="diskVolumeConfigurations">
+                                <additionalProp>
+                                  <item type="object">
+                                    <prop type="integer64" name="count"/>
+                                    <prop type="integer64" name="sizeGB"/>
+                                    <prop type="object" name="sku">
+                                      <prop type="string" name="name">
+                                        <enum>
+                                          <item value="&quot;PremiumV2_LRS&quot;"/>
+                                          <item value="&quot;Premium_LRS&quot;"/>
+                                          <item value="&quot;Premium_ZRS&quot;"/>
+                                          <item value="&quot;StandardSSD_LRS&quot;"/>
+                                          <item value="&quot;StandardSSD_ZRS&quot;"/>
+                                          <item value="&quot;Standard_LRS&quot;"/>
+                                          <item value="&quot;UltraSSD_LRS&quot;"/>
+                                        </enum>
+                                      </prop>
+                                    </prop>
+                                  </item>
+                                </additionalProp>
+                              </prop>
+                            </prop>
+                            <prop type="object" name="networkConfiguration" cls="NetworkConfiguration_read">
+                              <prop type="boolean" name="isSecondaryIpEnabled">
+                                <default value="false"/>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="subnetId" required="True"/>
+                            <prop type="object" name="virtualMachineConfiguration" required="True" cls="VirtualMachineConfiguration_read">
+                              <prop type="object" name="imageReference" required="True">
+                                <prop type="ResourceId" name="id"/>
+                                <prop type="string" name="offer"/>
+                                <prop type="string" name="publisher"/>
+                                <prop type="string" name="sku"/>
+                                <prop type="string" name="version"/>
+                              </prop>
+                              <prop type="object" name="osProfile" required="True">
+                                <prop type="password" name="adminPassword" secret="True"/>
+                                <prop type="string" name="adminUsername"/>
+                                <prop type="object" name="osConfiguration">
+                                  <prop type="string" name="osType" required="True">
+                                    <enum>
+                                      <item value="&quot;Linux&quot;"/>
+                                      <item value="&quot;Windows&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <discriminator property="osType" value="Linux">
+                                    <prop type="boolean" name="disablePasswordAuthentication"/>
+                                    <prop type="object" name="ssh">
+                                      <prop type="array<object>" name="publicKeys">
+                                        <item type="object">
+                                          <prop type="string" name="keyData"/>
+                                        </item>
+                                      </prop>
+                                    </prop>
+                                    <prop type="object" name="sshKeyPair">
+                                      <prop type="password" name="privateKey" secret="True"/>
+                                      <prop type="string" name="publicKey"/>
+                                    </prop>
+                                  </discriminator>
+                                  <discriminator property="osType" value="Windows"/>
+                                </prop>
+                              </prop>
+                              <prop type="string" name="vmSize" required="True"/>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="deploymentType" value="ThreeTier">
+                            <prop type="object" name="applicationServer" required="True">
+                              <prop type="integer64" name="instanceCount" required="True"/>
+                              <prop type="string" name="subnetId" required="True"/>
+                              <prop type="@VirtualMachineConfiguration_read" name="virtualMachineConfiguration" required="True"/>
+                            </prop>
+                            <prop type="object" name="centralServer" required="True">
+                              <prop type="integer64" name="instanceCount" required="True"/>
+                              <prop type="string" name="subnetId" required="True"/>
+                              <prop type="@VirtualMachineConfiguration_read" name="virtualMachineConfiguration" required="True"/>
+                            </prop>
+                            <prop type="object" name="customResourceNames">
+                              <prop type="string" name="namingPatternType" required="True">
+                                <enum>
+                                  <item value="&quot;FullResourceName&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="namingPatternType" value="FullResourceName">
+                                <prop type="object" name="applicationServer">
+                                  <prop type="string" name="availabilitySetName"/>
+                                  <prop type="array<@VirtualMachineResourceNames_read>" name="virtualMachines">
+                                    <item type="@VirtualMachineResourceNames_read"/>
+                                  </prop>
+                                </prop>
+                                <prop type="object" name="centralServer">
+                                  <prop type="string" name="availabilitySetName"/>
+                                  <prop type="object" name="loadBalancer" cls="LoadBalancerResourceNames_read">
+                                    <prop type="array<string>" name="backendPoolNames">
+                                      <item type="string"/>
+                                    </prop>
+                                    <prop type="array<string>" name="frontendIpConfigurationNames">
+                                      <item type="string"/>
+                                    </prop>
+                                    <prop type="array<string>" name="healthProbeNames">
+                                      <item type="string"/>
+                                    </prop>
+                                    <prop type="string" name="loadBalancerName"/>
+                                  </prop>
+                                  <prop type="array<@VirtualMachineResourceNames_read>" name="virtualMachines">
+                                    <item type="@VirtualMachineResourceNames_read"/>
+                                  </prop>
+                                </prop>
+                                <prop type="object" name="databaseServer">
+                                  <prop type="string" name="availabilitySetName"/>
+                                  <prop type="@LoadBalancerResourceNames_read" name="loadBalancer"/>
+                                  <prop type="array<@VirtualMachineResourceNames_read>" name="virtualMachines">
+                                    <item type="@VirtualMachineResourceNames_read"/>
+                                  </prop>
+                                </prop>
+                                <prop type="object" name="sharedStorage">
+                                  <prop type="string" name="sharedStorageAccountName"/>
+                                  <prop type="string" name="sharedStorageAccountPrivateEndPointName"/>
+                                </prop>
+                              </discriminator>
+                            </prop>
+                            <prop type="object" name="databaseServer" required="True">
+                              <prop type="string" name="databaseType">
+                                <enum>
+                                  <item value="&quot;DB2&quot;"/>
+                                  <item value="&quot;HANA&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="@DiskConfiguration_read" name="diskConfiguration"/>
+                              <prop type="integer64" name="instanceCount" required="True"/>
+                              <prop type="string" name="subnetId" required="True"/>
+                              <prop type="@VirtualMachineConfiguration_read" name="virtualMachineConfiguration" required="True"/>
+                            </prop>
+                            <prop type="object" name="highAvailabilityConfig">
+                              <prop type="string" name="highAvailabilityType" required="True">
+                                <enum>
+                                  <item value="&quot;AvailabilitySet&quot;"/>
+                                  <item value="&quot;AvailabilityZone&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="@NetworkConfiguration_read" name="networkConfiguration"/>
+                            <prop type="object" name="storageConfiguration">
+                              <prop type="object" name="transportFileShareConfiguration">
+                                <prop type="string" name="configurationType" required="True">
+                                  <enum>
+                                    <item value="&quot;CreateAndMount&quot;"/>
+                                    <item value="&quot;Mount&quot;"/>
+                                    <item value="&quot;Skip&quot;"/>
+                                  </enum>
+                                </prop>
+                                <discriminator property="configurationType" value="CreateAndMount">
+                                  <prop type="string" name="resourceGroup"/>
+                                  <prop type="string" name="storageAccountName"/>
+                                </discriminator>
+                                <discriminator property="configurationType" value="Mount">
+                                  <prop type="string" name="id" required="True"/>
+                                  <prop type="string" name="privateEndpointId" required="True"/>
+                                </discriminator>
+                                <discriminator property="configurationType" value="Skip"/>
+                              </prop>
+                            </prop>
+                          </discriminator>
+                        </prop>
+                        <prop type="object" name="softwareConfiguration" cls="SoftwareConfiguration_read">
+                          <prop type="string" name="softwareInstallationType" required="True">
+                            <enum>
+                              <item value="&quot;External&quot;"/>
+                              <item value="&quot;SAPInstallWithoutOSConfig&quot;"/>
+                              <item value="&quot;ServiceInitiated&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="softwareInstallationType" value="External">
+                            <prop type="string" name="centralServerVmId"/>
+                          </discriminator>
+                          <discriminator property="softwareInstallationType" value="SAPInstallWithoutOSConfig">
+                            <prop type="string" name="bomUrl" required="True"/>
+                            <prop type="object" name="highAvailabilitySoftwareConfiguration" cls="HighAvailabilitySoftwareConfiguration_read">
+                              <prop type="string" name="fencingClientId" required="True"/>
+                              <prop type="password" name="fencingClientPassword" required="True" secret="True"/>
+                            </prop>
+                            <prop type="string" name="sapBitsStorageAccountId" required="True"/>
+                            <prop type="string" name="softwareVersion" required="True"/>
+                          </discriminator>
+                          <discriminator property="softwareInstallationType" value="ServiceInitiated">
+                            <prop type="string" name="bomUrl" required="True"/>
+                            <prop type="@HighAvailabilitySoftwareConfiguration_read" name="highAvailabilitySoftwareConfiguration"/>
+                            <prop type="string" name="sapBitsStorageAccountId" required="True"/>
+                            <prop type="string" name="sapFqdn" required="True"/>
+                            <prop type="string" name="softwareVersion" required="True"/>
+                            <prop type="password" name="sshPrivateKey" required="True" secret="True"/>
+                          </discriminator>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="configurationType" value="DeploymentWithOSConfig">
+                        <prop type="string" name="appLocation"/>
+                        <prop type="@InfrastructureConfiguration_read" name="infrastructureConfiguration"/>
+                        <prop type="object" name="osSapConfiguration">
+                          <prop type="object" name="deployerVmPackages">
+                            <prop type="string" name="storageAccountId"/>
+                            <prop type="string" name="url"/>
+                          </prop>
+                          <prop type="string" name="sapFqdn"/>
+                        </prop>
+                        <prop type="@SoftwareConfiguration_read" name="softwareConfiguration"/>
+                      </discriminator>
+                      <discriminator property="configurationType" value="Discovery">
+                        <prop readOnly="True" type="string" name="appLocation"/>
+                        <prop type="string" name="centralServerVmId"/>
+                        <prop type="string" name="managedRgStorageAccountName">
+                          <format maxLength="24" minLength="3"/>
+                        </prop>
+                      </discriminator>
+                    </prop>
+                    <prop type="string" name="environment" required="True">
+                      <enum>
+                        <item value="&quot;NonProd&quot;"/>
+                        <item value="&quot;Prod&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="object" name="errors">
+                      <prop type="object" name="properties" cls="ErrorDefinition_read">
+                        <prop readOnly="True" type="string" name="code"/>
+                        <prop readOnly="True" type="array<@ErrorDefinition_read>" name="details">
+                          <item type="@ErrorDefinition_read"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="message"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="health">
+                      <enum>
+                        <item value="&quot;Degraded&quot;"/>
+                        <item value="&quot;Healthy&quot;"/>
+                        <item value="&quot;Unhealthy&quot;"/>
+                        <item value="&quot;Unknown&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="managedResourceGroupConfiguration">
+                      <prop type="string" name="name"/>
+                    </prop>
+                    <prop type="string" name="managedResourcesNetworkAccessType">
+                      <enum>
+                        <item value="&quot;Private&quot;"/>
+                        <item value="&quot;Public&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Creating&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="sapProduct" required="True">
+                      <enum>
+                        <item value="&quot;ECC&quot;"/>
+                        <item value="&quot;Other&quot;"/>
+                        <item value="&quot;S4HANA&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="state">
+                      <enum>
+                        <item value="&quot;ACSSInstallationBlocked&quot;"/>
+                        <item value="&quot;DiscoveryFailed&quot;"/>
+                        <item value="&quot;DiscoveryInProgress&quot;"/>
+                        <item value="&quot;DiscoveryPending&quot;"/>
+                        <item value="&quot;InfrastructureDeploymentFailed&quot;"/>
+                        <item value="&quot;InfrastructureDeploymentInProgress&quot;"/>
+                        <item value="&quot;InfrastructureDeploymentPending&quot;"/>
+                        <item value="&quot;RegistrationComplete&quot;"/>
+                        <item value="&quot;SoftwareDetectionFailed&quot;"/>
+                        <item value="&quot;SoftwareDetectionInProgress&quot;"/>
+                        <item value="&quot;SoftwareInstallationFailed&quot;"/>
+                        <item value="&quot;SoftwareInstallationInProgress&quot;"/>
+                        <item value="&quot;SoftwareInstallationPending&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="status">
+                      <enum>
+                        <item value="&quot;Offline&quot;"/>
+                        <item value="&quot;PartiallyRunning&quot;"/>
+                        <item value="&quot;Running&quot;"/>
+                        <item value="&quot;SoftShutdown&quot;"/>
+                        <item value="&quot;Starting&quot;"/>
+                        <item value="&quot;Stopping&quot;"/>
+                        <item value="&quot;Unavailable&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2024-09-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.workloads/sapvirtualinstances/{}" version="2024-09-01" swagger="mgmt-plane/workloads/ResourceProviders/Microsoft.Workloads/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuV29ya2xvYWRzL3NhcFZpcnR1YWxJbnN0YW5jZXMve3NhcFZpcnR1YWxJbnN0YW5jZU5hbWV9/V/MjAyNC0wOS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.sapVirtualInstanceName" options="sap-virtual-instance-name name n" required="True" idPart="name">
+          <help short="The name of the Virtual Instances for SAP solutions resource"/>
+          <format pattern="^[a-zA-Z][a-zA-Z0-9]{2}$"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="object" var="$properties.identity" options="identity" group="Properties">
+          <help short="Managed service identity (user assigned identities)"/>
+          <arg type="string" var="$properties.identity.type" options="type" required="True">
+            <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
+            <enum>
+              <item name="None" value="&quot;None&quot;"/>
+              <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
+            </enum>
+          </arg>
+          <arg type="object" var="$properties.identity.userAssignedIdentities" options="user-assigned-identities">
+            <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
+            <additionalProp>
+              <item nullable="True" type="object">
+                <blank value="{}"/>
+              </item>
+            </additionalProp>
+          </arg>
+        </arg>
+        <arg type="string" var="$properties.properties.managedResourcesNetworkAccessType" options="managed-resources-network-access-type mrg-network-access-typ" group="Properties">
+          <help short="Specifies the network access configuration for the resources that will be deployed in the Managed Resource Group. The options to choose from are Public and Private. If 'Private' is chosen, the Storage Account service tag should be enabled on the subnets in which the SAP VMs exist. This is required for establishing connectivity between VM extensions and the managed resource group storage account. This setting is currently applicable only to Storage Account. Learn more here https://go.microsoft.com/fwlink/?linkid=2247228"/>
+          <default value="&quot;Public&quot;"/>
+          <enum>
+            <item name="Private" value="&quot;Private&quot;"/>
+            <item name="Public" value="&quot;Public&quot;"/>
+          </enum>
+        </arg>
+        <arg type="object" var="$properties.tags" options="tags" group="Properties">
+          <help short="Gets or sets the Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="SapVirtualInstances_Update">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Workloads/sapVirtualInstances/{sapVirtualInstanceName}">
+          <request method="patch">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="sapVirtualInstanceName" arg="$Path.sapVirtualInstanceName" required="True">
+                <format pattern="^[a-zA-Z][a-zA-Z0-9]{2}$"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-09-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="properties" required="True" clientFlatten="True">
+                  <prop type="IdentityObject" name="identity" arg="$properties.identity">
+                    <prop type="string" name="type" arg="$properties.identity.type" required="True">
+                      <enum>
+                        <item value="&quot;None&quot;"/>
+                        <item value="&quot;UserAssigned&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="userAssignedIdentities" arg="$properties.identity.userAssignedIdentities">
+                      <additionalProp>
+                        <item nullable="True" type="object"/>
+                      </additionalProp>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="properties">
+                    <prop type="string" name="managedResourcesNetworkAccessType" arg="$properties.properties.managedResourcesNetworkAccessType">
+                      <enum>
+                        <item value="&quot;Private&quot;"/>
+                        <item value="&quot;Public&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags" arg="$properties.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Workloads/sapVirtualInstances/{}"/>
+                  </prop>
+                  <prop type="IdentityObject" name="identity">
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;None&quot;"/>
+                        <item value="&quot;UserAssigned&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="userAssignedIdentities">
+                      <additionalProp>
+                        <item nullable="True" type="object">
+                          <prop readOnly="True" type="uuid" name="clientId"/>
+                          <prop readOnly="True" type="uuid" name="principalId"/>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="object" name="configuration" required="True">
+                      <prop type="string" name="configurationType" required="True">
+                        <enum>
+                          <item value="&quot;Deployment&quot;"/>
+                          <item value="&quot;DeploymentWithOSConfig&quot;"/>
+                          <item value="&quot;Discovery&quot;"/>
+                        </enum>
+                      </prop>
+                      <discriminator property="configurationType" value="Deployment">
+                        <prop type="string" name="appLocation"/>
+                        <prop type="object" name="infrastructureConfiguration" cls="InfrastructureConfiguration_read">
+                          <prop type="string" name="appResourceGroup" required="True"/>
+                          <prop type="string" name="deploymentType" required="True">
+                            <enum>
+                              <item value="&quot;SingleServer&quot;"/>
+                              <item value="&quot;ThreeTier&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="deploymentType" value="SingleServer">
+                            <prop type="object" name="customResourceNames">
+                              <prop type="string" name="namingPatternType" required="True">
+                                <enum>
+                                  <item value="&quot;FullResourceName&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="namingPatternType" value="FullResourceName">
+                                <prop type="object" name="virtualMachine" cls="VirtualMachineResourceNames_read">
+                                  <prop type="object" name="dataDiskNames">
+                                    <additionalProp>
+                                      <item type="array<string>">
+                                        <item type="string"/>
+                                      </item>
+                                    </additionalProp>
+                                  </prop>
+                                  <prop type="string" name="hostName"/>
+                                  <prop type="array<object>" name="networkInterfaces">
+                                    <item type="object">
+                                      <prop type="string" name="networkInterfaceName"/>
+                                    </item>
+                                  </prop>
+                                  <prop type="string" name="osDiskName"/>
+                                  <prop type="string" name="vmName"/>
+                                </prop>
+                              </discriminator>
+                            </prop>
+                            <prop type="string" name="databaseType">
+                              <enum>
+                                <item value="&quot;DB2&quot;"/>
+                                <item value="&quot;HANA&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="object" name="dbDiskConfiguration" cls="DiskConfiguration_read">
+                              <prop type="object" name="diskVolumeConfigurations">
+                                <additionalProp>
+                                  <item type="object">
+                                    <prop type="integer64" name="count"/>
+                                    <prop type="integer64" name="sizeGB"/>
+                                    <prop type="object" name="sku">
+                                      <prop type="string" name="name">
+                                        <enum>
+                                          <item value="&quot;PremiumV2_LRS&quot;"/>
+                                          <item value="&quot;Premium_LRS&quot;"/>
+                                          <item value="&quot;Premium_ZRS&quot;"/>
+                                          <item value="&quot;StandardSSD_LRS&quot;"/>
+                                          <item value="&quot;StandardSSD_ZRS&quot;"/>
+                                          <item value="&quot;Standard_LRS&quot;"/>
+                                          <item value="&quot;UltraSSD_LRS&quot;"/>
+                                        </enum>
+                                      </prop>
+                                    </prop>
+                                  </item>
+                                </additionalProp>
+                              </prop>
+                            </prop>
+                            <prop type="object" name="networkConfiguration" cls="NetworkConfiguration_read">
+                              <prop type="boolean" name="isSecondaryIpEnabled">
+                                <default value="false"/>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="subnetId" required="True"/>
+                            <prop type="object" name="virtualMachineConfiguration" required="True" cls="VirtualMachineConfiguration_read">
+                              <prop type="object" name="imageReference" required="True">
+                                <prop type="ResourceId" name="id"/>
+                                <prop type="string" name="offer"/>
+                                <prop type="string" name="publisher"/>
+                                <prop type="string" name="sku"/>
+                                <prop type="string" name="version"/>
+                              </prop>
+                              <prop type="object" name="osProfile" required="True">
+                                <prop type="password" name="adminPassword" secret="True"/>
+                                <prop type="string" name="adminUsername"/>
+                                <prop type="object" name="osConfiguration">
+                                  <prop type="string" name="osType" required="True">
+                                    <enum>
+                                      <item value="&quot;Linux&quot;"/>
+                                      <item value="&quot;Windows&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <discriminator property="osType" value="Linux">
+                                    <prop type="boolean" name="disablePasswordAuthentication"/>
+                                    <prop type="object" name="ssh">
+                                      <prop type="array<object>" name="publicKeys">
+                                        <item type="object">
+                                          <prop type="string" name="keyData"/>
+                                        </item>
+                                      </prop>
+                                    </prop>
+                                    <prop type="object" name="sshKeyPair">
+                                      <prop type="password" name="privateKey" secret="True"/>
+                                      <prop type="string" name="publicKey"/>
+                                    </prop>
+                                  </discriminator>
+                                  <discriminator property="osType" value="Windows"/>
+                                </prop>
+                              </prop>
+                              <prop type="string" name="vmSize" required="True"/>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="deploymentType" value="ThreeTier">
+                            <prop type="object" name="applicationServer" required="True">
+                              <prop type="integer64" name="instanceCount" required="True"/>
+                              <prop type="string" name="subnetId" required="True"/>
+                              <prop type="@VirtualMachineConfiguration_read" name="virtualMachineConfiguration" required="True"/>
+                            </prop>
+                            <prop type="object" name="centralServer" required="True">
+                              <prop type="integer64" name="instanceCount" required="True"/>
+                              <prop type="string" name="subnetId" required="True"/>
+                              <prop type="@VirtualMachineConfiguration_read" name="virtualMachineConfiguration" required="True"/>
+                            </prop>
+                            <prop type="object" name="customResourceNames">
+                              <prop type="string" name="namingPatternType" required="True">
+                                <enum>
+                                  <item value="&quot;FullResourceName&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="namingPatternType" value="FullResourceName">
+                                <prop type="object" name="applicationServer">
+                                  <prop type="string" name="availabilitySetName"/>
+                                  <prop type="array<@VirtualMachineResourceNames_read>" name="virtualMachines">
+                                    <item type="@VirtualMachineResourceNames_read"/>
+                                  </prop>
+                                </prop>
+                                <prop type="object" name="centralServer">
+                                  <prop type="string" name="availabilitySetName"/>
+                                  <prop type="object" name="loadBalancer" cls="LoadBalancerResourceNames_read">
+                                    <prop type="array<string>" name="backendPoolNames">
+                                      <item type="string"/>
+                                    </prop>
+                                    <prop type="array<string>" name="frontendIpConfigurationNames">
+                                      <item type="string"/>
+                                    </prop>
+                                    <prop type="array<string>" name="healthProbeNames">
+                                      <item type="string"/>
+                                    </prop>
+                                    <prop type="string" name="loadBalancerName"/>
+                                  </prop>
+                                  <prop type="array<@VirtualMachineResourceNames_read>" name="virtualMachines">
+                                    <item type="@VirtualMachineResourceNames_read"/>
+                                  </prop>
+                                </prop>
+                                <prop type="object" name="databaseServer">
+                                  <prop type="string" name="availabilitySetName"/>
+                                  <prop type="@LoadBalancerResourceNames_read" name="loadBalancer"/>
+                                  <prop type="array<@VirtualMachineResourceNames_read>" name="virtualMachines">
+                                    <item type="@VirtualMachineResourceNames_read"/>
+                                  </prop>
+                                </prop>
+                                <prop type="object" name="sharedStorage">
+                                  <prop type="string" name="sharedStorageAccountName"/>
+                                  <prop type="string" name="sharedStorageAccountPrivateEndPointName"/>
+                                </prop>
+                              </discriminator>
+                            </prop>
+                            <prop type="object" name="databaseServer" required="True">
+                              <prop type="string" name="databaseType">
+                                <enum>
+                                  <item value="&quot;DB2&quot;"/>
+                                  <item value="&quot;HANA&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="@DiskConfiguration_read" name="diskConfiguration"/>
+                              <prop type="integer64" name="instanceCount" required="True"/>
+                              <prop type="string" name="subnetId" required="True"/>
+                              <prop type="@VirtualMachineConfiguration_read" name="virtualMachineConfiguration" required="True"/>
+                            </prop>
+                            <prop type="object" name="highAvailabilityConfig">
+                              <prop type="string" name="highAvailabilityType" required="True">
+                                <enum>
+                                  <item value="&quot;AvailabilitySet&quot;"/>
+                                  <item value="&quot;AvailabilityZone&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="@NetworkConfiguration_read" name="networkConfiguration"/>
+                            <prop type="object" name="storageConfiguration">
+                              <prop type="object" name="transportFileShareConfiguration">
+                                <prop type="string" name="configurationType" required="True">
+                                  <enum>
+                                    <item value="&quot;CreateAndMount&quot;"/>
+                                    <item value="&quot;Mount&quot;"/>
+                                    <item value="&quot;Skip&quot;"/>
+                                  </enum>
+                                </prop>
+                                <discriminator property="configurationType" value="CreateAndMount">
+                                  <prop type="string" name="resourceGroup"/>
+                                  <prop type="string" name="storageAccountName"/>
+                                </discriminator>
+                                <discriminator property="configurationType" value="Mount">
+                                  <prop type="string" name="id" required="True"/>
+                                  <prop type="string" name="privateEndpointId" required="True"/>
+                                </discriminator>
+                                <discriminator property="configurationType" value="Skip"/>
+                              </prop>
+                            </prop>
+                          </discriminator>
+                        </prop>
+                        <prop type="object" name="softwareConfiguration" cls="SoftwareConfiguration_read">
+                          <prop type="string" name="softwareInstallationType" required="True">
+                            <enum>
+                              <item value="&quot;External&quot;"/>
+                              <item value="&quot;SAPInstallWithoutOSConfig&quot;"/>
+                              <item value="&quot;ServiceInitiated&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="softwareInstallationType" value="External">
+                            <prop type="string" name="centralServerVmId"/>
+                          </discriminator>
+                          <discriminator property="softwareInstallationType" value="SAPInstallWithoutOSConfig">
+                            <prop type="string" name="bomUrl" required="True"/>
+                            <prop type="object" name="highAvailabilitySoftwareConfiguration" cls="HighAvailabilitySoftwareConfiguration_read">
+                              <prop type="string" name="fencingClientId" required="True"/>
+                              <prop type="password" name="fencingClientPassword" required="True" secret="True"/>
+                            </prop>
+                            <prop type="string" name="sapBitsStorageAccountId" required="True"/>
+                            <prop type="string" name="softwareVersion" required="True"/>
+                          </discriminator>
+                          <discriminator property="softwareInstallationType" value="ServiceInitiated">
+                            <prop type="string" name="bomUrl" required="True"/>
+                            <prop type="@HighAvailabilitySoftwareConfiguration_read" name="highAvailabilitySoftwareConfiguration"/>
+                            <prop type="string" name="sapBitsStorageAccountId" required="True"/>
+                            <prop type="string" name="sapFqdn" required="True"/>
+                            <prop type="string" name="softwareVersion" required="True"/>
+                            <prop type="password" name="sshPrivateKey" required="True" secret="True"/>
+                          </discriminator>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="configurationType" value="DeploymentWithOSConfig">
+                        <prop type="string" name="appLocation"/>
+                        <prop type="@InfrastructureConfiguration_read" name="infrastructureConfiguration"/>
+                        <prop type="object" name="osSapConfiguration">
+                          <prop type="object" name="deployerVmPackages">
+                            <prop type="string" name="storageAccountId"/>
+                            <prop type="string" name="url"/>
+                          </prop>
+                          <prop type="string" name="sapFqdn"/>
+                        </prop>
+                        <prop type="@SoftwareConfiguration_read" name="softwareConfiguration"/>
+                      </discriminator>
+                      <discriminator property="configurationType" value="Discovery">
+                        <prop readOnly="True" type="string" name="appLocation"/>
+                        <prop type="string" name="centralServerVmId"/>
+                        <prop type="string" name="managedRgStorageAccountName">
+                          <format maxLength="24" minLength="3"/>
+                        </prop>
+                      </discriminator>
+                    </prop>
+                    <prop type="string" name="environment" required="True">
+                      <enum>
+                        <item value="&quot;NonProd&quot;"/>
+                        <item value="&quot;Prod&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="object" name="errors">
+                      <prop type="object" name="properties" cls="ErrorDefinition_read">
+                        <prop readOnly="True" type="string" name="code"/>
+                        <prop readOnly="True" type="array<@ErrorDefinition_read>" name="details">
+                          <item type="@ErrorDefinition_read"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="message"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="health">
+                      <enum>
+                        <item value="&quot;Degraded&quot;"/>
+                        <item value="&quot;Healthy&quot;"/>
+                        <item value="&quot;Unhealthy&quot;"/>
+                        <item value="&quot;Unknown&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="managedResourceGroupConfiguration">
+                      <prop type="string" name="name"/>
+                    </prop>
+                    <prop type="string" name="managedResourcesNetworkAccessType">
+                      <enum>
+                        <item value="&quot;Private&quot;"/>
+                        <item value="&quot;Public&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Creating&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="sapProduct" required="True">
+                      <enum>
+                        <item value="&quot;ECC&quot;"/>
+                        <item value="&quot;Other&quot;"/>
+                        <item value="&quot;S4HANA&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="state">
+                      <enum>
+                        <item value="&quot;ACSSInstallationBlocked&quot;"/>
+                        <item value="&quot;DiscoveryFailed&quot;"/>
+                        <item value="&quot;DiscoveryInProgress&quot;"/>
+                        <item value="&quot;DiscoveryPending&quot;"/>
+                        <item value="&quot;InfrastructureDeploymentFailed&quot;"/>
+                        <item value="&quot;InfrastructureDeploymentInProgress&quot;"/>
+                        <item value="&quot;InfrastructureDeploymentPending&quot;"/>
+                        <item value="&quot;RegistrationComplete&quot;"/>
+                        <item value="&quot;SoftwareDetectionFailed&quot;"/>
+                        <item value="&quot;SoftwareDetectionInProgress&quot;"/>
+                        <item value="&quot;SoftwareInstallationFailed&quot;"/>
+                        <item value="&quot;SoftwareInstallationInProgress&quot;"/>
+                        <item value="&quot;SoftwareInstallationPending&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="status">
+                      <enum>
+                        <item value="&quot;Offline&quot;"/>
+                        <item value="&quot;PartiallyRunning&quot;"/>
+                        <item value="&quot;Running&quot;"/>
+                        <item value="&quot;SoftShutdown&quot;"/>
+                        <item value="&quot;Starting&quot;"/>
+                        <item value="&quot;Stopping&quot;"/>
+                        <item value="&quot;Unavailable&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
