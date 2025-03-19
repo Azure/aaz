@@ -55,6 +55,9 @@ Manage Azure Network Fabric Management Service API
 - [neighborgroup](/Commands/networkfabric/neighborgroup/readme.md)
 : Manage Neighbor Group Resource
 
+- [networkmonitor](/Commands/networkfabric/networkmonitor/readme.md)
+: Manage Network Monitor Resource
+
 - [nni](/Commands/networkfabric/nni/readme.md)
 : Manage Network To Network Interconnect Resource
 

@@ -42,6 +42,9 @@ Manage Linux or Windows virtual machines.
 - [list-sizes](/Commands/vm/_list-sizes.md)
 : List available sizes for VMs.
 
+- [list-skus](/Commands/vm/_list-skus.md)
+: Get details for compute-related resource SKUs.
+
 - [list-vm-resize-options](/Commands/vm/_list-vm-resize-options.md)
 : List available resizing options for VMs.
 
