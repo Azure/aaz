@@ -10,6 +10,9 @@ Manage communication service with communication.
 - [identity](/Commands/communication/identity/readme.md)
 : Manage the Communication Resource's managed identities.
 
+- [smtp-username](/Commands/communication/smtp-username/readme.md)
+: Manage smtp-username with communication.
+
 ## Commands
 
 - [create](/Commands/communication/_create.md)
