@@ -6,6 +6,9 @@ For more information on site-to-site connections, visit https://learn.microsoft.
 
 ## Subgroups
 
+- [identity](/Commands/network/vpn-connection/identity/readme.md)
+: Manage identities of a vpn-connection.
+
 - [ipsec-policy](/Commands/network/vpn-connection/ipsec-policy/readme.md)
 : Manage VPN connection IPSec policies.
 
