@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.computeschedule/locations/{}/virtualmachinesgetoperationerrors" version="2024-10-01" swagger="mgmt-plane/computeschedule/ResourceProviders/Microsoft.ComputeSchedule/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNvbXB1dGVTY2hlZHVsZS9sb2NhdGlvbnMve2xvY2F0aW9ucGFyYW1ldGVyfS92aXJ0dWFsTWFjaGluZXNHZXRPcGVyYXRpb25FcnJvcnM=/V/MjAyNC0xMC0wMQ=="/>
+  <commandGroup name="computeschedule">
+    <command name="vm-get-operation-errors" version="2024-10-01" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.computeschedule/locations/{}/virtualmachinesgetoperationerrors" version="2024-10-01" swagger="mgmt-plane/computeschedule/ResourceProviders/Microsoft.ComputeSchedule/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNvbXB1dGVTY2hlZHVsZS9sb2NhdGlvbnMve2xvY2F0aW9ucGFyYW1ldGVyfS92aXJ0dWFsTWFjaGluZXNHZXRPcGVyYXRpb25FcnJvcnM=/V/MjAyNC0xMC0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.locationparameter" options="location" required="True" group="" idPart="name">
+          <help short="The location of the azure resources."/>
+          <prompt msg="Please enter location of azure resources:"/>
+          <format minLength="1"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
+          <help short="SubscriptionId associated with the azure resources"/>
+        </arg>
+      </argGroup>
+      <argGroup name="RequestBody">
+        <arg type="array<string>" var="$requestBody.operationIds" options="operation-ids" required="True" group="RequestBody">
+          <help short="The list of operation ids to get the status for" lines="These operationids must be from previous Start/Hibernate/Deallocate operations"/>
+          <item type="string"/>
+        </arg>
+      </argGroup>
+      <operation operationId="ScheduledActions_VirtualMachinesGetOperationErrors">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.ComputeSchedule/locations/{locationparameter}/virtualMachinesGetOperationErrors">
+          <request method="post">
+            <path>
+              <param type="string" name="locationparameter" arg="$Path.locationparameter" required="True">
+                <format minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-10-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="requestBody" required="True" clientFlatten="True">
+                  <prop type="array<string>" name="operationIds" arg="$requestBody.operationIds" required="True">
+                    <item type="string"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="results" required="True">
+                    <item type="object">
+                      <prop type="dateTime" name="activationTime"/>
+                      <prop type="dateTime" name="completedAt"/>
+                      <prop type="dateTime" name="creationTime"/>
+                      <prop type="array<object>" name="operationErrors">
+                        <item type="object">
+                          <prop type="string" name="azureOperationName"/>
+                          <prop type="string" name="crpOperationId"/>
+                          <prop type="string" name="errorCode" required="True"/>
+                          <prop type="string" name="errorDetails" required="True"/>
+                          <prop type="dateTime" name="timeStamp"/>
+                          <prop type="dateTime" name="timestamp"/>
+                        </item>
+                      </prop>
+                      <prop type="string" name="operationId"/>
+                      <prop type="string" name="requestErrorCode"/>
+                      <prop type="string" name="requestErrorDetails"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
