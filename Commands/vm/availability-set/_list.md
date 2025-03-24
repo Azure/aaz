@@ -4,6 +4,11 @@ List all availability sets in a subscription.
 
 ## Versions
 
+### [2017-12-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlL2F2YWlsYWJpbGl0eXNldHM=/2017-12-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.compute/availabilitysets 2017-12-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/availabilitysets 2017-12-01 -->
+
 ### [2020-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlL2F2YWlsYWJpbGl0eXNldHM=/2020-06-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.compute/availabilitysets 2020-06-01 -->
