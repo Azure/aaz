@@ -1,0 +1,209 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.compute/availabilitysets" version="2024-07-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNvbXB1dGUvYXZhaWxhYmlsaXR5U2V0cw==/V/MjAyNC0wNy0wMQ=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/availabilitysets" version="2024-07-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9hdmFpbGFiaWxpdHlTZXRz/V/MjAyNC0wNy0wMQ=="/>
+  <commandGroup name="vm availability-set">
+    <command name="list" version="2024-07-01" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.compute/availabilitysets" version="2024-07-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNvbXB1dGUvYXZhaWxhYmlsaXR5U2V0cw==/V/MjAyNC0wNy0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/availabilitysets" version="2024-07-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9hdmFpbGFiaWxpdHlTZXRz/V/MjAyNC0wNy0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Query.expand" options="expand">
+          <help short="The expand expression to apply to the operation. Allowed values are 'virtualMachines/$ref'."/>
+        </arg>
+      </argGroup>
+      <condition var="$Condition_AvailabilitySets_ListBySubscription">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <condition var="$Condition_AvailabilitySets_List">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_AvailabilitySets_ListBySubscription" operationId="AvailabilitySets_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Compute/availabilitySets">
+          <request method="get">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="$expand" arg="$Query.expand"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-07-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/availabilitySets/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="integer32" name="platformFaultDomainCount"/>
+                        <prop type="integer32" name="platformUpdateDomainCount"/>
+                        <prop type="@SubResource_read" name="proximityPlacementGroup"/>
+                        <prop type="object" name="scheduledEventsPolicy">
+                          <prop type="object" name="scheduledEventsAdditionalPublishingTargets">
+                            <prop type="object" name="eventGridAndResourceGraph">
+                              <prop type="boolean" name="enable"/>
+                            </prop>
+                          </prop>
+                          <prop type="object" name="userInitiatedReboot">
+                            <prop type="boolean" name="automaticallyApprove"/>
+                          </prop>
+                          <prop type="object" name="userInitiatedRedeploy">
+                            <prop type="boolean" name="automaticallyApprove"/>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="array<object>" name="statuses">
+                          <item type="object">
+                            <prop type="string" name="code"/>
+                            <prop type="string" name="displayStatus"/>
+                            <prop type="string" name="level">
+                              <enum>
+                                <item value="&quot;Error&quot;"/>
+                                <item value="&quot;Info&quot;"/>
+                                <item value="&quot;Warning&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="message"/>
+                            <prop type="dateTime" name="time"/>
+                          </item>
+                        </prop>
+                        <prop type="array<object>" name="virtualMachines">
+                          <item type="object" cls="SubResource_read">
+                            <prop type="string" name="id"/>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="sku">
+                        <prop type="integer64" name="capacity"/>
+                        <prop type="string" name="name"/>
+                        <prop type="string" name="tier"/>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_AvailabilitySets_List" operationId="AvailabilitySets_List">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/availabilitySets">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-07-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/availabilitySets/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="integer32" name="platformFaultDomainCount"/>
+                        <prop type="integer32" name="platformUpdateDomainCount"/>
+                        <prop type="@SubResource_read" name="proximityPlacementGroup"/>
+                        <prop type="object" name="scheduledEventsPolicy">
+                          <prop type="object" name="scheduledEventsAdditionalPublishingTargets">
+                            <prop type="object" name="eventGridAndResourceGraph">
+                              <prop type="boolean" name="enable"/>
+                            </prop>
+                          </prop>
+                          <prop type="object" name="userInitiatedReboot">
+                            <prop type="boolean" name="automaticallyApprove"/>
+                          </prop>
+                          <prop type="object" name="userInitiatedRedeploy">
+                            <prop type="boolean" name="automaticallyApprove"/>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="array<object>" name="statuses">
+                          <item type="object">
+                            <prop type="string" name="code"/>
+                            <prop type="string" name="displayStatus"/>
+                            <prop type="string" name="level">
+                              <enum>
+                                <item value="&quot;Error&quot;"/>
+                                <item value="&quot;Info&quot;"/>
+                                <item value="&quot;Warning&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="message"/>
+                            <prop type="dateTime" name="time"/>
+                          </item>
+                        </prop>
+                        <prop type="array<@SubResource_read>" name="virtualMachines">
+                          <item type="@SubResource_read"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="sku">
+                        <prop type="integer64" name="capacity"/>
+                        <prop type="string" name="name"/>
+                        <prop type="string" name="tier"/>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
