@@ -12,6 +12,9 @@ To provide redundancy to an application, it is recommended to group two or more 
 - [delete](/Commands/vm/availability-set/_delete.md)
 : Delete an availability set.
 
+- [list](/Commands/vm/availability-set/_list.md)
+: List all availability sets in a subscription.
+
 - [list-sizes](/Commands/vm/availability-set/_list-sizes.md)
 : List all available virtual machine sizes that can be used to create a new virtual machine in an existing availability set.
 
@@ -19,4 +22,4 @@ To provide redundancy to an application, it is recommended to group two or more 
 : Get information about an availability set.
 
 - [update](/Commands/vm/availability-set/_update.md)
-: Update an availability set.
+: Update an Azure Availability Set.
