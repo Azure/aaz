@@ -8,6 +8,23 @@ Update an Azure Availability Set.
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/availabilitysets/{} 2017-03-30 -->
 
+#### examples
+
+- Update an availability set
+    ```bash
+        vm availability-set update -n MyAvSet -g MyResourceGroup
+    ```
+
+- Update an availability set tag.
+    ```bash
+        vm availability-set update -n MyAvSet -g MyResourceGroup --set tags.foo=value
+    ```
+
+- Remove an availability set tag.
+    ```bash
+        vm availability-set update -n MyAvSet -g MyResourceGroup --remove tags.foo
+    ```
+
 ### [2017-12-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlL2F2YWlsYWJpbGl0eXNldHMve30=/2017-12-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/availabilitysets/{} 2017-12-01 -->
