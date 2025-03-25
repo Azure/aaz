@@ -2,6 +2,11 @@
 
 Manage Organization resources.
 
+## Subgroups
+
+- [identity](/Commands/astronomer/organization/identity/readme.md)
+: Manage Identity
+
 ## Commands
 
 - [create](/Commands/astronomer/organization/_create.md)

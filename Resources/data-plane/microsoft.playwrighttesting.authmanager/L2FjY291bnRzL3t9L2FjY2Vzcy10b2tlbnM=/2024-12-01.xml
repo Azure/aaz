@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.playwrighttesting.authmanager">
+  <resource id="/accounts/{}/access-tokens" version="2024-12-01" swagger="data-plane:microsoft.playwrighttesting.authmanager/playwrighttesting/ResourceProviders/Microsoft.PlaywrightTesting.AuthManager/Paths/L2FjY291bnRzL3thY2NvdW50SWR9L2FjY2Vzcy10b2tlbnM=/V/MjAyNC0xMi0wMQ=="/>
+  <commandGroup name="playwright-testing auth-manager account access-token">
+    <command name="list" version="2024-12-01">
+      <resource id="/accounts/{}/access-tokens" version="2024-12-01" swagger="data-plane:microsoft.playwrighttesting.authmanager/playwrighttesting/ResourceProviders/Microsoft.PlaywrightTesting.AuthManager/Paths/L2FjY291bnRzL3thY2NvdW50SWR9L2FjY2Vzcy10b2tlbnM=/V/MjAyNC0xMi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.accountId" options="account-id" required="True">
+          <help short="The account id."/>
+          <format pattern="[A-Za-z0-9]+(_[A-Za-z0-9]+)*(-[A-Za-z0-9]+)+" maxLength="64"/>
+        </arg>
+      </argGroup>
+      <operation operationId="AccessTokens_List">
+        <http path="/accounts/{accountId}/access-tokens">
+          <request method="get">
+            <path>
+              <param type="string" name="accountId" arg="$Path.accountId" required="True">
+                <format pattern="[A-Za-z0-9]+(_[A-Za-z0-9]+)*(-[A-Za-z0-9]+)+" maxLength="64"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <header clientRequestId="x-ms-client-request-id"/>
+          </request>
+          <response statusCode="200">
+            <header>
+              <item name="x-ms-client-request-id"/>
+            </header>
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="dateTime" name="createdAt"/>
+                      <prop type="dateTime" name="expiryAt" required="True"/>
+                      <prop readOnly="True" type="uuid" name="id">
+                        <format pattern="[A-Za-z0-9]+(-[A-Za-z0-9]+)+" maxLength="64"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="jwtToken"/>
+                      <prop type="string" name="name" required="True">
+                        <format pattern="^[a-zA-Z]{1}[a-zA-Z0-9]{2,63}$" maxLength="64" minLength="3"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="state">
+                        <enum>
+                          <item value="&quot;Active&quot;"/>
+                          <item value="&quot;Expired&quot;"/>
+                        </enum>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema readOnly="True" type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

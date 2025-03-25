@@ -2,6 +2,11 @@
 
 Manage a Neon organization
 
+## Subgroups
+
+- [project](/Commands/neon/postgres/organization/project/readme.md)
+: Manage Project
+
 ## Commands
 
 - [delete](/Commands/neon/postgres/organization/_delete.md)

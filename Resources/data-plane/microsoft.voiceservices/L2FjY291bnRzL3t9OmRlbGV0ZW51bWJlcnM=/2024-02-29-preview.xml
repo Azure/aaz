@@ -1,0 +1,84 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.voiceservices">
+  <resource id="/accounts/{}:deletenumbers" version="2024-02-29-preview" swagger="data-plane:microsoft.voiceservices/voiceservices/ResourceProviders/Microsoft.VoiceServices/Paths/L2FjY291bnRzL3thY2NvdW50TmFtZX06ZGVsZXRlTnVtYmVycw==/V/MjAyNC0wMi0yOS1wcmV2aWV3"/>
+  <commandGroup name="voice-services account">
+    <command name="delete-number" version="2024-02-29-preview">
+      <resource id="/accounts/{}:deletenumbers" version="2024-02-29-preview" swagger="data-plane:microsoft.voiceservices/voiceservices/ResourceProviders/Microsoft.VoiceServices/Paths/L2FjY291bnRzL3thY2NvdW50TmFtZX06ZGVsZXRlTnVtYmVycw==/V/MjAyNC0wMi0yOS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="dateTime" var="$Header.Repeatability-First-Sent" options="repeatability-first-sent">
+          <help short="Specifies the date and time at which the request was first created."/>
+        </arg>
+        <arg type="string" var="$Header.Repeatability-Request-ID" options="repeatability-request-id">
+          <help short="An opaque, globally-unique, client-generated string identifier for the request."/>
+        </arg>
+        <arg type="string" var="$Path.accountName" options="account-name" required="True">
+          <help short="Name of the account."/>
+          <format pattern="^([A-Za-z0-9_-]+)$" maxLength="100" minLength="1"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="array<object>" var="$body.numbers" options="numbers" required="True" group="Body">
+          <help short="The list of number to delete. At most 100 can be deleted in one request."/>
+          <format maxLength="100"/>
+          <item type="object">
+            <arg type="string" var="$body.numbers[].telephoneNumber" options="telephone-number" required="True">
+              <help short="Telephone number in E.164 format."/>
+              <format pattern="^\+[1-9]\d+$" maxLength="16" minLength="3"/>
+            </arg>
+          </item>
+        </arg>
+      </argGroup>
+      <operation operationId="Accounts_DeleteNumbers">
+        <http path="/accounts/{accountName}:deleteNumbers">
+          <request method="post">
+            <path>
+              <param type="string" name="accountName" arg="$Path.accountName" required="True">
+                <format pattern="^([A-Za-z0-9_-]+)$" maxLength="100" minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-02-29-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <header clientRequestId="x-ms-client-request-id">
+              <param type="dateTime" name="Repeatability-First-Sent" arg="$Header.Repeatability-First-Sent"/>
+              <param type="string" name="Repeatability-Request-ID" arg="$Header.Repeatability-Request-ID"/>
+            </header>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="array<object>" name="numbers" arg="$body.numbers" required="True">
+                    <format maxLength="100"/>
+                    <item type="object">
+                      <prop type="string" name="telephoneNumber" arg="$body.numbers[].telephoneNumber" required="True">
+                        <format pattern="^\+[1-9]\d+$" maxLength="16" minLength="3"/>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="204">
+            <header>
+              <item name="Repeatability-Result"/>
+              <item name="x-ms-client-request-id"/>
+            </header>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema readOnly="True" type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>
