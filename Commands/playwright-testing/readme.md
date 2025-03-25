@@ -4,6 +4,9 @@ Manage Microsoft Playwright Testing service
 
 ## Subgroups
 
+- [auth-manager](/Commands/playwright-testing/auth-manager/readme.md)
+: Manage Auth Manager
+
 - [quota](/Commands/playwright-testing/quota/readme.md)
 : Manage Azure subscription quota resource for Microsoft Playwright Testing service
 

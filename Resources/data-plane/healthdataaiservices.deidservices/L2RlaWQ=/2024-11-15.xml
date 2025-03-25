@@ -1,0 +1,143 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:healthdataaiservices.deidservices">
+  <resource id="/deid" version="2024-11-15" swagger="data-plane:healthdataaiservices.deidservices/healthdataaiservices/ResourceProviders/HealthDataAIServices.DeidServices/Paths/L2RlaWQ=/V/MjAyNC0xMS0xNQ=="/>
+  <commandGroup name="health-data-ai-services deid-services">
+    <command name="deid" version="2024-11-15">
+      <resource id="/deid" version="2024-11-15" swagger="data-plane:healthdataaiservices.deidservices/healthdataaiservices/ResourceProviders/HealthDataAIServices.DeidServices/Paths/L2RlaWQ=/V/MjAyNC0xMS0xNQ=="/>
+      <argGroup name="Body">
+        <arg type="object" var="$body.customizations" options="customizations" group="Body">
+          <help short="Customization parameters to override default service behaviors."/>
+          <arg type="string" var="$body.customizations.redactionFormat" options="redaction-format">
+            <help short="Format of the redacted output. Only valid when Operation is Redact.  Please refer to https://learn.microsoft.com/azure/healthcare-apis/deidentification/redaction-format for more details."/>
+            <format maxLength="16" minLength="1"/>
+          </arg>
+          <arg type="string" var="$body.customizations.surrogateLocale" options="surrogate-locale">
+            <help short="Locale in which the output surrogates are written."/>
+            <default value="&quot;en-US&quot;"/>
+          </arg>
+        </arg>
+        <arg type="string" var="$body.inputText" options="input-text" required="True" group="Body">
+          <help short="Input text to de-identify."/>
+          <format maxLength="48000"/>
+        </arg>
+        <arg type="string" var="$body.operation" options="operation" group="Body">
+          <help short="Operation to perform on the input documents."/>
+          <default value="&quot;Surrogate&quot;"/>
+          <enum>
+            <item name="Redact" value="&quot;Redact&quot;"/>
+            <item name="Surrogate" value="&quot;Surrogate&quot;"/>
+            <item name="Tag" value="&quot;Tag&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <operation operationId="DeidentifyText">
+        <http path="/deid">
+          <request method="post">
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-15&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <header clientRequestId="x-ms-client-request-id"/>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="object" name="customizations" arg="$body.customizations">
+                    <prop type="string" name="redactionFormat" arg="$body.customizations.redactionFormat">
+                      <format maxLength="16" minLength="1"/>
+                    </prop>
+                    <prop type="string" name="surrogateLocale" arg="$body.customizations.surrogateLocale">
+                      <default value="&quot;en-US&quot;"/>
+                    </prop>
+                  </prop>
+                  <prop type="string" name="inputText" arg="$body.inputText" required="True">
+                    <format maxLength="48000"/>
+                  </prop>
+                  <prop type="string" name="operation" arg="$body.operation">
+                    <default value="&quot;Surrogate&quot;"/>
+                    <enum>
+                      <item value="&quot;Redact&quot;"/>
+                      <item value="&quot;Surrogate&quot;"/>
+                      <item value="&quot;Tag&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <header>
+              <item name="x-ms-client-request-id"/>
+            </header>
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="outputText"/>
+                  <prop type="object" name="taggerResult">
+                    <prop type="array<object>" name="entities" required="True">
+                      <item type="object">
+                        <prop type="string" name="category" required="True">
+                          <enum>
+                            <item value="&quot;Account&quot;"/>
+                            <item value="&quot;Age&quot;"/>
+                            <item value="&quot;BioID&quot;"/>
+                            <item value="&quot;City&quot;"/>
+                            <item value="&quot;CountryOrRegion&quot;"/>
+                            <item value="&quot;Date&quot;"/>
+                            <item value="&quot;Device&quot;"/>
+                            <item value="&quot;Doctor&quot;"/>
+                            <item value="&quot;Email&quot;"/>
+                            <item value="&quot;Fax&quot;"/>
+                            <item value="&quot;HealthPlan&quot;"/>
+                            <item value="&quot;Hospital&quot;"/>
+                            <item value="&quot;IDNum&quot;"/>
+                            <item value="&quot;IPAddress&quot;"/>
+                            <item value="&quot;License&quot;"/>
+                            <item value="&quot;LocationOther&quot;"/>
+                            <item value="&quot;MedicalRecord&quot;"/>
+                            <item value="&quot;Organization&quot;"/>
+                            <item value="&quot;Patient&quot;"/>
+                            <item value="&quot;Phone&quot;"/>
+                            <item value="&quot;Profession&quot;"/>
+                            <item value="&quot;SocialSecurity&quot;"/>
+                            <item value="&quot;State&quot;"/>
+                            <item value="&quot;Street&quot;"/>
+                            <item value="&quot;Unknown&quot;"/>
+                            <item value="&quot;Url&quot;"/>
+                            <item value="&quot;Username&quot;"/>
+                            <item value="&quot;Vehicle&quot;"/>
+                            <item value="&quot;Zip&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="float64" name="confidenceScore"/>
+                        <prop type="@Stringindex_read" name="length" required="True"/>
+                        <prop type="object" name="offset" required="True" cls="Stringindex_read">
+                          <prop type="integer32" name="codePoint" required="True"/>
+                          <prop type="integer32" name="utf16" required="True"/>
+                          <prop type="integer32" name="utf8" required="True"/>
+                        </prop>
+                        <prop type="string" name="text"/>
+                      </item>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema readOnly="True" type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
