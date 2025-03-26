@@ -1861,19 +1861,38 @@
           <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
-        <argGroup name="Registry.identity">
-          <arg type="string" var="$registry.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Registry.identity">
+        <argGroup name="Identity">
+          <arg type="string" var="$registryUpdateParameters.identity.type" options="type" hide="True" group="Identity">
+            <help short="The identity type."/>
+            <enum>
+              <item name="None" value="&quot;None&quot;"/>
+              <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
+              <item name="SystemAssigned, UserAssigned" value="&quot;SystemAssigned, UserAssigned&quot;"/>
+              <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
+            </enum>
+          </arg>
+          <arg type="object" var="$registryUpdateParameters.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+            <help short="The list of user identities associated with the resource. The user identity &#13; dictionary key references will be ARM resource ids in the form: &#13; '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/&#13;     providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."/>
+            <additionalProp>
+              <item type="object">
+                <blank value="{}"/>
+              </item>
+            </additionalProp>
+          </arg>
+        </argGroup>
+        <argGroup name="RegistryUpdateParameters.identity">
+          <arg type="string" var="$registryUpdateParameters.identity.systemAssigned" options="mi-system-assigned system-assigned" group="RegistryUpdateParameters.identity">
             <blank value="&quot;True&quot;"/>
             <help short="Set the system managed identity."/>
           </arg>
-          <arg type="array<string>" var="$registry.identity.userAssigned" options="mi-user-assigned user-assigned" group="Registry.identity">
+          <arg type="array<string>" var="$registryUpdateParameters.identity.userAssigned" options="mi-user-assigned user-assigned" group="RegistryUpdateParameters.identity">
             <blank value="[]"/>
             <help short="Set the user managed identities."/>
             <item type="string"/>
           </arg>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="registry">
+          <json type="object" name="registryUpdateParameters">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>
@@ -2201,19 +2220,19 @@
         <operation>
           <instanceUpdate ref="$Subresource">
             <json>
-              <schema action="assign" type="IdentityObject" name="registry.identity" required="True">
-                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$registry.identity.userAssigned">
+              <schema action="assign" type="IdentityObject" name="registryUpdateParameters.identity" required="True">
+                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$registryUpdateParameters.identity.userAssigned">
                   <item action="assign" type="string"/>
                 </userAssigned>
-                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$registry.identity.systemAssigned"/>
+                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$registryUpdateParameters.identity.systemAssigned"/>
               </schema>
             </json>
           </instanceUpdate>
         </operation>
-        <operation operationId="Registries_Create">
+        <operation operationId="Registries_Update">
           <longRunning finalStateVia="azure-async-operation"/>
           <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerRegistry/registries/{registryName}">
-            <request method="put">
+            <request method="patch">
               <path>
                 <param type="string" name="registryName" arg="$Path.registryName" required="True">
                   <format pattern="^[a-zA-Z0-9]*$" maxLength="50" minLength="5"/>
@@ -2230,7 +2249,29 @@
                 </const>
               </query>
               <body>
-                <json ref="$Instance"/>
+                <json schemaOnly="True">
+                  <schema type="object" name="registryUpdateParameters" required="True" clientFlatten="True">
+                    <prop type="IdentityObject" name="identity" ignoreSpecificArgs="True">
+                      <prop type="string" name="type" arg="$registryUpdateParameters.identity.type">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned, UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities" arg="$registryUpdateParameters.identity.userAssignedIdentities">
+                        <additionalProp>
+                          <item type="object"/>
+                        </additionalProp>
+                      </prop>
+                      <userAssigned action="create" type="array<string>" name="userAssigned" arg="$registryUpdateParameters.identity.userAssigned">
+                        <item action="create" type="string"/>
+                      </userAssigned>
+                      <systemAssigned action="create" type="string" name="systemAssigned" arg="$registryUpdateParameters.identity.systemAssigned"/>
+                    </prop>
+                  </schema>
+                </json>
               </body>
             </request>
             <response statusCode="200 201">
@@ -2261,19 +2302,38 @@
           <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
-        <argGroup name="Registry.identity">
-          <arg type="string" var="$registry.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Registry.identity">
+        <argGroup name="Identity">
+          <arg type="string" var="$registryUpdateParameters.identity.type" options="type" hide="True" group="Identity">
+            <help short="The identity type."/>
+            <enum>
+              <item name="None" value="&quot;None&quot;"/>
+              <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
+              <item name="SystemAssigned, UserAssigned" value="&quot;SystemAssigned, UserAssigned&quot;"/>
+              <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
+            </enum>
+          </arg>
+          <arg type="object" var="$registryUpdateParameters.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+            <help short="The list of user identities associated with the resource. The user identity &#13; dictionary key references will be ARM resource ids in the form: &#13; '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/&#13;     providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."/>
+            <additionalProp>
+              <item type="object">
+                <blank value="{}"/>
+              </item>
+            </additionalProp>
+          </arg>
+        </argGroup>
+        <argGroup name="RegistryUpdateParameters.identity">
+          <arg type="string" var="$registryUpdateParameters.identity.systemAssigned" options="mi-system-assigned system-assigned" group="RegistryUpdateParameters.identity">
             <blank value="&quot;True&quot;"/>
             <help short="Set the system managed identity."/>
           </arg>
-          <arg type="array<string>" var="$registry.identity.userAssigned" options="mi-user-assigned user-assigned" group="Registry.identity">
+          <arg type="array<string>" var="$registryUpdateParameters.identity.userAssigned" options="mi-user-assigned user-assigned" group="RegistryUpdateParameters.identity">
             <blank value="[]"/>
             <help short="Set the user managed identities."/>
             <item type="string"/>
           </arg>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="registry">
+          <json type="object" name="registryUpdateParameters">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>
@@ -2601,19 +2661,19 @@
         <operation>
           <instanceUpdate ref="$Subresource">
             <json>
-              <schema action="remove" type="IdentityObject" name="registry.identity" required="True">
-                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$registry.identity.userAssigned">
+              <schema action="remove" type="IdentityObject" name="registryUpdateParameters.identity" required="True">
+                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$registryUpdateParameters.identity.userAssigned">
                   <item action="remove" type="string"/>
                 </userAssigned>
-                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$registry.identity.systemAssigned"/>
+                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$registryUpdateParameters.identity.systemAssigned"/>
               </schema>
             </json>
           </instanceUpdate>
         </operation>
-        <operation operationId="Registries_Create">
+        <operation operationId="Registries_Update">
           <longRunning finalStateVia="azure-async-operation"/>
           <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ContainerRegistry/registries/{registryName}">
-            <request method="put">
+            <request method="patch">
               <path>
                 <param type="string" name="registryName" arg="$Path.registryName" required="True">
                   <format pattern="^[a-zA-Z0-9]*$" maxLength="50" minLength="5"/>
@@ -2630,7 +2690,29 @@
                 </const>
               </query>
               <body>
-                <json ref="$Instance"/>
+                <json schemaOnly="True">
+                  <schema type="object" name="registryUpdateParameters" required="True" clientFlatten="True">
+                    <prop type="IdentityObject" name="identity" ignoreSpecificArgs="True">
+                      <prop type="string" name="type" arg="$registryUpdateParameters.identity.type">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned, UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities" arg="$registryUpdateParameters.identity.userAssignedIdentities">
+                        <additionalProp>
+                          <item type="object"/>
+                        </additionalProp>
+                      </prop>
+                      <userAssigned action="create" type="array<string>" name="userAssigned" arg="$registryUpdateParameters.identity.userAssigned">
+                        <item action="create" type="string"/>
+                      </userAssigned>
+                      <systemAssigned action="create" type="string" name="systemAssigned" arg="$registryUpdateParameters.identity.systemAssigned"/>
+                    </prop>
+                  </schema>
+                </json>
               </body>
             </request>
             <response statusCode="200 201">
@@ -2662,7 +2744,7 @@
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="registry">
+          <json type="object" name="registryUpdateParameters">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>
