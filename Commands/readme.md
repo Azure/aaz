@@ -266,6 +266,9 @@
 - [palo-alto](/Commands/palo-alto/readme.md)
 : Manage palo-alto networks resource
 
+- [pinecone](/Commands/pinecone/readme.md)
+: Manage Pinecone
+
 - [playwright-testing](/Commands/playwright-testing/readme.md)
 : Manage Microsoft Playwright Testing service
 
