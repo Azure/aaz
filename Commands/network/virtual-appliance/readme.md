@@ -24,6 +24,9 @@ Manage Azure Network Virtual Appliance.
 - [delete](/Commands/network/virtual-appliance/_delete.md)
 : Delete an Azure network virtual appliance.
 
+- [get-boot-diagnostic-log](/Commands/network/virtual-appliance/_get-boot-diagnostic-log.md)
+: Retrieve the boot diagnostic logs for a VM instance belonging to the specified Network Virtual Appliance.
+
 - [list](/Commands/network/virtual-appliance/_list.md)
 : List all Azure network virtual appliance.
 
