@@ -1,0 +1,507 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.standbypool/standbyvirtualmachinepools/{}" version="2024-03-01" swagger="mgmt-plane/standbypool/ResourceProviders/Microsoft.StandbyPool/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RhbmRieVBvb2wvc3RhbmRieVZpcnR1YWxNYWNoaW5lUG9vbHMve3N0YW5kYnlWaXJ0dWFsTWFjaGluZVBvb2xOYW1lfQ==/V/MjAyNC0wMy0wMQ=="/>
+  <commandGroup name="standby-vm-pool">
+    <command name="create" version="2024-03-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.standbypool/standbyvirtualmachinepools/{}" version="2024-03-01" swagger="mgmt-plane/standbypool/ResourceProviders/Microsoft.StandbyPool/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RhbmRieVBvb2wvc3RhbmRieVZpcnR1YWxNYWNoaW5lUG9vbHMve3N0YW5kYnlWaXJ0dWFsTWFjaGluZVBvb2xOYW1lfQ==/V/MjAyNC0wMy0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
+          <help short="The resource group"/>
+        </arg>
+        <arg type="string" var="$Path.standbyVirtualMachinePoolName" options="standby-virtual-machine-pool-name name n" required="True" idPart="name">
+          <help short="Name of the standby virtual machine pool"/>
+          <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
+          <help short="The subscription id"/>
+        </arg>
+      </argGroup>
+      <argGroup name="ElasticityProfile">
+        <arg type="integer64" var="$resource.properties.elasticityProfile.maxReadyCapacity" options="max-ready-capacity" group="ElasticityProfile">
+          <help short="Specifies the maximum number of virtual machines in the standby virtual machine pool."/>
+          <format maximum="2000" minimum="0"/>
+        </arg>
+        <arg type="integer64" var="$resource.properties.elasticityProfile.minReadyCapacity" options="min-ready-capacity" group="ElasticityProfile">
+          <help short="Specifies the desired minimum number of virtual machines in the standby virtual machine pool. MinReadyCapacity cannot exceed MaxReadyCapacity."/>
+          <format maximum="2000" minimum="0"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="ResourceId" var="$resource.properties.attachedVirtualMachineScaleSetId" options="vmss-id" group="Properties">
+          <help short="Specifies the fully qualified resource ID of a virtual machine scale set the pool is attached to."/>
+        </arg>
+        <arg type="string" var="$resource.properties.virtualMachineState" options="vm-state" group="Properties">
+          <help short="Specifies the desired state of virtual machines in the pool."/>
+          <enum>
+            <item name="Deallocated" value="&quot;Deallocated&quot;"/>
+            <item name="Running" value="&quot;Running&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <argGroup name="Resource">
+        <arg type="ResourceLocation" var="$resource.location" options="location l" required="True" group="Resource">
+          <help short="The geo-location where the resource lives"/>
+        </arg>
+        <arg type="object" var="$resource.tags" options="tags" group="Resource">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="StandbyVirtualMachinePools_CreateOrUpdate">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyVirtualMachinePoolName}">
+          <request method="put">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="standbyVirtualMachinePoolName" arg="$Path.standbyVirtualMachinePoolName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-03-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="ResourceId" name="attachedVirtualMachineScaleSetId" arg="$resource.properties.attachedVirtualMachineScaleSetId"/>
+                    <prop type="object" name="elasticityProfile">
+                      <prop type="integer64" name="maxReadyCapacity" arg="$resource.properties.elasticityProfile.maxReadyCapacity" required="True">
+                        <format maximum="2000" minimum="0"/>
+                      </prop>
+                      <prop type="integer64" name="minReadyCapacity" arg="$resource.properties.elasticityProfile.minReadyCapacity">
+                        <format maximum="2000" minimum="0"/>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="virtualMachineState" arg="$resource.properties.virtualMachineState" required="True">
+                      <enum>
+                        <item value="&quot;Deallocated&quot;"/>
+                        <item value="&quot;Running&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags" arg="$resource.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{}"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="ResourceId" name="attachedVirtualMachineScaleSetId"/>
+                    <prop type="object" name="elasticityProfile">
+                      <prop type="integer64" name="maxReadyCapacity" required="True">
+                        <format maximum="2000" minimum="0"/>
+                      </prop>
+                      <prop type="integer64" name="minReadyCapacity">
+                        <format maximum="2000" minimum="0"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="virtualMachineState" required="True">
+                      <enum>
+                        <item value="&quot;Deallocated&quot;"/>
+                        <item value="&quot;Running&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2024-03-01" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.standbypool/standbyvirtualmachinepools/{}" version="2024-03-01" swagger="mgmt-plane/standbypool/ResourceProviders/Microsoft.StandbyPool/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RhbmRieVBvb2wvc3RhbmRieVZpcnR1YWxNYWNoaW5lUG9vbHMve3N0YW5kYnlWaXJ0dWFsTWFjaGluZVBvb2xOYW1lfQ==/V/MjAyNC0wMy0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
+          <help short="The resource group"/>
+        </arg>
+        <arg type="string" var="$Path.standbyVirtualMachinePoolName" options="standby-virtual-machine-pool-name name n" required="True" idPart="name">
+          <help short="Name of the standby virtual machine pool"/>
+          <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
+          <help short="The subscription id"/>
+        </arg>
+      </argGroup>
+      <operation operationId="StandbyVirtualMachinePools_Delete">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyVirtualMachinePoolName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="standbyVirtualMachinePoolName" arg="$Path.standbyVirtualMachinePoolName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-03-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response statusCode="204"/>
+          <response statusCode="200 201"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="show" version="2024-03-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.standbypool/standbyvirtualmachinepools/{}" version="2024-03-01" swagger="mgmt-plane/standbypool/ResourceProviders/Microsoft.StandbyPool/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RhbmRieVBvb2wvc3RhbmRieVZpcnR1YWxNYWNoaW5lUG9vbHMve3N0YW5kYnlWaXJ0dWFsTWFjaGluZVBvb2xOYW1lfQ==/V/MjAyNC0wMy0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
+          <help short="The resource group"/>
+        </arg>
+        <arg type="string" var="$Path.standbyVirtualMachinePoolName" options="standby-virtual-machine-pool-name name n" required="True" idPart="name">
+          <help short="Name of the standby virtual machine pool"/>
+          <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
+          <help short="The subscription id"/>
+        </arg>
+      </argGroup>
+      <operation operationId="StandbyVirtualMachinePools_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyVirtualMachinePoolName}">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="standbyVirtualMachinePoolName" arg="$Path.standbyVirtualMachinePoolName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-03-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{}"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="ResourceId" name="attachedVirtualMachineScaleSetId"/>
+                    <prop type="object" name="elasticityProfile">
+                      <prop type="integer64" name="maxReadyCapacity" required="True">
+                        <format maximum="2000" minimum="0"/>
+                      </prop>
+                      <prop type="integer64" name="minReadyCapacity">
+                        <format maximum="2000" minimum="0"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="virtualMachineState" required="True">
+                      <enum>
+                        <item value="&quot;Deallocated&quot;"/>
+                        <item value="&quot;Running&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2024-03-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.standbypool/standbyvirtualmachinepools/{}" version="2024-03-01" swagger="mgmt-plane/standbypool/ResourceProviders/Microsoft.StandbyPool/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RhbmRieVBvb2wvc3RhbmRieVZpcnR1YWxNYWNoaW5lUG9vbHMve3N0YW5kYnlWaXJ0dWFsTWFjaGluZVBvb2xOYW1lfQ==/V/MjAyNC0wMy0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
+          <help short="The resource group"/>
+        </arg>
+        <arg type="string" var="$Path.standbyVirtualMachinePoolName" options="standby-virtual-machine-pool-name name n" required="True" idPart="name">
+          <help short="Name of the standby virtual machine pool"/>
+          <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
+          <help short="The subscription id"/>
+        </arg>
+      </argGroup>
+      <argGroup name="ElasticityProfile">
+        <arg type="integer64" var="$properties.properties.elasticityProfile.maxReadyCapacity" options="max-ready-capacity" group="ElasticityProfile">
+          <help short="Specifies the maximum number of virtual machines in the standby virtual machine pool."/>
+          <format maximum="2000" minimum="0"/>
+        </arg>
+        <arg type="integer64" var="$properties.properties.elasticityProfile.minReadyCapacity" options="min-ready-capacity" group="ElasticityProfile">
+          <help short="Specifies the desired minimum number of virtual machines in the standby virtual machine pool. MinReadyCapacity cannot exceed MaxReadyCapacity."/>
+          <format maximum="2000" minimum="0"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="ResourceId" var="$properties.properties.attachedVirtualMachineScaleSetId" options="vmss-id" group="Properties">
+          <help short="Specifies the fully qualified resource ID of a virtual machine scale set the pool is attached to."/>
+        </arg>
+        <arg type="string" var="$properties.properties.virtualMachineState" options="vm-state" group="Properties">
+          <help short="Specifies the desired state of virtual machines in the pool."/>
+          <enum>
+            <item name="Deallocated" value="&quot;Deallocated&quot;"/>
+            <item name="Running" value="&quot;Running&quot;"/>
+          </enum>
+        </arg>
+        <arg type="object" var="$properties.tags" options="tags" group="Properties">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="StandbyVirtualMachinePools_Update">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{standbyVirtualMachinePoolName}">
+          <request method="patch">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="standbyVirtualMachinePoolName" arg="$Path.standbyVirtualMachinePoolName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-03-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="properties" required="True" clientFlatten="True">
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="ResourceId" name="attachedVirtualMachineScaleSetId" arg="$properties.properties.attachedVirtualMachineScaleSetId"/>
+                    <prop type="object" name="elasticityProfile">
+                      <prop type="integer64" name="maxReadyCapacity" arg="$properties.properties.elasticityProfile.maxReadyCapacity">
+                        <format maximum="2000" minimum="0"/>
+                      </prop>
+                      <prop type="integer64" name="minReadyCapacity" arg="$properties.properties.elasticityProfile.minReadyCapacity">
+                        <format maximum="2000" minimum="0"/>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="virtualMachineState" arg="$properties.properties.virtualMachineState">
+                      <enum>
+                        <item value="&quot;Deallocated&quot;"/>
+                        <item value="&quot;Running&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags" arg="$properties.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.StandbyPool/standbyVirtualMachinePools/{}"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="ResourceId" name="attachedVirtualMachineScaleSetId"/>
+                    <prop type="object" name="elasticityProfile">
+                      <prop type="integer64" name="maxReadyCapacity" required="True">
+                        <format maximum="2000" minimum="0"/>
+                      </prop>
+                      <prop type="integer64" name="minReadyCapacity">
+                        <format maximum="2000" minimum="0"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="virtualMachineState" required="True">
+                      <enum>
+                        <item value="&quot;Deallocated&quot;"/>
+                        <item value="&quot;Running&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
