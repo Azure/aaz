@@ -1,6 +1,6 @@
 # [Command] _network perimeter link list_
 
-List the NSP Link resources in the specified network security perimeter.
+List all network security perimeter links.
 
 ## Versions
 
@@ -22,6 +22,17 @@ List the NSP Link resources in the specified network security perimeter.
 #### examples
 
 - Lists NSP links in a parameter
+    ```bash
+        network perimeter link list --perimeter-name nsp1 --resource-group rg1
+    ```
+
+### [2024-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL25ldHdvcmtzZWN1cml0eXBlcmltZXRlcnMve30vbGlua3M=/2024-07-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networksecurityperimeters/{}/links 2024-07-01 -->
+
+#### examples
+
+- List all network security perimeter links
     ```bash
         network perimeter link list --perimeter-name nsp1 --resource-group rg1
     ```
