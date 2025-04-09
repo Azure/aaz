@@ -69,3 +69,8 @@ List Volume Groups.
     ```bash
         elastic-san volume-group list -g "rg" -e "san_name"
     ```
+
+- List soft-deleted volume groups
+    ```bash
+        elastic-san volume-group list -g rg_name -e san_name --access-soft-deleted-resources True
+    ```

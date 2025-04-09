@@ -69,3 +69,8 @@ List Volumes in a Volume Group.
     ```bash
         elastic-san volume list -g "rg" -e "san_name" -v "vg_name"
     ```
+
+- List soft-deleted volumes
+    ```bash
+        elastic-san volume list -g rg_name -e san_name -v volume_group_name --access-soft-deleted-resources true
+    ```

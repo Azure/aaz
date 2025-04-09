@@ -89,3 +89,8 @@ Delete a Volume.
     ```bash
         elastic-san volume delete -g "rg" -e "san_name" -v "vg_name" -n "volume_name" -y --x-ms-delete-snapshots true --x-ms-force-delete true
     ```
+
+- Delete a deleted volume permanently
+    ```bash
+        elastic-san volume delete -g rg_name -e san_name -v volume_group_name -n deleted_volume_name -y --delete-type permanent
+    ```
