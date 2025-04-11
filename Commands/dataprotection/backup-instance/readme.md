@@ -44,3 +44,6 @@ Manage backup instance with dataprotection.
 
 - [validate-for-restore](/Commands/dataprotection/backup-instance/_validate-for-restore.md)
 : Validates if Restore can be triggered for a DataSource
+
+- [validate-for-update](/Commands/dataprotection/backup-instance/_validate-for-update.md)
+: Validate whether update for backup instance will be successful or not

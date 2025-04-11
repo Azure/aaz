@@ -4,6 +4,9 @@ Manage backup vault with dataprotection.
 
 ## Subgroups
 
+- [identity](/Commands/dataprotection/backup-vault/identity/readme.md)
+: Manage Identities for Backup Vaults
+
 - [resource-guard-mapping](/Commands/dataprotection/backup-vault/resource-guard-mapping/readme.md)
 : Manage ResourceGuard mappings for a backup vault.
 
