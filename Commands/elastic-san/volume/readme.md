@@ -18,6 +18,9 @@ Manage Elastic SAN Volume.
 - [list](/Commands/elastic-san/volume/_list.md)
 : List Volumes in a Volume Group.
 
+- [restore](/Commands/elastic-san/volume/_restore.md)
+: Restore Soft Deleted Volumes.
+
 - [show](/Commands/elastic-san/volume/_show.md)
 : Get a Volume.
 

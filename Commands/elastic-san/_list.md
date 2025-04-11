@@ -63,3 +63,15 @@ Get a list of Elastic SANs in a subscription.
     ```bash
         elastic-san list -g "rg"
     ```
+
+### [2024-07-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljc2FuL2VsYXN0aWNzYW5z/2024-07-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.elasticsan/elasticsans 2024-07-01-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elasticsan/elasticsans 2024-07-01-preview -->
+
+#### examples
+
+- Get a list of Elastic SANs in a subscription.
+    ```bash
+        elastic-san list -g "rg"
+    ```
