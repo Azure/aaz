@@ -206,6 +206,9 @@
 - [maintenance](/Commands/maintenance/readme.md)
 : Manage Maintenance
 
+- [managed-identity](/Commands/managed-identity/readme.md)
+: Manage Managed Identity
+
 - [managedservices](/Commands/managedservices/readme.md)
 : Manage the registration assignments and definitions in Azure.
 
