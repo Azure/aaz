@@ -7,6 +7,9 @@ Manage Linux or Windows virtual machines.
 - [availability-set](/Commands/vm/availability-set/readme.md)
 : Group resources into availability sets.
 
+- [boot-diagnostics](/Commands/vm/boot-diagnostics/readme.md)
+: Troubleshoot the startup of an Azure Virtual Machine.         Use this feature to troubleshoot boot failures for custom or platform images.
+
 - [disk](/Commands/vm/disk/readme.md)
 : Manage the managed data disks attached to a VM.
 
