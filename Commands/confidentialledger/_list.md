@@ -8,3 +8,10 @@ List the properties of all Confidential Ledgers.
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.confidentialledger/ledgers/ 2024-09-19-preview -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.confidentialledger/ledgers 2024-09-19-preview -->
+
+#### examples
+
+- ConfidentialLedgerListBySub
+    ```bash
+        confidentialledger list
+    ```
