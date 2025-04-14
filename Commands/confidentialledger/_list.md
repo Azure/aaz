@@ -15,3 +15,8 @@ List the properties of all Confidential Ledgers.
     ```bash
         confidentialledger list
     ```
+
+- ConfidentialLedgerListByResourceGroup
+    ```bash
+        confidentialledger list --resource-group DummyResourceGroupName
+    ```
