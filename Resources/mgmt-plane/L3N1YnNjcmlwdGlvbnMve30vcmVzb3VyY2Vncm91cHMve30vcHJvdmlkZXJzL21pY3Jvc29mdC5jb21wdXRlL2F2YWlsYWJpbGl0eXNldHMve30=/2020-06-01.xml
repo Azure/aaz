@@ -128,12 +128,19 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-      </argGroup>
-      <argGroup name="Parameters">
-        <arg type="ResourceLocation" var="$parameters.location" options="location l" required="True" group="Parameters">
+        <arg type="ResourceLocation" var="$parameters.location" options="location l" required="True" group="">
           <help short="Resource location"/>
         </arg>
-        <arg type="object" var="$parameters.sku" options="sku" group="Parameters">
+        <arg type="integer32" var="$parameters.properties.platformFaultDomainCount" options="platform-fault-domain-count" group="">
+          <help short="Fault Domain count."/>
+        </arg>
+        <arg type="integer32" var="$parameters.properties.platformUpdateDomainCount" options="platform-update-domain-count" group="">
+          <help short="Update Domain count. If unspecified, the server will pick the most optimal number like 5."/>
+        </arg>
+        <arg type="@SubResource_create" var="$parameters.properties.proximityPlacementGroup" options="proximity-placement-group" group="">
+          <help short="Specifies information about the proximity placement group that the availability set should be assigned to. <br><br>Minimum api-version: 2018-04-01."/>
+        </arg>
+        <arg type="object" var="$parameters.sku" options="sku" group="">
           <help short="Sku of the availability set, only name is required to be set. See AvailabilitySetSkuTypes for possible set of values. Use 'Aligned' for virtual machines with managed disks and 'Classic' for virtual machines with unmanaged disks. Default value is 'Classic'."/>
           <arg type="integer64" var="$parameters.sku.capacity" options="capacity">
             <help short="Specifies the number of virtual machines in the scale set."/>
@@ -145,7 +152,7 @@
             <help short="Specifies the tier of virtual machines in a scale set.<br /><br /> Possible Values:<br /><br /> **Standard**<br /><br /> **Basic**"/>
           </arg>
         </arg>
-        <arg type="object" var="$parameters.tags" options="tags" group="Parameters">
+        <arg type="object" var="$parameters.tags" options="tags" group="">
           <help short="Resource tags"/>
           <additionalProp>
             <item type="string"/>
@@ -153,16 +160,7 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg type="integer32" var="$parameters.properties.platformFaultDomainCount" options="platform-fault-domain-count" group="Properties">
-          <help short="Fault Domain count."/>
-        </arg>
-        <arg type="integer32" var="$parameters.properties.platformUpdateDomainCount" options="platform-update-domain-count" group="Properties">
-          <help short="Update Domain count."/>
-        </arg>
-        <arg type="@SubResource_create" var="$parameters.properties.proximityPlacementGroup" options="proximity-placement-group" group="Properties">
-          <help short="Specifies information about the proximity placement group that the availability set should be assigned to. <br><br>Minimum api-version: 2018-04-01."/>
-        </arg>
-        <arg type="array<object>" var="$parameters.properties.virtualMachines" options="virtual-machines" group="Properties">
+        <arg type="array<object>" var="$parameters.properties.virtualMachines" options="virtual-machines" hide="True" group="Properties">
           <help short="A list of references to all virtual machines in the availability set."/>
           <item type="object" cls="SubResource_create">
             <arg type="string" var="@SubResource_create.id" options="id">
@@ -272,7 +270,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="update" version="2020-06-01">
+    <command name="update" version="2020-06-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/availabilitysets/{}" version="2020-06-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9hdmFpbGFiaWxpdHlTZXRzL3thdmFpbGFiaWxpdHlTZXROYW1lfQ==/V/MjAyMC0wNi0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.availabilitySetName" options="availability-set-name name n" required="True" idPart="name">
@@ -280,12 +278,19 @@
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-      </argGroup>
-      <argGroup name="Parameters">
-        <arg type="ResourceLocation" var="$parameters.location" options="location l" group="Parameters">
+        <arg type="ResourceLocation" var="$parameters.location" options="location l" hide="True" group="">
           <help short="Resource location"/>
         </arg>
-        <arg nullable="True" type="object" var="$parameters.sku" options="sku" group="Parameters">
+        <arg nullable="True" type="integer32" var="$parameters.properties.platformFaultDomainCount" options="platform-fault-domain-count" group="">
+          <help short="Fault Domain count."/>
+        </arg>
+        <arg nullable="True" type="integer32" var="$parameters.properties.platformUpdateDomainCount" options="platform-update-domain-count" hide="True" group="">
+          <help short="Update Domain count."/>
+        </arg>
+        <arg nullable="True" type="@SubResource_update" var="$parameters.properties.proximityPlacementGroup" options="proximity-placement-group" group="">
+          <help short="Specifies information about the proximity placement group that the availability set should be assigned to. <br><br>Minimum api-version: 2018-04-01."/>
+        </arg>
+        <arg nullable="True" type="object" var="$parameters.sku" options="sku" group="">
           <help short="Sku of the availability set, only name is required to be set. See AvailabilitySetSkuTypes for possible set of values. Use 'Aligned' for virtual machines with managed disks and 'Classic' for virtual machines with unmanaged disks. Default value is 'Classic'."/>
           <arg nullable="True" type="integer64" var="$parameters.sku.capacity" options="capacity">
             <help short="Specifies the number of virtual machines in the scale set."/>
@@ -297,7 +302,7 @@
             <help short="Specifies the tier of virtual machines in a scale set.<br /><br /> Possible Values:<br /><br /> **Standard**<br /><br /> **Basic**"/>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$parameters.tags" options="tags" group="Parameters">
+        <arg nullable="True" type="object" var="$parameters.tags" options="tags" hide="True" group="">
           <help short="Resource tags"/>
           <additionalProp>
             <item nullable="True" type="string"/>
@@ -305,16 +310,7 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="integer32" var="$parameters.properties.platformFaultDomainCount" options="platform-fault-domain-count" group="Properties">
-          <help short="Fault Domain count."/>
-        </arg>
-        <arg nullable="True" type="integer32" var="$parameters.properties.platformUpdateDomainCount" options="platform-update-domain-count" group="Properties">
-          <help short="Update Domain count."/>
-        </arg>
-        <arg nullable="True" type="@SubResource_update" var="$parameters.properties.proximityPlacementGroup" options="proximity-placement-group" group="Properties">
-          <help short="Specifies information about the proximity placement group that the availability set should be assigned to. <br><br>Minimum api-version: 2018-04-01."/>
-        </arg>
-        <arg nullable="True" type="array<object>" var="$parameters.properties.virtualMachines" options="virtual-machines" group="Properties">
+        <arg nullable="True" type="array<object>" var="$parameters.properties.virtualMachines" options="virtual-machines" hide="True" group="Properties">
           <help short="A list of references to all virtual machines in the availability set."/>
           <item nullable="True" type="object" cls="SubResource_update">
             <arg nullable="True" type="string" var="@SubResource_update.id" options="id">
