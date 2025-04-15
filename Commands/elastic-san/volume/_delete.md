@@ -73,3 +73,24 @@ Delete a Volume.
     ```bash
         elastic-san volume delete -g "rg" -e "san_name" -v "vg_name" -n "volume_name" -y --x-ms-delete-snapshots true --x-ms-force-delete true
     ```
+
+### [2024-07-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljc2FuL2VsYXN0aWNzYW5zL3t9L3ZvbHVtZWdyb3Vwcy97fS92b2x1bWVzL3t9/2024-07-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elasticsan/elasticsans/{}/volumegroups/{}/volumes/{} 2024-07-01-preview -->
+
+#### examples
+
+- Delete a Volume.
+    ```bash
+        elastic-san volume delete -g "rg" -e "san_name" -v "vg_name" -n "volume_name"
+    ```
+
+- Delete a volume with its snapshot
+    ```bash
+        elastic-san volume delete -g "rg" -e "san_name" -v "vg_name" -n "volume_name" -y --x-ms-delete-snapshots true --x-ms-force-delete true
+    ```
+
+- Delete a deleted volume permanently
+    ```bash
+        elastic-san volume delete -g rg_name -e san_name -v volume_group_name -n deleted_volume_name -y --delete-type permanent
+    ```
