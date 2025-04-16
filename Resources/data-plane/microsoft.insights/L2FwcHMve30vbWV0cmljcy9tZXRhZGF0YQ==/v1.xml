@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.insights">
+  <resource id="/apps/{}/metrics/metadata" version="v1" swagger="data-plane:microsoft.insights/applicationinsights/ResourceProviders/Microsoft.Insights/Paths/L2FwcHMve2FwcElkfS9tZXRyaWNzL21ldGFkYXRh/V/djE="/>
+  <commandGroup name="monitor app-insights metric">
+    <command name="get-metadata" version="v1" confirmation="">
+      <resource id="/apps/{}/metrics/metadata" version="v1" swagger="data-plane:microsoft.insights/applicationinsights/ResourceProviders/Microsoft.Insights/Paths/L2FwcHMve2FwcElkfS9tZXRyaWNzL21ldGFkYXRh/V/djE="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.appId" options="app-id" required="True">
+          <help short="ID of the application. This is Application ID from the API Access settings blade in the Azure portal."/>
+        </arg>
+      </argGroup>
+      <operation operationId="Metrics_GetMetadata">
+        <http path="/v1/apps/{appId}/metrics/metadata">
+          <request method="get">
+            <path>
+              <param type="string" name="appId" arg="$Path.appId" required="True"/>
+            </path>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <additionalProp>
+                    <item type="any"/>
+                  </additionalProp>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
