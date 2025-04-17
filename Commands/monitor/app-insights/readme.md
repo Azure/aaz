@@ -28,7 +28,7 @@ Commands for querying data in Application Insights applications.
 : Enterprise Agreement Customer opted to use new pricing model.
 
 - [query-execute](/Commands/monitor/app-insights/_query-execute.md)
-: Executes an Analytics query for data. [Here](https://dev.applicationinsights.io/documentation/Using-the-API/Query) is an example for using POST with an Analytics query.
+: Executes an Analytics query for data. Doc https://dev.applicationinsights.io/documentation/Using-the-API/Query is an example for using POST with an Analytics query.
 
 - [query-show](/Commands/monitor/app-insights/_query-show.md)
 : Get an Analytics query for data
