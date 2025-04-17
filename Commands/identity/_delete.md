@@ -1,4 +1,4 @@
-# [Command] _managed-identity user-assigned-identity delete_
+# [Command] _identity delete_
 
 Delete the identity.
 

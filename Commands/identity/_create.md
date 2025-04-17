@@ -1,6 +1,6 @@
-# [Command] _managed-identity user-assigned-identity show_
+# [Command] _identity create_
 
-Get the identity.
+Create an identity in the specified subscription and resource group.
 
 ## Versions
 
