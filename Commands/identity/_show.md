@@ -1,6 +1,6 @@
-# [Command] _managed-identity user-assigned-identity update_
+# [Command] _identity show_
 
-Update an identity in the specified subscription and resource group.
+Get the identity.
 
 ## Versions
 

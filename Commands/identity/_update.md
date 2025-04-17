@@ -1,6 +1,6 @@
-# [Command] _managed-identity user-assigned-identity create_
+# [Command] _identity update_
 
-Create an identity in the specified subscription and resource group.
+Update an identity in the specified subscription and resource group.
 
 ## Versions
 
