@@ -1,0 +1,137 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.insights">
+  <resource id="/apps/{}/query" version="v1" swagger="data-plane:microsoft.insights/applicationinsights/ResourceProviders/Microsoft.Insights/Paths/L2FwcHMve2FwcElkfS9xdWVyeQ==/V/djE="/>
+  <commandGroup name="monitor app-insights">
+    <command name="query-show" version="v1" confirmation="">
+      <resource id="/apps/{}/query" version="v1" swagger="data-plane:microsoft.insights/applicationinsights/ResourceProviders/Microsoft.Insights/Paths/L2FwcHMve2FwcElkfS9xdWVyeQ==/V/djE="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.appId" options="app-id" required="True">
+          <help short="ID of the application. This is Application ID from the API Access settings blade in the Azure portal."/>
+        </arg>
+        <arg type="string" var="$Query.query" options="query" required="True" group="">
+          <help short="The Analytics query. Learn more about the [Analytics query syntax](https://azure.microsoft.com/documentation/articles/app-insights-analytics-reference/)"/>
+        </arg>
+        <arg type="string" var="$Query.timespan" options="timespan">
+          <help short="Optional. The timespan over which to query data. This is an ISO8601 time period value.  This timespan is applied in addition to any that are specified in the query expression."/>
+        </arg>
+      </argGroup>
+      <operation operationId="Query_Get">
+        <http path="/v1/apps/{appId}/query">
+          <request method="get">
+            <path>
+              <param type="string" name="appId" arg="$Path.appId" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="query" arg="$Query.query" required="True"/>
+              <param type="string" name="timespan" arg="$Query.timespan"/>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="tables" required="True">
+                    <item type="object">
+                      <prop type="array<object>" name="columns" required="True">
+                        <item type="object">
+                          <prop type="string" name="name"/>
+                          <prop type="string" name="type"/>
+                        </item>
+                      </prop>
+                      <prop type="string" name="name" required="True"/>
+                      <prop type="array<array<any>>" name="rows" required="True">
+                        <item type="array<any>">
+                          <item type="any"/>
+                        </item>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="query-execute" version="v1" confirmation="">
+      <resource id="/apps/{}/query" version="v1" swagger="data-plane:microsoft.insights/applicationinsights/ResourceProviders/Microsoft.Insights/Paths/L2FwcHMve2FwcElkfS9xdWVyeQ==/V/djE="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.appId" options="app-id" required="True">
+          <help short="ID of the application. This is Application ID from the API Access settings blade in the Azure portal."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="array<string>" var="$body.applications" options="applications" group="Body">
+          <help short="A list of Application IDs for cross-application queries."/>
+          <item type="string"/>
+        </arg>
+        <arg type="string" var="$body.query" options="query" required="True" group="Body">
+          <help short="The query to execute."/>
+        </arg>
+        <arg type="string" var="$body.timespan" options="timespan" group="Body">
+          <help short="Optional. The timespan over which to query data. This is an ISO8601 time period value.  This timespan is applied in addition to any that are specified in the query expression."/>
+        </arg>
+      </argGroup>
+      <operation operationId="Query_Execute">
+        <http path="/v1/apps/{appId}/query">
+          <request method="post">
+            <path>
+              <param type="string" name="appId" arg="$Path.appId" required="True"/>
+            </path>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="array<string>" name="applications" arg="$body.applications">
+                    <item type="string"/>
+                  </prop>
+                  <prop type="string" name="query" arg="$body.query" required="True"/>
+                  <prop type="string" name="timespan" arg="$body.timespan"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="tables" required="True">
+                    <item type="object">
+                      <prop type="array<object>" name="columns" required="True">
+                        <item type="object">
+                          <prop type="string" name="name"/>
+                          <prop type="string" name="type"/>
+                        </item>
+                      </prop>
+                      <prop type="string" name="name" required="True"/>
+                      <prop type="array<array<any>>" name="rows" required="True">
+                        <item type="array<any>">
+                          <item type="any"/>
+                        </item>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
