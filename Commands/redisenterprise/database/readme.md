@@ -2,6 +2,11 @@
 
 Manage Redis Enterprise databases
 
+## Subgroups
+
+- [access-policy-assignment](/Commands/redisenterprise/database/access-policy-assignment/readme.md)
+: Manage database access policy assignment for redis enterprise databases
+
 ## Commands
 
 - [create](/Commands/redisenterprise/database/_create.md)
