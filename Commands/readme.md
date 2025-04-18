@@ -90,7 +90,7 @@
 : Computeschedule batch virtual machine operations
 
 - [confidentialledger](/Commands/confidentialledger/readme.md)
-: Deploy and manage Azure confidential ledgers.
+: Manage Confidential Ledger
 
 - [confluent](/Commands/confluent/readme.md)
 : Manage confluent organization
