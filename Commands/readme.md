@@ -377,5 +377,8 @@
 - [voice-service](/Commands/voice-service/readme.md)
 : Manage voice services
 
+- [weights-and-biases](/Commands/weights-and-biases/readme.md)
+: Manage Weights And Biases
+
 - [workloads](/Commands/workloads/readme.md)
 : Manage workloads
