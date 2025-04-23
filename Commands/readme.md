@@ -90,7 +90,7 @@
 : Computeschedule batch virtual machine operations
 
 - [confidentialledger](/Commands/confidentialledger/readme.md)
-: Deploy and manage Azure confidential ledgers.
+: Manage Confidential Ledger
 
 - [confluent](/Commands/confluent/readme.md)
 : Manage confluent organization
@@ -179,9 +179,6 @@
 - [healthcareapis](/Commands/healthcareapis/readme.md)
 : Azure Healthcare APIs is a secure cloud platform for managing health data, supporting analytics, machine learning, and scalable solutions.
 
-- [identity](/Commands/identity/readme.md)
-: Manage Managed Identity
-
 - [image](/Commands/image/readme.md)
 : Manage custom virtual machine images.
 
@@ -268,9 +265,6 @@
 
 - [palo-alto](/Commands/palo-alto/readme.md)
 : Manage palo-alto networks resource
-
-- [pinecone](/Commands/pinecone/readme.md)
-: Manage Pinecone
 
 - [playwright-testing](/Commands/playwright-testing/readme.md)
 : Manage Microsoft Playwright Testing service
@@ -376,9 +370,6 @@
 
 - [voice-service](/Commands/voice-service/readme.md)
 : Manage voice services
-
-- [weights-and-biases](/Commands/weights-and-biases/readme.md)
-: Manage Weights And Biases
 
 - [workloads](/Commands/workloads/readme.md)
 : Manage workloads
