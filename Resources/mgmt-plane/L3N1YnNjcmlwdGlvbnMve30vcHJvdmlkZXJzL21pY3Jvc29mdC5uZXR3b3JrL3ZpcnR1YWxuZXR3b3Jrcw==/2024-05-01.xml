@@ -10,6 +10,12 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <condition var="$Condition_VirtualNetworks_List">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
       <condition var="$Condition_VirtualNetworks_ListAll">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -18,16 +24,11 @@
           </operator>
         </operator>
       </condition>
-      <condition var="$Condition_VirtualNetworks_List">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
-      <operation when="$Condition_VirtualNetworks_ListAll" operationId="VirtualNetworks_ListAll">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Network/virtualNetworks">
+      <operation when="$Condition_VirtualNetworks_List" operationId="VirtualNetworks_List">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -1466,11 +1467,10 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_VirtualNetworks_List" operationId="VirtualNetworks_List">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks">
+      <operation when="$Condition_VirtualNetworks_ListAll" operationId="VirtualNetworks_ListAll">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Network/virtualNetworks">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
