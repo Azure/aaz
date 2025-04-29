@@ -13,6 +13,12 @@ Manage shared gallery image version with VM
 - [list](/Commands/sig/image-version/_list.md)
 : List gallery image versions in a gallery image definition.
 
+- [list-community](/Commands/sig/image-version/_list-community.md)
+: List VM Image Versions in a gallery community
+
+- [list-shared](/Commands/sig/image-version/_list-shared.md)
+: List VM Image Versions in a gallery shared directly to your subscription or tenant
+
 - [show](/Commands/sig/image-version/_show.md)
 : Get information about a gallery image version.
 
