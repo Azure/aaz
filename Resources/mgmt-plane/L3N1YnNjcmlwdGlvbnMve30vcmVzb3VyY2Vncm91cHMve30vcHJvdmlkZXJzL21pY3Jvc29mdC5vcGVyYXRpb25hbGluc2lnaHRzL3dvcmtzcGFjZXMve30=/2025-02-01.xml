@@ -331,7 +331,7 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg type="string" var="$parameters.properties.defaultDataCollectionRuleResourceId" options="default-data-collection-rule-resource-id" group="Properties">
+        <arg type="string" var="$parameters.properties.defaultDataCollectionRuleResourceId" options="default-data-collection-rule-resource-id data-collection-rule" group="Properties">
           <help short="The resource ID of the default Data Collection Rule to use for this workspace. Expected format is - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dcrName}."/>
         </arg>
         <arg type="object" var="$parameters.properties.features" options="features" group="Properties">
@@ -358,7 +358,7 @@
         <arg type="boolean" var="$parameters.properties.forceCmkForQuery" options="force-cmk-for-query" group="Properties">
           <help short="Indicates whether customer managed storage is mandatory for query management."/>
         </arg>
-        <arg type="string" var="$parameters.properties.publicNetworkAccessForIngestion" options="public-network-access-for-ingestion" group="Properties">
+        <arg type="string" var="$parameters.properties.publicNetworkAccessForIngestion" options="public-network-access-for-ingestion ingestion-access" group="Properties">
           <help short="The network access type for accessing Log Analytics ingestion."/>
           <default value="&quot;Enabled&quot;"/>
           <enum>
@@ -366,7 +366,7 @@
             <item name="Enabled" value="&quot;Enabled&quot;"/>
           </enum>
         </arg>
-        <arg type="string" var="$parameters.properties.publicNetworkAccessForQuery" options="public-network-access-for-query" group="Properties">
+        <arg type="string" var="$parameters.properties.publicNetworkAccessForQuery" options="public-network-access-for-query query-access" group="Properties">
           <help short="The network access type for accessing Log Analytics query."/>
           <default value="&quot;Enabled&quot;"/>
           <enum>
@@ -385,16 +385,14 @@
         </arg>
         <arg nullable="True" type="integer32" var="$parameters.properties.retentionInDays" options="retention-time" group="Properties">
           <help short="The workspace data retention in days. Allowed values are per pricing plan. See pricing tiers documentation for details."/>
+          <default value="30"/>
         </arg>
-        <arg type="object" var="$parameters.properties.workspaceCapping" options="workspace-capping" group="Properties">
-          <help short="The daily volume cap for ingestion."/>
-          <arg type="float64" var="$parameters.properties.workspaceCapping.dailyQuotaGb" options="daily-quota-gb">
-            <help short="The workspace daily quota for ingestion."/>
-          </arg>
+        <arg type="float64" var="$parameters.properties.workspaceCapping.dailyQuotaGb" options="daily-quota-gb quota" group="Properties">
+          <help short="The workspace daily quota for ingestion in gigabytes. The minimum value is 0.023 and default is -1 which means unlimited."/>
         </arg>
       </argGroup>
       <argGroup name="Sku">
-        <arg type="integer32" var="$parameters.properties.sku.capacityReservationLevel" options="capacity-reservation-level" group="Sku">
+        <arg type="integer32" var="$parameters.properties.sku.capacityReservationLevel" options="capacity-reservation-level capacity-level level" group="Sku">
           <help short="The capacity reservation level in GB for this workspace, when CapacityReservation sku is selected."/>
           <enum>
             <item name="100" value="100"/>
@@ -410,8 +408,9 @@
             <item name="50000" value="50000"/>
           </enum>
         </arg>
-        <arg type="string" var="$parameters.properties.sku.name" options="sku-name" group="Sku">
+        <arg type="string" var="$parameters.properties.sku.name" options="sku-name sku" group="Sku">
           <help short="The name of the SKU."/>
+          <default value="&quot;PerGB2018&quot;"/>
           <enum>
             <item name="CapacityReservation" value="&quot;CapacityReservation&quot;"/>
             <item name="Free" value="&quot;Free&quot;"/>
@@ -529,7 +528,7 @@
                         </enum>
                       </prop>
                     </prop>
-                    <prop type="object" name="workspaceCapping" arg="$parameters.properties.workspaceCapping">
+                    <prop type="object" name="workspaceCapping">
                       <prop type="float64" name="dailyQuotaGb" arg="$parameters.properties.workspaceCapping.dailyQuotaGb"/>
                     </prop>
                   </prop>
@@ -780,7 +779,7 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="string" var="$parameters.properties.defaultDataCollectionRuleResourceId" options="default-data-collection-rule-resource-id" group="Properties">
+        <arg nullable="True" type="string" var="$parameters.properties.defaultDataCollectionRuleResourceId" options="default-data-collection-rule-resource-id data-collection-rule" group="Properties">
           <help short="The resource ID of the default Data Collection Rule to use for this workspace. Expected format is - /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Insights/dataCollectionRules/{dcrName}."/>
         </arg>
         <arg nullable="True" type="object" var="$parameters.properties.features" options="features" group="Properties">
@@ -807,14 +806,14 @@
         <arg nullable="True" type="boolean" var="$parameters.properties.forceCmkForQuery" options="force-cmk-for-query" group="Properties">
           <help short="Indicates whether customer managed storage is mandatory for query management."/>
         </arg>
-        <arg nullable="True" type="string" var="$parameters.properties.publicNetworkAccessForIngestion" options="public-network-access-for-ingestion" group="Properties">
+        <arg nullable="True" type="string" var="$parameters.properties.publicNetworkAccessForIngestion" options="public-network-access-for-ingestion ingestion-access" group="Properties">
           <help short="The network access type for accessing Log Analytics ingestion."/>
           <enum>
             <item name="Disabled" value="&quot;Disabled&quot;"/>
             <item name="Enabled" value="&quot;Enabled&quot;"/>
           </enum>
         </arg>
-        <arg nullable="True" type="string" var="$parameters.properties.publicNetworkAccessForQuery" options="public-network-access-for-query" group="Properties">
+        <arg nullable="True" type="string" var="$parameters.properties.publicNetworkAccessForQuery" options="public-network-access-for-query query-access" group="Properties">
           <help short="The network access type for accessing Log Analytics query."/>
           <enum>
             <item name="Disabled" value="&quot;Disabled&quot;"/>
@@ -829,16 +828,14 @@
         </arg>
         <arg nullable="True" type="integer32" var="$parameters.properties.retentionInDays" options="retention-time" group="Properties">
           <help short="The workspace data retention in days. Allowed values are per pricing plan. See pricing tiers documentation for details."/>
+          <default value="30"/>
         </arg>
-        <arg nullable="True" type="object" var="$parameters.properties.workspaceCapping" options="workspace-capping" group="Properties">
-          <help short="The daily volume cap for ingestion."/>
-          <arg nullable="True" type="float64" var="$parameters.properties.workspaceCapping.dailyQuotaGb" options="daily-quota-gb">
-            <help short="The workspace daily quota for ingestion."/>
-          </arg>
+        <arg nullable="True" type="float64" var="$parameters.properties.workspaceCapping.dailyQuotaGb" options="daily-quota-gb quota" group="Properties">
+          <help short="The workspace daily quota for ingestion in gigabytes. The minimum value is 0.023 and default is -1 which means unlimited."/>
         </arg>
       </argGroup>
       <argGroup name="Sku">
-        <arg nullable="True" type="integer32" var="$parameters.properties.sku.capacityReservationLevel" options="capacity-reservation-level" group="Sku">
+        <arg nullable="True" type="integer32" var="$parameters.properties.sku.capacityReservationLevel" options="capacity-reservation-level capacity-level level" group="Sku">
           <help short="The capacity reservation level in GB for this workspace, when CapacityReservation sku is selected."/>
           <enum>
             <item name="100" value="100"/>
@@ -854,8 +851,9 @@
             <item name="50000" value="50000"/>
           </enum>
         </arg>
-        <arg type="string" var="$parameters.properties.sku.name" options="sku-name" group="Sku">
+        <arg type="string" var="$parameters.properties.sku.name" options="sku-name sku" group="Sku">
           <help short="The name of the SKU."/>
+          <default value="&quot;PerGB2018&quot;"/>
           <enum>
             <item name="CapacityReservation" value="&quot;CapacityReservation&quot;"/>
             <item name="Free" value="&quot;Free&quot;"/>
@@ -1163,7 +1161,7 @@
                     </enum>
                   </prop>
                 </prop>
-                <prop type="object" name="workspaceCapping" arg="$parameters.properties.workspaceCapping">
+                <prop type="object" name="workspaceCapping">
                   <prop type="float64" name="dailyQuotaGb" arg="$parameters.properties.workspaceCapping.dailyQuotaGb"/>
                 </prop>
               </prop>
