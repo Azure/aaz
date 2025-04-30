@@ -17,6 +17,9 @@ Extensions are small applications that provide post-deployment configuration and
 - [delete](/Commands/vm/extension/_delete.md)
 : Delete operation to delete the extension.
 
+- [list](/Commands/vm/extension/_list.md)
+: List operation to get all extensions of a Virtual Machine.
+
 - [show](/Commands/vm/extension/_show.md)
 : Get operation to get the extension.
 
