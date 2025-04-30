@@ -21,6 +21,9 @@ Manage Redis Enterprise databases
 - [flush](/Commands/redisenterprise/database/_flush.md)
 : Flushes all the keys in this database and also from its linked databases.
 
+- [force-link-to-replication-group](/Commands/redisenterprise/database/_force-link-to-replication-group.md)
+: Forcibly recreates an existing database on the specified cluster, and rejoins it to an existing replication group. **IMPORTANT NOTE:** All data in this database will be discarded, and the database will temporarily be unavailable while rejoining the replication group.
+
 - [force-unlink](/Commands/redisenterprise/database/_force-unlink.md)
 : Forcibly removes the link to the specified database resource.
 
@@ -41,3 +44,6 @@ Manage Redis Enterprise databases
 
 - [update](/Commands/redisenterprise/database/_update.md)
 : Update a database
+
+- [upgrade-db-redis-version](/Commands/redisenterprise/database/_upgrade-db-redis-version.md)
+: Upgrades the database Redis version to the latest available.
