@@ -12,5 +12,5 @@ Forcibly recreates an existing database on the specified cluster, and rejoins it
 
 - How to relink a database after a regional outage
     ```bash
-        redisenterprise database force-link-to-replication-group --resource-group rg1 --cluster-name cache1 --database-name default --group-nickname groupName --linked-databases id="/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Cache/redisEnterprise/cache1/databases/default" --linked-databases id="/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg2/providers/Microsoft.Cache/redisEnterprise/cache2/databases/default"
+        redisenterprise database force-link-to-replication-group --resource-group rg1 --cluster-name cache1 --database-name default --group-nickname groupName --linked-databases '[{id:"/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Cache/redisEnterprise/cache1/databases/default"},{id:"/subscriptions/11111111-1111-1111-1111-111111111111/resourceGroups/rg2/providers/Microsoft.Cache/redisEnterprise/cache2/databases/default"}]'
     ```
