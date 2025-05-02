@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/virtualmachines/{}/retrievebootdiagnosticsdata" version="2024-07-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS92aXJ0dWFsTWFjaGluZXMve3ZtTmFtZX0vcmV0cmlldmVCb290RGlhZ25vc3RpY3NEYXRh/V/MjAyNC0wNy0wMQ=="/>
+  <commandGroup name="vm boot-diagnostics">
+    <command name="get-boot-log-uris" version="2024-07-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/virtualmachines/{}/retrievebootdiagnosticsdata" version="2024-07-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS92aXJ0dWFsTWFjaGluZXMve3ZtTmFtZX0vcmV0cmlldmVCb290RGlhZ25vc3RpY3NEYXRh/V/MjAyNC0wNy0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vmName" options="name n" required="True" group="" idPart="name">
+          <help short="The name of the Virtual Machine. You can configure the default using `az configure --defaults vm=<name>`."/>
+        </arg>
+        <arg type="integer32" var="$Query.sasUriExpirationTimeInMinutes" options="expire" group="">
+          <help short="Expiration duration in minutes for the SAS URIs with a value between 1 to                           1440 minutes. If not specified, SAS URIs will be generated with a default expiration duration of 120 minutes."/>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualMachines_RetrieveBootDiagnosticsData">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/retrieveBootDiagnosticsData">
+          <request method="post">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vmName" arg="$Path.vmName" required="True"/>
+            </path>
+            <query>
+              <param type="integer32" name="sasUriExpirationTimeInMinutes" arg="$Query.sasUriExpirationTimeInMinutes"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-07-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="consoleScreenshotBlobUri"/>
+                  <prop readOnly="True" type="string" name="serialConsoleLogBlobUri"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

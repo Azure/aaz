@@ -16,6 +16,9 @@ Manage shared gallery image with VM
 - [list-community](/Commands/sig/image-definition/_list-community.md)
 : List VM Image definitions in a gallery community
 
+- [list-shared](/Commands/sig/image-definition/_list-shared.md)
+: List VM Image definitions in a gallery shared directly to your subscription or tenant
+
 - [show](/Commands/sig/image-definition/_show.md)
 : Get information about a gallery image definition.
 

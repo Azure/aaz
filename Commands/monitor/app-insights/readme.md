@@ -10,6 +10,12 @@ Commands for querying data in Application Insights applications.
 - [component](/Commands/monitor/app-insights/component/readme.md)
 : Manage an Application Insights component or its subcomponents.
 
+- [events](/Commands/monitor/app-insights/events/readme.md)
+: Manage Event
+
+- [metric](/Commands/monitor/app-insights/metric/readme.md)
+: Manage Metric
+
 - [my-workbook](/Commands/monitor/app-insights/my-workbook/readme.md)
 : Manage my-workbook
 
@@ -20,3 +26,9 @@ Commands for querying data in Application Insights applications.
 
 - [migrate-to-new-pricing-model](/Commands/monitor/app-insights/_migrate-to-new-pricing-model.md)
 : Enterprise Agreement Customer opted to use new pricing model.
+
+- [query-execute](/Commands/monitor/app-insights/_query-execute.md)
+: Executes an Analytics query for data. Doc https://dev.applicationinsights.io/documentation/Using-the-API/Query is an example for using POST with an Analytics query.
+
+- [query-show](/Commands/monitor/app-insights/_query-show.md)
+: Get an Analytics query for data
