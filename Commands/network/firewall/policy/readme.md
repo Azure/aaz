@@ -7,11 +7,17 @@ Manage and configure Azure firewall policy.
 - [draft](/Commands/network/firewall/policy/draft/readme.md)
 : Manage and configure Azure firewall policy draft,
 
+- [identity](/Commands/network/firewall/policy/identity/readme.md)
+: User-assigned managed identity actions on firewall
+
 - [intrusion-detection](/Commands/network/firewall/policy/intrusion-detection/readme.md)
 : Manage intrusion signature rules and bypass rules
 
 - [rule-collection-group](/Commands/network/firewall/policy/rule-collection-group/readme.md)
 : Manage and configure Azure firewall policy rule-collection-group.
+
+- [signature-override](/Commands/network/firewall/policy/signature-override/readme.md)
+: IDPS Signature Override Commands
 
 ## Commands
 
@@ -26,6 +32,12 @@ Manage and configure Azure firewall policy.
 
 - [list](/Commands/network/firewall/policy/_list.md)
 : List all Azure firewall policies.
+
+- [list-idps-filter-option](/Commands/network/firewall/policy/_list-idps-filter-option.md)
+: Retrieves the current filter values for the signatures overrides
+
+- [list-idps-signature](/Commands/network/firewall/policy/_list-idps-signature.md)
+: Retrieves the current status of IDPS signatures for the relevant policy. Maximal amount of returned signatures is 1000.
 
 - [show](/Commands/network/firewall/policy/_show.md)
 : Show an Azure firewall policy.
