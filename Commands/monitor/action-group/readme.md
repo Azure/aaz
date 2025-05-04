@@ -4,6 +4,9 @@ Manage action groups.
 
 ## Subgroups
 
+- [identity](/Commands/monitor/action-group/identity/readme.md)
+: Manage identities of the action-group.
+
 - [test-notifications](/Commands/monitor/action-group/test-notifications/readme.md)
 : Manage action groups test-notifications.
 
