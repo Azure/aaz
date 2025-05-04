@@ -32,6 +32,9 @@
 - [arcgateway](/Commands/arcgateway/readme.md)
 : Manage gateway connection on Arc machine
 
+- [arize-ai](/Commands/arize-ai/readme.md)
+: Manage Arize Ai
+
 - [astronomer](/Commands/astronomer/readme.md)
 : Manage Azure Astronomer resources.
 
@@ -175,6 +178,9 @@
 
 - [graph-services](/Commands/graph-services/readme.md)
 : Make operations on Microsoft.GraphServices resource types
+
+- [health-data-ai-services](/Commands/health-data-ai-services/readme.md)
+: Manage Health Data Ai Services
 
 - [healthcareapis](/Commands/healthcareapis/readme.md)
 : Azure Healthcare APIs is a secure cloud platform for managing health data, supporting analytics, machine learning, and scalable solutions.
@@ -379,6 +385,9 @@
 
 - [voice-service](/Commands/voice-service/readme.md)
 : Manage voice services
+
+- [voice-services](/Commands/voice-services/readme.md)
+: Manage Voice Services
 
 - [workloads](/Commands/workloads/readme.md)
 : Manage workloads

@@ -11,3 +11,6 @@ Manage Neon Postgres
 
 - [create](/Commands/neon/postgres/_create.md)
 : Create a Neon organization
+
+- [get-postgres-version](/Commands/neon/postgres/_get-postgres-version.md)
+: Action to retrieve the PostgreSQL versions.

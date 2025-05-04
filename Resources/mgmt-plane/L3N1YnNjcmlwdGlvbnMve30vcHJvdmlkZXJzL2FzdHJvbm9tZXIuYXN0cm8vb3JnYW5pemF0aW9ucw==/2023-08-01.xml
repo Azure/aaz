@@ -10,12 +10,6 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <condition var="$Condition_Organizations_ListByResourceGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_Organizations_ListBySubscription">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -24,16 +18,17 @@
           </operator>
         </operator>
       </condition>
-      <operation when="$Condition_Organizations_ListByResourceGroup" operationId="Organizations_ListByResourceGroup">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Astronomer.Astro/organizations">
+      <condition var="$Condition_Organizations_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_Organizations_ListBySubscription" operationId="Organizations_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Astronomer.Astro/organizations">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
-                <format minLength="1"/>
-              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
@@ -49,9 +44,7 @@
                   <prop type="string" name="nextLink"/>
                   <prop type="array<object>" name="value" required="True">
                     <item type="object">
-                      <prop readOnly="True" type="ResourceId" name="id">
-                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Astronomer.Astro/organizations/{}"/>
-                      </prop>
+                      <prop readOnly="True" type="string" name="id"/>
                       <prop type="IdentityObject" name="identity">
                         <prop readOnly="True" type="uuid" name="principalId"/>
                         <prop readOnly="True" type="uuid" name="tenantId"/>
@@ -74,7 +67,7 @@
                       </prop>
                       <prop type="ResourceLocation" name="location" required="True"/>
                       <prop readOnly="True" type="string" name="name"/>
-                      <prop type="object" name="properties" clientFlatten="True">
+                      <prop type="object" name="properties">
                         <prop type="object" name="marketplace" required="True">
                           <prop type="object" name="offerDetails" required="True">
                             <prop type="string" name="offerId" required="True"/>
@@ -84,7 +77,7 @@
                             <prop type="string" name="termId"/>
                             <prop type="string" name="termUnit"/>
                           </prop>
-                          <prop type="string" name="subscriptionId" required="True"/>
+                          <prop type="string" name="subscriptionId"/>
                           <prop type="string" name="subscriptionStatus">
                             <enum>
                               <item value="&quot;PendingFulfillmentStart&quot;"/>
@@ -104,7 +97,7 @@
                               <item type="string"/>
                             </prop>
                             <prop type="string" name="enterpriseAppId"/>
-                            <prop type="string" name="provisioningState">
+                            <prop readOnly="True" type="string" name="provisioningState">
                               <enum>
                                 <item value="&quot;Canceled&quot;"/>
                                 <item value="&quot;Failed&quot;"/>
@@ -125,7 +118,7 @@
                             <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
                           </prop>
                         </prop>
-                        <prop type="string" name="provisioningState">
+                        <prop readOnly="True" type="string" name="provisioningState">
                           <enum>
                             <item value="&quot;Canceled&quot;"/>
                             <item value="&quot;Failed&quot;"/>
@@ -179,19 +172,20 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
         </http>
       </operation>
-      <operation when="$Condition_Organizations_ListBySubscription" operationId="Organizations_ListBySubscription">
-        <http path="/subscriptions/{subscriptionId}/providers/Astronomer.Astro/organizations">
+      <operation when="$Condition_Organizations_ListByResourceGroup" operationId="Organizations_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Astronomer.Astro/organizations">
           <request method="get">
             <path>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
-                <format minLength="1"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
@@ -207,9 +201,7 @@
                   <prop type="string" name="nextLink"/>
                   <prop type="array<object>" name="value" required="True">
                     <item type="object">
-                      <prop readOnly="True" type="ResourceId" name="id">
-                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Astronomer.Astro/organizations/{}"/>
-                      </prop>
+                      <prop readOnly="True" type="string" name="id"/>
                       <prop type="IdentityObject" name="identity">
                         <prop readOnly="True" type="uuid" name="principalId"/>
                         <prop readOnly="True" type="uuid" name="tenantId"/>
@@ -232,7 +224,7 @@
                       </prop>
                       <prop type="ResourceLocation" name="location" required="True"/>
                       <prop readOnly="True" type="string" name="name"/>
-                      <prop type="object" name="properties" clientFlatten="True">
+                      <prop type="object" name="properties">
                         <prop type="object" name="marketplace" required="True">
                           <prop type="object" name="offerDetails" required="True">
                             <prop type="string" name="offerId" required="True"/>
@@ -242,7 +234,7 @@
                             <prop type="string" name="termId"/>
                             <prop type="string" name="termUnit"/>
                           </prop>
-                          <prop type="string" name="subscriptionId" required="True"/>
+                          <prop type="string" name="subscriptionId"/>
                           <prop type="string" name="subscriptionStatus">
                             <enum>
                               <item value="&quot;PendingFulfillmentStart&quot;"/>
@@ -262,7 +254,7 @@
                               <item type="string"/>
                             </prop>
                             <prop type="string" name="enterpriseAppId"/>
-                            <prop type="string" name="provisioningState">
+                            <prop readOnly="True" type="string" name="provisioningState">
                               <enum>
                                 <item value="&quot;Canceled&quot;"/>
                                 <item value="&quot;Failed&quot;"/>
@@ -283,7 +275,7 @@
                             <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
                           </prop>
                         </prop>
-                        <prop type="string" name="provisioningState">
+                        <prop readOnly="True" type="string" name="provisioningState">
                           <enum>
                             <item value="&quot;Canceled&quot;"/>
                             <item value="&quot;Failed&quot;"/>
@@ -337,7 +329,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
