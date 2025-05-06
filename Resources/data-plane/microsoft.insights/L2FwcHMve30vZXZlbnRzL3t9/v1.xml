@@ -1,0 +1,637 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.insights">
+  <resource id="/apps/{}/events/{}" version="v1" swagger="data-plane:microsoft.insights/applicationinsights/ResourceProviders/Microsoft.Insights/Paths/L2FwcHMve2FwcElkfS9ldmVudHMve2V2ZW50VHlwZX0=/V/djE="/>
+  <resource id="/apps/{}/events/{}/{}" version="v1" swagger="data-plane:microsoft.insights/applicationinsights/ResourceProviders/Microsoft.Insights/Paths/L2FwcHMve2FwcElkfS9ldmVudHMve2V2ZW50VHlwZX0ve2V2ZW50SWR9/V/djE="/>
+  <commandGroup name="monitor app-insights events">
+    <command name="show" version="v1">
+      <resource id="/apps/{}/events/{}" version="v1" swagger="data-plane:microsoft.insights/applicationinsights/ResourceProviders/Microsoft.Insights/Paths/L2FwcHMve2FwcElkfS9ldmVudHMve2V2ZW50VHlwZX0=/V/djE="/>
+      <resource id="/apps/{}/events/{}/{}" version="v1" swagger="data-plane:microsoft.insights/applicationinsights/ResourceProviders/Microsoft.Insights/Paths/L2FwcHMve2FwcElkfS9ldmVudHMve2V2ZW50VHlwZX0ve2V2ZW50SWR9/V/djE="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.appId" options="app-id" required="True">
+          <help short="ID of the application. This is Application ID from the API Access settings blade in the Azure portal."/>
+        </arg>
+        <arg type="string" var="$Path.eventId" options="event-id">
+          <help short="ID of event."/>
+        </arg>
+        <arg type="string" var="$Path.eventType" options="event-type" required="True">
+          <help short="The type of events to query; either a standard event type (`traces`, `customEvents`, `pageViews`, `requests`, `dependencies`, `exceptions`, `availabilityResults`) or `$all` to query across all event types."/>
+          <enum>
+            <item name="$all" value="&quot;$all&quot;"/>
+            <item name="availabilityResults" value="&quot;availabilityResults&quot;"/>
+            <item name="browserTimings" value="&quot;browserTimings&quot;"/>
+            <item name="customEvents" value="&quot;customEvents&quot;"/>
+            <item name="customMetrics" value="&quot;customMetrics&quot;"/>
+            <item name="dependencies" value="&quot;dependencies&quot;"/>
+            <item name="exceptions" value="&quot;exceptions&quot;"/>
+            <item name="pageViews" value="&quot;pageViews&quot;"/>
+            <item name="performanceCounters" value="&quot;performanceCounters&quot;"/>
+            <item name="requests" value="&quot;requests&quot;"/>
+            <item name="traces" value="&quot;traces&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$Query.apply" options="apply">
+          <help short="An expression used for aggregation over returned events"/>
+        </arg>
+        <arg type="boolean" var="$Query.count" options="count">
+          <help short="Request a count of matching items included with the returned events"/>
+        </arg>
+        <arg type="string" var="$Query.filter" options="filter">
+          <help short="An expression used to filter the returned events"/>
+        </arg>
+        <arg type="string" var="$Query.format" options="format">
+          <help short="Format for the returned events"/>
+        </arg>
+        <arg type="string" var="$Query.orderby" options="orderby">
+          <help short="A comma-separated list of properties with \&quot;asc\&quot; (the default) or \&quot;desc\&quot; to control the order of returned events"/>
+        </arg>
+        <arg type="string" var="$Query.search" options="search">
+          <help short="A free-text search expression to match for whether a particular event should be returned"/>
+        </arg>
+        <arg type="string" var="$Query.select" options="select">
+          <help short="Limits the properties to just those requested on each returned event"/>
+        </arg>
+        <arg type="integer32" var="$Query.skip" options="skip">
+          <help short="The number of items to skip over before returning events"/>
+        </arg>
+        <arg type="string" var="$Query.timespan" options="timespan">
+          <help short="Optional. The timespan over which to retrieve events. This is an ISO8601 time period value.  This timespan is applied in addition to any that are specified in the Odata expression."/>
+        </arg>
+        <arg type="integer32" var="$Query.top" options="top">
+          <help short="The number of events to return"/>
+        </arg>
+      </argGroup>
+      <condition var="$Condition_Events_GetByType">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.appId"/>
+          <operator type="hasValue" arg="$Path.eventType"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.eventId"/>
+          </operator>
+        </operator>
+      </condition>
+      <condition var="$Condition_Events_Get">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.appId"/>
+          <operator type="hasValue" arg="$Path.eventId"/>
+          <operator type="hasValue" arg="$Path.eventType"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_Events_GetByType" operationId="Events_GetByType">
+        <http path="/v1/apps/{appId}/events/{eventType}">
+          <request method="get">
+            <path>
+              <param type="string" name="appId" arg="$Path.appId" required="True"/>
+              <param type="string" name="eventType" arg="$Path.eventType" required="True">
+                <enum>
+                  <item value="&quot;$all&quot;"/>
+                  <item value="&quot;availabilityResults&quot;"/>
+                  <item value="&quot;browserTimings&quot;"/>
+                  <item value="&quot;customEvents&quot;"/>
+                  <item value="&quot;customMetrics&quot;"/>
+                  <item value="&quot;dependencies&quot;"/>
+                  <item value="&quot;exceptions&quot;"/>
+                  <item value="&quot;pageViews&quot;"/>
+                  <item value="&quot;performanceCounters&quot;"/>
+                  <item value="&quot;requests&quot;"/>
+                  <item value="&quot;traces&quot;"/>
+                </enum>
+              </param>
+            </path>
+            <query>
+              <param type="string" name="$apply" arg="$Query.apply"/>
+              <param type="boolean" name="$count" arg="$Query.count"/>
+              <param type="string" name="$filter" arg="$Query.filter"/>
+              <param type="string" name="$format" arg="$Query.format"/>
+              <param type="string" name="$orderby" arg="$Query.orderby"/>
+              <param type="string" name="$search" arg="$Query.search"/>
+              <param type="string" name="$select" arg="$Query.select"/>
+              <param type="integer32" name="$skip" arg="$Query.skip"/>
+              <param type="integer32" name="$top" arg="$Query.top"/>
+              <param type="string" name="timespan" arg="$Query.timespan"/>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="@ai.messages">
+                    <item type="object" cls="ErrorInfo_read">
+                      <prop type="string" name="code" required="True"/>
+                      <prop type="array<object>" name="details">
+                        <item type="object">
+                          <prop type="object" name="additionalProperties">
+                            <additionalProp>
+                              <item type="any"/>
+                            </additionalProp>
+                          </prop>
+                          <prop type="string" name="code" required="True"/>
+                          <prop type="string" name="message" required="True"/>
+                          <prop type="array<string>" name="resources">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="target"/>
+                          <prop type="string" name="value"/>
+                        </item>
+                      </prop>
+                      <prop type="@ErrorInfo_read" name="innererror"/>
+                      <prop type="string" name="message" required="True"/>
+                      <additionalProp>
+                        <item type="object">
+                          <additionalProp>
+                            <item type="any"/>
+                          </additionalProp>
+                        </item>
+                      </additionalProp>
+                    </item>
+                  </prop>
+                  <prop type="string" name="@odata.context"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop type="object" name="ai">
+                        <prop type="string" name="appId"/>
+                        <prop type="string" name="appName"/>
+                        <prop type="string" name="iKey"/>
+                        <prop type="string" name="sdkVersion"/>
+                      </prop>
+                      <prop type="object" name="application">
+                        <prop type="string" name="version"/>
+                      </prop>
+                      <prop type="object" name="client">
+                        <prop type="string" name="browser"/>
+                        <prop type="string" name="city"/>
+                        <prop type="string" name="countryOrRegion"/>
+                        <prop type="string" name="ip"/>
+                        <prop type="string" name="model"/>
+                        <prop type="string" name="os"/>
+                        <prop type="string" name="stateOrProvince"/>
+                        <prop type="string" name="type"/>
+                      </prop>
+                      <prop type="object" name="cloud">
+                        <prop type="string" name="roleInstance"/>
+                        <prop type="string" name="roleName"/>
+                      </prop>
+                      <prop type="integer64" name="count"/>
+                      <prop type="object" name="customDimensions">
+                        <prop type="object" name="additionalProperties">
+                          <additionalProp>
+                            <item type="any"/>
+                          </additionalProp>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="customMeasurements">
+                        <prop type="object" name="additionalProperties">
+                          <additionalProp>
+                            <item type="any"/>
+                          </additionalProp>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="id"/>
+                      <prop type="object" name="operation">
+                        <prop type="string" name="id"/>
+                        <prop type="string" name="name"/>
+                        <prop type="string" name="parentId"/>
+                        <prop type="string" name="syntheticSource"/>
+                      </prop>
+                      <prop type="object" name="session">
+                        <prop type="string" name="id"/>
+                      </prop>
+                      <prop type="dateTime" name="timestamp"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;$all&quot;"/>
+                          <item value="&quot;availabilityResult&quot;"/>
+                          <item value="&quot;availabilityResults&quot;"/>
+                          <item value="&quot;browserTiming&quot;"/>
+                          <item value="&quot;browserTimings&quot;"/>
+                          <item value="&quot;customEvent&quot;"/>
+                          <item value="&quot;customEvents&quot;"/>
+                          <item value="&quot;customMetric&quot;"/>
+                          <item value="&quot;customMetrics&quot;"/>
+                          <item value="&quot;dependencies&quot;"/>
+                          <item value="&quot;dependency&quot;"/>
+                          <item value="&quot;exception&quot;"/>
+                          <item value="&quot;exceptions&quot;"/>
+                          <item value="&quot;pageView&quot;"/>
+                          <item value="&quot;pageViews&quot;"/>
+                          <item value="&quot;performanceCounter&quot;"/>
+                          <item value="&quot;performanceCounters&quot;"/>
+                          <item value="&quot;request&quot;"/>
+                          <item value="&quot;requests&quot;"/>
+                          <item value="&quot;trace&quot;"/>
+                          <item value="&quot;traces&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="user">
+                        <prop type="string" name="accountId"/>
+                        <prop type="string" name="authenticatedId"/>
+                        <prop type="string" name="id"/>
+                      </prop>
+                      <discriminator property="type" value="availabilityResult">
+                        <prop type="object" name="availabilityResult">
+                          <prop type="integer64" name="duration"/>
+                          <prop type="string" name="id"/>
+                          <prop type="string" name="location"/>
+                          <prop type="string" name="message"/>
+                          <prop type="string" name="name"/>
+                          <prop type="string" name="performanceBucket"/>
+                          <prop type="string" name="size"/>
+                          <prop type="string" name="success"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="type" value="browserTiming">
+                        <prop type="object" name="browserTiming">
+                          <prop type="string" name="name"/>
+                          <prop type="integer64" name="networkDuration"/>
+                          <prop type="string" name="performanceBucket"/>
+                          <prop type="integer64" name="processingDuration"/>
+                          <prop type="integer64" name="receiveDuration"/>
+                          <prop type="integer64" name="sendDuration"/>
+                          <prop type="integer64" name="totalDuration"/>
+                          <prop type="string" name="url"/>
+                          <prop type="string" name="urlHost"/>
+                          <prop type="string" name="urlPath"/>
+                        </prop>
+                        <prop type="object" name="clientPerformance">
+                          <prop type="string" name="name"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="type" value="customEvent">
+                        <prop type="object" name="customEvent">
+                          <prop type="string" name="name"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="type" value="customMetric">
+                        <prop type="object" name="customMetric">
+                          <prop type="string" name="name"/>
+                          <prop type="float64" name="value"/>
+                          <prop type="integer32" name="valueCount"/>
+                          <prop type="float64" name="valueMax"/>
+                          <prop type="float64" name="valueMin"/>
+                          <prop type="float64" name="valueStdDev"/>
+                          <prop type="float64" name="valueSum"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="type" value="dependency">
+                        <prop type="object" name="dependency">
+                          <prop type="string" name="data"/>
+                          <prop type="integer64" name="duration"/>
+                          <prop type="string" name="id"/>
+                          <prop type="string" name="name"/>
+                          <prop type="string" name="performanceBucket"/>
+                          <prop type="string" name="resultCode"/>
+                          <prop type="string" name="success"/>
+                          <prop type="string" name="target"/>
+                          <prop type="string" name="type"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="type" value="exception">
+                        <prop type="object" name="exception">
+                          <prop type="string" name="assembly"/>
+                          <prop type="array<object>" name="details">
+                            <item type="object">
+                              <prop type="string" name="id"/>
+                              <prop type="string" name="message"/>
+                              <prop type="string" name="outerId"/>
+                              <prop type="array<object>" name="parsedStack">
+                                <item type="object">
+                                  <prop type="string" name="assembly"/>
+                                  <prop type="integer64" name="level"/>
+                                  <prop type="integer64" name="line"/>
+                                  <prop type="string" name="method"/>
+                                </item>
+                              </prop>
+                              <prop type="string" name="severityLevel"/>
+                              <prop type="string" name="type"/>
+                            </item>
+                          </prop>
+                          <prop type="string" name="handledAt"/>
+                          <prop type="string" name="innermostAssembly"/>
+                          <prop type="string" name="innermostMessage"/>
+                          <prop type="string" name="innermostMethod"/>
+                          <prop type="string" name="innermostType"/>
+                          <prop type="string" name="message"/>
+                          <prop type="string" name="method"/>
+                          <prop type="string" name="outerAssembly"/>
+                          <prop type="string" name="outerMessage"/>
+                          <prop type="string" name="outerMethod"/>
+                          <prop type="string" name="outerType"/>
+                          <prop type="string" name="problemId"/>
+                          <prop type="integer" name="severityLevel"/>
+                          <prop type="string" name="type"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="type" value="pageView">
+                        <prop type="object" name="pageView">
+                          <prop type="string" name="duration"/>
+                          <prop type="string" name="name"/>
+                          <prop type="string" name="performanceBucket"/>
+                          <prop type="string" name="url"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="type" value="performanceCounter">
+                        <prop type="object" name="performanceCounter">
+                          <prop type="string" name="category"/>
+                          <prop type="string" name="counter"/>
+                          <prop type="string" name="instance"/>
+                          <prop type="string" name="instanceName"/>
+                          <prop type="string" name="name"/>
+                          <prop type="float64" name="value"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="type" value="request">
+                        <prop type="object" name="request">
+                          <prop type="float64" name="duration"/>
+                          <prop type="string" name="id"/>
+                          <prop type="string" name="name"/>
+                          <prop type="string" name="performanceBucket"/>
+                          <prop type="string" name="resultCode"/>
+                          <prop type="string" name="source"/>
+                          <prop type="string" name="success"/>
+                          <prop type="string" name="url"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="type" value="trace">
+                        <prop type="object" name="trace">
+                          <prop type="string" name="message"/>
+                          <prop type="integer" name="severityLevel"/>
+                        </prop>
+                      </discriminator>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_Events_Get" operationId="Events_Get">
+        <http path="/v1/apps/{appId}/events/{eventType}/{eventId}">
+          <request method="get">
+            <path>
+              <param type="string" name="appId" arg="$Path.appId" required="True"/>
+              <param type="string" name="eventId" arg="$Path.eventId" required="True"/>
+              <param type="string" name="eventType" arg="$Path.eventType" required="True">
+                <enum>
+                  <item value="&quot;$all&quot;"/>
+                  <item value="&quot;availabilityResults&quot;"/>
+                  <item value="&quot;browserTimings&quot;"/>
+                  <item value="&quot;customEvents&quot;"/>
+                  <item value="&quot;customMetrics&quot;"/>
+                  <item value="&quot;dependencies&quot;"/>
+                  <item value="&quot;exceptions&quot;"/>
+                  <item value="&quot;pageViews&quot;"/>
+                  <item value="&quot;performanceCounters&quot;"/>
+                  <item value="&quot;requests&quot;"/>
+                  <item value="&quot;traces&quot;"/>
+                </enum>
+              </param>
+            </path>
+            <query>
+              <param type="string" name="timespan" arg="$Query.timespan"/>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<@ErrorInfo_read>" name="@ai.messages">
+                    <item type="@ErrorInfo_read"/>
+                  </prop>
+                  <prop type="string" name="@odata.context"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop type="object" name="ai">
+                        <prop type="string" name="appId"/>
+                        <prop type="string" name="appName"/>
+                        <prop type="string" name="iKey"/>
+                        <prop type="string" name="sdkVersion"/>
+                      </prop>
+                      <prop type="object" name="application">
+                        <prop type="string" name="version"/>
+                      </prop>
+                      <prop type="object" name="client">
+                        <prop type="string" name="browser"/>
+                        <prop type="string" name="city"/>
+                        <prop type="string" name="countryOrRegion"/>
+                        <prop type="string" name="ip"/>
+                        <prop type="string" name="model"/>
+                        <prop type="string" name="os"/>
+                        <prop type="string" name="stateOrProvince"/>
+                        <prop type="string" name="type"/>
+                      </prop>
+                      <prop type="object" name="cloud">
+                        <prop type="string" name="roleInstance"/>
+                        <prop type="string" name="roleName"/>
+                      </prop>
+                      <prop type="integer64" name="count"/>
+                      <prop type="object" name="customDimensions">
+                        <prop type="object" name="additionalProperties">
+                          <additionalProp>
+                            <item type="any"/>
+                          </additionalProp>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="customMeasurements">
+                        <prop type="object" name="additionalProperties">
+                          <additionalProp>
+                            <item type="any"/>
+                          </additionalProp>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="id"/>
+                      <prop type="object" name="operation">
+                        <prop type="string" name="id"/>
+                        <prop type="string" name="name"/>
+                        <prop type="string" name="parentId"/>
+                        <prop type="string" name="syntheticSource"/>
+                      </prop>
+                      <prop type="object" name="session">
+                        <prop type="string" name="id"/>
+                      </prop>
+                      <prop type="dateTime" name="timestamp"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;$all&quot;"/>
+                          <item value="&quot;availabilityResult&quot;"/>
+                          <item value="&quot;availabilityResults&quot;"/>
+                          <item value="&quot;browserTiming&quot;"/>
+                          <item value="&quot;browserTimings&quot;"/>
+                          <item value="&quot;customEvent&quot;"/>
+                          <item value="&quot;customEvents&quot;"/>
+                          <item value="&quot;customMetric&quot;"/>
+                          <item value="&quot;customMetrics&quot;"/>
+                          <item value="&quot;dependencies&quot;"/>
+                          <item value="&quot;dependency&quot;"/>
+                          <item value="&quot;exception&quot;"/>
+                          <item value="&quot;exceptions&quot;"/>
+                          <item value="&quot;pageView&quot;"/>
+                          <item value="&quot;pageViews&quot;"/>
+                          <item value="&quot;performanceCounter&quot;"/>
+                          <item value="&quot;performanceCounters&quot;"/>
+                          <item value="&quot;request&quot;"/>
+                          <item value="&quot;requests&quot;"/>
+                          <item value="&quot;trace&quot;"/>
+                          <item value="&quot;traces&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="user">
+                        <prop type="string" name="accountId"/>
+                        <prop type="string" name="authenticatedId"/>
+                        <prop type="string" name="id"/>
+                      </prop>
+                      <discriminator property="type" value="availabilityResult">
+                        <prop type="object" name="availabilityResult">
+                          <prop type="integer64" name="duration"/>
+                          <prop type="string" name="id"/>
+                          <prop type="string" name="location"/>
+                          <prop type="string" name="message"/>
+                          <prop type="string" name="name"/>
+                          <prop type="string" name="performanceBucket"/>
+                          <prop type="string" name="size"/>
+                          <prop type="string" name="success"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="type" value="browserTiming">
+                        <prop type="object" name="browserTiming">
+                          <prop type="string" name="name"/>
+                          <prop type="integer64" name="networkDuration"/>
+                          <prop type="string" name="performanceBucket"/>
+                          <prop type="integer64" name="processingDuration"/>
+                          <prop type="integer64" name="receiveDuration"/>
+                          <prop type="integer64" name="sendDuration"/>
+                          <prop type="integer64" name="totalDuration"/>
+                          <prop type="string" name="url"/>
+                          <prop type="string" name="urlHost"/>
+                          <prop type="string" name="urlPath"/>
+                        </prop>
+                        <prop type="object" name="clientPerformance">
+                          <prop type="string" name="name"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="type" value="customEvent">
+                        <prop type="object" name="customEvent">
+                          <prop type="string" name="name"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="type" value="customMetric">
+                        <prop type="object" name="customMetric">
+                          <prop type="string" name="name"/>
+                          <prop type="float64" name="value"/>
+                          <prop type="integer32" name="valueCount"/>
+                          <prop type="float64" name="valueMax"/>
+                          <prop type="float64" name="valueMin"/>
+                          <prop type="float64" name="valueStdDev"/>
+                          <prop type="float64" name="valueSum"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="type" value="dependency">
+                        <prop type="object" name="dependency">
+                          <prop type="string" name="data"/>
+                          <prop type="integer64" name="duration"/>
+                          <prop type="string" name="id"/>
+                          <prop type="string" name="name"/>
+                          <prop type="string" name="performanceBucket"/>
+                          <prop type="string" name="resultCode"/>
+                          <prop type="string" name="success"/>
+                          <prop type="string" name="target"/>
+                          <prop type="string" name="type"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="type" value="exception">
+                        <prop type="object" name="exception">
+                          <prop type="string" name="assembly"/>
+                          <prop type="array<object>" name="details">
+                            <item type="object">
+                              <prop type="string" name="id"/>
+                              <prop type="string" name="message"/>
+                              <prop type="string" name="outerId"/>
+                              <prop type="array<object>" name="parsedStack">
+                                <item type="object">
+                                  <prop type="string" name="assembly"/>
+                                  <prop type="integer64" name="level"/>
+                                  <prop type="integer64" name="line"/>
+                                  <prop type="string" name="method"/>
+                                </item>
+                              </prop>
+                              <prop type="string" name="severityLevel"/>
+                              <prop type="string" name="type"/>
+                            </item>
+                          </prop>
+                          <prop type="string" name="handledAt"/>
+                          <prop type="string" name="innermostAssembly"/>
+                          <prop type="string" name="innermostMessage"/>
+                          <prop type="string" name="innermostMethod"/>
+                          <prop type="string" name="innermostType"/>
+                          <prop type="string" name="message"/>
+                          <prop type="string" name="method"/>
+                          <prop type="string" name="outerAssembly"/>
+                          <prop type="string" name="outerMessage"/>
+                          <prop type="string" name="outerMethod"/>
+                          <prop type="string" name="outerType"/>
+                          <prop type="string" name="problemId"/>
+                          <prop type="integer" name="severityLevel"/>
+                          <prop type="string" name="type"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="type" value="pageView">
+                        <prop type="object" name="pageView">
+                          <prop type="string" name="duration"/>
+                          <prop type="string" name="name"/>
+                          <prop type="string" name="performanceBucket"/>
+                          <prop type="string" name="url"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="type" value="performanceCounter">
+                        <prop type="object" name="performanceCounter">
+                          <prop type="string" name="category"/>
+                          <prop type="string" name="counter"/>
+                          <prop type="string" name="instance"/>
+                          <prop type="string" name="instanceName"/>
+                          <prop type="string" name="name"/>
+                          <prop type="float64" name="value"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="type" value="request">
+                        <prop type="object" name="request">
+                          <prop type="float64" name="duration"/>
+                          <prop type="string" name="id"/>
+                          <prop type="string" name="name"/>
+                          <prop type="string" name="performanceBucket"/>
+                          <prop type="string" name="resultCode"/>
+                          <prop type="string" name="source"/>
+                          <prop type="string" name="success"/>
+                          <prop type="string" name="url"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="type" value="trace">
+                        <prop type="object" name="trace">
+                          <prop type="string" name="message"/>
+                          <prop type="integer" name="severityLevel"/>
+                        </prop>
+                      </discriminator>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
