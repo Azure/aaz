@@ -278,23 +278,22 @@
             <item name="Workspaces" value="&quot;Workspaces&quot;"/>
           </enum>
         </arg>
-        <arg type="boolean" var="$parameters.properties.isAvailabilityZonesEnabled" options="is-availability-zones-enabled" hide="True" group="Properties">
+        <arg type="boolean" var="$parameters.properties.isAvailabilityZonesEnabled" options="is-availability-zones-enabled" group="Properties">
           <help short="Sets whether the cluster will support availability zones. This can be set as true only in regions where Azure Data Explorer support Availability Zones. This Property can not be modified after cluster creation. Default value is 'true' if region supports Availability Zones."/>
         </arg>
         <arg type="boolean" var="$parameters.properties.isDoubleEncryptionEnabled" options="is-double-encryption-enabled" hide="True" group="Properties">
           <help short="Configures whether cluster will use double encryption. This Property can not be modified after cluster creation. Default value is 'true'"/>
         </arg>
-        <arg type="object" var="$parameters.properties.replication" options="replication" group="Properties">
-          <help short="Cluster's replication properties."/>
-          <arg type="boolean" var="$parameters.properties.replication.enabled" options="enabled">
-            <help short="Specifies whether the replication is enabled or not. When true the cluster is replicate to the specified location."/>
-          </arg>
-          <arg type="boolean" var="$parameters.properties.replication.isAvailabilityZonesEnabled" options="is-availability-zones-enabled">
-            <help short="Should enable AvailabilityZones for the given replicated cluster"/>
-          </arg>
-          <arg type="string" var="$parameters.properties.replication.location" options="location">
-            <help short="The secondary location of the replication. If replication is being enabled, enabled must be provided."/>
-          </arg>
+      </argGroup>
+      <argGroup name="Replication">
+        <arg type="boolean" var="$parameters.properties.replication.enabled" options="replication-enabled" group="Replication">
+          <help short="Specifies whether the replication is enabled or not. When true the cluster is replicate to the specified location."/>
+        </arg>
+        <arg type="boolean" var="$parameters.properties.replication.isAvailabilityZonesEnabled" options="replication-is-availability-zones-enabled" group="Replication">
+          <help short="Should enable AvailabilityZones for the given replicated cluster"/>
+        </arg>
+        <arg type="string" var="$parameters.properties.replication.location" options="replication-location" group="Replication">
+          <help short="The secondary location of the replication. If replication is being enabled, enabled must be provided."/>
         </arg>
       </argGroup>
       <argGroup name="Sku">
@@ -381,7 +380,7 @@
                       <prop type="string" name="keyVaultUri" arg="$parameters.properties.keyVaultProperties.keyVaultUri"/>
                       <prop type="string" name="keyVersion" arg="$parameters.properties.keyVaultProperties.keyVersion"/>
                     </prop>
-                    <prop type="object" name="replication" arg="$parameters.properties.replication">
+                    <prop type="object" name="replication">
                       <prop type="boolean" name="enabled" arg="$parameters.properties.replication.enabled"/>
                       <prop type="boolean" name="isAvailabilityZonesEnabled" arg="$parameters.properties.replication.isAvailabilityZonesEnabled"/>
                       <prop type="string" name="location" arg="$parameters.properties.replication.location"/>
@@ -558,7 +557,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="update" version="2025-02-01">
+    <command name="update" version="2025-02-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.operationalinsights/clusters/{}" version="2025-02-01" swagger="mgmt-plane/operationalinsights/ResourceProviders/Microsoft.OperationalInsights/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZWdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuT3BlcmF0aW9uYWxJbnNpZ2h0cy9jbHVzdGVycy97Y2x1c3Rlck5hbWV9/V/MjAyNS0wMi0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.clusterName" options="cluster-name name n" required="True" idPart="name">
@@ -616,17 +615,16 @@
             <item name="Workspaces" value="&quot;Workspaces&quot;"/>
           </enum>
         </arg>
-        <arg nullable="True" type="boolean" var="$parameters.properties.isAvailabilityZonesEnabled" options="is-availability-zones-enabled" hide="True" group="Properties">
+        <arg nullable="True" type="boolean" var="$parameters.properties.isAvailabilityZonesEnabled" options="is-availability-zones-enabled" group="Properties">
           <help short="Sets whether the cluster will support availability zones. This can be set as true only in regions where Azure Data Explorer support Availability Zones. This Property can not be modified after cluster creation. Default value is 'true' if region supports Availability Zones."/>
         </arg>
-        <arg nullable="True" type="object" var="$parameters.properties.replication" options="replication" group="Properties">
-          <help short="Cluster's replication properties."/>
-          <arg nullable="True" type="boolean" var="$parameters.properties.replication.enabled" options="enabled">
-            <help short="Specifies whether the replication is enabled or not. When true the cluster is replicate to the specified location."/>
-          </arg>
-          <arg nullable="True" type="boolean" var="$parameters.properties.replication.isAvailabilityZonesEnabled" options="is-availability-zones-enabled">
-            <help short="Should enable AvailabilityZones for the given replicated cluster"/>
-          </arg>
+      </argGroup>
+      <argGroup name="Replication">
+        <arg nullable="True" type="boolean" var="$parameters.properties.replication.enabled" options="replication-enabled" group="Replication">
+          <help short="Specifies whether the replication is enabled or not. When true the cluster is replicate to the specified location."/>
+        </arg>
+        <arg nullable="True" type="boolean" var="$parameters.properties.replication.isAvailabilityZonesEnabled" options="replication-is-availability-zones-enabled" group="Replication">
+          <help short="Should enable AvailabilityZones for the given replicated cluster"/>
         </arg>
       </argGroup>
       <argGroup name="Sku">
@@ -837,7 +835,7 @@
                   <prop type="string" name="keyVaultUri" arg="$parameters.properties.keyVaultProperties.keyVaultUri"/>
                   <prop type="string" name="keyVersion" arg="$parameters.properties.keyVaultProperties.keyVersion"/>
                 </prop>
-                <prop type="object" name="replication" arg="$parameters.properties.replication">
+                <prop type="object" name="replication">
                   <prop type="boolean" name="enabled" arg="$parameters.properties.replication.enabled"/>
                   <prop type="boolean" name="isAvailabilityZonesEnabled" arg="$parameters.properties.replication.isAvailabilityZonesEnabled"/>
                 </prop>
