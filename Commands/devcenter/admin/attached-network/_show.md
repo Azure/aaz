@@ -105,3 +105,19 @@ Get an attached network connection configured for a dev center or project.
     ```bash
         az devcenter admin attached-network show --name "network-uswest3" --project-name "{projectName}" --resource-group "rg1"
     ```
+
+### [2025-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvZGV2Y2VudGVycy97fS9hdHRhY2hlZG5ldHdvcmtzL3t9/2025-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/devcenters/{}/attachednetworks/{} 2025-04-01-preview -->
+
+#### examples
+
+- Get a dev center attached network connection
+    ```bash
+        devcenter admin attached-network show --name" network-uswest3" --dev-center-name "Contoso" --resource-group "rg1"
+    ```
+
+- Get a project attached network connection
+    ```bash
+        az devcenter admin attached-network show --name "network-uswest3" --project-name "{projectName}" --resource-group "rg1"
+    ```

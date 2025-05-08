@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.devcenter">
+  <resource id="/projects/{}/imagebuildlogs/{}" version="2025-04-01-preview" swagger="data-plane:microsoft.devcenter/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3Byb2plY3RzL3twcm9qZWN0TmFtZX0vaW1hZ2VCdWlsZExvZ3Mve2ltYWdlQnVpbGRMb2dJZH0=/V/MjAyNS0wNC0wMS1wcmV2aWV3"/>
+  <commandGroup name="devcenter dev image-build">
+    <command name="show-log" version="2025-04-01-preview" confirmation="">
+      <resource id="/projects/{}/imagebuildlogs/{}" version="2025-04-01-preview" swagger="data-plane:microsoft.devcenter/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3Byb2plY3RzL3twcm9qZWN0TmFtZX0vaW1hZ2VCdWlsZExvZ3Mve2ltYWdlQnVpbGRMb2dJZH0=/V/MjAyNS0wNC0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="uuid" var="$Path.imageBuildLogId" options="image-build-log-id i" required="True" group="">
+          <help short="An imaging build log id."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Default">
+        <arg type="string" var="$Path.projectName" options="project-name project" required="True" group="Default">
+          <help short="The name of the project. Use az configure -d project=<project_name> to configure a default."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+        </arg>
+      </argGroup>
+      <operation operationId="DevBoxes_GetImagingTaskLog">
+        <http path="/projects/{projectName}/imageBuildLogs/{imageBuildLogId}">
+          <request method="get">
+            <path>
+              <param type="uuid" name="imageBuildLogId" arg="$Path.imageBuildLogId" required="True"/>
+              <param type="string" name="projectName" arg="$Path.projectName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-04-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="string"/>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="string" ref="$Instance"/>
+    </command>
+  </commandGroup>
+</CodeGen>
