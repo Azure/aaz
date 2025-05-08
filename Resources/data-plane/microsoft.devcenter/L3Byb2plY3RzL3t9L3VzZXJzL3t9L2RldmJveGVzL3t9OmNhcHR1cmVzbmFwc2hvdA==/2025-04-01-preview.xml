@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.devcenter">
+  <resource id="/projects/{}/users/{}/devboxes/{}:capturesnapshot" version="2025-04-01-preview" swagger="data-plane:microsoft.devcenter/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3Byb2plY3RzL3twcm9qZWN0TmFtZX0vdXNlcnMve3VzZXJJZH0vZGV2Ym94ZXMve2RldkJveE5hbWV9OmNhcHR1cmVTbmFwc2hvdA==/V/MjAyNS0wNC0wMS1wcmV2aWV3"/>
+  <commandGroup name="devcenter dev dev-box">
+    <command name="capture-snapshot" version="2025-04-01-preview" confirmation="">
+      <resource id="/projects/{}/users/{}/devboxes/{}:capturesnapshot" version="2025-04-01-preview" swagger="data-plane:microsoft.devcenter/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3Byb2plY3RzL3twcm9qZWN0TmFtZX0vdXNlcnMve3VzZXJJZH0vZGV2Ym94ZXMve2RldkJveE5hbWV9OmNhcHR1cmVTbmFwc2hvdA==/V/MjAyNS0wNC0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.devBoxName" options="dev-box-name dev-box name n" required="True" group="">
+          <help short="The name of a dev box."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+        </arg>
+        <arg type="string" var="$Path.userId" options="user-id" required="True" group="">
+          <help short="The AAD object id of the user. If value is 'me', the identity is taken from the authentication context."/>
+          <default value="&quot;me&quot;"/>
+          <format pattern="^[a-zA-Z0-9]{8}-([a-zA-Z0-9]{4}-){3}[a-zA-Z0-9]{12}$|^me$" maxLength="36" minLength="2"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Default">
+        <arg type="string" var="$Path.projectName" options="project-name project" required="True" group="Default">
+          <help short="The name of the project. Use az configure -d project=<project_name> to configure a default."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+        </arg>
+      </argGroup>
+      <operation operationId="DevBoxes_CaptureSnapshot">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/projects/{projectName}/users/{userId}/devboxes/{devBoxName}:captureSnapshot">
+          <request method="post">
+            <path>
+              <param type="string" name="devBoxName" arg="$Path.devBoxName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+              </param>
+              <param type="string" name="projectName" arg="$Path.projectName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+              </param>
+              <param type="string" name="userId" arg="$Path.userId" required="True">
+                <format pattern="^[a-zA-Z0-9]{8}-([a-zA-Z0-9]{4}-){3}[a-zA-Z0-9]{12}$|^me$" maxLength="36" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-04-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Operation-Location"/>
+            </header>
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="dateTime" name="endTime"/>
+                  <prop type="object" name="error" cls="AzureCoreFoundationsError_read">
+                    <prop type="string" name="code" required="True"/>
+                    <prop type="array<@AzureCoreFoundationsError_read>" name="details">
+                      <item type="@AzureCoreFoundationsError_read"/>
+                    </prop>
+                    <prop type="object" name="innererror" cls="AzureCoreFoundationsInnerError_read">
+                      <prop type="string" name="code"/>
+                      <prop type="@AzureCoreFoundationsInnerError_read" name="innererror"/>
+                    </prop>
+                    <prop type="string" name="message" required="True"/>
+                    <prop type="string" name="target"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="id"/>
+                  <prop type="uuid" name="name" required="True">
+                    <format pattern="^[a-zA-Z0-9]{8}-([a-zA-Z0-9]{4}-){3}[a-zA-Z0-9]{12}$" maxLength="36" minLength="36"/>
+                  </prop>
+                  <prop type="float64" name="percentComplete">
+                    <format maximum="100.0" minimum="0.0"/>
+                  </prop>
+                  <prop type="object" name="properties">
+                    <additionalProp anyType="True"/>
+                  </prop>
+                  <prop type="string" name="resourceId"/>
+                  <prop type="dateTime" name="startTime"/>
+                  <prop type="string" name="status" required="True">
+                    <enum>
+                      <item value="&quot;Canceled&quot;"/>
+                      <item value="&quot;Failed&quot;"/>
+                      <item value="&quot;NotStarted&quot;"/>
+                      <item value="&quot;Running&quot;"/>
+                      <item value="&quot;Succeeded&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

@@ -4,6 +4,12 @@ Manage devcenter developer resources.
 
 ## Subgroups
 
+- [add-on](/Commands/devcenter/dev/add-on/readme.md)
+: Manage add ons
+
+- [approval](/Commands/devcenter/dev/approval/readme.md)
+: Manage approvals.
+
 - [catalog](/Commands/devcenter/dev/catalog/readme.md)
 : Manage catalogs.
 
