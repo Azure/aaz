@@ -15,6 +15,9 @@ To learn more about Azure Virtual Network Gateways, visit https://learn.microsof
 - [ipsec-policy](/Commands/network/vnet-gateway/ipsec-policy/readme.md)
 : Manage virtual network gateway IPSec policies.
 
+- [migration](/Commands/network/vnet-gateway/migration/readme.md)
+: Migrate vpn gateway from basic IP CSES to Standard IP based VMSS deployment.
+
 - [nat-rule](/Commands/network/vnet-gateway/nat-rule/readme.md)
 : Manage nat rule in a virtual network gateway.
 
