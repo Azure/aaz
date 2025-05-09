@@ -93,7 +93,7 @@
 : Manage Confidential Ledger
 
 - [confluent](/Commands/confluent/readme.md)
-: Manage confluent organization
+: Manage Confluent organization.
 
 - [connectedmachine](/Commands/connectedmachine/readme.md)
 : Manage Azure Arc-Enabled Server.
