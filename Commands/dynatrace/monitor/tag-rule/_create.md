@@ -1,6 +1,6 @@
 # [Command] _dynatrace monitor tag-rule create_
 
-Create a tag rule
+Create a new tag rule that defines which Azure resources should be monitored based on their assigned tags.
 
 ## Versions
 

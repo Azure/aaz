@@ -1,6 +1,6 @@
 # [Command] _dynatrace monitor sso-config show_
 
-Show a dynatrace sso-config
+Get information about a specific Dynatrace SSO configuration including SSO state and URL.
 
 ## Versions
 
