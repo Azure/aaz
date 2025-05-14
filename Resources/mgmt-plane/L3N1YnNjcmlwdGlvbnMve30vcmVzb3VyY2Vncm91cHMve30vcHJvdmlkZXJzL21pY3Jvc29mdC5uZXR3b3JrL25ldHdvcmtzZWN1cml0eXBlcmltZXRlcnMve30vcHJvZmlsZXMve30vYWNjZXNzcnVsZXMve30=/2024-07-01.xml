@@ -49,7 +49,6 @@
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/networkSecurityPerimeters/{}/profiles/{}/accessRules/{}"/>
                   </prop>
-                  <prop type="ResourceLocation" name="location"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties" clientFlatten="True">
                     <prop type="array<string>" name="addressPrefixes">
@@ -69,7 +68,7 @@
                     </prop>
                     <prop readOnly="True" type="array<object>" name="networkSecurityPerimeters">
                       <item type="object">
-                        <prop readOnly="True" type="string" name="id"/>
+                        <prop readOnly="True" type="ResourceId" name="id"/>
                         <prop readOnly="True" type="string" name="location"/>
                         <prop readOnly="True" type="string" name="perimeterGuid"/>
                       </item>
@@ -92,14 +91,31 @@
                     </prop>
                     <prop type="array<object>" name="subscriptions">
                       <item type="object">
-                        <prop type="string" name="id"/>
+                        <prop type="ResourceId" name="id"/>
                       </item>
                     </prop>
                   </prop>
-                  <prop type="object" name="tags">
-                    <additionalProp>
-                      <item type="string"/>
-                    </additionalProp>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
                   </prop>
                   <prop readOnly="True" type="string" name="type"/>
                 </schema>
@@ -187,17 +203,6 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Parameters">
-        <arg type="ResourceLocation" var="$parameters.location" options="location l" group="Parameters">
-          <help short="Resource location."/>
-        </arg>
-        <arg type="object" var="$parameters.tags" options="tags" group="Parameters">
-          <help short="Resource tags."/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
-        </arg>
-      </argGroup>
       <argGroup name="Properties">
         <arg type="array<string>" var="$parameters.properties.addressPrefixes" options="address-prefixes" group="Properties">
           <help short="Inbound address prefixes (IPv4/IPv6)"/>
@@ -211,25 +216,25 @@
           </enum>
         </arg>
         <arg type="array<string>" var="$parameters.properties.emailAddresses" options="email-addresses" group="Properties">
-          <help short="Outbound rules email address format."/>
+          <help short="Outbound rules in email address format. This access rule type is currently unavailable for use"/>
           <item type="string"/>
         </arg>
         <arg type="array<string>" var="$parameters.properties.fullyQualifiedDomainNames" options="fqdn" group="Properties">
-          <help short="Outbound rules fully qualified domain name format."/>
+          <help short="Outbound rules in fully qualified domain name format."/>
           <item type="string"/>
         </arg>
         <arg type="array<string>" var="$parameters.properties.phoneNumbers" options="phone-numbers" group="Properties">
-          <help short="Outbound rules phone number format."/>
+          <help short="Outbound rules in phone number format. This access rule type is currently unavailable for use"/>
           <item type="string"/>
         </arg>
         <arg type="array<string>" var="$parameters.properties.serviceTags" options="service-tags" group="Properties">
-          <help short="Inbound rules service tag names."/>
+          <help short="Inbound rules of type service tag. This access rule type is currently unavailable for use."/>
           <item type="string"/>
         </arg>
         <arg type="array<object>" var="$parameters.properties.subscriptions" options="subscriptions" group="Properties">
           <help short="Subscription id in the ARM id format."/>
           <item type="object">
-            <arg type="string" var="$parameters.properties.subscriptions[].id" options="id">
+            <arg type="ResourceId" var="$parameters.properties.subscriptions[].id" options="id">
               <help short="Subscription ID in the ARM ID fromat."/>
             </arg>
           </item>
@@ -259,7 +264,6 @@
             <body>
               <json>
                 <schema type="object" name="parameters" required="True" clientFlatten="True">
-                  <prop type="ResourceLocation" name="location" arg="$parameters.location"/>
                   <prop type="object" name="properties" clientFlatten="True">
                     <prop type="array<string>" name="addressPrefixes" arg="$parameters.properties.addressPrefixes">
                       <item type="string"/>
@@ -284,14 +288,9 @@
                     </prop>
                     <prop type="array<object>" name="subscriptions" arg="$parameters.properties.subscriptions">
                       <item type="object">
-                        <prop type="string" name="id" arg="$parameters.properties.subscriptions[].id"/>
+                        <prop type="ResourceId" name="id" arg="$parameters.properties.subscriptions[].id"/>
                       </item>
                     </prop>
-                  </prop>
-                  <prop type="object" name="tags" arg="$parameters.tags">
-                    <additionalProp>
-                      <item type="string"/>
-                    </additionalProp>
                   </prop>
                 </schema>
               </json>
@@ -304,7 +303,6 @@
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/networkSecurityPerimeters/{}/profiles/{}/accessRules/{}"/>
                   </prop>
-                  <prop type="ResourceLocation" name="location"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties" clientFlatten="True">
                     <prop type="array<string>" name="addressPrefixes">
@@ -324,7 +322,7 @@
                     </prop>
                     <prop readOnly="True" type="array<object>" name="networkSecurityPerimeters">
                       <item type="object">
-                        <prop readOnly="True" type="string" name="id"/>
+                        <prop readOnly="True" type="ResourceId" name="id"/>
                         <prop readOnly="True" type="string" name="location"/>
                         <prop readOnly="True" type="string" name="perimeterGuid"/>
                       </item>
@@ -347,14 +345,31 @@
                     </prop>
                     <prop type="array<object>" name="subscriptions">
                       <item type="object">
-                        <prop type="string" name="id"/>
+                        <prop type="ResourceId" name="id"/>
                       </item>
                     </prop>
                   </prop>
-                  <prop type="object" name="tags">
-                    <additionalProp>
-                      <item type="string"/>
-                    </additionalProp>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
                   </prop>
                   <prop readOnly="True" type="string" name="type"/>
                 </schema>
@@ -390,17 +405,6 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Parameters">
-        <arg nullable="True" type="ResourceLocation" var="$parameters.location" options="location l" group="Parameters">
-          <help short="Resource location."/>
-        </arg>
-        <arg nullable="True" type="object" var="$parameters.tags" options="tags" group="Parameters">
-          <help short="Resource tags."/>
-          <additionalProp>
-            <item nullable="True" type="string"/>
-          </additionalProp>
-        </arg>
-      </argGroup>
       <argGroup name="Properties">
         <arg nullable="True" type="array<string>" var="$parameters.properties.addressPrefixes" options="address-prefixes" group="Properties">
           <help short="Inbound address prefixes (IPv4/IPv6)"/>
@@ -414,25 +418,25 @@
           </enum>
         </arg>
         <arg nullable="True" type="array<string>" var="$parameters.properties.emailAddresses" options="email-addresses" group="Properties">
-          <help short="Outbound rules email address format."/>
+          <help short="Outbound rules in email address format. This access rule type is currently unavailable for use"/>
           <item nullable="True" type="string"/>
         </arg>
         <arg nullable="True" type="array<string>" var="$parameters.properties.fullyQualifiedDomainNames" options="fqdn" group="Properties">
-          <help short="Outbound rules fully qualified domain name format."/>
+          <help short="Outbound rules in fully qualified domain name format."/>
           <item nullable="True" type="string"/>
         </arg>
         <arg nullable="True" type="array<string>" var="$parameters.properties.phoneNumbers" options="phone-numbers" group="Properties">
-          <help short="Outbound rules phone number format."/>
+          <help short="Outbound rules in phone number format. This access rule type is currently unavailable for use"/>
           <item nullable="True" type="string"/>
         </arg>
         <arg nullable="True" type="array<string>" var="$parameters.properties.serviceTags" options="service-tags" group="Properties">
-          <help short="Inbound rules service tag names."/>
+          <help short="Inbound rules of type service tag. This access rule type is currently unavailable for use."/>
           <item nullable="True" type="string"/>
         </arg>
         <arg nullable="True" type="array<object>" var="$parameters.properties.subscriptions" options="subscriptions" group="Properties">
           <help short="Subscription id in the ARM id format."/>
           <item nullable="True" type="object">
-            <arg nullable="True" type="string" var="$parameters.properties.subscriptions[].id" options="id">
+            <arg nullable="True" type="ResourceId" var="$parameters.properties.subscriptions[].id" options="id">
               <help short="Subscription ID in the ARM ID fromat."/>
             </arg>
           </item>
@@ -467,7 +471,6 @@
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/networkSecurityPerimeters/{}/profiles/{}/accessRules/{}"/>
                   </prop>
-                  <prop type="ResourceLocation" name="location"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties" clientFlatten="True">
                     <prop type="array<string>" name="addressPrefixes">
@@ -487,7 +490,7 @@
                     </prop>
                     <prop readOnly="True" type="array<object>" name="networkSecurityPerimeters">
                       <item type="object">
-                        <prop readOnly="True" type="string" name="id"/>
+                        <prop readOnly="True" type="ResourceId" name="id"/>
                         <prop readOnly="True" type="string" name="location"/>
                         <prop readOnly="True" type="string" name="perimeterGuid"/>
                       </item>
@@ -510,14 +513,31 @@
                     </prop>
                     <prop type="array<object>" name="subscriptions">
                       <item type="object">
-                        <prop type="string" name="id"/>
+                        <prop type="ResourceId" name="id"/>
                       </item>
                     </prop>
                   </prop>
-                  <prop type="object" name="tags">
-                    <additionalProp>
-                      <item type="string"/>
-                    </additionalProp>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
                   </prop>
                   <prop readOnly="True" type="string" name="type"/>
                 </schema>
@@ -537,7 +557,6 @@
         <instanceUpdate ref="$Instance">
           <json>
             <schema type="object" name="parameters" required="True" clientFlatten="True">
-              <prop type="ResourceLocation" name="location" arg="$parameters.location"/>
               <prop type="object" name="properties" clientFlatten="True">
                 <prop type="array<string>" name="addressPrefixes" arg="$parameters.properties.addressPrefixes">
                   <item type="string"/>
@@ -562,14 +581,9 @@
                 </prop>
                 <prop type="array<object>" name="subscriptions" arg="$parameters.properties.subscriptions">
                   <item type="object">
-                    <prop type="string" name="id" arg="$parameters.properties.subscriptions[].id"/>
+                    <prop type="ResourceId" name="id" arg="$parameters.properties.subscriptions[].id"/>
                   </item>
                 </prop>
-              </prop>
-              <prop type="object" name="tags" arg="$parameters.tags">
-                <additionalProp>
-                  <item type="string"/>
-                </additionalProp>
               </prop>
             </schema>
           </json>
