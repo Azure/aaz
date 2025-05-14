@@ -12,6 +12,3 @@ Manage Single Sign-On (SSO) configuration between Azure and Dynatrace. This enab
 
 - [show](/Commands/dynatrace/monitor/sso-config/_show.md)
 : Get information about a specific Dynatrace SSO configuration including SSO state and URL.
-
-- [update](/Commands/dynatrace/monitor/sso-config/_update.md)
-: Update a new SSO configuration for seamless authentication between Azure and the Dynatrace platform.
