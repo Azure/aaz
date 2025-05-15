@@ -30,6 +30,9 @@ Manage the redisenterprise cache
 - [list](/Commands/redisenterprise/_list.md)
 : List all RedisEnterprise clusters in the specified subscription.
 
+- [list-skus-for-scaling](/Commands/redisenterprise/_list-skus-for-scaling.md)
+: Lists the available SKUs for scaling the Redis Enterprise cluster.
+
 - [show](/Commands/redisenterprise/_show.md)
 : Get information about a RedisEnterprise cluster
 

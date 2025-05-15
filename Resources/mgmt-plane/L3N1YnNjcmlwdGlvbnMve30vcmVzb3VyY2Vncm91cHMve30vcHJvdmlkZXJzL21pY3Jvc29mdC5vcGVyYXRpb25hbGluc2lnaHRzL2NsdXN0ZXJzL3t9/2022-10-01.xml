@@ -60,7 +60,7 @@
                   <prop type="ResourceLocation" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop readOnly="True" type="array<object>" name="associatedWorkspaces" identifiers="workspaceId">
+                    <prop type="array<object>" name="associatedWorkspaces" identifiers="workspaceId">
                       <item type="object">
                         <prop readOnly="True" type="string" name="associateDate"/>
                         <prop readOnly="True" type="ResourceId" name="resourceId"/>
@@ -197,6 +197,10 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Identity">
+        <arg type="string" var="$parameters.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
+          <blank value="&quot;True&quot;"/>
+          <help short="Set the system managed identity."/>
+        </arg>
         <arg type="string" var="$parameters.identity.type" options="identity-type" group="Identity">
           <help short="Type of managed service identity."/>
           <default value="&quot;SystemAssigned&quot;"/>
@@ -207,7 +211,12 @@
             <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
           </enum>
         </arg>
-        <arg type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned" group="Identity">
+        <arg type="array<string>" var="$parameters.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
+          <blank value="[]"/>
+          <help short="Set the user managed identities."/>
+          <item type="string"/>
+        </arg>
+        <arg type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-bak" group="Identity">
           <help short="The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."/>
           <additionalProp>
             <item nullable="True" type="object">
@@ -319,6 +328,10 @@
                         <item nullable="True" type="object"/>
                       </additionalProp>
                     </prop>
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$parameters.identity.userAssigned">
+                      <item action="create" type="string"/>
+                    </userAssigned>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$parameters.identity.systemAssigned"/>
                   </prop>
                   <prop type="ResourceLocation" name="location" arg="$parameters.location" required="True"/>
                   <prop type="object" name="properties" clientFlatten="True">
@@ -398,7 +411,7 @@
                   <prop type="ResourceLocation" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop readOnly="True" type="array<object>" name="associatedWorkspaces" identifiers="workspaceId">
+                    <prop type="array<object>" name="associatedWorkspaces" identifiers="workspaceId">
                       <item type="object">
                         <prop readOnly="True" type="string" name="associateDate"/>
                         <prop readOnly="True" type="ResourceId" name="resourceId"/>
@@ -502,7 +515,7 @@
             <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
           </enum>
         </arg>
-        <arg nullable="True" type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned" group="Identity">
+        <arg nullable="True" type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-bak" group="Identity">
           <help short="The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."/>
           <additionalProp>
             <item nullable="True" type="object">
@@ -618,7 +631,7 @@
                   <prop type="ResourceLocation" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop readOnly="True" type="array<object>" name="associatedWorkspaces" identifiers="workspaceId">
+                    <prop type="array<object>" name="associatedWorkspaces" identifiers="workspaceId">
                       <item type="object">
                         <prop readOnly="True" type="string" name="associateDate"/>
                         <prop readOnly="True" type="ResourceId" name="resourceId"/>
@@ -809,5 +822,578 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
+    <commandGroup name="identity">
+      <command name="assign" version="2022-10-01">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.operationalinsights/clusters/{}" version="2022-10-01" subresource="identity" swagger="mgmt-plane/operationalinsights/ResourceProviders/Microsoft.OperationalInsights/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZWdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuT3BlcmF0aW9uYWxJbnNpZ2h0cy9jbHVzdGVycy97Y2x1c3Rlck5hbWV9/V/MjAyMi0xMC0wMQ=="/>
+        <argGroup name="">
+          <arg type="string" var="$Path.clusterName" options="cluster-name name n" required="True" idPart="name">
+            <help short="Name of the Log Analytics Cluster."/>
+          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        </argGroup>
+        <argGroup name="Parameters.identity">
+          <arg type="string" var="$parameters.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Parameters.identity">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
+          <arg type="array<string>" var="$parameters.identity.userAssigned" options="mi-user-assigned user-assigned" group="Parameters.identity">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="parameters">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="Clusters_Get">
+          <http path="/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/clusters/{clusterName}">
+            <request method="get">
+              <path>
+                <param type="string" name="clusterName" arg="$Path.clusterName" required="True"/>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-10-01&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="Cluster_read">
+                    <prop readOnly="True" type="ResourceId" name="id">
+                      <format template="/subscriptions/{}/resourcegroups/{}/providers/Microsoft.OperationalInsights/clusters/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="uuid" name="principalId"/>
+                      <prop readOnly="True" type="uuid" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item nullable="True" type="object">
+                            <prop readOnly="True" type="uuid" name="clientId"/>
+                            <prop readOnly="True" type="uuid" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" clientFlatten="True">
+                      <prop type="array<object>" name="associatedWorkspaces" identifiers="workspaceId">
+                        <item type="object">
+                          <prop readOnly="True" type="string" name="associateDate"/>
+                          <prop readOnly="True" type="ResourceId" name="resourceId"/>
+                          <prop readOnly="True" type="string" name="workspaceId"/>
+                          <prop readOnly="True" type="string" name="workspaceName"/>
+                        </item>
+                      </prop>
+                      <prop type="string" name="billingType">
+                        <enum>
+                          <item value="&quot;Cluster&quot;"/>
+                          <item value="&quot;Workspaces&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="capacityReservationProperties">
+                        <prop readOnly="True" type="string" name="lastSkuUpdate"/>
+                        <prop readOnly="True" type="integer64" name="minCapacity"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="clusterId"/>
+                      <prop readOnly="True" type="string" name="createdDate"/>
+                      <prop type="boolean" name="isAvailabilityZonesEnabled"/>
+                      <prop type="boolean" name="isDoubleEncryptionEnabled"/>
+                      <prop type="object" name="keyVaultProperties">
+                        <prop type="string" name="keyName"/>
+                        <prop type="integer32" name="keyRsaSize"/>
+                        <prop type="string" name="keyVaultUri"/>
+                        <prop type="string" name="keyVersion"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="lastModifiedDate"/>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;ProvisioningAccount&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="sku">
+                      <prop type="integer64" name="capacity">
+                        <enum>
+                          <item value="100"/>
+                          <item value="200"/>
+                          <item value="300"/>
+                          <item value="400"/>
+                          <item value="500"/>
+                          <item value="1000"/>
+                          <item value="2000"/>
+                          <item value="5000"/>
+                          <item value="10000"/>
+                          <item value="25000"/>
+                          <item value="50000"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="name">
+                        <enum>
+                          <item value="&quot;CapacityReservation&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <operation>
+          <instanceUpdate ref="$Subresource">
+            <json>
+              <schema action="assign" type="IdentityObject" name="parameters.identity" required="True">
+                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$parameters.identity.userAssigned">
+                  <item action="assign" type="string"/>
+                </userAssigned>
+                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$parameters.identity.systemAssigned"/>
+              </schema>
+            </json>
+          </instanceUpdate>
+        </operation>
+        <operation operationId="Clusters_CreateOrUpdate">
+          <longRunning finalStateVia="azure-async-operation"/>
+          <http path="/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/clusters/{clusterName}">
+            <request method="put">
+              <path>
+                <param type="string" name="clusterName" arg="$Path.clusterName" required="True">
+                  <format pattern="^[A-Za-z0-9][A-Za-z0-9-]+[A-Za-z0-9]$" maxLength="63" minLength="4"/>
+                </param>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-10-01&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+              <body>
+                <json ref="$Instance"/>
+              </body>
+            </request>
+            <response statusCode="200 201">
+              <body>
+                <json var="$Instance">
+                  <schema type="@Cluster_read"/>
+                </json>
+              </body>
+            </response>
+            <response statusCode="202"/>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+      <command name="remove" version="2022-10-01">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.operationalinsights/clusters/{}" version="2022-10-01" subresource="identity" swagger="mgmt-plane/operationalinsights/ResourceProviders/Microsoft.OperationalInsights/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZWdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuT3BlcmF0aW9uYWxJbnNpZ2h0cy9jbHVzdGVycy97Y2x1c3Rlck5hbWV9/V/MjAyMi0xMC0wMQ=="/>
+        <argGroup name="">
+          <arg type="string" var="$Path.clusterName" options="cluster-name name n" required="True" idPart="name">
+            <help short="Name of the Log Analytics Cluster."/>
+          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        </argGroup>
+        <argGroup name="Parameters.identity">
+          <arg type="string" var="$parameters.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Parameters.identity">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
+          <arg type="array<string>" var="$parameters.identity.userAssigned" options="mi-user-assigned user-assigned" group="Parameters.identity">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="parameters">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="Clusters_Get">
+          <http path="/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/clusters/{clusterName}">
+            <request method="get">
+              <path>
+                <param type="string" name="clusterName" arg="$Path.clusterName" required="True"/>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-10-01&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="Cluster_read">
+                    <prop readOnly="True" type="ResourceId" name="id">
+                      <format template="/subscriptions/{}/resourcegroups/{}/providers/Microsoft.OperationalInsights/clusters/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="uuid" name="principalId"/>
+                      <prop readOnly="True" type="uuid" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item nullable="True" type="object">
+                            <prop readOnly="True" type="uuid" name="clientId"/>
+                            <prop readOnly="True" type="uuid" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" clientFlatten="True">
+                      <prop type="array<object>" name="associatedWorkspaces" identifiers="workspaceId">
+                        <item type="object">
+                          <prop readOnly="True" type="string" name="associateDate"/>
+                          <prop readOnly="True" type="ResourceId" name="resourceId"/>
+                          <prop readOnly="True" type="string" name="workspaceId"/>
+                          <prop readOnly="True" type="string" name="workspaceName"/>
+                        </item>
+                      </prop>
+                      <prop type="string" name="billingType">
+                        <enum>
+                          <item value="&quot;Cluster&quot;"/>
+                          <item value="&quot;Workspaces&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="capacityReservationProperties">
+                        <prop readOnly="True" type="string" name="lastSkuUpdate"/>
+                        <prop readOnly="True" type="integer64" name="minCapacity"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="clusterId"/>
+                      <prop readOnly="True" type="string" name="createdDate"/>
+                      <prop type="boolean" name="isAvailabilityZonesEnabled"/>
+                      <prop type="boolean" name="isDoubleEncryptionEnabled"/>
+                      <prop type="object" name="keyVaultProperties">
+                        <prop type="string" name="keyName"/>
+                        <prop type="integer32" name="keyRsaSize"/>
+                        <prop type="string" name="keyVaultUri"/>
+                        <prop type="string" name="keyVersion"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="lastModifiedDate"/>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;ProvisioningAccount&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="sku">
+                      <prop type="integer64" name="capacity">
+                        <enum>
+                          <item value="100"/>
+                          <item value="200"/>
+                          <item value="300"/>
+                          <item value="400"/>
+                          <item value="500"/>
+                          <item value="1000"/>
+                          <item value="2000"/>
+                          <item value="5000"/>
+                          <item value="10000"/>
+                          <item value="25000"/>
+                          <item value="50000"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="name">
+                        <enum>
+                          <item value="&quot;CapacityReservation&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <operation>
+          <instanceUpdate ref="$Subresource">
+            <json>
+              <schema action="remove" type="IdentityObject" name="parameters.identity" required="True">
+                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$parameters.identity.userAssigned">
+                  <item action="remove" type="string"/>
+                </userAssigned>
+                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$parameters.identity.systemAssigned"/>
+              </schema>
+            </json>
+          </instanceUpdate>
+        </operation>
+        <operation operationId="Clusters_CreateOrUpdate">
+          <longRunning finalStateVia="azure-async-operation"/>
+          <http path="/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/clusters/{clusterName}">
+            <request method="put">
+              <path>
+                <param type="string" name="clusterName" arg="$Path.clusterName" required="True">
+                  <format pattern="^[A-Za-z0-9][A-Za-z0-9-]+[A-Za-z0-9]$" maxLength="63" minLength="4"/>
+                </param>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-10-01&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+              <body>
+                <json ref="$Instance"/>
+              </body>
+            </request>
+            <response statusCode="200 201">
+              <body>
+                <json var="$Instance">
+                  <schema type="@Cluster_read"/>
+                </json>
+              </body>
+            </response>
+            <response statusCode="202"/>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+      <command name="show" version="2022-10-01">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.operationalinsights/clusters/{}" version="2022-10-01" subresource="identity" swagger="mgmt-plane/operationalinsights/ResourceProviders/Microsoft.OperationalInsights/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZWdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuT3BlcmF0aW9uYWxJbnNpZ2h0cy9jbHVzdGVycy97Y2x1c3Rlck5hbWV9/V/MjAyMi0xMC0wMQ=="/>
+        <argGroup name="">
+          <arg type="string" var="$Path.clusterName" options="cluster-name name n" required="True" idPart="name">
+            <help short="Name of the Log Analytics Cluster."/>
+          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="parameters">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="Clusters_Get">
+          <http path="/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/clusters/{clusterName}">
+            <request method="get">
+              <path>
+                <param type="string" name="clusterName" arg="$Path.clusterName" required="True"/>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-10-01&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="Cluster_read">
+                    <prop readOnly="True" type="ResourceId" name="id">
+                      <format template="/subscriptions/{}/resourcegroups/{}/providers/Microsoft.OperationalInsights/clusters/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="uuid" name="principalId"/>
+                      <prop readOnly="True" type="uuid" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item nullable="True" type="object">
+                            <prop readOnly="True" type="uuid" name="clientId"/>
+                            <prop readOnly="True" type="uuid" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" clientFlatten="True">
+                      <prop type="array<object>" name="associatedWorkspaces" identifiers="workspaceId">
+                        <item type="object">
+                          <prop readOnly="True" type="string" name="associateDate"/>
+                          <prop readOnly="True" type="ResourceId" name="resourceId"/>
+                          <prop readOnly="True" type="string" name="workspaceId"/>
+                          <prop readOnly="True" type="string" name="workspaceName"/>
+                        </item>
+                      </prop>
+                      <prop type="string" name="billingType">
+                        <enum>
+                          <item value="&quot;Cluster&quot;"/>
+                          <item value="&quot;Workspaces&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="capacityReservationProperties">
+                        <prop readOnly="True" type="string" name="lastSkuUpdate"/>
+                        <prop readOnly="True" type="integer64" name="minCapacity"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="clusterId"/>
+                      <prop readOnly="True" type="string" name="createdDate"/>
+                      <prop type="boolean" name="isAvailabilityZonesEnabled"/>
+                      <prop type="boolean" name="isDoubleEncryptionEnabled"/>
+                      <prop type="object" name="keyVaultProperties">
+                        <prop type="string" name="keyName"/>
+                        <prop type="integer32" name="keyRsaSize"/>
+                        <prop type="string" name="keyVaultUri"/>
+                        <prop type="string" name="keyVersion"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="lastModifiedDate"/>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;ProvisioningAccount&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="sku">
+                      <prop type="integer64" name="capacity">
+                        <enum>
+                          <item value="100"/>
+                          <item value="200"/>
+                          <item value="300"/>
+                          <item value="400"/>
+                          <item value="500"/>
+                          <item value="1000"/>
+                          <item value="2000"/>
+                          <item value="5000"/>
+                          <item value="10000"/>
+                          <item value="25000"/>
+                          <item value="50000"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="name">
+                        <enum>
+                          <item value="&quot;CapacityReservation&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+    </commandGroup>
   </commandGroup>
 </CodeGen>

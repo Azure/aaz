@@ -71,7 +71,7 @@ Manage Azure Network resources.
 : Manage point-to-site VPN gateway.
 
 - [perimeter](/Commands/network/perimeter/readme.md)
-: Manage Network Security Perimeters
+: Manage Network Security Perimeters.
 
 - [private-dns](/Commands/network/private-dns/readme.md)
 : Manage Private DNS domains in Azure.

@@ -182,9 +182,6 @@
 - [healthcareapis](/Commands/healthcareapis/readme.md)
 : Azure Healthcare APIs is a secure cloud platform for managing health data, supporting analytics, machine learning, and scalable solutions.
 
-- [identity](/Commands/identity/readme.md)
-: Manage Managed Identity
-
 - [image](/Commands/image/readme.md)
 : Manage custom virtual machine images.
 
@@ -196,9 +193,6 @@
 
 - [lab](/Commands/lab/readme.md)
 : Manage azure devtest labs.
-
-- [lambda-test](/Commands/lambda-test/readme.md)
-: Manage Lambda Test
 
 - [large-instance](/Commands/large-instance/readme.md)
 : Handle Operations for Compute Azure Large Instances.

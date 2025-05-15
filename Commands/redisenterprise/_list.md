@@ -8,3 +8,8 @@ List all RedisEnterprise clusters in the specified subscription.
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.cache/redisenterprise 2023-03-01-preview -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cache/redisenterprise 2023-03-01-preview -->
+
+### [2025-05-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jYWNoZS9yZWRpc2VudGVycHJpc2U=/2025-05-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.cache/redisenterprise 2025-05-01-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cache/redisenterprise 2025-05-01-preview -->
