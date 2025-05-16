@@ -1,6 +1,6 @@
 # [Command] _dynatrace monitor list-host_
 
-List the compute resources currently being monitored by the dynatrace resource
+Displays compute resources (VMs, VMSS) that are currently being monitored by the specified Dynatrace resource.
 
 ## Versions
 

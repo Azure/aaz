@@ -1,6 +1,6 @@
 # [Command] _dynatrace monitor create_
 
-Create a monitor resource
+Create a Dynatrace resource on Azure for monitoring and observability needs.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _dynatrace monitor get-sso-detail_
 
-Get the SSO configuration details from the partner
+Get the SSO configuration details for Dynatrace resource.
 
 ## Versions
 

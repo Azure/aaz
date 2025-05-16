@@ -1,6 +1,6 @@
 # [Command] _dynatrace monitor get-vm-host-payload_
 
-Return the payload that need to be passed in the request body for installing Dynatrace agent on a VM
+Return payload to be included in API request body when installing Dynatrace agent on a Virtual Machine. Use this command to facilitate automated deployment of monitoring agents across VMs.
 
 ## Versions
 

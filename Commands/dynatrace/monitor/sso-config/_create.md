@@ -1,6 +1,6 @@
 # [Command] _dynatrace monitor sso-config create_
 
-Create a dynatrace sso-config resource
+Create a new SSO configuration for seamless authentication between Azure and the Dynatrace platform.
 
 ## Versions
 

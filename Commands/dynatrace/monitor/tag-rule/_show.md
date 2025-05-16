@@ -1,6 +1,6 @@
 # [Command] _dynatrace monitor tag-rule show_
 
-Show a tag rule
+Get detailed information about include/exclude tag rules enabled for logs and metrics.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _dynatrace monitor delete_
 
-Delete a monitor resource
+Delete a Dynatrace resource.
 
 ## Versions
 

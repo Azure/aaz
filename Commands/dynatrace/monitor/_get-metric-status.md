@@ -1,6 +1,6 @@
 # [Command] _dynatrace monitor get-metric-status_
 
-Get metric status
+Get status of metrics being sent to the Dynatrace resource.
 
 ## Versions
 

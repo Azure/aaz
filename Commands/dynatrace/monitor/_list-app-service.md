@@ -1,6 +1,6 @@
 # [Command] _dynatrace monitor list-app-service_
 
-Get list of app services with dynatrace PaaS OneAgent enabled
+List all App Services that have Dynatrace OneAgent installed.
 
 ## Versions
 

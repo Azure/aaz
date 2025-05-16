@@ -1,6 +1,6 @@
 # [Command] _dynatrace monitor list-monitored-resource_
 
-List the resources currently being monitored by the dynatrace monitor resource
+List of all Azure resources currently being monitored by a Dynatrace resource.
 
 ## Versions
 
