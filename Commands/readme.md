@@ -65,6 +65,9 @@
 - [capacity](/Commands/capacity/readme.md)
 : Manage capacity.
 
+- [carbon](/Commands/carbon/readme.md)
+: Manage Carbon
+
 - [cdn](/Commands/cdn/readme.md)
 : Manage Azure Content Delivery Networks (CDNs).
 
