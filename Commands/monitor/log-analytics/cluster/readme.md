@@ -2,6 +2,11 @@
 
 Manage Azure log analytics cluster.
 
+## Subgroups
+
+- [identity](/Commands/monitor/log-analytics/cluster/identity/readme.md)
+: Manage Identity
+
 ## Commands
 
 - [create](/Commands/monitor/log-analytics/cluster/_create.md)

@@ -10,12 +10,6 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <condition var="$Condition_Workspaces_ListByResourceGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_Workspaces_List">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -24,13 +18,16 @@
           </operator>
         </operator>
       </condition>
-      <operation when="$Condition_Workspaces_ListByResourceGroup" operationId="Workspaces_ListByResourceGroup">
-        <http path="/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces">
+      <condition var="$Condition_Workspaces_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_Workspaces_List" operationId="Workspaces_List">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.OperationalInsights/workspaces">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
                 <format minLength="1"/>
               </param>
@@ -84,6 +81,9 @@
                           <prop nullable="True" type="boolean" name="enableLogAccessUsingOnlyResourcePermissions"/>
                           <prop nullable="True" type="boolean" name="immediatePurgeDataOn30Days"/>
                           <prop readOnly="True" nullable="True" type="boolean" name="unifiedSentinelBillingOnly"/>
+                          <additionalProp>
+                            <item type="any"/>
+                          </additionalProp>
                         </prop>
                         <prop type="boolean" name="forceCmkForQuery"/>
                         <prop readOnly="True" type="string" name="modifiedDate"/>
@@ -207,10 +207,13 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_Workspaces_List" operationId="Workspaces_List">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.OperationalInsights/workspaces">
+      <operation when="$Condition_Workspaces_ListByResourceGroup" operationId="Workspaces_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
                 <format minLength="1"/>
               </param>
@@ -264,6 +267,9 @@
                           <prop nullable="True" type="boolean" name="enableLogAccessUsingOnlyResourcePermissions"/>
                           <prop nullable="True" type="boolean" name="immediatePurgeDataOn30Days"/>
                           <prop readOnly="True" nullable="True" type="boolean" name="unifiedSentinelBillingOnly"/>
+                          <additionalProp>
+                            <item type="any"/>
+                          </additionalProp>
                         </prop>
                         <prop type="boolean" name="forceCmkForQuery"/>
                         <prop readOnly="True" type="string" name="modifiedDate"/>

@@ -1,6 +1,6 @@
 # [Command] _network perimeter show_
 
-Gets the specified network security perimeter by the name.
+Get a network security perimeter.
 
 ## Versions
 
@@ -22,6 +22,17 @@ Gets the specified network security perimeter by the name.
 #### examples
 
 - Get the Network Security Perimeter
+    ```bash
+        network perimeter show -g MyResourceGroup -n MyPerimeter
+    ```
+
+### [2024-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL25ldHdvcmtzZWN1cml0eXBlcmltZXRlcnMve30=/2024-07-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networksecurityperimeters/{} 2024-07-01 -->
+
+#### examples
+
+- Get a network security perimeter
     ```bash
         network perimeter show -g MyResourceGroup -n MyPerimeter
     ```

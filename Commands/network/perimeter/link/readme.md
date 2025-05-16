@@ -1,20 +1,20 @@
 # [Group] _network perimeter link_
 
-Manage network security perimeter link
+Manage Network Security Perimeter Links.
 
 ## Commands
 
 - [create](/Commands/network/perimeter/link/_create.md)
-: Create NSP link resource.
+: Create a network security perimeter link.
 
 - [delete](/Commands/network/perimeter/link/_delete.md)
-: Delete an NSP Link resource.
+: Delete a network security perimeter link.
 
 - [list](/Commands/network/perimeter/link/_list.md)
-: List the NSP Link resources in the specified network security perimeter.
+: List all network security perimeter links.
 
 - [show](/Commands/network/perimeter/link/_show.md)
-: Get the specified NSP link resource.
+: Get a network security perimeter link.
 
 - [update](/Commands/network/perimeter/link/_update.md)
-: Update NSP link resource.
+: Create or update a network security perimeter link.

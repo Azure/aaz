@@ -1,20 +1,20 @@
 # [Group] _network perimeter profile access-rule_
 
-Manage Access Rules of a Profile inside an NSP
+Manage Network Security Perimeter Profile Access Rules.
 
 ## Commands
 
 - [create](/Commands/network/perimeter/profile/access-rule/_create.md)
-: Creates or updates a network access rule.
+: Create a network security perimeter profile access rule.
 
 - [delete](/Commands/network/perimeter/profile/access-rule/_delete.md)
-: Deletes an NSP access rule.
+: Delete a network security perimeter profile access rule.
 
 - [list](/Commands/network/perimeter/profile/access-rule/_list.md)
-: Lists the NSP access rules in the specified NSP profile.
+: List all network security perimeter profile access rules.
 
 - [show](/Commands/network/perimeter/profile/access-rule/_show.md)
-: Gets the specified NSP access rule by name.
+: Get a network security perimeter profile access rule.
 
 - [update](/Commands/network/perimeter/profile/access-rule/_update.md)
-: Creates or updates a network access rule.
+: Create or update a network security perimeter profile access rule.
