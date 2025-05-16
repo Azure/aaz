@@ -12,25 +12,25 @@ API for Carbon Emissions Reports
 
 - QueryCarbonEmission Overall Summary Report
     ```bash
-        carbon get-emission-report --subscription-list "[00000000-0000-0000-0000-000000000000]" --carbon-scope-list "[Scope1,Scope2,Scope3]" --date-range "{start:2024-03-01,end:2025-03-01}" --overall-summary-report
+        carbon get-emission-report --subscription-list "[00000000-0000-0000-0000-000000000000]" --carbon-scope-list "[Scope1,Scope2,Scope3]" --date-range "{start:2024-03-01,end:2025-03-01}" --overall-summary
     ```
 
 - QueryCarbonEmission Monthly Summary Report
     ```bash
-        carbon get-emission-report --subscription-list "[00000000-0000-0000-0000-000000000000]" --carbon-scope-list "[Scope1,Scope2,Scope3]" --date-range "{start:2024-03-01,end:2025-03-01}" --monthly-summary-report
+        carbon get-emission-report --subscription-list "[00000000-0000-0000-0000-000000000000]" --carbon-scope-list "[Scope1,Scope2,Scope3]" --date-range "{start:2024-03-01,end:2025-03-01}" --monthly-summary
     ```
 
 - QueryCarbonEmission Item Details Report
     ```bash
-        carbon get-emission-report --subscription-list "[00000000-0000-0000-0000-000000000000,00000000-0000-0000-0000-000000000001]" --carbon-scope-list "[Scope1,Scope2,Scope3]" --date-range "{start:2025-03-01,end:2025-03-01}" --item-details-report "{category-type:ResourceType,order-by:itemName,page-size:10,sort-direction:asc}"
+        carbon get-emission-report --subscription-list "[00000000-0000-0000-0000-000000000000,00000000-0000-0000-0000-000000000001]" --carbon-scope-list "[Scope1,Scope2,Scope3]" --date-range "{start:2025-03-01,end:2025-03-01}" --item-details "{category-type:ResourceType,order-by:itemName,page-size:10,sort-direction:asc}"
     ```
 
 - QueryCarbonEmission Top Items Summary Report
     ```bash
-        carbon get-emission-report --subscription-list "[00000000-0000-0000-0000-000000000000,00000000-0000-0000-0000-000000000001]" --carbon-scope-list "[Scope1,Scope2,Scope3]" --date-range "{start:2025-03-01,end:2025-03-01}" --top-items-summary-report "{category-type:ResourceType,top-items:5}"
+        carbon get-emission-report --subscription-list "[00000000-0000-0000-0000-000000000000,00000000-0000-0000-0000-000000000001]" --carbon-scope-list "[Scope1,Scope2,Scope3]" --date-range "{start:2025-03-01,end:2025-03-01}" --top-items-summary "{category-type:ResourceType,top-items:5}"
     ```
 
 - QueryCarbonEmission Top Items Monthly Summary Report
     ```bash
-        carbon get-emission-report --subscription-list "[00000000-0000-0000-0000-000000000000]" --carbon-scope-list "[Scope1,Scope2,Scope3]" --date-range "{start:2024-03-01,end:2025-03-01}" --top-items-monthly-summary-report "{category-type:ResourceType,top-items:5}
+        carbon get-emission-report --subscription-list "[00000000-0000-0000-0000-000000000000]" --carbon-scope-list "[Scope1,Scope2,Scope3]" --date-range "{start:2024-03-01,end:2025-03-01}" --top-items-monthly "{category-type:ResourceType,top-items:5}
     ```
