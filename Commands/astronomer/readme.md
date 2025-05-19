@@ -5,4 +5,4 @@ Manage Azure Astronomer resources.
 ## Subgroups
 
 - [organization](/Commands/astronomer/organization/readme.md)
-: Manage Organization resources.
+: Manage Azure resources that represent organizations in the Astronomer platform
