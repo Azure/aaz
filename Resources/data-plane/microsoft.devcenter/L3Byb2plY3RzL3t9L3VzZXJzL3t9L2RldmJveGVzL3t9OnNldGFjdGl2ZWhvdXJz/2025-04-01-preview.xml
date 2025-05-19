@@ -1,0 +1,215 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.devcenter">
+  <resource id="/projects/{}/users/{}/devboxes/{}:setactivehours" version="2025-04-01-preview" swagger="data-plane:microsoft.devcenter/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3Byb2plY3RzL3twcm9qZWN0TmFtZX0vdXNlcnMve3VzZXJJZH0vZGV2Ym94ZXMve2RldkJveE5hbWV9OnNldEFjdGl2ZUhvdXJz/V/MjAyNS0wNC0wMS1wcmV2aWV3"/>
+  <commandGroup name="devcenter dev dev-box">
+    <command name="set-active-hours" version="2025-04-01-preview" confirmation="">
+      <resource id="/projects/{}/users/{}/devboxes/{}:setactivehours" version="2025-04-01-preview" swagger="data-plane:microsoft.devcenter/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3Byb2plY3RzL3twcm9qZWN0TmFtZX0vdXNlcnMve3VzZXJJZH0vZGV2Ym94ZXMve2RldkJveE5hbWV9OnNldEFjdGl2ZUhvdXJz/V/MjAyNS0wNC0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.devBoxName" options="dev-box-name dev-box name n" required="True" group="">
+          <help short="The name of the dev box."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+        </arg>
+        <arg type="string" var="$Path.projectName" options="project-name project" required="True" group="">
+          <help short="The name of the project. Use az configure -d project=<project_name> to configure a default."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+        </arg>
+        <arg type="string" var="$Path.userId" options="user-id" required="True" group="">
+          <help short="The AAD object id of the user. If value is 'me', the identity is taken from the authentication context."/>
+          <default value="&quot;me&quot;"/>
+          <format pattern="^[a-zA-Z0-9]{8}-([a-zA-Z0-9]{4}-){3}[a-zA-Z0-9]{12}$|^me$" maxLength="36" minLength="2"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="integer32" var="$body.endTimeHour" options="end-time-hour" group="Body">
+          <help short="The end time of the active hours."/>
+        </arg>
+        <arg type="integer32" var="$body.startTimeHour" options="start-time-hour" group="Body">
+          <help short="The start time of the active hours."/>
+        </arg>
+        <arg type="string" var="$body.timeZone" options="time-zone" group="Body">
+          <help short="The timezone of the active hours."/>
+        </arg>
+      </argGroup>
+      <operation operationId="DevBoxes_SetActiveHours">
+        <http path="/projects/{projectName}/users/{userId}/devboxes/{devBoxName}:setActiveHours">
+          <request method="post">
+            <path>
+              <param type="string" name="devBoxName" arg="$Path.devBoxName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+              </param>
+              <param type="string" name="projectName" arg="$Path.projectName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+              </param>
+              <param type="string" name="userId" arg="$Path.userId" required="True">
+                <format pattern="^[a-zA-Z0-9]{8}-([a-zA-Z0-9]{4}-){3}[a-zA-Z0-9]{12}$|^me$" maxLength="36" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-04-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="integer32" name="endTimeHour" arg="$body.endTimeHour"/>
+                  <prop type="integer32" name="startTimeHour" arg="$body.startTimeHour"/>
+                  <prop type="string" name="timeZone" arg="$body.timeZone"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="actionState"/>
+                  <prop readOnly="True" type="object" name="activeHoursConfiguration">
+                    <prop type="string" name="autoStartEnableStatus" required="True">
+                      <enum>
+                        <item value="&quot;Disabled&quot;"/>
+                        <item value="&quot;Enabled&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="integer32" name="endTimeHour"/>
+                    <prop type="string" name="keepAwakeEnableStatus" required="True">
+                      <enum>
+                        <item value="&quot;Disabled&quot;"/>
+                        <item value="&quot;Enabled&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="integer32" name="startTimeHour"/>
+                    <prop type="string" name="timeZone"/>
+                  </prop>
+                  <prop readOnly="True" type="dateTime" name="createdTime"/>
+                  <prop readOnly="True" type="object" name="error" cls="AzureCoreFoundationsError_read">
+                    <prop type="string" name="code" required="True"/>
+                    <prop type="array<@AzureCoreFoundationsError_read>" name="details">
+                      <item type="@AzureCoreFoundationsError_read"/>
+                    </prop>
+                    <prop type="object" name="innererror" cls="AzureCoreFoundationsInnerError_read">
+                      <prop type="string" name="code"/>
+                      <prop type="@AzureCoreFoundationsInnerError_read" name="innererror"/>
+                    </prop>
+                    <prop type="string" name="message" required="True"/>
+                    <prop type="string" name="target"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="hardwareProfile">
+                    <prop readOnly="True" type="integer32" name="memoryGB"/>
+                    <prop readOnly="True" type="string" name="skuName">
+                      <enum>
+                        <item value="&quot;general_a_16c64gb1024ssd_v2&quot;"/>
+                        <item value="&quot;general_a_16c64gb2048ssd_v2&quot;"/>
+                        <item value="&quot;general_a_16c64gb256ssd_v2&quot;"/>
+                        <item value="&quot;general_a_16c64gb512ssd_v2&quot;"/>
+                        <item value="&quot;general_a_32c128gb1024ssd_v2&quot;"/>
+                        <item value="&quot;general_a_32c128gb2048ssd_v2&quot;"/>
+                        <item value="&quot;general_a_32c128gb512ssd_v2&quot;"/>
+                        <item value="&quot;general_a_8c32gb1024ssd_v2&quot;"/>
+                        <item value="&quot;general_a_8c32gb2048ssd_v2&quot;"/>
+                        <item value="&quot;general_a_8c32gb256ssd_v2&quot;"/>
+                        <item value="&quot;general_a_8c32gb512ssd_v2&quot;"/>
+                        <item value="&quot;general_i_16c64gb1024ssd_v2&quot;"/>
+                        <item value="&quot;general_i_16c64gb2048ssd_v2&quot;"/>
+                        <item value="&quot;general_i_16c64gb256ssd_v2&quot;"/>
+                        <item value="&quot;general_i_16c64gb512ssd_v2&quot;"/>
+                        <item value="&quot;general_i_32c128gb1024ssd_v2&quot;"/>
+                        <item value="&quot;general_i_32c128gb2048ssd_v2&quot;"/>
+                        <item value="&quot;general_i_32c128gb512ssd_v2&quot;"/>
+                        <item value="&quot;general_i_8c32gb1024ssd_v2&quot;"/>
+                        <item value="&quot;general_i_8c32gb2048ssd_v2&quot;"/>
+                        <item value="&quot;general_i_8c32gb256ssd_v2&quot;"/>
+                        <item value="&quot;general_i_8c32gb512ssd_v2&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="integer32" name="vCPUs"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="hibernateSupport">
+                    <enum>
+                      <item value="&quot;Disabled&quot;"/>
+                      <item value="&quot;Enabled&quot;"/>
+                      <item value="&quot;OsUnsupported&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop readOnly="True" type="object" name="imageReference">
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop readOnly="True" type="string" name="operatingSystem"/>
+                    <prop readOnly="True" type="string" name="osBuildNumber"/>
+                    <prop readOnly="True" type="dateTime" name="publishedDate"/>
+                    <prop readOnly="True" type="string" name="version"/>
+                  </prop>
+                  <prop readOnly="True" type="dateTime" name="lastConnectedTime"/>
+                  <prop readOnly="True" type="string" name="localAdministrator">
+                    <enum>
+                      <item value="&quot;Disabled&quot;"/>
+                      <item value="&quot;Enabled&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop readOnly="True" type="string" name="location"/>
+                  <prop readOnly="True" type="string" name="name">
+                    <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="osType">
+                    <enum>
+                      <item value="&quot;Windows&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="string" name="poolName" required="True">
+                    <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="powerState">
+                    <enum>
+                      <item value="&quot;Deallocated&quot;"/>
+                      <item value="&quot;Hibernated&quot;"/>
+                      <item value="&quot;PoweredOff&quot;"/>
+                      <item value="&quot;Running&quot;"/>
+                      <item value="&quot;Unknown&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop readOnly="True" type="string" name="projectName"/>
+                  <prop readOnly="True" type="string" name="provisioningState">
+                    <enum>
+                      <item value="&quot;Canceled&quot;"/>
+                      <item value="&quot;Creating&quot;"/>
+                      <item value="&quot;Deleting&quot;"/>
+                      <item value="&quot;Failed&quot;"/>
+                      <item value="&quot;InGracePeriod&quot;"/>
+                      <item value="&quot;NotProvisioned&quot;"/>
+                      <item value="&quot;PendingApproval&quot;"/>
+                      <item value="&quot;ProvisionedWithWarning&quot;"/>
+                      <item value="&quot;Provisioning&quot;"/>
+                      <item value="&quot;Starting&quot;"/>
+                      <item value="&quot;Stopping&quot;"/>
+                      <item value="&quot;Succeeded&quot;"/>
+                      <item value="&quot;Updating&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop readOnly="True" type="object" name="storageProfile">
+                    <prop type="object" name="osDisk">
+                      <prop readOnly="True" type="integer32" name="diskSizeGB"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="uuid" name="uniqueId"/>
+                  <prop readOnly="True" type="string" name="uri"/>
+                  <prop readOnly="True" type="uuid" name="user"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
