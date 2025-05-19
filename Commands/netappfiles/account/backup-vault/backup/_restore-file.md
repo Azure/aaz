@@ -27,3 +27,7 @@ Restore the specified files from the specified backup to the active filesystem
 ### [2024-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbmV0YXBwYWNjb3VudHMve30vYmFja3VwdmF1bHRzL3t9L2JhY2t1cHMve30vcmVzdG9yZWZpbGVz/2024-07-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.netapp/netappaccounts/{}/backupvaults/{}/backups/{}/restorefiles 2024-07-01 -->
+
+### [2025-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbmV0YXBwYWNjb3VudHMve30vYmFja3VwdmF1bHRzL3t9L2JhY2t1cHMve30vcmVzdG9yZWZpbGVz/2025-01-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.netapp/netappaccounts/{}/backupvaults/{}/backups/{}/restorefiles 2025-01-01 -->

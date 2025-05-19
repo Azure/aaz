@@ -53,3 +53,14 @@ Update the network features of the specified network sibling set
     ```bash
         -l westus2 --network-sibling-set-id {SIBLIING_SET_ID} --subnet-id {SUBNET_ID} --network-sibling-set-state-id {SIBLING_SET_STATE_ID} --network-features Standard
     ```
+
+### [2025-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbG9jYXRpb25zL3t9L3VwZGF0ZW5ldHdvcmtzaWJsaW5nc2V0/2025-01-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.netapp/locations/{}/updatenetworksiblingset 2025-01-01 -->
+
+#### examples
+
+- Update Network sibling set
+    ```bash
+        netappfiles update-network-sibling-set -l westus2 --network-sibling-set-id {SIBLIING_SET_ID} --subnet-id {SUBNET_ID} --network-sibling-set-state-id='{SIBLING_SET_STATE_ID}' --network-features Standard
+    ```
