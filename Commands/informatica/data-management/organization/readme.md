@@ -1,6 +1,6 @@
 # [Group] _informatica data-management organization_
 
-Manage Informatica organization
+Manage organization-level resources for Informatica.
 
 ## Subgroups
 
@@ -10,10 +10,10 @@ Manage Informatica organization
 ## Commands
 
 - [create](/Commands/informatica/data-management/organization/_create.md)
-: Create a InformaticaOrganizationResource
+: Create a new organization resource in Informatica via Azure.
 
 - [delete](/Commands/informatica/data-management/organization/_delete.md)
-: Delete a InformaticaOrganizationResource
+: Delete an existing organization resource in Informatica via Azure.
 
 - [get-all-serverless-runtime](/Commands/informatica/data-management/organization/_get-all-serverless-runtime.md)
 : Gets all serverless runtime resources in a given informatica organization resource.
@@ -22,10 +22,10 @@ Manage Informatica organization
 : Gets Metadata of the serverless runtime environment.
 
 - [list](/Commands/informatica/data-management/organization/_list.md)
-: List InformaticaOrganizationResource resources by subscription ID
+: List all Informatica organization resources under the current subscription.
 
 - [show](/Commands/informatica/data-management/organization/_show.md)
-: Get a InformaticaOrganizationResource
+: Retrieve details of a specific Informatica organization resource.
 
 - [update](/Commands/informatica/data-management/organization/_update.md)
-: Update a InformaticaOrganizationResource
+: Update a Informatica Organization Resource via azure

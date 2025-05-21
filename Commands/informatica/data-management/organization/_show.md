@@ -1,6 +1,6 @@
 # [Command] _informatica data-management organization show_
 
-Get a InformaticaOrganizationResource
+Retrieve details of a specific Informatica organization resource.
 
 ## Versions
 

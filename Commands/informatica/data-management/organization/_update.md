@@ -1,6 +1,6 @@
 # [Command] _informatica data-management organization update_
 
-Update a InformaticaOrganizationResource
+Update a Informatica Organization Resource via azure
 
 ## Versions
 

@@ -3,23 +3,13 @@
   <resource id="/subscriptions/{}/providers/informatica.datamanagement/organizations" version="2024-05-08" swagger="mgmt-plane/informatica/ResourceProviders/Informatica.DataManagement/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvSW5mb3JtYXRpY2EuRGF0YU1hbmFnZW1lbnQvb3JnYW5pemF0aW9ucw==/V/MjAyNC0wNS0wOA=="/>
   <resource id="/subscriptions/{}/resourcegroups/{}/providers/informatica.datamanagement/organizations" version="2024-05-08" swagger="mgmt-plane/informatica/ResourceProviders/Informatica.DataManagement/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9JbmZvcm1hdGljYS5EYXRhTWFuYWdlbWVudC9vcmdhbml6YXRpb25z/V/MjAyNC0wNS0wOA=="/>
   <commandGroup name="informatica data-management organization">
-    <command name="list" version="2024-05-08">
+    <command name="list" version="2024-05-08" confirmation="">
       <resource id="/subscriptions/{}/providers/informatica.datamanagement/organizations" version="2024-05-08" swagger="mgmt-plane/informatica/ResourceProviders/Informatica.DataManagement/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvSW5mb3JtYXRpY2EuRGF0YU1hbmFnZW1lbnQvb3JnYW5pemF0aW9ucw==/V/MjAyNC0wNS0wOA=="/>
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/informatica.datamanagement/organizations" version="2024-05-08" swagger="mgmt-plane/informatica/ResourceProviders/Informatica.DataManagement/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9JbmZvcm1hdGljYS5EYXRhTWFuYWdlbWVudC9vcmdhbml6YXRpb25z/V/MjAyNC0wNS0wOA=="/>
       <argGroup name="">
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" group="" idPart="resource_group">
-          <help short="Resource group name"/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
-          <help short="Subscription"/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <condition var="$Condition_Organizations_ListByResourceGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_Organizations_ListBySubscription">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -28,13 +18,16 @@
           </operator>
         </operator>
       </condition>
-      <operation when="$Condition_Organizations_ListByResourceGroup" operationId="Organizations_ListByResourceGroup">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Informatica.DataManagement/organizations">
+      <condition var="$Condition_Organizations_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_Organizations_ListBySubscription" operationId="Organizations_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Informatica.DataManagement/organizations">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
                 <format minLength="1"/>
               </param>
@@ -171,10 +164,13 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_Organizations_ListBySubscription" operationId="Organizations_ListBySubscription">
-        <http path="/subscriptions/{subscriptionId}/providers/Informatica.DataManagement/organizations">
+      <operation when="$Condition_Organizations_ListByResourceGroup" operationId="Organizations_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Informatica.DataManagement/organizations">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
                 <format minLength="1"/>
               </param>

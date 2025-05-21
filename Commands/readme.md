@@ -183,7 +183,7 @@
 : Manage custom virtual machine images.
 
 - [informatica](/Commands/informatica/readme.md)
-: Manage Informatica
+: Manage all resources related to Informatica within the Azure CLI.
 
 - [k8s-runtime](/Commands/k8s-runtime/readme.md)
 : Manage Arc Kubernetes Runtime resources
