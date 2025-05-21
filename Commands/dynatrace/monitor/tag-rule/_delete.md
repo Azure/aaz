@@ -1,6 +1,6 @@
 # [Command] _dynatrace monitor tag-rule delete_
 
-Delete a tag rule
+Remove or delete a tag rule from Dynatrace resource.
 
 ## Versions
 

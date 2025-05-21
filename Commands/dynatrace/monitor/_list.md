@@ -1,6 +1,6 @@
 # [Command] _dynatrace monitor list_
 
-List all monitor resource by monitor name in a resource group
+List all MonitorResource by subscriptionId.
 
 ## Versions
 
