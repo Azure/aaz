@@ -1,6 +1,6 @@
 # [Command] _confluent organization environment cluster create-api-key_
 
-Creates API key for a schema registry Cluster ID or Kafka Cluster ID under a environment
+Create API keys for Schema Registry or Kafka clusters within an environment.
 
 ## Versions
 
