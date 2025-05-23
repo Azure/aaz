@@ -1,11 +1,11 @@
 # [Group] _confluent organization environment schema-registry-cluster_
 
-Commands to get the schema registry cluster details in a environment
+Retrieve details of Schema Registry clusters within a Confluent environment.
 
 ## Commands
 
 - [list](/Commands/confluent/organization/environment/schema-registry-cluster/_list.md)
-: List schema registry clusters
+: List all Schema Registry clusters within a Confluent environment.
 
 - [show](/Commands/confluent/organization/environment/schema-registry-cluster/_show.md)
-: Get schema registry cluster by Id
+: Retrieve details of a specific Schema Registry cluster by its ID.

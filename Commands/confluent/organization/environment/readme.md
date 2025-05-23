@@ -8,9 +8,12 @@ Commands to get the confluent environments in the organization
 : Command to get the confluent cluster details in a environment
 
 - [schema-registry-cluster](/Commands/confluent/organization/environment/schema-registry-cluster/readme.md)
-: Commands to get the schema registry cluster details in a environment
+: Retrieve details of Schema Registry clusters within a Confluent environment.
 
 ## Commands
 
 - [list](/Commands/confluent/organization/environment/_list.md)
-: List of all the environments in a organization
+: List all Confluent environments within a specific organization.
+
+- [show](/Commands/confluent/organization/environment/_show.md)
+: Display details of a specific Confluent environment within an organization.

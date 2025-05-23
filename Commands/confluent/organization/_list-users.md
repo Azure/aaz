@@ -1,6 +1,6 @@
 # [Command] _confluent organization list-users_
 
-Organization users details
+List all the details of users within a Confluent organization.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _confluent organization delete_
 
-Delete Organization resource
+Delete an existing Confluent organization entity via Azure.
 
 ## Versions
 

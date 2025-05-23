@@ -1,6 +1,6 @@
 # [Command] _confluent organization create-role-binding_
 
-Organization role bindings
+Assign roles to users or groups within a Confluent organization.
 
 ## Versions
 

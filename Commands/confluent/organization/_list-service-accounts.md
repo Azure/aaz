@@ -1,6 +1,6 @@
 # [Command] _confluent organization list-service-accounts_
 
-Organization service accounts details
+List all the details of service accounts within a Confluent organization.
 
 ## Versions
 

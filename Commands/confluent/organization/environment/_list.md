@@ -1,6 +1,6 @@
 # [Command] _confluent organization environment list_
 
-List of all the environments in a organization
+List all Confluent environments within a specific organization.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _confluent organization list_
 
-List all organizations under the specified subscription.
+List all Confluent organizations under the specified resource group or subscription.
 
 ## Versions
 
