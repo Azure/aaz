@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.databox/jobs/{}/listcredentials" version="2025-02-01" swagger="mgmt-plane/databox/ResourceProviders/Microsoft.DataBox/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YUJveC9qb2JzL3tqb2JOYW1lfS9saXN0Q3JlZGVudGlhbHM=/V/MjAyNS0wMi0wMQ=="/>
+  <commandGroup name="databox job">
+    <command name="list-credential" version="2025-02-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.databox/jobs/{}/listcredentials" version="2025-02-01" swagger="mgmt-plane/databox/ResourceProviders/Microsoft.DataBox/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YUJveC9qb2JzL3tqb2JOYW1lfS9saXN0Q3JlZGVudGlhbHM=/V/MjAyNS0wMi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.jobName" options="job-name name n" required="True" group="" idPart="name">
+          <help short="The name of the job Resource within the specified resource group. job names must be between 3 and 24 characters in length and use any alphanumeric and underscore only"/>
+          <format pattern="^[-\w\.]+$" maxLength="24" minLength="3"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="Jobs_ListCredentials">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/jobs/{jobName}/listCredentials">
+          <request method="post">
+            <path>
+              <param type="string" name="jobName" arg="$Path.jobName" required="True">
+                <format pattern="^[-\w\.]+$" maxLength="24" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-02-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="string" name="jobName"/>
+                      <prop readOnly="True" type="object" name="jobSecrets">
+                        <prop readOnly="True" type="object" name="dcAccessSecurityCode">
+                          <prop type="string" name="forwardDCAccessCode"/>
+                          <prop type="string" name="reverseDCAccessCode"/>
+                        </prop>
+                        <prop readOnly="True" type="object" name="error" cls="CloudError_read">
+                          <prop readOnly="True" type="array<object>" name="additionalInfo">
+                            <item type="object">
+                              <prop type="object" name="info">
+                                <additionalProp>
+                                  <item type="any"/>
+                                </additionalProp>
+                              </prop>
+                              <prop type="string" name="type"/>
+                            </item>
+                          </prop>
+                          <prop type="string" name="code"/>
+                          <prop readOnly="True" type="array<@CloudError_read>" name="details">
+                            <item type="@CloudError_read"/>
+                          </prop>
+                          <prop type="string" name="message"/>
+                          <prop type="string" name="target"/>
+                        </prop>
+                        <prop type="string" name="jobSecretsType" required="True">
+                          <enum>
+                            <item value="&quot;DataBox&quot;"/>
+                            <item value="&quot;DataBoxCustomerDisk&quot;"/>
+                            <item value="&quot;DataBoxDisk&quot;"/>
+                            <item value="&quot;DataBoxHeavy&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="jobSecretsType" value="DataBox">
+                          <prop type="array<object>" name="podSecrets">
+                            <item type="object">
+                              <prop readOnly="True" type="array<@AccountCredentialDetails_read>" name="accountCredentialDetails">
+                                <item type="@AccountCredentialDetails_read"/>
+                              </prop>
+                              <prop readOnly="True" type="string" name="devicePassword"/>
+                              <prop readOnly="True" type="string" name="deviceSerialNumber"/>
+                              <prop readOnly="True" type="string" name="encodedValidationCertPubKey"/>
+                              <prop readOnly="True" type="array<@ApplianceNetworkConfiguration_read>" name="networkConfigurations">
+                                <item type="@ApplianceNetworkConfiguration_read"/>
+                              </prop>
+                            </item>
+                          </prop>
+                        </discriminator>
+                        <discriminator property="jobSecretsType" value="DataBoxCustomerDisk">
+                          <prop readOnly="True" type="string" name="carrierAccountNumber" secret="True"/>
+                          <prop readOnly="True" type="array<object>" name="diskSecrets">
+                            <item type="object" cls="DiskSecret_read">
+                              <prop readOnly="True" type="string" name="bitLockerKey"/>
+                              <prop readOnly="True" type="string" name="diskSerialNumber"/>
+                            </item>
+                          </prop>
+                        </discriminator>
+                        <discriminator property="jobSecretsType" value="DataBoxDisk">
+                          <prop readOnly="True" type="array<@DiskSecret_read>" name="diskSecrets">
+                            <item type="@DiskSecret_read"/>
+                          </prop>
+                          <prop readOnly="True" type="boolean" name="isPasskeyUserDefined"/>
+                          <prop readOnly="True" type="string" name="passKey"/>
+                        </discriminator>
+                        <discriminator property="jobSecretsType" value="DataBoxHeavy">
+                          <prop readOnly="True" type="array<object>" name="cabinetPodSecrets">
+                            <item type="object">
+                              <prop readOnly="True" type="array<object>" name="accountCredentialDetails">
+                                <item type="object" cls="AccountCredentialDetails_read">
+                                  <prop readOnly="True" type="string" name="accountConnectionString"/>
+                                  <prop readOnly="True" type="string" name="accountName"/>
+                                  <prop readOnly="True" type="string" name="dataAccountType">
+                                    <enum>
+                                      <item value="&quot;ManagedDisk&quot;"/>
+                                      <item value="&quot;StorageAccount&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop readOnly="True" type="array<object>" name="shareCredentialDetails">
+                                    <item type="object">
+                                      <prop readOnly="True" type="string" name="password"/>
+                                      <prop readOnly="True" type="string" name="shareName"/>
+                                      <prop readOnly="True" type="string" name="shareType">
+                                        <enum>
+                                          <item value="&quot;AzureFile&quot;"/>
+                                          <item value="&quot;BlockBlob&quot;"/>
+                                          <item value="&quot;HCS&quot;"/>
+                                          <item value="&quot;ManagedDisk&quot;"/>
+                                          <item value="&quot;PageBlob&quot;"/>
+                                          <item value="&quot;UnknownType&quot;"/>
+                                        </enum>
+                                      </prop>
+                                      <prop readOnly="True" type="array<string>" name="supportedAccessProtocols">
+                                        <item type="string">
+                                          <enum>
+                                            <item value="&quot;NFS&quot;"/>
+                                            <item value="&quot;SMB&quot;"/>
+                                          </enum>
+                                        </item>
+                                      </prop>
+                                      <prop readOnly="True" type="string" name="userName"/>
+                                    </item>
+                                  </prop>
+                                </item>
+                              </prop>
+                              <prop readOnly="True" type="string" name="devicePassword"/>
+                              <prop readOnly="True" type="string" name="deviceSerialNumber"/>
+                              <prop readOnly="True" type="string" name="encodedValidationCertPubKey"/>
+                              <prop readOnly="True" type="array<object>" name="networkConfigurations">
+                                <item type="object" cls="ApplianceNetworkConfiguration_read">
+                                  <prop readOnly="True" type="string" name="macAddress"/>
+                                  <prop readOnly="True" type="string" name="name"/>
+                                </item>
+                              </prop>
+                            </item>
+                          </prop>
+                        </discriminator>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

@@ -1,0 +1,1886 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.databox/jobs" version="2025-02-01" swagger="mgmt-plane/databox/ResourceProviders/Microsoft.DataBox/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkRhdGFCb3gvam9icw==/V/MjAyNS0wMi0wMQ=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.databox/jobs" version="2025-02-01" swagger="mgmt-plane/databox/ResourceProviders/Microsoft.DataBox/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YUJveC9qb2Jz/V/MjAyNS0wMi0wMQ=="/>
+  <commandGroup name="databox job">
+    <command name="list" version="2025-02-01">
+      <resource id="/subscriptions/{}/providers/microsoft.databox/jobs" version="2025-02-01" swagger="mgmt-plane/databox/ResourceProviders/Microsoft.DataBox/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkRhdGFCb3gvam9icw==/V/MjAyNS0wMi0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.databox/jobs" version="2025-02-01" swagger="mgmt-plane/databox/ResourceProviders/Microsoft.DataBox/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YUJveC9qb2Jz/V/MjAyNS0wMi0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Query.skipToken" options="skip-token" hide="True" group="">
+          <help short="$skipToken is supported on Get list of jobs, which provides the next page in the list of jobs."/>
+        </arg>
+      </argGroup>
+      <condition var="$Condition_Jobs_List">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <condition var="$Condition_Jobs_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_Jobs_List" operationId="Jobs_List">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.DataBox/jobs">
+          <request method="get">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="$skipToken" arg="$Query.skipToken"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-02-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.DataBox/jobs/{}"/>
+                      </prop>
+                      <prop type="IdentityObject" name="identity">
+                        <prop readOnly="True" type="string" name="principalId"/>
+                        <prop readOnly="True" type="string" name="tenantId"/>
+                        <prop type="string" name="type">
+                          <default value="&quot;None&quot;"/>
+                        </prop>
+                        <prop type="object" name="userAssignedIdentities">
+                          <additionalProp>
+                            <item type="object">
+                              <prop readOnly="True" type="string" name="clientId"/>
+                              <prop readOnly="True" type="string" name="principalId"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" required="True" clientFlatten="True">
+                        <prop readOnly="True" type="boolean" name="allDevicesLost"/>
+                        <prop readOnly="True" type="string" name="cancellationReason"/>
+                        <prop readOnly="True" type="string" name="delayedStage">
+                          <enum>
+                            <item value="&quot;Aborted&quot;"/>
+                            <item value="&quot;AtAzureDC&quot;"/>
+                            <item value="&quot;AwaitingShipmentDetails&quot;"/>
+                            <item value="&quot;Cancelled&quot;"/>
+                            <item value="&quot;Completed&quot;"/>
+                            <item value="&quot;CompletedWithErrors&quot;"/>
+                            <item value="&quot;CompletedWithWarnings&quot;"/>
+                            <item value="&quot;Created&quot;"/>
+                            <item value="&quot;DataCopy&quot;"/>
+                            <item value="&quot;Delivered&quot;"/>
+                            <item value="&quot;DeviceOrdered&quot;"/>
+                            <item value="&quot;DevicePrepared&quot;"/>
+                            <item value="&quot;Dispatched&quot;"/>
+                            <item value="&quot;Failed_IssueDetectedAtAzureDC&quot;"/>
+                            <item value="&quot;Failed_IssueReportedAtCustomer&quot;"/>
+                            <item value="&quot;PickedUp&quot;"/>
+                            <item value="&quot;PreparingToShipFromAzureDC&quot;"/>
+                            <item value="&quot;ReadyToDispatchFromAzureDC&quot;"/>
+                            <item value="&quot;ReadyToReceiveAtAzureDC&quot;"/>
+                            <item value="&quot;ShippedToAzureDC&quot;"/>
+                            <item value="&quot;ShippedToCustomer&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="deliveryInfo">
+                          <prop type="dateTime" name="scheduledDateTime"/>
+                        </prop>
+                        <prop type="string" name="deliveryType">
+                          <default value="&quot;NonScheduled&quot;"/>
+                          <enum>
+                            <item value="&quot;NonScheduled&quot;"/>
+                            <item value="&quot;Scheduled&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="details">
+                          <prop readOnly="True" type="array<string>" name="actions">
+                            <item type="string">
+                              <enum>
+                                <item value="&quot;MoveToCleanUpDevice&quot;"/>
+                                <item value="&quot;None&quot;"/>
+                                <item value="&quot;ReachOutToOperation&quot;"/>
+                                <item value="&quot;Restart&quot;"/>
+                                <item value="&quot;Resume&quot;"/>
+                              </enum>
+                            </item>
+                          </prop>
+                          <prop readOnly="True" type="string" name="chainOfCustodySasKey"/>
+                          <prop type="object" name="contactDetails" required="True">
+                            <prop type="string" name="contactName" required="True"/>
+                            <prop type="array<string>" name="emailList" required="True">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="string" name="mobile"/>
+                            <prop type="array<object>" name="notificationPreference">
+                              <item type="object">
+                                <prop type="boolean" name="sendNotification" required="True">
+                                  <default value="true"/>
+                                </prop>
+                                <prop type="string" name="stageName" required="True">
+                                  <enum>
+                                    <item value="&quot;AtAzureDC&quot;"/>
+                                    <item value="&quot;Created&quot;"/>
+                                    <item value="&quot;DataCopy&quot;"/>
+                                    <item value="&quot;Delivered&quot;"/>
+                                    <item value="&quot;DevicePrepared&quot;"/>
+                                    <item value="&quot;Dispatched&quot;"/>
+                                    <item value="&quot;PickedUp&quot;"/>
+                                    <item value="&quot;ShippedToCustomer&quot;"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                            <prop type="string" name="phone" required="True"/>
+                            <prop type="string" name="phoneExtension"/>
+                          </prop>
+                          <prop readOnly="True" type="array<object>" name="copyLogDetails">
+                            <item type="object">
+                              <prop type="string" name="copyLogDetailsType" required="True">
+                                <enum>
+                                  <item value="&quot;DataBox&quot;"/>
+                                  <item value="&quot;DataBoxCustomerDisk&quot;"/>
+                                  <item value="&quot;DataBoxDisk&quot;"/>
+                                  <item value="&quot;DataBoxHeavy&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="copyLogDetailsType" value="DataBox">
+                                <prop readOnly="True" type="string" name="accountName"/>
+                                <prop readOnly="True" type="string" name="copyLogLink"/>
+                                <prop readOnly="True" type="string" name="copyVerboseLogLink"/>
+                              </discriminator>
+                              <discriminator property="copyLogDetailsType" value="DataBoxCustomerDisk">
+                                <prop readOnly="True" type="string" name="errorLogLink"/>
+                                <prop readOnly="True" type="string" name="serialNumber"/>
+                                <prop readOnly="True" type="string" name="verboseLogLink"/>
+                              </discriminator>
+                              <discriminator property="copyLogDetailsType" value="DataBoxDisk">
+                                <prop readOnly="True" type="string" name="diskSerialNumber"/>
+                                <prop readOnly="True" type="string" name="errorLogLink"/>
+                                <prop readOnly="True" type="string" name="verboseLogLink"/>
+                              </discriminator>
+                              <discriminator property="copyLogDetailsType" value="DataBoxHeavy">
+                                <prop readOnly="True" type="string" name="accountName"/>
+                                <prop readOnly="True" type="array<string>" name="copyLogLink">
+                                  <item type="string"/>
+                                </prop>
+                                <prop readOnly="True" type="array<string>" name="copyVerboseLogLink">
+                                  <item type="string"/>
+                                </prop>
+                              </discriminator>
+                            </item>
+                          </prop>
+                          <prop readOnly="True" type="string" name="dataCenterCode">
+                            <enum>
+                              <item value="&quot;AM2&quot;"/>
+                              <item value="&quot;AMS06&quot;"/>
+                              <item value="&quot;AMS20&quot;"/>
+                              <item value="&quot;AMS25&quot;"/>
+                              <item value="&quot;AUH20&quot;"/>
+                              <item value="&quot;AdHoc&quot;"/>
+                              <item value="&quot;BJB&quot;"/>
+                              <item value="&quot;BJS20&quot;"/>
+                              <item value="&quot;BL20&quot;"/>
+                              <item value="&quot;BL24&quot;"/>
+                              <item value="&quot;BL7&quot;"/>
+                              <item value="&quot;BN1&quot;"/>
+                              <item value="&quot;BN7&quot;"/>
+                              <item value="&quot;BOM01&quot;"/>
+                              <item value="&quot;BY1&quot;"/>
+                              <item value="&quot;BY2&quot;"/>
+                              <item value="&quot;BY21&quot;"/>
+                              <item value="&quot;BY24&quot;"/>
+                              <item value="&quot;CBR20&quot;"/>
+                              <item value="&quot;CH1&quot;"/>
+                              <item value="&quot;CPQ02&quot;"/>
+                              <item value="&quot;CPQ20&quot;"/>
+                              <item value="&quot;CPQ21&quot;"/>
+                              <item value="&quot;CWL20&quot;"/>
+                              <item value="&quot;CYS04&quot;"/>
+                              <item value="&quot;DSM05&quot;"/>
+                              <item value="&quot;DSM11&quot;"/>
+                              <item value="&quot;DUB07&quot;"/>
+                              <item value="&quot;DXB23&quot;"/>
+                              <item value="&quot;FRA22&quot;"/>
+                              <item value="&quot;HKG20&quot;"/>
+                              <item value="&quot;IDC5&quot;"/>
+                              <item value="&quot;Invalid&quot;"/>
+                              <item value="&quot;JNB21&quot;"/>
+                              <item value="&quot;JNB22&quot;"/>
+                              <item value="&quot;LON24&quot;"/>
+                              <item value="&quot;MAA01&quot;"/>
+                              <item value="&quot;MEL23&quot;"/>
+                              <item value="&quot;MNZ21&quot;"/>
+                              <item value="&quot;MWH01&quot;"/>
+                              <item value="&quot;NTG20&quot;"/>
+                              <item value="&quot;ORK70&quot;"/>
+                              <item value="&quot;OSA02&quot;"/>
+                              <item value="&quot;OSA20&quot;"/>
+                              <item value="&quot;OSA22&quot;"/>
+                              <item value="&quot;OSA23&quot;"/>
+                              <item value="&quot;PAR22&quot;"/>
+                              <item value="&quot;PNQ01&quot;"/>
+                              <item value="&quot;PUS20&quot;"/>
+                              <item value="&quot;SEL20&quot;"/>
+                              <item value="&quot;SEL21&quot;"/>
+                              <item value="&quot;SG2&quot;"/>
+                              <item value="&quot;SHA03&quot;"/>
+                              <item value="&quot;SIN20&quot;"/>
+                              <item value="&quot;SN5&quot;"/>
+                              <item value="&quot;SN6&quot;"/>
+                              <item value="&quot;SN8&quot;"/>
+                              <item value="&quot;SSE90&quot;"/>
+                              <item value="&quot;SVG20&quot;"/>
+                              <item value="&quot;SYD03&quot;"/>
+                              <item value="&quot;SYD23&quot;"/>
+                              <item value="&quot;TYO01&quot;"/>
+                              <item value="&quot;TYO22&quot;"/>
+                              <item value="&quot;TYO23&quot;"/>
+                              <item value="&quot;YQB20&quot;"/>
+                              <item value="&quot;YTO20&quot;"/>
+                              <item value="&quot;YTO21&quot;"/>
+                              <item value="&quot;ZRH20&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="array<object>" name="dataExportDetails">
+                            <item type="object">
+                              <prop type="@DataAccountDetails_read" name="accountDetails" required="True"/>
+                              <prop type="string" name="logCollectionLevel">
+                                <default value="&quot;Error&quot;"/>
+                                <enum>
+                                  <item value="&quot;Error&quot;"/>
+                                  <item value="&quot;Verbose&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="object" name="transferConfiguration" required="True">
+                                <prop type="object" name="transferAllDetails">
+                                  <prop type="object" name="include">
+                                    <prop type="string" name="dataAccountType" required="True">
+                                      <default value="&quot;StorageAccount&quot;"/>
+                                      <enum>
+                                        <item value="&quot;ManagedDisk&quot;"/>
+                                        <item value="&quot;StorageAccount&quot;"/>
+                                      </enum>
+                                    </prop>
+                                    <prop type="boolean" name="transferAllBlobs"/>
+                                    <prop type="boolean" name="transferAllFiles"/>
+                                  </prop>
+                                </prop>
+                                <prop type="string" name="transferConfigurationType" required="True">
+                                  <enum>
+                                    <item value="&quot;TransferAll&quot;"/>
+                                    <item value="&quot;TransferUsingFilter&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="object" name="transferFilterDetails">
+                                  <prop type="object" name="include">
+                                    <prop type="object" name="azureFileFilterDetails">
+                                      <prop type="array<string>" name="filePathList">
+                                        <item type="string"/>
+                                      </prop>
+                                      <prop type="array<string>" name="filePrefixList">
+                                        <item type="string"/>
+                                      </prop>
+                                      <prop type="array<string>" name="fileShareList">
+                                        <item type="string"/>
+                                      </prop>
+                                    </prop>
+                                    <prop type="object" name="blobFilterDetails">
+                                      <prop type="array<string>" name="blobPathList">
+                                        <item type="string"/>
+                                      </prop>
+                                      <prop type="array<string>" name="blobPrefixList">
+                                        <item type="string"/>
+                                      </prop>
+                                      <prop type="array<string>" name="containerList">
+                                        <item type="string"/>
+                                      </prop>
+                                    </prop>
+                                    <prop type="string" name="dataAccountType" required="True">
+                                      <default value="&quot;StorageAccount&quot;"/>
+                                      <enum>
+                                        <item value="&quot;ManagedDisk&quot;"/>
+                                        <item value="&quot;StorageAccount&quot;"/>
+                                      </enum>
+                                    </prop>
+                                    <prop type="array<object>" name="filterFileDetails">
+                                      <item type="object">
+                                        <prop type="string" name="filterFilePath" required="True"/>
+                                        <prop type="string" name="filterFileType" required="True">
+                                          <enum>
+                                            <item value="&quot;AzureBlob&quot;"/>
+                                            <item value="&quot;AzureFile&quot;"/>
+                                          </enum>
+                                        </prop>
+                                      </item>
+                                    </prop>
+                                  </prop>
+                                </prop>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="array<object>" name="dataImportDetails">
+                            <item type="object">
+                              <prop type="object" name="accountDetails" required="True" cls="DataAccountDetails_read">
+                                <prop type="string" name="dataAccountType" required="True">
+                                  <default value="&quot;StorageAccount&quot;"/>
+                                  <enum>
+                                    <item value="&quot;ManagedDisk&quot;"/>
+                                    <item value="&quot;StorageAccount&quot;"/>
+                                  </enum>
+                                </prop>
+                                <discriminator property="dataAccountType" value="ManagedDisk">
+                                  <prop type="string" name="resourceGroupId" required="True"/>
+                                  <prop type="string" name="stagingStorageAccountId" required="True"/>
+                                </discriminator>
+                                <discriminator property="dataAccountType" value="StorageAccount">
+                                  <prop type="string" name="storageAccountId" required="True"/>
+                                </discriminator>
+                              </prop>
+                              <prop type="string" name="logCollectionLevel">
+                                <default value="&quot;Error&quot;"/>
+                                <enum>
+                                  <item value="&quot;Error&quot;"/>
+                                  <item value="&quot;Verbose&quot;"/>
+                                </enum>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop readOnly="True" type="object" name="datacenterAddress">
+                            <prop readOnly="True" type="string" name="dataCenterAzureLocation"/>
+                            <prop type="string" name="datacenterAddressType" required="True">
+                              <enum>
+                                <item value="&quot;DatacenterAddressInstruction&quot;"/>
+                                <item value="&quot;DatacenterAddressLocation&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="array<string>" name="supportedCarriersForReturnShipment">
+                              <item type="string"/>
+                            </prop>
+                            <discriminator property="datacenterAddressType" value="DatacenterAddressInstruction">
+                              <prop readOnly="True" type="string" name="communicationInstruction"/>
+                            </discriminator>
+                            <discriminator property="datacenterAddressType" value="DatacenterAddressLocation">
+                              <prop readOnly="True" type="string" name="additionalShippingInformation"/>
+                              <prop readOnly="True" type="string" name="addressType"/>
+                              <prop readOnly="True" type="string" name="city"/>
+                              <prop readOnly="True" type="string" name="company"/>
+                              <prop readOnly="True" type="string" name="contactPersonName"/>
+                              <prop readOnly="True" type="string" name="country"/>
+                              <prop readOnly="True" type="string" name="phone"/>
+                              <prop readOnly="True" type="string" name="phoneExtension"/>
+                              <prop readOnly="True" type="string" name="state"/>
+                              <prop readOnly="True" type="string" name="street1"/>
+                              <prop readOnly="True" type="string" name="street2"/>
+                              <prop readOnly="True" type="string" name="street3"/>
+                              <prop readOnly="True" type="string" name="zip"/>
+                            </discriminator>
+                          </prop>
+                          <prop readOnly="True" type="object" name="deliveryPackage" cls="PackageShippingDetails_read">
+                            <prop readOnly="True" type="string" name="carrierName"/>
+                            <prop readOnly="True" type="string" name="trackingId"/>
+                            <prop readOnly="True" type="string" name="trackingUrl"/>
+                          </prop>
+                          <prop readOnly="True" type="object" name="deviceErasureDetails">
+                            <prop readOnly="True" type="string" name="deviceErasureStatus">
+                              <enum>
+                                <item value="&quot;Cancelled&quot;"/>
+                                <item value="&quot;Cancelling&quot;"/>
+                                <item value="&quot;CustomerActionPerformed&quot;"/>
+                                <item value="&quot;CustomerActionPerformedForCleanUp&quot;"/>
+                                <item value="&quot;Failed&quot;"/>
+                                <item value="&quot;InProgress&quot;"/>
+                                <item value="&quot;None&quot;"/>
+                                <item value="&quot;Succeeded&quot;"/>
+                                <item value="&quot;SucceededWithErrors&quot;"/>
+                                <item value="&quot;SucceededWithWarnings&quot;"/>
+                                <item value="&quot;WaitingForCustomerAction&quot;"/>
+                                <item value="&quot;WaitingForCustomerActionForCleanUp&quot;"/>
+                                <item value="&quot;WaitingForCustomerActionForKek&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="string" name="erasureOrDestructionCertificateSasKey"/>
+                          </prop>
+                          <prop type="integer32" name="expectedDataSizeInTeraBytes"/>
+                          <prop type="string" name="jobDetailsType" required="True">
+                            <enum>
+                              <item value="&quot;DataBox&quot;"/>
+                              <item value="&quot;DataBoxCustomerDisk&quot;"/>
+                              <item value="&quot;DataBoxDisk&quot;"/>
+                              <item value="&quot;DataBoxHeavy&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="array<object>" name="jobStages">
+                            <item type="object">
+                              <prop readOnly="True" type="array<object>" name="delayInformation">
+                                <item type="object">
+                                  <prop readOnly="True" type="string" name="description"/>
+                                  <prop readOnly="True" type="string" name="errorCode">
+                                    <enum>
+                                      <item value="&quot;ActiveOrderLimitBreachedDelay&quot;"/>
+                                      <item value="&quot;HighDemandDelay&quot;"/>
+                                      <item value="&quot;InternalIssueDelay&quot;"/>
+                                      <item value="&quot;LargeNumberOfFilesDelay&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop readOnly="True" type="dateTime" name="resolutionTime"/>
+                                  <prop readOnly="True" type="dateTime" name="startTime"/>
+                                  <prop readOnly="True" type="string" name="status">
+                                    <enum>
+                                      <item value="&quot;Active&quot;"/>
+                                      <item value="&quot;Resolved&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </item>
+                              </prop>
+                              <prop readOnly="True" type="string" name="displayName"/>
+                              <prop readOnly="True" type="object" name="jobStageDetails">
+                                <additionalProp readOnly="True">
+                                  <item type="any"/>
+                                </additionalProp>
+                              </prop>
+                              <prop readOnly="True" type="string" name="stageName">
+                                <enum>
+                                  <item value="&quot;Aborted&quot;"/>
+                                  <item value="&quot;AtAzureDC&quot;"/>
+                                  <item value="&quot;AwaitingShipmentDetails&quot;"/>
+                                  <item value="&quot;Cancelled&quot;"/>
+                                  <item value="&quot;Completed&quot;"/>
+                                  <item value="&quot;CompletedWithErrors&quot;"/>
+                                  <item value="&quot;CompletedWithWarnings&quot;"/>
+                                  <item value="&quot;Created&quot;"/>
+                                  <item value="&quot;DataCopy&quot;"/>
+                                  <item value="&quot;Delivered&quot;"/>
+                                  <item value="&quot;DeviceOrdered&quot;"/>
+                                  <item value="&quot;DevicePrepared&quot;"/>
+                                  <item value="&quot;Dispatched&quot;"/>
+                                  <item value="&quot;Failed_IssueDetectedAtAzureDC&quot;"/>
+                                  <item value="&quot;Failed_IssueReportedAtCustomer&quot;"/>
+                                  <item value="&quot;PickedUp&quot;"/>
+                                  <item value="&quot;PreparingToShipFromAzureDC&quot;"/>
+                                  <item value="&quot;ReadyToDispatchFromAzureDC&quot;"/>
+                                  <item value="&quot;ReadyToReceiveAtAzureDC&quot;"/>
+                                  <item value="&quot;ShippedToAzureDC&quot;"/>
+                                  <item value="&quot;ShippedToCustomer&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop readOnly="True" type="string" name="stageStatus">
+                                <enum>
+                                  <item value="&quot;Cancelled&quot;"/>
+                                  <item value="&quot;Cancelling&quot;"/>
+                                  <item value="&quot;CustomerActionPerformed&quot;"/>
+                                  <item value="&quot;CustomerActionPerformedForCleanUp&quot;"/>
+                                  <item value="&quot;Failed&quot;"/>
+                                  <item value="&quot;InProgress&quot;"/>
+                                  <item value="&quot;None&quot;"/>
+                                  <item value="&quot;Succeeded&quot;"/>
+                                  <item value="&quot;SucceededWithErrors&quot;"/>
+                                  <item value="&quot;SucceededWithWarnings&quot;"/>
+                                  <item value="&quot;WaitingForCustomerAction&quot;"/>
+                                  <item value="&quot;WaitingForCustomerActionForCleanUp&quot;"/>
+                                  <item value="&quot;WaitingForCustomerActionForKek&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop readOnly="True" type="dateTime" name="stageTime"/>
+                            </item>
+                          </prop>
+                          <prop type="object" name="keyEncryptionKey">
+                            <prop type="object" name="identityProperties">
+                              <prop type="string" name="type"/>
+                              <prop type="object" name="userAssigned">
+                                <prop type="string" name="resourceId"/>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="kekType" required="True">
+                              <default value="&quot;MicrosoftManaged&quot;"/>
+                              <enum>
+                                <item value="&quot;CustomerManaged&quot;"/>
+                                <item value="&quot;MicrosoftManaged&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="kekUrl"/>
+                            <prop type="string" name="kekVaultResourceID"/>
+                          </prop>
+                          <prop readOnly="True" type="object" name="lastMitigationActionOnJob">
+                            <prop type="dateTime" name="actionDateTimeInUtc"/>
+                            <prop type="string" name="customerResolution">
+                              <enum>
+                                <item value="&quot;MoveToCleanUpDevice&quot;"/>
+                                <item value="&quot;None&quot;"/>
+                                <item value="&quot;ReachOutToOperation&quot;"/>
+                                <item value="&quot;Restart&quot;"/>
+                                <item value="&quot;Resume&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="boolean" name="isPerformedByCustomer"/>
+                          </prop>
+                          <prop type="object" name="preferences">
+                            <prop type="object" name="encryptionPreferences">
+                              <prop type="string" name="doubleEncryption">
+                                <default value="&quot;Disabled&quot;"/>
+                                <enum>
+                                  <item value="&quot;Disabled&quot;"/>
+                                  <item value="&quot;Enabled&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="hardwareEncryption">
+                                <enum>
+                                  <item value="&quot;Disabled&quot;"/>
+                                  <item value="&quot;Enabled&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="array<string>" name="preferredDataCenterRegion">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="@TransportPreferences_read" name="reverseTransportPreferences"/>
+                            <prop type="array<string>" name="storageAccountAccessTierPreferences">
+                              <item type="string">
+                                <enum>
+                                  <item value="&quot;Archive&quot;"/>
+                                </enum>
+                              </item>
+                            </prop>
+                            <prop type="object" name="transportPreferences" cls="TransportPreferences_read">
+                              <prop readOnly="True" type="boolean" name="isUpdated"/>
+                              <prop type="string" name="preferredShipmentType" required="True">
+                                <enum>
+                                  <item value="&quot;CustomerManaged&quot;"/>
+                                  <item value="&quot;MicrosoftManaged&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                          </prop>
+                          <prop readOnly="True" type="@PackageShippingDetails_read" name="returnPackage"/>
+                          <prop readOnly="True" type="string" name="reverseShipmentLabelSasKey"/>
+                          <prop type="object" name="reverseShippingDetails">
+                            <prop type="object" name="contactDetails">
+                              <prop type="string" name="contactName" required="True">
+                                <format minLength="1"/>
+                              </prop>
+                              <prop type="string" name="mobile"/>
+                              <prop type="string" name="phone" required="True">
+                                <format minLength="1"/>
+                              </prop>
+                              <prop type="string" name="phoneExtension"/>
+                            </prop>
+                            <prop readOnly="True" type="boolean" name="isUpdated"/>
+                            <prop type="@ShippingAddress_read" name="shippingAddress"/>
+                          </prop>
+                          <prop type="object" name="shippingAddress" cls="ShippingAddress_read">
+                            <prop type="string" name="addressType">
+                              <default value="&quot;None&quot;"/>
+                              <enum>
+                                <item value="&quot;Commercial&quot;"/>
+                                <item value="&quot;None&quot;"/>
+                                <item value="&quot;Residential&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="city"/>
+                            <prop type="string" name="companyName"/>
+                            <prop type="string" name="country" required="True"/>
+                            <prop type="string" name="postalCode"/>
+                            <prop type="boolean" name="skipAddressValidation"/>
+                            <prop type="string" name="stateOrProvince"/>
+                            <prop type="string" name="streetAddress1" required="True"/>
+                            <prop type="string" name="streetAddress2"/>
+                            <prop type="string" name="streetAddress3"/>
+                            <prop type="string" name="taxIdentificationNumber"/>
+                            <prop type="string" name="zipExtendedCode"/>
+                          </prop>
+                          <discriminator property="jobDetailsType" value="DataBox">
+                            <prop readOnly="True" type="array<@CopyProgress_read>" name="copyProgress">
+                              <item type="@CopyProgress_read"/>
+                            </prop>
+                            <prop type="string" name="devicePassword"/>
+                          </discriminator>
+                          <discriminator property="jobDetailsType" value="DataBoxCustomerDisk">
+                            <prop readOnly="True" type="array<object>" name="copyProgress">
+                              <item type="object">
+                                <prop readOnly="True" type="string" name="accountId"/>
+                                <prop readOnly="True" type="array<string>" name="actions">
+                                  <item type="string">
+                                    <enum>
+                                      <item value="&quot;MoveToCleanUpDevice&quot;"/>
+                                      <item value="&quot;None&quot;"/>
+                                      <item value="&quot;ReachOutToOperation&quot;"/>
+                                      <item value="&quot;Restart&quot;"/>
+                                      <item value="&quot;Resume&quot;"/>
+                                    </enum>
+                                  </item>
+                                </prop>
+                                <prop readOnly="True" type="integer64" name="bytesProcessed"/>
+                                <prop readOnly="True" type="string" name="copyStatus">
+                                  <enum>
+                                    <item value="&quot;Completed&quot;"/>
+                                    <item value="&quot;CompletedWithErrors&quot;"/>
+                                    <item value="&quot;DeviceFormatted&quot;"/>
+                                    <item value="&quot;DeviceMetadataModified&quot;"/>
+                                    <item value="&quot;DriveCorrupted&quot;"/>
+                                    <item value="&quot;DriveNotDetected&quot;"/>
+                                    <item value="&quot;DriveNotReceived&quot;"/>
+                                    <item value="&quot;Failed&quot;"/>
+                                    <item value="&quot;HardwareError&quot;"/>
+                                    <item value="&quot;InProgress&quot;"/>
+                                    <item value="&quot;MetadataFilesModifiedOrRemoved&quot;"/>
+                                    <item value="&quot;NotReturned&quot;"/>
+                                    <item value="&quot;NotStarted&quot;"/>
+                                    <item value="&quot;OtherServiceError&quot;"/>
+                                    <item value="&quot;OtherUserError&quot;"/>
+                                    <item value="&quot;StorageAccountNotAccessible&quot;"/>
+                                    <item value="&quot;UnsupportedData&quot;"/>
+                                    <item value="&quot;UnsupportedDrive&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="string" name="dataAccountType">
+                                  <enum>
+                                    <item value="&quot;ManagedDisk&quot;"/>
+                                    <item value="&quot;StorageAccount&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="integer64" name="directoriesErroredOut"/>
+                                <prop readOnly="True" type="@CloudError_read" name="error"/>
+                                <prop readOnly="True" type="integer64" name="filesErroredOut"/>
+                                <prop readOnly="True" type="integer64" name="filesProcessed"/>
+                                <prop readOnly="True" type="integer64" name="invalidDirectoriesProcessed"/>
+                                <prop readOnly="True" type="integer64" name="invalidFileBytesUploaded"/>
+                                <prop readOnly="True" type="integer64" name="invalidFilesProcessed"/>
+                                <prop readOnly="True" type="boolean" name="isEnumerationInProgress"/>
+                                <prop readOnly="True" type="integer64" name="renamedContainerCount"/>
+                                <prop readOnly="True" type="string" name="serialNumber"/>
+                                <prop readOnly="True" type="string" name="storageAccountName"/>
+                                <prop readOnly="True" type="integer64" name="totalBytesToProcess"/>
+                                <prop readOnly="True" type="integer64" name="totalFilesToProcess"/>
+                                <prop readOnly="True" type="string" name="transferType">
+                                  <enum>
+                                    <item value="&quot;ExportFromAzure&quot;"/>
+                                    <item value="&quot;ImportToAzure&quot;"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="object" name="deliverToDcPackageDetails">
+                              <prop type="string" name="carrierName"/>
+                              <prop type="string" name="trackingId"/>
+                            </prop>
+                            <prop type="boolean" name="enableManifestBackup">
+                              <default value="false"/>
+                            </prop>
+                            <prop readOnly="True" type="object" name="exportDiskDetailsCollection">
+                              <additionalProp readOnly="True">
+                                <item type="object">
+                                  <prop readOnly="True" type="string" name="backupManifestCloudPath"/>
+                                  <prop readOnly="True" type="string" name="manifestFile"/>
+                                  <prop readOnly="True" type="string" name="manifestHash"/>
+                                </item>
+                              </additionalProp>
+                            </prop>
+                            <prop type="object" name="importDiskDetailsCollection">
+                              <additionalProp>
+                                <item type="object">
+                                  <prop readOnly="True" type="string" name="backupManifestCloudPath"/>
+                                  <prop type="string" name="bitLockerKey" required="True" secret="True"/>
+                                  <prop type="string" name="manifestFile" required="True"/>
+                                  <prop type="string" name="manifestHash" required="True"/>
+                                </item>
+                              </additionalProp>
+                            </prop>
+                            <prop type="object" name="returnToCustomerPackageDetails" required="True">
+                              <prop type="string" name="carrierAccountNumber" secret="True"/>
+                              <prop type="string" name="carrierName"/>
+                              <prop type="string" name="trackingId"/>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="jobDetailsType" value="DataBoxDisk">
+                            <prop readOnly="True" type="array<object>" name="copyProgress">
+                              <item type="object">
+                                <prop readOnly="True" type="array<string>" name="actions">
+                                  <item type="string">
+                                    <enum>
+                                      <item value="&quot;MoveToCleanUpDevice&quot;"/>
+                                      <item value="&quot;None&quot;"/>
+                                      <item value="&quot;ReachOutToOperation&quot;"/>
+                                      <item value="&quot;Restart&quot;"/>
+                                      <item value="&quot;Resume&quot;"/>
+                                    </enum>
+                                  </item>
+                                </prop>
+                                <prop readOnly="True" type="integer64" name="bytesCopied"/>
+                                <prop readOnly="True" type="@CloudError_read" name="error"/>
+                                <prop readOnly="True" type="integer32" name="percentComplete"/>
+                                <prop readOnly="True" type="string" name="serialNumber"/>
+                                <prop readOnly="True" type="string" name="status">
+                                  <enum>
+                                    <item value="&quot;Completed&quot;"/>
+                                    <item value="&quot;CompletedWithErrors&quot;"/>
+                                    <item value="&quot;DeviceFormatted&quot;"/>
+                                    <item value="&quot;DeviceMetadataModified&quot;"/>
+                                    <item value="&quot;DriveCorrupted&quot;"/>
+                                    <item value="&quot;DriveNotDetected&quot;"/>
+                                    <item value="&quot;DriveNotReceived&quot;"/>
+                                    <item value="&quot;Failed&quot;"/>
+                                    <item value="&quot;HardwareError&quot;"/>
+                                    <item value="&quot;InProgress&quot;"/>
+                                    <item value="&quot;MetadataFilesModifiedOrRemoved&quot;"/>
+                                    <item value="&quot;NotReturned&quot;"/>
+                                    <item value="&quot;NotStarted&quot;"/>
+                                    <item value="&quot;OtherServiceError&quot;"/>
+                                    <item value="&quot;OtherUserError&quot;"/>
+                                    <item value="&quot;StorageAccountNotAccessible&quot;"/>
+                                    <item value="&quot;UnsupportedData&quot;"/>
+                                    <item value="&quot;UnsupportedDrive&quot;"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="object" name="disksAndSizeDetails">
+                              <additionalProp readOnly="True">
+                                <item type="integer32"/>
+                              </additionalProp>
+                            </prop>
+                            <prop readOnly="True" type="array<object>" name="granularCopyLogDetails">
+                              <item type="object">
+                                <prop readOnly="True" type="string" name="accountId"/>
+                                <prop const="True" type="string" name="copyLogDetailsType" required="True">
+                                  <default value="&quot;DataBoxCustomerDisk&quot;"/>
+                                  <enum>
+                                    <item value="&quot;DataBox&quot;"/>
+                                    <item value="&quot;DataBoxCustomerDisk&quot;"/>
+                                    <item value="&quot;DataBoxDisk&quot;"/>
+                                    <item value="&quot;DataBoxHeavy&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="string" name="errorLogLink"/>
+                                <prop readOnly="True" type="string" name="serialNumber"/>
+                                <prop readOnly="True" type="string" name="verboseLogLink"/>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="array<object>" name="granularCopyProgress">
+                              <item type="object">
+                                <prop readOnly="True" type="string" name="accountId"/>
+                                <prop readOnly="True" type="array<string>" name="actions">
+                                  <item type="string">
+                                    <enum>
+                                      <item value="&quot;MoveToCleanUpDevice&quot;"/>
+                                      <item value="&quot;None&quot;"/>
+                                      <item value="&quot;ReachOutToOperation&quot;"/>
+                                      <item value="&quot;Restart&quot;"/>
+                                      <item value="&quot;Resume&quot;"/>
+                                    </enum>
+                                  </item>
+                                </prop>
+                                <prop readOnly="True" type="integer64" name="bytesProcessed"/>
+                                <prop readOnly="True" type="string" name="copyStatus">
+                                  <enum>
+                                    <item value="&quot;Completed&quot;"/>
+                                    <item value="&quot;CompletedWithErrors&quot;"/>
+                                    <item value="&quot;DeviceFormatted&quot;"/>
+                                    <item value="&quot;DeviceMetadataModified&quot;"/>
+                                    <item value="&quot;DriveCorrupted&quot;"/>
+                                    <item value="&quot;DriveNotDetected&quot;"/>
+                                    <item value="&quot;DriveNotReceived&quot;"/>
+                                    <item value="&quot;Failed&quot;"/>
+                                    <item value="&quot;HardwareError&quot;"/>
+                                    <item value="&quot;InProgress&quot;"/>
+                                    <item value="&quot;MetadataFilesModifiedOrRemoved&quot;"/>
+                                    <item value="&quot;NotReturned&quot;"/>
+                                    <item value="&quot;NotStarted&quot;"/>
+                                    <item value="&quot;OtherServiceError&quot;"/>
+                                    <item value="&quot;OtherUserError&quot;"/>
+                                    <item value="&quot;StorageAccountNotAccessible&quot;"/>
+                                    <item value="&quot;UnsupportedData&quot;"/>
+                                    <item value="&quot;UnsupportedDrive&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="string" name="dataAccountType">
+                                  <enum>
+                                    <item value="&quot;ManagedDisk&quot;"/>
+                                    <item value="&quot;StorageAccount&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="integer64" name="directoriesErroredOut"/>
+                                <prop readOnly="True" type="@CloudError_read" name="error"/>
+                                <prop readOnly="True" type="integer64" name="filesErroredOut"/>
+                                <prop readOnly="True" type="integer64" name="filesProcessed"/>
+                                <prop readOnly="True" type="integer64" name="invalidDirectoriesProcessed"/>
+                                <prop readOnly="True" type="integer64" name="invalidFileBytesUploaded"/>
+                                <prop readOnly="True" type="integer64" name="invalidFilesProcessed"/>
+                                <prop readOnly="True" type="boolean" name="isEnumerationInProgress"/>
+                                <prop readOnly="True" type="integer64" name="renamedContainerCount"/>
+                                <prop readOnly="True" type="string" name="serialNumber"/>
+                                <prop readOnly="True" type="string" name="storageAccountName"/>
+                                <prop readOnly="True" type="integer64" name="totalBytesToProcess"/>
+                                <prop readOnly="True" type="integer64" name="totalFilesToProcess"/>
+                                <prop readOnly="True" type="string" name="transferType">
+                                  <enum>
+                                    <item value="&quot;ExportFromAzure&quot;"/>
+                                    <item value="&quot;ImportToAzure&quot;"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                            <prop type="string" name="passkey"/>
+                            <prop type="object" name="preferredDisks">
+                              <additionalProp>
+                                <item type="integer32"/>
+                              </additionalProp>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="jobDetailsType" value="DataBoxHeavy">
+                            <prop readOnly="True" type="array<object>" name="copyProgress">
+                              <item type="object" cls="CopyProgress_read">
+                                <prop readOnly="True" type="string" name="accountId"/>
+                                <prop readOnly="True" type="array<string>" name="actions">
+                                  <item type="string">
+                                    <enum>
+                                      <item value="&quot;MoveToCleanUpDevice&quot;"/>
+                                      <item value="&quot;None&quot;"/>
+                                      <item value="&quot;ReachOutToOperation&quot;"/>
+                                      <item value="&quot;Restart&quot;"/>
+                                      <item value="&quot;Resume&quot;"/>
+                                    </enum>
+                                  </item>
+                                </prop>
+                                <prop readOnly="True" type="integer64" name="bytesProcessed"/>
+                                <prop readOnly="True" type="string" name="dataAccountType">
+                                  <enum>
+                                    <item value="&quot;ManagedDisk&quot;"/>
+                                    <item value="&quot;StorageAccount&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="integer64" name="directoriesErroredOut"/>
+                                <prop readOnly="True" type="@CloudError_read" name="error"/>
+                                <prop readOnly="True" type="integer64" name="filesErroredOut"/>
+                                <prop readOnly="True" type="integer64" name="filesProcessed"/>
+                                <prop readOnly="True" type="integer64" name="invalidDirectoriesProcessed"/>
+                                <prop readOnly="True" type="integer64" name="invalidFileBytesUploaded"/>
+                                <prop readOnly="True" type="integer64" name="invalidFilesProcessed"/>
+                                <prop readOnly="True" type="boolean" name="isEnumerationInProgress"/>
+                                <prop readOnly="True" type="integer64" name="renamedContainerCount"/>
+                                <prop readOnly="True" type="string" name="storageAccountName"/>
+                                <prop readOnly="True" type="integer64" name="totalBytesToProcess"/>
+                                <prop readOnly="True" type="integer64" name="totalFilesToProcess"/>
+                                <prop readOnly="True" type="string" name="transferType">
+                                  <enum>
+                                    <item value="&quot;ExportFromAzure&quot;"/>
+                                    <item value="&quot;ImportToAzure&quot;"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                            <prop type="string" name="devicePassword"/>
+                          </discriminator>
+                        </prop>
+                        <prop readOnly="True" type="object" name="error" cls="CloudError_read">
+                          <prop readOnly="True" type="array<object>" name="additionalInfo">
+                            <item type="object">
+                              <prop type="object" name="info">
+                                <additionalProp>
+                                  <item type="any"/>
+                                </additionalProp>
+                              </prop>
+                              <prop type="string" name="type"/>
+                            </item>
+                          </prop>
+                          <prop type="string" name="code"/>
+                          <prop readOnly="True" type="array<@CloudError_read>" name="details">
+                            <item type="@CloudError_read"/>
+                          </prop>
+                          <prop type="string" name="message"/>
+                          <prop type="string" name="target"/>
+                        </prop>
+                        <prop readOnly="True" type="boolean" name="isCancellable"/>
+                        <prop readOnly="True" type="boolean" name="isCancellableWithoutFee"/>
+                        <prop readOnly="True" type="boolean" name="isDeletable"/>
+                        <prop readOnly="True" type="boolean" name="isPrepareToShipEnabled"/>
+                        <prop readOnly="True" type="boolean" name="isShippingAddressEditable"/>
+                        <prop readOnly="True" type="string" name="reverseShippingDetailsUpdate">
+                          <enum>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                            <item value="&quot;NotSupported&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="reverseTransportPreferenceUpdate">
+                          <enum>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                            <item value="&quot;NotSupported&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="startTime"/>
+                        <prop readOnly="True" type="string" name="status">
+                          <enum>
+                            <item value="&quot;Aborted&quot;"/>
+                            <item value="&quot;AtAzureDC&quot;"/>
+                            <item value="&quot;AwaitingShipmentDetails&quot;"/>
+                            <item value="&quot;Cancelled&quot;"/>
+                            <item value="&quot;Completed&quot;"/>
+                            <item value="&quot;CompletedWithErrors&quot;"/>
+                            <item value="&quot;CompletedWithWarnings&quot;"/>
+                            <item value="&quot;Created&quot;"/>
+                            <item value="&quot;DataCopy&quot;"/>
+                            <item value="&quot;Delivered&quot;"/>
+                            <item value="&quot;DeviceOrdered&quot;"/>
+                            <item value="&quot;DevicePrepared&quot;"/>
+                            <item value="&quot;Dispatched&quot;"/>
+                            <item value="&quot;Failed_IssueDetectedAtAzureDC&quot;"/>
+                            <item value="&quot;Failed_IssueReportedAtCustomer&quot;"/>
+                            <item value="&quot;PickedUp&quot;"/>
+                            <item value="&quot;PreparingToShipFromAzureDC&quot;"/>
+                            <item value="&quot;ReadyToDispatchFromAzureDC&quot;"/>
+                            <item value="&quot;ReadyToReceiveAtAzureDC&quot;"/>
+                            <item value="&quot;ShippedToAzureDC&quot;"/>
+                            <item value="&quot;ShippedToCustomer&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="transferType" required="True">
+                          <enum>
+                            <item value="&quot;ExportFromAzure&quot;"/>
+                            <item value="&quot;ImportToAzure&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="sku" required="True">
+                        <prop type="string" name="displayName"/>
+                        <prop type="string" name="family"/>
+                        <prop type="string" name="model">
+                          <enum>
+                            <item value="&quot;AzureDataBox120&quot;"/>
+                            <item value="&quot;AzureDataBox525&quot;"/>
+                            <item value="&quot;DataBox&quot;"/>
+                            <item value="&quot;DataBoxCustomerDisk&quot;"/>
+                            <item value="&quot;DataBoxDisk&quot;"/>
+                            <item value="&quot;DataBoxHeavy&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="name" required="True">
+                          <enum>
+                            <item value="&quot;DataBox&quot;"/>
+                            <item value="&quot;DataBoxCustomerDisk&quot;"/>
+                            <item value="&quot;DataBoxDisk&quot;"/>
+                            <item value="&quot;DataBoxHeavy&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop readOnly="True" type="dateTime" name="createdAt"/>
+                        <prop readOnly="True" type="string" name="createdBy"/>
+                        <prop readOnly="True" type="string" name="createdByType"/>
+                        <prop readOnly="True" type="dateTime" name="lastModifiedAt"/>
+                        <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                        <prop readOnly="True" type="string" name="lastModifiedByType"/>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_Jobs_ListByResourceGroup" operationId="Jobs_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/jobs">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="$skipToken" arg="$Query.skipToken"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-02-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.DataBox/jobs/{}"/>
+                      </prop>
+                      <prop type="IdentityObject" name="identity">
+                        <prop readOnly="True" type="string" name="principalId"/>
+                        <prop readOnly="True" type="string" name="tenantId"/>
+                        <prop type="string" name="type">
+                          <default value="&quot;None&quot;"/>
+                        </prop>
+                        <prop type="object" name="userAssignedIdentities">
+                          <additionalProp>
+                            <item type="object">
+                              <prop readOnly="True" type="string" name="clientId"/>
+                              <prop readOnly="True" type="string" name="principalId"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" required="True" clientFlatten="True">
+                        <prop readOnly="True" type="boolean" name="allDevicesLost"/>
+                        <prop readOnly="True" type="string" name="cancellationReason"/>
+                        <prop readOnly="True" type="string" name="delayedStage">
+                          <enum>
+                            <item value="&quot;Aborted&quot;"/>
+                            <item value="&quot;AtAzureDC&quot;"/>
+                            <item value="&quot;AwaitingShipmentDetails&quot;"/>
+                            <item value="&quot;Cancelled&quot;"/>
+                            <item value="&quot;Completed&quot;"/>
+                            <item value="&quot;CompletedWithErrors&quot;"/>
+                            <item value="&quot;CompletedWithWarnings&quot;"/>
+                            <item value="&quot;Created&quot;"/>
+                            <item value="&quot;DataCopy&quot;"/>
+                            <item value="&quot;Delivered&quot;"/>
+                            <item value="&quot;DeviceOrdered&quot;"/>
+                            <item value="&quot;DevicePrepared&quot;"/>
+                            <item value="&quot;Dispatched&quot;"/>
+                            <item value="&quot;Failed_IssueDetectedAtAzureDC&quot;"/>
+                            <item value="&quot;Failed_IssueReportedAtCustomer&quot;"/>
+                            <item value="&quot;PickedUp&quot;"/>
+                            <item value="&quot;PreparingToShipFromAzureDC&quot;"/>
+                            <item value="&quot;ReadyToDispatchFromAzureDC&quot;"/>
+                            <item value="&quot;ReadyToReceiveAtAzureDC&quot;"/>
+                            <item value="&quot;ShippedToAzureDC&quot;"/>
+                            <item value="&quot;ShippedToCustomer&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="deliveryInfo">
+                          <prop type="dateTime" name="scheduledDateTime"/>
+                        </prop>
+                        <prop type="string" name="deliveryType">
+                          <default value="&quot;NonScheduled&quot;"/>
+                          <enum>
+                            <item value="&quot;NonScheduled&quot;"/>
+                            <item value="&quot;Scheduled&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="details">
+                          <prop readOnly="True" type="array<string>" name="actions">
+                            <item type="string">
+                              <enum>
+                                <item value="&quot;MoveToCleanUpDevice&quot;"/>
+                                <item value="&quot;None&quot;"/>
+                                <item value="&quot;ReachOutToOperation&quot;"/>
+                                <item value="&quot;Restart&quot;"/>
+                                <item value="&quot;Resume&quot;"/>
+                              </enum>
+                            </item>
+                          </prop>
+                          <prop readOnly="True" type="string" name="chainOfCustodySasKey"/>
+                          <prop type="object" name="contactDetails" required="True">
+                            <prop type="string" name="contactName" required="True"/>
+                            <prop type="array<string>" name="emailList" required="True">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="string" name="mobile"/>
+                            <prop type="array<object>" name="notificationPreference">
+                              <item type="object">
+                                <prop type="boolean" name="sendNotification" required="True">
+                                  <default value="true"/>
+                                </prop>
+                                <prop type="string" name="stageName" required="True">
+                                  <enum>
+                                    <item value="&quot;AtAzureDC&quot;"/>
+                                    <item value="&quot;Created&quot;"/>
+                                    <item value="&quot;DataCopy&quot;"/>
+                                    <item value="&quot;Delivered&quot;"/>
+                                    <item value="&quot;DevicePrepared&quot;"/>
+                                    <item value="&quot;Dispatched&quot;"/>
+                                    <item value="&quot;PickedUp&quot;"/>
+                                    <item value="&quot;ShippedToCustomer&quot;"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                            <prop type="string" name="phone" required="True"/>
+                            <prop type="string" name="phoneExtension"/>
+                          </prop>
+                          <prop readOnly="True" type="array<object>" name="copyLogDetails">
+                            <item type="object">
+                              <prop type="string" name="copyLogDetailsType" required="True">
+                                <enum>
+                                  <item value="&quot;DataBox&quot;"/>
+                                  <item value="&quot;DataBoxCustomerDisk&quot;"/>
+                                  <item value="&quot;DataBoxDisk&quot;"/>
+                                  <item value="&quot;DataBoxHeavy&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="copyLogDetailsType" value="DataBox">
+                                <prop readOnly="True" type="string" name="accountName"/>
+                                <prop readOnly="True" type="string" name="copyLogLink"/>
+                                <prop readOnly="True" type="string" name="copyVerboseLogLink"/>
+                              </discriminator>
+                              <discriminator property="copyLogDetailsType" value="DataBoxCustomerDisk">
+                                <prop readOnly="True" type="string" name="errorLogLink"/>
+                                <prop readOnly="True" type="string" name="serialNumber"/>
+                                <prop readOnly="True" type="string" name="verboseLogLink"/>
+                              </discriminator>
+                              <discriminator property="copyLogDetailsType" value="DataBoxDisk">
+                                <prop readOnly="True" type="string" name="diskSerialNumber"/>
+                                <prop readOnly="True" type="string" name="errorLogLink"/>
+                                <prop readOnly="True" type="string" name="verboseLogLink"/>
+                              </discriminator>
+                              <discriminator property="copyLogDetailsType" value="DataBoxHeavy">
+                                <prop readOnly="True" type="string" name="accountName"/>
+                                <prop readOnly="True" type="array<string>" name="copyLogLink">
+                                  <item type="string"/>
+                                </prop>
+                                <prop readOnly="True" type="array<string>" name="copyVerboseLogLink">
+                                  <item type="string"/>
+                                </prop>
+                              </discriminator>
+                            </item>
+                          </prop>
+                          <prop readOnly="True" type="string" name="dataCenterCode">
+                            <enum>
+                              <item value="&quot;AM2&quot;"/>
+                              <item value="&quot;AMS06&quot;"/>
+                              <item value="&quot;AMS20&quot;"/>
+                              <item value="&quot;AMS25&quot;"/>
+                              <item value="&quot;AUH20&quot;"/>
+                              <item value="&quot;AdHoc&quot;"/>
+                              <item value="&quot;BJB&quot;"/>
+                              <item value="&quot;BJS20&quot;"/>
+                              <item value="&quot;BL20&quot;"/>
+                              <item value="&quot;BL24&quot;"/>
+                              <item value="&quot;BL7&quot;"/>
+                              <item value="&quot;BN1&quot;"/>
+                              <item value="&quot;BN7&quot;"/>
+                              <item value="&quot;BOM01&quot;"/>
+                              <item value="&quot;BY1&quot;"/>
+                              <item value="&quot;BY2&quot;"/>
+                              <item value="&quot;BY21&quot;"/>
+                              <item value="&quot;BY24&quot;"/>
+                              <item value="&quot;CBR20&quot;"/>
+                              <item value="&quot;CH1&quot;"/>
+                              <item value="&quot;CPQ02&quot;"/>
+                              <item value="&quot;CPQ20&quot;"/>
+                              <item value="&quot;CPQ21&quot;"/>
+                              <item value="&quot;CWL20&quot;"/>
+                              <item value="&quot;CYS04&quot;"/>
+                              <item value="&quot;DSM05&quot;"/>
+                              <item value="&quot;DSM11&quot;"/>
+                              <item value="&quot;DUB07&quot;"/>
+                              <item value="&quot;DXB23&quot;"/>
+                              <item value="&quot;FRA22&quot;"/>
+                              <item value="&quot;HKG20&quot;"/>
+                              <item value="&quot;IDC5&quot;"/>
+                              <item value="&quot;Invalid&quot;"/>
+                              <item value="&quot;JNB21&quot;"/>
+                              <item value="&quot;JNB22&quot;"/>
+                              <item value="&quot;LON24&quot;"/>
+                              <item value="&quot;MAA01&quot;"/>
+                              <item value="&quot;MEL23&quot;"/>
+                              <item value="&quot;MNZ21&quot;"/>
+                              <item value="&quot;MWH01&quot;"/>
+                              <item value="&quot;NTG20&quot;"/>
+                              <item value="&quot;ORK70&quot;"/>
+                              <item value="&quot;OSA02&quot;"/>
+                              <item value="&quot;OSA20&quot;"/>
+                              <item value="&quot;OSA22&quot;"/>
+                              <item value="&quot;OSA23&quot;"/>
+                              <item value="&quot;PAR22&quot;"/>
+                              <item value="&quot;PNQ01&quot;"/>
+                              <item value="&quot;PUS20&quot;"/>
+                              <item value="&quot;SEL20&quot;"/>
+                              <item value="&quot;SEL21&quot;"/>
+                              <item value="&quot;SG2&quot;"/>
+                              <item value="&quot;SHA03&quot;"/>
+                              <item value="&quot;SIN20&quot;"/>
+                              <item value="&quot;SN5&quot;"/>
+                              <item value="&quot;SN6&quot;"/>
+                              <item value="&quot;SN8&quot;"/>
+                              <item value="&quot;SSE90&quot;"/>
+                              <item value="&quot;SVG20&quot;"/>
+                              <item value="&quot;SYD03&quot;"/>
+                              <item value="&quot;SYD23&quot;"/>
+                              <item value="&quot;TYO01&quot;"/>
+                              <item value="&quot;TYO22&quot;"/>
+                              <item value="&quot;TYO23&quot;"/>
+                              <item value="&quot;YQB20&quot;"/>
+                              <item value="&quot;YTO20&quot;"/>
+                              <item value="&quot;YTO21&quot;"/>
+                              <item value="&quot;ZRH20&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="array<object>" name="dataExportDetails">
+                            <item type="object">
+                              <prop type="@DataAccountDetails_read" name="accountDetails" required="True"/>
+                              <prop type="string" name="logCollectionLevel">
+                                <default value="&quot;Error&quot;"/>
+                                <enum>
+                                  <item value="&quot;Error&quot;"/>
+                                  <item value="&quot;Verbose&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="object" name="transferConfiguration" required="True">
+                                <prop type="object" name="transferAllDetails">
+                                  <prop type="object" name="include">
+                                    <prop type="string" name="dataAccountType" required="True">
+                                      <default value="&quot;StorageAccount&quot;"/>
+                                      <enum>
+                                        <item value="&quot;ManagedDisk&quot;"/>
+                                        <item value="&quot;StorageAccount&quot;"/>
+                                      </enum>
+                                    </prop>
+                                    <prop type="boolean" name="transferAllBlobs"/>
+                                    <prop type="boolean" name="transferAllFiles"/>
+                                  </prop>
+                                </prop>
+                                <prop type="string" name="transferConfigurationType" required="True">
+                                  <enum>
+                                    <item value="&quot;TransferAll&quot;"/>
+                                    <item value="&quot;TransferUsingFilter&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="object" name="transferFilterDetails">
+                                  <prop type="object" name="include">
+                                    <prop type="object" name="azureFileFilterDetails">
+                                      <prop type="array<string>" name="filePathList">
+                                        <item type="string"/>
+                                      </prop>
+                                      <prop type="array<string>" name="filePrefixList">
+                                        <item type="string"/>
+                                      </prop>
+                                      <prop type="array<string>" name="fileShareList">
+                                        <item type="string"/>
+                                      </prop>
+                                    </prop>
+                                    <prop type="object" name="blobFilterDetails">
+                                      <prop type="array<string>" name="blobPathList">
+                                        <item type="string"/>
+                                      </prop>
+                                      <prop type="array<string>" name="blobPrefixList">
+                                        <item type="string"/>
+                                      </prop>
+                                      <prop type="array<string>" name="containerList">
+                                        <item type="string"/>
+                                      </prop>
+                                    </prop>
+                                    <prop type="string" name="dataAccountType" required="True">
+                                      <default value="&quot;StorageAccount&quot;"/>
+                                      <enum>
+                                        <item value="&quot;ManagedDisk&quot;"/>
+                                        <item value="&quot;StorageAccount&quot;"/>
+                                      </enum>
+                                    </prop>
+                                    <prop type="array<object>" name="filterFileDetails">
+                                      <item type="object">
+                                        <prop type="string" name="filterFilePath" required="True"/>
+                                        <prop type="string" name="filterFileType" required="True">
+                                          <enum>
+                                            <item value="&quot;AzureBlob&quot;"/>
+                                            <item value="&quot;AzureFile&quot;"/>
+                                          </enum>
+                                        </prop>
+                                      </item>
+                                    </prop>
+                                  </prop>
+                                </prop>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="array<object>" name="dataImportDetails">
+                            <item type="object">
+                              <prop type="@DataAccountDetails_read" name="accountDetails" required="True"/>
+                              <prop type="string" name="logCollectionLevel">
+                                <default value="&quot;Error&quot;"/>
+                                <enum>
+                                  <item value="&quot;Error&quot;"/>
+                                  <item value="&quot;Verbose&quot;"/>
+                                </enum>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop readOnly="True" type="object" name="datacenterAddress">
+                            <prop readOnly="True" type="string" name="dataCenterAzureLocation"/>
+                            <prop type="string" name="datacenterAddressType" required="True">
+                              <enum>
+                                <item value="&quot;DatacenterAddressInstruction&quot;"/>
+                                <item value="&quot;DatacenterAddressLocation&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="array<string>" name="supportedCarriersForReturnShipment">
+                              <item type="string"/>
+                            </prop>
+                            <discriminator property="datacenterAddressType" value="DatacenterAddressInstruction">
+                              <prop readOnly="True" type="string" name="communicationInstruction"/>
+                            </discriminator>
+                            <discriminator property="datacenterAddressType" value="DatacenterAddressLocation">
+                              <prop readOnly="True" type="string" name="additionalShippingInformation"/>
+                              <prop readOnly="True" type="string" name="addressType"/>
+                              <prop readOnly="True" type="string" name="city"/>
+                              <prop readOnly="True" type="string" name="company"/>
+                              <prop readOnly="True" type="string" name="contactPersonName"/>
+                              <prop readOnly="True" type="string" name="country"/>
+                              <prop readOnly="True" type="string" name="phone"/>
+                              <prop readOnly="True" type="string" name="phoneExtension"/>
+                              <prop readOnly="True" type="string" name="state"/>
+                              <prop readOnly="True" type="string" name="street1"/>
+                              <prop readOnly="True" type="string" name="street2"/>
+                              <prop readOnly="True" type="string" name="street3"/>
+                              <prop readOnly="True" type="string" name="zip"/>
+                            </discriminator>
+                          </prop>
+                          <prop readOnly="True" type="@PackageShippingDetails_read" name="deliveryPackage"/>
+                          <prop readOnly="True" type="object" name="deviceErasureDetails">
+                            <prop readOnly="True" type="string" name="deviceErasureStatus">
+                              <enum>
+                                <item value="&quot;Cancelled&quot;"/>
+                                <item value="&quot;Cancelling&quot;"/>
+                                <item value="&quot;CustomerActionPerformed&quot;"/>
+                                <item value="&quot;CustomerActionPerformedForCleanUp&quot;"/>
+                                <item value="&quot;Failed&quot;"/>
+                                <item value="&quot;InProgress&quot;"/>
+                                <item value="&quot;None&quot;"/>
+                                <item value="&quot;Succeeded&quot;"/>
+                                <item value="&quot;SucceededWithErrors&quot;"/>
+                                <item value="&quot;SucceededWithWarnings&quot;"/>
+                                <item value="&quot;WaitingForCustomerAction&quot;"/>
+                                <item value="&quot;WaitingForCustomerActionForCleanUp&quot;"/>
+                                <item value="&quot;WaitingForCustomerActionForKek&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="string" name="erasureOrDestructionCertificateSasKey"/>
+                          </prop>
+                          <prop type="integer32" name="expectedDataSizeInTeraBytes"/>
+                          <prop type="string" name="jobDetailsType" required="True">
+                            <enum>
+                              <item value="&quot;DataBox&quot;"/>
+                              <item value="&quot;DataBoxCustomerDisk&quot;"/>
+                              <item value="&quot;DataBoxDisk&quot;"/>
+                              <item value="&quot;DataBoxHeavy&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="array<object>" name="jobStages">
+                            <item type="object">
+                              <prop readOnly="True" type="array<object>" name="delayInformation">
+                                <item type="object">
+                                  <prop readOnly="True" type="string" name="description"/>
+                                  <prop readOnly="True" type="string" name="errorCode">
+                                    <enum>
+                                      <item value="&quot;ActiveOrderLimitBreachedDelay&quot;"/>
+                                      <item value="&quot;HighDemandDelay&quot;"/>
+                                      <item value="&quot;InternalIssueDelay&quot;"/>
+                                      <item value="&quot;LargeNumberOfFilesDelay&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop readOnly="True" type="dateTime" name="resolutionTime"/>
+                                  <prop readOnly="True" type="dateTime" name="startTime"/>
+                                  <prop readOnly="True" type="string" name="status">
+                                    <enum>
+                                      <item value="&quot;Active&quot;"/>
+                                      <item value="&quot;Resolved&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </item>
+                              </prop>
+                              <prop readOnly="True" type="string" name="displayName"/>
+                              <prop readOnly="True" type="object" name="jobStageDetails">
+                                <additionalProp readOnly="True">
+                                  <item type="any"/>
+                                </additionalProp>
+                              </prop>
+                              <prop readOnly="True" type="string" name="stageName">
+                                <enum>
+                                  <item value="&quot;Aborted&quot;"/>
+                                  <item value="&quot;AtAzureDC&quot;"/>
+                                  <item value="&quot;AwaitingShipmentDetails&quot;"/>
+                                  <item value="&quot;Cancelled&quot;"/>
+                                  <item value="&quot;Completed&quot;"/>
+                                  <item value="&quot;CompletedWithErrors&quot;"/>
+                                  <item value="&quot;CompletedWithWarnings&quot;"/>
+                                  <item value="&quot;Created&quot;"/>
+                                  <item value="&quot;DataCopy&quot;"/>
+                                  <item value="&quot;Delivered&quot;"/>
+                                  <item value="&quot;DeviceOrdered&quot;"/>
+                                  <item value="&quot;DevicePrepared&quot;"/>
+                                  <item value="&quot;Dispatched&quot;"/>
+                                  <item value="&quot;Failed_IssueDetectedAtAzureDC&quot;"/>
+                                  <item value="&quot;Failed_IssueReportedAtCustomer&quot;"/>
+                                  <item value="&quot;PickedUp&quot;"/>
+                                  <item value="&quot;PreparingToShipFromAzureDC&quot;"/>
+                                  <item value="&quot;ReadyToDispatchFromAzureDC&quot;"/>
+                                  <item value="&quot;ReadyToReceiveAtAzureDC&quot;"/>
+                                  <item value="&quot;ShippedToAzureDC&quot;"/>
+                                  <item value="&quot;ShippedToCustomer&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop readOnly="True" type="string" name="stageStatus">
+                                <enum>
+                                  <item value="&quot;Cancelled&quot;"/>
+                                  <item value="&quot;Cancelling&quot;"/>
+                                  <item value="&quot;CustomerActionPerformed&quot;"/>
+                                  <item value="&quot;CustomerActionPerformedForCleanUp&quot;"/>
+                                  <item value="&quot;Failed&quot;"/>
+                                  <item value="&quot;InProgress&quot;"/>
+                                  <item value="&quot;None&quot;"/>
+                                  <item value="&quot;Succeeded&quot;"/>
+                                  <item value="&quot;SucceededWithErrors&quot;"/>
+                                  <item value="&quot;SucceededWithWarnings&quot;"/>
+                                  <item value="&quot;WaitingForCustomerAction&quot;"/>
+                                  <item value="&quot;WaitingForCustomerActionForCleanUp&quot;"/>
+                                  <item value="&quot;WaitingForCustomerActionForKek&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop readOnly="True" type="dateTime" name="stageTime"/>
+                            </item>
+                          </prop>
+                          <prop type="object" name="keyEncryptionKey">
+                            <prop type="object" name="identityProperties">
+                              <prop type="string" name="type"/>
+                              <prop type="object" name="userAssigned">
+                                <prop type="string" name="resourceId"/>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="kekType" required="True">
+                              <default value="&quot;MicrosoftManaged&quot;"/>
+                              <enum>
+                                <item value="&quot;CustomerManaged&quot;"/>
+                                <item value="&quot;MicrosoftManaged&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="kekUrl"/>
+                            <prop type="string" name="kekVaultResourceID"/>
+                          </prop>
+                          <prop readOnly="True" type="object" name="lastMitigationActionOnJob">
+                            <prop type="dateTime" name="actionDateTimeInUtc"/>
+                            <prop type="string" name="customerResolution">
+                              <enum>
+                                <item value="&quot;MoveToCleanUpDevice&quot;"/>
+                                <item value="&quot;None&quot;"/>
+                                <item value="&quot;ReachOutToOperation&quot;"/>
+                                <item value="&quot;Restart&quot;"/>
+                                <item value="&quot;Resume&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="boolean" name="isPerformedByCustomer"/>
+                          </prop>
+                          <prop type="object" name="preferences">
+                            <prop type="object" name="encryptionPreferences">
+                              <prop type="string" name="doubleEncryption">
+                                <default value="&quot;Disabled&quot;"/>
+                                <enum>
+                                  <item value="&quot;Disabled&quot;"/>
+                                  <item value="&quot;Enabled&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="hardwareEncryption">
+                                <enum>
+                                  <item value="&quot;Disabled&quot;"/>
+                                  <item value="&quot;Enabled&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="array<string>" name="preferredDataCenterRegion">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="@TransportPreferences_read" name="reverseTransportPreferences"/>
+                            <prop type="array<string>" name="storageAccountAccessTierPreferences">
+                              <item type="string">
+                                <enum>
+                                  <item value="&quot;Archive&quot;"/>
+                                </enum>
+                              </item>
+                            </prop>
+                            <prop type="@TransportPreferences_read" name="transportPreferences"/>
+                          </prop>
+                          <prop readOnly="True" type="@PackageShippingDetails_read" name="returnPackage"/>
+                          <prop readOnly="True" type="string" name="reverseShipmentLabelSasKey"/>
+                          <prop type="object" name="reverseShippingDetails">
+                            <prop type="object" name="contactDetails">
+                              <prop type="string" name="contactName" required="True">
+                                <format minLength="1"/>
+                              </prop>
+                              <prop type="string" name="mobile"/>
+                              <prop type="string" name="phone" required="True">
+                                <format minLength="1"/>
+                              </prop>
+                              <prop type="string" name="phoneExtension"/>
+                            </prop>
+                            <prop readOnly="True" type="boolean" name="isUpdated"/>
+                            <prop type="@ShippingAddress_read" name="shippingAddress"/>
+                          </prop>
+                          <prop type="@ShippingAddress_read" name="shippingAddress"/>
+                          <discriminator property="jobDetailsType" value="DataBox">
+                            <prop readOnly="True" type="array<@CopyProgress_read>" name="copyProgress">
+                              <item type="@CopyProgress_read"/>
+                            </prop>
+                            <prop type="string" name="devicePassword"/>
+                          </discriminator>
+                          <discriminator property="jobDetailsType" value="DataBoxCustomerDisk">
+                            <prop readOnly="True" type="array<object>" name="copyProgress">
+                              <item type="object">
+                                <prop readOnly="True" type="string" name="accountId"/>
+                                <prop readOnly="True" type="array<string>" name="actions">
+                                  <item type="string">
+                                    <enum>
+                                      <item value="&quot;MoveToCleanUpDevice&quot;"/>
+                                      <item value="&quot;None&quot;"/>
+                                      <item value="&quot;ReachOutToOperation&quot;"/>
+                                      <item value="&quot;Restart&quot;"/>
+                                      <item value="&quot;Resume&quot;"/>
+                                    </enum>
+                                  </item>
+                                </prop>
+                                <prop readOnly="True" type="integer64" name="bytesProcessed"/>
+                                <prop readOnly="True" type="string" name="copyStatus">
+                                  <enum>
+                                    <item value="&quot;Completed&quot;"/>
+                                    <item value="&quot;CompletedWithErrors&quot;"/>
+                                    <item value="&quot;DeviceFormatted&quot;"/>
+                                    <item value="&quot;DeviceMetadataModified&quot;"/>
+                                    <item value="&quot;DriveCorrupted&quot;"/>
+                                    <item value="&quot;DriveNotDetected&quot;"/>
+                                    <item value="&quot;DriveNotReceived&quot;"/>
+                                    <item value="&quot;Failed&quot;"/>
+                                    <item value="&quot;HardwareError&quot;"/>
+                                    <item value="&quot;InProgress&quot;"/>
+                                    <item value="&quot;MetadataFilesModifiedOrRemoved&quot;"/>
+                                    <item value="&quot;NotReturned&quot;"/>
+                                    <item value="&quot;NotStarted&quot;"/>
+                                    <item value="&quot;OtherServiceError&quot;"/>
+                                    <item value="&quot;OtherUserError&quot;"/>
+                                    <item value="&quot;StorageAccountNotAccessible&quot;"/>
+                                    <item value="&quot;UnsupportedData&quot;"/>
+                                    <item value="&quot;UnsupportedDrive&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="string" name="dataAccountType">
+                                  <enum>
+                                    <item value="&quot;ManagedDisk&quot;"/>
+                                    <item value="&quot;StorageAccount&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="integer64" name="directoriesErroredOut"/>
+                                <prop readOnly="True" type="@CloudError_read" name="error"/>
+                                <prop readOnly="True" type="integer64" name="filesErroredOut"/>
+                                <prop readOnly="True" type="integer64" name="filesProcessed"/>
+                                <prop readOnly="True" type="integer64" name="invalidDirectoriesProcessed"/>
+                                <prop readOnly="True" type="integer64" name="invalidFileBytesUploaded"/>
+                                <prop readOnly="True" type="integer64" name="invalidFilesProcessed"/>
+                                <prop readOnly="True" type="boolean" name="isEnumerationInProgress"/>
+                                <prop readOnly="True" type="integer64" name="renamedContainerCount"/>
+                                <prop readOnly="True" type="string" name="serialNumber"/>
+                                <prop readOnly="True" type="string" name="storageAccountName"/>
+                                <prop readOnly="True" type="integer64" name="totalBytesToProcess"/>
+                                <prop readOnly="True" type="integer64" name="totalFilesToProcess"/>
+                                <prop readOnly="True" type="string" name="transferType">
+                                  <enum>
+                                    <item value="&quot;ExportFromAzure&quot;"/>
+                                    <item value="&quot;ImportToAzure&quot;"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="object" name="deliverToDcPackageDetails">
+                              <prop type="string" name="carrierName"/>
+                              <prop type="string" name="trackingId"/>
+                            </prop>
+                            <prop type="boolean" name="enableManifestBackup">
+                              <default value="false"/>
+                            </prop>
+                            <prop readOnly="True" type="object" name="exportDiskDetailsCollection">
+                              <additionalProp readOnly="True">
+                                <item type="object">
+                                  <prop readOnly="True" type="string" name="backupManifestCloudPath"/>
+                                  <prop readOnly="True" type="string" name="manifestFile"/>
+                                  <prop readOnly="True" type="string" name="manifestHash"/>
+                                </item>
+                              </additionalProp>
+                            </prop>
+                            <prop type="object" name="importDiskDetailsCollection">
+                              <additionalProp>
+                                <item type="object">
+                                  <prop readOnly="True" type="string" name="backupManifestCloudPath"/>
+                                  <prop type="string" name="bitLockerKey" required="True" secret="True"/>
+                                  <prop type="string" name="manifestFile" required="True"/>
+                                  <prop type="string" name="manifestHash" required="True"/>
+                                </item>
+                              </additionalProp>
+                            </prop>
+                            <prop type="object" name="returnToCustomerPackageDetails" required="True">
+                              <prop type="string" name="carrierAccountNumber" secret="True"/>
+                              <prop type="string" name="carrierName"/>
+                              <prop type="string" name="trackingId"/>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="jobDetailsType" value="DataBoxDisk">
+                            <prop readOnly="True" type="array<object>" name="copyProgress">
+                              <item type="object">
+                                <prop readOnly="True" type="array<string>" name="actions">
+                                  <item type="string">
+                                    <enum>
+                                      <item value="&quot;MoveToCleanUpDevice&quot;"/>
+                                      <item value="&quot;None&quot;"/>
+                                      <item value="&quot;ReachOutToOperation&quot;"/>
+                                      <item value="&quot;Restart&quot;"/>
+                                      <item value="&quot;Resume&quot;"/>
+                                    </enum>
+                                  </item>
+                                </prop>
+                                <prop readOnly="True" type="integer64" name="bytesCopied"/>
+                                <prop readOnly="True" type="@CloudError_read" name="error"/>
+                                <prop readOnly="True" type="integer32" name="percentComplete"/>
+                                <prop readOnly="True" type="string" name="serialNumber"/>
+                                <prop readOnly="True" type="string" name="status">
+                                  <enum>
+                                    <item value="&quot;Completed&quot;"/>
+                                    <item value="&quot;CompletedWithErrors&quot;"/>
+                                    <item value="&quot;DeviceFormatted&quot;"/>
+                                    <item value="&quot;DeviceMetadataModified&quot;"/>
+                                    <item value="&quot;DriveCorrupted&quot;"/>
+                                    <item value="&quot;DriveNotDetected&quot;"/>
+                                    <item value="&quot;DriveNotReceived&quot;"/>
+                                    <item value="&quot;Failed&quot;"/>
+                                    <item value="&quot;HardwareError&quot;"/>
+                                    <item value="&quot;InProgress&quot;"/>
+                                    <item value="&quot;MetadataFilesModifiedOrRemoved&quot;"/>
+                                    <item value="&quot;NotReturned&quot;"/>
+                                    <item value="&quot;NotStarted&quot;"/>
+                                    <item value="&quot;OtherServiceError&quot;"/>
+                                    <item value="&quot;OtherUserError&quot;"/>
+                                    <item value="&quot;StorageAccountNotAccessible&quot;"/>
+                                    <item value="&quot;UnsupportedData&quot;"/>
+                                    <item value="&quot;UnsupportedDrive&quot;"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="object" name="disksAndSizeDetails">
+                              <additionalProp readOnly="True">
+                                <item type="integer32"/>
+                              </additionalProp>
+                            </prop>
+                            <prop readOnly="True" type="array<object>" name="granularCopyLogDetails">
+                              <item type="object">
+                                <prop readOnly="True" type="string" name="accountId"/>
+                                <prop const="True" type="string" name="copyLogDetailsType" required="True">
+                                  <default value="&quot;DataBoxCustomerDisk&quot;"/>
+                                  <enum>
+                                    <item value="&quot;DataBox&quot;"/>
+                                    <item value="&quot;DataBoxCustomerDisk&quot;"/>
+                                    <item value="&quot;DataBoxDisk&quot;"/>
+                                    <item value="&quot;DataBoxHeavy&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="string" name="errorLogLink"/>
+                                <prop readOnly="True" type="string" name="serialNumber"/>
+                                <prop readOnly="True" type="string" name="verboseLogLink"/>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="array<object>" name="granularCopyProgress">
+                              <item type="object">
+                                <prop readOnly="True" type="string" name="accountId"/>
+                                <prop readOnly="True" type="array<string>" name="actions">
+                                  <item type="string">
+                                    <enum>
+                                      <item value="&quot;MoveToCleanUpDevice&quot;"/>
+                                      <item value="&quot;None&quot;"/>
+                                      <item value="&quot;ReachOutToOperation&quot;"/>
+                                      <item value="&quot;Restart&quot;"/>
+                                      <item value="&quot;Resume&quot;"/>
+                                    </enum>
+                                  </item>
+                                </prop>
+                                <prop readOnly="True" type="integer64" name="bytesProcessed"/>
+                                <prop readOnly="True" type="string" name="copyStatus">
+                                  <enum>
+                                    <item value="&quot;Completed&quot;"/>
+                                    <item value="&quot;CompletedWithErrors&quot;"/>
+                                    <item value="&quot;DeviceFormatted&quot;"/>
+                                    <item value="&quot;DeviceMetadataModified&quot;"/>
+                                    <item value="&quot;DriveCorrupted&quot;"/>
+                                    <item value="&quot;DriveNotDetected&quot;"/>
+                                    <item value="&quot;DriveNotReceived&quot;"/>
+                                    <item value="&quot;Failed&quot;"/>
+                                    <item value="&quot;HardwareError&quot;"/>
+                                    <item value="&quot;InProgress&quot;"/>
+                                    <item value="&quot;MetadataFilesModifiedOrRemoved&quot;"/>
+                                    <item value="&quot;NotReturned&quot;"/>
+                                    <item value="&quot;NotStarted&quot;"/>
+                                    <item value="&quot;OtherServiceError&quot;"/>
+                                    <item value="&quot;OtherUserError&quot;"/>
+                                    <item value="&quot;StorageAccountNotAccessible&quot;"/>
+                                    <item value="&quot;UnsupportedData&quot;"/>
+                                    <item value="&quot;UnsupportedDrive&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="string" name="dataAccountType">
+                                  <enum>
+                                    <item value="&quot;ManagedDisk&quot;"/>
+                                    <item value="&quot;StorageAccount&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop readOnly="True" type="integer64" name="directoriesErroredOut"/>
+                                <prop readOnly="True" type="@CloudError_read" name="error"/>
+                                <prop readOnly="True" type="integer64" name="filesErroredOut"/>
+                                <prop readOnly="True" type="integer64" name="filesProcessed"/>
+                                <prop readOnly="True" type="integer64" name="invalidDirectoriesProcessed"/>
+                                <prop readOnly="True" type="integer64" name="invalidFileBytesUploaded"/>
+                                <prop readOnly="True" type="integer64" name="invalidFilesProcessed"/>
+                                <prop readOnly="True" type="boolean" name="isEnumerationInProgress"/>
+                                <prop readOnly="True" type="integer64" name="renamedContainerCount"/>
+                                <prop readOnly="True" type="string" name="serialNumber"/>
+                                <prop readOnly="True" type="string" name="storageAccountName"/>
+                                <prop readOnly="True" type="integer64" name="totalBytesToProcess"/>
+                                <prop readOnly="True" type="integer64" name="totalFilesToProcess"/>
+                                <prop readOnly="True" type="string" name="transferType">
+                                  <enum>
+                                    <item value="&quot;ExportFromAzure&quot;"/>
+                                    <item value="&quot;ImportToAzure&quot;"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                            <prop type="string" name="passkey"/>
+                            <prop type="object" name="preferredDisks">
+                              <additionalProp>
+                                <item type="integer32"/>
+                              </additionalProp>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="jobDetailsType" value="DataBoxHeavy">
+                            <prop readOnly="True" type="array<@CopyProgress_read>" name="copyProgress">
+                              <item type="@CopyProgress_read"/>
+                            </prop>
+                            <prop type="string" name="devicePassword"/>
+                          </discriminator>
+                        </prop>
+                        <prop readOnly="True" type="@CloudError_read" name="error"/>
+                        <prop readOnly="True" type="boolean" name="isCancellable"/>
+                        <prop readOnly="True" type="boolean" name="isCancellableWithoutFee"/>
+                        <prop readOnly="True" type="boolean" name="isDeletable"/>
+                        <prop readOnly="True" type="boolean" name="isPrepareToShipEnabled"/>
+                        <prop readOnly="True" type="boolean" name="isShippingAddressEditable"/>
+                        <prop readOnly="True" type="string" name="reverseShippingDetailsUpdate">
+                          <enum>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                            <item value="&quot;NotSupported&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="reverseTransportPreferenceUpdate">
+                          <enum>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                            <item value="&quot;NotSupported&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="startTime"/>
+                        <prop readOnly="True" type="string" name="status">
+                          <enum>
+                            <item value="&quot;Aborted&quot;"/>
+                            <item value="&quot;AtAzureDC&quot;"/>
+                            <item value="&quot;AwaitingShipmentDetails&quot;"/>
+                            <item value="&quot;Cancelled&quot;"/>
+                            <item value="&quot;Completed&quot;"/>
+                            <item value="&quot;CompletedWithErrors&quot;"/>
+                            <item value="&quot;CompletedWithWarnings&quot;"/>
+                            <item value="&quot;Created&quot;"/>
+                            <item value="&quot;DataCopy&quot;"/>
+                            <item value="&quot;Delivered&quot;"/>
+                            <item value="&quot;DeviceOrdered&quot;"/>
+                            <item value="&quot;DevicePrepared&quot;"/>
+                            <item value="&quot;Dispatched&quot;"/>
+                            <item value="&quot;Failed_IssueDetectedAtAzureDC&quot;"/>
+                            <item value="&quot;Failed_IssueReportedAtCustomer&quot;"/>
+                            <item value="&quot;PickedUp&quot;"/>
+                            <item value="&quot;PreparingToShipFromAzureDC&quot;"/>
+                            <item value="&quot;ReadyToDispatchFromAzureDC&quot;"/>
+                            <item value="&quot;ReadyToReceiveAtAzureDC&quot;"/>
+                            <item value="&quot;ShippedToAzureDC&quot;"/>
+                            <item value="&quot;ShippedToCustomer&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="transferType" required="True">
+                          <enum>
+                            <item value="&quot;ExportFromAzure&quot;"/>
+                            <item value="&quot;ImportToAzure&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="sku" required="True">
+                        <prop type="string" name="displayName"/>
+                        <prop type="string" name="family"/>
+                        <prop type="string" name="model">
+                          <enum>
+                            <item value="&quot;AzureDataBox120&quot;"/>
+                            <item value="&quot;AzureDataBox525&quot;"/>
+                            <item value="&quot;DataBox&quot;"/>
+                            <item value="&quot;DataBoxCustomerDisk&quot;"/>
+                            <item value="&quot;DataBoxDisk&quot;"/>
+                            <item value="&quot;DataBoxHeavy&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="name" required="True">
+                          <enum>
+                            <item value="&quot;DataBox&quot;"/>
+                            <item value="&quot;DataBoxCustomerDisk&quot;"/>
+                            <item value="&quot;DataBoxDisk&quot;"/>
+                            <item value="&quot;DataBoxHeavy&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop readOnly="True" type="dateTime" name="createdAt"/>
+                        <prop readOnly="True" type="string" name="createdBy"/>
+                        <prop readOnly="True" type="string" name="createdByType"/>
+                        <prop readOnly="True" type="dateTime" name="lastModifiedAt"/>
+                        <prop readOnly="True" type="string" name="lastModifiedBy"/>
+                        <prop readOnly="True" type="string" name="lastModifiedByType"/>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
