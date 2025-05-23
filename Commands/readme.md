@@ -119,6 +119,9 @@
 - [databricks](/Commands/databricks/readme.md)
 : Manage databricks workspaces.
 
+- [datadog](/Commands/datadog/readme.md)
+: Manage Datadog
+
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage dataprotection.
 
