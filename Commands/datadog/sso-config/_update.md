@@ -1,4 +1,4 @@
-# [Command] _datadog monitor single-sign-on-configuration update_
+# [Command] _datadog sso-config update_
 
 Updates the Single Sign-On (SSO) configuration for a specific Datadog monitor resource, allowing you to modify its settings and integration parameters.
 
@@ -12,5 +12,5 @@ Updates the Single Sign-On (SSO) configuration for a specific Datadog monitor re
 
 - SSO_update
     ```bash
-        datadog monitor single-sign-on-configuration update --resource-group myResourceGroup --monitor-name myMonitor --configuration-name default --single-sign-on-state Enable --enterprise-app-id 00000000-0000-0000-0000-000000000000
+        datadog sso-config update --resource-group myResourceGroup --monitor-name myMonitor --configuration-name default --single-sign-on-state Enable --enterprise-app-id 00000000-0000-0000-0000-000000000000
     ```

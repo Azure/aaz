@@ -1,4 +1,4 @@
-# [Command] _datadog monitor tag-rule show_
+# [Command] _datadog tag-rule show_
 
 Retrieves the details of the tag rules for a specific Datadog monitor resource, providing insight into its setup and status.
 
@@ -12,5 +12,5 @@ Retrieves the details of the tag rules for a specific Datadog monitor resource, 
 
 - TagRules_Get
     ```bash
-        datadog monitor tag-rule show --resource-group myResourceGroup --monitor-name myMonitor --rule-set-name default
+        datadog tag-rule show --resource-group myResourceGroup --monitor-name myMonitor --rule-set-name default
     ```

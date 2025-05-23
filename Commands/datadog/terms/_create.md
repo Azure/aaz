@@ -4,7 +4,7 @@ Creates a new marketplace agreement for Datadog services in your Azure subscript
 
 ## Versions
 
-### [2021-03-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhZG9nL2FncmVlbWVudHMvZGVmYXVsdA==/2021-03-01.xml) **Stable**
+### [2021-03-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhZG9nL2FncmVlbWVudHMvZGVmYXVsdA==/2021-03-01.xml) **Experimental**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.datadog/agreements/default 2021-03-01 -->
 
