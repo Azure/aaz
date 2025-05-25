@@ -58,3 +58,14 @@ Break all the file locks on a volume
     ```bash
         netappfiles volume break-file-locks -g mygroup --account-name myaccname --pool-name mypoolname --name myvolname
     ```
+
+### [2025-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbmV0YXBwYWNjb3VudHMve30vY2FwYWNpdHlwb29scy97fS92b2x1bWVzL3t9L2JyZWFrZmlsZWxvY2tz/2025-01-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.netapp/netappaccounts/{}/capacitypools/{}/volumes/{}/breakfilelocks 2025-01-01 -->
+
+#### examples
+
+- Break all the file locks on the volume
+    ```bash
+        netappfiles volume break-file-locks -g mygroup --account-name myaccname --pool-name mypoolname --name myvolname
+    ```

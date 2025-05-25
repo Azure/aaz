@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.netapp/netappaccounts/{}/capacitypools/{}/volumes/{}/listreplications" version="2025-01-01" swagger="mgmt-plane/netapp/ResourceProviders/Microsoft.NetApp/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0QXBwL25ldEFwcEFjY291bnRzL3thY2NvdW50TmFtZX0vY2FwYWNpdHlQb29scy97cG9vbE5hbWV9L3ZvbHVtZXMve3ZvbHVtZU5hbWV9L2xpc3RSZXBsaWNhdGlvbnM=/V/MjAyNS0wMS0wMQ=="/>
+  <commandGroup name="netappfiles volume replication">
+    <command name="list" version="2025-01-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.netapp/netappaccounts/{}/capacitypools/{}/volumes/{}/listreplications" version="2025-01-01" swagger="mgmt-plane/netapp/ResourceProviders/Microsoft.NetApp/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0QXBwL25ldEFwcEFjY291bnRzL3thY2NvdW50TmFtZX0vY2FwYWNpdHlQb29scy97cG9vbE5hbWV9L3ZvbHVtZXMve3ZvbHVtZU5hbWV9L2xpc3RSZXBsaWNhdGlvbnM=/V/MjAyNS0wMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.accountName" options="account-name a" required="True" group="" idPart="name">
+          <help short="The name of the NetApp account"/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9\-_]{0,127}$"/>
+        </arg>
+        <arg type="string" var="$Path.poolName" options="pool-name p" required="True" group="" idPart="child_name_1">
+          <help short="The name of the capacity pool"/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9\-_]{0,63}$" maxLength="64" minLength="1"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.volumeName" options="volume-name name n v" required="True" group="" idPart="child_name_2">
+          <help short="The name of the volume"/>
+          <format pattern="^[a-zA-Z][a-zA-Z0-9\-_]{0,63}$" maxLength="64" minLength="1"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Volumes_ListReplications">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/capacityPools/{poolName}/volumes/{volumeName}/listReplications">
+          <request method="post">
+            <path>
+              <param type="string" name="accountName" arg="$Path.accountName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9\-_]{0,127}$"/>
+              </param>
+              <param type="string" name="poolName" arg="$Path.poolName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9\-_]{0,63}$" maxLength="64" minLength="1"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="volumeName" arg="$Path.volumeName" required="True">
+                <format pattern="^[a-zA-Z][a-zA-Z0-9\-_]{0,63}$" maxLength="64" minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-01-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop type="string" name="endpointType">
+                        <enum>
+                          <item value="&quot;dst&quot;"/>
+                          <item value="&quot;src&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="remoteVolumeRegion"/>
+                      <prop type="string" name="remoteVolumeResourceId" required="True"/>
+                      <prop readOnly="True" type="string" name="replicationId">
+                        <format pattern="^[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$" maxLength="36" minLength="36"/>
+                      </prop>
+                      <prop type="string" name="replicationSchedule">
+                        <enum>
+                          <item value="&quot;_10minutely&quot;"/>
+                          <item value="&quot;daily&quot;"/>
+                          <item value="&quot;hourly&quot;"/>
+                        </enum>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
