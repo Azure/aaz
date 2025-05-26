@@ -12,5 +12,5 @@ This method provides the list of available skus for the given subscription, reso
 
 - AvailableSkusPost
     ```bash
-        databox available-skus --resource-group YourResourceGroupName --country US --location westus --transfer-type ImportToAzure
+        databox available-skus --g YourResourceGroupName --country US --l westus --transfer-type ImportToAzure
     ```
