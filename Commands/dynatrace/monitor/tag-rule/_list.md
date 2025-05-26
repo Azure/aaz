@@ -1,6 +1,6 @@
 # [Command] _dynatrace monitor tag-rule list_
 
-List all tag rule by monitor name
+List all tag rules associated with a Dynatrace resource. This helps understand the current monitoring inclusion/exclusion logic across your environment.
 
 ## Versions
 

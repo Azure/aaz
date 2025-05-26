@@ -1,6 +1,6 @@
 # [Command] _dynatrace monitor show_
 
-Show a monitor resource
+Get Dynatrace resource properties including Dynatrace Environment information, SSO properties, resource location, marketplace subscription status and associated user information.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _dynatrace monitor tag-rule update_
 
-Update a TagRule
+Update an existing tag rule.
 
 ## Versions
 
