@@ -1,6 +1,6 @@
 # [Group] _devcenter admin image-definition-build_
 
-Manage image definition builds.
+Manage dev center image definition builds
 
 ## Commands
 

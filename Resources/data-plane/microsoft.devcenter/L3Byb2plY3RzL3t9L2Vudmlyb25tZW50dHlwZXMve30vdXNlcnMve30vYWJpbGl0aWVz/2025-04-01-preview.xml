@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.devcenter">
+  <resource id="/projects/{}/environmenttypes/{}/users/{}/abilities" version="2025-04-01-preview" swagger="data-plane:microsoft.devcenter/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3Byb2plY3RzL3twcm9qZWN0TmFtZX0vZW52aXJvbm1lbnRUeXBlcy97ZW52aXJvbm1lbnRUeXBlTmFtZX0vdXNlcnMve3VzZXJJZH0vYWJpbGl0aWVz/V/MjAyNS0wNC0wMS1wcmV2aWV3"/>
+  <commandGroup name="devcenter dev environment-type">
+    <command name="list-abilities" version="2025-04-01-preview" confirmation="">
+      <resource id="/projects/{}/environmenttypes/{}/users/{}/abilities" version="2025-04-01-preview" swagger="data-plane:microsoft.devcenter/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3Byb2plY3RzL3twcm9qZWN0TmFtZX0vZW52aXJvbm1lbnRUeXBlcy97ZW52aXJvbm1lbnRUeXBlTmFtZX0vdXNlcnMve3VzZXJJZH0vYWJpbGl0aWVz/V/MjAyNS0wNC0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.environmentTypeName" options="environment-type-name name n" required="True" group="">
+          <help short="The name of the environment type"/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+        </arg>
+        <arg type="string" var="$Path.userId" options="user-id" required="True" group="">
+          <help short="The AAD object id of the user. If value is 'me', the identity is taken from the authentication context."/>
+          <default value="&quot;me&quot;"/>
+          <format pattern="^[a-zA-Z0-9]{8}-([a-zA-Z0-9]{4}-){3}[a-zA-Z0-9]{12}$|^me$" maxLength="36" minLength="2"/>
+        </arg>
+        <arg type="integer32" var="$Query.top" options="top">
+          <help short="The maximum number of resources to return from the operation. Example: 'top=10'."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Default">
+        <arg type="string" var="$Path.projectName" options="project-name project" required="True" group="Default">
+          <help short="The name of the project. Use az configure -d project=<project_name> to configure a default."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Environments_GetEnvironmentTypeAbilities">
+        <http path="/projects/{projectName}/environmentTypes/{environmentTypeName}/users/{userId}/abilities">
+          <request method="get">
+            <path>
+              <param type="string" name="environmentTypeName" arg="$Path.environmentTypeName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+              </param>
+              <param type="string" name="projectName" arg="$Path.projectName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+              </param>
+              <param type="string" name="userId" arg="$Path.userId" required="True">
+                <format pattern="^[a-zA-Z0-9]{8}-([a-zA-Z0-9]{4}-){3}[a-zA-Z0-9]{12}$|^me$" maxLength="36" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <param type="integer32" name="top" arg="$Query.top"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-04-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<string>" name="abilitiesAsAdmin" required="True">
+                    <item type="string">
+                      <enum>
+                        <item value="&quot;DeleteEnvironments&quot;"/>
+                        <item value="&quot;ManageEnvironmentActions&quot;"/>
+                        <item value="&quot;ReadEnvironmentActions&quot;"/>
+                        <item value="&quot;ReadEnvironmentOutputs&quot;"/>
+                        <item value="&quot;ReadEnvironments&quot;"/>
+                        <item value="&quot;WriteEnvironments&quot;"/>
+                      </enum>
+                    </item>
+                  </prop>
+                  <prop type="array<string>" name="abilitiesAsDeveloper" required="True">
+                    <item type="string">
+                      <enum>
+                        <item value="&quot;DeleteEnvironments&quot;"/>
+                        <item value="&quot;ManageEnvironmentActions&quot;"/>
+                        <item value="&quot;ReadEnvironmentActions&quot;"/>
+                        <item value="&quot;ReadEnvironmentOutputs&quot;"/>
+                        <item value="&quot;ReadEnvironments&quot;"/>
+                        <item value="&quot;WriteEnvironments&quot;"/>
+                      </enum>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

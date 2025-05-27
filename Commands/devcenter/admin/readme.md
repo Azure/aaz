@@ -41,10 +41,10 @@ Manage devcenter admin resources.
 : Manage images.
 
 - [image-definition](/Commands/devcenter/admin/image-definition/readme.md)
-: Manage image definitions.
+: Manage dev center image definitions
 
 - [image-definition-build](/Commands/devcenter/admin/image-definition-build/readme.md)
-: Manage image definition builds.
+: Manage dev center image definition builds
 
 - [image-verion](/Commands/devcenter/admin/image-verion/readme.md)
 : Manage image version with devcenter
@@ -81,6 +81,12 @@ Manage devcenter admin resources.
 
 - [project-image](/Commands/devcenter/admin/project-image/readme.md)
 : Manage project images.
+
+- [project-image-definition](/Commands/devcenter/admin/project-image-definition/readme.md)
+: Manage project image definitions.
+
+- [project-image-definition-build](/Commands/devcenter/admin/project-image-definition-build/readme.md)
+: Manage project image definition builds.
 
 - [project-image-version](/Commands/devcenter/admin/project-image-version/readme.md)
 : Manage project image versions.
