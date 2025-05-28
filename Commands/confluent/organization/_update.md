@@ -1,6 +1,6 @@
 # [Command] _confluent organization update_
 
-Update Organization resource
+Update properties of an existing Confluent organization resource.
 
 ## Versions
 

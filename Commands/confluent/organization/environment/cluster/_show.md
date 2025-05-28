@@ -1,6 +1,6 @@
 # [Command] _confluent organization environment cluster show_
 
-Get cluster by Id
+Retrieve details of a specific Confluent cluster by its ID.
 
 ## Versions
 

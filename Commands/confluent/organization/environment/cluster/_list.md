@@ -1,6 +1,6 @@
 # [Command] _confluent organization environment cluster list_
 
-List of all the clusters in a environment
+List all clusters within a specific Confluent environment.
 
 ## Versions
 

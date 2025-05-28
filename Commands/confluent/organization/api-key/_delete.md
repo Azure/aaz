@@ -1,6 +1,6 @@
 # [Command] _confluent organization api-key delete_
 
-Delete API key of a kafka or schema registry cluster
+Remove an API key from a Kafka or Schema Registry cluster in Confluent.
 
 ## Versions
 

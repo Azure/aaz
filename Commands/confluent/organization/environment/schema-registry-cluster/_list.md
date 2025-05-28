@@ -1,6 +1,6 @@
 # [Command] _confluent organization environment schema-registry-cluster list_
 
-List schema registry clusters
+List all Schema Registry clusters within a Confluent environment.
 
 ## Versions
 

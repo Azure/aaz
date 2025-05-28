@@ -1,6 +1,6 @@
 # [Command] _confluent organization show_
 
-Get the properties of a specific Organization resource.
+Retrieve properties of a specific Confluent organization resource.
 
 ## Versions
 

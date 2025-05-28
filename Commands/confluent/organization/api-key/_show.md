@@ -1,6 +1,6 @@
 # [Command] _confluent organization api-key show_
 
-Get API key details of a kafka or schema registry cluster
+Show a API key from a Kafka or Schema Registry cluster in Confluent.
 
 ## Versions
 
