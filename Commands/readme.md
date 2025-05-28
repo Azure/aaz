@@ -128,6 +128,9 @@
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage dataprotection.
 
+- [dependency-map](/Commands/dependency-map/readme.md)
+: Manage Dependency Map
+
 - [desktopvirtualization](/Commands/desktopvirtualization/readme.md)
 : Manage desktop virtualization.
 
