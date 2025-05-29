@@ -1,4 +1,4 @@
-# [Command] _datadog monitor single-sign-on-configuration create_
+# [Command] _datadog sso-config create_
 
 Sets up Single Sign-On (SSO) for your Datadog monitor resource, allowing users to log in to Datadog using their Azure Active Directory credentials for streamlined and secure access.
 
@@ -12,5 +12,5 @@ Sets up Single Sign-On (SSO) for your Datadog monitor resource, allowing users t
 
 - SingleSignOnConfigurations_CreateOrUpdate
     ```bash
-        datadog monitor single-sign-on-configuration create --resource-group myResourceGroup --monitor-name myMonitor --configuration-name default --single-sign-on-state Enable --enterprise-app-id 00000000-0000-0000-0000-000000000000
+        datadog sso-config create --resource-group myResourceGroup --monitor-name myMonitor --configuration-name default --single-sign-on-state Enable --enterprise-app-id 00000000-0000-0000-0000-000000000000
     ```

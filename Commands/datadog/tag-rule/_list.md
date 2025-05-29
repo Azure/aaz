@@ -1,4 +1,4 @@
-# [Command] _datadog monitor tag-rule list_
+# [Command] _datadog tag-rule list_
 
 Lists all tag rules associated with a specific Datadog monitor resource, helping you manage and audit the rules that control resource monitoring.
 
@@ -12,5 +12,5 @@ Lists all tag rules associated with a specific Datadog monitor resource, helping
 
 - TagRules_List
     ```bash
-        datadog monitor tag-rule list --resource-group myResourceGroup --monitor-name myMonitor
+        datadog tag-rule list --resource-group myResourceGroup --monitor-name myMonitor
     ```

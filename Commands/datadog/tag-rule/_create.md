@@ -1,4 +1,4 @@
-# [Command] _datadog monitor tag-rule create_
+# [Command] _datadog tag-rule create_
 
 Creates a new set of tag rules for a specific Datadog monitor resource, determining which Azure resources are monitored based on their tags.
 
@@ -12,5 +12,5 @@ Creates a new set of tag rules for a specific Datadog monitor resource, determin
 
 - TagRules_CreateOrUpdate
     ```bash
-        datadog monitor tag-rule create --resource-group myResourceGroup --monitor-name myMonitor --rule-set-name default --log-rules "{send-aad-logs:False,send-subscription-logs:True,send-resource-logs:True,filtering-tags:[{name:Environment,value:Prod,action:Include},{name:Environment,value:Dev,action:Exclude}]}" --metric-rules "{filtering-tags:[]}"
+        datadog tag-rule create --resource-group myResourceGroup --monitor-name myMonitor --rule-set-name default --log-rules "{send-aad-logs:False,send-subscription-logs:True,send-resource-logs:True,filtering-tags:[{name:Environment,value:Prod,action:Include},{name:Environment,value:Dev,action:Exclude}]}" --metric-rules "{filtering-tags:[]}"
     ```

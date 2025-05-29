@@ -2,14 +2,6 @@
 
 Provides a set of commands to manage Datadog monitor resources in your Azure subscription, enabling integration and observability of your Azure resources through Datadog.
 
-## Subgroups
-
-- [single-sign-on-configuration](/Commands/datadog/monitor/single-sign-on-configuration/readme.md)
-: Provides a set of commands to manage Single Sign-On (SSO) configurations for Datadog monitor resources, enabling secure and streamlined access for users.
-
-- [tag-rule](/Commands/datadog/monitor/tag-rule/readme.md)
-: Provides a set of commands to manage tag rules for Datadog monitor resources, allowing you to control which Azure resources are monitored based on their tags.
-
 ## Commands
 
 - [create](/Commands/datadog/monitor/_create.md)

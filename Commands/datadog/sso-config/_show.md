@@ -1,4 +1,4 @@
-# [Command] _datadog monitor single-sign-on-configuration show_
+# [Command] _datadog sso-config show_
 
 Retrieves the details of the Single Sign-On (SSO) configuration for a specific Datadog monitor resource, providing insight into its setup and status.
 
@@ -12,5 +12,5 @@ Retrieves the details of the Single Sign-On (SSO) configuration for a specific D
 
 - SingleSignOnConfigurations_Get
     ```bash
-        datadog monitor single-sign-on-configuration show --resource-group myResourceGroup --monitor-name myMonitor --configuration-name default
+        datadog sso-config show --resource-group myResourceGroup --monitor-name myMonitor --configuration-name default
     ```

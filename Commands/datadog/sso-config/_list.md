@@ -1,4 +1,4 @@
-# [Command] _datadog monitor single-sign-on-configuration list_
+# [Command] _datadog sso-config list_
 
 Lists all Single Sign-On (SSO) configurations associated with a specific Datadog monitor resource, helping you manage and audit access settings.
 
@@ -12,5 +12,5 @@ Lists all Single Sign-On (SSO) configurations associated with a specific Datadog
 
 - SingleSignOnConfigurations_List
     ```bash
-        datadog monitor single-sign-on-configuration list --resource-group myResourceGroup --monitor-name myMonitor
+        datadog sso-config list --resource-group myResourceGroup --monitor-name myMonitor
     ```
