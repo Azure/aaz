@@ -237,7 +237,7 @@
 : Manage the Azure Monitor Service.
 
 - [neon](/Commands/neon/readme.md)
-: Manage Neon Postgres
+: Manage Neon Postgres databases and related resources within Azure.
 
 - [netappfiles](/Commands/netappfiles/readme.md)
 : Manage Azure NetApp Files (ANF) Resources

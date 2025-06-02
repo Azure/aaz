@@ -1,17 +1,20 @@
 # [Group] _neon postgres organization_
 
-Manage a Neon organization
+Manage Neon organizations, which are entities created on the Neon side.
 
 ## Commands
 
+- [create](/Commands/neon/postgres/organization/_create.md)
+: Create a new Neon organization within a specified Azure resource group in Azure. This is typically the first step in provisioning Neon Serverless Postgres.
+
 - [delete](/Commands/neon/postgres/organization/_delete.md)
-: Delete a Neon organization
+: Delete an existing Neon organization within Azure.
 
 - [list](/Commands/neon/postgres/organization/_list.md)
-: List Neon organizations by subscription ID
+: List all Neon organizations associated with a specific subscription ID.
 
 - [show](/Commands/neon/postgres/organization/_show.md)
-: Get a Neon organization
+: Retrieve details of a specific Neon organization.
 
 - [update](/Commands/neon/postgres/organization/_update.md)
-: Update a Neon organization
+: Update the properties of an existing Neon organization within Azure.
