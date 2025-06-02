@@ -65,6 +65,9 @@
 - [capacity](/Commands/capacity/readme.md)
 : Manage capacity.
 
+- [carbon](/Commands/carbon/readme.md)
+: Manage Carbon
+
 - [cdn](/Commands/cdn/readme.md)
 : Manage Azure Content Delivery Networks (CDNs).
 
@@ -118,6 +121,9 @@
 
 - [databricks](/Commands/databricks/readme.md)
 : Manage databricks workspaces.
+
+- [datadog](/Commands/datadog/readme.md)
+: Manage Datadog
 
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage dataprotection.
@@ -223,6 +229,9 @@
 
 - [mobile-network](/Commands/mobile-network/readme.md)
 : Manage mobile network
+
+- [mongo-db](/Commands/mongo-db/readme.md)
+: Manage MongoDB
 
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
