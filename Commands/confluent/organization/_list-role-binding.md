@@ -1,6 +1,6 @@
 # [Command] _confluent organization list-role-binding_
 
-Organization role bindings
+List all the role bindings within a Confluent organization.
 
 ## Versions
 
