@@ -1,6 +1,6 @@
 # [Command] _qumulo storage file-system create_
 
-Create a FileSystemResource
+Create a new file system resource in Qumulo storage.
 
 ## Versions
 

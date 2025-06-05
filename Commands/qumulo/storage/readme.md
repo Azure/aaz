@@ -1,8 +1,8 @@
 # [Group] _qumulo storage_
 
-Manage qumulo storage
+Manage Qumulo storage resources through the Azure CLI.
 
 ## Subgroups
 
 - [file-system](/Commands/qumulo/storage/file-system/readme.md)
-: Manage qumulo storage file system
+: Manage file system resources within Qumulo storage.
