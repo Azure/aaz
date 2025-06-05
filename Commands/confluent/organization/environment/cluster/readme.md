@@ -2,6 +2,14 @@
 
 Command to get the confluent cluster details in a environment
 
+## Subgroups
+
+- [connector](/Commands/confluent/organization/environment/cluster/connector/readme.md)
+: Manage Connector
+
+- [topic](/Commands/confluent/organization/environment/cluster/topic/readme.md)
+: Manage Topic
+
 ## Commands
 
 - [create-api-key](/Commands/confluent/organization/environment/cluster/_create-api-key.md)
