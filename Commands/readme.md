@@ -288,7 +288,7 @@
 : Manage Proximity Placement Groups.
 
 - [qumulo](/Commands/qumulo/readme.md)
-: Manage qumulo
+: Manage Qumulo
 
 - [quota](/Commands/quota/readme.md)
 : Manag quota for Azure resource providers.

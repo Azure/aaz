@@ -1,6 +1,6 @@
 # [Command] _qumulo storage file-system update_
 
-Update a FileSystemResource
+Update a existing file system resource in Qumulo storage.
 
 ## Versions
 
