@@ -12,5 +12,5 @@ Allows traffic that met configured criteria to skip the configured managed rules
 
 - Add and exception rule to the WAF policy managed rules.
     ```bash
-        network application-gateway waf-policy managed-rule exception add -g myResourceGroup --policy-name myWAF --match-variable "RequestURI" --value-operator Contains --values "health" "default.aspx" "account/images"
+        network application-gateway waf-policy managed-rule exception add -g myResourceGroup --policy-name myWAF --match-variable "RequestURI" --value-operator Contains --values "health" "default.aspx" "account/images" --rule-sets [0].rule-set-type=OWASP [0].rule-set-version=3.2
     ```
