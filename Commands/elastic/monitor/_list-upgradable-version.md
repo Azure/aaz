@@ -1,6 +1,6 @@
 # [Command] _elastic monitor list-upgradable-version_
 
-List upgradable version
+List all upgradable versions for your Elastic monitor resource, helping you plan and execute upgrades.
 
 ## Versions
 

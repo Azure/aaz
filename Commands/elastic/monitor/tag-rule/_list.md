@@ -1,6 +1,6 @@
 # [Command] _elastic monitor tag-rule list_
 
-List the tag rules for a given monitor resource.
+List all tag rules for a given Elastic monitor resource, helping you manage fine-grained control over observability based on resource tags.
 
 ## Versions
 

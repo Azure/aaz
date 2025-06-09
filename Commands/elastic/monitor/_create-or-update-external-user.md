@@ -1,6 +1,6 @@
 # [Command] _elastic monitor create-or-update-external-user_
 
-Create or update external user
+Create or update external user configurations for your Elastic monitor resource, enabling access and management by external users.
 
 ## Versions
 

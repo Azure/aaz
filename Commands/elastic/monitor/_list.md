@@ -1,6 +1,6 @@
 # [Command] _elastic monitor list_
 
-List all monitors under the specified resource group. And List all                                monitors under the specified subscription.
+List all Elastic monitor resources within a specified resource group or across the entire subscription, helping you audit and manage your monitoring setup.
 
 ## Versions
 

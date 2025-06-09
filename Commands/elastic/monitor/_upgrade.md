@@ -1,6 +1,6 @@
 # [Command] _elastic monitor upgrade_
 
-Upgrade elastic monitor
+Upgrade the Elastic monitor resource to a newer version, ensuring optimal observability and performance.
 
 ## Versions
 

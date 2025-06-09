@@ -1,6 +1,6 @@
 # [Command] _elastic monitor list-connected-partner-resource_
 
-List of all active deployments that are associated with the marketplace subscription linked to the given monitor.
+List all active deployments associated with the marketplace subscription linked to the given Elastic monitor resource.
 
 ## Versions
 
