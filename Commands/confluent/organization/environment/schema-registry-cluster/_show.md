@@ -1,6 +1,6 @@
 # [Command] _confluent organization environment schema-registry-cluster show_
 
-Get schema registry cluster by Id
+Retrieve details of a specific Schema Registry cluster by its ID.
 
 ## Versions
 

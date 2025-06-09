@@ -4,7 +4,7 @@ Lists all marketplace agreements for Datadog services in your Azure subscription
 
 ## Versions
 
-### [2021-03-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhZG9nL2FncmVlbWVudHM=/2021-03-01.xml) **Stable**
+### [2021-03-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhZG9nL2FncmVlbWVudHM=/2021-03-01.xml) **Experimental**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.datadog/agreements 2021-03-01 -->
 

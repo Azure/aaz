@@ -1,6 +1,6 @@
 # [Command] _confluent organization create_
 
-Create Organization resource
+Create a new Confluent organization entity through Azure integration.
 
 ## Versions
 

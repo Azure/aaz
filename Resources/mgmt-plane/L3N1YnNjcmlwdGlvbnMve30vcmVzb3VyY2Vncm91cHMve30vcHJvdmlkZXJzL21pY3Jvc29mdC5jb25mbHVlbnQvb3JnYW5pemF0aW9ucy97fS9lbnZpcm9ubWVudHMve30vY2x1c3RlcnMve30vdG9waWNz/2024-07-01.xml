@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.confluent/organizations/{}/environments/{}/clusters/{}/topics" version="2024-07-01" swagger="mgmt-plane/confluent/ResourceProviders/Microsoft.Confluent/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29uZmx1ZW50L29yZ2FuaXphdGlvbnMve29yZ2FuaXphdGlvbk5hbWV9L2Vudmlyb25tZW50cy97ZW52aXJvbm1lbnRJZH0vY2x1c3RlcnMve2NsdXN0ZXJJZH0vdG9waWNz/V/MjAyNC0wNy0wMQ=="/>
+  <commandGroup name="confluent organization environment cluster topic">
+    <command name="list" version="2024-07-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.confluent/organizations/{}/environments/{}/clusters/{}/topics" version="2024-07-01" swagger="mgmt-plane/confluent/ResourceProviders/Microsoft.Confluent/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29uZmx1ZW50L29yZ2FuaXphdGlvbnMve29yZ2FuaXphdGlvbk5hbWV9L2Vudmlyb25tZW50cy97ZW52aXJvbm1lbnRJZH0vY2x1c3RlcnMve2NsdXN0ZXJJZH0vdG9waWNz/V/MjAyNC0wNy0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.clusterId" options="cluster-id" required="True" idPart="child_name_2">
+          <help short="Confluent kafka or schema registry cluster id"/>
+        </arg>
+        <arg type="string" var="$Path.environmentId" options="environment-id" required="True" idPart="child_name_1">
+          <help short="Confluent environment id"/>
+        </arg>
+        <arg type="string" var="$Path.organizationName" options="organization-name" required="True" idPart="name">
+          <help short="Organization resource name"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="integer32" var="$Query.pageSize" options="page-size">
+          <help short="Pagination size"/>
+        </arg>
+        <arg type="string" var="$Query.pageToken" options="page-token">
+          <help short="An opaque pagination token to fetch the next set of records"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Topics_List">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations/{organizationName}/environments/{environmentId}/clusters/{clusterId}/topics">
+          <request method="get">
+            <path>
+              <param type="string" name="clusterId" arg="$Path.clusterId" required="True"/>
+              <param type="string" name="environmentId" arg="$Path.environmentId" required="True"/>
+              <param type="string" name="organizationName" arg="$Path.organizationName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <param type="integer32" name="pageSize" arg="$Query.pageSize"/>
+              <param type="string" name="pageToken" arg="$Query.pageToken"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-07-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Confluent/organizations/{}/environments/{}/clusters/{}/topics/{}"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="@TopicsRelatedLink_read" name="configs"/>
+                        <prop type="array<object>" name="inputConfigs">
+                          <item type="object">
+                            <prop type="string" name="name"/>
+                            <prop type="string" name="value"/>
+                          </item>
+                        </prop>
+                        <prop type="string" name="kind"/>
+                        <prop type="object" name="metadata">
+                          <prop type="string" name="resourceName"/>
+                          <prop type="string" name="self"/>
+                        </prop>
+                        <prop type="object" name="partitions" cls="TopicsRelatedLink_read">
+                          <prop type="string" name="related"/>
+                        </prop>
+                        <prop type="string" name="partitionsCount"/>
+                        <prop type="@TopicsRelatedLink_read" name="partitionsReassignments"/>
+                        <prop type="string" name="replicationFactor"/>
+                        <prop type="string" name="topicId"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
