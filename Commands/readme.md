@@ -74,6 +74,9 @@
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
+- [change-safety](/Commands/change-safety/readme.md)
+: Manage Change Safety
+
 - [cloud-service](/Commands/cloud-service/readme.md)
 : Manage cloud service
 
