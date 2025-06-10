@@ -1,6 +1,14 @@
 # [Group] _amlfs_
 
-Manage lustre file system
+This is an extension to Azure CLI to manage Amlfs resources.
+
+## Subgroups
+
+- [auto-export](/Commands/amlfs/auto-export/readme.md)
+: Manage Auto Export Job
+
+- [import](/Commands/amlfs/import/readme.md)
+: Manage Import Job
 
 ## Commands
 
