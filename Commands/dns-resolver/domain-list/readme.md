@@ -4,6 +4,9 @@ Manage DNS Resolver Domain List
 
 ## Commands
 
+- [bulk](/Commands/dns-resolver/domain-list/_bulk.md)
+: Uploads or downloads the list of domains for a DNS Resolver Domain List from a storage link.
+
 - [create](/Commands/dns-resolver/domain-list/_create.md)
 : Create a DNS resolver domain list.
 

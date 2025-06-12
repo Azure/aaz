@@ -28,6 +28,9 @@ Manage Azure Network resources.
 - [dns](/Commands/network/dns/readme.md)
 : Manage DNS domains in Azure.
 
+- [dns-resolver-domain-list](/Commands/network/dns-resolver-domain-list/readme.md)
+: Manage Dns Resolver Domain List
+
 - [express-route](/Commands/network/express-route/readme.md)
 : Manage dedicated private network fiber connections to Azure.
 
