@@ -7,6 +7,9 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 - [extension](/Commands/vmss/extension/readme.md)
 : Manage extensions on a VM scale set.
 
+- [identity](/Commands/vmss/identity/readme.md)
+: Manage identities of a VMSS.
+
 - [nic](/Commands/vmss/nic/readme.md)
 : Manage network interfaces of a VMSS.
 
