@@ -1,6 +1,6 @@
 # [Command] _elastic monitor tag-rule delete_
 
-Delete a tag rule set for a given monitor resource.
+Delete a tag rule set for a given Elastic monitor resource, removing fine-grained control over observability based on resource tags.
 
 ## Versions
 

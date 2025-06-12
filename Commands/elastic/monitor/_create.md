@@ -1,6 +1,6 @@
 # [Command] _elastic monitor create_
 
-Create a monitor resource.
+Create a new Elastic monitor resource in your Azure subscription, enabling observability and monitoring of your Azure resources through Elastic.
 
 ## Versions
 

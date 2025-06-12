@@ -1,6 +1,6 @@
 # [Command] _elastic monitor update_
 
-Update a monitor resource.
+Update an existing Elastic monitor resource in your Azure subscription, ensuring optimal observability and performance.
 
 ## Versions
 

@@ -1,8 +1,8 @@
 # [Group] _elastic get_
 
-Manage to get Elastic details
+Manage and retrieve detailed information about your Elastic resources, including configurations and status.
 
 ## Subgroups
 
 - [elastic](/Commands/elastic/get/elastic/readme.md)
-: Get elastic details
+: Retrieve detailed information about your Elastic resources, including configurations and status.

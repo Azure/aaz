@@ -1,6 +1,6 @@
 # [Command] _elastic monitor delete_
 
-Delete a monitor resource.
+Delete an existing Elastic monitor resource from your Azure subscription, removing its observability and monitoring capabilities.
 
 ## Versions
 

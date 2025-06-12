@@ -1,6 +1,6 @@
 # [Command] _elastic monitor list-resource_
 
-List the resources currently being monitored by the Elastic monitor                                resource.
+List all resources currently being monitored by the Elastic monitor resource, helping you manage observability.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _elastic monitor delete-traffic-filter_
 
-Delete traffic filter
+Delete an existing traffic filter associated with your Elastic monitor resource, removing its network traffic control capabilities.
 
 ## Versions
 

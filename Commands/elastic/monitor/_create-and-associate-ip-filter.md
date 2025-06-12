@@ -1,6 +1,6 @@
 # [Command] _elastic monitor create-and-associate-ip-filter_
 
-Create and associate ip filter
+Create and associate an IP filter with your Elastic monitor resource to control and manage network traffic.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _elastic monitor open-ai-integration get-statu_
 
-Get OpenAI integration status for a given integration.
+Get the status of OpenAI integration for a given Elastic monitor resource, ensuring optimal observability and performance.
 
 ## Versions
 

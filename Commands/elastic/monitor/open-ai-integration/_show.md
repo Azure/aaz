@@ -1,6 +1,6 @@
 # [Command] _elastic monitor open-ai-integration show_
 
-Get OpenAI integration rule for a given monitor resource.
+Get detailed information about OpenAI integration rules for a given Elastic monitor resource.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _elastic monitor tag-rule update_
 
-Update a tag rule set for a given monitor resource.
+Update a tag rule set for a given Elastic monitor resource, ensuring fine-grained control over observability based on resource tags.
 
 ## Versions
 

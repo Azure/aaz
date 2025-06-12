@@ -1,6 +1,6 @@
 # [Command] _elastic monitor list-deployment-info_
 
-Fetch information regarding Elastic cloud deployment corresponding to                                the Elastic monitor resource.
+Fetch detailed information about Elastic cloud deployments corresponding to the Elastic monitor resource.
 
 ## Versions
 

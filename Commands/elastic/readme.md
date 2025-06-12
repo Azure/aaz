@@ -5,15 +5,15 @@ Manage Microsoft Elastic.
 ## Subgroups
 
 - [elastic-version](/Commands/elastic/elastic-version/readme.md)
-: Manage the version of Elastic
+: Manage the version of Elastic, including upgrades and compatibility checks.
 
 - [get](/Commands/elastic/get/readme.md)
-: Manage to get Elastic details
+: Manage and retrieve detailed information about your Elastic resources, including configurations and status.
 
 - [monitor](/Commands/elastic/monitor/readme.md)
-: Manage monitor with elastic.
+: Manage monitoring configurations and resources with Elastic, ensuring optimal observability and performance.Manage monitoring configurations and resources with Elastic, ensuring optimal observability and performance.
 
 ## Commands
 
 - [get-organization-api-key](/Commands/elastic/_get-organization-api-key.md)
-: Fetch User API Key from internal database, if it was generated and stored while creating the Elasticsearch Organization.
+: Fetch the User API Key from the internal database, if it was generated and stored during the creation of the Elasticsearch Organization.

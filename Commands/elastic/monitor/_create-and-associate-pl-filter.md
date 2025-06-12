@@ -1,6 +1,6 @@
 # [Command] _elastic monitor create-and-associate-pl-filter_
 
-Create and associate pl filter
+Create and associate a PL filter with your Elastic monitor resource to control and manage network traffic.
 
 ## Versions
 

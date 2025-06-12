@@ -1,6 +1,6 @@
 # [Command] _elastic monitor tag-rule create_
 
-Create a tag rule set for a given monitor resource.
+Create a tag rule set for a given Elastic monitor resource, enabling fine-grained control over observability based on resource tags.
 
 ## Versions
 

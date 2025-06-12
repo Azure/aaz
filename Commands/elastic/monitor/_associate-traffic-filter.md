@@ -1,6 +1,6 @@
 # [Command] _elastic monitor associate-traffic-filter_
 
-Associate traffic filter
+Associate a traffic filter with your Elastic monitor resource to control and manage network traffic.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _elastic monitor open-ai-integration create_
 
-Create a OpenAI integration rule for a given monitor resource.
+Create an OpenAI integration rule for a given Elastic monitor resource, enabling advanced AI-driven observability and monitoring.
 
 ## Versions
 

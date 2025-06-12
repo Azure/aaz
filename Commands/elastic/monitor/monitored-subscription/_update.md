@@ -1,6 +1,6 @@
 # [Command] _elastic monitor monitored-subscription update_
 
-Update the subscriptions that should be monitored by the Elastic monitor resource.
+Update subscriptions to be monitored by the Elastic monitor resource, ensuring optimal observability and performance.
 
 ## Versions
 

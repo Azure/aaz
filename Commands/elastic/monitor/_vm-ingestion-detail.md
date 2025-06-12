@@ -1,6 +1,6 @@
 # [Command] _elastic monitor vm-ingestion-detail_
 
-List the vm ingestion details that will be monitored by the Elastic                                monitor resource.
+List detailed information about VM ingestion that will be monitored by the Elastic monitor resource, ensuring optimal observability and performance.
 
 ## Versions
 

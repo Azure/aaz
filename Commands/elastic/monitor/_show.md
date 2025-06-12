@@ -1,6 +1,6 @@
 # [Command] _elastic monitor show_
 
-Get the properties of a specific monitor resource.
+Get detailed properties of a specific Elastic monitor resource, helping you manage observability and performance.
 
 ## Versions
 

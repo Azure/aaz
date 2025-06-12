@@ -1,20 +1,20 @@
 # [Group] _elastic monitor monitored-subscription_
 
-Manage monitored subscription with elastic
+Manage subscriptions monitored by the Elastic monitor resource, ensuring optimal observability and performance.
 
 ## Commands
 
 - [create](/Commands/elastic/monitor/monitored-subscription/_create.md)
-: Create the subscriptions that should be monitored by the Elastic monitor resource.
+: Create subscriptions to be monitored by the Elastic monitor resource, enabling observability and monitoring.
 
 - [delete](/Commands/elastic/monitor/monitored-subscription/_delete.md)
-: Delete the subscriptions that are being monitored by the Elastic monitor resource
+: Delete subscriptions being monitored by the Elastic monitor resource, removing their observability and monitoring capabilities.
 
 - [list](/Commands/elastic/monitor/monitored-subscription/_list.md)
-: List all the subscriptions currently being monitored by the Elastic monitor resource.
+: List all subscriptions currently being monitored by the Elastic monitor resource, helping you manage observability.
 
 - [show](/Commands/elastic/monitor/monitored-subscription/_show.md)
-: Get all the subscriptions currently being monitored by the Elastic monitor resource.
+: Get detailed information about all subscriptions currently being monitored by the Elastic monitor resource.
 
 - [update](/Commands/elastic/monitor/monitored-subscription/_update.md)
-: Update the subscriptions that should be monitored by the Elastic monitor resource.
+: Update subscriptions to be monitored by the Elastic monitor resource, ensuring optimal observability and performance.

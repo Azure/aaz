@@ -1,6 +1,6 @@
 # [Command] _elastic monitor list-all-traffic-filter_
 
-List all traffic filter
+List all traffic filters associated with your Elastic monitor resource, helping you manage network traffic control.
 
 ## Versions
 
