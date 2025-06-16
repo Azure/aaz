@@ -30,6 +30,9 @@ Manage Linux or Windows virtual machines.
 - [assess-patches](/Commands/vm/_assess-patches.md)
 : Assess patches on a VM.
 
+- [capture](/Commands/vm/_capture.md)
+: Capture information for a stopped VM.
+
 - [convert](/Commands/vm/_convert.md)
 : Convert a VM with unmanaged disks to use managed disks.
 
@@ -44,6 +47,12 @@ Manage Linux or Windows virtual machines.
 
 - [generalize](/Commands/vm/_generalize.md)
 : Mark a VM as generalized, allowing it to be imaged for multiple deployments.
+
+- [list](/Commands/vm/_list.md)
+: List all of the virtual machines in the specified resource group. Use the nextLink property in the response to get the next page of virtual machines.
+
+- [list-all](/Commands/vm/_list-all.md)
+: List all of the virtual machines in the specified subscription. Use the nextLink property in the response to get the next page of virtual machines.
 
 - [list-sizes](/Commands/vm/_list-sizes.md)
 : List available sizes for VMs.

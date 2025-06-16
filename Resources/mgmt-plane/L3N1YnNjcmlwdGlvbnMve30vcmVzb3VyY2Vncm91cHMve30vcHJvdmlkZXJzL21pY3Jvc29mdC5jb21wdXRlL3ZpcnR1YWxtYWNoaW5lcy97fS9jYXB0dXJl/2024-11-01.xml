@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/virtualmachines/{}/capture" version="2024-11-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS92aXJ0dWFsTWFjaGluZXMve3ZtTmFtZX0vY2FwdHVyZQ==/V/MjAyNC0xMS0wMQ=="/>
+  <commandGroup name="vm">
+    <command name="capture" version="2024-11-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/virtualmachines/{}/capture" version="2024-11-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS92aXJ0dWFsTWFjaGluZXMve3ZtTmFtZX0vY2FwdHVyZQ==/V/MjAyNC0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vmName" options="name n" required="True" group="" idPart="name">
+          <help short="The name of the virtual machine."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Parameters">
+        <arg type="string" var="$parameters.destinationContainerName" options="storage-container" required="True" group="Parameters">
+          <help short="The storage account container name in which to save the disks."/>
+          <default value="&quot;vhds&quot;"/>
+        </arg>
+        <arg type="boolean" var="$parameters.overwriteVhds" options="overwrite" required="True" group="Parameters">
+          <help short="Overwrite the existing disk file."/>
+          <default value="true"/>
+        </arg>
+        <arg type="string" var="$parameters.vhdPrefix" options="vhd-name-prefix" required="True" group="Parameters">
+          <help short="The VHD name prefix specify for the VM disks."/>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualMachines_Capture">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/capture">
+          <request method="post">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="vmName" arg="$Path.vmName" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="parameters" required="True" clientFlatten="True">
+                  <prop type="string" name="destinationContainerName" arg="$parameters.destinationContainerName" required="True"/>
+                  <prop type="boolean" name="overwriteVhds" arg="$parameters.overwriteVhds" required="True"/>
+                  <prop type="string" name="vhdPrefix" arg="$parameters.vhdPrefix" required="True"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="$schema"/>
+                  <prop readOnly="True" type="string" name="contentVersion"/>
+                  <prop type="string" name="id"/>
+                  <prop readOnly="True" type="object" name="parameters">
+                    <additionalProp readOnly="True">
+                      <item type="any"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="array<object>" name="resources">
+                    <item type="object">
+                      <additionalProp>
+                        <item type="any"/>
+                      </additionalProp>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
