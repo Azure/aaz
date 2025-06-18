@@ -5,7 +5,7 @@ Manage volumes.
 ## Commands
 
 - [create](/Commands/mesh/volume/_create.md)
-: Create a volume resource with the specified name, description and properties. If a volume resource with the same name exists, then it is updated with the specified description and properties.
+: Create a volume.
 
 - [delete](/Commands/mesh/volume/_delete.md)
 : Delete a volume.
