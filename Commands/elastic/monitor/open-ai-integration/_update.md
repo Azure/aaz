@@ -1,6 +1,6 @@
 # [Command] _elastic monitor open-ai-integration update_
 
-Update a OpenAI integration rule for a given monitor resource.
+Update an OpenAI integration rule for a given Elastic monitor resource, ensuring optimal AI-driven observability and monitoring.
 
 ## Versions
 

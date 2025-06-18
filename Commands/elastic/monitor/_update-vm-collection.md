@@ -1,6 +1,6 @@
 # [Command] _elastic monitor update-vm-collection_
 
-Update the vm details that will be monitored by the Elastic monitor                                resource.
+Update the VM details that will be monitored by the Elastic monitor resource, ensuring optimal observability and performance.
 
 ## Versions
 

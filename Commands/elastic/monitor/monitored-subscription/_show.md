@@ -1,6 +1,6 @@
 # [Command] _elastic monitor monitored-subscription show_
 
-Get all the subscriptions currently being monitored by the Elastic monitor resource.
+Get detailed information about all subscriptions currently being monitored by the Elastic monitor resource.
 
 ## Versions
 
