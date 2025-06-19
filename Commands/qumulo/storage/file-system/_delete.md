@@ -1,6 +1,6 @@
 # [Command] _qumulo storage file-system delete_
 
-Delete a FileSystemResource
+Delete the specified existing Qumulo file system storage resource permanently.
 
 ## Versions
 

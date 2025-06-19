@@ -1,6 +1,6 @@
 # [Command] _qumulo storage file-system list_
 
-List file system resources
+List all existing Qumulo file system storage resources.
 
 ## Versions
 

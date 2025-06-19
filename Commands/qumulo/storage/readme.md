@@ -5,4 +5,4 @@ Manage qumulo storage
 ## Subgroups
 
 - [file-system](/Commands/qumulo/storage/file-system/readme.md)
-: Manage qumulo storage file system
+: Perform management operations on Qumulo file system storage resource.

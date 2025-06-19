@@ -1,6 +1,6 @@
 # [Command] _qumulo storage file-system show_
 
-Get a FileSystemResource
+Retrieve details of a specific file system resource in Qumulo storage.
 
 ## Versions
 

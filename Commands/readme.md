@@ -279,7 +279,7 @@
 : Manage Proximity Placement Groups.
 
 - [qumulo](/Commands/qumulo/readme.md)
-: Manage qumulo
+: Manage Qumulo file system storage resources with the Azure CLI.
 
 - [quota](/Commands/quota/readme.md)
 : Manag quota for Azure resource providers.
