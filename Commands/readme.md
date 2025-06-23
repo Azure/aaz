@@ -110,6 +110,9 @@
 - [data-boundary](/Commands/data-boundary/readme.md)
 : data boundary operations
 
+- [data-transfer](/Commands/data-transfer/readme.md)
+: Data transfer commands
+
 - [databox](/Commands/databox/readme.md)
 : Manage data box
 
