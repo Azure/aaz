@@ -186,7 +186,7 @@
 : Manage custom virtual machine images.
 
 - [informatica](/Commands/informatica/readme.md)
-: Manage Informatica
+: Manage all resources related to Informatica within the Azure CLI.
 
 - [k8s-runtime](/Commands/k8s-runtime/readme.md)
 : Manage Arc Kubernetes Runtime resources
@@ -231,7 +231,7 @@
 : Manage the Azure Monitor Service.
 
 - [neon](/Commands/neon/readme.md)
-: Manage Neon Postgres
+: Manage Neon Postgres databases and related resources within Azure.
 
 - [netappfiles](/Commands/netappfiles/readme.md)
 : Manage Azure NetApp Files (ANF) Resources
