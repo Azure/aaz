@@ -77,6 +77,9 @@
 - [cloud-service](/Commands/cloud-service/readme.md)
 : Manage cloud service
 
+- [cloudhsm](/Commands/cloudhsm/readme.md)
+: Manage Cloud Hsm Cluster
+
 - [communication](/Commands/communication/readme.md)
 : Manage communication service with communication.
 
