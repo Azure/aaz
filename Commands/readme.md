@@ -32,6 +32,9 @@
 - [arcgateway](/Commands/arcgateway/readme.md)
 : Manage gateway connection on Arc machine
 
+- [arize-ai](/Commands/arize-ai/readme.md)
+: Manage Arize Ai
+
 - [astronomer](/Commands/astronomer/readme.md)
 : Manage Azure Astronomer resources.
 
