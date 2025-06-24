@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.netapp/netappaccounts/{}/backupvaults/{}/backups/{}/restorefiles" version="2025-01-01" swagger="mgmt-plane/netapp/ResourceProviders/Microsoft.NetApp/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0QXBwL25ldEFwcEFjY291bnRzL3thY2NvdW50TmFtZX0vYmFja3VwVmF1bHRzL3tiYWNrdXBWYXVsdE5hbWV9L2JhY2t1cHMve2JhY2t1cE5hbWV9L3Jlc3RvcmVGaWxlcw==/V/MjAyNS0wMS0wMQ=="/>
+  <commandGroup name="netappfiles account backup-vault backup">
+    <command name="restore-file" version="2025-01-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.netapp/netappaccounts/{}/backupvaults/{}/backups/{}/restorefiles" version="2025-01-01" swagger="mgmt-plane/netapp/ResourceProviders/Microsoft.NetApp/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0QXBwL25ldEFwcEFjY291bnRzL3thY2NvdW50TmFtZX0vYmFja3VwVmF1bHRzL3tiYWNrdXBWYXVsdE5hbWV9L2JhY2t1cHMve2JhY2t1cE5hbWV9L3Jlc3RvcmVGaWxlcw==/V/MjAyNS0wMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.accountName" options="account-name a" required="True" group="" idPart="name">
+          <help short="The name of the NetApp account"/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9\-_]{0,127}$"/>
+        </arg>
+        <arg type="string" var="$Path.backupName" options="backup-name b" required="True" group="" idPart="child_name_2">
+          <help short="The name of the backup"/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9\-_.]{0,255}$"/>
+        </arg>
+        <arg type="string" var="$Path.backupVaultName" options="backup-vault-name v" required="True" group="" idPart="child_name_1">
+          <help short="The name of the Backup Vault"/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9\-_]{0,63}$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="string" var="$body.destinationVolumeId" options="destination-volume-id" required="True" group="Body">
+          <help short="Resource Id of the destination volume on which the files need to be restored"/>
+        </arg>
+        <arg type="array<string>" var="$body.fileList" options="file-list" required="True" group="Body">
+          <help short="List of files to be restored"/>
+          <item type="string">
+            <format maxLength="1024" minLength="1"/>
+          </item>
+        </arg>
+        <arg type="string" var="$body.restoreFilePath" options="restore-file-path" group="Body">
+          <help short="Destination folder where the files will be restored. The path name should start with a forward slash. If it is omitted from request then restore is done at the root folder of the destination volume by default"/>
+          <format pattern="^\/.*$"/>
+        </arg>
+      </argGroup>
+      <operation operationId="BackupsUnderBackupVault_RestoreFiles">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/backupVaults/{backupVaultName}/backups/{backupName}/restoreFiles">
+          <request method="post">
+            <path>
+              <param type="string" name="accountName" arg="$Path.accountName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9\-_]{0,127}$"/>
+              </param>
+              <param type="string" name="backupName" arg="$Path.backupName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9\-_.]{0,255}$"/>
+              </param>
+              <param type="string" name="backupVaultName" arg="$Path.backupVaultName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9\-_]{0,63}$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-01-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="string" name="destinationVolumeId" arg="$body.destinationVolumeId" required="True"/>
+                  <prop type="array<string>" name="fileList" arg="$body.fileList" required="True">
+                    <item type="string">
+                      <format maxLength="1024" minLength="1"/>
+                    </item>
+                  </prop>
+                  <prop type="string" name="restoreFilePath" arg="$body.restoreFilePath">
+                    <format pattern="^\/.*$"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>
