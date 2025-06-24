@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dependencymap/maps/{}/getconnectionsforprocessonfocusedmachine" version="2025-01-31-preview" swagger="mgmt-plane/azuredependencymap/ResourceProviders/Microsoft.DependencyMap/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGVwZW5kZW5jeU1hcC9tYXBzL3ttYXBOYW1lfS9nZXRDb25uZWN0aW9uc0ZvclByb2Nlc3NPbkZvY3VzZWRNYWNoaW5l/V/MjAyNS0wMS0zMS1wcmV2aWV3"/>
+  <commandGroup name="dependency-map">
+    <command name="get-connections-for-process-on-focused-machine" version="2025-01-31-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.dependencymap/maps/{}/getconnectionsforprocessonfocusedmachine" version="2025-01-31-preview" swagger="mgmt-plane/azuredependencymap/ResourceProviders/Microsoft.DependencyMap/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGVwZW5kZW5jeU1hcC9tYXBzL3ttYXBOYW1lfS9nZXRDb25uZWN0aW9uc0ZvclByb2Nlc3NPbkZvY3VzZWRNYWNoaW5l/V/MjAyNS0wMS0zMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.mapName" options="map-name" required="True" idPart="name">
+          <help short="Maps resource name"/>
+          <format pattern="^[a-zA-Z][a-zA-Z0-9-]{2,23}$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="string" var="$body.focusedMachineId" options="focused-machine-id" required="True" group="Body">
+          <help short="Machine arm id"/>
+        </arg>
+        <arg type="string" var="$body.processIdOnFocusedMachine" options="process-id-on-focused-machine process-mid" required="True" group="Body">
+          <help short="Process id"/>
+        </arg>
+      </argGroup>
+      <argGroup name="DateTime">
+        <arg type="dateTime" var="$body.filters.dateTime.endDateTimeUtc" options="end-date-time-utc" group="DateTime">
+          <help short="End date time for dependency map visualization query"/>
+        </arg>
+        <arg type="dateTime" var="$body.filters.dateTime.startDateTimeUtc" options="start-date-time-utc" group="DateTime">
+          <help short="Start date time for dependency map visualization query"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Filters">
+        <arg type="string" var="$body.filters.processNameFilter.operator" options="operator" group="Filters">
+          <help short="Operator for process name filter"/>
+          <enum>
+            <item name="contains" value="&quot;contains&quot;"/>
+            <item name="notContains" value="&quot;notContains&quot;"/>
+          </enum>
+        </arg>
+        <arg type="array<string>" var="$body.filters.processNameFilter.processNames" options="process-names" group="Filters">
+          <help short="List of process names on which the operator should be applied"/>
+          <item type="string"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Maps_GetConnectionsForProcessOnFocusedMachine">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DependencyMap/maps/{mapName}/getConnectionsForProcessOnFocusedMachine">
+          <request method="post">
+            <path>
+              <param type="string" name="mapName" arg="$Path.mapName" required="True">
+                <format pattern="^[a-zA-Z][a-zA-Z0-9-]{2,23}$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-01-31-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="object" name="filters">
+                    <prop type="object" name="dateTime">
+                      <prop type="dateTime" name="endDateTimeUtc" arg="$body.filters.dateTime.endDateTimeUtc"/>
+                      <prop type="dateTime" name="startDateTimeUtc" arg="$body.filters.dateTime.startDateTimeUtc"/>
+                    </prop>
+                    <prop type="object" name="processNameFilter">
+                      <prop type="string" name="operator" arg="$body.filters.processNameFilter.operator" required="True">
+                        <enum>
+                          <item value="&quot;contains&quot;"/>
+                          <item value="&quot;notContains&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="array<string>" name="processNames" arg="$body.filters.processNameFilter.processNames" required="True">
+                        <item type="string"/>
+                      </prop>
+                    </prop>
+                  </prop>
+                  <prop type="string" name="focusedMachineId" arg="$body.focusedMachineId" required="True"/>
+                  <prop type="string" name="processIdOnFocusedMachine" arg="$body.processIdOnFocusedMachine" required="True"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>
