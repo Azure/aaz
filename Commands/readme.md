@@ -15,7 +15,7 @@
 : Manage Azure Alerts Management Service Resource.
 
 - [amlfs](/Commands/amlfs/readme.md)
-: Manage lustre file system
+: This is an extension to Azure CLI to manage Amlfs resources.
 
 - [aosm](/Commands/aosm/readme.md)
 : Manage Azure Operator Service Manager resources.
