@@ -1,6 +1,6 @@
 # [Command] _elastic monitor monitored-subscription list_
 
-List all the subscriptions currently being monitored by the Elastic monitor resource.
+List all subscriptions currently being monitored by the Elastic monitor resource, helping you manage observability.
 
 ## Versions
 

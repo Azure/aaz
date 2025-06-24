@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.netapp/locations/{}/checkfilepathavailability" version="2025-01-01" swagger="mgmt-plane/netapp/ResourceProviders/Microsoft.NetApp/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk5ldEFwcC9sb2NhdGlvbnMve2xvY2F0aW9ufS9jaGVja0ZpbGVQYXRoQXZhaWxhYmlsaXR5/V/MjAyNS0wMS0wMQ=="/>
+  <commandGroup name="netappfiles">
+    <command name="check-file-path-availability" version="2025-01-01" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.netapp/locations/{}/checkfilepathavailability" version="2025-01-01" swagger="mgmt-plane/netapp/ResourceProviders/Microsoft.NetApp/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk5ldEFwcC9sb2NhdGlvbnMve2xvY2F0aW9ufS9jaGVja0ZpbGVQYXRoQXZhaWxhYmlsaXR5/V/MjAyNS0wMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceLocation" var="$Path.location" options="location l" required="True" idPart="name"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Body">
+        <arg nullable="True" type="string" var="$body.availabilityZone" options="availability-zone" group="Body">
+          <help short="The Azure Resource logical availability zone which is used within zone mapping lookup for the subscription and region. The lookup will retrieve the physical zone where volume is placed."/>
+        </arg>
+        <arg type="string" var="$body.name" options="name" required="True" group="Body">
+          <help short="File path to verify."/>
+        </arg>
+        <arg type="string" var="$body.subnetId" options="subnet-id" required="True" group="Body">
+          <help short="The Azure Resource URI for a delegated subnet. Must have the delegation Microsoft.NetApp/volumes"/>
+        </arg>
+      </argGroup>
+      <operation operationId="NetAppResource_CheckFilePathAvailability">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.NetApp/locations/{location}/checkFilePathAvailability">
+          <request method="post">
+            <path>
+              <param type="string" name="location" arg="$Path.location" required="True">
+                <format minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-01-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop nullable="True" type="string" name="availabilityZone" arg="$body.availabilityZone"/>
+                  <prop type="string" name="name" arg="$body.name" required="True"/>
+                  <prop type="string" name="subnetId" arg="$body.subnetId" required="True"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="boolean" name="isAvailable"/>
+                  <prop type="string" name="message"/>
+                  <prop type="string" name="reason">
+                    <enum>
+                      <item value="&quot;AlreadyExists&quot;"/>
+                      <item value="&quot;Invalid&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

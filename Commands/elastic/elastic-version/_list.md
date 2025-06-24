@@ -1,6 +1,6 @@
 # [Command] _elastic elastic-version list_
 
-List a list of available versions for a region.
+Retrieve a list of all available Elastic versions for a specified region, helping you choose the best version for your deployment.
 
 ## Versions
 

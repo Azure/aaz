@@ -1,6 +1,6 @@
 # [Command] _elastic monitor monitored-subscription create_
 
-Create the subscriptions that should be monitored by the Elastic monitor resource.
+Create subscriptions to be monitored by the Elastic monitor resource, enabling observability and monitoring.
 
 ## Versions
 

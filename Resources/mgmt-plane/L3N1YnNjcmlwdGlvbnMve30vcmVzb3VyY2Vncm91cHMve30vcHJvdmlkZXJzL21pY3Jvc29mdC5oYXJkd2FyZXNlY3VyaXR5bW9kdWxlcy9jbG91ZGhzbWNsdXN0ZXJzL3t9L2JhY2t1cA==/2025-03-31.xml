@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.hardwaresecuritymodules/cloudhsmclusters/{}/backup" version="2025-03-31" swagger="mgmt-plane/hardwaresecuritymodules/ResourceProviders/Microsoft.HardwareSecurityModules/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuSGFyZHdhcmVTZWN1cml0eU1vZHVsZXMvY2xvdWRIc21DbHVzdGVycy97Y2xvdWRIc21DbHVzdGVyTmFtZX0vYmFja3Vw/V/MjAyNS0wMy0zMQ=="/>
+  <commandGroup name="cloudhsm backup">
+    <command name="start" version="2025-03-31" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.hardwaresecuritymodules/cloudhsmclusters/{}/backup" version="2025-03-31" swagger="mgmt-plane/hardwaresecuritymodules/ResourceProviders/Microsoft.HardwareSecurityModules/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuSGFyZHdhcmVTZWN1cml0eU1vZHVsZXMvY2xvdWRIc21DbHVzdGVycy97Y2xvdWRIc21DbHVzdGVyTmFtZX0vYmFja3Vw/V/MjAyNS0wMy0zMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.cloudHsmClusterName" options="cluster-name" required="True" group="" idPart="name">
+          <help short="The name of the Cloud HSM Cluster within the specified resource group. Cloud HSM Cluster names must be between 3 and 23 characters in length."/>
+          <format pattern="^[a-zA-Z0-9-]{3,23}$" maxLength="23" minLength="3"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="BackupRequestProperties">
+        <arg type="string" var="$backupRequestProperties.azureStorageBlobContainerUri" options="blob-container-uri" group="BackupRequestProperties">
+          <help short="The Azure blob storage container Uri which contains the backup"/>
+        </arg>
+        <arg type="string" var="$backupRequestProperties.token" options="token" hide="True" group="BackupRequestProperties">
+          <help short="The SAS token pointing to an Azure blob storage container. This property is reserved for Azure Backup Service."/>
+        </arg>
+      </argGroup>
+      <operation operationId="CloudHsmClusters_Backup">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HardwareSecurityModules/cloudHsmClusters/{cloudHsmClusterName}/backup">
+          <request method="post">
+            <path>
+              <param type="string" name="cloudHsmClusterName" arg="$Path.cloudHsmClusterName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,23}$" maxLength="23" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-03-31&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="backupRequestProperties" clientFlatten="True">
+                  <prop type="string" name="azureStorageBlobContainerUri" arg="$backupRequestProperties.azureStorageBlobContainerUri" required="True"/>
+                  <prop type="string" name="token" arg="$backupRequestProperties.token" secret="True"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <header>
+              <item name="x-ms-request-id"/>
+            </header>
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="string" name="azureStorageBlobContainerUri"/>
+                    <prop type="string" name="backupId"/>
+                    <prop readOnly="True" nullable="True" type="dateTime" name="endTime"/>
+                    <prop type="object" name="error" cls="ErrorDetail_read">
+                      <prop readOnly="True" type="array<object>" name="additionalInfo">
+                        <item type="object">
+                          <prop readOnly="True" type="object" name="info">
+                            <additionalProp readOnly="True">
+                              <item type="any"/>
+                            </additionalProp>
+                          </prop>
+                          <prop readOnly="True" type="string" name="type"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="string" name="code"/>
+                      <prop readOnly="True" type="array<@ErrorDetail_read>" name="details" identifiers="message target">
+                        <item type="@ErrorDetail_read"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="message"/>
+                      <prop readOnly="True" type="string" name="target"/>
+                    </prop>
+                    <prop type="string" name="jobId"/>
+                    <prop readOnly="True" type="dateTime" name="startTime"/>
+                    <prop readOnly="True" type="string" name="status">
+                      <enum>
+                        <item value="&quot;Cancelled&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;InProgress&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="statusDetails"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Azure-AsyncOperation"/>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+              <item name="x-ms-request-id"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

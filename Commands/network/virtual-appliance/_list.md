@@ -28,7 +28,7 @@ List all Azure network virtual appliance.
         network virtual-appliance list -g MyRG
     ```
 
-### [2023-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL25ldHdvcmt2aXJ0dWFsYXBwbGlhbmNlcw==/2023-11-01.xml) **Preview**
+### [2023-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL25ldHdvcmt2aXJ0dWFsYXBwbGlhbmNlcw==/2023-11-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.network/networkvirtualappliances 2023-11-01 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networkvirtualappliances 2023-11-01 -->

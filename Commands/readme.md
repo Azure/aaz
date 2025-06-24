@@ -15,7 +15,7 @@
 : Manage Azure Alerts Management Service Resource.
 
 - [amlfs](/Commands/amlfs/readme.md)
-: Manage lustre file system
+: This is an extension to Azure CLI to manage Amlfs resources.
 
 - [aosm](/Commands/aosm/readme.md)
 : Manage Azure Operator Service Manager resources.
@@ -74,6 +74,9 @@
 - [cloud-service](/Commands/cloud-service/readme.md)
 : Manage cloud service
 
+- [cloudhsm](/Commands/cloudhsm/readme.md)
+: Manage Cloud Hsm Cluster
+
 - [communication](/Commands/communication/readme.md)
 : Manage communication service with communication.
 
@@ -109,6 +112,9 @@
 
 - [data-boundary](/Commands/data-boundary/readme.md)
 : data boundary operations
+
+- [data-transfer](/Commands/data-transfer/readme.md)
+: Data transfer commands
 
 - [databox](/Commands/databox/readme.md)
 : Manage data box
@@ -183,7 +189,7 @@
 : Manage custom virtual machine images.
 
 - [informatica](/Commands/informatica/readme.md)
-: Manage all resources related to Informatica within the Azure CLI.
+: Manage Informatica
 
 - [k8s-runtime](/Commands/k8s-runtime/readme.md)
 : Manage Arc Kubernetes Runtime resources
@@ -228,7 +234,7 @@
 : Manage the Azure Monitor Service.
 
 - [neon](/Commands/neon/readme.md)
-: Manage Neon Postgres databases and related resources within Azure.
+: Manage Neon Postgres
 
 - [netappfiles](/Commands/netappfiles/readme.md)
 : Manage Azure NetApp Files (ANF) Resources
@@ -279,7 +285,7 @@
 : Manage Proximity Placement Groups.
 
 - [qumulo](/Commands/qumulo/readme.md)
-: Manage qumulo
+: Manage Qumulo file system storage resources with the Azure CLI.
 
 - [quota](/Commands/quota/readme.md)
 : Manag quota for Azure resource providers.
