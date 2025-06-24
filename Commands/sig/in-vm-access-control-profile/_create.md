@@ -10,7 +10,7 @@ Create a gallery in VM access control profile.
 
 #### examples
 
-- Create or update a gallery in VM access control profile.
+- Create a gallery in VM access control profile.
     ```bash
         sig in-vm-access-control-profile create --resource-group myResourceGroup --gallery-name myGalleryName --name myInVMAccessControlProfileName --location WestUS --os-type Linux --applicable-host-endpoint WireServer
     ```
