@@ -1,6 +1,6 @@
 # [Group] _qumulo storage file-system_
 
-Manage qumulo storage file system
+Perform management operations on Qumulo file system storage resource.
 
 ## Subgroups
 
@@ -10,16 +10,16 @@ Manage qumulo storage file system
 ## Commands
 
 - [create](/Commands/qumulo/storage/file-system/_create.md)
-: Create a FileSystemResource
+: Create a new Qumulo file system storage resource.
 
 - [delete](/Commands/qumulo/storage/file-system/_delete.md)
-: Delete a FileSystemResource
+: Delete the specified existing Qumulo file system storage resource permanently.
 
 - [list](/Commands/qumulo/storage/file-system/_list.md)
-: List file system resources
+: List all existing Qumulo file system storage resources.
 
 - [show](/Commands/qumulo/storage/file-system/_show.md)
-: Get a FileSystemResource
+: Retrieve details of a specific file system resource in Qumulo storage.
 
 - [update](/Commands/qumulo/storage/file-system/_update.md)
 : Update a FileSystemResource
