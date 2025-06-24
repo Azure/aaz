@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.devcenter">
+  <resource id="/projects/{}/users/{}/devboxes/{}/snapshots/{}" version="2025-04-01-preview" swagger="data-plane:microsoft.devcenter/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3Byb2plY3RzL3twcm9qZWN0TmFtZX0vdXNlcnMve3VzZXJJZH0vZGV2Ym94ZXMve2RldkJveE5hbWV9L3NuYXBzaG90cy97c25hcHNob3RJZH0=/V/MjAyNS0wNC0wMS1wcmV2aWV3"/>
+  <commandGroup name="devcenter dev dev-box">
+    <command name="show-snapshot" version="2025-04-01-preview" confirmation="">
+      <resource id="/projects/{}/users/{}/devboxes/{}/snapshots/{}" version="2025-04-01-preview" swagger="data-plane:microsoft.devcenter/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3Byb2plY3RzL3twcm9qZWN0TmFtZX0vdXNlcnMve3VzZXJJZH0vZGV2Ym94ZXMve2RldkJveE5hbWV9L3NuYXBzaG90cy97c25hcHNob3RJZH0=/V/MjAyNS0wNC0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.devBoxName" options="dev-box-name dev-box name n" required="True" group="">
+          <help short="The name of a dev box."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+        </arg>
+        <arg type="string" var="$Path.snapshotId" options="snapshot-id" required="True">
+          <help short="The id of the snapshot. Should be treated as opaque string."/>
+        </arg>
+        <arg type="string" var="$Path.userId" options="user-id" required="True" group="">
+          <help short="The AAD object id of the user. If value is 'me', the identity is taken from the authentication context."/>
+          <default value="&quot;me&quot;"/>
+          <format pattern="^[a-zA-Z0-9]{8}-([a-zA-Z0-9]{4}-){3}[a-zA-Z0-9]{12}$|^me$" maxLength="36" minLength="2"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Default">
+        <arg type="string" var="$Path.projectName" options="project-name project" required="True" group="Default">
+          <help short="The name of the project. Use az configure -d project=<project_name> to configure a default."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+        </arg>
+      </argGroup>
+      <operation operationId="DevBoxes_GetSnapshot">
+        <http path="/projects/{projectName}/users/{userId}/devboxes/{devBoxName}/snapshots/{snapshotId}">
+          <request method="get">
+            <path>
+              <param type="string" name="devBoxName" arg="$Path.devBoxName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+              </param>
+              <param type="string" name="projectName" arg="$Path.projectName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+              </param>
+              <param type="string" name="snapshotId" arg="$Path.snapshotId" required="True"/>
+              <param type="string" name="userId" arg="$Path.userId" required="True">
+                <format pattern="^[a-zA-Z0-9]{8}-([a-zA-Z0-9]{4}-){3}[a-zA-Z0-9]{12}$|^me$" maxLength="36" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-04-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="dateTime" name="createdTime"/>
+                  <prop readOnly="True" type="dateTime" name="expirationTime"/>
+                  <prop readOnly="True" type="string" name="snapshotId"/>
+                  <prop readOnly="True" type="string" name="snapshotType">
+                    <enum>
+                      <item value="&quot;Automatic&quot;"/>
+                      <item value="&quot;Manual&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

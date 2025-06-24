@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.devcenter">
+  <resource id="/projects/{}/approvals" version="2025-04-01-preview" swagger="data-plane:microsoft.devcenter/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3Byb2plY3RzL3twcm9qZWN0TmFtZX0vYXBwcm92YWxz/V/MjAyNS0wNC0wMS1wcmV2aWV3"/>
+  <commandGroup name="devcenter dev approval">
+    <command name="list" version="2025-04-01-preview" confirmation="">
+      <resource id="/projects/{}/approvals" version="2025-04-01-preview" swagger="data-plane:microsoft.devcenter/devcenter/ResourceProviders/Microsoft.DevCenter/Paths/L3Byb2plY3RzL3twcm9qZWN0TmFtZX0vYXBwcm92YWxz/V/MjAyNS0wNC0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.projectName" options="project-name project" required="True" group="">
+          <help short="The name of the project. Use az configure -d project=<project_name> to configure a default."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+        </arg>
+        <arg type="integer32" var="$Query.maxpagesize" options="max-page-size" group="">
+          <help short="The maximum number of result items per page."/>
+        </arg>
+        <arg type="array<string>" var="$Query.select" options="select">
+          <help short="Select the specified fields to be included in the response."/>
+          <item type="string"/>
+        </arg>
+        <arg type="integer32" var="$Query.skip" options="skip">
+          <help short="The number of result items to skip."/>
+          <default value="0"/>
+        </arg>
+        <arg type="integer32" var="$Query.top" options="top">
+          <help short="The number of result items to return."/>
+        </arg>
+      </argGroup>
+      <operation operationId="DevCenter_ListApprovals">
+        <http path="/projects/{projectName}/approvals">
+          <request method="get">
+            <path>
+              <param type="string" name="projectName" arg="$Path.projectName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_.]{2,62}$" maxLength="63" minLength="3"/>
+              </param>
+            </path>
+            <query>
+              <param type="integer32" name="maxpagesize" arg="$Query.maxpagesize"/>
+              <param type="array<string>" name="select" arg="$Query.select">
+                <format strFormat="multi"/>
+                <item type="string"/>
+              </param>
+              <param type="integer32" name="skip" arg="$Query.skip">
+                <default value="0"/>
+              </param>
+              <param type="integer32" name="top" arg="$Query.top"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-04-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="dateTime" name="createdAt"/>
+                      <prop readOnly="True" type="uuid" name="createdBy"/>
+                      <prop readOnly="True" type="string" name="createdByType"/>
+                      <prop readOnly="True" type="string" name="resourceUri"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
