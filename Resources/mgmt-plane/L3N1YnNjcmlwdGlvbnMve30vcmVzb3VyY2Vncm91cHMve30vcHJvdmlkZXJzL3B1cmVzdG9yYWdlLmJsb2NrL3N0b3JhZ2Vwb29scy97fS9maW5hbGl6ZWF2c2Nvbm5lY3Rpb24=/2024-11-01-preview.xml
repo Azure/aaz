@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/purestorage.block/storagepools/{}/finalizeavsconnection" version="2024-11-01-preview" swagger="mgmt-plane/purestorage/ResourceProviders/PureStorage.Block/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9QdXJlU3RvcmFnZS5CbG9jay9zdG9yYWdlUG9vbHMve3N0b3JhZ2VQb29sTmFtZX0vZmluYWxpemVBdnNDb25uZWN0aW9u/V/MjAyNC0xMS0wMS1wcmV2aWV3"/>
+  <commandGroup name="purestorageblock storage-pool">
+    <command name="finalize-avs-connection" version="2024-11-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/purestorage.block/storagepools/{}/finalizeavsconnection" version="2024-11-01-preview" swagger="mgmt-plane/purestorage/ResourceProviders/PureStorage.Block/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9QdXJlU3RvcmFnZS5CbG9jay9zdG9yYWdlUG9vbHMve3N0b3JhZ2VQb29sTmFtZX0vZmluYWxpemVBdnNDb25uZWN0aW9u/V/MjAyNC0xMS0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.storagePoolName" options="storage-pool-name" required="True" idPart="name">
+          <help short="Name of the storage pool"/>
+          <format pattern="^[a-zA-Z0-9\-_]{1,127}$" maxLength="127" minLength="1"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="object" var="$properties.serviceInitializationData" options="service-initialization-data" group="Properties">
+          <help short="Explicit AVS connection information"/>
+          <arg type="password" var="$properties.serviceInitializationData.serviceAccountPassword" options="service-account-password">
+            <help short="Service account password"/>
+            <prompt msg="Password:"/>
+          </arg>
+          <arg type="string" var="$properties.serviceInitializationData.serviceAccountUsername" options="service-account-username">
+            <help short="Service account username"/>
+          </arg>
+          <arg type="string" var="$properties.serviceInitializationData.vSphereCertificate" options="v-sphere-certificate">
+            <help short="AVS instance's vSphere certificate"/>
+          </arg>
+          <arg type="string" var="$properties.serviceInitializationData.vSphereIp" options="v-sphere-ip">
+            <help short="AVS instance's vSphere IP address"/>
+          </arg>
+        </arg>
+        <arg type="string" var="$properties.serviceInitializationDataEnc" options="service-initialization-data-enc" group="Properties">
+          <help short="Encoded AVS connection information"/>
+        </arg>
+      </argGroup>
+      <operation operationId="StoragePools_FinalizeAvsConnection">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/PureStorage.Block/storagePools/{storagePoolName}/finalizeAvsConnection">
+          <request method="post">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="storagePoolName" arg="$Path.storagePoolName" required="True">
+                <format pattern="^[a-zA-Z0-9\-_]{1,127}$" maxLength="127" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="properties" required="True" clientFlatten="True">
+                  <prop type="object" name="serviceInitializationData" arg="$properties.serviceInitializationData">
+                    <prop type="password" name="serviceAccountPassword" arg="$properties.serviceInitializationData.serviceAccountPassword" secret="True"/>
+                    <prop type="string" name="serviceAccountUsername" arg="$properties.serviceInitializationData.serviceAccountUsername"/>
+                    <prop type="string" name="vSphereCertificate" arg="$properties.serviceInitializationData.vSphereCertificate"/>
+                    <prop type="string" name="vSphereIp" arg="$properties.serviceInitializationData.vSphereIp"/>
+                  </prop>
+                  <prop type="string" name="serviceInitializationDataEnc" arg="$properties.serviceInitializationDataEnc"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Azure-AsyncOperation"/>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>
