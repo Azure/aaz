@@ -230,6 +230,9 @@
 - [mobile-network](/Commands/mobile-network/readme.md)
 : Manage mobile network
 
+- [mongo-db](/Commands/mongo-db/readme.md)
+: Manage MongoDB
+
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
 
