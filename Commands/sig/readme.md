@@ -13,6 +13,12 @@ Manage shared image gallery.
 - [image-version](/Commands/sig/image-version/readme.md)
 : Manage shared gallery image version with VM
 
+- [in-vm-access-control-profile](/Commands/sig/in-vm-access-control-profile/readme.md)
+: Manage in VM access control profile.
+
+- [in-vm-access-control-profile-version](/Commands/sig/in-vm-access-control-profile-version/readme.md)
+: Manage in VM access control profile version.
+
 - [share](/Commands/sig/share/readme.md)
 : Manage gallery sharing profile.
 
