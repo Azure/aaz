@@ -10,6 +10,9 @@ Manage in VM access control profile version.
 - [delete](/Commands/sig/in-vm-access-control-profile-version/_delete.md)
 : Delete a gallery in VM access control profile version.
 
+- [list](/Commands/sig/in-vm-access-control-profile-version/_list.md)
+: List gallery in VM access control profile versions in a gallery in VM access control profile.
+
 - [show](/Commands/sig/in-vm-access-control-profile-version/_show.md)
 : Get information about a gallery in VM access control profile version.
 
