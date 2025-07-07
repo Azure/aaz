@@ -12,5 +12,5 @@ Finalize an already started AVS connection to a specific AVS SDDC
 
 - StoragePools_FinalizeAvsConnection
     ```bash
-        purestorageblock storage-pool finalize-avs-connection --resource-group rgpurestorage --storage-pool-name storagePoolname --service-initialization-data-enc hlgzaxrohv --service-initialization-data "{service-account-username:axchgm,service-account-password:i,v-sphere-ip:lhbajnykbznxnxpxozyfdjaciennks,v-sphere-certificate:s}"
+        purestorageblock storage-pool finalize-avs-connection --resource-group rgpurestorage --storage-pool-name storagePoolname --service-init-data-enc hlgzaxrohv --service-init-data "{service-account-username:axchgm,service-account-password:i,v-sphere-ip:lhbajnykbznxnxpxozyfdjaciennks,v-sphere-certificate:s}"
     ```
