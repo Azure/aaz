@@ -14,3 +14,8 @@ List volumes in an AVS storage container
     ```bash
         purestorageblock storage-pool avs-storage-container volume list --resource-group rgpurestorage --storage-pool-name storagePoolname --storage-container-name name
     ```
+
+- AvsStorageContainerVolumes_ListByAvsStorageContainer
+    ```bash
+        purestorageblock storage-pool avs-storage-container volume list --resource-group rgpurestorage --storage-pool-name storagePoolname --storage-container-name name
+    ```

@@ -8,3 +8,10 @@ List reservations by Azure subscription ID
 
 <!-- mgmt-plane /subscriptions/{}/providers/purestorage.block/reservations 2024-11-01-preview -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/purestorage.block/reservations 2024-11-01-preview -->
+
+#### examples
+
+- Reservations_ListBySubscription
+    ```bash
+        purestorageblock reservation list
+    ```
