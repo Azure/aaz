@@ -10,12 +10,17 @@ Enable Deployment Safeguards for a Managed Cluster
 
 #### examples
 
-- Creates a DeploymentSafeguards resource with a long running operation.
+- Creates a DeploymentSafeguards resource at Warn level with a managed cluster resource id
     ```bash
         aks safeguards create --resource /subscriptions/subid1/resourceGroups/rg1/providers/Microsoft.ContainerService/managedClusters/cluster1 --level Warn
     ```
 
-- Creates a DeploymentSafeguards resource with a long running operation
+- Creates a DeploymentSafeguards resource at Warn level using subscription, resourcegroup, and name tags
     ```bash
         aks safeguards create --subscription subid1 -g rg1 -n cluster1 --level Warn
+    ```
+
+- Create a DeploymentSafeguards resource at Warn level with ignored namespaces
+    ```bash
+        aks safeguards create -g rg1 -n mc1 --excluded-ns [ns1,ns2] --level Warn
     ```
