@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/purestorage.block/reservations/{}/getresourcelimits" version="2024-11-01-preview" swagger="mgmt-plane/purestorage/ResourceProviders/PureStorage.Block/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9QdXJlU3RvcmFnZS5CbG9jay9yZXNlcnZhdGlvbnMve3Jlc2VydmF0aW9uTmFtZX0vZ2V0UmVzb3VyY2VMaW1pdHM=/V/MjAyNC0xMS0wMS1wcmV2aWV3"/>
+  <commandGroup name="purestorageblock reservation">
+    <command name="get-resource-limit" version="2024-11-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/purestorage.block/reservations/{}/getresourcelimits" version="2024-11-01-preview" swagger="mgmt-plane/purestorage/ResourceProviders/PureStorage.Block/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9QdXJlU3RvcmFnZS5CbG9jay9yZXNlcnZhdGlvbnMve3Jlc2VydmF0aW9uTmFtZX0vZ2V0UmVzb3VyY2VMaW1pdHM=/V/MjAyNC0xMS0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.reservationName" options="reservation-name" required="True" idPart="name">
+          <help short="Name of the reservation."/>
+          <format pattern="^[a-zA-Z0-9\-_]{1,127}$" maxLength="127" minLength="1"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="Reservations_GetResourceLimits">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/PureStorage.Block/reservations/{reservationName}/getResourceLimits">
+          <request method="post">
+            <path>
+              <param type="string" name="reservationName" arg="$Path.reservationName" required="True">
+                <format pattern="^[a-zA-Z0-9\-_]{1,127}$" maxLength="127" minLength="1"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="object" name="performancePolicy" required="True">
+                    <prop type="@RangeLimits_read" name="bandwidthLimit" required="True"/>
+                    <prop type="@RangeLimits_read" name="iopsLimit" required="True"/>
+                  </prop>
+                  <prop type="object" name="protectionPolicy" required="True">
+                    <prop type="@RangeLimits_read" name="frequency" required="True"/>
+                    <prop type="@RangeLimits_read" name="retention" required="True"/>
+                  </prop>
+                  <prop type="object" name="storagePool" required="True">
+                    <prop type="array<string>" name="physicalAvailabilityZones" required="True">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="object" name="provisionedBandwidthMbPerSec" required="True" cls="RangeLimits_read">
+                      <prop type="integer64" name="max" required="True"/>
+                      <prop type="integer64" name="min" required="True"/>
+                    </prop>
+                    <prop type="@RangeLimits_read" name="provisionedIops" required="True"/>
+                  </prop>
+                  <prop type="object" name="volume" required="True">
+                    <prop type="@RangeLimits_read" name="provisionedSize" required="True"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
