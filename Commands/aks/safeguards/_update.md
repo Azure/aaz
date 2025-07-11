@@ -22,5 +22,5 @@ Update Deployment Safeguards configuration for a Managed Cluster
 
 - Update a DeploymentSafeguards resource by adding 2 new namespaces to ignore
     ```bash
-        aks safeguards update -g rg1 -n mc1 --excluded-ns [ns1,ns2]
+        aks safeguards update -g rg1 -n mc1 --excluded-ns ns1 ns2
     ```

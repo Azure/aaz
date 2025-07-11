@@ -22,5 +22,5 @@ Enable Deployment Safeguards for a Managed Cluster
 
 - Create a DeploymentSafeguards resource at Warn level with ignored namespaces
     ```bash
-        aks safeguards create -g rg1 -n mc1 --excluded-ns [ns1,ns2] --level Warn
+        aks safeguards create -g rg1 -n mc1 --excluded-ns ns1 ns2 --level Warn
     ```
