@@ -47,3 +47,14 @@ Create a new origin group within the specified profile.
     ```bash
         afd origin-group create --resource-group RG --profile-name profile1 --origin-group-name origingroup1 --sample-size 3 --successful-samples-required 3 --additional-latency-in-milliseconds 1000 --health-probe-settings "{probe-path:/path2,probe-request-type:NotSet,probe-protocol:NotSet,probe-interval-in-seconds:10}" --traffic-restoration-time-to-healed-or-new-endpoints-in-minutes 5
     ```
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vb3JpZ2luZ3JvdXBzL3t9/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/origingroups/{} 2025-06-01 -->
+
+#### examples
+
+- Creates a new origin group within the specified profile.
+    ```bash
+        afd origin-group create --resource-group RG --profile-name profile1 --origin-group-name origingroup1 --sample-size 3 --successful-samples-required 3 --additional-latency-in-milliseconds 1000 --health-probe-settings "{probe-path:/path2,probe-request-type:NotSet,probe-protocol:NotSet,probe-interval-in-seconds:10}" --traffic-restoration-time-to-healed-or-new-endpoints-in-minutes 5
+    ```

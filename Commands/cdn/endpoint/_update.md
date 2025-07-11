@@ -51,3 +51,19 @@ Update an existing CDN endpoint with the specified endpoint name under the speci
     ```bash
         cdn endpoint update -g group -n endpoint --profile-name profile --enable-compression
     ```
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vZW5kcG9pbnRzL3t9/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/endpoints/{} 2025-06-01 -->
+
+#### examples
+
+- Turn off HTTP traffic for an endpoint.
+    ```bash
+        cdn endpoint update -g group -n endpoint --profile-name profile --no-http
+    ```
+
+- Enable content compression for an endpoint.
+    ```bash
+        cdn endpoint update -g group -n endpoint --profile-name profile --enable-compression
+    ```

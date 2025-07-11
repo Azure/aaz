@@ -15,3 +15,7 @@ Check the availability of a resource name. This is needed for resources where na
 ### [2024-09-01](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuY2RuL2NoZWNrbmFtZWF2YWlsYWJpbGl0eQ==/2024-09-01.xml) **Stable**
 
 <!-- mgmt-plane /providers/microsoft.cdn/checknameavailability 2024-09-01 -->
+
+### [2025-06-01](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuY2RuL2NoZWNrbmFtZWF2YWlsYWJpbGl0eQ==/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /providers/microsoft.cdn/checknameavailability 2025-06-01 -->
