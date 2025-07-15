@@ -32,7 +32,7 @@ Enable/Disable a network tap
 
 #### examples
 
-- Update admin state of Network Tap
+- Update admin state of the Network Tap
     ```bash
         networkfabric tap update-admin-state --resource-group "example-rg" --resource-name "example-tap" --state "Enable"
     ```

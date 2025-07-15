@@ -53,7 +53,7 @@ Create a Ip Community resource
 
 #### examples
 
-- Create a Ip Community
+- Create an Ip Community
     ```bash
         networkfabric ipcommunity create --resource-group "example-rg" --location "westus3" --resource-name "example-ipcommunity" --ip-community-rules "[{action:Permit,communityMembers:['1:1'],sequenceNumber:1234,wellKnownCommunities:[Internet,GShut]}]"
     ```

@@ -10,7 +10,7 @@ Update to update certain properties of the NetworkMonitor resource.
 
 #### examples
 
-- Update a Network Monitor
+- Update the Network Monitor
     ```bash
         networkfabric networkmonitor update --network-monitor-name example-nm --resource-group example-rg --bmp-configuration '{"stationConfigurationState":"Enabled","scopeResourceId":"/subscriptions/1234ABCD-0A1B-1234-5678-123456ABCDEF/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/networkFabrics/example-fabric","stationName":"name","stationIp":"10.0.0.1","stationPort":62695,"stationConnectionMode":"Active","stationConnectionProperties":{"keepaliveIdleTime":49,"probeInterval":3558,"probeCount":45},"stationNetwork":"/subscriptions/1234ABCD-0A1B-1234-5678-123456ABCDEF/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/l3IsolationDomains/example-l3domain/internalNetworks/example-internalnetwork","monitoredNetworks":["/subscriptions/1234ABCD-0A1B-1234-5678-123456ABCDEF/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/l3IsolationDomains/example-l3domain"],"exportPolicy":"All","monitoredAddressFamilies":["All"]}'
     ```

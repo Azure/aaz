@@ -8,3 +8,10 @@ List NetworkMonitors list by subscription GET method.
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.managednetworkfabric/networkmonitors 2024-06-15-preview -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkmonitors 2024-06-15-preview -->
+
+#### examples
+
+- List the Network Monitor
+    ```bash
+        networkfabric networkmonitor list
+    ```

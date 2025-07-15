@@ -21,7 +21,7 @@ Updates the Administrative state of the Network Device.
 
 #### examples
 
-- Update admin state
+- Update the admin state of the Network Device
     ```bash
         networkfabric device update-admin-state --resource-name "example-device-name" --resource-group "example-RG" --state "UnderMaintenance"
     ```
