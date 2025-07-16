@@ -42,7 +42,7 @@ Create an Internet Gateway Rule resource
 
 #### examples
 
-- Create a Internet Gateway Rule
+- Create an Internet Gateway Rule
     ```bash
         networkfabric internetgatewayrule create --resource-group "example-rg" --location "westus3" --resource-name "example-internetgatewayrule" --rule-properties "{action:Allow,addressList:['10.10.10.10']}"
     ```

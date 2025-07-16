@@ -32,7 +32,7 @@ Create an Internet Gateway resource
 
 #### examples
 
-- Create a Internet Gateway
+- Create an Internet Gateway
     ```bash
         networkfabric internetgateway create --resource-group "example-rg" --location "westus3" --resource-name "example-internetgateway" --type "Infrastructure" --network-fabric-controller-id "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxx/resourcegroups/example-rg/providers/Microsoft.ManagedNetworkFabric/networkFabricControllers/example-nfc" --internet-gateway-rule-id "/subscriptions/xxxxx-xxxx-xxxx-xxxx-xxxxx/resourcegroups/example-rg/providers/Microsoft.ManagedNetworkFabric/internetGatewayRules/example-internetGatewayRule"
     ```
