@@ -7,6 +7,9 @@ Manage device with databoxedge.
 - [alert](/Commands/databoxedge/alert/readme.md)
 : Manage Alert
 
+- [bandwidth-schedule](/Commands/databoxedge/bandwidth-schedule/readme.md)
+: Manage Bandwidth Schedule
+
 - [device](/Commands/databoxedge/device/readme.md)
 : Manage device with databoxedge.
 
