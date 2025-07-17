@@ -4,6 +4,9 @@ Manage device with databoxedge.
 
 ## Subgroups
 
+- [alert](/Commands/databoxedge/alert/readme.md)
+: Manage Alert
+
 - [device](/Commands/databoxedge/device/readme.md)
 : Manage device with databoxedge.
 
