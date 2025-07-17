@@ -13,6 +13,9 @@ Manage device with databoxedge.
 - [device](/Commands/databoxedge/device/readme.md)
 : Manage device with databoxedge.
 
+- [order](/Commands/databoxedge/order/readme.md)
+: Manage order with databoxedge
+
 ## Commands
 
 - [list-node](/Commands/databoxedge/_list-node.md)
