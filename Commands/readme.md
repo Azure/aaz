@@ -197,6 +197,9 @@
 - [lab](/Commands/lab/readme.md)
 : Manage azure devtest labs.
 
+- [lambda-test](/Commands/lambda-test/readme.md)
+: Manage Lambda Test
+
 - [large-instance](/Commands/large-instance/readme.md)
 : Handle Operations for Compute Azure Large Instances.
 
