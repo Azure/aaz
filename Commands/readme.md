@@ -32,6 +32,9 @@
 - [arcgateway](/Commands/arcgateway/readme.md)
 : Manage gateway connection on Arc machine
 
+- [arize-ai](/Commands/arize-ai/readme.md)
+: Manage Arize Ai
+
 - [astronomer](/Commands/astronomer/readme.md)
 : Manage Azure Astronomer resources.
 
@@ -196,6 +199,9 @@
 
 - [lab](/Commands/lab/readme.md)
 : Manage azure devtest labs.
+
+- [lambda-test](/Commands/lambda-test/readme.md)
+: Manage Lambda Test
 
 - [large-instance](/Commands/large-instance/readme.md)
 : Handle Operations for Compute Azure Large Instances.
