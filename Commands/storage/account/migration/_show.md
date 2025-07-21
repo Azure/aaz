@@ -14,3 +14,14 @@ Get the status of the ongoing migration for the specified storage account.
     ```bash
         storage account migration show --account-name "storage_account_name" -g "resource_group_name"
     ```
+
+### [2024-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zdG9yYWdlL3N0b3JhZ2VhY2NvdW50cy97fS9hY2NvdW50bWlncmF0aW9ucy97fQ==/2024-01-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.storage/storageaccounts/{}/accountmigrations/{} 2024-01-01 -->
+
+#### examples
+
+- migration show
+    ```bash
+        storage account migration show --account-name "storage_account_name" -g "resource_group_name"
+    ```
