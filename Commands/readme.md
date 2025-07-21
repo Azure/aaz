@@ -168,7 +168,7 @@
 : Manage Azure Event Grid topics, domains, domain topics, system topics, partner topics, event subscriptions, system topic event subscriptions, partner topic event subscriptions, and namespaces resources.
 
 - [eventhubs](/Commands/eventhubs/readme.md)
-: eventhub
+: Manage Event Hub
 
 - [firmwareanalysis](/Commands/firmwareanalysis/readme.md)
 : Commands to manage firmware analysis.
