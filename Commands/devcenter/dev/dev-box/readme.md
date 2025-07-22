@@ -4,6 +4,12 @@ Manage dev boxes.
 
 ## Commands
 
+- [align](/Commands/devcenter/dev/dev-box/_align.md)
+: Aligns a Dev Box to the pools current pool configuration.
+
+- [approve](/Commands/devcenter/dev/dev-box/_approve.md)
+: Approves the creation of a Dev Box.
+
 - [capture-snapshot](/Commands/devcenter/dev/dev-box/_capture-snapshot.md)
 : Captures a manual snapshot of the dev box.
 
@@ -42,6 +48,9 @@ Manage dev boxes.
 
 - [restore-snapshot](/Commands/devcenter/dev/dev-box/_restore-snapshot.md)
 : Restores a dev box to a specified snapshot.
+
+- [set-active-hours](/Commands/devcenter/dev/dev-box/_set-active-hours.md)
+: Lets a user set their own active hours for their Dev Box, overriding the defaults set at the pool level.
 
 - [show](/Commands/devcenter/dev/dev-box/_show.md)
 : Get a Dev Box.
