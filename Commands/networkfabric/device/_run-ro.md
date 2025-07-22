@@ -21,7 +21,7 @@ Run the RO Command on the Network Device.
 
 #### examples
 
-- Run ro on the network device
+- Run ro on the Network Device
     ```bash
         networkfabric device run-ro --resource-name "example-device" --resource-group "example-rg" --ro-command "example command"
     ```

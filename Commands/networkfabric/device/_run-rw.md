@@ -21,7 +21,7 @@ Run the RW Command on the Network Device.
 
 #### examples
 
-- Run rw on the network device
+- Run rw on the Network Device
     ```bash
         networkfabric device run-rw --resource-name "example-device" --resource-group "example-rg" --rw-command "example command"
     ```

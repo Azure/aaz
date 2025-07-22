@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/cdnmigratetoafd" version="2025-06-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0vY2RuTWlncmF0ZVRvQWZk/V/MjAyNS0wNi0wMQ=="/>
+  <commandGroup name="cdn profile-migration">
+    <command name="migrate" version="2025-06-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/cdnmigratetoafd" version="2025-06-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0vY2RuTWlncmF0ZVRvQWZk/V/MjAyNS0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.profileName" options="profile-name" required="True" idPart="name">
+          <help short="Name of the Azure Front Door Standard or Azure Front Door Premium which is unique within the resource group."/>
+          <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="MigrationParameters">
+        <arg type="array<object>" var="$migrationParameters.migrationEndpointMappings" options="migration-endpoint-mappings" group="MigrationParameters">
+          <help short="A name map between classic CDN endpoints and AFD Premium/Standard endpoints."/>
+          <item type="object">
+            <arg type="string" var="$migrationParameters.migrationEndpointMappings[].migratedFrom" options="migrated-from">
+              <help short="The name of the old endpoint."/>
+            </arg>
+            <arg type="string" var="$migrationParameters.migrationEndpointMappings[].migratedTo" options="migrated-to">
+              <help short="The name for the new endpoint."/>
+            </arg>
+          </item>
+        </arg>
+      </argGroup>
+      <argGroup name="Sku">
+        <arg type="string" var="$migrationParameters.sku.name" options="sku" group="Sku">
+          <help short="Name of the pricing tier."/>
+          <enum>
+            <item name="Custom_Verizon" value="&quot;Custom_Verizon&quot;"/>
+            <item name="Premium_AzureFrontDoor" value="&quot;Premium_AzureFrontDoor&quot;"/>
+            <item name="Premium_Verizon" value="&quot;Premium_Verizon&quot;"/>
+            <item name="StandardPlus_955BandWidth_ChinaCdn" value="&quot;StandardPlus_955BandWidth_ChinaCdn&quot;"/>
+            <item name="StandardPlus_AvgBandWidth_ChinaCdn" value="&quot;StandardPlus_AvgBandWidth_ChinaCdn&quot;"/>
+            <item name="StandardPlus_ChinaCdn" value="&quot;StandardPlus_ChinaCdn&quot;"/>
+            <item name="Standard_955BandWidth_ChinaCdn" value="&quot;Standard_955BandWidth_ChinaCdn&quot;"/>
+            <item name="Standard_Akamai" value="&quot;Standard_Akamai&quot;"/>
+            <item name="Standard_AvgBandWidth_ChinaCdn" value="&quot;Standard_AvgBandWidth_ChinaCdn&quot;"/>
+            <item name="Standard_AzureFrontDoor" value="&quot;Standard_AzureFrontDoor&quot;"/>
+            <item name="Standard_ChinaCdn" value="&quot;Standard_ChinaCdn&quot;"/>
+            <item name="Standard_Microsoft" value="&quot;Standard_Microsoft&quot;"/>
+            <item name="Standard_Verizon" value="&quot;Standard_Verizon&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <operation operationId="Profiles_CdnMigrateToAfd">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/cdnMigrateToAfd">
+          <request method="post">
+            <path>
+              <param type="string" name="profileName" arg="$Path.profileName" required="True">
+                <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="migrationParameters" required="True" clientFlatten="True">
+                  <prop type="array<object>" name="migrationEndpointMappings" arg="$migrationParameters.migrationEndpointMappings">
+                    <item type="object">
+                      <prop type="string" name="migratedFrom" arg="$migrationParameters.migrationEndpointMappings[].migratedFrom"/>
+                      <prop type="string" name="migratedTo" arg="$migrationParameters.migrationEndpointMappings[].migratedTo"/>
+                    </item>
+                  </prop>
+                  <prop type="object" name="sku" required="True">
+                    <prop type="string" name="name" arg="$migrationParameters.sku.name">
+                      <enum>
+                        <item value="&quot;Custom_Verizon&quot;"/>
+                        <item value="&quot;Premium_AzureFrontDoor&quot;"/>
+                        <item value="&quot;Premium_Verizon&quot;"/>
+                        <item value="&quot;StandardPlus_955BandWidth_ChinaCdn&quot;"/>
+                        <item value="&quot;StandardPlus_AvgBandWidth_ChinaCdn&quot;"/>
+                        <item value="&quot;StandardPlus_ChinaCdn&quot;"/>
+                        <item value="&quot;Standard_955BandWidth_ChinaCdn&quot;"/>
+                        <item value="&quot;Standard_Akamai&quot;"/>
+                        <item value="&quot;Standard_AvgBandWidth_ChinaCdn&quot;"/>
+                        <item value="&quot;Standard_AzureFrontDoor&quot;"/>
+                        <item value="&quot;Standard_ChinaCdn&quot;"/>
+                        <item value="&quot;Standard_Microsoft&quot;"/>
+                        <item value="&quot;Standard_Verizon&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop readOnly="True" type="object" name="migratedProfileResourceId">
+                      <prop type="string" name="id"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="location"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

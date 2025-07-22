@@ -43,7 +43,7 @@ Create a L2 Isolation Domain resource
 
 #### examples
 
-- Create a L2 Isolation Domain
+- Create an L2 Isolation Domain
     ```bash
         networkfabric l2domain create --resource-group "example-rg" --resource-name "example-l2domain" --location "westus3" --nf-id "/subscriptions/xxxxxx-xxxxxx-xxxx-xxxx-xxxxxx/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/NetworkFabrics/example-fabricName" --vlan-id  501 --mtu 1500
     ```

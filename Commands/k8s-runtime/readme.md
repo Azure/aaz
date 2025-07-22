@@ -4,6 +4,9 @@ Manage Arc Kubernetes Runtime resources
 
 ## Subgroups
 
+- [bfd-profile](/Commands/k8s-runtime/bfd-profile/readme.md)
+: Manage Bfd Profile
+
 - [bgp-peer](/Commands/k8s-runtime/bgp-peer/readme.md)
 : Manage BGP peers of Arc Kubernetes clusters
 
