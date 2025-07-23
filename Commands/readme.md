@@ -299,6 +299,9 @@
 - [ppg](/Commands/ppg/readme.md)
 : Manage Proximity Placement Groups.
 
+- [pscloud](/Commands/pscloud/readme.md)
+: Manage Pure Storage
+
 - [qumulo](/Commands/qumulo/readme.md)
 : Manage Qumulo file system storage resources with the Azure CLI.
 
