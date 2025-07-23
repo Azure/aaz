@@ -8,3 +8,10 @@ List storage pools by Azure subscription ID
 
 <!-- mgmt-plane /subscriptions/{}/providers/purestorage.block/storagepools 2024-11-01-preview -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/purestorage.block/storagepools 2024-11-01-preview -->
+
+#### examples
+
+- StoragePools_ListBySubscription
+    ```bash
+        pscloud storagepool list
+    ```
