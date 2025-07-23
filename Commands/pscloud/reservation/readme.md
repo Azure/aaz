@@ -5,7 +5,7 @@ Manage Reservation
 ## Commands
 
 - [create](/Commands/pscloud/reservation/_create.md)
-: Create a reservation
+: Create a Pure Storage reservation
 
 - [delete](/Commands/pscloud/reservation/_delete.md)
 : Delete a reservation

@@ -1,6 +1,6 @@
 # [Command] _pscloud reservation create_
 
-Create a reservation
+Create a Pure Storage reservation
 
 ## Versions
 
