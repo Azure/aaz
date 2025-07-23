@@ -14,3 +14,8 @@ Get a reservation
     ```bash
         pscloud reservation show --resource-group rgpurestorage --reservation-name reservation_resource_name
     ```
+
+- Reservations_Get
+    ```bash
+        pscloud reservation show --resource-group rgpurestorage --reservation-name reservation_name
+    ```
