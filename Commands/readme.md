@@ -203,6 +203,9 @@
 - [k8s-runtime](/Commands/k8s-runtime/readme.md)
 : Manage Arc Kubernetes Runtime resources
 
+- [key-vault](/Commands/key-vault/readme.md)
+: Manage Key Vault
+
 - [lab](/Commands/lab/readme.md)
 : Manage azure devtest labs.
 
