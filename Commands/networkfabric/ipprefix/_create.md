@@ -58,7 +58,7 @@ Create a Ip Prefix resource
 
 #### examples
 
-- Create a Ip Prefix
+- Create an Ip Prefix
     ```bash
         networkfabric ipprefix create --resource-group "example-rg" --location "westus3" --resource-name "example-ipprefix" --ip-prefix-rules "[{action:Permit,sequenceNumber:1234,networkPrefix:'1.1.1.0/24',condition:EqualTo,subnetMaskLength:24}]"
     ```

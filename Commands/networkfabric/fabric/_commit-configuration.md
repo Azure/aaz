@@ -32,7 +32,7 @@ Atomic update of the given Network Fabric instance. Sync update of NFA resources
 
 #### examples
 
-- Commit Configuration
+- Run commit configuration on the Network Fabric
     ```bash
         networkfabric fabric commit-configuration --resource-group "example-rg" --resource-name "example-fabric"
     ```

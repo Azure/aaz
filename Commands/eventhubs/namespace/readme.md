@@ -1,6 +1,6 @@
 # [Group] _eventhubs namespace_
 
-Eventhub namespace.
+Manage Namespace
 
 ## Subgroups
 
@@ -12,6 +12,9 @@ Eventhub namespace.
 
 - [network-rule-set](/Commands/eventhubs/namespace/network-rule-set/readme.md)
 : Manage Azure EventHubs networkruleset for namespace
+
+- [nsp-configuration](/Commands/eventhubs/namespace/nsp-configuration/readme.md)
+: Manage Network Security Perimeter Configurations
 
 - [private-endpoint-connection](/Commands/eventhubs/namespace/private-endpoint-connection/readme.md)
 : Manage eventhubs namespace private endpoint connection.
@@ -32,6 +35,9 @@ Eventhub namespace.
 
 - [exists](/Commands/eventhubs/namespace/_exists.md)
 : Check the give Namespace name availability.
+
+- [failover](/Commands/eventhubs/namespace/_failover.md)
+: GeoDR Failover
 
 - [list](/Commands/eventhubs/namespace/_list.md)
 : List all the available Namespaces within a subscription, irrespective of the resource groups.

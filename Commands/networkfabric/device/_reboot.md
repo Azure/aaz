@@ -14,7 +14,7 @@ Reboot the Network Device.
 
 #### examples
 
-- NetworkDevices_Reboot_MaximumSet_Gen
+- Reboot the Network Device
     ```bash
         networkfabric device reboot --resource-group example-rg --resource-name example-device --reboot-type GracefulRebootWithZTP
     ```

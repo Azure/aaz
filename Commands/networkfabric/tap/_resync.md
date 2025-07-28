@@ -32,7 +32,7 @@ Implements the operation to the underlying resources.
 
 #### examples
 
-- Resync Operation
+- Resync the Network Tap
     ```bash
         networkfabric tap resync --resource-group "example-rg" --network-tap-name "example-networktap"
     ```

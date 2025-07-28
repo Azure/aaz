@@ -11,6 +11,9 @@
 - [afd](/Commands/afd/readme.md)
 : Manage Azure Front Door Standard/Premium.
 
+- [aks](/Commands/aks/readme.md)
+: Azure Kubernetes Service
+
 - [alerts-management](/Commands/alerts-management/readme.md)
 : Manage Azure Alerts Management Service Resource.
 
@@ -31,6 +34,9 @@
 
 - [arcgateway](/Commands/arcgateway/readme.md)
 : Manage gateway connection on Arc machine
+
+- [arize-ai](/Commands/arize-ai/readme.md)
+: Manage Arize Ai
 
 - [astronomer](/Commands/astronomer/readme.md)
 : Manage Azure Astronomer resources.
@@ -128,6 +134,9 @@
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage dataprotection.
 
+- [dependency-map](/Commands/dependency-map/readme.md)
+: Manage Dependency Map
+
 - [desktopvirtualization](/Commands/desktopvirtualization/readme.md)
 : Manage desktop virtualization.
 
@@ -168,7 +177,7 @@
 : Manage Azure Event Grid topics, domains, domain topics, system topics, partner topics, event subscriptions, system topic event subscriptions, partner topic event subscriptions, and namespaces resources.
 
 - [eventhubs](/Commands/eventhubs/readme.md)
-: eventhub
+: Manage Event Hub
 
 - [firmwareanalysis](/Commands/firmwareanalysis/readme.md)
 : Commands to manage firmware analysis.
@@ -196,6 +205,9 @@
 
 - [lab](/Commands/lab/readme.md)
 : Manage azure devtest labs.
+
+- [lambda-test](/Commands/lambda-test/readme.md)
+: Manage Lambda Test
 
 - [large-instance](/Commands/large-instance/readme.md)
 : Handle Operations for Compute Azure Large Instances.

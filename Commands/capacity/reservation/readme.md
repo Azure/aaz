@@ -19,7 +19,7 @@ Manage capacity reservation.
 : List all of the capacity reservations in the specified capacity reservation group. Use the nextLink property in the response to get the next page of capacity reservations.
 
 - [show](/Commands/capacity/reservation/_show.md)
-: Get operation that retrieves information about the capacity reservation.
+: Retrieve information about the capacity reservation.
 
 - [update](/Commands/capacity/reservation/_update.md)
-: Update operation to create or update a capacity reservation. Please note some properties can be set only during capacity reservation creation. Please refer to https://aka.ms/CapacityReservation for more details.
+: Update operation to update a capacity reservation.

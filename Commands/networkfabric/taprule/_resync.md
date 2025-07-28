@@ -32,7 +32,7 @@ Resync taprule with latest configuration
 
 #### examples
 
-- Resync operation
+- Resync the Network Tap Rule
     ```bash
         networkfabric taprule resync --resource-group "example-rg" --resource-name "example-networktaprule"
     ```
