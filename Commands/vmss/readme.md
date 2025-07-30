@@ -21,6 +21,9 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 - [create](/Commands/vmss/_create.md)
 : Create a VM scale set.
 
+- [deallocate](/Commands/vmss/_deallocate.md)
+: Deallocate VMs within a VMSS.
+
 - [delete](/Commands/vmss/_delete.md)
 : Delete a VM scale set.
 
