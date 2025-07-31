@@ -12,5 +12,5 @@ Delete a StorageDiscoveryWorkspace
 
 - Delete a StorageDiscoveryWorkspace
     ```bash
-        storage-discovery workspace delete --resource-group sample-rg --storage-discovery-workspace-name sampleworkspace
+        storage-discovery workspace delete --resource-group myRG --name myWorkspace
     ```

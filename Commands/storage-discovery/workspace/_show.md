@@ -12,5 +12,5 @@ Get a StorageDiscoveryWorkspace
 
 - Get a StorageDiscoveryWorkspace
     ```bash
-        storage-discovery workspace show --resource-group sample-rg --storage-discovery-workspace-name Sample-Storage-Workspace
+        storage-discovery workspace show --resource-group myRG --name myWorkspace
     ```

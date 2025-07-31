@@ -14,4 +14,5 @@ List StorageDiscoveryWorkspace resources by subscription ID
 - List StorageDiscoveryWorkspaces by Subscription
     ```bash
         storage-discovery workspace list
+        storage-discovery workspace list --resource-group myRG
     ```
