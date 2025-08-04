@@ -48,6 +48,9 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 - [simulate-eviction](/Commands/vmss/_simulate-eviction.md)
 : Simulate the eviction of a Spot virtual machine in a VM scale set.
 
+- [start](/Commands/vmss/_start.md)
+: Start VMs within a VMSS
+
 - [update](/Commands/vmss/_update.md)
 : Update a VM scale set.
 
