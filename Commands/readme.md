@@ -368,6 +368,9 @@
 - [storage-actions](/Commands/storage-actions/readme.md)
 : Manage StorageActions
 
+- [storage-discovery](/Commands/storage-discovery/readme.md)
+: Manage Storage Discovery
+
 - [storage-mover](/Commands/storage-mover/readme.md)
 : Manage top-level Storage Mover resource.
 
