@@ -74,9 +74,6 @@
 - [cloud-service](/Commands/cloud-service/readme.md)
 : Manage cloud service
 
-- [cloudhsm](/Commands/cloudhsm/readme.md)
-: Manage Cloud Hsm Cluster
-
 - [communication](/Commands/communication/readme.md)
 : Manage communication service with communication.
 
@@ -112,9 +109,6 @@
 
 - [data-boundary](/Commands/data-boundary/readme.md)
 : data boundary operations
-
-- [data-transfer](/Commands/data-transfer/readme.md)
-: Data transfer commands
 
 - [databox](/Commands/databox/readme.md)
 : Manage data box
@@ -189,7 +183,7 @@
 : Manage custom virtual machine images.
 
 - [informatica](/Commands/informatica/readme.md)
-: Manage Informatica
+: Manage all resources related to Informatica within the Azure CLI.
 
 - [k8s-runtime](/Commands/k8s-runtime/readme.md)
 : Manage Arc Kubernetes Runtime resources
@@ -234,7 +228,7 @@
 : Manage the Azure Monitor Service.
 
 - [neon](/Commands/neon/readme.md)
-: Manage Neon Postgres
+: Manage Neon Postgres databases and related resources within Azure.
 
 - [netappfiles](/Commands/netappfiles/readme.md)
 : Manage Azure NetApp Files (ANF) Resources
