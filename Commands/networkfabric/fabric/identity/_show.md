@@ -12,5 +12,5 @@ Show the details of managed identities.
 
 - Show identity on the Network Fabric
     ```bash
-        networkfabric fabric identity show --resource-group example-rg --network-fabric-name example-fabric
+        networkfabric fabric identity show --resource-group example-rg --resource-name example-fabric
     ```
