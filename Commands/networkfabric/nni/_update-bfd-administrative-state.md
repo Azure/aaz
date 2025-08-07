@@ -12,5 +12,5 @@ Updates the Admin State.
 
 - Update bfd admin state of the Network To Network Interconnect
     ```bash
-        networkfabric nni update-bfd-administrative-state --resource-group example-rg --network-fabric-name example-nf --network-to-network-interconnect-name example-nni --route-type Static --administrative-state Enable
+        networkfabric nni update-bfd-administrative-state --resource-group example-rg --network-fabric-name example-nf --resource-name example-nni --route-type Static --administrative-state Enable
     ```

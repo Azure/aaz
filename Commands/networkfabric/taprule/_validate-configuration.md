@@ -16,5 +16,5 @@ Implements the operation to the underlying resources.
 
 - Validate configuration of the Network Tap Rule
     ```bash
-        networkfabric taprule validate-configuration --resource-group example-rg --network-tap-rule-name example-tapRule
+        networkfabric taprule validate-configuration --resource-group example-rg --resource-name example-tapRule
     ```

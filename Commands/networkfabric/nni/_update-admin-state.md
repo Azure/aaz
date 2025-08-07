@@ -20,5 +20,5 @@ Updates the Admin State.
 
 - Update admin state of the Network To Network Interconnect
     ```bash
-        networkfabric nni update-admin-state --resource-group example-rg --fabric-name example-nf --network-to-network-interconnect-name example-nni --resource-ids "[]" --state Enable
+        networkfabric nni update-admin-state --resource-group example-rg --fabric-name example-nf --resource-name example-nni --resource-ids "[]" --state Enable
     ```

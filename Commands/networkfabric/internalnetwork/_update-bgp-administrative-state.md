@@ -12,5 +12,5 @@ Update BGP state for internalNetwork. Allowed only on edge devices.
 
 - Update bgp admin state of Internal Network
     ```bash
-        networkfabric internalnetwork update-bgp-administrative-state --resource-group example-rg --l3-isolation-domain-name example-l3isd --internal-network-name example-internalnetwork --neighbor-address 10.10.10.10 --administrative-state Enable
+        networkfabric internalnetwork update-bgp-administrative-state --resource-group example-rg --l3-isolation-domain-name example-l3isd --resource-name example-internalnetwork --neighbor-address 10.10.10.10 --administrative-state Enable
     ```

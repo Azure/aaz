@@ -12,5 +12,5 @@ Post action: Returns a status of commit batch operation.
 
 - Run commit batch status on the Network Fabric
     ```bash
-        networkfabric fabric commit-batch-status --resource-group example-rg --network-fabric-name example-fabric --commit-batch-id batch-id
+        networkfabric fabric commit-batch-status --resource-group example-rg --resource-name example-fabric --commit-batch-id batch-id
     ```

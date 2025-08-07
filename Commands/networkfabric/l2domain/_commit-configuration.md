@@ -16,5 +16,5 @@ Commits the configuration of the given resources.
 
 - Run commit configuration on the L2 Isolation Domain
     ```bash
-        networkfabric l2domain commit-configuration --resource-group example-rg --l2-isolation-domain-name example-l2domain
+        networkfabric l2domain commit-configuration --resource-group example-rg --resource-name example-l2domain
     ```

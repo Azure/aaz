@@ -16,5 +16,5 @@ Updated the admin state for this Route Policy.
 
 - Update admin state of the Route Policy
     ```bash
-        networkfabric routepolicy update-administrative-state --resource-group example-rg --route-policy-name example-routePolicy --resource-ids "[]" --state Enable
+        networkfabric routepolicy update-administrative-state --resource-group example-rg --resource-name example-routePolicy --resource-ids "[]" --state Enable
     ```

@@ -12,5 +12,5 @@ Enables isolation domain across the fabric or on specified racks.
 
 - Update admin state of the Network Monitor
     ```bash
-        networkfabric networkmonitor update-administrative-state --resource-group example-rg --network-monitor-name example-monitor --resource-ids "[]" --state Enable
+        networkfabric networkmonitor update-administrative-state --resource-group example-rg --resource-name example-monitor --resource-ids "[]" --state Enable
     ```

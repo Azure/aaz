@@ -16,5 +16,5 @@ Updates the Infra Management BFD Configuration of the underlying resources in th
 
 - Run update infra management bfd configuration on the Network Fabric
     ```bash
-        networkfabric fabric update-infra-management-bfd-configuration --resource-group example-rg --network-fabric-name example-fabric --resource-ids "[]" --state Enable
+        networkfabric fabric update-infra-management-bfd-configuration --resource-group example-rg --resource-name example-fabric --resource-ids "[]" --state Enable
     ```

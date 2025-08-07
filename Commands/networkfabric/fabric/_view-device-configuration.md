@@ -12,5 +12,5 @@ Post action: Triggers view of network fabric configuration.
 
 - View device configuration on the Network Fabric
     ```bash
-        networkfabric fabric view-device-configuration --resource-group example-rg --network-fabric-name example-fabric
+        networkfabric fabric view-device-configuration --resource-group example-rg --resource-name example-fabric
     ```
