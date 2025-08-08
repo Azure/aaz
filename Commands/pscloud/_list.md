@@ -8,3 +8,10 @@ List reservations by Azure subscription ID
 
 <!-- mgmt-plane /subscriptions/{}/providers/purestorage.block/reservations 2024-11-01 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/purestorage.block/reservations 2024-11-01 -->
+
+#### examples
+
+- Reservations_ListBySubscription
+    ```bash
+        pscloud list
+    ```
