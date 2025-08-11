@@ -1,6 +1,6 @@
 # [Command] _vmss start_
 
-Start VMs within a VMSS
+Start VMs within a VMSS.
 
 ## Versions
 
