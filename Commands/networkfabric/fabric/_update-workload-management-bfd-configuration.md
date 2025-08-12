@@ -16,5 +16,5 @@ Updates the Workload Management BFD Configuration of the underlying resources in
 
 - Run update workload management bfd configuration on the Network Fabric
     ```bash
-        networkfabric fabric update-workload-management-bfd-configuration --resource-group example-rg --network-fabric-name example-fabric --resource-ids "[]" --state Enable
+        networkfabric fabric update-workload-management-bfd-configuration --resource-group example-rg --resource-name example-fabric --resource-ids "[]" --state Enable
     ```

@@ -12,5 +12,5 @@ Post action: Discards a Batch operation in progress.
 
 - Run discard commit batch on the Network Fabric
     ```bash
-        networkfabric fabric discard-commit-batch --resource-group example-rg --network-fabric-name example-fabric --commit-batch-id batchId1
+        networkfabric fabric discard-commit-batch --resource-group example-rg --resource-name example-fabric --commit-batch-id batchId1
     ```

@@ -16,5 +16,5 @@ Commits the configuration of the given resources.
 
 - Commit configuration on the Route Policy
     ```bash
-        networkfabric routepolicy commit-configuration --resource-group example-rg --route-policy-name example-routePolicy
+        networkfabric routepolicy commit-configuration --resource-group example-rg --resource-name example-routePolicy
     ```

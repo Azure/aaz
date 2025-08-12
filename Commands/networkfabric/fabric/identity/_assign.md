@@ -12,5 +12,5 @@ Assign the user or system managed identities.
 
 - Assign identity on the Network Fabric
     ```bash
-        networkfabric fabric identity assign --resource-group example-rg --network-fabric-name example-fabric --system-assigned
+        networkfabric fabric identity assign --resource-group example-rg --resource-name example-fabric --system-assigned
     ```
