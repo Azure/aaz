@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw firewall status default show_
 
-Get a FirewallStatusResource
+Retrieve details of a specific firewall status resource in Palo Alto Networks.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw firewall show-log-profile_
 
-Get Log Profile for Firewall
+Get log profile information for a Palo Alto Networks Cloud NGFW on Azure.
 
 ## Versions
 

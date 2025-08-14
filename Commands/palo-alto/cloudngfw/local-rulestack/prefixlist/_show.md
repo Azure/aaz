@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack prefixlist show_
 
-Get a PrefixListResource
+Retrieve details for a PrefixListResource for a specific Palo Alto Networks local rulestack.
 
 ## Versions
 

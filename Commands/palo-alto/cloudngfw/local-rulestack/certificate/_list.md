@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack certificate list_
 
-List CertificateObjectLocalRulestackResource resources by LocalRulestacks
+List all certificates linked with the Palo Alto Networks local rulestacks.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack fqdnlist list_
 
-List FqdnListLocalRulestackResource resources by LocalRulestacks
+List all FQDN list resources associated with local rulestacks in Palo Alto Networks.
 
 ## Versions
 

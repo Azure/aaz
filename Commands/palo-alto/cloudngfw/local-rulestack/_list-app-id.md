@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack list-app-id_
 
-List of AppIds for LocalRulestack ApiVersion
+List of AppIds for Palo Alto Networks local rulestack ApiVersion.
 
 ## Versions
 

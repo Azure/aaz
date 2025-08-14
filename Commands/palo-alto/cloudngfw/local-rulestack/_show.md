@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack show_
 
-Get a LocalRulestackResource
+Retrieve details of a specific Palo Alto Networks local rulestack resource.
 
 ## Versions
 

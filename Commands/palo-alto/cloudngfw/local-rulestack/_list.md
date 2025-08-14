@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack list_
 
-List LocalRulestackResource resources by subscription ID
+List for Palo Alto Networks local rulestack resources by subscription ID.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack show-change-log_
 
-Get changelog
+Get the changelog for a Palo Alto networks local rulestack.
 
 ## Versions
 

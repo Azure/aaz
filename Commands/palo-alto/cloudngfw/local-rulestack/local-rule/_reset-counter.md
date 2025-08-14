@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack local-rule reset-counter_
 
-Reset counters
+Reset counters for the local rule associated with a Palo Alto Networks local rulestack.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack local-rule refresh-counter_
 
-Refresh counters
+Refresh counters for the local rule associated with a Palo Alto Networks local rulestack.
 
 ## Versions
 

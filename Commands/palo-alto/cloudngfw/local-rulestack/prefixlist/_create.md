@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack prefixlist create_
 
-Create a PrefixListResource
+Create a new PrefixListResource for a Palo Alto Networks local rulestack.
 
 ## Versions
 

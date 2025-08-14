@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw firewall status list_
 
-List FirewallStatusResource resources by Firewalls
+List all firewall status resources associated with Palo Alto Networks firewalls.
 
 ## Versions
 

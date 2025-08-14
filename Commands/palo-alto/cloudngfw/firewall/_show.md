@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw firewall show_
 
-Get a FirewallResource
+Retrieve details of a specific Palo Alto Networks Cloud NGFW on Azure resource.
 
 ## Versions
 

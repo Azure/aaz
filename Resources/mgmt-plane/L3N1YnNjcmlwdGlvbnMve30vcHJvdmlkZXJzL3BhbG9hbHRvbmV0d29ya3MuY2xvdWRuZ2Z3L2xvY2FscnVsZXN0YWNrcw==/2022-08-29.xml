@@ -3,19 +3,13 @@
   <resource id="/subscriptions/{}/providers/paloaltonetworks.cloudngfw/localrulestacks" version="2022-08-29" swagger="mgmt-plane/paloaltonetworks/ResourceProviders/PaloAltoNetworks.Cloudngfw/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvUGFsb0FsdG9OZXR3b3Jrcy5DbG91ZG5nZncvbG9jYWxSdWxlc3RhY2tz/V/MjAyMi0wOC0yOQ=="/>
   <resource id="/subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/localrulestacks" version="2022-08-29" swagger="mgmt-plane/paloaltonetworks/ResourceProviders/PaloAltoNetworks.Cloudngfw/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9QYWxvQWx0b05ldHdvcmtzLkNsb3Vkbmdmdy9sb2NhbFJ1bGVzdGFja3M=/V/MjAyMi0wOC0yOQ=="/>
   <commandGroup name="palo-alto cloudngfw local-rulestack">
-    <command name="list" version="2022-08-29">
+    <command name="list" version="2022-08-29" confirmation="">
       <resource id="/subscriptions/{}/providers/paloaltonetworks.cloudngfw/localrulestacks" version="2022-08-29" swagger="mgmt-plane/paloaltonetworks/ResourceProviders/PaloAltoNetworks.Cloudngfw/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvUGFsb0FsdG9OZXR3b3Jrcy5DbG91ZG5nZncvbG9jYWxSdWxlc3RhY2tz/V/MjAyMi0wOC0yOQ=="/>
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/localrulestacks" version="2022-08-29" swagger="mgmt-plane/paloaltonetworks/ResourceProviders/PaloAltoNetworks.Cloudngfw/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9QYWxvQWx0b05ldHdvcmtzLkNsb3Vkbmdmdy9sb2NhbFJ1bGVzdGFja3M=/V/MjAyMi0wOC0yOQ=="/>
       <argGroup name="">
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <condition var="$Condition_LocalRulestacks_ListByResourceGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_LocalRulestacks_ListBySubscription">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -24,6 +18,151 @@
           </operator>
         </operator>
       </condition>
+      <condition var="$Condition_LocalRulestacks_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_LocalRulestacks_ListBySubscription" operationId="LocalRulestacks_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/PaloAltoNetworks.Cloudngfw/localRulestacks">
+          <request method="get">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-08-29&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/PaloAltoNetworks.Cloudngfw/localRulestacks/{}"/>
+                      </prop>
+                      <prop type="IdentityObject" name="identity">
+                        <prop readOnly="True" type="string" name="principalId"/>
+                        <prop readOnly="True" type="string" name="tenantId"/>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;None&quot;"/>
+                            <item value="&quot;SystemAssigned&quot;"/>
+                            <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                            <item value="&quot;UserAssigned&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="userAssignedIdentities">
+                          <additionalProp>
+                            <item type="object">
+                              <prop type="string" name="clientId"/>
+                              <prop type="string" name="principalId"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" required="True" clientFlatten="True">
+                        <prop type="array<string>" name="associatedSubscriptions">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="string" name="defaultMode">
+                          <enum>
+                            <item value="&quot;FIREWALL&quot;"/>
+                            <item value="&quot;IPS&quot;"/>
+                            <item value="&quot;NONE&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="description"/>
+                        <prop type="string" name="minAppIdVersion"/>
+                        <prop type="string" name="panEtag"/>
+                        <prop type="string" name="panLocation"/>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Accepted&quot;"/>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Creating&quot;"/>
+                            <item value="&quot;Deleted&quot;"/>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;NotSpecified&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="scope">
+                          <enum>
+                            <item value="&quot;GLOBAL&quot;"/>
+                            <item value="&quot;LOCAL&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="securityServices">
+                          <prop type="string" name="antiSpywareProfile"/>
+                          <prop type="string" name="antiVirusProfile"/>
+                          <prop type="string" name="dnsSubscription"/>
+                          <prop type="string" name="fileBlockingProfile"/>
+                          <prop type="string" name="outboundTrustCertificate"/>
+                          <prop type="string" name="outboundUnTrustCertificate"/>
+                          <prop type="string" name="urlFilteringProfile"/>
+                          <prop type="string" name="vulnerabilityProfile"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
       <operation when="$Condition_LocalRulestacks_ListByResourceGroup" operationId="LocalRulestacks_ListByResourceGroup">
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/PaloAltoNetworks.Cloudngfw/localRulestacks">
           <request method="get">
@@ -89,7 +228,7 @@
                         <prop type="string" name="minAppIdVersion"/>
                         <prop type="string" name="panEtag"/>
                         <prop type="string" name="panLocation"/>
-                        <prop type="string" name="provisioningState">
+                        <prop readOnly="True" type="string" name="provisioningState">
                           <enum>
                             <item value="&quot;Accepted&quot;"/>
                             <item value="&quot;Canceled&quot;"/>
@@ -120,7 +259,9 @@
                         </prop>
                       </prop>
                       <prop readOnly="True" type="object" name="systemData">
-                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="dateTime" name="createdAt">
+                          <format protocol="iso"/>
+                        </prop>
                         <prop type="string" name="createdBy"/>
                         <prop type="string" name="createdByType">
                           <enum>
@@ -130,142 +271,9 @@
                             <item value="&quot;User&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="dateTime" name="lastModifiedAt"/>
-                        <prop type="string" name="lastModifiedBy"/>
-                        <prop type="string" name="lastModifiedByType">
-                          <enum>
-                            <item value="&quot;Application&quot;"/>
-                            <item value="&quot;Key&quot;"/>
-                            <item value="&quot;ManagedIdentity&quot;"/>
-                            <item value="&quot;User&quot;"/>
-                          </enum>
+                        <prop type="dateTime" name="lastModifiedAt">
+                          <format protocol="iso"/>
                         </prop>
-                      </prop>
-                      <prop type="object" name="tags">
-                        <additionalProp>
-                          <item type="string"/>
-                        </additionalProp>
-                      </prop>
-                      <prop readOnly="True" type="string" name="type"/>
-                    </item>
-                  </prop>
-                </schema>
-              </json>
-            </body>
-          </response>
-          <response isError="True">
-            <body>
-              <json>
-                <schema type="@MgmtErrorFormat"/>
-              </json>
-            </body>
-          </response>
-        </http>
-      </operation>
-      <operation when="$Condition_LocalRulestacks_ListBySubscription" operationId="LocalRulestacks_ListBySubscription">
-        <http path="/subscriptions/{subscriptionId}/providers/PaloAltoNetworks.Cloudngfw/localRulestacks">
-          <request method="get">
-            <path>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
-                <format minLength="1"/>
-              </param>
-            </path>
-            <query>
-              <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="&quot;2022-08-29&quot;"/>
-                <format minLength="1"/>
-              </const>
-            </query>
-          </request>
-          <response statusCode="200">
-            <body>
-              <json var="$Instance">
-                <schema type="object">
-                  <prop type="string" name="nextLink"/>
-                  <prop type="array<object>" name="value" required="True">
-                    <item type="object">
-                      <prop readOnly="True" type="ResourceId" name="id">
-                        <format template="/subscriptions/{}/resourceGroups/{}/providers/PaloAltoNetworks.Cloudngfw/localRulestacks/{}"/>
-                      </prop>
-                      <prop type="IdentityObject" name="identity">
-                        <prop readOnly="True" type="string" name="principalId"/>
-                        <prop readOnly="True" type="string" name="tenantId"/>
-                        <prop type="string" name="type" required="True">
-                          <enum>
-                            <item value="&quot;None&quot;"/>
-                            <item value="&quot;SystemAssigned&quot;"/>
-                            <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
-                            <item value="&quot;UserAssigned&quot;"/>
-                          </enum>
-                        </prop>
-                        <prop type="object" name="userAssignedIdentities">
-                          <additionalProp>
-                            <item type="object">
-                              <prop type="string" name="clientId"/>
-                              <prop type="string" name="principalId"/>
-                            </item>
-                          </additionalProp>
-                        </prop>
-                      </prop>
-                      <prop type="ResourceLocation" name="location" required="True"/>
-                      <prop readOnly="True" type="string" name="name"/>
-                      <prop type="object" name="properties" required="True" clientFlatten="True">
-                        <prop type="array<string>" name="associatedSubscriptions">
-                          <item type="string"/>
-                        </prop>
-                        <prop type="string" name="defaultMode">
-                          <enum>
-                            <item value="&quot;FIREWALL&quot;"/>
-                            <item value="&quot;IPS&quot;"/>
-                            <item value="&quot;NONE&quot;"/>
-                          </enum>
-                        </prop>
-                        <prop type="string" name="description"/>
-                        <prop type="string" name="minAppIdVersion"/>
-                        <prop type="string" name="panEtag"/>
-                        <prop type="string" name="panLocation"/>
-                        <prop type="string" name="provisioningState">
-                          <enum>
-                            <item value="&quot;Accepted&quot;"/>
-                            <item value="&quot;Canceled&quot;"/>
-                            <item value="&quot;Creating&quot;"/>
-                            <item value="&quot;Deleted&quot;"/>
-                            <item value="&quot;Deleting&quot;"/>
-                            <item value="&quot;Failed&quot;"/>
-                            <item value="&quot;NotSpecified&quot;"/>
-                            <item value="&quot;Succeeded&quot;"/>
-                            <item value="&quot;Updating&quot;"/>
-                          </enum>
-                        </prop>
-                        <prop type="string" name="scope">
-                          <enum>
-                            <item value="&quot;GLOBAL&quot;"/>
-                            <item value="&quot;LOCAL&quot;"/>
-                          </enum>
-                        </prop>
-                        <prop type="object" name="securityServices">
-                          <prop type="string" name="antiSpywareProfile"/>
-                          <prop type="string" name="antiVirusProfile"/>
-                          <prop type="string" name="dnsSubscription"/>
-                          <prop type="string" name="fileBlockingProfile"/>
-                          <prop type="string" name="outboundTrustCertificate"/>
-                          <prop type="string" name="outboundUnTrustCertificate"/>
-                          <prop type="string" name="urlFilteringProfile"/>
-                          <prop type="string" name="vulnerabilityProfile"/>
-                        </prop>
-                      </prop>
-                      <prop readOnly="True" type="object" name="systemData">
-                        <prop type="dateTime" name="createdAt"/>
-                        <prop type="string" name="createdBy"/>
-                        <prop type="string" name="createdByType">
-                          <enum>
-                            <item value="&quot;Application&quot;"/>
-                            <item value="&quot;Key&quot;"/>
-                            <item value="&quot;ManagedIdentity&quot;"/>
-                            <item value="&quot;User&quot;"/>
-                          </enum>
-                        </prop>
-                        <prop type="dateTime" name="lastModifiedAt"/>
                         <prop type="string" name="lastModifiedBy"/>
                         <prop type="string" name="lastModifiedByType">
                           <enum>

@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack certificate delete_
 
-Delete a CertificateObjectLocalRulestackResource
+Delete an existing certificate for a Palo Alto Networks local rulestack.
 
 ## Versions
 

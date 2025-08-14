@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack update_
 
-Update a LocalRulestackResource
+Update configuration or metadata for a Palo Alto Networks local rulestack.
 
 ## Versions
 

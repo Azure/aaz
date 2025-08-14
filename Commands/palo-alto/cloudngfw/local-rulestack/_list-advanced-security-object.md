@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack list-advanced-security-object_
 
-Get the list of advanced security objects
+Get the list of advanced security objects for Palo Alto Networks local rulestack.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack create_
 
-Create a LocalRulestackResource
+Create a new Palo Alto Networks local rulestack resource.
 
 ## Versions
 

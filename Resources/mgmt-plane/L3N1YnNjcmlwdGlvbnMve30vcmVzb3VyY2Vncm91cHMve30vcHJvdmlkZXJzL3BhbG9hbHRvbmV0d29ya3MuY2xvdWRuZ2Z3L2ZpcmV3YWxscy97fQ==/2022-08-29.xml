@@ -2,7 +2,7 @@
 <CodeGen plane="mgmt-plane">
   <resource id="/subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/firewalls/{}" version="2022-08-29" swagger="mgmt-plane/paloaltonetworks/ResourceProviders/PaloAltoNetworks.Cloudngfw/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9QYWxvQWx0b05ldHdvcmtzLkNsb3Vkbmdmdy9maXJld2FsbHMve2ZpcmV3YWxsTmFtZX0=/V/MjAyMi0wOC0yOQ=="/>
   <commandGroup name="palo-alto cloudngfw firewall">
-    <command name="show" version="2022-08-29">
+    <command name="show" version="2022-08-29" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/firewalls/{}" version="2022-08-29" swagger="mgmt-plane/paloaltonetworks/ResourceProviders/PaloAltoNetworks.Cloudngfw/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9QYWxvQWx0b05ldHdvcmtzLkNsb3Vkbmdmdy9maXJld2FsbHMve2ZpcmV3YWxsTmFtZX0=/V/MjAyMi0wOC0yOQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.firewallName" options="firewall-name name n" required="True" idPart="name">
@@ -176,7 +176,9 @@
                           <item value="&quot;WEEKLY&quot;"/>
                         </enum>
                       </prop>
-                      <prop readOnly="True" type="dateTime" name="effectiveDate"/>
+                      <prop readOnly="True" type="dateTime" name="effectiveDate">
+                        <format protocol="iso"/>
+                      </prop>
                       <prop type="string" name="planId" required="True">
                         <format maxLength="50"/>
                       </prop>
@@ -187,7 +189,7 @@
                         </enum>
                       </prop>
                     </prop>
-                    <prop type="string" name="provisioningState">
+                    <prop readOnly="True" type="string" name="provisioningState">
                       <enum>
                         <item value="&quot;Accepted&quot;"/>
                         <item value="&quot;Canceled&quot;"/>
@@ -202,7 +204,9 @@
                     </prop>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
-                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="createdBy"/>
                     <prop type="string" name="createdByType">
                       <enum>
@@ -212,7 +216,9 @@
                         <item value="&quot;User&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="lastModifiedBy"/>
                     <prop type="string" name="lastModifiedByType">
                       <enum>
@@ -286,7 +292,7 @@
         </http>
       </operation>
     </command>
-    <command name="create" version="2022-08-29">
+    <command name="create" version="2022-08-29" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/firewalls/{}" version="2022-08-29" swagger="mgmt-plane/paloaltonetworks/ResourceProviders/PaloAltoNetworks.Cloudngfw/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9QYWxvQWx0b05ldHdvcmtzLkNsb3Vkbmdmdy9maXJld2FsbHMve2ZpcmV3YWxsTmFtZX0=/V/MjAyMi0wOC0yOQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.firewallName" options="firewall-name name n" required="True" idPart="name">
@@ -487,6 +493,10 @@
       <argGroup name="Resource">
         <arg type="object" var="$resource.identity" options="identity" group="Resource">
           <help short="The managed service identities assigned to this resource."/>
+          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
           <arg type="string" var="$resource.identity.type" options="type" required="True">
             <help short="The type of managed identity assigned to this resource."/>
             <enum>
@@ -495,6 +505,11 @@
               <item name="SystemAssigned,UserAssigned" value="&quot;SystemAssigned,UserAssigned&quot;"/>
               <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
             </enum>
+          </arg>
+          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
           </arg>
           <arg type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities">
             <help short="The identities assigned to this resource by the user."/>
@@ -559,6 +574,10 @@
                         </item>
                       </additionalProp>
                     </prop>
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+                      <item action="create" type="string"/>
+                    </userAssigned>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
                   </prop>
                   <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
                   <prop type="object" name="properties" required="True" clientFlatten="True">
@@ -836,7 +855,9 @@
                           <item value="&quot;WEEKLY&quot;"/>
                         </enum>
                       </prop>
-                      <prop readOnly="True" type="dateTime" name="effectiveDate"/>
+                      <prop readOnly="True" type="dateTime" name="effectiveDate">
+                        <format protocol="iso"/>
+                      </prop>
                       <prop type="string" name="planId" required="True">
                         <format maxLength="50"/>
                       </prop>
@@ -847,7 +868,7 @@
                         </enum>
                       </prop>
                     </prop>
-                    <prop type="string" name="provisioningState">
+                    <prop readOnly="True" type="string" name="provisioningState">
                       <enum>
                         <item value="&quot;Accepted&quot;"/>
                         <item value="&quot;Canceled&quot;"/>
@@ -862,7 +883,9 @@
                     </prop>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
-                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="createdBy"/>
                     <prop type="string" name="createdByType">
                       <enum>
@@ -872,7 +895,9 @@
                         <item value="&quot;User&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="lastModifiedBy"/>
                     <prop type="string" name="lastModifiedByType">
                       <enum>
@@ -904,7 +929,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="update" version="2022-08-29">
+    <command name="update" version="2022-08-29" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/firewalls/{}" version="2022-08-29" swagger="mgmt-plane/paloaltonetworks/ResourceProviders/PaloAltoNetworks.Cloudngfw/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9QYWxvQWx0b05ldHdvcmtzLkNsb3Vkbmdmdy9maXJld2FsbHMve2ZpcmV3YWxsTmFtZX0=/V/MjAyMi0wOC0yOQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.firewallName" options="firewall-name name n" required="True" idPart="name">
@@ -1111,7 +1136,9 @@
                           <item value="&quot;WEEKLY&quot;"/>
                         </enum>
                       </prop>
-                      <prop readOnly="True" type="dateTime" name="effectiveDate"/>
+                      <prop readOnly="True" type="dateTime" name="effectiveDate">
+                        <format protocol="iso"/>
+                      </prop>
                       <prop type="string" name="planId" required="True">
                         <format maxLength="50"/>
                       </prop>
@@ -1122,7 +1149,7 @@
                         </enum>
                       </prop>
                     </prop>
-                    <prop type="string" name="provisioningState">
+                    <prop readOnly="True" type="string" name="provisioningState">
                       <enum>
                         <item value="&quot;Accepted&quot;"/>
                         <item value="&quot;Canceled&quot;"/>
@@ -1137,7 +1164,9 @@
                     </prop>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
-                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="createdBy"/>
                     <prop type="string" name="createdByType">
                       <enum>
@@ -1147,7 +1176,9 @@
                         <item value="&quot;User&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="lastModifiedBy"/>
                     <prop type="string" name="lastModifiedByType">
                       <enum>
@@ -1249,5 +1280,890 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
+    <commandGroup name="identity">
+      <command name="assign" version="2022-08-29">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/firewalls/{}" version="2022-08-29" subresource="identity" swagger="mgmt-plane/paloaltonetworks/ResourceProviders/PaloAltoNetworks.Cloudngfw/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9QYWxvQWx0b05ldHdvcmtzLkNsb3Vkbmdmdy9maXJld2FsbHMve2ZpcmV3YWxsTmFtZX0=/V/MjAyMi0wOC0yOQ=="/>
+        <argGroup name="">
+          <arg type="string" var="$Path.firewallName" options="firewall-name name n" required="True" idPart="name">
+            <help short="Firewall resource name"/>
+          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        </argGroup>
+        <argGroup name="Resource.identity">
+          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
+          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="resource">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="Firewalls_Get">
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/PaloAltoNetworks.Cloudngfw/firewalls/{firewallName}">
+            <request method="get">
+              <path>
+                <param type="string" name="firewallName" arg="$Path.firewallName" required="True"/>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-08-29&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="FirewallResource_read">
+                    <prop readOnly="True" type="ResourceId" name="id">
+                      <format template="/subscriptions/{}/resourceGroups/{}/providers/PaloAltoNetworks.Cloudngfw/firewalls/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="string" name="principalId"/>
+                      <prop readOnly="True" type="string" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item type="object">
+                            <prop type="string" name="clientId"/>
+                            <prop type="string" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" required="True" clientFlatten="True">
+                      <prop type="object" name="associatedRulestack">
+                        <prop type="string" name="location"/>
+                        <prop type="string" name="resourceId"/>
+                        <prop type="string" name="rulestackId"/>
+                      </prop>
+                      <prop type="object" name="dnsSettings" required="True">
+                        <prop type="array<@IPAddress_read>" name="dnsServers">
+                          <item type="@IPAddress_read"/>
+                        </prop>
+                        <prop type="string" name="enableDnsProxy">
+                          <enum>
+                            <item value="&quot;DISABLED&quot;"/>
+                            <item value="&quot;ENABLED&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="enabledDnsType">
+                          <enum>
+                            <item value="&quot;AZURE&quot;"/>
+                            <item value="&quot;CUSTOM&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="array<object>" name="frontEndSettings">
+                        <item type="object">
+                          <prop type="@EndpointConfiguration_read" name="backendConfiguration" required="True"/>
+                          <prop type="object" name="frontendConfiguration" required="True" cls="EndpointConfiguration_read">
+                            <prop type="@IPAddress_read" name="address" required="True"/>
+                            <prop type="string" name="port" required="True"/>
+                          </prop>
+                          <prop type="string" name="name" required="True"/>
+                          <prop type="string" name="protocol" required="True">
+                            <enum>
+                              <item value="&quot;TCP&quot;"/>
+                              <item value="&quot;UDP&quot;"/>
+                            </enum>
+                          </prop>
+                        </item>
+                      </prop>
+                      <prop type="string" name="isPanoramaManaged">
+                        <enum>
+                          <item value="&quot;FALSE&quot;"/>
+                          <item value="&quot;TRUE&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="marketplaceDetails" required="True">
+                        <prop readOnly="True" type="string" name="marketplaceSubscriptionId"/>
+                        <prop type="string" name="marketplaceSubscriptionStatus">
+                          <enum>
+                            <item value="&quot;FulfillmentRequested&quot;"/>
+                            <item value="&quot;NotStarted&quot;"/>
+                            <item value="&quot;PendingFulfillmentStart&quot;"/>
+                            <item value="&quot;Subscribed&quot;"/>
+                            <item value="&quot;Suspended&quot;"/>
+                            <item value="&quot;Unsubscribed&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="offerId" required="True"/>
+                        <prop type="string" name="publisherId" required="True"/>
+                      </prop>
+                      <prop type="object" name="networkProfile" required="True">
+                        <prop type="array<@IPAddress_read>" name="egressNatIp">
+                          <item type="@IPAddress_read"/>
+                        </prop>
+                        <prop type="string" name="enableEgressNat" required="True">
+                          <enum>
+                            <item value="&quot;DISABLED&quot;"/>
+                            <item value="&quot;ENABLED&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="networkType" required="True">
+                          <enum>
+                            <item value="&quot;VNET&quot;"/>
+                            <item value="&quot;VWAN&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<@IPAddress_read>" name="publicIps" required="True">
+                          <item type="@IPAddress_read"/>
+                        </prop>
+                        <prop type="object" name="vnetConfiguration">
+                          <prop type="object" name="ipOfTrustSubnetForUdr" cls="IPAddress_read">
+                            <prop type="string" name="address"/>
+                            <prop type="string" name="resourceId"/>
+                          </prop>
+                          <prop type="@IPAddressSpace_read" name="trustSubnet" required="True"/>
+                          <prop type="@IPAddressSpace_read" name="unTrustSubnet" required="True"/>
+                          <prop type="object" name="vnet" required="True" cls="IPAddressSpace_read">
+                            <prop type="string" name="addressSpace"/>
+                            <prop type="string" name="resourceId"/>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="vwanConfiguration">
+                          <prop type="@IPAddress_read" name="ipOfTrustSubnetForUdr"/>
+                          <prop type="string" name="networkVirtualApplianceId"/>
+                          <prop type="@IPAddressSpace_read" name="trustSubnet"/>
+                          <prop type="@IPAddressSpace_read" name="unTrustSubnet"/>
+                          <prop type="@IPAddressSpace_read" name="vHub" required="True"/>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="panEtag"/>
+                      <prop type="object" name="panoramaConfig">
+                        <prop readOnly="True" type="string" name="cgName"/>
+                        <prop type="string" name="configString" required="True"/>
+                        <prop readOnly="True" type="string" name="dgName"/>
+                        <prop readOnly="True" type="string" name="hostName"/>
+                        <prop readOnly="True" type="string" name="panoramaServer"/>
+                        <prop readOnly="True" type="string" name="panoramaServer2"/>
+                        <prop readOnly="True" type="string" name="tplName"/>
+                        <prop readOnly="True" type="string" name="vmAuthKey"/>
+                      </prop>
+                      <prop type="object" name="planData" required="True">
+                        <prop type="string" name="billingCycle" required="True">
+                          <enum>
+                            <item value="&quot;MONTHLY&quot;"/>
+                            <item value="&quot;WEEKLY&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="effectiveDate">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="planId" required="True">
+                          <format maxLength="50"/>
+                        </prop>
+                        <prop type="string" name="usageType">
+                          <enum>
+                            <item value="&quot;COMMITTED&quot;"/>
+                            <item value="&quot;PAYG&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Accepted&quot;"/>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Deleted&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;NotSpecified&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <operation>
+          <instanceUpdate ref="$Subresource">
+            <json>
+              <schema action="assign" type="IdentityObject" name="resource.identity" required="True">
+                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+                  <item action="assign" type="string"/>
+                </userAssigned>
+                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+              </schema>
+            </json>
+          </instanceUpdate>
+        </operation>
+        <operation operationId="Firewalls_CreateOrUpdate">
+          <longRunning finalStateVia="azure-async-operation"/>
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/PaloAltoNetworks.Cloudngfw/firewalls/{firewallName}">
+            <request method="put">
+              <path>
+                <param type="string" name="firewallName" arg="$Path.firewallName" required="True"/>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-08-29&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+              <body>
+                <json ref="$Instance"/>
+              </body>
+            </request>
+            <response statusCode="200 201">
+              <body>
+                <json var="$Instance">
+                  <schema type="@FirewallResource_read"/>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+      <command name="remove" version="2022-08-29">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/firewalls/{}" version="2022-08-29" subresource="identity" swagger="mgmt-plane/paloaltonetworks/ResourceProviders/PaloAltoNetworks.Cloudngfw/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9QYWxvQWx0b05ldHdvcmtzLkNsb3Vkbmdmdy9maXJld2FsbHMve2ZpcmV3YWxsTmFtZX0=/V/MjAyMi0wOC0yOQ=="/>
+        <argGroup name="">
+          <arg type="string" var="$Path.firewallName" options="firewall-name name n" required="True" idPart="name">
+            <help short="Firewall resource name"/>
+          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        </argGroup>
+        <argGroup name="Resource.identity">
+          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
+          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="resource">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="Firewalls_Get">
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/PaloAltoNetworks.Cloudngfw/firewalls/{firewallName}">
+            <request method="get">
+              <path>
+                <param type="string" name="firewallName" arg="$Path.firewallName" required="True"/>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-08-29&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="FirewallResource_read">
+                    <prop readOnly="True" type="ResourceId" name="id">
+                      <format template="/subscriptions/{}/resourceGroups/{}/providers/PaloAltoNetworks.Cloudngfw/firewalls/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="string" name="principalId"/>
+                      <prop readOnly="True" type="string" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item type="object">
+                            <prop type="string" name="clientId"/>
+                            <prop type="string" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" required="True" clientFlatten="True">
+                      <prop type="object" name="associatedRulestack">
+                        <prop type="string" name="location"/>
+                        <prop type="string" name="resourceId"/>
+                        <prop type="string" name="rulestackId"/>
+                      </prop>
+                      <prop type="object" name="dnsSettings" required="True">
+                        <prop type="array<@IPAddress_read>" name="dnsServers">
+                          <item type="@IPAddress_read"/>
+                        </prop>
+                        <prop type="string" name="enableDnsProxy">
+                          <enum>
+                            <item value="&quot;DISABLED&quot;"/>
+                            <item value="&quot;ENABLED&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="enabledDnsType">
+                          <enum>
+                            <item value="&quot;AZURE&quot;"/>
+                            <item value="&quot;CUSTOM&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="array<object>" name="frontEndSettings">
+                        <item type="object">
+                          <prop type="@EndpointConfiguration_read" name="backendConfiguration" required="True"/>
+                          <prop type="object" name="frontendConfiguration" required="True" cls="EndpointConfiguration_read">
+                            <prop type="@IPAddress_read" name="address" required="True"/>
+                            <prop type="string" name="port" required="True"/>
+                          </prop>
+                          <prop type="string" name="name" required="True"/>
+                          <prop type="string" name="protocol" required="True">
+                            <enum>
+                              <item value="&quot;TCP&quot;"/>
+                              <item value="&quot;UDP&quot;"/>
+                            </enum>
+                          </prop>
+                        </item>
+                      </prop>
+                      <prop type="string" name="isPanoramaManaged">
+                        <enum>
+                          <item value="&quot;FALSE&quot;"/>
+                          <item value="&quot;TRUE&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="marketplaceDetails" required="True">
+                        <prop readOnly="True" type="string" name="marketplaceSubscriptionId"/>
+                        <prop type="string" name="marketplaceSubscriptionStatus">
+                          <enum>
+                            <item value="&quot;FulfillmentRequested&quot;"/>
+                            <item value="&quot;NotStarted&quot;"/>
+                            <item value="&quot;PendingFulfillmentStart&quot;"/>
+                            <item value="&quot;Subscribed&quot;"/>
+                            <item value="&quot;Suspended&quot;"/>
+                            <item value="&quot;Unsubscribed&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="offerId" required="True"/>
+                        <prop type="string" name="publisherId" required="True"/>
+                      </prop>
+                      <prop type="object" name="networkProfile" required="True">
+                        <prop type="array<@IPAddress_read>" name="egressNatIp">
+                          <item type="@IPAddress_read"/>
+                        </prop>
+                        <prop type="string" name="enableEgressNat" required="True">
+                          <enum>
+                            <item value="&quot;DISABLED&quot;"/>
+                            <item value="&quot;ENABLED&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="networkType" required="True">
+                          <enum>
+                            <item value="&quot;VNET&quot;"/>
+                            <item value="&quot;VWAN&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<@IPAddress_read>" name="publicIps" required="True">
+                          <item type="@IPAddress_read"/>
+                        </prop>
+                        <prop type="object" name="vnetConfiguration">
+                          <prop type="object" name="ipOfTrustSubnetForUdr" cls="IPAddress_read">
+                            <prop type="string" name="address"/>
+                            <prop type="string" name="resourceId"/>
+                          </prop>
+                          <prop type="@IPAddressSpace_read" name="trustSubnet" required="True"/>
+                          <prop type="@IPAddressSpace_read" name="unTrustSubnet" required="True"/>
+                          <prop type="object" name="vnet" required="True" cls="IPAddressSpace_read">
+                            <prop type="string" name="addressSpace"/>
+                            <prop type="string" name="resourceId"/>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="vwanConfiguration">
+                          <prop type="@IPAddress_read" name="ipOfTrustSubnetForUdr"/>
+                          <prop type="string" name="networkVirtualApplianceId"/>
+                          <prop type="@IPAddressSpace_read" name="trustSubnet"/>
+                          <prop type="@IPAddressSpace_read" name="unTrustSubnet"/>
+                          <prop type="@IPAddressSpace_read" name="vHub" required="True"/>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="panEtag"/>
+                      <prop type="object" name="panoramaConfig">
+                        <prop readOnly="True" type="string" name="cgName"/>
+                        <prop type="string" name="configString" required="True"/>
+                        <prop readOnly="True" type="string" name="dgName"/>
+                        <prop readOnly="True" type="string" name="hostName"/>
+                        <prop readOnly="True" type="string" name="panoramaServer"/>
+                        <prop readOnly="True" type="string" name="panoramaServer2"/>
+                        <prop readOnly="True" type="string" name="tplName"/>
+                        <prop readOnly="True" type="string" name="vmAuthKey"/>
+                      </prop>
+                      <prop type="object" name="planData" required="True">
+                        <prop type="string" name="billingCycle" required="True">
+                          <enum>
+                            <item value="&quot;MONTHLY&quot;"/>
+                            <item value="&quot;WEEKLY&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="effectiveDate">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="planId" required="True">
+                          <format maxLength="50"/>
+                        </prop>
+                        <prop type="string" name="usageType">
+                          <enum>
+                            <item value="&quot;COMMITTED&quot;"/>
+                            <item value="&quot;PAYG&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Accepted&quot;"/>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Deleted&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;NotSpecified&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <operation>
+          <instanceUpdate ref="$Subresource">
+            <json>
+              <schema action="remove" type="IdentityObject" name="resource.identity" required="True">
+                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+                  <item action="remove" type="string"/>
+                </userAssigned>
+                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+              </schema>
+            </json>
+          </instanceUpdate>
+        </operation>
+        <operation operationId="Firewalls_CreateOrUpdate">
+          <longRunning finalStateVia="azure-async-operation"/>
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/PaloAltoNetworks.Cloudngfw/firewalls/{firewallName}">
+            <request method="put">
+              <path>
+                <param type="string" name="firewallName" arg="$Path.firewallName" required="True"/>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-08-29&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+              <body>
+                <json ref="$Instance"/>
+              </body>
+            </request>
+            <response statusCode="200 201">
+              <body>
+                <json var="$Instance">
+                  <schema type="@FirewallResource_read"/>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+      <command name="show" version="2022-08-29">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/firewalls/{}" version="2022-08-29" subresource="identity" swagger="mgmt-plane/paloaltonetworks/ResourceProviders/PaloAltoNetworks.Cloudngfw/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9QYWxvQWx0b05ldHdvcmtzLkNsb3Vkbmdmdy9maXJld2FsbHMve2ZpcmV3YWxsTmFtZX0=/V/MjAyMi0wOC0yOQ=="/>
+        <argGroup name="">
+          <arg type="string" var="$Path.firewallName" options="firewall-name name n" required="True" idPart="name">
+            <help short="Firewall resource name"/>
+          </arg>
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="resource">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="Firewalls_Get">
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/PaloAltoNetworks.Cloudngfw/firewalls/{firewallName}">
+            <request method="get">
+              <path>
+                <param type="string" name="firewallName" arg="$Path.firewallName" required="True"/>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2022-08-29&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="FirewallResource_read">
+                    <prop readOnly="True" type="ResourceId" name="id">
+                      <format template="/subscriptions/{}/resourceGroups/{}/providers/PaloAltoNetworks.Cloudngfw/firewalls/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="string" name="principalId"/>
+                      <prop readOnly="True" type="string" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item type="object">
+                            <prop type="string" name="clientId"/>
+                            <prop type="string" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" required="True" clientFlatten="True">
+                      <prop type="object" name="associatedRulestack">
+                        <prop type="string" name="location"/>
+                        <prop type="string" name="resourceId"/>
+                        <prop type="string" name="rulestackId"/>
+                      </prop>
+                      <prop type="object" name="dnsSettings" required="True">
+                        <prop type="array<@IPAddress_read>" name="dnsServers">
+                          <item type="@IPAddress_read"/>
+                        </prop>
+                        <prop type="string" name="enableDnsProxy">
+                          <enum>
+                            <item value="&quot;DISABLED&quot;"/>
+                            <item value="&quot;ENABLED&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="enabledDnsType">
+                          <enum>
+                            <item value="&quot;AZURE&quot;"/>
+                            <item value="&quot;CUSTOM&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="array<object>" name="frontEndSettings">
+                        <item type="object">
+                          <prop type="@EndpointConfiguration_read" name="backendConfiguration" required="True"/>
+                          <prop type="object" name="frontendConfiguration" required="True" cls="EndpointConfiguration_read">
+                            <prop type="@IPAddress_read" name="address" required="True"/>
+                            <prop type="string" name="port" required="True"/>
+                          </prop>
+                          <prop type="string" name="name" required="True"/>
+                          <prop type="string" name="protocol" required="True">
+                            <enum>
+                              <item value="&quot;TCP&quot;"/>
+                              <item value="&quot;UDP&quot;"/>
+                            </enum>
+                          </prop>
+                        </item>
+                      </prop>
+                      <prop type="string" name="isPanoramaManaged">
+                        <enum>
+                          <item value="&quot;FALSE&quot;"/>
+                          <item value="&quot;TRUE&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="marketplaceDetails" required="True">
+                        <prop readOnly="True" type="string" name="marketplaceSubscriptionId"/>
+                        <prop type="string" name="marketplaceSubscriptionStatus">
+                          <enum>
+                            <item value="&quot;FulfillmentRequested&quot;"/>
+                            <item value="&quot;NotStarted&quot;"/>
+                            <item value="&quot;PendingFulfillmentStart&quot;"/>
+                            <item value="&quot;Subscribed&quot;"/>
+                            <item value="&quot;Suspended&quot;"/>
+                            <item value="&quot;Unsubscribed&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="offerId" required="True"/>
+                        <prop type="string" name="publisherId" required="True"/>
+                      </prop>
+                      <prop type="object" name="networkProfile" required="True">
+                        <prop type="array<@IPAddress_read>" name="egressNatIp">
+                          <item type="@IPAddress_read"/>
+                        </prop>
+                        <prop type="string" name="enableEgressNat" required="True">
+                          <enum>
+                            <item value="&quot;DISABLED&quot;"/>
+                            <item value="&quot;ENABLED&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="networkType" required="True">
+                          <enum>
+                            <item value="&quot;VNET&quot;"/>
+                            <item value="&quot;VWAN&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<@IPAddress_read>" name="publicIps" required="True">
+                          <item type="@IPAddress_read"/>
+                        </prop>
+                        <prop type="object" name="vnetConfiguration">
+                          <prop type="object" name="ipOfTrustSubnetForUdr" cls="IPAddress_read">
+                            <prop type="string" name="address"/>
+                            <prop type="string" name="resourceId"/>
+                          </prop>
+                          <prop type="@IPAddressSpace_read" name="trustSubnet" required="True"/>
+                          <prop type="@IPAddressSpace_read" name="unTrustSubnet" required="True"/>
+                          <prop type="object" name="vnet" required="True" cls="IPAddressSpace_read">
+                            <prop type="string" name="addressSpace"/>
+                            <prop type="string" name="resourceId"/>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="vwanConfiguration">
+                          <prop type="@IPAddress_read" name="ipOfTrustSubnetForUdr"/>
+                          <prop type="string" name="networkVirtualApplianceId"/>
+                          <prop type="@IPAddressSpace_read" name="trustSubnet"/>
+                          <prop type="@IPAddressSpace_read" name="unTrustSubnet"/>
+                          <prop type="@IPAddressSpace_read" name="vHub" required="True"/>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="panEtag"/>
+                      <prop type="object" name="panoramaConfig">
+                        <prop readOnly="True" type="string" name="cgName"/>
+                        <prop type="string" name="configString" required="True"/>
+                        <prop readOnly="True" type="string" name="dgName"/>
+                        <prop readOnly="True" type="string" name="hostName"/>
+                        <prop readOnly="True" type="string" name="panoramaServer"/>
+                        <prop readOnly="True" type="string" name="panoramaServer2"/>
+                        <prop readOnly="True" type="string" name="tplName"/>
+                        <prop readOnly="True" type="string" name="vmAuthKey"/>
+                      </prop>
+                      <prop type="object" name="planData" required="True">
+                        <prop type="string" name="billingCycle" required="True">
+                          <enum>
+                            <item value="&quot;MONTHLY&quot;"/>
+                            <item value="&quot;WEEKLY&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="effectiveDate">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="planId" required="True">
+                          <format maxLength="50"/>
+                        </prop>
+                        <prop type="string" name="usageType">
+                          <enum>
+                            <item value="&quot;COMMITTED&quot;"/>
+                            <item value="&quot;PAYG&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Accepted&quot;"/>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Deleted&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;NotSpecified&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+    </commandGroup>
   </commandGroup>
 </CodeGen>

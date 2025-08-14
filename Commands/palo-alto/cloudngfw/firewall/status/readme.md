@@ -1,13 +1,13 @@
 # [Group] _palo-alto cloudngfw firewall status_
 
-Manage cloudngfw firewall status resource
+Manage status resources for Palo Alto Networks cloudngfw firewalls.
 
 ## Subgroups
 
 - [default](/Commands/palo-alto/cloudngfw/firewall/status/default/readme.md)
-: Manage cloudngfw firewall status default resource
+: Manage default status resources for Palo Alto Networks cloudngfw firewalls.
 
 ## Commands
 
 - [list](/Commands/palo-alto/cloudngfw/firewall/status/_list.md)
-: List FirewallStatusResource resources by Firewalls
+: List all firewall status resources associated with Palo Alto Networks firewalls.

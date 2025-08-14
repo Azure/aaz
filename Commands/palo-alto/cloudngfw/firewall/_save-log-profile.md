@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw firewall save-log-profile_
 
-Save Log Profile for Firewall
+Save log profile settings for a Palo Alto Networks Cloud NGFW on Azure.
 
 ## Versions
 

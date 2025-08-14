@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw firewall delete_
 
-Delete a FirewallResource
+Delete an existing Palo Alto Networks Cloud NGFW on Azure
 
 ## Versions
 
