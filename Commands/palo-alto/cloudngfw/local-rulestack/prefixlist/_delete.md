@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack prefixlist delete_
 
-Delete a PrefixListResource
+Delete an existing PrefixListResource for a Palo Alto Networks local rulestack.
 
 ## Versions
 

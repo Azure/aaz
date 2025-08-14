@@ -5,13 +5,13 @@ Manage local-rulestack fqdnlist resource
 ## Commands
 
 - [create](/Commands/palo-alto/cloudngfw/local-rulestack/fqdnlist/_create.md)
-: Create a FqdnListLocalRulestackResource
+: Create a new FQDN list resource for a Palo Alto Networks local rulestack.
 
 - [delete](/Commands/palo-alto/cloudngfw/local-rulestack/fqdnlist/_delete.md)
-: Delete a FqdnListLocalRulestackResource
+: Delete an existing FQDN list resource for a Palo Alto Networks local rulestack.
 
 - [list](/Commands/palo-alto/cloudngfw/local-rulestack/fqdnlist/_list.md)
-: List FqdnListLocalRulestackResource resources by LocalRulestacks
+: List all FQDN list resources associated with local rulestacks in Palo Alto Networks.
 
 - [show](/Commands/palo-alto/cloudngfw/local-rulestack/fqdnlist/_show.md)
-: Get a FqdnListLocalRulestackResource
+: Retrieve details of a specific FQDN for a Palo Alto Networks local rulestack.

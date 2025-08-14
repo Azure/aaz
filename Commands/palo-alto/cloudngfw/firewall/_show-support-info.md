@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw firewall show-support-info_
 
-Support info for firewall.
+Retrieve support information of a specific Palo Alto Networks firewall.
 
 ## Versions
 

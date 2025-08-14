@@ -285,7 +285,10 @@
 : Azure Orbital Ground Station as-a-Service (GSaaS).
 
 - [palo-alto](/Commands/palo-alto/readme.md)
-: Manage palo-alto networks resource
+: Manage Palo Alto Networks resources within the Azure CLI.
+
+- [palo-alto-networks](/Commands/palo-alto-networks/readme.md)
+: Manage Palo Alto Networks
 
 - [playwright-testing](/Commands/playwright-testing/readme.md)
 : Manage Microsoft Playwright Testing service
