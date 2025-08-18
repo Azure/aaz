@@ -1,17 +1,17 @@
 # [Group] _palo-alto cloudngfw local-rulestack prefixlist_
 
-Manage local-rulestack prefixlist resource
+Manage prefixlist resource for a Palo Alto Networks local rulestack.
 
 ## Commands
 
 - [create](/Commands/palo-alto/cloudngfw/local-rulestack/prefixlist/_create.md)
-: Create a PrefixListResource
+: Create a new PrefixListResource for a Palo Alto Networks local rulestack.
 
 - [delete](/Commands/palo-alto/cloudngfw/local-rulestack/prefixlist/_delete.md)
-: Delete a PrefixListResource
+: Delete an existing PrefixListResource for a Palo Alto Networks local rulestack.
 
 - [list](/Commands/palo-alto/cloudngfw/local-rulestack/prefixlist/_list.md)
-: List PrefixListResource resources by LocalRulestacks
+: List all PrefixListResource resources for a Palo Alto Networks local rulestack.
 
 - [show](/Commands/palo-alto/cloudngfw/local-rulestack/prefixlist/_show.md)
-: Get a PrefixListResource
+: Retrieve details for a PrefixListResource for a specific Palo Alto Networks local rulestack.
