@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack fqdnlist create_
 
-Create a FqdnListLocalRulestackResource
+Create a new FQDN list resource for a Palo Alto Networks local rulestack.
 
 ## Versions
 

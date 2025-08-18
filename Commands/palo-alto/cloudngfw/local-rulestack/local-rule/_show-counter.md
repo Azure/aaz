@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack local-rule show-counter_
 
-Get counters
+Retrieve counters for the local rules associated with a Palo Alto Networks local rulestack.
 
 ## Versions
 

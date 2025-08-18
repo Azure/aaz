@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw firewall list_
 
-List FirewallResource resources by subscription ID
+List all Palo Alto Networks Cloud NGFW on Azure resources under the current subscription.
 
 ## Versions
 

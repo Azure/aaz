@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack revert_
 
-Revert rulestack configuration
+Revert configuration changes to a Palo Alto Networks local rulestack resource.
 
 ## Versions
 
