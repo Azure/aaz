@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack list-predefined-url-category_
 
-List predefined URL categories for rulestack
+List predefined URL categories for for Palo Alto Networks local rulestack.
 
 ## Versions
 
