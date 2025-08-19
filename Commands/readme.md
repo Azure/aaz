@@ -179,6 +179,9 @@
 - [eventhubs](/Commands/eventhubs/readme.md)
 : Manage Event Hub
 
+- [file-share](/Commands/file-share/readme.md)
+: Manage File Share
+
 - [firmwareanalysis](/Commands/firmwareanalysis/readme.md)
 : Commands to manage firmware analysis.
 
