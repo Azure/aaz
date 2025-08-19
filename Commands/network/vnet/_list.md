@@ -135,3 +135,25 @@ List virtual networks.
     ```bash
         network vnet list --query "[?contains(addressSpace.addressPrefixes, '10.0.0.0/16')]"
     ```
+
+### [2024-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL3ZpcnR1YWxuZXR3b3Jrcw==/2024-07-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.network/virtualnetworks 2024-07-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/virtualnetworks 2024-07-01 -->
+
+#### examples
+
+- List all virtual networks in a subscription.
+    ```bash
+        network vnet list
+    ```
+
+- List all virtual networks in a resource group.
+    ```bash
+        network vnet list -g MyResourceGroup
+    ```
+
+- List virtual networks in a subscription which specify a certain address prefix.
+    ```bash
+        network vnet list --query "[?contains(addressSpace.addressPrefixes, '10.0.0.0/16')]"
+    ```
