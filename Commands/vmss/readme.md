@@ -24,6 +24,9 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 - [delete](/Commands/vmss/_delete.md)
 : Delete a VM scale set.
 
+- [delete-instances](/Commands/vmss/_delete-instances.md)
+: Delete VMs within a VMSS.
+
 - [get-os-upgrade-history](/Commands/vmss/_get-os-upgrade-history.md)
 : List the OS upgrades on a VM scale set instance.
 
