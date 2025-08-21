@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack certificate show_
 
-Get a CertificateObjectLocalRulestackResource
+Retrieve details of a specific certificate for a Palo Alto Networks local rulestack.
 
 ## Versions
 

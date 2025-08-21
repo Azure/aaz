@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack prefixlist list_
 
-List PrefixListResource resources by LocalRulestacks
+List all PrefixListResource resources for a Palo Alto Networks local rulestack.
 
 ## Versions
 

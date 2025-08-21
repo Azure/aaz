@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack list-security-service_
 
-List the security services for rulestack
+List the security services for for Palo Alto Networks local rulestack.
 
 ## Versions
 

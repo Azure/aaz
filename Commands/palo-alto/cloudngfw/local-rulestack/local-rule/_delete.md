@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack local-rule delete_
 
-Delete a LocalRulesResource
+Delete an existing Palo Alto Networks local rulestack resource.
 
 ## Versions
 
