@@ -10,7 +10,7 @@ $Modules = $ChangedFiles |
     ForEach-Object { ($_ -split "/")[0] } |  # Extract the moudule
     Sort-Object -Unique  # Ensure uniqueness
 
-Write-Host "Verifying command models..." -ForegroundColor Green
+Write-Host "Verifying command models...`n" -ForegroundColor Green
 
 # Get Git root directory
 $GitRoot = git rev-parse --show-toplevel
@@ -20,7 +20,6 @@ $Modules | ForEach-Object {
     Write-Host "Running: aaz-dev command-model verify -a $GitRoot -t $_" -ForegroundColor Yellow # For logging
     aaz-dev command-model verify -a $GitRoot -t $_
     if ($LASTEXITCODE -ne 0) {
-        Write-Host "Please pull the latest <Main> branch, and <Export> your command model again." -ForegroundColor Red
         exit 1
     }
 }
