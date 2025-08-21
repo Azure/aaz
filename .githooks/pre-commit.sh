@@ -16,7 +16,7 @@ Modules=$(echo "$ChangedFiles" |
     cut -d '/' -f 1 |  # Extract the module
     sort -u)  # Ensure uniqueness
 
-echo "${GREEN}Verifying command models...${NC}"
+echo -e "${GREEN}Verifying command models...${NC}\n"
 
 # Get Git root directory
 GitRoot=$(git rev-parse --show-toplevel)
@@ -26,7 +26,6 @@ for Module in $Modules; do
     echo "${YELLOW}Running: aaz-dev command-model verify -a $GitRoot -t $Module${NC}" # For logging
     aaz-dev command-model verify -a "$GitRoot" -t "$Module"
     if [[ $? -ne 0 ]]; then
-        echo "${RED}Please pull the latest <Main> branch, and <Export> your command model again.${NC}"
         exit 1
     fi
 done
