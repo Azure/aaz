@@ -80,9 +80,6 @@
 - [cloud-service](/Commands/cloud-service/readme.md)
 : Manage cloud service
 
-- [cloudhsm](/Commands/cloudhsm/readme.md)
-: Manage Cloud Hsm Cluster
-
 - [communication](/Commands/communication/readme.md)
 : Manage communication service with communication.
 
@@ -118,9 +115,6 @@
 
 - [data-boundary](/Commands/data-boundary/readme.md)
 : data boundary operations
-
-- [data-transfer](/Commands/data-transfer/readme.md)
-: Data transfer commands
 
 - [databox](/Commands/databox/readme.md)
 : Manage data box
