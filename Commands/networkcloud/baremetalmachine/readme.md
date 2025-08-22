@@ -36,6 +36,9 @@ All customer initiated requests will be rejected as the life cycle of this resou
 - [run-data-extract](/Commands/networkcloud/baremetalmachine/_run-data-extract.md)
 : Run one or more data extractions on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available.
 
+- [run-data-extracts-restricted](/Commands/networkcloud/baremetalmachine/_run-data-extracts-restricted.md)
+: Run one or more restricted data extractions on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available.
+
 - [run-read-command](/Commands/networkcloud/baremetalmachine/_run-read-command.md)
 : Run one or more read-only commands on the provided bare metal machine. The URL to storage account with the command execution results and the command exit code can be retrieved from the operation status API once available.
 
