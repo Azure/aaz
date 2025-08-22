@@ -47,3 +47,14 @@ Delete a managed disk.
     ```bash
         disk delete --name MyManagedDisk --resource-group MyResourceGroup
     ```
+
+### [2025-01-02](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlL2Rpc2tzL3t9/2025-01-02.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/disks/{} 2025-01-02 -->
+
+#### examples
+
+- Delete a managed disk.
+    ```bash
+        disk delete --name MyManagedDisk --resource-group MyResourceGroup
+    ```
