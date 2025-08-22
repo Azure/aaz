@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack fqdnlist show_
 
-Get a FqdnListLocalRulestackResource
+Retrieve details of a specific FQDN for a Palo Alto Networks local rulestack.
 
 ## Versions
 

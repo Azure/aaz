@@ -12,5 +12,5 @@ BFD administrative state for either static or bgp for internalNetwork.
 
 - Update bfd admin state of External Network
     ```bash
-        networkfabric externalnetwork update-bfd-administrative-state --resource-group example-rg --l3-isolation-domain-name example-externalnetwork --external-network-name example-ext --route-type Static --administrative-state Enable
+        networkfabric externalnetwork update-bfd-administrative-state --resource-group example-rg --l3-isolation-domain-name example-externalnetwork --resource-name example-ext --route-type Static --administrative-state Enable
     ```

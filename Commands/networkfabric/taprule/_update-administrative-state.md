@@ -16,5 +16,5 @@ Implements the operation to the underlying resources.
 
 - Update admin state of the Network Tap Rule
     ```bash
-        networkfabric taprule update-administrative-state --resource-group example-rg --network-tap-rule-name example-tapRule --resource-ids "[]" --state Enable
+        networkfabric taprule update-administrative-state --resource-group example-rg --resource-name example-tapRule --resource-ids "[]" --state Enable
     ```

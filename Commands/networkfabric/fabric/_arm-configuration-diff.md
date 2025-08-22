@@ -12,5 +12,5 @@ Post action: Triggers diff of NetworkFabric ARM Configuration.
 
 - Run arm configuration diff on the Network Fabric
     ```bash
-        networkfabric fabric arm-configuration-diff --resource-group example-rg --network-fabric-name example-fabric
+        networkfabric fabric arm-configuration-diff --resource-group example-rg --resource-name example-fabric
     ```

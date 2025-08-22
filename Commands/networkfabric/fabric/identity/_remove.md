@@ -12,5 +12,5 @@ Remove the user or system managed identities.
 
 - Remove identity on the Network Fabric
     ```bash
-        networkfabric fabric identity remove --resource group example-rg --network-fabric-name example-fabric --system-assigned
+        networkfabric fabric identity remove --resource group example-rg --resource-name example-fabric --system-assigned
     ```

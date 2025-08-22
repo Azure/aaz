@@ -16,5 +16,5 @@ Validates the configuration of the resources.
 
 - Run validate configuration on the L2 Isolation Domain
     ```bash
-        networkfabric l2domain validate-configuration --resource-group example-rg --l2-isolation-domain-name example-l2domain
+        networkfabric l2domain validate-configuration --resource-group example-rg --resource-name example-l2domain
     ```

@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack certificate create_
 
-Create a CertificateObjectLocalRulestackResource
+Create a new certificate for a Palo Alto Networks local rulestack.
 
 ## Versions
 

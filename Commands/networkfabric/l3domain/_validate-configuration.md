@@ -16,5 +16,5 @@ Validates the configuration of the resources.
 
 - Run validate configuration on the L3 Isolation Domain
     ```bash
-        networkfabric l3domain validate-configuration --resource-group example-rg --l3-isolation-domain-name example-l3domain
+        networkfabric l3domain validate-configuration --resource-group example-rg --resource-name example-l3domain
     ```

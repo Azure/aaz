@@ -16,5 +16,5 @@ Validates the configuration of the resources.
 
 - Validate configuration on the Route Policy
     ```bash
-        networkfabric routepolicy validate-configuration --resource-group example-rg --route-policy-name example-routePolicy
+        networkfabric routepolicy validate-configuration --resource-group example-rg --resource-name example-routePolicy
     ```

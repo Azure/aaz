@@ -3,19 +3,13 @@
   <resource id="/subscriptions/{}/providers/paloaltonetworks.cloudngfw/firewalls" version="2022-08-29" swagger="mgmt-plane/paloaltonetworks/ResourceProviders/PaloAltoNetworks.Cloudngfw/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvUGFsb0FsdG9OZXR3b3Jrcy5DbG91ZG5nZncvZmlyZXdhbGxz/V/MjAyMi0wOC0yOQ=="/>
   <resource id="/subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/firewalls" version="2022-08-29" swagger="mgmt-plane/paloaltonetworks/ResourceProviders/PaloAltoNetworks.Cloudngfw/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9QYWxvQWx0b05ldHdvcmtzLkNsb3Vkbmdmdy9maXJld2FsbHM=/V/MjAyMi0wOC0yOQ=="/>
   <commandGroup name="palo-alto cloudngfw firewall">
-    <command name="list" version="2022-08-29">
+    <command name="list" version="2022-08-29" confirmation="">
       <resource id="/subscriptions/{}/providers/paloaltonetworks.cloudngfw/firewalls" version="2022-08-29" swagger="mgmt-plane/paloaltonetworks/ResourceProviders/PaloAltoNetworks.Cloudngfw/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvUGFsb0FsdG9OZXR3b3Jrcy5DbG91ZG5nZncvZmlyZXdhbGxz/V/MjAyMi0wOC0yOQ=="/>
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/firewalls" version="2022-08-29" swagger="mgmt-plane/paloaltonetworks/ResourceProviders/PaloAltoNetworks.Cloudngfw/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9QYWxvQWx0b05ldHdvcmtzLkNsb3Vkbmdmdy9maXJld2FsbHM=/V/MjAyMi0wOC0yOQ=="/>
       <argGroup name="">
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <condition var="$Condition_Firewalls_ListByResourceGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_Firewalls_ListBySubscription">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -24,13 +18,16 @@
           </operator>
         </operator>
       </condition>
-      <operation when="$Condition_Firewalls_ListByResourceGroup" operationId="Firewalls_ListByResourceGroup">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/PaloAltoNetworks.Cloudngfw/firewalls">
+      <condition var="$Condition_Firewalls_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_Firewalls_ListBySubscription" operationId="Firewalls_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/PaloAltoNetworks.Cloudngfw/firewalls">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
                 <format minLength="1"/>
               </param>
@@ -191,7 +188,9 @@
                               <item value="&quot;WEEKLY&quot;"/>
                             </enum>
                           </prop>
-                          <prop readOnly="True" type="dateTime" name="effectiveDate"/>
+                          <prop readOnly="True" type="dateTime" name="effectiveDate">
+                            <format protocol="iso"/>
+                          </prop>
                           <prop type="string" name="planId" required="True">
                             <format maxLength="50"/>
                           </prop>
@@ -202,7 +201,7 @@
                             </enum>
                           </prop>
                         </prop>
-                        <prop type="string" name="provisioningState">
+                        <prop readOnly="True" type="string" name="provisioningState">
                           <enum>
                             <item value="&quot;Accepted&quot;"/>
                             <item value="&quot;Canceled&quot;"/>
@@ -217,7 +216,9 @@
                         </prop>
                       </prop>
                       <prop readOnly="True" type="object" name="systemData">
-                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="dateTime" name="createdAt">
+                          <format protocol="iso"/>
+                        </prop>
                         <prop type="string" name="createdBy"/>
                         <prop type="string" name="createdByType">
                           <enum>
@@ -227,7 +228,9 @@
                             <item value="&quot;User&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="dateTime" name="lastModifiedAt">
+                          <format protocol="iso"/>
+                        </prop>
                         <prop type="string" name="lastModifiedBy"/>
                         <prop type="string" name="lastModifiedByType">
                           <enum>
@@ -259,10 +262,13 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_Firewalls_ListBySubscription" operationId="Firewalls_ListBySubscription">
-        <http path="/subscriptions/{subscriptionId}/providers/PaloAltoNetworks.Cloudngfw/firewalls">
+      <operation when="$Condition_Firewalls_ListByResourceGroup" operationId="Firewalls_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/PaloAltoNetworks.Cloudngfw/firewalls">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
                 <format minLength="1"/>
               </param>
@@ -414,7 +420,9 @@
                               <item value="&quot;WEEKLY&quot;"/>
                             </enum>
                           </prop>
-                          <prop readOnly="True" type="dateTime" name="effectiveDate"/>
+                          <prop readOnly="True" type="dateTime" name="effectiveDate">
+                            <format protocol="iso"/>
+                          </prop>
                           <prop type="string" name="planId" required="True">
                             <format maxLength="50"/>
                           </prop>
@@ -425,7 +433,7 @@
                             </enum>
                           </prop>
                         </prop>
-                        <prop type="string" name="provisioningState">
+                        <prop readOnly="True" type="string" name="provisioningState">
                           <enum>
                             <item value="&quot;Accepted&quot;"/>
                             <item value="&quot;Canceled&quot;"/>
@@ -440,7 +448,9 @@
                         </prop>
                       </prop>
                       <prop readOnly="True" type="object" name="systemData">
-                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="dateTime" name="createdAt">
+                          <format protocol="iso"/>
+                        </prop>
                         <prop type="string" name="createdBy"/>
                         <prop type="string" name="createdByType">
                           <enum>
@@ -450,7 +460,9 @@
                             <item value="&quot;User&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="dateTime" name="lastModifiedAt">
+                          <format protocol="iso"/>
+                        </prop>
                         <prop type="string" name="lastModifiedBy"/>
                         <prop type="string" name="lastModifiedByType">
                           <enum>

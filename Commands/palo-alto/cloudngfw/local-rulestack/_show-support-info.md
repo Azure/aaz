@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack show-support-info_
 
-Support info for rulestack.
+Retrieve support information for a Palo Alto Networks local rulestack.
 
 ## Versions
 

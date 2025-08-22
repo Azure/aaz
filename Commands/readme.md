@@ -285,7 +285,7 @@
 : Azure Orbital Ground Station as-a-Service (GSaaS).
 
 - [palo-alto](/Commands/palo-alto/readme.md)
-: Manage palo-alto networks resource
+: Manage Palo Alto Networks resources within the Azure CLI.
 
 - [playwright-testing](/Commands/playwright-testing/readme.md)
 : Manage Microsoft Playwright Testing service
@@ -298,6 +298,9 @@
 
 - [ppg](/Commands/ppg/readme.md)
 : Manage Proximity Placement Groups.
+
+- [pscloud](/Commands/pscloud/readme.md)
+: Manage Pure Storage Block resources
 
 - [qumulo](/Commands/qumulo/readme.md)
 : Manage Qumulo file system storage resources with the Azure CLI.
