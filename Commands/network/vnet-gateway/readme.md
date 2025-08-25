@@ -44,6 +44,12 @@ To learn more about Azure Virtual Network Gateways, visit https://learn.microsof
 - [disconnect-vpn-connections](/Commands/network/vnet-gateway/_disconnect-vpn-connections.md)
 : Disconnect vpn connections of virtual network gateway.
 
+- [get-resiliency-information](/Commands/network/vnet-gateway/_get-resiliency-information.md)
+: This operation retrieves the resiliency information for an Express Route Gateway, including the gateway's current resiliency score and recommendations to further improve the score
+
+- [get-routes-information](/Commands/network/vnet-gateway/_get-routes-information.md)
+: This operation retrieves the route set information for an Express Route Gateway based on their resiliency
+
 - [list](/Commands/network/vnet-gateway/_list.md)
 : List virtual network gateways.
 
