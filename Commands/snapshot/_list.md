@@ -18,3 +18,8 @@ List snapshots under a resource group.
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.compute/snapshots 2022-03-02 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/snapshots 2022-03-02 -->
+
+### [2025-01-02](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlL3NuYXBzaG90cw==/2025-01-02.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.compute/snapshots 2025-01-02 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/snapshots 2025-01-02 -->
