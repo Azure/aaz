@@ -124,3 +124,14 @@ List rack SKUs in the provided subscription.
     ```bash
         networkcloud racksku list
     ```
+
+### [2025-07-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvcmFja3NrdXM=/2025-07-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.networkcloud/rackskus 2025-07-01-preview -->
+
+#### examples
+
+- List rack SKUs for subscription
+    ```bash
+        networkcloud racksku list
+    ```
