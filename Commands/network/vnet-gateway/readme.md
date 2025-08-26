@@ -50,6 +50,12 @@ To learn more about Azure Virtual Network Gateways, visit https://learn.microsof
 - [get-failover-single-test-detail](/Commands/network/vnet-gateway/_get-failover-single-test-detail.md)
 : This operation retrieves the details of a particular failover test performed on the gateway based on the test Guid
 
+- [get-resiliency-information](/Commands/network/vnet-gateway/_get-resiliency-information.md)
+: This operation retrieves the resiliency information for an Express Route Gateway, including the gateway's current resiliency score and recommendations to further improve the score
+
+- [get-routes-information](/Commands/network/vnet-gateway/_get-routes-information.md)
+: This operation retrieves the route set information for an Express Route Gateway based on their resiliency
+
 - [list](/Commands/network/vnet-gateway/_list.md)
 : List virtual network gateways.
 

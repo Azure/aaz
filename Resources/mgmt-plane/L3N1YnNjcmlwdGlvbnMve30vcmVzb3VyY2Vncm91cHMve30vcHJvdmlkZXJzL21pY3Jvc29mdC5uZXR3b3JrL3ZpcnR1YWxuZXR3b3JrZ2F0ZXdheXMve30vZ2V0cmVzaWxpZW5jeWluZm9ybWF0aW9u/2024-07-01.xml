@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/virtualnetworkgateways/{}/getresiliencyinformation" version="2024-07-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay92aXJ0dWFsTmV0d29ya0dhdGV3YXlzL3t2aXJ0dWFsTmV0d29ya0dhdGV3YXlOYW1lfS9nZXRSZXNpbGllbmN5SW5mb3JtYXRpb24=/V/MjAyNC0wNy0wMQ=="/>
+  <commandGroup name="network vnet-gateway">
+    <command name="get-resiliency-information" version="2024-07-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/virtualnetworkgateways/{}/getresiliencyinformation" version="2024-07-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay92aXJ0dWFsTmV0d29ya0dhdGV3YXlzL3t2aXJ0dWFsTmV0d29ya0dhdGV3YXlOYW1lfS9nZXRSZXNpbGllbmN5SW5mb3JtYXRpb24=/V/MjAyNC0wNy0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.virtualNetworkGatewayName" options="virtual-network-gateway-name" required="True" idPart="name">
+          <help short="The name of the virtual network gateway."/>
+        </arg>
+        <arg type="boolean" var="$Query.attemptRefresh" options="attempt-refresh">
+          <help short="Attempt to recalculate the Resiliency Information for the gateway"/>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualNetworkGateways_GetResiliencyInformation">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworkGateways/{virtualNetworkGatewayName}/getResiliencyInformation">
+          <request method="post">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="virtualNetworkGatewayName" arg="$Path.virtualNetworkGatewayName" required="True"/>
+            </path>
+            <query>
+              <param type="boolean" name="attemptRefresh" arg="$Query.attemptRefresh"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-07-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="components">
+                    <item type="object">
+                      <prop type="string" name="currentScore"/>
+                      <prop type="string" name="maxScore"/>
+                      <prop type="string" name="name"/>
+                      <prop type="array<object>" name="recommendations">
+                        <item type="object">
+                          <prop type="string" name="callToActionLink"/>
+                          <prop type="string" name="callToActionText"/>
+                          <prop type="string" name="recommendationId"/>
+                          <prop type="string" name="recommendationText"/>
+                          <prop type="string" name="recommendationTitle"/>
+                          <prop type="string" name="severity"/>
+                        </item>
+                      </prop>
+                    </item>
+                  </prop>
+                  <prop type="string" name="lastComputedTime"/>
+                  <prop type="string" name="maxScoreFromRecommendations"/>
+                  <prop type="string" name="minScoreFromRecommendations"/>
+                  <prop type="string" name="nextEligibleComputeTime"/>
+                  <prop type="string" name="overallScore"/>
+                  <prop type="string" name="scoreChange"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="location"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
