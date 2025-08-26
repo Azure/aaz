@@ -269,6 +269,9 @@
 - [playwright-testing](/Commands/playwright-testing/readme.md)
 : Manage Microsoft Playwright Testing service
 
+- [policy](/Commands/policy/readme.md)
+: Manage resources defined and used by the Azure Policy service.
+
 - [portal](/Commands/portal/readme.md)
 : Manage Portal.
 
