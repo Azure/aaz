@@ -263,6 +263,9 @@
 - [network-function](/Commands/network-function/readme.md)
 : Manage network function
 
+- [network-manager](/Commands/network-manager/readme.md)
+: Manage Network Manager
+
 - [networkcloud](/Commands/networkcloud/readme.md)
 : Manage Network Cloud resources
 
