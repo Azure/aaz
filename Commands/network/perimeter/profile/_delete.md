@@ -36,3 +36,14 @@ Delete a network security perimeter profile.
     ```bash
         network perimeter profile delete -n MyProfile --perimeter-name MyPerimeter -g MyResourceGroup
     ```
+
+### [2024-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL25ldHdvcmtzZWN1cml0eXBlcmltZXRlcnMve30vcHJvZmlsZXMve30=/2024-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networksecurityperimeters/{}/profiles/{} 2024-10-01 -->
+
+#### examples
+
+- Delete a network security perimeter profile
+    ```bash
+        network perimeter profile delete -n MyProfile --perimeter-name MyPerimeter -g MyResourceGroup
+    ```
