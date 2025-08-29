@@ -25,6 +25,9 @@ Manage Linux or Windows virtual machines.
 - [image](/Commands/vm/image/readme.md)
 : Information on available virtual machine images.
 
+- [run-command](/Commands/vm/run-command/readme.md)
+: Manage run commands on a Virtual Machine.
+
 ## Commands
 
 - [assess-patches](/Commands/vm/_assess-patches.md)
