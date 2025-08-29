@@ -1,0 +1,796 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/virtualmachines/{}/runcommands/{}" version="2024-11-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS92aXJ0dWFsTWFjaGluZXMve3ZtTmFtZX0vcnVuQ29tbWFuZHMve3J1bkNvbW1hbmROYW1lfQ==/V/MjAyNC0xMS0wMQ=="/>
+  <commandGroup name="vm run-command">
+    <command name="show" version="2024-11-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/virtualmachines/{}/runcommands/{}" version="2024-11-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS92aXJ0dWFsTWFjaGluZXMve3ZtTmFtZX0vcnVuQ29tbWFuZHMve3J1bkNvbW1hbmROYW1lfQ==/V/MjAyNC0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.runCommandName" options="run-command-name name n" required="True" idPart="child_name_1">
+          <help short="The name of the VirtualMachineRunCommand"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vmName" options="vm-name" required="True" idPart="name">
+          <help short="The name of the VirtualMachine"/>
+        </arg>
+        <arg type="string" var="$Query.expand" options="expand">
+          <help short="The expand expression to apply on the operation."/>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualMachineRunCommands_GetByVirtualMachine">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/runCommands/{runCommandName}">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="runCommandName" arg="$Path.runCommandName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+              <param type="string" name="vmName" arg="$Path.vmName" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="$expand" arg="$Query.expand"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="boolean" name="asyncExecution"/>
+                    <prop type="@RunCommandManagedIdentity_read" name="errorBlobManagedIdentity"/>
+                    <prop type="string" name="errorBlobUri"/>
+                    <prop readOnly="True" type="object" name="instanceView">
+                      <prop type="dateTime" name="endTime">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="error"/>
+                      <prop type="string" name="executionMessage"/>
+                      <prop type="string" name="executionState">
+                        <enum>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Pending&quot;"/>
+                          <item value="&quot;Running&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;TimedOut&quot;"/>
+                          <item value="&quot;Unknown&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="integer32" name="exitCode"/>
+                      <prop type="string" name="output"/>
+                      <prop type="dateTime" name="startTime">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="array<object>" name="statuses">
+                        <item type="object">
+                          <prop type="string" name="code"/>
+                          <prop type="string" name="displayStatus"/>
+                          <prop type="string" name="level">
+                            <enum>
+                              <item value="&quot;Error&quot;"/>
+                              <item value="&quot;Info&quot;"/>
+                              <item value="&quot;Warning&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="message"/>
+                          <prop type="dateTime" name="time">
+                            <format protocol="iso"/>
+                          </prop>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop type="@RunCommandManagedIdentity_read" name="outputBlobManagedIdentity"/>
+                    <prop type="string" name="outputBlobUri"/>
+                    <prop type="array<object>" name="parameters" identifiers="name">
+                      <item type="object" cls="RunCommandInputParameter_read">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="value" required="True"/>
+                      </item>
+                    </prop>
+                    <prop type="array<@RunCommandInputParameter_read>" name="protectedParameters" identifiers="name">
+                      <item type="@RunCommandInputParameter_read"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState"/>
+                    <prop type="string" name="runAsPassword"/>
+                    <prop type="string" name="runAsUser"/>
+                    <prop type="object" name="source">
+                      <prop type="string" name="commandId"/>
+                      <prop type="string" name="script"/>
+                      <prop type="string" name="scriptUri"/>
+                      <prop type="object" name="scriptUriManagedIdentity" cls="RunCommandManagedIdentity_read">
+                        <prop type="string" name="clientId"/>
+                        <prop type="string" name="objectId"/>
+                      </prop>
+                    </prop>
+                    <prop type="integer32" name="timeoutInSeconds"/>
+                    <prop type="boolean" name="treatFailureAsDeploymentFailure"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2024-11-01" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/virtualmachines/{}/runcommands/{}" version="2024-11-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS92aXJ0dWFsTWFjaGluZXMve3ZtTmFtZX0vcnVuQ29tbWFuZHMve3J1bkNvbW1hbmROYW1lfQ==/V/MjAyNC0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.runCommandName" options="run-command-name name n" required="True" idPart="child_name_1">
+          <help short="The name of the VirtualMachineRunCommand"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vmName" options="vm-name" required="True" idPart="name">
+          <help short="The name of the VirtualMachine"/>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualMachineRunCommands_Delete">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/runCommands/{runCommandName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="runCommandName" arg="$Path.runCommandName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+              <param type="string" name="vmName" arg="$Path.vmName" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200"/>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response statusCode="204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="create" version="2024-11-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/virtualmachines/{}/runcommands/{}" version="2024-11-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS92aXJ0dWFsTWFjaGluZXMve3ZtTmFtZX0vcnVuQ29tbWFuZHMve3J1bkNvbW1hbmROYW1lfQ==/V/MjAyNC0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.runCommandName" options="run-command-name name n" required="True" idPart="child_name_1">
+          <help short="The name of the VirtualMachineRunCommand"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vmName" options="vm-name" required="True" idPart="name">
+          <help short="The name of the VirtualMachine"/>
+        </arg>
+        <arg type="ResourceLocation" var="$runCommand.location" options="location l" required="True" group="">
+          <help short="Location. Values from: `az account list-locations`. You can configure the default location using `az configure --defaults location=<location>`."/>
+        </arg>
+        <arg type="boolean" var="$runCommand.properties.asyncExecution" options="async-execution" group="">
+          <help short="Optional. If set to true, provisioning will complete as soon as the script starts and will not wait for script to complete."/>
+        </arg>
+        <arg type="string" var="$runCommand.properties.errorBlobUri" options="error-blob-uri" group="">
+          <help short="Specify the Azure storage blob where script error stream will be uploaded."/>
+        </arg>
+        <arg type="string" var="$runCommand.properties.outputBlobUri" options="output-blob-uri" group="">
+          <help short="Specify the Azure storage blob (SAS URI) where script output stream will be uploaded."/>
+        </arg>
+        <arg type="array<object>" var="$runCommand.properties.parameters" options="parameters" group="">
+          <help short="The parameters used by the script."/>
+          <item type="object" cls="RunCommandInputParameter_create">
+            <arg type="string" var="@RunCommandInputParameter_create.name" options="name" required="True">
+              <help short="The run command parameter name."/>
+            </arg>
+            <arg type="string" var="@RunCommandInputParameter_create.value" options="value" required="True">
+              <help short="The run command parameter value."/>
+            </arg>
+          </item>
+        </arg>
+        <arg type="array<@RunCommandInputParameter_create>" var="$runCommand.properties.protectedParameters" options="protected-parameters" group="">
+          <help short="The parameters used by the script."/>
+          <item type="@RunCommandInputParameter_create"/>
+        </arg>
+        <arg type="string" var="$runCommand.properties.runAsPassword" options="run-as-password" group="">
+          <help short="Password if needed for using run-as-user parameter. It will be encrypted and not logged"/>
+        </arg>
+        <arg type="string" var="$runCommand.properties.runAsUser" options="run-as-user" group="">
+          <help short="By default script process runs under system/root user. Specify custom user to host the process."/>
+        </arg>
+        <arg type="string" var="$runCommand.properties.source.commandId" options="command-id" group="">
+          <help short="Specifies a commandId of predefined built-in script."/>
+        </arg>
+        <arg type="string" var="$runCommand.properties.source.script" options="script" group="">
+          <help short="Specifies the script content to be executed on the VM."/>
+        </arg>
+        <arg type="string" var="$runCommand.properties.source.scriptUri" options="script-uri" group="">
+          <help short="Specifies the script download location. It can be either SAS URI of an Azure storage blob with read access or public URI."/>
+        </arg>
+        <arg type="integer32" var="$runCommand.properties.timeoutInSeconds" options="timeout-in-seconds" group="">
+          <help short="The timeout in seconds to execute the run command."/>
+        </arg>
+        <arg type="object" var="$runCommand.tags" options="tags" group="">
+          <help short="Space-separated tags: key[=value] [key[=value] ...]."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="@RunCommandManagedIdentity_create" var="$runCommand.properties.errorBlobManagedIdentity" options="error-blob-managed-identity" hide="True" group="Properties">
+          <help short="User-assigned managed identity that has access to errorBlobUri storage blob. Use an empty object in case of system-assigned identity. Make sure managed identity has been given access to blob's container with 'Storage Blob Data Contributor' role assignment. In case of user-assigned identity, make sure you add it under VM's identity. For more info on managed identity and Run Command, refer https://aka.ms/ManagedIdentity and https://aka.ms/RunCommandManaged"/>
+        </arg>
+        <arg type="@RunCommandManagedIdentity_create" var="$runCommand.properties.outputBlobManagedIdentity" options="output-blob-managed-identity" hide="True" group="Properties">
+          <help short="User-assigned managed identity that has access to outputBlobUri storage blob. Use an empty object in case of system-assigned identity. Make sure managed identity has been given access to blob's container with 'Storage Blob Data Contributor' role assignment. In case of user-assigned identity, make sure you add it under VM's identity. For more info on managed identity and Run Command, refer https://aka.ms/ManagedIdentity and https://aka.ms/RunCommandManaged"/>
+        </arg>
+        <arg type="boolean" var="$runCommand.properties.treatFailureAsDeploymentFailure" options="treat-failure-as-deployment-failure" hide="True" group="Properties">
+          <help short="Optional. If set to true, any failure in the script will fail the deployment and ProvisioningState will be marked as Failed. If set to false, ProvisioningState would only reflect whether the run command was run or not by the extensions platform, it would not indicate whether script failed in case of script failures. See instance view of run command in case of script failures to see executionMessage, output, error: https://aka.ms/runcommandmanaged#get-execution-status-and-results"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Source">
+        <arg type="object" var="$runCommand.properties.source.scriptUriManagedIdentity" options="script-uri-managed-identity" hide="True" group="Source" cls="RunCommandManagedIdentity_create">
+          <help short="User-assigned managed identity that has access to scriptUri in case of Azure storage blob. Use an empty object in case of system-assigned identity. Make sure the Azure storage blob exists, and managed identity has been given access to blob's container with 'Storage Blob Data Reader' role assignment. In case of user-assigned identity, make sure you add it under VM's identity. For more info on managed identity and Run Command, refer https://aka.ms/ManagedIdentity and https://aka.ms/RunCommandManaged."/>
+          <arg type="string" var="@RunCommandManagedIdentity_create.clientId" options="client-id">
+            <help short="Client Id (GUID value) of the user-assigned managed identity. ObjectId should not be used if this is provided."/>
+          </arg>
+          <arg type="string" var="@RunCommandManagedIdentity_create.objectId" options="object-id">
+            <help short="Object Id (GUID value) of the user-assigned managed identity. ClientId should not be used if this is provided."/>
+          </arg>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualMachineRunCommands_CreateOrUpdate">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/runCommands/{runCommandName}">
+          <request method="put">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="runCommandName" arg="$Path.runCommandName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+              <param type="string" name="vmName" arg="$Path.vmName" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="runCommand" required="True" clientFlatten="True">
+                  <prop type="ResourceLocation" name="location" arg="$runCommand.location" required="True"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="boolean" name="asyncExecution" arg="$runCommand.properties.asyncExecution"/>
+                    <prop type="@RunCommandManagedIdentity_create" name="errorBlobManagedIdentity" arg="$runCommand.properties.errorBlobManagedIdentity"/>
+                    <prop type="string" name="errorBlobUri" arg="$runCommand.properties.errorBlobUri"/>
+                    <prop type="@RunCommandManagedIdentity_create" name="outputBlobManagedIdentity" arg="$runCommand.properties.outputBlobManagedIdentity"/>
+                    <prop type="string" name="outputBlobUri" arg="$runCommand.properties.outputBlobUri"/>
+                    <prop type="array<object>" name="parameters" arg="$runCommand.properties.parameters" identifiers="name">
+                      <item type="object" cls="RunCommandInputParameter_create">
+                        <prop type="string" name="name" arg="@RunCommandInputParameter_create.name" required="True"/>
+                        <prop type="string" name="value" arg="@RunCommandInputParameter_create.value" required="True"/>
+                      </item>
+                    </prop>
+                    <prop type="array<@RunCommandInputParameter_create>" name="protectedParameters" arg="$runCommand.properties.protectedParameters" identifiers="name">
+                      <item type="@RunCommandInputParameter_create"/>
+                    </prop>
+                    <prop type="string" name="runAsPassword" arg="$runCommand.properties.runAsPassword"/>
+                    <prop type="string" name="runAsUser" arg="$runCommand.properties.runAsUser"/>
+                    <prop type="object" name="source">
+                      <prop type="string" name="commandId" arg="$runCommand.properties.source.commandId"/>
+                      <prop type="string" name="script" arg="$runCommand.properties.source.script"/>
+                      <prop type="string" name="scriptUri" arg="$runCommand.properties.source.scriptUri"/>
+                      <prop type="object" name="scriptUriManagedIdentity" arg="$runCommand.properties.source.scriptUriManagedIdentity" cls="RunCommandManagedIdentity_create">
+                        <prop type="string" name="clientId" arg="@RunCommandManagedIdentity_create.clientId"/>
+                        <prop type="string" name="objectId" arg="@RunCommandManagedIdentity_create.objectId"/>
+                      </prop>
+                    </prop>
+                    <prop type="integer32" name="timeoutInSeconds" arg="$runCommand.properties.timeoutInSeconds"/>
+                    <prop type="boolean" name="treatFailureAsDeploymentFailure" arg="$runCommand.properties.treatFailureAsDeploymentFailure"/>
+                  </prop>
+                  <prop type="object" name="tags" arg="$runCommand.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="boolean" name="asyncExecution"/>
+                    <prop type="@RunCommandManagedIdentity_read" name="errorBlobManagedIdentity"/>
+                    <prop type="string" name="errorBlobUri"/>
+                    <prop readOnly="True" type="object" name="instanceView">
+                      <prop type="dateTime" name="endTime">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="error"/>
+                      <prop type="string" name="executionMessage"/>
+                      <prop type="string" name="executionState">
+                        <enum>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Pending&quot;"/>
+                          <item value="&quot;Running&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;TimedOut&quot;"/>
+                          <item value="&quot;Unknown&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="integer32" name="exitCode"/>
+                      <prop type="string" name="output"/>
+                      <prop type="dateTime" name="startTime">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="array<object>" name="statuses">
+                        <item type="object">
+                          <prop type="string" name="code"/>
+                          <prop type="string" name="displayStatus"/>
+                          <prop type="string" name="level">
+                            <enum>
+                              <item value="&quot;Error&quot;"/>
+                              <item value="&quot;Info&quot;"/>
+                              <item value="&quot;Warning&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="message"/>
+                          <prop type="dateTime" name="time">
+                            <format protocol="iso"/>
+                          </prop>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop type="@RunCommandManagedIdentity_read" name="outputBlobManagedIdentity"/>
+                    <prop type="string" name="outputBlobUri"/>
+                    <prop type="array<object>" name="parameters" identifiers="name">
+                      <item type="object" cls="RunCommandInputParameter_read">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="value" required="True"/>
+                      </item>
+                    </prop>
+                    <prop type="array<@RunCommandInputParameter_read>" name="protectedParameters" identifiers="name">
+                      <item type="@RunCommandInputParameter_read"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState"/>
+                    <prop type="string" name="runAsPassword"/>
+                    <prop type="string" name="runAsUser"/>
+                    <prop type="object" name="source">
+                      <prop type="string" name="commandId"/>
+                      <prop type="string" name="script"/>
+                      <prop type="string" name="scriptUri"/>
+                      <prop type="object" name="scriptUriManagedIdentity" cls="RunCommandManagedIdentity_read">
+                        <prop type="string" name="clientId"/>
+                        <prop type="string" name="objectId"/>
+                      </prop>
+                    </prop>
+                    <prop type="integer32" name="timeoutInSeconds"/>
+                    <prop type="boolean" name="treatFailureAsDeploymentFailure"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2024-11-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/virtualmachines/{}/runcommands/{}" version="2024-11-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS92aXJ0dWFsTWFjaGluZXMve3ZtTmFtZX0vcnVuQ29tbWFuZHMve3J1bkNvbW1hbmROYW1lfQ==/V/MjAyNC0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.runCommandName" options="run-command-name name n" required="True" idPart="child_name_1">
+          <help short="The name of the VirtualMachineRunCommand"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vmName" options="vm-name" required="True" idPart="name">
+          <help short="The name of the VirtualMachine"/>
+        </arg>
+        <arg nullable="True" type="boolean" var="$runCommand.properties.asyncExecution" options="async-execution" group="">
+          <help short="Optional. If set to true, provisioning will complete as soon as the script starts and will not wait for script to complete."/>
+        </arg>
+        <arg nullable="True" type="string" var="$runCommand.properties.errorBlobUri" options="error-blob-uri" group="">
+          <help short="Specify the Azure storage blob where script error stream will be uploaded."/>
+        </arg>
+        <arg nullable="True" type="string" var="$runCommand.properties.outputBlobUri" options="output-blob-uri" group="">
+          <help short="Specify the Azure storage blob (SAS URI) where script output stream will be uploaded."/>
+        </arg>
+        <arg nullable="True" type="array<object>" var="$runCommand.properties.parameters" options="parameters" group="">
+          <help short="The parameters used by the script."/>
+          <item nullable="True" type="object" cls="RunCommandInputParameter_update">
+            <arg type="string" var="@RunCommandInputParameter_update.name" options="name">
+              <help short="The run command parameter name."/>
+            </arg>
+            <arg type="string" var="@RunCommandInputParameter_update.value" options="value">
+              <help short="The run command parameter value."/>
+            </arg>
+          </item>
+        </arg>
+        <arg nullable="True" type="array<@RunCommandInputParameter_update>" var="$runCommand.properties.protectedParameters" options="protected-parameters" group="">
+          <help short="The parameters used by the script."/>
+          <item nullable="True" type="@RunCommandInputParameter_update"/>
+        </arg>
+        <arg nullable="True" type="string" var="$runCommand.properties.runAsPassword" options="run-as-password" group="">
+          <help short="Password if needed for using run-as-user parameter. It will be encrypted and not logged"/>
+        </arg>
+        <arg nullable="True" type="string" var="$runCommand.properties.runAsUser" options="run-as-user" group="">
+          <help short="By default script process runs under system/root user. Specify custom user to host the process."/>
+        </arg>
+        <arg nullable="True" type="string" var="$runCommand.properties.source.commandId" options="command-id" group="">
+          <help short="Specifies a commandId of predefined built-in script."/>
+        </arg>
+        <arg nullable="True" type="string" var="$runCommand.properties.source.script" options="script" group="">
+          <help short="Specifies the script content to be executed on the VM."/>
+        </arg>
+        <arg nullable="True" type="string" var="$runCommand.properties.source.scriptUri" options="script-uri" group="">
+          <help short="Specifies the script download location. It can be either SAS URI of an Azure storage blob with read access or public URI."/>
+        </arg>
+        <arg nullable="True" type="integer32" var="$runCommand.properties.timeoutInSeconds" options="timeout-in-seconds" group="">
+          <help short="The timeout in seconds to execute the run command."/>
+        </arg>
+        <arg nullable="True" type="object" var="$runCommand.tags" options="tags" group="">
+          <help short="Space-separated tags: key[=value] [key[=value] ...]."/>
+          <additionalProp>
+            <item nullable="True" type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg nullable="True" type="@RunCommandManagedIdentity_update" var="$runCommand.properties.errorBlobManagedIdentity" options="error-blob-managed-identity" hide="True" group="Properties">
+          <help short="User-assigned managed identity that has access to errorBlobUri storage blob. Use an empty object in case of system-assigned identity. Make sure managed identity has been given access to blob's container with 'Storage Blob Data Contributor' role assignment. In case of user-assigned identity, make sure you add it under VM's identity. For more info on managed identity and Run Command, refer https://aka.ms/ManagedIdentity and https://aka.ms/RunCommandManaged"/>
+        </arg>
+        <arg nullable="True" type="@RunCommandManagedIdentity_update" var="$runCommand.properties.outputBlobManagedIdentity" options="output-blob-managed-identity" hide="True" group="Properties">
+          <help short="User-assigned managed identity that has access to outputBlobUri storage blob. Use an empty object in case of system-assigned identity. Make sure managed identity has been given access to blob's container with 'Storage Blob Data Contributor' role assignment. In case of user-assigned identity, make sure you add it under VM's identity. For more info on managed identity and Run Command, refer https://aka.ms/ManagedIdentity and https://aka.ms/RunCommandManaged"/>
+        </arg>
+        <arg nullable="True" type="boolean" var="$runCommand.properties.treatFailureAsDeploymentFailure" options="treat-failure-as-deployment-failure" hide="True" group="Properties">
+          <help short="Optional. If set to true, any failure in the script will fail the deployment and ProvisioningState will be marked as Failed. If set to false, ProvisioningState would only reflect whether the run command was run or not by the extensions platform, it would not indicate whether script failed in case of script failures. See instance view of run command in case of script failures to see executionMessage, output, error: https://aka.ms/runcommandmanaged#get-execution-status-and-results"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Source">
+        <arg nullable="True" type="object" var="$runCommand.properties.source.scriptUriManagedIdentity" options="script-uri-managed-identity" hide="True" group="Source" cls="RunCommandManagedIdentity_update">
+          <help short="User-assigned managed identity that has access to scriptUri in case of Azure storage blob. Use an empty object in case of system-assigned identity. Make sure the Azure storage blob exists, and managed identity has been given access to blob's container with 'Storage Blob Data Reader' role assignment. In case of user-assigned identity, make sure you add it under VM's identity. For more info on managed identity and Run Command, refer https://aka.ms/ManagedIdentity and https://aka.ms/RunCommandManaged."/>
+          <arg nullable="True" type="string" var="@RunCommandManagedIdentity_update.clientId" options="client-id">
+            <help short="Client Id (GUID value) of the user-assigned managed identity. ObjectId should not be used if this is provided."/>
+          </arg>
+          <arg nullable="True" type="string" var="@RunCommandManagedIdentity_update.objectId" options="object-id">
+            <help short="Object Id (GUID value) of the user-assigned managed identity. ClientId should not be used if this is provided."/>
+          </arg>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualMachineRunCommands_GetByVirtualMachine">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/runCommands/{runCommandName}">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="runCommandName" arg="$Path.runCommandName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+              <param type="string" name="vmName" arg="$Path.vmName" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="VirtualMachineRunCommand_read">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="boolean" name="asyncExecution"/>
+                    <prop type="@RunCommandManagedIdentity_read" name="errorBlobManagedIdentity"/>
+                    <prop type="string" name="errorBlobUri"/>
+                    <prop readOnly="True" type="object" name="instanceView">
+                      <prop type="dateTime" name="endTime">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="error"/>
+                      <prop type="string" name="executionMessage"/>
+                      <prop type="string" name="executionState">
+                        <enum>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Pending&quot;"/>
+                          <item value="&quot;Running&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;TimedOut&quot;"/>
+                          <item value="&quot;Unknown&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="integer32" name="exitCode"/>
+                      <prop type="string" name="output"/>
+                      <prop type="dateTime" name="startTime">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="array<object>" name="statuses">
+                        <item type="object">
+                          <prop type="string" name="code"/>
+                          <prop type="string" name="displayStatus"/>
+                          <prop type="string" name="level">
+                            <enum>
+                              <item value="&quot;Error&quot;"/>
+                              <item value="&quot;Info&quot;"/>
+                              <item value="&quot;Warning&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="message"/>
+                          <prop type="dateTime" name="time">
+                            <format protocol="iso"/>
+                          </prop>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop type="@RunCommandManagedIdentity_read" name="outputBlobManagedIdentity"/>
+                    <prop type="string" name="outputBlobUri"/>
+                    <prop type="array<object>" name="parameters" identifiers="name">
+                      <item type="object" cls="RunCommandInputParameter_read">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="value" required="True"/>
+                      </item>
+                    </prop>
+                    <prop type="array<@RunCommandInputParameter_read>" name="protectedParameters" identifiers="name">
+                      <item type="@RunCommandInputParameter_read"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState"/>
+                    <prop type="string" name="runAsPassword"/>
+                    <prop type="string" name="runAsUser"/>
+                    <prop type="object" name="source">
+                      <prop type="string" name="commandId"/>
+                      <prop type="string" name="script"/>
+                      <prop type="string" name="scriptUri"/>
+                      <prop type="object" name="scriptUriManagedIdentity" cls="RunCommandManagedIdentity_read">
+                        <prop type="string" name="clientId"/>
+                        <prop type="string" name="objectId"/>
+                      </prop>
+                    </prop>
+                    <prop type="integer32" name="timeoutInSeconds"/>
+                    <prop type="boolean" name="treatFailureAsDeploymentFailure"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate ref="$Instance">
+          <json>
+            <schema type="object" name="runCommand" required="True" clientFlatten="True">
+              <prop type="object" name="properties" clientFlatten="True">
+                <prop type="boolean" name="asyncExecution" arg="$runCommand.properties.asyncExecution"/>
+                <prop type="@RunCommandManagedIdentity_update" name="errorBlobManagedIdentity" arg="$runCommand.properties.errorBlobManagedIdentity"/>
+                <prop type="string" name="errorBlobUri" arg="$runCommand.properties.errorBlobUri"/>
+                <prop type="@RunCommandManagedIdentity_update" name="outputBlobManagedIdentity" arg="$runCommand.properties.outputBlobManagedIdentity"/>
+                <prop type="string" name="outputBlobUri" arg="$runCommand.properties.outputBlobUri"/>
+                <prop type="array<object>" name="parameters" arg="$runCommand.properties.parameters" identifiers="name">
+                  <item type="object" cls="RunCommandInputParameter_update">
+                    <prop type="string" name="name" arg="@RunCommandInputParameter_update.name" required="True"/>
+                    <prop type="string" name="value" arg="@RunCommandInputParameter_update.value" required="True"/>
+                  </item>
+                </prop>
+                <prop type="array<@RunCommandInputParameter_update>" name="protectedParameters" arg="$runCommand.properties.protectedParameters" identifiers="name">
+                  <item type="@RunCommandInputParameter_update"/>
+                </prop>
+                <prop type="string" name="runAsPassword" arg="$runCommand.properties.runAsPassword"/>
+                <prop type="string" name="runAsUser" arg="$runCommand.properties.runAsUser"/>
+                <prop type="object" name="source">
+                  <prop type="string" name="commandId" arg="$runCommand.properties.source.commandId"/>
+                  <prop type="string" name="script" arg="$runCommand.properties.source.script"/>
+                  <prop type="string" name="scriptUri" arg="$runCommand.properties.source.scriptUri"/>
+                  <prop type="object" name="scriptUriManagedIdentity" arg="$runCommand.properties.source.scriptUriManagedIdentity" cls="RunCommandManagedIdentity_update">
+                    <prop type="string" name="clientId" arg="@RunCommandManagedIdentity_update.clientId"/>
+                    <prop type="string" name="objectId" arg="@RunCommandManagedIdentity_update.objectId"/>
+                  </prop>
+                </prop>
+                <prop type="integer32" name="timeoutInSeconds" arg="$runCommand.properties.timeoutInSeconds"/>
+                <prop type="boolean" name="treatFailureAsDeploymentFailure" arg="$runCommand.properties.treatFailureAsDeploymentFailure"/>
+              </prop>
+              <prop type="object" name="tags" arg="$runCommand.tags">
+                <additionalProp>
+                  <item type="string"/>
+                </additionalProp>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="VirtualMachineRunCommands_CreateOrUpdate">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/runCommands/{runCommandName}">
+          <request method="put">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="runCommandName" arg="$Path.runCommandName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+              <param type="string" name="vmName" arg="$Path.vmName" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="@VirtualMachineRunCommand_read"/>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
