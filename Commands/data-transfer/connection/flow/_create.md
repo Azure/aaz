@@ -1,6 +1,6 @@
 # [Command] _data-transfer connection flow create_
 
-Create the flow resource.
+Create data flow for the approved connection
 
 ## Versions
 

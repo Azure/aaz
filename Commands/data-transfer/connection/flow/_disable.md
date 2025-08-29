@@ -1,6 +1,6 @@
 # [Command] _data-transfer connection flow disable_
 
-Disables the specified flow
+Disables the specified flow in the connection
 
 ## Versions
 
@@ -13,4 +13,5 @@ Disables the specified flow
 - Disables the specified flow
     ```bash
         data-transfer connection flow disable --resource-group testRG --connection-name testConnection --flow-name testFlow
+        data-transfer connection flow disable --ids /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testRG/providers/Microsoft.AzureDataTransfer/connections/testConnection/flows/testFlow
     ```

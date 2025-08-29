@@ -7,17 +7,9 @@
       <resource id="/subscriptions/{}/providers/microsoft.azuredatatransfer/pipelines" version="2025-05-21" swagger="mgmt-plane/azuredatatransfer/ResourceProviders/Microsoft.AzureDataTransfer/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlRGF0YVRyYW5zZmVyL3BpcGVsaW5lcw==/V/MjAyNS0wNS0yMQ=="/>
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.azuredatatransfer/pipelines" version="2025-05-21" swagger="mgmt-plane/azuredatatransfer/ResourceProviders/Microsoft.AzureDataTransfer/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXp1cmVEYXRhVHJhbnNmZXIvcGlwZWxpbmVz/V/MjAyNS0wNS0yMQ=="/>
       <argGroup name="">
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" group="" idPart="resource_group">
-          <help short="Specifies the name of the resource group to list the pipelines"/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <condition var="$Condition_Pipelines_ListByResourceGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_Pipelines_ListBySubscription">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -26,13 +18,16 @@
           </operator>
         </operator>
       </condition>
-      <operation when="$Condition_Pipelines_ListByResourceGroup" operationId="Pipelines_ListByResourceGroup">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureDataTransfer/pipelines">
+      <condition var="$Condition_Pipelines_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_Pipelines_ListBySubscription" operationId="Pipelines_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.AzureDataTransfer/pipelines">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -220,10 +215,13 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_Pipelines_ListBySubscription" operationId="Pipelines_ListBySubscription">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.AzureDataTransfer/pipelines">
+      <operation when="$Condition_Pipelines_ListByResourceGroup" operationId="Pipelines_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureDataTransfer/pipelines">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
               <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>

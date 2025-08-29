@@ -13,4 +13,5 @@ Links the connection to its pending connection.
 - Links the specified connection
     ```bash
         data-transfer connection link --resource-group testRG --connection-name receiveConnection --pending-connection-id /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testRG/providers/Microsoft.AzureDataTransfer/connections/sendConnection
+        data-transfer connection link --ids /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testRG/providers/Microsoft.AzureDataTransfer/connections/recieveConnection  --pending-connection-id /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testRG/providers/Microsoft.AzureDataTransfer/connections/sendConnection
     ```

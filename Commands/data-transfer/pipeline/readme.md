@@ -13,8 +13,11 @@ Data transfer pipeline commands
 - [delete](/Commands/data-transfer/pipeline/_delete.md)
 : Delete the pipeline resource.
 
+- [execute-action](/Commands/data-transfer/pipeline/_execute-action.md)
+: Executes a privileged action for a pipeline.
+
 - [list](/Commands/data-transfer/pipeline/_list.md)
-: List Pipeline resource by Subscription or Resource Group
+: List all the pipelines
 
 - [reject-connection](/Commands/data-transfer/pipeline/_reject-connection.md)
 : Rejects the specified connection request in a pipeline.
