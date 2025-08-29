@@ -114,7 +114,7 @@
 : data boundary operations
 
 - [data-transfer](/Commands/data-transfer/readme.md)
-: Data transfer commands
+: Commands for cross domain Service that enables customers to transfer data across security domains.
 
 - [databox](/Commands/databox/readme.md)
 : Manage data box

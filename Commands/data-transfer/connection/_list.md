@@ -1,6 +1,6 @@
 # [Command] _data-transfer connection list_
 
-List connections in a resource group.
+List all the connections.
 
 ## Versions
 

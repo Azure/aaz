@@ -2,6 +2,8 @@
 
 Get connection resource.
 
+Get connection with specified ids or name.
+
 ## Versions
 
 ### [2025-05-21](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5henVyZWRhdGF0cmFuc2Zlci9jb25uZWN0aW9ucy97fQ==/2025-05-21.xml) **Preview**
@@ -13,4 +15,5 @@ Get connection resource.
 - Gets connection resource
     ```bash
         data-transfer connection show --resource-group testRG --connection-name testConnection
+        data-transfer connection show --ids /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testRG/providers/Microsoft.AzureDataTransfer/connections/testConnection
     ```
