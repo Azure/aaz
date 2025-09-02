@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor list-linked-resource_
 
-List all Azure resources associated to the same NewRelic organization and account as the target resource.
+Lists all Azure resources that are linked to the same New Relic organization as the specified monitor resource, helping you understand the scope of integration.
 
 ## Versions
 

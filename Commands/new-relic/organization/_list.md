@@ -1,6 +1,6 @@
 # [Command] _new-relic organization list_
 
-List all the existing organizations
+Lists all the New Relic organizations in your Azure subscription, helping you understand the existing organizations that have been created.
 
 ## Versions
 

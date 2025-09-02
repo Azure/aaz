@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor get-billing-info_
 
-Get marketplace info mapped to the given monitor.
+Retrieve marketplace and organization billing information mapped to the given New Relic monitor resource.
 
 ## Versions
 

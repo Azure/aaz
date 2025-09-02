@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor create_
 
-Create a NewRelicMonitorResource
+Creates a new New Relic monitor resource in your Azure subscription. This sets up the integration between Azure and your New Relic account, enabling observability and monitoring of your Azure resources through New Relic.
 
 ## Versions
 

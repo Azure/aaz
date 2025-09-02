@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor tag-rule list_
 
-List TagRule resources by NewRelicMonitorResource
+Lists all tag rules associated with a specific New Relic monitor resource, helping you manage and audit the rules that control resource monitoring.
 
 ## Versions
 

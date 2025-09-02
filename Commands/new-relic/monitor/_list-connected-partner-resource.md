@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor list-connected-partner-resource_
 
-List of all active deployments that are associated with the marketplace subscription linked to the given monitor.
+List all active deployments associated with the marketplace subscription linked to the given New Relic monitor resource.
 
 ## Versions
 
