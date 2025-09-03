@@ -1,11 +1,11 @@
 # [Group] _network manager_
 
-Manage network-manager with network.
+Manage Network Manager
 
 ## Subgroups
 
 - [connect-config](/Commands/network/manager/connect-config/readme.md)
-: Manage connectivity configuration with network.
+: Manage Connectivity Configuration
 
 - [connection](/Commands/network/manager/connection/readme.md)
 : Manage connection with network manager.

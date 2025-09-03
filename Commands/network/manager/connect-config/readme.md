@@ -1,6 +1,6 @@
 # [Group] _network manager connect-config_
 
-Manage connectivity configuration with network.
+Manage Connectivity Configuration
 
 ## Commands
 
