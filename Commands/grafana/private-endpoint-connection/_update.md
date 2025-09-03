@@ -14,3 +14,14 @@ Update a private endpoint connection.
     ```bash
         grafana private-endpoint-connection update -n MyPrivateEndpoint -g MyResourceGroup --workspace-name MyGrafana --private-link-service-connection-state description="My response message" status="Approved"
     ```
+
+### [2024-11-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXNoYm9hcmQvZ3JhZmFuYS97fS9wcml2YXRlZW5kcG9pbnRjb25uZWN0aW9ucy97fQ==/2024-11-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.dashboard/grafana/{}/privateendpointconnections/{} 2024-11-01-preview -->
+
+#### examples
+
+- approve private endpoint connection
+    ```bash
+        grafana private-endpoint-connection update -n MyPrivateEndpoint -g MyResourceGroup --workspace-name MyGrafana --private-link-service-connection-state description="My response message" status="Approved"
+    ```
