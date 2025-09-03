@@ -1,8 +1,8 @@
 # [Group] _new-relic plan_
 
-Manage NewRelic Plan resource
+Manages the New Relic plans.
 
 ## Commands
 
 - [list](/Commands/new-relic/plan/_list.md)
-: List plans data
+: Lists all the plans data in your Azure subscription, providing an overview of the available plans.

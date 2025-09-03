@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor monitored-subscription create_
 
-Create the subscriptions that should be monitored by the NewRelic monitor resource.
+Create subscriptions to be monitored by the New Relic monitor resource, enabling observability and monitoring.
 
 ## Versions
 

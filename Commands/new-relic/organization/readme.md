@@ -1,8 +1,8 @@
 # [Group] _new-relic organization_
 
-Manage NewRelic Organization resource
+Manage the New Relic organization.
 
 ## Commands
 
 - [list](/Commands/new-relic/organization/_list.md)
-: List all the existing organizations
+: Lists all the New Relic organizations in your Azure subscription, helping you understand the existing organizations that have been created.

@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor tag-rule delete_
 
-Delete a TagRule
+Delete a tag rule set for a given New Relic monitor resource, removing fine-grained control over observability based on resource tags.
 
 ## Versions
 

@@ -270,7 +270,7 @@
 : Manage Azure Network Fabric Management Service API
 
 - [new-relic](/Commands/new-relic/readme.md)
-: Manage Azure NewRelic resources.
+: Manage Azure New Relic resources.
 
 - [nginx](/Commands/nginx/readme.md)
 : Manage NGINX deployment resources
