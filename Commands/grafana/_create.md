@@ -14,3 +14,14 @@ Create a workspace for Grafana resource. This API is idempotent, so user can eit
     ```bash
         grafana create --resource-group myResourceGroup --workspace-name myWorkspace --sku-tier Standard --public-network-access Enabled
     ```
+
+### [2024-11-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXNoYm9hcmQvZ3JhZmFuYS97fQ==/2024-11-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.dashboard/grafana/{} 2024-11-01-preview -->
+
+#### examples
+
+- create Azure Managed Grafana resource with public network access enabled
+    ```bash
+        grafana create --resource-group myResourceGroup --workspace-name myWorkspace --public-network-access Enabled
+    ```
