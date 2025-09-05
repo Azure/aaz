@@ -56,7 +56,7 @@ Manage Azure Network resources.
 : Manage local gateways.
 
 - [manager](/Commands/network/manager/readme.md)
-: Manage network-manager with network.
+: Manage Network Manager
 
 - [nat](/Commands/network/nat/readme.md)
 : Manage NAT resources.
