@@ -2,6 +2,11 @@
 
 Manage Neon organizations, which are entities created on the Neon side.
 
+## Subgroups
+
+- [project](/Commands/neon/postgres/organization/project/readme.md)
+: Manage Project
+
 ## Commands
 
 - [create](/Commands/neon/postgres/organization/_create.md)
