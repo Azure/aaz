@@ -12,10 +12,10 @@ Creates a new Datadog monitor resource in your Azure subscription. This sets up 
 
 - Monitors_Create
     ```bash
-        datadog monitor create --name "myMonitor" --resource-group "myResourceGroup" --location "West US 2" --datadog-organization-properties name="myResourceGroup" --tags Environment="Dev" --user-info name="Alice" email-address="alice@microsoft.com" phone-number="123-456-7890" --sku name="payg_v3_Monthly" --identity type="SystemAssigned" --monitoring-status "Enabled"
+        datadog monitor create --name "myMonitor" --resource-group "myResourceGroup" --location "West US 2" --org-properties name="myResourceGroup" --tags Environment="Dev" --user-info name="Alice" email-address="alice@microsoft.com" phone-number="123-456-7890" --sku name="payg_v3_Monthly" --identity type="SystemAssigned" --monitoring-status "Enabled"
     ```
 
 - Monitors creation with linking to Datadog organization.
     ```bash
-        datadog monitor create --name "myMonitor-link" --resource-group "myResourceGroup" --location "West US 2" --datadog-organization-properties api-key=XX application-key=XX --tags Environment="Dev" --user-info name="Alice" email-address="alice@microsoft.com" phone-number="123-456-7890"  --identity type="SystemAssigned" --sku name="Linked"
+        datadog monitor create --name "myMonitor-link" --resource-group "myResourceGroup" --location "West US 2" --org-properties api-key=XX application-key=XX --tags Environment="Dev" --user-info name="Alice" email-address="alice@microsoft.com" phone-number="123-456-7890"  --identity type="SystemAssigned" --sku name="Linked"
     ```
