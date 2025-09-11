@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor monitored-subscription list_
 
-List the subscriptions currently being monitored by the NewRelic monitor resource.
+List the subscriptions currently being monitored by the New Relic monitor resource.
 
 ## Versions
 

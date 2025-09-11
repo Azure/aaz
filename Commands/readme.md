@@ -131,6 +131,9 @@
 - [databricks](/Commands/databricks/readme.md)
 : Manage databricks workspaces.
 
+- [datadog](/Commands/datadog/readme.md)
+: Manage Datadog
+
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage dataprotection.
 
@@ -270,7 +273,7 @@
 : Manage Azure Network Fabric Management Service API
 
 - [new-relic](/Commands/new-relic/readme.md)
-: Manage Azure NewRelic resources.
+: Manage Azure New Relic resources.
 
 - [nginx](/Commands/nginx/readme.md)
 : Manage NGINX deployment resources
@@ -289,6 +292,9 @@
 
 - [playwright-testing](/Commands/playwright-testing/readme.md)
 : Manage Microsoft Playwright Testing service
+
+- [policy](/Commands/policy/readme.md)
+: Manage resources defined and used by the Azure Policy service.
 
 - [portal](/Commands/portal/readme.md)
 : Manage Portal.

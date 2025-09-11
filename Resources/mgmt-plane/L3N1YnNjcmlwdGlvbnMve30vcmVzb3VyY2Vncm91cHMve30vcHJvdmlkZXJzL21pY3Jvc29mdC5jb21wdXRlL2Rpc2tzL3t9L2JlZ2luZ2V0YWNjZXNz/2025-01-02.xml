@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/disks/{}/begingetaccess" version="2025-01-02" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9kaXNrcy97ZGlza05hbWV9L2JlZ2luR2V0QWNjZXNz/V/MjAyNS0wMS0wMg=="/>
+  <commandGroup name="disk">
+    <command name="grant-access" version="2025-01-02" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/disks/{}/begingetaccess" version="2025-01-02" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9kaXNrcy97ZGlza05hbWV9L2JlZ2luR2V0QWNjZXNz/V/MjAyNS0wMS0wMg=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.diskName" options="disk-name name n" required="True" group="" idPart="name">
+          <help short="The name of the managed disk that is being created. The name can't be changed after the disk is created. Supported characters for the name are a-z, A-Z, 0-9, _ and -. The maximum name length is 80 characters."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="GrantAccessData">
+        <arg type="string" var="$grantAccessData.access" options="access-level access" required="True" group="GrantAccessData">
+          <help short="Access level."/>
+          <default value="&quot;Read&quot;"/>
+          <enum>
+            <item name="None" value="&quot;None&quot;"/>
+            <item name="Read" value="&quot;Read&quot;"/>
+            <item name="Write" value="&quot;Write&quot;"/>
+          </enum>
+        </arg>
+        <arg type="integer32" var="$grantAccessData.durationInSeconds" options="duration-in-seconds" required="True" group="GrantAccessData">
+          <help short="Time duration in seconds until the SAS access expires."/>
+        </arg>
+        <arg type="string" var="$grantAccessData.fileFormat" options="file-format" hide="True" group="GrantAccessData">
+          <help short="Used to specify the file format when making request for SAS on a VHDX file format snapshot"/>
+          <enum>
+            <item name="VHD" value="&quot;VHD&quot;"/>
+            <item name="VHDX" value="&quot;VHDX&quot;"/>
+          </enum>
+        </arg>
+        <arg type="boolean" var="$grantAccessData.getSecureVMGuestStateSAS" options="secure-vm-guest-state-sas s" group="GrantAccessData">
+          <help short="Get SAS on managed disk with VM guest state. It will be used by default when the create option of disk is 'secureOSUpload'"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Disks_GrantAccess">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/disks/{diskName}/beginGetAccess">
+          <request method="post">
+            <path>
+              <param type="string" name="diskName" arg="$Path.diskName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-01-02&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="grantAccessData" required="True" clientFlatten="True">
+                  <prop type="string" name="access" arg="$grantAccessData.access" required="True">
+                    <enum>
+                      <item value="&quot;None&quot;"/>
+                      <item value="&quot;Read&quot;"/>
+                      <item value="&quot;Write&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="integer32" name="durationInSeconds" arg="$grantAccessData.durationInSeconds" required="True"/>
+                  <prop type="string" name="fileFormat" arg="$grantAccessData.fileFormat">
+                    <enum>
+                      <item value="&quot;VHD&quot;"/>
+                      <item value="&quot;VHDX&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="boolean" name="getSecureVMGuestStateSAS" arg="$grantAccessData.getSecureVMGuestStateSAS"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="accessSAS"/>
+                  <prop readOnly="True" type="string" name="securityDataAccessSAS"/>
+                  <prop readOnly="True" type="string" name="securityMetadataAccessSAS"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

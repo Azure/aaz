@@ -1,6 +1,6 @@
 # [Command] _new-relic plan list_
 
-List plans data
+Lists all the plans data in your Azure subscription, providing an overview of the available plans.
 
 ## Versions
 
