@@ -7,7 +7,13 @@ Manage virtual machine
 - [console](/Commands/networkcloud/virtualmachine/console/readme.md)
 : Manage virtual machine's console
 
+- [identity](/Commands/networkcloud/virtualmachine/identity/readme.md)
+: Manage virtual machine's identidy
+
 ## Commands
+
+- [assign-relay](/Commands/networkcloud/virtualmachine/_assign-relay.md)
+: Assigns a relay to the specified Microsoft.HybridCompute machine associated with the provided virtual machine.
 
 - [attach-volume](/Commands/networkcloud/virtualmachine/_attach-volume.md)
 : Attach volume to the provided virtual machine.
