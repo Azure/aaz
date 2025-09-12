@@ -23,5 +23,5 @@ List CVE analysis results of a firmware.
 
 - List CVE analysis results of a firmware.
     ```bash
-        az firmwareanalysis firmware cve --resource-group {ResourceGroupName} --workspace-name {workspaceName} --firmware-id {firmwareId}
+        firmwareanalysis firmware cve --resource-group {ResourceGroupName} --workspace-name {workspaceName} --firmware-id {firmwareId}
     ```
