@@ -332,6 +332,9 @@
 - [restore-point](/Commands/restore-point/readme.md)
 : Manage restore point with res.
 
+- [search](/Commands/search/readme.md)
+: Manage Search
+
 - [security](/Commands/security/readme.md)
 : Manage your security posture with Microsoft Defender for Cloud.
 
