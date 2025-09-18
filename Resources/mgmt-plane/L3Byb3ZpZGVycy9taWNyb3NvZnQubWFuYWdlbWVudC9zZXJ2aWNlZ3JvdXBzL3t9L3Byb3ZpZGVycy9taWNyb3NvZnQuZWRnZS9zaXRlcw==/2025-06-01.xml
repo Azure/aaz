@@ -3,18 +3,22 @@
   <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.edge/sites" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlZ3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2Uvc2l0ZXM=/V/MjAyNS0wNi0wMQ=="/>
   <resource id="/subscriptions/{}/providers/microsoft.edge/sites" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2Uvc2l0ZXM=/V/MjAyNS0wNi0wMQ=="/>
   <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edge/sites" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZS9zaXRlcw==/V/MjAyNS0wNi0wMQ=="/>
-  <commandGroup name="workload-orchestration site">
-    <command name="list" version="2025-06-01">
+  <commandGroup name="site">
+    <command name="list" version="2025-06-01" confirmation="">
       <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.edge/sites" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlZ3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2Uvc2l0ZXM=/V/MjAyNS0wNi0wMQ=="/>
       <resource id="/subscriptions/{}/providers/microsoft.edge/sites" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2Uvc2l0ZXM=/V/MjAyNS0wNi0wMQ=="/>
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edge/sites" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZS9zaXRlcw==/V/MjAyNS0wNi0wMQ=="/>
       <argGroup name="">
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
-        <arg type="string" var="$Path.servicegroupName" options="servicegroup-name">
-          <help short="The name of the service group"/>
-          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" group="" idPart="resource_group">
+          <help short="Name of the resource group"/>
         </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" idPart="subscription"/>
+        <arg type="string" var="$Path.servicegroupName" options="service-group sg" group="">
+          <help short="Name of the service group"/>
+          <format pattern="^[a-zA-Z0-9\-_().]{1,90}$"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" group="" idPart="subscription">
+          <help short="ID of subscription"/>
+        </arg>
       </argGroup>
       <condition var="$Condition_SitesByServiceGroup_ListByServiceGroup">
         <operator type="and">
@@ -40,7 +44,7 @@
           <request method="get">
             <path>
               <param type="string" name="servicegroupName" arg="$Path.servicegroupName" required="True">
-                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
+                <format pattern="^[a-zA-Z0-9\-_().]{1,90}$"/>
               </param>
             </path>
             <query>
@@ -84,7 +88,9 @@
                         </prop>
                       </prop>
                       <prop readOnly="True" type="object" name="systemData">
-                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="dateTime" name="createdAt">
+                          <format protocol="iso"/>
+                        </prop>
                         <prop type="string" name="createdBy"/>
                         <prop type="string" name="createdByType">
                           <enum>
@@ -94,7 +100,9 @@
                             <item value="&quot;User&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="dateTime" name="lastModifiedAt">
+                          <format protocol="iso"/>
+                        </prop>
                         <prop type="string" name="lastModifiedBy"/>
                         <prop type="string" name="lastModifiedByType">
                           <enum>
@@ -168,7 +176,9 @@
                         </prop>
                       </prop>
                       <prop readOnly="True" type="object" name="systemData">
-                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="dateTime" name="createdAt">
+                          <format protocol="iso"/>
+                        </prop>
                         <prop type="string" name="createdBy"/>
                         <prop type="string" name="createdByType">
                           <enum>
@@ -178,7 +188,9 @@
                             <item value="&quot;User&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="dateTime" name="lastModifiedAt">
+                          <format protocol="iso"/>
+                        </prop>
                         <prop type="string" name="lastModifiedBy"/>
                         <prop type="string" name="lastModifiedByType">
                           <enum>
@@ -255,7 +267,9 @@
                         </prop>
                       </prop>
                       <prop readOnly="True" type="object" name="systemData">
-                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="dateTime" name="createdAt">
+                          <format protocol="iso"/>
+                        </prop>
                         <prop type="string" name="createdBy"/>
                         <prop type="string" name="createdByType">
                           <enum>
@@ -265,7 +279,9 @@
                             <item value="&quot;User&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="dateTime" name="lastModifiedAt">
+                          <format protocol="iso"/>
+                        </prop>
                         <prop type="string" name="lastModifiedBy"/>
                         <prop type="string" name="lastModifiedByType">
                           <enum>

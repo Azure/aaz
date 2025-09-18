@@ -353,6 +353,9 @@
 - [sig](/Commands/sig/readme.md)
 : Manage shared image gallery.
 
+- [site](/Commands/site/readme.md)
+: Manage Site
+
 - [site-recovery](/Commands/site-recovery/readme.md)
 : Manage Site Recovery Service
 
