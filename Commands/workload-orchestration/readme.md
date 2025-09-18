@@ -28,9 +28,6 @@ Manage Edge
 - [schema-reference](/Commands/workload-orchestration/schema-reference/readme.md)
 : Manage Schema Reference
 
-- [site](/Commands/workload-orchestration/site/readme.md)
-: Manage Site
-
 - [solution-template](/Commands/workload-orchestration/solution-template/readme.md)
 : Manage Solution Template
 

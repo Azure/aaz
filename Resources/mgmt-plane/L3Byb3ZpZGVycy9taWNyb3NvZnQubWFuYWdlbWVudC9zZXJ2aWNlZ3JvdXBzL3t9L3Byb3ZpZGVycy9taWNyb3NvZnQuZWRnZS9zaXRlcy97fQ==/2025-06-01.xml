@@ -3,30 +3,68 @@
   <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.edge/sites/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlZ3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2Uvc2l0ZXMve3NpdGVOYW1lfQ==/V/MjAyNS0wNi0wMQ=="/>
   <resource id="/subscriptions/{}/providers/microsoft.edge/sites/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2Uvc2l0ZXMve3NpdGVOYW1lfQ==/V/MjAyNS0wNi0wMQ=="/>
   <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edge/sites/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZS9zaXRlcy97c2l0ZU5hbWV9/V/MjAyNS0wNi0wMQ=="/>
-  <commandGroup name="workload-orchestration site">
-    <command name="show" version="2025-06-01">
+  <commandGroup name="site">
+    <command name="create" version="2025-06-01" confirmation="">
       <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.edge/sites/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlZ3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2Uvc2l0ZXMve3NpdGVOYW1lfQ==/V/MjAyNS0wNi0wMQ=="/>
       <resource id="/subscriptions/{}/providers/microsoft.edge/sites/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2Uvc2l0ZXMve3NpdGVOYW1lfQ==/V/MjAyNS0wNi0wMQ=="/>
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edge/sites/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZS9zaXRlcy97c2l0ZU5hbWV9/V/MjAyNS0wNi0wMQ=="/>
       <argGroup name="">
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
-        <arg type="string" var="$Path.servicegroupName" options="servicegroup-name">
-          <help short="The name of the service group"/>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
+          <help short="Name of the resource group"/>
+        </arg>
+        <arg type="string" var="$Path.servicegroupName" options="service-group sg" required="True" group="">
+          <help short="Name of the service group"/>
+          <format pattern="^[a-zA-Z0-9\-_().]{1,90}$"/>
+        </arg>
+        <arg type="string" var="$Path.siteName" options="site-name name n" required="True" group="">
+          <help short="Name of the site resource"/>
           <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
         </arg>
-        <arg type="string" var="$Path.siteName" options="site-name" required="True">
-          <help short="The name of the site"/>
-          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
+          <help short="ID of subscription"/>
         </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" idPart="subscription"/>
       </argGroup>
-      <condition var="$Condition_SitesByServiceGroup_Get">
+      <argGroup name="Properties">
+        <arg type="string" var="$resource.properties.description" options="description" group="Properties">
+          <help short="Description of site resource"/>
+        </arg>
+        <arg type="string" var="$resource.properties.displayName" options="display-name" group="Properties">
+          <help short="Display name of site resource"/>
+        </arg>
+        <arg type="object" var="$resource.properties.labels" options="labels" group="Properties">
+          <help short="Key-value pairs for labeling the site resource."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="SiteAddress">
+        <arg type="string" var="$resource.properties.siteAddress.city" options="city" group="SiteAddress">
+          <help short="City of the address"/>
+        </arg>
+        <arg type="string" var="$resource.properties.siteAddress.country" options="country" group="SiteAddress">
+          <help short="Country of the address"/>
+        </arg>
+        <arg type="string" var="$resource.properties.siteAddress.postalCode" options="postal-code" group="SiteAddress">
+          <help short="Postal or ZIP code of the address"/>
+        </arg>
+        <arg type="string" var="$resource.properties.siteAddress.stateOrProvince" options="state-or-province" group="SiteAddress">
+          <help short="State or province of the address"/>
+        </arg>
+        <arg type="string" var="$resource.properties.siteAddress.streetAddress1" options="street-address1" group="SiteAddress">
+          <help short="First line of the street address"/>
+        </arg>
+        <arg type="string" var="$resource.properties.siteAddress.streetAddress2" options="street-address2" group="SiteAddress">
+          <help short="Second line of the street address"/>
+        </arg>
+      </argGroup>
+      <condition var="$Condition_SitesByServiceGroup_CreateOrUpdate">
         <operator type="and">
           <operator type="hasValue" arg="$Path.servicegroupName"/>
           <operator type="hasValue" arg="$Path.siteName"/>
         </operator>
       </condition>
-      <condition var="$Condition_SitesBySubscription_Get">
+      <condition var="$Condition_SitesBySubscription_CreateOrUpdate">
         <operator type="and">
           <operator type="hasValue" arg="$Path.siteName"/>
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -35,19 +73,20 @@
           </operator>
         </operator>
       </condition>
-      <condition var="$Condition_Sites_Get">
+      <condition var="$Condition_Sites_CreateOrUpdate">
         <operator type="and">
           <operator type="hasValue" arg="$Path.resourceGroupName"/>
           <operator type="hasValue" arg="$Path.siteName"/>
           <operator type="hasValue" arg="$Path.subscriptionId"/>
         </operator>
       </condition>
-      <operation when="$Condition_SitesByServiceGroup_Get" operationId="SitesByServiceGroup_Get">
+      <operation when="$Condition_SitesByServiceGroup_CreateOrUpdate" operationId="SitesByServiceGroup_CreateOrUpdate">
+        <longRunning finalStateVia="azure-async-operation"/>
         <http path="/providers/Microsoft.Management/serviceGroups/{servicegroupName}/providers/Microsoft.Edge/sites/{siteName}">
-          <request method="get">
+          <request method="put">
             <path>
               <param type="string" name="servicegroupName" arg="$Path.servicegroupName" required="True">
-                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
+                <format pattern="^[a-zA-Z0-9\-_().]{1,90}$"/>
               </param>
               <param type="string" name="siteName" arg="$Path.siteName" required="True">
                 <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
@@ -59,8 +98,31 @@
                 <format minLength="1"/>
               </const>
             </query>
+            <body>
+              <json>
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="object" name="properties">
+                    <prop type="string" name="description" arg="$resource.properties.description"/>
+                    <prop type="string" name="displayName" arg="$resource.properties.displayName"/>
+                    <prop type="object" name="labels" arg="$resource.properties.labels">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop type="object" name="siteAddress">
+                      <prop type="string" name="city" arg="$resource.properties.siteAddress.city"/>
+                      <prop type="string" name="country" arg="$resource.properties.siteAddress.country"/>
+                      <prop type="string" name="postalCode" arg="$resource.properties.siteAddress.postalCode"/>
+                      <prop type="string" name="stateOrProvince" arg="$resource.properties.siteAddress.stateOrProvince"/>
+                      <prop type="string" name="streetAddress1" arg="$resource.properties.siteAddress.streetAddress1"/>
+                      <prop type="string" name="streetAddress2" arg="$resource.properties.siteAddress.streetAddress2"/>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
           </request>
-          <response statusCode="200">
+          <response statusCode="200 201">
             <body>
               <json var="$Instance">
                 <schema type="object">
@@ -91,7 +153,9 @@
                     </prop>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
-                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="createdBy"/>
                     <prop type="string" name="createdByType">
                       <enum>
@@ -101,7 +165,9 @@
                         <item value="&quot;User&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="lastModifiedBy"/>
                     <prop type="string" name="lastModifiedByType">
                       <enum>
@@ -126,9 +192,10 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_SitesBySubscription_Get" operationId="SitesBySubscription_Get">
+      <operation when="$Condition_SitesBySubscription_CreateOrUpdate" operationId="SitesBySubscription_CreateOrUpdate">
+        <longRunning finalStateVia="azure-async-operation"/>
         <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Edge/sites/{siteName}">
-          <request method="get">
+          <request method="put">
             <path>
               <param type="string" name="siteName" arg="$Path.siteName" required="True">
                 <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
@@ -141,8 +208,31 @@
                 <format minLength="1"/>
               </const>
             </query>
+            <body>
+              <json>
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="object" name="properties">
+                    <prop type="string" name="description" arg="$resource.properties.description"/>
+                    <prop type="string" name="displayName" arg="$resource.properties.displayName"/>
+                    <prop type="object" name="labels" arg="$resource.properties.labels">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop type="object" name="siteAddress">
+                      <prop type="string" name="city" arg="$resource.properties.siteAddress.city"/>
+                      <prop type="string" name="country" arg="$resource.properties.siteAddress.country"/>
+                      <prop type="string" name="postalCode" arg="$resource.properties.siteAddress.postalCode"/>
+                      <prop type="string" name="stateOrProvince" arg="$resource.properties.siteAddress.stateOrProvince"/>
+                      <prop type="string" name="streetAddress1" arg="$resource.properties.siteAddress.streetAddress1"/>
+                      <prop type="string" name="streetAddress2" arg="$resource.properties.siteAddress.streetAddress2"/>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
           </request>
-          <response statusCode="200">
+          <response statusCode="200 201">
             <body>
               <json var="$Instance">
                 <schema type="object">
@@ -173,7 +263,9 @@
                     </prop>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
-                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="createdBy"/>
                     <prop type="string" name="createdByType">
                       <enum>
@@ -183,7 +275,9 @@
                         <item value="&quot;User&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="lastModifiedBy"/>
                     <prop type="string" name="lastModifiedByType">
                       <enum>
@@ -208,9 +302,10 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_Sites_Get" operationId="Sites_Get">
+      <operation when="$Condition_Sites_CreateOrUpdate" operationId="Sites_CreateOrUpdate">
+        <longRunning finalStateVia="azure-async-operation"/>
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/sites/{siteName}">
-          <request method="get">
+          <request method="put">
             <path>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
                 <format maxLength="90" minLength="1"/>
@@ -226,8 +321,31 @@
                 <format minLength="1"/>
               </const>
             </query>
+            <body>
+              <json>
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="object" name="properties">
+                    <prop type="string" name="description" arg="$resource.properties.description"/>
+                    <prop type="string" name="displayName" arg="$resource.properties.displayName"/>
+                    <prop type="object" name="labels" arg="$resource.properties.labels">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop type="object" name="siteAddress">
+                      <prop type="string" name="city" arg="$resource.properties.siteAddress.city"/>
+                      <prop type="string" name="country" arg="$resource.properties.siteAddress.country"/>
+                      <prop type="string" name="postalCode" arg="$resource.properties.siteAddress.postalCode"/>
+                      <prop type="string" name="stateOrProvince" arg="$resource.properties.siteAddress.stateOrProvince"/>
+                      <prop type="string" name="streetAddress1" arg="$resource.properties.siteAddress.streetAddress1"/>
+                      <prop type="string" name="streetAddress2" arg="$resource.properties.siteAddress.streetAddress2"/>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
           </request>
-          <response statusCode="200">
+          <response statusCode="200 201">
             <body>
               <json var="$Instance">
                 <schema type="object">
@@ -258,7 +376,9 @@
                     </prop>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
-                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="createdBy"/>
                     <prop type="string" name="createdByType">
                       <enum>
@@ -268,7 +388,9 @@
                         <item value="&quot;User&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="lastModifiedBy"/>
                     <prop type="string" name="lastModifiedByType">
                       <enum>
@@ -293,23 +415,27 @@
           </response>
         </http>
       </operation>
-      <output type="object" ref="$Instance" clientFlatten="True"/>
+      <output type="object" ref="$Instance"/>
     </command>
     <command name="delete" version="2025-06-01" confirmation="Are you sure you want to perform this operation?">
       <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.edge/sites/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlZ3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2Uvc2l0ZXMve3NpdGVOYW1lfQ==/V/MjAyNS0wNi0wMQ=="/>
       <resource id="/subscriptions/{}/providers/microsoft.edge/sites/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2Uvc2l0ZXMve3NpdGVOYW1lfQ==/V/MjAyNS0wNi0wMQ=="/>
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edge/sites/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZS9zaXRlcy97c2l0ZU5hbWV9/V/MjAyNS0wNi0wMQ=="/>
       <argGroup name="">
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
-        <arg type="string" var="$Path.servicegroupName" options="servicegroup-name">
-          <help short="The name of the service group"/>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" group="" idPart="resource_group">
+          <help short="Name of the resource group"/>
+        </arg>
+        <arg type="string" var="$Path.servicegroupName" options="service-group sg" group="">
+          <help short="Name of the service group"/>
+          <format pattern="^[a-zA-Z0-9\-_().]{1,90}$"/>
+        </arg>
+        <arg type="string" var="$Path.siteName" options="site-name name n" required="True" group="">
+          <help short="Name of the site resource"/>
           <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
         </arg>
-        <arg type="string" var="$Path.siteName" options="site-name" required="True">
-          <help short="The name of the site"/>
-          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" group="" idPart="subscription">
+          <help short="ID of subscription"/>
         </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" idPart="subscription"/>
       </argGroup>
       <condition var="$Condition_SitesByServiceGroup_Delete">
         <operator type="and">
@@ -338,7 +464,7 @@
           <request method="delete">
             <path>
               <param type="string" name="servicegroupName" arg="$Path.servicegroupName" required="True">
-                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
+                <format pattern="^[a-zA-Z0-9\-_().]{1,90}$"/>
               </param>
               <param type="string" name="siteName" arg="$Path.siteName" required="True">
                 <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
@@ -420,454 +546,23 @@
         </http>
       </operation>
     </command>
-    <command name="create" version="2025-06-01">
+    <command name="show" version="2025-06-01" confirmation="">
       <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.edge/sites/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlZ3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2Uvc2l0ZXMve3NpdGVOYW1lfQ==/V/MjAyNS0wNi0wMQ=="/>
       <resource id="/subscriptions/{}/providers/microsoft.edge/sites/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2Uvc2l0ZXMve3NpdGVOYW1lfQ==/V/MjAyNS0wNi0wMQ=="/>
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edge/sites/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZS9zaXRlcy97c2l0ZU5hbWV9/V/MjAyNS0wNi0wMQ=="/>
       <argGroup name="">
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
-        <arg type="string" var="$Path.servicegroupName" options="servicegroup-name">
-          <help short="The name of the service group"/>
-          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" group="" idPart="resource_group">
+          <help short="Name of the resource group"/>
         </arg>
-        <arg type="string" var="$Path.siteName" options="site-name" required="True">
-          <help short="The name of the site"/>
-          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
+        <arg type="string" var="$Path.servicegroupName" options="service-group sg" group="">
+          <help short="Name of the service group"/>
+          <format pattern="^[a-zA-Z0-9\-_().]{1,90}$"/>
         </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" idPart="subscription"/>
-      </argGroup>
-      <argGroup name="Properties">
-        <arg type="string" var="$resource.properties.description" options="description" group="Properties">
-          <help short="Description of Site resource"/>
-        </arg>
-        <arg type="string" var="$resource.properties.displayName" options="display-name" group="Properties">
-          <help short="displayName of Site resource"/>
-        </arg>
-        <arg type="object" var="$resource.properties.labels" options="labels" group="Properties">
-          <help short="Key-value pairs for labeling the site resource."/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
-        </arg>
-        <arg type="object" var="$resource.properties.siteAddress" options="site-address" group="Properties">
-          <help short="Physical address of the site"/>
-          <arg type="string" var="$resource.properties.siteAddress.city" options="city">
-            <help short="City of the address"/>
-          </arg>
-          <arg type="string" var="$resource.properties.siteAddress.country" options="country">
-            <help short="Country of the address"/>
-          </arg>
-          <arg type="string" var="$resource.properties.siteAddress.postalCode" options="postal-code">
-            <help short="Postal or ZIP code of the address"/>
-          </arg>
-          <arg type="string" var="$resource.properties.siteAddress.stateOrProvince" options="state-or-province">
-            <help short="State or province of the address"/>
-          </arg>
-          <arg type="string" var="$resource.properties.siteAddress.streetAddress1" options="street-address1">
-            <help short="First line of the street address"/>
-          </arg>
-          <arg type="string" var="$resource.properties.siteAddress.streetAddress2" options="street-address2">
-            <help short="Second line of the street address"/>
-          </arg>
-        </arg>
-      </argGroup>
-      <condition var="$Condition_SitesByServiceGroup_CreateOrUpdate">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.servicegroupName"/>
-          <operator type="hasValue" arg="$Path.siteName"/>
-        </operator>
-      </condition>
-      <condition var="$Condition_SitesBySubscription_CreateOrUpdate">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.siteName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-          <operator type="not">
-            <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          </operator>
-        </operator>
-      </condition>
-      <condition var="$Condition_Sites_CreateOrUpdate">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.siteName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
-      <operation when="$Condition_SitesByServiceGroup_CreateOrUpdate" operationId="SitesByServiceGroup_CreateOrUpdate">
-        <longRunning finalStateVia="azure-async-operation"/>
-        <http path="/providers/Microsoft.Management/serviceGroups/{servicegroupName}/providers/Microsoft.Edge/sites/{siteName}">
-          <request method="put">
-            <path>
-              <param type="string" name="servicegroupName" arg="$Path.servicegroupName" required="True">
-                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
-              </param>
-              <param type="string" name="siteName" arg="$Path.siteName" required="True">
-                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
-              </param>
-            </path>
-            <query>
-              <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="&quot;2025-06-01&quot;"/>
-                <format minLength="1"/>
-              </const>
-            </query>
-            <body>
-              <json>
-                <schema type="object" name="resource" required="True" clientFlatten="True">
-                  <prop type="object" name="properties">
-                    <prop type="string" name="description" arg="$resource.properties.description"/>
-                    <prop type="string" name="displayName" arg="$resource.properties.displayName"/>
-                    <prop type="object" name="labels" arg="$resource.properties.labels">
-                      <additionalProp>
-                        <item type="string"/>
-                      </additionalProp>
-                    </prop>
-                    <prop type="object" name="siteAddress" arg="$resource.properties.siteAddress">
-                      <prop type="string" name="city" arg="$resource.properties.siteAddress.city"/>
-                      <prop type="string" name="country" arg="$resource.properties.siteAddress.country"/>
-                      <prop type="string" name="postalCode" arg="$resource.properties.siteAddress.postalCode"/>
-                      <prop type="string" name="stateOrProvince" arg="$resource.properties.siteAddress.stateOrProvince"/>
-                      <prop type="string" name="streetAddress1" arg="$resource.properties.siteAddress.streetAddress1"/>
-                      <prop type="string" name="streetAddress2" arg="$resource.properties.siteAddress.streetAddress2"/>
-                    </prop>
-                  </prop>
-                </schema>
-              </json>
-            </body>
-          </request>
-          <response statusCode="200 201">
-            <body>
-              <json var="$Instance">
-                <schema type="object">
-                  <prop readOnly="True" type="ResourceId" name="id"/>
-                  <prop readOnly="True" type="string" name="name"/>
-                  <prop type="object" name="properties">
-                    <prop type="string" name="description"/>
-                    <prop type="string" name="displayName"/>
-                    <prop type="object" name="labels">
-                      <additionalProp>
-                        <item type="string"/>
-                      </additionalProp>
-                    </prop>
-                    <prop readOnly="True" type="string" name="provisioningState">
-                      <enum>
-                        <item value="&quot;Canceled&quot;"/>
-                        <item value="&quot;Failed&quot;"/>
-                        <item value="&quot;Succeeded&quot;"/>
-                      </enum>
-                    </prop>
-                    <prop type="object" name="siteAddress">
-                      <prop type="string" name="city"/>
-                      <prop type="string" name="country"/>
-                      <prop type="string" name="postalCode"/>
-                      <prop type="string" name="stateOrProvince"/>
-                      <prop type="string" name="streetAddress1"/>
-                      <prop type="string" name="streetAddress2"/>
-                    </prop>
-                  </prop>
-                  <prop readOnly="True" type="object" name="systemData">
-                    <prop type="dateTime" name="createdAt"/>
-                    <prop type="string" name="createdBy"/>
-                    <prop type="string" name="createdByType">
-                      <enum>
-                        <item value="&quot;Application&quot;"/>
-                        <item value="&quot;Key&quot;"/>
-                        <item value="&quot;ManagedIdentity&quot;"/>
-                        <item value="&quot;User&quot;"/>
-                      </enum>
-                    </prop>
-                    <prop type="dateTime" name="lastModifiedAt"/>
-                    <prop type="string" name="lastModifiedBy"/>
-                    <prop type="string" name="lastModifiedByType">
-                      <enum>
-                        <item value="&quot;Application&quot;"/>
-                        <item value="&quot;Key&quot;"/>
-                        <item value="&quot;ManagedIdentity&quot;"/>
-                        <item value="&quot;User&quot;"/>
-                      </enum>
-                    </prop>
-                  </prop>
-                  <prop readOnly="True" type="string" name="type"/>
-                </schema>
-              </json>
-            </body>
-          </response>
-          <response isError="True">
-            <body>
-              <json>
-                <schema type="@MgmtErrorFormat"/>
-              </json>
-            </body>
-          </response>
-        </http>
-      </operation>
-      <operation when="$Condition_SitesBySubscription_CreateOrUpdate" operationId="SitesBySubscription_CreateOrUpdate">
-        <longRunning finalStateVia="azure-async-operation"/>
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Edge/sites/{siteName}">
-          <request method="put">
-            <path>
-              <param type="string" name="siteName" arg="$Path.siteName" required="True">
-                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
-              </param>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
-            </path>
-            <query>
-              <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="&quot;2025-06-01&quot;"/>
-                <format minLength="1"/>
-              </const>
-            </query>
-            <body>
-              <json>
-                <schema type="object" name="resource" required="True" clientFlatten="True">
-                  <prop type="object" name="properties">
-                    <prop type="string" name="description" arg="$resource.properties.description"/>
-                    <prop type="string" name="displayName" arg="$resource.properties.displayName"/>
-                    <prop type="object" name="labels" arg="$resource.properties.labels">
-                      <additionalProp>
-                        <item type="string"/>
-                      </additionalProp>
-                    </prop>
-                    <prop type="object" name="siteAddress" arg="$resource.properties.siteAddress">
-                      <prop type="string" name="city" arg="$resource.properties.siteAddress.city"/>
-                      <prop type="string" name="country" arg="$resource.properties.siteAddress.country"/>
-                      <prop type="string" name="postalCode" arg="$resource.properties.siteAddress.postalCode"/>
-                      <prop type="string" name="stateOrProvince" arg="$resource.properties.siteAddress.stateOrProvince"/>
-                      <prop type="string" name="streetAddress1" arg="$resource.properties.siteAddress.streetAddress1"/>
-                      <prop type="string" name="streetAddress2" arg="$resource.properties.siteAddress.streetAddress2"/>
-                    </prop>
-                  </prop>
-                </schema>
-              </json>
-            </body>
-          </request>
-          <response statusCode="200 201">
-            <body>
-              <json var="$Instance">
-                <schema type="object">
-                  <prop readOnly="True" type="ResourceId" name="id"/>
-                  <prop readOnly="True" type="string" name="name"/>
-                  <prop type="object" name="properties">
-                    <prop type="string" name="description"/>
-                    <prop type="string" name="displayName"/>
-                    <prop type="object" name="labels">
-                      <additionalProp>
-                        <item type="string"/>
-                      </additionalProp>
-                    </prop>
-                    <prop readOnly="True" type="string" name="provisioningState">
-                      <enum>
-                        <item value="&quot;Canceled&quot;"/>
-                        <item value="&quot;Failed&quot;"/>
-                        <item value="&quot;Succeeded&quot;"/>
-                      </enum>
-                    </prop>
-                    <prop type="object" name="siteAddress">
-                      <prop type="string" name="city"/>
-                      <prop type="string" name="country"/>
-                      <prop type="string" name="postalCode"/>
-                      <prop type="string" name="stateOrProvince"/>
-                      <prop type="string" name="streetAddress1"/>
-                      <prop type="string" name="streetAddress2"/>
-                    </prop>
-                  </prop>
-                  <prop readOnly="True" type="object" name="systemData">
-                    <prop type="dateTime" name="createdAt"/>
-                    <prop type="string" name="createdBy"/>
-                    <prop type="string" name="createdByType">
-                      <enum>
-                        <item value="&quot;Application&quot;"/>
-                        <item value="&quot;Key&quot;"/>
-                        <item value="&quot;ManagedIdentity&quot;"/>
-                        <item value="&quot;User&quot;"/>
-                      </enum>
-                    </prop>
-                    <prop type="dateTime" name="lastModifiedAt"/>
-                    <prop type="string" name="lastModifiedBy"/>
-                    <prop type="string" name="lastModifiedByType">
-                      <enum>
-                        <item value="&quot;Application&quot;"/>
-                        <item value="&quot;Key&quot;"/>
-                        <item value="&quot;ManagedIdentity&quot;"/>
-                        <item value="&quot;User&quot;"/>
-                      </enum>
-                    </prop>
-                  </prop>
-                  <prop readOnly="True" type="string" name="type"/>
-                </schema>
-              </json>
-            </body>
-          </response>
-          <response isError="True">
-            <body>
-              <json>
-                <schema type="@MgmtErrorFormat"/>
-              </json>
-            </body>
-          </response>
-        </http>
-      </operation>
-      <operation when="$Condition_Sites_CreateOrUpdate" operationId="Sites_CreateOrUpdate">
-        <longRunning finalStateVia="azure-async-operation"/>
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/sites/{siteName}">
-          <request method="put">
-            <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
-              <param type="string" name="siteName" arg="$Path.siteName" required="True">
-                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
-              </param>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
-            </path>
-            <query>
-              <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="&quot;2025-06-01&quot;"/>
-                <format minLength="1"/>
-              </const>
-            </query>
-            <body>
-              <json>
-                <schema type="object" name="resource" required="True" clientFlatten="True">
-                  <prop type="object" name="properties">
-                    <prop type="string" name="description" arg="$resource.properties.description"/>
-                    <prop type="string" name="displayName" arg="$resource.properties.displayName"/>
-                    <prop type="object" name="labels" arg="$resource.properties.labels">
-                      <additionalProp>
-                        <item type="string"/>
-                      </additionalProp>
-                    </prop>
-                    <prop type="object" name="siteAddress" arg="$resource.properties.siteAddress">
-                      <prop type="string" name="city" arg="$resource.properties.siteAddress.city"/>
-                      <prop type="string" name="country" arg="$resource.properties.siteAddress.country"/>
-                      <prop type="string" name="postalCode" arg="$resource.properties.siteAddress.postalCode"/>
-                      <prop type="string" name="stateOrProvince" arg="$resource.properties.siteAddress.stateOrProvince"/>
-                      <prop type="string" name="streetAddress1" arg="$resource.properties.siteAddress.streetAddress1"/>
-                      <prop type="string" name="streetAddress2" arg="$resource.properties.siteAddress.streetAddress2"/>
-                    </prop>
-                  </prop>
-                </schema>
-              </json>
-            </body>
-          </request>
-          <response statusCode="200 201">
-            <body>
-              <json var="$Instance">
-                <schema type="object">
-                  <prop readOnly="True" type="ResourceId" name="id"/>
-                  <prop readOnly="True" type="string" name="name"/>
-                  <prop type="object" name="properties">
-                    <prop type="string" name="description"/>
-                    <prop type="string" name="displayName"/>
-                    <prop type="object" name="labels">
-                      <additionalProp>
-                        <item type="string"/>
-                      </additionalProp>
-                    </prop>
-                    <prop readOnly="True" type="string" name="provisioningState">
-                      <enum>
-                        <item value="&quot;Canceled&quot;"/>
-                        <item value="&quot;Failed&quot;"/>
-                        <item value="&quot;Succeeded&quot;"/>
-                      </enum>
-                    </prop>
-                    <prop type="object" name="siteAddress">
-                      <prop type="string" name="city"/>
-                      <prop type="string" name="country"/>
-                      <prop type="string" name="postalCode"/>
-                      <prop type="string" name="stateOrProvince"/>
-                      <prop type="string" name="streetAddress1"/>
-                      <prop type="string" name="streetAddress2"/>
-                    </prop>
-                  </prop>
-                  <prop readOnly="True" type="object" name="systemData">
-                    <prop type="dateTime" name="createdAt"/>
-                    <prop type="string" name="createdBy"/>
-                    <prop type="string" name="createdByType">
-                      <enum>
-                        <item value="&quot;Application&quot;"/>
-                        <item value="&quot;Key&quot;"/>
-                        <item value="&quot;ManagedIdentity&quot;"/>
-                        <item value="&quot;User&quot;"/>
-                      </enum>
-                    </prop>
-                    <prop type="dateTime" name="lastModifiedAt"/>
-                    <prop type="string" name="lastModifiedBy"/>
-                    <prop type="string" name="lastModifiedByType">
-                      <enum>
-                        <item value="&quot;Application&quot;"/>
-                        <item value="&quot;Key&quot;"/>
-                        <item value="&quot;ManagedIdentity&quot;"/>
-                        <item value="&quot;User&quot;"/>
-                      </enum>
-                    </prop>
-                  </prop>
-                  <prop readOnly="True" type="string" name="type"/>
-                </schema>
-              </json>
-            </body>
-          </response>
-          <response isError="True">
-            <body>
-              <json>
-                <schema type="@MgmtErrorFormat"/>
-              </json>
-            </body>
-          </response>
-        </http>
-      </operation>
-      <output type="object" ref="$Instance" clientFlatten="True"/>
-    </command>
-    <command name="update" version="2025-06-01">
-      <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.edge/sites/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlZ3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2Uvc2l0ZXMve3NpdGVOYW1lfQ==/V/MjAyNS0wNi0wMQ=="/>
-      <resource id="/subscriptions/{}/providers/microsoft.edge/sites/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2Uvc2l0ZXMve3NpdGVOYW1lfQ==/V/MjAyNS0wNi0wMQ=="/>
-      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edge/sites/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZS9zaXRlcy97c2l0ZU5hbWV9/V/MjAyNS0wNi0wMQ=="/>
-      <argGroup name="">
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
-        <arg type="string" var="$Path.servicegroupName" options="servicegroup-name">
-          <help short="The name of the service group"/>
-          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
-        </arg>
-        <arg type="string" var="$Path.siteName" options="site-name" required="True">
-          <help short="The name of the site"/>
+        <arg type="string" var="$Path.siteName" options="site-name name n" required="True" group="">
+          <help short="Name of the site resource"/>
           <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" idPart="subscription"/>
-      </argGroup>
-      <argGroup name="Properties">
-        <arg nullable="True" type="string" var="$resource.properties.description" options="description" group="Properties">
-          <help short="Description of Site resource"/>
-        </arg>
-        <arg nullable="True" type="string" var="$resource.properties.displayName" options="display-name" group="Properties">
-          <help short="displayName of Site resource"/>
-        </arg>
-        <arg nullable="True" type="object" var="$resource.properties.labels" options="labels" group="Properties">
-          <help short="Key-value pairs for labeling the site resource."/>
-          <additionalProp>
-            <item nullable="True" type="string"/>
-          </additionalProp>
-        </arg>
-        <arg nullable="True" type="object" var="$resource.properties.siteAddress" options="site-address" group="Properties">
-          <help short="Physical address of the site"/>
-          <arg nullable="True" type="string" var="$resource.properties.siteAddress.city" options="city">
-            <help short="City of the address"/>
-          </arg>
-          <arg nullable="True" type="string" var="$resource.properties.siteAddress.country" options="country">
-            <help short="Country of the address"/>
-          </arg>
-          <arg nullable="True" type="string" var="$resource.properties.siteAddress.postalCode" options="postal-code">
-            <help short="Postal or ZIP code of the address"/>
-          </arg>
-          <arg nullable="True" type="string" var="$resource.properties.siteAddress.stateOrProvince" options="state-or-province">
-            <help short="State or province of the address"/>
-          </arg>
-          <arg nullable="True" type="string" var="$resource.properties.siteAddress.streetAddress1" options="street-address1">
-            <help short="First line of the street address"/>
-          </arg>
-          <arg nullable="True" type="string" var="$resource.properties.siteAddress.streetAddress2" options="street-address2">
-            <help short="Second line of the street address"/>
-          </arg>
-        </arg>
       </argGroup>
       <condition var="$Condition_SitesByServiceGroup_Get">
         <operator type="and">
@@ -891,34 +586,12 @@
           <operator type="hasValue" arg="$Path.subscriptionId"/>
         </operator>
       </condition>
-      <condition var="$Condition_SitesByServiceGroup_CreateOrUpdate">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.servicegroupName"/>
-          <operator type="hasValue" arg="$Path.siteName"/>
-        </operator>
-      </condition>
-      <condition var="$Condition_SitesBySubscription_CreateOrUpdate">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.siteName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-          <operator type="not">
-            <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          </operator>
-        </operator>
-      </condition>
-      <condition var="$Condition_Sites_CreateOrUpdate">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.siteName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <operation when="$Condition_SitesByServiceGroup_Get" operationId="SitesByServiceGroup_Get">
         <http path="/providers/Microsoft.Management/serviceGroups/{servicegroupName}/providers/Microsoft.Edge/sites/{siteName}">
           <request method="get">
             <path>
               <param type="string" name="servicegroupName" arg="$Path.servicegroupName" required="True">
-                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
+                <format pattern="^[a-zA-Z0-9\-_().]{1,90}$"/>
               </param>
               <param type="string" name="siteName" arg="$Path.siteName" required="True">
                 <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
@@ -934,7 +607,7 @@
           <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="object" cls="Site_read">
+                <schema type="object">
                   <prop readOnly="True" type="ResourceId" name="id"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="properties">
@@ -962,7 +635,9 @@
                     </prop>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
-                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="createdBy"/>
                     <prop type="string" name="createdByType">
                       <enum>
@@ -972,7 +647,9 @@
                         <item value="&quot;User&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="lastModifiedBy"/>
                     <prop type="string" name="lastModifiedByType">
                       <enum>
@@ -1016,7 +693,61 @@
           <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="@Site_read"/>
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="string" name="description"/>
+                    <prop type="string" name="displayName"/>
+                    <prop type="object" name="labels">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="siteAddress">
+                      <prop type="string" name="city"/>
+                      <prop type="string" name="country"/>
+                      <prop type="string" name="postalCode"/>
+                      <prop type="string" name="stateOrProvince"/>
+                      <prop type="string" name="streetAddress1"/>
+                      <prop type="string" name="streetAddress2"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
               </json>
             </body>
           </response>
@@ -1051,7 +782,61 @@
           <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="@Site_read"/>
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="string" name="description"/>
+                    <prop type="string" name="displayName"/>
+                    <prop type="object" name="labels">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="siteAddress">
+                      <prop type="string" name="city"/>
+                      <prop type="string" name="country"/>
+                      <prop type="string" name="postalCode"/>
+                      <prop type="string" name="stateOrProvince"/>
+                      <prop type="string" name="streetAddress1"/>
+                      <prop type="string" name="streetAddress2"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
               </json>
             </body>
           </response>
@@ -1064,38 +849,90 @@
           </response>
         </http>
       </operation>
-      <operation>
-        <instanceUpdate ref="$Instance">
-          <json>
-            <schema type="object" name="resource" required="True" clientFlatten="True">
-              <prop type="object" name="properties">
-                <prop type="string" name="description" arg="$resource.properties.description"/>
-                <prop type="string" name="displayName" arg="$resource.properties.displayName"/>
-                <prop type="object" name="labels" arg="$resource.properties.labels">
-                  <additionalProp>
-                    <item type="string"/>
-                  </additionalProp>
-                </prop>
-                <prop type="object" name="siteAddress" arg="$resource.properties.siteAddress">
-                  <prop type="string" name="city" arg="$resource.properties.siteAddress.city"/>
-                  <prop type="string" name="country" arg="$resource.properties.siteAddress.country"/>
-                  <prop type="string" name="postalCode" arg="$resource.properties.siteAddress.postalCode"/>
-                  <prop type="string" name="stateOrProvince" arg="$resource.properties.siteAddress.stateOrProvince"/>
-                  <prop type="string" name="streetAddress1" arg="$resource.properties.siteAddress.streetAddress1"/>
-                  <prop type="string" name="streetAddress2" arg="$resource.properties.siteAddress.streetAddress2"/>
-                </prop>
-              </prop>
-            </schema>
-          </json>
-        </instanceUpdate>
-      </operation>
-      <operation when="$Condition_SitesByServiceGroup_CreateOrUpdate" operationId="SitesByServiceGroup_CreateOrUpdate">
-        <longRunning finalStateVia="azure-async-operation"/>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2025-06-01" confirmation="">
+      <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.edge/sites/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlZ3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2Uvc2l0ZXMve3NpdGVOYW1lfQ==/V/MjAyNS0wNi0wMQ=="/>
+      <resource id="/subscriptions/{}/providers/microsoft.edge/sites/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkVkZ2Uvc2l0ZXMve3NpdGVOYW1lfQ==/V/MjAyNS0wNi0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.edge/sites/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRWRnZS9zaXRlcy97c2l0ZU5hbWV9/V/MjAyNS0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
+          <help short="Name of the resource group"/>
+        </arg>
+        <arg type="string" var="$Path.servicegroupName" options="service-group sg" required="True" group="">
+          <help short="Name of the service group"/>
+          <format pattern="^[a-zA-Z0-9\-_().]{1,90}$"/>
+        </arg>
+        <arg type="string" var="$Path.siteName" options="site-name name n" required="True" group="">
+          <help short="Name of the site resource"/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
+          <help short="ID of subscription"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="string" var="$properties.properties.description" options="description" group="Properties">
+          <help short="Description of Site resource"/>
+        </arg>
+        <arg type="string" var="$properties.properties.displayName" options="display-name" group="Properties">
+          <help short="displayName of Site resource"/>
+        </arg>
+        <arg type="object" var="$properties.properties.labels" options="labels" group="Properties">
+          <help short="Key-value pairs for labeling the site resource."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="SiteAddress">
+        <arg type="string" var="$properties.properties.siteAddress.city" options="city" group="SiteAddress">
+          <help short="City of the address"/>
+        </arg>
+        <arg type="string" var="$properties.properties.siteAddress.country" options="country" group="SiteAddress">
+          <help short="Country of the address"/>
+        </arg>
+        <arg type="string" var="$properties.properties.siteAddress.postalCode" options="postal-code" group="SiteAddress">
+          <help short="Postal or ZIP code of the address"/>
+        </arg>
+        <arg type="string" var="$properties.properties.siteAddress.stateOrProvince" options="state-or-province" group="SiteAddress">
+          <help short="State or province of the address"/>
+        </arg>
+        <arg type="string" var="$properties.properties.siteAddress.streetAddress1" options="street-address1" group="SiteAddress">
+          <help short="First line of the street address"/>
+        </arg>
+        <arg type="string" var="$properties.properties.siteAddress.streetAddress2" options="street-address2" group="SiteAddress">
+          <help short="Second line of the street address"/>
+        </arg>
+      </argGroup>
+      <condition var="$Condition_SitesByServiceGroup_Update">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.servicegroupName"/>
+          <operator type="hasValue" arg="$Path.siteName"/>
+        </operator>
+      </condition>
+      <condition var="$Condition_SitesBySubscription_Update">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.siteName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <condition var="$Condition_Sites_Update">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.siteName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_SitesByServiceGroup_Update" operationId="SitesByServiceGroup_Update">
         <http path="/providers/Microsoft.Management/serviceGroups/{servicegroupName}/providers/Microsoft.Edge/sites/{siteName}">
-          <request method="put">
+          <request method="patch">
             <path>
               <param type="string" name="servicegroupName" arg="$Path.servicegroupName" required="True">
-                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
+                <format pattern="^[a-zA-Z0-9\-_().]{1,90}$"/>
               </param>
               <param type="string" name="siteName" arg="$Path.siteName" required="True">
                 <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
@@ -1108,13 +945,87 @@
               </const>
             </query>
             <body>
-              <json ref="$Instance"/>
+              <json>
+                <schema type="object" name="properties" required="True" clientFlatten="True">
+                  <prop type="object" name="properties">
+                    <prop type="string" name="description" arg="$properties.properties.description"/>
+                    <prop type="string" name="displayName" arg="$properties.properties.displayName"/>
+                    <prop type="object" name="labels" arg="$properties.properties.labels">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop type="object" name="siteAddress">
+                      <prop type="string" name="city" arg="$properties.properties.siteAddress.city"/>
+                      <prop type="string" name="country" arg="$properties.properties.siteAddress.country"/>
+                      <prop type="string" name="postalCode" arg="$properties.properties.siteAddress.postalCode"/>
+                      <prop type="string" name="stateOrProvince" arg="$properties.properties.siteAddress.stateOrProvince"/>
+                      <prop type="string" name="streetAddress1" arg="$properties.properties.siteAddress.streetAddress1"/>
+                      <prop type="string" name="streetAddress2" arg="$properties.properties.siteAddress.streetAddress2"/>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
             </body>
           </request>
-          <response statusCode="200 201">
+          <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="@Site_read"/>
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="string" name="description"/>
+                    <prop type="string" name="displayName"/>
+                    <prop type="object" name="labels">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="siteAddress">
+                      <prop type="string" name="city"/>
+                      <prop type="string" name="country"/>
+                      <prop type="string" name="postalCode"/>
+                      <prop type="string" name="stateOrProvince"/>
+                      <prop type="string" name="streetAddress1"/>
+                      <prop type="string" name="streetAddress2"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
               </json>
             </body>
           </response>
@@ -1127,10 +1038,9 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_SitesBySubscription_CreateOrUpdate" operationId="SitesBySubscription_CreateOrUpdate">
-        <longRunning finalStateVia="azure-async-operation"/>
+      <operation when="$Condition_SitesBySubscription_Update" operationId="SitesBySubscription_Update">
         <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Edge/sites/{siteName}">
-          <request method="put">
+          <request method="patch">
             <path>
               <param type="string" name="siteName" arg="$Path.siteName" required="True">
                 <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-_]{2,22}[a-zA-Z0-9]$"/>
@@ -1144,13 +1054,87 @@
               </const>
             </query>
             <body>
-              <json ref="$Instance"/>
+              <json>
+                <schema type="object" name="properties" required="True" clientFlatten="True">
+                  <prop type="object" name="properties">
+                    <prop type="string" name="description" arg="$properties.properties.description"/>
+                    <prop type="string" name="displayName" arg="$properties.properties.displayName"/>
+                    <prop type="object" name="labels" arg="$properties.properties.labels">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop type="object" name="siteAddress">
+                      <prop type="string" name="city" arg="$properties.properties.siteAddress.city"/>
+                      <prop type="string" name="country" arg="$properties.properties.siteAddress.country"/>
+                      <prop type="string" name="postalCode" arg="$properties.properties.siteAddress.postalCode"/>
+                      <prop type="string" name="stateOrProvince" arg="$properties.properties.siteAddress.stateOrProvince"/>
+                      <prop type="string" name="streetAddress1" arg="$properties.properties.siteAddress.streetAddress1"/>
+                      <prop type="string" name="streetAddress2" arg="$properties.properties.siteAddress.streetAddress2"/>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
             </body>
           </request>
-          <response statusCode="200 201">
+          <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="@Site_read"/>
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="string" name="description"/>
+                    <prop type="string" name="displayName"/>
+                    <prop type="object" name="labels">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="siteAddress">
+                      <prop type="string" name="city"/>
+                      <prop type="string" name="country"/>
+                      <prop type="string" name="postalCode"/>
+                      <prop type="string" name="stateOrProvince"/>
+                      <prop type="string" name="streetAddress1"/>
+                      <prop type="string" name="streetAddress2"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
               </json>
             </body>
           </response>
@@ -1163,10 +1147,9 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_Sites_CreateOrUpdate" operationId="Sites_CreateOrUpdate">
-        <longRunning finalStateVia="azure-async-operation"/>
+      <operation when="$Condition_Sites_Update" operationId="Sites_Update">
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Edge/sites/{siteName}">
-          <request method="put">
+          <request method="patch">
             <path>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
                 <format maxLength="90" minLength="1"/>
@@ -1183,13 +1166,87 @@
               </const>
             </query>
             <body>
-              <json ref="$Instance"/>
+              <json>
+                <schema type="object" name="properties" required="True" clientFlatten="True">
+                  <prop type="object" name="properties">
+                    <prop type="string" name="description" arg="$properties.properties.description"/>
+                    <prop type="string" name="displayName" arg="$properties.properties.displayName"/>
+                    <prop type="object" name="labels" arg="$properties.properties.labels">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop type="object" name="siteAddress">
+                      <prop type="string" name="city" arg="$properties.properties.siteAddress.city"/>
+                      <prop type="string" name="country" arg="$properties.properties.siteAddress.country"/>
+                      <prop type="string" name="postalCode" arg="$properties.properties.siteAddress.postalCode"/>
+                      <prop type="string" name="stateOrProvince" arg="$properties.properties.siteAddress.stateOrProvince"/>
+                      <prop type="string" name="streetAddress1" arg="$properties.properties.siteAddress.streetAddress1"/>
+                      <prop type="string" name="streetAddress2" arg="$properties.properties.siteAddress.streetAddress2"/>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
             </body>
           </request>
-          <response statusCode="200 201">
+          <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="@Site_read"/>
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="string" name="description"/>
+                    <prop type="string" name="displayName"/>
+                    <prop type="object" name="labels">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="siteAddress">
+                      <prop type="string" name="city"/>
+                      <prop type="string" name="country"/>
+                      <prop type="string" name="postalCode"/>
+                      <prop type="string" name="stateOrProvince"/>
+                      <prop type="string" name="streetAddress1"/>
+                      <prop type="string" name="streetAddress2"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
               </json>
             </body>
           </response>
