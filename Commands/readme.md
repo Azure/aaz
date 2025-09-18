@@ -389,6 +389,9 @@
 - [storagesync](/Commands/storagesync/readme.md)
 : Manage Azure File Sync.
 
+- [stream-analytics](/Commands/stream-analytics/readme.md)
+: Manage Stream Analytics
+
 - [support](/Commands/support/readme.md)
 : Manage Azure support resource.
 
