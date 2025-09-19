@@ -14,3 +14,14 @@ List the specified network group.
     ```bash
         network manager group list --network-manager-name "testNetworkManager" --resource-group "rg1"
     ```
+
+### [2024-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL25ldHdvcmttYW5hZ2Vycy97fS9uZXR3b3JrZ3JvdXBz/2024-07-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networkmanagers/{}/networkgroups 2024-07-01 -->
+
+#### examples
+
+- List Azure Virtual Network Manager Network Groups
+    ```bash
+        network manager group list --network-manager-name "testNetworkManager" --resource-group "rg1"
+    ```
