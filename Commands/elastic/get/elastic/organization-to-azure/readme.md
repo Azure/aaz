@@ -1,8 +1,8 @@
 # [Group] _elastic get elastic organization-to-azure_
 
-Manage to get Elastic organization
+Manage and retrieve information about the Elastic organization linked to your Azure subscription.
 
 ## Subgroups
 
 - [subscription](/Commands/elastic/get/elastic/organization-to-azure/subscription/readme.md)
-: Get Elastic Organization To Azure Subscription details for the logged-in user.
+: Get detailed information about the Elastic Organization linked to your Azure subscription for the logged-in user.

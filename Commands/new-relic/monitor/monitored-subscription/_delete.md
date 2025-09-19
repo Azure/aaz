@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor monitored-subscription delete_
 
-Delete the subscriptions that are being monitored by the NewRelic monitor resource
+Delete subscriptions being monitored by the New Relic monitor resource, removing their observability and monitoring capabilities.
 
 ## Versions
 

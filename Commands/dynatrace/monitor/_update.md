@@ -1,6 +1,6 @@
 # [Command] _dynatrace monitor update_
 
-Update a MonitorResource
+Update a Dynatrace resource on Azure for monitoring and observability needs.
 
 ## Versions
 

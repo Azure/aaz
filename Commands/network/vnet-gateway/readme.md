@@ -15,6 +15,9 @@ To learn more about Azure Virtual Network Gateways, visit https://learn.microsof
 - [ipsec-policy](/Commands/network/vnet-gateway/ipsec-policy/readme.md)
 : Manage virtual network gateway IPSec policies.
 
+- [migration](/Commands/network/vnet-gateway/migration/readme.md)
+: Migrate vpn gateway from basic IP CSES to Standard IP based VMSS deployment.
+
 - [nat-rule](/Commands/network/vnet-gateway/nat-rule/readme.md)
 : Manage nat rule in a virtual network gateway.
 
@@ -41,6 +44,18 @@ To learn more about Azure Virtual Network Gateways, visit https://learn.microsof
 - [disconnect-vpn-connections](/Commands/network/vnet-gateway/_disconnect-vpn-connections.md)
 : Disconnect vpn connections of virtual network gateway.
 
+- [get-failover-all-tests-detail](/Commands/network/vnet-gateway/_get-failover-all-tests-detail.md)
+: This operation retrieves the details of all the failover tests performed on the gateway for different peering locations
+
+- [get-failover-single-test-detail](/Commands/network/vnet-gateway/_get-failover-single-test-detail.md)
+: This operation retrieves the details of a particular failover test performed on the gateway based on the test Guid
+
+- [get-resiliency-information](/Commands/network/vnet-gateway/_get-resiliency-information.md)
+: This operation retrieves the resiliency information for an Express Route Gateway, including the gateway's current resiliency score and recommendations to further improve the score
+
+- [get-routes-information](/Commands/network/vnet-gateway/_get-routes-information.md)
+: This operation retrieves the route set information for an Express Route Gateway based on their resiliency
+
 - [list](/Commands/network/vnet-gateway/_list.md)
 : List virtual network gateways.
 
@@ -61,6 +76,12 @@ To learn more about Azure Virtual Network Gateways, visit https://learn.microsof
 
 - [show-supported-devices](/Commands/network/vnet-gateway/_show-supported-devices.md)
 : Get a xml format representation for supported vpn devices.
+
+- [start-site-failover-test](/Commands/network/vnet-gateway/_start-site-failover-test.md)
+: This operation starts failover simulation on the gateway for the specified peering location
+
+- [stop-site-failover-test](/Commands/network/vnet-gateway/_stop-site-failover-test.md)
+: This operation stops failover simulation on the gateway for the specified peering location
 
 - [update](/Commands/network/vnet-gateway/_update.md)
 : Update a virtual network gateway.

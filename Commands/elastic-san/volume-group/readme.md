@@ -16,5 +16,11 @@ Manage Elastic SAN Volume Group.
 - [show](/Commands/elastic-san/volume-group/_show.md)
 : Get a Volume Group.
 
+- [test-backup](/Commands/elastic-san/volume-group/_test-backup.md)
+: Validate whether a disk snapshot backup can be taken for list of volumes.
+
+- [test-restore](/Commands/elastic-san/volume-group/_test-restore.md)
+: Validate whether a list of backed up disk snapshots can be restored into ElasticSan volumes.
+
 - [update](/Commands/elastic-san/volume-group/_update.md)
 : Update a Volume Group.

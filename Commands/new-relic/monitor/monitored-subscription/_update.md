@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor monitored-subscription update_
 
-Update the subscriptions that should be monitored by the NewRelic monitor resource.
+Update subscriptions to be monitored by the New Relic monitor resource, ensuring optimal observability and performance.
 
 ## Versions
 

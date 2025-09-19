@@ -21,3 +21,9 @@ Manage Internal Network Resource
 
 - [update-admin-state](/Commands/networkfabric/internalnetwork/_update-admin-state.md)
 : Update the admin state of the provided Internal Network resource.
+
+- [update-bfd-administrative-state](/Commands/networkfabric/internalnetwork/_update-bfd-administrative-state.md)
+: BFD administrative state for either static or bgp for internalNetwork.
+
+- [update-bgp-administrative-state](/Commands/networkfabric/internalnetwork/_update-bgp-administrative-state.md)
+: Update BGP state for internalNetwork. Allowed only on edge devices.

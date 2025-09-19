@@ -1,17 +1,20 @@
 # [Group] _network perimeter logging-configuration_
 
-Manage Network Security Perimeter Logging Configuration
+Manage Network Security Perimeter Logging Configurations.
 
 ## Commands
 
 - [create](/Commands/network/perimeter/logging-configuration/_create.md)
-: Create NSP logging configuration.
+: Create a network security perimeter logging configuration.
 
 - [delete](/Commands/network/perimeter/logging-configuration/_delete.md)
-: Delete NSP Logging configuration.
+: Delete a network security perimeter logging configuration.
+
+- [list](/Commands/network/perimeter/logging-configuration/_list.md)
+: List all network security perimeter logging configurations.
 
 - [show](/Commands/network/perimeter/logging-configuration/_show.md)
-: Get NSP logging configuration.
+: Get a network security perimeter logging configuration.
 
 - [update](/Commands/network/perimeter/logging-configuration/_update.md)
-: Update NSP logging configuration.
+: Cerate or update a network security perimeter logging configuration.

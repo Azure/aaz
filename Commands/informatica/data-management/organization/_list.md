@@ -1,6 +1,6 @@
 # [Command] _informatica data-management organization list_
 
-List InformaticaOrganizationResource resources by subscription ID
+List all Informatica organization resources under the current subscription.
 
 ## Versions
 

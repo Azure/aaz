@@ -1,8 +1,8 @@
 # [Group] _neon_
 
-Manage Neon Postgres
+Manage Neon Postgres databases and related resources within Azure.
 
 ## Subgroups
 
 - [postgres](/Commands/neon/postgres/readme.md)
-: Manage Neon Postgres
+: Manage Neon Serverless Postgres resources including organizations, projects, and branches.

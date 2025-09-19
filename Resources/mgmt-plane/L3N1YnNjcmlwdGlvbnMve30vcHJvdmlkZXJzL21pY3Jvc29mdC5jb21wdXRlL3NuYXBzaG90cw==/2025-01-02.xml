@@ -1,0 +1,558 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.compute/snapshots" version="2025-01-02" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNvbXB1dGUvc25hcHNob3Rz/V/MjAyNS0wMS0wMg=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/snapshots" version="2025-01-02" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9zbmFwc2hvdHM=/V/MjAyNS0wMS0wMg=="/>
+  <commandGroup name="snapshot">
+    <command name="list" version="2025-01-02">
+      <resource id="/subscriptions/{}/providers/microsoft.compute/snapshots" version="2025-01-02" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNvbXB1dGUvc25hcHNob3Rz/V/MjAyNS0wMS0wMg=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/snapshots" version="2025-01-02" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9zbmFwc2hvdHM=/V/MjAyNS0wMS0wMg=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <condition var="$Condition_Snapshots_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <condition var="$Condition_Snapshots_List">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <operation when="$Condition_Snapshots_ListByResourceGroup" operationId="Snapshots_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/snapshots">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-01-02&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop type="object" name="extendedLocation">
+                        <prop type="string" name="name"/>
+                        <prop type="string" name="type">
+                          <enum>
+                            <item value="&quot;EdgeZone&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/snapshots/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="managedBy"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="float32" name="completionPercent"/>
+                        <prop type="object" name="copyCompletionError">
+                          <prop type="string" name="errorCode" required="True">
+                            <enum>
+                              <item value="&quot;CopySourceNotFound&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="errorMessage" required="True"/>
+                        </prop>
+                        <prop type="object" name="creationData" required="True">
+                          <prop type="string" name="createOption" required="True">
+                            <enum>
+                              <item value="&quot;Attach&quot;"/>
+                              <item value="&quot;Copy&quot;"/>
+                              <item value="&quot;CopyFromSanSnapshot&quot;"/>
+                              <item value="&quot;CopyStart&quot;"/>
+                              <item value="&quot;Empty&quot;"/>
+                              <item value="&quot;FromImage&quot;"/>
+                              <item value="&quot;Import&quot;"/>
+                              <item value="&quot;ImportSecure&quot;"/>
+                              <item value="&quot;Restore&quot;"/>
+                              <item value="&quot;Upload&quot;"/>
+                              <item value="&quot;UploadPreparedSecure&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="elasticSanResourceId"/>
+                          <prop type="@ImageDiskReference_read" name="galleryImageReference"/>
+                          <prop type="object" name="imageReference" cls="ImageDiskReference_read">
+                            <prop type="string" name="communityGalleryImageId"/>
+                            <prop type="string" name="id"/>
+                            <prop type="integer32" name="lun"/>
+                            <prop type="string" name="sharedGalleryImageId"/>
+                          </prop>
+                          <prop type="integer64" name="instantAccessDurationMinutes">
+                            <format minimum="1"/>
+                          </prop>
+                          <prop type="integer32" name="logicalSectorSize"/>
+                          <prop type="boolean" name="performancePlus"/>
+                          <prop type="string" name="provisionedBandwidthCopySpeed">
+                            <enum>
+                              <item value="&quot;Enhanced&quot;"/>
+                              <item value="&quot;None&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="securityDataUri"/>
+                          <prop type="string" name="securityMetadataUri"/>
+                          <prop type="string" name="sourceResourceId"/>
+                          <prop readOnly="True" type="string" name="sourceUniqueId"/>
+                          <prop type="string" name="sourceUri"/>
+                          <prop type="string" name="storageAccountId"/>
+                          <prop type="integer64" name="uploadSizeBytes"/>
+                        </prop>
+                        <prop type="string" name="dataAccessAuthMode">
+                          <enum>
+                            <item value="&quot;AzureActiveDirectory&quot;"/>
+                            <item value="&quot;None&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="diskAccessId"/>
+                        <prop readOnly="True" type="integer64" name="diskSizeBytes"/>
+                        <prop type="integer32" name="diskSizeGB"/>
+                        <prop readOnly="True" type="string" name="diskState">
+                          <enum>
+                            <item value="&quot;ActiveSAS&quot;"/>
+                            <item value="&quot;ActiveSASFrozen&quot;"/>
+                            <item value="&quot;ActiveUpload&quot;"/>
+                            <item value="&quot;Attached&quot;"/>
+                            <item value="&quot;Frozen&quot;"/>
+                            <item value="&quot;ReadyToUpload&quot;"/>
+                            <item value="&quot;Reserved&quot;"/>
+                            <item value="&quot;Unattached&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="encryption">
+                          <prop type="string" name="diskEncryptionSetId"/>
+                          <prop type="string" name="type">
+                            <enum>
+                              <item value="&quot;EncryptionAtRestWithCustomerKey&quot;"/>
+                              <item value="&quot;EncryptionAtRestWithPlatformAndCustomerKeys&quot;"/>
+                              <item value="&quot;EncryptionAtRestWithPlatformKey&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="encryptionSettingsCollection">
+                          <prop type="boolean" name="enabled" required="True"/>
+                          <prop type="array<object>" name="encryptionSettings">
+                            <item type="object">
+                              <prop type="object" name="diskEncryptionKey">
+                                <prop type="string" name="secretUrl" required="True"/>
+                                <prop type="object" name="sourceVault" required="True" cls="SourceVault_read">
+                                  <prop type="string" name="id"/>
+                                </prop>
+                              </prop>
+                              <prop type="object" name="keyEncryptionKey">
+                                <prop type="string" name="keyUrl" required="True"/>
+                                <prop type="@SourceVault_read" name="sourceVault" required="True"/>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="string" name="encryptionSettingsVersion"/>
+                        </prop>
+                        <prop type="string" name="hyperVGeneration">
+                          <enum>
+                            <item value="&quot;V1&quot;"/>
+                            <item value="&quot;V2&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="boolean" name="incremental"/>
+                        <prop readOnly="True" type="string" name="incrementalSnapshotFamilyId"/>
+                        <prop type="string" name="networkAccessPolicy">
+                          <enum>
+                            <item value="&quot;AllowAll&quot;"/>
+                            <item value="&quot;AllowPrivate&quot;"/>
+                            <item value="&quot;DenyAll&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="osType">
+                          <enum>
+                            <item value="&quot;Linux&quot;"/>
+                            <item value="&quot;Windows&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState"/>
+                        <prop type="string" name="publicNetworkAccess">
+                          <enum>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="purchasePlan">
+                          <prop type="string" name="name" required="True"/>
+                          <prop type="string" name="product" required="True"/>
+                          <prop type="string" name="promotionCode"/>
+                          <prop type="string" name="publisher" required="True"/>
+                        </prop>
+                        <prop type="object" name="securityProfile">
+                          <prop type="string" name="secureVMDiskEncryptionSetId"/>
+                          <prop type="string" name="securityType">
+                            <enum>
+                              <item value="&quot;ConfidentialVM_DiskEncryptedWithCustomerKey&quot;"/>
+                              <item value="&quot;ConfidentialVM_DiskEncryptedWithPlatformKey&quot;"/>
+                              <item value="&quot;ConfidentialVM_NonPersistedTPM&quot;"/>
+                              <item value="&quot;ConfidentialVM_VMGuestStateOnlyEncryptedWithPlatformKey&quot;"/>
+                              <item value="&quot;TrustedLaunch&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="string" name="snapshotAccessState">
+                          <enum>
+                            <item value="&quot;Available&quot;"/>
+                            <item value="&quot;AvailableWithInstantAccess&quot;"/>
+                            <item value="&quot;InstantAccess&quot;"/>
+                            <item value="&quot;Pending&quot;"/>
+                            <item value="&quot;Unknown&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="supportedCapabilities">
+                          <prop type="boolean" name="acceleratedNetwork"/>
+                          <prop type="string" name="architecture">
+                            <enum>
+                              <item value="&quot;Arm64&quot;"/>
+                              <item value="&quot;x64&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="diskControllerTypes"/>
+                          <prop type="string" name="supportedSecurityOption">
+                            <enum>
+                              <item value="&quot;TrustedLaunchAndConfidentialVMSupported&quot;"/>
+                              <item value="&quot;TrustedLaunchSupported&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop type="boolean" name="supportsHibernation"/>
+                        <prop readOnly="True" type="dateTime" name="timeCreated"/>
+                        <prop readOnly="True" type="string" name="uniqueId"/>
+                      </prop>
+                      <prop type="object" name="sku">
+                        <prop type="string" name="name">
+                          <enum>
+                            <item value="&quot;Premium_LRS&quot;"/>
+                            <item value="&quot;Standard_LRS&quot;"/>
+                            <item value="&quot;Standard_ZRS&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="tier"/>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_Snapshots_List" operationId="Snapshots_List">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Compute/snapshots">
+          <request method="get">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-01-02&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop type="object" name="extendedLocation">
+                        <prop type="string" name="name"/>
+                        <prop type="string" name="type">
+                          <enum>
+                            <item value="&quot;EdgeZone&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/snapshots/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="managedBy"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="float32" name="completionPercent"/>
+                        <prop type="object" name="copyCompletionError">
+                          <prop type="string" name="errorCode" required="True">
+                            <enum>
+                              <item value="&quot;CopySourceNotFound&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="errorMessage" required="True"/>
+                        </prop>
+                        <prop type="object" name="creationData" required="True">
+                          <prop type="string" name="createOption" required="True">
+                            <enum>
+                              <item value="&quot;Attach&quot;"/>
+                              <item value="&quot;Copy&quot;"/>
+                              <item value="&quot;CopyFromSanSnapshot&quot;"/>
+                              <item value="&quot;CopyStart&quot;"/>
+                              <item value="&quot;Empty&quot;"/>
+                              <item value="&quot;FromImage&quot;"/>
+                              <item value="&quot;Import&quot;"/>
+                              <item value="&quot;ImportSecure&quot;"/>
+                              <item value="&quot;Restore&quot;"/>
+                              <item value="&quot;Upload&quot;"/>
+                              <item value="&quot;UploadPreparedSecure&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="elasticSanResourceId"/>
+                          <prop type="@ImageDiskReference_read" name="galleryImageReference"/>
+                          <prop type="@ImageDiskReference_read" name="imageReference"/>
+                          <prop type="integer64" name="instantAccessDurationMinutes">
+                            <format minimum="1"/>
+                          </prop>
+                          <prop type="integer32" name="logicalSectorSize"/>
+                          <prop type="boolean" name="performancePlus"/>
+                          <prop type="string" name="provisionedBandwidthCopySpeed">
+                            <enum>
+                              <item value="&quot;Enhanced&quot;"/>
+                              <item value="&quot;None&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="securityDataUri"/>
+                          <prop type="string" name="securityMetadataUri"/>
+                          <prop type="string" name="sourceResourceId"/>
+                          <prop readOnly="True" type="string" name="sourceUniqueId"/>
+                          <prop type="string" name="sourceUri"/>
+                          <prop type="string" name="storageAccountId"/>
+                          <prop type="integer64" name="uploadSizeBytes"/>
+                        </prop>
+                        <prop type="string" name="dataAccessAuthMode">
+                          <enum>
+                            <item value="&quot;AzureActiveDirectory&quot;"/>
+                            <item value="&quot;None&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="diskAccessId"/>
+                        <prop readOnly="True" type="integer64" name="diskSizeBytes"/>
+                        <prop type="integer32" name="diskSizeGB"/>
+                        <prop readOnly="True" type="string" name="diskState">
+                          <enum>
+                            <item value="&quot;ActiveSAS&quot;"/>
+                            <item value="&quot;ActiveSASFrozen&quot;"/>
+                            <item value="&quot;ActiveUpload&quot;"/>
+                            <item value="&quot;Attached&quot;"/>
+                            <item value="&quot;Frozen&quot;"/>
+                            <item value="&quot;ReadyToUpload&quot;"/>
+                            <item value="&quot;Reserved&quot;"/>
+                            <item value="&quot;Unattached&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="encryption">
+                          <prop type="string" name="diskEncryptionSetId"/>
+                          <prop type="string" name="type">
+                            <enum>
+                              <item value="&quot;EncryptionAtRestWithCustomerKey&quot;"/>
+                              <item value="&quot;EncryptionAtRestWithPlatformAndCustomerKeys&quot;"/>
+                              <item value="&quot;EncryptionAtRestWithPlatformKey&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="encryptionSettingsCollection">
+                          <prop type="boolean" name="enabled" required="True"/>
+                          <prop type="array<object>" name="encryptionSettings">
+                            <item type="object">
+                              <prop type="object" name="diskEncryptionKey">
+                                <prop type="string" name="secretUrl" required="True"/>
+                                <prop type="@SourceVault_read" name="sourceVault" required="True"/>
+                              </prop>
+                              <prop type="object" name="keyEncryptionKey">
+                                <prop type="string" name="keyUrl" required="True"/>
+                                <prop type="@SourceVault_read" name="sourceVault" required="True"/>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="string" name="encryptionSettingsVersion"/>
+                        </prop>
+                        <prop type="string" name="hyperVGeneration">
+                          <enum>
+                            <item value="&quot;V1&quot;"/>
+                            <item value="&quot;V2&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="boolean" name="incremental"/>
+                        <prop readOnly="True" type="string" name="incrementalSnapshotFamilyId"/>
+                        <prop type="string" name="networkAccessPolicy">
+                          <enum>
+                            <item value="&quot;AllowAll&quot;"/>
+                            <item value="&quot;AllowPrivate&quot;"/>
+                            <item value="&quot;DenyAll&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="osType">
+                          <enum>
+                            <item value="&quot;Linux&quot;"/>
+                            <item value="&quot;Windows&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState"/>
+                        <prop type="string" name="publicNetworkAccess">
+                          <enum>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="purchasePlan">
+                          <prop type="string" name="name" required="True"/>
+                          <prop type="string" name="product" required="True"/>
+                          <prop type="string" name="promotionCode"/>
+                          <prop type="string" name="publisher" required="True"/>
+                        </prop>
+                        <prop type="object" name="securityProfile">
+                          <prop type="string" name="secureVMDiskEncryptionSetId"/>
+                          <prop type="string" name="securityType">
+                            <enum>
+                              <item value="&quot;ConfidentialVM_DiskEncryptedWithCustomerKey&quot;"/>
+                              <item value="&quot;ConfidentialVM_DiskEncryptedWithPlatformKey&quot;"/>
+                              <item value="&quot;ConfidentialVM_NonPersistedTPM&quot;"/>
+                              <item value="&quot;ConfidentialVM_VMGuestStateOnlyEncryptedWithPlatformKey&quot;"/>
+                              <item value="&quot;TrustedLaunch&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="string" name="snapshotAccessState">
+                          <enum>
+                            <item value="&quot;Available&quot;"/>
+                            <item value="&quot;AvailableWithInstantAccess&quot;"/>
+                            <item value="&quot;InstantAccess&quot;"/>
+                            <item value="&quot;Pending&quot;"/>
+                            <item value="&quot;Unknown&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="supportedCapabilities">
+                          <prop type="boolean" name="acceleratedNetwork"/>
+                          <prop type="string" name="architecture">
+                            <enum>
+                              <item value="&quot;Arm64&quot;"/>
+                              <item value="&quot;x64&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="diskControllerTypes"/>
+                          <prop type="string" name="supportedSecurityOption">
+                            <enum>
+                              <item value="&quot;TrustedLaunchAndConfidentialVMSupported&quot;"/>
+                              <item value="&quot;TrustedLaunchSupported&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop type="boolean" name="supportsHibernation"/>
+                        <prop readOnly="True" type="dateTime" name="timeCreated"/>
+                        <prop readOnly="True" type="string" name="uniqueId"/>
+                      </prop>
+                      <prop type="object" name="sku">
+                        <prop type="string" name="name">
+                          <enum>
+                            <item value="&quot;Premium_LRS&quot;"/>
+                            <item value="&quot;Standard_LRS&quot;"/>
+                            <item value="&quot;Standard_ZRS&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="tier"/>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

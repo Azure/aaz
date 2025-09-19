@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor show_
 
-Get a NewRelicMonitorResource
+Retrieves the properties and configuration details of a specific New Relic monitor resource, providing insight into its setup and status.
 
 ## Versions
 

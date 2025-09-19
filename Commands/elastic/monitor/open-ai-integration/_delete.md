@@ -1,6 +1,6 @@
 # [Command] _elastic monitor open-ai-integration delete_
 
-Delete OpenAI integration rule for a given monitor resource.
+Delete an OpenAI integration rule for a given Elastic monitor resource, removing AI-driven observability and monitoring capabilities.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor delete_
 
-Delete a NewRelicMonitorResource
+Deletes an existing New Relic monitor resource from your Azure subscription, removing the integration and stopping the observability of your Azure resources through New Relic.
 
 ## Versions
 

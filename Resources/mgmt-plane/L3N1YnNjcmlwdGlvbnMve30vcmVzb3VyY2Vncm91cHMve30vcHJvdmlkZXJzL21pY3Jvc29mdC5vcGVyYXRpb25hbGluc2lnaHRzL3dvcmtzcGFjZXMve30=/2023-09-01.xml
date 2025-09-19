@@ -73,6 +73,9 @@
                       <prop nullable="True" type="boolean" name="enableLogAccessUsingOnlyResourcePermissions"/>
                       <prop nullable="True" type="boolean" name="immediatePurgeDataOn30Days"/>
                       <prop readOnly="True" nullable="True" type="boolean" name="unifiedSentinelBillingOnly"/>
+                      <additionalProp>
+                        <item type="any"/>
+                      </additionalProp>
                     </prop>
                     <prop type="boolean" name="forceCmkForQuery"/>
                     <prop readOnly="True" type="string" name="modifiedDate"/>
@@ -256,6 +259,10 @@
         </arg>
       </argGroup>
       <argGroup name="Identity">
+        <arg type="string" var="$parameters.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
+          <blank value="&quot;True&quot;"/>
+          <help short="Set the system managed identity."/>
+        </arg>
         <arg type="string" var="$parameters.identity.type" options="identity-type" group="Identity">
           <help short="Type of managed service identity."/>
           <enum>
@@ -264,7 +271,12 @@
             <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
           </enum>
         </arg>
-        <arg type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned" group="Identity">
+        <arg type="array<string>" var="$parameters.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
+          <blank value="[]"/>
+          <help short="Set the user managed identities."/>
+          <item type="string"/>
+        </arg>
+        <arg type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-bk" group="Identity">
           <help short="The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."/>
           <additionalProp>
             <item type="object">
@@ -308,6 +320,9 @@
           <arg nullable="True" type="boolean" var="$parameters.properties.features.immediatePurgeDataOn30Days" options="immediate-purge-data-on30-days">
             <help short="Flag that describes if we want to remove the data after 30 days."/>
           </arg>
+          <additionalProp>
+            <item type="any"/>
+          </additionalProp>
         </arg>
         <arg type="boolean" var="$parameters.properties.forceCmkForQuery" options="force-cmk-for-query" hide="True" group="Properties">
           <help short="Indicates whether customer managed storage is mandatory for query management."/>
@@ -406,6 +421,10 @@
                         <item type="object"/>
                       </additionalProp>
                     </prop>
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$parameters.identity.userAssigned">
+                      <item action="create" type="string"/>
+                    </userAssigned>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$parameters.identity.systemAssigned"/>
                   </prop>
                   <prop type="ResourceLocation" name="location" arg="$parameters.location" required="True"/>
                   <prop type="object" name="properties" clientFlatten="True">
@@ -416,6 +435,9 @@
                       <prop nullable="True" type="boolean" name="enableDataExport" arg="$parameters.properties.features.enableDataExport"/>
                       <prop nullable="True" type="boolean" name="enableLogAccessUsingOnlyResourcePermissions" arg="$parameters.properties.features.enableLogAccessUsingOnlyResourcePermissions"/>
                       <prop nullable="True" type="boolean" name="immediatePurgeDataOn30Days" arg="$parameters.properties.features.immediatePurgeDataOn30Days"/>
+                      <additionalProp>
+                        <item type="any"/>
+                      </additionalProp>
                     </prop>
                     <prop type="boolean" name="forceCmkForQuery" arg="$parameters.properties.forceCmkForQuery"/>
                     <prop type="string" name="publicNetworkAccessForIngestion" arg="$parameters.properties.publicNetworkAccessForIngestion">
@@ -515,6 +537,9 @@
                       <prop nullable="True" type="boolean" name="enableLogAccessUsingOnlyResourcePermissions"/>
                       <prop nullable="True" type="boolean" name="immediatePurgeDataOn30Days"/>
                       <prop readOnly="True" nullable="True" type="boolean" name="unifiedSentinelBillingOnly"/>
+                      <additionalProp>
+                        <item type="any"/>
+                      </additionalProp>
                     </prop>
                     <prop type="boolean" name="forceCmkForQuery"/>
                     <prop readOnly="True" type="string" name="modifiedDate"/>
@@ -658,7 +683,7 @@
             <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
           </enum>
         </arg>
-        <arg nullable="True" type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned" group="Identity">
+        <arg nullable="True" type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-bk" group="Identity">
           <help short="The list of user identities associated with the resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."/>
           <additionalProp>
             <item nullable="True" type="object">
@@ -699,6 +724,9 @@
           <arg nullable="True" type="boolean" var="$parameters.properties.features.immediatePurgeDataOn30Days" options="immediate-purge-data-on30-days">
             <help short="Flag that describes if we want to remove the data after 30 days."/>
           </arg>
+          <additionalProp>
+            <item nullable="True" type="any"/>
+          </additionalProp>
         </arg>
         <arg nullable="True" type="boolean" var="$parameters.properties.forceCmkForQuery" options="force-cmk-for-query" hide="True" group="Properties">
           <help short="Indicates whether customer managed storage is mandatory for query management."/>
@@ -816,6 +844,9 @@
                       <prop nullable="True" type="boolean" name="enableLogAccessUsingOnlyResourcePermissions"/>
                       <prop nullable="True" type="boolean" name="immediatePurgeDataOn30Days"/>
                       <prop readOnly="True" nullable="True" type="boolean" name="unifiedSentinelBillingOnly"/>
+                      <additionalProp>
+                        <item type="any"/>
+                      </additionalProp>
                     </prop>
                     <prop type="boolean" name="forceCmkForQuery"/>
                     <prop readOnly="True" type="string" name="modifiedDate"/>
@@ -964,6 +995,9 @@
                   <prop nullable="True" type="boolean" name="enableDataExport" arg="$parameters.properties.features.enableDataExport"/>
                   <prop nullable="True" type="boolean" name="enableLogAccessUsingOnlyResourcePermissions" arg="$parameters.properties.features.enableLogAccessUsingOnlyResourcePermissions"/>
                   <prop nullable="True" type="boolean" name="immediatePurgeDataOn30Days" arg="$parameters.properties.features.immediatePurgeDataOn30Days"/>
+                  <additionalProp>
+                    <item type="any"/>
+                  </additionalProp>
                 </prop>
                 <prop type="boolean" name="forceCmkForQuery" arg="$parameters.properties.forceCmkForQuery"/>
                 <prop type="string" name="publicNetworkAccessForIngestion" arg="$parameters.properties.publicNetworkAccessForIngestion">
@@ -1067,5 +1101,743 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
+    <commandGroup name="identity">
+      <command name="assign" version="2023-09-01">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.operationalinsights/workspaces/{}" version="2023-09-01" subresource="identity" swagger="mgmt-plane/operationalinsights/ResourceProviders/Microsoft.OperationalInsights/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZWdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuT3BlcmF0aW9uYWxJbnNpZ2h0cy93b3Jrc3BhY2VzL3t3b3Jrc3BhY2VOYW1lfQ==/V/MjAyMy0wOS0wMQ=="/>
+        <argGroup name="">
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+          <arg type="string" var="$Path.workspaceName" options="workspace-name name n" required="True" idPart="name">
+            <help short="Name of the Log Analytics Workspace."/>
+            <format pattern="^[A-Za-z0-9][A-Za-z0-9-]+[A-Za-z0-9]$" maxLength="63" minLength="4"/>
+          </arg>
+        </argGroup>
+        <argGroup name="Parameters.identity">
+          <arg type="string" var="$parameters.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Parameters.identity">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
+          <arg type="array<string>" var="$parameters.identity.userAssigned" options="mi-user-assigned user-assigned" group="Parameters.identity">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="parameters">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="Workspaces_Get">
+          <http path="/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}">
+            <request method="get">
+              <path>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+                <param type="string" name="workspaceName" arg="$Path.workspaceName" required="True">
+                  <format pattern="^[A-Za-z0-9][A-Za-z0-9-]+[A-Za-z0-9]$" maxLength="63" minLength="4"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2023-09-01&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="Workspace_read">
+                    <prop type="string" name="etag"/>
+                    <prop readOnly="True" type="ResourceId" name="id">
+                      <format template="/subscriptions/{}/resourcegroups/{}/providers/Microsoft.OperationalInsights/workspaces/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="string" name="principalId"/>
+                      <prop readOnly="True" type="string" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="clientId"/>
+                            <prop readOnly="True" type="string" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" clientFlatten="True">
+                      <prop readOnly="True" type="string" name="createdDate"/>
+                      <prop readOnly="True" type="string" name="customerId"/>
+                      <prop type="string" name="defaultDataCollectionRuleResourceId"/>
+                      <prop type="object" name="features">
+                        <prop nullable="True" type="string" name="clusterResourceId"/>
+                        <prop nullable="True" type="boolean" name="disableLocalAuth"/>
+                        <prop nullable="True" type="boolean" name="enableDataExport"/>
+                        <prop nullable="True" type="boolean" name="enableLogAccessUsingOnlyResourcePermissions"/>
+                        <prop nullable="True" type="boolean" name="immediatePurgeDataOn30Days"/>
+                        <prop readOnly="True" nullable="True" type="boolean" name="unifiedSentinelBillingOnly"/>
+                        <additionalProp>
+                          <item type="any"/>
+                        </additionalProp>
+                      </prop>
+                      <prop type="boolean" name="forceCmkForQuery"/>
+                      <prop readOnly="True" type="string" name="modifiedDate"/>
+                      <prop readOnly="True" type="array<object>" name="privateLinkScopedResources" identifiers="resourceId">
+                        <item type="object">
+                          <prop type="string" name="resourceId"/>
+                          <prop type="string" name="scopeId"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;ProvisioningAccount&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="publicNetworkAccessForIngestion">
+                        <default value="&quot;Enabled&quot;"/>
+                        <enum>
+                          <item value="&quot;Disabled&quot;"/>
+                          <item value="&quot;Enabled&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="publicNetworkAccessForQuery">
+                        <default value="&quot;Enabled&quot;"/>
+                        <enum>
+                          <item value="&quot;Disabled&quot;"/>
+                          <item value="&quot;Enabled&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop nullable="True" type="integer32" name="retentionInDays"/>
+                      <prop type="object" name="sku">
+                        <prop type="integer32" name="capacityReservationLevel">
+                          <enum>
+                            <item value="100"/>
+                            <item value="200"/>
+                            <item value="300"/>
+                            <item value="400"/>
+                            <item value="500"/>
+                            <item value="1000"/>
+                            <item value="2000"/>
+                            <item value="5000"/>
+                            <item value="10000"/>
+                            <item value="25000"/>
+                            <item value="50000"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="lastSkuUpdate"/>
+                        <prop type="string" name="name" required="True">
+                          <enum>
+                            <item value="&quot;CapacityReservation&quot;"/>
+                            <item value="&quot;Free&quot;"/>
+                            <item value="&quot;LACluster&quot;"/>
+                            <item value="&quot;PerGB2018&quot;"/>
+                            <item value="&quot;PerNode&quot;"/>
+                            <item value="&quot;Premium&quot;"/>
+                            <item value="&quot;Standalone&quot;"/>
+                            <item value="&quot;Standard&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="workspaceCapping">
+                        <prop type="float64" name="dailyQuotaGb"/>
+                        <prop readOnly="True" type="string" name="dataIngestionStatus">
+                          <enum>
+                            <item value="&quot;ApproachingQuota&quot;"/>
+                            <item value="&quot;ForceOff&quot;"/>
+                            <item value="&quot;ForceOn&quot;"/>
+                            <item value="&quot;OverQuota&quot;"/>
+                            <item value="&quot;RespectQuota&quot;"/>
+                            <item value="&quot;SubscriptionSuspended&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="quotaNextResetTime"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt"/>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt"/>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <operation>
+          <instanceUpdate ref="$Subresource">
+            <json>
+              <schema action="assign" type="IdentityObject" name="parameters.identity" required="True">
+                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$parameters.identity.userAssigned">
+                  <item action="assign" type="string"/>
+                </userAssigned>
+                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$parameters.identity.systemAssigned"/>
+              </schema>
+            </json>
+          </instanceUpdate>
+        </operation>
+        <operation operationId="Workspaces_CreateOrUpdate">
+          <longRunning finalStateVia="azure-async-operation"/>
+          <http path="/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}">
+            <request method="put">
+              <path>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+                <param type="string" name="workspaceName" arg="$Path.workspaceName" required="True">
+                  <format pattern="^[A-Za-z0-9][A-Za-z0-9-]+[A-Za-z0-9]$" maxLength="63" minLength="4"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2023-09-01&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+              <body>
+                <json ref="$Instance"/>
+              </body>
+            </request>
+            <response statusCode="200 201">
+              <body>
+                <json var="$Instance">
+                  <schema type="@Workspace_read"/>
+                </json>
+              </body>
+            </response>
+            <response statusCode="202"/>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+      <command name="remove" version="2023-09-01">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.operationalinsights/workspaces/{}" version="2023-09-01" subresource="identity" swagger="mgmt-plane/operationalinsights/ResourceProviders/Microsoft.OperationalInsights/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZWdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuT3BlcmF0aW9uYWxJbnNpZ2h0cy93b3Jrc3BhY2VzL3t3b3Jrc3BhY2VOYW1lfQ==/V/MjAyMy0wOS0wMQ=="/>
+        <argGroup name="">
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+          <arg type="string" var="$Path.workspaceName" options="workspace-name name n" required="True" idPart="name">
+            <help short="Name of the Log Analytics Workspace."/>
+            <format pattern="^[A-Za-z0-9][A-Za-z0-9-]+[A-Za-z0-9]$" maxLength="63" minLength="4"/>
+          </arg>
+        </argGroup>
+        <argGroup name="Parameters.identity">
+          <arg type="string" var="$parameters.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Parameters.identity">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
+          <arg type="array<string>" var="$parameters.identity.userAssigned" options="mi-user-assigned user-assigned" group="Parameters.identity">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="parameters">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="Workspaces_Get">
+          <http path="/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}">
+            <request method="get">
+              <path>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+                <param type="string" name="workspaceName" arg="$Path.workspaceName" required="True">
+                  <format pattern="^[A-Za-z0-9][A-Za-z0-9-]+[A-Za-z0-9]$" maxLength="63" minLength="4"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2023-09-01&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="Workspace_read">
+                    <prop type="string" name="etag"/>
+                    <prop readOnly="True" type="ResourceId" name="id">
+                      <format template="/subscriptions/{}/resourcegroups/{}/providers/Microsoft.OperationalInsights/workspaces/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="string" name="principalId"/>
+                      <prop readOnly="True" type="string" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="clientId"/>
+                            <prop readOnly="True" type="string" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" clientFlatten="True">
+                      <prop readOnly="True" type="string" name="createdDate"/>
+                      <prop readOnly="True" type="string" name="customerId"/>
+                      <prop type="string" name="defaultDataCollectionRuleResourceId"/>
+                      <prop type="object" name="features">
+                        <prop nullable="True" type="string" name="clusterResourceId"/>
+                        <prop nullable="True" type="boolean" name="disableLocalAuth"/>
+                        <prop nullable="True" type="boolean" name="enableDataExport"/>
+                        <prop nullable="True" type="boolean" name="enableLogAccessUsingOnlyResourcePermissions"/>
+                        <prop nullable="True" type="boolean" name="immediatePurgeDataOn30Days"/>
+                        <prop readOnly="True" nullable="True" type="boolean" name="unifiedSentinelBillingOnly"/>
+                        <additionalProp>
+                          <item type="any"/>
+                        </additionalProp>
+                      </prop>
+                      <prop type="boolean" name="forceCmkForQuery"/>
+                      <prop readOnly="True" type="string" name="modifiedDate"/>
+                      <prop readOnly="True" type="array<object>" name="privateLinkScopedResources" identifiers="resourceId">
+                        <item type="object">
+                          <prop type="string" name="resourceId"/>
+                          <prop type="string" name="scopeId"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;ProvisioningAccount&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="publicNetworkAccessForIngestion">
+                        <default value="&quot;Enabled&quot;"/>
+                        <enum>
+                          <item value="&quot;Disabled&quot;"/>
+                          <item value="&quot;Enabled&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="publicNetworkAccessForQuery">
+                        <default value="&quot;Enabled&quot;"/>
+                        <enum>
+                          <item value="&quot;Disabled&quot;"/>
+                          <item value="&quot;Enabled&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop nullable="True" type="integer32" name="retentionInDays"/>
+                      <prop type="object" name="sku">
+                        <prop type="integer32" name="capacityReservationLevel">
+                          <enum>
+                            <item value="100"/>
+                            <item value="200"/>
+                            <item value="300"/>
+                            <item value="400"/>
+                            <item value="500"/>
+                            <item value="1000"/>
+                            <item value="2000"/>
+                            <item value="5000"/>
+                            <item value="10000"/>
+                            <item value="25000"/>
+                            <item value="50000"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="lastSkuUpdate"/>
+                        <prop type="string" name="name" required="True">
+                          <enum>
+                            <item value="&quot;CapacityReservation&quot;"/>
+                            <item value="&quot;Free&quot;"/>
+                            <item value="&quot;LACluster&quot;"/>
+                            <item value="&quot;PerGB2018&quot;"/>
+                            <item value="&quot;PerNode&quot;"/>
+                            <item value="&quot;Premium&quot;"/>
+                            <item value="&quot;Standalone&quot;"/>
+                            <item value="&quot;Standard&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="workspaceCapping">
+                        <prop type="float64" name="dailyQuotaGb"/>
+                        <prop readOnly="True" type="string" name="dataIngestionStatus">
+                          <enum>
+                            <item value="&quot;ApproachingQuota&quot;"/>
+                            <item value="&quot;ForceOff&quot;"/>
+                            <item value="&quot;ForceOn&quot;"/>
+                            <item value="&quot;OverQuota&quot;"/>
+                            <item value="&quot;RespectQuota&quot;"/>
+                            <item value="&quot;SubscriptionSuspended&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="quotaNextResetTime"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt"/>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt"/>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <operation>
+          <instanceUpdate ref="$Subresource">
+            <json>
+              <schema action="remove" type="IdentityObject" name="parameters.identity" required="True">
+                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$parameters.identity.userAssigned">
+                  <item action="remove" type="string"/>
+                </userAssigned>
+                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$parameters.identity.systemAssigned"/>
+              </schema>
+            </json>
+          </instanceUpdate>
+        </operation>
+        <operation operationId="Workspaces_CreateOrUpdate">
+          <longRunning finalStateVia="azure-async-operation"/>
+          <http path="/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}">
+            <request method="put">
+              <path>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+                <param type="string" name="workspaceName" arg="$Path.workspaceName" required="True">
+                  <format pattern="^[A-Za-z0-9][A-Za-z0-9-]+[A-Za-z0-9]$" maxLength="63" minLength="4"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2023-09-01&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+              <body>
+                <json ref="$Instance"/>
+              </body>
+            </request>
+            <response statusCode="200 201">
+              <body>
+                <json var="$Instance">
+                  <schema type="@Workspace_read"/>
+                </json>
+              </body>
+            </response>
+            <response statusCode="202"/>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+      <command name="show" version="2023-09-01">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.operationalinsights/workspaces/{}" version="2023-09-01" subresource="identity" swagger="mgmt-plane/operationalinsights/ResourceProviders/Microsoft.OperationalInsights/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZWdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuT3BlcmF0aW9uYWxJbnNpZ2h0cy93b3Jrc3BhY2VzL3t3b3Jrc3BhY2VOYW1lfQ==/V/MjAyMy0wOS0wMQ=="/>
+        <argGroup name="">
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+          <arg type="string" var="$Path.workspaceName" options="workspace-name name n" required="True" idPart="name">
+            <help short="Name of the Log Analytics Workspace."/>
+            <format pattern="^[A-Za-z0-9][A-Za-z0-9-]+[A-Za-z0-9]$" maxLength="63" minLength="4"/>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="parameters">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="Workspaces_Get">
+          <http path="/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.OperationalInsights/workspaces/{workspaceName}">
+            <request method="get">
+              <path>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+                <param type="string" name="workspaceName" arg="$Path.workspaceName" required="True">
+                  <format pattern="^[A-Za-z0-9][A-Za-z0-9-]+[A-Za-z0-9]$" maxLength="63" minLength="4"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2023-09-01&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="Workspace_read">
+                    <prop type="string" name="etag"/>
+                    <prop readOnly="True" type="ResourceId" name="id">
+                      <format template="/subscriptions/{}/resourcegroups/{}/providers/Microsoft.OperationalInsights/workspaces/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="string" name="principalId"/>
+                      <prop readOnly="True" type="string" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="clientId"/>
+                            <prop readOnly="True" type="string" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" clientFlatten="True">
+                      <prop readOnly="True" type="string" name="createdDate"/>
+                      <prop readOnly="True" type="string" name="customerId"/>
+                      <prop type="string" name="defaultDataCollectionRuleResourceId"/>
+                      <prop type="object" name="features">
+                        <prop nullable="True" type="string" name="clusterResourceId"/>
+                        <prop nullable="True" type="boolean" name="disableLocalAuth"/>
+                        <prop nullable="True" type="boolean" name="enableDataExport"/>
+                        <prop nullable="True" type="boolean" name="enableLogAccessUsingOnlyResourcePermissions"/>
+                        <prop nullable="True" type="boolean" name="immediatePurgeDataOn30Days"/>
+                        <prop readOnly="True" nullable="True" type="boolean" name="unifiedSentinelBillingOnly"/>
+                        <additionalProp>
+                          <item type="any"/>
+                        </additionalProp>
+                      </prop>
+                      <prop type="boolean" name="forceCmkForQuery"/>
+                      <prop readOnly="True" type="string" name="modifiedDate"/>
+                      <prop readOnly="True" type="array<object>" name="privateLinkScopedResources" identifiers="resourceId">
+                        <item type="object">
+                          <prop type="string" name="resourceId"/>
+                          <prop type="string" name="scopeId"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;ProvisioningAccount&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="publicNetworkAccessForIngestion">
+                        <default value="&quot;Enabled&quot;"/>
+                        <enum>
+                          <item value="&quot;Disabled&quot;"/>
+                          <item value="&quot;Enabled&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="publicNetworkAccessForQuery">
+                        <default value="&quot;Enabled&quot;"/>
+                        <enum>
+                          <item value="&quot;Disabled&quot;"/>
+                          <item value="&quot;Enabled&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop nullable="True" type="integer32" name="retentionInDays"/>
+                      <prop type="object" name="sku">
+                        <prop type="integer32" name="capacityReservationLevel">
+                          <enum>
+                            <item value="100"/>
+                            <item value="200"/>
+                            <item value="300"/>
+                            <item value="400"/>
+                            <item value="500"/>
+                            <item value="1000"/>
+                            <item value="2000"/>
+                            <item value="5000"/>
+                            <item value="10000"/>
+                            <item value="25000"/>
+                            <item value="50000"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="lastSkuUpdate"/>
+                        <prop type="string" name="name" required="True">
+                          <enum>
+                            <item value="&quot;CapacityReservation&quot;"/>
+                            <item value="&quot;Free&quot;"/>
+                            <item value="&quot;LACluster&quot;"/>
+                            <item value="&quot;PerGB2018&quot;"/>
+                            <item value="&quot;PerNode&quot;"/>
+                            <item value="&quot;Premium&quot;"/>
+                            <item value="&quot;Standalone&quot;"/>
+                            <item value="&quot;Standard&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="workspaceCapping">
+                        <prop type="float64" name="dailyQuotaGb"/>
+                        <prop readOnly="True" type="string" name="dataIngestionStatus">
+                          <enum>
+                            <item value="&quot;ApproachingQuota&quot;"/>
+                            <item value="&quot;ForceOff&quot;"/>
+                            <item value="&quot;ForceOn&quot;"/>
+                            <item value="&quot;OverQuota&quot;"/>
+                            <item value="&quot;RespectQuota&quot;"/>
+                            <item value="&quot;SubscriptionSuspended&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="quotaNextResetTime"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt"/>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt"/>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+    </commandGroup>
   </commandGroup>
 </CodeGen>

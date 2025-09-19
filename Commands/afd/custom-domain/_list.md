@@ -36,3 +36,25 @@ List existing AzureFrontDoor domains.
     ```bash
         afd custom-domain list -g group --profile-name profile
     ```
+
+### [2025-04-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vY3VzdG9tZG9tYWlucw==/2025-04-15.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/customdomains 2025-04-15 -->
+
+#### examples
+
+- List all the custom domains within the specified profile.
+    ```bash
+        afd custom-domain list -g group --profile-name profile
+    ```
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vY3VzdG9tZG9tYWlucw==/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/customdomains 2025-06-01 -->
+
+#### examples
+
+- List all the custom domains within the specified profile.
+    ```bash
+        afd custom-domain list -g group --profile-name profile
+    ```

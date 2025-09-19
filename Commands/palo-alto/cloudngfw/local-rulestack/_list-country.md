@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack list-country_
 
-List of countries for Rulestack
+List of countries for Palo Alto Networks local rulestack.
 
 ## Versions
 

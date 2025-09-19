@@ -1,6 +1,6 @@
 # [Command] _elastic monitor tag-rule show_
 
-Get a tag rule set for a given monitor resource.
+Get detailed information about a tag rule set for a given Elastic monitor resource.
 
 ## Versions
 

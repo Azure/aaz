@@ -1,6 +1,6 @@
 # [Command] _elastic monitor detach-traffic-filter_
 
-Detach traffic filter
+Detach an existing traffic filter from your Elastic monitor resource, removing its network traffic control capabilities.
 
 ## Versions
 

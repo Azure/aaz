@@ -1,6 +1,6 @@
 # [Command] _dynatrace monitor sso-config list_
 
-List all dynatrace sso-config by monitor name
+List all SSO configurations associated with a specific Dynatrace resource.
 
 ## Versions
 

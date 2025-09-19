@@ -1,34 +1,34 @@
 # [Group] _palo-alto cloudngfw firewall_
 
-Manage cloudngfw firewall resource
+Manage Palo Alto Networks firewall resources within the Azure CLI.
 
 ## Subgroups
 
 - [status](/Commands/palo-alto/cloudngfw/firewall/status/readme.md)
-: Manage cloudngfw firewall status resource
+: Manage status resources for Palo Alto Networks cloudngfw firewalls.
 
 ## Commands
 
 - [create](/Commands/palo-alto/cloudngfw/firewall/_create.md)
-: Create a FirewallResource
+: Create a new Palo Alto Networks Cloud NGFW on Azure.
 
 - [delete](/Commands/palo-alto/cloudngfw/firewall/_delete.md)
-: Delete a FirewallResource
+: Delete an existing Palo Alto Networks Cloud NGFW on Azure
 
 - [list](/Commands/palo-alto/cloudngfw/firewall/_list.md)
-: List FirewallResource resources by subscription ID
+: List all Palo Alto Networks Cloud NGFW on Azure resources under the current subscription.
 
 - [save-log-profile](/Commands/palo-alto/cloudngfw/firewall/_save-log-profile.md)
-: Save Log Profile for Firewall
+: Save log profile settings for a Palo Alto Networks Cloud NGFW on Azure.
 
 - [show](/Commands/palo-alto/cloudngfw/firewall/_show.md)
-: Get a FirewallResource
+: Retrieve details of a specific Palo Alto Networks Cloud NGFW on Azure resource.
 
 - [show-log-profile](/Commands/palo-alto/cloudngfw/firewall/_show-log-profile.md)
-: Get Log Profile for Firewall
+: Get log profile information for a Palo Alto Networks Cloud NGFW on Azure.
 
 - [show-support-info](/Commands/palo-alto/cloudngfw/firewall/_show-support-info.md)
-: Support info for firewall.
+: Retrieve support information of a specific Palo Alto Networks firewall.
 
 - [update](/Commands/palo-alto/cloudngfw/firewall/_update.md)
-: Update a FirewallResource
+: Update configuration or metadata for a Palo Alto Networks Cloud NGFW resource on Azure.

@@ -7,6 +7,9 @@ Manage Linux or Windows virtual machines.
 - [availability-set](/Commands/vm/availability-set/readme.md)
 : Group resources into availability sets.
 
+- [boot-diagnostics](/Commands/vm/boot-diagnostics/readme.md)
+: Troubleshoot the startup of an Azure Virtual Machine.         Use this feature to troubleshoot boot failures for custom or platform images.
+
 - [disk](/Commands/vm/disk/readme.md)
 : Manage the managed data disks attached to a VM.
 
@@ -16,13 +19,22 @@ Manage Linux or Windows virtual machines.
 - [host](/Commands/vm/host/readme.md)
 : Manage Dedicated Hosts for Virtual Machines
 
+- [identity](/Commands/vm/identity/readme.md)
+: Manage identities of a VM.
+
 - [image](/Commands/vm/image/readme.md)
 : Information on available virtual machine images.
+
+- [run-command](/Commands/vm/run-command/readme.md)
+: Manage run commands on a Virtual Machine.
 
 ## Commands
 
 - [assess-patches](/Commands/vm/_assess-patches.md)
 : Assess patches on a VM.
+
+- [capture](/Commands/vm/_capture.md)
+: Capture information for a stopped VM.
 
 - [convert](/Commands/vm/_convert.md)
 : Convert a VM with unmanaged disks to use managed disks.
@@ -39,8 +51,17 @@ Manage Linux or Windows virtual machines.
 - [generalize](/Commands/vm/_generalize.md)
 : Mark a VM as generalized, allowing it to be imaged for multiple deployments.
 
+- [list](/Commands/vm/_list.md)
+: List all of the virtual machines in the specified resource group. Use the nextLink property in the response to get the next page of virtual machines.
+
+- [list-all](/Commands/vm/_list-all.md)
+: List all of the virtual machines in the specified subscription. Use the nextLink property in the response to get the next page of virtual machines.
+
 - [list-sizes](/Commands/vm/_list-sizes.md)
 : List available sizes for VMs.
+
+- [list-skus](/Commands/vm/_list-skus.md)
+: Get details for compute-related resource SKUs.
 
 - [list-vm-resize-options](/Commands/vm/_list-vm-resize-options.md)
 : List available resizing options for VMs.

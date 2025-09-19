@@ -7,6 +7,9 @@ Manage Azure log analytics workspace
 - [data-export](/Commands/monitor/log-analytics/workspace/data-export/readme.md)
 : Manage data export ruls for log analytics workspace.
 
+- [identity](/Commands/monitor/log-analytics/workspace/identity/readme.md)
+: Manage Identity
+
 - [linked-service](/Commands/monitor/log-analytics/workspace/linked-service/readme.md)
 : Manage linked service for log analytics workspace.
 
@@ -29,6 +32,12 @@ Manage Azure log analytics workspace
 
 - [delete](/Commands/monitor/log-analytics/workspace/_delete.md)
 : Deletes a workspace resource.
+
+- [failback](/Commands/monitor/log-analytics/workspace/_failback.md)
+: Deactivates failover for the specified workspace.The failback operation is asynchronous and can take up to 30 minutes to complete.The status of the operation can be checked using the operationId returned in the response.
+
+- [failover](/Commands/monitor/log-analytics/workspace/_failover.md)
+: Activates failover for the specified workspace.The specified replication location must match the location of the enabled replication for this workspace.The failover operation is asynchronous and can take up to 30 minutes to complete.The status of the operation can be checked using the operationId returned in the response.
 
 - [get-schema](/Commands/monitor/log-analytics/workspace/_get-schema.md)
 : Get the schema for a given workspace.

@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw firewall update_
 
-Update a FirewallResource
+Update configuration or metadata for a Palo Alto Networks Cloud NGFW resource on Azure.
 
 ## Versions
 

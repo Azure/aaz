@@ -22,3 +22,14 @@ Create a Network Rack resource
 ### [2024-02-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrcmFja3Mve30=/2024-02-15-preview.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkracks/{} 2024-02-15-preview -->
+
+### [2024-06-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrcmFja3Mve30=/2024-06-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkracks/{} 2024-06-15-preview -->
+
+#### examples
+
+- Create the Network Rack
+    ```bash
+        networkfabric rack create --resource-group example-rg --resource-name example-rack --annotation annotation --network-rack-type Aggregate --network-fabric-id /subscriptions/1234ABCD-0A1B-1234-5678-123456ABCDEF/resourcegroups/example-rg/providers/Microsoft.ManagedNetworkFabric/networkFabrics/example-networkFabric --tags "{keyId:keyValue}" --location eastuseuap
+    ```

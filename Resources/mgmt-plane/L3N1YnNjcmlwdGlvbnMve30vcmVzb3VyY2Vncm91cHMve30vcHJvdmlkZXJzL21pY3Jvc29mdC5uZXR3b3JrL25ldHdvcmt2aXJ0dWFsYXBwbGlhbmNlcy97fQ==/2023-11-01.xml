@@ -2,7 +2,7 @@
 <CodeGen plane="mgmt-plane">
   <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networkvirtualappliances/{}" version="2023-11-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9uZXR3b3JrVmlydHVhbEFwcGxpYW5jZXMve25ldHdvcmtWaXJ0dWFsQXBwbGlhbmNlTmFtZX0=/V/MjAyMy0xMS0wMQ=="/>
   <commandGroup name="network virtual-appliance">
-    <command name="show" version="2023-11-01">
+    <command name="show" version="2023-11-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networkvirtualappliances/{}" version="2023-11-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9uZXR3b3JrVmlydHVhbEFwcGxpYW5jZXMve25ldHdvcmtWaXJ0dWFsQXBwbGlhbmNlTmFtZX0=/V/MjAyMy0xMS0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.networkVirtualApplianceName" options="name n" required="True" idPart="name">
@@ -225,7 +225,7 @@
         </http>
       </operation>
     </command>
-    <command name="create" version="2023-11-01">
+    <command name="create" version="2023-11-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networkvirtualappliances/{}" version="2023-11-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9uZXR3b3JrVmlydHVhbEFwcGxpYW5jZXMve25ldHdvcmtWaXJ0dWFsQXBwbGlhbmNlTmFtZX0=/V/MjAyMy0xMS0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.networkVirtualApplianceName" options="name n" required="True" idPart="name">
@@ -241,6 +241,10 @@
         </arg>
         <arg type="object" var="$parameters.identity" options="identity" hide="True" group="Parameters">
           <help short="The service principal that has read access to cloud-init and config blob."/>
+          <arg type="string" var="$parameters.identity.systemAssigned" options="mi-system-assigned system-assigned">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
           <arg type="string" var="$parameters.identity.type" options="type">
             <help short="The type of identity used for the resource. The type 'SystemAssigned, UserAssigned' includes both an implicitly created identity and a set of user assigned identities. The type 'None' will remove any identities from the virtual machine."/>
             <enum>
@@ -249,6 +253,11 @@
               <item name="SystemAssigned, UserAssigned" value="&quot;SystemAssigned, UserAssigned&quot;"/>
               <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
             </enum>
+          </arg>
+          <arg type="array<string>" var="$parameters.identity.userAssigned" options="mi-user-assigned user-assigned">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
           </arg>
           <arg type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-identities">
             <help short="The list of user identities associated with resource. The user identity dictionary key references will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}'."/>
@@ -388,6 +397,10 @@
                         <item type="object"/>
                       </additionalProp>
                     </prop>
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$parameters.identity.userAssigned">
+                      <item action="create" type="string"/>
+                    </userAssigned>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$parameters.identity.systemAssigned"/>
                   </prop>
                   <prop type="ResourceLocation" name="location" arg="$parameters.location"/>
                   <prop type="object" name="properties" clientFlatten="True">
@@ -611,7 +624,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="update" version="2023-11-01">
+    <command name="update" version="2023-11-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networkvirtualappliances/{}" version="2023-11-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9uZXR3b3JrVmlydHVhbEFwcGxpYW5jZXMve25ldHdvcmtWaXJ0dWFsQXBwbGlhbmNlTmFtZX0=/V/MjAyMy0xMS0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.networkVirtualApplianceName" options="name n" required="True" idPart="name">

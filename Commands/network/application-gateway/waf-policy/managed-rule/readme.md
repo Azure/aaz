@@ -6,6 +6,9 @@ Visit https://learn.microsoft.com/en-us/azure/web-application-firewall/afds/afds
 
 ## Subgroups
 
+- [exception](/Commands/network/application-gateway/waf-policy/managed-rule/exception/readme.md)
+: Manage exceptions to allow a request to skip the managed rules when the condition is satisfied.
+
 - [exclusion](/Commands/network/application-gateway/waf-policy/managed-rule/exclusion/readme.md)
 : Manage OWASP CRS exclusions that are applied on a WAF policy managed rules.
 

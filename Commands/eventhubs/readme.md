@@ -1,6 +1,6 @@
 # [Group] _eventhubs_
 
-eventhub
+Manage Event Hub
 
 ## Subgroups
 
@@ -14,4 +14,4 @@ eventhub
 : Manage Azure EventHubs Geo Recovery configuration Alias
 
 - [namespace](/Commands/eventhubs/namespace/readme.md)
-: Eventhub namespace.
+: Manage Namespace

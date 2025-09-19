@@ -1,6 +1,6 @@
 # [Group] _network manager_
 
-Manage network-manager with network.
+Manage Network Manager
 
 ## Subgroups
 

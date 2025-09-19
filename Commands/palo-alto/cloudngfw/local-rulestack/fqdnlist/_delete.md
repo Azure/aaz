@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack fqdnlist delete_
 
-Delete a FqdnListLocalRulestackResource
+Delete an existing FQDN list resource for a Palo Alto Networks local rulestack.
 
 ## Versions
 

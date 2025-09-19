@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor switch-billing_
 
-Switches the billing for NewRelic monitor resource.
+Switches the billing for the New Relic Monitor resource to be billed by Azure Marketplace.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _informatica data-management organization delete_
 
-Delete a InformaticaOrganizationResource
+Delete an existing organization resource in Informatica via Azure.
 
 ## Versions
 

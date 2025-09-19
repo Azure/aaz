@@ -10,6 +10,9 @@ Microsoft Connected Cache for Enterprise cache node CLI commands
 - [delete](/Commands/mcc/ent/node/_delete.md)
 : Deletes a Microsoft Connected Cache for Enterprise cache node.
 
+- [get-deployment-details](/Commands/mcc/ent/node/_get-deployment-details.md)
+: Retrieves Microsoft Connected Cache for Enterprise cache node details and keys needed to deploy cache node.
+
 - [get-provisioning-details](/Commands/mcc/ent/node/_get-provisioning-details.md)
 : Retrieves Microsoft Connected Cache for Enterprise cache node details and keys needed to provision cache node.
 

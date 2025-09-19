@@ -1,0 +1,642 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.network/azurefirewalls" version="2024-10-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk5ldHdvcmsvYXp1cmVGaXJld2FsbHM=/V/MjAyNC0xMC0wMQ=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/azurefirewalls" version="2024-10-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9henVyZUZpcmV3YWxscw==/V/MjAyNC0xMC0wMQ=="/>
+  <commandGroup name="network firewall">
+    <command name="list" version="2024-10-01" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.network/azurefirewalls" version="2024-10-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk5ldHdvcmsvYXp1cmVGaXJld2FsbHM=/V/MjAyNC0xMC0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/azurefirewalls" version="2024-10-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9henVyZUZpcmV3YWxscw==/V/MjAyNC0xMC0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <condition var="$Condition_AzureFirewalls_ListAll">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <condition var="$Condition_AzureFirewalls_List">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_AzureFirewalls_ListAll" operationId="AzureFirewalls_ListAll">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Network/azureFirewalls">
+          <request method="get">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-10-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="string" name="etag"/>
+                      <prop type="object" name="extendedLocation">
+                        <prop type="string" name="name"/>
+                        <prop type="string" name="type">
+                          <enum>
+                            <item value="&quot;EdgeZone&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/azureFirewalls/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="object" name="additionalProperties">
+                          <additionalProp>
+                            <item type="string"/>
+                          </additionalProp>
+                        </prop>
+                        <prop type="array<object>" name="applicationRuleCollections">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="etag"/>
+                            <prop type="string" name="id"/>
+                            <prop type="string" name="name"/>
+                            <prop type="object" name="properties" clientFlatten="True">
+                              <prop type="object" name="action" cls="AzureFirewallRCAction_read">
+                                <prop type="string" name="type">
+                                  <enum>
+                                    <item value="&quot;Allow&quot;"/>
+                                    <item value="&quot;Deny&quot;"/>
+                                  </enum>
+                                </prop>
+                              </prop>
+                              <prop type="integer32" name="priority">
+                                <format maximum="65000" minimum="100"/>
+                              </prop>
+                              <prop readOnly="True" type="string" name="provisioningState">
+                                <enum>
+                                  <item value="&quot;Deleting&quot;"/>
+                                  <item value="&quot;Failed&quot;"/>
+                                  <item value="&quot;Succeeded&quot;"/>
+                                  <item value="&quot;Updating&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="array<object>" name="rules">
+                                <item type="object">
+                                  <prop type="string" name="description"/>
+                                  <prop type="array<string>" name="fqdnTags">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="string" name="name"/>
+                                  <prop type="array<object>" name="protocols">
+                                    <item type="object">
+                                      <prop type="integer32" name="port">
+                                        <format maximum="64000" minimum="0"/>
+                                      </prop>
+                                      <prop type="string" name="protocolType">
+                                        <enum>
+                                          <item value="&quot;Http&quot;"/>
+                                          <item value="&quot;Https&quot;"/>
+                                          <item value="&quot;Mssql&quot;"/>
+                                        </enum>
+                                      </prop>
+                                    </item>
+                                  </prop>
+                                  <prop type="array<string>" name="sourceAddresses">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="array<string>" name="sourceIpGroups">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="array<string>" name="targetFqdns">
+                                    <item type="string"/>
+                                  </prop>
+                                </item>
+                              </prop>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="object" name="autoscaleConfiguration">
+                          <prop nullable="True" type="integer32" name="maxCapacity">
+                            <format minimum="2"/>
+                          </prop>
+                          <prop nullable="True" type="integer32" name="minCapacity">
+                            <format minimum="2"/>
+                          </prop>
+                        </prop>
+                        <prop type="@SubResource_read" name="firewallPolicy"/>
+                        <prop type="object" name="hubIPAddresses">
+                          <prop type="string" name="privateIPAddress"/>
+                          <prop type="object" name="publicIPs">
+                            <prop type="array<object>" name="addresses">
+                              <item type="object">
+                                <prop type="string" name="address"/>
+                              </item>
+                            </prop>
+                            <prop type="integer32" name="count"/>
+                          </prop>
+                        </prop>
+                        <prop type="array<object>" name="ipConfigurations">
+                          <item type="object" cls="AzureFirewallIPConfiguration_read">
+                            <prop readOnly="True" type="string" name="etag"/>
+                            <prop type="string" name="id"/>
+                            <prop type="string" name="name"/>
+                            <prop type="object" name="properties" clientFlatten="True">
+                              <prop readOnly="True" type="string" name="privateIPAddress"/>
+                              <prop readOnly="True" type="string" name="provisioningState">
+                                <enum>
+                                  <item value="&quot;Deleting&quot;"/>
+                                  <item value="&quot;Failed&quot;"/>
+                                  <item value="&quot;Succeeded&quot;"/>
+                                  <item value="&quot;Updating&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="@SubResource_read" name="publicIPAddress"/>
+                              <prop type="object" name="subnet" cls="SubResource_read">
+                                <prop type="string" name="id"/>
+                              </prop>
+                            </prop>
+                            <prop readOnly="True" type="string" name="type"/>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="array<object>" name="ipGroups">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="changeNumber"/>
+                            <prop readOnly="True" type="string" name="id"/>
+                          </item>
+                        </prop>
+                        <prop type="@AzureFirewallIPConfiguration_read" name="managementIpConfiguration"/>
+                        <prop type="array<object>" name="natRuleCollections">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="etag"/>
+                            <prop type="string" name="id"/>
+                            <prop type="string" name="name"/>
+                            <prop type="object" name="properties" clientFlatten="True">
+                              <prop type="object" name="action">
+                                <prop type="string" name="type">
+                                  <enum>
+                                    <item value="&quot;Dnat&quot;"/>
+                                    <item value="&quot;Snat&quot;"/>
+                                  </enum>
+                                </prop>
+                              </prop>
+                              <prop type="integer32" name="priority">
+                                <format maximum="65000" minimum="100"/>
+                              </prop>
+                              <prop readOnly="True" type="string" name="provisioningState">
+                                <enum>
+                                  <item value="&quot;Deleting&quot;"/>
+                                  <item value="&quot;Failed&quot;"/>
+                                  <item value="&quot;Succeeded&quot;"/>
+                                  <item value="&quot;Updating&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="array<object>" name="rules">
+                                <item type="object">
+                                  <prop type="string" name="description"/>
+                                  <prop type="array<string>" name="destinationAddresses">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="array<string>" name="destinationPorts">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="string" name="name"/>
+                                  <prop type="array<string>" name="protocols">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Any&quot;"/>
+                                        <item value="&quot;ICMP&quot;"/>
+                                        <item value="&quot;TCP&quot;"/>
+                                        <item value="&quot;UDP&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop type="array<string>" name="sourceAddresses">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="array<string>" name="sourceIpGroups">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="string" name="translatedAddress"/>
+                                  <prop type="string" name="translatedFqdn"/>
+                                  <prop type="string" name="translatedPort"/>
+                                </item>
+                              </prop>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="array<object>" name="networkRuleCollections">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="etag"/>
+                            <prop type="string" name="id"/>
+                            <prop type="string" name="name"/>
+                            <prop type="object" name="properties" clientFlatten="True">
+                              <prop type="@AzureFirewallRCAction_read" name="action"/>
+                              <prop type="integer32" name="priority">
+                                <format maximum="65000" minimum="100"/>
+                              </prop>
+                              <prop readOnly="True" type="string" name="provisioningState">
+                                <enum>
+                                  <item value="&quot;Deleting&quot;"/>
+                                  <item value="&quot;Failed&quot;"/>
+                                  <item value="&quot;Succeeded&quot;"/>
+                                  <item value="&quot;Updating&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="array<object>" name="rules">
+                                <item type="object">
+                                  <prop type="string" name="description"/>
+                                  <prop type="array<string>" name="destinationAddresses">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="array<string>" name="destinationFqdns">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="array<string>" name="destinationIpGroups">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="array<string>" name="destinationPorts">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="string" name="name"/>
+                                  <prop type="array<string>" name="protocols">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Any&quot;"/>
+                                        <item value="&quot;ICMP&quot;"/>
+                                        <item value="&quot;TCP&quot;"/>
+                                        <item value="&quot;UDP&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop type="array<string>" name="sourceAddresses">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="array<string>" name="sourceIpGroups">
+                                    <item type="string"/>
+                                  </prop>
+                                </item>
+                              </prop>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="sku">
+                          <prop type="string" name="name">
+                            <enum>
+                              <item value="&quot;AZFW_Hub&quot;"/>
+                              <item value="&quot;AZFW_VNet&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="tier">
+                            <enum>
+                              <item value="&quot;Basic&quot;"/>
+                              <item value="&quot;Premium&quot;"/>
+                              <item value="&quot;Standard&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="threatIntelMode">
+                          <enum>
+                            <item value="&quot;Alert&quot;"/>
+                            <item value="&quot;Deny&quot;"/>
+                            <item value="&quot;Off&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="@SubResource_read" name="virtualHub"/>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                      <prop type="array<string>" name="zones">
+                        <item type="string"/>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_AzureFirewalls_List" operationId="AzureFirewalls_List">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/azureFirewalls">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-10-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="string" name="etag"/>
+                      <prop type="object" name="extendedLocation">
+                        <prop type="string" name="name"/>
+                        <prop type="string" name="type">
+                          <enum>
+                            <item value="&quot;EdgeZone&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/azureFirewalls/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="object" name="additionalProperties">
+                          <additionalProp>
+                            <item type="string"/>
+                          </additionalProp>
+                        </prop>
+                        <prop type="array<object>" name="applicationRuleCollections">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="etag"/>
+                            <prop type="string" name="id"/>
+                            <prop type="string" name="name"/>
+                            <prop type="object" name="properties" clientFlatten="True">
+                              <prop type="@AzureFirewallRCAction_read" name="action"/>
+                              <prop type="integer32" name="priority">
+                                <format maximum="65000" minimum="100"/>
+                              </prop>
+                              <prop readOnly="True" type="string" name="provisioningState">
+                                <enum>
+                                  <item value="&quot;Deleting&quot;"/>
+                                  <item value="&quot;Failed&quot;"/>
+                                  <item value="&quot;Succeeded&quot;"/>
+                                  <item value="&quot;Updating&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="array<object>" name="rules">
+                                <item type="object">
+                                  <prop type="string" name="description"/>
+                                  <prop type="array<string>" name="fqdnTags">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="string" name="name"/>
+                                  <prop type="array<object>" name="protocols">
+                                    <item type="object">
+                                      <prop type="integer32" name="port">
+                                        <format maximum="64000" minimum="0"/>
+                                      </prop>
+                                      <prop type="string" name="protocolType">
+                                        <enum>
+                                          <item value="&quot;Http&quot;"/>
+                                          <item value="&quot;Https&quot;"/>
+                                          <item value="&quot;Mssql&quot;"/>
+                                        </enum>
+                                      </prop>
+                                    </item>
+                                  </prop>
+                                  <prop type="array<string>" name="sourceAddresses">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="array<string>" name="sourceIpGroups">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="array<string>" name="targetFqdns">
+                                    <item type="string"/>
+                                  </prop>
+                                </item>
+                              </prop>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="object" name="autoscaleConfiguration">
+                          <prop nullable="True" type="integer32" name="maxCapacity">
+                            <format minimum="2"/>
+                          </prop>
+                          <prop nullable="True" type="integer32" name="minCapacity">
+                            <format minimum="2"/>
+                          </prop>
+                        </prop>
+                        <prop type="@SubResource_read" name="firewallPolicy"/>
+                        <prop type="object" name="hubIPAddresses">
+                          <prop type="string" name="privateIPAddress"/>
+                          <prop type="object" name="publicIPs">
+                            <prop type="array<object>" name="addresses">
+                              <item type="object">
+                                <prop type="string" name="address"/>
+                              </item>
+                            </prop>
+                            <prop type="integer32" name="count"/>
+                          </prop>
+                        </prop>
+                        <prop type="array<@AzureFirewallIPConfiguration_read>" name="ipConfigurations">
+                          <item type="@AzureFirewallIPConfiguration_read"/>
+                        </prop>
+                        <prop readOnly="True" type="array<object>" name="ipGroups">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="changeNumber"/>
+                            <prop readOnly="True" type="string" name="id"/>
+                          </item>
+                        </prop>
+                        <prop type="@AzureFirewallIPConfiguration_read" name="managementIpConfiguration"/>
+                        <prop type="array<object>" name="natRuleCollections">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="etag"/>
+                            <prop type="string" name="id"/>
+                            <prop type="string" name="name"/>
+                            <prop type="object" name="properties" clientFlatten="True">
+                              <prop type="object" name="action">
+                                <prop type="string" name="type">
+                                  <enum>
+                                    <item value="&quot;Dnat&quot;"/>
+                                    <item value="&quot;Snat&quot;"/>
+                                  </enum>
+                                </prop>
+                              </prop>
+                              <prop type="integer32" name="priority">
+                                <format maximum="65000" minimum="100"/>
+                              </prop>
+                              <prop readOnly="True" type="string" name="provisioningState">
+                                <enum>
+                                  <item value="&quot;Deleting&quot;"/>
+                                  <item value="&quot;Failed&quot;"/>
+                                  <item value="&quot;Succeeded&quot;"/>
+                                  <item value="&quot;Updating&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="array<object>" name="rules">
+                                <item type="object">
+                                  <prop type="string" name="description"/>
+                                  <prop type="array<string>" name="destinationAddresses">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="array<string>" name="destinationPorts">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="string" name="name"/>
+                                  <prop type="array<string>" name="protocols">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Any&quot;"/>
+                                        <item value="&quot;ICMP&quot;"/>
+                                        <item value="&quot;TCP&quot;"/>
+                                        <item value="&quot;UDP&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop type="array<string>" name="sourceAddresses">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="array<string>" name="sourceIpGroups">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="string" name="translatedAddress"/>
+                                  <prop type="string" name="translatedFqdn"/>
+                                  <prop type="string" name="translatedPort"/>
+                                </item>
+                              </prop>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="array<object>" name="networkRuleCollections">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="etag"/>
+                            <prop type="string" name="id"/>
+                            <prop type="string" name="name"/>
+                            <prop type="object" name="properties" clientFlatten="True">
+                              <prop type="@AzureFirewallRCAction_read" name="action"/>
+                              <prop type="integer32" name="priority">
+                                <format maximum="65000" minimum="100"/>
+                              </prop>
+                              <prop readOnly="True" type="string" name="provisioningState">
+                                <enum>
+                                  <item value="&quot;Deleting&quot;"/>
+                                  <item value="&quot;Failed&quot;"/>
+                                  <item value="&quot;Succeeded&quot;"/>
+                                  <item value="&quot;Updating&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="array<object>" name="rules">
+                                <item type="object">
+                                  <prop type="string" name="description"/>
+                                  <prop type="array<string>" name="destinationAddresses">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="array<string>" name="destinationFqdns">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="array<string>" name="destinationIpGroups">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="array<string>" name="destinationPorts">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="string" name="name"/>
+                                  <prop type="array<string>" name="protocols">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Any&quot;"/>
+                                        <item value="&quot;ICMP&quot;"/>
+                                        <item value="&quot;TCP&quot;"/>
+                                        <item value="&quot;UDP&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop type="array<string>" name="sourceAddresses">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="array<string>" name="sourceIpGroups">
+                                    <item type="string"/>
+                                  </prop>
+                                </item>
+                              </prop>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="sku">
+                          <prop type="string" name="name">
+                            <enum>
+                              <item value="&quot;AZFW_Hub&quot;"/>
+                              <item value="&quot;AZFW_VNet&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="tier">
+                            <enum>
+                              <item value="&quot;Basic&quot;"/>
+                              <item value="&quot;Premium&quot;"/>
+                              <item value="&quot;Standard&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="threatIntelMode">
+                          <enum>
+                            <item value="&quot;Alert&quot;"/>
+                            <item value="&quot;Deny&quot;"/>
+                            <item value="&quot;Off&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="@SubResource_read" name="virtualHub"/>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                      <prop type="array<string>" name="zones">
+                        <item type="string"/>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

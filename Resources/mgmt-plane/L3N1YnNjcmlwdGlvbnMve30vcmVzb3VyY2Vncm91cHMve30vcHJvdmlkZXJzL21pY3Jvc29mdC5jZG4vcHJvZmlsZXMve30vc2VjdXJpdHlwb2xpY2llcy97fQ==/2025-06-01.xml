@@ -1,0 +1,604 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/securitypolicies/{}" version="2025-06-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0vc2VjdXJpdHlQb2xpY2llcy97c2VjdXJpdHlQb2xpY3lOYW1lfQ==/V/MjAyNS0wNi0wMQ=="/>
+  <commandGroup name="afd security-policy">
+    <command name="show" version="2025-06-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/securitypolicies/{}" version="2025-06-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0vc2VjdXJpdHlQb2xpY2llcy97c2VjdXJpdHlQb2xpY3lOYW1lfQ==/V/MjAyNS0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.profileName" options="profile-name" required="True" idPart="name">
+          <help short="Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique within the resource group."/>
+          <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.securityPolicyName" options="security-policy-name name n" required="True" idPart="child_name_1">
+          <help short="Name of the security policy under the profile."/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="SecurityPolicies_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/securityPolicies/{securityPolicyName}">
+          <request method="get">
+            <path>
+              <param type="string" name="profileName" arg="$Path.profileName" required="True">
+                <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="securityPolicyName" arg="$Path.securityPolicyName" required="True"/>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Cdn/profiles/{}/securityPolicies/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop readOnly="True" type="string" name="deploymentStatus">
+                      <enum>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;InProgress&quot;"/>
+                        <item value="&quot;NotStarted&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="parameters">
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;WebApplicationFirewall&quot;"/>
+                        </enum>
+                      </prop>
+                      <discriminator property="type" value="WebApplicationFirewall">
+                        <prop type="array<object>" name="associations">
+                          <item type="object">
+                            <prop type="array<object>" name="domains">
+                              <item type="object">
+                                <prop type="string" name="id"/>
+                                <prop readOnly="True" type="boolean" name="isActive"/>
+                              </item>
+                            </prop>
+                            <prop type="array<string>" name="patternsToMatch">
+                              <item type="string"/>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="object" name="wafPolicy">
+                          <prop type="string" name="id"/>
+                        </prop>
+                      </discriminator>
+                    </prop>
+                    <prop readOnly="True" type="string" name="profileName"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Creating&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2025-06-01" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/securitypolicies/{}" version="2025-06-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0vc2VjdXJpdHlQb2xpY2llcy97c2VjdXJpdHlQb2xpY3lOYW1lfQ==/V/MjAyNS0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.profileName" options="profile-name" required="True" idPart="name">
+          <help short="Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique within the resource group."/>
+          <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.securityPolicyName" options="security-policy-name name n" required="True" idPart="child_name_1">
+          <help short="Name of the security policy under the profile."/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="SecurityPolicies_Delete">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/securityPolicies/{securityPolicyName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="profileName" arg="$Path.profileName" required="True">
+                <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="securityPolicyName" arg="$Path.securityPolicyName" required="True"/>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200"/>
+          <response statusCode="202">
+            <header>
+              <item name="location"/>
+            </header>
+          </response>
+          <response statusCode="204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="create" version="2025-06-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/securitypolicies/{}" version="2025-06-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0vc2VjdXJpdHlQb2xpY2llcy97c2VjdXJpdHlQb2xpY3lOYW1lfQ==/V/MjAyNS0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.profileName" options="profile-name" required="True" idPart="name">
+          <help short="Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique within the resource group."/>
+          <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.securityPolicyName" options="security-policy-name name n" required="True" idPart="child_name_1">
+          <help short="Name of the security policy under the profile."/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Parameters">
+        <arg type="object" var="$securityPolicy.properties.parameters.WebApplicationFirewall" options="web-application-firewall" group="Parameters">
+          <arg type="array<object>" var="$securityPolicy.properties.parameters.WebApplicationFirewall.associations" options="associations" group="WebApplicationFirewall">
+            <help short="Waf associations"/>
+            <item type="object">
+              <arg type="array<object>" var="$securityPolicy.properties.parameters.WebApplicationFirewall.associations[].domains" options="domains">
+                <help short="List of domains."/>
+                <item type="object">
+                  <arg type="string" var="$securityPolicy.properties.parameters.WebApplicationFirewall.associations[].domains[].id" options="id">
+                    <help short="Resource ID."/>
+                  </arg>
+                </item>
+              </arg>
+              <arg type="array<string>" var="$securityPolicy.properties.parameters.WebApplicationFirewall.associations[].patternsToMatch" options="patterns-to-match">
+                <help short="List of paths"/>
+                <item type="string"/>
+              </arg>
+            </item>
+          </arg>
+          <arg type="string" var="$securityPolicy.properties.parameters.WebApplicationFirewall.wafPolicy.id" options="waf-policy" group="WafPolicy">
+            <help short="The ID of Front Door WAF policy."/>
+          </arg>
+        </arg>
+      </argGroup>
+      <operation operationId="SecurityPolicies_Create">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/securityPolicies/{securityPolicyName}">
+          <request method="put">
+            <path>
+              <param type="string" name="profileName" arg="$Path.profileName" required="True">
+                <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="securityPolicyName" arg="$Path.securityPolicyName" required="True"/>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="securityPolicy" required="True" clientFlatten="True">
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="object" name="parameters">
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item arg="$securityPolicy.properties.parameters.WebApplicationFirewall" value="&quot;WebApplicationFirewall&quot;"/>
+                        </enum>
+                      </prop>
+                      <discriminator property="type" value="WebApplicationFirewall">
+                        <prop type="array<object>" name="associations" arg="$securityPolicy.properties.parameters.WebApplicationFirewall.associations">
+                          <item type="object">
+                            <prop type="array<object>" name="domains" arg="$securityPolicy.properties.parameters.WebApplicationFirewall.associations[].domains">
+                              <item type="object">
+                                <prop type="string" name="id" arg="$securityPolicy.properties.parameters.WebApplicationFirewall.associations[].domains[].id"/>
+                              </item>
+                            </prop>
+                            <prop type="array<string>" name="patternsToMatch" arg="$securityPolicy.properties.parameters.WebApplicationFirewall.associations[].patternsToMatch">
+                              <item type="string"/>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="object" name="wafPolicy">
+                          <prop type="string" name="id" arg="$securityPolicy.properties.parameters.WebApplicationFirewall.wafPolicy.id"/>
+                        </prop>
+                      </discriminator>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="SecurityPolicy_read">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Cdn/profiles/{}/securityPolicies/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop readOnly="True" type="string" name="deploymentStatus">
+                      <enum>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;InProgress&quot;"/>
+                        <item value="&quot;NotStarted&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="parameters">
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;WebApplicationFirewall&quot;"/>
+                        </enum>
+                      </prop>
+                      <discriminator property="type" value="WebApplicationFirewall">
+                        <prop type="array<object>" name="associations">
+                          <item type="object">
+                            <prop type="array<object>" name="domains">
+                              <item type="object">
+                                <prop type="string" name="id"/>
+                                <prop readOnly="True" type="boolean" name="isActive"/>
+                              </item>
+                            </prop>
+                            <prop type="array<string>" name="patternsToMatch">
+                              <item type="string"/>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="object" name="wafPolicy">
+                          <prop type="string" name="id"/>
+                        </prop>
+                      </discriminator>
+                    </prop>
+                    <prop readOnly="True" type="string" name="profileName"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Creating&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="location"/>
+            </header>
+            <body>
+              <json var="$Instance">
+                <schema type="@SecurityPolicy_read"/>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2025-06-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/securitypolicies/{}" version="2025-06-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0vc2VjdXJpdHlQb2xpY2llcy97c2VjdXJpdHlQb2xpY3lOYW1lfQ==/V/MjAyNS0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.profileName" options="profile-name" required="True" idPart="name">
+          <help short="Name of the Azure Front Door Standard or Azure Front Door Premium profile which is unique within the resource group."/>
+          <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.securityPolicyName" options="security-policy-name name n" required="True" idPart="child_name_1">
+          <help short="Name of the security policy under the profile."/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Parameters">
+        <arg type="object" var="$securityPolicy.properties.parameters.WebApplicationFirewall" options="web-application-firewall" group="Parameters">
+          <arg nullable="True" type="array<object>" var="$securityPolicy.properties.parameters.WebApplicationFirewall.associations" options="associations" group="WebApplicationFirewall">
+            <help short="Waf associations"/>
+            <item nullable="True" type="object">
+              <arg nullable="True" type="array<object>" var="$securityPolicy.properties.parameters.WebApplicationFirewall.associations[].domains" options="domains">
+                <help short="List of domains."/>
+                <item nullable="True" type="object">
+                  <arg nullable="True" type="string" var="$securityPolicy.properties.parameters.WebApplicationFirewall.associations[].domains[].id" options="id">
+                    <help short="Resource ID."/>
+                  </arg>
+                </item>
+              </arg>
+              <arg nullable="True" type="array<string>" var="$securityPolicy.properties.parameters.WebApplicationFirewall.associations[].patternsToMatch" options="patterns-to-match">
+                <help short="List of paths"/>
+                <item nullable="True" type="string"/>
+              </arg>
+            </item>
+          </arg>
+          <arg nullable="True" type="string" var="$securityPolicy.properties.parameters.WebApplicationFirewall.wafPolicy.id" options="waf-policy" group="WebApplicationFirewall">
+            <help short="The ID of Front Door WAF policy."/>
+          </arg>
+        </arg>
+      </argGroup>
+      <operation operationId="SecurityPolicies_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/securityPolicies/{securityPolicyName}">
+          <request method="get">
+            <path>
+              <param type="string" name="profileName" arg="$Path.profileName" required="True">
+                <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="securityPolicyName" arg="$Path.securityPolicyName" required="True"/>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="SecurityPolicy_read">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Cdn/profiles/{}/securityPolicies/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop readOnly="True" type="string" name="deploymentStatus">
+                      <enum>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;InProgress&quot;"/>
+                        <item value="&quot;NotStarted&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="parameters">
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;WebApplicationFirewall&quot;"/>
+                        </enum>
+                      </prop>
+                      <discriminator property="type" value="WebApplicationFirewall">
+                        <prop type="array<object>" name="associations">
+                          <item type="object">
+                            <prop type="array<object>" name="domains">
+                              <item type="object">
+                                <prop type="string" name="id"/>
+                                <prop readOnly="True" type="boolean" name="isActive"/>
+                              </item>
+                            </prop>
+                            <prop type="array<string>" name="patternsToMatch">
+                              <item type="string"/>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="object" name="wafPolicy">
+                          <prop type="string" name="id"/>
+                        </prop>
+                      </discriminator>
+                    </prop>
+                    <prop readOnly="True" type="string" name="profileName"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Creating&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate ref="$Instance">
+          <json>
+            <schema type="object" name="securityPolicy" required="True" clientFlatten="True">
+              <prop type="object" name="properties" clientFlatten="True">
+                <prop type="object" name="parameters">
+                  <prop type="string" name="type" required="True">
+                    <enum>
+                      <item arg="$securityPolicy.properties.parameters.WebApplicationFirewall" value="&quot;WebApplicationFirewall&quot;"/>
+                    </enum>
+                  </prop>
+                  <discriminator property="type" value="WebApplicationFirewall">
+                    <prop type="array<object>" name="associations" arg="$securityPolicy.properties.parameters.WebApplicationFirewall.associations">
+                      <item type="object">
+                        <prop type="array<object>" name="domains" arg="$securityPolicy.properties.parameters.WebApplicationFirewall.associations[].domains">
+                          <item type="object">
+                            <prop type="string" name="id" arg="$securityPolicy.properties.parameters.WebApplicationFirewall.associations[].domains[].id"/>
+                          </item>
+                        </prop>
+                        <prop type="array<string>" name="patternsToMatch" arg="$securityPolicy.properties.parameters.WebApplicationFirewall.associations[].patternsToMatch">
+                          <item type="string"/>
+                        </prop>
+                      </item>
+                    </prop>
+                    <prop type="object" name="wafPolicy">
+                      <prop type="string" name="id" arg="$securityPolicy.properties.parameters.WebApplicationFirewall.wafPolicy.id"/>
+                    </prop>
+                  </discriminator>
+                </prop>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="SecurityPolicies_Create">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/securityPolicies/{securityPolicyName}">
+          <request method="put">
+            <path>
+              <param type="string" name="profileName" arg="$Path.profileName" required="True">
+                <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="securityPolicyName" arg="$Path.securityPolicyName" required="True"/>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="@SecurityPolicy_read"/>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="location"/>
+            </header>
+            <body>
+              <json var="$Instance">
+                <schema type="@SecurityPolicy_read"/>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

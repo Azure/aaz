@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.databox/locations/{}/availableskus" version="2025-02-01" swagger="mgmt-plane/databox/ResourceProviders/Microsoft.DataBox/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YUJveC9sb2NhdGlvbnMve2xvY2F0aW9ufS9hdmFpbGFibGVTa3Vz/V/MjAyNS0wMi0wMQ=="/>
+  <commandGroup name="databox">
+    <command name="available-skus" version="2025-02-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.databox/locations/{}/availableskus" version="2025-02-01" swagger="mgmt-plane/databox/ResourceProviders/Microsoft.DataBox/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YUJveC9sb2NhdGlvbnMve2xvY2F0aW9ufS9hdmFpbGFibGVTa3Vz/V/MjAyNS0wMi0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceLocation" var="$Path.location" options="location l" required="True" idPart="name"/>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="AvailableSkuRequest">
+        <arg type="string" var="$availableSkuRequest.country" options="country" required="True" group="AvailableSkuRequest">
+          <help short="ISO country code. Country for hardware shipment. For codes check: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements"/>
+        </arg>
+        <arg type="array<string>" var="$availableSkuRequest.skuNames" options="sku-names" group="AvailableSkuRequest">
+          <help short="Sku Names to filter for available skus"/>
+          <item type="string">
+            <enum>
+              <item name="DataBox" value="&quot;DataBox&quot;"/>
+              <item name="DataBoxCustomerDisk" value="&quot;DataBoxCustomerDisk&quot;"/>
+              <item name="DataBoxDisk" value="&quot;DataBoxDisk&quot;"/>
+              <item name="DataBoxHeavy" value="&quot;DataBoxHeavy&quot;"/>
+            </enum>
+          </item>
+        </arg>
+        <arg type="string" var="$availableSkuRequest.transferType" options="transfer-type" required="True" group="AvailableSkuRequest">
+          <help short="Type of the transfer."/>
+          <enum>
+            <item name="ExportFromAzure" value="&quot;ExportFromAzure&quot;"/>
+            <item name="ImportToAzure" value="&quot;ImportToAzure&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <operation operationId="Service_ListAvailableSkusByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBox/locations/{location}/availableSkus">
+          <request method="post">
+            <path>
+              <param type="string" name="location" arg="$Path.location" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-02-01&quot;"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="availableSkuRequest" required="True" clientFlatten="True">
+                  <prop type="string" name="country" arg="$availableSkuRequest.country" required="True"/>
+                  <prop type="string" name="location" arg="$Path.location" required="True"/>
+                  <prop type="array<string>" name="skuNames" arg="$availableSkuRequest.skuNames">
+                    <item type="string">
+                      <enum>
+                        <item value="&quot;DataBox&quot;"/>
+                        <item value="&quot;DataBoxCustomerDisk&quot;"/>
+                        <item value="&quot;DataBoxDisk&quot;"/>
+                        <item value="&quot;DataBoxHeavy&quot;"/>
+                      </enum>
+                    </item>
+                  </prop>
+                  <prop type="string" name="transferType" arg="$availableSkuRequest.transferType" required="True">
+                    <enum>
+                      <item value="&quot;ExportFromAzure&quot;"/>
+                      <item value="&quot;ImportToAzure&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop readOnly="True" type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="boolean" name="enabled"/>
+                      <prop readOnly="True" type="object" name="properties" clientFlatten="True">
+                        <prop readOnly="True" type="array<string>" name="apiVersions">
+                          <item type="string"/>
+                        </prop>
+                        <prop readOnly="True" type="object" name="capacity">
+                          <prop readOnly="True" type="string" name="individualSkuUsable"/>
+                          <prop readOnly="True" type="string" name="maximum"/>
+                          <prop readOnly="True" type="string" name="usable"/>
+                        </prop>
+                        <prop readOnly="True" type="array<object>" name="costs">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="meterId"/>
+                            <prop readOnly="True" type="string" name="meterType"/>
+                            <prop readOnly="True" type="float64" name="multiplier"/>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="array<string>" name="countriesWithinCommerceBoundary">
+                          <item type="string"/>
+                        </prop>
+                        <prop readOnly="True" type="array<object>" name="dataLocationToServiceLocationMap">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="dataLocation"/>
+                            <prop readOnly="True" type="string" name="serviceLocation"/>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="string" name="disabledReason">
+                          <enum>
+                            <item value="&quot;Country&quot;"/>
+                            <item value="&quot;Feature&quot;"/>
+                            <item value="&quot;NoSubscriptionInfo&quot;"/>
+                            <item value="&quot;None&quot;"/>
+                            <item value="&quot;OfferType&quot;"/>
+                            <item value="&quot;Region&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="disabledReasonMessage"/>
+                        <prop readOnly="True" type="string" name="requiredFeature"/>
+                      </prop>
+                      <prop readOnly="True" type="object" name="sku">
+                        <prop type="string" name="displayName"/>
+                        <prop type="string" name="family"/>
+                        <prop type="string" name="model">
+                          <enum>
+                            <item value="&quot;AzureDataBox120&quot;"/>
+                            <item value="&quot;AzureDataBox525&quot;"/>
+                            <item value="&quot;DataBox&quot;"/>
+                            <item value="&quot;DataBoxCustomerDisk&quot;"/>
+                            <item value="&quot;DataBoxDisk&quot;"/>
+                            <item value="&quot;DataBoxHeavy&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="name" required="True">
+                          <enum>
+                            <item value="&quot;DataBox&quot;"/>
+                            <item value="&quot;DataBoxCustomerDisk&quot;"/>
+                            <item value="&quot;DataBoxDisk&quot;"/>
+                            <item value="&quot;DataBoxHeavy&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

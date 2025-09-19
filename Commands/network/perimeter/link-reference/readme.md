@@ -1,14 +1,14 @@
 # [Group] _network perimeter link-reference_
 
-Manage network security perimeter link reference
+Manage Network Security Perimeter Link References.
 
 ## Commands
 
 - [delete](/Commands/network/perimeter/link-reference/_delete.md)
-: Delete an NSP LinkReference resource.
+: Delete a network security perimeter link reference.
 
 - [list](/Commands/network/perimeter/link-reference/_list.md)
-: List the NSP LinkReference resources in the specified network security perimeter.
+: List all network security perimeter link references.
 
 - [show](/Commands/network/perimeter/link-reference/_show.md)
-: Get the specified NSP linkReference resource.
+: Get a network security perimeter link reference.

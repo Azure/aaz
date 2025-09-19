@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networktaprules/{}/resync" version="2024-06-15-preview" swagger="mgmt-plane/managednetworkfabric/ResourceProviders/Microsoft.ManagedNetworkFabric/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlZE5ldHdvcmtGYWJyaWMvbmV0d29ya1RhcFJ1bGVzL3tuZXR3b3JrVGFwUnVsZU5hbWV9L3Jlc3luYw==/V/MjAyNC0wNi0xNS1wcmV2aWV3"/>
+  <commandGroup name="networkfabric taprule">
+    <command name="resync" version="2024-06-15-preview" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networktaprules/{}/resync" version="2024-06-15-preview" swagger="mgmt-plane/managednetworkfabric/ResourceProviders/Microsoft.ManagedNetworkFabric/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlZE5ldHdvcmtGYWJyaWMvbmV0d29ya1RhcFJ1bGVzL3tuZXR3b3JrVGFwUnVsZU5hbWV9L3Jlc3luYw==/V/MjAyNC0wNi0xNS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.networkTapRuleName" options="resource-name" required="True" group="" idPart="name">
+          <help short="Name of the Network Tap Rule."/>
+          <format pattern="^[a-zA-Z]{1}[a-zA-Z0-9-_]{2,127}$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="NetworkTapRules_Resync">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkTapRules/{networkTapRuleName}/resync">
+          <request method="post">
+            <path>
+              <param type="string" name="networkTapRuleName" arg="$Path.networkTapRuleName" required="True">
+                <format pattern="^[a-zA-Z]{1}[a-zA-Z0-9-_]{2,127}$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-06-15-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="configurationState">
+                    <enum>
+                      <item value="&quot;Accepted&quot;"/>
+                      <item value="&quot;DeferredControl&quot;"/>
+                      <item value="&quot;Deprovisioned&quot;"/>
+                      <item value="&quot;Deprovisioning&quot;"/>
+                      <item value="&quot;ErrorDeprovisioning&quot;"/>
+                      <item value="&quot;ErrorProvisioning&quot;"/>
+                      <item value="&quot;Failed&quot;"/>
+                      <item value="&quot;PendingCommit&quot;"/>
+                      <item value="&quot;Provisioned&quot;"/>
+                      <item value="&quot;Provisioning&quot;"/>
+                      <item value="&quot;Rejected&quot;"/>
+                      <item value="&quot;Succeeded&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="object" name="error" cls="ErrorDetail_read">
+                    <prop readOnly="True" type="array<object>" name="additionalInfo">
+                      <item type="object">
+                        <prop readOnly="True" type="object" name="info">
+                          <additionalProp readOnly="True">
+                            <item type="any"/>
+                          </additionalProp>
+                        </prop>
+                        <prop readOnly="True" type="string" name="type"/>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="string" name="code"/>
+                    <prop readOnly="True" type="array<@ErrorDetail_read>" name="details" identifiers="message target">
+                      <item type="@ErrorDetail_read"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="message"/>
+                    <prop readOnly="True" type="string" name="target"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
