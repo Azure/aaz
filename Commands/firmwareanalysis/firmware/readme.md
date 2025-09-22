@@ -39,3 +39,6 @@ Commands to perform operation on a particular firmware.
 
 - [summary](/Commands/firmwareanalysis/firmware/_summary.md)
 : Get an analysis result summary of a firmware by name.
+
+- [update](/Commands/firmwareanalysis/firmware/_update.md)
+: Update operation to create a firmware.

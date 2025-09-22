@@ -18,7 +18,7 @@
 : Manage Azure Alerts Management Service Resource.
 
 - [amlfs](/Commands/amlfs/readme.md)
-: This is an extension to Azure CLI to manage Amlfs resources.
+: Manage Azure Managed Lustre Filesystem
 
 - [aosm](/Commands/aosm/readme.md)
 : Manage Azure Operator Service Manager resources.
@@ -331,6 +331,9 @@
 
 - [restore-point](/Commands/restore-point/readme.md)
 : Manage restore point with res.
+
+- [search](/Commands/search/readme.md)
+: Manage Search
 
 - [security](/Commands/security/readme.md)
 : Manage your security posture with Microsoft Defender for Cloud.
