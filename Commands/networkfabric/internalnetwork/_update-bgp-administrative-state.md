@@ -14,3 +14,14 @@ Update BGP state for internalNetwork. Allowed only on edge devices.
     ```bash
         networkfabric internalnetwork update-bgp-administrative-state --resource-group example-rg --l3-isolation-domain-name example-l3isd --resource-name example-internalnetwork --neighbor-address 10.10.10.10 --administrative-state Enable
     ```
+
+### [2025-07-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9sM2lzb2xhdGlvbmRvbWFpbnMve30vaW50ZXJuYWxuZXR3b3Jrcy97fS91cGRhdGViZ3BhZG1pbmlzdHJhdGl2ZXN0YXRl/2025-07-15.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/l3isolationdomains/{}/internalnetworks/{}/updatebgpadministrativestate 2025-07-15 -->
+
+#### examples
+
+- Update bgp admin state of Internal Network
+    ```bash
+        networkfabric internalnetwork update-bgp-administrative-state --resource-group example-rg --l3-isolation-domain-name example-l3isd --resource-name example-internalnetwork --neighbor-address 10.10.10.10 --administrative-state Enable
+    ```

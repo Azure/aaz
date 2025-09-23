@@ -2,6 +2,11 @@
 
 Manage Neighbor Group Resource
 
+## Subgroups
+
+- [identity](/Commands/networkfabric/neighborgroup/identity/readme.md)
+: Manage Identity
+
 ## Commands
 
 - [create](/Commands/networkfabric/neighborgroup/_create.md)

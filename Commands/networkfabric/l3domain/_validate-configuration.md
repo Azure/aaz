@@ -18,3 +18,14 @@ Validates the configuration of the resources.
     ```bash
         networkfabric l3domain validate-configuration --resource-group example-rg --resource-name example-l3domain
     ```
+
+### [2025-07-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9sM2lzb2xhdGlvbmRvbWFpbnMve30vdmFsaWRhdGVjb25maWd1cmF0aW9u/2025-07-15.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/l3isolationdomains/{}/validateconfiguration 2025-07-15 -->
+
+#### examples
+
+- Run validate configuration on the L3 Isolation Domain
+    ```bash
+        networkfabric l3domain validate-configuration --resource-group example-rg --resource-name example-l3domain
+    ```

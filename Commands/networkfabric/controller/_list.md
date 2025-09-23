@@ -72,3 +72,20 @@ List all Network Fabric Controllers in the provided resource group or subscripti
     ```bash
         networkfabric controller list --subscription "<subscriptionId>"
     ```
+
+### [2025-07-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrZmFicmljY29udHJvbGxlcnM=/2025-07-15.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.managednetworkfabric/networkfabriccontrollers 2025-07-15 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkfabriccontrollers 2025-07-15 -->
+
+#### examples
+
+- List the Network Fabric Controllers for Resource group
+    ```bash
+        networkfabric controller list --resource-group "example-rg"
+    ```
+
+- List the Network Fabric Controllers for Subscription
+    ```bash
+        networkfabric controller list --subscription "<subscriptionId>"
+    ```

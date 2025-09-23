@@ -36,3 +36,14 @@ List all Network Device SKUs in the provided subscription.
     ```bash
         networkfabric devicesku list --subscription <subscriptionId>
     ```
+
+### [2025-07-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrZGV2aWNlc2t1cw==/2025-07-15.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.managednetworkfabric/networkdeviceskus 2025-07-15 -->
+
+#### examples
+
+- List the DeviceSKU for Subscription
+    ```bash
+        networkfabric devicesku list --subscription <subscriptionId>
+    ```
