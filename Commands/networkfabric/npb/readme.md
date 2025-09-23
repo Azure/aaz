@@ -2,6 +2,11 @@
 
 Manage Network Packet Broker Resource
 
+## Subgroups
+
+- [identity](/Commands/networkfabric/npb/identity/readme.md)
+: Manage Identity
+
 ## Commands
 
 - [create](/Commands/networkfabric/npb/_create.md)

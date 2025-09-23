@@ -2,6 +2,11 @@
 
 Manage L2 Isolation Domain Resource
 
+## Subgroups
+
+- [identity](/Commands/networkfabric/l2domain/identity/readme.md)
+: Manage Identity
+
 ## Commands
 
 - [commit-configuration](/Commands/networkfabric/l2domain/_commit-configuration.md)

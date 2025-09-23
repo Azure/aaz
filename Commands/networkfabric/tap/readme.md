@@ -2,6 +2,11 @@
 
 Manage Network Tap Resource
 
+## Subgroups
+
+- [identity](/Commands/networkfabric/tap/identity/readme.md)
+: Manage Identity
+
 ## Commands
 
 - [create](/Commands/networkfabric/tap/_create.md)
