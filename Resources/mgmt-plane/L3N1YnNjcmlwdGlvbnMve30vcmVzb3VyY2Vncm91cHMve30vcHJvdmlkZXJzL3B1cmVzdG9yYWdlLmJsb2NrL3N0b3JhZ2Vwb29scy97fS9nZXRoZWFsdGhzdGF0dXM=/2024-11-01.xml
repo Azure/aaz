@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/purestorage.block/storagepools/{}/gethealthstatus" version="2024-11-01" swagger="mgmt-plane/purestorage/ResourceProviders/PureStorage.Block/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9QdXJlU3RvcmFnZS5CbG9jay9zdG9yYWdlUG9vbHMve3N0b3JhZ2VQb29sTmFtZX0vZ2V0SGVhbHRoU3RhdHVz/V/MjAyNC0xMS0wMQ=="/>
+  <commandGroup name="pscloud pool">
+    <command name="get-health-status" version="2024-11-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/purestorage.block/storagepools/{}/gethealthstatus" version="2024-11-01" swagger="mgmt-plane/purestorage/ResourceProviders/PureStorage.Block/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9QdXJlU3RvcmFnZS5CbG9jay9zdG9yYWdlUG9vbHMve3N0b3JhZ2VQb29sTmFtZX0vZ2V0SGVhbHRoU3RhdHVz/V/MjAyNC0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.storagePoolName" options="storage-pool-name" required="True" idPart="name">
+          <help short="Name of the storage pool"/>
+          <format pattern="^[a-zA-Z0-9\-_]{1,127}$" maxLength="127" minLength="1"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="StoragePools_GetHealthStatus">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/PureStorage.Block/storagePools/{storagePoolName}/getHealthStatus">
+          <request method="post">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="storagePoolName" arg="$Path.storagePoolName" required="True">
+                <format pattern="^[a-zA-Z0-9\-_]{1,127}$" maxLength="127" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="alerts" required="True">
+                    <item type="object">
+                      <prop type="string" name="level" required="True">
+                        <enum>
+                          <item value="&quot;error&quot;"/>
+                          <item value="&quot;info&quot;"/>
+                          <item value="&quot;warning&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="message" required="True"/>
+                    </item>
+                  </prop>
+                  <prop type="object" name="health" required="True">
+                    <prop type="object" name="bandwidthUsage" required="True">
+                      <prop type="integer64" name="current" required="True"/>
+                      <prop type="integer64" name="max" required="True"/>
+                      <prop type="integer64" name="provisioned" required="True"/>
+                    </prop>
+                    <prop type="float64" name="dataReductionRatio" required="True"/>
+                    <prop type="integer64" name="estimatedMaxCapacity" required="True"/>
+                    <prop type="object" name="iopsUsage" required="True">
+                      <prop type="integer64" name="current" required="True"/>
+                      <prop type="integer64" name="max" required="True"/>
+                      <prop type="integer64" name="provisioned" required="True"/>
+                    </prop>
+                    <prop type="object" name="space" required="True">
+                      <prop type="integer64" name="shared" required="True"/>
+                      <prop type="integer64" name="snapshots" required="True"/>
+                      <prop type="integer64" name="totalUsed" required="True"/>
+                      <prop type="integer64" name="unique" required="True"/>
+                    </prop>
+                    <prop type="float64" name="usedCapacityPercentage" required="True"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
