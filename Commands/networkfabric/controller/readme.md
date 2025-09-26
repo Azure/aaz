@@ -2,6 +2,11 @@
 
 Manage Network Fabric Controller Resource
 
+## Subgroups
+
+- [identity](/Commands/networkfabric/controller/identity/readme.md)
+: Manage Identity
+
 ## Commands
 
 - [create](/Commands/networkfabric/controller/_create.md)

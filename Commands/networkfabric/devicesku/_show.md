@@ -22,3 +22,14 @@ Show details of the provided Network Device SKU resource.
     ```bash
         networkfabric devicesku show --resource-name example-deviceSku
     ```
+
+### [2025-07-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrZGV2aWNlc2t1cy97fQ==/2025-07-15.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.managednetworkfabric/networkdeviceskus/{} 2025-07-15 -->
+
+#### examples
+
+- Show the DeviceSKU for Subscription
+    ```bash
+        networkfabric devicesku show --resource-name example-deviceSku
+    ```
