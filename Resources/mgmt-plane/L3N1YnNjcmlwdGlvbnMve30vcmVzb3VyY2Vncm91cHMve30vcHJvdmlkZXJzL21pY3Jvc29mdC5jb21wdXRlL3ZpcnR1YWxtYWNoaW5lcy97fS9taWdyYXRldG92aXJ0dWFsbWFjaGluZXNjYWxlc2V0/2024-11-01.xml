@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/virtualmachines/{}/migratetovirtualmachinescaleset" version="2024-11-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS92aXJ0dWFsTWFjaGluZXMve3ZtTmFtZX0vbWlncmF0ZVRvVmlydHVhbE1hY2hpbmVTY2FsZVNldA==/V/MjAyNC0xMS0wMQ=="/>
+  <commandGroup name="vm">
+    <command name="migrate-to-vmss" version="2024-11-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/virtualmachines/{}/migratetovirtualmachinescaleset" version="2024-11-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS92aXJ0dWFsTWFjaGluZXMve3ZtTmFtZX0vbWlncmF0ZVRvVmlydHVhbE1hY2hpbmVTY2FsZVNldA==/V/MjAyNC0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vmName" options="vm-name" required="True" idPart="name">
+          <help short="The name of the virtual machine."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Parameters">
+        <arg type="integer32" var="$parameters.targetFaultDomain" options="target-fault-domain" group="Parameters">
+          <help short="The target compute fault domain of VM migration to Flexible Virtual Machine Scale Set."/>
+        </arg>
+        <arg type="string" var="$parameters.targetVMSize" options="target-vm-size" group="Parameters">
+          <help short="The target Virtual Machine size of VM migration to Flexible Virtual Machine Scale Set."/>
+        </arg>
+        <arg type="string" var="$parameters.targetZone" options="target-zone" group="Parameters">
+          <help short="The target zone of VM migration to Flexible Virtual Machine Scale Set."/>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualMachines_migrateToVMScaleSet">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/migrateToVirtualMachineScaleSet">
+          <request method="post">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+              <param type="string" name="vmName" arg="$Path.vmName" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="parameters" clientFlatten="True">
+                  <prop type="integer32" name="targetFaultDomain" arg="$parameters.targetFaultDomain"/>
+                  <prop type="string" name="targetVMSize" arg="$parameters.targetVMSize"/>
+                  <prop type="string" name="targetZone" arg="$parameters.targetZone"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>

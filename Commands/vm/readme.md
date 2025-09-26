@@ -66,6 +66,9 @@ Manage Linux or Windows virtual machines.
 - [list-vm-resize-options](/Commands/vm/_list-vm-resize-options.md)
 : List available resizing options for VMs.
 
+- [migrate-to-vmss](/Commands/vm/_migrate-to-vmss.md)
+: Migrate a virtual machine from availability set to Flexible Virtual Machine Scale Set.
+
 - [perform-maintenance](/Commands/vm/_perform-maintenance.md)
 : The operation to perform maintenance on a virtual machine.
 
