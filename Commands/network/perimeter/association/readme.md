@@ -1,20 +1,20 @@
 # [Group] _network perimeter association_
 
-Manage NSP Associations
+Manage Network Security Perimeter Associations.
 
 ## Commands
 
 - [create](/Commands/network/perimeter/association/_create.md)
-: Creates or updates a NSP resource association.
+: Create a network security perimeter association.
 
 - [delete](/Commands/network/perimeter/association/_delete.md)
-: Deletes an NSP association resource.
+: Delete a network security perimeter association.
 
 - [list](/Commands/network/perimeter/association/_list.md)
-: Lists the NSP resource associations.
+: List all network security perimeter associations.
 
 - [show](/Commands/network/perimeter/association/_show.md)
-: Gets the specified NSP association by name.
+: Get a network security perimeter association.
 
 - [update](/Commands/network/perimeter/association/_update.md)
-: Creates or updates a NSP resource association.
+: Create or update a network security perimeter association.

@@ -1,6 +1,6 @@
 # [Command] _elastic monitor open-ai-integration list_
 
-List OpenAI integration rule for a given monitor resource.
+List all OpenAI integration rules for a given Elastic monitor resource, helping you manage AI-driven observability and monitoring.
 
 ## Versions
 

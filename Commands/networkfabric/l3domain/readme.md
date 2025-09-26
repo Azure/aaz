@@ -7,6 +7,9 @@ Manage L3 Isolation Domain Resource
 - [external-network](/Commands/networkfabric/l3domain/external-network/readme.md)
 : TBD
 
+- [identity](/Commands/networkfabric/l3domain/identity/readme.md)
+: Manage Identity
+
 - [internal-network](/Commands/networkfabric/l3domain/internal-network/readme.md)
 : TBD
 

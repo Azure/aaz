@@ -1,6 +1,6 @@
 # [Command] _confluent organization create-user_
 
-Invite user to the organization
+Invite a new user to join the Confluent organization.
 
 ## Versions
 

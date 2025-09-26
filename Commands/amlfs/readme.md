@@ -1,6 +1,20 @@
 # [Group] _amlfs_
 
-Manage lustre file system
+Manage Azure Managed Lustre Filesystem
+
+## Subgroups
+
+- [aml-filesystem](/Commands/amlfs/aml-filesystem/readme.md)
+: Manage Aml Filesystem
+
+- [auto-export](/Commands/amlfs/auto-export/readme.md)
+: Manage Auto Export Job
+
+- [auto-import](/Commands/amlfs/auto-import/readme.md)
+: Manage Auto Import Job
+
+- [import](/Commands/amlfs/import/readme.md)
+: Manage Import Job
 
 ## Commands
 

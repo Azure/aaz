@@ -28,6 +28,9 @@ Manage Azure Network resources.
 - [dns](/Commands/network/dns/readme.md)
 : Manage DNS domains in Azure.
 
+- [dns-resolver-domain-list](/Commands/network/dns-resolver-domain-list/readme.md)
+: Manage Dns Resolver Domain List
+
 - [express-route](/Commands/network/express-route/readme.md)
 : Manage dedicated private network fiber connections to Azure.
 
@@ -53,7 +56,7 @@ Manage Azure Network resources.
 : Manage local gateways.
 
 - [manager](/Commands/network/manager/readme.md)
-: Manage network-manager with network.
+: Manage Network Manager
 
 - [nat](/Commands/network/nat/readme.md)
 : Manage NAT resources.
@@ -71,7 +74,7 @@ Manage Azure Network resources.
 : Manage point-to-site VPN gateway.
 
 - [perimeter](/Commands/network/perimeter/readme.md)
-: Manage Network Security Perimeters
+: Manage Network Security Perimeters.
 
 - [private-dns](/Commands/network/private-dns/readme.md)
 : Manage Private DNS domains in Azure.

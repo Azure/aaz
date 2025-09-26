@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.netapp/netappaccounts/{}/migratebackups" version="2025-01-01" swagger="mgmt-plane/netapp/ResourceProviders/Microsoft.NetApp/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0QXBwL25ldEFwcEFjY291bnRzL3thY2NvdW50TmFtZX0vbWlncmF0ZUJhY2t1cHM=/V/MjAyNS0wMS0wMQ=="/>
+  <commandGroup name="netappfiles account">
+    <command name="migrate-backup" version="2025-01-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.netapp/netappaccounts/{}/migratebackups" version="2025-01-01" swagger="mgmt-plane/netapp/ResourceProviders/Microsoft.NetApp/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0QXBwL25ldEFwcEFjY291bnRzL3thY2NvdW50TmFtZX0vbWlncmF0ZUJhY2t1cHM=/V/MjAyNS0wMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.accountName" options="account-name a" required="True" group="" idPart="name">
+          <help short="The name of the NetApp account"/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9\-_]{0,127}$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="ResourceId" var="$body.backupVaultId" options="backup-vault-id" required="True" group="Body">
+          <help short="The ResourceId of the Backup Vault"/>
+        </arg>
+      </argGroup>
+      <operation operationId="BackupsUnderAccount_MigrateBackups">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.NetApp/netAppAccounts/{accountName}/migrateBackups">
+          <request method="post">
+            <path>
+              <param type="string" name="accountName" arg="$Path.accountName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9\-_]{0,127}$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-01-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="ResourceId" name="backupVaultId" arg="$body.backupVaultId" required="True"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>

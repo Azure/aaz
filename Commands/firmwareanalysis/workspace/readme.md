@@ -2,6 +2,11 @@
 
 Commands to perform operation on a particular workspace of the firmware.
 
+## Subgroups
+
+- [usage-metric](/Commands/firmwareanalysis/workspace/usage-metric/readme.md)
+: Manage Usage Metric
+
 ## Commands
 
 - [create](/Commands/firmwareanalysis/workspace/_create.md)
@@ -18,3 +23,6 @@ Commands to perform operation on a particular workspace of the firmware.
 
 - [show](/Commands/firmwareanalysis/workspace/_show.md)
 : Get firmware analysis workspace.
+
+- [update](/Commands/firmwareanalysis/workspace/_update.md)
+: Update operation to create or update a firmware analysis workspace.

@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack local-rule list_
 
-List LocalRulesResource resources by LocalRulestacks
+List all LocalRulesResource resources linked with the Palo Alto Networds local rulestack.
 
 ## Versions
 

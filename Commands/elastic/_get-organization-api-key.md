@@ -1,6 +1,6 @@
 # [Command] _elastic get-organization-api-key_
 
-Fetch User API Key from internal database, if it was generated and stored while creating the Elasticsearch Organization.
+Fetch the User API Key from the internal database, if it was generated and stored during the creation of the Elasticsearch Organization.
 
 ## Versions
 

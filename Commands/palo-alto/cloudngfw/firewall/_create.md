@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw firewall create_
 
-Create a FirewallResource
+Create a new Palo Alto Networks Cloud NGFW on Azure.
 
 ## Versions
 

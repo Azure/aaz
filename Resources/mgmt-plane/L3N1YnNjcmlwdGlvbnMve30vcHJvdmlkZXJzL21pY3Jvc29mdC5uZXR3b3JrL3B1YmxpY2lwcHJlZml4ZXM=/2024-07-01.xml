@@ -1,0 +1,345 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.network/publicipprefixes" version="2024-07-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk5ldHdvcmsvcHVibGljSVBQcmVmaXhlcw==/V/MjAyNC0wNy0wMQ=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/publicipprefixes" version="2024-07-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9wdWJsaWNJUFByZWZpeGVz/V/MjAyNC0wNy0wMQ=="/>
+  <commandGroup name="network public-ip prefix">
+    <command name="list" version="2024-07-01" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.network/publicipprefixes" version="2024-07-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk5ldHdvcmsvcHVibGljSVBQcmVmaXhlcw==/V/MjAyNC0wNy0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/publicipprefixes" version="2024-07-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9wdWJsaWNJUFByZWZpeGVz/V/MjAyNC0wNy0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <condition var="$Condition_PublicIPPrefixes_ListAll">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <condition var="$Condition_PublicIPPrefixes_List">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_PublicIPPrefixes_ListAll" operationId="PublicIPPrefixes_ListAll">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Network/publicIPPrefixes">
+          <request method="get">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-07-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="string" name="etag"/>
+                      <prop type="object" name="extendedLocation">
+                        <prop type="string" name="name"/>
+                        <prop type="string" name="type">
+                          <enum>
+                            <item value="&quot;EdgeZone&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/publicIPPrefixes/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="@SubResource_read" name="customIPPrefix"/>
+                        <prop readOnly="True" type="string" name="ipPrefix"/>
+                        <prop type="array<object>" name="ipTags">
+                          <item type="object">
+                            <prop type="string" name="ipTagType"/>
+                            <prop type="string" name="tag"/>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="object" name="loadBalancerFrontendIpConfiguration" cls="SubResource_read">
+                          <prop type="string" name="id"/>
+                        </prop>
+                        <prop type="object" name="natGateway">
+                          <prop readOnly="True" type="string" name="etag"/>
+                          <prop type="ResourceId" name="id">
+                            <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/natGateways/{}"/>
+                          </prop>
+                          <prop type="ResourceLocation" name="location"/>
+                          <prop readOnly="True" type="string" name="name"/>
+                          <prop type="object" name="properties" clientFlatten="True">
+                            <prop type="integer32" name="idleTimeoutInMinutes"/>
+                            <prop readOnly="True" type="string" name="provisioningState">
+                              <enum>
+                                <item value="&quot;Deleting&quot;"/>
+                                <item value="&quot;Failed&quot;"/>
+                                <item value="&quot;Succeeded&quot;"/>
+                                <item value="&quot;Updating&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="array<@SubResource_read>" name="publicIpAddresses">
+                              <item type="@SubResource_read"/>
+                            </prop>
+                            <prop type="array<@SubResource_read>" name="publicIpAddressesV6">
+                              <item type="@SubResource_read"/>
+                            </prop>
+                            <prop type="array<@SubResource_read>" name="publicIpPrefixes">
+                              <item type="@SubResource_read"/>
+                            </prop>
+                            <prop type="array<@SubResource_read>" name="publicIpPrefixesV6">
+                              <item type="@SubResource_read"/>
+                            </prop>
+                            <prop readOnly="True" type="string" name="resourceGuid"/>
+                            <prop type="@SubResource_read" name="sourceVirtualNetwork"/>
+                            <prop readOnly="True" type="array<@SubResource_read>" name="subnets">
+                              <item type="@SubResource_read"/>
+                            </prop>
+                          </prop>
+                          <prop type="object" name="sku">
+                            <prop type="string" name="name">
+                              <enum>
+                                <item value="&quot;Standard&quot;"/>
+                                <item value="&quot;StandardV2&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop type="object" name="tags">
+                            <additionalProp>
+                              <item type="string"/>
+                            </additionalProp>
+                          </prop>
+                          <prop readOnly="True" type="string" name="type"/>
+                          <prop type="array<string>" name="zones">
+                            <item type="string"/>
+                          </prop>
+                        </prop>
+                        <prop type="integer32" name="prefixLength"/>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="publicIPAddressVersion">
+                          <enum>
+                            <item value="&quot;IPv4&quot;"/>
+                            <item value="&quot;IPv6&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="array<object>" name="publicIPAddresses">
+                          <item type="object">
+                            <prop type="string" name="id"/>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="string" name="resourceGuid"/>
+                      </prop>
+                      <prop type="object" name="sku">
+                        <prop type="string" name="name">
+                          <enum>
+                            <item value="&quot;Standard&quot;"/>
+                            <item value="&quot;StandardV2&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="tier">
+                          <enum>
+                            <item value="&quot;Global&quot;"/>
+                            <item value="&quot;Regional&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                      <prop type="array<string>" name="zones">
+                        <item type="string"/>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_PublicIPPrefixes_List" operationId="PublicIPPrefixes_List">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/publicIPPrefixes">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-07-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="string" name="etag"/>
+                      <prop type="object" name="extendedLocation">
+                        <prop type="string" name="name"/>
+                        <prop type="string" name="type">
+                          <enum>
+                            <item value="&quot;EdgeZone&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/publicIPPrefixes/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="@SubResource_read" name="customIPPrefix"/>
+                        <prop readOnly="True" type="string" name="ipPrefix"/>
+                        <prop type="array<object>" name="ipTags">
+                          <item type="object">
+                            <prop type="string" name="ipTagType"/>
+                            <prop type="string" name="tag"/>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="@SubResource_read" name="loadBalancerFrontendIpConfiguration"/>
+                        <prop type="object" name="natGateway">
+                          <prop readOnly="True" type="string" name="etag"/>
+                          <prop type="ResourceId" name="id">
+                            <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/natGateways/{}"/>
+                          </prop>
+                          <prop type="ResourceLocation" name="location"/>
+                          <prop readOnly="True" type="string" name="name"/>
+                          <prop type="object" name="properties" clientFlatten="True">
+                            <prop type="integer32" name="idleTimeoutInMinutes"/>
+                            <prop readOnly="True" type="string" name="provisioningState">
+                              <enum>
+                                <item value="&quot;Deleting&quot;"/>
+                                <item value="&quot;Failed&quot;"/>
+                                <item value="&quot;Succeeded&quot;"/>
+                                <item value="&quot;Updating&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="array<@SubResource_read>" name="publicIpAddresses">
+                              <item type="@SubResource_read"/>
+                            </prop>
+                            <prop type="array<@SubResource_read>" name="publicIpAddressesV6">
+                              <item type="@SubResource_read"/>
+                            </prop>
+                            <prop type="array<@SubResource_read>" name="publicIpPrefixes">
+                              <item type="@SubResource_read"/>
+                            </prop>
+                            <prop type="array<@SubResource_read>" name="publicIpPrefixesV6">
+                              <item type="@SubResource_read"/>
+                            </prop>
+                            <prop readOnly="True" type="string" name="resourceGuid"/>
+                            <prop type="@SubResource_read" name="sourceVirtualNetwork"/>
+                            <prop readOnly="True" type="array<@SubResource_read>" name="subnets">
+                              <item type="@SubResource_read"/>
+                            </prop>
+                          </prop>
+                          <prop type="object" name="sku">
+                            <prop type="string" name="name">
+                              <enum>
+                                <item value="&quot;Standard&quot;"/>
+                                <item value="&quot;StandardV2&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop type="object" name="tags">
+                            <additionalProp>
+                              <item type="string"/>
+                            </additionalProp>
+                          </prop>
+                          <prop readOnly="True" type="string" name="type"/>
+                          <prop type="array<string>" name="zones">
+                            <item type="string"/>
+                          </prop>
+                        </prop>
+                        <prop type="integer32" name="prefixLength"/>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="publicIPAddressVersion">
+                          <enum>
+                            <item value="&quot;IPv4&quot;"/>
+                            <item value="&quot;IPv6&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="array<object>" name="publicIPAddresses">
+                          <item type="object">
+                            <prop type="string" name="id"/>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="string" name="resourceGuid"/>
+                      </prop>
+                      <prop type="object" name="sku">
+                        <prop type="string" name="name">
+                          <enum>
+                            <item value="&quot;Standard&quot;"/>
+                            <item value="&quot;StandardV2&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="tier">
+                          <enum>
+                            <item value="&quot;Global&quot;"/>
+                            <item value="&quot;Regional&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                      <prop type="array<string>" name="zones">
+                        <item type="string"/>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

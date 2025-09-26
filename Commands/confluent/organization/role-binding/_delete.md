@@ -1,6 +1,6 @@
 # [Command] _confluent organization role-binding delete_
 
-Delete role bindings
+Delete role bindings within a Confluent organization.
 
 ## Versions
 

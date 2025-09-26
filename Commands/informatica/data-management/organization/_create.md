@@ -1,6 +1,6 @@
 # [Command] _informatica data-management organization create_
 
-Create a InformaticaOrganizationResource
+Create a new organization resource in Informatica via Azure.
 
 ## Versions
 

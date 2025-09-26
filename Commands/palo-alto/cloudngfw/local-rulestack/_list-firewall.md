@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack list-firewall_
 
-List of Firewalls associated with Rulestack
+List of Firewalls associated with for Palo Alto Networks local rulestack.
 
 ## Versions
 

@@ -3,23 +3,13 @@
   <resource id="/subscriptions/{}/providers/microsoft.confluent/organizations" version="2024-02-13" swagger="mgmt-plane/confluent/ResourceProviders/Microsoft.Confluent/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNvbmZsdWVudC9vcmdhbml6YXRpb25z/V/MjAyNC0wMi0xMw=="/>
   <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.confluent/organizations" version="2024-02-13" swagger="mgmt-plane/confluent/ResourceProviders/Microsoft.Confluent/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29uZmx1ZW50L29yZ2FuaXphdGlvbnM=/V/MjAyNC0wMi0xMw=="/>
   <commandGroup name="confluent organization">
-    <command name="list" version="2024-02-13">
+    <command name="list" version="2024-02-13" confirmation="">
       <resource id="/subscriptions/{}/providers/microsoft.confluent/organizations" version="2024-02-13" swagger="mgmt-plane/confluent/ResourceProviders/Microsoft.Confluent/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNvbmZsdWVudC9vcmdhbml6YXRpb25z/V/MjAyNC0wMi0xMw=="/>
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.confluent/organizations" version="2024-02-13" swagger="mgmt-plane/confluent/ResourceProviders/Microsoft.Confluent/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29uZmx1ZW50L29yZ2FuaXphdGlvbnM=/V/MjAyNC0wMi0xMw=="/>
       <argGroup name="">
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group" group="" idPart="resource_group">
-          <help short="Resource Group Name"/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
-          <help short="Subscription id"/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <condition var="$Condition_Organization_ListByResourceGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.resourceGroupName"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_Organization_ListBySubscription">
         <operator type="and">
           <operator type="hasValue" arg="$Path.subscriptionId"/>
@@ -28,11 +18,16 @@
           </operator>
         </operator>
       </condition>
-      <operation when="$Condition_Organization_ListByResourceGroup" operationId="Organization_ListByResourceGroup">
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations">
+      <condition var="$Condition_Organization_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_Organization_ListBySubscription" operationId="Organization_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Confluent/organizations">
           <request method="get">
             <path>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -96,7 +91,7 @@
                           </prop>
                         </prop>
                         <prop readOnly="True" type="string" name="organizationId"/>
-                        <prop type="string" name="provisioningState">
+                        <prop readOnly="True" type="string" name="provisioningState">
                           <enum>
                             <item value="&quot;Accepted&quot;"/>
                             <item value="&quot;Canceled&quot;"/>
@@ -167,10 +162,11 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_Organization_ListBySubscription" operationId="Organization_ListBySubscription">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Confluent/organizations">
+      <operation when="$Condition_Organization_ListByResourceGroup" operationId="Organization_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Confluent/organizations">
           <request method="get">
             <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
@@ -234,7 +230,7 @@
                           </prop>
                         </prop>
                         <prop readOnly="True" type="string" name="organizationId"/>
-                        <prop type="string" name="provisioningState">
+                        <prop readOnly="True" type="string" name="provisioningState">
                           <enum>
                             <item value="&quot;Accepted&quot;"/>
                             <item value="&quot;Canceled&quot;"/>

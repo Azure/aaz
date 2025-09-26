@@ -2,6 +2,11 @@
 
 Manage Network Device Resource
 
+## Subgroups
+
+- [identity](/Commands/networkfabric/device/identity/readme.md)
+: Manage Identity
+
 ## Commands
 
 - [create](/Commands/networkfabric/device/_create.md)

@@ -1,0 +1,474 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.databoxedge/databoxedgedevices" version="2021-02-01-preview" swagger="mgmt-plane/databoxedge/ResourceProviders/Microsoft.DataBoxEdge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkRhdGFCb3hFZGdlL2RhdGFCb3hFZGdlRGV2aWNlcw==/V/MjAyMS0wMi0wMS1wcmV2aWV3"/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.databoxedge/databoxedgedevices" version="2021-02-01-preview" swagger="mgmt-plane/databoxedge/ResourceProviders/Microsoft.DataBoxEdge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YUJveEVkZ2UvZGF0YUJveEVkZ2VEZXZpY2Vz/V/MjAyMS0wMi0wMS1wcmV2aWV3"/>
+  <commandGroup name="databoxedge device">
+    <command name="list" version="2021-02-01-preview">
+      <resource id="/subscriptions/{}/providers/microsoft.databoxedge/databoxedgedevices" version="2021-02-01-preview" swagger="mgmt-plane/databoxedge/ResourceProviders/Microsoft.DataBoxEdge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkRhdGFCb3hFZGdlL2RhdGFCb3hFZGdlRGV2aWNlcw==/V/MjAyMS0wMi0wMS1wcmV2aWV3"/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.databoxedge/databoxedgedevices" version="2021-02-01-preview" swagger="mgmt-plane/databoxedge/ResourceProviders/Microsoft.DataBoxEdge/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRGF0YUJveEVkZ2UvZGF0YUJveEVkZ2VEZXZpY2Vz/V/MjAyMS0wMi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Query.expand" options="expand" group="">
+          <help short="Specify $expand=details to populate additional fields related to the resource or Specify $skipToken=token to populate the next page in the list."/>
+        </arg>
+      </argGroup>
+      <condition var="$Condition_Devices_ListBySubscription">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <condition var="$Condition_Devices_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_Devices_ListBySubscription" operationId="Devices_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices">
+          <request method="get">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="$expand" arg="$Query.expand"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2021-02-01-preview&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="nextLink"/>
+                  <prop readOnly="True" type="array<object>" name="value">
+                    <item type="object">
+                      <prop type="string" name="etag"/>
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{}"/>
+                      </prop>
+                      <prop type="object" name="identity">
+                        <prop readOnly="True" type="string" name="principalId"/>
+                        <prop readOnly="True" type="string" name="tenantId"/>
+                        <prop type="string" name="type">
+                          <enum>
+                            <item value="&quot;None&quot;"/>
+                            <item value="&quot;SystemAssigned&quot;"/>
+                            <item value="&quot;UserAssigned&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="kind">
+                        <enum>
+                          <item value="&quot;AzureDataBoxGateway&quot;"/>
+                          <item value="&quot;AzureModularDataCentre&quot;"/>
+                          <item value="&quot;AzureStackEdge&quot;"/>
+                          <item value="&quot;AzureStackHub&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop readOnly="True" type="array<string>" name="configuredRoleTypes">
+                          <item type="string">
+                            <enum>
+                              <item value="&quot;ASA&quot;"/>
+                              <item value="&quot;CloudEdgeManagement&quot;"/>
+                              <item value="&quot;Cognitive&quot;"/>
+                              <item value="&quot;Functions&quot;"/>
+                              <item value="&quot;IOT&quot;"/>
+                              <item value="&quot;Kubernetes&quot;"/>
+                              <item value="&quot;MEC&quot;"/>
+                            </enum>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="string" name="culture"/>
+                        <prop type="string" name="dataBoxEdgeDeviceStatus">
+                          <enum>
+                            <item value="&quot;Disconnected&quot;"/>
+                            <item value="&quot;Maintenance&quot;"/>
+                            <item value="&quot;NeedsAttention&quot;"/>
+                            <item value="&quot;Offline&quot;"/>
+                            <item value="&quot;Online&quot;"/>
+                            <item value="&quot;PartiallyDisconnected&quot;"/>
+                            <item value="&quot;ReadyToSetup&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="description"/>
+                        <prop readOnly="True" type="string" name="deviceHcsVersion"/>
+                        <prop readOnly="True" type="integer64" name="deviceLocalCapacity"/>
+                        <prop readOnly="True" type="string" name="deviceModel"/>
+                        <prop readOnly="True" type="string" name="deviceSoftwareVersion"/>
+                        <prop readOnly="True" type="string" name="deviceType">
+                          <enum>
+                            <item value="&quot;DataBoxEdgeDevice&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="object" name="edgeProfile">
+                          <prop type="object" name="subscription">
+                            <prop type="string" name="id"/>
+                            <prop type="object" name="properties" clientFlatten="True">
+                              <prop type="string" name="locationPlacementId"/>
+                              <prop type="string" name="quotaId"/>
+                              <prop type="array<object>" name="registeredFeatures">
+                                <item type="object">
+                                  <prop type="string" name="name"/>
+                                  <prop type="string" name="state"/>
+                                </item>
+                              </prop>
+                              <prop type="string" name="serializedDetails"/>
+                              <prop type="string" name="tenantId"/>
+                            </prop>
+                            <prop type="string" name="registrationDate"/>
+                            <prop type="string" name="registrationId"/>
+                            <prop type="string" name="state">
+                              <enum>
+                                <item value="&quot;Deleted&quot;"/>
+                                <item value="&quot;Registered&quot;"/>
+                                <item value="&quot;Suspended&quot;"/>
+                                <item value="&quot;Unregistered&quot;"/>
+                                <item value="&quot;Warned&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="subscriptionId"/>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="friendlyName"/>
+                        <prop type="string" name="modelDescription"/>
+                        <prop readOnly="True" type="integer32" name="nodeCount"/>
+                        <prop readOnly="True" type="object" name="resourceMoveDetails">
+                          <prop type="string" name="operationInProgress">
+                            <enum>
+                              <item value="&quot;None&quot;"/>
+                              <item value="&quot;ResourceMoveFailed&quot;"/>
+                              <item value="&quot;ResourceMoveInProgress&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="dateTime" name="operationInProgressLockTimeoutInUTC">
+                            <format protocol="iso"/>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="string" name="serialNumber"/>
+                        <prop readOnly="True" type="string" name="timeZone"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="sku">
+                        <prop type="string" name="name">
+                          <enum>
+                            <item value="&quot;EP2_128_1T4_Mx1_W&quot;"/>
+                            <item value="&quot;EP2_256_2T4_W&quot;"/>
+                            <item value="&quot;EP2_64_1VPU_W&quot;"/>
+                            <item value="&quot;Edge&quot;"/>
+                            <item value="&quot;EdgeMR_Mini&quot;"/>
+                            <item value="&quot;EdgePR_Base&quot;"/>
+                            <item value="&quot;EdgePR_Base_UPS&quot;"/>
+                            <item value="&quot;EdgeP_Base&quot;"/>
+                            <item value="&quot;EdgeP_High&quot;"/>
+                            <item value="&quot;GPU&quot;"/>
+                            <item value="&quot;Gateway&quot;"/>
+                            <item value="&quot;Management&quot;"/>
+                            <item value="&quot;RCA_Large&quot;"/>
+                            <item value="&quot;RCA_Small&quot;"/>
+                            <item value="&quot;RDC&quot;"/>
+                            <item value="&quot;TCA_Large&quot;"/>
+                            <item value="&quot;TCA_Small&quot;"/>
+                            <item value="&quot;TDC&quot;"/>
+                            <item value="&quot;TEA_1Node&quot;"/>
+                            <item value="&quot;TEA_1Node_Heater&quot;"/>
+                            <item value="&quot;TEA_1Node_UPS&quot;"/>
+                            <item value="&quot;TEA_1Node_UPS_Heater&quot;"/>
+                            <item value="&quot;TEA_4Node_Heater&quot;"/>
+                            <item value="&quot;TEA_4Node_UPS_Heater&quot;"/>
+                            <item value="&quot;TMA&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="tier">
+                          <enum>
+                            <item value="&quot;Standard&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_Devices_ListByResourceGroup" operationId="Devices_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="$expand" arg="$Query.expand"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2021-02-01-preview&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="nextLink"/>
+                  <prop readOnly="True" type="array<object>" name="value">
+                    <item type="object">
+                      <prop type="string" name="etag"/>
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.DataBoxEdge/dataBoxEdgeDevices/{}"/>
+                      </prop>
+                      <prop type="object" name="identity">
+                        <prop readOnly="True" type="string" name="principalId"/>
+                        <prop readOnly="True" type="string" name="tenantId"/>
+                        <prop type="string" name="type">
+                          <enum>
+                            <item value="&quot;None&quot;"/>
+                            <item value="&quot;SystemAssigned&quot;"/>
+                            <item value="&quot;UserAssigned&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="kind">
+                        <enum>
+                          <item value="&quot;AzureDataBoxGateway&quot;"/>
+                          <item value="&quot;AzureModularDataCentre&quot;"/>
+                          <item value="&quot;AzureStackEdge&quot;"/>
+                          <item value="&quot;AzureStackHub&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop readOnly="True" type="array<string>" name="configuredRoleTypes">
+                          <item type="string">
+                            <enum>
+                              <item value="&quot;ASA&quot;"/>
+                              <item value="&quot;CloudEdgeManagement&quot;"/>
+                              <item value="&quot;Cognitive&quot;"/>
+                              <item value="&quot;Functions&quot;"/>
+                              <item value="&quot;IOT&quot;"/>
+                              <item value="&quot;Kubernetes&quot;"/>
+                              <item value="&quot;MEC&quot;"/>
+                            </enum>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="string" name="culture"/>
+                        <prop type="string" name="dataBoxEdgeDeviceStatus">
+                          <enum>
+                            <item value="&quot;Disconnected&quot;"/>
+                            <item value="&quot;Maintenance&quot;"/>
+                            <item value="&quot;NeedsAttention&quot;"/>
+                            <item value="&quot;Offline&quot;"/>
+                            <item value="&quot;Online&quot;"/>
+                            <item value="&quot;PartiallyDisconnected&quot;"/>
+                            <item value="&quot;ReadyToSetup&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="description"/>
+                        <prop readOnly="True" type="string" name="deviceHcsVersion"/>
+                        <prop readOnly="True" type="integer64" name="deviceLocalCapacity"/>
+                        <prop readOnly="True" type="string" name="deviceModel"/>
+                        <prop readOnly="True" type="string" name="deviceSoftwareVersion"/>
+                        <prop readOnly="True" type="string" name="deviceType">
+                          <enum>
+                            <item value="&quot;DataBoxEdgeDevice&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="object" name="edgeProfile">
+                          <prop type="object" name="subscription">
+                            <prop type="string" name="id"/>
+                            <prop type="object" name="properties" clientFlatten="True">
+                              <prop type="string" name="locationPlacementId"/>
+                              <prop type="string" name="quotaId"/>
+                              <prop type="array<object>" name="registeredFeatures">
+                                <item type="object">
+                                  <prop type="string" name="name"/>
+                                  <prop type="string" name="state"/>
+                                </item>
+                              </prop>
+                              <prop type="string" name="serializedDetails"/>
+                              <prop type="string" name="tenantId"/>
+                            </prop>
+                            <prop type="string" name="registrationDate"/>
+                            <prop type="string" name="registrationId"/>
+                            <prop type="string" name="state">
+                              <enum>
+                                <item value="&quot;Deleted&quot;"/>
+                                <item value="&quot;Registered&quot;"/>
+                                <item value="&quot;Suspended&quot;"/>
+                                <item value="&quot;Unregistered&quot;"/>
+                                <item value="&quot;Warned&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="subscriptionId"/>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="friendlyName"/>
+                        <prop type="string" name="modelDescription"/>
+                        <prop readOnly="True" type="integer32" name="nodeCount"/>
+                        <prop readOnly="True" type="object" name="resourceMoveDetails">
+                          <prop type="string" name="operationInProgress">
+                            <enum>
+                              <item value="&quot;None&quot;"/>
+                              <item value="&quot;ResourceMoveFailed&quot;"/>
+                              <item value="&quot;ResourceMoveInProgress&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="dateTime" name="operationInProgressLockTimeoutInUTC">
+                            <format protocol="iso"/>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="string" name="serialNumber"/>
+                        <prop readOnly="True" type="string" name="timeZone"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="sku">
+                        <prop type="string" name="name">
+                          <enum>
+                            <item value="&quot;EP2_128_1T4_Mx1_W&quot;"/>
+                            <item value="&quot;EP2_256_2T4_W&quot;"/>
+                            <item value="&quot;EP2_64_1VPU_W&quot;"/>
+                            <item value="&quot;Edge&quot;"/>
+                            <item value="&quot;EdgeMR_Mini&quot;"/>
+                            <item value="&quot;EdgePR_Base&quot;"/>
+                            <item value="&quot;EdgePR_Base_UPS&quot;"/>
+                            <item value="&quot;EdgeP_Base&quot;"/>
+                            <item value="&quot;EdgeP_High&quot;"/>
+                            <item value="&quot;GPU&quot;"/>
+                            <item value="&quot;Gateway&quot;"/>
+                            <item value="&quot;Management&quot;"/>
+                            <item value="&quot;RCA_Large&quot;"/>
+                            <item value="&quot;RCA_Small&quot;"/>
+                            <item value="&quot;RDC&quot;"/>
+                            <item value="&quot;TCA_Large&quot;"/>
+                            <item value="&quot;TCA_Small&quot;"/>
+                            <item value="&quot;TDC&quot;"/>
+                            <item value="&quot;TEA_1Node&quot;"/>
+                            <item value="&quot;TEA_1Node_Heater&quot;"/>
+                            <item value="&quot;TEA_1Node_UPS&quot;"/>
+                            <item value="&quot;TEA_1Node_UPS_Heater&quot;"/>
+                            <item value="&quot;TEA_4Node_Heater&quot;"/>
+                            <item value="&quot;TEA_4Node_UPS_Heater&quot;"/>
+                            <item value="&quot;TMA&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="tier">
+                          <enum>
+                            <item value="&quot;Standard&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

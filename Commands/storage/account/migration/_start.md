@@ -14,3 +14,14 @@ Account Migration request can be triggered for a storage account to change its r
     ```bash
         storage account migration start --account-name "storage_account_name" -g "resource_group_name" --sku Standard_ZRS --name default --no-wait
     ```
+
+### [2024-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zdG9yYWdlL3N0b3JhZ2VhY2NvdW50cy97fS9zdGFydGFjY291bnRtaWdyYXRpb24=/2024-01-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.storage/storageaccounts/{}/startaccountmigration 2024-01-01 -->
+
+#### examples
+
+- migration start
+    ```bash
+        storage account migration start --account-name "storage_account_name" -g "resource_group_name" --sku Standard_ZRS --name default --no-wait
+    ```

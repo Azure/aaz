@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor list-app-service_
 
-List the app service resources currently being monitored by the NewRelic resource.
+Lists the app service resources currently being monitored by the New Relic resource, helping you understand which app services are under monitoring.
 
 ## Versions
 

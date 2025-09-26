@@ -11,3 +11,21 @@ Commits the configuration of the given resources.
 ### [2024-06-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9yb3V0ZXBvbGljaWVzL3t9L2NvbW1pdGNvbmZpZ3VyYXRpb24=/2024-06-15-preview.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/routepolicies/{}/commitconfiguration 2024-06-15-preview -->
+
+#### examples
+
+- Commit configuration on the Route Policy
+    ```bash
+        networkfabric routepolicy commit-configuration --resource-group example-rg --resource-name example-routePolicy
+    ```
+
+### [2025-07-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9yb3V0ZXBvbGljaWVzL3t9L2NvbW1pdGNvbmZpZ3VyYXRpb24=/2025-07-15.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/routepolicies/{}/commitconfiguration 2025-07-15 -->
+
+#### examples
+
+- Commit configuration on the Route Policy
+    ```bash
+        networkfabric routepolicy commit-configuration --resource-group example-rg --resource-name example-routePolicy
+    ```

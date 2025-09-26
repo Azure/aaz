@@ -71,3 +71,20 @@ List all Ip Communities in the provided resource group or subscription
     ```bash
         networkfabric ipcommunity list --subscription "<subscriptionId>"
     ```
+
+### [2025-07-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9pcGNvbW11bml0aWVz/2025-07-15.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.managednetworkfabric/ipcommunities 2025-07-15 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/ipcommunities 2025-07-15 -->
+
+#### examples
+
+- List the Ip Communities for Resource Group
+    ```bash
+        networkfabric ipcommunity list --resource-group "example-rg"
+    ```
+
+- List the Ip Communities for Subscription
+    ```bash
+        networkfabric ipcommunity list --subscription "<subscriptionId>"
+    ```

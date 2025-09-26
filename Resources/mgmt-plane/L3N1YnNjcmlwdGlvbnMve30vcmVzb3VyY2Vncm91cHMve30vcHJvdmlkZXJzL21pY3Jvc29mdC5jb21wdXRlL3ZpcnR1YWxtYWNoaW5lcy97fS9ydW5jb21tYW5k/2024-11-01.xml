@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/virtualmachines/{}/runcommand" version="2024-11-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS92aXJ0dWFsTWFjaGluZXMve3ZtTmFtZX0vcnVuQ29tbWFuZA==/V/MjAyNC0xMS0wMQ=="/>
+  <commandGroup name="vm run-command">
+    <command name="invoke" version="2024-11-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/virtualmachines/{}/runcommand" version="2024-11-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS92aXJ0dWFsTWFjaGluZXMve3ZtTmFtZX0vcnVuQ29tbWFuZA==/V/MjAyNC0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vmName" options="vm-name" required="True" idPart="name">
+          <help short="The name of the virtual machine."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Parameters">
+        <arg type="string" var="$parameters.commandId" options="command-id" required="True" group="Parameters">
+          <help short="The run command id."/>
+        </arg>
+        <arg type="array<object>" var="$parameters.parameters" options="parameters" group="Parameters">
+          <help short="The run command parameters."/>
+          <item type="object">
+            <arg type="string" var="$parameters.parameters[].name" options="name" required="True">
+              <help short="The run command parameter name."/>
+            </arg>
+            <arg type="string" var="$parameters.parameters[].value" options="value" required="True">
+              <help short="The run command parameter value."/>
+            </arg>
+          </item>
+        </arg>
+        <arg type="array<string>" var="$parameters.script" options="script" group="Parameters">
+          <help short="Optional. The script to be executed.  When this value is given, the given script will override the default script of the command."/>
+          <item type="string"/>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualMachines_RunCommand">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachines/{vmName}/runCommand">
+          <request method="post">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+              <param type="string" name="vmName" arg="$Path.vmName" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="parameters" required="True" clientFlatten="True">
+                  <prop type="string" name="commandId" arg="$parameters.commandId" required="True"/>
+                  <prop type="array<object>" name="parameters" arg="$parameters.parameters" identifiers="name">
+                    <item type="object">
+                      <prop type="string" name="name" arg="$parameters.parameters[].name" required="True"/>
+                      <prop type="string" name="value" arg="$parameters.parameters[].value" required="True"/>
+                    </item>
+                  </prop>
+                  <prop type="array<string>" name="script" arg="$parameters.script">
+                    <item type="string"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop type="string" name="code"/>
+                      <prop type="string" name="displayStatus"/>
+                      <prop type="string" name="level">
+                        <enum>
+                          <item value="&quot;Error&quot;"/>
+                          <item value="&quot;Info&quot;"/>
+                          <item value="&quot;Warning&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="message"/>
+                      <prop type="dateTime" name="time">
+                        <format protocol="iso"/>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

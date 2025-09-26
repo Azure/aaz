@@ -1,6 +1,6 @@
 # [Command] _dynatrace get-marketplace-saas-resource-detail_
 
-Get Marketplace SaaS resource details of a tenant under a specific subscription
+Get Marketplace SaaS resource details for a given tenant under a subscription.
 
 ## Versions
 

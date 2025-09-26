@@ -47,3 +47,14 @@ List all Internal Networks in the provided resource group
     ```bash
         networkfabric internalnetwork list --resource-group "example-rg" --l3domain "example-l3domain"
     ```
+
+### [2025-07-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9sM2lzb2xhdGlvbmRvbWFpbnMve30vaW50ZXJuYWxuZXR3b3Jrcw==/2025-07-15.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/l3isolationdomains/{}/internalnetworks 2025-07-15 -->
+
+#### examples
+
+- List the Internal Networks for Resource Group
+    ```bash
+        networkfabric internalnetwork list --resource-group "example-rg" --l3domain "example-l3domain"
+    ```
