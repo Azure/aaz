@@ -34,4 +34,4 @@ To provide redundancy to an application, it is recommended to group two or more 
 : Update an Azure Availability Set.
 
 - [validate-migration-to-vmss](/Commands/vm/availability-set/_validate-migration-to-vmss.md)
-: Validates that the Virtual Machines in the Availability Set can be migrated to the provided Virtual Machine Scale Set.
+: Validate that the Virtual Machines in the Availability Set can be migrated to the provided Virtual Machine Scale Set.
