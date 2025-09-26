@@ -12,3 +12,6 @@ Manage Azure Cloud Storage resources.
 
 - [share-rm](/Commands/storage/share-rm/readme.md)
 : Manage Azure file shares using the Microsoft.Storage resource provider.
+
+- [sku](/Commands/storage/sku/readme.md)
+: Manage Sku
