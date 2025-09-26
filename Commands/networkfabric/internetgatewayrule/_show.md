@@ -36,3 +36,14 @@ Show details of the provided Internet Gateway Rule resource
     ```bash
         networkfabric internetgatewayrule show --resource-group "example-rg" --resource-name "example-internetgatewayrule"
     ```
+
+### [2025-07-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9pbnRlcm5ldGdhdGV3YXlydWxlcy97fQ==/2025-07-15.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/internetgatewayrules/{} 2025-07-15 -->
+
+#### examples
+
+- Show the Internet Gateway Rule
+    ```bash
+        networkfabric internetgatewayrule show --resource-group "example-rg" --resource-name "example-internetgatewayrule"
+    ```

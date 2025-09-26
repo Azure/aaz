@@ -7,6 +7,12 @@ Manage Azure Network Fabric Management Service API
 - [acl](/Commands/networkfabric/acl/readme.md)
 : Manage Access Control List Resource
 
+- [bootstrapdevice](/Commands/networkfabric/bootstrapdevice/readme.md)
+: Manage Network Bootstrap Device
+
+- [bootstrapinterface](/Commands/networkfabric/bootstrapinterface/readme.md)
+: Manage Network Bootstrap Interface
+
 - [controller](/Commands/networkfabric/controller/readme.md)
 : Manage Network Fabric Controller Resource
 
@@ -52,8 +58,17 @@ Manage Azure Network Fabric Management Service API
 - [l3domain](/Commands/networkfabric/l3domain/readme.md)
 : Manage L3 Isolation Domain Resource
 
+- [neighbor-group](/Commands/networkfabric/neighbor-group/readme.md)
+: Manage Neighbor Group
+
 - [neighborgroup](/Commands/networkfabric/neighborgroup/readme.md)
 : Manage Neighbor Group Resource
+
+- [network-device](/Commands/networkfabric/network-device/readme.md)
+: Manage Network Device
+
+- [network-fabric](/Commands/networkfabric/network-fabric/readme.md)
+: Manage Network Fabric
 
 - [networkmonitor](/Commands/networkfabric/networkmonitor/readme.md)
 : Manage Network Monitor Resource
