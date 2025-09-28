@@ -16,6 +16,9 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 - [rolling-upgrade](/Commands/vmss/rolling-upgrade/readme.md)
 : Manage rolling upgrades.
 
+- [run-command](/Commands/vmss/run-command/readme.md)
+: Manage Run Command
+
 ## Commands
 
 - [create](/Commands/vmss/_create.md)
