@@ -24,6 +24,12 @@ Manage Network Device Resource
 - [refresh-configuration](/Commands/networkfabric/device/_refresh-configuration.md)
 : Refreshes the configuration the Network Device.
 
+- [resync-certificate](/Commands/networkfabric/device/_resync-certificate.md)
+: Updates the Network Device to use the latest certificates. Does not generate new certificates. Allows network devices missed during a previous certificate rotation to be brought back into sync.
+
+- [resync-password](/Commands/networkfabric/device/_resync-password.md)
+: Updates the Network Device to use the latest passwords. Does not generate new passwords. Allows network devices missed during a previous password rotation to be brought back into sync.
+
 - [run-ro](/Commands/networkfabric/device/_run-ro.md)
 : Run the RO Command on the Network Device.
 
