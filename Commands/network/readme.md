@@ -13,6 +13,9 @@ Manage Azure Network resources.
 - [asg](/Commands/network/asg/readme.md)
 : Manage application security groups (ASGs).
 
+- [azure-firewall](/Commands/network/azure-firewall/readme.md)
+: Manage Azure Firewall
+
 - [bastion](/Commands/network/bastion/readme.md)
 : Manage Azure Bastion host machines.
 
