@@ -55,3 +55,9 @@ Create an Azure Firewall.
     ```bash
         network firewall create -g MyResourceGroup -n MyFirewall --sku AZFW_Hub --tier Basic --vhub MyVHub --public-ip-count 2
     ```
+
+- Create Azure Firewall With AutoscaleConfiguration
+    ```bash
+        network firewall create -g MyResourceGroup -n MyFirewall --min-capacity 4
+        network firewall create -g MyResourceGroup -n MyFirewall --min-capacity 10 --max-capacity 10
+    ```
