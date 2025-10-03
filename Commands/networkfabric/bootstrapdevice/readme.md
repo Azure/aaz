@@ -1,6 +1,6 @@
 # [Group] _networkfabric bootstrapdevice_
 
-Manage Network Bootstrap Device
+Manage Network Bootstrap Device Resource
 
 ## Subgroups
 

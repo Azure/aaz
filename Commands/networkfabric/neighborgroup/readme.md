@@ -18,6 +18,9 @@ Manage Neighbor Group Resource
 - [list](/Commands/networkfabric/neighborgroup/_list.md)
 : List all Neighbor Groups in the provided resource group or subscription
 
+- [resync](/Commands/networkfabric/neighborgroup/_resync.md)
+: Resync the Neighbor Group after a configuration change.
+
 - [show](/Commands/networkfabric/neighborgroup/_show.md)
 : Show details of the provided Neighbor Group resource
 

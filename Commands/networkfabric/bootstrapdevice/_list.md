@@ -8,3 +8,15 @@ List all the Network Bootstrap Device resources in a given subscription.
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.managednetworkfabric/networkbootstrapdevices 2025-07-15 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkbootstrapdevices 2025-07-15 -->
+
+#### examples
+
+- List the Bootstrap Device for Subscription
+    ```bash
+        networkfabric bootstrapdevice list --subscription <subscriptionId>
+    ```
+
+- List the Bootstrap Device for Resource Group
+    ```bash
+        networkfabric bootstrapdevice list -resource-group example-rg
+    ```

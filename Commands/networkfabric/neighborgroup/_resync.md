@@ -1,4 +1,4 @@
-# [Command] _networkfabric neighbor-group resync_
+# [Command] _networkfabric neighborgroup resync_
 
 Resync the Neighbor Group after a configuration change.
 
@@ -7,3 +7,10 @@ Resync the Neighbor Group after a configuration change.
 ### [2025-07-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZWlnaGJvcmdyb3Vwcy97fS9yZXN5bmM=/2025-07-15.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/neighborgroups/{}/resync 2025-07-15 -->
+
+#### examples
+
+- Resync the Neighbor Group resource
+    ```bash
+        networkfabric neighborgroup resync --resource-group example-rg --resource-name example-neighborgroup
+    ```

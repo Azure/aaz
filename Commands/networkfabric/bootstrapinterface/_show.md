@@ -7,3 +7,10 @@ Get the Network Bootstrap Interface resource details.
 ### [2025-07-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrYm9vdHN0cmFwZGV2aWNlcy97fS9uZXR3b3JrYm9vdHN0cmFwaW50ZXJmYWNlcy97fQ==/2025-07-15.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkbootstrapdevices/{}/networkbootstrapinterfaces/{} 2025-07-15 -->
+
+#### examples
+
+- Show the Bootstrap Interface resource
+    ```bash
+        networkfabric bootstrapinterface show --resource-group example-rg --network-bootstrap-device-name example-device --resource-name example-interface
+    ```
