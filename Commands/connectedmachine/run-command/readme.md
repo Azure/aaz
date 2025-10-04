@@ -17,4 +17,4 @@ Manage run commands on an Azure Arc-Enabled Server.
 : Get a run command.
 
 - [update](/Commands/connectedmachine/run-command/_update.md)
-: Update a run command.
+: Update operation to create or update a run command.

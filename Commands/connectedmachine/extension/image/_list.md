@@ -1,6 +1,6 @@
 # [Command] _connectedmachine extension image list_
 
-List all Extension versions based on location, publisher, extensionType.
+List all Extension versions based on location, publisher, extensionType
 
 ## Versions
 
@@ -46,4 +46,26 @@ List all Extension versions based on location, publisher, extensionType.
 - Sample command for extension image list
     ```bash
         connectedmachine extension image list --publisher microsoft.azure.monitor --extension-type azuremonitorlinuxagent --location eastus
+    ```
+
+### [2024-11-10-preview](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuaHlicmlkY29tcHV0ZS9sb2NhdGlvbnMve30vcHVibGlzaGVycy97fS9leHRlbnNpb250eXBlcy97fS92ZXJzaW9ucw==/2024-11-10-preview.xml) **Stable**
+
+<!-- mgmt-plane /providers/microsoft.hybridcompute/locations/{}/publishers/{}/extensiontypes/{}/versions 2024-11-10-preview -->
+
+#### examples
+
+- GET a list of extension metadata
+    ```bash
+        connectedmachine extension image list --location EastUS --publisher microsoft.azure.monitor --extension-type azuremonitorlinuxagent
+    ```
+
+### [2025-02-19-preview](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuaHlicmlkY29tcHV0ZS9sb2NhdGlvbnMve30vcHVibGlzaGVycy97fS9leHRlbnNpb250eXBlcy97fS92ZXJzaW9ucw==/2025-02-19-preview.xml) **Stable**
+
+<!-- mgmt-plane /providers/microsoft.hybridcompute/locations/{}/publishers/{}/extensiontypes/{}/versions 2025-02-19-preview -->
+
+#### examples
+
+- GET a list of extension metadata
+    ```bash
+        connectedmachine extension image show --publisher microsoft.azure.monitor --extension-type azuremonitorlinuxagent --location eastus
     ```

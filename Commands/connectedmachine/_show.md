@@ -47,3 +47,14 @@ Get information about the model view or the instance view of an Azure Arc-Enable
     ```bash
         connectedmachine show --name myMachine --resource-group myResourceGroup
     ```
+
+### [2024-11-10-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5oeWJyaWRjb21wdXRlL21hY2hpbmVzL3t9/2024-11-10-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridcompute/machines/{} 2024-11-10-preview -->
+
+#### examples
+
+- Sample command for show
+    ```bash
+        connectedmachine show --name myMachine --resource-group myResourceGroup
+    ```

@@ -22,4 +22,4 @@ Manage private link scope of an Azure Arc-Enabled Server.
 : Get an Azure Arc PrivateLinkScope.
 
 - [update](/Commands/connectedmachine/private-link-scope/_update.md)
-: Update an Azure Arc PrivateLinkScope. Note: You cannot specify a different value for InstrumentationKey nor AppId in the Put operation.
+: Update an existing PrivateLinkScope's tags. To update other fields use the CreateOrUpdate method.

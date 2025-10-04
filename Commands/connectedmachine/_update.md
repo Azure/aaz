@@ -1,6 +1,6 @@
 # [Command] _connectedmachine update_
 
-Update an Azure Arc-Enabled Server. Please note some properties can be set only during machine creation.
+Update operation to update a hybrid machine.
 
 ## Versions
 
@@ -44,6 +44,17 @@ Update an Azure Arc-Enabled Server. Please note some properties can be set only 
 #### examples
 
 - Sample command for update
+    ```bash
+        connectedmachine update --name myMachine --resource-group myResourceGroup --location eastus2euap
+    ```
+
+### [2024-11-10-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5oeWJyaWRjb21wdXRlL21hY2hpbmVzL3t9/2024-11-10-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridcompute/machines/{} 2024-11-10-preview -->
+
+#### examples
+
+- sample command for update
     ```bash
         connectedmachine update --name myMachine --resource-group myResourceGroup --location eastus2euap
     ```

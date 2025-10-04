@@ -43,13 +43,13 @@ Manage Azure Arc-Enabled Server.
 : Install patches on an Azure Arc-Enabled Server.
 
 - [list](/Commands/connectedmachine/_list.md)
-: List all Azure Arc-Enabled Servers in the specified resource group.
+: List all the hybrid machines in the specified subscription or resource group.
 
 - [show](/Commands/connectedmachine/_show.md)
 : Get information about the model view or the instance view of an Azure Arc-Enabled Server.
 
 - [update](/Commands/connectedmachine/_update.md)
-: Update an Azure Arc-Enabled Server. Please note some properties can be set only during machine creation.
+: Update operation to update a hybrid machine.
 
 - [upgrade-extension](/Commands/connectedmachine/_upgrade-extension.md)
 : Upgrade Machine Extensions.

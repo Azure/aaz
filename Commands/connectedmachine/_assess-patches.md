@@ -47,3 +47,14 @@ Assess patches on an Azure Arc-Enabled Server.
     ```bash
         connectedmachine assess-patches --resource-group MyResourceGroup --name MyMachine
     ```
+
+### [2024-11-10-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5oeWJyaWRjb21wdXRlL21hY2hpbmVzL3t9L2Fzc2Vzc3BhdGNoZXM=/2024-11-10-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridcompute/machines/{}/assesspatches 2024-11-10-preview -->
+
+#### examples
+
+- Sample command for assess-patches
+    ```bash
+        connectedmachine assess-patches --resource-group MyResourceGroup --name MyMachine
+    ```

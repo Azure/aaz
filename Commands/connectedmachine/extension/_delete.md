@@ -1,6 +1,6 @@
 # [Command] _connectedmachine extension delete_
 
-Delete an extension.
+Delete operation to delete the extension.
 
 ## Versions
 
@@ -46,4 +46,26 @@ Delete an extension.
 - Sample command for extension delete
     ```bash
         connectedmachine extension delete --name myName --machine-name myMachine --resource-group myResourceGroup
+    ```
+
+### [2024-09-10-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5oeWJyaWRjb21wdXRlL21hY2hpbmVzL3t9L2V4dGVuc2lvbnMve30=/2024-09-10-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridcompute/machines/{}/extensions/{} 2024-09-10-preview -->
+
+#### examples
+
+- Sample command for extension delete
+    ```bash
+        connectedmachine extension delete --name myName --machine-name myMachine --resource-group myResourceGroup
+    ```
+
+### [2024-11-10-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5oeWJyaWRjb21wdXRlL21hY2hpbmVzL3t9L2V4dGVuc2lvbnMve30=/2024-11-10-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridcompute/machines/{}/extensions/{} 2024-11-10-preview -->
+
+#### examples
+
+- sample command for extension delete
+    ```bash
+        connectedmachine extension delete --resource-group myResourceGroup --machine-name myMachine --extension-name MMA
     ```
