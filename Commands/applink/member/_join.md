@@ -10,7 +10,12 @@ Join a kubernetes cluster to an AppLink
 
 #### examples
 
-- Add an AKS cluster to an AppLink
+- Add an AKS cluster to an AppLink on FullyManaged mode
     ```bash
-        applink member join --resource-group test_rg --applink-name applink-test-01 --member-name member-01 --cluster-type AKS --member-resource-id /subscriptions/bc7e0da9-5e4c-4a91-9252-9658837006cf/resourcegroups/applink-rg/providers/Microsoft.ContainerService/managedClusters/applink-member1 --upgrade-mode FullyManaged --release-channel Stable --managed-identity /subscriptions/11809CA1-E126-4017-945E-AA795CD5C5A9/resourceGroups/test_rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/test-identity --tags "{key2913:test_tag}" --member-location westus2
+        applink member join --resource-group test_rg --applink-name applink-test-01 --member-name member-01 --cluster-type AKS --member-resource-id /subscriptions/bc7e0da9-5e4c-4a91-9252-9658837006cf/resourcegroups/applink-rg/providers/Microsoft.ContainerService/managedClusters/applink-member1 --upgrade-mode FullyManaged --release-channel Stable --member-location westus2
+    ```
+
+- Add an AKS cluster to an AppLink on FullyManaged mode
+    ```bash
+        applink member join --resource-group test_rg --applink-name applink-test-01 --member-name member-01 --cluster-type AKS --member-resource-id /subscriptions/bc7e0da9-5e4c-4a91-9252-9658837006cf/resourcegroups/applink-rg/providers/Microsoft.ContainerService/managedClusters/applink-member1 --upgrade-mode SelfManaged --version 1.27 --member-location westus2
     ```
