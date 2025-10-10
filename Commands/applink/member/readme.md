@@ -22,4 +22,4 @@ Manage App Link Member
 : Get a member of an AppLink resource
 
 - [update](/Commands/applink/member/_update.md)
-: Update a AppLinkMember
+: Update an AppLink member resource

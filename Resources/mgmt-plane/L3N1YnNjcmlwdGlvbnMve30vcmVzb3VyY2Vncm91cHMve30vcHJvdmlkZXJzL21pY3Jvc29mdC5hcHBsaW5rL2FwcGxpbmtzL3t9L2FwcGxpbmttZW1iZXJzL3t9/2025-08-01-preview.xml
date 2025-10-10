@@ -13,12 +13,8 @@
           <help short="The name of the AppLink"/>
           <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-          <help short="Name of resource group"/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
-          <help short="Name or ID of subscription"/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <operation operationId="AppLinkMembers_Get">
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppLink/appLinks/{appLinkName}/appLinkMembers/{appLinkMemberName}">
@@ -174,12 +170,8 @@
           <help short="The name of the AppLink"/>
           <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-          <help short="Name of resource group"/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
-          <help short="Name or ID of subscription"/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <operation operationId="AppLinkMembers_Delete">
         <longRunning finalStateVia="location"/>
@@ -233,12 +225,8 @@
           <help short="The name of the AppLink"/>
           <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-          <help short="Name of resource group"/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
-          <help short="Name or ID of subscription"/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="FullyManagedUpgradeProfile">
         <arg type="string" var="$resource.properties.fullyManagedUpgradeProfile.releaseChannel" options="release-channel" group="FullyManagedUpgradeProfile">
@@ -524,7 +512,7 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
-    <command name="update" version="2025-08-01-preview">
+    <command name="update" version="2025-08-01-preview" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.applink/applinks/{}/applinkmembers/{}" version="2025-08-01-preview" swagger="mgmt-plane/applink/ResourceProviders/Microsoft.AppLink/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXBwTGluay9hcHBMaW5rcy97YXBwTGlua05hbWV9L2FwcExpbmtNZW1iZXJzL3thcHBMaW5rTWVtYmVyTmFtZX0=/V/MjAyNS0wOC0wMS1wcmV2aWV3"/>
       <argGroup name="">
         <arg type="string" var="$Path.appLinkMemberName" options="member-name" required="True" group="" idPart="child_name_1">
@@ -535,15 +523,11 @@
           <help short="The name of the AppLink"/>
           <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" group="" idPart="resource_group">
-          <help short="Name of resource group"/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" group="" idPart="subscription">
-          <help short="Name or ID of subscription"/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="FullyManagedUpgradeProfile">
-        <arg type="string" var="$resource.properties.fullyManagedUpgradeProfile.releaseChannel" options="release-channel" group="FullyManagedUpgradeProfile">
+        <arg type="string" var="$properties.properties.fullyManagedUpgradeProfile.releaseChannel" options="release-channel" group="FullyManagedUpgradeProfile">
           <help short="Release channel"/>
           <enum>
             <item name="Rapid" value="&quot;Rapid&quot;"/>
@@ -552,18 +536,24 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="string" var="$resource.properties.mode" options="mode" hide="True" group="Properties">
+        <arg type="object" var="$properties.properties.metadata" options="metadata" hide="True" group="Properties">
+          <help short="AppLink Member Metadata"/>
+          <additionalProp>
+            <item type="any"/>
+          </additionalProp>
+        </arg>
+        <arg type="string" var="$properties.properties.mode" options="mode" hide="True" group="Properties">
           <help short="Upgrade mode"/>
           <enum>
             <item name="FullyManaged" value="&quot;FullyManaged&quot;"/>
             <item name="SelfManaged" value="&quot;SelfManaged&quot;"/>
           </enum>
         </arg>
-        <arg nullable="True" type="object" var="$resource.properties.observabilitySettings" options="observability-settings" hide="True" group="Properties">
+        <arg type="object" var="$properties.properties.observabilitySettings" options="observability-settings" hide="True" group="Properties">
           <help short="Observability settings"/>
-          <arg nullable="True" type="object" var="$resource.properties.observabilitySettings.logs" options="logs">
+          <arg type="object" var="$properties.properties.observabilitySettings.logs" options="logs">
             <help short="Logs settings"/>
-            <arg type="string" var="$resource.properties.observabilitySettings.logs.state" options="state">
+            <arg type="string" var="$properties.properties.observabilitySettings.logs.state" options="state">
               <help short="Logs state"/>
               <enum>
                 <item name="Disabled" value="&quot;Disabled&quot;"/>
@@ -571,12 +561,12 @@
               </enum>
             </arg>
           </arg>
-          <arg nullable="True" type="string" var="$resource.properties.observabilitySettings.managedIdentity" options="managed-identity">
+          <arg type="string" var="$properties.properties.observabilitySettings.managedIdentity" options="managed-identity">
             <help short="Managed identity"/>
           </arg>
-          <arg nullable="True" type="object" var="$resource.properties.observabilitySettings.metrics" options="metrics">
+          <arg type="object" var="$properties.properties.observabilitySettings.metrics" options="metrics">
             <help short="Metrics settings"/>
-            <arg type="string" var="$resource.properties.observabilitySettings.metrics.state" options="state">
+            <arg type="string" var="$properties.properties.observabilitySettings.metrics.state" options="state">
               <help short="Metrics state"/>
               <enum>
                 <item name="Disabled" value="&quot;Disabled&quot;"/>
@@ -584,9 +574,9 @@
               </enum>
             </arg>
           </arg>
-          <arg nullable="True" type="object" var="$resource.properties.observabilitySettings.traces" options="traces">
+          <arg type="object" var="$properties.properties.observabilitySettings.traces" options="traces">
             <help short="Traces settings"/>
-            <arg type="string" var="$resource.properties.observabilitySettings.traces.state" options="state">
+            <arg type="string" var="$properties.properties.observabilitySettings.traces.state" options="state">
               <help short="Traces state"/>
               <enum>
                 <item name="Disabled" value="&quot;Disabled&quot;"/>
@@ -595,24 +585,22 @@
             </arg>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$resource.properties.selfManagedUpgradeProfile" options="self-managed-upgrade-profile" hide="True" group="Properties">
-          <help short="Self managed upgrade profile"/>
-          <arg type="string" var="$resource.properties.selfManagedUpgradeProfile.version" options="version">
-            <help short="Istio version"/>
-          </arg>
-        </arg>
-      </argGroup>
-      <argGroup name="Resource">
-        <arg nullable="True" type="object" var="$resource.tags" options="tags" group="Resource">
+        <arg type="object" var="$properties.tags" options="tags" group="Properties">
           <help short="Resource tags."/>
           <additionalProp>
-            <item nullable="True" type="string"/>
+            <item type="string"/>
           </additionalProp>
         </arg>
       </argGroup>
-      <operation operationId="AppLinkMembers_Get">
+      <argGroup name="SelfManagedUpgradeProfile">
+        <arg type="string" var="$properties.properties.selfManagedUpgradeProfile.version" options="version" hide="True" group="SelfManagedUpgradeProfile">
+          <help short="Istio version"/>
+        </arg>
+      </argGroup>
+      <operation operationId="AppLinkMembers_Update">
+        <longRunning finalStateVia="location"/>
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppLink/appLinks/{appLinkName}/appLinkMembers/{appLinkMemberName}">
-          <request method="get">
+          <request method="patch">
             <path>
               <param type="string" name="appLinkMemberName" arg="$Path.appLinkMemberName" required="True">
                 <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
@@ -631,11 +619,73 @@
                 <format minLength="1"/>
               </const>
             </query>
+            <body>
+              <json>
+                <schema type="object" name="properties" required="True" clientFlatten="True">
+                  <prop type="object" name="properties">
+                    <prop type="object" name="fullyManagedUpgradeProfile">
+                      <prop type="string" name="releaseChannel" arg="$properties.properties.fullyManagedUpgradeProfile.releaseChannel">
+                        <enum>
+                          <item value="&quot;Rapid&quot;"/>
+                          <item value="&quot;Stable&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="metadata" arg="$properties.properties.metadata">
+                      <additionalProp>
+                        <item type="any"/>
+                      </additionalProp>
+                    </prop>
+                    <prop type="string" name="mode" arg="$properties.properties.mode">
+                      <enum>
+                        <item value="&quot;FullyManaged&quot;"/>
+                        <item value="&quot;SelfManaged&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="observabilitySettings" arg="$properties.properties.observabilitySettings">
+                      <prop type="object" name="logs" arg="$properties.properties.observabilitySettings.logs">
+                        <prop type="string" name="state" arg="$properties.properties.observabilitySettings.logs.state">
+                          <enum>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="managedIdentity" arg="$properties.properties.observabilitySettings.managedIdentity"/>
+                      <prop type="object" name="metrics" arg="$properties.properties.observabilitySettings.metrics">
+                        <prop type="string" name="state" arg="$properties.properties.observabilitySettings.metrics.state">
+                          <enum>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="traces" arg="$properties.properties.observabilitySettings.traces">
+                        <prop type="string" name="state" arg="$properties.properties.observabilitySettings.traces.state">
+                          <enum>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="selfManagedUpgradeProfile">
+                      <prop type="string" name="version" arg="$properties.properties.selfManagedUpgradeProfile.version"/>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags" arg="$properties.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
           </request>
           <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="object" cls="AppLinkMember_read">
+                <schema type="object">
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.AppLink/appLinks/{}/appLinkMembers/{}"/>
                   </prop>
@@ -742,106 +792,11 @@
               </json>
             </body>
           </response>
-          <response isError="True">
-            <body>
-              <json>
-                <schema type="@MgmtErrorFormat"/>
-              </json>
-            </body>
-          </response>
-        </http>
-      </operation>
-      <operation>
-        <instanceUpdate ref="$Instance">
-          <json>
-            <schema type="object" name="resource" required="True" clientFlatten="True">
-              <prop type="object" name="properties">
-                <prop type="object" name="fullyManagedUpgradeProfile">
-                  <prop type="string" name="releaseChannel" arg="$resource.properties.fullyManagedUpgradeProfile.releaseChannel" required="True">
-                    <enum>
-                      <item value="&quot;Rapid&quot;"/>
-                      <item value="&quot;Stable&quot;"/>
-                    </enum>
-                  </prop>
-                </prop>
-                <prop type="string" name="mode" arg="$resource.properties.mode">
-                  <enum>
-                    <item value="&quot;FullyManaged&quot;"/>
-                    <item value="&quot;SelfManaged&quot;"/>
-                  </enum>
-                </prop>
-                <prop type="object" name="observabilitySettings" arg="$resource.properties.observabilitySettings">
-                  <prop type="object" name="logs" arg="$resource.properties.observabilitySettings.logs">
-                    <prop type="string" name="state" arg="$resource.properties.observabilitySettings.logs.state" required="True">
-                      <enum>
-                        <item value="&quot;Disabled&quot;"/>
-                        <item value="&quot;Enabled&quot;"/>
-                      </enum>
-                    </prop>
-                  </prop>
-                  <prop type="string" name="managedIdentity" arg="$resource.properties.observabilitySettings.managedIdentity"/>
-                  <prop type="object" name="metrics" arg="$resource.properties.observabilitySettings.metrics">
-                    <prop type="string" name="state" arg="$resource.properties.observabilitySettings.metrics.state" required="True">
-                      <enum>
-                        <item value="&quot;Disabled&quot;"/>
-                        <item value="&quot;Enabled&quot;"/>
-                      </enum>
-                    </prop>
-                  </prop>
-                  <prop type="object" name="traces" arg="$resource.properties.observabilitySettings.traces">
-                    <prop type="string" name="state" arg="$resource.properties.observabilitySettings.traces.state" required="True">
-                      <enum>
-                        <item value="&quot;Disabled&quot;"/>
-                        <item value="&quot;Enabled&quot;"/>
-                      </enum>
-                    </prop>
-                  </prop>
-                </prop>
-                <prop type="object" name="selfManagedUpgradeProfile" arg="$resource.properties.selfManagedUpgradeProfile">
-                  <prop type="string" name="version" arg="$resource.properties.selfManagedUpgradeProfile.version" required="True"/>
-                </prop>
-              </prop>
-              <prop type="object" name="tags" arg="$resource.tags">
-                <additionalProp>
-                  <item type="string"/>
-                </additionalProp>
-              </prop>
-            </schema>
-          </json>
-        </instanceUpdate>
-      </operation>
-      <operation operationId="AppLinkMembers_CreateOrReplace">
-        <longRunning finalStateVia="azure-async-operation"/>
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppLink/appLinks/{appLinkName}/appLinkMembers/{appLinkMemberName}">
-          <request method="put">
-            <path>
-              <param type="string" name="appLinkMemberName" arg="$Path.appLinkMemberName" required="True">
-                <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
-              </param>
-              <param type="string" name="appLinkName" arg="$Path.appLinkName" required="True">
-                <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
-              </param>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
-            </path>
-            <query>
-              <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="&quot;2025-08-01-preview&quot;"/>
-                <format minLength="1"/>
-              </const>
-            </query>
-            <body>
-              <json ref="$Instance"/>
-            </body>
-          </request>
-          <response statusCode="200 201">
-            <body>
-              <json var="$Instance">
-                <schema type="@AppLinkMember_read"/>
-              </json>
-            </body>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
           </response>
           <response isError="True">
             <body>

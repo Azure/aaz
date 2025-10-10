@@ -1,6 +1,6 @@
 # [Command] _applink update_
 
-Update an AppLink
+Update an AppLink resource
 
 ## Versions
 

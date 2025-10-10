@@ -1,6 +1,6 @@
 # [Command] _applink member update_
 
-Update a AppLinkMember
+Update an AppLink member resource
 
 ## Versions
 

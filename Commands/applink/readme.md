@@ -25,4 +25,4 @@ Manage App Link
 : Get an AppLink
 
 - [update](/Commands/applink/_update.md)
-: Update an AppLink
+: Update an AppLink resource
