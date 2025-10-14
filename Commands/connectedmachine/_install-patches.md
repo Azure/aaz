@@ -47,3 +47,14 @@ Install patches on an Azure Arc-Enabled Server.
     ```bash
         connectedmachine install-patches --resource-group MyResourceGroup --name MyMachine --maximum-duration PT4H --reboot-setting IfRequired --windows-parameters "{"classificationsToInclude": ["Critical", "Security"]}"
     ```
+
+### [2024-11-10-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5oeWJyaWRjb21wdXRlL21hY2hpbmVzL3t9L2luc3RhbGxwYXRjaGVz/2024-11-10-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridcompute/machines/{}/installpatches 2024-11-10-preview -->
+
+#### examples
+
+- Sample command for install-patches
+    ```bash
+        connectedmachine install-patches --resource-group MyResourceGroup --name MyMachine --maximum-duration PT4H --reboot-setting IfRequired --windows-parameters "{"classificationsToInclude": ["Critical", "Security"]}"
+    ```

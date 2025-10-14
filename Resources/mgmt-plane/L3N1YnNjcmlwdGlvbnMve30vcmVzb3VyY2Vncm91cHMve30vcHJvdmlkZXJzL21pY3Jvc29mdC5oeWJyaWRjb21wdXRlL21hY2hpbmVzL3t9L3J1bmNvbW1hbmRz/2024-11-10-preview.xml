@@ -1,0 +1,163 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridcompute/machines/{}/runcommands" version="2024-11-10-preview" swagger="mgmt-plane/hybridcompute/ResourceProviders/Microsoft.HybridCompute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuSHlicmlkQ29tcHV0ZS9tYWNoaW5lcy97bWFjaGluZU5hbWV9L3J1bkNvbW1hbmRz/V/MjAyNC0xMS0xMC1wcmV2aWV3"/>
+  <commandGroup name="connectedmachine run-command">
+    <command name="list" version="2024-11-10-preview" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridcompute/machines/{}/runcommands" version="2024-11-10-preview" swagger="mgmt-plane/hybridcompute/ResourceProviders/Microsoft.HybridCompute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuSHlicmlkQ29tcHV0ZS9tYWNoaW5lcy97bWFjaGluZU5hbWV9L3J1bkNvbW1hbmRz/V/MjAyNC0xMS0xMC1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.machineName" options="machine-name" required="True" idPart="name">
+          <help short="The name of the hybrid machine."/>
+          <format pattern="[a-zA-Z0-9-_\.]+"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Query.expand" options="expand">
+          <help short="The expand expression to apply on the operation."/>
+        </arg>
+      </argGroup>
+      <operation operationId="MachineRunCommands_List">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/runCommands">
+          <request method="get">
+            <path>
+              <param type="string" name="machineName" arg="$Path.machineName" required="True">
+                <format pattern="[a-zA-Z0-9-_\.]+"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <param type="string" name="$expand" arg="$Query.expand"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-10-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.HybridCompute/machines/{}/runCommands/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="boolean" name="asyncExecution">
+                          <default value="false"/>
+                        </prop>
+                        <prop type="@RunCommandManagedIdentity_read" name="errorBlobManagedIdentity"/>
+                        <prop type="string" name="errorBlobUri"/>
+                        <prop readOnly="True" type="object" name="instanceView">
+                          <prop type="dateTime" name="endTime"/>
+                          <prop type="string" name="error"/>
+                          <prop type="string" name="executionMessage"/>
+                          <prop type="string" name="executionState">
+                            <enum>
+                              <item value="&quot;Canceled&quot;"/>
+                              <item value="&quot;Failed&quot;"/>
+                              <item value="&quot;Pending&quot;"/>
+                              <item value="&quot;Running&quot;"/>
+                              <item value="&quot;Succeeded&quot;"/>
+                              <item value="&quot;TimedOut&quot;"/>
+                              <item value="&quot;Unknown&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="integer32" name="exitCode"/>
+                          <prop type="string" name="output"/>
+                          <prop type="dateTime" name="startTime"/>
+                          <prop type="array<object>" name="statuses">
+                            <item type="object">
+                              <prop type="string" name="code"/>
+                              <prop type="string" name="displayStatus"/>
+                              <prop type="string" name="level">
+                                <enum>
+                                  <item value="&quot;Error&quot;"/>
+                                  <item value="&quot;Info&quot;"/>
+                                  <item value="&quot;Warning&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="message"/>
+                              <prop type="dateTime" name="time"/>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="@RunCommandManagedIdentity_read" name="outputBlobManagedIdentity"/>
+                        <prop type="string" name="outputBlobUri"/>
+                        <prop type="array<object>" name="parameters" identifiers="name">
+                          <item type="object" cls="RunCommandInputParameter_read">
+                            <prop type="string" name="name" required="True"/>
+                            <prop type="string" name="value" required="True"/>
+                          </item>
+                        </prop>
+                        <prop type="array<@RunCommandInputParameter_read>" name="protectedParameters" identifiers="name">
+                          <item type="@RunCommandInputParameter_read"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState"/>
+                        <prop type="string" name="runAsPassword" secret="True"/>
+                        <prop type="string" name="runAsUser"/>
+                        <prop type="object" name="source">
+                          <prop type="string" name="commandId"/>
+                          <prop type="string" name="script"/>
+                          <prop type="string" name="scriptUri"/>
+                          <prop type="object" name="scriptUriManagedIdentity" cls="RunCommandManagedIdentity_read">
+                            <prop type="string" name="clientId"/>
+                            <prop type="string" name="objectId"/>
+                          </prop>
+                        </prop>
+                        <prop type="integer32" name="timeoutInSeconds"/>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
