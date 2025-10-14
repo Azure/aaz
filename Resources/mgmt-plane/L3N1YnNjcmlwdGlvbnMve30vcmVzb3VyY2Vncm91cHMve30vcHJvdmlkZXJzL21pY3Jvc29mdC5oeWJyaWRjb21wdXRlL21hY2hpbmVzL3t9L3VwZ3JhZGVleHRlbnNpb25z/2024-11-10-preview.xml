@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridcompute/machines/{}/upgradeextensions" version="2024-11-10-preview" swagger="mgmt-plane/hybridcompute/ResourceProviders/Microsoft.HybridCompute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuSHlicmlkQ29tcHV0ZS9tYWNoaW5lcy97bWFjaGluZU5hbWV9L3VwZ3JhZGVFeHRlbnNpb25z/V/MjAyNC0xMS0xMC1wcmV2aWV3"/>
+  <commandGroup name="connectedmachine">
+    <command name="upgrade-extension" version="2024-11-10-preview" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridcompute/machines/{}/upgradeextensions" version="2024-11-10-preview" swagger="mgmt-plane/hybridcompute/ResourceProviders/Microsoft.HybridCompute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuSHlicmlkQ29tcHV0ZS9tYWNoaW5lcy97bWFjaGluZU5hbWV9L3VwZ3JhZGVFeHRlbnNpb25z/V/MjAyNC0xMS0xMC1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.machineName" options="machine-name" required="True" idPart="name">
+          <help short="The name of the hybrid machine."/>
+          <format pattern="^[a-zA-Z0-9-_\.]{1,54}$" maxLength="54" minLength="1"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="ExtensionUpgradeParameters">
+        <arg type="object" var="$extensionUpgradeParameters.extensionTargets" options="extension-targets" group="ExtensionUpgradeParameters">
+          <help short="Describes the Extension Target Properties."/>
+          <additionalProp>
+            <item type="object">
+              <arg type="string" var="$extensionUpgradeParameters.extensionTargets{}.targetVersion" options="target-version">
+                <help short="Properties for the specified Extension to Upgrade."/>
+              </arg>
+            </item>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="UpgradeExtensions">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.HybridCompute/machines/{machineName}/upgradeExtensions">
+          <request method="post">
+            <path>
+              <param type="string" name="machineName" arg="$Path.machineName" required="True">
+                <format pattern="^[a-zA-Z0-9-_\.]{1,54}$" maxLength="54" minLength="1"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-10-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="extensionUpgradeParameters" required="True" clientFlatten="True">
+                  <prop type="object" name="extensionTargets" arg="$extensionUpgradeParameters.extensionTargets">
+                    <additionalProp>
+                      <item type="object">
+                        <prop type="string" name="targetVersion" arg="$extensionUpgradeParameters.extensionTargets{}.targetVersion"/>
+                      </item>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200"/>
+          <response statusCode="202">
+            <header>
+              <item name="Azure-AsyncOperation"/>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>

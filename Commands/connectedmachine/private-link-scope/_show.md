@@ -47,3 +47,14 @@ Get an Azure Arc PrivateLinkScope.
     ```bash
         connectedmachine private-link-scope show --resource-group my-resource-group --scope-name my-privatelinkscope
     ```
+
+### [2024-11-10-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5oeWJyaWRjb21wdXRlL3ByaXZhdGVsaW5rc2NvcGVzL3t9/2024-11-10-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridcompute/privatelinkscopes/{} 2024-11-10-preview -->
+
+#### examples
+
+- Sample command for private-link-scope show
+    ```bash
+        connectedmachine private-link-scope show --resource-group my-resource-group --scope-name my-privatelinkscope
+    ```
