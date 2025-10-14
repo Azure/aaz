@@ -1,6 +1,6 @@
 # [Command] _connectedmachine extension image show_
 
-Get an Extension Metadata based on location, publisher, extensionType and version
+Get an Extension Metadata based on location, publisher, extensionType and version.
 
 ## Versions
 

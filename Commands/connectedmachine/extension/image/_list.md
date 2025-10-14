@@ -1,6 +1,6 @@
 # [Command] _connectedmachine extension image list_
 
-List all Extension versions based on location, publisher, extensionType
+List all Extension versions based on location, publisher, extensionType.
 
 ## Versions
 
