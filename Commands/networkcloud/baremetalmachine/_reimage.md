@@ -135,3 +135,14 @@ Reimage the provided bare metal machine.
     ```bash
         networkcloud baremetalmachine reimage --bare-metal-machine-name "bareMetalMachineName" --resource-group "resourceGroupName"
     ```
+
+### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvYmFyZW1ldGFsbWFjaGluZXMve30vcmVpbWFnZQ==/2025-09-01.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/baremetalmachines/{}/reimage 2025-09-01 -->
+
+#### examples
+
+- Reimage bare metal machine
+    ```bash
+        networkcloud baremetalmachine reimage --bare-metal-machine-name "bareMetalMachineName" --resource-group "resourceGroupName"
+    ```
