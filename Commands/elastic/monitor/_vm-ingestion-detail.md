@@ -29,3 +29,14 @@ List detailed information about VM ingestion that will be monitored by the Elast
     ```bash
         elastic monitor vm-ingestion-detail --monitor-name name -g rg
     ```
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9L3ZtaW5nZXN0aW9uZGV0YWlscw==/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/vmingestiondetails 2025-06-01 -->
+
+#### examples
+
+- VMIngestion_Details
+    ```bash
+        elastic monitor vm-ingestion-detail --resource-group myResourceGroup --monitor-name myMonitor
+    ```
