@@ -14,3 +14,14 @@ Retrieve marketplace and organization billing information mapped to the given El
     ```bash
         elastic monitor get-billing-info --resource-group myResourceGroup --monitor-name myMonitor
     ```
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9L2dldGJpbGxpbmdpbmZv/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/getbillinginfo 2025-06-01 -->
+
+#### examples
+
+- BillingInfo_Get
+    ```bash
+        elastic monitor get-billing-info --resource-group myResourceGroup --monitor-name myMonitor
+    ```

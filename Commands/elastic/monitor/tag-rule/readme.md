@@ -17,4 +17,4 @@ Manage tag rules with Elastic, enabling fine-grained control over observability 
 : Get detailed information about a tag rule set for a given Elastic monitor resource.
 
 - [update](/Commands/elastic/monitor/tag-rule/_update.md)
-: Update a tag rule set for a given Elastic monitor resource, ensuring fine-grained control over observability based on resource tags.
+: Update a tag rule set for a given Elastic monitor resource, enabling fine-grained control over observability based on resource tags.

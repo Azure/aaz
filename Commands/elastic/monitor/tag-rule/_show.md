@@ -29,3 +29,14 @@ Get detailed information about a tag rule set for a given Elastic monitor resour
     ```bash
         elastic monitor tag-rule show --monitor-name name -g rg -n name
     ```
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9L3RhZ3J1bGVzL3t9/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/tagrules/{} 2025-06-01 -->
+
+#### examples
+
+- TagRules_Get
+    ```bash
+        elastic monitor tag-rule show --resource-group myResourceGroup --monitor-name myMonitor --rule-set-name default
+    ```

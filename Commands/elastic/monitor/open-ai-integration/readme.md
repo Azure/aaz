@@ -13,6 +13,9 @@ Manage OpenAI integration with Elastic, enabling advanced AI-driven observabilit
 - [get-statu](/Commands/elastic/monitor/open-ai-integration/_get-statu.md)
 : Get the status of OpenAI integration for a given Elastic monitor resource, ensuring optimal observability and performance.
 
+- [get-status](/Commands/elastic/monitor/open-ai-integration/_get-status.md)
+: Get the status of OpenAI integration for a given Elastic monitor resource, ensuring optimal observability and performance.
+
 - [list](/Commands/elastic/monitor/open-ai-integration/_list.md)
 : List all OpenAI integration rules for a given Elastic monitor resource, helping you manage AI-driven observability and monitoring.
 
@@ -20,4 +23,4 @@ Manage OpenAI integration with Elastic, enabling advanced AI-driven observabilit
 : Get detailed information about OpenAI integration rules for a given Elastic monitor resource.
 
 - [update](/Commands/elastic/monitor/open-ai-integration/_update.md)
-: Update an OpenAI integration rule for a given Elastic monitor resource, ensuring optimal AI-driven observability and monitoring.
+: Update an OpenAI integration rule for a given Elastic monitor resource, enabling advanced AI-driven observability and monitoring.
