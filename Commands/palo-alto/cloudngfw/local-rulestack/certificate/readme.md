@@ -15,3 +15,6 @@ Manage certificates for Palo Alto Networks local rulestacks.
 
 - [show](/Commands/palo-alto/cloudngfw/local-rulestack/certificate/_show.md)
 : Retrieve details of a specific certificate for a Palo Alto Networks local rulestack.
+
+- [update](/Commands/palo-alto/cloudngfw/local-rulestack/certificate/_update.md)
+: Update a CertificateObjectLocalRulestackResource

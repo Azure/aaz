@@ -14,3 +14,14 @@ List all FQDN list resources associated with local rulestacks in Palo Alto Netwo
     ```bash
         palo-alto cloudngfw local-rulestack fqdnlist list -g MyResourceGroup --local-rulestack-name MyLocalRulestacks
     ```
+
+### [2025-10-08](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL3BhbG9hbHRvbmV0d29ya3MuY2xvdWRuZ2Z3L2xvY2FscnVsZXN0YWNrcy97fS9mcWRubGlzdHM=/2025-10-08.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/localrulestacks/{}/fqdnlists 2025-10-08 -->
+
+#### examples
+
+- List all FQDN list resources associated with local rulestacks in Palo Alto Networks.
+    ```bash
+        palo-alto cloudngfw local-rulestack fqdnlist list -g MyResourceGroup --local-rulestack-name MyLocalRulestacks
+    ```

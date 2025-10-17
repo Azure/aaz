@@ -8,7 +8,7 @@ Manage local rulestack resources associated to the Palo Alto Networks Cloud NGFW
 : Manage certificates for Palo Alto Networks local rulestacks.
 
 - [fqdnlist](/Commands/palo-alto/cloudngfw/local-rulestack/fqdnlist/readme.md)
-: Manage local-rulestack fqdnlist resource
+: Manage FQDN list for Palo Alto Networks local rulestacks.
 
 - [local-rule](/Commands/palo-alto/cloudngfw/local-rulestack/local-rule/readme.md)
 : Manage local-rule resource for Palo Alto Networks local rulestack.
