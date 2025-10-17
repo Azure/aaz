@@ -14,3 +14,14 @@ Update configuration or metadata for a Palo Alto Networks local rulestack.
     ```bash
         palo-alto cloudngfw local-rulestack update -g MyResourceGroup -n MyLocalRulestacks --tags "{tag-name:value}"
     ```
+
+### [2025-10-08](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL3BhbG9hbHRvbmV0d29ya3MuY2xvdWRuZ2Z3L2xvY2FscnVsZXN0YWNrcy97fQ==/2025-10-08.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/localrulestacks/{} 2025-10-08 -->
+
+#### examples
+
+- Update configuration or metadata for a Palo Alto Networks local rulestack.
+    ```bash
+        palo-alto cloudngfw local-rulestack update -g MyResourceGroup -n MyLocalRulestacks --tags "{tag-name:value}"
+    ```

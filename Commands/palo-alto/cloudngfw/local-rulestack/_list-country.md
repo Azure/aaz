@@ -14,3 +14,14 @@ List of countries for Palo Alto Networks local rulestack.
     ```bash
         palo-alto cloudngfw local-rulestack list-country -g MyResourceGroup -n MyLocalRulestacks
     ```
+
+### [2025-10-08](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL3BhbG9hbHRvbmV0d29ya3MuY2xvdWRuZ2Z3L2xvY2FscnVsZXN0YWNrcy97fS9saXN0Y291bnRyaWVz/2025-10-08.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/localrulestacks/{}/listcountries 2025-10-08 -->
+
+#### examples
+
+- List of countries for Rulestack
+    ```bash
+        palo-alto cloudngfw local-rulestack list-country -g MyResourceGroup -n MyLocalRulestacks
+    ```
