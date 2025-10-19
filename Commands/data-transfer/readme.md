@@ -1,6 +1,6 @@
 # [Group] _data-transfer_
 
-Data transfer commands
+Commands for cross domain Service that enables customers to transfer data across security domains.
 
 ## Subgroups
 

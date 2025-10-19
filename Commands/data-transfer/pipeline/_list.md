@@ -1,6 +1,6 @@
 # [Command] _data-transfer pipeline list_
 
-List Pipeline resource by Subscription or Resource Group
+List all the pipelines
 
 ## Versions
 

@@ -1,0 +1,264 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.azuredatatransfer/pipelines/{}/executeaction" version="2025-05-21" swagger="mgmt-plane/azuredatatransfer/ResourceProviders/Microsoft.AzureDataTransfer/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXp1cmVEYXRhVHJhbnNmZXIvcGlwZWxpbmVzL3twaXBlbGluZU5hbWV9L2V4ZWN1dGVBY3Rpb24=/V/MjAyNS0wNS0yMQ=="/>
+  <commandGroup name="data-transfer pipeline">
+    <command name="execute-action" version="2025-05-21" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.azuredatatransfer/pipelines/{}/executeaction" version="2025-05-21" swagger="mgmt-plane/azuredatatransfer/ResourceProviders/Microsoft.AzureDataTransfer/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXp1cmVEYXRhVHJhbnNmZXIvcGlwZWxpbmVzL3twaXBlbGluZU5hbWV9L2V4ZWN1dGVBY3Rpb24=/V/MjAyNS0wNS0yMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.pipelineName" options="pipeline-name" required="True" idPart="name">
+          <help short="The name for the pipeline to perform the operation on."/>
+          <format pattern="^[a-zA-Z0-9-]{3,64}$" maxLength="64" minLength="3"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Action">
+        <arg type="string" var="$action.actionType" options="action-type" required="True" group="Action">
+          <help short="Type of action to be executed"/>
+          <enum>
+            <item name="AllowUpdates" value="&quot;AllowUpdates&quot;"/>
+            <item name="ForceDisable" value="&quot;ForceDisable&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$action.justification" options="justification" group="Action">
+          <help short="Business justification for the action"/>
+        </arg>
+        <arg type="string" var="$action.targetType" options="target-type" required="True" group="Action">
+          <help short="Type of target to execute the action on"/>
+          <enum>
+            <item name="Connection" value="&quot;Connection&quot;"/>
+            <item name="FlowType" value="&quot;FlowType&quot;"/>
+            <item name="Pipeline" value="&quot;Pipeline&quot;"/>
+          </enum>
+        </arg>
+        <arg type="array<string>" var="$action.targets" options="targets" required="True" group="Action">
+          <help short="Targets for the action"/>
+          <item type="string"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Pipelines_ExecuteAction">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureDataTransfer/pipelines/{pipelineName}/executeAction">
+          <request method="post">
+            <path>
+              <param type="string" name="pipelineName" arg="$Path.pipelineName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,64}$" maxLength="64" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-05-21&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="action" required="True" clientFlatten="True">
+                  <prop type="string" name="actionType" arg="$action.actionType" required="True">
+                    <enum>
+                      <item value="&quot;AllowUpdates&quot;"/>
+                      <item value="&quot;ForceDisable&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="string" name="justification" arg="$action.justification"/>
+                  <prop type="string" name="targetType" arg="$action.targetType" required="True">
+                    <enum>
+                      <item value="&quot;Connection&quot;"/>
+                      <item value="&quot;FlowType&quot;"/>
+                      <item value="&quot;Pipeline&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="array<string>" name="targets" arg="$action.targets" required="True">
+                    <item type="string"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.AzureDataTransfer/pipelines/{}"/>
+                  </prop>
+                  <prop type="IdentityObject" name="identity">
+                    <prop readOnly="True" type="uuid" name="principalId"/>
+                    <prop readOnly="True" type="uuid" name="tenantId"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;None&quot;"/>
+                        <item value="&quot;SystemAssigned&quot;"/>
+                        <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                        <item value="&quot;UserAssigned&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="userAssignedIdentities">
+                      <additionalProp>
+                        <item nullable="True" type="object">
+                          <prop readOnly="True" type="uuid" name="clientId"/>
+                          <prop readOnly="True" type="uuid" name="principalId"/>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop readOnly="True" type="array<object>" name="connections" identifiers="id">
+                      <item type="object">
+                        <prop type="string" name="etag"/>
+                        <prop type="string" name="id" required="True"/>
+                        <prop type="string" name="location"/>
+                        <prop type="string" name="name"/>
+                        <prop type="object" name="properties">
+                          <prop type="object" name="internalMetadata">
+                            <prop type="object" name="operationStatus">
+                              <prop type="string" name="id"/>
+                              <prop type="string" name="message"/>
+                              <prop readOnly="True" type="string" name="status">
+                                <enum>
+                                  <item value="&quot;Failed&quot;"/>
+                                  <item value="&quot;Succeeded&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="statusSetBy"/>
+                            <additionalProp>
+                              <item type="any"/>
+                            </additionalProp>
+                          </prop>
+                          <additionalProp>
+                            <item type="any"/>
+                          </additionalProp>
+                        </prop>
+                        <prop readOnly="True" type="@SystemData_read" name="systemData"/>
+                        <prop type="string" name="type"/>
+                        <additionalProp>
+                          <item type="any"/>
+                        </additionalProp>
+                      </item>
+                    </prop>
+                    <prop type="array<string>" name="disabledFlowTypes">
+                      <item type="string">
+                        <enum>
+                          <item value="&quot;API&quot;"/>
+                          <item value="&quot;BasicFiles&quot;"/>
+                          <item value="&quot;Complex&quot;"/>
+                          <item value="&quot;Data&quot;"/>
+                          <item value="&quot;DevSecOps&quot;"/>
+                          <item value="&quot;DiskImages&quot;"/>
+                          <item value="&quot;Messaging&quot;"/>
+                          <item value="&quot;MicrosoftInternal&quot;"/>
+                          <item value="&quot;Mission&quot;"/>
+                          <item value="&quot;MissionOpaqueXML&quot;"/>
+                          <item value="&quot;Opaque&quot;"/>
+                          <item value="&quot;Standard&quot;"/>
+                          <item value="&quot;StreamingVideo&quot;"/>
+                          <item value="&quot;Unknown&quot;"/>
+                        </enum>
+                      </item>
+                    </prop>
+                    <prop type="string" name="displayName"/>
+                    <prop type="array<string>" name="flowTypes">
+                      <item type="string">
+                        <enum>
+                          <item value="&quot;API&quot;"/>
+                          <item value="&quot;BasicFiles&quot;"/>
+                          <item value="&quot;Complex&quot;"/>
+                          <item value="&quot;Data&quot;"/>
+                          <item value="&quot;DevSecOps&quot;"/>
+                          <item value="&quot;DiskImages&quot;"/>
+                          <item value="&quot;Messaging&quot;"/>
+                          <item value="&quot;MicrosoftInternal&quot;"/>
+                          <item value="&quot;Mission&quot;"/>
+                          <item value="&quot;MissionOpaqueXML&quot;"/>
+                          <item value="&quot;Opaque&quot;"/>
+                          <item value="&quot;Standard&quot;"/>
+                          <item value="&quot;StreamingVideo&quot;"/>
+                          <item value="&quot;Unknown&quot;"/>
+                        </enum>
+                      </item>
+                    </prop>
+                    <prop type="array<string>" name="policies">
+                      <item type="string"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="quarantineDownloadStorageAccount"/>
+                    <prop type="string" name="quarantineDownloadStorageContainer"/>
+                    <prop type="string" name="remoteCloud" required="True"/>
+                    <prop type="string" name="status">
+                      <enum>
+                        <item value="&quot;Disabled&quot;"/>
+                        <item value="&quot;Enabled&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<object>" name="subscribers">
+                      <item type="object">
+                        <prop type="string" name="email"/>
+                        <prop type="integer64" name="notifications"/>
+                      </item>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData" cls="SystemData_read">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

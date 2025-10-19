@@ -1,6 +1,8 @@
 # [Command] _data-transfer connection flow show_
 
-Get flow resource.
+Show a specific flow in the connection.
+
+Show specific flow with given ids or name.
 
 ## Versions
 
@@ -13,4 +15,5 @@ Get flow resource.
 - Gets flow resource
     ```bash
         data-transfer connection flow show --resource-group testRG --connection-name testConnection --flow-name testFlow
+        data-transfer connection flow show --ids /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testRG/providers/Microsoft.AzureDataTransfer/connections/testConnection/flows/testFlow
     ```
