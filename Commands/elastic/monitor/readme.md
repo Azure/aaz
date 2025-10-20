@@ -46,7 +46,7 @@ Manage monitoring configurations and resources with Elastic, ensuring optimal ob
 : Retrieve marketplace and organization billing information mapped to the given Elastic monitor resource.
 
 - [list](/Commands/elastic/monitor/_list.md)
-: List all Elastic monitor resources within a specified resource group or across the entire subscription, helping you audit and manage your monitoring setup.
+: List all Elastic monitor resources within a specified subscription, helping you audit and manage your monitoring setup.
 
 - [list-all-traffic-filter](/Commands/elastic/monitor/_list-all-traffic-filter.md)
 : List all traffic filters associated with your Elastic monitor resource, helping you manage network traffic control.
@@ -59,6 +59,9 @@ Manage monitoring configurations and resources with Elastic, ensuring optimal ob
 
 - [list-deployment-info](/Commands/elastic/monitor/_list-deployment-info.md)
 : Fetch detailed information about Elastic cloud deployments corresponding to the Elastic monitor resource.
+
+- [list-monitored-resource](/Commands/elastic/monitor/_list-monitored-resource.md)
+: List all resources currently being monitored by the Elastic monitor resource, helping you manage observability.
 
 - [list-resource](/Commands/elastic/monitor/_list-resource.md)
 : List all resources currently being monitored by the Elastic monitor resource, helping you manage observability.
@@ -73,13 +76,16 @@ Manage monitoring configurations and resources with Elastic, ensuring optimal ob
 : Get detailed properties of a specific Elastic monitor resource, helping you manage observability and performance.
 
 - [update](/Commands/elastic/monitor/_update.md)
-: Update an existing Elastic monitor resource in your Azure subscription, ensuring optimal observability and performance.
+: Update a new Elastic monitor resource in your Azure subscription, enabling observability and monitoring of your Azure resources through Elastic.
 
 - [update-vm-collection](/Commands/elastic/monitor/_update-vm-collection.md)
 : Update the VM details that will be monitored by the Elastic monitor resource, ensuring optimal observability and performance.
 
 - [upgrade](/Commands/elastic/monitor/_upgrade.md)
 : Upgrade the Elastic monitor resource to a newer version, ensuring optimal observability and performance.
+
+- [vm-collection-update](/Commands/elastic/monitor/_vm-collection-update.md)
+: Update the VM details that will be monitored by the Elastic monitor resource, ensuring optimal observability and performance.
 
 - [vm-ingestion-detail](/Commands/elastic/monitor/_vm-ingestion-detail.md)
 : List detailed information about VM ingestion that will be monitored by the Elastic monitor resource, ensuring optimal observability and performance.

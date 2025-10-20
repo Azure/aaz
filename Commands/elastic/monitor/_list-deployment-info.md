@@ -29,3 +29,14 @@ Fetch detailed information about Elastic cloud deployments corresponding to the 
     ```bash
         elastic monitor list-deployment-info --monitor-name name -g rg
     ```
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9L2xpc3RkZXBsb3ltZW50aW5mbw==/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/listdeploymentinfo 2025-06-01 -->
+
+#### examples
+
+- DeploymentInfo_List
+    ```bash
+        elastic monitor list-deployment-info --resource-group myResourceGroup --monitor-name myMonitor
+    ```

@@ -14,3 +14,14 @@ Get detailed information about OpenAI integration rules for a given Elastic moni
     ```bash
         elastic monitor open-ai-integration show --resource-group myResourceGroup --monitor-name myMonitor --integration-name default
     ```
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9L29wZW5haWludGVncmF0aW9ucy97fQ==/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/openaiintegrations/{} 2025-06-01 -->
+
+#### examples
+
+- OpenAI_Get
+    ```bash
+        elastic monitor open-ai-integration show --resource-group myResourceGroup --monitor-name myMonitor --integration-name default
+    ```

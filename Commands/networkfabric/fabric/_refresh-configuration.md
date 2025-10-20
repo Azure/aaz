@@ -25,7 +25,7 @@ Refreshes the configuration of the underlying resources in the given Network Fab
 
 #### examples
 
-- Run refresh confiugration on the Network Fabric
+- Refresh the configuration of the underlying resources in the given Network Fabric instance
     ```bash
         networkfabric fabric refresh-configuration --resource-group example-rg --resource-name example-fabric
     ```

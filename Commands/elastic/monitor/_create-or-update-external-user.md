@@ -29,3 +29,14 @@ Create or update external user configurations for your Elastic monitor resource,
     ```bash
         monitor create-or-update-external-user --monitor-name {monitor} -g {rg} --user-name newuser --full-name fullname --password password --email-id email@outlook.com --roles [admin,other_role]
     ```
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9L2NyZWF0ZW9ydXBkYXRlZXh0ZXJuYWx1c2Vy/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/createorupdateexternaluser 2025-06-01 -->
+
+#### examples
+
+- ExternalUser_CreateOrUpdate
+    ```bash
+        elastic monitor create-or-update-external-user --resource-group myResourceGroup --monitor-name myMonitor
+    ```

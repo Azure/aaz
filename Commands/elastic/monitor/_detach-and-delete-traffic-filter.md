@@ -29,3 +29,14 @@ Detach and delete an existing traffic filter from your Elastic monitor resource,
     ```bash
         elastic monitor detach-and-delete-traffic-filter --monitor-name -g rg --ruleset-id id
     ```
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9L2RldGFjaGFuZGRlbGV0ZXRyYWZmaWNmaWx0ZXI=/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/detachanddeletetrafficfilter 2025-06-01 -->
+
+#### examples
+
+- DetachAndDeleteTrafficFilter_Delete
+    ```bash
+        elastic monitor detach-and-delete-traffic-filter --resource-group myResourceGroup --monitor-name myMonitor --ruleset-id 31d91b5afb6f4c2eaaf104c97b1991dd
+    ```

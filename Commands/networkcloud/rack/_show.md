@@ -135,3 +135,14 @@ Get properties of the provided rack.
     ```bash
         networkcloud rack show --name "rackName" --resource-group "resourceGroupName"
     ```
+
+### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvcmFja3Mve30=/2025-09-01.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/racks/{} 2025-09-01 -->
+
+#### examples
+
+- Get rack
+    ```bash
+        networkcloud rack show --name "rackName" --resource-group "resourceGroupName"
+    ```

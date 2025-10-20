@@ -124,3 +124,14 @@ List agent pools for the provided Kubernetes cluster.
     ```bash
         networkcloud kubernetescluster agentpool list --kubernetes-cluster-name "kubernetesClusterName" --resource-group "resourceGroupName"
     ```
+
+### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQva3ViZXJuZXRlc2NsdXN0ZXJzL3t9L2FnZW50cG9vbHM=/2025-09-01.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/kubernetesclusters/{}/agentpools 2025-09-01 -->
+
+#### examples
+
+- List agent pools of the Kubernetes cluster
+    ```bash
+        networkcloud kubernetescluster agentpool list --kubernetes-cluster-name "kubernetesClusterName" --resource-group "resourceGroupName"
+    ```

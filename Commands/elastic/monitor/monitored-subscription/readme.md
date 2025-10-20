@@ -17,4 +17,4 @@ Manage subscriptions monitored by the Elastic monitor resource, ensuring optimal
 : Get detailed information about all subscriptions currently being monitored by the Elastic monitor resource.
 
 - [update](/Commands/elastic/monitor/monitored-subscription/_update.md)
-: Update subscriptions to be monitored by the Elastic monitor resource, ensuring optimal observability and performance.
+: Update subscriptions to be monitored by the Elastic monitor resource, enabling observability and monitoring.
