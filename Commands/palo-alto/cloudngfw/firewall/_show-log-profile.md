@@ -14,3 +14,14 @@ Get log profile information for a Palo Alto Networks Cloud NGFW on Azure.
     ```bash
         palo-alto cloudngfw firewall show-log-profile --resource-group MyResourceGroup -n MyCloudngfwFirewall
     ```
+
+### [2025-10-08](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL3BhbG9hbHRvbmV0d29ya3MuY2xvdWRuZ2Z3L2ZpcmV3YWxscy97fS9nZXRsb2dwcm9maWxl/2025-10-08.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/firewalls/{}/getlogprofile 2025-10-08 -->
+
+#### examples
+
+- Get log profile information for a Palo Alto Networks Cloud NGFW on Azure.
+    ```bash
+        palo-alto cloudngfw firewall show-log-profile --resource-group MyResourceGroup -n MyCloudngfwFirewall
+    ```
