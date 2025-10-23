@@ -7,6 +7,9 @@ Manage storage accounts.
 - [migration](/Commands/storage/account/migration/readme.md)
 : Manage Storage Account Migration
 
+- [network-security-perimeter-configuration](/Commands/storage/account/network-security-perimeter-configuration/readme.md)
+: Manage Network Security Perimeter Configuration
+
 - [task-assignment](/Commands/storage/account/task-assignment/readme.md)
 : Manage storage account task assignment.
 
