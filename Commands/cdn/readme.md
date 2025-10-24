@@ -7,6 +7,9 @@ Manage Azure Content Delivery Networks (CDNs).
 - [custom-domain](/Commands/cdn/custom-domain/readme.md)
 : Manage Azure CDN Custom Domains to provide custom host names for endpoints.
 
+- [edge-action](/Commands/cdn/edge-action/readme.md)
+: Manage Edge Action
+
 - [edge-node](/Commands/cdn/edge-node/readme.md)
 : View all available CDN edge nodes.
 
