@@ -8,3 +8,10 @@ List EdgeAction resources by subscription ID
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.cdn/edgeactions 2024-07-22-preview -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/edgeactions 2024-07-22-preview -->
+
+#### examples
+
+- ListEdgeActions_bySubscription
+    ```bash
+        cdn edge-action list
+    ```
