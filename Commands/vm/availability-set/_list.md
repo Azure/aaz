@@ -23,3 +23,8 @@ List all availability sets in a subscription.
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.compute/availabilitysets 2024-07-01 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/availabilitysets 2024-07-01 -->
+
+### [2025-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlL2F2YWlsYWJpbGl0eXNldHM=/2025-04-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.compute/availabilitysets 2025-04-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/availabilitysets 2025-04-01 -->
