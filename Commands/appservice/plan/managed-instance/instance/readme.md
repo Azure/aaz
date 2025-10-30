@@ -5,7 +5,7 @@ Manage Instance
 ## Commands
 
 - [list](/Commands/appservice/plan/managed-instance/instance/_list.md)
-: Get the instance details for an app service plan.
+: List instances for a managed instance App Service plan.
 
 - [recycle](/Commands/appservice/plan/managed-instance/instance/_recycle.md)
-: Recycles a managed instance worker machine.
+: Recycle a specific instance in a managed instance App Service plan.
