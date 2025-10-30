@@ -1,6 +1,6 @@
 # [Group] _palo-alto cloudngfw local-rulestack fqdnlist_
 
-Manage local-rulestack fqdnlist resource
+Manage FQDN list for Palo Alto Networks local rulestacks.
 
 ## Commands
 
@@ -15,3 +15,6 @@ Manage local-rulestack fqdnlist resource
 
 - [show](/Commands/palo-alto/cloudngfw/local-rulestack/fqdnlist/_show.md)
 : Retrieve details of a specific FQDN for a Palo Alto Networks local rulestack.
+
+- [update](/Commands/palo-alto/cloudngfw/local-rulestack/fqdnlist/_update.md)
+: Update a FqdnListLocalRulestackResource

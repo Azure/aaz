@@ -15,3 +15,6 @@ Manage prefixlist resource for a Palo Alto Networks local rulestack.
 
 - [show](/Commands/palo-alto/cloudngfw/local-rulestack/prefixlist/_show.md)
 : Retrieve details for a PrefixListResource for a specific Palo Alto Networks local rulestack.
+
+- [update](/Commands/palo-alto/cloudngfw/local-rulestack/prefixlist/_update.md)
+: Update a PrefixListResource

@@ -4,6 +4,9 @@ Manage Palo Alto Networks firewall resources within the Azure CLI.
 
 ## Subgroups
 
+- [metric](/Commands/palo-alto/cloudngfw/firewall/metric/readme.md)
+: Manage metric configuration of a Cloud NGFW within az cli
+
 - [status](/Commands/palo-alto/cloudngfw/firewall/status/readme.md)
 : Manage status resources for Palo Alto Networks cloudngfw firewalls.
 
