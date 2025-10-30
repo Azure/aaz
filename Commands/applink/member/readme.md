@@ -9,14 +9,14 @@ Manage App Link Member
 
 ## Commands
 
-- [delete](/Commands/applink/member/_delete.md)
-: Delete a member of an AppLink
-
 - [join](/Commands/applink/member/_join.md)
 : Join a kubernetes cluster to an AppLink
 
 - [list](/Commands/applink/member/_list.md)
 : List members of an AppLink resource
+
+- [remove](/Commands/applink/member/_remove.md)
+: Delete a member of an AppLink
 
 - [show](/Commands/applink/member/_show.md)
 : Get a member of an AppLink resource

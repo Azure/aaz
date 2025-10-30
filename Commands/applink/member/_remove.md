@@ -1,4 +1,4 @@
-# [Command] _applink member delete_
+# [Command] _applink member remove_
 
 Delete a member of an AppLink
 
@@ -12,5 +12,5 @@ Delete a member of an AppLink
 
 - Delete an AppLink member
     ```bash
-        applink member delete --resource-group test_rg --applink-name applink-test-01 --member-name member-01
+        applink member remove --resource-group test_rg --applink-name applink-test-01 --member-name member-01
     ```
