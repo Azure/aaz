@@ -1,6 +1,6 @@
 # [Command] _applink member remove_
 
-Delete a member of an AppLink
+Removes a member from an AppLink
 
 ## Versions
 

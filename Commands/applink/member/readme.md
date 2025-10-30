@@ -16,7 +16,7 @@ Manage App Link Member
 : List members of an AppLink resource
 
 - [remove](/Commands/applink/member/_remove.md)
-: Delete a member of an AppLink
+: Removes a member from an AppLink
 
 - [show](/Commands/applink/member/_show.md)
 : Get a member of an AppLink resource
