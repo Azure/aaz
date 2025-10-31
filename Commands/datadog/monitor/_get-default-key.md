@@ -14,3 +14,14 @@ Fetches the default Datadog API key associated with your monitor resource, which
     ```bash
         datadog monitor get-default-key --resource-group myResourceGroup --monitor-name myMonitor
     ```
+
+### [2025-06-11](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhZG9nL21vbml0b3JzL3t9L2dldGRlZmF1bHRrZXk=/2025-06-11.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.datadog/monitors/{}/getdefaultkey 2025-06-11 -->
+
+#### examples
+
+- Monitors_GetDefaultKey
+    ```bash
+        datadog monitor get-default-key --resource-group myResourceGroup --monitor-name myMonitor
+    ```

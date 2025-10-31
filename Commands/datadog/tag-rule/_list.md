@@ -14,3 +14,14 @@ Lists all tag rules associated with a specific Datadog monitor resource, helping
     ```bash
         datadog tag-rule list --resource-group myResourceGroup --monitor-name myMonitor
     ```
+
+### [2025-06-11](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhZG9nL21vbml0b3JzL3t9L3RhZ3J1bGVz/2025-06-11.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.datadog/monitors/{}/tagrules 2025-06-11 -->
+
+#### examples
+
+- TagRules_List
+    ```bash
+        datadog tag-rule list --resource-group myResourceGroup --monitor-name myMonitor
+    ```
