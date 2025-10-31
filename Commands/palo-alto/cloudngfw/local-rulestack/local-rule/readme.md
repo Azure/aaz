@@ -5,10 +5,10 @@ Manage local-rule resource for Palo Alto Networks local rulestack.
 ## Commands
 
 - [create](/Commands/palo-alto/cloudngfw/local-rulestack/local-rule/_create.md)
-: Create a new Palo Alto Networks local rulestack resource.
+: Create a LocalRulesResource
 
 - [delete](/Commands/palo-alto/cloudngfw/local-rulestack/local-rule/_delete.md)
-: Delete an existing Palo Alto Networks local rulestack resource.
+: Delete a LocalRulesResource
 
 - [list](/Commands/palo-alto/cloudngfw/local-rulestack/local-rule/_list.md)
 : List all LocalRulesResource resources linked with the Palo Alto Networds local rulestack.
@@ -20,7 +20,10 @@ Manage local-rule resource for Palo Alto Networks local rulestack.
 : Reset counters for the local rule associated with a Palo Alto Networks local rulestack.
 
 - [show](/Commands/palo-alto/cloudngfw/local-rulestack/local-rule/_show.md)
-: Retrieve details of a specific Palo Alto Networks local rulestack resource.
+: Get a LocalRulesResource
 
 - [show-counter](/Commands/palo-alto/cloudngfw/local-rulestack/local-rule/_show-counter.md)
 : Retrieve counters for the local rules associated with a Palo Alto Networks local rulestack.
+
+- [update](/Commands/palo-alto/cloudngfw/local-rulestack/local-rule/_update.md)
+: Update a LocalRulesResource
