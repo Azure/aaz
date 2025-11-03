@@ -17,3 +17,6 @@ Manage Retention Policy
 
 - [show](/Commands/durabletask/retention-policy/_show.md)
 : Get a Retention Policy
+
+- [update](/Commands/durabletask/retention-policy/_update.md)
+: Update a Retention Policy
