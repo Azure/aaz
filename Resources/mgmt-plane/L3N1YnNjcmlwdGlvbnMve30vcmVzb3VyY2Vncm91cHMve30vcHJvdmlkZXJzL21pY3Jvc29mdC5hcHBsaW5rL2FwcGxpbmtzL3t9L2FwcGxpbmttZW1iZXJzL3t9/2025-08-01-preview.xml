@@ -70,31 +70,9 @@
                         <item value="&quot;SelfManaged&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="observabilitySettings">
-                      <prop type="object" name="logs">
-                        <prop type="string" name="state" required="True">
-                          <enum>
-                            <item value="&quot;Disabled&quot;"/>
-                            <item value="&quot;Enabled&quot;"/>
-                          </enum>
-                        </prop>
-                      </prop>
-                      <prop type="string" name="managedIdentity"/>
+                    <prop type="object" name="observabilityProfile">
                       <prop type="object" name="metrics">
-                        <prop type="string" name="state" required="True">
-                          <enum>
-                            <item value="&quot;Disabled&quot;"/>
-                            <item value="&quot;Enabled&quot;"/>
-                          </enum>
-                        </prop>
-                      </prop>
-                      <prop type="object" name="traces">
-                        <prop type="string" name="state" required="True">
-                          <enum>
-                            <item value="&quot;Disabled&quot;"/>
-                            <item value="&quot;Enabled&quot;"/>
-                          </enum>
-                        </prop>
+                        <prop readOnly="True" type="string" name="metricsEndpoint"/>
                       </prop>
                     </prop>
                     <prop readOnly="True" type="string" name="provisioningState">
@@ -159,6 +137,61 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
+    <command name="remove" version="2025-08-01-preview" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.applink/applinks/{}/applinkmembers/{}" version="2025-08-01-preview" swagger="mgmt-plane/applink/ResourceProviders/Microsoft.AppLink/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXBwTGluay9hcHBMaW5rcy97YXBwTGlua05hbWV9L2FwcExpbmtNZW1iZXJzL3thcHBMaW5rTWVtYmVyTmFtZX0=/V/MjAyNS0wOC0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.appLinkMemberName" options="member-name" required="True" group="" idPart="child_name_1">
+          <help short="The name of the AppLinkMember"/>
+          <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+        </arg>
+        <arg type="string" var="$Path.appLinkName" options="applink-name" required="True" group="" idPart="name">
+          <help short="The name of the AppLink"/>
+          <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="AppLinkMembers_Delete">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppLink/appLinks/{appLinkName}/appLinkMembers/{appLinkMemberName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="appLinkMemberName" arg="$Path.appLinkMemberName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+              </param>
+              <param type="string" name="appLinkName" arg="$Path.appLinkName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-08-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response statusCode="204"/>
+          <response statusCode="200 201"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
     <command name="join" version="2025-08-01-preview" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.applink/applinks/{}/applinkmembers/{}" version="2025-08-01-preview" swagger="mgmt-plane/applink/ResourceProviders/Microsoft.AppLink/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXBwTGluay9hcHBMaW5rcy97YXBwTGlua05hbWV9L2FwcExpbmtNZW1iZXJzL3thcHBMaW5rTWVtYmVyTmFtZX0=/V/MjAyNS0wOC0wMS1wcmV2aWV3"/>
       <argGroup name="">
@@ -185,32 +218,6 @@
       <argGroup name="Metadata">
         <arg type="string" var="$resource.properties.metadata.resourceId" options="member-resource-id" group="Metadata">
           <help short="Resource ID"/>
-        </arg>
-      </argGroup>
-      <argGroup name="ObservabilitySettings">
-        <arg type="string" var="$resource.properties.observabilitySettings.logs.state" options="logs-state" hide="True" group="ObservabilitySettings">
-          <help short="Logs state"/>
-          <enum>
-            <item name="Disabled" value="&quot;Disabled&quot;"/>
-            <item name="Enabled" value="&quot;Enabled&quot;"/>
-          </enum>
-        </arg>
-        <arg type="string" var="$resource.properties.observabilitySettings.managedIdentity" options="managed-identity" hide="True" group="ObservabilitySettings">
-          <help short="Managed identity"/>
-        </arg>
-        <arg type="string" var="$resource.properties.observabilitySettings.metrics.state" options="metrics-state" hide="True" group="ObservabilitySettings">
-          <help short="Metrics state"/>
-          <enum>
-            <item name="Disabled" value="&quot;Disabled&quot;"/>
-            <item name="Enabled" value="&quot;Enabled&quot;"/>
-          </enum>
-        </arg>
-        <arg type="string" var="$resource.properties.observabilitySettings.traces.state" options="traces-state" hide="True" group="ObservabilitySettings">
-          <help short="Traces state"/>
-          <enum>
-            <item name="Disabled" value="&quot;Disabled&quot;"/>
-            <item name="Enabled" value="&quot;Enabled&quot;"/>
-          </enum>
         </arg>
       </argGroup>
       <argGroup name="Properties">
@@ -295,33 +302,6 @@
                         <item value="&quot;SelfManaged&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="observabilitySettings">
-                      <prop type="object" name="logs">
-                        <prop type="string" name="state" arg="$resource.properties.observabilitySettings.logs.state" required="True">
-                          <enum>
-                            <item value="&quot;Disabled&quot;"/>
-                            <item value="&quot;Enabled&quot;"/>
-                          </enum>
-                        </prop>
-                      </prop>
-                      <prop type="string" name="managedIdentity" arg="$resource.properties.observabilitySettings.managedIdentity"/>
-                      <prop type="object" name="metrics">
-                        <prop type="string" name="state" arg="$resource.properties.observabilitySettings.metrics.state" required="True">
-                          <enum>
-                            <item value="&quot;Disabled&quot;"/>
-                            <item value="&quot;Enabled&quot;"/>
-                          </enum>
-                        </prop>
-                      </prop>
-                      <prop type="object" name="traces">
-                        <prop type="string" name="state" arg="$resource.properties.observabilitySettings.traces.state" required="True">
-                          <enum>
-                            <item value="&quot;Disabled&quot;"/>
-                            <item value="&quot;Enabled&quot;"/>
-                          </enum>
-                        </prop>
-                      </prop>
-                    </prop>
                     <prop type="object" name="selfManagedUpgradeProfile">
                       <prop type="string" name="version" arg="$resource.properties.selfManagedUpgradeProfile.version" required="True"/>
                     </prop>
@@ -367,31 +347,9 @@
                         <item value="&quot;SelfManaged&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="observabilitySettings">
-                      <prop type="object" name="logs">
-                        <prop type="string" name="state" required="True">
-                          <enum>
-                            <item value="&quot;Disabled&quot;"/>
-                            <item value="&quot;Enabled&quot;"/>
-                          </enum>
-                        </prop>
-                      </prop>
-                      <prop type="string" name="managedIdentity"/>
+                    <prop type="object" name="observabilityProfile">
                       <prop type="object" name="metrics">
-                        <prop type="string" name="state" required="True">
-                          <enum>
-                            <item value="&quot;Disabled&quot;"/>
-                            <item value="&quot;Enabled&quot;"/>
-                          </enum>
-                        </prop>
-                      </prop>
-                      <prop type="object" name="traces">
-                        <prop type="string" name="state" required="True">
-                          <enum>
-                            <item value="&quot;Disabled&quot;"/>
-                            <item value="&quot;Enabled&quot;"/>
-                          </enum>
-                        </prop>
+                        <prop readOnly="True" type="string" name="metricsEndpoint"/>
                       </prop>
                     </prop>
                     <prop readOnly="True" type="string" name="provisioningState">
@@ -493,40 +451,13 @@
             <item name="SelfManaged" value="&quot;SelfManaged&quot;"/>
           </enum>
         </arg>
-        <arg type="object" var="$properties.properties.observabilitySettings" options="observability-settings" hide="True" group="Properties">
-          <help short="Observability settings"/>
-          <arg type="object" var="$properties.properties.observabilitySettings.logs" options="logs">
-            <help short="Logs settings"/>
-            <arg type="string" var="$properties.properties.observabilitySettings.logs.state" options="state">
-              <help short="Logs state"/>
-              <enum>
-                <item name="Disabled" value="&quot;Disabled&quot;"/>
-                <item name="Enabled" value="&quot;Enabled&quot;"/>
-              </enum>
-            </arg>
-          </arg>
-          <arg type="string" var="$properties.properties.observabilitySettings.managedIdentity" options="managed-identity">
-            <help short="Managed identity"/>
-          </arg>
-          <arg type="object" var="$properties.properties.observabilitySettings.metrics" options="metrics">
-            <help short="Metrics settings"/>
-            <arg type="string" var="$properties.properties.observabilitySettings.metrics.state" options="state">
-              <help short="Metrics state"/>
-              <enum>
-                <item name="Disabled" value="&quot;Disabled&quot;"/>
-                <item name="Enabled" value="&quot;Enabled&quot;"/>
-              </enum>
-            </arg>
-          </arg>
-          <arg type="object" var="$properties.properties.observabilitySettings.traces" options="traces">
-            <help short="Traces settings"/>
-            <arg type="string" var="$properties.properties.observabilitySettings.traces.state" options="state">
-              <help short="Traces state"/>
-              <enum>
-                <item name="Disabled" value="&quot;Disabled&quot;"/>
-                <item name="Enabled" value="&quot;Enabled&quot;"/>
-              </enum>
-            </arg>
+        <arg type="object" var="$properties.properties.observabilityProfile" options="observability-profile" group="Properties">
+          <help short="Observability profile"/>
+          <arg type="object" var="$properties.properties.observabilityProfile.metrics" options="metrics">
+            <help short="Metrics configuration"/>
+            <additionalProp>
+              <item type="any"/>
+            </additionalProp>
           </arg>
         </arg>
         <arg type="object" var="$properties.tags" options="tags" group="Properties">
@@ -586,31 +517,11 @@
                         <item value="&quot;SelfManaged&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="observabilitySettings" arg="$properties.properties.observabilitySettings">
-                      <prop type="object" name="logs" arg="$properties.properties.observabilitySettings.logs">
-                        <prop type="string" name="state" arg="$properties.properties.observabilitySettings.logs.state">
-                          <enum>
-                            <item value="&quot;Disabled&quot;"/>
-                            <item value="&quot;Enabled&quot;"/>
-                          </enum>
-                        </prop>
-                      </prop>
-                      <prop type="string" name="managedIdentity" arg="$properties.properties.observabilitySettings.managedIdentity"/>
-                      <prop type="object" name="metrics" arg="$properties.properties.observabilitySettings.metrics">
-                        <prop type="string" name="state" arg="$properties.properties.observabilitySettings.metrics.state">
-                          <enum>
-                            <item value="&quot;Disabled&quot;"/>
-                            <item value="&quot;Enabled&quot;"/>
-                          </enum>
-                        </prop>
-                      </prop>
-                      <prop type="object" name="traces" arg="$properties.properties.observabilitySettings.traces">
-                        <prop type="string" name="state" arg="$properties.properties.observabilitySettings.traces.state">
-                          <enum>
-                            <item value="&quot;Disabled&quot;"/>
-                            <item value="&quot;Enabled&quot;"/>
-                          </enum>
-                        </prop>
+                    <prop type="object" name="observabilityProfile" arg="$properties.properties.observabilityProfile">
+                      <prop type="object" name="metrics" arg="$properties.properties.observabilityProfile.metrics">
+                        <additionalProp>
+                          <item type="any"/>
+                        </additionalProp>
                       </prop>
                     </prop>
                     <prop type="object" name="selfManagedUpgradeProfile">
@@ -658,31 +569,9 @@
                         <item value="&quot;SelfManaged&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="observabilitySettings">
-                      <prop type="object" name="logs">
-                        <prop type="string" name="state" required="True">
-                          <enum>
-                            <item value="&quot;Disabled&quot;"/>
-                            <item value="&quot;Enabled&quot;"/>
-                          </enum>
-                        </prop>
-                      </prop>
-                      <prop type="string" name="managedIdentity"/>
+                    <prop type="object" name="observabilityProfile">
                       <prop type="object" name="metrics">
-                        <prop type="string" name="state" required="True">
-                          <enum>
-                            <item value="&quot;Disabled&quot;"/>
-                            <item value="&quot;Enabled&quot;"/>
-                          </enum>
-                        </prop>
-                      </prop>
-                      <prop type="object" name="traces">
-                        <prop type="string" name="state" required="True">
-                          <enum>
-                            <item value="&quot;Disabled&quot;"/>
-                            <item value="&quot;Enabled&quot;"/>
-                          </enum>
-                        </prop>
+                        <prop readOnly="True" type="string" name="metricsEndpoint"/>
                       </prop>
                     </prop>
                     <prop readOnly="True" type="string" name="provisioningState">
@@ -752,61 +641,6 @@
         </http>
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
-    </command>
-    <command name="remove" version="2025-08-01-preview" confirmation="Are you sure you want to perform this operation?">
-      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.applink/applinks/{}/applinkmembers/{}" version="2025-08-01-preview" swagger="mgmt-plane/applink/ResourceProviders/Microsoft.AppLink/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXBwTGluay9hcHBMaW5rcy97YXBwTGlua05hbWV9L2FwcExpbmtNZW1iZXJzL3thcHBMaW5rTWVtYmVyTmFtZX0=/V/MjAyNS0wOC0wMS1wcmV2aWV3"/>
-      <argGroup name="">
-        <arg type="string" var="$Path.appLinkMemberName" options="member-name" required="True" group="" idPart="child_name_1">
-          <help short="The name of the AppLinkMember"/>
-          <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
-        </arg>
-        <arg type="string" var="$Path.appLinkName" options="applink-name" required="True" group="" idPart="name">
-          <help short="The name of the AppLink"/>
-          <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
-        </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-      </argGroup>
-      <operation operationId="AppLinkMembers_Delete">
-        <longRunning finalStateVia="location"/>
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppLink/appLinks/{appLinkName}/appLinkMembers/{appLinkMemberName}">
-          <request method="delete">
-            <path>
-              <param type="string" name="appLinkMemberName" arg="$Path.appLinkMemberName" required="True">
-                <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
-              </param>
-              <param type="string" name="appLinkName" arg="$Path.appLinkName" required="True">
-                <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
-              </param>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
-            </path>
-            <query>
-              <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="&quot;2025-08-01-preview&quot;"/>
-                <format minLength="1"/>
-              </const>
-            </query>
-          </request>
-          <response statusCode="202">
-            <header>
-              <item name="Location"/>
-              <item name="Retry-After"/>
-            </header>
-          </response>
-          <response statusCode="204"/>
-          <response statusCode="200 201"/>
-          <response isError="True">
-            <body>
-              <json>
-                <schema type="@MgmtErrorFormat"/>
-              </json>
-            </body>
-          </response>
-        </http>
-      </operation>
     </command>
   </commandGroup>
 </CodeGen>
