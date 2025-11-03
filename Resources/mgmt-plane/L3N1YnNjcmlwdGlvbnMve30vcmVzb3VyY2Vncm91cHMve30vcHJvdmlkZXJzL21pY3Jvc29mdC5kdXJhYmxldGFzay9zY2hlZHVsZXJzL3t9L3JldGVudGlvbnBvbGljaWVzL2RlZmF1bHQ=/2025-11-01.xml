@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <CodeGen plane="mgmt-plane">
   <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.durabletask/schedulers/{}/retentionpolicies/default" version="2025-11-01" swagger="mgmt-plane/durabletask/ResourceProviders/Microsoft.DurableTask/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRHVyYWJsZVRhc2svc2NoZWR1bGVycy97c2NoZWR1bGVyTmFtZX0vcmV0ZW50aW9uUG9saWNpZXMvZGVmYXVsdA==/V/MjAyNS0xMS0wMQ=="/>
-  <commandGroup name="durabletask retention-policy default">
-    <command name="show" version="2025-11-01">
+  <commandGroup name="durabletask retention-policy">
+    <command name="create" version="2025-11-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.durabletask/schedulers/{}/retentionpolicies/default" version="2025-11-01" swagger="mgmt-plane/durabletask/ResourceProviders/Microsoft.DurableTask/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRHVyYWJsZVRhc2svc2NoZWR1bGVycy97c2NoZWR1bGVyTmFtZX0vcmV0ZW50aW9uUG9saWNpZXMvZGVmYXVsdA==/V/MjAyNS0xMS0wMQ=="/>
       <argGroup name="">
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
@@ -12,9 +12,29 @@
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <operation operationId="RetentionPolicies_Get">
+      <argGroup name="Properties">
+        <arg type="array<object>" var="$resource.properties.retentionPolicies" options="retention-policies" group="Properties">
+          <help short="The orchestration retention policies"/>
+          <item type="object">
+            <arg type="string" var="$resource.properties.retentionPolicies[].orchestrationState" options="orchestration-state">
+              <help short="The orchestration state to which this policy applies. If omitted, the policy applies to all purgeable orchestration states."/>
+              <enum>
+                <item name="Canceled" value="&quot;Canceled&quot;"/>
+                <item name="Completed" value="&quot;Completed&quot;"/>
+                <item name="Failed" value="&quot;Failed&quot;"/>
+                <item name="Terminated" value="&quot;Terminated&quot;"/>
+              </enum>
+            </arg>
+            <arg type="integer32" var="$resource.properties.retentionPolicies[].retentionPeriodInDays" options="retention-period-in-days" required="True">
+              <help short="The retention period in days after which the orchestration will be purged automatically"/>
+            </arg>
+          </item>
+        </arg>
+      </argGroup>
+      <operation operationId="RetentionPolicies_CreateOrReplace">
+        <longRunning finalStateVia="azure-async-operation"/>
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/retentionPolicies/default">
-          <request method="get">
+          <request method="put">
             <path>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
                 <format maxLength="90" minLength="1"/>
@@ -30,8 +50,29 @@
                 <format minLength="1"/>
               </const>
             </query>
+            <body>
+              <json>
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="object" name="properties">
+                    <prop type="array<object>" name="retentionPolicies" arg="$resource.properties.retentionPolicies" identifiers="retentionPeriodInDays orchestrationState">
+                      <item type="object">
+                        <prop type="string" name="orchestrationState" arg="$resource.properties.retentionPolicies[].orchestrationState">
+                          <enum>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Completed&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Terminated&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="integer32" name="retentionPeriodInDays" arg="$resource.properties.retentionPolicies[].retentionPeriodInDays" required="True"/>
+                      </item>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
           </request>
-          <response statusCode="200">
+          <response statusCode="200 201">
             <body>
               <json var="$Instance">
                 <schema type="object">
@@ -155,7 +196,7 @@
         </http>
       </operation>
     </command>
-    <command name="create" version="2025-11-01">
+    <command name="show" version="2025-11-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.durabletask/schedulers/{}/retentionpolicies/default" version="2025-11-01" swagger="mgmt-plane/durabletask/ResourceProviders/Microsoft.DurableTask/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuRHVyYWJsZVRhc2svc2NoZWR1bGVycy97c2NoZWR1bGVyTmFtZX0vcmV0ZW50aW9uUG9saWNpZXMvZGVmYXVsdA==/V/MjAyNS0xMS0wMQ=="/>
       <argGroup name="">
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
@@ -165,29 +206,9 @@
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Properties">
-        <arg type="array<object>" var="$resource.properties.retentionPolicies" options="retention-policies" group="Properties">
-          <help short="The orchestration retention policies"/>
-          <item type="object">
-            <arg type="string" var="$resource.properties.retentionPolicies[].orchestrationState" options="orchestration-state">
-              <help short="The orchestration state to which this policy applies. If omitted, the policy applies to all purgeable orchestration states."/>
-              <enum>
-                <item name="Canceled" value="&quot;Canceled&quot;"/>
-                <item name="Completed" value="&quot;Completed&quot;"/>
-                <item name="Failed" value="&quot;Failed&quot;"/>
-                <item name="Terminated" value="&quot;Terminated&quot;"/>
-              </enum>
-            </arg>
-            <arg type="integer32" var="$resource.properties.retentionPolicies[].retentionPeriodInDays" options="retention-period-in-days" required="True">
-              <help short="The retention period in days after which the orchestration will be purged automatically"/>
-            </arg>
-          </item>
-        </arg>
-      </argGroup>
-      <operation operationId="RetentionPolicies_CreateOrReplace">
-        <longRunning finalStateVia="azure-async-operation"/>
+      <operation operationId="RetentionPolicies_Get">
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.DurableTask/schedulers/{schedulerName}/retentionPolicies/default">
-          <request method="put">
+          <request method="get">
             <path>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
                 <format maxLength="90" minLength="1"/>
@@ -203,29 +224,8 @@
                 <format minLength="1"/>
               </const>
             </query>
-            <body>
-              <json>
-                <schema type="object" name="resource" required="True" clientFlatten="True">
-                  <prop type="object" name="properties">
-                    <prop type="array<object>" name="retentionPolicies" arg="$resource.properties.retentionPolicies" identifiers="retentionPeriodInDays orchestrationState">
-                      <item type="object">
-                        <prop type="string" name="orchestrationState" arg="$resource.properties.retentionPolicies[].orchestrationState">
-                          <enum>
-                            <item value="&quot;Canceled&quot;"/>
-                            <item value="&quot;Completed&quot;"/>
-                            <item value="&quot;Failed&quot;"/>
-                            <item value="&quot;Terminated&quot;"/>
-                          </enum>
-                        </prop>
-                        <prop type="integer32" name="retentionPeriodInDays" arg="$resource.properties.retentionPolicies[].retentionPeriodInDays" required="True"/>
-                      </item>
-                    </prop>
-                  </prop>
-                </schema>
-              </json>
-            </body>
           </request>
-          <response statusCode="200 201">
+          <response statusCode="200">
             <body>
               <json var="$Instance">
                 <schema type="object">
