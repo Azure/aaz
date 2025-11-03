@@ -7,3 +7,10 @@ Delete a Retention Policy
 ### [2025-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kdXJhYmxldGFzay9zY2hlZHVsZXJzL3t9L3JldGVudGlvbnBvbGljaWVzL2RlZmF1bHQ=/2025-11-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.durabletask/schedulers/{}/retentionpolicies/default 2025-11-01 -->
+
+#### examples
+
+- Delete a Retention Policy on a Scheduler
+    ```bash
+        durabletask retention-policy delete -g "example-rg" --scheduler-name "example-scheduler"
+    ```
