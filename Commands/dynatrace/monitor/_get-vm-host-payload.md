@@ -25,3 +25,14 @@ Return payload to be included in API request body when installing Dynatrace agen
     ```bash
         dynatrace monitor get-vm-host-payload -g rg --monitor-name monitor
     ```
+
+### [2024-04-24](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL2R5bmF0cmFjZS5vYnNlcnZhYmlsaXR5L21vbml0b3JzL3t9L2dldHZtaG9zdHBheWxvYWQ=/2024-04-24.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/dynatrace.observability/monitors/{}/getvmhostpayload 2024-04-24 -->
+
+#### examples
+
+- Get-vm-host-payload
+    ```bash
+        dynatrace monitor get-vm-host-payload -g rg --monitor-name monitor
+    ```

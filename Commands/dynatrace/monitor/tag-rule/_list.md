@@ -25,3 +25,14 @@ List all tag rules associated with a Dynatrace resource. This helps understand t
     ```bash
         dynatrace monitor tag-rule list -g rg --monitor-name monitor
     ```
+
+### [2024-04-24](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL2R5bmF0cmFjZS5vYnNlcnZhYmlsaXR5L21vbml0b3JzL3t9L3RhZ3J1bGVz/2024-04-24.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/dynatrace.observability/monitors/{}/tagrules 2024-04-24 -->
+
+#### examples
+
+- List tag-rule
+    ```bash
+        dynatrace monitor tag-rule list -g rg --monitor-name monitor
+    ```
