@@ -23,5 +23,5 @@ Uploads or downloads the list of domains for a DNS Resolver Domain List from a s
 
 - Upload DNS resolver domain list domains
     ```bash
-        dns-resolver domain-list bulk --resource-group sampleResourceGroup --dns-resolver-domain-list-name sampleDnsResolverDomainList --action Upload --storage-url https://sampleStorageAccount.blob.core.windows.net/sample-container/sampleBlob.txt?sv=2022-11-02&sr=b&sig=39Up9jzHkxhUIhFEjEh9594DJxe7w6cIRCgOV6ICGS0%3A377&sp=rcw
+        dns-resolver domain-list bulk --resource-group sampleResourceGroup --name sampleDnsResolverDomainList --action Upload --storage-url https://sampleStorageAccount.blob.core.windows.net/sample-container/sampleBlob.txt?sv=2022-11-02&sr=b&sig=39Up9jzHkxhUIhFEjEh9594DJxe7w6cIRCgOV6ICGS0%3A377&sp=rcw
     ```
