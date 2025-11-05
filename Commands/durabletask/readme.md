@@ -7,6 +7,9 @@ Commands to manage Durabletask schedulers and taskhubs
 - [namespace](/Commands/durabletask/namespace/readme.md)
 : Commands to manage Durabletask namespaces
 
+- [retention-policy](/Commands/durabletask/retention-policy/readme.md)
+: Manage Retention Policy
+
 - [scheduler](/Commands/durabletask/scheduler/readme.md)
 : Commands to manage Durabletask schedulers
 

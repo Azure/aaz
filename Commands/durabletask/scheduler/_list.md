@@ -15,3 +15,15 @@ List Schedulers by subscription
     ```bash
         durabletask scheduler list -g testrg
     ```
+
+### [2025-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kdXJhYmxldGFzay9zY2hlZHVsZXJz/2025-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.durabletask/schedulers 2025-11-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.durabletask/schedulers 2025-11-01 -->
+
+#### examples
+
+- List all schedulers in a resource group
+    ```bash
+        durabletask scheduler list -g testrg
+    ```
