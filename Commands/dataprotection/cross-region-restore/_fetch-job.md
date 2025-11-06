@@ -11,3 +11,7 @@ Fetches a single Cross Region Restore Job
 ### [2024-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhcHJvdGVjdGlvbi9sb2NhdGlvbnMve30vZmV0Y2hjcm9zc3JlZ2lvbnJlc3RvcmVqb2I=/2024-04-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/locations/{}/fetchcrossregionrestorejob 2024-04-01 -->
+
+### [2025-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhcHJvdGVjdGlvbi9sb2NhdGlvbnMve30vZmV0Y2hjcm9zc3JlZ2lvbnJlc3RvcmVqb2I=/2025-07-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/locations/{}/fetchcrossregionrestorejob 2025-07-01 -->
