@@ -14,3 +14,14 @@ Get the restore point.
     ```bash
         restore-point show --resource-group "myResourceGroup" --collection-name "rpcName" --name "rpName"
     ```
+
+### [2024-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlL3Jlc3RvcmVwb2ludGNvbGxlY3Rpb25zL3t9L3Jlc3RvcmVwb2ludHMve30=/2024-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/restorepointcollections/{}/restorepoints/{} 2024-11-01 -->
+
+#### examples
+
+- Get a restore point
+    ```bash
+        restore-point show --resource-group "myResourceGroup" --collection-name "rpcName" --name "rpName"
+    ```
