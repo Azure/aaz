@@ -19,6 +19,9 @@ Manage the Azure Monitor Service.
 - [autoscale](/Commands/monitor/autoscale/readme.md)
 : Manage autoscale settings
 
+- [dashboard](/Commands/monitor/dashboard/readme.md)
+: Manage Dashboard with Grafana resources
+
 - [data-collection](/Commands/monitor/data-collection/readme.md)
 : Manage data collection for monitor control service.
 
