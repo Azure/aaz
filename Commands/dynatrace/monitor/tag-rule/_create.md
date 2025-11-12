@@ -25,3 +25,14 @@ Create a new tag rule that defines which Azure resources should be monitored bas
     ```bash
         dynatrace monitor tag-rule create -g rg --monitor-name monitor -n default --log-rules "{send-aad-logs:enabled,send-subscription-logs:enabled,send-activity-logs:enabled,filtering-tags:[{name:env,value:prod,action:include},{name:env,value:dev,action:exclude}]}" --metric-rules "{sending-metrics:enabled,filtering-tags:[{name:env,value:prod,action:include}]}"
     ```
+
+### [2024-04-24](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL2R5bmF0cmFjZS5vYnNlcnZhYmlsaXR5L21vbml0b3JzL3t9L3RhZ3J1bGVzL3t9/2024-04-24.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/dynatrace.observability/monitors/{}/tagrules/{} 2024-04-24 -->
+
+#### examples
+
+- Create tag-rule
+    ```bash
+        dynatrace monitor tag-rule create -g rg --monitor-name monitor -n default --log-rules "{send-aad-logs:enabled,send-subscription-logs:enabled,send-activity-logs:enabled,filtering-tags:[{name:env,value:prod,action:include},{name:env,value:dev,action:exclude}]}" --metric-rules "{sending-metrics:enabled,filtering-tags:[{name:env,value:prod,action:include}]}"
+    ```

@@ -7,6 +7,9 @@ Manage dynatrace
 - [monitor](/Commands/dynatrace/monitor/readme.md)
 : Manage Dynatrace resource on Azure. This command lists properties including Dynatrace environment properties, SSO properties, and plan information.
 
+- [observability](/Commands/dynatrace/observability/readme.md)
+: Manage Observability
+
 ## Commands
 
 - [get-marketplace-saas-resource-detail](/Commands/dynatrace/_get-marketplace-saas-resource-detail.md)
