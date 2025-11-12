@@ -14,3 +14,14 @@ Validate whether a list of backed up disk snapshots can be restored into Elastic
     ```bash
         elastic-san volume-group test-restore -g rg_name -e san_name -n volume_group_name --disk-snapshot-ids "[snapshot_id]"
     ```
+
+### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljc2FuL2VsYXN0aWNzYW5zL3t9L3ZvbHVtZWdyb3Vwcy97fS9wcmVyZXN0b3Jl/2025-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elasticsan/elasticsans/{}/volumegroups/{}/prerestore 2025-09-01 -->
+
+#### examples
+
+- Test Restore
+    ```bash
+        elastic-san volume-group test-restore -g rg_name -e san_name -n volume_group_name --disk-snapshot-ids "[snapshot_id]"
+    ```
