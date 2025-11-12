@@ -1,6 +1,6 @@
 # [Command] _monitor dashboard show_
 
-Get the properties of a specific dashboard for grafana resource.
+Get the properties of a specific Dashboard with Grafana resource.
 
 ## Versions
 

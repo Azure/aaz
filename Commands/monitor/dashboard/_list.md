@@ -1,6 +1,6 @@
 # [Command] _monitor dashboard list_
 
-List all resources of dashboards under the specified resource group.
+List all Dashboard with Grafana resources under the specified resource group.
 
 ## Versions
 

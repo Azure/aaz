@@ -1,6 +1,6 @@
 # [Command] _monitor dashboard delete_
 
-Delete a dashboard for Grafana resource.
+Delete a Dashboard with Grafana resource.
 
 ## Versions
 

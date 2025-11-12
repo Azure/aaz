@@ -1,6 +1,6 @@
 # [Command] _monitor dashboard update_
 
-Update a dashboard for grafana resource. This API is idempotent, so user can either create a new dashboard or update an existing dashboard.
+Update a Dashboard with Grafana resource. This API is idempotent, so user can either create a new dashboard or update an existing dashboard.
 
 ## Versions
 

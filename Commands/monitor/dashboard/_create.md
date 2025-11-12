@@ -1,9 +1,16 @@
 # [Command] _monitor dashboard create_
 
-Create a dashboard for grafana resource. This API is idempotent, so user can either create a new dashboard or update an existing dashboard.
+Create a Dashboard with Grafana resource. This API is idempotent, so user can either create a new dashboard or update an existing dashboard.
 
 ## Versions
 
 ### [2025-09-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXNoYm9hcmQvZGFzaGJvYXJkcy97fQ==/2025-09-01-preview.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.dashboard/dashboards/{} 2025-09-01-preview -->
+
+#### examples
+
+- Create a Dashboard with Grafana
+    ```bash
+        monitor dashboard create --resource-group myResourceGroup --dashboard-name myDashboard --location westus
+    ```
