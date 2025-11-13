@@ -47,3 +47,14 @@ List Snapshots in a VolumeGroup or List Snapshots by Volume (name) in a VolumeGr
     ```bash
         elastic-san volume snapshot list -g "rg" -e "san_name" -v "vg_name"
     ```
+
+### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljc2FuL2VsYXN0aWNzYW5zL3t9L3ZvbHVtZWdyb3Vwcy97fS9zbmFwc2hvdHM=/2025-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elasticsan/elasticsans/{}/volumegroups/{}/snapshots 2025-09-01 -->
+
+#### examples
+
+- snapshot list
+    ```bash
+        elastic-san volume snapshot list -g "rg" -e "san_name" -v "vg_name"
+    ```
