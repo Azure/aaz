@@ -19,7 +19,7 @@ Data transfer connection commands
 : Links the connection to its pending connection.
 
 - [list](/Commands/data-transfer/connection/_list.md)
-: List connections in a resource group.
+: List all the connections.
 
 - [list-pending-connection](/Commands/data-transfer/connection/_list-pending-connection.md)
 : Lists all pending remote connections that are linkable to this connection.

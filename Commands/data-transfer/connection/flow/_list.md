@@ -1,6 +1,6 @@
 # [Command] _data-transfer connection flow list_
 
-List flows in a connection.
+List all the flows in a connection.
 
 ## Versions
 

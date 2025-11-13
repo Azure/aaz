@@ -1,6 +1,6 @@
 # [Command] _data-transfer connection flow enable_
 
-Enables the specified flow.
+Enables the specified flow in the connection
 
 ## Versions
 
@@ -13,4 +13,5 @@ Enables the specified flow.
 - Enables the specified flow
     ```bash
         data-transfer connection flow enable --resource-group testRG --connection-name testConnection --flow-name testFlow
+        data-transfer connection flow enable --ids /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/testRG/providers/Microsoft.AzureDataTransfer/connections/testConnection/flows/testFlow
     ```
