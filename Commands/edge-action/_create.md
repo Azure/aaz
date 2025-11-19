@@ -12,5 +12,5 @@ Create EdgeAction resource
 
 - CreateEdgeAction
     ```bash
-        cdn edge-action create --resource-group testrg --edge-action-name edgeAction1 --location global --sku "{name:Standard,tier:Standard}"
+        edge-action create --resource-group testrg --edge-action-name edgeAction1 --location global --sku "{name:Standard,tier:Standard}"
     ```

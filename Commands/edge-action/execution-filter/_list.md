@@ -12,5 +12,5 @@ List EdgeActionExecutionFilter resources by EdgeAction
 
 - ListEdgeActionsExecutionFilters_byEdgeAction
     ```bash
-        cdn edge-action execution-filter list --resource-group testrg --edge-action-name edgeAction1
+        edge-action execution-filter list --resource-group testrg --edge-action-name edgeAction1
     ```

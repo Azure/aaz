@@ -12,5 +12,5 @@ Delete EdgeAction resource
 
 - DeleteEdgeAction
     ```bash
-        cdn edge-action delete --resource-group testrg --edge-action-name edgeAction1
+        edge-action delete --resource-group testrg --edge-action-name edgeAction1
     ```

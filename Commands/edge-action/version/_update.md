@@ -12,5 +12,5 @@ Update EdgeActionVersion version
 
 - UpdateEdgeActionVersion
     ```bash
-        cdn edge-action version update --resource-group testrg --edge-action-name edgeAction1 --version version2 --location global --deployment-type zip --is-default-version True
+        edge-action version update --resource-group testrg --edge-action-name edgeAction1 --version version2 --location global --deployment-type zip --is-default-version True
     ```

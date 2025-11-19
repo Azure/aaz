@@ -12,5 +12,5 @@ Delete EdgeActionVersion resource
 
 - DeleteEdgeActionVersion
     ```bash
-        cdn edge-action version delete --resource-group testrg --edge-action-name edgeAction1 --version version1
+        edge-action version delete --resource-group testrg --edge-action-name edgeAction1 --version version1
     ```

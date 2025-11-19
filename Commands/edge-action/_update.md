@@ -12,5 +12,5 @@ Update EdgeAction resource
 
 - UpdateEdgeAction
     ```bash
-        az cdn edge-action Update --resource-group testrg --edge-action-name edgeAction1 --location global --sku "{name:Standard,tier:Standard}"
+        edge-action Update --resource-group testrg --edge-action-name edgeAction1 --location global --sku "{name:Standard,tier:Standard}"
     ```

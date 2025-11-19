@@ -12,5 +12,5 @@ Get EdgeAction resource
 
 - GetEdgeAction
     ```bash
-        cdn edge-action show --resource-group testrg --edge-action-name edgeAction1
+        edge-action show --resource-group testrg --edge-action-name edgeAction1
     ```

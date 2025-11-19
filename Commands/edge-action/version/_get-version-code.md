@@ -12,5 +12,5 @@ A long-running operation to get versioncode deployed to EdgeActionVersion resour
 
 - GetEdgeActionVersionCode
     ```bash
-        cdn edge-action version get-version-code --resource-group testrg --edge-action-name edgeAction1 --version version1
+        edge-action version get-version-code --resource-group testrg --edge-action-name edgeAction1 --version version1
     ```

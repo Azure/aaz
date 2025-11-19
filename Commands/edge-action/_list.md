@@ -12,5 +12,5 @@ List EdgeAction resources by subscription ID
 
 - ListEdgeActions_bySubscription
     ```bash
-        cdn edge-action list
+        edge-action list
     ```

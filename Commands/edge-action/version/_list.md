@@ -12,5 +12,5 @@ List EdgeActionVersion resources by EdgeAction
 
 - GetEdgeActionVersionsByEdgeAction
     ```bash
-        cdn edge-action version list --resource-group testrg --edge-action-name edgeAction1
+        edge-action version list --resource-group testrg --edge-action-name edgeAction1
     ```

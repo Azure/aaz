@@ -12,5 +12,5 @@ Delete EdgeActionExecutionFilter resource
 
 - DeleteEdgeActionExecutionFilter
     ```bash
-        cdn edge-action execution-filter delete --resource-group testrg --edge-action-name edgeAction1 --execution-filter executionFilter1
+        edge-action execution-filter delete --resource-group testrg --edge-action-name edgeAction1 --execution-filter executionFilter1
     ```

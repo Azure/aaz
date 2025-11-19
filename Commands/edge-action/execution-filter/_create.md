@@ -12,5 +12,5 @@ Create EdgeActionExecutionFilter resource
 
 - CreateEdgeActionExecutionFilter
     ```bash
-        cdn edge-action execution-filter create --resource-group testrg --edge-action-name edgeAction1 --execution-filter executionFilter1 --location global --version-id /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/testrg/providers/Microsoft.Cdn/EdgeActions/edgeAction1/versions/version1 --execution-filter-identifier-header-name header-key --execution-filter-identifier-header-value header-value
+        edge-action execution-filter create --resource-group testrg --edge-action-name edgeAction1 --execution-filter executionFilter1 --location global --version-id /subscriptions/00000000-0000-0000-0000-000000000000/resourcegroups/testrg/providers/Microsoft.Cdn/EdgeActions/edgeAction1/versions/version1 --execution-filter-identifier-header-name header-key --execution-filter-identifier-header-value header-value
     ```
