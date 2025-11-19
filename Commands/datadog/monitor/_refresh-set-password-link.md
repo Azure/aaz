@@ -14,3 +14,14 @@ Refreshes the link used to set the password for the Datadog monitor resource and
     ```bash
         datadog monitor refresh-set-password-link --resource-group myResourceGroup --monitor-name myMonitor
     ```
+
+### [2025-06-11](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhZG9nL21vbml0b3JzL3t9L3JlZnJlc2hzZXRwYXNzd29yZGxpbms=/2025-06-11.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.datadog/monitors/{}/refreshsetpasswordlink 2025-06-11 -->
+
+#### examples
+
+- Monitors_RefreshSetPasswordLink
+    ```bash
+        datadog monitor refresh-set-password-link --resource-group myResourceGroup --monitor-name myMonitor
+    ```

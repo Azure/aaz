@@ -4,6 +4,9 @@ Manage Dynatrace resource on Azure. This command lists properties including Dyna
 
 ## Subgroups
 
+- [monitored-subscription](/Commands/dynatrace/monitor/monitored-subscription/readme.md)
+: Manage Monitored Subscription
+
 - [sso-config](/Commands/dynatrace/monitor/sso-config/readme.md)
 : Manage Single Sign-On (SSO) configuration between Azure and Dynatrace. This enables unified authentication for users accessing Dynatrace through Azure.
 
@@ -46,4 +49,4 @@ Manage Dynatrace resource on Azure. This command lists properties including Dyna
 : Get Dynatrace resource properties including Dynatrace Environment information, SSO properties, resource location, marketplace subscription status and associated user information.
 
 - [update](/Commands/dynatrace/monitor/_update.md)
-: Update a Dynatrace resource on Azure for monitoring and observability needs.
+: Update a MonitorResource
