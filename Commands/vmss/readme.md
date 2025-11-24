@@ -19,6 +19,9 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 - [run-command](/Commands/vmss/run-command/readme.md)
 : Manage Run Command
 
+- [vms](/Commands/vmss/vms/readme.md)
+: Manage Virtual Machine
+
 ## Commands
 
 - [create](/Commands/vmss/_create.md)
