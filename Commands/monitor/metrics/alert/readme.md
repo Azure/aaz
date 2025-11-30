@@ -2,6 +2,11 @@
 
 Manage near-realtime metric alert rules.
 
+## Subgroups
+
+- [identity](/Commands/monitor/metrics/alert/identity/readme.md)
+: Manage Identity
+
 ## Commands
 
 - [create](/Commands/monitor/metrics/alert/_create.md)
