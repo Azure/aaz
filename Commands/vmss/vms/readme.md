@@ -7,6 +7,9 @@ Manage Virtual Machine
 - [identity](/Commands/vmss/vms/identity/readme.md)
 : Manage Identity
 
+- [instance-view](/Commands/vmss/vms/instance-view/readme.md)
+: Manage Instance View
+
 ## Commands
 
 - [create](/Commands/vmss/vms/_create.md)
