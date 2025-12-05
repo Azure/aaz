@@ -12,6 +12,9 @@ Cloud Exadata Infrastructures
 - [add-storage-capacity](/Commands/oracle-database/cloud-exadata-infrastructure/_add-storage-capacity.md)
 : Perform add storage capacity on exadata infra
 
+- [configure-exascale](/Commands/oracle-database/cloud-exadata-infrastructure/_configure-exascale.md)
+: Configures Exascale on Cloud exadata infrastructure resource
+
 - [create](/Commands/oracle-database/cloud-exadata-infrastructure/_create.md)
 : Create a CloudExadataInfrastructure
 
