@@ -18,6 +18,12 @@ Oracle Autonomous Databases
 
 ## Commands
 
+- [action](/Commands/oracle-database/autonomous-database/_action.md)
+: Perform Lifecycle Management Action on Autonomous Database
+
+- [change-disaster-recovery-configuration](/Commands/oracle-database/autonomous-database/_change-disaster-recovery-configuration.md)
+: Perform ChangeDisasterRecoveryConfiguration action on Autonomous Database
+
 - [create](/Commands/oracle-database/autonomous-database/_create.md)
 : Create a AutonomousDatabase
 
