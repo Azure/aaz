@@ -25,6 +25,9 @@ Commands to manage Azure VMware Solution.
 - [hcx-enterprise-site](/Commands/vmware/hcx-enterprise-site/readme.md)
 : Commands to manage HCX Enterprise Sites in a private cloud.
 
+- [iscsi-path](/Commands/vmware/iscsi-path/readme.md)
+: Commands to manage IscsiPath resources in a private cloud.
+
 - [location](/Commands/vmware/location/readme.md)
 : Commands to check availability by location.
 
@@ -34,6 +37,9 @@ Commands to manage Azure VMware Solution.
 - [private-cloud](/Commands/vmware/private-cloud/readme.md)
 : Commands to manage private clouds.
 
+- [provisioned-network](/Commands/vmware/provisioned-network/readme.md)
+: Manage Provisioned Network
+
 - [script-cmdlet](/Commands/vmware/script-cmdlet/readme.md)
 : Commands to list and show script cmdlet resources.
 
@@ -42,6 +48,9 @@ Commands to manage Azure VMware Solution.
 
 - [script-package](/Commands/vmware/script-package/readme.md)
 : Commands to list and show script packages available to run on the private cloud.
+
+- [skus](/Commands/vmware/skus/readme.md)
+: Commands to manage SKUs.
 
 - [vm](/Commands/vmware/vm/readme.md)
 : Commands to manage Virtual Machines.
