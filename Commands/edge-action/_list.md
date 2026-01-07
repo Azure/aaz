@@ -14,3 +14,14 @@ List EdgeAction resources by subscription ID
     ```bash
         edge-action list
     ```
+
+### [2025-12-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vZWRnZWFjdGlvbnM=/2025-12-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/edgeactions 2025-12-01-preview -->
+
+#### examples
+
+- ListEdgeActions_bySubscription
+    ```bash
+        edge-action list
+    ```
