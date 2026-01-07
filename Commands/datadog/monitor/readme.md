@@ -2,6 +2,11 @@
 
 Provides a set of commands to manage Datadog monitor resources in your Azure subscription, enabling integration and observability of your Azure resources through Datadog.
 
+## Subgroups
+
+- [monitored-subscription](/Commands/datadog/monitor/monitored-subscription/readme.md)
+: Manage Monitored Subscription
+
 ## Commands
 
 - [create](/Commands/datadog/monitor/_create.md)
@@ -9,6 +14,9 @@ Provides a set of commands to manage Datadog monitor resources in your Azure sub
 
 - [delete](/Commands/datadog/monitor/_delete.md)
 : Deletes an existing Datadog monitor resource from your Azure subscription, removing the integration and stopping the observability of your Azure resources through Datadog.
+
+- [get-billing-info](/Commands/datadog/monitor/_get-billing-info.md)
+: Get marketplace and organization info mapped to the given monitor.
 
 - [get-default-key](/Commands/datadog/monitor/_get-default-key.md)
 : Fetches the default Datadog API key associated with your monitor resource, which is used for authenticating and sending telemetry data from Azure to Datadog.

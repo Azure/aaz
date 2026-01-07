@@ -14,3 +14,14 @@ Updates the configuration of an existing Datadog monitor resource in your Azure 
     ```bash
         datadog monitor update --name "myMonitor" --tags Environment="Dev" --monitoring-status "Disabled" --resource-group "myResourceGroup"
     ```
+
+### [2025-06-11](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhZG9nL21vbml0b3JzL3t9/2025-06-11.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.datadog/monitors/{} 2025-06-11 -->
+
+#### examples
+
+- Monitors_Update
+    ```bash
+        datadog monitor update --name "myMonitor" --tags Environment="Dev" --monitoring-status "Disabled" --resource-group "myResourceGroup"
+    ```

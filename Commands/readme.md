@@ -26,6 +26,9 @@
 - [apic](/Commands/apic/readme.md)
 : Manage Azure API Center services
 
+- [appservice](/Commands/appservice/readme.md)
+: Manage Appservice
+
 - [arc](/Commands/arc/readme.md)
 : Manage Azure Arc Machines.
 
@@ -166,6 +169,9 @@
 
 - [dynatrace](/Commands/dynatrace/readme.md)
 : Manage dynatrace
+
+- [edge-action](/Commands/edge-action/readme.md)
+: Manage Edge Action
 
 - [edge-zones](/Commands/edge-zones/readme.md)
 : Manage Edge Zone resources

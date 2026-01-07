@@ -1,0 +1,169 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/virtualmachinescalesets/{}/virtualmachines/{}/instanceview" version="2024-11-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS92aXJ0dWFsTWFjaGluZVNjYWxlU2V0cy97dm1TY2FsZVNldE5hbWV9L3ZpcnR1YWxNYWNoaW5lcy97aW5zdGFuY2VJZH0vaW5zdGFuY2VWaWV3/V/MjAyNC0xMS0wMQ=="/>
+  <commandGroup name="vmss vms instance-view">
+    <command name="show" version="2024-11-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/virtualmachinescalesets/{}/virtualmachines/{}/instanceview" version="2024-11-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS92aXJ0dWFsTWFjaGluZVNjYWxlU2V0cy97dm1TY2FsZVNldE5hbWV9L3ZpcnR1YWxNYWNoaW5lcy97aW5zdGFuY2VJZH0vaW5zdGFuY2VWaWV3/V/MjAyNC0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.instanceId" options="instance-id" required="True" idPart="child_name_1">
+          <help short="The instance ID of the virtual machine."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.vmScaleSetName" options="vm-scale-set-name" required="True" idPart="name">
+          <help short="The name of the VM scale set."/>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualMachineScaleSetVMs_GetInstanceView">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/virtualMachineScaleSets/{vmScaleSetName}/virtualMachines/{instanceId}/instanceView">
+          <request method="get">
+            <path>
+              <param type="string" name="instanceId" arg="$Path.instanceId" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+              <param type="string" name="vmScaleSetName" arg="$Path.vmScaleSetName" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="assignedHost"/>
+                  <prop type="object" name="bootDiagnostics">
+                    <prop readOnly="True" type="string" name="consoleScreenshotBlobUri"/>
+                    <prop readOnly="True" type="string" name="serialConsoleLogBlobUri"/>
+                    <prop readOnly="True" type="@InstanceViewStatus_read" name="status"/>
+                  </prop>
+                  <prop type="string" name="computerName"/>
+                  <prop type="array<object>" name="disks" identifiers="name">
+                    <item type="object">
+                      <prop type="array<object>" name="encryptionSettings">
+                        <item type="object">
+                          <prop type="object" name="diskEncryptionKey">
+                            <prop type="string" name="secretUrl" required="True"/>
+                            <prop type="object" name="sourceVault" required="True" cls="SubResource_read">
+                              <prop type="ResourceId" name="id"/>
+                            </prop>
+                          </prop>
+                          <prop type="boolean" name="enabled"/>
+                          <prop type="object" name="keyEncryptionKey">
+                            <prop type="string" name="keyUrl" required="True"/>
+                            <prop type="@SubResource_read" name="sourceVault" required="True"/>
+                          </prop>
+                        </item>
+                      </prop>
+                      <prop type="string" name="name"/>
+                      <prop type="array<@InstanceViewStatus_read>" name="statuses">
+                        <item type="@InstanceViewStatus_read"/>
+                      </prop>
+                    </item>
+                  </prop>
+                  <prop type="array<object>" name="extensions" identifiers="name type">
+                    <item type="object">
+                      <prop type="string" name="name"/>
+                      <prop type="array<@InstanceViewStatus_read>" name="statuses">
+                        <item type="@InstanceViewStatus_read"/>
+                      </prop>
+                      <prop type="array<@InstanceViewStatus_read>" name="substatuses">
+                        <item type="@InstanceViewStatus_read"/>
+                      </prop>
+                      <prop type="string" name="type"/>
+                      <prop type="string" name="typeHandlerVersion"/>
+                    </item>
+                  </prop>
+                  <prop type="string" name="hyperVGeneration">
+                    <enum>
+                      <item value="&quot;V1&quot;"/>
+                      <item value="&quot;V2&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="object" name="maintenanceRedeployStatus">
+                    <prop type="boolean" name="isCustomerInitiatedMaintenanceAllowed"/>
+                    <prop type="string" name="lastOperationMessage"/>
+                    <prop type="string" name="lastOperationResultCode">
+                      <enum>
+                        <item value="&quot;MaintenanceAborted&quot;"/>
+                        <item value="&quot;MaintenanceCompleted&quot;"/>
+                        <item value="&quot;None&quot;"/>
+                        <item value="&quot;RetryLater&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="maintenanceWindowEndTime">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="dateTime" name="maintenanceWindowStartTime">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="dateTime" name="preMaintenanceWindowEndTime">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="dateTime" name="preMaintenanceWindowStartTime">
+                      <format protocol="iso"/>
+                    </prop>
+                  </prop>
+                  <prop type="string" name="osName"/>
+                  <prop type="string" name="osVersion"/>
+                  <prop type="string" name="placementGroupId"/>
+                  <prop type="integer32" name="platformFaultDomain"/>
+                  <prop type="integer32" name="platformUpdateDomain"/>
+                  <prop type="string" name="rdpThumbPrint"/>
+                  <prop type="array<@InstanceViewStatus_read>" name="statuses">
+                    <item type="@InstanceViewStatus_read"/>
+                  </prop>
+                  <prop type="object" name="vmAgent">
+                    <prop type="array<object>" name="extensionHandlers">
+                      <item type="object">
+                        <prop type="object" name="status" cls="InstanceViewStatus_read">
+                          <prop type="string" name="code"/>
+                          <prop type="string" name="displayStatus"/>
+                          <prop type="string" name="level">
+                            <enum>
+                              <item value="&quot;Error&quot;"/>
+                              <item value="&quot;Info&quot;"/>
+                              <item value="&quot;Warning&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="message"/>
+                          <prop type="dateTime" name="time">
+                            <format protocol="iso"/>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="type"/>
+                        <prop type="string" name="typeHandlerVersion"/>
+                      </item>
+                    </prop>
+                    <prop type="array<@InstanceViewStatus_read>" name="statuses">
+                      <item type="@InstanceViewStatus_read"/>
+                    </prop>
+                    <prop type="string" name="vmAgentVersion"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="vmHealth">
+                    <prop readOnly="True" type="@InstanceViewStatus_read" name="status"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

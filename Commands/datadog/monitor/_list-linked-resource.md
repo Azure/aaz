@@ -14,3 +14,14 @@ Lists all Azure resources that are linked to the same Datadog organization as th
     ```bash
         datadog monitor list-linked-resource --resource-group myResourceGroup --monitor-name myMonitor
     ```
+
+### [2025-06-11](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhZG9nL21vbml0b3JzL3t9L2xpc3RsaW5rZWRyZXNvdXJjZXM=/2025-06-11.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.datadog/monitors/{}/listlinkedresources 2025-06-11 -->
+
+#### examples
+
+- Monitors_ListLinkedResources
+    ```bash
+        datadog monitor list-linked-resource --resource-group myResourceGroup --monitor-name myMonitor
+    ```

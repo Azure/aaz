@@ -4,6 +4,11 @@ Manage network security group flow logging.
 
 For more information about configuring flow logs visit https://learn.microsoft.com/azure/network-watcher/network-watcher-nsg-flow-logging-cli.
 
+## Subgroups
+
+- [identity](/Commands/network/watcher/flow-log/identity/readme.md)
+: Manage Identity
+
 ## Commands
 
 - [configure-flow-log](/Commands/network/watcher/flow-log/_configure-flow-log.md)

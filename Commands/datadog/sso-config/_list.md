@@ -14,3 +14,14 @@ Lists all Single Sign-On (SSO) configurations associated with a specific Datadog
     ```bash
         datadog sso-config list --resource-group myResourceGroup --monitor-name myMonitor
     ```
+
+### [2025-06-11](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhZG9nL21vbml0b3JzL3t9L3NpbmdsZXNpZ25vbmNvbmZpZ3VyYXRpb25z/2025-06-11.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.datadog/monitors/{}/singlesignonconfigurations 2025-06-11 -->
+
+#### examples
+
+- SingleSignOnConfigurations_List
+    ```bash
+        datadog sso-config list --resource-group myResourceGroup --monitor-name myMonitor
+    ```
