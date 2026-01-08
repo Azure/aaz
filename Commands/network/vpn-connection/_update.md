@@ -94,3 +94,8 @@ Update a VPN connection.
     ```bash
         network vpn-connection update --name MyConnection --resource-group MyResourceGroup --use-policy-based-traffic-selectors true
     ```
+
+- Update certificate authentication using JSON string
+    ```bash
+        network vpn-connection update -g MyResourceGroup -n MyConnection --certificate-authentication '{"outboundAuthCertificate":"https://{kv-name}.vault.azure.net/secrets/{secret-name}/{version}","inboundAuthCertificateChain":["MIIC+TCCAeG..."],"inboundAuthCertificateSubjectName":"CN=rootCert.com"}'
+    ```
