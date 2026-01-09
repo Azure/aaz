@@ -36,3 +36,14 @@ Get a script package available to run on a private cloud
     ```bash
         vmware script-package show --resource-group group1 --private-cloud cloud1 --script-package-name Microsoft.AVS.Management@3.0.48
     ```
+
+### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5hdnMvcHJpdmF0ZWNsb3Vkcy97fS9zY3JpcHRwYWNrYWdlcy97fQ==/2025-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.avs/privateclouds/{}/scriptpackages/{} 2025-09-01 -->
+
+#### examples
+
+- Show a script package.
+    ```bash
+        vmware script-package show --resource-group group1 --private-cloud cloud1 --script-package-name Microsoft.AVS.Management@3.0.48
+    ```

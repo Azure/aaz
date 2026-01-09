@@ -28,6 +28,9 @@ Commands to manage Azure VMware Solution.
 - [iscsi-path](/Commands/vmware/iscsi-path/readme.md)
 : Commands to manage IscsiPath resources in a private cloud.
 
+- [license](/Commands/vmware/license/readme.md)
+: Commands to manage license
+
 - [location](/Commands/vmware/location/readme.md)
 : Commands to check availability by location.
 
@@ -48,6 +51,9 @@ Commands to manage Azure VMware Solution.
 
 - [script-package](/Commands/vmware/script-package/readme.md)
 : Commands to list and show script packages available to run on the private cloud.
+
+- [service-component](/Commands/vmware/service-component/readme.md)
+: Manage Service Component
 
 - [skus](/Commands/vmware/skus/readme.md)
 : Commands to manage SKUs.

@@ -7,6 +7,9 @@ Commands to manage private clouds.
 - [identity-source](/Commands/vmware/private-cloud/identity-source/readme.md)
 : Manage a vCenter Single Sign On Identity Source of a  private cloud.
 
+- [maintenance](/Commands/vmware/private-cloud/maintenance/readme.md)
+: Manage Maintenance
+
 - [provisioned-network](/Commands/vmware/private-cloud/provisioned-network/readme.md)
 : Commands to list and show provisioned network resources.
 
@@ -26,6 +29,9 @@ Commands to manage private clouds.
 
 - [delete](/Commands/vmware/private-cloud/_delete.md)
 : Delete a private cloud
+
+- [get-vcf-license](/Commands/vmware/private-cloud/_get-vcf-license.md)
+: Get the license for the private cloud
 
 - [list](/Commands/vmware/private-cloud/_list.md)
 : List the private clouds.

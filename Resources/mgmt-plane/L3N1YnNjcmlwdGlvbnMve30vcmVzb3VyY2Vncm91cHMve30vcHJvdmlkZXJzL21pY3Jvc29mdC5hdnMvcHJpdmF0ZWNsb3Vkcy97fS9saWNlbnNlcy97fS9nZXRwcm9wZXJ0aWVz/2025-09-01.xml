@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.avs/privateclouds/{}/licenses/{}/getproperties" version="2025-09-01" swagger="mgmt-plane/vmware/ResourceProviders/Microsoft.AVS/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQVZTL3ByaXZhdGVDbG91ZHMve3ByaXZhdGVDbG91ZE5hbWV9L2xpY2Vuc2VzL3tsaWNlbnNlTmFtZX0vZ2V0UHJvcGVydGllcw==/V/MjAyNS0wOS0wMQ=="/>
+  <commandGroup name="vmware license">
+    <command name="get-property" version="2025-09-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.avs/privateclouds/{}/licenses/{}/getproperties" version="2025-09-01" swagger="mgmt-plane/vmware/ResourceProviders/Microsoft.AVS/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQVZTL3ByaXZhdGVDbG91ZHMve3ByaXZhdGVDbG91ZE5hbWV9L2xpY2Vuc2VzL3tsaWNlbnNlTmFtZX0vZ2V0UHJvcGVydGllcw==/V/MjAyNS0wOS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.licenseName" options="license-name l" required="True" group="" idPart="child_name_1">
+          <help short="Name of the license."/>
+          <format pattern="^[-\w\._]+$"/>
+          <enum>
+            <item name="VmwareFirewall" value="&quot;VmwareFirewall&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$Path.privateCloudName" options="private-cloud-name n" required="True" group="" idPart="name">
+          <help short="Name of the private cloud"/>
+          <format pattern="^[-\w\._]+$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="Licenses_GetProperties">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/licenses/{licenseName}/getProperties">
+          <request method="post">
+            <path>
+              <param type="string" name="licenseName" arg="$Path.licenseName" required="True">
+                <format pattern="^[-\w\._]+$"/>
+                <enum>
+                  <item value="&quot;VmwareFirewall&quot;"/>
+                </enum>
+              </param>
+              <param type="string" name="privateCloudName" arg="$Path.privateCloudName" required="True">
+                <format pattern="^[-\w\._]+$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-09-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="kind" required="True">
+                    <enum>
+                      <item value="&quot;VmwareFirewall&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop readOnly="True" type="string" name="provisioningState">
+                    <enum>
+                      <item value="&quot;Canceled&quot;"/>
+                      <item value="&quot;Failed&quot;"/>
+                      <item value="&quot;Succeeded&quot;"/>
+                    </enum>
+                  </prop>
+                  <discriminator property="kind" value="VmwareFirewall">
+                    <prop type="string" name="broadcomContractNumber"/>
+                    <prop type="string" name="broadcomSiteId"/>
+                    <prop type="integer32" name="cores" required="True"/>
+                    <prop type="dateTime" name="endDate" required="True">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="array<object>" name="labels" identifiers="key">
+                      <item type="object">
+                        <prop type="string" name="key" required="True">
+                          <format minLength="1"/>
+                        </prop>
+                        <prop type="string" name="value" required="True">
+                          <format minLength="1"/>
+                        </prop>
+                      </item>
+                    </prop>
+                    <prop type="password" name="licenseKey" secret="True"/>
+                  </discriminator>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

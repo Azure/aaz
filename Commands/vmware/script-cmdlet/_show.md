@@ -36,3 +36,14 @@ Get information about a script cmdlet resource in a specific package on a privat
     ```bash
         vmware script-cmdlet show --resource-group group1 --private-cloud cloud1 --script-package package@1.0.2 --script-cmdlet-name New-ExternalSsoDomain
     ```
+
+### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5hdnMvcHJpdmF0ZWNsb3Vkcy97fS9zY3JpcHRwYWNrYWdlcy97fS9zY3JpcHRjbWRsZXRzL3t9/2025-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.avs/privateclouds/{}/scriptpackages/{}/scriptcmdlets/{} 2025-09-01 -->
+
+#### examples
+
+- Show a script cmdlet.
+    ```bash
+        vmware script-cmdlet show --resource-group group1 --private-cloud cloud1 --script-package package@1.0.2 --script-cmdlet-name New-ExternalSsoDomain
+    ```

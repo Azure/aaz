@@ -15,3 +15,7 @@ Return quota for subscription by region
 ### [2024-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5hdnMvbG9jYXRpb25zL3t9L2NoZWNrcXVvdGFhdmFpbGFiaWxpdHk=/2024-09-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.avs/locations/{}/checkquotaavailability 2024-09-01 -->
+
+### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5hdnMvbG9jYXRpb25zL3t9L2NoZWNrcXVvdGFhdmFpbGFiaWxpdHk=/2025-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.avs/locations/{}/checkquotaavailability 2025-09-01 -->

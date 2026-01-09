@@ -1,0 +1,334 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.avs/privateclouds/{}/maintenances" version="2025-09-01" swagger="mgmt-plane/vmware/ResourceProviders/Microsoft.AVS/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQVZTL3ByaXZhdGVDbG91ZHMve3ByaXZhdGVDbG91ZE5hbWV9L21haW50ZW5hbmNlcw==/V/MjAyNS0wOS0wMQ=="/>
+  <commandGroup name="vmware private-cloud maintenance">
+    <command name="list" version="2025-09-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.avs/privateclouds/{}/maintenances" version="2025-09-01" swagger="mgmt-plane/vmware/ResourceProviders/Microsoft.AVS/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQVZTL3ByaXZhdGVDbG91ZHMve3ByaXZhdGVDbG91ZE5hbWV9L21haW50ZW5hbmNlcw==/V/MjAyNS0wOS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.privateCloudName" options="private-cloud-name n" required="True" group="" idPart="name">
+          <help short="Name of the private cloud"/>
+          <format pattern="^[-\w\._]+$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="dateTime" var="$Query.from" options="from-date" group="">
+          <help short="date from which result should be returned. ie. scheduledStartTime >= from"/>
+          <format protocol="iso"/>
+        </arg>
+        <arg type="string" var="$Query.stateName" options="state-name">
+          <help short="Filter maintenances based on state"/>
+          <enum>
+            <item name="Canceled" value="&quot;Canceled&quot;"/>
+            <item name="Failed" value="&quot;Failed&quot;"/>
+            <item name="InProgress" value="&quot;InProgress&quot;"/>
+            <item name="NotScheduled" value="&quot;NotScheduled&quot;"/>
+            <item name="Scheduled" value="&quot;Scheduled&quot;"/>
+            <item name="Success" value="&quot;Success&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$Query.status" options="status">
+          <help short="Filter active or inactive maintenances"/>
+          <enum>
+            <item name="Active" value="&quot;Active&quot;"/>
+            <item name="Inactive" value="&quot;Inactive&quot;"/>
+          </enum>
+        </arg>
+        <arg type="dateTime" var="$Query.to" options="to-date" group="">
+          <help short="date till which result should be returned. i.e. scheduledStartTime <= to"/>
+          <format protocol="iso"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Maintenances_List">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/maintenances">
+          <request method="get">
+            <path>
+              <param type="string" name="privateCloudName" arg="$Path.privateCloudName" required="True">
+                <format pattern="^[-\w\._]+$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <param type="dateTime" name="from" arg="$Query.from">
+                <format protocol="iso"/>
+              </param>
+              <param type="string" name="stateName" arg="$Query.stateName">
+                <enum>
+                  <item value="&quot;Canceled&quot;"/>
+                  <item value="&quot;Failed&quot;"/>
+                  <item value="&quot;InProgress&quot;"/>
+                  <item value="&quot;NotScheduled&quot;"/>
+                  <item value="&quot;Scheduled&quot;"/>
+                  <item value="&quot;Success&quot;"/>
+                </enum>
+              </param>
+              <param type="string" name="status" arg="$Query.status">
+                <enum>
+                  <item value="&quot;Active&quot;"/>
+                  <item value="&quot;Inactive&quot;"/>
+                </enum>
+              </param>
+              <param type="dateTime" name="to" arg="$Query.to">
+                <format protocol="iso"/>
+              </param>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-09-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.AVS/privateClouds/{}/maintenances/{}"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties">
+                        <prop readOnly="True" type="integer32" name="clusterId"/>
+                        <prop readOnly="True" type="string" name="component">
+                          <enum>
+                            <item value="&quot;ESXI&quot;"/>
+                            <item value="&quot;NSXT&quot;"/>
+                            <item value="&quot;VCSA&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="displayName"/>
+                        <prop readOnly="True" type="integer64" name="estimatedDurationInMinutes"/>
+                        <prop readOnly="True" type="string" name="impact"/>
+                        <prop readOnly="True" type="string" name="infoLink"/>
+                        <prop readOnly="True" type="object" name="maintenanceReadiness">
+                          <prop readOnly="True" type="array<object>" name="failedChecks">
+                            <item type="object">
+                              <prop readOnly="True" type="array<object>" name="impactedResources">
+                                <item type="object">
+                                  <prop readOnly="True" type="array<object>" name="errors">
+                                    <item type="object">
+                                      <prop readOnly="True" type="boolean" name="actionRequired"/>
+                                      <prop readOnly="True" type="string" name="details"/>
+                                      <prop readOnly="True" type="string" name="errorCode"/>
+                                      <prop readOnly="True" type="string" name="name"/>
+                                      <prop readOnly="True" type="array<string>" name="resolutionSteps">
+                                        <item type="string"/>
+                                      </prop>
+                                    </item>
+                                  </prop>
+                                  <prop readOnly="True" type="string" name="id"/>
+                                </item>
+                              </prop>
+                              <prop readOnly="True" type="string" name="name"/>
+                            </item>
+                          </prop>
+                          <prop readOnly="True" type="dateTime" name="lastUpdated">
+                            <format protocol="iso"/>
+                          </prop>
+                          <prop readOnly="True" type="string" name="message"/>
+                          <prop readOnly="True" type="string" name="status">
+                            <enum>
+                              <item value="&quot;DataNotAvailable&quot;"/>
+                              <item value="&quot;NotApplicable&quot;"/>
+                              <item value="&quot;NotReady&quot;"/>
+                              <item value="&quot;Ready&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="string" name="type">
+                            <enum>
+                              <item value="&quot;Precheck&quot;"/>
+                              <item value="&quot;Preflight&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="array<object>" name="operations">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="kind">
+                              <enum>
+                                <item value="&quot;MaintenanceReadinessRefresh&quot;"/>
+                                <item value="&quot;Reschedule&quot;"/>
+                                <item value="&quot;Schedule&quot;"/>
+                              </enum>
+                            </prop>
+                            <discriminator property="kind" value="MaintenanceReadinessRefresh">
+                              <prop readOnly="True" type="string" name="disabledReason"/>
+                              <prop readOnly="True" type="boolean" name="isDisabled"/>
+                              <prop readOnly="True" type="string" name="message"/>
+                              <prop readOnly="True" type="boolean" name="refreshedByMicrosoft"/>
+                              <prop readOnly="True" type="string" name="status">
+                                <enum>
+                                  <item value="&quot;Failed&quot;"/>
+                                  <item value="&quot;InProgress&quot;"/>
+                                  <item value="&quot;NotApplicable&quot;"/>
+                                  <item value="&quot;NotStarted&quot;"/>
+                                </enum>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="kind" value="Reschedule">
+                              <prop readOnly="True" type="array<object>" name="constraints">
+                                <item type="object">
+                                  <prop readOnly="True" type="string" name="kind">
+                                    <enum>
+                                      <item value="&quot;AvailableWindowForMaintenance&quot;"/>
+                                      <item value="&quot;Blocked&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <discriminator property="kind" value="AvailableWindowForMaintenance">
+                                    <prop readOnly="True" type="dateTime" name="endsAt">
+                                      <format protocol="iso"/>
+                                    </prop>
+                                    <prop readOnly="True" type="dateTime" name="startsAt">
+                                      <format protocol="iso"/>
+                                    </prop>
+                                  </discriminator>
+                                  <discriminator property="kind" value="Blocked">
+                                    <prop readOnly="True" type="string" name="category">
+                                      <enum>
+                                        <item value="&quot;HiPriorityEvent&quot;"/>
+                                        <item value="&quot;Holiday&quot;"/>
+                                        <item value="&quot;QuotaExhausted&quot;"/>
+                                      </enum>
+                                    </prop>
+                                    <prop readOnly="True" type="array<object>" name="timeRanges" identifiers="startsAt endsAt">
+                                      <item type="object" cls="BlockedDatesConstraintTimeRange_read">
+                                        <prop readOnly="True" type="dateTime" name="endsAt">
+                                          <format protocol="iso"/>
+                                        </prop>
+                                        <prop readOnly="True" type="string" name="reason"/>
+                                        <prop readOnly="True" type="dateTime" name="startsAt">
+                                          <format protocol="iso"/>
+                                        </prop>
+                                      </item>
+                                    </prop>
+                                  </discriminator>
+                                </item>
+                              </prop>
+                              <prop readOnly="True" type="string" name="disabledReason"/>
+                              <prop readOnly="True" type="boolean" name="isDisabled"/>
+                            </discriminator>
+                            <discriminator property="kind" value="Schedule">
+                              <prop readOnly="True" type="array<object>" name="constraints">
+                                <item type="object">
+                                  <prop readOnly="True" type="string" name="kind">
+                                    <enum>
+                                      <item value="&quot;AvailableWindowForMaintenance&quot;"/>
+                                      <item value="&quot;Blocked&quot;"/>
+                                      <item value="&quot;SchedulingWindow&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <discriminator property="kind" value="AvailableWindowForMaintenance">
+                                    <prop readOnly="True" type="dateTime" name="endsAt">
+                                      <format protocol="iso"/>
+                                    </prop>
+                                    <prop readOnly="True" type="dateTime" name="startsAt">
+                                      <format protocol="iso"/>
+                                    </prop>
+                                  </discriminator>
+                                  <discriminator property="kind" value="Blocked">
+                                    <prop readOnly="True" type="string" name="category">
+                                      <enum>
+                                        <item value="&quot;HiPriorityEvent&quot;"/>
+                                        <item value="&quot;Holiday&quot;"/>
+                                        <item value="&quot;QuotaExhausted&quot;"/>
+                                      </enum>
+                                    </prop>
+                                    <prop readOnly="True" type="array<@BlockedDatesConstraintTimeRange_read>" name="timeRanges" identifiers="startsAt endsAt">
+                                      <item type="@BlockedDatesConstraintTimeRange_read"/>
+                                    </prop>
+                                  </discriminator>
+                                  <discriminator property="kind" value="SchedulingWindow">
+                                    <prop readOnly="True" type="dateTime" name="endsAt">
+                                      <format protocol="iso"/>
+                                    </prop>
+                                    <prop readOnly="True" type="dateTime" name="startsAt">
+                                      <format protocol="iso"/>
+                                    </prop>
+                                  </discriminator>
+                                </item>
+                              </prop>
+                              <prop readOnly="True" type="string" name="disabledReason"/>
+                              <prop readOnly="True" type="boolean" name="isDisabled"/>
+                            </discriminator>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="boolean" name="scheduledByMicrosoft"/>
+                        <prop readOnly="True" type="dateTime" name="scheduledStartTime">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop readOnly="True" type="object" name="state">
+                          <prop type="dateTime" name="endedAt">
+                            <format protocol="iso"/>
+                          </prop>
+                          <prop type="string" name="message"/>
+                          <prop type="string" name="name">
+                            <enum>
+                              <item value="&quot;Canceled&quot;"/>
+                              <item value="&quot;Failed&quot;"/>
+                              <item value="&quot;InProgress&quot;"/>
+                              <item value="&quot;NotScheduled&quot;"/>
+                              <item value="&quot;Scheduled&quot;"/>
+                              <item value="&quot;Success&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="dateTime" name="startedAt">
+                            <format protocol="iso"/>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
