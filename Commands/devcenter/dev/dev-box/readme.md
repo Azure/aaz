@@ -49,6 +49,9 @@ Manage dev boxes.
 - [restore-snapshot](/Commands/devcenter/dev/dev-box/_restore-snapshot.md)
 : Restores a dev box to a specified snapshot.
 
+- [schedule-delete](/Commands/devcenter/dev/dev-box/_schedule-delete.md)
+: Creates an action to schedule the deletion of a Dev Box
+
 - [set-active-hours](/Commands/devcenter/dev/dev-box/_set-active-hours.md)
 : Lets a user set their own active hours for their Dev Box, overriding the defaults set at the pool level.
 

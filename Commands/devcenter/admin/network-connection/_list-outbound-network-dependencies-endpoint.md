@@ -69,3 +69,14 @@ List the endpoints that agents may call as part of Dev Box service administratio
     ```bash
         devcenter admin network-connection list-outbound-network-dependencies-endpoint --name "uswest3network" --resource-group "rg1"
     ```
+
+### [2025-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvbmV0d29ya2Nvbm5lY3Rpb25zL3t9L291dGJvdW5kbmV0d29ya2RlcGVuZGVuY2llc2VuZHBvaW50cw==/2025-10-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/networkconnections/{}/outboundnetworkdependenciesendpoints 2025-10-01-preview -->
+
+#### examples
+
+- List outbound network dependencies endpoint
+    ```bash
+        devcenter admin network-connection list-outbound-network-dependencies-endpoint --name "uswest3network" --resource-group "rg1"
+    ```
