@@ -15,7 +15,7 @@
 : Manage Azure Alerts Management Service Resource.
 
 - [amlfs](/Commands/amlfs/readme.md)
-: Manage lustre file system
+: Manage Azure Managed Lustre Filesystem
 
 - [aosm](/Commands/aosm/readme.md)
 : Manage Azure Operator Service Manager resources.
@@ -162,7 +162,7 @@
 : Manage Azure Event Grid topics, domains, domain topics, system topics, partner topics, event subscriptions, system topic event subscriptions, partner topic event subscriptions, and namespaces resources.
 
 - [eventhubs](/Commands/eventhubs/readme.md)
-: eventhub
+: Manage Event Hub
 
 - [firmwareanalysis](/Commands/firmwareanalysis/readme.md)
 : Commands to manage firmware analysis.
@@ -183,7 +183,7 @@
 : Manage custom virtual machine images.
 
 - [informatica](/Commands/informatica/readme.md)
-: Manage Informatica
+: Manage all resources related to Informatica within the Azure CLI.
 
 - [k8s-runtime](/Commands/k8s-runtime/readme.md)
 : Manage Arc Kubernetes Runtime resources
@@ -228,7 +228,7 @@
 : Manage the Azure Monitor Service.
 
 - [neon](/Commands/neon/readme.md)
-: Manage Neon Postgres
+: Manage Neon Postgres databases and related resources within Azure.
 
 - [netappfiles](/Commands/netappfiles/readme.md)
 : Manage Azure NetApp Files (ANF) Resources
@@ -264,7 +264,7 @@
 : Azure Orbital Ground Station as-a-Service (GSaaS).
 
 - [palo-alto](/Commands/palo-alto/readme.md)
-: Manage palo-alto networks resource
+: Manage Palo Alto Networks resources within the Azure CLI.
 
 - [playwright-testing](/Commands/playwright-testing/readme.md)
 : Manage Microsoft Playwright Testing service
@@ -279,7 +279,7 @@
 : Manage Proximity Placement Groups.
 
 - [qumulo](/Commands/qumulo/readme.md)
-: Manage qumulo
+: Manage Qumulo file system storage resources with the Azure CLI.
 
 - [quota](/Commands/quota/readme.md)
 : Manag quota for Azure resource providers.

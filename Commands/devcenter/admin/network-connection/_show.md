@@ -80,3 +80,14 @@ Get a network connection.
     ```bash
         devcenter admin network-connection show --name "uswest3network" --resource-group "rg1"
     ```
+
+### [2025-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvbmV0d29ya2Nvbm5lY3Rpb25zL3t9/2025-10-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/networkconnections/{} 2025-10-01-preview -->
+
+#### examples
+
+- Get
+    ```bash
+        devcenter admin network-connection show --name "uswest3network" --resource-group "rg1"
+    ```
