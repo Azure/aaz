@@ -33,3 +33,14 @@ Check if a file path is available
 ### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbG9jYXRpb25zL3t9L2NoZWNrZmlsZXBhdGhhdmFpbGFiaWxpdHk=/2025-06-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.netapp/locations/{}/checkfilepathavailability 2025-06-01 -->
+
+### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbG9jYXRpb25zL3t9L2NoZWNrZmlsZXBhdGhhdmFpbGFiaWxpdHk=/2025-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.netapp/locations/{}/checkfilepathavailability 2025-09-01 -->
+
+#### examples
+
+- CheckFilePathAvailability
+    ```bash
+        netappfiles check-file-path-availability --location eastus --name my-exact-filepth --subnet-id /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myRP/providers/Microsoft.Network/virtualNetworks/testvnet3/subnets/testsubnet3
+    ```
