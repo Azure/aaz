@@ -22,6 +22,9 @@ Manage Azure NetApp Files (ANF) Account Resources.
 - [pool](/Commands/netappfiles/account/pool/readme.md)
 : Manage Azure NetApp Files (ANF) Pool Resources.
 
+- [quota-limit](/Commands/netappfiles/account/quota-limit/readme.md)
+: Manage Quota Limit
+
 ## Commands
 
 - [change-key-vault](/Commands/netappfiles/account/_change-key-vault.md)
