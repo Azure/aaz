@@ -74,3 +74,19 @@ List Volume Groups.
     ```bash
         elastic-san volume-group list -g rg_name -e san_name --access-soft-deleted-resources True
     ```
+
+### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljc2FuL2VsYXN0aWNzYW5zL3t9L3ZvbHVtZWdyb3Vwcw==/2025-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elasticsan/elasticsans/{}/volumegroups 2025-09-01 -->
+
+#### examples
+
+- List Volume Groups.
+    ```bash
+        elastic-san volume-group list -g "rg" -e "san_name"
+    ```
+
+- List soft-deleted volume groups
+    ```bash
+        elastic-san volume-group list -g rg_name -e san_name --access-soft-deleted-resources True
+    ```

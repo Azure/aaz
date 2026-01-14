@@ -69,3 +69,14 @@ Delete a Volume Group.
     ```bash
         elastic-san volume-group delete -g "rg" -e "san_name" -n "vg_name"
     ```
+
+### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljc2FuL2VsYXN0aWNzYW5zL3t9L3ZvbHVtZWdyb3Vwcy97fQ==/2025-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elasticsan/elasticsans/{}/volumegroups/{} 2025-09-01 -->
+
+#### examples
+
+- Delete a Volume Group.
+    ```bash
+        elastic-san volume-group delete -g "rg" -e "san_name" -n "vg_name"
+    ```
