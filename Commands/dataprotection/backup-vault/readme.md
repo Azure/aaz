@@ -4,6 +4,9 @@ Manage backup vault with dataprotection.
 
 ## Subgroups
 
+- [deleted-vault](/Commands/dataprotection/backup-vault/deleted-vault/readme.md)
+: Manage Deleted Vault
+
 - [identity](/Commands/dataprotection/backup-vault/identity/readme.md)
 : Manage Identities for Backup Vaults
 

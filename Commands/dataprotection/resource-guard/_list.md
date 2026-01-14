@@ -88,3 +88,20 @@ Gets list of ResourceGuards in a subscription or in a resource group.
     ```bash
         dataprotection resource-guard list -g sarath-rg
     ```
+
+### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhcHJvdGVjdGlvbi9yZXNvdXJjZWd1YXJkcw==/2025-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.dataprotection/resourceguards 2025-09-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/resourceguards 2025-09-01 -->
+
+#### examples
+
+- List ResourceGuards in a subscription
+    ```bash
+        dataprotection resource-guard list
+    ```
+
+- List ResourceGuards in a resource group
+    ```bash
+        dataprotection resource-guard list -g sarath-rg
+    ```

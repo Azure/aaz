@@ -15,3 +15,7 @@ Fetches list of Cross Region Restore job belonging to the vault
 ### [2025-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhcHJvdGVjdGlvbi9sb2NhdGlvbnMve30vZmV0Y2hjcm9zc3JlZ2lvbnJlc3RvcmVqb2Jz/2025-07-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/locations/{}/fetchcrossregionrestorejobs 2025-07-01 -->
+
+### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhcHJvdGVjdGlvbi9sb2NhdGlvbnMve30vZmV0Y2hjcm9zc3JlZ2lvbnJlc3RvcmVqb2Jz/2025-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.dataprotection/locations/{}/fetchcrossregionrestorejobs 2025-09-01 -->
