@@ -27,3 +27,6 @@ Azure Unmanaged Data Disks have a maximum size of 4095 GB. To use disks larger t
 
 - [update](/Commands/disk/_update.md)
 : Update a managed disk.
+
+- [update-patch](/Commands/disk/_update-patch.md)
+: Update/Patch a managed disk.
