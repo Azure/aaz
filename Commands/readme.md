@@ -11,9 +11,6 @@
 - [afd](/Commands/afd/readme.md)
 : Manage Azure Front Door Standard/Premium.
 
-- [aks](/Commands/aks/readme.md)
-: Azure Kubernetes Service
-
 - [alerts-management](/Commands/alerts-management/readme.md)
 : Manage Azure Alerts Management Service Resource.
 
@@ -26,9 +23,6 @@
 - [apic](/Commands/apic/readme.md)
 : Manage Azure API Center services
 
-- [appservice](/Commands/appservice/readme.md)
-: Manage Appservice
-
 - [arc](/Commands/arc/readme.md)
 : Manage Azure Arc Machines.
 
@@ -37,9 +31,6 @@
 
 - [arcgateway](/Commands/arcgateway/readme.md)
 : Manage gateway connection on Arc machine
-
-- [arize-ai](/Commands/arize-ai/readme.md)
-: Manage Arize Ai
 
 - [astronomer](/Commands/astronomer/readme.md)
 : Manage Azure Astronomer resources.
@@ -83,9 +74,6 @@
 - [cloud-service](/Commands/cloud-service/readme.md)
 : Manage cloud service
 
-- [cloudhsm](/Commands/cloudhsm/readme.md)
-: Manage Cloud Hsm Cluster
-
 - [communication](/Commands/communication/readme.md)
 : Manage communication service with communication.
 
@@ -122,9 +110,6 @@
 - [data-boundary](/Commands/data-boundary/readme.md)
 : data boundary operations
 
-- [data-transfer](/Commands/data-transfer/readme.md)
-: Data transfer commands
-
 - [databox](/Commands/databox/readme.md)
 : Manage data box
 
@@ -134,14 +119,8 @@
 - [databricks](/Commands/databricks/readme.md)
 : Manage databricks workspaces.
 
-- [datadog](/Commands/datadog/readme.md)
-: Manage Datadog
-
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage dataprotection.
-
-- [dependency-map](/Commands/dependency-map/readme.md)
-: Manage Dependency Map
 
 - [desktopvirtualization](/Commands/desktopvirtualization/readme.md)
 : Manage desktop virtualization.
@@ -169,9 +148,6 @@
 
 - [dynatrace](/Commands/dynatrace/readme.md)
 : Manage dynatrace
-
-- [edge-action](/Commands/edge-action/readme.md)
-: Manage Edge Action
 
 - [edge-zones](/Commands/edge-zones/readme.md)
 : Manage Edge Zone resources
@@ -215,9 +191,6 @@
 - [lab](/Commands/lab/readme.md)
 : Manage azure devtest labs.
 
-- [lambda-test](/Commands/lambda-test/readme.md)
-: Manage Lambda Test
-
 - [large-instance](/Commands/large-instance/readme.md)
 : Handle Operations for Compute Azure Large Instances.
 
@@ -250,9 +223,6 @@
 
 - [mobile-network](/Commands/mobile-network/readme.md)
 : Manage mobile network
-
-- [mongo-db](/Commands/mongo-db/readme.md)
-: Manage MongoDB
 
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
@@ -299,9 +269,6 @@
 - [playwright-testing](/Commands/playwright-testing/readme.md)
 : Manage Microsoft Playwright Testing service
 
-- [policy](/Commands/policy/readme.md)
-: Manage resources defined and used by the Azure Policy service.
-
 - [portal](/Commands/portal/readme.md)
 : Manage Portal.
 
@@ -310,9 +277,6 @@
 
 - [ppg](/Commands/ppg/readme.md)
 : Manage Proximity Placement Groups.
-
-- [pscloud](/Commands/pscloud/readme.md)
-: Manage Pure Storage Block resources
 
 - [qumulo](/Commands/qumulo/readme.md)
 : Manage Qumulo file system storage resources with the Azure CLI.
@@ -338,9 +302,6 @@
 - [restore-point](/Commands/restore-point/readme.md)
 : Manage restore point with res.
 
-- [search](/Commands/search/readme.md)
-: Manage Search
-
 - [security](/Commands/security/readme.md)
 : Manage your security posture with Microsoft Defender for Cloud.
 
@@ -358,9 +319,6 @@
 
 - [sig](/Commands/sig/readme.md)
 : Manage shared image gallery.
-
-- [site](/Commands/site/readme.md)
-: Manage Site
 
 - [site-recovery](/Commands/site-recovery/readme.md)
 : Manage Site Recovery Service
@@ -389,17 +347,11 @@
 - [storage-actions](/Commands/storage-actions/readme.md)
 : Manage StorageActions
 
-- [storage-discovery](/Commands/storage-discovery/readme.md)
-: Manage Storage Discovery
-
 - [storage-mover](/Commands/storage-mover/readme.md)
 : Manage top-level Storage Mover resource.
 
 - [storagesync](/Commands/storagesync/readme.md)
 : Manage Azure File Sync.
-
-- [stream-analytics](/Commands/stream-analytics/readme.md)
-: Manage Stream Analytics
 
 - [support](/Commands/support/readme.md)
 : Manage Azure support resource.
@@ -424,9 +376,6 @@
 
 - [voice-service](/Commands/voice-service/readme.md)
 : Manage voice services
-
-- [workload-orchestration](/Commands/workload-orchestration/readme.md)
-: Manage Edge
 
 - [workloads](/Commands/workloads/readme.md)
 : Manage workloads

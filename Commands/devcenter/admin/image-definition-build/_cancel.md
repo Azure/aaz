@@ -25,3 +25,14 @@ Cancels the specified build for an image definition.
     ```bash
         devcenter admin image-definition-build cancel --build-name "0a28fc61-6f87-4611-8fe2-32df44ab93b7" --catalog-name "CentralCatalog" --image-definition-name "DefaultDevImage" --dev-center-name "Contoso" --resource-group "rg1"
     ```
+
+### [2025-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvZGV2Y2VudGVycy97fS9jYXRhbG9ncy97fS9pbWFnZWRlZmluaXRpb25zL3t9L2J1aWxkcy97fS9jYW5jZWw=/2025-10-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/devcenters/{}/catalogs/{}/imagedefinitions/{}/builds/{}/cancel 2025-10-01-preview -->
+
+#### examples
+
+- Cancel
+    ```bash
+        devcenter admin image-definition-build cancel --build-name "0a28fc61-6f87-4611-8fe2-32df44ab93b7" --catalog-name "CentralCatalog" --image-definition-name "DefaultDevImage" --dev-center-name "Contoso" --resource-group "rg1"
+    ```
