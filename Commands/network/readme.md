@@ -115,6 +115,9 @@ Manage Azure Network resources.
 - [virtual-appliance](/Commands/network/virtual-appliance/readme.md)
 : Manage Azure Network Virtual Appliance.
 
+- [virtual-network-appliance](/Commands/network/virtual-network-appliance/readme.md)
+: Manage Virtual Network Appliance
+
 - [vnet](/Commands/network/vnet/readme.md)
 : Check if a private IP address is available for use within a virtual network.
 
