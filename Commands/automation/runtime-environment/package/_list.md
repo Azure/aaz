@@ -1,6 +1,6 @@
 # [Command] _automation runtime-environment package list_
 
-List the a list of Packages
+List the a list of Packages.
 
 ## Versions
 
@@ -14,3 +14,7 @@ List the a list of Packages
     ```bash
         automation runtime-environment package list -g rg --automation-account-name myAutomationAccount --runtime-environment-name rt
     ```
+
+### [2024-10-23](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5hdXRvbWF0aW9uL2F1dG9tYXRpb25hY2NvdW50cy97fS9ydW50aW1lZW52aXJvbm1lbnRzL3t9L3BhY2thZ2Vz/2024-10-23.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.automation/automationaccounts/{}/runtimeenvironments/{}/packages 2024-10-23 -->
