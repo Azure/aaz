@@ -1,0 +1,16 @@
+# [Command] _artifact-signing create_
+
+Create an artifact signing account.
+
+## Versions
+
+### [2025-10-13](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb2Rlc2lnbmluZy9jb2Rlc2lnbmluZ2FjY291bnRzL3t9/2025-10-13.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.codesigning/codesigningaccounts/{} 2025-10-13 -->
+
+#### examples
+
+- Create an account
+    ```bash
+        artifact-signing create -n MyAccount -l westus -g MyResourceGroup --sku Basic
+    ```
