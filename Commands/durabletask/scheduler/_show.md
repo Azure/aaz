@@ -14,3 +14,14 @@ Get a Scheduler
     ```bash
         durabletask scheduler show --resource-group testrg --name testscheduler
     ```
+
+### [2025-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kdXJhYmxldGFzay9zY2hlZHVsZXJzL3t9/2025-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.durabletask/schedulers/{} 2025-11-01 -->
+
+#### examples
+
+- Show information on a particular scheduler
+    ```bash
+        durabletask scheduler show --resource-group testrg --name testscheduler
+    ```

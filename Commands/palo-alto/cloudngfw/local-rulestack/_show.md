@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack show_
 
-Get a LocalRulestackResource
+Retrieve details of a specific Palo Alto Networks local rulestack resource.
 
 ## Versions
 
@@ -11,6 +11,17 @@ Get a LocalRulestackResource
 #### examples
 
 - Get a LocalRulestackResource
+    ```bash
+        palo-alto cloudngfw local-rulestack show -g MyResourceGroup -n MyLocalRulestacks
+    ```
+
+### [2025-10-08](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL3BhbG9hbHRvbmV0d29ya3MuY2xvdWRuZ2Z3L2xvY2FscnVsZXN0YWNrcy97fQ==/2025-10-08.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/localrulestacks/{} 2025-10-08 -->
+
+#### examples
+
+- Retrieve details of a specific Palo Alto Networks local rulestack resource.
     ```bash
         palo-alto cloudngfw local-rulestack show -g MyResourceGroup -n MyLocalRulestacks
     ```

@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor get-metric-statu_
 
-Get metric status
+Retrieves the metric status that are configured in the New Relic monitor resource.
 
 ## Versions
 

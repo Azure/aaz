@@ -124,3 +124,25 @@ List metrics configurations of the cluster.
     ```bash
         networkcloud cluster metricsconfiguration list --cluster-name "clusterName" --resource-group "resourceGroupName"
     ```
+
+### [2025-07-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvY2x1c3RlcnMve30vbWV0cmljc2NvbmZpZ3VyYXRpb25z/2025-07-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/clusters/{}/metricsconfigurations 2025-07-01-preview -->
+
+#### examples
+
+- List metrics configurations of the cluster
+    ```bash
+        networkcloud cluster metricsconfiguration list --cluster-name "clusterName" --resource-group "resourceGroupName"
+    ```
+
+### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvY2x1c3RlcnMve30vbWV0cmljc2NvbmZpZ3VyYXRpb25z/2025-09-01.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/clusters/{}/metricsconfigurations 2025-09-01 -->
+
+#### examples
+
+- List metrics configurations of the cluster
+    ```bash
+        networkcloud cluster metricsconfiguration list --cluster-name "clusterName" --resource-group "resourceGroupName"
+    ```

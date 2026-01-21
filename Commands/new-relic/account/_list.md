@@ -1,6 +1,6 @@
 # [Command] _new-relic account list_
 
-List all the existing accounts
+Lists all the New Relic accounts in your Azure subscription, helping you understand the existing accounts that have been created.
 
 ## Versions
 

@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack certificate list_
 
-List CertificateObjectLocalRulestackResource resources by LocalRulestacks
+List all certificates linked with the Palo Alto Networks local rulestacks.
 
 ## Versions
 
@@ -11,6 +11,17 @@ List CertificateObjectLocalRulestackResource resources by LocalRulestacks
 #### examples
 
 - List CertificateObjectLocalRulestackResource resources by LocalRulestacks
+    ```bash
+        palo-alto cloudngfw local-rulestack certificate list -g MyResourceGroup --local-rulestack-name MyLocalRulestacks
+    ```
+
+### [2025-10-08](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL3BhbG9hbHRvbmV0d29ya3MuY2xvdWRuZ2Z3L2xvY2FscnVsZXN0YWNrcy97fS9jZXJ0aWZpY2F0ZXM=/2025-10-08.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/localrulestacks/{}/certificates 2025-10-08 -->
+
+#### examples
+
+- List all certificates linked with the Palo Alto Networks local rulestacks.
     ```bash
         palo-alto cloudngfw local-rulestack certificate list -g MyResourceGroup --local-rulestack-name MyLocalRulestacks
     ```

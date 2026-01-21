@@ -1,0 +1,2220 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/restorepointcollections/{}/restorepoints/{}" version="2024-11-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9yZXN0b3JlUG9pbnRDb2xsZWN0aW9ucy97cmVzdG9yZVBvaW50Q29sbGVjdGlvbk5hbWV9L3Jlc3RvcmVQb2ludHMve3Jlc3RvcmVQb2ludE5hbWV9/V/MjAyNC0xMS0wMQ=="/>
+  <commandGroup name="restore-point">
+    <command name="show" version="2024-11-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/restorepointcollections/{}/restorepoints/{}" version="2024-11-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9yZXN0b3JlUG9pbnRDb2xsZWN0aW9ucy97cmVzdG9yZVBvaW50Q29sbGVjdGlvbk5hbWV9L3Jlc3RvcmVQb2ludHMve3Jlc3RvcmVQb2ludE5hbWV9/V/MjAyNC0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.restorePointCollectionName" options="restore-point-collection-name collection-name" required="True" group="" idPart="name">
+          <help short="The name of the restore point collection."/>
+        </arg>
+        <arg type="string" var="$Path.restorePointName" options="restore-point-name name n" required="True" idPart="child_name_1">
+          <help short="The name of the restore point."/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Query.expand" options="expand" group="">
+          <help short="The expand expression to apply on the operation. 'InstanceView' retrieves information about the run-time state of a restore point."/>
+          <enum>
+            <item name="instanceView" value="&quot;instanceView&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <operation operationId="RestorePoints_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}/restorePoints/{restorePointName}">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="restorePointCollectionName" arg="$Path.restorePointCollectionName" required="True"/>
+              <param type="string" name="restorePointName" arg="$Path.restorePointName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <param type="string" name="$expand" arg="$Query.expand">
+                <enum>
+                  <item value="&quot;instanceView&quot;"/>
+                </enum>
+              </param>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/restorePointCollections/{}/restorePoints/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="string" name="consistencyMode">
+                      <enum>
+                        <item value="&quot;ApplicationConsistent&quot;"/>
+                        <item value="&quot;CrashConsistent&quot;"/>
+                        <item value="&quot;FileSystemConsistent&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<object>" name="excludeDisks">
+                      <item type="object" cls="ApiEntityReference_read">
+                        <prop type="string" name="id"/>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="object" name="instanceView">
+                      <prop type="array<object>" name="diskRestorePoints">
+                        <item type="object">
+                          <prop type="string" name="id"/>
+                          <prop type="object" name="replicationStatus">
+                            <prop type="integer32" name="completionPercent"/>
+                            <prop type="object" name="status" cls="InstanceViewStatus_read">
+                              <prop type="string" name="code"/>
+                              <prop type="string" name="displayStatus"/>
+                              <prop type="string" name="level">
+                                <enum>
+                                  <item value="&quot;Error&quot;"/>
+                                  <item value="&quot;Info&quot;"/>
+                                  <item value="&quot;Warning&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="message"/>
+                              <prop type="dateTime" name="time">
+                                <format protocol="iso"/>
+                              </prop>
+                            </prop>
+                          </prop>
+                        </item>
+                      </prop>
+                      <prop type="array<@InstanceViewStatus_read>" name="statuses">
+                        <item type="@InstanceViewStatus_read"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState"/>
+                    <prop type="object" name="sourceMetadata">
+                      <prop readOnly="True" type="object" name="diagnosticsProfile">
+                        <prop type="object" name="bootDiagnostics">
+                          <prop type="boolean" name="enabled"/>
+                          <prop type="string" name="storageUri"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="hardwareProfile">
+                        <prop type="string" name="vmSize">
+                          <enum>
+                            <item value="&quot;Basic_A0&quot;"/>
+                            <item value="&quot;Basic_A1&quot;"/>
+                            <item value="&quot;Basic_A2&quot;"/>
+                            <item value="&quot;Basic_A3&quot;"/>
+                            <item value="&quot;Basic_A4&quot;"/>
+                            <item value="&quot;Standard_A0&quot;"/>
+                            <item value="&quot;Standard_A1&quot;"/>
+                            <item value="&quot;Standard_A10&quot;"/>
+                            <item value="&quot;Standard_A11&quot;"/>
+                            <item value="&quot;Standard_A1_v2&quot;"/>
+                            <item value="&quot;Standard_A2&quot;"/>
+                            <item value="&quot;Standard_A2_v2&quot;"/>
+                            <item value="&quot;Standard_A2m_v2&quot;"/>
+                            <item value="&quot;Standard_A3&quot;"/>
+                            <item value="&quot;Standard_A4&quot;"/>
+                            <item value="&quot;Standard_A4_v2&quot;"/>
+                            <item value="&quot;Standard_A4m_v2&quot;"/>
+                            <item value="&quot;Standard_A5&quot;"/>
+                            <item value="&quot;Standard_A6&quot;"/>
+                            <item value="&quot;Standard_A7&quot;"/>
+                            <item value="&quot;Standard_A8&quot;"/>
+                            <item value="&quot;Standard_A8_v2&quot;"/>
+                            <item value="&quot;Standard_A8m_v2&quot;"/>
+                            <item value="&quot;Standard_A9&quot;"/>
+                            <item value="&quot;Standard_B1ms&quot;"/>
+                            <item value="&quot;Standard_B1s&quot;"/>
+                            <item value="&quot;Standard_B2ms&quot;"/>
+                            <item value="&quot;Standard_B2s&quot;"/>
+                            <item value="&quot;Standard_B4ms&quot;"/>
+                            <item value="&quot;Standard_B8ms&quot;"/>
+                            <item value="&quot;Standard_D1&quot;"/>
+                            <item value="&quot;Standard_D11&quot;"/>
+                            <item value="&quot;Standard_D11_v2&quot;"/>
+                            <item value="&quot;Standard_D12&quot;"/>
+                            <item value="&quot;Standard_D12_v2&quot;"/>
+                            <item value="&quot;Standard_D13&quot;"/>
+                            <item value="&quot;Standard_D13_v2&quot;"/>
+                            <item value="&quot;Standard_D14&quot;"/>
+                            <item value="&quot;Standard_D14_v2&quot;"/>
+                            <item value="&quot;Standard_D15_v2&quot;"/>
+                            <item value="&quot;Standard_D16_v3&quot;"/>
+                            <item value="&quot;Standard_D16s_v3&quot;"/>
+                            <item value="&quot;Standard_D1_v2&quot;"/>
+                            <item value="&quot;Standard_D2&quot;"/>
+                            <item value="&quot;Standard_D2_v2&quot;"/>
+                            <item value="&quot;Standard_D2_v3&quot;"/>
+                            <item value="&quot;Standard_D2s_v3&quot;"/>
+                            <item value="&quot;Standard_D3&quot;"/>
+                            <item value="&quot;Standard_D32_v3&quot;"/>
+                            <item value="&quot;Standard_D32s_v3&quot;"/>
+                            <item value="&quot;Standard_D3_v2&quot;"/>
+                            <item value="&quot;Standard_D4&quot;"/>
+                            <item value="&quot;Standard_D4_v2&quot;"/>
+                            <item value="&quot;Standard_D4_v3&quot;"/>
+                            <item value="&quot;Standard_D4s_v3&quot;"/>
+                            <item value="&quot;Standard_D5_v2&quot;"/>
+                            <item value="&quot;Standard_D64_v3&quot;"/>
+                            <item value="&quot;Standard_D64s_v3&quot;"/>
+                            <item value="&quot;Standard_D8_v3&quot;"/>
+                            <item value="&quot;Standard_D8s_v3&quot;"/>
+                            <item value="&quot;Standard_DS1&quot;"/>
+                            <item value="&quot;Standard_DS11&quot;"/>
+                            <item value="&quot;Standard_DS11_v2&quot;"/>
+                            <item value="&quot;Standard_DS12&quot;"/>
+                            <item value="&quot;Standard_DS12_v2&quot;"/>
+                            <item value="&quot;Standard_DS13&quot;"/>
+                            <item value="&quot;Standard_DS13-2_v2&quot;"/>
+                            <item value="&quot;Standard_DS13-4_v2&quot;"/>
+                            <item value="&quot;Standard_DS13_v2&quot;"/>
+                            <item value="&quot;Standard_DS14&quot;"/>
+                            <item value="&quot;Standard_DS14-4_v2&quot;"/>
+                            <item value="&quot;Standard_DS14-8_v2&quot;"/>
+                            <item value="&quot;Standard_DS14_v2&quot;"/>
+                            <item value="&quot;Standard_DS15_v2&quot;"/>
+                            <item value="&quot;Standard_DS1_v2&quot;"/>
+                            <item value="&quot;Standard_DS2&quot;"/>
+                            <item value="&quot;Standard_DS2_v2&quot;"/>
+                            <item value="&quot;Standard_DS3&quot;"/>
+                            <item value="&quot;Standard_DS3_v2&quot;"/>
+                            <item value="&quot;Standard_DS4&quot;"/>
+                            <item value="&quot;Standard_DS4_v2&quot;"/>
+                            <item value="&quot;Standard_DS5_v2&quot;"/>
+                            <item value="&quot;Standard_E16_v3&quot;"/>
+                            <item value="&quot;Standard_E16s_v3&quot;"/>
+                            <item value="&quot;Standard_E2_v3&quot;"/>
+                            <item value="&quot;Standard_E2s_v3&quot;"/>
+                            <item value="&quot;Standard_E32-16_v3&quot;"/>
+                            <item value="&quot;Standard_E32-8s_v3&quot;"/>
+                            <item value="&quot;Standard_E32_v3&quot;"/>
+                            <item value="&quot;Standard_E32s_v3&quot;"/>
+                            <item value="&quot;Standard_E4_v3&quot;"/>
+                            <item value="&quot;Standard_E4s_v3&quot;"/>
+                            <item value="&quot;Standard_E64-16s_v3&quot;"/>
+                            <item value="&quot;Standard_E64-32s_v3&quot;"/>
+                            <item value="&quot;Standard_E64_v3&quot;"/>
+                            <item value="&quot;Standard_E64s_v3&quot;"/>
+                            <item value="&quot;Standard_E8_v3&quot;"/>
+                            <item value="&quot;Standard_E8s_v3&quot;"/>
+                            <item value="&quot;Standard_F1&quot;"/>
+                            <item value="&quot;Standard_F16&quot;"/>
+                            <item value="&quot;Standard_F16s&quot;"/>
+                            <item value="&quot;Standard_F16s_v2&quot;"/>
+                            <item value="&quot;Standard_F1s&quot;"/>
+                            <item value="&quot;Standard_F2&quot;"/>
+                            <item value="&quot;Standard_F2s&quot;"/>
+                            <item value="&quot;Standard_F2s_v2&quot;"/>
+                            <item value="&quot;Standard_F32s_v2&quot;"/>
+                            <item value="&quot;Standard_F4&quot;"/>
+                            <item value="&quot;Standard_F4s&quot;"/>
+                            <item value="&quot;Standard_F4s_v2&quot;"/>
+                            <item value="&quot;Standard_F64s_v2&quot;"/>
+                            <item value="&quot;Standard_F72s_v2&quot;"/>
+                            <item value="&quot;Standard_F8&quot;"/>
+                            <item value="&quot;Standard_F8s&quot;"/>
+                            <item value="&quot;Standard_F8s_v2&quot;"/>
+                            <item value="&quot;Standard_G1&quot;"/>
+                            <item value="&quot;Standard_G2&quot;"/>
+                            <item value="&quot;Standard_G3&quot;"/>
+                            <item value="&quot;Standard_G4&quot;"/>
+                            <item value="&quot;Standard_G5&quot;"/>
+                            <item value="&quot;Standard_GS1&quot;"/>
+                            <item value="&quot;Standard_GS2&quot;"/>
+                            <item value="&quot;Standard_GS3&quot;"/>
+                            <item value="&quot;Standard_GS4&quot;"/>
+                            <item value="&quot;Standard_GS4-4&quot;"/>
+                            <item value="&quot;Standard_GS4-8&quot;"/>
+                            <item value="&quot;Standard_GS5&quot;"/>
+                            <item value="&quot;Standard_GS5-16&quot;"/>
+                            <item value="&quot;Standard_GS5-8&quot;"/>
+                            <item value="&quot;Standard_H16&quot;"/>
+                            <item value="&quot;Standard_H16m&quot;"/>
+                            <item value="&quot;Standard_H16mr&quot;"/>
+                            <item value="&quot;Standard_H16r&quot;"/>
+                            <item value="&quot;Standard_H8&quot;"/>
+                            <item value="&quot;Standard_H8m&quot;"/>
+                            <item value="&quot;Standard_L16s&quot;"/>
+                            <item value="&quot;Standard_L32s&quot;"/>
+                            <item value="&quot;Standard_L4s&quot;"/>
+                            <item value="&quot;Standard_L8s&quot;"/>
+                            <item value="&quot;Standard_M128-32ms&quot;"/>
+                            <item value="&quot;Standard_M128-64ms&quot;"/>
+                            <item value="&quot;Standard_M128ms&quot;"/>
+                            <item value="&quot;Standard_M128s&quot;"/>
+                            <item value="&quot;Standard_M64-16ms&quot;"/>
+                            <item value="&quot;Standard_M64-32ms&quot;"/>
+                            <item value="&quot;Standard_M64ms&quot;"/>
+                            <item value="&quot;Standard_M64s&quot;"/>
+                            <item value="&quot;Standard_NC12&quot;"/>
+                            <item value="&quot;Standard_NC12s_v2&quot;"/>
+                            <item value="&quot;Standard_NC12s_v3&quot;"/>
+                            <item value="&quot;Standard_NC24&quot;"/>
+                            <item value="&quot;Standard_NC24r&quot;"/>
+                            <item value="&quot;Standard_NC24rs_v2&quot;"/>
+                            <item value="&quot;Standard_NC24rs_v3&quot;"/>
+                            <item value="&quot;Standard_NC24s_v2&quot;"/>
+                            <item value="&quot;Standard_NC24s_v3&quot;"/>
+                            <item value="&quot;Standard_NC6&quot;"/>
+                            <item value="&quot;Standard_NC6s_v2&quot;"/>
+                            <item value="&quot;Standard_NC6s_v3&quot;"/>
+                            <item value="&quot;Standard_ND12s&quot;"/>
+                            <item value="&quot;Standard_ND24rs&quot;"/>
+                            <item value="&quot;Standard_ND24s&quot;"/>
+                            <item value="&quot;Standard_ND6s&quot;"/>
+                            <item value="&quot;Standard_NV12&quot;"/>
+                            <item value="&quot;Standard_NV24&quot;"/>
+                            <item value="&quot;Standard_NV6&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="vmSizeProperties">
+                          <prop type="integer32" name="vCPUsAvailable"/>
+                          <prop type="integer32" name="vCPUsPerCore"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="hyperVGeneration">
+                        <enum>
+                          <item value="&quot;V1&quot;"/>
+                          <item value="&quot;V2&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="licenseType"/>
+                      <prop readOnly="True" type="string" name="location"/>
+                      <prop readOnly="True" type="object" name="osProfile">
+                        <prop type="password" name="adminPassword" secret="True"/>
+                        <prop type="string" name="adminUsername"/>
+                        <prop type="boolean" name="allowExtensionOperations"/>
+                        <prop type="string" name="computerName"/>
+                        <prop type="string" name="customData"/>
+                        <prop type="object" name="linuxConfiguration">
+                          <prop type="boolean" name="disablePasswordAuthentication"/>
+                          <prop type="boolean" name="enableVMAgentPlatformUpdates"/>
+                          <prop type="object" name="patchSettings">
+                            <prop type="string" name="assessmentMode">
+                              <enum>
+                                <item value="&quot;AutomaticByPlatform&quot;"/>
+                                <item value="&quot;ImageDefault&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="object" name="automaticByPlatformSettings">
+                              <prop type="boolean" name="bypassPlatformSafetyChecksOnUserSchedule"/>
+                              <prop type="string" name="rebootSetting">
+                                <enum>
+                                  <item value="&quot;Always&quot;"/>
+                                  <item value="&quot;IfRequired&quot;"/>
+                                  <item value="&quot;Never&quot;"/>
+                                  <item value="&quot;Unknown&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="patchMode">
+                              <enum>
+                                <item value="&quot;AutomaticByPlatform&quot;"/>
+                                <item value="&quot;ImageDefault&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop type="boolean" name="provisionVMAgent"/>
+                          <prop type="object" name="ssh">
+                            <prop type="array<object>" name="publicKeys" identifiers="path">
+                              <item type="object">
+                                <prop type="string" name="keyData"/>
+                                <prop type="string" name="path"/>
+                              </item>
+                            </prop>
+                          </prop>
+                        </prop>
+                        <prop type="boolean" name="requireGuestProvisionSignal"/>
+                        <prop type="array<object>" name="secrets">
+                          <item type="object">
+                            <prop type="@SubResource_read" name="sourceVault"/>
+                            <prop type="array<object>" name="vaultCertificates" identifiers="certificateUrl">
+                              <item type="object">
+                                <prop type="string" name="certificateStore"/>
+                                <prop type="string" name="certificateUrl"/>
+                              </item>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="object" name="windowsConfiguration">
+                          <prop type="array<object>" name="additionalUnattendContent">
+                            <item type="object">
+                              <prop type="string" name="componentName">
+                                <enum>
+                                  <item value="&quot;Microsoft-Windows-Shell-Setup&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="content"/>
+                              <prop type="string" name="passName">
+                                <enum>
+                                  <item value="&quot;OobeSystem&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="settingName">
+                                <enum>
+                                  <item value="&quot;AutoLogon&quot;"/>
+                                  <item value="&quot;FirstLogonCommands&quot;"/>
+                                </enum>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="boolean" name="enableAutomaticUpdates"/>
+                          <prop readOnly="True" type="boolean" name="enableVMAgentPlatformUpdates"/>
+                          <prop type="object" name="patchSettings">
+                            <prop type="string" name="assessmentMode">
+                              <enum>
+                                <item value="&quot;AutomaticByPlatform&quot;"/>
+                                <item value="&quot;ImageDefault&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="object" name="automaticByPlatformSettings">
+                              <prop type="boolean" name="bypassPlatformSafetyChecksOnUserSchedule"/>
+                              <prop type="string" name="rebootSetting">
+                                <enum>
+                                  <item value="&quot;Always&quot;"/>
+                                  <item value="&quot;IfRequired&quot;"/>
+                                  <item value="&quot;Never&quot;"/>
+                                  <item value="&quot;Unknown&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="boolean" name="enableHotpatching"/>
+                            <prop type="string" name="patchMode">
+                              <enum>
+                                <item value="&quot;AutomaticByOS&quot;"/>
+                                <item value="&quot;AutomaticByPlatform&quot;"/>
+                                <item value="&quot;Manual&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop type="boolean" name="provisionVMAgent"/>
+                          <prop type="string" name="timeZone"/>
+                          <prop type="object" name="winRM">
+                            <prop type="array<object>" name="listeners">
+                              <item type="object">
+                                <prop type="string" name="certificateUrl"/>
+                                <prop type="string" name="protocol">
+                                  <enum>
+                                    <item value="&quot;Http&quot;"/>
+                                    <item value="&quot;Https&quot;"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="securityProfile">
+                        <prop type="boolean" name="encryptionAtHost"/>
+                        <prop type="object" name="encryptionIdentity">
+                          <prop type="string" name="userAssignedIdentityResourceId"/>
+                        </prop>
+                        <prop type="object" name="proxyAgentSettings">
+                          <prop type="boolean" name="enabled"/>
+                          <prop type="@HostEndpointSettings_read" name="imds"/>
+                          <prop type="integer32" name="keyIncarnationId"/>
+                          <prop type="string" name="mode">
+                            <enum>
+                              <item value="&quot;Audit&quot;"/>
+                              <item value="&quot;Enforce&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="object" name="wireServer" cls="HostEndpointSettings_read">
+                            <prop type="string" name="inVMAccessControlProfileReferenceId"/>
+                            <prop type="string" name="mode">
+                              <enum>
+                                <item value="&quot;Audit&quot;"/>
+                                <item value="&quot;Disabled&quot;"/>
+                                <item value="&quot;Enforce&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="securityType">
+                          <enum>
+                            <item value="&quot;ConfidentialVM&quot;"/>
+                            <item value="&quot;TrustedLaunch&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="uefiSettings">
+                          <prop type="boolean" name="secureBootEnabled"/>
+                          <prop type="boolean" name="vTpmEnabled"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="storageProfile">
+                        <prop type="array<object>" name="dataDisks">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="caching">
+                              <enum>
+                                <item value="&quot;None&quot;"/>
+                                <item value="&quot;ReadOnly&quot;"/>
+                                <item value="&quot;ReadWrite&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="@DiskRestorePointAttributes_read" name="diskRestorePoint"/>
+                            <prop readOnly="True" type="integer32" name="diskSizeGB"/>
+                            <prop readOnly="True" type="integer32" name="lun"/>
+                            <prop type="@ManagedDiskParameters_read" name="managedDisk"/>
+                            <prop readOnly="True" type="string" name="name"/>
+                            <prop readOnly="True" type="boolean" name="writeAcceleratorEnabled"/>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="string" name="diskControllerType">
+                          <enum>
+                            <item value="&quot;NVMe&quot;"/>
+                            <item value="&quot;SCSI&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="osDisk">
+                          <prop readOnly="True" type="string" name="caching">
+                            <enum>
+                              <item value="&quot;None&quot;"/>
+                              <item value="&quot;ReadOnly&quot;"/>
+                              <item value="&quot;ReadWrite&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="object" name="diskRestorePoint" cls="DiskRestorePointAttributes_read">
+                            <prop type="object" name="encryption">
+                              <prop type="@DiskEncryptionSetParameters_read" name="diskEncryptionSet"/>
+                              <prop type="string" name="type">
+                                <enum>
+                                  <item value="&quot;EncryptionAtRestWithCustomerKey&quot;"/>
+                                  <item value="&quot;EncryptionAtRestWithPlatformAndCustomerKeys&quot;"/>
+                                  <item value="&quot;EncryptionAtRestWithPlatformKey&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop readOnly="True" type="string" name="id"/>
+                            <prop type="@ApiEntityReference_read" name="sourceDiskRestorePoint"/>
+                          </prop>
+                          <prop readOnly="True" type="integer32" name="diskSizeGB"/>
+                          <prop readOnly="True" type="object" name="encryptionSettings">
+                            <prop type="object" name="diskEncryptionKey">
+                              <prop type="string" name="secretUrl" required="True"/>
+                              <prop type="object" name="sourceVault" required="True" cls="SubResource_read">
+                                <prop type="string" name="id"/>
+                              </prop>
+                            </prop>
+                            <prop type="boolean" name="enabled"/>
+                            <prop type="object" name="keyEncryptionKey">
+                              <prop type="string" name="keyUrl" required="True"/>
+                              <prop type="@SubResource_read" name="sourceVault" required="True"/>
+                            </prop>
+                          </prop>
+                          <prop type="object" name="managedDisk" cls="ManagedDiskParameters_read">
+                            <prop type="object" name="diskEncryptionSet" cls="DiskEncryptionSetParameters_read">
+                              <prop type="string" name="id"/>
+                            </prop>
+                            <prop type="string" name="id"/>
+                            <prop type="object" name="securityProfile">
+                              <prop type="@DiskEncryptionSetParameters_read" name="diskEncryptionSet"/>
+                              <prop type="string" name="securityEncryptionType">
+                                <enum>
+                                  <item value="&quot;DiskWithVMGuestState&quot;"/>
+                                  <item value="&quot;NonPersistedTPM&quot;"/>
+                                  <item value="&quot;VMGuestStateOnly&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="storageAccountType">
+                              <enum>
+                                <item value="&quot;PremiumV2_LRS&quot;"/>
+                                <item value="&quot;Premium_LRS&quot;"/>
+                                <item value="&quot;Premium_ZRS&quot;"/>
+                                <item value="&quot;StandardSSD_LRS&quot;"/>
+                                <item value="&quot;StandardSSD_ZRS&quot;"/>
+                                <item value="&quot;Standard_LRS&quot;"/>
+                                <item value="&quot;UltraSSD_LRS&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop readOnly="True" type="string" name="name"/>
+                          <prop readOnly="True" type="string" name="osType">
+                            <enum>
+                              <item value="&quot;Linux&quot;"/>
+                              <item value="&quot;Windows&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="boolean" name="writeAcceleratorEnabled"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="userData"/>
+                      <prop readOnly="True" type="string" name="vmId"/>
+                    </prop>
+                    <prop type="@ApiEntityReference_read" name="sourceRestorePoint"/>
+                    <prop type="dateTime" name="timeCreated">
+                      <format protocol="iso"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2024-11-01" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/restorepointcollections/{}/restorepoints/{}" version="2024-11-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9yZXN0b3JlUG9pbnRDb2xsZWN0aW9ucy97cmVzdG9yZVBvaW50Q29sbGVjdGlvbk5hbWV9L3Jlc3RvcmVQb2ludHMve3Jlc3RvcmVQb2ludE5hbWV9/V/MjAyNC0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.restorePointCollectionName" options="restore-point-collection-name collection-name" required="True" group="" idPart="name">
+          <help short="The name of the restore point collection."/>
+        </arg>
+        <arg type="string" var="$Path.restorePointName" options="restore-point-name name n" required="True" idPart="child_name_1">
+          <help short="The name of the restore point."/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="RestorePoints_Delete">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}/restorePoints/{restorePointName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="restorePointCollectionName" arg="$Path.restorePointCollectionName" required="True"/>
+              <param type="string" name="restorePointName" arg="$Path.restorePointName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200"/>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response statusCode="204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="create" version="2024-11-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/restorepointcollections/{}/restorepoints/{}" version="2024-11-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9yZXN0b3JlUG9pbnRDb2xsZWN0aW9ucy97cmVzdG9yZVBvaW50Q29sbGVjdGlvbk5hbWV9L3Jlc3RvcmVQb2ludHMve3Jlc3RvcmVQb2ludE5hbWV9/V/MjAyNC0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.restorePointCollectionName" options="restore-point-collection-name collection-name" required="True" group="" idPart="name">
+          <help short="The name of the restore point collection."/>
+        </arg>
+        <arg type="string" var="$Path.restorePointName" options="restore-point-name name n" required="True" idPart="child_name_1">
+          <help short="The name of the restore point."/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$parameters.properties.consistencyMode" options="consistency-mode" group="">
+          <help short="Consistency mode of the restore point. Can be specified in the input while creating a restore point. For now, only CrashConsistent is accepted as a valid input. Please refer to https://aka.ms/RestorePoints for more details. Allowed values: ApplicationConsistent, CrashConsistent, FileSystemConsistent."/>
+          <enum>
+            <item name="ApplicationConsistent" value="&quot;ApplicationConsistent&quot;"/>
+            <item name="CrashConsistent" value="&quot;CrashConsistent&quot;"/>
+            <item name="FileSystemConsistent" value="&quot;FileSystemConsistent&quot;"/>
+          </enum>
+        </arg>
+        <arg type="array<object>" var="$parameters.properties.excludeDisks" options="exclude-disks" group="">
+          <help short="List of disk resource ids that the customer wishes to exclude from the restore point. If no disks are specified, all disks will be included."/>
+          <item type="object" cls="ApiEntityReference_create">
+            <arg type="string" var="@ApiEntityReference_create.id" options="id">
+              <help short="The ARM resource id in the form of /subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/..."/>
+            </arg>
+          </item>
+        </arg>
+        <arg type="@ApiEntityReference_create" var="$parameters.properties.sourceRestorePoint" options="source-restore-point" group="">
+          <help short="Resource Id of the source restore point from which a copy needs to be created."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="object" var="$parameters.properties.sourceMetadata" options="source-metadata" group="Properties">
+          <help short="Gets the details of the VM captured at the time of the restore point creation."/>
+          <arg type="object" var="$parameters.properties.sourceMetadata.storageProfile" options="storage-profile">
+            <help short="Gets the storage profile."/>
+            <arg type="array<object>" var="$parameters.properties.sourceMetadata.storageProfile.dataDisks" options="data-disks">
+              <help short="Gets the data disks of the VM captured at the time of the restore point creation."/>
+              <item type="object">
+                <arg type="@DiskRestorePointAttributes_create" var="$parameters.properties.sourceMetadata.storageProfile.dataDisks[].diskRestorePoint" options="disk-restore-point">
+                  <help short="Contains Disk Restore Point properties."/>
+                </arg>
+                <arg type="@ManagedDiskParameters_create" var="$parameters.properties.sourceMetadata.storageProfile.dataDisks[].managedDisk" options="managed-disk">
+                  <help short="Contains the managed disk details."/>
+                </arg>
+              </item>
+            </arg>
+            <arg type="object" var="$parameters.properties.sourceMetadata.storageProfile.osDisk" options="os-disk">
+              <help short="Gets the OS disk of the VM captured at the time of the restore point creation."/>
+              <arg type="object" var="$parameters.properties.sourceMetadata.storageProfile.osDisk.diskRestorePoint" options="disk-restore-point" cls="DiskRestorePointAttributes_create">
+                <help short="Contains Disk Restore Point properties."/>
+                <arg type="object" var="@DiskRestorePointAttributes_create.encryption" options="encryption">
+                  <help short="Encryption at rest settings for disk restore point. It is an optional property that can be specified in the input while creating a restore point."/>
+                  <arg type="@DiskEncryptionSetParameters_create" var="@DiskRestorePointAttributes_create.encryption.diskEncryptionSet" options="disk-encryption-set">
+                    <help short="Describes the parameter of customer managed disk encryption set resource id that can be specified for disk. **Note:** The disk encryption set resource id can only be specified for managed disk. Please refer https://aka.ms/mdssewithcmkoverview for more details."/>
+                  </arg>
+                  <arg type="string" var="@DiskRestorePointAttributes_create.encryption.type" options="type">
+                    <help short="The type of key used to encrypt the data of the disk restore point."/>
+                    <enum>
+                      <item name="EncryptionAtRestWithCustomerKey" value="&quot;EncryptionAtRestWithCustomerKey&quot;"/>
+                      <item name="EncryptionAtRestWithPlatformAndCustomerKeys" value="&quot;EncryptionAtRestWithPlatformAndCustomerKeys&quot;"/>
+                      <item name="EncryptionAtRestWithPlatformKey" value="&quot;EncryptionAtRestWithPlatformKey&quot;"/>
+                    </enum>
+                  </arg>
+                </arg>
+                <arg type="@ApiEntityReference_create" var="@DiskRestorePointAttributes_create.sourceDiskRestorePoint" options="source-disk-restore-point">
+                  <help short="Resource Id of the source disk restore point."/>
+                </arg>
+              </arg>
+              <arg type="object" var="$parameters.properties.sourceMetadata.storageProfile.osDisk.managedDisk" options="managed-disk" cls="ManagedDiskParameters_create">
+                <help short="Gets the managed disk details"/>
+                <arg type="object" var="@ManagedDiskParameters_create.diskEncryptionSet" options="disk-encryption-set" cls="DiskEncryptionSetParameters_create">
+                  <help short="Specifies the customer managed disk encryption set resource id for the managed disk."/>
+                  <arg type="string" var="@DiskEncryptionSetParameters_create.id" options="id">
+                    <help short="Resource Id"/>
+                  </arg>
+                </arg>
+                <arg type="string" var="@ManagedDiskParameters_create.id" options="id">
+                  <help short="Resource Id"/>
+                </arg>
+                <arg type="object" var="@ManagedDiskParameters_create.securityProfile" options="security-profile">
+                  <help short="Specifies the security profile for the managed disk."/>
+                  <arg type="@DiskEncryptionSetParameters_create" var="@ManagedDiskParameters_create.securityProfile.diskEncryptionSet" options="disk-encryption-set">
+                    <help short="Specifies the customer managed disk encryption set resource id for the managed disk that is used for Customer Managed Key encrypted ConfidentialVM OS Disk and VMGuest blob."/>
+                  </arg>
+                  <arg type="string" var="@ManagedDiskParameters_create.securityProfile.securityEncryptionType" options="security-encryption-type">
+                    <help short="Specifies the EncryptionType of the managed disk. It is set to DiskWithVMGuestState for encryption of the managed disk along with VMGuestState blob, VMGuestStateOnly for encryption of just the VMGuestState blob, and NonPersistedTPM for not persisting firmware state in the VMGuestState blob.. **Note:** It can be set for only Confidential VMs."/>
+                    <enum>
+                      <item name="DiskWithVMGuestState" value="&quot;DiskWithVMGuestState&quot;"/>
+                      <item name="NonPersistedTPM" value="&quot;NonPersistedTPM&quot;"/>
+                      <item name="VMGuestStateOnly" value="&quot;VMGuestStateOnly&quot;"/>
+                    </enum>
+                  </arg>
+                </arg>
+                <arg type="string" var="@ManagedDiskParameters_create.storageAccountType" options="storage-account-type">
+                  <help short="Specifies the storage account type for the managed disk. NOTE: UltraSSD_LRS can only be used with data disks, it cannot be used with OS Disk."/>
+                  <enum>
+                    <item name="PremiumV2_LRS" value="&quot;PremiumV2_LRS&quot;"/>
+                    <item name="Premium_LRS" value="&quot;Premium_LRS&quot;"/>
+                    <item name="Premium_ZRS" value="&quot;Premium_ZRS&quot;"/>
+                    <item name="StandardSSD_LRS" value="&quot;StandardSSD_LRS&quot;"/>
+                    <item name="StandardSSD_ZRS" value="&quot;StandardSSD_ZRS&quot;"/>
+                    <item name="Standard_LRS" value="&quot;Standard_LRS&quot;"/>
+                    <item name="UltraSSD_LRS" value="&quot;UltraSSD_LRS&quot;"/>
+                  </enum>
+                </arg>
+              </arg>
+            </arg>
+          </arg>
+        </arg>
+        <arg type="dateTime" var="$parameters.properties.timeCreated" options="time-created" hide="True" group="Properties">
+          <help short="Gets the creation time of the restore point."/>
+          <format protocol="iso"/>
+        </arg>
+      </argGroup>
+      <operation operationId="RestorePoints_Create">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}/restorePoints/{restorePointName}">
+          <request method="put">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="restorePointCollectionName" arg="$Path.restorePointCollectionName" required="True"/>
+              <param type="string" name="restorePointName" arg="$Path.restorePointName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="parameters" required="True" clientFlatten="True">
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="string" name="consistencyMode" arg="$parameters.properties.consistencyMode">
+                      <enum>
+                        <item value="&quot;ApplicationConsistent&quot;"/>
+                        <item value="&quot;CrashConsistent&quot;"/>
+                        <item value="&quot;FileSystemConsistent&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<object>" name="excludeDisks" arg="$parameters.properties.excludeDisks">
+                      <item type="object" cls="ApiEntityReference_create">
+                        <prop type="string" name="id" arg="@ApiEntityReference_create.id"/>
+                      </item>
+                    </prop>
+                    <prop type="object" name="sourceMetadata" arg="$parameters.properties.sourceMetadata">
+                      <prop type="object" name="storageProfile" arg="$parameters.properties.sourceMetadata.storageProfile">
+                        <prop type="array<object>" name="dataDisks" arg="$parameters.properties.sourceMetadata.storageProfile.dataDisks">
+                          <item type="object">
+                            <prop type="@DiskRestorePointAttributes_create" name="diskRestorePoint" arg="$parameters.properties.sourceMetadata.storageProfile.dataDisks[].diskRestorePoint"/>
+                            <prop type="@ManagedDiskParameters_create" name="managedDisk" arg="$parameters.properties.sourceMetadata.storageProfile.dataDisks[].managedDisk"/>
+                          </item>
+                        </prop>
+                        <prop type="object" name="osDisk" arg="$parameters.properties.sourceMetadata.storageProfile.osDisk">
+                          <prop type="object" name="diskRestorePoint" arg="$parameters.properties.sourceMetadata.storageProfile.osDisk.diskRestorePoint" cls="DiskRestorePointAttributes_create">
+                            <prop type="object" name="encryption" arg="@DiskRestorePointAttributes_create.encryption">
+                              <prop type="@DiskEncryptionSetParameters_create" name="diskEncryptionSet" arg="@DiskRestorePointAttributes_create.encryption.diskEncryptionSet"/>
+                              <prop type="string" name="type" arg="@DiskRestorePointAttributes_create.encryption.type">
+                                <enum>
+                                  <item value="&quot;EncryptionAtRestWithCustomerKey&quot;"/>
+                                  <item value="&quot;EncryptionAtRestWithPlatformAndCustomerKeys&quot;"/>
+                                  <item value="&quot;EncryptionAtRestWithPlatformKey&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="@ApiEntityReference_create" name="sourceDiskRestorePoint" arg="@DiskRestorePointAttributes_create.sourceDiskRestorePoint"/>
+                          </prop>
+                          <prop type="object" name="managedDisk" arg="$parameters.properties.sourceMetadata.storageProfile.osDisk.managedDisk" cls="ManagedDiskParameters_create">
+                            <prop type="object" name="diskEncryptionSet" arg="@ManagedDiskParameters_create.diskEncryptionSet" cls="DiskEncryptionSetParameters_create">
+                              <prop type="string" name="id" arg="@DiskEncryptionSetParameters_create.id"/>
+                            </prop>
+                            <prop type="string" name="id" arg="@ManagedDiskParameters_create.id"/>
+                            <prop type="object" name="securityProfile" arg="@ManagedDiskParameters_create.securityProfile">
+                              <prop type="@DiskEncryptionSetParameters_create" name="diskEncryptionSet" arg="@ManagedDiskParameters_create.securityProfile.diskEncryptionSet"/>
+                              <prop type="string" name="securityEncryptionType" arg="@ManagedDiskParameters_create.securityProfile.securityEncryptionType">
+                                <enum>
+                                  <item value="&quot;DiskWithVMGuestState&quot;"/>
+                                  <item value="&quot;NonPersistedTPM&quot;"/>
+                                  <item value="&quot;VMGuestStateOnly&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="storageAccountType" arg="@ManagedDiskParameters_create.storageAccountType">
+                              <enum>
+                                <item value="&quot;PremiumV2_LRS&quot;"/>
+                                <item value="&quot;Premium_LRS&quot;"/>
+                                <item value="&quot;Premium_ZRS&quot;"/>
+                                <item value="&quot;StandardSSD_LRS&quot;"/>
+                                <item value="&quot;StandardSSD_ZRS&quot;"/>
+                                <item value="&quot;Standard_LRS&quot;"/>
+                                <item value="&quot;UltraSSD_LRS&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                        </prop>
+                      </prop>
+                    </prop>
+                    <prop type="@ApiEntityReference_create" name="sourceRestorePoint" arg="$parameters.properties.sourceRestorePoint"/>
+                    <prop type="dateTime" name="timeCreated" arg="$parameters.properties.timeCreated">
+                      <format protocol="iso"/>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="201">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/restorePointCollections/{}/restorePoints/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="string" name="consistencyMode">
+                      <enum>
+                        <item value="&quot;ApplicationConsistent&quot;"/>
+                        <item value="&quot;CrashConsistent&quot;"/>
+                        <item value="&quot;FileSystemConsistent&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<object>" name="excludeDisks">
+                      <item type="object" cls="ApiEntityReference_read">
+                        <prop type="string" name="id"/>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="object" name="instanceView">
+                      <prop type="array<object>" name="diskRestorePoints">
+                        <item type="object">
+                          <prop type="string" name="id"/>
+                          <prop type="object" name="replicationStatus">
+                            <prop type="integer32" name="completionPercent"/>
+                            <prop type="object" name="status" cls="InstanceViewStatus_read">
+                              <prop type="string" name="code"/>
+                              <prop type="string" name="displayStatus"/>
+                              <prop type="string" name="level">
+                                <enum>
+                                  <item value="&quot;Error&quot;"/>
+                                  <item value="&quot;Info&quot;"/>
+                                  <item value="&quot;Warning&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="message"/>
+                              <prop type="dateTime" name="time">
+                                <format protocol="iso"/>
+                              </prop>
+                            </prop>
+                          </prop>
+                        </item>
+                      </prop>
+                      <prop type="array<@InstanceViewStatus_read>" name="statuses">
+                        <item type="@InstanceViewStatus_read"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState"/>
+                    <prop type="object" name="sourceMetadata">
+                      <prop readOnly="True" type="object" name="diagnosticsProfile">
+                        <prop type="object" name="bootDiagnostics">
+                          <prop type="boolean" name="enabled"/>
+                          <prop type="string" name="storageUri"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="hardwareProfile">
+                        <prop type="string" name="vmSize">
+                          <enum>
+                            <item value="&quot;Basic_A0&quot;"/>
+                            <item value="&quot;Basic_A1&quot;"/>
+                            <item value="&quot;Basic_A2&quot;"/>
+                            <item value="&quot;Basic_A3&quot;"/>
+                            <item value="&quot;Basic_A4&quot;"/>
+                            <item value="&quot;Standard_A0&quot;"/>
+                            <item value="&quot;Standard_A1&quot;"/>
+                            <item value="&quot;Standard_A10&quot;"/>
+                            <item value="&quot;Standard_A11&quot;"/>
+                            <item value="&quot;Standard_A1_v2&quot;"/>
+                            <item value="&quot;Standard_A2&quot;"/>
+                            <item value="&quot;Standard_A2_v2&quot;"/>
+                            <item value="&quot;Standard_A2m_v2&quot;"/>
+                            <item value="&quot;Standard_A3&quot;"/>
+                            <item value="&quot;Standard_A4&quot;"/>
+                            <item value="&quot;Standard_A4_v2&quot;"/>
+                            <item value="&quot;Standard_A4m_v2&quot;"/>
+                            <item value="&quot;Standard_A5&quot;"/>
+                            <item value="&quot;Standard_A6&quot;"/>
+                            <item value="&quot;Standard_A7&quot;"/>
+                            <item value="&quot;Standard_A8&quot;"/>
+                            <item value="&quot;Standard_A8_v2&quot;"/>
+                            <item value="&quot;Standard_A8m_v2&quot;"/>
+                            <item value="&quot;Standard_A9&quot;"/>
+                            <item value="&quot;Standard_B1ms&quot;"/>
+                            <item value="&quot;Standard_B1s&quot;"/>
+                            <item value="&quot;Standard_B2ms&quot;"/>
+                            <item value="&quot;Standard_B2s&quot;"/>
+                            <item value="&quot;Standard_B4ms&quot;"/>
+                            <item value="&quot;Standard_B8ms&quot;"/>
+                            <item value="&quot;Standard_D1&quot;"/>
+                            <item value="&quot;Standard_D11&quot;"/>
+                            <item value="&quot;Standard_D11_v2&quot;"/>
+                            <item value="&quot;Standard_D12&quot;"/>
+                            <item value="&quot;Standard_D12_v2&quot;"/>
+                            <item value="&quot;Standard_D13&quot;"/>
+                            <item value="&quot;Standard_D13_v2&quot;"/>
+                            <item value="&quot;Standard_D14&quot;"/>
+                            <item value="&quot;Standard_D14_v2&quot;"/>
+                            <item value="&quot;Standard_D15_v2&quot;"/>
+                            <item value="&quot;Standard_D16_v3&quot;"/>
+                            <item value="&quot;Standard_D16s_v3&quot;"/>
+                            <item value="&quot;Standard_D1_v2&quot;"/>
+                            <item value="&quot;Standard_D2&quot;"/>
+                            <item value="&quot;Standard_D2_v2&quot;"/>
+                            <item value="&quot;Standard_D2_v3&quot;"/>
+                            <item value="&quot;Standard_D2s_v3&quot;"/>
+                            <item value="&quot;Standard_D3&quot;"/>
+                            <item value="&quot;Standard_D32_v3&quot;"/>
+                            <item value="&quot;Standard_D32s_v3&quot;"/>
+                            <item value="&quot;Standard_D3_v2&quot;"/>
+                            <item value="&quot;Standard_D4&quot;"/>
+                            <item value="&quot;Standard_D4_v2&quot;"/>
+                            <item value="&quot;Standard_D4_v3&quot;"/>
+                            <item value="&quot;Standard_D4s_v3&quot;"/>
+                            <item value="&quot;Standard_D5_v2&quot;"/>
+                            <item value="&quot;Standard_D64_v3&quot;"/>
+                            <item value="&quot;Standard_D64s_v3&quot;"/>
+                            <item value="&quot;Standard_D8_v3&quot;"/>
+                            <item value="&quot;Standard_D8s_v3&quot;"/>
+                            <item value="&quot;Standard_DS1&quot;"/>
+                            <item value="&quot;Standard_DS11&quot;"/>
+                            <item value="&quot;Standard_DS11_v2&quot;"/>
+                            <item value="&quot;Standard_DS12&quot;"/>
+                            <item value="&quot;Standard_DS12_v2&quot;"/>
+                            <item value="&quot;Standard_DS13&quot;"/>
+                            <item value="&quot;Standard_DS13-2_v2&quot;"/>
+                            <item value="&quot;Standard_DS13-4_v2&quot;"/>
+                            <item value="&quot;Standard_DS13_v2&quot;"/>
+                            <item value="&quot;Standard_DS14&quot;"/>
+                            <item value="&quot;Standard_DS14-4_v2&quot;"/>
+                            <item value="&quot;Standard_DS14-8_v2&quot;"/>
+                            <item value="&quot;Standard_DS14_v2&quot;"/>
+                            <item value="&quot;Standard_DS15_v2&quot;"/>
+                            <item value="&quot;Standard_DS1_v2&quot;"/>
+                            <item value="&quot;Standard_DS2&quot;"/>
+                            <item value="&quot;Standard_DS2_v2&quot;"/>
+                            <item value="&quot;Standard_DS3&quot;"/>
+                            <item value="&quot;Standard_DS3_v2&quot;"/>
+                            <item value="&quot;Standard_DS4&quot;"/>
+                            <item value="&quot;Standard_DS4_v2&quot;"/>
+                            <item value="&quot;Standard_DS5_v2&quot;"/>
+                            <item value="&quot;Standard_E16_v3&quot;"/>
+                            <item value="&quot;Standard_E16s_v3&quot;"/>
+                            <item value="&quot;Standard_E2_v3&quot;"/>
+                            <item value="&quot;Standard_E2s_v3&quot;"/>
+                            <item value="&quot;Standard_E32-16_v3&quot;"/>
+                            <item value="&quot;Standard_E32-8s_v3&quot;"/>
+                            <item value="&quot;Standard_E32_v3&quot;"/>
+                            <item value="&quot;Standard_E32s_v3&quot;"/>
+                            <item value="&quot;Standard_E4_v3&quot;"/>
+                            <item value="&quot;Standard_E4s_v3&quot;"/>
+                            <item value="&quot;Standard_E64-16s_v3&quot;"/>
+                            <item value="&quot;Standard_E64-32s_v3&quot;"/>
+                            <item value="&quot;Standard_E64_v3&quot;"/>
+                            <item value="&quot;Standard_E64s_v3&quot;"/>
+                            <item value="&quot;Standard_E8_v3&quot;"/>
+                            <item value="&quot;Standard_E8s_v3&quot;"/>
+                            <item value="&quot;Standard_F1&quot;"/>
+                            <item value="&quot;Standard_F16&quot;"/>
+                            <item value="&quot;Standard_F16s&quot;"/>
+                            <item value="&quot;Standard_F16s_v2&quot;"/>
+                            <item value="&quot;Standard_F1s&quot;"/>
+                            <item value="&quot;Standard_F2&quot;"/>
+                            <item value="&quot;Standard_F2s&quot;"/>
+                            <item value="&quot;Standard_F2s_v2&quot;"/>
+                            <item value="&quot;Standard_F32s_v2&quot;"/>
+                            <item value="&quot;Standard_F4&quot;"/>
+                            <item value="&quot;Standard_F4s&quot;"/>
+                            <item value="&quot;Standard_F4s_v2&quot;"/>
+                            <item value="&quot;Standard_F64s_v2&quot;"/>
+                            <item value="&quot;Standard_F72s_v2&quot;"/>
+                            <item value="&quot;Standard_F8&quot;"/>
+                            <item value="&quot;Standard_F8s&quot;"/>
+                            <item value="&quot;Standard_F8s_v2&quot;"/>
+                            <item value="&quot;Standard_G1&quot;"/>
+                            <item value="&quot;Standard_G2&quot;"/>
+                            <item value="&quot;Standard_G3&quot;"/>
+                            <item value="&quot;Standard_G4&quot;"/>
+                            <item value="&quot;Standard_G5&quot;"/>
+                            <item value="&quot;Standard_GS1&quot;"/>
+                            <item value="&quot;Standard_GS2&quot;"/>
+                            <item value="&quot;Standard_GS3&quot;"/>
+                            <item value="&quot;Standard_GS4&quot;"/>
+                            <item value="&quot;Standard_GS4-4&quot;"/>
+                            <item value="&quot;Standard_GS4-8&quot;"/>
+                            <item value="&quot;Standard_GS5&quot;"/>
+                            <item value="&quot;Standard_GS5-16&quot;"/>
+                            <item value="&quot;Standard_GS5-8&quot;"/>
+                            <item value="&quot;Standard_H16&quot;"/>
+                            <item value="&quot;Standard_H16m&quot;"/>
+                            <item value="&quot;Standard_H16mr&quot;"/>
+                            <item value="&quot;Standard_H16r&quot;"/>
+                            <item value="&quot;Standard_H8&quot;"/>
+                            <item value="&quot;Standard_H8m&quot;"/>
+                            <item value="&quot;Standard_L16s&quot;"/>
+                            <item value="&quot;Standard_L32s&quot;"/>
+                            <item value="&quot;Standard_L4s&quot;"/>
+                            <item value="&quot;Standard_L8s&quot;"/>
+                            <item value="&quot;Standard_M128-32ms&quot;"/>
+                            <item value="&quot;Standard_M128-64ms&quot;"/>
+                            <item value="&quot;Standard_M128ms&quot;"/>
+                            <item value="&quot;Standard_M128s&quot;"/>
+                            <item value="&quot;Standard_M64-16ms&quot;"/>
+                            <item value="&quot;Standard_M64-32ms&quot;"/>
+                            <item value="&quot;Standard_M64ms&quot;"/>
+                            <item value="&quot;Standard_M64s&quot;"/>
+                            <item value="&quot;Standard_NC12&quot;"/>
+                            <item value="&quot;Standard_NC12s_v2&quot;"/>
+                            <item value="&quot;Standard_NC12s_v3&quot;"/>
+                            <item value="&quot;Standard_NC24&quot;"/>
+                            <item value="&quot;Standard_NC24r&quot;"/>
+                            <item value="&quot;Standard_NC24rs_v2&quot;"/>
+                            <item value="&quot;Standard_NC24rs_v3&quot;"/>
+                            <item value="&quot;Standard_NC24s_v2&quot;"/>
+                            <item value="&quot;Standard_NC24s_v3&quot;"/>
+                            <item value="&quot;Standard_NC6&quot;"/>
+                            <item value="&quot;Standard_NC6s_v2&quot;"/>
+                            <item value="&quot;Standard_NC6s_v3&quot;"/>
+                            <item value="&quot;Standard_ND12s&quot;"/>
+                            <item value="&quot;Standard_ND24rs&quot;"/>
+                            <item value="&quot;Standard_ND24s&quot;"/>
+                            <item value="&quot;Standard_ND6s&quot;"/>
+                            <item value="&quot;Standard_NV12&quot;"/>
+                            <item value="&quot;Standard_NV24&quot;"/>
+                            <item value="&quot;Standard_NV6&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="vmSizeProperties">
+                          <prop type="integer32" name="vCPUsAvailable"/>
+                          <prop type="integer32" name="vCPUsPerCore"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="hyperVGeneration">
+                        <enum>
+                          <item value="&quot;V1&quot;"/>
+                          <item value="&quot;V2&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="licenseType"/>
+                      <prop readOnly="True" type="string" name="location"/>
+                      <prop readOnly="True" type="object" name="osProfile">
+                        <prop type="password" name="adminPassword" secret="True"/>
+                        <prop type="string" name="adminUsername"/>
+                        <prop type="boolean" name="allowExtensionOperations"/>
+                        <prop type="string" name="computerName"/>
+                        <prop type="string" name="customData"/>
+                        <prop type="object" name="linuxConfiguration">
+                          <prop type="boolean" name="disablePasswordAuthentication"/>
+                          <prop type="boolean" name="enableVMAgentPlatformUpdates"/>
+                          <prop type="object" name="patchSettings">
+                            <prop type="string" name="assessmentMode">
+                              <enum>
+                                <item value="&quot;AutomaticByPlatform&quot;"/>
+                                <item value="&quot;ImageDefault&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="object" name="automaticByPlatformSettings">
+                              <prop type="boolean" name="bypassPlatformSafetyChecksOnUserSchedule"/>
+                              <prop type="string" name="rebootSetting">
+                                <enum>
+                                  <item value="&quot;Always&quot;"/>
+                                  <item value="&quot;IfRequired&quot;"/>
+                                  <item value="&quot;Never&quot;"/>
+                                  <item value="&quot;Unknown&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="patchMode">
+                              <enum>
+                                <item value="&quot;AutomaticByPlatform&quot;"/>
+                                <item value="&quot;ImageDefault&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop type="boolean" name="provisionVMAgent"/>
+                          <prop type="object" name="ssh">
+                            <prop type="array<object>" name="publicKeys" identifiers="path">
+                              <item type="object">
+                                <prop type="string" name="keyData"/>
+                                <prop type="string" name="path"/>
+                              </item>
+                            </prop>
+                          </prop>
+                        </prop>
+                        <prop type="boolean" name="requireGuestProvisionSignal"/>
+                        <prop type="array<object>" name="secrets">
+                          <item type="object">
+                            <prop type="@SubResource_read" name="sourceVault"/>
+                            <prop type="array<object>" name="vaultCertificates" identifiers="certificateUrl">
+                              <item type="object">
+                                <prop type="string" name="certificateStore"/>
+                                <prop type="string" name="certificateUrl"/>
+                              </item>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="object" name="windowsConfiguration">
+                          <prop type="array<object>" name="additionalUnattendContent">
+                            <item type="object">
+                              <prop type="string" name="componentName">
+                                <enum>
+                                  <item value="&quot;Microsoft-Windows-Shell-Setup&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="content"/>
+                              <prop type="string" name="passName">
+                                <enum>
+                                  <item value="&quot;OobeSystem&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="settingName">
+                                <enum>
+                                  <item value="&quot;AutoLogon&quot;"/>
+                                  <item value="&quot;FirstLogonCommands&quot;"/>
+                                </enum>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="boolean" name="enableAutomaticUpdates"/>
+                          <prop readOnly="True" type="boolean" name="enableVMAgentPlatformUpdates"/>
+                          <prop type="object" name="patchSettings">
+                            <prop type="string" name="assessmentMode">
+                              <enum>
+                                <item value="&quot;AutomaticByPlatform&quot;"/>
+                                <item value="&quot;ImageDefault&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="object" name="automaticByPlatformSettings">
+                              <prop type="boolean" name="bypassPlatformSafetyChecksOnUserSchedule"/>
+                              <prop type="string" name="rebootSetting">
+                                <enum>
+                                  <item value="&quot;Always&quot;"/>
+                                  <item value="&quot;IfRequired&quot;"/>
+                                  <item value="&quot;Never&quot;"/>
+                                  <item value="&quot;Unknown&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="boolean" name="enableHotpatching"/>
+                            <prop type="string" name="patchMode">
+                              <enum>
+                                <item value="&quot;AutomaticByOS&quot;"/>
+                                <item value="&quot;AutomaticByPlatform&quot;"/>
+                                <item value="&quot;Manual&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop type="boolean" name="provisionVMAgent"/>
+                          <prop type="string" name="timeZone"/>
+                          <prop type="object" name="winRM">
+                            <prop type="array<object>" name="listeners">
+                              <item type="object">
+                                <prop type="string" name="certificateUrl"/>
+                                <prop type="string" name="protocol">
+                                  <enum>
+                                    <item value="&quot;Http&quot;"/>
+                                    <item value="&quot;Https&quot;"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="securityProfile">
+                        <prop type="boolean" name="encryptionAtHost"/>
+                        <prop type="object" name="encryptionIdentity">
+                          <prop type="string" name="userAssignedIdentityResourceId"/>
+                        </prop>
+                        <prop type="object" name="proxyAgentSettings">
+                          <prop type="boolean" name="enabled"/>
+                          <prop type="@HostEndpointSettings_read" name="imds"/>
+                          <prop type="integer32" name="keyIncarnationId"/>
+                          <prop type="string" name="mode">
+                            <enum>
+                              <item value="&quot;Audit&quot;"/>
+                              <item value="&quot;Enforce&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="object" name="wireServer" cls="HostEndpointSettings_read">
+                            <prop type="string" name="inVMAccessControlProfileReferenceId"/>
+                            <prop type="string" name="mode">
+                              <enum>
+                                <item value="&quot;Audit&quot;"/>
+                                <item value="&quot;Disabled&quot;"/>
+                                <item value="&quot;Enforce&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="securityType">
+                          <enum>
+                            <item value="&quot;ConfidentialVM&quot;"/>
+                            <item value="&quot;TrustedLaunch&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="uefiSettings">
+                          <prop type="boolean" name="secureBootEnabled"/>
+                          <prop type="boolean" name="vTpmEnabled"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="storageProfile">
+                        <prop type="array<object>" name="dataDisks">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="caching">
+                              <enum>
+                                <item value="&quot;None&quot;"/>
+                                <item value="&quot;ReadOnly&quot;"/>
+                                <item value="&quot;ReadWrite&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="@DiskRestorePointAttributes_read" name="diskRestorePoint"/>
+                            <prop readOnly="True" type="integer32" name="diskSizeGB"/>
+                            <prop readOnly="True" type="integer32" name="lun"/>
+                            <prop type="@ManagedDiskParameters_read" name="managedDisk"/>
+                            <prop readOnly="True" type="string" name="name"/>
+                            <prop readOnly="True" type="boolean" name="writeAcceleratorEnabled"/>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="string" name="diskControllerType">
+                          <enum>
+                            <item value="&quot;NVMe&quot;"/>
+                            <item value="&quot;SCSI&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="osDisk">
+                          <prop readOnly="True" type="string" name="caching">
+                            <enum>
+                              <item value="&quot;None&quot;"/>
+                              <item value="&quot;ReadOnly&quot;"/>
+                              <item value="&quot;ReadWrite&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="object" name="diskRestorePoint" cls="DiskRestorePointAttributes_read">
+                            <prop type="object" name="encryption">
+                              <prop type="@DiskEncryptionSetParameters_read" name="diskEncryptionSet"/>
+                              <prop type="string" name="type">
+                                <enum>
+                                  <item value="&quot;EncryptionAtRestWithCustomerKey&quot;"/>
+                                  <item value="&quot;EncryptionAtRestWithPlatformAndCustomerKeys&quot;"/>
+                                  <item value="&quot;EncryptionAtRestWithPlatformKey&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop readOnly="True" type="string" name="id"/>
+                            <prop type="@ApiEntityReference_read" name="sourceDiskRestorePoint"/>
+                          </prop>
+                          <prop readOnly="True" type="integer32" name="diskSizeGB"/>
+                          <prop readOnly="True" type="object" name="encryptionSettings">
+                            <prop type="object" name="diskEncryptionKey">
+                              <prop type="string" name="secretUrl" required="True"/>
+                              <prop type="object" name="sourceVault" required="True" cls="SubResource_read">
+                                <prop type="string" name="id"/>
+                              </prop>
+                            </prop>
+                            <prop type="boolean" name="enabled"/>
+                            <prop type="object" name="keyEncryptionKey">
+                              <prop type="string" name="keyUrl" required="True"/>
+                              <prop type="@SubResource_read" name="sourceVault" required="True"/>
+                            </prop>
+                          </prop>
+                          <prop type="object" name="managedDisk" cls="ManagedDiskParameters_read">
+                            <prop type="object" name="diskEncryptionSet" cls="DiskEncryptionSetParameters_read">
+                              <prop type="string" name="id"/>
+                            </prop>
+                            <prop type="string" name="id"/>
+                            <prop type="object" name="securityProfile">
+                              <prop type="@DiskEncryptionSetParameters_read" name="diskEncryptionSet"/>
+                              <prop type="string" name="securityEncryptionType">
+                                <enum>
+                                  <item value="&quot;DiskWithVMGuestState&quot;"/>
+                                  <item value="&quot;NonPersistedTPM&quot;"/>
+                                  <item value="&quot;VMGuestStateOnly&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="storageAccountType">
+                              <enum>
+                                <item value="&quot;PremiumV2_LRS&quot;"/>
+                                <item value="&quot;Premium_LRS&quot;"/>
+                                <item value="&quot;Premium_ZRS&quot;"/>
+                                <item value="&quot;StandardSSD_LRS&quot;"/>
+                                <item value="&quot;StandardSSD_ZRS&quot;"/>
+                                <item value="&quot;Standard_LRS&quot;"/>
+                                <item value="&quot;UltraSSD_LRS&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop readOnly="True" type="string" name="name"/>
+                          <prop readOnly="True" type="string" name="osType">
+                            <enum>
+                              <item value="&quot;Linux&quot;"/>
+                              <item value="&quot;Windows&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="boolean" name="writeAcceleratorEnabled"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="userData"/>
+                      <prop readOnly="True" type="string" name="vmId"/>
+                    </prop>
+                    <prop type="@ApiEntityReference_read" name="sourceRestorePoint"/>
+                    <prop type="dateTime" name="timeCreated">
+                      <format protocol="iso"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2024-11-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/restorepointcollections/{}/restorepoints/{}" version="2024-11-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9yZXN0b3JlUG9pbnRDb2xsZWN0aW9ucy97cmVzdG9yZVBvaW50Q29sbGVjdGlvbk5hbWV9L3Jlc3RvcmVQb2ludHMve3Jlc3RvcmVQb2ludE5hbWV9/V/MjAyNC0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.restorePointCollectionName" options="restore-point-collection-name collection-name" required="True" group="" idPart="name">
+          <help short="The name of the restore point collection."/>
+        </arg>
+        <arg type="string" var="$Path.restorePointName" options="restore-point-name name n" required="True" idPart="child_name_1">
+          <help short="The name of the restore point."/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg nullable="True" type="string" var="$parameters.properties.consistencyMode" options="consistency-mode" group="">
+          <help short="Consistency mode of the restore point. Can be specified in the input while creating a restore point. For now, only CrashConsistent is accepted as a valid input. Please refer to https://aka.ms/RestorePoints for more details. Allowed values: ApplicationConsistent, CrashConsistent, FileSystemConsistent."/>
+          <enum>
+            <item name="ApplicationConsistent" value="&quot;ApplicationConsistent&quot;"/>
+            <item name="CrashConsistent" value="&quot;CrashConsistent&quot;"/>
+            <item name="FileSystemConsistent" value="&quot;FileSystemConsistent&quot;"/>
+          </enum>
+        </arg>
+        <arg nullable="True" type="array<object>" var="$parameters.properties.excludeDisks" options="exclude-disks" group="">
+          <help short="List of disk resource ids that the customer wishes to exclude from the restore point. If no disks are specified, all disks will be included."/>
+          <item nullable="True" type="object" cls="ApiEntityReference_update">
+            <arg nullable="True" type="string" var="@ApiEntityReference_update.id" options="id">
+              <help short="The ARM resource id in the form of /subscriptions/{SubscriptionId}/resourceGroups/{ResourceGroupName}/..."/>
+            </arg>
+          </item>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg nullable="True" type="object" var="$parameters.properties.sourceMetadata" options="source-metadata" group="Properties">
+          <help short="Gets the details of the VM captured at the time of the restore point creation."/>
+          <arg nullable="True" type="object" var="$parameters.properties.sourceMetadata.storageProfile" options="storage-profile">
+            <help short="Gets the storage profile."/>
+            <arg nullable="True" type="array<object>" var="$parameters.properties.sourceMetadata.storageProfile.dataDisks" options="data-disks">
+              <help short="Gets the data disks of the VM captured at the time of the restore point creation."/>
+              <item nullable="True" type="object">
+                <arg nullable="True" type="@DiskRestorePointAttributes_update" var="$parameters.properties.sourceMetadata.storageProfile.dataDisks[].diskRestorePoint" options="disk-restore-point">
+                  <help short="Contains Disk Restore Point properties."/>
+                </arg>
+                <arg nullable="True" type="@ManagedDiskParameters_update" var="$parameters.properties.sourceMetadata.storageProfile.dataDisks[].managedDisk" options="managed-disk">
+                  <help short="Contains the managed disk details."/>
+                </arg>
+              </item>
+            </arg>
+            <arg nullable="True" type="object" var="$parameters.properties.sourceMetadata.storageProfile.osDisk" options="os-disk">
+              <help short="Gets the OS disk of the VM captured at the time of the restore point creation."/>
+              <arg nullable="True" type="object" var="$parameters.properties.sourceMetadata.storageProfile.osDisk.diskRestorePoint" options="disk-restore-point" cls="DiskRestorePointAttributes_update">
+                <help short="Contains Disk Restore Point properties."/>
+                <arg nullable="True" type="object" var="@DiskRestorePointAttributes_update.encryption" options="encryption">
+                  <help short="Encryption at rest settings for disk restore point. It is an optional property that can be specified in the input while creating a restore point."/>
+                  <arg nullable="True" type="@DiskEncryptionSetParameters_update" var="@DiskRestorePointAttributes_update.encryption.diskEncryptionSet" options="disk-encryption-set">
+                    <help short="Describes the parameter of customer managed disk encryption set resource id that can be specified for disk. **Note:** The disk encryption set resource id can only be specified for managed disk. Please refer https://aka.ms/mdssewithcmkoverview for more details."/>
+                  </arg>
+                  <arg nullable="True" type="string" var="@DiskRestorePointAttributes_update.encryption.type" options="type">
+                    <help short="The type of key used to encrypt the data of the disk restore point."/>
+                    <enum>
+                      <item name="EncryptionAtRestWithCustomerKey" value="&quot;EncryptionAtRestWithCustomerKey&quot;"/>
+                      <item name="EncryptionAtRestWithPlatformAndCustomerKeys" value="&quot;EncryptionAtRestWithPlatformAndCustomerKeys&quot;"/>
+                      <item name="EncryptionAtRestWithPlatformKey" value="&quot;EncryptionAtRestWithPlatformKey&quot;"/>
+                    </enum>
+                  </arg>
+                </arg>
+                <arg nullable="True" type="@ApiEntityReference_update" var="@DiskRestorePointAttributes_update.sourceDiskRestorePoint" options="source-disk-restore-point">
+                  <help short="Resource Id of the source disk restore point."/>
+                </arg>
+              </arg>
+              <arg nullable="True" type="object" var="$parameters.properties.sourceMetadata.storageProfile.osDisk.managedDisk" options="managed-disk" cls="ManagedDiskParameters_update">
+                <help short="Gets the managed disk details"/>
+                <arg nullable="True" type="object" var="@ManagedDiskParameters_update.diskEncryptionSet" options="disk-encryption-set" cls="DiskEncryptionSetParameters_update">
+                  <help short="Specifies the customer managed disk encryption set resource id for the managed disk."/>
+                  <arg nullable="True" type="string" var="@DiskEncryptionSetParameters_update.id" options="id">
+                    <help short="Resource Id"/>
+                  </arg>
+                </arg>
+                <arg nullable="True" type="string" var="@ManagedDiskParameters_update.id" options="id">
+                  <help short="Resource Id"/>
+                </arg>
+                <arg nullable="True" type="object" var="@ManagedDiskParameters_update.securityProfile" options="security-profile">
+                  <help short="Specifies the security profile for the managed disk."/>
+                  <arg nullable="True" type="@DiskEncryptionSetParameters_update" var="@ManagedDiskParameters_update.securityProfile.diskEncryptionSet" options="disk-encryption-set">
+                    <help short="Specifies the customer managed disk encryption set resource id for the managed disk that is used for Customer Managed Key encrypted ConfidentialVM OS Disk and VMGuest blob."/>
+                  </arg>
+                  <arg nullable="True" type="string" var="@ManagedDiskParameters_update.securityProfile.securityEncryptionType" options="security-encryption-type">
+                    <help short="Specifies the EncryptionType of the managed disk. It is set to DiskWithVMGuestState for encryption of the managed disk along with VMGuestState blob, VMGuestStateOnly for encryption of just the VMGuestState blob, and NonPersistedTPM for not persisting firmware state in the VMGuestState blob.. **Note:** It can be set for only Confidential VMs."/>
+                    <enum>
+                      <item name="DiskWithVMGuestState" value="&quot;DiskWithVMGuestState&quot;"/>
+                      <item name="NonPersistedTPM" value="&quot;NonPersistedTPM&quot;"/>
+                      <item name="VMGuestStateOnly" value="&quot;VMGuestStateOnly&quot;"/>
+                    </enum>
+                  </arg>
+                </arg>
+                <arg nullable="True" type="string" var="@ManagedDiskParameters_update.storageAccountType" options="storage-account-type">
+                  <help short="Specifies the storage account type for the managed disk. NOTE: UltraSSD_LRS can only be used with data disks, it cannot be used with OS Disk."/>
+                  <enum>
+                    <item name="PremiumV2_LRS" value="&quot;PremiumV2_LRS&quot;"/>
+                    <item name="Premium_LRS" value="&quot;Premium_LRS&quot;"/>
+                    <item name="Premium_ZRS" value="&quot;Premium_ZRS&quot;"/>
+                    <item name="StandardSSD_LRS" value="&quot;StandardSSD_LRS&quot;"/>
+                    <item name="StandardSSD_ZRS" value="&quot;StandardSSD_ZRS&quot;"/>
+                    <item name="Standard_LRS" value="&quot;Standard_LRS&quot;"/>
+                    <item name="UltraSSD_LRS" value="&quot;UltraSSD_LRS&quot;"/>
+                  </enum>
+                </arg>
+              </arg>
+            </arg>
+          </arg>
+        </arg>
+        <arg nullable="True" type="@ApiEntityReference_update" var="$parameters.properties.sourceRestorePoint" options="source-restore-point" group="Properties">
+          <help short="Resource Id of the source restore point from which a copy needs to be created."/>
+        </arg>
+        <arg nullable="True" type="dateTime" var="$parameters.properties.timeCreated" options="time-created" hide="True" group="Properties">
+          <help short="Gets the creation time of the restore point."/>
+          <format protocol="iso"/>
+        </arg>
+      </argGroup>
+      <operation operationId="RestorePoints_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}/restorePoints/{restorePointName}">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="restorePointCollectionName" arg="$Path.restorePointCollectionName" required="True"/>
+              <param type="string" name="restorePointName" arg="$Path.restorePointName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="RestorePoint_read">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/restorePointCollections/{}/restorePoints/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="string" name="consistencyMode">
+                      <enum>
+                        <item value="&quot;ApplicationConsistent&quot;"/>
+                        <item value="&quot;CrashConsistent&quot;"/>
+                        <item value="&quot;FileSystemConsistent&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<object>" name="excludeDisks">
+                      <item type="object" cls="ApiEntityReference_read">
+                        <prop type="string" name="id"/>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="object" name="instanceView">
+                      <prop type="array<object>" name="diskRestorePoints">
+                        <item type="object">
+                          <prop type="string" name="id"/>
+                          <prop type="object" name="replicationStatus">
+                            <prop type="integer32" name="completionPercent"/>
+                            <prop type="object" name="status" cls="InstanceViewStatus_read">
+                              <prop type="string" name="code"/>
+                              <prop type="string" name="displayStatus"/>
+                              <prop type="string" name="level">
+                                <enum>
+                                  <item value="&quot;Error&quot;"/>
+                                  <item value="&quot;Info&quot;"/>
+                                  <item value="&quot;Warning&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="message"/>
+                              <prop type="dateTime" name="time">
+                                <format protocol="iso"/>
+                              </prop>
+                            </prop>
+                          </prop>
+                        </item>
+                      </prop>
+                      <prop type="array<@InstanceViewStatus_read>" name="statuses">
+                        <item type="@InstanceViewStatus_read"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState"/>
+                    <prop type="object" name="sourceMetadata">
+                      <prop readOnly="True" type="object" name="diagnosticsProfile">
+                        <prop type="object" name="bootDiagnostics">
+                          <prop type="boolean" name="enabled"/>
+                          <prop type="string" name="storageUri"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="hardwareProfile">
+                        <prop type="string" name="vmSize">
+                          <enum>
+                            <item value="&quot;Basic_A0&quot;"/>
+                            <item value="&quot;Basic_A1&quot;"/>
+                            <item value="&quot;Basic_A2&quot;"/>
+                            <item value="&quot;Basic_A3&quot;"/>
+                            <item value="&quot;Basic_A4&quot;"/>
+                            <item value="&quot;Standard_A0&quot;"/>
+                            <item value="&quot;Standard_A1&quot;"/>
+                            <item value="&quot;Standard_A10&quot;"/>
+                            <item value="&quot;Standard_A11&quot;"/>
+                            <item value="&quot;Standard_A1_v2&quot;"/>
+                            <item value="&quot;Standard_A2&quot;"/>
+                            <item value="&quot;Standard_A2_v2&quot;"/>
+                            <item value="&quot;Standard_A2m_v2&quot;"/>
+                            <item value="&quot;Standard_A3&quot;"/>
+                            <item value="&quot;Standard_A4&quot;"/>
+                            <item value="&quot;Standard_A4_v2&quot;"/>
+                            <item value="&quot;Standard_A4m_v2&quot;"/>
+                            <item value="&quot;Standard_A5&quot;"/>
+                            <item value="&quot;Standard_A6&quot;"/>
+                            <item value="&quot;Standard_A7&quot;"/>
+                            <item value="&quot;Standard_A8&quot;"/>
+                            <item value="&quot;Standard_A8_v2&quot;"/>
+                            <item value="&quot;Standard_A8m_v2&quot;"/>
+                            <item value="&quot;Standard_A9&quot;"/>
+                            <item value="&quot;Standard_B1ms&quot;"/>
+                            <item value="&quot;Standard_B1s&quot;"/>
+                            <item value="&quot;Standard_B2ms&quot;"/>
+                            <item value="&quot;Standard_B2s&quot;"/>
+                            <item value="&quot;Standard_B4ms&quot;"/>
+                            <item value="&quot;Standard_B8ms&quot;"/>
+                            <item value="&quot;Standard_D1&quot;"/>
+                            <item value="&quot;Standard_D11&quot;"/>
+                            <item value="&quot;Standard_D11_v2&quot;"/>
+                            <item value="&quot;Standard_D12&quot;"/>
+                            <item value="&quot;Standard_D12_v2&quot;"/>
+                            <item value="&quot;Standard_D13&quot;"/>
+                            <item value="&quot;Standard_D13_v2&quot;"/>
+                            <item value="&quot;Standard_D14&quot;"/>
+                            <item value="&quot;Standard_D14_v2&quot;"/>
+                            <item value="&quot;Standard_D15_v2&quot;"/>
+                            <item value="&quot;Standard_D16_v3&quot;"/>
+                            <item value="&quot;Standard_D16s_v3&quot;"/>
+                            <item value="&quot;Standard_D1_v2&quot;"/>
+                            <item value="&quot;Standard_D2&quot;"/>
+                            <item value="&quot;Standard_D2_v2&quot;"/>
+                            <item value="&quot;Standard_D2_v3&quot;"/>
+                            <item value="&quot;Standard_D2s_v3&quot;"/>
+                            <item value="&quot;Standard_D3&quot;"/>
+                            <item value="&quot;Standard_D32_v3&quot;"/>
+                            <item value="&quot;Standard_D32s_v3&quot;"/>
+                            <item value="&quot;Standard_D3_v2&quot;"/>
+                            <item value="&quot;Standard_D4&quot;"/>
+                            <item value="&quot;Standard_D4_v2&quot;"/>
+                            <item value="&quot;Standard_D4_v3&quot;"/>
+                            <item value="&quot;Standard_D4s_v3&quot;"/>
+                            <item value="&quot;Standard_D5_v2&quot;"/>
+                            <item value="&quot;Standard_D64_v3&quot;"/>
+                            <item value="&quot;Standard_D64s_v3&quot;"/>
+                            <item value="&quot;Standard_D8_v3&quot;"/>
+                            <item value="&quot;Standard_D8s_v3&quot;"/>
+                            <item value="&quot;Standard_DS1&quot;"/>
+                            <item value="&quot;Standard_DS11&quot;"/>
+                            <item value="&quot;Standard_DS11_v2&quot;"/>
+                            <item value="&quot;Standard_DS12&quot;"/>
+                            <item value="&quot;Standard_DS12_v2&quot;"/>
+                            <item value="&quot;Standard_DS13&quot;"/>
+                            <item value="&quot;Standard_DS13-2_v2&quot;"/>
+                            <item value="&quot;Standard_DS13-4_v2&quot;"/>
+                            <item value="&quot;Standard_DS13_v2&quot;"/>
+                            <item value="&quot;Standard_DS14&quot;"/>
+                            <item value="&quot;Standard_DS14-4_v2&quot;"/>
+                            <item value="&quot;Standard_DS14-8_v2&quot;"/>
+                            <item value="&quot;Standard_DS14_v2&quot;"/>
+                            <item value="&quot;Standard_DS15_v2&quot;"/>
+                            <item value="&quot;Standard_DS1_v2&quot;"/>
+                            <item value="&quot;Standard_DS2&quot;"/>
+                            <item value="&quot;Standard_DS2_v2&quot;"/>
+                            <item value="&quot;Standard_DS3&quot;"/>
+                            <item value="&quot;Standard_DS3_v2&quot;"/>
+                            <item value="&quot;Standard_DS4&quot;"/>
+                            <item value="&quot;Standard_DS4_v2&quot;"/>
+                            <item value="&quot;Standard_DS5_v2&quot;"/>
+                            <item value="&quot;Standard_E16_v3&quot;"/>
+                            <item value="&quot;Standard_E16s_v3&quot;"/>
+                            <item value="&quot;Standard_E2_v3&quot;"/>
+                            <item value="&quot;Standard_E2s_v3&quot;"/>
+                            <item value="&quot;Standard_E32-16_v3&quot;"/>
+                            <item value="&quot;Standard_E32-8s_v3&quot;"/>
+                            <item value="&quot;Standard_E32_v3&quot;"/>
+                            <item value="&quot;Standard_E32s_v3&quot;"/>
+                            <item value="&quot;Standard_E4_v3&quot;"/>
+                            <item value="&quot;Standard_E4s_v3&quot;"/>
+                            <item value="&quot;Standard_E64-16s_v3&quot;"/>
+                            <item value="&quot;Standard_E64-32s_v3&quot;"/>
+                            <item value="&quot;Standard_E64_v3&quot;"/>
+                            <item value="&quot;Standard_E64s_v3&quot;"/>
+                            <item value="&quot;Standard_E8_v3&quot;"/>
+                            <item value="&quot;Standard_E8s_v3&quot;"/>
+                            <item value="&quot;Standard_F1&quot;"/>
+                            <item value="&quot;Standard_F16&quot;"/>
+                            <item value="&quot;Standard_F16s&quot;"/>
+                            <item value="&quot;Standard_F16s_v2&quot;"/>
+                            <item value="&quot;Standard_F1s&quot;"/>
+                            <item value="&quot;Standard_F2&quot;"/>
+                            <item value="&quot;Standard_F2s&quot;"/>
+                            <item value="&quot;Standard_F2s_v2&quot;"/>
+                            <item value="&quot;Standard_F32s_v2&quot;"/>
+                            <item value="&quot;Standard_F4&quot;"/>
+                            <item value="&quot;Standard_F4s&quot;"/>
+                            <item value="&quot;Standard_F4s_v2&quot;"/>
+                            <item value="&quot;Standard_F64s_v2&quot;"/>
+                            <item value="&quot;Standard_F72s_v2&quot;"/>
+                            <item value="&quot;Standard_F8&quot;"/>
+                            <item value="&quot;Standard_F8s&quot;"/>
+                            <item value="&quot;Standard_F8s_v2&quot;"/>
+                            <item value="&quot;Standard_G1&quot;"/>
+                            <item value="&quot;Standard_G2&quot;"/>
+                            <item value="&quot;Standard_G3&quot;"/>
+                            <item value="&quot;Standard_G4&quot;"/>
+                            <item value="&quot;Standard_G5&quot;"/>
+                            <item value="&quot;Standard_GS1&quot;"/>
+                            <item value="&quot;Standard_GS2&quot;"/>
+                            <item value="&quot;Standard_GS3&quot;"/>
+                            <item value="&quot;Standard_GS4&quot;"/>
+                            <item value="&quot;Standard_GS4-4&quot;"/>
+                            <item value="&quot;Standard_GS4-8&quot;"/>
+                            <item value="&quot;Standard_GS5&quot;"/>
+                            <item value="&quot;Standard_GS5-16&quot;"/>
+                            <item value="&quot;Standard_GS5-8&quot;"/>
+                            <item value="&quot;Standard_H16&quot;"/>
+                            <item value="&quot;Standard_H16m&quot;"/>
+                            <item value="&quot;Standard_H16mr&quot;"/>
+                            <item value="&quot;Standard_H16r&quot;"/>
+                            <item value="&quot;Standard_H8&quot;"/>
+                            <item value="&quot;Standard_H8m&quot;"/>
+                            <item value="&quot;Standard_L16s&quot;"/>
+                            <item value="&quot;Standard_L32s&quot;"/>
+                            <item value="&quot;Standard_L4s&quot;"/>
+                            <item value="&quot;Standard_L8s&quot;"/>
+                            <item value="&quot;Standard_M128-32ms&quot;"/>
+                            <item value="&quot;Standard_M128-64ms&quot;"/>
+                            <item value="&quot;Standard_M128ms&quot;"/>
+                            <item value="&quot;Standard_M128s&quot;"/>
+                            <item value="&quot;Standard_M64-16ms&quot;"/>
+                            <item value="&quot;Standard_M64-32ms&quot;"/>
+                            <item value="&quot;Standard_M64ms&quot;"/>
+                            <item value="&quot;Standard_M64s&quot;"/>
+                            <item value="&quot;Standard_NC12&quot;"/>
+                            <item value="&quot;Standard_NC12s_v2&quot;"/>
+                            <item value="&quot;Standard_NC12s_v3&quot;"/>
+                            <item value="&quot;Standard_NC24&quot;"/>
+                            <item value="&quot;Standard_NC24r&quot;"/>
+                            <item value="&quot;Standard_NC24rs_v2&quot;"/>
+                            <item value="&quot;Standard_NC24rs_v3&quot;"/>
+                            <item value="&quot;Standard_NC24s_v2&quot;"/>
+                            <item value="&quot;Standard_NC24s_v3&quot;"/>
+                            <item value="&quot;Standard_NC6&quot;"/>
+                            <item value="&quot;Standard_NC6s_v2&quot;"/>
+                            <item value="&quot;Standard_NC6s_v3&quot;"/>
+                            <item value="&quot;Standard_ND12s&quot;"/>
+                            <item value="&quot;Standard_ND24rs&quot;"/>
+                            <item value="&quot;Standard_ND24s&quot;"/>
+                            <item value="&quot;Standard_ND6s&quot;"/>
+                            <item value="&quot;Standard_NV12&quot;"/>
+                            <item value="&quot;Standard_NV24&quot;"/>
+                            <item value="&quot;Standard_NV6&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="vmSizeProperties">
+                          <prop type="integer32" name="vCPUsAvailable"/>
+                          <prop type="integer32" name="vCPUsPerCore"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="hyperVGeneration">
+                        <enum>
+                          <item value="&quot;V1&quot;"/>
+                          <item value="&quot;V2&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="licenseType"/>
+                      <prop readOnly="True" type="string" name="location"/>
+                      <prop readOnly="True" type="object" name="osProfile">
+                        <prop type="password" name="adminPassword" secret="True"/>
+                        <prop type="string" name="adminUsername"/>
+                        <prop type="boolean" name="allowExtensionOperations"/>
+                        <prop type="string" name="computerName"/>
+                        <prop type="string" name="customData"/>
+                        <prop type="object" name="linuxConfiguration">
+                          <prop type="boolean" name="disablePasswordAuthentication"/>
+                          <prop type="boolean" name="enableVMAgentPlatformUpdates"/>
+                          <prop type="object" name="patchSettings">
+                            <prop type="string" name="assessmentMode">
+                              <enum>
+                                <item value="&quot;AutomaticByPlatform&quot;"/>
+                                <item value="&quot;ImageDefault&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="object" name="automaticByPlatformSettings">
+                              <prop type="boolean" name="bypassPlatformSafetyChecksOnUserSchedule"/>
+                              <prop type="string" name="rebootSetting">
+                                <enum>
+                                  <item value="&quot;Always&quot;"/>
+                                  <item value="&quot;IfRequired&quot;"/>
+                                  <item value="&quot;Never&quot;"/>
+                                  <item value="&quot;Unknown&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="patchMode">
+                              <enum>
+                                <item value="&quot;AutomaticByPlatform&quot;"/>
+                                <item value="&quot;ImageDefault&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop type="boolean" name="provisionVMAgent"/>
+                          <prop type="object" name="ssh">
+                            <prop type="array<object>" name="publicKeys" identifiers="path">
+                              <item type="object">
+                                <prop type="string" name="keyData"/>
+                                <prop type="string" name="path"/>
+                              </item>
+                            </prop>
+                          </prop>
+                        </prop>
+                        <prop type="boolean" name="requireGuestProvisionSignal"/>
+                        <prop type="array<object>" name="secrets">
+                          <item type="object">
+                            <prop type="@SubResource_read" name="sourceVault"/>
+                            <prop type="array<object>" name="vaultCertificates" identifiers="certificateUrl">
+                              <item type="object">
+                                <prop type="string" name="certificateStore"/>
+                                <prop type="string" name="certificateUrl"/>
+                              </item>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="object" name="windowsConfiguration">
+                          <prop type="array<object>" name="additionalUnattendContent">
+                            <item type="object">
+                              <prop type="string" name="componentName">
+                                <enum>
+                                  <item value="&quot;Microsoft-Windows-Shell-Setup&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="content"/>
+                              <prop type="string" name="passName">
+                                <enum>
+                                  <item value="&quot;OobeSystem&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="settingName">
+                                <enum>
+                                  <item value="&quot;AutoLogon&quot;"/>
+                                  <item value="&quot;FirstLogonCommands&quot;"/>
+                                </enum>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="boolean" name="enableAutomaticUpdates"/>
+                          <prop readOnly="True" type="boolean" name="enableVMAgentPlatformUpdates"/>
+                          <prop type="object" name="patchSettings">
+                            <prop type="string" name="assessmentMode">
+                              <enum>
+                                <item value="&quot;AutomaticByPlatform&quot;"/>
+                                <item value="&quot;ImageDefault&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="object" name="automaticByPlatformSettings">
+                              <prop type="boolean" name="bypassPlatformSafetyChecksOnUserSchedule"/>
+                              <prop type="string" name="rebootSetting">
+                                <enum>
+                                  <item value="&quot;Always&quot;"/>
+                                  <item value="&quot;IfRequired&quot;"/>
+                                  <item value="&quot;Never&quot;"/>
+                                  <item value="&quot;Unknown&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="boolean" name="enableHotpatching"/>
+                            <prop type="string" name="patchMode">
+                              <enum>
+                                <item value="&quot;AutomaticByOS&quot;"/>
+                                <item value="&quot;AutomaticByPlatform&quot;"/>
+                                <item value="&quot;Manual&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop type="boolean" name="provisionVMAgent"/>
+                          <prop type="string" name="timeZone"/>
+                          <prop type="object" name="winRM">
+                            <prop type="array<object>" name="listeners">
+                              <item type="object">
+                                <prop type="string" name="certificateUrl"/>
+                                <prop type="string" name="protocol">
+                                  <enum>
+                                    <item value="&quot;Http&quot;"/>
+                                    <item value="&quot;Https&quot;"/>
+                                  </enum>
+                                </prop>
+                              </item>
+                            </prop>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="securityProfile">
+                        <prop type="boolean" name="encryptionAtHost"/>
+                        <prop type="object" name="encryptionIdentity">
+                          <prop type="string" name="userAssignedIdentityResourceId"/>
+                        </prop>
+                        <prop type="object" name="proxyAgentSettings">
+                          <prop type="boolean" name="enabled"/>
+                          <prop type="@HostEndpointSettings_read" name="imds"/>
+                          <prop type="integer32" name="keyIncarnationId"/>
+                          <prop type="string" name="mode">
+                            <enum>
+                              <item value="&quot;Audit&quot;"/>
+                              <item value="&quot;Enforce&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="object" name="wireServer" cls="HostEndpointSettings_read">
+                            <prop type="string" name="inVMAccessControlProfileReferenceId"/>
+                            <prop type="string" name="mode">
+                              <enum>
+                                <item value="&quot;Audit&quot;"/>
+                                <item value="&quot;Disabled&quot;"/>
+                                <item value="&quot;Enforce&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="securityType">
+                          <enum>
+                            <item value="&quot;ConfidentialVM&quot;"/>
+                            <item value="&quot;TrustedLaunch&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="uefiSettings">
+                          <prop type="boolean" name="secureBootEnabled"/>
+                          <prop type="boolean" name="vTpmEnabled"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="storageProfile">
+                        <prop type="array<object>" name="dataDisks">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="caching">
+                              <enum>
+                                <item value="&quot;None&quot;"/>
+                                <item value="&quot;ReadOnly&quot;"/>
+                                <item value="&quot;ReadWrite&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="@DiskRestorePointAttributes_read" name="diskRestorePoint"/>
+                            <prop readOnly="True" type="integer32" name="diskSizeGB"/>
+                            <prop readOnly="True" type="integer32" name="lun"/>
+                            <prop type="@ManagedDiskParameters_read" name="managedDisk"/>
+                            <prop readOnly="True" type="string" name="name"/>
+                            <prop readOnly="True" type="boolean" name="writeAcceleratorEnabled"/>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="string" name="diskControllerType">
+                          <enum>
+                            <item value="&quot;NVMe&quot;"/>
+                            <item value="&quot;SCSI&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="osDisk">
+                          <prop readOnly="True" type="string" name="caching">
+                            <enum>
+                              <item value="&quot;None&quot;"/>
+                              <item value="&quot;ReadOnly&quot;"/>
+                              <item value="&quot;ReadWrite&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="object" name="diskRestorePoint" cls="DiskRestorePointAttributes_read">
+                            <prop type="object" name="encryption">
+                              <prop type="@DiskEncryptionSetParameters_read" name="diskEncryptionSet"/>
+                              <prop type="string" name="type">
+                                <enum>
+                                  <item value="&quot;EncryptionAtRestWithCustomerKey&quot;"/>
+                                  <item value="&quot;EncryptionAtRestWithPlatformAndCustomerKeys&quot;"/>
+                                  <item value="&quot;EncryptionAtRestWithPlatformKey&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop readOnly="True" type="string" name="id"/>
+                            <prop type="@ApiEntityReference_read" name="sourceDiskRestorePoint"/>
+                          </prop>
+                          <prop readOnly="True" type="integer32" name="diskSizeGB"/>
+                          <prop readOnly="True" type="object" name="encryptionSettings">
+                            <prop type="object" name="diskEncryptionKey">
+                              <prop type="string" name="secretUrl" required="True"/>
+                              <prop type="object" name="sourceVault" required="True" cls="SubResource_read">
+                                <prop type="string" name="id"/>
+                              </prop>
+                            </prop>
+                            <prop type="boolean" name="enabled"/>
+                            <prop type="object" name="keyEncryptionKey">
+                              <prop type="string" name="keyUrl" required="True"/>
+                              <prop type="@SubResource_read" name="sourceVault" required="True"/>
+                            </prop>
+                          </prop>
+                          <prop type="object" name="managedDisk" cls="ManagedDiskParameters_read">
+                            <prop type="object" name="diskEncryptionSet" cls="DiskEncryptionSetParameters_read">
+                              <prop type="string" name="id"/>
+                            </prop>
+                            <prop type="string" name="id"/>
+                            <prop type="object" name="securityProfile">
+                              <prop type="@DiskEncryptionSetParameters_read" name="diskEncryptionSet"/>
+                              <prop type="string" name="securityEncryptionType">
+                                <enum>
+                                  <item value="&quot;DiskWithVMGuestState&quot;"/>
+                                  <item value="&quot;NonPersistedTPM&quot;"/>
+                                  <item value="&quot;VMGuestStateOnly&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="storageAccountType">
+                              <enum>
+                                <item value="&quot;PremiumV2_LRS&quot;"/>
+                                <item value="&quot;Premium_LRS&quot;"/>
+                                <item value="&quot;Premium_ZRS&quot;"/>
+                                <item value="&quot;StandardSSD_LRS&quot;"/>
+                                <item value="&quot;StandardSSD_ZRS&quot;"/>
+                                <item value="&quot;Standard_LRS&quot;"/>
+                                <item value="&quot;UltraSSD_LRS&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop readOnly="True" type="string" name="name"/>
+                          <prop readOnly="True" type="string" name="osType">
+                            <enum>
+                              <item value="&quot;Linux&quot;"/>
+                              <item value="&quot;Windows&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="boolean" name="writeAcceleratorEnabled"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="userData"/>
+                      <prop readOnly="True" type="string" name="vmId"/>
+                    </prop>
+                    <prop type="@ApiEntityReference_read" name="sourceRestorePoint"/>
+                    <prop type="dateTime" name="timeCreated">
+                      <format protocol="iso"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate ref="$Instance">
+          <json>
+            <schema type="object" name="parameters" required="True" clientFlatten="True">
+              <prop type="object" name="properties" clientFlatten="True">
+                <prop type="string" name="consistencyMode" arg="$parameters.properties.consistencyMode">
+                  <enum>
+                    <item value="&quot;ApplicationConsistent&quot;"/>
+                    <item value="&quot;CrashConsistent&quot;"/>
+                    <item value="&quot;FileSystemConsistent&quot;"/>
+                  </enum>
+                </prop>
+                <prop type="array<object>" name="excludeDisks" arg="$parameters.properties.excludeDisks">
+                  <item type="object" cls="ApiEntityReference_update">
+                    <prop type="string" name="id" arg="@ApiEntityReference_update.id"/>
+                  </item>
+                </prop>
+                <prop type="object" name="sourceMetadata" arg="$parameters.properties.sourceMetadata">
+                  <prop type="object" name="storageProfile" arg="$parameters.properties.sourceMetadata.storageProfile">
+                    <prop type="array<object>" name="dataDisks" arg="$parameters.properties.sourceMetadata.storageProfile.dataDisks">
+                      <item type="object">
+                        <prop type="@DiskRestorePointAttributes_update" name="diskRestorePoint" arg="$parameters.properties.sourceMetadata.storageProfile.dataDisks[].diskRestorePoint"/>
+                        <prop type="@ManagedDiskParameters_update" name="managedDisk" arg="$parameters.properties.sourceMetadata.storageProfile.dataDisks[].managedDisk"/>
+                      </item>
+                    </prop>
+                    <prop type="object" name="osDisk" arg="$parameters.properties.sourceMetadata.storageProfile.osDisk">
+                      <prop type="object" name="diskRestorePoint" arg="$parameters.properties.sourceMetadata.storageProfile.osDisk.diskRestorePoint" cls="DiskRestorePointAttributes_update">
+                        <prop type="object" name="encryption" arg="@DiskRestorePointAttributes_update.encryption">
+                          <prop type="@DiskEncryptionSetParameters_update" name="diskEncryptionSet" arg="@DiskRestorePointAttributes_update.encryption.diskEncryptionSet"/>
+                          <prop type="string" name="type" arg="@DiskRestorePointAttributes_update.encryption.type">
+                            <enum>
+                              <item value="&quot;EncryptionAtRestWithCustomerKey&quot;"/>
+                              <item value="&quot;EncryptionAtRestWithPlatformAndCustomerKeys&quot;"/>
+                              <item value="&quot;EncryptionAtRestWithPlatformKey&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop type="@ApiEntityReference_update" name="sourceDiskRestorePoint" arg="@DiskRestorePointAttributes_update.sourceDiskRestorePoint"/>
+                      </prop>
+                      <prop type="object" name="managedDisk" arg="$parameters.properties.sourceMetadata.storageProfile.osDisk.managedDisk" cls="ManagedDiskParameters_update">
+                        <prop type="object" name="diskEncryptionSet" arg="@ManagedDiskParameters_update.diskEncryptionSet" cls="DiskEncryptionSetParameters_update">
+                          <prop type="string" name="id" arg="@DiskEncryptionSetParameters_update.id"/>
+                        </prop>
+                        <prop type="string" name="id" arg="@ManagedDiskParameters_update.id"/>
+                        <prop type="object" name="securityProfile" arg="@ManagedDiskParameters_update.securityProfile">
+                          <prop type="@DiskEncryptionSetParameters_update" name="diskEncryptionSet" arg="@ManagedDiskParameters_update.securityProfile.diskEncryptionSet"/>
+                          <prop type="string" name="securityEncryptionType" arg="@ManagedDiskParameters_update.securityProfile.securityEncryptionType">
+                            <enum>
+                              <item value="&quot;DiskWithVMGuestState&quot;"/>
+                              <item value="&quot;NonPersistedTPM&quot;"/>
+                              <item value="&quot;VMGuestStateOnly&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="storageAccountType" arg="@ManagedDiskParameters_update.storageAccountType">
+                          <enum>
+                            <item value="&quot;PremiumV2_LRS&quot;"/>
+                            <item value="&quot;Premium_LRS&quot;"/>
+                            <item value="&quot;Premium_ZRS&quot;"/>
+                            <item value="&quot;StandardSSD_LRS&quot;"/>
+                            <item value="&quot;StandardSSD_ZRS&quot;"/>
+                            <item value="&quot;Standard_LRS&quot;"/>
+                            <item value="&quot;UltraSSD_LRS&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                    </prop>
+                  </prop>
+                </prop>
+                <prop type="@ApiEntityReference_update" name="sourceRestorePoint" arg="$parameters.properties.sourceRestorePoint"/>
+                <prop type="dateTime" name="timeCreated" arg="$parameters.properties.timeCreated">
+                  <format protocol="iso"/>
+                </prop>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="RestorePoints_Create">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/restorePointCollections/{restorePointCollectionName}/restorePoints/{restorePointName}">
+          <request method="put">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="restorePointCollectionName" arg="$Path.restorePointCollectionName" required="True"/>
+              <param type="string" name="restorePointName" arg="$Path.restorePointName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="201">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+            <body>
+              <json var="$Instance">
+                <schema type="@RestorePoint_read"/>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

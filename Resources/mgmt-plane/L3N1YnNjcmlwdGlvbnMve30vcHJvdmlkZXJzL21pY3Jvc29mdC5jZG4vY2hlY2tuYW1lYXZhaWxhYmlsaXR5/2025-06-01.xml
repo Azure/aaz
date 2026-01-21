@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.cdn/checknameavailability" version="2025-06-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNkbi9jaGVja05hbWVBdmFpbGFiaWxpdHk=/V/MjAyNS0wNi0wMQ=="/>
+  <commandGroup name="cdn">
+    <command name="name-exists" version="2025-06-01" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.cdn/checknameavailability" version="2025-06-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNkbi9jaGVja05hbWVBdmFpbGFiaWxpdHk=/V/MjAyNS0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="CheckNameAvailabilityInput">
+        <arg type="string" var="$checkNameAvailabilityInput.name" options="name" required="True" group="CheckNameAvailabilityInput">
+          <help short="The resource name to validate."/>
+        </arg>
+        <arg type="string" var="$checkNameAvailabilityInput.type" options="type" required="True" group="CheckNameAvailabilityInput">
+          <help short="The type of the resource whose name is to be validated."/>
+          <default value="&quot;Microsoft.Cdn/Profiles/Endpoints&quot;"/>
+          <enum>
+            <item name="Microsoft.Cdn/Profiles/AfdEndpoints" value="&quot;Microsoft.Cdn/Profiles/AfdEndpoints&quot;"/>
+            <item name="Microsoft.Cdn/Profiles/Endpoints" value="&quot;Microsoft.Cdn/Profiles/Endpoints&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <operation operationId="CheckNameAvailabilityWithSubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Cdn/checkNameAvailability">
+          <request method="post">
+            <path>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="checkNameAvailabilityInput" required="True" clientFlatten="True">
+                  <prop type="string" name="name" arg="$checkNameAvailabilityInput.name" required="True"/>
+                  <prop type="string" name="type" arg="$checkNameAvailabilityInput.type" required="True">
+                    <enum>
+                      <item value="&quot;Microsoft.Cdn/Profiles/AfdEndpoints&quot;"/>
+                      <item value="&quot;Microsoft.Cdn/Profiles/Endpoints&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="message"/>
+                  <prop readOnly="True" type="boolean" name="nameAvailable"/>
+                  <prop readOnly="True" type="string" name="reason"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

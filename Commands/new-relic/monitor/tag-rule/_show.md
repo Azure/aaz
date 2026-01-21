@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor tag-rule show_
 
-Get a TagRule
+Retrieves the details of the tag rules for a specific New Relic monitor resource, providing insight into its setup and status.
 
 ## Versions
 

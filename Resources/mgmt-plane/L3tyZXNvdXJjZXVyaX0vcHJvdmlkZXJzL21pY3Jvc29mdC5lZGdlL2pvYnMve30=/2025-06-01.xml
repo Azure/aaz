@@ -1,0 +1,177 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/{resourceuri}/providers/microsoft.edge/jobs/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3tyZXNvdXJjZVVyaX0vcHJvdmlkZXJzL01pY3Jvc29mdC5FZGdlL2pvYnMve2pvYk5hbWV9/V/MjAyNS0wNi0wMQ=="/>
+  <commandGroup name="workload-orchestration job">
+    <command name="show" version="2025-06-01">
+      <resource id="/{resourceuri}/providers/microsoft.edge/jobs/{}" version="2025-06-01" swagger="mgmt-plane/edge/ResourceProviders/Microsoft.Edge/Paths/L3tyZXNvdXJjZVVyaX0vcHJvdmlkZXJzL01pY3Jvc29mdC5FZGdlL2pvYnMve2pvYk5hbWV9/V/MjAyNS0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.jobName" options="job-name" required="True">
+          <help short="The name of the Job"/>
+          <format pattern="^(?=.{3,60}$)[a-zA-Z0-9]([-a-zA-Z0-9]*[a-zA-Z0-9])?(\.[a-zA-Z0-9]([-a-zA-Z0-9]*[a-zA-Z0-9])?)*$"/>
+        </arg>
+        <arg type="string" var="$Path.resourceUri" options="resource-uri" required="True">
+          <help short="The fully qualified Azure Resource manager identifier of the resource."/>
+        </arg>
+      </argGroup>
+      <operation operationId="Jobs_Get">
+        <http path="/{resourceUri}/providers/Microsoft.Edge/jobs/{jobName}">
+          <request method="get">
+            <path>
+              <param type="string" name="jobName" arg="$Path.jobName" required="True">
+                <format pattern="^(?=.{3,60}$)[a-zA-Z0-9]([-a-zA-Z0-9]*[a-zA-Z0-9])?(\.[a-zA-Z0-9]([-a-zA-Z0-9]*[a-zA-Z0-9])?)*$"/>
+              </param>
+              <param type="string" name="resourceUri" arg="$Path.resourceUri" required="True" skipUrlEncoding="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="eTag"/>
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/{resourceUri}/providers/Microsoft.Edge/jobs/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="string" name="correlationId"/>
+                    <prop type="dateTime" name="endTime"/>
+                    <prop readOnly="True" type="@ErrorDetail_read" name="errorDetails"/>
+                    <prop type="object" name="jobParameter">
+                      <prop type="string" name="jobType" required="True">
+                        <enum>
+                          <item value="&quot;deploy&quot;"/>
+                          <item value="&quot;externalValidation&quot;"/>
+                          <item value="&quot;staging&quot;"/>
+                        </enum>
+                      </prop>
+                      <discriminator property="jobType" value="deploy">
+                        <prop type="object" name="parameter">
+                          <prop type="string" name="solutionVersionId" required="True"/>
+                        </prop>
+                      </discriminator>
+                    </prop>
+                    <prop type="string" name="jobType" required="True">
+                      <enum>
+                        <item value="&quot;deploy&quot;"/>
+                        <item value="&quot;externalValidation&quot;"/>
+                        <item value="&quot;staging&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;InProgress&quot;"/>
+                        <item value="&quot;Initialized&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="startTime"/>
+                    <prop readOnly="True" type="string" name="status">
+                      <enum>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;InProgress&quot;"/>
+                        <item value="&quot;NotStarted&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<object>" name="steps">
+                      <item type="object" cls="JobStep_read">
+                        <prop type="dateTime" name="endTime"/>
+                        <prop readOnly="True" type="object" name="errorDetails" cls="ErrorDetail_read">
+                          <prop readOnly="True" type="array<object>" name="additionalInfo">
+                            <item type="object">
+                              <prop readOnly="True" type="object" name="info">
+                                <additionalProp readOnly="True">
+                                  <item type="any"/>
+                                </additionalProp>
+                              </prop>
+                              <prop readOnly="True" type="string" name="type"/>
+                            </item>
+                          </prop>
+                          <prop readOnly="True" type="string" name="code"/>
+                          <prop readOnly="True" type="array<@ErrorDetail_read>" name="details" identifiers="message target">
+                            <item type="@ErrorDetail_read"/>
+                          </prop>
+                          <prop readOnly="True" type="string" name="message"/>
+                          <prop readOnly="True" type="string" name="target"/>
+                        </prop>
+                        <prop type="string" name="message"/>
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="dateTime" name="startTime"/>
+                        <prop type="object" name="statistics">
+                          <prop type="string" name="statisticsType" required="True">
+                            <enum>
+                              <item value="&quot;deploy&quot;"/>
+                              <item value="&quot;externalValidation&quot;"/>
+                              <item value="&quot;staging&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="statisticsType" value="deploy">
+                            <prop type="integer32" name="failedCount"/>
+                            <prop type="integer32" name="successCount"/>
+                            <prop type="integer32" name="totalCount"/>
+                          </discriminator>
+                        </prop>
+                        <prop readOnly="True" type="string" name="status">
+                          <enum>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;InProgress&quot;"/>
+                            <item value="&quot;NotStarted&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<@JobStep_read>" name="steps">
+                          <item type="@JobStep_read"/>
+                        </prop>
+                      </item>
+                    </prop>
+                    <prop type="string" name="triggeredBy"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

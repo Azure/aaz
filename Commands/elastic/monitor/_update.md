@@ -1,6 +1,6 @@
 # [Command] _elastic monitor update_
 
-Update a monitor resource.
+Update a new Elastic monitor resource in your Azure subscription, enabling observability and monitoring of your Azure resources through Elastic.
 
 ## Versions
 
@@ -28,4 +28,15 @@ Update a monitor resource.
 - Update monitor
     ```bash
         elastic monitor update -n monitor -g rg --tags "{tag:test,tag1:test1}"
+    ```
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{} 2025-06-01 -->
+
+#### examples
+
+- Monitors_Create
+    ```bash
+        elastic monitor update --resource-group myResourceGroup --monitor-name myMonitor
     ```

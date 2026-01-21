@@ -1,6 +1,6 @@
 # [Command] _elastic monitor tag-rule list_
 
-List the tag rules for a given monitor resource.
+List all tag rules for a given Elastic monitor resource, helping you manage fine-grained control over observability based on resource tags.
 
 ## Versions
 
@@ -28,4 +28,15 @@ List the tag rules for a given monitor resource.
 - List monitor tag rule
     ```bash
         elastic monitor tag-rule list -g rg --monitor-name name
+    ```
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9L3RhZ3J1bGVz/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/tagrules 2025-06-01 -->
+
+#### examples
+
+- TagRules_List
+    ```bash
+        elastic monitor tag-rule list --resource-group myResourceGroup --monitor-name myMonitor
     ```

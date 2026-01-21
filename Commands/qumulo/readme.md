@@ -1,6 +1,6 @@
 # [Group] _qumulo_
 
-Manage qumulo
+Manage Qumulo file system storage resources with the Azure CLI.
 
 ## Subgroups
 

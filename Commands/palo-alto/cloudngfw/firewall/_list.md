@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw firewall list_
 
-List FirewallResource resources by subscription ID
+List all Palo Alto Networks Cloud NGFW on Azure resources under the current subscription.
 
 ## Versions
 
@@ -12,6 +12,18 @@ List FirewallResource resources by subscription ID
 #### examples
 
 - List FirewallResource resources by subscription ID
+    ```bash
+        palo-alto cloudngfw firewall list --resource-group MyResourceGroup
+    ```
+
+### [2025-10-08](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL3BhbG9hbHRvbmV0d29ya3MuY2xvdWRuZ2Z3L2ZpcmV3YWxscw==/2025-10-08.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/paloaltonetworks.cloudngfw/firewalls 2025-10-08 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/firewalls 2025-10-08 -->
+
+#### examples
+
+- List all Palo Alto Networks Cloud NGFW on Azure resources under the current subscription.
     ```bash
         palo-alto cloudngfw firewall list --resource-group MyResourceGroup
     ```

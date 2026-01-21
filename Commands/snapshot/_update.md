@@ -55,3 +55,19 @@ Update a snapshot.
     ```bash
         snapshot update --name MySnapshot --resource-group MyResourceGroup --subscription MySubscription
     ```
+
+### [2025-01-02](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlL3NuYXBzaG90cy97fQ==/2025-01-02.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/snapshots/{} 2025-01-02 -->
+
+#### examples
+
+- Update a snapshot and associate it with a disk access resource.
+    ```bash
+        snapshot update --name MySnapshot --resource-group MyResourceGroup --network-access-policy AllowPrivate --disk-access MyDiskAccessID
+    ```
+
+- Update a snapshot.
+    ```bash
+        snapshot update --name MySnapshot --resource-group MyResourceGroup --subscription MySubscription
+    ```

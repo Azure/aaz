@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw local-rulestack list_
 
-List LocalRulestackResource resources by subscription ID
+List all Palo Alto Networks Cloud local rulestack resource on Azure under the current subscription.
 
 ## Versions
 
@@ -8,6 +8,18 @@ List LocalRulestackResource resources by subscription ID
 
 <!-- mgmt-plane /subscriptions/{}/providers/paloaltonetworks.cloudngfw/localrulestacks 2022-08-29 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/localrulestacks 2022-08-29 -->
+
+#### examples
+
+- List LocalRulestackResource resources by subscription ID
+    ```bash
+        palo-alto cloudngfw local-rulestack list -g MyResourceGroup
+    ```
+
+### [2025-10-08](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL3BhbG9hbHRvbmV0d29ya3MuY2xvdWRuZ2Z3L2xvY2FscnVsZXN0YWNrcw==/2025-10-08.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/paloaltonetworks.cloudngfw/localrulestacks 2025-10-08 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/localrulestacks 2025-10-08 -->
 
 #### examples
 

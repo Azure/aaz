@@ -7,6 +7,12 @@ Manage Azure Network Fabric Management Service API
 - [acl](/Commands/networkfabric/acl/readme.md)
 : Manage Access Control List Resource
 
+- [bootstrapdevice](/Commands/networkfabric/bootstrapdevice/readme.md)
+: Manage Network Bootstrap Device Resource
+
+- [bootstrapinterface](/Commands/networkfabric/bootstrapinterface/readme.md)
+: Manage Network Bootstrap Interface
+
 - [controller](/Commands/networkfabric/controller/readme.md)
 : Manage Network Fabric Controller Resource
 

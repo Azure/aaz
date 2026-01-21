@@ -2,6 +2,11 @@
 
 Manage project environment types.
 
+## Subgroups
+
+- [identity](/Commands/devcenter/admin/project-environment-type/identity/readme.md)
+: Manage Identity
+
 ## Commands
 
 - [create](/Commands/devcenter/admin/project-environment-type/_create.md)

@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor get-metric-rule_
 
-Get metric rules
+Retrieves the metric rules that are configured in the New Relic monitor resource.
 
 ## Versions
 

@@ -23,3 +23,7 @@ List managed disks.
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.compute/disks 2023-04-02 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/disks 2023-04-02 -->
+
+### [2025-01-02](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlL2Rpc2tz/2025-01-02.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/disks 2025-01-02 -->

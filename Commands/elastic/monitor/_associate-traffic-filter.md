@@ -1,6 +1,6 @@
 # [Command] _elastic monitor associate-traffic-filter_
 
-Associate traffic filter
+Associate a traffic filter with your Elastic monitor resource to control and manage network traffic.
 
 ## Versions
 
@@ -28,4 +28,15 @@ Associate traffic filter
 - Monitor associate traffic filter
     ```bash
         elastic monitor associate-traffic-filter --monitor-name name -g rg --ruleset-id
+    ```
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9L2Fzc29jaWF0ZXRyYWZmaWNmaWx0ZXI=/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/associatetrafficfilter 2025-06-01 -->
+
+#### examples
+
+- AssociateTrafficFilter_Associate
+    ```bash
+        elastic monitor associate-traffic-filter --resource-group myResourceGroup --monitor-name myMonitor --ruleset-id 31d91b5afb6f4c2eaaf104c97b1991dd
     ```

@@ -1,0 +1,1696 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/endpoints/{}/stop" version="2025-06-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0vZW5kcG9pbnRzL3tlbmRwb2ludE5hbWV9L3N0b3A=/V/MjAyNS0wNi0wMQ=="/>
+  <commandGroup name="cdn endpoint">
+    <command name="stop" version="2025-06-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/endpoints/{}/stop" version="2025-06-01" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0vZW5kcG9pbnRzL3tlbmRwb2ludE5hbWV9L3N0b3A=/V/MjAyNS0wNi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.endpointName" options="endpoint-name name n" required="True" group="" idPart="child_name_1">
+          <help short="Name of the endpoint under the profile which is unique globally."/>
+        </arg>
+        <arg type="string" var="$Path.profileName" options="profile-name" required="True" idPart="name">
+          <help short="Name of the CDN profile which is unique within the resource group."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="Endpoints_Stop">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/endpoints/{endpointName}/stop">
+          <request method="post">
+            <path>
+              <param type="string" name="endpointName" arg="$Path.endpointName" required="True"/>
+              <param type="string" name="profileName" arg="$Path.profileName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-06-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="Endpoint_read">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Cdn/profiles/{}/endpoints/{}"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="array<string>" name="contentTypesToCompress">
+                      <item type="string"/>
+                    </prop>
+                    <prop readOnly="True" type="array<object>" name="customDomains" identifiers="name">
+                      <item type="object">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="object" name="properties" clientFlatten="True">
+                          <prop type="string" name="hostName" required="True"/>
+                          <prop type="string" name="validationData"/>
+                        </prop>
+                      </item>
+                    </prop>
+                    <prop type="object" name="defaultOriginGroup" cls="ResourceReference_read">
+                      <prop type="string" name="id"/>
+                    </prop>
+                    <prop type="object" name="deliveryPolicy">
+                      <prop type="string" name="description"/>
+                      <prop type="array<object>" name="rules" required="True" identifiers="name">
+                        <item type="object">
+                          <prop type="array<object>" name="actions" required="True" identifiers="name">
+                            <item type="object">
+                              <prop type="string" name="name" required="True">
+                                <enum>
+                                  <item value="&quot;CacheExpiration&quot;"/>
+                                  <item value="&quot;CacheKeyQueryString&quot;"/>
+                                  <item value="&quot;ModifyRequestHeader&quot;"/>
+                                  <item value="&quot;ModifyResponseHeader&quot;"/>
+                                  <item value="&quot;OriginGroupOverride&quot;"/>
+                                  <item value="&quot;RouteConfigurationOverride&quot;"/>
+                                  <item value="&quot;UrlRedirect&quot;"/>
+                                  <item value="&quot;UrlRewrite&quot;"/>
+                                  <item value="&quot;UrlSigning&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="name" value="CacheExpiration">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="string" name="cacheBehavior" required="True">
+                                    <enum>
+                                      <item value="&quot;BypassCache&quot;"/>
+                                      <item value="&quot;Override&quot;"/>
+                                      <item value="&quot;SetIfMissing&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop nullable="True" type="string" name="cacheDuration"/>
+                                  <prop type="string" name="cacheType" required="True">
+                                    <enum>
+                                      <item value="&quot;All&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleCacheExpirationActionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleCacheExpirationActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCacheKeyQueryStringBehaviorActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHeaderActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleOriginGroupOverrideActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRouteConfigurationOverrideActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlRedirectActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlRewriteActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlSigningActionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="CacheKeyQueryString">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop nullable="True" type="string" name="queryParameters"/>
+                                  <prop type="string" name="queryStringBehavior" required="True">
+                                    <enum>
+                                      <item value="&quot;Exclude&quot;"/>
+                                      <item value="&quot;ExcludeAll&quot;"/>
+                                      <item value="&quot;Include&quot;"/>
+                                      <item value="&quot;IncludeAll&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleCacheKeyQueryStringBehaviorActionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleCacheExpirationActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCacheKeyQueryStringBehaviorActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHeaderActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleOriginGroupOverrideActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRouteConfigurationOverrideActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlRedirectActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlRewriteActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlSigningActionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="ModifyRequestHeader">
+                                <prop type="object" name="parameters" required="True" cls="HeaderActionParameters_read">
+                                  <prop type="string" name="headerAction" required="True">
+                                    <enum>
+                                      <item value="&quot;Append&quot;"/>
+                                      <item value="&quot;Delete&quot;"/>
+                                      <item value="&quot;Overwrite&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="string" name="headerName" required="True"/>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleHeaderActionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleCacheExpirationActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCacheKeyQueryStringBehaviorActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHeaderActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleOriginGroupOverrideActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRouteConfigurationOverrideActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlRedirectActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlRewriteActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlSigningActionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="string" name="value"/>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="ModifyResponseHeader">
+                                <prop type="@HeaderActionParameters_read" name="parameters" required="True"/>
+                              </discriminator>
+                              <discriminator property="name" value="OriginGroupOverride">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="@ResourceReference_read" name="originGroup" required="True"/>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleOriginGroupOverrideActionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleCacheExpirationActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCacheKeyQueryStringBehaviorActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHeaderActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleOriginGroupOverrideActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRouteConfigurationOverrideActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlRedirectActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlRewriteActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlSigningActionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="RouteConfigurationOverride">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="object" name="cacheConfiguration">
+                                    <prop type="string" name="cacheBehavior">
+                                      <enum>
+                                        <item value="&quot;HonorOrigin&quot;"/>
+                                        <item value="&quot;OverrideAlways&quot;"/>
+                                        <item value="&quot;OverrideIfOriginMissing&quot;"/>
+                                      </enum>
+                                    </prop>
+                                    <prop type="string" name="cacheDuration"/>
+                                    <prop type="string" name="isCompressionEnabled">
+                                      <enum>
+                                        <item value="&quot;Disabled&quot;"/>
+                                        <item value="&quot;Enabled&quot;"/>
+                                      </enum>
+                                    </prop>
+                                    <prop type="string" name="queryParameters"/>
+                                    <prop type="string" name="queryStringCachingBehavior">
+                                      <enum>
+                                        <item value="&quot;IgnoreQueryString&quot;"/>
+                                        <item value="&quot;IgnoreSpecifiedQueryStrings&quot;"/>
+                                        <item value="&quot;IncludeSpecifiedQueryStrings&quot;"/>
+                                        <item value="&quot;UseQueryString&quot;"/>
+                                      </enum>
+                                    </prop>
+                                  </prop>
+                                  <prop type="object" name="originGroupOverride">
+                                    <prop type="string" name="forwardingProtocol">
+                                      <enum>
+                                        <item value="&quot;HttpOnly&quot;"/>
+                                        <item value="&quot;HttpsOnly&quot;"/>
+                                        <item value="&quot;MatchRequest&quot;"/>
+                                      </enum>
+                                    </prop>
+                                    <prop type="@ResourceReference_read" name="originGroup"/>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleRouteConfigurationOverrideActionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleCacheExpirationActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCacheKeyQueryStringBehaviorActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHeaderActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleOriginGroupOverrideActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRouteConfigurationOverrideActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlRedirectActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlRewriteActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlSigningActionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="UrlRedirect">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="string" name="customFragment"/>
+                                  <prop type="string" name="customHostname"/>
+                                  <prop type="string" name="customPath"/>
+                                  <prop type="string" name="customQueryString"/>
+                                  <prop type="string" name="destinationProtocol">
+                                    <enum>
+                                      <item value="&quot;Http&quot;"/>
+                                      <item value="&quot;Https&quot;"/>
+                                      <item value="&quot;MatchRequest&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="string" name="redirectType" required="True">
+                                    <enum>
+                                      <item value="&quot;Found&quot;"/>
+                                      <item value="&quot;Moved&quot;"/>
+                                      <item value="&quot;PermanentRedirect&quot;"/>
+                                      <item value="&quot;TemporaryRedirect&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleUrlRedirectActionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleCacheExpirationActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCacheKeyQueryStringBehaviorActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHeaderActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleOriginGroupOverrideActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRouteConfigurationOverrideActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlRedirectActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlRewriteActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlSigningActionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="UrlRewrite">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="string" name="destination" required="True"/>
+                                  <prop type="boolean" name="preserveUnmatchedPath"/>
+                                  <prop type="string" name="sourcePattern" required="True"/>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleUrlRewriteActionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleCacheExpirationActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCacheKeyQueryStringBehaviorActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHeaderActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleOriginGroupOverrideActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRouteConfigurationOverrideActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlRedirectActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlRewriteActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlSigningActionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="UrlSigning">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="string" name="algorithm">
+                                    <enum>
+                                      <item value="&quot;SHA256&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="array<object>" name="parameterNameOverride" identifiers="paramName">
+                                    <item type="object">
+                                      <prop type="string" name="paramIndicator" required="True">
+                                        <enum>
+                                          <item value="&quot;Expires&quot;"/>
+                                          <item value="&quot;KeyId&quot;"/>
+                                          <item value="&quot;Signature&quot;"/>
+                                        </enum>
+                                      </prop>
+                                      <prop type="string" name="paramName" required="True"/>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleUrlSigningActionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleCacheExpirationActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCacheKeyQueryStringBehaviorActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHeaderActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleOriginGroupOverrideActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRouteConfigurationOverrideActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlRedirectActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlRewriteActionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlSigningActionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                            </item>
+                          </prop>
+                          <prop type="array<object>" name="conditions" identifiers="name">
+                            <item type="object">
+                              <prop type="string" name="name" required="True">
+                                <enum>
+                                  <item value="&quot;ClientPort&quot;"/>
+                                  <item value="&quot;Cookies&quot;"/>
+                                  <item value="&quot;HostName&quot;"/>
+                                  <item value="&quot;HttpVersion&quot;"/>
+                                  <item value="&quot;IsDevice&quot;"/>
+                                  <item value="&quot;PostArgs&quot;"/>
+                                  <item value="&quot;QueryString&quot;"/>
+                                  <item value="&quot;RemoteAddress&quot;"/>
+                                  <item value="&quot;RequestBody&quot;"/>
+                                  <item value="&quot;RequestHeader&quot;"/>
+                                  <item value="&quot;RequestMethod&quot;"/>
+                                  <item value="&quot;RequestScheme&quot;"/>
+                                  <item value="&quot;RequestUri&quot;"/>
+                                  <item value="&quot;ServerPort&quot;"/>
+                                  <item value="&quot;SocketAddr&quot;"/>
+                                  <item value="&quot;SslProtocol&quot;"/>
+                                  <item value="&quot;UrlFileExtension&quot;"/>
+                                  <item value="&quot;UrlFileName&quot;"/>
+                                  <item value="&quot;UrlPath&quot;"/>
+                                </enum>
+                              </prop>
+                              <discriminator property="name" value="ClientPort">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="array<string>" name="matchValues">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="boolean" name="negateCondition">
+                                    <default value="false"/>
+                                  </prop>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Any&quot;"/>
+                                      <item value="&quot;BeginsWith&quot;"/>
+                                      <item value="&quot;Contains&quot;"/>
+                                      <item value="&quot;EndsWith&quot;"/>
+                                      <item value="&quot;Equal&quot;"/>
+                                      <item value="&quot;GreaterThan&quot;"/>
+                                      <item value="&quot;GreaterThanOrEqual&quot;"/>
+                                      <item value="&quot;LessThan&quot;"/>
+                                      <item value="&quot;LessThanOrEqual&quot;"/>
+                                      <item value="&quot;RegEx&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="array<string>" name="transforms">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Lowercase&quot;"/>
+                                        <item value="&quot;RemoveNulls&quot;"/>
+                                        <item value="&quot;Trim&quot;"/>
+                                        <item value="&quot;Uppercase&quot;"/>
+                                        <item value="&quot;UrlDecode&quot;"/>
+                                        <item value="&quot;UrlEncode&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="Cookies">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="array<string>" name="matchValues">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="boolean" name="negateCondition">
+                                    <default value="false"/>
+                                  </prop>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Any&quot;"/>
+                                      <item value="&quot;BeginsWith&quot;"/>
+                                      <item value="&quot;Contains&quot;"/>
+                                      <item value="&quot;EndsWith&quot;"/>
+                                      <item value="&quot;Equal&quot;"/>
+                                      <item value="&quot;GreaterThan&quot;"/>
+                                      <item value="&quot;GreaterThanOrEqual&quot;"/>
+                                      <item value="&quot;LessThan&quot;"/>
+                                      <item value="&quot;LessThanOrEqual&quot;"/>
+                                      <item value="&quot;RegEx&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="string" name="selector"/>
+                                  <prop type="array<string>" name="transforms">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Lowercase&quot;"/>
+                                        <item value="&quot;RemoveNulls&quot;"/>
+                                        <item value="&quot;Trim&quot;"/>
+                                        <item value="&quot;Uppercase&quot;"/>
+                                        <item value="&quot;UrlDecode&quot;"/>
+                                        <item value="&quot;UrlEncode&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="HostName">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="array<string>" name="matchValues">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="boolean" name="negateCondition">
+                                    <default value="false"/>
+                                  </prop>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Any&quot;"/>
+                                      <item value="&quot;BeginsWith&quot;"/>
+                                      <item value="&quot;Contains&quot;"/>
+                                      <item value="&quot;EndsWith&quot;"/>
+                                      <item value="&quot;Equal&quot;"/>
+                                      <item value="&quot;GreaterThan&quot;"/>
+                                      <item value="&quot;GreaterThanOrEqual&quot;"/>
+                                      <item value="&quot;LessThan&quot;"/>
+                                      <item value="&quot;LessThanOrEqual&quot;"/>
+                                      <item value="&quot;RegEx&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="array<string>" name="transforms">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Lowercase&quot;"/>
+                                        <item value="&quot;RemoveNulls&quot;"/>
+                                        <item value="&quot;Trim&quot;"/>
+                                        <item value="&quot;Uppercase&quot;"/>
+                                        <item value="&quot;UrlDecode&quot;"/>
+                                        <item value="&quot;UrlEncode&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="HttpVersion">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="array<string>" name="matchValues">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="boolean" name="negateCondition">
+                                    <default value="false"/>
+                                  </prop>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Equal&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="array<string>" name="transforms">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Lowercase&quot;"/>
+                                        <item value="&quot;RemoveNulls&quot;"/>
+                                        <item value="&quot;Trim&quot;"/>
+                                        <item value="&quot;Uppercase&quot;"/>
+                                        <item value="&quot;UrlDecode&quot;"/>
+                                        <item value="&quot;UrlEncode&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="IsDevice">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="array<string>" name="matchValues">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Desktop&quot;"/>
+                                        <item value="&quot;Mobile&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop type="boolean" name="negateCondition">
+                                    <default value="false"/>
+                                  </prop>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Equal&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="array<string>" name="transforms">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Lowercase&quot;"/>
+                                        <item value="&quot;RemoveNulls&quot;"/>
+                                        <item value="&quot;Trim&quot;"/>
+                                        <item value="&quot;Uppercase&quot;"/>
+                                        <item value="&quot;UrlDecode&quot;"/>
+                                        <item value="&quot;UrlEncode&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="PostArgs">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="array<string>" name="matchValues">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="boolean" name="negateCondition">
+                                    <default value="false"/>
+                                  </prop>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Any&quot;"/>
+                                      <item value="&quot;BeginsWith&quot;"/>
+                                      <item value="&quot;Contains&quot;"/>
+                                      <item value="&quot;EndsWith&quot;"/>
+                                      <item value="&quot;Equal&quot;"/>
+                                      <item value="&quot;GreaterThan&quot;"/>
+                                      <item value="&quot;GreaterThanOrEqual&quot;"/>
+                                      <item value="&quot;LessThan&quot;"/>
+                                      <item value="&quot;LessThanOrEqual&quot;"/>
+                                      <item value="&quot;RegEx&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="string" name="selector"/>
+                                  <prop type="array<string>" name="transforms">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Lowercase&quot;"/>
+                                        <item value="&quot;RemoveNulls&quot;"/>
+                                        <item value="&quot;Trim&quot;"/>
+                                        <item value="&quot;Uppercase&quot;"/>
+                                        <item value="&quot;UrlDecode&quot;"/>
+                                        <item value="&quot;UrlEncode&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="QueryString">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="array<string>" name="matchValues">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="boolean" name="negateCondition">
+                                    <default value="false"/>
+                                  </prop>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Any&quot;"/>
+                                      <item value="&quot;BeginsWith&quot;"/>
+                                      <item value="&quot;Contains&quot;"/>
+                                      <item value="&quot;EndsWith&quot;"/>
+                                      <item value="&quot;Equal&quot;"/>
+                                      <item value="&quot;GreaterThan&quot;"/>
+                                      <item value="&quot;GreaterThanOrEqual&quot;"/>
+                                      <item value="&quot;LessThan&quot;"/>
+                                      <item value="&quot;LessThanOrEqual&quot;"/>
+                                      <item value="&quot;RegEx&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="array<string>" name="transforms">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Lowercase&quot;"/>
+                                        <item value="&quot;RemoveNulls&quot;"/>
+                                        <item value="&quot;Trim&quot;"/>
+                                        <item value="&quot;Uppercase&quot;"/>
+                                        <item value="&quot;UrlDecode&quot;"/>
+                                        <item value="&quot;UrlEncode&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="RemoteAddress">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="array<string>" name="matchValues">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="boolean" name="negateCondition">
+                                    <default value="false"/>
+                                  </prop>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Any&quot;"/>
+                                      <item value="&quot;GeoMatch&quot;"/>
+                                      <item value="&quot;IPMatch&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="array<string>" name="transforms">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Lowercase&quot;"/>
+                                        <item value="&quot;RemoveNulls&quot;"/>
+                                        <item value="&quot;Trim&quot;"/>
+                                        <item value="&quot;Uppercase&quot;"/>
+                                        <item value="&quot;UrlDecode&quot;"/>
+                                        <item value="&quot;UrlEncode&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="RequestBody">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="array<string>" name="matchValues">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="boolean" name="negateCondition">
+                                    <default value="false"/>
+                                  </prop>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Any&quot;"/>
+                                      <item value="&quot;BeginsWith&quot;"/>
+                                      <item value="&quot;Contains&quot;"/>
+                                      <item value="&quot;EndsWith&quot;"/>
+                                      <item value="&quot;Equal&quot;"/>
+                                      <item value="&quot;GreaterThan&quot;"/>
+                                      <item value="&quot;GreaterThanOrEqual&quot;"/>
+                                      <item value="&quot;LessThan&quot;"/>
+                                      <item value="&quot;LessThanOrEqual&quot;"/>
+                                      <item value="&quot;RegEx&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="array<string>" name="transforms">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Lowercase&quot;"/>
+                                        <item value="&quot;RemoveNulls&quot;"/>
+                                        <item value="&quot;Trim&quot;"/>
+                                        <item value="&quot;Uppercase&quot;"/>
+                                        <item value="&quot;UrlDecode&quot;"/>
+                                        <item value="&quot;UrlEncode&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="RequestHeader">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="array<string>" name="matchValues">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="boolean" name="negateCondition">
+                                    <default value="false"/>
+                                  </prop>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Any&quot;"/>
+                                      <item value="&quot;BeginsWith&quot;"/>
+                                      <item value="&quot;Contains&quot;"/>
+                                      <item value="&quot;EndsWith&quot;"/>
+                                      <item value="&quot;Equal&quot;"/>
+                                      <item value="&quot;GreaterThan&quot;"/>
+                                      <item value="&quot;GreaterThanOrEqual&quot;"/>
+                                      <item value="&quot;LessThan&quot;"/>
+                                      <item value="&quot;LessThanOrEqual&quot;"/>
+                                      <item value="&quot;RegEx&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="string" name="selector"/>
+                                  <prop type="array<string>" name="transforms">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Lowercase&quot;"/>
+                                        <item value="&quot;RemoveNulls&quot;"/>
+                                        <item value="&quot;Trim&quot;"/>
+                                        <item value="&quot;Uppercase&quot;"/>
+                                        <item value="&quot;UrlDecode&quot;"/>
+                                        <item value="&quot;UrlEncode&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="RequestMethod">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="array<string>" name="matchValues">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;DELETE&quot;"/>
+                                        <item value="&quot;GET&quot;"/>
+                                        <item value="&quot;HEAD&quot;"/>
+                                        <item value="&quot;OPTIONS&quot;"/>
+                                        <item value="&quot;POST&quot;"/>
+                                        <item value="&quot;PUT&quot;"/>
+                                        <item value="&quot;TRACE&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop type="boolean" name="negateCondition">
+                                    <default value="false"/>
+                                  </prop>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Equal&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="array<string>" name="transforms">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Lowercase&quot;"/>
+                                        <item value="&quot;RemoveNulls&quot;"/>
+                                        <item value="&quot;Trim&quot;"/>
+                                        <item value="&quot;Uppercase&quot;"/>
+                                        <item value="&quot;UrlDecode&quot;"/>
+                                        <item value="&quot;UrlEncode&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="RequestScheme">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="array<string>" name="matchValues">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;HTTP&quot;"/>
+                                        <item value="&quot;HTTPS&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop type="boolean" name="negateCondition">
+                                    <default value="false"/>
+                                  </prop>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Equal&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="array<string>" name="transforms">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Lowercase&quot;"/>
+                                        <item value="&quot;RemoveNulls&quot;"/>
+                                        <item value="&quot;Trim&quot;"/>
+                                        <item value="&quot;Uppercase&quot;"/>
+                                        <item value="&quot;UrlDecode&quot;"/>
+                                        <item value="&quot;UrlEncode&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="RequestUri">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="array<string>" name="matchValues">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="boolean" name="negateCondition">
+                                    <default value="false"/>
+                                  </prop>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Any&quot;"/>
+                                      <item value="&quot;BeginsWith&quot;"/>
+                                      <item value="&quot;Contains&quot;"/>
+                                      <item value="&quot;EndsWith&quot;"/>
+                                      <item value="&quot;Equal&quot;"/>
+                                      <item value="&quot;GreaterThan&quot;"/>
+                                      <item value="&quot;GreaterThanOrEqual&quot;"/>
+                                      <item value="&quot;LessThan&quot;"/>
+                                      <item value="&quot;LessThanOrEqual&quot;"/>
+                                      <item value="&quot;RegEx&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="array<string>" name="transforms">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Lowercase&quot;"/>
+                                        <item value="&quot;RemoveNulls&quot;"/>
+                                        <item value="&quot;Trim&quot;"/>
+                                        <item value="&quot;Uppercase&quot;"/>
+                                        <item value="&quot;UrlDecode&quot;"/>
+                                        <item value="&quot;UrlEncode&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="ServerPort">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="array<string>" name="matchValues">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="boolean" name="negateCondition">
+                                    <default value="false"/>
+                                  </prop>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Any&quot;"/>
+                                      <item value="&quot;BeginsWith&quot;"/>
+                                      <item value="&quot;Contains&quot;"/>
+                                      <item value="&quot;EndsWith&quot;"/>
+                                      <item value="&quot;Equal&quot;"/>
+                                      <item value="&quot;GreaterThan&quot;"/>
+                                      <item value="&quot;GreaterThanOrEqual&quot;"/>
+                                      <item value="&quot;LessThan&quot;"/>
+                                      <item value="&quot;LessThanOrEqual&quot;"/>
+                                      <item value="&quot;RegEx&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="array<string>" name="transforms">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Lowercase&quot;"/>
+                                        <item value="&quot;RemoveNulls&quot;"/>
+                                        <item value="&quot;Trim&quot;"/>
+                                        <item value="&quot;Uppercase&quot;"/>
+                                        <item value="&quot;UrlDecode&quot;"/>
+                                        <item value="&quot;UrlEncode&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="SocketAddr">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="array<string>" name="matchValues">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="boolean" name="negateCondition">
+                                    <default value="false"/>
+                                  </prop>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Any&quot;"/>
+                                      <item value="&quot;IPMatch&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="array<string>" name="transforms">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Lowercase&quot;"/>
+                                        <item value="&quot;RemoveNulls&quot;"/>
+                                        <item value="&quot;Trim&quot;"/>
+                                        <item value="&quot;Uppercase&quot;"/>
+                                        <item value="&quot;UrlDecode&quot;"/>
+                                        <item value="&quot;UrlEncode&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="SslProtocol">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="array<string>" name="matchValues">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;TLSv1&quot;"/>
+                                        <item value="&quot;TLSv1.1&quot;"/>
+                                        <item value="&quot;TLSv1.2&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop type="boolean" name="negateCondition">
+                                    <default value="false"/>
+                                  </prop>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Equal&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="array<string>" name="transforms">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Lowercase&quot;"/>
+                                        <item value="&quot;RemoveNulls&quot;"/>
+                                        <item value="&quot;Trim&quot;"/>
+                                        <item value="&quot;Uppercase&quot;"/>
+                                        <item value="&quot;UrlDecode&quot;"/>
+                                        <item value="&quot;UrlEncode&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="UrlFileExtension">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="array<string>" name="matchValues">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="boolean" name="negateCondition">
+                                    <default value="false"/>
+                                  </prop>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Any&quot;"/>
+                                      <item value="&quot;BeginsWith&quot;"/>
+                                      <item value="&quot;Contains&quot;"/>
+                                      <item value="&quot;EndsWith&quot;"/>
+                                      <item value="&quot;Equal&quot;"/>
+                                      <item value="&quot;GreaterThan&quot;"/>
+                                      <item value="&quot;GreaterThanOrEqual&quot;"/>
+                                      <item value="&quot;LessThan&quot;"/>
+                                      <item value="&quot;LessThanOrEqual&quot;"/>
+                                      <item value="&quot;RegEx&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="array<string>" name="transforms">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Lowercase&quot;"/>
+                                        <item value="&quot;RemoveNulls&quot;"/>
+                                        <item value="&quot;Trim&quot;"/>
+                                        <item value="&quot;Uppercase&quot;"/>
+                                        <item value="&quot;UrlDecode&quot;"/>
+                                        <item value="&quot;UrlEncode&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="UrlFileName">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="array<string>" name="matchValues">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="boolean" name="negateCondition">
+                                    <default value="false"/>
+                                  </prop>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Any&quot;"/>
+                                      <item value="&quot;BeginsWith&quot;"/>
+                                      <item value="&quot;Contains&quot;"/>
+                                      <item value="&quot;EndsWith&quot;"/>
+                                      <item value="&quot;Equal&quot;"/>
+                                      <item value="&quot;GreaterThan&quot;"/>
+                                      <item value="&quot;GreaterThanOrEqual&quot;"/>
+                                      <item value="&quot;LessThan&quot;"/>
+                                      <item value="&quot;LessThanOrEqual&quot;"/>
+                                      <item value="&quot;RegEx&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="array<string>" name="transforms">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Lowercase&quot;"/>
+                                        <item value="&quot;RemoveNulls&quot;"/>
+                                        <item value="&quot;Trim&quot;"/>
+                                        <item value="&quot;Uppercase&quot;"/>
+                                        <item value="&quot;UrlDecode&quot;"/>
+                                        <item value="&quot;UrlEncode&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                              <discriminator property="name" value="UrlPath">
+                                <prop type="object" name="parameters" required="True">
+                                  <prop type="array<string>" name="matchValues">
+                                    <item type="string"/>
+                                  </prop>
+                                  <prop type="boolean" name="negateCondition">
+                                    <default value="false"/>
+                                  </prop>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;Any&quot;"/>
+                                      <item value="&quot;BeginsWith&quot;"/>
+                                      <item value="&quot;Contains&quot;"/>
+                                      <item value="&quot;EndsWith&quot;"/>
+                                      <item value="&quot;Equal&quot;"/>
+                                      <item value="&quot;GreaterThan&quot;"/>
+                                      <item value="&quot;GreaterThanOrEqual&quot;"/>
+                                      <item value="&quot;LessThan&quot;"/>
+                                      <item value="&quot;LessThanOrEqual&quot;"/>
+                                      <item value="&quot;RegEx&quot;"/>
+                                      <item value="&quot;Wildcard&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="array<string>" name="transforms">
+                                    <item type="string">
+                                      <enum>
+                                        <item value="&quot;Lowercase&quot;"/>
+                                        <item value="&quot;RemoveNulls&quot;"/>
+                                        <item value="&quot;Trim&quot;"/>
+                                        <item value="&quot;Uppercase&quot;"/>
+                                        <item value="&quot;UrlDecode&quot;"/>
+                                        <item value="&quot;UrlEncode&quot;"/>
+                                      </enum>
+                                    </item>
+                                  </prop>
+                                  <prop const="True" type="string" name="typeName" required="True">
+                                    <default value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    <enum>
+                                      <item value="&quot;DeliveryRuleClientPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleCookiesConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHostNameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleHttpVersionConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleIsDeviceConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRulePostArgsConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleQueryStringConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRemoteAddressConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestBodyConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestHeaderConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestMethodConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestSchemeConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleRequestUriConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleServerPortConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSocketAddrConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleSslProtocolConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFileExtensionMatchConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlFilenameConditionParameters&quot;"/>
+                                      <item value="&quot;DeliveryRuleUrlPathMatchConditionParameters&quot;"/>
+                                    </enum>
+                                  </prop>
+                                </prop>
+                              </discriminator>
+                            </item>
+                          </prop>
+                          <prop type="string" name="name"/>
+                          <prop type="integer32" name="order" required="True"/>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop type="array<object>" name="geoFilters">
+                      <item type="object">
+                        <prop type="string" name="action" required="True">
+                          <enum>
+                            <item value="&quot;Allow&quot;"/>
+                            <item value="&quot;Block&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<string>" name="countryCodes" required="True">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="string" name="relativePath" required="True"/>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="string" name="hostName"/>
+                    <prop type="boolean" name="isCompressionEnabled"/>
+                    <prop type="boolean" name="isHttpAllowed">
+                      <default value="true"/>
+                    </prop>
+                    <prop type="boolean" name="isHttpsAllowed">
+                      <default value="true"/>
+                    </prop>
+                    <prop type="string" name="optimizationType">
+                      <enum>
+                        <item value="&quot;DynamicSiteAcceleration&quot;"/>
+                        <item value="&quot;GeneralMediaStreaming&quot;"/>
+                        <item value="&quot;GeneralWebDelivery&quot;"/>
+                        <item value="&quot;LargeFileDownload&quot;"/>
+                        <item value="&quot;VideoOnDemandMediaStreaming&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<object>" name="originGroups" identifiers="name">
+                      <item type="object">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="object" name="properties" clientFlatten="True">
+                          <prop type="object" name="healthProbeSettings">
+                            <prop type="integer32" name="probeIntervalInSeconds">
+                              <format maximum="255" minimum="1"/>
+                            </prop>
+                            <prop type="string" name="probePath"/>
+                            <prop type="string" name="probeProtocol">
+                              <enum>
+                                <item value="&quot;Http&quot;"/>
+                                <item value="&quot;Https&quot;"/>
+                                <item value="&quot;NotSet&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="probeRequestType">
+                              <enum>
+                                <item value="&quot;GET&quot;"/>
+                                <item value="&quot;HEAD&quot;"/>
+                                <item value="&quot;NotSet&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop type="array<@ResourceReference_read>" name="origins" required="True">
+                            <item type="@ResourceReference_read"/>
+                          </prop>
+                          <prop type="object" name="responseBasedOriginErrorDetectionSettings">
+                            <prop type="array<object>" name="httpErrorRanges">
+                              <item type="object">
+                                <prop type="integer32" name="begin">
+                                  <format maximum="999" minimum="100"/>
+                                </prop>
+                                <prop type="integer32" name="end">
+                                  <format maximum="999" minimum="100"/>
+                                </prop>
+                              </item>
+                            </prop>
+                            <prop type="string" name="responseBasedDetectedErrorTypes">
+                              <enum>
+                                <item value="&quot;None&quot;"/>
+                                <item value="&quot;TcpAndHttpErrors&quot;"/>
+                                <item value="&quot;TcpErrorsOnly&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="integer32" name="responseBasedFailoverThresholdPercentage">
+                              <format maximum="100" minimum="0"/>
+                            </prop>
+                          </prop>
+                          <prop type="integer32" name="trafficRestorationTimeToHealedOrNewEndpointsInMinutes">
+                            <format maximum="50" minimum="0"/>
+                          </prop>
+                        </prop>
+                      </item>
+                    </prop>
+                    <prop type="string" name="originHostHeader"/>
+                    <prop type="string" name="originPath"/>
+                    <prop type="array<object>" name="origins" required="True" identifiers="name">
+                      <item type="object">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="object" name="properties" clientFlatten="True">
+                          <prop type="boolean" name="enabled"/>
+                          <prop type="string" name="hostName" required="True"/>
+                          <prop type="integer32" name="httpPort">
+                            <format maximum="65535" minimum="1"/>
+                          </prop>
+                          <prop type="integer32" name="httpsPort">
+                            <format maximum="65535" minimum="1"/>
+                          </prop>
+                          <prop type="string" name="originHostHeader"/>
+                          <prop type="integer32" name="priority">
+                            <format maximum="5" minimum="1"/>
+                          </prop>
+                          <prop readOnly="True" type="string" name="privateEndpointStatus">
+                            <enum>
+                              <item value="&quot;Approved&quot;"/>
+                              <item value="&quot;Disconnected&quot;"/>
+                              <item value="&quot;Pending&quot;"/>
+                              <item value="&quot;Rejected&quot;"/>
+                              <item value="&quot;Timeout&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="privateLinkAlias"/>
+                          <prop type="string" name="privateLinkApprovalMessage"/>
+                          <prop type="string" name="privateLinkLocation"/>
+                          <prop type="string" name="privateLinkResourceId"/>
+                          <prop type="integer32" name="weight">
+                            <format maximum="1000" minimum="1"/>
+                          </prop>
+                        </prop>
+                      </item>
+                    </prop>
+                    <prop type="string" name="probePath"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Creating&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="queryStringCachingBehavior">
+                      <default value="&quot;NotSet&quot;"/>
+                      <enum>
+                        <item value="&quot;BypassCaching&quot;"/>
+                        <item value="&quot;IgnoreQueryString&quot;"/>
+                        <item value="&quot;NotSet&quot;"/>
+                        <item value="&quot;UseQueryString&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="resourceState">
+                      <enum>
+                        <item value="&quot;Creating&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Running&quot;"/>
+                        <item value="&quot;Starting&quot;"/>
+                        <item value="&quot;Stopped&quot;"/>
+                        <item value="&quot;Stopping&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<object>" name="urlSigningKeys" identifiers="keyId">
+                      <item type="object">
+                        <prop type="string" name="keyId" required="True"/>
+                        <prop type="object" name="keySourceParameters" required="True">
+                          <prop type="string" name="resourceGroupName" required="True"/>
+                          <prop type="string" name="secretName" required="True"/>
+                          <prop type="string" name="secretVersion" required="True"/>
+                          <prop type="string" name="subscriptionId" required="True"/>
+                          <prop type="string" name="typeName" required="True">
+                            <enum>
+                              <item value="&quot;KeyVaultSigningKeyParameters&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="vaultName" required="True"/>
+                        </prop>
+                      </item>
+                    </prop>
+                    <prop type="object" name="webApplicationFirewallPolicyLink">
+                      <prop type="string" name="id"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="location"/>
+            </header>
+            <body>
+              <json var="$Instance">
+                <schema type="@Endpoint_read"/>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

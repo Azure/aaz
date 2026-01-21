@@ -42,7 +42,23 @@ Create an Internet Gateway Rule resource
 
 #### examples
 
-- Create a Internet Gateway Rule
+- Create an Internet Gateway Rule
+    ```bash
+        networkfabric internetgatewayrule create --resource-group "example-rg" --location "westus3" --resource-name "example-internetgatewayrule" --rule-properties "{action:Allow,addressList:['10.10.10.10']}"
+    ```
+
+- Help text for sub parameters under the specific parent can be viewed by using the shorthand syntax '??'. See https://github.com/Azure/azure-cli/tree/dev/doc/shorthand_syntax.md for more about shorthand syntax.
+    ```bash
+        networkfabric internetgatewayrule create --rule-properties "??"
+    ```
+
+### [2025-07-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9pbnRlcm5ldGdhdGV3YXlydWxlcy97fQ==/2025-07-15.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/internetgatewayrules/{} 2025-07-15 -->
+
+#### examples
+
+- Create an Internet Gateway Rule
     ```bash
         networkfabric internetgatewayrule create --resource-group "example-rg" --location "westus3" --resource-name "example-internetgatewayrule" --rule-properties "{action:Allow,addressList:['10.10.10.10']}"
     ```

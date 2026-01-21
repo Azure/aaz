@@ -25,10 +25,16 @@ Manage Linux or Windows virtual machines.
 - [image](/Commands/vm/image/readme.md)
 : Information on available virtual machine images.
 
+- [run-command](/Commands/vm/run-command/readme.md)
+: Manage run commands on a Virtual Machine.
+
 ## Commands
 
 - [assess-patches](/Commands/vm/_assess-patches.md)
 : Assess patches on a VM.
+
+- [capture](/Commands/vm/_capture.md)
+: Capture information for a stopped VM.
 
 - [convert](/Commands/vm/_convert.md)
 : Convert a VM with unmanaged disks to use managed disks.
@@ -45,6 +51,12 @@ Manage Linux or Windows virtual machines.
 - [generalize](/Commands/vm/_generalize.md)
 : Mark a VM as generalized, allowing it to be imaged for multiple deployments.
 
+- [list](/Commands/vm/_list.md)
+: List all of the virtual machines in the specified resource group. Use the nextLink property in the response to get the next page of virtual machines.
+
+- [list-all](/Commands/vm/_list-all.md)
+: List all of the virtual machines in the specified subscription. Use the nextLink property in the response to get the next page of virtual machines.
+
 - [list-sizes](/Commands/vm/_list-sizes.md)
 : List available sizes for VMs.
 
@@ -53,6 +65,9 @@ Manage Linux or Windows virtual machines.
 
 - [list-vm-resize-options](/Commands/vm/_list-vm-resize-options.md)
 : List available resizing options for VMs.
+
+- [migrate-to-vmss](/Commands/vm/_migrate-to-vmss.md)
+: Migrate a virtual machine from availability set to Flexible Virtual Machine Scale Set.
 
 - [perform-maintenance](/Commands/vm/_perform-maintenance.md)
 : The operation to perform maintenance on a virtual machine.

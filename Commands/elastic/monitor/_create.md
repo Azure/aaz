@@ -1,6 +1,6 @@
 # [Command] _elastic monitor create_
 
-Create a monitor resource.
+Create a new Elastic monitor resource in your Azure subscription, enabling observability and monitoring of your Azure resources through Elastic.
 
 ## Versions
 
@@ -28,4 +28,15 @@ Create a monitor resource.
 - Create monitor
     ```bash
         elastic monitor create -n monitor-name -g rg --user-info "{firstName:Alice,lastName:bob,companyName:Micosoft,emailAddress:alice@microsoft.com}" --sku "{name:ess-consumption-2024_Monthly}"
+    ```
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{} 2025-06-01 -->
+
+#### examples
+
+- Monitors_Create
+    ```bash
+        elastic monitor create --resource-group myResourceGroup --monitor-name myMonitor
     ```

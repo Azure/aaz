@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw firewall update_
 
-Update a FirewallResource
+Update configuration or metadata for a Palo Alto Networks Cloud NGFW resource on Azure.
 
 ## Versions
 
@@ -22,6 +22,17 @@ Update a FirewallResource
 #### examples
 
 - Update a FirewallResource
+    ```bash
+        palo-alto cloudngfw firewall update --name MyCloudngfwFirewall -g MyResourceGroup --tags "{tagName:value}"
+    ```
+
+### [2025-10-08](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL3BhbG9hbHRvbmV0d29ya3MuY2xvdWRuZ2Z3L2ZpcmV3YWxscy97fQ==/2025-10-08.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/firewalls/{} 2025-10-08 -->
+
+#### examples
+
+- Update configuration or metadata for a Palo Alto Networks Cloud NGFW resource on Azure.
     ```bash
         palo-alto cloudngfw firewall update --name MyCloudngfwFirewall -g MyResourceGroup --tags "{tagName:value}"
     ```

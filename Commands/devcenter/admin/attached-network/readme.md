@@ -15,3 +15,6 @@ Manage attached networks.
 
 - [show](/Commands/devcenter/admin/attached-network/_show.md)
 : Get an attached network connection configured for a dev center or project.
+
+- [show-untitled1](/Commands/devcenter/admin/attached-network/_show-untitled1.md)
+: Get an attached NetworkConnection.

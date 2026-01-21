@@ -1,6 +1,6 @@
 # [Command] _elastic monitor list_
 
-List all monitors under the specified resource group. And List all                                monitors under the specified subscription.
+List all Elastic monitor resources within a specified subscription, helping you audit and manage your monitoring setup.
 
 ## Versions
 
@@ -31,4 +31,16 @@ List all monitors under the specified resource group. And List all              
 - List all monitors by resource group
     ```bash
         elastic monitor list -g rg
+    ```
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3Jz/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.elastic/monitors 2025-06-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors 2025-06-01 -->
+
+#### examples
+
+- Monitors_List
+    ```bash
+        elastic monitor list
     ```

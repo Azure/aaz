@@ -15,7 +15,7 @@
 : Manage Azure Alerts Management Service Resource.
 
 - [amlfs](/Commands/amlfs/readme.md)
-: Manage lustre file system
+: Manage Azure Managed Lustre Filesystem
 
 - [aosm](/Commands/aosm/readme.md)
 : Manage Azure Operator Service Manager resources.
@@ -64,9 +64,6 @@
 
 - [capacity](/Commands/capacity/readme.md)
 : Manage capacity.
-
-- [carbon](/Commands/carbon/readme.md)
-: Manage Carbon
 
 - [cdn](/Commands/cdn/readme.md)
 : Manage Azure Content Delivery Networks (CDNs).
@@ -122,9 +119,6 @@
 - [databricks](/Commands/databricks/readme.md)
 : Manage databricks workspaces.
 
-- [datadog](/Commands/datadog/readme.md)
-: Manage Datadog
-
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage dataprotection.
 
@@ -168,7 +162,7 @@
 : Manage Azure Event Grid topics, domains, domain topics, system topics, partner topics, event subscriptions, system topic event subscriptions, partner topic event subscriptions, and namespaces resources.
 
 - [eventhubs](/Commands/eventhubs/readme.md)
-: eventhub
+: Manage Event Hub
 
 - [firmwareanalysis](/Commands/firmwareanalysis/readme.md)
 : Commands to manage firmware analysis.
@@ -230,9 +224,6 @@
 - [mobile-network](/Commands/mobile-network/readme.md)
 : Manage mobile network
 
-- [mongo-db](/Commands/mongo-db/readme.md)
-: Manage MongoDB
-
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
 
@@ -258,7 +249,7 @@
 : Manage Azure Network Fabric Management Service API
 
 - [new-relic](/Commands/new-relic/readme.md)
-: Manage Azure NewRelic resources.
+: Manage Azure New Relic resources.
 
 - [nginx](/Commands/nginx/readme.md)
 : Manage NGINX deployment resources
@@ -273,7 +264,7 @@
 : Azure Orbital Ground Station as-a-Service (GSaaS).
 
 - [palo-alto](/Commands/palo-alto/readme.md)
-: Manage palo-alto networks resource
+: Manage Palo Alto Networks resources within the Azure CLI.
 
 - [playwright-testing](/Commands/playwright-testing/readme.md)
 : Manage Microsoft Playwright Testing service
@@ -288,7 +279,7 @@
 : Manage Proximity Placement Groups.
 
 - [qumulo](/Commands/qumulo/readme.md)
-: Manage qumulo
+: Manage Qumulo file system storage resources with the Azure CLI.
 
 - [quota](/Commands/quota/readme.md)
 : Manag quota for Azure resource providers.

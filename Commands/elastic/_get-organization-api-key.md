@@ -1,6 +1,6 @@
 # [Command] _elastic get-organization-api-key_
 
-Fetch User API Key from internal database, if it was generated and stored while creating the Elasticsearch Organization.
+Fetch the User API Key from the internal database, if it was generated and stored during the creation of the Elasticsearch Organization.
 
 ## Versions
 
@@ -24,4 +24,15 @@ Fetch User API Key from internal database, if it was generated and stored while 
 - Get organization api key
     ```bash
         elastic get-organization-api-key --email-id id
+    ```
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL2dldG9yZ2FuaXphdGlvbmFwaWtleQ==/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.elastic/getorganizationapikey 2025-06-01 -->
+
+#### examples
+
+- Organizations_GetApiKey
+    ```bash
+        elastic get-organization-api-key
     ```

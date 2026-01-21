@@ -14,3 +14,14 @@ Lists all hosts being monitored by a specific Datadog monitor resource, providin
     ```bash
         datadog monitor list-host --resource-group myResourceGroup --monitor-name myMonitor
     ```
+
+### [2025-06-11](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kYXRhZG9nL21vbml0b3JzL3t9L2xpc3Rob3N0cw==/2025-06-11.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.datadog/monitors/{}/listhosts 2025-06-11 -->
+
+#### examples
+
+- Monitors_ListHosts
+    ```bash
+        datadog monitor list-host --resource-group myResourceGroup --monitor-name myMonitor
+    ```

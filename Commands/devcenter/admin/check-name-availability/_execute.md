@@ -69,3 +69,25 @@ Check the availability of name for resource.
     ```bash
         devcenter admin check-name-availability execute --name "name1" --type "Microsoft.DevCenter/devcenters"
     ```
+
+### [2025-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvY2hlY2tuYW1lYXZhaWxhYmlsaXR5/2025-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.devcenter/checknameavailability 2025-04-01-preview -->
+
+#### examples
+
+- Check name availability
+    ```bash
+        devcenter admin check-name-availability execute --name "name1" --type "Microsoft.DevCenter/devcenters"
+    ```
+
+### [2025-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvY2hlY2tuYW1lYXZhaWxhYmlsaXR5/2025-10-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.devcenter/checknameavailability 2025-10-01-preview -->
+
+#### examples
+
+- Check name availability
+    ```bash
+        devcenter admin check-name-availability execute --name "name1" --type "Microsoft.DevCenter/devcenters"
+    ```

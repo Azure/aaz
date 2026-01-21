@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor list-host_
 
-List the compute vm resources currently being monitored by the NewRelic resource.
+List all VM resources currently being monitored by the New Relic monitor resource, helping you manage observability.
 
 ## Versions
 

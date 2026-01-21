@@ -2,7 +2,7 @@
 <CodeGen plane="mgmt-plane">
   <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.storageactions/storagetasks/{}" version="2023-01-01" swagger="mgmt-plane/storageactions/ResourceProviders/Microsoft.StorageActions/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RvcmFnZUFjdGlvbnMvc3RvcmFnZVRhc2tzL3tzdG9yYWdlVGFza05hbWV9/V/MjAyMy0wMS0wMQ=="/>
   <commandGroup name="storage-actions task">
-    <command name="show" version="2023-01-01">
+    <command name="show" version="2023-01-01" confirmation="">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.storageactions/storagetasks/{}" version="2023-01-01" swagger="mgmt-plane/storageactions/ResourceProviders/Microsoft.StorageActions/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RvcmFnZUFjdGlvbnMvc3RvcmFnZVRhc2tzL3tzdG9yYWdlVGFza05hbWV9/V/MjAyMy0wMS0wMQ=="/>
       <argGroup name="">
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
@@ -106,6 +106,7 @@
                     <prop type="boolean" name="enabled" required="True"/>
                     <prop readOnly="True" type="string" name="provisioningState">
                       <enum>
+                        <item value="&quot;Accepted&quot;"/>
                         <item value="&quot;Canceled&quot;"/>
                         <item value="&quot;Creating&quot;"/>
                         <item value="&quot;Deleting&quot;"/>
@@ -173,7 +174,7 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <operation operationId="StorageTasks_Delete">
-        <longRunning finalStateVia="location"/>
+        <longRunning finalStateVia="azure-async-operation"/>
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageActions/storageTasks/{storageTaskName}">
           <request method="delete">
             <path>
@@ -222,6 +223,10 @@
       <argGroup name="Parameters">
         <arg type="object" var="$parameters.identity" options="identity" required="True" group="Parameters">
           <help short="The managed service identity of the resource."/>
+          <arg type="string" var="$parameters.identity.systemAssigned" options="mi-system-assigned system-assigned">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
           <arg type="string" var="$parameters.identity.type" options="type" required="True">
             <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
             <enum>
@@ -230,6 +235,11 @@
               <item name="SystemAssigned,UserAssigned" value="&quot;SystemAssigned,UserAssigned&quot;"/>
               <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
             </enum>
+          </arg>
+          <arg type="array<string>" var="$parameters.identity.userAssigned" options="mi-user-assigned user-assigned">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
           </arg>
           <arg type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-identities">
             <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
@@ -310,7 +320,7 @@
         </arg>
       </argGroup>
       <operation operationId="StorageTasks_Create">
-        <longRunning finalStateVia="location"/>
+        <longRunning finalStateVia="azure-async-operation"/>
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageActions/storageTasks/{storageTaskName}">
           <request method="put">
             <path>
@@ -345,6 +355,10 @@
                         <item nullable="True" type="object"/>
                       </additionalProp>
                     </prop>
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$parameters.identity.userAssigned">
+                      <item action="create" type="string"/>
+                    </userAssigned>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$parameters.identity.systemAssigned"/>
                   </prop>
                   <prop type="ResourceLocation" name="location" arg="$parameters.location" required="True"/>
                   <prop type="object" name="properties" required="True" clientFlatten="True">
@@ -475,6 +489,7 @@
                     <prop type="boolean" name="enabled" required="True"/>
                     <prop readOnly="True" type="string" name="provisioningState">
                       <enum>
+                        <item value="&quot;Accepted&quot;"/>
                         <item value="&quot;Canceled&quot;"/>
                         <item value="&quot;Creating&quot;"/>
                         <item value="&quot;Deleting&quot;"/>
@@ -727,6 +742,7 @@
                     <prop type="boolean" name="enabled" required="True"/>
                     <prop readOnly="True" type="string" name="provisioningState">
                       <enum>
+                        <item value="&quot;Accepted&quot;"/>
                         <item value="&quot;Canceled&quot;"/>
                         <item value="&quot;Creating&quot;"/>
                         <item value="&quot;Deleting&quot;"/>
@@ -854,7 +870,7 @@
         </instanceUpdate>
       </operation>
       <operation operationId="StorageTasks_Create">
-        <longRunning finalStateVia="location"/>
+        <longRunning finalStateVia="azure-async-operation"/>
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageActions/storageTasks/{storageTaskName}">
           <request method="put">
             <path>

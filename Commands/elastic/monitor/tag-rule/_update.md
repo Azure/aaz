@@ -1,6 +1,6 @@
 # [Command] _elastic monitor tag-rule update_
 
-Update a tag rule set for a given monitor resource.
+Update a tag rule set for a given Elastic monitor resource, enabling fine-grained control over observability based on resource tags.
 
 ## Versions
 
@@ -15,3 +15,14 @@ Update a tag rule set for a given monitor resource.
 ### [2024-06-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9L3RhZ3J1bGVzL3t9/2024-06-15-preview.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/tagrules/{} 2024-06-15-preview -->
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9L3RhZ3J1bGVzL3t9/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/tagrules/{} 2025-06-01 -->
+
+#### examples
+
+- TagRules_CreateOrUpdate
+    ```bash
+        elastic monitor tag-rule update --resource-group myResourceGroup --monitor-name myMonitor --rule-set-name default
+    ```

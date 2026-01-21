@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor tag-rule create_
 
-Create a TagRule
+Creates a new set of tag rules for a specific New Relic monitor resource, determining which Azure resources are monitored based on their tags.
 
 ## Versions
 

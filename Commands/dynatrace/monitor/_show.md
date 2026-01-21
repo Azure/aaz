@@ -36,3 +36,14 @@ Get Dynatrace resource properties including Dynatrace Environment information, S
     ```bash
         dynatrace monitor show -g rg -n monitor
     ```
+
+### [2024-04-24](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL2R5bmF0cmFjZS5vYnNlcnZhYmlsaXR5L21vbml0b3JzL3t9/2024-04-24.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/dynatrace.observability/monitors/{} 2024-04-24 -->
+
+#### examples
+
+- Show a monitor
+    ```bash
+        dynatrace monitor show -g rg -n monitor
+    ```

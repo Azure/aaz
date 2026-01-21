@@ -105,3 +105,37 @@ List projects.
     ```bash
         devcenter admin project list
     ```
+
+### [2025-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvcHJvamVjdHM=/2025-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.devcenter/projects 2025-04-01-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/projects 2025-04-01-preview -->
+
+#### examples
+
+- List by resource group
+    ```bash
+        devcenter admin project list --resource-group "rg1"
+    ```
+
+- List by subscription
+    ```bash
+        devcenter admin project list
+    ```
+
+### [2025-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kZXZjZW50ZXIvcHJvamVjdHM=/2025-10-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.devcenter/projects 2025-10-01-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.devcenter/projects 2025-10-01-preview -->
+
+#### examples
+
+- List by resource group
+    ```bash
+        devcenter admin project list --resource-group "rg1"
+    ```
+
+- List by subscription
+    ```bash
+        devcenter admin project list
+    ```

@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="data-plane:microsoft.blobstorage">
+  <resource id="/{containername}/{}?comp=incrementalcopy" version="2025-07-05" swagger="data-plane:microsoft.blobstorage/storage/ResourceProviders/Microsoft.BlobStorage/Paths/L3tjb250YWluZXJOYW1lfS97YmxvYn0_Y29tcD1pbmNyZW1lbnRhbGNvcHk=/V/MjAyNS0wNy0wNQ=="/>
+  <commandGroup name="storage blob incremental-copy">
+    <command name="start" version="2025-07-05" confirmation="">
+      <resource id="/{containername}/{}?comp=incrementalcopy" version="2025-07-05" swagger="data-plane:microsoft.blobstorage/storage/ResourceProviders/Microsoft.BlobStorage/Paths/L3tjb250YWluZXJOYW1lfS97YmxvYn0_Y29tcD1pbmNyZW1lbnRhbGNvcHk=/V/MjAyNS0wNy0wNQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Header.x-ms-if-tags" options="x-ms-if-tags">
+          <help short="Specify a SQL where clause on blob tags to operate only on blobs with a matching value."/>
+        </arg>
+        <arg type="string" var="$Header.x-ms-version" options="x-ms-version" required="True" group="">
+          <help short="Specifies the version of the operation to use for this request."/>
+          <default value="&quot;2025-07-05&quot;"/>
+          <enum>
+            <item name="2025-07-05" value="&quot;2025-07-05&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$Path.blob" options="destination-blob b" required="True" group="">
+          <help short="Name of the destination blob. If the exists, it will be overwritten."/>
+          <format pattern="^[a-zA-Z0-9]+(?:/[a-zA-Z0-9]+)*(?:\.[a-zA-Z0-9]+){0,1}$" maxLength="1024" minLength="1"/>
+        </arg>
+        <arg type="string" var="$Path.containerName" options="destination-container c" required="True" group="">
+          <help short="The container name."/>
+        </arg>
+        <arg type="string" var="$Query.comp" options="comp" required="True">
+          <help short="comp"/>
+          <enum>
+            <item name="incrementalcopy" value="&quot;incrementalcopy&quot;"/>
+          </enum>
+        </arg>
+        <arg type="integer" var="$Query.timeout" options="timeout">
+          <help short="The timeout parameter is expressed in seconds. For more information, see <a href=&quot;https://docs.microsoft.com/en-us/rest/api/storageservices/fileservices/setting-timeouts-for-blob-service-operations&quot;>Setting Timeouts for Blob Service Operations.</a>"/>
+          <format minimum="0"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Copy Source">
+        <arg type="string" var="$Header.x-ms-copy-source" options="source-uri u" required="True" group="Copy Source">
+          <help short="Specifies the name of the source page blob snapshot. This value is a URL of up to 2 KB in length that specifies a page blob snapshot. The value should be URL-encoded as it would appear in a request URI. The source blob must either be public or must be authenticated via a shared access signature."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Pre-condition">
+        <arg type="string" var="$Header.If-Match" options="destination-if-match" group="Pre-condition">
+          <help short="Specify an ETag value to operate only on blobs with a matching value."/>
+        </arg>
+        <arg type="dateTime" var="$Header.If-Modified-Since" options="destination-if-modified-since" group="Pre-condition">
+          <help short="Specify this header value to operate only on a blob if it has been modified since the specified date/time."/>
+        </arg>
+        <arg type="string" var="$Header.If-None-Match" options="destination-if-none-match" group="Pre-condition">
+          <help short="Specify an ETag value to operate only on blobs without a matching value."/>
+        </arg>
+        <arg type="dateTime" var="$Header.If-Unmodified-Since" options="destination-if-unmodified-since" group="Pre-condition">
+          <help short="Specify this header value to operate only on a blob if it has not been modified since the specified date/time."/>
+        </arg>
+      </argGroup>
+      <operation operationId="PageBlob_CopyIncremental">
+        <http path="/{containerName}/{blob}?comp=incrementalcopy">
+          <request method="put">
+            <path>
+              <param type="string" name="blob" arg="$Path.blob" required="True">
+                <format pattern="^[a-zA-Z0-9]+(?:/[a-zA-Z0-9]+)*(?:\.[a-zA-Z0-9]+){0,1}$" maxLength="1024" minLength="1"/>
+              </param>
+              <param type="string" name="containerName" arg="$Path.containerName" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="comp" arg="$Query.comp" required="True">
+                <enum>
+                  <item value="&quot;incrementalcopy&quot;"/>
+                </enum>
+              </param>
+              <param type="integer" name="timeout" arg="$Query.timeout">
+                <format minimum="0"/>
+              </param>
+            </query>
+            <header clientRequestId="x-ms-client-request-id">
+              <param type="string" name="If-Match" arg="$Header.If-Match"/>
+              <param type="dateTime" name="If-Modified-Since" arg="$Header.If-Modified-Since"/>
+              <param type="string" name="If-None-Match" arg="$Header.If-None-Match"/>
+              <param type="dateTime" name="If-Unmodified-Since" arg="$Header.If-Unmodified-Since"/>
+              <param type="string" name="x-ms-copy-source" arg="$Header.x-ms-copy-source" required="True"/>
+              <param type="string" name="x-ms-if-tags" arg="$Header.x-ms-if-tags"/>
+              <param type="string" name="x-ms-version" arg="$Header.x-ms-version" required="True">
+                <enum>
+                  <item value="&quot;2025-07-05&quot;"/>
+                </enum>
+              </param>
+            </header>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Date"/>
+              <item name="ETag"/>
+              <item name="Last-Modified"/>
+              <item name="x-ms-client-request-id"/>
+              <item name="x-ms-copy-id"/>
+              <item name="x-ms-copy-status"/>
+              <item name="x-ms-request-id"/>
+              <item name="x-ms-version"/>
+            </header>
+          </response>
+          <response isError="True">
+            <header>
+              <item name="x-ms-error-code"/>
+            </header>
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>

@@ -16,16 +16,28 @@ Manage Azure NetApp Files (ANF) Account Resources.
 - [backup-vault](/Commands/netappfiles/account/backup-vault/readme.md)
 : Manage Azure NetApp Files (ANF) BackupVault Resources.
 
+- [identity](/Commands/netappfiles/account/identity/readme.md)
+: Manage Identity
+
 - [pool](/Commands/netappfiles/account/pool/readme.md)
 : Manage Azure NetApp Files (ANF) Pool Resources.
 
+- [quota-limit](/Commands/netappfiles/account/quota-limit/readme.md)
+: Manage Quota Limit
+
 ## Commands
+
+- [change-key-vault](/Commands/netappfiles/account/_change-key-vault.md)
+: Change KeyVault/Managed HSM that is used for encryption of volumes under NetApp account
 
 - [create](/Commands/netappfiles/account/_create.md)
 : Create the specified NetApp account within the resource group
 
 - [delete](/Commands/netappfiles/account/_delete.md)
 : Delete the specified NetApp account
+
+- [get-key-vault-status](/Commands/netappfiles/account/_get-key-vault-status.md)
+: Contains data from encryption.keyVaultProperties as well as information about which private endpoint is used by each encryption sibling set. Response from this endpoint can be used for transitiontocmk
 
 - [list](/Commands/netappfiles/account/_list.md)
 : List and describe all NetApp accounts in the subscription.
@@ -38,6 +50,9 @@ Manage Azure NetApp Files (ANF) Account Resources.
 
 - [show](/Commands/netappfiles/account/_show.md)
 : Get the NetApp account
+
+- [transitiontocmk](/Commands/netappfiles/account/_transitiontocmk.md)
+: Transitions all volumes in a VNet to a different encryption key source (Microsoft-managed key or Azure Key Vault). Operation fails if targeted volumes share encryption sibling set with volumes from another account.
 
 - [update](/Commands/netappfiles/account/_update.md)
 : Update the specified NetApp account within the resource group

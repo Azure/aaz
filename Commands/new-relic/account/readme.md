@@ -1,8 +1,8 @@
 # [Group] _new-relic account_
 
-Manage NewRelic Account resource
+Manage the New Relic account.
 
 ## Commands
 
 - [list](/Commands/new-relic/account/_list.md)
-: List all the existing accounts
+: Lists all the New Relic accounts in your Azure subscription, helping you understand the existing accounts that have been created.

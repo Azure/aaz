@@ -1,0 +1,200 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/azurefirewalls/{}/packetcaptureoperation" version="2024-10-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9henVyZUZpcmV3YWxscy97YXp1cmVGaXJld2FsbE5hbWV9L3BhY2tldENhcHR1cmVPcGVyYXRpb24=/V/MjAyNC0xMC0wMQ=="/>
+  <commandGroup name="network firewall">
+    <command name="packet-capture-operation" version="2024-10-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/azurefirewalls/{}/packetcaptureoperation" version="2024-10-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9henVyZUZpcmV3YWxscy97YXp1cmVGaXJld2FsbE5hbWV9L3BhY2tldENhcHR1cmVPcGVyYXRpb24=/V/MjAyNC0xMC0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.azureFirewallName" options="azure-firewall-name" required="True" idPart="name">
+          <help short="The name of the azure firewall."/>
+          <format pattern="^[A-Za-z0-9][\w\-._]{0,54}[A-Za-z0-9_]$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Parameters">
+        <arg type="integer32" var="$parameters.durationInSeconds" options="duration-in-seconds" group="Parameters">
+          <help short="Duration of packet capture in seconds. If the field is not provided, the default value is 60."/>
+          <default value="60"/>
+          <format maximum="1800" minimum="30"/>
+        </arg>
+        <arg type="string" var="$parameters.fileName" options="file-name" group="Parameters">
+          <help short="Name of file to be uploaded to sasURL"/>
+        </arg>
+        <arg type="array<object>" var="$parameters.filters" options="filters" group="Parameters">
+          <help short="Rules to filter packet captures."/>
+          <item type="object">
+            <arg type="array<string>" var="$parameters.filters[].destinationPorts" options="destination-ports">
+              <help short="List of ports to be captured."/>
+              <item type="string"/>
+            </arg>
+            <arg type="array<string>" var="$parameters.filters[].destinations" options="destinations">
+              <help short="List of destination IP addresses/subnets to be captured."/>
+              <item type="string"/>
+            </arg>
+            <arg type="array<string>" var="$parameters.filters[].sources" options="sources">
+              <help short="List of source IP addresses/subnets to be captured."/>
+              <item type="string"/>
+            </arg>
+          </item>
+        </arg>
+        <arg type="array<object>" var="$parameters.flags" options="flags" group="Parameters">
+          <help short="The tcp-flag type to be captured. Used with protocol TCP"/>
+          <item type="object">
+            <arg type="string" var="$parameters.flags[].type" options="type">
+              <help short="Flags to capture"/>
+              <enum>
+                <item name="ack" value="&quot;ack&quot;"/>
+                <item name="fin" value="&quot;fin&quot;"/>
+                <item name="push" value="&quot;push&quot;"/>
+                <item name="rst" value="&quot;rst&quot;"/>
+                <item name="syn" value="&quot;syn&quot;"/>
+                <item name="urg" value="&quot;urg&quot;"/>
+              </enum>
+            </arg>
+          </item>
+        </arg>
+        <arg type="integer32" var="$parameters.numberOfPacketsToCapture" options="number-of-packets-to-capture num-packets" group="Parameters">
+          <help short="Number of packets to be captured. If the field is not provided, the default value is 1000."/>
+          <default value="1000"/>
+          <format maximum="90000" minimum="100"/>
+        </arg>
+        <arg type="string" var="$parameters.operation" options="operation" group="Parameters">
+          <help short="The Azure Firewall packet capture operation to perform"/>
+          <default value="&quot;Start&quot;"/>
+          <enum>
+            <item name="Start" value="&quot;Start&quot;"/>
+            <item name="Status" value="&quot;Status&quot;"/>
+            <item name="Stop" value="&quot;Stop&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$parameters.protocol" options="protocol" group="Parameters">
+          <help short="The protocol of packets to capture"/>
+          <enum>
+            <item name="Any" value="&quot;Any&quot;"/>
+            <item name="ICMP" value="&quot;ICMP&quot;"/>
+            <item name="TCP" value="&quot;TCP&quot;"/>
+            <item name="UDP" value="&quot;UDP&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$parameters.sasUrl" options="sas-url" group="Parameters">
+          <help short="SAS URL of the destination blob container where the packet capture file will be uploaded."/>
+        </arg>
+      </argGroup>
+      <operation operationId="AzureFirewalls_PacketCaptureOperation">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/azureFirewalls/{azureFirewallName}/packetCaptureOperation">
+          <request method="post">
+            <path>
+              <param type="string" name="azureFirewallName" arg="$Path.azureFirewallName" required="True">
+                <format pattern="^[A-Za-z0-9][\w\-._]{0,54}[A-Za-z0-9_]$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-10-01&quot;"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="parameters" required="True" clientFlatten="True">
+                  <prop type="integer32" name="durationInSeconds" arg="$parameters.durationInSeconds">
+                    <default value="60"/>
+                    <format maximum="1800" minimum="30"/>
+                  </prop>
+                  <prop type="string" name="fileName" arg="$parameters.fileName"/>
+                  <prop type="array<object>" name="filters" arg="$parameters.filters">
+                    <item type="object">
+                      <prop type="array<string>" name="destinationPorts" arg="$parameters.filters[].destinationPorts">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="array<string>" name="destinations" arg="$parameters.filters[].destinations">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="array<string>" name="sources" arg="$parameters.filters[].sources">
+                        <item type="string"/>
+                      </prop>
+                    </item>
+                  </prop>
+                  <prop type="array<object>" name="flags" arg="$parameters.flags">
+                    <item type="object">
+                      <prop type="string" name="type" arg="$parameters.flags[].type">
+                        <enum>
+                          <item value="&quot;ack&quot;"/>
+                          <item value="&quot;fin&quot;"/>
+                          <item value="&quot;push&quot;"/>
+                          <item value="&quot;rst&quot;"/>
+                          <item value="&quot;syn&quot;"/>
+                          <item value="&quot;urg&quot;"/>
+                        </enum>
+                      </prop>
+                    </item>
+                  </prop>
+                  <prop type="integer32" name="numberOfPacketsToCapture" arg="$parameters.numberOfPacketsToCapture">
+                    <default value="1000"/>
+                    <format maximum="90000" minimum="100"/>
+                  </prop>
+                  <prop type="string" name="operation" arg="$parameters.operation">
+                    <default value="&quot;Start&quot;"/>
+                    <enum>
+                      <item value="&quot;Start&quot;"/>
+                      <item value="&quot;Status&quot;"/>
+                      <item value="&quot;Stop&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="string" name="protocol" arg="$parameters.protocol">
+                    <enum>
+                      <item value="&quot;Any&quot;"/>
+                      <item value="&quot;ICMP&quot;"/>
+                      <item value="&quot;TCP&quot;"/>
+                      <item value="&quot;UDP&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="string" name="sasUrl" arg="$parameters.sasUrl"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="message"/>
+                  <prop type="string" name="statusCode">
+                    <enum>
+                      <item value="&quot;AzureFirewallPacketCaptureCompleted&quot;"/>
+                      <item value="&quot;AzureFirewallPacketCaptureFailed&quot;"/>
+                      <item value="&quot;AzureFirewallPacketCaptureInProgress&quot;"/>
+                      <item value="&quot;AzureFirewallPacketCaptureNotInProgress&quot;"/>
+                      <item value="&quot;AzureFirewallPacketCaptureStartFailed&quot;"/>
+                      <item value="&quot;AzureFirewallPacketCaptureStartFailedToUpload&quot;"/>
+                      <item value="&quot;AzureFirewallPacketCaptureStartFailure&quot;"/>
+                      <item value="&quot;AzureFirewallPacketCaptureStartSucceeded&quot;"/>
+                      <item value="&quot;AzureFirewallPacketCaptureStopSucceeded&quot;"/>
+                      <item value="&quot;NotImplemented&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance"/>
+    </command>
+  </commandGroup>
+</CodeGen>

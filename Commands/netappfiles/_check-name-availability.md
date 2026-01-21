@@ -25,3 +25,22 @@ Check if a resource name is available
 ### [2024-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbG9jYXRpb25zL3t9L2NoZWNrbmFtZWF2YWlsYWJpbGl0eQ==/2024-07-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.netapp/locations/{}/checknameavailability 2024-07-01 -->
+
+### [2025-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbG9jYXRpb25zL3t9L2NoZWNrbmFtZWF2YWlsYWJpbGl0eQ==/2025-01-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.netapp/locations/{}/checknameavailability 2025-01-01 -->
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbG9jYXRpb25zL3t9L2NoZWNrbmFtZWF2YWlsYWJpbGl0eQ==/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.netapp/locations/{}/checknameavailability 2025-06-01 -->
+
+### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbG9jYXRpb25zL3t9L2NoZWNrbmFtZWF2YWlsYWJpbGl0eQ==/2025-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.netapp/locations/{}/checknameavailability 2025-09-01 -->
+
+#### examples
+
+- CheckNameAvailability
+    ```bash
+        netappfiles check-name-availability --location eastus --name accName --type Microsoft.NetApp/netAppAccounts --resource-group myRG
+    ```

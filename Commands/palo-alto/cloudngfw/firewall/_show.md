@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw firewall show_
 
-Get a FirewallResource
+Retrieve details of a specific Palo Alto Networks Cloud NGFW on Azure resource.
 
 ## Versions
 
@@ -22,6 +22,17 @@ Get a FirewallResource
 #### examples
 
 - Get a FirewallResource
+    ```bash
+        palo-alto cloudngfw firewall show --name MyCloudngfwFirewall -g MyResourceGroup
+    ```
+
+### [2025-10-08](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL3BhbG9hbHRvbmV0d29ya3MuY2xvdWRuZ2Z3L2ZpcmV3YWxscy97fQ==/2025-10-08.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/firewalls/{} 2025-10-08 -->
+
+#### examples
+
+- Retrieve details of a specific Palo Alto Networks Cloud NGFW on Azure resource.
     ```bash
         palo-alto cloudngfw firewall show --name MyCloudngfwFirewall -g MyResourceGroup
     ```

@@ -1,6 +1,6 @@
 # [Command] _elastic monitor show_
 
-Get the properties of a specific monitor resource.
+Get detailed properties of a specific Elastic monitor resource, helping you manage observability and performance.
 
 ## Versions
 
@@ -28,4 +28,15 @@ Get the properties of a specific monitor resource.
 - Show monitor
     ```bash
         elastic monitor show -n name -g rg
+    ```
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{} 2025-06-01 -->
+
+#### examples
+
+- Monitors_Get
+    ```bash
+        elastic monitor show --resource-group myResourceGroup --monitor-name myMonitor
     ```

@@ -1,6 +1,6 @@
 # [Command] _palo-alto cloudngfw firewall status list_
 
-List FirewallStatusResource resources by Firewalls
+List all firewall status resources associated with Palo Alto Networks firewalls.
 
 ## Versions
 
@@ -11,6 +11,17 @@ List FirewallStatusResource resources by Firewalls
 #### examples
 
 - List FirewallStatusResource resources by Firewalls
+    ```bash
+        palo-alto cloudngfw firewall status list --resource-group MyResourceGroup -n MyCloudngfwFirewall
+    ```
+
+### [2025-10-08](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL3BhbG9hbHRvbmV0d29ya3MuY2xvdWRuZ2Z3L2ZpcmV3YWxscy97fS9zdGF0dXNlcw==/2025-10-08.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/paloaltonetworks.cloudngfw/firewalls/{}/statuses 2025-10-08 -->
+
+#### examples
+
+- List all firewall status resources associated with Palo Alto Networks firewalls.
     ```bash
         palo-alto cloudngfw firewall status list --resource-group MyResourceGroup -n MyCloudngfwFirewall
     ```

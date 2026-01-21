@@ -160,7 +160,7 @@
             </arg>
           </item>
         </arg>
-        <arg type="array<object>" var="$parameters.properties.publicIpAddressesV6" options="pip-addresses-v6" hide="True" group="">
+        <arg type="array<object>" var="$parameters.properties.publicIpAddressesV6" options="pip-addresses-v6" group="">
           <help short="An array of public ip addresses V6 associated with the nat gateway resource."/>
           <item type="object" cls="SubResource_create">
             <arg type="string" var="@SubResource_create.id" options="id">
@@ -176,12 +176,20 @@
             </arg>
           </item>
         </arg>
-        <arg type="array<@SubResource_create>" var="$parameters.properties.publicIpPrefixesV6" options="pip-prefixes-v6" hide="True" group="">
+        <arg type="array<@SubResource_create>" var="$parameters.properties.publicIpPrefixesV6" options="pip-prefixes-v6" group="">
           <help short="An array of public ip prefixes V6 associated with the nat gateway resource."/>
           <item type="@SubResource_create"/>
         </arg>
-        <arg type="@SubResource_create" var="$parameters.properties.sourceVirtualNetwork" options="source-vnet" hide="True" group="">
+        <arg type="@SubResource_create" var="$parameters.properties.sourceVirtualNetwork" options="source-vnet" group="">
           <help short="A reference to the source virtual network using this nat gateway resource."/>
+        </arg>
+        <arg type="string" var="$parameters.sku.name" options="sku" group="">
+          <help short="Name of Nat Gateway SKU."/>
+          <default value="&quot;Standard&quot;"/>
+          <enum>
+            <item name="Standard" value="&quot;Standard&quot;"/>
+            <item name="StandardV2" value="&quot;StandardV2&quot;"/>
+          </enum>
         </arg>
         <arg type="object" var="$parameters.tags" options="tags" group="">
           <help short="Space-separated tags: key[=value] [key[=value] ...]."/>
@@ -198,16 +206,6 @@
         <arg type="ResourceId" var="$parameters.id" options="id" hide="True" group="Parameters">
           <help short="Resource ID."/>
           <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Network/natGateways/{}"/>
-        </arg>
-        <arg type="object" var="$parameters.sku" options="sku" group="Parameters">
-          <help short="The nat gateway SKU."/>
-          <arg type="string" var="$parameters.sku.name" options="name">
-            <help short="Name of Nat Gateway SKU."/>
-            <enum>
-              <item name="Standard" value="&quot;Standard&quot;"/>
-              <item name="StandardV2" value="&quot;StandardV2&quot;"/>
-            </enum>
-          </arg>
         </arg>
       </argGroup>
       <operation operationId="NatGateways_CreateOrUpdate">
@@ -253,7 +251,7 @@
                     </prop>
                     <prop type="@SubResource_create" name="sourceVirtualNetwork" arg="$parameters.properties.sourceVirtualNetwork"/>
                   </prop>
-                  <prop type="object" name="sku" arg="$parameters.sku">
+                  <prop type="object" name="sku">
                     <prop type="string" name="name" arg="$parameters.sku.name">
                       <enum>
                         <item value="&quot;Standard&quot;"/>
@@ -368,7 +366,7 @@
             </arg>
           </item>
         </arg>
-        <arg nullable="True" type="array<object>" var="$parameters.properties.publicIpAddressesV6" options="pip-addresses-v6" hide="True" group="">
+        <arg nullable="True" type="array<object>" var="$parameters.properties.publicIpAddressesV6" options="pip-addresses-v6" group="">
           <help short="An array of public ip addresses V6 associated with the nat gateway resource."/>
           <item nullable="True" type="object" cls="SubResource_update">
             <arg nullable="True" type="string" var="@SubResource_update.id" options="id">
@@ -384,11 +382,11 @@
             </arg>
           </item>
         </arg>
-        <arg nullable="True" type="array<@SubResource_update>" var="$parameters.properties.publicIpPrefixesV6" options="pip-prefixes-v6" hide="True" group="">
+        <arg nullable="True" type="array<@SubResource_update>" var="$parameters.properties.publicIpPrefixesV6" options="pip-prefixes-v6" group="">
           <help short="An array of public ip prefixes V6 associated with the nat gateway resource."/>
           <item nullable="True" type="@SubResource_update"/>
         </arg>
-        <arg nullable="True" type="@SubResource_update" var="$parameters.properties.sourceVirtualNetwork" options="source-vnet" hide="True" group="">
+        <arg nullable="True" type="@SubResource_update" var="$parameters.properties.sourceVirtualNetwork" options="source-vnet" group="">
           <help short="A reference to the source virtual network using this nat gateway resource."/>
         </arg>
         <arg nullable="True" type="object" var="$parameters.tags" options="tags" group="">

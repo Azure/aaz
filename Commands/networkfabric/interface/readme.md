@@ -2,6 +2,11 @@
 
 Manage Network Interface Resource
 
+## Subgroups
+
+- [identity](/Commands/networkfabric/interface/identity/readme.md)
+: Manage Identity
+
 ## Commands
 
 - [create](/Commands/networkfabric/interface/_create.md)

@@ -1,6 +1,6 @@
 # [Command] _elastic monitor create-and-associate-ip-filter_
 
-Create and associate ip filter
+Create and associate an IP filter with your Elastic monitor resource to control and manage network traffic.
 
 ## Versions
 
@@ -28,4 +28,15 @@ Create and associate ip filter
 - Create and associate ip filter
     ```bash
         elastic monitor create-and-associate-ip-filter --monitor-name name -g rg --name name --ips  192.168.131.0, 192.168.132.6/22
+    ```
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9L2NyZWF0ZWFuZGFzc29jaWF0ZWlwZmlsdGVy/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/createandassociateipfilter 2025-06-01 -->
+
+#### examples
+
+- createAndAssociateIPFilter_Create
+    ```bash
+        elastic monitor create-and-associate-ip-filter --resource-group myResourceGroup --monitor-name myMonitor --ips 192.168.131.0, 192.168.132.6/22
     ```

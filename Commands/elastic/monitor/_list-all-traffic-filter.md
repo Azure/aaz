@@ -1,6 +1,6 @@
 # [Command] _elastic monitor list-all-traffic-filter_
 
-List all traffic filter
+List all traffic filters associated with your Elastic monitor resource, helping you manage network traffic control.
 
 ## Versions
 
@@ -28,4 +28,15 @@ List all traffic filter
 - List all traffic filter
     ```bash
         elastic monitor list-all-traffic-filter --monitor-name name -g rg
+    ```
+
+### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljL21vbml0b3JzL3t9L2xpc3RhbGx0cmFmZmljZmlsdGVycw==/2025-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elastic/monitors/{}/listalltrafficfilters 2025-06-01 -->
+
+#### examples
+
+- AllTrafficFilters_list
+    ```bash
+        elastic monitor list-all-traffic-filter --resource-group myResourceGroup --monitor-name myMonitor
     ```

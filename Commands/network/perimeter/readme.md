@@ -25,6 +25,9 @@ Manage Network Security Perimeters.
 - [profile](/Commands/network/perimeter/profile/readme.md)
 : Manage Network Security Perimeter Profiles.
 
+- [service-tag](/Commands/network/perimeter/service-tag/readme.md)
+: Manage Network Security Perimeter Service Tags
+
 ## Commands
 
 - [create](/Commands/network/perimeter/_create.md)
