@@ -24,6 +24,13 @@ Create an availability set.
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/availabilitysets/{} 2024-07-01 -->
 
+#### examples
+
+- Create an availability set.
+    ```bash
+        vm availability-set create -g myRG -n myAvailabilitySet -l westus --platform-fault-domain-count 2 --platform-update-domain-count 20
+    ```
+
 ### [2025-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlL2F2YWlsYWJpbGl0eXNldHMve30=/2025-04-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/availabilitysets/{} 2025-04-01 -->
