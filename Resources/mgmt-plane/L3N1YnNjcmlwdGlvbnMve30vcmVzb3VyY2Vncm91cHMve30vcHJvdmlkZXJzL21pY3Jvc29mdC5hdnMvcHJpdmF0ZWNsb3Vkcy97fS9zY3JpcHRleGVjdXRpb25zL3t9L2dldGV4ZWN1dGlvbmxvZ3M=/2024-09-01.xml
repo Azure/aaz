@@ -1,0 +1,180 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.avs/privateclouds/{}/scriptexecutions/{}/getexecutionlogs" version="2024-09-01" swagger="mgmt-plane/vmware/ResourceProviders/Microsoft.AVS/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQVZTL3ByaXZhdGVDbG91ZHMve3ByaXZhdGVDbG91ZE5hbWV9L3NjcmlwdEV4ZWN1dGlvbnMve3NjcmlwdEV4ZWN1dGlvbk5hbWV9L2dldEV4ZWN1dGlvbkxvZ3M=/V/MjAyNC0wOS0wMQ=="/>
+  <commandGroup name="vmware private-cloud script-execution">
+    <command name="get-execution-log" version="2024-09-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.avs/privateclouds/{}/scriptexecutions/{}/getexecutionlogs" version="2024-09-01" swagger="mgmt-plane/vmware/ResourceProviders/Microsoft.AVS/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQVZTL3ByaXZhdGVDbG91ZHMve3ByaXZhdGVDbG91ZE5hbWV9L3NjcmlwdEV4ZWN1dGlvbnMve3NjcmlwdEV4ZWN1dGlvbk5hbWV9L2dldEV4ZWN1dGlvbkxvZ3M=/V/MjAyNC0wOS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.privateCloudName" options="private-cloud-name" required="True" idPart="name">
+          <help short="Name of the private cloud"/>
+          <format pattern="^[-\w\._]+$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.scriptExecutionName" options="script-execution-name" required="True" idPart="child_name_1">
+          <help short="Name of the script cmdlet."/>
+          <format pattern="^[-\w\._]+$"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="array<string>" var="$scriptOutputStreamType" options="script-output-stream-type type" group="">
+          <help short="Name of the desired output stream to return. If not provided, will return all. An empty array will return nothing."/>
+          <item type="string">
+            <enum>
+              <item name="Error" value="&quot;Error&quot;"/>
+              <item name="Information" value="&quot;Information&quot;"/>
+              <item name="Output" value="&quot;Output&quot;"/>
+              <item name="Warning" value="&quot;Warning&quot;"/>
+            </enum>
+          </item>
+        </arg>
+      </argGroup>
+      <operation operationId="ScriptExecutions_GetExecutionLogs">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AVS/privateClouds/{privateCloudName}/scriptExecutions/{scriptExecutionName}/getExecutionLogs">
+          <request method="post">
+            <path>
+              <param type="string" name="privateCloudName" arg="$Path.privateCloudName" required="True">
+                <format pattern="^[-\w\._]+$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="scriptExecutionName" arg="$Path.scriptExecutionName" required="True">
+                <format pattern="^[-\w\._]+$"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-09-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="array<string>" name="scriptOutputStreamType" arg="$scriptOutputStreamType">
+                  <item type="string">
+                    <enum>
+                      <item value="&quot;Error&quot;"/>
+                      <item value="&quot;Information&quot;"/>
+                      <item value="&quot;Output&quot;"/>
+                      <item value="&quot;Warning&quot;"/>
+                    </enum>
+                  </item>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.AVS/privateClouds/{}/scriptExecutions/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop readOnly="True" type="array<string>" name="errors">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="string" name="failureReason"/>
+                    <prop readOnly="True" type="dateTime" name="finishedAt"/>
+                    <prop type="array<@ScriptExecutionParameter_read>" name="hiddenParameters">
+                      <item type="@ScriptExecutionParameter_read"/>
+                    </prop>
+                    <prop readOnly="True" type="array<string>" name="information">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="object" name="namedOutputs">
+                      <additionalProp>
+                        <item type="object">
+                          <additionalProp>
+                            <item type="any"/>
+                          </additionalProp>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                    <prop type="array<string>" name="output">
+                      <item type="string"/>
+                    </prop>
+                    <prop type="array<object>" name="parameters">
+                      <item type="object" cls="ScriptExecutionParameter_read">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;Credential&quot;"/>
+                            <item value="&quot;SecureValue&quot;"/>
+                            <item value="&quot;Value&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="type" value="Credential">
+                          <prop type="password" name="password" secret="True"/>
+                          <prop type="string" name="username"/>
+                        </discriminator>
+                        <discriminator property="type" value="SecureValue">
+                          <prop type="password" name="secureValue" secret="True"/>
+                        </discriminator>
+                        <discriminator property="type" value="Value">
+                          <prop type="string" name="value"/>
+                        </discriminator>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Cancelled&quot;"/>
+                        <item value="&quot;Cancelling&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Pending&quot;"/>
+                        <item value="&quot;Running&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="retention"/>
+                    <prop type="string" name="scriptCmdletId"/>
+                    <prop readOnly="True" type="dateTime" name="startedAt"/>
+                    <prop readOnly="True" type="dateTime" name="submittedAt"/>
+                    <prop type="string" name="timeout" required="True"/>
+                    <prop readOnly="True" type="array<string>" name="warnings">
+                      <item type="string"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

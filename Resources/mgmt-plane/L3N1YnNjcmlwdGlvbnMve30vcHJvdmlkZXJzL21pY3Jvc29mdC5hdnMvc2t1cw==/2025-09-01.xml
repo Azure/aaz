@@ -1,0 +1,112 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.avs/skus" version="2025-09-01" swagger="mgmt-plane/vmware/ResourceProviders/Microsoft.AVS/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkFWUy9za3Vz/V/MjAyNS0wOS0wMQ=="/>
+  <commandGroup name="vmware skus">
+    <command name="list" version="2025-09-01" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.avs/skus" version="2025-09-01" swagger="mgmt-plane/vmware/ResourceProviders/Microsoft.AVS/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkFWUy9za3Vz/V/MjAyNS0wOS0wMQ=="/>
+      <argGroup name="">
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="Skus_List">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.AVS/skus">
+          <request method="get">
+            <path>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-09-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop type="array<@ResourceSkuCapabilities_read>" name="capabilities">
+                        <item type="@ResourceSkuCapabilities_read"/>
+                      </prop>
+                      <prop type="string" name="family"/>
+                      <prop type="array<object>" name="locationInfo" required="True">
+                        <item type="object">
+                          <prop type="string" name="location" required="True"/>
+                          <prop type="array<object>" name="zoneDetails" required="True">
+                            <item type="object">
+                              <prop type="array<object>" name="capabilities" required="True">
+                                <item type="object" cls="ResourceSkuCapabilities_read">
+                                  <prop type="string" name="name" required="True"/>
+                                  <prop type="string" name="value" required="True"/>
+                                </item>
+                              </prop>
+                              <prop type="array<string>" name="name" required="True">
+                                <item type="string"/>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="array<string>" name="zones" required="True">
+                            <item type="string"/>
+                          </prop>
+                        </item>
+                      </prop>
+                      <prop type="array<string>" name="locations" required="True">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="string" name="name" required="True"/>
+                      <prop type="string" name="resourceType" required="True">
+                        <enum>
+                          <item value="&quot;privateClouds&quot;"/>
+                          <item value="&quot;privateClouds/clusters&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="array<object>" name="restrictions" required="True">
+                        <item type="object">
+                          <prop type="string" name="reasonCode">
+                            <enum>
+                              <item value="&quot;NotAvailableForSubscription&quot;"/>
+                              <item value="&quot;QuotaId&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="object" name="restrictionInfo" required="True">
+                            <prop type="array<string>" name="locations">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="array<string>" name="zones">
+                              <item type="string"/>
+                            </prop>
+                          </prop>
+                          <prop type="string" name="type">
+                            <enum>
+                              <item value="&quot;Location&quot;"/>
+                              <item value="&quot;Zone&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="array<string>" name="values" required="True">
+                            <item type="string"/>
+                          </prop>
+                        </item>
+                      </prop>
+                      <prop type="string" name="size"/>
+                      <prop type="string" name="tier"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
