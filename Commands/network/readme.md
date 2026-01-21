@@ -22,6 +22,9 @@ Manage Azure Network resources.
 - [custom-ip](/Commands/network/custom-ip/readme.md)
 : Manage custom IP.
 
+- [ddos-custom-policy](/Commands/network/ddos-custom-policy/readme.md)
+: Manage Ddos Custom Policy
+
 - [ddos-protection](/Commands/network/ddos-protection/readme.md)
 : Manage DDoS Protection Plans.
 
