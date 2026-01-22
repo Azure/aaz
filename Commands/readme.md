@@ -32,6 +32,9 @@
 - [arcgateway](/Commands/arcgateway/readme.md)
 : Manage gateway connection on Arc machine
 
+- [artifact-signing](/Commands/artifact-signing/readme.md)
+: Manage artifact signing account.
+
 - [astronomer](/Commands/astronomer/readme.md)
 : Manage Azure Astronomer resources.
 
