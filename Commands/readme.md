@@ -122,6 +122,9 @@
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage dataprotection.
 
+- [dell](/Commands/dell/readme.md)
+: Manage Dell
+
 - [desktopvirtualization](/Commands/desktopvirtualization/readme.md)
 : Manage desktop virtualization.
 

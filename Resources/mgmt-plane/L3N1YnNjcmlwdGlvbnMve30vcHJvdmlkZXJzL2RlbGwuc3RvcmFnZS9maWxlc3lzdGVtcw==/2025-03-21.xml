@@ -1,0 +1,345 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/dell.storage/filesystems" version="2025-03-21" swagger="mgmt-plane/dell/ResourceProviders/Dell.Storage/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvRGVsbC5TdG9yYWdlL2ZpbGVzeXN0ZW1z/V/MjAyNS0wMy0yMQ=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/dell.storage/filesystems" version="2025-03-21" swagger="mgmt-plane/dell/ResourceProviders/Dell.Storage/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9EZWxsLlN0b3JhZ2UvZmlsZXN5c3RlbXM=/V/MjAyNS0wMy0yMQ=="/>
+  <commandGroup name="dell filesystem">
+    <command name="list" version="2025-03-21">
+      <resource id="/subscriptions/{}/providers/dell.storage/filesystems" version="2025-03-21" swagger="mgmt-plane/dell/ResourceProviders/Dell.Storage/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvRGVsbC5TdG9yYWdlL2ZpbGVzeXN0ZW1z/V/MjAyNS0wMy0yMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/dell.storage/filesystems" version="2025-03-21" swagger="mgmt-plane/dell/ResourceProviders/Dell.Storage/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9EZWxsLlN0b3JhZ2UvZmlsZXN5c3RlbXM=/V/MjAyNS0wMy0yMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <condition var="$Condition_FileSystems_ListBySubscription">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <condition var="$Condition_FileSystems_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_FileSystems_ListBySubscription" operationId="FileSystems_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Dell.Storage/filesystems">
+          <request method="get">
+            <path>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-03-21&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id"/>
+                      <prop type="IdentityObject" name="identity">
+                        <prop readOnly="True" type="uuid" name="principalId"/>
+                        <prop readOnly="True" type="uuid" name="tenantId"/>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;None&quot;"/>
+                            <item value="&quot;SystemAssigned&quot;"/>
+                            <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                            <item value="&quot;UserAssigned&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="userAssignedIdentities">
+                          <additionalProp>
+                            <item nullable="True" type="object">
+                              <prop readOnly="True" type="uuid" name="clientId"/>
+                              <prop readOnly="True" type="uuid" name="principalId"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties">
+                        <prop type="object" name="capacity">
+                          <prop type="string" name="current"/>
+                          <prop type="string" name="incremental"/>
+                          <prop type="string" name="max"/>
+                          <prop type="string" name="min"/>
+                        </prop>
+                        <prop type="string" name="delegatedSubnetCidr" required="True">
+                          <format pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}/(16|24)$"/>
+                        </prop>
+                        <prop type="string" name="delegatedSubnetId" required="True"/>
+                        <prop type="string" name="dellReferenceNumber" required="True"/>
+                        <prop type="object" name="encryption" required="True">
+                          <prop type="object" name="encryptionIdentityProperties">
+                            <prop type="string" name="identityResourceId"/>
+                            <prop type="string" name="identityType">
+                              <enum>
+                                <item value="&quot;SystemAssigned&quot;"/>
+                                <item value="&quot;UserAssigned&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop type="string" name="encryptionType" required="True">
+                            <enum>
+                              <item value="&quot;Customer-managed keys (CMK)&quot;"/>
+                              <item value="&quot;Microsoft-managed keys (MMK)&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="keyUrl"/>
+                        </prop>
+                        <prop type="string" name="fileSystemId"/>
+                        <prop type="object" name="marketplace" required="True">
+                          <prop type="string" name="endDate"/>
+                          <prop type="string" name="marketplaceSubscriptionId"/>
+                          <prop readOnly="True" type="string" name="marketplaceSubscriptionStatus">
+                            <enum>
+                              <item value="&quot;PendingFulfillmentStart&quot;"/>
+                              <item value="&quot;Subscribed&quot;"/>
+                              <item value="&quot;Suspended&quot;"/>
+                              <item value="&quot;Unsubscribed&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="offerId" required="True"/>
+                          <prop type="string" name="planId" required="True"/>
+                          <prop type="string" name="planName" required="True"/>
+                          <prop type="string" name="privateOfferId"/>
+                          <prop type="string" name="publisherId"/>
+                          <prop type="string" name="termUnit"/>
+                        </prop>
+                        <prop type="string" name="oneFsUrl"/>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Accepted&quot;"/>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Creating&quot;"/>
+                            <item value="&quot;Deleted&quot;"/>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;NotSpecified&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="smartConnectFqdn"/>
+                        <prop type="object" name="user" required="True">
+                          <prop type="string" name="email" required="True" secret="True"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_FileSystems_ListByResourceGroup" operationId="FileSystems_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Dell.Storage/filesystems">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-03-21&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id"/>
+                      <prop type="IdentityObject" name="identity">
+                        <prop readOnly="True" type="uuid" name="principalId"/>
+                        <prop readOnly="True" type="uuid" name="tenantId"/>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;None&quot;"/>
+                            <item value="&quot;SystemAssigned&quot;"/>
+                            <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                            <item value="&quot;UserAssigned&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="userAssignedIdentities">
+                          <additionalProp>
+                            <item nullable="True" type="object">
+                              <prop readOnly="True" type="uuid" name="clientId"/>
+                              <prop readOnly="True" type="uuid" name="principalId"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties">
+                        <prop type="object" name="capacity">
+                          <prop type="string" name="current"/>
+                          <prop type="string" name="incremental"/>
+                          <prop type="string" name="max"/>
+                          <prop type="string" name="min"/>
+                        </prop>
+                        <prop type="string" name="delegatedSubnetCidr" required="True">
+                          <format pattern="^([0-9]{1,3}\.){3}[0-9]{1,3}/(16|24)$"/>
+                        </prop>
+                        <prop type="string" name="delegatedSubnetId" required="True"/>
+                        <prop type="string" name="dellReferenceNumber" required="True"/>
+                        <prop type="object" name="encryption" required="True">
+                          <prop type="object" name="encryptionIdentityProperties">
+                            <prop type="string" name="identityResourceId"/>
+                            <prop type="string" name="identityType">
+                              <enum>
+                                <item value="&quot;SystemAssigned&quot;"/>
+                                <item value="&quot;UserAssigned&quot;"/>
+                              </enum>
+                            </prop>
+                          </prop>
+                          <prop type="string" name="encryptionType" required="True">
+                            <enum>
+                              <item value="&quot;Customer-managed keys (CMK)&quot;"/>
+                              <item value="&quot;Microsoft-managed keys (MMK)&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="keyUrl"/>
+                        </prop>
+                        <prop type="string" name="fileSystemId"/>
+                        <prop type="object" name="marketplace" required="True">
+                          <prop type="string" name="endDate"/>
+                          <prop type="string" name="marketplaceSubscriptionId"/>
+                          <prop readOnly="True" type="string" name="marketplaceSubscriptionStatus">
+                            <enum>
+                              <item value="&quot;PendingFulfillmentStart&quot;"/>
+                              <item value="&quot;Subscribed&quot;"/>
+                              <item value="&quot;Suspended&quot;"/>
+                              <item value="&quot;Unsubscribed&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="offerId" required="True"/>
+                          <prop type="string" name="planId" required="True"/>
+                          <prop type="string" name="planName" required="True"/>
+                          <prop type="string" name="privateOfferId"/>
+                          <prop type="string" name="publisherId"/>
+                          <prop type="string" name="termUnit"/>
+                        </prop>
+                        <prop type="string" name="oneFsUrl"/>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Accepted&quot;"/>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Creating&quot;"/>
+                            <item value="&quot;Deleted&quot;"/>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;NotSpecified&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="smartConnectFqdn"/>
+                        <prop type="object" name="user" required="True">
+                          <prop type="string" name="email" required="True" secret="True"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
