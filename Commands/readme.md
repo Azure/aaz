@@ -113,6 +113,9 @@
 - [data-boundary](/Commands/data-boundary/readme.md)
 : data boundary operations
 
+- [databasewatcher](/Commands/databasewatcher/readme.md)
+: Manage the Database Watcher service.
+
 - [databox](/Commands/databox/readme.md)
 : Manage data box
 
