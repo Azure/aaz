@@ -11,7 +11,12 @@ List FileSystemResource resources by subscription ID
 
 #### examples
 
-- FileSystems_ListBySubscription_MaximumSet_Gen
+- List all Dell filesystems in subscription
     ```bash
         dell filesystem list
+    ```
+
+- List Dell filesystems in specific resource group
+    ```bash
+        dell filesystem list --resource-group cli_test_dell_rg
     ```

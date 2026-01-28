@@ -10,7 +10,7 @@ Get a FileSystemResource
 
 #### examples
 
-- FileSystems_Get_MaximumSet_Gen
+- Show details of a Dell filesystem
     ```bash
-        dell filesystem show --resource-group rgDell --filesystem-name abcd
+        dell filesystem show --resource-group cli_test_dell_rg --filesystem-name dell-fs-test
     ```

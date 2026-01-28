@@ -10,7 +10,7 @@ Delete a FileSystemResource
 
 #### examples
 
-- FileSystems_Delete_MaximumSet_Gen
+- Delete a Dell filesystem
     ```bash
-        dell filesystem delete --resource-group rgDell --filesystem-name abcd
+        dell filesystem delete --resource-group cli_test_dell_rg --filesystem-name dell-fs-test
     ```

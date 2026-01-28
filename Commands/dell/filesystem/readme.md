@@ -15,6 +15,3 @@ Manage Filesystem
 
 - [show](/Commands/dell/filesystem/_show.md)
 : Get a FileSystemResource
-
-- [update](/Commands/dell/filesystem/_update.md)
-: Update a FileSystemResource
