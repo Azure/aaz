@@ -1,0 +1,305 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.cleanroom/collaborations" version="2025-10-31-preview" swagger="mgmt-plane/cleanroom/ResourceProviders/Microsoft.CleanRoom/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNsZWFuUm9vbS9jb2xsYWJvcmF0aW9ucw==/V/MjAyNS0xMC0zMS1wcmV2aWV3"/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cleanroom/collaborations" version="2025-10-31-preview" swagger="mgmt-plane/cleanroom/ResourceProviders/Microsoft.CleanRoom/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2xlYW5Sb29tL2NvbGxhYm9yYXRpb25z/V/MjAyNS0xMC0zMS1wcmV2aWV3"/>
+  <commandGroup name="managedcleanroom collaboration">
+    <command name="list" version="2025-10-31-preview">
+      <resource id="/subscriptions/{}/providers/microsoft.cleanroom/collaborations" version="2025-10-31-preview" swagger="mgmt-plane/cleanroom/ResourceProviders/Microsoft.CleanRoom/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNsZWFuUm9vbS9jb2xsYWJvcmF0aW9ucw==/V/MjAyNS0xMC0zMS1wcmV2aWV3"/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cleanroom/collaborations" version="2025-10-31-preview" swagger="mgmt-plane/cleanroom/ResourceProviders/Microsoft.CleanRoom/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2xlYW5Sb29tL2NvbGxhYm9yYXRpb25z/V/MjAyNS0xMC0zMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <condition var="$Condition_Collaborations_ListBySubscription">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <condition var="$Condition_Collaborations_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_Collaborations_ListBySubscription" operationId="Collaborations_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.CleanRoom/collaborations">
+          <request method="get">
+            <path>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-10-31-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.CleanRoom/collaborations/{}"/>
+                      </prop>
+                      <prop type="string" name="kind">
+                        <format pattern="^[-\w\._,\(\)]+$"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" required="True" clientFlatten="True">
+                        <prop readOnly="True" type="string" name="clusterEndpoint"/>
+                        <prop readOnly="True" type="ResourceId" name="consortiumArmId"/>
+                        <prop type="string" name="consortiumType" required="True">
+                          <enum>
+                            <item value="&quot;ConfidentialACI&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="object" name="health">
+                          <prop type="array<object>" name="healthIssues">
+                            <item type="object">
+                              <prop type="string" name="code" required="True"/>
+                              <prop type="string" name="message" required="True"/>
+                            </item>
+                          </prop>
+                          <prop type="string" name="healthState" required="True">
+                            <enum>
+                              <item value="&quot;Error&quot;"/>
+                              <item value="&quot;Ok&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="object" name="managedOnBehalfOfConfiguration">
+                          <prop type="array<object>" name="moboBrokerResources" identifiers="id">
+                            <item type="object">
+                              <prop type="ResourceId" name="id"/>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Accepted&quot;"/>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Creating&quot;"/>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="userIdentity" required="True">
+                          <prop type="string" name="accountType" required="True">
+                            <enum>
+                              <item value="&quot;microsoft&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="objectId" required="True"/>
+                          <prop type="string" name="tenantId" required="True"/>
+                        </prop>
+                        <prop readOnly="True" type="array<object>" name="workloads">
+                          <item type="object">
+                            <prop type="string" name="endpoint" required="True"/>
+                            <prop type="string" name="namespace" required="True"/>
+                            <prop type="string" name="workloadType" required="True">
+                              <enum>
+                                <item value="&quot;analytics&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_Collaborations_ListByResourceGroup" operationId="Collaborations_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CleanRoom/collaborations">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-10-31-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.CleanRoom/collaborations/{}"/>
+                      </prop>
+                      <prop type="string" name="kind">
+                        <format pattern="^[-\w\._,\(\)]+$"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" required="True" clientFlatten="True">
+                        <prop readOnly="True" type="string" name="clusterEndpoint"/>
+                        <prop readOnly="True" type="ResourceId" name="consortiumArmId"/>
+                        <prop type="string" name="consortiumType" required="True">
+                          <enum>
+                            <item value="&quot;ConfidentialACI&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="object" name="health">
+                          <prop type="array<object>" name="healthIssues">
+                            <item type="object">
+                              <prop type="string" name="code" required="True"/>
+                              <prop type="string" name="message" required="True"/>
+                            </item>
+                          </prop>
+                          <prop type="string" name="healthState" required="True">
+                            <enum>
+                              <item value="&quot;Error&quot;"/>
+                              <item value="&quot;Ok&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="object" name="managedOnBehalfOfConfiguration">
+                          <prop type="array<object>" name="moboBrokerResources" identifiers="id">
+                            <item type="object">
+                              <prop type="ResourceId" name="id"/>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Accepted&quot;"/>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Creating&quot;"/>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="userIdentity" required="True">
+                          <prop type="string" name="accountType" required="True">
+                            <enum>
+                              <item value="&quot;microsoft&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="objectId" required="True"/>
+                          <prop type="string" name="tenantId" required="True"/>
+                        </prop>
+                        <prop readOnly="True" type="array<object>" name="workloads">
+                          <item type="object">
+                            <prop type="string" name="endpoint" required="True"/>
+                            <prop type="string" name="namespace" required="True"/>
+                            <prop type="string" name="workloadType" required="True">
+                              <enum>
+                                <item value="&quot;analytics&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
