@@ -1,6 +1,6 @@
 # [Command] _sshkey update_
 
-Update a new SSH public key resource.
+Update a SSH public key resource.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Update a new SSH public key resource.
 
 #### examples
 
-- Create a new SSH public key resource.
+- Update a SSH public key resource.
     ```bash
         sshkey update --resource-group myResourceGroup --ssh-public-key-name mySshPublicKeyName --public-key {ssh-rsa public key}
     ```

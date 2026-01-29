@@ -1,6 +1,6 @@
 # [Command] _sshkey delete_
 
-Delete an SSH public key.
+Delete a SSH public key.
 
 ## Versions
 

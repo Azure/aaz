@@ -1,6 +1,6 @@
 # [Command] _sshkey show_
 
-Get information about an SSH public key.
+Get information about a SSH public key.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Get information about an SSH public key.
 
 #### examples
 
-- Get an ssh public key.
+- Get a ssh public key.
     ```bash
         sshkey show --resource-group myResourceGroup --ssh-public-key-name mySshPublicKeyName
     ```
