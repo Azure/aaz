@@ -7,6 +7,9 @@ Manage Automation Account.
 - [account](/Commands/automation/account/readme.md)
 : Automation Account.
 
+- [automation-account](/Commands/automation/automation-account/readme.md)
+: Manage Automation Account
+
 - [configuration](/Commands/automation/configuration/readme.md)
 : Manage Dsc Configuration.
 
