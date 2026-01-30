@@ -1,6 +1,6 @@
 # [Group] _servicebus_
 
-servicebus
+Manage Service Bus
 
 ## Subgroups
 
@@ -11,7 +11,7 @@ servicebus
 : Manage Azure Service Bus Migration of Standard to Premium.
 
 - [namespace](/Commands/servicebus/namespace/readme.md)
-: servicebus namespace
+: Manage Namespace
 
 - [queue](/Commands/servicebus/queue/readme.md)
 : servicebus queue
