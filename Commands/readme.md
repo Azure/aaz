@@ -209,6 +209,9 @@
 - [maintenance](/Commands/maintenance/readme.md)
 : Manage Maintenance
 
+- [managedcleanroom](/Commands/managedcleanroom/readme.md)
+: Manage Clean Room
+
 - [managedservices](/Commands/managedservices/readme.md)
 : Manage the registration assignments and definitions in Azure.
 
