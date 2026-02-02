@@ -14,3 +14,14 @@ Returns report of quotas for the volume
     ```bash
         netappfiles volume list-quota-report --resource-group myRG --account-name account1 --pool-name pool1 --volume-name volume1
     ```
+
+### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbmV0YXBwYWNjb3VudHMve30vY2FwYWNpdHlwb29scy97fS92b2x1bWVzL3t9L2xpc3RxdW90YXJlcG9ydA==/2025-09-01.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.netapp/netappaccounts/{}/capacitypools/{}/volumes/{}/listquotareport 2025-09-01 -->
+
+#### examples
+
+- ListQuotaReport
+    ```bash
+        netappfiles volume list-quota-report --resource-group myRG --account-name account1 --pool-name pool1 --volume-name volume1
+    ```

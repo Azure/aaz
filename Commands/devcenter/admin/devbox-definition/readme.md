@@ -16,5 +16,8 @@ Manage dev box definitions.
 - [show](/Commands/devcenter/admin/devbox-definition/_show.md)
 : Get a dev box definition configured for a dev center or a project.
 
+- [show-untitled1](/Commands/devcenter/admin/devbox-definition/_show-untitled1.md)
+: Get a Dev Box definition configured for a project
+
 - [update](/Commands/devcenter/admin/devbox-definition/_update.md)
 : Update a dev box definition.

@@ -190,52 +190,15 @@
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Identity">
-        <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
-          <blank value="&quot;True&quot;"/>
-          <help short="Set the system managed identity."/>
-        </arg>
-        <arg type="string" var="$resource.identity.type" options="type" hide="True" group="Identity">
-          <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
-          <enum>
-            <item name="None" value="&quot;None&quot;"/>
-            <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
-            <item name="SystemAssigned,UserAssigned" value="&quot;SystemAssigned,UserAssigned&quot;"/>
-            <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
-          </enum>
-        </arg>
-        <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
-          <blank value="[]"/>
-          <help short="Set the user managed identities."/>
-          <item type="string"/>
-        </arg>
-        <arg type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
-          <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
-          <additionalProp>
-            <item nullable="True" type="object">
-              <blank value="{}"/>
-            </item>
-          </additionalProp>
-        </arg>
-      </argGroup>
       <argGroup name="Properties">
-        <arg type="string" var="$resource.properties.availabilityZone" options="availability-zone" group="Properties">
+        <arg type="string" var="$resource.properties.availabilityZone" options="zone z" required="True" group="Properties">
           <help short="Azure Availability Zone the Pool is located in"/>
         </arg>
-        <arg type="integer64" var="$resource.properties.provisionedBandwidthMbPerSec" options="provisioned-bandwidth" group="Properties">
+        <arg type="integer64" var="$resource.properties.provisionedBandwidthMbPerSec" options="provisioned-bandwidth" required="True" group="Properties">
           <help short="Total bandwidth provisioned for the pool, in MB/s"/>
         </arg>
-        <arg type="string" var="$resource.properties.reservationResourceId" options="reservation-id" group="Properties">
+        <arg type="string" var="$resource.properties.reservationResourceId" options="reservation-id" required="True" group="Properties">
           <help short="Azure resource ID of the Pure Storage Cloud service (reservation resource) this storage pool belongs to"/>
-        </arg>
-        <arg type="object" var="$resource.properties.vnetInjection" options="vnet-injection" group="Properties">
-          <help short="Network properties of the storage pool"/>
-          <arg type="string" var="$resource.properties.vnetInjection.subnetId" options="subnet-id" required="True">
-            <help short="Azure resource ID of the Virtual Network subnet where the storage pool will be connected"/>
-          </arg>
-          <arg type="string" var="$resource.properties.vnetInjection.vnetId" options="vnet-id" required="True">
-            <help short="Azure resource ID of the Virtual Network in which the subnet is located"/>
-          </arg>
         </arg>
       </argGroup>
       <argGroup name="Resource">
@@ -247,6 +210,14 @@
           <additionalProp>
             <item type="string"/>
           </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="VnetInjection">
+        <arg type="string" var="$resource.properties.vnetInjection.subnetId" options="subnet-id" required="True" group="VnetInjection">
+          <help short="Azure resource ID of the Virtual Network subnet where the storage pool will be connected"/>
+        </arg>
+        <arg type="string" var="$resource.properties.vnetInjection.vnetId" options="vnet-id" required="True" group="VnetInjection">
+          <help short="Azure resource ID of the Virtual Network in which the subnet is located"/>
         </arg>
       </argGroup>
       <operation operationId="StoragePools_Create">
@@ -271,31 +242,12 @@
             <body>
               <json>
                 <schema type="object" name="resource" required="True" clientFlatten="True">
-                  <prop type="IdentityObject" name="identity">
-                    <prop type="string" name="type" arg="$resource.identity.type" required="True">
-                      <enum>
-                        <item value="&quot;None&quot;"/>
-                        <item value="&quot;SystemAssigned&quot;"/>
-                        <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
-                        <item value="&quot;UserAssigned&quot;"/>
-                      </enum>
-                    </prop>
-                    <prop type="object" name="userAssignedIdentities" arg="$resource.identity.userAssignedIdentities">
-                      <additionalProp>
-                        <item nullable="True" type="object"/>
-                      </additionalProp>
-                    </prop>
-                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
-                      <item action="create" type="string"/>
-                    </userAssigned>
-                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
-                  </prop>
                   <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
                   <prop type="object" name="properties" clientFlatten="True">
                     <prop type="string" name="availabilityZone" arg="$resource.properties.availabilityZone" required="True"/>
                     <prop type="integer64" name="provisionedBandwidthMbPerSec" arg="$resource.properties.provisionedBandwidthMbPerSec" required="True"/>
                     <prop type="string" name="reservationResourceId" arg="$resource.properties.reservationResourceId" required="True"/>
-                    <prop type="object" name="vnetInjection" arg="$resource.properties.vnetInjection" required="True">
+                    <prop type="object" name="vnetInjection" required="True">
                       <prop type="string" name="subnetId" arg="$resource.properties.vnetInjection.subnetId" required="True"/>
                       <prop type="string" name="vnetId" arg="$resource.properties.vnetInjection.vnetId" required="True"/>
                     </prop>
@@ -420,34 +372,6 @@
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Identity">
-        <arg type="string" var="$properties.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
-          <blank value="&quot;True&quot;"/>
-          <help short="Set the system managed identity."/>
-        </arg>
-        <arg type="string" var="$properties.identity.type" options="type" hide="True" group="Identity">
-          <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
-          <enum>
-            <item name="None" value="&quot;None&quot;"/>
-            <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
-            <item name="SystemAssigned,UserAssigned" value="&quot;SystemAssigned,UserAssigned&quot;"/>
-            <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
-          </enum>
-        </arg>
-        <arg type="array<string>" var="$properties.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
-          <blank value="[]"/>
-          <help short="Set the user managed identities."/>
-          <item type="string"/>
-        </arg>
-        <arg type="object" var="$properties.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
-          <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
-          <additionalProp>
-            <item nullable="True" type="object">
-              <blank value="{}"/>
-            </item>
-          </additionalProp>
-        </arg>
-      </argGroup>
       <argGroup name="Properties">
         <arg type="integer64" var="$properties.properties.provisionedBandwidthMbPerSec" options="provisioned-bandwidth" group="Properties">
           <help short="Total bandwidth provisioned for the pool, in MB/s"/>
@@ -481,25 +405,6 @@
             <body>
               <json>
                 <schema type="object" name="properties" required="True" clientFlatten="True">
-                  <prop type="IdentityObject" name="identity">
-                    <prop type="string" name="type" arg="$properties.identity.type" required="True">
-                      <enum>
-                        <item value="&quot;None&quot;"/>
-                        <item value="&quot;SystemAssigned&quot;"/>
-                        <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
-                        <item value="&quot;UserAssigned&quot;"/>
-                      </enum>
-                    </prop>
-                    <prop type="object" name="userAssignedIdentities" arg="$properties.identity.userAssignedIdentities">
-                      <additionalProp>
-                        <item nullable="True" type="object"/>
-                      </additionalProp>
-                    </prop>
-                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$properties.identity.userAssigned">
-                      <item action="create" type="string"/>
-                    </userAssigned>
-                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$properties.identity.systemAssigned"/>
-                  </prop>
                   <prop type="object" name="properties" clientFlatten="True">
                     <prop type="integer64" name="provisionedBandwidthMbPerSec" arg="$properties.properties.provisionedBandwidthMbPerSec"/>
                   </prop>

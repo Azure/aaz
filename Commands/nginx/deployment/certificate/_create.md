@@ -69,3 +69,14 @@ Create a certificate for an NGINX deployment
     ```bash
         nginx deployment certificate create --certificate-name myCertificate --deployment-name myDeployment --resource-group myResourceGroup --certificate-path /etc/nginx/test.cert --key-path /etc/nginx/test.key --key-vault-secret-id keyVaultSecretId
     ```
+
+### [2025-03-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL25naW54Lm5naW54cGx1cy9uZ2lueGRlcGxveW1lbnRzL3t9L2NlcnRpZmljYXRlcy97fQ==/2025-03-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/nginx.nginxplus/nginxdeployments/{}/certificates/{} 2025-03-01-preview -->
+
+#### examples
+
+- Certificate Create
+    ```bash
+        nginx deployment certificate create --certificate-name myCertificate --deployment-name myDeployment --resource-group myResourceGroup --certificate-path /etc/nginx/test.cert --key-path /etc/nginx/test.key --key-vault-secret-id keyVaultSecretId
+    ```

@@ -10,6 +10,9 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 - [identity](/Commands/vmss/identity/readme.md)
 : Manage identities of a VMSS.
 
+- [instance-view](/Commands/vmss/instance-view/readme.md)
+: Manage Instance View
+
 - [nic](/Commands/vmss/nic/readme.md)
 : Manage network interfaces of a VMSS.
 
@@ -18,6 +21,9 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 
 - [run-command](/Commands/vmss/run-command/readme.md)
 : Manage Run Command
+
+- [vms](/Commands/vmss/vms/readme.md)
+: Manage Virtual Machine
 
 ## Commands
 

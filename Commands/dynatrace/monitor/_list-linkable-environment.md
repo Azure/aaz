@@ -25,3 +25,14 @@ List all available Dynatrace environments that can be integrated with your Azure
     ```bash
         dynatrace monitor list-linkable-environment -g rg --monitor-name monitor --user-principal Alice@microsoft.com --region eastus2euap
     ```
+
+### [2024-04-24](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL2R5bmF0cmFjZS5vYnNlcnZhYmlsaXR5L21vbml0b3JzL3t9L2xpc3RsaW5rYWJsZWVudmlyb25tZW50cw==/2024-04-24.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/dynatrace.observability/monitors/{}/listlinkableenvironments 2024-04-24 -->
+
+#### examples
+
+- List-linkable-environment
+    ```bash
+        dynatrace monitor list-linkable-environment -g rg --monitor-name monitor --user-principal Alice@microsoft.com --region eastus2euap
+    ```

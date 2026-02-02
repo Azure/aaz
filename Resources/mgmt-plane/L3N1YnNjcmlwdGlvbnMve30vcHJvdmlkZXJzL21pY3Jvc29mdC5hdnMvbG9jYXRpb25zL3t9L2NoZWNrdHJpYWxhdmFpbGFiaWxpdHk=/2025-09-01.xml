@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.avs/locations/{}/checktrialavailability" version="2025-09-01" swagger="mgmt-plane/vmware/ResourceProviders/Microsoft.AVS/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkFWUy9sb2NhdGlvbnMve2xvY2F0aW9ufS9jaGVja1RyaWFsQXZhaWxhYmlsaXR5/V/MjAyNS0wOS0wMQ=="/>
+  <commandGroup name="vmware location">
+    <command name="check-trial-availability" version="2025-09-01" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.avs/locations/{}/checktrialavailability" version="2025-09-01" swagger="mgmt-plane/vmware/ResourceProviders/Microsoft.AVS/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkFWUy9sb2NhdGlvbnMve2xvY2F0aW9ufS9jaGVja1RyaWFsQXZhaWxhYmlsaXR5/V/MjAyNS0wOS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceLocation" var="$Path.location" options="location l" required="True" idPart="name"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Sku">
+        <arg type="integer32" var="$sku.capacity" options="capacity" hide="True" group="Sku">
+          <help short="If the SKU supports scale out/in then the capacity integer should be included. If scale out/in is not possible for the resource this may be omitted."/>
+        </arg>
+        <arg type="string" var="$sku.family" options="family" hide="True" group="Sku">
+          <help short="If the service has different generations of hardware, for the same SKU, then that can be captured here."/>
+        </arg>
+        <arg type="string" var="$sku.name" options="sku" group="Sku">
+          <help short="The name of the SKU. E.g. P3. It is typically a letter+number code"/>
+        </arg>
+        <arg type="string" var="$sku.size" options="size" hide="True" group="Sku">
+          <help short="The SKU size. When the name field is the combination of tier and some other value, this would be the standalone code."/>
+        </arg>
+        <arg type="string" var="$sku.tier" options="tier" hide="True" group="Sku">
+          <help short="This field is required to be implemented by the Resource Provider if the service has more than one tier, but is not required on a PUT."/>
+          <enum>
+            <item name="Basic" value="&quot;Basic&quot;"/>
+            <item name="Free" value="&quot;Free&quot;"/>
+            <item name="Premium" value="&quot;Premium&quot;"/>
+            <item name="Standard" value="&quot;Standard&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <operation operationId="Locations_CheckTrialAvailability">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.AVS/locations/{location}/checkTrialAvailability">
+          <request method="post">
+            <path>
+              <param type="string" name="location" arg="$Path.location" required="True">
+                <format minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-09-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="sku" clientFlatten="True">
+                  <prop type="integer32" name="capacity" arg="$sku.capacity"/>
+                  <prop type="string" name="family" arg="$sku.family"/>
+                  <prop type="string" name="name" arg="$sku.name" required="True"/>
+                  <prop type="string" name="size" arg="$sku.size"/>
+                  <prop type="string" name="tier" arg="$sku.tier">
+                    <enum>
+                      <item value="&quot;Basic&quot;"/>
+                      <item value="&quot;Free&quot;"/>
+                      <item value="&quot;Premium&quot;"/>
+                      <item value="&quot;Standard&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="integer32" name="availableHosts"/>
+                  <prop readOnly="True" type="string" name="status">
+                    <enum>
+                      <item value="&quot;TrialAvailable&quot;"/>
+                      <item value="&quot;TrialDisabled&quot;"/>
+                      <item value="&quot;TrialUsed&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

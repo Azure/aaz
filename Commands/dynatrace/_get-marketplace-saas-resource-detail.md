@@ -14,3 +14,14 @@ Get Marketplace SaaS resource details for a given tenant under a subscription.
     ```bash
         dynatrace get-marketplace-saas-resource-detail --tenant-id urnmattojzhktcfw
     ```
+
+### [2024-04-24](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL2R5bmF0cmFjZS5vYnNlcnZhYmlsaXR5L2dldG1hcmtldHBsYWNlc2Fhc3Jlc291cmNlZGV0YWlscw==/2024-04-24.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/dynatrace.observability/getmarketplacesaasresourcedetails 2024-04-24 -->
+
+#### examples
+
+- Monitors_GetMarketplaceSaaSResourceDetails_MaximumSet_Gen
+    ```bash
+        dynatrace get-marketplace-saas-resource-detail --tenant-id urnmattojzhktcfw
+    ```

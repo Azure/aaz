@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.web/serverfarms/{}/workers/{}/recycleinstance" version="2025-03-01" swagger="mgmt-plane/web/ResourceProviders/Microsoft.Web/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuV2ViL3NlcnZlcmZhcm1zL3tuYW1lfS93b3JrZXJzL3t3b3JrZXJOYW1lfS9yZWN5Y2xlaW5zdGFuY2U=/V/MjAyNS0wMy0wMQ=="/>
+  <commandGroup name="appservice plan managed-instance instance">
+    <command name="recycle" version="2025-03-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.web/serverfarms/{}/workers/{}/recycleinstance" version="2025-03-01" swagger="mgmt-plane/web/ResourceProviders/Microsoft.Web/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuV2ViL3NlcnZlcmZhcm1zL3tuYW1lfS93b3JrZXJzL3t3b3JrZXJOYW1lfS9yZWN5Y2xlaW5zdGFuY2U=/V/MjAyNS0wMy0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.name" options="name" required="True" idPart="name">
+          <help short="Name of the App Service plan."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.workerName" options="worker-name" required="True" idPart="child_name_1">
+          <help short="Name of worker machine."/>
+          <format pattern="^[a-zA-Z0-9]+$"/>
+        </arg>
+      </argGroup>
+      <operation operationId="AppServicePlans_RecycleManagedInstanceWorker">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Web/serverfarms/{name}/workers/{workerName}/recycleinstance">
+          <request method="post">
+            <path>
+              <param type="string" name="name" arg="$Path.name" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format pattern="^[-\w\._\(\)]+[^\.]$" maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="workerName" arg="$Path.workerName" required="True">
+                <format pattern="^[a-zA-Z0-9]+$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-03-01&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="dateTime" name="createdTime">
+                    <format protocol="iso"/>
+                  </prop>
+                  <prop type="array<object>" name="errors">
+                    <item type="object" cls="ErrorEntity_read">
+                      <prop type="string" name="code"/>
+                      <prop type="array<@ErrorEntity_read>" name="details">
+                        <item type="@ErrorEntity_read"/>
+                      </prop>
+                      <prop type="string" name="extendedCode"/>
+                      <prop type="array<@ErrorEntity_read>" name="innerErrors">
+                        <item type="@ErrorEntity_read"/>
+                      </prop>
+                      <prop type="string" name="message"/>
+                      <prop type="string" name="messageTemplate"/>
+                      <prop type="array<string>" name="parameters">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="string" name="target"/>
+                    </item>
+                  </prop>
+                  <prop type="dateTime" name="expirationTime">
+                    <format protocol="iso"/>
+                  </prop>
+                  <prop type="uuid" name="geoMasterOperationId"/>
+                  <prop type="string" name="id"/>
+                  <prop type="dateTime" name="modifiedTime">
+                    <format protocol="iso"/>
+                  </prop>
+                  <prop type="string" name="name"/>
+                  <prop type="string" name="status">
+                    <enum>
+                      <item value="&quot;Created&quot;"/>
+                      <item value="&quot;Failed&quot;"/>
+                      <item value="&quot;InProgress&quot;"/>
+                      <item value="&quot;Succeeded&quot;"/>
+                      <item value="&quot;TimedOut&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

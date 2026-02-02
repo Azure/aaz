@@ -13,6 +13,12 @@ Manage NGINX deployment resources
 - [configuration](/Commands/nginx/deployment/configuration/readme.md)
 : Manage NGINX configuration resources
 
+- [identity](/Commands/nginx/deployment/identity/readme.md)
+: Manage Identity
+
+- [waf-policy](/Commands/nginx/deployment/waf-policy/readme.md)
+: Manage Waf Policy
+
 ## Commands
 
 - [create](/Commands/nginx/deployment/_create.md)
@@ -23,6 +29,9 @@ Manage NGINX deployment resources
 
 - [list](/Commands/nginx/deployment/_list.md)
 : List of NGINX deployments
+
+- [list-default-waf-policy](/Commands/nginx/deployment/_list-default-waf-policy.md)
+: Lists the default WAF policies for a deployment.
 
 - [show](/Commands/nginx/deployment/_show.md)
 : Get the properties of a specific NGINX Deployment

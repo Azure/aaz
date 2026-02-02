@@ -4,6 +4,11 @@ Commands to manage all the clusters in a private cloud, excluding the first clus
 
 The default management cluster is created and managed as part of the private cloud. To view details of the management cluster, use `az vmware private-cloud show`.
 
+## Subgroups
+
+- [host](/Commands/vmware/cluster/host/readme.md)
+: Commands to list and show host resources.
+
 ## Commands
 
 - [create](/Commands/vmware/cluster/_create.md)
