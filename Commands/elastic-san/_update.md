@@ -69,3 +69,14 @@ Update an Elastic SAN.
     ```bash
         elastic-san update -n "san_name" -g "rg" --tags '{key1710:bbbb}' --base-size-tib 25 --extended-capacity-size-tib 15 --auto-scale-policy-enforcement Disabled --capacity-unit-scale-up-limit-tib 18 --increase-capacity-unit-by-tib 5 --unused-size-tib 25
     ```
+
+### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljc2FuL2VsYXN0aWNzYW5zL3t9/2025-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elasticsan/elasticsans/{} 2025-09-01 -->
+
+#### examples
+
+- Update an Elastic SAN.
+    ```bash
+        elastic-san update -n "san_name" -g "rg" --tags '{key1710:bbbb}' --base-size-tib 25 --extended-capacity-size-tib 15 --auto-scale-policy-enforcement Disabled --capacity-unit-scale-up-limit-tib 18 --increase-capacity-unit-by-tib 5 --unused-size-tib 25
+    ```
