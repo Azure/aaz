@@ -2,6 +2,11 @@
 
 Commands to manage databricks access connector.
 
+## Subgroups
+
+- [identity](/Commands/databricks/access-connector/identity/readme.md)
+: Manage Identity
+
 ## Commands
 
 - [create](/Commands/databricks/access-connector/_create.md)
