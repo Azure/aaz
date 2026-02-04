@@ -125,6 +125,9 @@
 - [dataprotection](/Commands/dataprotection/readme.md)
 : Manage dataprotection.
 
+- [dell](/Commands/dell/readme.md)
+: Manage Dell
+
 - [desktopvirtualization](/Commands/desktopvirtualization/readme.md)
 : Manage desktop virtualization.
 
@@ -208,6 +211,9 @@
 
 - [maintenance](/Commands/maintenance/readme.md)
 : Manage Maintenance
+
+- [managedcleanroom](/Commands/managedcleanroom/readme.md)
+: Manage Clean Room
 
 - [managedservices](/Commands/managedservices/readme.md)
 : Manage the registration assignments and definitions in Azure.

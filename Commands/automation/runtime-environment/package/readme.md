@@ -11,7 +11,7 @@ Manage Package for Runtime Environment.
 : Delete the package by name.
 
 - [list](/Commands/automation/runtime-environment/package/_list.md)
-: List the a list of Packages
+: List the a list of Packages.
 
 - [show](/Commands/automation/runtime-environment/package/_show.md)
 : Get the Package identified by Package name.
