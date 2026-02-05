@@ -14,4 +14,4 @@ Manage Shared Limit
 : Disable sharing of a compute limit by the host subscription with its guest subscriptions.
 
 - [show](/Commands/computelimit/shared-limit/_show.md)
-: Get the properties of a compute limit shared by the host subscription with its guest subscriptions.
+: Get a compute limit shared by the host subscription with its guest subscriptions.

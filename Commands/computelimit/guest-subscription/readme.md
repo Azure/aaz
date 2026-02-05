@@ -14,4 +14,4 @@ Manage Guest Subscription
 : Remove a subscription as a guest to stop consuming the compute limits shared by the host subscription.
 
 - [show](/Commands/computelimit/guest-subscription/_show.md)
-: Get the properties of a guest subscription.
+: Get a guest subscription added to the host subscription

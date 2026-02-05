@@ -1,6 +1,6 @@
 # [Command] _computelimit guest-subscription show_
 
-Get the properties of a guest subscription.
+Get a guest subscription added to the host subscription
 
 ## Versions
 

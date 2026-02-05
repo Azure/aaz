@@ -1,6 +1,6 @@
 # [Command] _computelimit shared-limit show_
 
-Get the properties of a compute limit shared by the host subscription with its guest subscriptions.
+Get a compute limit shared by the host subscription with its guest subscriptions.
 
 ## Versions
 
