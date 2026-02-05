@@ -86,6 +86,9 @@
 - [compute-fleet](/Commands/compute-fleet/readme.md)
 : Manage for Azure Compute Fleet
 
+- [compute-limit](/Commands/compute-limit/readme.md)
+: Manage Compute Limit
+
 - [compute-recommender](/Commands/compute-recommender/readme.md)
 : Manage sku/zone/region recommender info for compute resources
 
