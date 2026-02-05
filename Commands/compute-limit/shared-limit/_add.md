@@ -10,7 +10,7 @@ Enable a compute limit to be shared by the host subscription with its guest subs
 
 #### examples
 
-- Create a shared limit
+- Enable a shared limit
     ```bash
         compute-limit shared-limit add --location eastus --name StandardDSv3Family
     ```

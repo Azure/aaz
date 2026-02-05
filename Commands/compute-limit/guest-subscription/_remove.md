@@ -10,7 +10,7 @@ Remove a subscription as a guest to stop consuming the compute limits shared by 
 
 #### examples
 
-- Delete a guest subscription
+- Remove a guest subscription
     ```bash
         compute-limit guest-subscription remove --location eastus --guest-subscription-id 11111111-1111-1111-1111-111111111111
     ```

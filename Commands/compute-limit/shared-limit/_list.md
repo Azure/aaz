@@ -10,7 +10,7 @@ List all compute limits shared by the host subscription with its guest subscript
 
 #### examples
 
-- List all shared limits for a scope
+- List all shared limits for the subscription
     ```bash
         compute-limit shared-limit list --location eastus
     ```

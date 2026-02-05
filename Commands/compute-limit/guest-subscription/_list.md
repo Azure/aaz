@@ -10,7 +10,7 @@ List all guest subscriptions added to the host subscription in a location.
 
 #### examples
 
-- List guest subscriptions for a scope
+- List guest subscriptions for the subscription
     ```bash
         compute-limit guest-subscription list --location eastus
     ```

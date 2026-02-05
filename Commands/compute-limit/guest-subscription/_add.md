@@ -10,7 +10,7 @@ Add a subscription as a guest to consume the compute limits shared by the host s
 
 #### examples
 
-- Create a guest subscription
+- Add a guest subscription
     ```bash
         compute-limit guest-subscription add --location eastus --guest-subscription-id 11111111-1111-1111-1111-111111111111
     ```

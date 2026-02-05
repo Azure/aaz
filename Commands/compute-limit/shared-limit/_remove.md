@@ -10,7 +10,7 @@ Disable sharing of a compute limit by the host subscription with its guest subsc
 
 #### examples
 
-- Delete a shared limit
+- Disable a shared limit
     ```bash
         compute-limit shared-limit remove --location eastus --name StandardDSv3Family
     ```
