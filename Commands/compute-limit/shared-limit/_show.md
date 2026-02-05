@@ -4,7 +4,7 @@ Get the properties of a compute limit shared by the host subscription with its g
 
 ## Versions
 
-### [2025-08-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlbGltaXQvbG9jYXRpb25zL3t9L3NoYXJlZGxpbWl0cy97fQ==/2025-08-15.xml) **Stable**
+### [2025-08-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlbGltaXQvbG9jYXRpb25zL3t9L3NoYXJlZGxpbWl0cy97fQ==/2025-08-15.xml) **Preview**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.computelimit/locations/{}/sharedlimits/{} 2025-08-15 -->
 
