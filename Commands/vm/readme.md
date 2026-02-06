@@ -92,3 +92,6 @@ Manage Linux or Windows virtual machines.
 
 - [update](/Commands/vm/_update.md)
 : Update operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
+
+- [patch](/Commands/vm/_patch.md)
+: Patch operation to patch a virtual machine.
