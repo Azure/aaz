@@ -89,6 +89,9 @@
 - [compute-recommender](/Commands/compute-recommender/readme.md)
 : Manage sku/zone/region recommender info for compute resources
 
+- [computelimit](/Commands/computelimit/readme.md)
+: Manage compute shared limit resources
+
 - [computeschedule](/Commands/computeschedule/readme.md)
 : Computeschedule batch virtual machine operations
 
