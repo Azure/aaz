@@ -2,6 +2,11 @@
 
 Manage StorageTask
 
+## Subgroups
+
+- [identity](/Commands/storage-actions/task/identity/readme.md)
+: Manage Identity
+
 ## Commands
 
 - [create](/Commands/storage-actions/task/_create.md)

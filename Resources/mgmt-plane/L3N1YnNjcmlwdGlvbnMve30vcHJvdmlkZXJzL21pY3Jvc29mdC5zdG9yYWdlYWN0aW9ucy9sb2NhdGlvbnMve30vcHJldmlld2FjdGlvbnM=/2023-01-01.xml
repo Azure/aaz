@@ -9,62 +9,64 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Properties">
-        <arg type="object" var="$parameters.properties.action" options="action" required="True" group="Properties">
-          <help short="Preview action container properties to be tested for a match with the provided condition."/>
-          <arg type="boolean" var="$parameters.properties.action.elseBlockExists" options="else-block-exists" required="True">
+        <arg type="object" var="$body.properties.action" options="action" required="True" group="Properties">
+          <help short="Preview action to test"/>
+          <arg type="boolean" var="$body.properties.action.elseBlockExists" options="else-block-exists" required="True">
             <help short="Specify whether the else block is present in the condition."/>
           </arg>
-          <arg type="object" var="$parameters.properties.action.if" options="if" required="True">
+          <arg type="object" var="$body.properties.action.if" options="if" required="True">
             <help short="The condition to be tested for a match with container and blob properties."/>
-            <arg type="string" var="$parameters.properties.action.if.condition" options="condition">
-              <help short="Storage task condition to be tested for a match."/>
+            <arg type="string" var="$body.properties.action.if.condition" options="condition">
+              <help short="Storage task condition to bes tested for a match."/>
             </arg>
           </arg>
         </arg>
-        <arg type="array<object>" var="$parameters.properties.blobs" options="blobs" required="True" group="Properties">
-          <help short="Preview action container properties to be tested for a match with the provided condition."/>
+        <arg type="array<object>" var="$body.properties.blobs" options="blobs" required="True" group="Properties">
+          <help short="Properties of some sample blobs in the container to test for matches with the preview action."/>
           <item type="object">
-            <arg type="array<@StorageTaskPreviewKeyValueProperties_create>" var="$parameters.properties.blobs[].metadata" options="metadata">
+            <arg type="array<@StoragetaskpreviewkeyvaluepropertiesCreate_create>" var="$body.properties.blobs[].metadata" options="metadata">
               <help short="metadata key value pairs to be tested for a match against the provided condition."/>
-              <item type="@StorageTaskPreviewKeyValueProperties_create"/>
+              <item type="@StoragetaskpreviewkeyvaluepropertiesCreate_create"/>
             </arg>
-            <arg type="string" var="$parameters.properties.blobs[].name" options="name">
-              <help short="property for the container name."/>
+            <arg type="string" var="$body.properties.blobs[].name" options="name">
+              <help short="Name of test blob"/>
             </arg>
-            <arg type="array<@StorageTaskPreviewKeyValueProperties_create>" var="$parameters.properties.blobs[].properties" options="properties">
+            <arg type="array<@StoragetaskpreviewkeyvaluepropertiesCreate_create>" var="$body.properties.blobs[].properties" options="properties">
               <help short="properties key value pairs to be tested for a match against the provided condition."/>
-              <item type="@StorageTaskPreviewKeyValueProperties_create"/>
+              <item type="@StoragetaskpreviewkeyvaluepropertiesCreate_create"/>
             </arg>
-            <arg type="array<@StorageTaskPreviewKeyValueProperties_create>" var="$parameters.properties.blobs[].tags" options="tags">
+            <arg type="array<@StoragetaskpreviewkeyvaluepropertiesCreate_create>" var="$body.properties.blobs[].tags" options="tags">
               <help short="tags key value pairs to be tested for a match against the provided condition."/>
-              <item type="@StorageTaskPreviewKeyValueProperties_create"/>
+              <item type="@StoragetaskpreviewkeyvaluepropertiesCreate_create"/>
             </arg>
           </item>
         </arg>
-        <arg type="object" var="$parameters.properties.container" options="container" required="True" group="Properties">
-          <help short="Preview action container properties to be tested for a match with the provided condition."/>
-          <arg type="array<object>" var="$parameters.properties.container.metadata" options="metadata">
+        <arg type="object" var="$body.properties.container" options="container" required="True" group="Properties">
+          <help short="Properties of a sample container to test for a match with the preview action."/>
+          <arg type="array<object>" var="$body.properties.container.metadata" options="metadata">
             <help short="metadata key value pairs to be tested for a match against the provided condition."/>
-            <item type="object" cls="StorageTaskPreviewKeyValueProperties_create">
-              <arg type="string" var="@StorageTaskPreviewKeyValueProperties_create.key" options="key">
+            <item type="object" cls="StoragetaskpreviewkeyvaluepropertiesCreate_create">
+              <arg type="string" var="@StoragetaskpreviewkeyvaluepropertiesCreate_create.key" options="key">
                 <help short="Represents the key property of the pair."/>
               </arg>
-              <arg type="string" var="@StorageTaskPreviewKeyValueProperties_create.value" options="value">
+              <arg type="string" var="@StoragetaskpreviewkeyvaluepropertiesCreate_create.value" options="value">
                 <help short="Represents the value property of the pair."/>
               </arg>
             </item>
           </arg>
-          <arg type="string" var="$parameters.properties.container.name" options="name">
-            <help short="property for the container name."/>
+          <arg type="string" var="$body.properties.container.name" options="name">
+            <help short="Name of test container"/>
           </arg>
         </arg>
       </argGroup>
-      <operation operationId="StorageTasks_PreviewActions">
+      <operation operationId="StorageTasksOperationGroup_PreviewActions">
         <http path="/subscriptions/{subscriptionId}/providers/Microsoft.StorageActions/locations/{location}/previewActions">
           <request method="post">
             <path>
               <param type="string" name="location" arg="$Path.location" required="True"/>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
@@ -74,36 +76,36 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="parameters" required="True" clientFlatten="True">
+                <schema type="object" name="body" required="True" clientFlatten="True">
                   <prop type="object" name="properties" required="True" clientFlatten="True">
-                    <prop type="object" name="action" arg="$parameters.properties.action" required="True">
-                      <prop type="boolean" name="elseBlockExists" arg="$parameters.properties.action.elseBlockExists" required="True"/>
-                      <prop type="object" name="if" arg="$parameters.properties.action.if" required="True">
-                        <prop type="string" name="condition" arg="$parameters.properties.action.if.condition"/>
+                    <prop type="object" name="action" arg="$body.properties.action" required="True">
+                      <prop type="boolean" name="elseBlockExists" arg="$body.properties.action.elseBlockExists" required="True"/>
+                      <prop type="object" name="if" arg="$body.properties.action.if" required="True">
+                        <prop type="string" name="condition" arg="$body.properties.action.if.condition"/>
                       </prop>
                     </prop>
-                    <prop type="array<object>" name="blobs" arg="$parameters.properties.blobs" required="True">
+                    <prop type="array<object>" name="blobs" arg="$body.properties.blobs" required="True">
                       <item type="object">
-                        <prop type="array<@StorageTaskPreviewKeyValueProperties_create>" name="metadata" arg="$parameters.properties.blobs[].metadata">
-                          <item type="@StorageTaskPreviewKeyValueProperties_create"/>
+                        <prop type="array<@StoragetaskpreviewkeyvaluepropertiesCreate_create>" name="metadata" arg="$body.properties.blobs[].metadata">
+                          <item type="@StoragetaskpreviewkeyvaluepropertiesCreate_create"/>
                         </prop>
-                        <prop type="string" name="name" arg="$parameters.properties.blobs[].name"/>
-                        <prop type="array<@StorageTaskPreviewKeyValueProperties_create>" name="properties" arg="$parameters.properties.blobs[].properties">
-                          <item type="@StorageTaskPreviewKeyValueProperties_create"/>
+                        <prop type="string" name="name" arg="$body.properties.blobs[].name"/>
+                        <prop type="array<@StoragetaskpreviewkeyvaluepropertiesCreate_create>" name="properties" arg="$body.properties.blobs[].properties">
+                          <item type="@StoragetaskpreviewkeyvaluepropertiesCreate_create"/>
                         </prop>
-                        <prop type="array<@StorageTaskPreviewKeyValueProperties_create>" name="tags" arg="$parameters.properties.blobs[].tags">
-                          <item type="@StorageTaskPreviewKeyValueProperties_create"/>
+                        <prop type="array<@StoragetaskpreviewkeyvaluepropertiesCreate_create>" name="tags" arg="$body.properties.blobs[].tags">
+                          <item type="@StoragetaskpreviewkeyvaluepropertiesCreate_create"/>
                         </prop>
                       </item>
                     </prop>
-                    <prop type="object" name="container" arg="$parameters.properties.container" required="True">
-                      <prop type="array<object>" name="metadata" arg="$parameters.properties.container.metadata">
-                        <item type="object" cls="StorageTaskPreviewKeyValueProperties_create">
-                          <prop type="string" name="key" arg="@StorageTaskPreviewKeyValueProperties_create.key"/>
-                          <prop type="string" name="value" arg="@StorageTaskPreviewKeyValueProperties_create.value"/>
+                    <prop type="object" name="container" arg="$body.properties.container" required="True">
+                      <prop type="array<object>" name="metadata" arg="$body.properties.container.metadata">
+                        <item type="object" cls="StoragetaskpreviewkeyvaluepropertiesCreate_create">
+                          <prop type="string" name="key" arg="@StoragetaskpreviewkeyvaluepropertiesCreate_create.key"/>
+                          <prop type="string" name="value" arg="@StoragetaskpreviewkeyvaluepropertiesCreate_create.value"/>
                         </item>
                       </prop>
-                      <prop type="string" name="name" arg="$parameters.properties.container.name"/>
+                      <prop type="string" name="name" arg="$body.properties.container.name"/>
                     </prop>
                   </prop>
                 </schema>
@@ -130,21 +132,21 @@
                             <item value="&quot;None&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="array<@StorageTaskPreviewKeyValueProperties_read>" name="metadata">
-                          <item type="@StorageTaskPreviewKeyValueProperties_read"/>
+                        <prop type="array<@Storagetaskpreviewkeyvalueproperties_read>" name="metadata">
+                          <item type="@Storagetaskpreviewkeyvalueproperties_read"/>
                         </prop>
                         <prop type="string" name="name"/>
-                        <prop type="array<@StorageTaskPreviewKeyValueProperties_read>" name="properties">
-                          <item type="@StorageTaskPreviewKeyValueProperties_read"/>
+                        <prop type="array<@Storagetaskpreviewkeyvalueproperties_read>" name="properties">
+                          <item type="@Storagetaskpreviewkeyvalueproperties_read"/>
                         </prop>
-                        <prop type="array<@StorageTaskPreviewKeyValueProperties_read>" name="tags">
-                          <item type="@StorageTaskPreviewKeyValueProperties_read"/>
+                        <prop type="array<@Storagetaskpreviewkeyvalueproperties_read>" name="tags">
+                          <item type="@Storagetaskpreviewkeyvalueproperties_read"/>
                         </prop>
                       </item>
                     </prop>
                     <prop type="object" name="container" required="True">
                       <prop type="array<object>" name="metadata">
-                        <item type="object" cls="StorageTaskPreviewKeyValueProperties_read">
+                        <item type="object" cls="Storagetaskpreviewkeyvalueproperties_read">
                           <prop type="string" name="key"/>
                           <prop type="string" name="value"/>
                         </item>
@@ -159,7 +161,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>

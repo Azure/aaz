@@ -28,7 +28,9 @@
         <http path="/subscriptions/{subscriptionId}/providers/Microsoft.StorageActions/storageTasks">
           <request method="get">
             <path>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
@@ -44,9 +46,7 @@
                   <prop readOnly="True" type="string" name="nextLink"/>
                   <prop readOnly="True" type="array<object>" name="value">
                     <item type="object">
-                      <prop readOnly="True" type="ResourceId" name="id">
-                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.StorageActions/storageTasks/{}"/>
-                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="id"/>
                       <prop type="IdentityObject" name="identity" required="True">
                         <prop readOnly="True" type="uuid" name="principalId"/>
                         <prop readOnly="True" type="uuid" name="tenantId"/>
@@ -72,14 +72,14 @@
                       <prop type="object" name="properties" required="True" clientFlatten="True">
                         <prop type="object" name="action" required="True">
                           <prop type="object" name="else">
-                            <prop type="array<@StorageTaskOperation_read>" name="operations" required="True">
-                              <item type="@StorageTaskOperation_read"/>
+                            <prop type="array<@Storagetaskoperation_read>" name="operations" required="True">
+                              <item type="@Storagetaskoperation_read"/>
                             </prop>
                           </prop>
                           <prop type="object" name="if" required="True">
                             <prop type="string" name="condition" required="True"/>
                             <prop type="array<object>" name="operations" required="True">
-                              <item type="object" cls="StorageTaskOperation_read">
+                              <item type="object" cls="Storagetaskoperation_read">
                                 <prop type="string" name="name" required="True">
                                   <enum>
                                     <item value="&quot;DeleteBlob&quot;"/>
@@ -166,7 +166,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
@@ -177,9 +177,11 @@
           <request method="get">
             <path>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
@@ -195,9 +197,7 @@
                   <prop readOnly="True" type="string" name="nextLink"/>
                   <prop readOnly="True" type="array<object>" name="value">
                     <item type="object">
-                      <prop readOnly="True" type="ResourceId" name="id">
-                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.StorageActions/storageTasks/{}"/>
-                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="id"/>
                       <prop type="IdentityObject" name="identity" required="True">
                         <prop readOnly="True" type="uuid" name="principalId"/>
                         <prop readOnly="True" type="uuid" name="tenantId"/>
@@ -223,14 +223,14 @@
                       <prop type="object" name="properties" required="True" clientFlatten="True">
                         <prop type="object" name="action" required="True">
                           <prop type="object" name="else">
-                            <prop type="array<@StorageTaskOperation_read>" name="operations" required="True">
-                              <item type="@StorageTaskOperation_read"/>
+                            <prop type="array<@Storagetaskoperation_read>" name="operations" required="True">
+                              <item type="@Storagetaskoperation_read"/>
                             </prop>
                           </prop>
                           <prop type="object" name="if" required="True">
                             <prop type="string" name="condition" required="True"/>
-                            <prop type="array<@StorageTaskOperation_read>" name="operations" required="True">
-                              <item type="@StorageTaskOperation_read"/>
+                            <prop type="array<@Storagetaskoperation_read>" name="operations" required="True">
+                              <item type="@Storagetaskoperation_read"/>
                             </prop>
                           </prop>
                         </prop>
@@ -290,7 +290,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>

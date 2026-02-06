@@ -17,12 +17,14 @@
           <request method="get">
             <path>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="storageTaskName" arg="$Path.storageTaskName" required="True">
                 <format pattern="^[a-z0-9]{3,18}$" maxLength="18" minLength="3"/>
               </param>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
@@ -35,9 +37,7 @@
             <body>
               <json var="$Instance">
                 <schema type="object">
-                  <prop readOnly="True" type="ResourceId" name="id">
-                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.StorageActions/storageTasks/{}"/>
-                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="id"/>
                   <prop type="IdentityObject" name="identity" required="True">
                     <prop readOnly="True" type="uuid" name="principalId"/>
                     <prop readOnly="True" type="uuid" name="tenantId"/>
@@ -63,14 +63,14 @@
                   <prop type="object" name="properties" required="True" clientFlatten="True">
                     <prop type="object" name="action" required="True">
                       <prop type="object" name="else">
-                        <prop type="array<@StorageTaskOperation_read>" name="operations" required="True">
-                          <item type="@StorageTaskOperation_read"/>
+                        <prop type="array<@Storagetaskoperation_read>" name="operations" required="True">
+                          <item type="@Storagetaskoperation_read"/>
                         </prop>
                       </prop>
                       <prop type="object" name="if" required="True">
                         <prop type="string" name="condition" required="True"/>
                         <prop type="array<object>" name="operations" required="True">
-                          <item type="object" cls="StorageTaskOperation_read">
+                          <item type="object" cls="Storagetaskoperation_read">
                             <prop type="string" name="name" required="True">
                               <enum>
                                 <item value="&quot;DeleteBlob&quot;"/>
@@ -155,7 +155,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
@@ -179,12 +179,14 @@
           <request method="delete">
             <path>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="storageTaskName" arg="$Path.storageTaskName" required="True">
                 <format pattern="^[a-z0-9]{3,18}$" maxLength="18" minLength="3"/>
               </param>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
@@ -195,7 +197,9 @@
           </request>
           <response statusCode="202">
             <header>
+              <item name="Azure-AsyncOperation"/>
               <item name="Location"/>
+              <item name="Retry-After"/>
             </header>
           </response>
           <response statusCode="204"/>
@@ -203,7 +207,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
@@ -220,65 +224,53 @@
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Parameters">
-        <arg type="object" var="$parameters.identity" options="identity" required="True" group="Parameters">
-          <help short="The managed service identity of the resource."/>
-          <arg type="string" var="$parameters.identity.systemAssigned" options="mi-system-assigned system-assigned">
-            <blank value="&quot;True&quot;"/>
-            <help short="Set the system managed identity."/>
-          </arg>
-          <arg type="string" var="$parameters.identity.type" options="type" required="True">
-            <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
-            <enum>
-              <item name="None" value="&quot;None&quot;"/>
-              <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
-              <item name="SystemAssigned,UserAssigned" value="&quot;SystemAssigned,UserAssigned&quot;"/>
-              <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
-            </enum>
-          </arg>
-          <arg type="array<string>" var="$parameters.identity.userAssigned" options="mi-user-assigned user-assigned">
-            <blank value="[]"/>
-            <help short="Set the user managed identities."/>
-            <item type="string"/>
-          </arg>
-          <arg type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-identities">
-            <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
-            <additionalProp>
-              <item nullable="True" type="object">
-                <blank value="{}"/>
-              </item>
-            </additionalProp>
-          </arg>
+      <argGroup name="Identity">
+        <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
+          <blank value="&quot;True&quot;"/>
+          <help short="Set the system managed identity."/>
         </arg>
-        <arg type="ResourceLocation" var="$parameters.location" options="location l" required="True" group="Parameters">
-          <help short="The geo-location where the resource lives"/>
+        <arg type="string" var="$resource.identity.type" options="type" required="True" hide="True" group="Identity">
+          <help short="The type of managed identity assigned to this resource."/>
+          <enum>
+            <item name="None" value="&quot;None&quot;"/>
+            <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
+            <item name="SystemAssigned,UserAssigned" value="&quot;SystemAssigned,UserAssigned&quot;"/>
+            <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
+          </enum>
         </arg>
-        <arg type="object" var="$parameters.tags" options="tags" group="Parameters">
-          <help short="Resource tags."/>
+        <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
+          <blank value="[]"/>
+          <help short="Set the user managed identities."/>
+          <item type="string"/>
+        </arg>
+        <arg type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+          <help short="The identities assigned to this resource by the user."/>
           <additionalProp>
-            <item type="string"/>
+            <item nullable="True" type="object">
+              <blank value="{}"/>
+            </item>
           </additionalProp>
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg type="object" var="$parameters.properties.action" options="action" required="True" group="Properties">
+        <arg type="object" var="$resource.properties.action" options="action" required="True" group="Properties">
           <help short="The storage task action that is executed"/>
-          <arg type="object" var="$parameters.properties.action.else" options="else">
+          <arg type="object" var="$resource.properties.action.else" options="else">
             <help short="The else block of storage task operation"/>
-            <arg type="array<@StorageTaskOperation_create>" var="$parameters.properties.action.else.operations" options="operations" required="True">
+            <arg type="array<@StoragetaskoperationCreateOrUpdate_create>" var="$resource.properties.action.else.operations" options="operations" required="True">
               <help short="List of operations to execute in the else block"/>
-              <item type="@StorageTaskOperation_create"/>
+              <item type="@StoragetaskoperationCreateOrUpdate_create"/>
             </arg>
           </arg>
-          <arg type="object" var="$parameters.properties.action.if" options="if" required="True">
+          <arg type="object" var="$resource.properties.action.if" options="if" required="True">
             <help short="The if block of storage task operation"/>
-            <arg type="string" var="$parameters.properties.action.if.condition" options="condition" required="True">
+            <arg type="string" var="$resource.properties.action.if.condition" options="condition" required="True">
               <help short="Condition predicate to evaluate each object. See https://aka.ms/storagetaskconditions for valid properties and operators."/>
             </arg>
-            <arg type="array<object>" var="$parameters.properties.action.if.operations" options="operations" required="True">
+            <arg type="array<object>" var="$resource.properties.action.if.operations" options="operations" required="True">
               <help short="List of operations to execute when the condition predicate satisfies."/>
-              <item type="object" cls="StorageTaskOperation_create">
-                <arg type="string" var="@StorageTaskOperation_create.name" options="name" required="True">
+              <item type="object" cls="StoragetaskoperationCreateOrUpdate_create">
+                <arg type="string" var="@StoragetaskoperationCreateOrUpdate_create.name" options="name" required="True">
                   <help short="The operation to be performed on the object."/>
                   <enum>
                     <item name="DeleteBlob" value="&quot;DeleteBlob&quot;"/>
@@ -290,19 +282,19 @@
                     <item name="UndeleteBlob" value="&quot;UndeleteBlob&quot;"/>
                   </enum>
                 </arg>
-                <arg type="string" var="@StorageTaskOperation_create.onFailure" options="on-failure">
+                <arg type="string" var="@StoragetaskoperationCreateOrUpdate_create.onFailure" options="on-failure">
                   <help short="Action to be taken when the operation fails for a object."/>
                   <enum>
                     <item name="break" value="&quot;break&quot;"/>
                   </enum>
                 </arg>
-                <arg type="string" var="@StorageTaskOperation_create.onSuccess" options="on-success">
+                <arg type="string" var="@StoragetaskoperationCreateOrUpdate_create.onSuccess" options="on-success">
                   <help short="Action to be taken when the operation is successful for a object."/>
                   <enum>
                     <item name="continue" value="&quot;continue&quot;"/>
                   </enum>
                 </arg>
-                <arg type="object" var="@StorageTaskOperation_create.parameters" options="parameters">
+                <arg type="object" var="@StoragetaskoperationCreateOrUpdate_create.parameters" options="parameters">
                   <help short="Key-value parameters for the operation."/>
                   <additionalProp>
                     <item type="string"/>
@@ -312,11 +304,22 @@
             </arg>
           </arg>
         </arg>
-        <arg type="string" var="$parameters.properties.description" options="description" required="True" group="Properties">
+        <arg type="string" var="$resource.properties.description" options="description" required="True" group="Properties">
           <help short="Text that describes the purpose of the storage task"/>
         </arg>
-        <arg type="boolean" var="$parameters.properties.enabled" options="enabled" required="True" group="Properties">
+        <arg type="boolean" var="$resource.properties.enabled" options="enabled" required="True" group="Properties">
           <help short="Storage Task is enabled when set to true and disabled when set to false"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Resource">
+        <arg type="ResourceLocation" var="$resource.location" options="location l" required="True" group="Resource">
+          <help short="The geo-location where the resource lives"/>
+        </arg>
+        <arg type="object" var="$resource.tags" options="tags" group="Resource">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
         </arg>
       </argGroup>
       <operation operationId="StorageTasks_Create">
@@ -325,12 +328,14 @@
           <request method="put">
             <path>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="storageTaskName" arg="$Path.storageTaskName" required="True">
                 <format pattern="^[a-z0-9]{3,18}$" maxLength="18" minLength="3"/>
               </param>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
@@ -340,9 +345,9 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="parameters" required="True" clientFlatten="True">
-                  <prop type="IdentityObject" name="identity" arg="$parameters.identity" required="True">
-                    <prop type="string" name="type" arg="$parameters.identity.type" required="True">
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="IdentityObject" name="identity" required="True">
+                    <prop type="string" name="type" arg="$resource.identity.type" required="True">
                       <enum>
                         <item value="&quot;None&quot;"/>
                         <item value="&quot;SystemAssigned&quot;"/>
@@ -350,29 +355,29 @@
                         <item value="&quot;UserAssigned&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="userAssignedIdentities" arg="$parameters.identity.userAssignedIdentities">
+                    <prop type="object" name="userAssignedIdentities" arg="$resource.identity.userAssignedIdentities">
                       <additionalProp>
                         <item nullable="True" type="object"/>
                       </additionalProp>
                     </prop>
-                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$parameters.identity.userAssigned">
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
                       <item action="create" type="string"/>
                     </userAssigned>
-                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$parameters.identity.systemAssigned"/>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
                   </prop>
-                  <prop type="ResourceLocation" name="location" arg="$parameters.location" required="True"/>
+                  <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
                   <prop type="object" name="properties" required="True" clientFlatten="True">
-                    <prop type="object" name="action" arg="$parameters.properties.action" required="True">
-                      <prop type="object" name="else" arg="$parameters.properties.action.else">
-                        <prop type="array<@StorageTaskOperation_create>" name="operations" arg="$parameters.properties.action.else.operations" required="True">
-                          <item type="@StorageTaskOperation_create"/>
+                    <prop type="object" name="action" arg="$resource.properties.action" required="True">
+                      <prop type="object" name="else" arg="$resource.properties.action.else">
+                        <prop type="array<@StoragetaskoperationCreateOrUpdate_create>" name="operations" arg="$resource.properties.action.else.operations" required="True">
+                          <item type="@StoragetaskoperationCreateOrUpdate_create"/>
                         </prop>
                       </prop>
-                      <prop type="object" name="if" arg="$parameters.properties.action.if" required="True">
-                        <prop type="string" name="condition" arg="$parameters.properties.action.if.condition" required="True"/>
-                        <prop type="array<object>" name="operations" arg="$parameters.properties.action.if.operations" required="True">
-                          <item type="object" cls="StorageTaskOperation_create">
-                            <prop type="string" name="name" arg="@StorageTaskOperation_create.name" required="True">
+                      <prop type="object" name="if" arg="$resource.properties.action.if" required="True">
+                        <prop type="string" name="condition" arg="$resource.properties.action.if.condition" required="True"/>
+                        <prop type="array<object>" name="operations" arg="$resource.properties.action.if.operations" required="True">
+                          <item type="object" cls="StoragetaskoperationCreateOrUpdate_create">
+                            <prop type="string" name="name" arg="@StoragetaskoperationCreateOrUpdate_create.name" required="True">
                               <enum>
                                 <item value="&quot;DeleteBlob&quot;"/>
                                 <item value="&quot;SetBlobExpiry&quot;"/>
@@ -383,17 +388,17 @@
                                 <item value="&quot;UndeleteBlob&quot;"/>
                               </enum>
                             </prop>
-                            <prop type="string" name="onFailure" arg="@StorageTaskOperation_create.onFailure">
+                            <prop type="string" name="onFailure" arg="@StoragetaskoperationCreateOrUpdate_create.onFailure">
                               <enum>
                                 <item value="&quot;break&quot;"/>
                               </enum>
                             </prop>
-                            <prop type="string" name="onSuccess" arg="@StorageTaskOperation_create.onSuccess">
+                            <prop type="string" name="onSuccess" arg="@StoragetaskoperationCreateOrUpdate_create.onSuccess">
                               <enum>
                                 <item value="&quot;continue&quot;"/>
                               </enum>
                             </prop>
-                            <prop type="object" name="parameters" arg="@StorageTaskOperation_create.parameters">
+                            <prop type="object" name="parameters" arg="@StoragetaskoperationCreateOrUpdate_create.parameters">
                               <additionalProp>
                                 <item type="string"/>
                               </additionalProp>
@@ -402,10 +407,10 @@
                         </prop>
                       </prop>
                     </prop>
-                    <prop type="string" name="description" arg="$parameters.properties.description" required="True"/>
-                    <prop type="boolean" name="enabled" arg="$parameters.properties.enabled" required="True"/>
+                    <prop type="string" name="description" arg="$resource.properties.description" required="True"/>
+                    <prop type="boolean" name="enabled" arg="$resource.properties.enabled" required="True"/>
                   </prop>
-                  <prop type="object" name="tags" arg="$parameters.tags">
+                  <prop type="object" name="tags" arg="$resource.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>
@@ -418,9 +423,7 @@
             <body>
               <json var="$Instance">
                 <schema type="object">
-                  <prop readOnly="True" type="ResourceId" name="id">
-                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.StorageActions/storageTasks/{}"/>
-                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="id"/>
                   <prop type="IdentityObject" name="identity" required="True">
                     <prop readOnly="True" type="uuid" name="principalId"/>
                     <prop readOnly="True" type="uuid" name="tenantId"/>
@@ -446,14 +449,14 @@
                   <prop type="object" name="properties" required="True" clientFlatten="True">
                     <prop type="object" name="action" required="True">
                       <prop type="object" name="else">
-                        <prop type="array<@StorageTaskOperation_read>" name="operations" required="True">
-                          <item type="@StorageTaskOperation_read"/>
+                        <prop type="array<@Storagetaskoperation_read>" name="operations" required="True">
+                          <item type="@Storagetaskoperation_read"/>
                         </prop>
                       </prop>
                       <prop type="object" name="if" required="True">
                         <prop type="string" name="condition" required="True"/>
                         <prop type="array<object>" name="operations" required="True">
-                          <item type="object" cls="StorageTaskOperation_read">
+                          <item type="object" cls="Storagetaskoperation_read">
                             <prop type="string" name="name" required="True">
                               <enum>
                                 <item value="&quot;DeleteBlob&quot;"/>
@@ -538,12 +541,13 @@
           <response statusCode="202">
             <header>
               <item name="Location"/>
+              <item name="Retry-After"/>
             </header>
           </response>
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
@@ -561,53 +565,44 @@
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Parameters">
-        <arg type="object" var="$parameters.identity" options="identity" group="Parameters">
-          <help short="The managed service identity of the resource."/>
-          <arg type="string" var="$parameters.identity.type" options="type">
-            <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
-            <enum>
-              <item name="None" value="&quot;None&quot;"/>
-              <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
-              <item name="SystemAssigned,UserAssigned" value="&quot;SystemAssigned,UserAssigned&quot;"/>
-              <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
-            </enum>
-          </arg>
-          <arg nullable="True" type="object" var="$parameters.identity.userAssignedIdentities" options="user-assigned-identities">
-            <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
-            <additionalProp>
-              <item nullable="True" type="object">
-                <blank value="{}"/>
-              </item>
-            </additionalProp>
-          </arg>
+      <argGroup name="Identity">
+        <arg type="string" var="$resource.identity.type" options="type" hide="True" group="Identity">
+          <help short="The type of managed identity assigned to this resource."/>
+          <enum>
+            <item name="None" value="&quot;None&quot;"/>
+            <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
+            <item name="SystemAssigned,UserAssigned" value="&quot;SystemAssigned,UserAssigned&quot;"/>
+            <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
+          </enum>
         </arg>
-        <arg nullable="True" type="object" var="$parameters.tags" options="tags" group="Parameters">
-          <help short="Resource tags."/>
+        <arg nullable="True" type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+          <help short="The identities assigned to this resource by the user."/>
           <additionalProp>
-            <item nullable="True" type="string"/>
+            <item nullable="True" type="object">
+              <blank value="{}"/>
+            </item>
           </additionalProp>
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg type="object" var="$parameters.properties.action" options="action" group="Properties">
+        <arg type="object" var="$resource.properties.action" options="action" group="Properties">
           <help short="The storage task action that is executed"/>
-          <arg nullable="True" type="object" var="$parameters.properties.action.else" options="else">
+          <arg nullable="True" type="object" var="$resource.properties.action.else" options="else">
             <help short="The else block of storage task operation"/>
-            <arg type="array<@StorageTaskOperation_update>" var="$parameters.properties.action.else.operations" options="operations">
+            <arg type="array<@StoragetaskoperationCreateOrUpdate_update>" var="$resource.properties.action.else.operations" options="operations">
               <help short="List of operations to execute in the else block"/>
-              <item nullable="True" type="@StorageTaskOperation_update"/>
+              <item nullable="True" type="@StoragetaskoperationCreateOrUpdate_update"/>
             </arg>
           </arg>
-          <arg type="object" var="$parameters.properties.action.if" options="if">
+          <arg type="object" var="$resource.properties.action.if" options="if">
             <help short="The if block of storage task operation"/>
-            <arg type="string" var="$parameters.properties.action.if.condition" options="condition">
+            <arg type="string" var="$resource.properties.action.if.condition" options="condition">
               <help short="Condition predicate to evaluate each object. See https://aka.ms/storagetaskconditions for valid properties and operators."/>
             </arg>
-            <arg type="array<object>" var="$parameters.properties.action.if.operations" options="operations">
+            <arg type="array<object>" var="$resource.properties.action.if.operations" options="operations">
               <help short="List of operations to execute when the condition predicate satisfies."/>
-              <item nullable="True" type="object" cls="StorageTaskOperation_update">
-                <arg type="string" var="@StorageTaskOperation_update.name" options="name">
+              <item nullable="True" type="object" cls="StoragetaskoperationCreateOrUpdate_update">
+                <arg type="string" var="@StoragetaskoperationCreateOrUpdate_update.name" options="name">
                   <help short="The operation to be performed on the object."/>
                   <enum>
                     <item name="DeleteBlob" value="&quot;DeleteBlob&quot;"/>
@@ -619,19 +614,19 @@
                     <item name="UndeleteBlob" value="&quot;UndeleteBlob&quot;"/>
                   </enum>
                 </arg>
-                <arg nullable="True" type="string" var="@StorageTaskOperation_update.onFailure" options="on-failure">
+                <arg nullable="True" type="string" var="@StoragetaskoperationCreateOrUpdate_update.onFailure" options="on-failure">
                   <help short="Action to be taken when the operation fails for a object."/>
                   <enum>
                     <item name="break" value="&quot;break&quot;"/>
                   </enum>
                 </arg>
-                <arg nullable="True" type="string" var="@StorageTaskOperation_update.onSuccess" options="on-success">
+                <arg nullable="True" type="string" var="@StoragetaskoperationCreateOrUpdate_update.onSuccess" options="on-success">
                   <help short="Action to be taken when the operation is successful for a object."/>
                   <enum>
                     <item name="continue" value="&quot;continue&quot;"/>
                   </enum>
                 </arg>
-                <arg nullable="True" type="object" var="@StorageTaskOperation_update.parameters" options="parameters">
+                <arg nullable="True" type="object" var="@StoragetaskoperationCreateOrUpdate_update.parameters" options="parameters">
                   <help short="Key-value parameters for the operation."/>
                   <additionalProp>
                     <item nullable="True" type="string"/>
@@ -641,11 +636,19 @@
             </arg>
           </arg>
         </arg>
-        <arg type="string" var="$parameters.properties.description" options="description" group="Properties">
+        <arg type="string" var="$resource.properties.description" options="description" group="Properties">
           <help short="Text that describes the purpose of the storage task"/>
         </arg>
-        <arg type="boolean" var="$parameters.properties.enabled" options="enabled" group="Properties">
+        <arg type="boolean" var="$resource.properties.enabled" options="enabled" group="Properties">
           <help short="Storage Task is enabled when set to true and disabled when set to false"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Resource">
+        <arg nullable="True" type="object" var="$resource.tags" options="tags" group="Resource">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item nullable="True" type="string"/>
+          </additionalProp>
         </arg>
       </argGroup>
       <operation operationId="StorageTasks_Get">
@@ -653,12 +656,14 @@
           <request method="get">
             <path>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="storageTaskName" arg="$Path.storageTaskName" required="True">
                 <format pattern="^[a-z0-9]{3,18}$" maxLength="18" minLength="3"/>
               </param>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
@@ -670,10 +675,8 @@
           <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="object" cls="StorageTask_read">
-                  <prop readOnly="True" type="ResourceId" name="id">
-                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.StorageActions/storageTasks/{}"/>
-                  </prop>
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
                   <prop type="IdentityObject" name="identity" required="True">
                     <prop readOnly="True" type="uuid" name="principalId"/>
                     <prop readOnly="True" type="uuid" name="tenantId"/>
@@ -699,14 +702,14 @@
                   <prop type="object" name="properties" required="True" clientFlatten="True">
                     <prop type="object" name="action" required="True">
                       <prop type="object" name="else">
-                        <prop type="array<@StorageTaskOperation_read>" name="operations" required="True">
-                          <item type="@StorageTaskOperation_read"/>
+                        <prop type="array<@Storagetaskoperation_read>" name="operations" required="True">
+                          <item type="@Storagetaskoperation_read"/>
                         </prop>
                       </prop>
                       <prop type="object" name="if" required="True">
                         <prop type="string" name="condition" required="True"/>
                         <prop type="array<object>" name="operations" required="True">
-                          <item type="object" cls="StorageTaskOperation_read">
+                          <item type="object" cls="Storagetaskoperation_read">
                             <prop type="string" name="name" required="True">
                               <enum>
                                 <item value="&quot;DeleteBlob&quot;"/>
@@ -791,7 +794,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
@@ -800,9 +803,9 @@
       <operation>
         <instanceUpdate ref="$Instance">
           <json>
-            <schema type="object" name="parameters" required="True" clientFlatten="True">
-              <prop type="IdentityObject" name="identity" arg="$parameters.identity" required="True">
-                <prop type="string" name="type" arg="$parameters.identity.type" required="True">
+            <schema type="object" name="resource" required="True" clientFlatten="True">
+              <prop type="IdentityObject" name="identity" required="True">
+                <prop type="string" name="type" arg="$resource.identity.type" required="True">
                   <enum>
                     <item value="&quot;None&quot;"/>
                     <item value="&quot;SystemAssigned&quot;"/>
@@ -810,24 +813,24 @@
                     <item value="&quot;UserAssigned&quot;"/>
                   </enum>
                 </prop>
-                <prop type="object" name="userAssignedIdentities" arg="$parameters.identity.userAssignedIdentities">
+                <prop type="object" name="userAssignedIdentities" arg="$resource.identity.userAssignedIdentities">
                   <additionalProp>
                     <item nullable="True" type="object"/>
                   </additionalProp>
                 </prop>
               </prop>
               <prop type="object" name="properties" required="True" clientFlatten="True">
-                <prop type="object" name="action" arg="$parameters.properties.action" required="True">
-                  <prop type="object" name="else" arg="$parameters.properties.action.else">
-                    <prop type="array<@StorageTaskOperation_update>" name="operations" arg="$parameters.properties.action.else.operations" required="True">
-                      <item type="@StorageTaskOperation_update"/>
+                <prop type="object" name="action" arg="$resource.properties.action" required="True">
+                  <prop type="object" name="else" arg="$resource.properties.action.else">
+                    <prop type="array<@StoragetaskoperationCreateOrUpdate_update>" name="operations" arg="$resource.properties.action.else.operations" required="True">
+                      <item type="@StoragetaskoperationCreateOrUpdate_update"/>
                     </prop>
                   </prop>
-                  <prop type="object" name="if" arg="$parameters.properties.action.if" required="True">
-                    <prop type="string" name="condition" arg="$parameters.properties.action.if.condition" required="True"/>
-                    <prop type="array<object>" name="operations" arg="$parameters.properties.action.if.operations" required="True">
-                      <item type="object" cls="StorageTaskOperation_update">
-                        <prop type="string" name="name" arg="@StorageTaskOperation_update.name" required="True">
+                  <prop type="object" name="if" arg="$resource.properties.action.if" required="True">
+                    <prop type="string" name="condition" arg="$resource.properties.action.if.condition" required="True"/>
+                    <prop type="array<object>" name="operations" arg="$resource.properties.action.if.operations" required="True">
+                      <item type="object" cls="StoragetaskoperationCreateOrUpdate_update">
+                        <prop type="string" name="name" arg="@StoragetaskoperationCreateOrUpdate_update.name" required="True">
                           <enum>
                             <item value="&quot;DeleteBlob&quot;"/>
                             <item value="&quot;SetBlobExpiry&quot;"/>
@@ -838,17 +841,17 @@
                             <item value="&quot;UndeleteBlob&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="string" name="onFailure" arg="@StorageTaskOperation_update.onFailure">
+                        <prop type="string" name="onFailure" arg="@StoragetaskoperationCreateOrUpdate_update.onFailure">
                           <enum>
                             <item value="&quot;break&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="string" name="onSuccess" arg="@StorageTaskOperation_update.onSuccess">
+                        <prop type="string" name="onSuccess" arg="@StoragetaskoperationCreateOrUpdate_update.onSuccess">
                           <enum>
                             <item value="&quot;continue&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="object" name="parameters" arg="@StorageTaskOperation_update.parameters">
+                        <prop type="object" name="parameters" arg="@StoragetaskoperationCreateOrUpdate_update.parameters">
                           <additionalProp>
                             <item type="string"/>
                           </additionalProp>
@@ -857,10 +860,10 @@
                     </prop>
                   </prop>
                 </prop>
-                <prop type="string" name="description" arg="$parameters.properties.description" required="True"/>
-                <prop type="boolean" name="enabled" arg="$parameters.properties.enabled" required="True"/>
+                <prop type="string" name="description" arg="$resource.properties.description" required="True"/>
+                <prop type="boolean" name="enabled" arg="$resource.properties.enabled" required="True"/>
               </prop>
-              <prop type="object" name="tags" arg="$parameters.tags">
+              <prop type="object" name="tags" arg="$resource.tags">
                 <additionalProp>
                   <item type="string"/>
                 </additionalProp>
@@ -875,12 +878,14 @@
           <request method="put">
             <path>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="storageTaskName" arg="$Path.storageTaskName" required="True">
                 <format pattern="^[a-z0-9]{3,18}$" maxLength="18" minLength="3"/>
               </param>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
@@ -895,19 +900,105 @@
           <response statusCode="200 201">
             <body>
               <json var="$Instance">
-                <schema type="@StorageTask_read"/>
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop type="IdentityObject" name="identity" required="True">
+                    <prop readOnly="True" type="uuid" name="principalId"/>
+                    <prop readOnly="True" type="uuid" name="tenantId"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;None&quot;"/>
+                        <item value="&quot;SystemAssigned&quot;"/>
+                        <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                        <item value="&quot;UserAssigned&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="userAssignedIdentities">
+                      <additionalProp>
+                        <item nullable="True" type="object">
+                          <prop readOnly="True" type="uuid" name="clientId"/>
+                          <prop readOnly="True" type="uuid" name="principalId"/>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" required="True" clientFlatten="True">
+                    <prop type="object" name="action" required="True">
+                      <prop type="object" name="else">
+                        <prop type="array<@Storagetaskoperation_read>" name="operations" required="True">
+                          <item type="@Storagetaskoperation_read"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="if" required="True">
+                        <prop type="string" name="condition" required="True"/>
+                        <prop type="array<@Storagetaskoperation_read>" name="operations" required="True">
+                          <item type="@Storagetaskoperation_read"/>
+                        </prop>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="dateTime" name="creationTimeInUtc"/>
+                    <prop type="string" name="description" required="True"/>
+                    <prop type="boolean" name="enabled" required="True"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Creating&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;ValidateSubscriptionQuotaBegin&quot;"/>
+                        <item value="&quot;ValidateSubscriptionQuotaEnd&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="integer64" name="taskVersion">
+                      <format maximum="1" minimum="1"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
               </json>
             </body>
           </response>
           <response statusCode="202">
             <header>
               <item name="Location"/>
+              <item name="Retry-After"/>
             </header>
           </response>
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
@@ -915,5 +1006,815 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
+    <commandGroup name="identity">
+      <command name="assign" version="2023-01-01">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.storageactions/storagetasks/{}" version="2023-01-01" subresource="identity" swagger="mgmt-plane/storageactions/ResourceProviders/Microsoft.StorageActions/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RvcmFnZUFjdGlvbnMvc3RvcmFnZVRhc2tzL3tzdG9yYWdlVGFza05hbWV9/V/MjAyMy0wMS0wMQ=="/>
+        <argGroup name="">
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="string" var="$Path.storageTaskName" options="storage-task-name name n" required="True" idPart="name">
+            <help short="The name of the storage task within the specified resource group. Storage task names must be between 3 and 18 characters in length and use numbers and lower-case letters only."/>
+            <format pattern="^[a-z0-9]{3,18}$" maxLength="18" minLength="3"/>
+          </arg>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        </argGroup>
+        <argGroup name="Resource.identity">
+          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
+          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="resource">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="StorageTasks_Get">
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageActions/storageTasks/{storageTaskName}">
+            <request method="get">
+              <path>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="storageTaskName" arg="$Path.storageTaskName" required="True">
+                  <format pattern="^[a-z0-9]{3,18}$" maxLength="18" minLength="3"/>
+                </param>
+                <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2023-01-01&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object">
+                    <prop readOnly="True" type="ResourceId" name="id"/>
+                    <prop type="IdentityObject" name="identity" required="True">
+                      <prop readOnly="True" type="uuid" name="principalId"/>
+                      <prop readOnly="True" type="uuid" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item nullable="True" type="object">
+                            <prop readOnly="True" type="uuid" name="clientId"/>
+                            <prop readOnly="True" type="uuid" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" required="True" clientFlatten="True">
+                      <prop type="object" name="action" required="True">
+                        <prop type="object" name="else">
+                          <prop type="array<@Storagetaskoperation_read>" name="operations" required="True">
+                            <item type="@Storagetaskoperation_read"/>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="if" required="True">
+                          <prop type="string" name="condition" required="True"/>
+                          <prop type="array<object>" name="operations" required="True">
+                            <item type="object" cls="Storagetaskoperation_read">
+                              <prop type="string" name="name" required="True">
+                                <enum>
+                                  <item value="&quot;DeleteBlob&quot;"/>
+                                  <item value="&quot;SetBlobExpiry&quot;"/>
+                                  <item value="&quot;SetBlobImmutabilityPolicy&quot;"/>
+                                  <item value="&quot;SetBlobLegalHold&quot;"/>
+                                  <item value="&quot;SetBlobTags&quot;"/>
+                                  <item value="&quot;SetBlobTier&quot;"/>
+                                  <item value="&quot;UndeleteBlob&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="onFailure">
+                                <enum>
+                                  <item value="&quot;break&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="onSuccess">
+                                <enum>
+                                  <item value="&quot;continue&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="object" name="parameters">
+                                <additionalProp>
+                                  <item type="string"/>
+                                </additionalProp>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="dateTime" name="creationTimeInUtc"/>
+                      <prop type="string" name="description" required="True"/>
+                      <prop type="boolean" name="enabled" required="True"/>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Accepted&quot;"/>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;ValidateSubscriptionQuotaBegin&quot;"/>
+                          <item value="&quot;ValidateSubscriptionQuotaEnd&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="integer64" name="taskVersion">
+                        <format maximum="1" minimum="1"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt"/>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt"/>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema readOnly="True" type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <operation>
+          <instanceUpdate ref="$Subresource">
+            <json>
+              <schema action="assign" type="IdentityObject" name="resource.identity" required="True">
+                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+                  <item action="assign" type="string"/>
+                </userAssigned>
+                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+              </schema>
+            </json>
+          </instanceUpdate>
+        </operation>
+        <operation operationId="StorageTasks_Create">
+          <longRunning finalStateVia="azure-async-operation"/>
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageActions/storageTasks/{storageTaskName}">
+            <request method="put">
+              <path>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="storageTaskName" arg="$Path.storageTaskName" required="True">
+                  <format pattern="^[a-z0-9]{3,18}$" maxLength="18" minLength="3"/>
+                </param>
+                <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2023-01-01&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+              <body>
+                <json ref="$Instance"/>
+              </body>
+            </request>
+            <response statusCode="200 201">
+              <body>
+                <json var="$Instance">
+                  <schema type="object">
+                    <prop readOnly="True" type="ResourceId" name="id"/>
+                    <prop type="IdentityObject" name="identity" required="True">
+                      <prop readOnly="True" type="uuid" name="principalId"/>
+                      <prop readOnly="True" type="uuid" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item nullable="True" type="object">
+                            <prop readOnly="True" type="uuid" name="clientId"/>
+                            <prop readOnly="True" type="uuid" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" required="True" clientFlatten="True">
+                      <prop type="object" name="action" required="True">
+                        <prop type="object" name="else">
+                          <prop type="array<@Storagetaskoperation_read>" name="operations" required="True">
+                            <item type="@Storagetaskoperation_read"/>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="if" required="True">
+                          <prop type="string" name="condition" required="True"/>
+                          <prop type="array<@Storagetaskoperation_read>" name="operations" required="True">
+                            <item type="@Storagetaskoperation_read"/>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="dateTime" name="creationTimeInUtc"/>
+                      <prop type="string" name="description" required="True"/>
+                      <prop type="boolean" name="enabled" required="True"/>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Accepted&quot;"/>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;ValidateSubscriptionQuotaBegin&quot;"/>
+                          <item value="&quot;ValidateSubscriptionQuotaEnd&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="integer64" name="taskVersion">
+                        <format maximum="1" minimum="1"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt"/>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt"/>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response statusCode="202">
+              <header>
+                <item name="Location"/>
+                <item name="Retry-After"/>
+              </header>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema readOnly="True" type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+      <command name="remove" version="2023-01-01">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.storageactions/storagetasks/{}" version="2023-01-01" subresource="identity" swagger="mgmt-plane/storageactions/ResourceProviders/Microsoft.StorageActions/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RvcmFnZUFjdGlvbnMvc3RvcmFnZVRhc2tzL3tzdG9yYWdlVGFza05hbWV9/V/MjAyMy0wMS0wMQ=="/>
+        <argGroup name="">
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="string" var="$Path.storageTaskName" options="storage-task-name name n" required="True" idPart="name">
+            <help short="The name of the storage task within the specified resource group. Storage task names must be between 3 and 18 characters in length and use numbers and lower-case letters only."/>
+            <format pattern="^[a-z0-9]{3,18}$" maxLength="18" minLength="3"/>
+          </arg>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        </argGroup>
+        <argGroup name="Resource.identity">
+          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
+          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="resource">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="StorageTasks_Get">
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageActions/storageTasks/{storageTaskName}">
+            <request method="get">
+              <path>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="storageTaskName" arg="$Path.storageTaskName" required="True">
+                  <format pattern="^[a-z0-9]{3,18}$" maxLength="18" minLength="3"/>
+                </param>
+                <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2023-01-01&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object">
+                    <prop readOnly="True" type="ResourceId" name="id"/>
+                    <prop type="IdentityObject" name="identity" required="True">
+                      <prop readOnly="True" type="uuid" name="principalId"/>
+                      <prop readOnly="True" type="uuid" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item nullable="True" type="object">
+                            <prop readOnly="True" type="uuid" name="clientId"/>
+                            <prop readOnly="True" type="uuid" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" required="True" clientFlatten="True">
+                      <prop type="object" name="action" required="True">
+                        <prop type="object" name="else">
+                          <prop type="array<@Storagetaskoperation_read>" name="operations" required="True">
+                            <item type="@Storagetaskoperation_read"/>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="if" required="True">
+                          <prop type="string" name="condition" required="True"/>
+                          <prop type="array<object>" name="operations" required="True">
+                            <item type="object" cls="Storagetaskoperation_read">
+                              <prop type="string" name="name" required="True">
+                                <enum>
+                                  <item value="&quot;DeleteBlob&quot;"/>
+                                  <item value="&quot;SetBlobExpiry&quot;"/>
+                                  <item value="&quot;SetBlobImmutabilityPolicy&quot;"/>
+                                  <item value="&quot;SetBlobLegalHold&quot;"/>
+                                  <item value="&quot;SetBlobTags&quot;"/>
+                                  <item value="&quot;SetBlobTier&quot;"/>
+                                  <item value="&quot;UndeleteBlob&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="onFailure">
+                                <enum>
+                                  <item value="&quot;break&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="onSuccess">
+                                <enum>
+                                  <item value="&quot;continue&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="object" name="parameters">
+                                <additionalProp>
+                                  <item type="string"/>
+                                </additionalProp>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="dateTime" name="creationTimeInUtc"/>
+                      <prop type="string" name="description" required="True"/>
+                      <prop type="boolean" name="enabled" required="True"/>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Accepted&quot;"/>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;ValidateSubscriptionQuotaBegin&quot;"/>
+                          <item value="&quot;ValidateSubscriptionQuotaEnd&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="integer64" name="taskVersion">
+                        <format maximum="1" minimum="1"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt"/>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt"/>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema readOnly="True" type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <operation>
+          <instanceUpdate ref="$Subresource">
+            <json>
+              <schema action="remove" type="IdentityObject" name="resource.identity" required="True">
+                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+                  <item action="remove" type="string"/>
+                </userAssigned>
+                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+              </schema>
+            </json>
+          </instanceUpdate>
+        </operation>
+        <operation operationId="StorageTasks_Create">
+          <longRunning finalStateVia="azure-async-operation"/>
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageActions/storageTasks/{storageTaskName}">
+            <request method="put">
+              <path>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="storageTaskName" arg="$Path.storageTaskName" required="True">
+                  <format pattern="^[a-z0-9]{3,18}$" maxLength="18" minLength="3"/>
+                </param>
+                <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2023-01-01&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+              <body>
+                <json ref="$Instance"/>
+              </body>
+            </request>
+            <response statusCode="200 201">
+              <body>
+                <json var="$Instance">
+                  <schema type="object">
+                    <prop readOnly="True" type="ResourceId" name="id"/>
+                    <prop type="IdentityObject" name="identity" required="True">
+                      <prop readOnly="True" type="uuid" name="principalId"/>
+                      <prop readOnly="True" type="uuid" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item nullable="True" type="object">
+                            <prop readOnly="True" type="uuid" name="clientId"/>
+                            <prop readOnly="True" type="uuid" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" required="True" clientFlatten="True">
+                      <prop type="object" name="action" required="True">
+                        <prop type="object" name="else">
+                          <prop type="array<@Storagetaskoperation_read>" name="operations" required="True">
+                            <item type="@Storagetaskoperation_read"/>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="if" required="True">
+                          <prop type="string" name="condition" required="True"/>
+                          <prop type="array<@Storagetaskoperation_read>" name="operations" required="True">
+                            <item type="@Storagetaskoperation_read"/>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="dateTime" name="creationTimeInUtc"/>
+                      <prop type="string" name="description" required="True"/>
+                      <prop type="boolean" name="enabled" required="True"/>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Accepted&quot;"/>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;ValidateSubscriptionQuotaBegin&quot;"/>
+                          <item value="&quot;ValidateSubscriptionQuotaEnd&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="integer64" name="taskVersion">
+                        <format maximum="1" minimum="1"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt"/>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt"/>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response statusCode="202">
+              <header>
+                <item name="Location"/>
+                <item name="Retry-After"/>
+              </header>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema readOnly="True" type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+      <command name="show" version="2023-01-01">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.storageactions/storagetasks/{}" version="2023-01-01" subresource="identity" swagger="mgmt-plane/storageactions/ResourceProviders/Microsoft.StorageActions/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RvcmFnZUFjdGlvbnMvc3RvcmFnZVRhc2tzL3tzdG9yYWdlVGFza05hbWV9/V/MjAyMy0wMS0wMQ=="/>
+        <argGroup name="">
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="string" var="$Path.storageTaskName" options="storage-task-name name n" required="True" idPart="name">
+            <help short="The name of the storage task within the specified resource group. Storage task names must be between 3 and 18 characters in length and use numbers and lower-case letters only."/>
+            <format pattern="^[a-z0-9]{3,18}$" maxLength="18" minLength="3"/>
+          </arg>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="resource">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="StorageTasks_Get">
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageActions/storageTasks/{storageTaskName}">
+            <request method="get">
+              <path>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+                </param>
+                <param type="string" name="storageTaskName" arg="$Path.storageTaskName" required="True">
+                  <format pattern="^[a-z0-9]{3,18}$" maxLength="18" minLength="3"/>
+                </param>
+                <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                  <format minLength="1"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2023-01-01&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object">
+                    <prop readOnly="True" type="ResourceId" name="id"/>
+                    <prop type="IdentityObject" name="identity" required="True">
+                      <prop readOnly="True" type="uuid" name="principalId"/>
+                      <prop readOnly="True" type="uuid" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item nullable="True" type="object">
+                            <prop readOnly="True" type="uuid" name="clientId"/>
+                            <prop readOnly="True" type="uuid" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" required="True" clientFlatten="True">
+                      <prop type="object" name="action" required="True">
+                        <prop type="object" name="else">
+                          <prop type="array<@Storagetaskoperation_read>" name="operations" required="True">
+                            <item type="@Storagetaskoperation_read"/>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="if" required="True">
+                          <prop type="string" name="condition" required="True"/>
+                          <prop type="array<object>" name="operations" required="True">
+                            <item type="object" cls="Storagetaskoperation_read">
+                              <prop type="string" name="name" required="True">
+                                <enum>
+                                  <item value="&quot;DeleteBlob&quot;"/>
+                                  <item value="&quot;SetBlobExpiry&quot;"/>
+                                  <item value="&quot;SetBlobImmutabilityPolicy&quot;"/>
+                                  <item value="&quot;SetBlobLegalHold&quot;"/>
+                                  <item value="&quot;SetBlobTags&quot;"/>
+                                  <item value="&quot;SetBlobTier&quot;"/>
+                                  <item value="&quot;UndeleteBlob&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="onFailure">
+                                <enum>
+                                  <item value="&quot;break&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="onSuccess">
+                                <enum>
+                                  <item value="&quot;continue&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="object" name="parameters">
+                                <additionalProp>
+                                  <item type="string"/>
+                                </additionalProp>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="dateTime" name="creationTimeInUtc"/>
+                      <prop type="string" name="description" required="True"/>
+                      <prop type="boolean" name="enabled" required="True"/>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Accepted&quot;"/>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;ValidateSubscriptionQuotaBegin&quot;"/>
+                          <item value="&quot;ValidateSubscriptionQuotaEnd&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="integer64" name="taskVersion">
+                        <format maximum="1" minimum="1"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt"/>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt"/>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema readOnly="True" type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+    </commandGroup>
   </commandGroup>
 </CodeGen>
