@@ -1,6 +1,6 @@
 # [Group] _computelimit_
 
-Manage Compute Limit
+Manage compute shared limit resources
 
 ## Subgroups
 
