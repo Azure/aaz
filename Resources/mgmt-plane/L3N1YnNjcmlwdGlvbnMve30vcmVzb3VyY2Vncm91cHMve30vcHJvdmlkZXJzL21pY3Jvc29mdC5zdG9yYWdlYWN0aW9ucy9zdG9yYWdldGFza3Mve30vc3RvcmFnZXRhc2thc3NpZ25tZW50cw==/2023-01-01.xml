@@ -15,17 +15,19 @@
           <help short="Optional, specifies the maximum number of storage task assignment Ids to be included in the list response."/>
         </arg>
       </argGroup>
-      <operation operationId="StorageTaskAssignment_List">
+      <operation operationId="StorageTasks_List">
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageActions/storageTasks/{storageTaskName}/storageTaskAssignments">
           <request method="get">
             <path>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="storageTaskName" arg="$Path.storageTaskName" required="True">
                 <format pattern="^[a-z0-9]{3,18}$" maxLength="18" minLength="3"/>
               </param>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
             </path>
             <query>
               <param type="integer32" name="$maxpagesize" arg="$Query.maxpagesize"/>
@@ -52,7 +54,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
               </json>
             </body>
           </response>
