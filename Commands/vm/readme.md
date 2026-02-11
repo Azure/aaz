@@ -51,6 +51,9 @@ Manage Linux or Windows virtual machines.
 - [generalize](/Commands/vm/_generalize.md)
 : Mark a VM as generalized, allowing it to be imaged for multiple deployments.
 
+- [install-patches](/Commands/vm/_install-patches.md)
+: Installs patches on the VM.
+
 - [list](/Commands/vm/_list.md)
 : List all of the virtual machines in the specified resource group. Use the nextLink property in the response to get the next page of virtual machines.
 
