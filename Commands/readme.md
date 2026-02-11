@@ -311,6 +311,9 @@
 - [restore-point](/Commands/restore-point/readme.md)
 : Manage restore point with res.
 
+- [role](/Commands/role/readme.md)
+: Manage Azure role-based access control (Azure RBAC)
+
 - [security](/Commands/security/readme.md)
 : Manage your security posture with Microsoft Defender for Cloud.
 

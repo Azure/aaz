@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/{scope}/providers/microsoft.authorization/roleassignments" version="2022-04-01" swagger="mgmt-plane/authorization/ResourceProviders/Microsoft.Authorization/Paths/L3tzY29wZX0vcHJvdmlkZXJzL01pY3Jvc29mdC5BdXRob3JpemF0aW9uL3JvbGVBc3NpZ25tZW50cw==/V/MjAyMi0wNC0wMQ=="/>
+  <commandGroup name="role assignment">
+    <command name="list" version="2022-04-01">
+      <resource id="/{scope}/providers/microsoft.authorization/roleassignments" version="2022-04-01" swagger="mgmt-plane/authorization/ResourceProviders/Microsoft.Authorization/Paths/L3tzY29wZX0vcHJvdmlkZXJzL01pY3Jvc29mdC5BdXRob3JpemF0aW9uL3JvbGVBc3NpZ25tZW50cw==/V/MjAyMi0wNC0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.scope" options="scope" required="True">
+          <help short="The scope of the operation or resource. Valid scopes are: subscription (format: '/subscriptions/{subscriptionId}'), resource group (format: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}', or resource (format: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/{resourceProviderNamespace}/[{parentResourcePath}/]{resourceType}/{resourceName}'"/>
+        </arg>
+        <arg type="string" var="$Query.filter" options="filter">
+          <help short="The filter to apply on the operation. Use $filter=atScope() to return all role assignments at or above the scope. Use $filter=principalId eq {id} to return all role assignments at, above or below the scope for the specified principal."/>
+        </arg>
+        <arg type="string" var="$Query.skipToken" options="skip-token">
+          <help short="The skipToken to apply on the operation. Use $skipToken={skiptoken} to return paged role assignments following the skipToken passed. Only supported on provider level calls."/>
+        </arg>
+        <arg type="string" var="$Query.tenantId" options="tenant-id">
+          <help short="Tenant ID for cross-tenant request"/>
+        </arg>
+      </argGroup>
+      <operation operationId="RoleAssignments_ListForScope">
+        <http path="/{scope}/providers/Microsoft.Authorization/roleAssignments">
+          <request method="get">
+            <path>
+              <param type="string" name="scope" arg="$Path.scope" required="True" skipUrlEncoding="True"/>
+            </path>
+            <query>
+              <param type="string" name="$filter" arg="$Query.filter"/>
+              <param type="string" name="$skipToken" arg="$Query.skipToken"/>
+              <param type="string" name="tenantId" arg="$Query.tenantId"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-04-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties" clientFlatten="True">
+                        <prop type="string" name="condition"/>
+                        <prop type="string" name="conditionVersion"/>
+                        <prop readOnly="True" type="string" name="createdBy"/>
+                        <prop readOnly="True" type="dateTime" name="createdOn"/>
+                        <prop type="string" name="delegatedManagedIdentityResourceId"/>
+                        <prop type="string" name="description"/>
+                        <prop type="string" name="principalId" required="True"/>
+                        <prop type="string" name="principalType">
+                          <default value="&quot;User&quot;"/>
+                          <enum>
+                            <item value="&quot;Device&quot;"/>
+                            <item value="&quot;ForeignGroup&quot;"/>
+                            <item value="&quot;Group&quot;"/>
+                            <item value="&quot;ServicePrincipal&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="roleDefinitionId" required="True"/>
+                        <prop readOnly="True" type="string" name="scope"/>
+                        <prop readOnly="True" type="string" name="updatedBy"/>
+                        <prop readOnly="True" type="dateTime" name="updatedOn"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
