@@ -344,6 +344,9 @@
 - [sql](/Commands/sql/readme.md)
 : Manage Azure SQL Databases and Data Warehouses.
 
+- [sshkey](/Commands/sshkey/readme.md)
+: Manage Ssh Public Key
+
 - [stack-hci](/Commands/stack-hci/readme.md)
 : Manage Azure Stack HCI.
 
