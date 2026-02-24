@@ -30,6 +30,9 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 - [create](/Commands/vmss/_create.md)
 : Create a VM scale set.
 
+- [deallocate](/Commands/vmss/_deallocate.md)
+: Deallocates specific virtual machines in a VM scale set. Shuts down the virtual machines and releases the compute resources. You are not billed for the compute resources that this virtual machine scale set deallocates.
+
 - [delete](/Commands/vmss/_delete.md)
 : Delete a VM scale set.
 
@@ -74,3 +77,6 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 
 - [update-domain-walk](/Commands/vmss/_update-domain-walk.md)
 : Manual platform update domain walk to update virtual machines in a service fabric virtual machine scale set.
+
+- [patch](/Commands/vmss/_patch.md)
+: Patch a VM scale set.
