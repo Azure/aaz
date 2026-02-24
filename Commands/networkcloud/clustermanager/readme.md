@@ -23,3 +23,6 @@ Manage cluster manager
 
 - [update](/Commands/networkcloud/clustermanager/_update.md)
 : Update properties of the provided cluster manager, or update the tags assigned to the cluster manager. Properties and tag updates can be done independently.
+
+- [update-relay-private-endpoint-connection](/Commands/networkcloud/clustermanager/_update-relay-private-endpoint-connection.md)
+: Update the private endpoint connection for the Azure Relay namespace managed by the specified cluster manager. Use this operation to approve or reject a pending private endpoint connection request for the relay namespace managed by the cluster manager.
