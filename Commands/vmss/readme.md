@@ -30,6 +30,9 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 - [create](/Commands/vmss/_create.md)
 : Create a VM scale set.
 
+- [deallocate](/Commands/vmss/_deallocate.md)
+: Deallocates specific virtual machines in a VM scale set. Shuts down the virtual machines and releases the compute resources. You are not billed for the compute resources that this virtual machine scale set deallocates.
+
 - [delete](/Commands/vmss/_delete.md)
 : Delete a VM scale set.
 
@@ -54,6 +57,12 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 - [perform-maintenance](/Commands/vmss/_perform-maintenance.md)
 : Perform maintenance on one or more virtual machines in a VM scale set. Operation on instances which are not eligible for perform maintenance will be failed. Please refer to best practices for more details: https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-maintenance-notifications
 
+- [reimage](/Commands/vmss/_reimage.md)
+: Reimages (upgrade the operating system) one or more virtual machines in a VM scale set which don't have a ephemeral OS disk, for virtual machines who have a ephemeral OS disk the virtual machine is reset to initial state.
+
+- [reimageall](/Commands/vmss/_reimageall.md)
+: Reimages all the disks ( including data disks ) in the virtual machines in a VM scale set. This operation is only supported for managed disks.
+
 - [restart](/Commands/vmss/_restart.md)
 : Restarts one or more virtual machines in a VM scale set.
 
@@ -71,3 +80,6 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 
 - [update-domain-walk](/Commands/vmss/_update-domain-walk.md)
 : Manual platform update domain walk to update virtual machines in a service fabric virtual machine scale set.
+
+- [patch](/Commands/vmss/_patch.md)
+: Patch a VM scale set.
