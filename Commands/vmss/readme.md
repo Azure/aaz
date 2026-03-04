@@ -63,6 +63,9 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 - [reimageall](/Commands/vmss/_reimageall.md)
 : Reimages all the disks ( including data disks ) in the virtual machines in a VM scale set. This operation is only supported for managed disks.
 
+- [restart](/Commands/vmss/_restart.md)
+: Restarts one or more virtual machines in a VM scale set.
+
 - [show](/Commands/vmss/_show.md)
 : Get information about a virtual machine scale set.
 
