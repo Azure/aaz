@@ -37,6 +37,9 @@ Manage Azure Network resources.
 - [express-route](/Commands/network/express-route/readme.md)
 : Manage dedicated private network fiber connections to Azure.
 
+- [express-route-circuit](/Commands/network/express-route-circuit/readme.md)
+: Manage Express Route Circuit
+
 - [express-route-cross-connection](/Commands/network/express-route-cross-connection/readme.md)
 : Manage express route cross connection
 
