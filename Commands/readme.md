@@ -23,6 +23,9 @@
 - [apic](/Commands/apic/readme.md)
 : Manage Azure API Center services
 
+- [applink](/Commands/applink/readme.md)
+: Manage App Link
+
 - [arc](/Commands/arc/readme.md)
 : Manage Azure Arc Machines.
 
