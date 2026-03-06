@@ -23,6 +23,9 @@
 - [apic](/Commands/apic/readme.md)
 : Manage Azure API Center services
 
+- [appnet](/Commands/appnet/readme.md)
+: Azure Kubernetes Application Network
+
 - [arc](/Commands/arc/readme.md)
 : Manage Azure Arc Machines.
 
