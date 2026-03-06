@@ -19,7 +19,7 @@ The VM will continue to be billed. To avoid this, you can deallocate the VM thro
 
 - Power off a running VM without shutting down.
     ```bash
-        vm stop --resource-group MyResourceGroup --name MyVm --skip-shutdow
+        vm stop --resource-group MyResourceGroup --name MyVm --skip-shutdown
     ```
 
 - Power off VMs in a resource group.
