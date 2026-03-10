@@ -30,3 +30,7 @@ Show the details of managed identities.
     ```bash
         networkcloud cluster identity show --resource-group "resourceGroupName" --cluster-name "clusterName"
     ```
+
+### [2026-01-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvY2x1c3RlcnMve30=/2026-01-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/clusters/{} 2026-01-01-preview identity -->
