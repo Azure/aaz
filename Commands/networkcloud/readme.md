@@ -4,6 +4,9 @@ Manage Network Cloud resources
 
 ## Subgroups
 
+- [accessbridge](/Commands/networkcloud/accessbridge/readme.md)
+: Manage Access Bridge
+
 - [baremetalmachine](/Commands/networkcloud/baremetalmachine/readme.md)
 : Manage bare metal machine
 
@@ -36,6 +39,9 @@ Manage Network Cloud resources
 
 - [kubernetescluster](/Commands/networkcloud/kubernetescluster/readme.md)
 : Manage Kubernetes cluster
+
+- [kubernetesversion](/Commands/networkcloud/kubernetesversion/readme.md)
+: Manage Kubernetes Version
 
 - [l2network](/Commands/networkcloud/l2network/readme.md)
 : Manage layer 2 (l2) network

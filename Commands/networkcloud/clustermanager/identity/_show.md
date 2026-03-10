@@ -30,3 +30,14 @@ Show the details of managed identities.
     ```bash
         networkcloud clustermanager identity show --resource-group "resourceGroupName" --cluster-manager-name "clusterManagerName"
     ```
+
+### [2026-01-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvY2x1c3Rlcm1hbmFnZXJzL3t9/2026-01-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/clustermanagers/{} 2026-01-01-preview identity -->
+
+#### examples
+
+- Show the details of managed identities for a cluster manager
+    ```bash
+        networkcloud clustermanager identity show --resource-group "resourceGroupName" --cluster-manager-name "clusterManagerName"
+    ```

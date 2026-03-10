@@ -30,6 +30,9 @@ Manage cluster
 - [deploy](/Commands/networkcloud/cluster/_deploy.md)
 : Deploy the cluster.
 
+- [inspect](/Commands/networkcloud/cluster/_inspect.md)
+: Trigger an inspection of the cluster to perform validation and optional corrective actions based on the supplied additional actions and filters.
+
 - [list](/Commands/networkcloud/cluster/_list.md)
 : List clusters in the provided resource group or subscription.
 
