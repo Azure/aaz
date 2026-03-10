@@ -66,6 +66,9 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 - [set-orchestration-service-state](/Commands/vmss/_set-orchestration-service-state.md)
 : Changes ServiceState property for a given service
 
+- [restart](/Commands/vmss/_restart.md)
+: Restarts one or more virtual machines in a VM scale set.
+
 - [show](/Commands/vmss/_show.md)
 : Get information about a virtual machine scale set.
 
@@ -74,6 +77,9 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 
 - [start](/Commands/vmss/_start.md)
 : Start VMs within a VMSS.
+
+- [stop](/Commands/vmss/_stop.md)
+: Power off (stop) one or more virtual machines in a VM scale set. Note that resources are still attached and you are getting charged for the resources. Instead, use deallocate to release resources and avoid charges.
 
 - [update](/Commands/vmss/_update.md)
 : Update a VM scale set.

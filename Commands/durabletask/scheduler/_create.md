@@ -25,3 +25,19 @@ Create a Scheduler
     ```bash
         durabletask scheduler create --resource-group testrg --name testscheduler --location eastus --ip-allowlist "[0.0.0.0/0]" --sku-capacity 1, --sku-name "Dedicated" --tags "{}"
     ```
+
+### [2026-02-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kdXJhYmxldGFzay9zY2hlZHVsZXJzL3t9/2026-02-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.durabletask/schedulers/{} 2026-02-01 -->
+
+#### examples
+
+- Create a scheduler in eastus
+    ```bash
+        durabletask scheduler create --resource-group testrg --name testscheduler --location eastus --ip-allowlist "[0.0.0.0/0]" --sku-capacity 1, --sku-name "Dedicated" --tags "{}"
+    ```
+
+- Create a Consumption SKU scheduler with public network access disabled
+    ```bash
+        durabletask scheduler create --resource-group rgopenapi --name testscheduler --location northcentralus --sku-name "Consumption" --public-network-access Disabled  --tags "{department:research,development:true}"
+    ```

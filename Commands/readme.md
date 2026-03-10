@@ -23,6 +23,9 @@
 - [apic](/Commands/apic/readme.md)
 : Manage Azure API Center services
 
+- [appnet](/Commands/appnet/readme.md)
+: Azure Kubernetes Application Network
+
 - [arc](/Commands/arc/readme.md)
 : Manage Azure Arc Machines.
 
@@ -88,6 +91,9 @@
 
 - [compute-recommender](/Commands/compute-recommender/readme.md)
 : Manage sku/zone/region recommender info for compute resources
+
+- [computelimit](/Commands/computelimit/readme.md)
+: Manage compute shared limit resources
 
 - [computeschedule](/Commands/computeschedule/readme.md)
 : Computeschedule batch virtual machine operations

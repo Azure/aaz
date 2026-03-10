@@ -36,3 +36,14 @@ Delete a Task Hub
     ```bash
         durabletask taskhub delete --resource-group testrg --scheduler-name testscheduler --name testtuskhub
     ```
+
+### [2026-02-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kdXJhYmxldGFzay9zY2hlZHVsZXJzL3t9L3Rhc2todWJzL3t9/2026-02-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.durabletask/schedulers/{}/taskhubs/{} 2026-02-01 -->
+
+#### examples
+
+- Delete a taskhub in a scheduler
+    ```bash
+        durabletask taskhub delete --resource-group testrg --scheduler-name testscheduler --name testtuskhub
+    ```
