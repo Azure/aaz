@@ -53,22 +53,21 @@
                         <item value="&quot;AKS&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="fullyManagedUpgradeProfile">
-                      <prop type="string" name="releaseChannel" required="True">
-                        <enum>
-                          <item value="&quot;Rapid&quot;"/>
-                          <item value="&quot;Stable&quot;"/>
-                        </enum>
+                    <prop type="object" name="connectivityProfile">
+                      <prop type="object" name="eastWestGateway">
+                        <prop type="string" name="visibility" required="True">
+                          <enum>
+                            <item value="&quot;External&quot;"/>
+                            <item value="&quot;Internal&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="privateConnect">
+                        <prop type="ResourceId" name="subnetResourceId" required="True"/>
                       </prop>
                     </prop>
                     <prop type="object" name="metadata" required="True">
-                      <prop type="string" name="resourceId" required="True"/>
-                    </prop>
-                    <prop type="string" name="mode">
-                      <enum>
-                        <item value="&quot;FullyManaged&quot;"/>
-                        <item value="&quot;SelfManaged&quot;"/>
-                      </enum>
+                      <prop type="ResourceId" name="resourceId" required="True"/>
                     </prop>
                     <prop type="object" name="observabilityProfile">
                       <prop type="object" name="metrics">
@@ -86,8 +85,24 @@
                         <item value="&quot;Updating&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="selfManagedUpgradeProfile">
-                      <prop type="string" name="version" required="True"/>
+                    <prop type="object" name="upgradeProfile">
+                      <prop type="object" name="fullyManagedUpgradeProfile">
+                        <prop type="string" name="releaseChannel" required="True">
+                          <enum>
+                            <item value="&quot;Rapid&quot;"/>
+                            <item value="&quot;Stable&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="mode" required="True">
+                        <enum>
+                          <item value="&quot;FullyManaged&quot;"/>
+                          <item value="&quot;SelfManaged&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="selfManagedUpgradeProfile">
+                        <prop type="string" name="version" required="True"/>
+                      </prop>
                     </prop>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
@@ -206,17 +221,20 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="FullyManagedUpgradeProfile">
-        <arg type="string" var="$resource.properties.fullyManagedUpgradeProfile.releaseChannel" options="release-channel" group="FullyManagedUpgradeProfile">
-          <help short="Release channel"/>
-          <enum supportExtension="True">
-            <item name="Rapid" value="&quot;Rapid&quot;"/>
-            <item name="Stable" value="&quot;Stable&quot;"/>
+      <argGroup name="Connectivity">
+        <arg type="string" var="$resource.properties.connectivityProfile.eastWestGateway.visibility" options="east-west-gateway-visibility" group="Connectivity">
+          <help short="East-West gateway visibility."/>
+          <enum>
+            <item name="External" value="&quot;External&quot;"/>
+            <item name="Internal" value="&quot;Internal&quot;"/>
           </enum>
+        </arg>
+        <arg type="ResourceId" var="$resource.properties.connectivityProfile.privateConnect.subnetResourceId" options="private-connect-subnet-id" group="Connectivity">
+          <help short="Delegated Subnet to AppLink."/>
         </arg>
       </argGroup>
       <argGroup name="Metadata">
-        <arg type="string" var="$resource.properties.metadata.resourceId" options="member-resource-id" group="Metadata">
+        <arg type="ResourceId" var="$resource.properties.metadata.resourceId" options="member-resource-id" group="Metadata">
           <help short="Managed cluster Resource ID"/>
         </arg>
       </argGroup>
@@ -226,14 +244,6 @@
           <default value="&quot;AKS&quot;"/>
           <enum>
             <item name="AKS" value="&quot;AKS&quot;"/>
-          </enum>
-        </arg>
-        <arg type="string" var="$resource.properties.mode" options="upgrade-mode" group="Properties">
-          <help short="Upgrade mode"/>
-          <default value="&quot;SelfManaged&quot;"/>
-          <enum>
-            <item name="FullyManaged" value="&quot;FullyManaged&quot;"/>
-            <item name="SelfManaged" value="&quot;SelfManaged&quot;"/>
           </enum>
         </arg>
       </argGroup>
@@ -248,12 +258,26 @@
           </additionalProp>
         </arg>
       </argGroup>
-      <argGroup name="SelfManagedUpgradeProfile">
-        <arg type="string" var="$resource.properties.selfManagedUpgradeProfile.version" options="version" group="SelfManagedUpgradeProfile">
-          <help short="Application Network version"/>
+      <argGroup name="Upgrade">
+        <arg type="string" var="$resource.properties.upgradeProfile.fullyManagedUpgradeProfile.releaseChannel" options="release-channel" group="Upgrade">
+          <help short="Release channel"/>
+          <enum>
+            <item name="Rapid" value="&quot;Rapid&quot;"/>
+            <item name="Stable" value="&quot;Stable&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$resource.properties.upgradeProfile.mode" options="upgrade-mode" group="Upgrade">
+          <help short="Upgrade mode."/>
+          <enum>
+            <item name="FullyManaged" value="&quot;FullyManaged&quot;"/>
+            <item name="SelfManaged" value="&quot;SelfManaged&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$resource.properties.upgradeProfile.selfManagedUpgradeProfile.version" options="version" group="Upgrade">
+          <help short="Istio version"/>
         </arg>
       </argGroup>
-      <operation operationId="AppLinkMembers_CreateOrReplace">
+      <operation operationId="AppLinkMembers_CreateOrUpdate">
         <longRunning finalStateVia="azure-async-operation"/>
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AppLink/appLinks/{appLinkName}/appLinkMembers/{appLinkMemberName}">
           <request method="put">
@@ -285,25 +309,40 @@
                         <item value="&quot;AKS&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="fullyManagedUpgradeProfile">
-                      <prop type="string" name="releaseChannel" arg="$resource.properties.fullyManagedUpgradeProfile.releaseChannel" required="True">
-                        <enum>
-                          <item value="&quot;Rapid&quot;"/>
-                          <item value="&quot;Stable&quot;"/>
-                        </enum>
+                    <prop type="object" name="connectivityProfile">
+                      <prop type="object" name="eastWestGateway">
+                        <prop type="string" name="visibility" arg="$resource.properties.connectivityProfile.eastWestGateway.visibility" required="True">
+                          <enum>
+                            <item value="&quot;External&quot;"/>
+                            <item value="&quot;Internal&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="privateConnect">
+                        <prop type="ResourceId" name="subnetResourceId" arg="$resource.properties.connectivityProfile.privateConnect.subnetResourceId" required="True"/>
                       </prop>
                     </prop>
                     <prop type="object" name="metadata" required="True">
-                      <prop type="string" name="resourceId" arg="$resource.properties.metadata.resourceId" required="True"/>
+                      <prop type="ResourceId" name="resourceId" arg="$resource.properties.metadata.resourceId" required="True"/>
                     </prop>
-                    <prop type="string" name="mode" arg="$resource.properties.mode">
-                      <enum>
-                        <item value="&quot;FullyManaged&quot;"/>
-                        <item value="&quot;SelfManaged&quot;"/>
-                      </enum>
-                    </prop>
-                    <prop type="object" name="selfManagedUpgradeProfile">
-                      <prop type="string" name="version" arg="$resource.properties.selfManagedUpgradeProfile.version" required="True"/>
+                    <prop type="object" name="upgradeProfile">
+                      <prop type="object" name="fullyManagedUpgradeProfile">
+                        <prop type="string" name="releaseChannel" arg="$resource.properties.upgradeProfile.fullyManagedUpgradeProfile.releaseChannel" required="True">
+                          <enum>
+                            <item value="&quot;Rapid&quot;"/>
+                            <item value="&quot;Stable&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="mode" arg="$resource.properties.upgradeProfile.mode" required="True">
+                        <enum>
+                          <item value="&quot;FullyManaged&quot;"/>
+                          <item value="&quot;SelfManaged&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="selfManagedUpgradeProfile">
+                        <prop type="string" name="version" arg="$resource.properties.upgradeProfile.selfManagedUpgradeProfile.version" required="True"/>
+                      </prop>
                     </prop>
                   </prop>
                   <prop type="object" name="tags" arg="$resource.tags">
@@ -330,22 +369,21 @@
                         <item value="&quot;AKS&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="fullyManagedUpgradeProfile">
-                      <prop type="string" name="releaseChannel" required="True">
-                        <enum>
-                          <item value="&quot;Rapid&quot;"/>
-                          <item value="&quot;Stable&quot;"/>
-                        </enum>
+                    <prop type="object" name="connectivityProfile">
+                      <prop type="object" name="eastWestGateway">
+                        <prop type="string" name="visibility" required="True">
+                          <enum>
+                            <item value="&quot;External&quot;"/>
+                            <item value="&quot;Internal&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="privateConnect">
+                        <prop type="ResourceId" name="subnetResourceId" required="True"/>
                       </prop>
                     </prop>
                     <prop type="object" name="metadata" required="True">
-                      <prop type="string" name="resourceId" required="True"/>
-                    </prop>
-                    <prop type="string" name="mode">
-                      <enum>
-                        <item value="&quot;FullyManaged&quot;"/>
-                        <item value="&quot;SelfManaged&quot;"/>
-                      </enum>
+                      <prop type="ResourceId" name="resourceId" required="True"/>
                     </prop>
                     <prop type="object" name="observabilityProfile">
                       <prop type="object" name="metrics">
@@ -363,8 +401,24 @@
                         <item value="&quot;Updating&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="selfManagedUpgradeProfile">
-                      <prop type="string" name="version" required="True"/>
+                    <prop type="object" name="upgradeProfile">
+                      <prop type="object" name="fullyManagedUpgradeProfile">
+                        <prop type="string" name="releaseChannel" required="True">
+                          <enum>
+                            <item value="&quot;Rapid&quot;"/>
+                            <item value="&quot;Stable&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="mode" required="True">
+                        <enum>
+                          <item value="&quot;FullyManaged&quot;"/>
+                          <item value="&quot;SelfManaged&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="selfManagedUpgradeProfile">
+                        <prop type="string" name="version" required="True"/>
+                      </prop>
                     </prop>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
@@ -428,12 +482,12 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="FullyManagedUpgradeProfile">
-        <arg type="string" var="$properties.properties.fullyManagedUpgradeProfile.releaseChannel" options="release-channel" group="FullyManagedUpgradeProfile">
-          <help short="Release channel"/>
+      <argGroup name="Connectivity">
+        <arg type="string" var="$properties.properties.connectivityProfile.eastWestGateway.visibility" options="east-west-gateway-visibility" group="Connectivity">
+          <help short="East-West gateway visibility."/>
           <enum>
-            <item name="Rapid" value="&quot;Rapid&quot;"/>
-            <item name="Stable" value="&quot;Stable&quot;"/>
+            <item name="External" value="&quot;External&quot;"/>
+            <item name="Internal" value="&quot;Internal&quot;"/>
           </enum>
         </arg>
       </argGroup>
@@ -444,13 +498,6 @@
             <item type="any"/>
           </additionalProp>
         </arg>
-        <arg type="string" var="$properties.properties.mode" options="mode" hide="True" group="Properties">
-          <help short="Upgrade mode"/>
-          <enum>
-            <item name="FullyManaged" value="&quot;FullyManaged&quot;"/>
-            <item name="SelfManaged" value="&quot;SelfManaged&quot;"/>
-          </enum>
-        </arg>
         <arg type="object" var="$properties.tags" options="tags" group="Properties">
           <help short="Resource tags."/>
           <additionalProp>
@@ -458,9 +505,23 @@
           </additionalProp>
         </arg>
       </argGroup>
-      <argGroup name="SelfManagedUpgradeProfile">
-        <arg type="string" var="$properties.properties.selfManagedUpgradeProfile.version" options="version" group="SelfManagedUpgradeProfile">
-          <help short="Application Network version"/>
+      <argGroup name="Upgrade">
+        <arg type="string" var="$properties.properties.upgradeProfile.fullyManagedUpgradeProfile.releaseChannel" options="release-channel" group="Upgrade">
+          <help short="Release channel"/>
+          <enum>
+            <item name="Rapid" value="&quot;Rapid&quot;"/>
+            <item name="Stable" value="&quot;Stable&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$properties.properties.upgradeProfile.mode" options="upgrade-mode" group="Upgrade">
+          <help short="Upgrade mode."/>
+          <enum>
+            <item name="FullyManaged" value="&quot;FullyManaged&quot;"/>
+            <item name="SelfManaged" value="&quot;SelfManaged&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$properties.properties.upgradeProfile.selfManagedUpgradeProfile.version" options="version" group="Upgrade">
+          <help short="Istio version"/>
         </arg>
       </argGroup>
       <operation operationId="AppLinkMembers_Update">
@@ -489,12 +550,19 @@
               <json>
                 <schema type="object" name="properties" required="True" clientFlatten="True">
                   <prop type="object" name="properties">
-                    <prop type="object" name="fullyManagedUpgradeProfile">
-                      <prop type="string" name="releaseChannel" arg="$properties.properties.fullyManagedUpgradeProfile.releaseChannel">
-                        <enum>
-                          <item value="&quot;Rapid&quot;"/>
-                          <item value="&quot;Stable&quot;"/>
-                        </enum>
+                    <prop type="object" name="connectivityProfile">
+                      <prop type="object" name="eastWestGateway">
+                        <prop type="string" name="visibility" arg="$properties.properties.connectivityProfile.eastWestGateway.visibility">
+                          <enum>
+                            <item value="&quot;External&quot;"/>
+                            <item value="&quot;Internal&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="privateConnect">
+                        <additionalProp>
+                          <item type="any"/>
+                        </additionalProp>
                       </prop>
                     </prop>
                     <prop type="object" name="metadata" arg="$properties.properties.metadata">
@@ -502,14 +570,24 @@
                         <item type="any"/>
                       </additionalProp>
                     </prop>
-                    <prop type="string" name="mode" arg="$properties.properties.mode">
-                      <enum>
-                        <item value="&quot;FullyManaged&quot;"/>
-                        <item value="&quot;SelfManaged&quot;"/>
-                      </enum>
-                    </prop>
-                    <prop type="object" name="selfManagedUpgradeProfile">
-                      <prop type="string" name="version" arg="$properties.properties.selfManagedUpgradeProfile.version"/>
+                    <prop type="object" name="upgradeProfile">
+                      <prop type="object" name="fullyManagedUpgradeProfile">
+                        <prop type="string" name="releaseChannel" arg="$properties.properties.upgradeProfile.fullyManagedUpgradeProfile.releaseChannel">
+                          <enum>
+                            <item value="&quot;Rapid&quot;"/>
+                            <item value="&quot;Stable&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="mode" arg="$properties.properties.upgradeProfile.mode">
+                        <enum>
+                          <item value="&quot;FullyManaged&quot;"/>
+                          <item value="&quot;SelfManaged&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="selfManagedUpgradeProfile">
+                        <prop type="string" name="version" arg="$properties.properties.upgradeProfile.selfManagedUpgradeProfile.version"/>
+                      </prop>
                     </prop>
                   </prop>
                   <prop type="object" name="tags" arg="$properties.tags">
@@ -536,22 +614,21 @@
                         <item value="&quot;AKS&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="fullyManagedUpgradeProfile">
-                      <prop type="string" name="releaseChannel" required="True">
-                        <enum>
-                          <item value="&quot;Rapid&quot;"/>
-                          <item value="&quot;Stable&quot;"/>
-                        </enum>
+                    <prop type="object" name="connectivityProfile">
+                      <prop type="object" name="eastWestGateway">
+                        <prop type="string" name="visibility" required="True">
+                          <enum>
+                            <item value="&quot;External&quot;"/>
+                            <item value="&quot;Internal&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="privateConnect">
+                        <prop type="ResourceId" name="subnetResourceId" required="True"/>
                       </prop>
                     </prop>
                     <prop type="object" name="metadata" required="True">
-                      <prop type="string" name="resourceId" required="True"/>
-                    </prop>
-                    <prop type="string" name="mode">
-                      <enum>
-                        <item value="&quot;FullyManaged&quot;"/>
-                        <item value="&quot;SelfManaged&quot;"/>
-                      </enum>
+                      <prop type="ResourceId" name="resourceId" required="True"/>
                     </prop>
                     <prop type="object" name="observabilityProfile">
                       <prop type="object" name="metrics">
@@ -569,8 +646,24 @@
                         <item value="&quot;Updating&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="selfManagedUpgradeProfile">
-                      <prop type="string" name="version" required="True"/>
+                    <prop type="object" name="upgradeProfile">
+                      <prop type="object" name="fullyManagedUpgradeProfile">
+                        <prop type="string" name="releaseChannel" required="True">
+                          <enum>
+                            <item value="&quot;Rapid&quot;"/>
+                            <item value="&quot;Stable&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="mode" required="True">
+                        <enum>
+                          <item value="&quot;FullyManaged&quot;"/>
+                          <item value="&quot;SelfManaged&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="selfManagedUpgradeProfile">
+                        <prop type="string" name="version" required="True"/>
+                      </prop>
                     </prop>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
