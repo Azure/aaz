@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/nginx.nginxplus/nginxdeployments/{}/wafpolicies/{}/analyzewafpolicy" version="2025-11-01" swagger="mgmt-plane/nginx/ResourceProviders/Nginx.NginxPlus/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9OZ2lueC5OZ2lueFBsdXMvbmdpbnhEZXBsb3ltZW50cy97ZGVwbG95bWVudE5hbWV9L3dhZlBvbGljaWVzL3t3YWZQb2xpY3lOYW1lfS9hbmFseXplV2FmUG9saWN5/V/MjAyNS0xMS0wMQ=="/>
+  <commandGroup name="nginx deployment waf-policy">
+    <command name="analyze-waf-policy" version="2025-11-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/nginx.nginxplus/nginxdeployments/{}/wafpolicies/{}/analyzewafpolicy" version="2025-11-01" swagger="mgmt-plane/nginx/ResourceProviders/Nginx.NginxPlus/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9OZ2lueC5OZ2lueFBsdXMvbmdpbnhEZXBsb3ltZW50cy97ZGVwbG95bWVudE5hbWV9L3dhZlBvbGljaWVzL3t3YWZQb2xpY3lOYW1lfS9hbmFseXplV2FmUG9saWN5/V/MjAyNS0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.deploymentName" options="deployment-name" required="True" idPart="name">
+          <help short="The name of targeted NGINX deployment"/>
+          <format pattern="^([a-z0-9A-Z][a-z0-9A-Z-]{0,28}[a-z0-9A-Z]|[a-z0-9A-Z])$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.wafPolicyName" options="waf-policy-name" required="True" idPart="child_name_1">
+          <help short="The name of Waf Policy"/>
+          <format pattern="^([a-z0-9A-Z][a-z0-9A-Z-]{0,28}[a-z0-9A-Z]|[a-z0-9A-Z])$"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="string" var="$body.content" options="content" group="Body">
+          <help short="The byte content of the policy"/>
+        </arg>
+        <arg type="string" var="$body.filepath" options="filepath" group="Body">
+          <help short="The absolute file path of the policy as in the virtual machine"/>
+        </arg>
+      </argGroup>
+      <operation operationId="NginxDeploymentWafPolicies_Analysis">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Nginx.NginxPlus/nginxDeployments/{deploymentName}/wafPolicies/{wafPolicyName}/analyzeWafPolicy">
+          <request method="post">
+            <path>
+              <param type="string" name="deploymentName" arg="$Path.deploymentName" required="True">
+                <format pattern="^([a-z0-9A-Z][a-z0-9A-Z-]{0,28}[a-z0-9A-Z]|[a-z0-9A-Z])$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="wafPolicyName" arg="$Path.wafPolicyName" required="True">
+                <format pattern="^([a-z0-9A-Z][a-z0-9A-Z-]{0,28}[a-z0-9A-Z]|[a-z0-9A-Z])$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" clientFlatten="True">
+                  <prop type="string" name="content" arg="$body.content"/>
+                  <prop type="string" name="filepath" arg="$body.filepath"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="object" name="data">
+                    <prop type="array<object>" name="errors">
+                      <item type="object">
+                        <prop type="string" name="code"/>
+                        <prop type="string" name="field"/>
+                        <prop type="string" name="message"/>
+                      </item>
+                    </prop>
+                  </prop>
+                  <prop type="string" name="status"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
