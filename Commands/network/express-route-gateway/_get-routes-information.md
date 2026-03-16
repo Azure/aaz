@@ -12,5 +12,5 @@ This operation retrieves the route set information for Vwan Express Route Gatewa
 
 - VwanExpressRouteGatewayGetRoutesInformation
     ```bash
-        network express-route-gateway get-routes-information --resource-group rg1 --express-route-gateway-name ergw --attempt-refresh False
+        network express-route-gateway get-routes-information --resource-group rg1 --name ergw --attempt-refresh False
     ```

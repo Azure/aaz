@@ -12,5 +12,5 @@ This operation retrieves the resiliency information for VWAN ExpressRoute Gatewa
 
 - VwanExpressRouteGatewayGetResiliencyInformation
     ```bash
-        network express-route-gateway get-resiliency-information --resource-group rg1 --express-route-gateway-name ergw --attempt-refresh True
+        network express-route-gateway get-resiliency-information --resource-group rg1 --name ergw --attempt-refresh True
     ```
