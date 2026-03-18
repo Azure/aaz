@@ -15,3 +15,15 @@ List consortium views in a subscription.
     ```bash
         managedcleanroom consortium-view list
     ```
+
+### [2026-03-31-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jbGVhbnJvb20vY29uc29ydGl1bXZpZXdz/2026-03-31-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.cleanroom/consortiumviews 2026-03-31-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cleanroom/consortiumviews 2026-03-31-preview -->
+
+#### examples
+
+- List consortium views in subscription
+    ```bash
+        managedcleanroom consortium-view list
+    ```
