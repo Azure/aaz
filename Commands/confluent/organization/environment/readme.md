@@ -12,8 +12,17 @@ Commands to get the confluent environments in the organization
 
 ## Commands
 
+- [create](/Commands/confluent/organization/environment/_create.md)
+: Create confluent environment
+
+- [delete](/Commands/confluent/organization/environment/_delete.md)
+: Delete confluent environment by id
+
 - [list](/Commands/confluent/organization/environment/_list.md)
 : List all Confluent environments within a specific organization.
 
 - [show](/Commands/confluent/organization/environment/_show.md)
 : Display details of a specific Confluent environment within an organization.
+
+- [update](/Commands/confluent/organization/environment/_update.md)
+: Update confluent environment

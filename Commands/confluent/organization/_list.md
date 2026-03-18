@@ -8,3 +8,8 @@ List all Confluent organizations under the specified resource group or subscript
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.confluent/organizations 2024-02-13 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.confluent/organizations 2024-02-13 -->
+
+### [2025-08-18-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb25mbHVlbnQvb3JnYW5pemF0aW9ucw==/2025-08-18-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.confluent/organizations 2025-08-18-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.confluent/organizations 2025-08-18-preview -->
