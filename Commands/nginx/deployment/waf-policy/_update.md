@@ -14,3 +14,14 @@ Update a WAF policy.
     ```bash
         nginx deployment waf-policy update --resource-group myResourceGroup --deployment-name myDeployment --waf-policy-name myWafPolicy
     ```
+
+### [2025-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL25naW54Lm5naW54cGx1cy9uZ2lueGRlcGxveW1lbnRzL3t9L3dhZnBvbGljaWVzL3t9/2025-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/nginx.nginxplus/nginxdeployments/{}/wafpolicies/{} 2025-11-01 -->
+
+#### examples
+
+- WafPolicy_Update
+    ```bash
+        nginx deployment waf-policy update --resource-group myResourceGroup --deployment-name myDeployment --waf-policy-name myWafPolicy
+    ```
