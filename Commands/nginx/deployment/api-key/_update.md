@@ -22,3 +22,14 @@ Update an API Key for the Nginx deployment in order to access the dataplane API 
     ```bash
         nginx deployment api-key update --resource-group myResourceGroup --deployment-name myDeployment --api-key-name myApiKey
     ```
+
+### [2025-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL25naW54Lm5naW54cGx1cy9uZ2lueGRlcGxveW1lbnRzL3t9L2FwaWtleXMve30=/2025-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/nginx.nginxplus/nginxdeployments/{}/apikeys/{} 2025-11-01 -->
+
+#### examples
+
+- APIKeys_Update
+    ```bash
+        nginx deployment api-key update --resource-group myResourceGroup --deployment-name myDeployment --api-key-name myApiKey
+    ```
