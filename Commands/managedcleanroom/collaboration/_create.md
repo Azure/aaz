@@ -23,5 +23,5 @@ Create a collaboration.
 
 - Create Collaboration
     ```bash
-        managedcleanroom collaboration create --resource-group testrg --collaboration-name ContosoCollaboration --location northeurope --consortium-type ConfidentialACI --user-identity "{tenant-id:fd3c3665-1729-4b7b-9a38-238e83b0f98b,object-id:fd3c3665-1729-4b7b-9a38-238e83b0f98b,account-type:microsoft}"
+        managedcleanroom collaboration create --resource-group testrg --collaboration-name ContosoCollaboration --location northeurope --consortium-type ConfidentialACI
     ```

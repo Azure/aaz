@@ -23,5 +23,5 @@ Update a collaboration.
 
 - Create Collaboration
     ```bash
-        managedcleanroom collaboration update --resource-group testrg --collaboration-name ContosoCollaboration --consortium-type ConfidentialACI --user-identity "{tenant-id:fd3c3665-1729-4b7b-9a38-238e83b0f98b,object-id:fd3c3665-1729-4b7b-9a38-238e83b0f98b,account-type:microsoft}"
+        managedcleanroom collaboration update --resource-group testrg --collaboration-name ContosoCollaboration --consortium-type ConfidentialACI
     ```

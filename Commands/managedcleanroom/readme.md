@@ -1,6 +1,6 @@
 # [Group] _managedcleanroom_
 
-Manage Clean Room
+Manage Azure Confidential Clean Room
 
 ## Subgroups
 
