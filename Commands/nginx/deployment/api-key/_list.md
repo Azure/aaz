@@ -22,3 +22,14 @@ List all API Keys of the given Nginx deployment
     ```bash
         nginx deployment api-key list --resource-group myResourceGroup --deployment-name myDeployment
     ```
+
+### [2025-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL25naW54Lm5naW54cGx1cy9uZ2lueGRlcGxveW1lbnRzL3t9L2FwaWtleXM=/2025-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/nginx.nginxplus/nginxdeployments/{}/apikeys 2025-11-01 -->
+
+#### examples
+
+- ApiKeys_List
+    ```bash
+        nginx deployment api-key list --resource-group myResourceGroup --deployment-name myDeployment
+    ```

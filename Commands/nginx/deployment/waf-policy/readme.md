@@ -4,6 +4,9 @@ Manage Waf Policy
 
 ## Commands
 
+- [analyze-waf-policy](/Commands/nginx/deployment/waf-policy/_analyze-waf-policy.md)
+: Analyze an Nginx Deployment WAF Policy
+
 - [create](/Commands/nginx/deployment/waf-policy/_create.md)
 : Create a WAF policy.
 
