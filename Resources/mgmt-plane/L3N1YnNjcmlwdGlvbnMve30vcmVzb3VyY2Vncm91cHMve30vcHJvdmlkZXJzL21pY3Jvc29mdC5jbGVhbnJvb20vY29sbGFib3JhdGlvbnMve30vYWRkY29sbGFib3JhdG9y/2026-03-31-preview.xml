@@ -15,21 +15,14 @@
       <argGroup name="Body">
         <arg type="object" var="$body.collaborator" options="collaborator" required="True" group="Body">
           <help short="Collaborator to be added."/>
-          <arg type="string" var="$body.collaborator.email" options="email">
-            <help short="Email of the collaborator."/>
-          </arg>
-          <arg type="string" var="$body.collaborator.identityType" options="identity-type">
-            <help short="Identity type of the collaborator."/>
-            <enum>
-              <item name="ServicePrincipal" value="&quot;ServicePrincipal&quot;"/>
-              <item name="User" value="&quot;User&quot;"/>
-            </enum>
-          </arg>
           <arg type="string" var="$body.collaborator.objectId" options="object-id">
             <help short="Object ID of the collaborator."/>
           </arg>
           <arg type="string" var="$body.collaborator.tenantId" options="tenant-id">
             <help short="Tenant ID of the collaborator."/>
+          </arg>
+          <arg type="string" var="$body.collaborator.userIdentifier" options="user-identifier">
+            <help short="User identifier of the collaborator. This can be specified as an email (no OID/TID should be specified) or an SPN (OID/TID required)."/>
           </arg>
         </arg>
       </argGroup>
@@ -56,15 +49,9 @@
               <json>
                 <schema type="object" name="body" required="True" clientFlatten="True">
                   <prop type="object" name="collaborator" arg="$body.collaborator" required="True">
-                    <prop type="string" name="email" arg="$body.collaborator.email"/>
-                    <prop type="string" name="identityType" arg="$body.collaborator.identityType">
-                      <enum>
-                        <item value="&quot;ServicePrincipal&quot;"/>
-                        <item value="&quot;User&quot;"/>
-                      </enum>
-                    </prop>
                     <prop type="string" name="objectId" arg="$body.collaborator.objectId"/>
                     <prop type="string" name="tenantId" arg="$body.collaborator.tenantId"/>
+                    <prop type="string" name="userIdentifier" arg="$body.collaborator.userIdentifier"/>
                   </prop>
                 </schema>
               </json>
@@ -100,24 +87,13 @@
                     </prop>
                     <prop readOnly="True" type="array<object>" name="collaborators">
                       <item type="object">
-                        <prop type="string" name="email"/>
-                        <prop type="string" name="identityType">
-                          <enum>
-                            <item value="&quot;ServicePrincipal&quot;"/>
-                            <item value="&quot;User&quot;"/>
-                          </enum>
-                        </prop>
                         <prop readOnly="True" type="boolean" name="isCollaborationOwner"/>
                         <prop type="string" name="objectId"/>
                         <prop type="string" name="tenantId"/>
+                        <prop type="string" name="userIdentifier"/>
                       </item>
                     </prop>
                     <prop readOnly="True" type="ResourceId" name="consortiumArmId"/>
-                    <prop type="string" name="consortiumType" required="True">
-                      <enum>
-                        <item value="&quot;ConfidentialACI&quot;"/>
-                      </enum>
-                    </prop>
                     <prop readOnly="True" type="object" name="health">
                       <prop type="array<object>" name="healthIssues">
                         <item type="object">

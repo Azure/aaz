@@ -23,5 +23,5 @@ Adds a collaborator to a collaboration.
 
 - Add Collaborator
     ```bash
-        managedcleanroom collaboration add-collaborator --resource-group testrg --collaboration-name ContosoCollaboration --collaborator "{email:alice@contoso.com,tenant-id:72f988bf-86f1-41af-91ab-2d7cd011db47,object-id:0f8fad5b-d9cb-469f-a165-70867728950e,identity-type:User}"
+        managedcleanroom collaboration add-collaborator --resource-group testrg --collaboration-name ContosoCollaboration --collaborator "{user-identifier:alice@contoso.com,tenant-id:72f988bf-86f1-41af-91ab-2d7cd011db47,object-id:0f8fad5b-d9cb-469f-a165-70867728950e}"
     ```
