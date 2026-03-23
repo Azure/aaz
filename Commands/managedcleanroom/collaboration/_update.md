@@ -21,7 +21,7 @@ Update a collaboration.
 
 #### examples
 
-- Create Collaboration
+- Update Collaboration
     ```bash
-        managedcleanroom collaboration update --resource-group testrg --collaboration-name ContosoCollaboration
+        managedcleanroom collaboration update --resource-group testrg --collaboration-name ContosoCollaboration --tags "env=testing"
     ```

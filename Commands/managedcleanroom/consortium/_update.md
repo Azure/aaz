@@ -21,7 +21,7 @@ Update a consortium.
 
 #### examples
 
-- Create Consortium
+- Update Consortium
     ```bash
-        managedcleanroom consortium update --resource-group testrg --consortium-name ContosoConsortium
+        managedcleanroom consortium update --resource-group testrg --consortium-name ContosoConsortium --tags "env=testing"
     ```
