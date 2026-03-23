@@ -27,3 +27,8 @@ List consortiums in a subscription.
     ```bash
         managedcleanroom consortium list
     ```
+
+- List consortiums in subscription
+    ```bash
+        managedcleanroom consortium list --resource-group testrg
+    ```
