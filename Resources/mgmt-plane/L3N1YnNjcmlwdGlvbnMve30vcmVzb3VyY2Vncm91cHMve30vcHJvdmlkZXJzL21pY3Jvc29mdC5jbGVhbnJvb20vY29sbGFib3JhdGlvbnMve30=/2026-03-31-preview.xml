@@ -59,7 +59,7 @@
                         <item value="&quot;Resumed&quot;"/>
                       </enum>
                     </prop>
-                    <prop readOnly="True" type="array<object>" name="collaborators">
+                    <prop type="array<object>" name="collaborators">
                       <item type="object">
                         <prop readOnly="True" type="boolean" name="isCollaborationOwner"/>
                         <prop type="string" name="objectId"/>
@@ -218,6 +218,22 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="Properties">
+        <arg type="array<object>" var="$resource.properties.collaborators" options="collaborators" group="Properties">
+          <help short="Gets or sets the collaborators."/>
+          <item type="object">
+            <arg type="string" var="$resource.properties.collaborators[].objectId" options="object-id">
+              <help short="Object ID of the collaborator."/>
+            </arg>
+            <arg type="string" var="$resource.properties.collaborators[].tenantId" options="tenant-id">
+              <help short="Tenant ID of the collaborator."/>
+            </arg>
+            <arg type="string" var="$resource.properties.collaborators[].userIdentifier" options="user-identifier">
+              <help short="User identifier of the collaborator. This can be specified as an email (no OID/TID should be specified) or an SPN (OID/TID required)."/>
+            </arg>
+          </item>
+        </arg>
+      </argGroup>
       <argGroup name="Resource">
         <arg type="string" var="$resource.kind" options="kind" group="Resource">
           <help short="Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type."/>
@@ -259,7 +275,15 @@
                     <format pattern="^[-\w\._,\(\)]+$"/>
                   </prop>
                   <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
-                  <prop type="object" name="properties" required="True" clientFlatten="True"/>
+                  <prop type="object" name="properties" required="True" clientFlatten="True">
+                    <prop type="array<object>" name="collaborators" arg="$resource.properties.collaborators">
+                      <item type="object">
+                        <prop type="string" name="objectId" arg="$resource.properties.collaborators[].objectId"/>
+                        <prop type="string" name="tenantId" arg="$resource.properties.collaborators[].tenantId"/>
+                        <prop type="string" name="userIdentifier" arg="$resource.properties.collaborators[].userIdentifier"/>
+                      </item>
+                    </prop>
+                  </prop>
                   <prop type="object" name="tags" arg="$resource.tags">
                     <additionalProp>
                       <item type="string"/>
@@ -297,7 +321,7 @@
                         <item value="&quot;Resumed&quot;"/>
                       </enum>
                     </prop>
-                    <prop readOnly="True" type="array<object>" name="collaborators">
+                    <prop type="array<object>" name="collaborators">
                       <item type="object">
                         <prop readOnly="True" type="boolean" name="isCollaborationOwner"/>
                         <prop type="string" name="objectId"/>
@@ -407,6 +431,22 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="Properties">
+        <arg nullable="True" type="array<object>" var="$resource.properties.collaborators" options="collaborators" group="Properties">
+          <help short="Gets or sets the collaborators."/>
+          <item nullable="True" type="object">
+            <arg nullable="True" type="string" var="$resource.properties.collaborators[].objectId" options="object-id">
+              <help short="Object ID of the collaborator."/>
+            </arg>
+            <arg nullable="True" type="string" var="$resource.properties.collaborators[].tenantId" options="tenant-id">
+              <help short="Tenant ID of the collaborator."/>
+            </arg>
+            <arg nullable="True" type="string" var="$resource.properties.collaborators[].userIdentifier" options="user-identifier">
+              <help short="User identifier of the collaborator. This can be specified as an email (no OID/TID should be specified) or an SPN (OID/TID required)."/>
+            </arg>
+          </item>
+        </arg>
+      </argGroup>
       <argGroup name="Resource">
         <arg nullable="True" type="object" var="$resource.tags" options="tags" group="Resource">
           <help short="Resource tags."/>
@@ -462,7 +502,7 @@
                         <item value="&quot;Resumed&quot;"/>
                       </enum>
                     </prop>
-                    <prop readOnly="True" type="array<object>" name="collaborators">
+                    <prop type="array<object>" name="collaborators">
                       <item type="object">
                         <prop readOnly="True" type="boolean" name="isCollaborationOwner"/>
                         <prop type="string" name="objectId"/>
@@ -564,6 +604,15 @@
         <instanceUpdate ref="$Instance">
           <json>
             <schema type="object" name="resource" required="True" clientFlatten="True">
+              <prop type="object" name="properties" required="True" clientFlatten="True">
+                <prop type="array<object>" name="collaborators" arg="$resource.properties.collaborators">
+                  <item type="object">
+                    <prop type="string" name="objectId" arg="$resource.properties.collaborators[].objectId"/>
+                    <prop type="string" name="tenantId" arg="$resource.properties.collaborators[].tenantId"/>
+                    <prop type="string" name="userIdentifier" arg="$resource.properties.collaborators[].userIdentifier"/>
+                  </item>
+                </prop>
+              </prop>
               <prop type="object" name="tags" arg="$resource.tags">
                 <additionalProp>
                   <item type="string"/>

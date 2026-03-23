@@ -23,5 +23,5 @@ Create a collaboration.
 
 - Create Collaboration
     ```bash
-        managedcleanroom collaboration create --resource-group testrg --collaboration-name ContosoCollaboration --location northeurope --consortium-type ConfidentialACI
+        managedcleanroom collaboration create --resource-group testrg --collaboration-name ContosoCollaboration --location northeurope
     ```
