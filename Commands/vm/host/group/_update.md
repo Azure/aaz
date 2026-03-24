@@ -16,5 +16,5 @@ Update a dedicated host group.
 
 - Update a dedicated host group with Ultra SSD support.
     ```bash
-        vm host group update --resource-group myResourceGroup --name myDedicatedHostGroup --tags "{department:finance}" --zones "[1]" --platform-fault-domain-count 3 --support-automatic-placement True --additional-capabilities "{ultra-ssd-enabled:True}"
+        vm host group update --resource-group myResourceGroup --name myDedicatedHostGroup --set tags.foo="bar"
     ```
