@@ -387,10 +387,10 @@
 : Manage Azure Time Series Insights.
 
 - [vm](/Commands/vm/readme.md)
-: Manage Linux or Windows virtual machines.
+: Mange azure compute vm config
 
 - [vmss](/Commands/vmss/readme.md)
-: Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS).
+: Mange azure compute vm config
 
 - [vmware](/Commands/vmware/readme.md)
 : Commands to manage Azure VMware Solution.
