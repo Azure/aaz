@@ -1,6 +1,6 @@
 # [Group] _vmss_
 
-Mange azure compute vm config
+Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS).
 
 ## Subgroups
 

@@ -1,6 +1,6 @@
 # [Group] _vm_
 
-Mange azure compute vm config
+Manage Linux or Windows virtual machines.
 
 ## Subgroups
 
