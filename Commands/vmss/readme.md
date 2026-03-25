@@ -54,6 +54,9 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 - [list-skus](/Commands/vmss/_list-skus.md)
 : List SKUs available for your VM scale set, including the minimum and maximum VM instances allowed for each SKU.
 
+- [manualupgrade](/Commands/vmss/_manualupgrade.md)
+: Upgrades one or more virtual machines to the latest SKU set in the VM scale set model.
+
 - [perform-maintenance](/Commands/vmss/_perform-maintenance.md)
 : Perform maintenance on one or more virtual machines in a VM scale set. Operation on instances which are not eligible for perform maintenance will be failed. Please refer to best practices for more details: https://learn.microsoft.com/azure/virtual-machine-scale-sets/virtual-machine-scale-sets-maintenance-notifications
 
@@ -63,11 +66,11 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 - [reimageall](/Commands/vmss/_reimageall.md)
 : Reimages all the disks ( including data disks ) in the virtual machines in a VM scale set. This operation is only supported for managed disks.
 
-- [set-orchestration-service-state](/Commands/vmss/_set-orchestration-service-state.md)
-: Changes ServiceState property for a given service
-
 - [restart](/Commands/vmss/_restart.md)
 : Restarts one or more virtual machines in a VM scale set.
+
+- [set-orchestration-service-state](/Commands/vmss/_set-orchestration-service-state.md)
+: Changes ServiceState property for a given service
 
 - [show](/Commands/vmss/_show.md)
 : Get information about a virtual machine scale set.
@@ -86,6 +89,3 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 
 - [update-domain-walk](/Commands/vmss/_update-domain-walk.md)
 : Manual platform update domain walk to update virtual machines in a service fabric virtual machine scale set.
-
-- [patch](/Commands/vmss/_patch.md)
-: Patch a VM scale set.

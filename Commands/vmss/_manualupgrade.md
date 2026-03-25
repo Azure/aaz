@@ -1,4 +1,4 @@
-# [Command] _compute virtual-machine-scale-set manualupgrade_
+# [Command] _vmss manualupgrade_
 
 Upgrades one or more virtual machines to the latest SKU set in the VM scale set model.
 
