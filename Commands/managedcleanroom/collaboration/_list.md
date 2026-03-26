@@ -28,7 +28,7 @@ List collaborations in a subscription.
         managedcleanroom collaboration list
     ```
 
-- List collaborations in subscription
+- List collaborations in a resource group
     ```bash
         managedcleanroom collaboration list --resource-group testrg
     ```
