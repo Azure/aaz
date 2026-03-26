@@ -434,12 +434,23 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="Body">
+        <arg type="ResourceLocation" var="$body.location" options="location l" required="True" group="Body">
+          <help short="The geo-location where the resource lives"/>
+        </arg>
+        <arg type="object" var="$body.tags" options="tags" group="Body">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
       <argGroup name="Identity">
-        <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
+        <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
           <blank value="&quot;True&quot;"/>
           <help short="Set the system managed identity."/>
         </arg>
-        <arg type="string" var="$resource.identity.type" options="type" hide="True" group="Identity">
+        <arg type="string" var="$body.identity.type" options="type" hide="True" group="Identity">
           <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
           <enum>
             <item name="None" value="&quot;None&quot;"/>
@@ -448,12 +459,12 @@
             <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
           </enum>
         </arg>
-        <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
+        <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
           <blank value="[]"/>
           <help short="Set the user managed identities."/>
           <item type="string"/>
         </arg>
-        <arg type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+        <arg type="object" var="$body.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
           <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
           <additionalProp>
             <item nullable="True" type="object">
@@ -463,56 +474,56 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg type="string" var="$resource.properties.annotation" options="annotation" group="Properties">
+        <arg type="string" var="$body.properties.annotation" options="annotation" group="Properties">
           <help short="Switch configuration description."/>
         </arg>
-        <arg type="object" var="$resource.properties.authorizedTransceiver" options="authorized-transceiver" group="Properties">
+        <arg type="object" var="$body.properties.authorizedTransceiver" options="authorized-transceiver" group="Properties">
           <help short="Authorized transciever configuration for NetworkFabric."/>
-          <arg type="string" var="$resource.properties.authorizedTransceiver.key" options="key">
+          <arg type="string" var="$body.properties.authorizedTransceiver.key" options="key">
             <help short="Key that must be configured on the fabric."/>
           </arg>
-          <arg type="string" var="$resource.properties.authorizedTransceiver.vendor" options="vendor">
+          <arg type="string" var="$body.properties.authorizedTransceiver.vendor" options="vendor">
             <help short="Vendor of the transceiver."/>
           </arg>
         </arg>
-        <arg type="array<ResourceId>" var="$resource.properties.controlPlaneAcls" options="control-plane-acls" group="Properties">
+        <arg type="array<ResourceId>" var="$body.properties.controlPlaneAcls" options="control-plane-acls" group="Properties">
           <help short="Control Plane Access Control List ARM resource IDs."/>
           <item nullable="True" type="ResourceId"/>
         </arg>
-        <arg type="integer64" var="$resource.properties.fabricASN" options="fabric-asn" required="True" group="Properties">
+        <arg type="integer64" var="$body.properties.fabricASN" options="fabric-asn" required="True" group="Properties">
           <help short="ASN of CE devices for CE/PE connectivity."/>
           <format maximum="4294967295" minimum="1"/>
         </arg>
-        <arg type="string" var="$resource.properties.fabricVersion" options="fabric-version" group="Properties">
+        <arg type="string" var="$body.properties.fabricVersion" options="fabric-version" group="Properties">
           <help short="The version of Network Fabric."/>
           <format minLength="1"/>
         </arg>
-        <arg type="array<object>" var="$resource.properties.featureFlags" options="feature-flags" group="Properties">
+        <arg type="array<object>" var="$body.properties.featureFlags" options="feature-flags" group="Properties">
           <help short="NetworkFabric feature flag configuration information"/>
           <item type="object">
-            <arg type="string" var="$resource.properties.featureFlags[].featureFlagName" options="feature-flag-name">
+            <arg type="string" var="$body.properties.featureFlags[].featureFlagName" options="feature-flag-name">
               <help short="Feature flag name."/>
             </arg>
-            <arg type="string" var="$resource.properties.featureFlags[].featureFlagValue" options="feature-flag-value">
+            <arg type="string" var="$body.properties.featureFlags[].featureFlagValue" options="feature-flag-value">
               <help short="Feature flag value."/>
             </arg>
           </item>
         </arg>
-        <arg type="integer32" var="$resource.properties.hardwareAlertThreshold" options="hardware-alert-threshold ha-threshold" group="Properties">
+        <arg type="integer32" var="$body.properties.hardwareAlertThreshold" options="hardware-alert-threshold ha-threshold" group="Properties">
           <help short="Hardware alert threshold percentage. Possible values are from 20 to 100."/>
           <format maximum="100" minimum="20"/>
         </arg>
-        <arg type="string" var="$resource.properties.ipv4Prefix" options="ipv4-prefix" required="True" group="Properties">
+        <arg type="string" var="$body.properties.ipv4Prefix" options="ipv4-prefix" required="True" group="Properties">
           <help short="IPv4Prefix for Management Network. Example: 10.1.0.0/19."/>
           <format minLength="1"/>
         </arg>
-        <arg type="string" var="$resource.properties.ipv6Prefix" options="ipv6-prefix" group="Properties">
+        <arg type="string" var="$body.properties.ipv6Prefix" options="ipv6-prefix" group="Properties">
           <help short="IPv6Prefix for Management Network. Example: 3FFE:FFFF:0:CD40::/59"/>
           <format minLength="1"/>
         </arg>
-        <arg type="object" var="$resource.properties.managementNetworkConfiguration" options="management-network-configuration managed-network-config" required="True" group="Properties">
+        <arg type="object" var="$body.properties.managementNetworkConfiguration" options="management-network-configuration managed-network-config" required="True" group="Properties">
           <help short="Configuration to be used to setup the management network."/>
-          <arg type="object" var="$resource.properties.managementNetworkConfiguration.infrastructureVpnConfiguration" options="infrastructure-vpn-configuration" required="True" cls="VpnConfigurationProperties_create">
+          <arg type="object" var="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration" options="infrastructure-vpn-configuration" required="True" cls="VpnConfigurationProperties_create">
             <help short="VPN Configuration properties."/>
             <arg nullable="True" type="ResourceId" var="@VpnConfigurationProperties_create.networkToNetworkInterconnectId" options="network-to-network-interconnect-id">
               <help short="ARM Resource ID of the Network To Network Interconnect."/>
@@ -594,20 +605,20 @@
               </enum>
             </arg>
           </arg>
-          <arg type="@VpnConfigurationProperties_create" var="$resource.properties.managementNetworkConfiguration.workloadVpnConfiguration" options="workload-vpn-configuration" required="True">
+          <arg type="@VpnConfigurationProperties_create" var="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration" options="workload-vpn-configuration" required="True">
             <help short="VPN Configuration properties."/>
           </arg>
         </arg>
-        <arg nullable="True" type="ResourceId" var="$resource.properties.networkFabricControllerId" options="network-fabric-controller-id nfc-id" required="True" group="Properties">
+        <arg nullable="True" type="ResourceId" var="$body.properties.networkFabricControllerId" options="network-fabric-controller-id nfc-id" required="True" group="Properties">
           <help short="Azure resource ID for the NetworkFabricController the NetworkFabric belongs."/>
         </arg>
-        <arg type="string" var="$resource.properties.networkFabricSku" options="network-fabric-sku nf-sku" required="True" group="Properties">
+        <arg type="string" var="$body.properties.networkFabricSku" options="network-fabric-sku nf-sku" required="True" group="Properties">
           <help short="Supported Network Fabric SKU.Example: Compute / Aggregate racks. Once the user chooses a particular SKU, only supported racks can be added to the Network Fabric. The SKU determines whether it is a single / multi rack Network Fabric."/>
           <format minLength="1"/>
         </arg>
-        <arg type="object" var="$resource.properties.qosConfiguration" options="qos-configuration" group="Properties">
+        <arg type="object" var="$body.properties.qosConfiguration" options="qos-configuration" group="Properties">
           <help short="NetworkFabric QoS Configuration"/>
-          <arg type="string" var="$resource.properties.qosConfiguration.qosConfigurationState" options="qos-configuration-state">
+          <arg type="string" var="$body.properties.qosConfiguration.qosConfigurationState" options="qos-configuration-state">
             <help short="QoS configuration state. Default is Disabled."/>
             <default value="&quot;Disabled&quot;"/>
             <enum>
@@ -616,72 +627,72 @@
             </enum>
           </arg>
         </arg>
-        <arg type="integer32" var="$resource.properties.rackCount" options="rack-count" group="Properties">
+        <arg type="integer32" var="$body.properties.rackCount" options="rack-count" group="Properties">
           <help short="Number of compute racks associated to Network Fabric."/>
           <format maximum="8" minimum="1"/>
         </arg>
-        <arg type="integer32" var="$resource.properties.serverCountPerRack" options="server-count-per-rack" required="True" group="Properties">
+        <arg type="integer32" var="$body.properties.serverCountPerRack" options="server-count-per-rack" required="True" group="Properties">
           <help short="Number of servers.Possible values are from 1-16."/>
           <format maximum="16" minimum="1"/>
         </arg>
-        <arg type="object" var="$resource.properties.storageAccountConfiguration" options="storage-account-configuration storage-account-config" group="Properties">
+        <arg type="object" var="$body.properties.storageAccountConfiguration" options="storage-account-configuration storage-account-config" group="Properties">
           <help short="Bring your own storage account configurations for Network Fabric."/>
-          <arg nullable="True" type="ResourceId" var="$resource.properties.storageAccountConfiguration.storageAccountId" options="storage-account-id">
+          <arg nullable="True" type="ResourceId" var="$body.properties.storageAccountConfiguration.storageAccountId" options="storage-account-id">
             <help short="Network Fabric storage account resource identifier."/>
           </arg>
-          <arg type="object" var="$resource.properties.storageAccountConfiguration.storageAccountIdentity" options="storage-account-identity">
+          <arg type="object" var="$body.properties.storageAccountConfiguration.storageAccountIdentity" options="storage-account-identity">
             <help short="The selection of the managed identity to use with this storage account. The identity type must be either system assigned or user assigned."/>
-            <arg type="string" var="$resource.properties.storageAccountConfiguration.storageAccountIdentity.identityType" options="identity-type" required="True">
+            <arg type="string" var="$body.properties.storageAccountConfiguration.storageAccountIdentity.identityType" options="identity-type" required="True">
               <help short="The type of managed identity that is being selected."/>
               <enum>
                 <item name="SystemAssignedIdentity" value="&quot;SystemAssignedIdentity&quot;"/>
                 <item name="UserAssignedIdentity" value="&quot;UserAssignedIdentity&quot;"/>
               </enum>
             </arg>
-            <arg nullable="True" type="ResourceId" var="$resource.properties.storageAccountConfiguration.storageAccountIdentity.userAssignedIdentityResourceId" options="user-assigned-identity-resource-id">
+            <arg nullable="True" type="ResourceId" var="$body.properties.storageAccountConfiguration.storageAccountIdentity.userAssignedIdentityResourceId" options="user-assigned-identity-resource-id">
               <help short="The user assigned managed identity resource ID to use. Mutually exclusive with a system assigned identity type."/>
             </arg>
           </arg>
         </arg>
-        <arg type="integer32" var="$resource.properties.storageArrayCount" options="storage-array-count" group="Properties">
+        <arg type="integer32" var="$body.properties.storageArrayCount" options="storage-array-count" group="Properties">
           <help short="Number of Storage arrays associated with the Network Fabric."/>
           <format maximum="2" minimum="1"/>
         </arg>
-        <arg type="object" var="$resource.properties.terminalServerConfiguration" options="terminal-server-configuration ts-config" required="True" group="Properties">
+        <arg type="object" var="$body.properties.terminalServerConfiguration" options="terminal-server-configuration ts-config" required="True" group="Properties">
           <help short="Network and credentials configuration currently applied to terminal server."/>
-          <arg type="password" var="$resource.properties.terminalServerConfiguration.password" options="password" required="True">
+          <arg type="password" var="$body.properties.terminalServerConfiguration.password" options="password" required="True">
             <help short="Password for the terminal server connection."/>
             <format minLength="1"/>
             <prompt msg="Password:"/>
           </arg>
-          <arg type="string" var="$resource.properties.terminalServerConfiguration.primaryIpv4Prefix" options="primary-ipv4-prefix" required="True">
+          <arg type="string" var="$body.properties.terminalServerConfiguration.primaryIpv4Prefix" options="primary-ipv4-prefix" required="True">
             <help short="IPv4 Address Prefix."/>
           </arg>
-          <arg type="string" var="$resource.properties.terminalServerConfiguration.primaryIpv6Prefix" options="primary-ipv6-prefix">
+          <arg type="string" var="$body.properties.terminalServerConfiguration.primaryIpv6Prefix" options="primary-ipv6-prefix">
             <help short="IPv6 Address Prefix."/>
           </arg>
-          <arg type="string" var="$resource.properties.terminalServerConfiguration.secondaryIpv4Prefix" options="secondary-ipv4-prefix" required="True">
+          <arg type="string" var="$body.properties.terminalServerConfiguration.secondaryIpv4Prefix" options="secondary-ipv4-prefix" required="True">
             <help short="Secondary IPv4 Address Prefix."/>
           </arg>
-          <arg type="string" var="$resource.properties.terminalServerConfiguration.secondaryIpv6Prefix" options="secondary-ipv6-prefix">
+          <arg type="string" var="$body.properties.terminalServerConfiguration.secondaryIpv6Prefix" options="secondary-ipv6-prefix">
             <help short="Secondary IPv6 Address Prefix."/>
           </arg>
-          <arg type="string" var="$resource.properties.terminalServerConfiguration.serialNumber" options="serial-number">
+          <arg type="string" var="$body.properties.terminalServerConfiguration.serialNumber" options="serial-number">
             <help short="Serial Number of Terminal server."/>
             <format minLength="1"/>
           </arg>
-          <arg type="string" var="$resource.properties.terminalServerConfiguration.username" options="username" required="True">
+          <arg type="string" var="$body.properties.terminalServerConfiguration.username" options="username" required="True">
             <help short="Username for the terminal server connection."/>
             <format minLength="1"/>
           </arg>
         </arg>
-        <arg type="array<ResourceId>" var="$resource.properties.trustedIpPrefixes" options="trusted-ip-prefixes" group="Properties">
+        <arg type="array<ResourceId>" var="$body.properties.trustedIpPrefixes" options="trusted-ip-prefixes" group="Properties">
           <help short="Trusted IP Prefixes ARM resource IDs."/>
           <item nullable="True" type="ResourceId"/>
         </arg>
-        <arg type="object" var="$resource.properties.uniqueRdConfiguration" options="unique-rd-configuration unique-rd-config" group="Properties">
+        <arg type="object" var="$body.properties.uniqueRdConfiguration" options="unique-rd-configuration unique-rd-config" group="Properties">
           <help short="Unique Route Distinguisher configuration"/>
-          <arg type="string" var="$resource.properties.uniqueRdConfiguration.nniDerivedUniqueRdConfigurationState" options="nni-derived-unique-rd-configuration-state">
+          <arg type="string" var="$body.properties.uniqueRdConfiguration.nniDerivedUniqueRdConfigurationState" options="nni-derived-unique-rd-configuration-state">
             <help short="NNI derived unique Route Distinguisher state. Default is Disabled."/>
             <default value="&quot;Disabled&quot;"/>
             <enum>
@@ -689,7 +700,7 @@
               <item name="Enabled" value="&quot;Enabled&quot;"/>
             </enum>
           </arg>
-          <arg type="string" var="$resource.properties.uniqueRdConfiguration.uniqueRdConfigurationState" options="unique-rd-configuration-state">
+          <arg type="string" var="$body.properties.uniqueRdConfiguration.uniqueRdConfigurationState" options="unique-rd-configuration-state">
             <help short="Unique Route Distinguisher configuration state. Default is Enabled."/>
             <default value="&quot;Enabled&quot;"/>
             <enum>
@@ -697,17 +708,6 @@
               <item name="Enabled" value="&quot;Enabled&quot;"/>
             </enum>
           </arg>
-        </arg>
-      </argGroup>
-      <argGroup name="Resource">
-        <arg type="ResourceLocation" var="$resource.location" options="location l" required="True" group="Resource">
-          <help short="The geo-location where the resource lives"/>
-        </arg>
-        <arg type="object" var="$resource.tags" options="tags" group="Resource">
-          <help short="Resource tags."/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
         </arg>
       </argGroup>
       <operation operationId="NetworkFabrics_Create">
@@ -731,9 +731,9 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="resource" required="True" clientFlatten="True">
+                <schema type="object" name="body" required="True" clientFlatten="True">
                   <prop type="IdentityObject" name="identity">
-                    <prop type="string" name="type" arg="$resource.identity.type" required="True">
+                    <prop type="string" name="type" arg="$body.identity.type" required="True">
                       <enum>
                         <item value="&quot;None&quot;"/>
                         <item value="&quot;SystemAssigned&quot;"/>
@@ -741,49 +741,49 @@
                         <item value="&quot;UserAssigned&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="userAssignedIdentities" arg="$resource.identity.userAssignedIdentities">
+                    <prop type="object" name="userAssignedIdentities" arg="$body.identity.userAssignedIdentities">
                       <additionalProp>
                         <item nullable="True" type="object"/>
                       </additionalProp>
                     </prop>
-                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                       <item action="create" type="string"/>
                     </userAssigned>
-                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
                   </prop>
-                  <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
+                  <prop type="ResourceLocation" name="location" arg="$body.location" required="True"/>
                   <prop type="object" name="properties" required="True" clientFlatten="True">
-                    <prop type="string" name="annotation" arg="$resource.properties.annotation"/>
-                    <prop type="object" name="authorizedTransceiver" arg="$resource.properties.authorizedTransceiver">
-                      <prop type="string" name="key" arg="$resource.properties.authorizedTransceiver.key"/>
-                      <prop type="string" name="vendor" arg="$resource.properties.authorizedTransceiver.vendor"/>
+                    <prop type="string" name="annotation" arg="$body.properties.annotation"/>
+                    <prop type="object" name="authorizedTransceiver" arg="$body.properties.authorizedTransceiver">
+                      <prop type="string" name="key" arg="$body.properties.authorizedTransceiver.key"/>
+                      <prop type="string" name="vendor" arg="$body.properties.authorizedTransceiver.vendor"/>
                     </prop>
-                    <prop type="array<ResourceId>" name="controlPlaneAcls" arg="$resource.properties.controlPlaneAcls">
+                    <prop type="array<ResourceId>" name="controlPlaneAcls" arg="$body.properties.controlPlaneAcls">
                       <item nullable="True" type="ResourceId"/>
                     </prop>
-                    <prop type="integer64" name="fabricASN" arg="$resource.properties.fabricASN" required="True">
+                    <prop type="integer64" name="fabricASN" arg="$body.properties.fabricASN" required="True">
                       <format maximum="4294967295" minimum="1"/>
                     </prop>
-                    <prop type="string" name="fabricVersion" arg="$resource.properties.fabricVersion">
+                    <prop type="string" name="fabricVersion" arg="$body.properties.fabricVersion">
                       <format minLength="1"/>
                     </prop>
-                    <prop type="array<object>" name="featureFlags" arg="$resource.properties.featureFlags">
+                    <prop type="array<object>" name="featureFlags" arg="$body.properties.featureFlags">
                       <item type="object">
-                        <prop type="string" name="featureFlagName" arg="$resource.properties.featureFlags[].featureFlagName"/>
-                        <prop type="string" name="featureFlagValue" arg="$resource.properties.featureFlags[].featureFlagValue"/>
+                        <prop type="string" name="featureFlagName" arg="$body.properties.featureFlags[].featureFlagName"/>
+                        <prop type="string" name="featureFlagValue" arg="$body.properties.featureFlags[].featureFlagValue"/>
                       </item>
                     </prop>
-                    <prop type="integer32" name="hardwareAlertThreshold" arg="$resource.properties.hardwareAlertThreshold">
+                    <prop type="integer32" name="hardwareAlertThreshold" arg="$body.properties.hardwareAlertThreshold">
                       <format maximum="100" minimum="20"/>
                     </prop>
-                    <prop type="string" name="ipv4Prefix" arg="$resource.properties.ipv4Prefix" required="True">
+                    <prop type="string" name="ipv4Prefix" arg="$body.properties.ipv4Prefix" required="True">
                       <format minLength="1"/>
                     </prop>
-                    <prop type="string" name="ipv6Prefix" arg="$resource.properties.ipv6Prefix">
+                    <prop type="string" name="ipv6Prefix" arg="$body.properties.ipv6Prefix">
                       <format minLength="1"/>
                     </prop>
-                    <prop type="object" name="managementNetworkConfiguration" arg="$resource.properties.managementNetworkConfiguration" required="True">
-                      <prop type="object" name="infrastructureVpnConfiguration" arg="$resource.properties.managementNetworkConfiguration.infrastructureVpnConfiguration" required="True" cls="VpnConfigurationProperties_create">
+                    <prop type="object" name="managementNetworkConfiguration" arg="$body.properties.managementNetworkConfiguration" required="True">
+                      <prop type="object" name="infrastructureVpnConfiguration" arg="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration" required="True" cls="VpnConfigurationProperties_create">
                         <prop nullable="True" type="ResourceId" name="networkToNetworkInterconnectId" arg="@VpnConfigurationProperties_create.networkToNetworkInterconnectId"/>
                         <prop type="object" name="optionAProperties" arg="@VpnConfigurationProperties_create.optionAProperties">
                           <prop type="object" name="bfdConfiguration" arg="@VpnConfigurationProperties_create.optionAProperties.bfdConfiguration">
@@ -838,14 +838,14 @@
                           </enum>
                         </prop>
                       </prop>
-                      <prop type="@VpnConfigurationProperties_create" name="workloadVpnConfiguration" arg="$resource.properties.managementNetworkConfiguration.workloadVpnConfiguration" required="True"/>
+                      <prop type="@VpnConfigurationProperties_create" name="workloadVpnConfiguration" arg="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration" required="True"/>
                     </prop>
-                    <prop nullable="True" type="ResourceId" name="networkFabricControllerId" arg="$resource.properties.networkFabricControllerId" required="True"/>
-                    <prop type="string" name="networkFabricSku" arg="$resource.properties.networkFabricSku" required="True">
+                    <prop nullable="True" type="ResourceId" name="networkFabricControllerId" arg="$body.properties.networkFabricControllerId" required="True"/>
+                    <prop type="string" name="networkFabricSku" arg="$body.properties.networkFabricSku" required="True">
                       <format minLength="1"/>
                     </prop>
-                    <prop type="object" name="qosConfiguration" arg="$resource.properties.qosConfiguration">
-                      <prop type="string" name="qosConfigurationState" arg="$resource.properties.qosConfiguration.qosConfigurationState">
+                    <prop type="object" name="qosConfiguration" arg="$body.properties.qosConfiguration">
+                      <prop type="string" name="qosConfigurationState" arg="$body.properties.qosConfiguration.qosConfigurationState">
                         <default value="&quot;Disabled&quot;"/>
                         <enum>
                           <item value="&quot;Disabled&quot;"/>
@@ -853,54 +853,54 @@
                         </enum>
                       </prop>
                     </prop>
-                    <prop type="integer32" name="rackCount" arg="$resource.properties.rackCount">
+                    <prop type="integer32" name="rackCount" arg="$body.properties.rackCount">
                       <format maximum="8" minimum="1"/>
                     </prop>
-                    <prop type="integer32" name="serverCountPerRack" arg="$resource.properties.serverCountPerRack" required="True">
+                    <prop type="integer32" name="serverCountPerRack" arg="$body.properties.serverCountPerRack" required="True">
                       <format maximum="16" minimum="1"/>
                     </prop>
-                    <prop type="object" name="storageAccountConfiguration" arg="$resource.properties.storageAccountConfiguration">
-                      <prop nullable="True" type="ResourceId" name="storageAccountId" arg="$resource.properties.storageAccountConfiguration.storageAccountId"/>
-                      <prop type="object" name="storageAccountIdentity" arg="$resource.properties.storageAccountConfiguration.storageAccountIdentity">
-                        <prop type="string" name="identityType" arg="$resource.properties.storageAccountConfiguration.storageAccountIdentity.identityType" required="True">
+                    <prop type="object" name="storageAccountConfiguration" arg="$body.properties.storageAccountConfiguration">
+                      <prop nullable="True" type="ResourceId" name="storageAccountId" arg="$body.properties.storageAccountConfiguration.storageAccountId"/>
+                      <prop type="object" name="storageAccountIdentity" arg="$body.properties.storageAccountConfiguration.storageAccountIdentity">
+                        <prop type="string" name="identityType" arg="$body.properties.storageAccountConfiguration.storageAccountIdentity.identityType" required="True">
                           <enum>
                             <item value="&quot;SystemAssignedIdentity&quot;"/>
                             <item value="&quot;UserAssignedIdentity&quot;"/>
                           </enum>
                         </prop>
-                        <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId" arg="$resource.properties.storageAccountConfiguration.storageAccountIdentity.userAssignedIdentityResourceId"/>
+                        <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId" arg="$body.properties.storageAccountConfiguration.storageAccountIdentity.userAssignedIdentityResourceId"/>
                       </prop>
                     </prop>
-                    <prop type="integer32" name="storageArrayCount" arg="$resource.properties.storageArrayCount">
+                    <prop type="integer32" name="storageArrayCount" arg="$body.properties.storageArrayCount">
                       <format maximum="2" minimum="1"/>
                     </prop>
-                    <prop type="object" name="terminalServerConfiguration" arg="$resource.properties.terminalServerConfiguration" required="True">
-                      <prop type="password" name="password" arg="$resource.properties.terminalServerConfiguration.password" required="True" secret="True">
+                    <prop type="object" name="terminalServerConfiguration" arg="$body.properties.terminalServerConfiguration" required="True">
+                      <prop type="password" name="password" arg="$body.properties.terminalServerConfiguration.password" required="True" secret="True">
                         <format minLength="1"/>
                       </prop>
-                      <prop type="string" name="primaryIpv4Prefix" arg="$resource.properties.terminalServerConfiguration.primaryIpv4Prefix" required="True"/>
-                      <prop type="string" name="primaryIpv6Prefix" arg="$resource.properties.terminalServerConfiguration.primaryIpv6Prefix"/>
-                      <prop type="string" name="secondaryIpv4Prefix" arg="$resource.properties.terminalServerConfiguration.secondaryIpv4Prefix" required="True"/>
-                      <prop type="string" name="secondaryIpv6Prefix" arg="$resource.properties.terminalServerConfiguration.secondaryIpv6Prefix"/>
-                      <prop type="string" name="serialNumber" arg="$resource.properties.terminalServerConfiguration.serialNumber">
+                      <prop type="string" name="primaryIpv4Prefix" arg="$body.properties.terminalServerConfiguration.primaryIpv4Prefix" required="True"/>
+                      <prop type="string" name="primaryIpv6Prefix" arg="$body.properties.terminalServerConfiguration.primaryIpv6Prefix"/>
+                      <prop type="string" name="secondaryIpv4Prefix" arg="$body.properties.terminalServerConfiguration.secondaryIpv4Prefix" required="True"/>
+                      <prop type="string" name="secondaryIpv6Prefix" arg="$body.properties.terminalServerConfiguration.secondaryIpv6Prefix"/>
+                      <prop type="string" name="serialNumber" arg="$body.properties.terminalServerConfiguration.serialNumber">
                         <format minLength="1"/>
                       </prop>
-                      <prop type="string" name="username" arg="$resource.properties.terminalServerConfiguration.username" required="True">
+                      <prop type="string" name="username" arg="$body.properties.terminalServerConfiguration.username" required="True">
                         <format minLength="1"/>
                       </prop>
                     </prop>
-                    <prop type="array<ResourceId>" name="trustedIpPrefixes" arg="$resource.properties.trustedIpPrefixes">
+                    <prop type="array<ResourceId>" name="trustedIpPrefixes" arg="$body.properties.trustedIpPrefixes">
                       <item nullable="True" type="ResourceId"/>
                     </prop>
-                    <prop type="object" name="uniqueRdConfiguration" arg="$resource.properties.uniqueRdConfiguration">
-                      <prop type="string" name="nniDerivedUniqueRdConfigurationState" arg="$resource.properties.uniqueRdConfiguration.nniDerivedUniqueRdConfigurationState">
+                    <prop type="object" name="uniqueRdConfiguration" arg="$body.properties.uniqueRdConfiguration">
+                      <prop type="string" name="nniDerivedUniqueRdConfigurationState" arg="$body.properties.uniqueRdConfiguration.nniDerivedUniqueRdConfigurationState">
                         <default value="&quot;Disabled&quot;"/>
                         <enum>
                           <item value="&quot;Disabled&quot;"/>
                           <item value="&quot;Enabled&quot;"/>
                         </enum>
                       </prop>
-                      <prop type="string" name="uniqueRdConfigurationState" arg="$resource.properties.uniqueRdConfiguration.uniqueRdConfigurationState">
+                      <prop type="string" name="uniqueRdConfigurationState" arg="$body.properties.uniqueRdConfiguration.uniqueRdConfigurationState">
                         <default value="&quot;Enabled&quot;"/>
                         <enum>
                           <item value="&quot;Disabled&quot;"/>
@@ -909,7 +909,7 @@
                       </prop>
                     </prop>
                   </prop>
-                  <prop type="object" name="tags" arg="$resource.tags">
+                  <prop type="object" name="tags" arg="$body.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>
@@ -1273,12 +1273,20 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="Body">
+        <arg type="object" var="$body.tags" options="tags" group="Body">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
       <argGroup name="Identity">
-        <arg type="string" var="$properties.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
+        <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
           <blank value="&quot;True&quot;"/>
           <help short="Set the system managed identity."/>
         </arg>
-        <arg type="string" var="$properties.identity.type" options="type" hide="True" group="Identity">
+        <arg type="string" var="$body.identity.type" options="type" hide="True" group="Identity">
           <help short="The type of managed identity assigned to this resource."/>
           <enum>
             <item name="None" value="&quot;None&quot;"/>
@@ -1287,12 +1295,12 @@
             <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
           </enum>
         </arg>
-        <arg type="array<string>" var="$properties.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
+        <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
           <blank value="[]"/>
           <help short="Set the user managed identities."/>
           <item type="string"/>
         </arg>
-        <arg type="object" var="$properties.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+        <arg type="object" var="$body.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
           <help short="The identities assigned to this resource by the user."/>
           <additionalProp>
             <item nullable="True" type="object">
@@ -1302,52 +1310,52 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="string" var="$properties.properties.annotation" options="annotation" group="Properties">
+        <arg nullable="True" type="string" var="$body.properties.annotation" options="annotation" group="Properties">
           <help short="Switch configuration description."/>
         </arg>
-        <arg nullable="True" type="object" var="$properties.properties.authorizedTransceiver" options="authorized-transceiver" group="Properties">
+        <arg nullable="True" type="object" var="$body.properties.authorizedTransceiver" options="authorized-transceiver" group="Properties">
           <help short="Authorized transciever configuration for NetworkFabric."/>
-          <arg type="string" var="$properties.properties.authorizedTransceiver.key" options="key">
+          <arg type="string" var="$body.properties.authorizedTransceiver.key" options="key">
             <help short="Key that must be configured on the fabric."/>
           </arg>
-          <arg type="string" var="$properties.properties.authorizedTransceiver.vendor" options="vendor">
+          <arg type="string" var="$body.properties.authorizedTransceiver.vendor" options="vendor">
             <help short="Vendor of the transceiver."/>
           </arg>
         </arg>
-        <arg nullable="True" type="array<ResourceId>" var="$properties.properties.controlPlaneAcls" options="control-plane-acls" group="Properties">
+        <arg nullable="True" type="array<ResourceId>" var="$body.properties.controlPlaneAcls" options="control-plane-acls" group="Properties">
           <help short="Control Plane Access Control List ARM resource IDs."/>
           <item nullable="True" type="ResourceId"/>
         </arg>
-        <arg nullable="True" type="integer64" var="$properties.properties.fabricASN" options="fabric-asn" group="Properties">
+        <arg nullable="True" type="integer64" var="$body.properties.fabricASN" options="fabric-asn" group="Properties">
           <help short="ASN of CE devices for CE/PE connectivity."/>
           <format maximum="4294967295" minimum="1"/>
         </arg>
-        <arg nullable="True" type="array<object>" var="$properties.properties.featureFlags" options="feature-flags" group="Properties">
+        <arg nullable="True" type="array<object>" var="$body.properties.featureFlags" options="feature-flags" group="Properties">
           <help short="NetworkFabric feature flag configuration information"/>
           <item type="object">
-            <arg type="string" var="$properties.properties.featureFlags[].featureFlagName" options="feature-flag-name">
+            <arg type="string" var="$body.properties.featureFlags[].featureFlagName" options="feature-flag-name">
               <help short="Feature flag name."/>
             </arg>
-            <arg type="string" var="$properties.properties.featureFlags[].featureFlagValue" options="feature-flag-value">
+            <arg type="string" var="$body.properties.featureFlags[].featureFlagValue" options="feature-flag-value">
               <help short="Feature flag value."/>
             </arg>
           </item>
         </arg>
-        <arg nullable="True" type="integer32" var="$properties.properties.hardwareAlertThreshold" options="hardware-alert-threshold ha-threshold" group="Properties">
+        <arg nullable="True" type="integer32" var="$body.properties.hardwareAlertThreshold" options="hardware-alert-threshold ha-threshold" group="Properties">
           <help short="Hardware alert threshold percentage. Possible values are from 20 to 100."/>
           <format maximum="100" minimum="20"/>
         </arg>
-        <arg nullable="True" type="string" var="$properties.properties.ipv4Prefix" options="ipv4-prefix" group="Properties">
+        <arg nullable="True" type="string" var="$body.properties.ipv4Prefix" options="ipv4-prefix" group="Properties">
           <help short="IPv4Prefix for Management Network. Example: 10.1.0.0/19."/>
           <format minLength="1"/>
         </arg>
-        <arg nullable="True" type="string" var="$properties.properties.ipv6Prefix" options="ipv6-prefix" group="Properties">
+        <arg nullable="True" type="string" var="$body.properties.ipv6Prefix" options="ipv6-prefix" group="Properties">
           <help short="IPv6Prefix for Management Network. Example: 3FFE:FFFF:0:CD40::/59."/>
           <format minLength="1"/>
         </arg>
-        <arg nullable="True" type="object" var="$properties.properties.managementNetworkConfiguration" options="management-network-configuration managed-network-config" group="Properties">
+        <arg nullable="True" type="object" var="$body.properties.managementNetworkConfiguration" options="management-network-configuration" group="Properties">
           <help short="Configuration to be used to setup the management network."/>
-          <arg type="object" var="$properties.properties.managementNetworkConfiguration.infrastructureVpnConfiguration" options="infrastructure-vpn-configuration" cls="VpnConfigurationPatchableProperties_update">
+          <arg type="object" var="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration" options="infrastructure-vpn-configuration" cls="VpnConfigurationPatchableProperties_update">
             <help short="VPN Configuration properties."/>
             <arg nullable="True" type="ResourceId" var="@VpnConfigurationPatchableProperties_update.networkToNetworkInterconnectId" options="network-to-network-interconnect-id">
               <help short="ARM Resource ID of the Network To Network Interconnect."/>
@@ -1426,13 +1434,13 @@
               </enum>
             </arg>
           </arg>
-          <arg type="@VpnConfigurationPatchableProperties_update" var="$properties.properties.managementNetworkConfiguration.workloadVpnConfiguration" options="workload-vpn-configuration">
+          <arg type="@VpnConfigurationPatchableProperties_update" var="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration" options="workload-vpn-configuration">
             <help short="VPN Configuration properties."/>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$properties.properties.qosConfiguration" options="qos-configuration" group="Properties">
+        <arg nullable="True" type="object" var="$body.properties.qosConfiguration" options="qos-configuration" group="Properties">
           <help short="NetworkFabric QoS Configuration"/>
-          <arg type="string" var="$properties.properties.qosConfiguration.qosConfigurationState" options="qos-configuration-state">
+          <arg type="string" var="$body.properties.qosConfiguration.qosConfigurationState" options="qos-configuration-state">
             <help short="QoS configuration state. Default is Disabled."/>
             <enum>
               <item name="Disabled" value="&quot;Disabled&quot;"/>
@@ -1440,87 +1448,81 @@
             </enum>
           </arg>
         </arg>
-        <arg nullable="True" type="integer32" var="$properties.properties.rackCount" options="rack-count" group="Properties">
+        <arg nullable="True" type="integer32" var="$body.properties.rackCount" options="rack-count" group="Properties">
           <help short="Number of compute racks associated to Network Fabric."/>
           <format maximum="8" minimum="1"/>
         </arg>
-        <arg nullable="True" type="integer32" var="$properties.properties.serverCountPerRack" options="server-count-per-rack" group="Properties">
+        <arg nullable="True" type="integer32" var="$body.properties.serverCountPerRack" options="server-count-per-rack" group="Properties">
           <help short="Number of servers.Possible values are from 1-16."/>
           <format maximum="16" minimum="1"/>
         </arg>
-        <arg nullable="True" type="object" var="$properties.properties.storageAccountConfiguration" options="storage-account-configuration storage-account-config" group="Properties">
+        <arg nullable="True" type="object" var="$body.properties.storageAccountConfiguration" options="storage-account-configuration storage-account-config" group="Properties">
           <help short="Bring your own storage account configurations for Network Fabric."/>
-          <arg nullable="True" type="ResourceId" var="$properties.properties.storageAccountConfiguration.storageAccountId" options="storage-account-id">
+          <arg nullable="True" type="ResourceId" var="$body.properties.storageAccountConfiguration.storageAccountId" options="storage-account-id">
             <help short="Network Fabric storage account resource identifier."/>
           </arg>
-          <arg type="object" var="$properties.properties.storageAccountConfiguration.storageAccountIdentity" options="storage-account-identity">
+          <arg type="object" var="$body.properties.storageAccountConfiguration.storageAccountIdentity" options="storage-account-identity">
             <help short="The selection of the managed identity to use with this storage account. The identity type must be either system assigned or user assigned."/>
-            <arg type="string" var="$properties.properties.storageAccountConfiguration.storageAccountIdentity.identityType" options="identity-type">
+            <arg type="string" var="$body.properties.storageAccountConfiguration.storageAccountIdentity.identityType" options="identity-type">
               <help short="The type of managed identity that is being selected."/>
               <enum>
                 <item name="SystemAssignedIdentity" value="&quot;SystemAssignedIdentity&quot;"/>
                 <item name="UserAssignedIdentity" value="&quot;UserAssignedIdentity&quot;"/>
               </enum>
             </arg>
-            <arg nullable="True" type="ResourceId" var="$properties.properties.storageAccountConfiguration.storageAccountIdentity.userAssignedIdentityResourceId" options="user-assigned-identity-resource-id">
+            <arg nullable="True" type="ResourceId" var="$body.properties.storageAccountConfiguration.storageAccountIdentity.userAssignedIdentityResourceId" options="user-assigned-identity-resource-id">
               <help short="The user assigned managed identity resource ID to use. Mutually exclusive with a system assigned identity type."/>
             </arg>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$properties.properties.terminalServerConfiguration" options="terminal-server-configuration ts-config" group="Properties">
-          <help short="Network and credentials configuration already applied to terminal server."/>
-          <arg type="password" var="$properties.properties.terminalServerConfiguration.password" options="password">
+        <arg nullable="True" type="object" var="$body.properties.terminalServerConfiguration" options="terminal-server-configuration ts-config" group="Properties">
+          <help short="Network and credentials configuration currently applied to terminal server."/>
+          <arg type="password" var="$body.properties.terminalServerConfiguration.password" options="password">
             <help short="Password for the terminal server connection."/>
             <format minLength="1"/>
             <prompt msg="Password:"/>
           </arg>
-          <arg type="string" var="$properties.properties.terminalServerConfiguration.primaryIpv4Prefix" options="primary-ipv4-prefix">
+          <arg type="string" var="$body.properties.terminalServerConfiguration.primaryIpv4Prefix" options="primary-ipv4-prefix">
             <help short="IPv4 Address Prefix."/>
           </arg>
-          <arg type="string" var="$properties.properties.terminalServerConfiguration.primaryIpv6Prefix" options="primary-ipv6-prefix">
+          <arg type="string" var="$body.properties.terminalServerConfiguration.primaryIpv6Prefix" options="primary-ipv6-prefix">
             <help short="IPv6 Address Prefix."/>
           </arg>
-          <arg type="string" var="$properties.properties.terminalServerConfiguration.secondaryIpv4Prefix" options="secondary-ipv4-prefix">
+          <arg type="string" var="$body.properties.terminalServerConfiguration.secondaryIpv4Prefix" options="secondary-ipv4-prefix">
             <help short="Secondary IPv4 Address Prefix."/>
           </arg>
-          <arg type="string" var="$properties.properties.terminalServerConfiguration.secondaryIpv6Prefix" options="secondary-ipv6-prefix">
+          <arg type="string" var="$body.properties.terminalServerConfiguration.secondaryIpv6Prefix" options="secondary-ipv6-prefix">
             <help short="Secondary IPv6 Address Prefix."/>
           </arg>
-          <arg type="string" var="$properties.properties.terminalServerConfiguration.serialNumber" options="serial-number">
+          <arg type="string" var="$body.properties.terminalServerConfiguration.serialNumber" options="serial-number">
             <help short="Serial Number of Terminal server."/>
             <format minLength="1"/>
           </arg>
-          <arg type="string" var="$properties.properties.terminalServerConfiguration.username" options="username">
+          <arg type="string" var="$body.properties.terminalServerConfiguration.username" options="username">
             <help short="Username for the terminal server connection."/>
             <format minLength="1"/>
           </arg>
         </arg>
-        <arg nullable="True" type="array<ResourceId>" var="$properties.properties.trustedIpPrefixes" options="trusted-ip-prefixes" group="Properties">
+        <arg nullable="True" type="array<ResourceId>" var="$body.properties.trustedIpPrefixes" options="trusted-ip-prefixes" group="Properties">
           <help short="Trusted IP Prefix ARM resource IDs."/>
           <item nullable="True" type="ResourceId"/>
         </arg>
-        <arg nullable="True" type="object" var="$properties.properties.uniqueRdConfiguration" options="unique-rd-configuration unique-rd-config" group="Properties">
+        <arg nullable="True" type="object" var="$body.properties.uniqueRdConfiguration" options="unique-rd-configuration unique-rd-config" group="Properties">
           <help short="Unique Route Distinguisher configuration"/>
-          <arg type="string" var="$properties.properties.uniqueRdConfiguration.nniDerivedUniqueRdConfigurationState" options="nni-derived-unique-rd-configuration-state">
+          <arg type="string" var="$body.properties.uniqueRdConfiguration.nniDerivedUniqueRdConfigurationState" options="nni-derived-unique-rd-configuration-state">
             <help short="NNI derived unique Route Distinguisher state. Default is Disabled."/>
             <enum>
               <item name="Disabled" value="&quot;Disabled&quot;"/>
               <item name="Enabled" value="&quot;Enabled&quot;"/>
             </enum>
           </arg>
-          <arg type="string" var="$properties.properties.uniqueRdConfiguration.uniqueRdConfigurationState" options="unique-rd-configuration-state">
+          <arg type="string" var="$body.properties.uniqueRdConfiguration.uniqueRdConfigurationState" options="unique-rd-configuration-state">
             <help short="Unique Route Distinguisher configuration state. Default is Enabled."/>
             <enum>
               <item name="Disabled" value="&quot;Disabled&quot;"/>
               <item name="Enabled" value="&quot;Enabled&quot;"/>
             </enum>
           </arg>
-        </arg>
-        <arg type="object" var="$properties.tags" options="tags" group="Properties">
-          <help short="Resource tags."/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
         </arg>
       </argGroup>
       <operation operationId="NetworkFabrics_Update">
@@ -1544,9 +1546,9 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="properties" required="True" clientFlatten="True">
+                <schema type="object" name="body" required="True" clientFlatten="True">
                   <prop type="IdentityObject" name="identity">
-                    <prop type="string" name="type" arg="$properties.identity.type">
+                    <prop type="string" name="type" arg="$body.identity.type">
                       <enum>
                         <item value="&quot;None&quot;"/>
                         <item value="&quot;SystemAssigned&quot;"/>
@@ -1554,45 +1556,45 @@
                         <item value="&quot;UserAssigned&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="userAssignedIdentities" arg="$properties.identity.userAssignedIdentities">
+                    <prop type="object" name="userAssignedIdentities" arg="$body.identity.userAssignedIdentities">
                       <additionalProp>
                         <item nullable="True" type="object"/>
                       </additionalProp>
                     </prop>
-                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$properties.identity.userAssigned">
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                       <item action="create" type="string"/>
                     </userAssigned>
-                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$properties.identity.systemAssigned"/>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
                   </prop>
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop nullable="True" type="string" name="annotation" arg="$properties.properties.annotation"/>
-                    <prop nullable="True" type="object" name="authorizedTransceiver" arg="$properties.properties.authorizedTransceiver">
-                      <prop type="string" name="key" arg="$properties.properties.authorizedTransceiver.key"/>
-                      <prop type="string" name="vendor" arg="$properties.properties.authorizedTransceiver.vendor"/>
+                    <prop nullable="True" type="string" name="annotation" arg="$body.properties.annotation"/>
+                    <prop nullable="True" type="object" name="authorizedTransceiver" arg="$body.properties.authorizedTransceiver">
+                      <prop type="string" name="key" arg="$body.properties.authorizedTransceiver.key"/>
+                      <prop type="string" name="vendor" arg="$body.properties.authorizedTransceiver.vendor"/>
                     </prop>
-                    <prop nullable="True" type="array<ResourceId>" name="controlPlaneAcls" arg="$properties.properties.controlPlaneAcls">
+                    <prop nullable="True" type="array<ResourceId>" name="controlPlaneAcls" arg="$body.properties.controlPlaneAcls">
                       <item nullable="True" type="ResourceId"/>
                     </prop>
-                    <prop nullable="True" type="integer64" name="fabricASN" arg="$properties.properties.fabricASN">
+                    <prop nullable="True" type="integer64" name="fabricASN" arg="$body.properties.fabricASN">
                       <format maximum="4294967295" minimum="1"/>
                     </prop>
-                    <prop nullable="True" type="array<object>" name="featureFlags" arg="$properties.properties.featureFlags">
+                    <prop nullable="True" type="array<object>" name="featureFlags" arg="$body.properties.featureFlags">
                       <item type="object">
-                        <prop type="string" name="featureFlagName" arg="$properties.properties.featureFlags[].featureFlagName"/>
-                        <prop type="string" name="featureFlagValue" arg="$properties.properties.featureFlags[].featureFlagValue"/>
+                        <prop type="string" name="featureFlagName" arg="$body.properties.featureFlags[].featureFlagName"/>
+                        <prop type="string" name="featureFlagValue" arg="$body.properties.featureFlags[].featureFlagValue"/>
                       </item>
                     </prop>
-                    <prop nullable="True" type="integer32" name="hardwareAlertThreshold" arg="$properties.properties.hardwareAlertThreshold">
+                    <prop nullable="True" type="integer32" name="hardwareAlertThreshold" arg="$body.properties.hardwareAlertThreshold">
                       <format maximum="100" minimum="20"/>
                     </prop>
-                    <prop nullable="True" type="string" name="ipv4Prefix" arg="$properties.properties.ipv4Prefix">
+                    <prop nullable="True" type="string" name="ipv4Prefix" arg="$body.properties.ipv4Prefix">
                       <format minLength="1"/>
                     </prop>
-                    <prop nullable="True" type="string" name="ipv6Prefix" arg="$properties.properties.ipv6Prefix">
+                    <prop nullable="True" type="string" name="ipv6Prefix" arg="$body.properties.ipv6Prefix">
                       <format minLength="1"/>
                     </prop>
-                    <prop nullable="True" type="object" name="managementNetworkConfiguration" arg="$properties.properties.managementNetworkConfiguration">
-                      <prop type="object" name="infrastructureVpnConfiguration" arg="$properties.properties.managementNetworkConfiguration.infrastructureVpnConfiguration" cls="VpnConfigurationPatchableProperties_update">
+                    <prop nullable="True" type="object" name="managementNetworkConfiguration" arg="$body.properties.managementNetworkConfiguration">
+                      <prop type="object" name="infrastructureVpnConfiguration" arg="$body.properties.managementNetworkConfiguration.infrastructureVpnConfiguration" cls="VpnConfigurationPatchableProperties_update">
                         <prop nullable="True" type="ResourceId" name="networkToNetworkInterconnectId" arg="@VpnConfigurationPatchableProperties_update.networkToNetworkInterconnectId"/>
                         <prop type="object" name="optionAProperties" arg="@VpnConfigurationPatchableProperties_update.optionAProperties">
                           <prop type="object" name="bfdConfiguration" arg="@VpnConfigurationPatchableProperties_update.optionAProperties.bfdConfiguration">
@@ -1642,60 +1644,60 @@
                           </enum>
                         </prop>
                       </prop>
-                      <prop type="@VpnConfigurationPatchableProperties_update" name="workloadVpnConfiguration" arg="$properties.properties.managementNetworkConfiguration.workloadVpnConfiguration"/>
+                      <prop type="@VpnConfigurationPatchableProperties_update" name="workloadVpnConfiguration" arg="$body.properties.managementNetworkConfiguration.workloadVpnConfiguration"/>
                     </prop>
-                    <prop nullable="True" type="object" name="qosConfiguration" arg="$properties.properties.qosConfiguration">
-                      <prop type="string" name="qosConfigurationState" arg="$properties.properties.qosConfiguration.qosConfigurationState">
+                    <prop nullable="True" type="object" name="qosConfiguration" arg="$body.properties.qosConfiguration">
+                      <prop type="string" name="qosConfigurationState" arg="$body.properties.qosConfiguration.qosConfigurationState">
                         <enum>
                           <item value="&quot;Disabled&quot;"/>
                           <item value="&quot;Enabled&quot;"/>
                         </enum>
                       </prop>
                     </prop>
-                    <prop nullable="True" type="integer32" name="rackCount" arg="$properties.properties.rackCount">
+                    <prop nullable="True" type="integer32" name="rackCount" arg="$body.properties.rackCount">
                       <format maximum="8" minimum="1"/>
                     </prop>
-                    <prop nullable="True" type="integer32" name="serverCountPerRack" arg="$properties.properties.serverCountPerRack">
+                    <prop nullable="True" type="integer32" name="serverCountPerRack" arg="$body.properties.serverCountPerRack">
                       <format maximum="16" minimum="1"/>
                     </prop>
-                    <prop nullable="True" type="object" name="storageAccountConfiguration" arg="$properties.properties.storageAccountConfiguration">
-                      <prop nullable="True" type="ResourceId" name="storageAccountId" arg="$properties.properties.storageAccountConfiguration.storageAccountId"/>
-                      <prop type="object" name="storageAccountIdentity" arg="$properties.properties.storageAccountConfiguration.storageAccountIdentity">
-                        <prop type="string" name="identityType" arg="$properties.properties.storageAccountConfiguration.storageAccountIdentity.identityType">
+                    <prop nullable="True" type="object" name="storageAccountConfiguration" arg="$body.properties.storageAccountConfiguration">
+                      <prop nullable="True" type="ResourceId" name="storageAccountId" arg="$body.properties.storageAccountConfiguration.storageAccountId"/>
+                      <prop type="object" name="storageAccountIdentity" arg="$body.properties.storageAccountConfiguration.storageAccountIdentity">
+                        <prop type="string" name="identityType" arg="$body.properties.storageAccountConfiguration.storageAccountIdentity.identityType">
                           <enum>
                             <item value="&quot;SystemAssignedIdentity&quot;"/>
                             <item value="&quot;UserAssignedIdentity&quot;"/>
                           </enum>
                         </prop>
-                        <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId" arg="$properties.properties.storageAccountConfiguration.storageAccountIdentity.userAssignedIdentityResourceId"/>
+                        <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId" arg="$body.properties.storageAccountConfiguration.storageAccountIdentity.userAssignedIdentityResourceId"/>
                       </prop>
                     </prop>
-                    <prop nullable="True" type="object" name="terminalServerConfiguration" arg="$properties.properties.terminalServerConfiguration">
-                      <prop type="password" name="password" arg="$properties.properties.terminalServerConfiguration.password" secret="True">
+                    <prop nullable="True" type="object" name="terminalServerConfiguration" arg="$body.properties.terminalServerConfiguration">
+                      <prop type="password" name="password" arg="$body.properties.terminalServerConfiguration.password" secret="True">
                         <format minLength="1"/>
                       </prop>
-                      <prop type="string" name="primaryIpv4Prefix" arg="$properties.properties.terminalServerConfiguration.primaryIpv4Prefix"/>
-                      <prop type="string" name="primaryIpv6Prefix" arg="$properties.properties.terminalServerConfiguration.primaryIpv6Prefix"/>
-                      <prop type="string" name="secondaryIpv4Prefix" arg="$properties.properties.terminalServerConfiguration.secondaryIpv4Prefix"/>
-                      <prop type="string" name="secondaryIpv6Prefix" arg="$properties.properties.terminalServerConfiguration.secondaryIpv6Prefix"/>
-                      <prop type="string" name="serialNumber" arg="$properties.properties.terminalServerConfiguration.serialNumber">
+                      <prop type="string" name="primaryIpv4Prefix" arg="$body.properties.terminalServerConfiguration.primaryIpv4Prefix"/>
+                      <prop type="string" name="primaryIpv6Prefix" arg="$body.properties.terminalServerConfiguration.primaryIpv6Prefix"/>
+                      <prop type="string" name="secondaryIpv4Prefix" arg="$body.properties.terminalServerConfiguration.secondaryIpv4Prefix"/>
+                      <prop type="string" name="secondaryIpv6Prefix" arg="$body.properties.terminalServerConfiguration.secondaryIpv6Prefix"/>
+                      <prop type="string" name="serialNumber" arg="$body.properties.terminalServerConfiguration.serialNumber">
                         <format minLength="1"/>
                       </prop>
-                      <prop type="string" name="username" arg="$properties.properties.terminalServerConfiguration.username">
+                      <prop type="string" name="username" arg="$body.properties.terminalServerConfiguration.username">
                         <format minLength="1"/>
                       </prop>
                     </prop>
-                    <prop nullable="True" type="array<ResourceId>" name="trustedIpPrefixes" arg="$properties.properties.trustedIpPrefixes">
+                    <prop nullable="True" type="array<ResourceId>" name="trustedIpPrefixes" arg="$body.properties.trustedIpPrefixes">
                       <item nullable="True" type="ResourceId"/>
                     </prop>
-                    <prop nullable="True" type="object" name="uniqueRdConfiguration" arg="$properties.properties.uniqueRdConfiguration">
-                      <prop type="string" name="nniDerivedUniqueRdConfigurationState" arg="$properties.properties.uniqueRdConfiguration.nniDerivedUniqueRdConfigurationState">
+                    <prop nullable="True" type="object" name="uniqueRdConfiguration" arg="$body.properties.uniqueRdConfiguration">
+                      <prop type="string" name="nniDerivedUniqueRdConfigurationState" arg="$body.properties.uniqueRdConfiguration.nniDerivedUniqueRdConfigurationState">
                         <enum>
                           <item value="&quot;Disabled&quot;"/>
                           <item value="&quot;Enabled&quot;"/>
                         </enum>
                       </prop>
-                      <prop type="string" name="uniqueRdConfigurationState" arg="$properties.properties.uniqueRdConfiguration.uniqueRdConfigurationState">
+                      <prop type="string" name="uniqueRdConfigurationState" arg="$body.properties.uniqueRdConfiguration.uniqueRdConfigurationState">
                         <enum>
                           <item value="&quot;Disabled&quot;"/>
                           <item value="&quot;Enabled&quot;"/>
@@ -1703,7 +1705,7 @@
                       </prop>
                     </prop>
                   </prop>
-                  <prop type="object" name="tags" arg="$properties.tags">
+                  <prop type="object" name="tags" arg="$body.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>
@@ -2074,19 +2076,19 @@
           <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
-        <argGroup name="Resource.identity">
-          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+        <argGroup name="Body.identity">
+          <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Body.identity">
             <blank value="&quot;True&quot;"/>
             <help short="Set the system managed identity."/>
           </arg>
-          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+          <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Body.identity">
             <blank value="[]"/>
             <help short="Set the user managed identities."/>
             <item type="string"/>
           </arg>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="resource">
+          <json type="object" name="body">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>
@@ -2455,11 +2457,11 @@
         <operation>
           <instanceUpdate ref="$Subresource">
             <json>
-              <schema action="assign" type="IdentityObject" name="resource.identity" required="True">
-                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+              <schema action="assign" type="IdentityObject" name="body.identity" required="True">
+                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                   <item action="assign" type="string"/>
                 </userAssigned>
-                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
               </schema>
             </json>
           </instanceUpdate>
@@ -2515,19 +2517,19 @@
           <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
-        <argGroup name="Resource.identity">
-          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+        <argGroup name="Body.identity">
+          <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Body.identity">
             <blank value="&quot;True&quot;"/>
             <help short="Set the system managed identity."/>
           </arg>
-          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+          <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Body.identity">
             <blank value="[]"/>
             <help short="Set the user managed identities."/>
             <item type="string"/>
           </arg>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="resource">
+          <json type="object" name="body">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>
@@ -2896,11 +2898,11 @@
         <operation>
           <instanceUpdate ref="$Subresource">
             <json>
-              <schema action="remove" type="IdentityObject" name="resource.identity" required="True">
-                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+              <schema action="remove" type="IdentityObject" name="body.identity" required="True">
+                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                   <item action="remove" type="string"/>
                 </userAssigned>
-                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
               </schema>
             </json>
           </instanceUpdate>
@@ -2957,7 +2959,7 @@
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="resource">
+          <json type="object" name="body">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>
