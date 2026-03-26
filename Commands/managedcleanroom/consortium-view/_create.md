@@ -23,5 +23,5 @@ Create a consortium view.
 
 - Create Consortium View
     ```bash
-        managedcleanroom consortium-view create --resource-group testrg --consortium-view-name ContosoConsortiumView --location northeurope --consortium-endpoint https://ContosoEndpoint/ --consortium-service-certificate-pem Contoso certificate pem --member "{certificate-pem:membercertificate,signed-payload:membersignedpayload}"
+        managedcleanroom consortium-view create --resource-group testrg --consortium-view-name ContosoConsortiumView --location northeurope --consortium-endpoint https://ContosoEndpoint/ --certificate-pem Contoso certificate pem --member "{certificate-pem:membercertificate,signed-payload:membersignedpayload}"
     ```
