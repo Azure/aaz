@@ -242,12 +242,23 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="Body">
+        <arg type="ResourceLocation" var="$body.location" options="location l" required="True" group="Body">
+          <help short="The geo-location where the resource lives"/>
+        </arg>
+        <arg type="object" var="$body.tags" options="tags" group="Body">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
       <argGroup name="Identity">
-        <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
+        <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
           <blank value="&quot;True&quot;"/>
           <help short="Set the system managed identity."/>
         </arg>
-        <arg type="string" var="$resource.identity.type" options="type" hide="True" group="Identity">
+        <arg type="string" var="$body.identity.type" options="type" hide="True" group="Identity">
           <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
           <enum>
             <item name="None" value="&quot;None&quot;"/>
@@ -256,12 +267,12 @@
             <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
           </enum>
         </arg>
-        <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
+        <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
           <blank value="[]"/>
           <help short="Set the user managed identities."/>
           <item type="string"/>
         </arg>
-        <arg type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+        <arg type="object" var="$body.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
           <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
           <additionalProp>
             <item nullable="True" type="object">
@@ -271,66 +282,55 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg type="string" var="$resource.properties.annotation" options="annotation" group="Properties">
+        <arg type="string" var="$body.properties.annotation" options="annotation" group="Properties">
           <help short="Switch configuration description."/>
         </arg>
-        <arg type="array<object>" var="$resource.properties.destinations" options="destinations" required="True" group="Properties">
+        <arg type="array<object>" var="$body.properties.destinations" options="destinations" required="True" group="Properties">
           <help short="List of destinations to send the filter traffic."/>
           <item type="object">
-            <arg nullable="True" type="ResourceId" var="$resource.properties.destinations[].destinationId" options="destination-id" required="True">
+            <arg nullable="True" type="ResourceId" var="$body.properties.destinations[].destinationId" options="destination-id" required="True">
               <help short="The destination Id. ARM Resource ID of either NNI or Internal Networks."/>
             </arg>
-            <arg nullable="True" type="ResourceId" var="$resource.properties.destinations[].destinationTapRuleId" options="destination-tap-rule-id">
+            <arg nullable="True" type="ResourceId" var="$body.properties.destinations[].destinationTapRuleId" options="destination-tap-rule-id">
               <help short="ARM Resource ID of destination Tap Rule that contains match configurations."/>
             </arg>
-            <arg type="string" var="$resource.properties.destinations[].destinationType" options="destination-type" required="True">
+            <arg type="string" var="$body.properties.destinations[].destinationType" options="destination-type" required="True">
               <help short="Type of destination. Input can be IsolationDomain or Direct."/>
               <enum>
                 <item name="Direct" value="&quot;Direct&quot;"/>
                 <item name="IsolationDomain" value="&quot;IsolationDomain&quot;"/>
               </enum>
             </arg>
-            <arg type="object" var="$resource.properties.destinations[].isolationDomainProperties" options="isolation-domain-properties">
+            <arg type="object" var="$body.properties.destinations[].isolationDomainProperties" options="isolation-domain-properties">
               <help short="Isolation Domain Properties."/>
-              <arg type="string" var="$resource.properties.destinations[].isolationDomainProperties.encapsulation" options="encapsulation">
+              <arg type="string" var="$body.properties.destinations[].isolationDomainProperties.encapsulation" options="encapsulation">
                 <help short="Type of encapsulation."/>
                 <enum>
                   <item name="GRE" value="&quot;GRE&quot;"/>
                   <item name="None" value="&quot;None&quot;"/>
                 </enum>
               </arg>
-              <arg type="array<ResourceId>" var="$resource.properties.destinations[].isolationDomainProperties.neighborGroupIds" options="neighbor-group-ids">
+              <arg type="array<ResourceId>" var="$body.properties.destinations[].isolationDomainProperties.neighborGroupIds" options="neighbor-group-ids">
                 <help short="List of Neighbor Group IDs."/>
                 <item nullable="True" type="ResourceId"/>
               </arg>
             </arg>
-            <arg type="string" var="$resource.properties.destinations[].name" options="name" required="True">
+            <arg type="string" var="$body.properties.destinations[].name" options="name" required="True">
               <help short="Destination name."/>
               <format minLength="1"/>
             </arg>
           </item>
         </arg>
-        <arg nullable="True" type="ResourceId" var="$resource.properties.networkPacketBrokerId" options="network-packet-broker-id npb-id" required="True" group="Properties">
+        <arg nullable="True" type="ResourceId" var="$body.properties.networkPacketBrokerId" options="network-packet-broker-id npb-id" required="True" group="Properties">
           <help short="ARM resource ID of the Network Packet Broker."/>
         </arg>
-        <arg type="string" var="$resource.properties.pollingType" options="polling-type" group="Properties">
+        <arg type="string" var="$body.properties.pollingType" options="polling-type" group="Properties">
           <help short="Polling type."/>
           <default value="&quot;Pull&quot;"/>
           <enum>
             <item name="Pull" value="&quot;Pull&quot;"/>
             <item name="Push" value="&quot;Push&quot;"/>
           </enum>
-        </arg>
-      </argGroup>
-      <argGroup name="Resource">
-        <arg type="ResourceLocation" var="$resource.location" options="location l" required="True" group="Resource">
-          <help short="The geo-location where the resource lives"/>
-        </arg>
-        <arg type="object" var="$resource.tags" options="tags" group="Resource">
-          <help short="Resource tags."/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
         </arg>
       </argGroup>
       <operation operationId="NetworkTaps_Create">
@@ -354,9 +354,9 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="resource" required="True" clientFlatten="True">
+                <schema type="object" name="body" required="True" clientFlatten="True">
                   <prop type="IdentityObject" name="identity">
-                    <prop type="string" name="type" arg="$resource.identity.type" required="True">
+                    <prop type="string" name="type" arg="$body.identity.type" required="True">
                       <enum>
                         <item value="&quot;None&quot;"/>
                         <item value="&quot;SystemAssigned&quot;"/>
@@ -364,47 +364,47 @@
                         <item value="&quot;UserAssigned&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="userAssignedIdentities" arg="$resource.identity.userAssignedIdentities">
+                    <prop type="object" name="userAssignedIdentities" arg="$body.identity.userAssignedIdentities">
                       <additionalProp>
                         <item nullable="True" type="object"/>
                       </additionalProp>
                     </prop>
-                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                       <item action="create" type="string"/>
                     </userAssigned>
-                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
                   </prop>
-                  <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
+                  <prop type="ResourceLocation" name="location" arg="$body.location" required="True"/>
                   <prop type="object" name="properties" required="True" clientFlatten="True">
-                    <prop type="string" name="annotation" arg="$resource.properties.annotation"/>
-                    <prop type="array<object>" name="destinations" arg="$resource.properties.destinations" required="True">
+                    <prop type="string" name="annotation" arg="$body.properties.annotation"/>
+                    <prop type="array<object>" name="destinations" arg="$body.properties.destinations" required="True">
                       <item type="object">
-                        <prop nullable="True" type="ResourceId" name="destinationId" arg="$resource.properties.destinations[].destinationId" required="True"/>
-                        <prop nullable="True" type="ResourceId" name="destinationTapRuleId" arg="$resource.properties.destinations[].destinationTapRuleId"/>
-                        <prop type="string" name="destinationType" arg="$resource.properties.destinations[].destinationType" required="True">
+                        <prop nullable="True" type="ResourceId" name="destinationId" arg="$body.properties.destinations[].destinationId" required="True"/>
+                        <prop nullable="True" type="ResourceId" name="destinationTapRuleId" arg="$body.properties.destinations[].destinationTapRuleId"/>
+                        <prop type="string" name="destinationType" arg="$body.properties.destinations[].destinationType" required="True">
                           <enum>
                             <item value="&quot;Direct&quot;"/>
                             <item value="&quot;IsolationDomain&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="object" name="isolationDomainProperties" arg="$resource.properties.destinations[].isolationDomainProperties">
-                          <prop type="string" name="encapsulation" arg="$resource.properties.destinations[].isolationDomainProperties.encapsulation">
+                        <prop type="object" name="isolationDomainProperties" arg="$body.properties.destinations[].isolationDomainProperties">
+                          <prop type="string" name="encapsulation" arg="$body.properties.destinations[].isolationDomainProperties.encapsulation">
                             <enum>
                               <item value="&quot;GRE&quot;"/>
                               <item value="&quot;None&quot;"/>
                             </enum>
                           </prop>
-                          <prop type="array<ResourceId>" name="neighborGroupIds" arg="$resource.properties.destinations[].isolationDomainProperties.neighborGroupIds">
+                          <prop type="array<ResourceId>" name="neighborGroupIds" arg="$body.properties.destinations[].isolationDomainProperties.neighborGroupIds">
                             <item nullable="True" type="ResourceId"/>
                           </prop>
                         </prop>
-                        <prop type="string" name="name" arg="$resource.properties.destinations[].name" required="True">
+                        <prop type="string" name="name" arg="$body.properties.destinations[].name" required="True">
                           <format minLength="1"/>
                         </prop>
                       </item>
                     </prop>
-                    <prop nullable="True" type="ResourceId" name="networkPacketBrokerId" arg="$resource.properties.networkPacketBrokerId" required="True"/>
-                    <prop type="string" name="pollingType" arg="$resource.properties.pollingType">
+                    <prop nullable="True" type="ResourceId" name="networkPacketBrokerId" arg="$body.properties.networkPacketBrokerId" required="True"/>
+                    <prop type="string" name="pollingType" arg="$body.properties.pollingType">
                       <default value="&quot;Pull&quot;"/>
                       <enum>
                         <item value="&quot;Pull&quot;"/>
@@ -412,7 +412,7 @@
                       </enum>
                     </prop>
                   </prop>
-                  <prop type="object" name="tags" arg="$resource.tags">
+                  <prop type="object" name="tags" arg="$body.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>
@@ -584,12 +584,20 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="Body">
+        <arg type="object" var="$body.tags" options="tags" group="Body">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
       <argGroup name="Identity">
-        <arg type="string" var="$properties.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
+        <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
           <blank value="&quot;True&quot;"/>
           <help short="Set the system managed identity."/>
         </arg>
-        <arg type="string" var="$properties.identity.type" options="type" hide="True" group="Identity">
+        <arg type="string" var="$body.identity.type" options="type" hide="True" group="Identity">
           <help short="The type of managed identity assigned to this resource."/>
           <enum>
             <item name="None" value="&quot;None&quot;"/>
@@ -598,12 +606,12 @@
             <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
           </enum>
         </arg>
-        <arg type="array<string>" var="$properties.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
+        <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
           <blank value="[]"/>
           <help short="Set the user managed identities."/>
           <item type="string"/>
         </arg>
-        <arg type="object" var="$properties.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+        <arg type="object" var="$body.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
           <help short="The identities assigned to this resource by the user."/>
           <additionalProp>
             <item nullable="True" type="object">
@@ -613,57 +621,51 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="string" var="$properties.properties.annotation" options="annotation" group="Properties">
+        <arg type="string" var="$body.properties.annotation" options="annotation" group="Properties">
           <help short="Switch configuration description."/>
         </arg>
-        <arg nullable="True" type="array<object>" var="$properties.properties.destinations" options="destinations" group="Properties">
+        <arg nullable="True" type="array<object>" var="$body.properties.destinations" options="destinations" group="Properties">
           <help short="List of destination properties to send the filter traffic."/>
           <item type="object">
-            <arg nullable="True" type="ResourceId" var="$properties.properties.destinations[].destinationId" options="destination-id">
+            <arg nullable="True" type="ResourceId" var="$body.properties.destinations[].destinationId" options="destination-id">
               <help short="The destination Id. ARM Resource ID of either NNI or Internal Networks."/>
             </arg>
-            <arg nullable="True" type="ResourceId" var="$properties.properties.destinations[].destinationTapRuleId" options="destination-tap-rule-id">
+            <arg nullable="True" type="ResourceId" var="$body.properties.destinations[].destinationTapRuleId" options="destination-tap-rule-id">
               <help short="ARM Resource ID of destination Tap Rule that contains match configurations."/>
             </arg>
-            <arg type="string" var="$properties.properties.destinations[].destinationType" options="destination-type">
+            <arg type="string" var="$body.properties.destinations[].destinationType" options="destination-type">
               <help short="Type of destination. Input can be IsolationDomain or Direct."/>
               <enum>
                 <item name="Direct" value="&quot;Direct&quot;"/>
                 <item name="IsolationDomain" value="&quot;IsolationDomain&quot;"/>
               </enum>
             </arg>
-            <arg type="object" var="$properties.properties.destinations[].isolationDomainProperties" options="isolation-domain-properties">
+            <arg type="object" var="$body.properties.destinations[].isolationDomainProperties" options="isolation-domain-properties">
               <help short="Isolation Domain Properties."/>
-              <arg type="string" var="$properties.properties.destinations[].isolationDomainProperties.encapsulation" options="encapsulation">
+              <arg type="string" var="$body.properties.destinations[].isolationDomainProperties.encapsulation" options="encapsulation">
                 <help short="Type of encapsulation."/>
                 <enum>
                   <item name="GRE" value="&quot;GRE&quot;"/>
                   <item name="None" value="&quot;None&quot;"/>
                 </enum>
               </arg>
-              <arg type="array<ResourceId>" var="$properties.properties.destinations[].isolationDomainProperties.neighborGroupIds" options="neighbor-group-ids">
+              <arg type="array<ResourceId>" var="$body.properties.destinations[].isolationDomainProperties.neighborGroupIds" options="neighbor-group-ids">
                 <help short="List of Neighbor Group IDs."/>
                 <item nullable="True" type="ResourceId"/>
               </arg>
             </arg>
-            <arg type="string" var="$properties.properties.destinations[].name" options="name">
+            <arg type="string" var="$body.properties.destinations[].name" options="name">
               <help short="Destination name."/>
               <format minLength="1"/>
             </arg>
           </item>
         </arg>
-        <arg nullable="True" type="string" var="$properties.properties.pollingType" options="polling-type" group="Properties">
+        <arg nullable="True" type="string" var="$body.properties.pollingType" options="polling-type" group="Properties">
           <help short="Polling type."/>
           <enum>
             <item name="Pull" value="&quot;Pull&quot;"/>
             <item name="Push" value="&quot;Push&quot;"/>
           </enum>
-        </arg>
-        <arg type="object" var="$properties.tags" options="tags" group="Properties">
-          <help short="Resource tags."/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
         </arg>
       </argGroup>
       <operation operationId="NetworkTaps_Update">
@@ -687,9 +689,9 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="properties" required="True" clientFlatten="True">
+                <schema type="object" name="body" required="True" clientFlatten="True">
                   <prop type="IdentityObject" name="identity">
-                    <prop type="string" name="type" arg="$properties.identity.type">
+                    <prop type="string" name="type" arg="$body.identity.type">
                       <enum>
                         <item value="&quot;None&quot;"/>
                         <item value="&quot;SystemAssigned&quot;"/>
@@ -697,52 +699,52 @@
                         <item value="&quot;UserAssigned&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="userAssignedIdentities" arg="$properties.identity.userAssignedIdentities">
+                    <prop type="object" name="userAssignedIdentities" arg="$body.identity.userAssignedIdentities">
                       <additionalProp>
                         <item nullable="True" type="object"/>
                       </additionalProp>
                     </prop>
-                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$properties.identity.userAssigned">
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                       <item action="create" type="string"/>
                     </userAssigned>
-                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$properties.identity.systemAssigned"/>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
                   </prop>
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop nullable="True" type="string" name="annotation" arg="$properties.properties.annotation"/>
-                    <prop nullable="True" type="array<object>" name="destinations" arg="$properties.properties.destinations">
+                    <prop type="string" name="annotation" arg="$body.properties.annotation"/>
+                    <prop nullable="True" type="array<object>" name="destinations" arg="$body.properties.destinations">
                       <item type="object">
-                        <prop nullable="True" type="ResourceId" name="destinationId" arg="$properties.properties.destinations[].destinationId"/>
-                        <prop nullable="True" type="ResourceId" name="destinationTapRuleId" arg="$properties.properties.destinations[].destinationTapRuleId"/>
-                        <prop type="string" name="destinationType" arg="$properties.properties.destinations[].destinationType">
+                        <prop nullable="True" type="ResourceId" name="destinationId" arg="$body.properties.destinations[].destinationId"/>
+                        <prop nullable="True" type="ResourceId" name="destinationTapRuleId" arg="$body.properties.destinations[].destinationTapRuleId"/>
+                        <prop type="string" name="destinationType" arg="$body.properties.destinations[].destinationType">
                           <enum>
                             <item value="&quot;Direct&quot;"/>
                             <item value="&quot;IsolationDomain&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="object" name="isolationDomainProperties" arg="$properties.properties.destinations[].isolationDomainProperties">
-                          <prop type="string" name="encapsulation" arg="$properties.properties.destinations[].isolationDomainProperties.encapsulation">
+                        <prop type="object" name="isolationDomainProperties" arg="$body.properties.destinations[].isolationDomainProperties">
+                          <prop type="string" name="encapsulation" arg="$body.properties.destinations[].isolationDomainProperties.encapsulation">
                             <enum>
                               <item value="&quot;GRE&quot;"/>
                               <item value="&quot;None&quot;"/>
                             </enum>
                           </prop>
-                          <prop type="array<ResourceId>" name="neighborGroupIds" arg="$properties.properties.destinations[].isolationDomainProperties.neighborGroupIds">
+                          <prop type="array<ResourceId>" name="neighborGroupIds" arg="$body.properties.destinations[].isolationDomainProperties.neighborGroupIds">
                             <item nullable="True" type="ResourceId"/>
                           </prop>
                         </prop>
-                        <prop type="string" name="name" arg="$properties.properties.destinations[].name">
+                        <prop type="string" name="name" arg="$body.properties.destinations[].name">
                           <format minLength="1"/>
                         </prop>
                       </item>
                     </prop>
-                    <prop nullable="True" type="string" name="pollingType" arg="$properties.properties.pollingType">
+                    <prop nullable="True" type="string" name="pollingType" arg="$body.properties.pollingType">
                       <enum>
                         <item value="&quot;Pull&quot;"/>
                         <item value="&quot;Push&quot;"/>
                       </enum>
                     </prop>
                   </prop>
-                  <prop type="object" name="tags" arg="$properties.tags">
+                  <prop type="object" name="tags" arg="$body.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>
@@ -921,19 +923,19 @@
           <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
-        <argGroup name="Resource.identity">
-          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+        <argGroup name="Body.identity">
+          <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Body.identity">
             <blank value="&quot;True&quot;"/>
             <help short="Set the system managed identity."/>
           </arg>
-          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+          <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Body.identity">
             <blank value="[]"/>
             <help short="Set the user managed identities."/>
             <item type="string"/>
           </arg>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="resource">
+          <json type="object" name="body">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>
@@ -1110,11 +1112,11 @@
         <operation>
           <instanceUpdate ref="$Subresource">
             <json>
-              <schema action="assign" type="IdentityObject" name="resource.identity" required="True">
-                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+              <schema action="assign" type="IdentityObject" name="body.identity" required="True">
+                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                   <item action="assign" type="string"/>
                 </userAssigned>
-                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
               </schema>
             </json>
           </instanceUpdate>
@@ -1170,19 +1172,19 @@
           <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
-        <argGroup name="Resource.identity">
-          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+        <argGroup name="Body.identity">
+          <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Body.identity">
             <blank value="&quot;True&quot;"/>
             <help short="Set the system managed identity."/>
           </arg>
-          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+          <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Body.identity">
             <blank value="[]"/>
             <help short="Set the user managed identities."/>
             <item type="string"/>
           </arg>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="resource">
+          <json type="object" name="body">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>
@@ -1359,11 +1361,11 @@
         <operation>
           <instanceUpdate ref="$Subresource">
             <json>
-              <schema action="remove" type="IdentityObject" name="resource.identity" required="True">
-                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+              <schema action="remove" type="IdentityObject" name="body.identity" required="True">
+                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                   <item action="remove" type="string"/>
                 </userAssigned>
-                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
               </schema>
             </json>
           </instanceUpdate>
@@ -1420,7 +1422,7 @@
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="resource">
+          <json type="object" name="body">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>

@@ -265,12 +265,23 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="Body">
+        <arg type="ResourceLocation" var="$body.location" options="location l" required="True" group="Body">
+          <help short="The geo-location where the resource lives"/>
+        </arg>
+        <arg type="object" var="$body.tags" options="tags" group="Body">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
       <argGroup name="Identity">
-        <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
+        <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
           <blank value="&quot;True&quot;"/>
           <help short="Set the system managed identity."/>
         </arg>
-        <arg type="string" var="$resource.identity.type" options="type" hide="True" group="Identity">
+        <arg type="string" var="$body.identity.type" options="type" hide="True" group="Identity">
           <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
           <enum>
             <item name="None" value="&quot;None&quot;"/>
@@ -279,12 +290,12 @@
             <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
           </enum>
         </arg>
-        <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
+        <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
           <blank value="[]"/>
           <help short="Set the user managed identities."/>
           <item type="string"/>
         </arg>
-        <arg type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+        <arg type="object" var="$body.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
           <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
           <additionalProp>
             <item nullable="True" type="object">
@@ -294,9 +305,9 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg type="object" var="$resource.properties.aggregateRouteConfiguration" options="aggregate-route-configuration aggr-route-config" group="Properties">
+        <arg type="object" var="$body.properties.aggregateRouteConfiguration" options="aggregate-route-configuration aggr-route-config" group="Properties">
           <help short="Aggregate route configurations."/>
-          <arg type="array<object>" var="$resource.properties.aggregateRouteConfiguration.ipv4Routes" options="ipv4-routes">
+          <arg type="array<object>" var="$body.properties.aggregateRouteConfiguration.ipv4Routes" options="ipv4-routes">
             <help short="List of IPv4 Route prefixes."/>
             <format minLength="1"/>
             <item type="object" cls="AggregateRoute_create">
@@ -306,30 +317,30 @@
               </arg>
             </item>
           </arg>
-          <arg type="array<@AggregateRoute_create>" var="$resource.properties.aggregateRouteConfiguration.ipv6Routes" options="ipv6-routes">
+          <arg type="array<@AggregateRoute_create>" var="$body.properties.aggregateRouteConfiguration.ipv6Routes" options="ipv6-routes">
             <help short="List of Ipv6Routes prefixes."/>
             <format minLength="1"/>
             <item type="@AggregateRoute_create"/>
           </arg>
         </arg>
-        <arg type="string" var="$resource.properties.annotation" options="annotation" group="Properties">
+        <arg type="string" var="$body.properties.annotation" options="annotation" group="Properties">
           <help short="Switch configuration description."/>
         </arg>
-        <arg type="object" var="$resource.properties.connectedSubnetRoutePolicy" options="connected-subnet-route-policy cs-route-policy" group="Properties">
+        <arg type="object" var="$body.properties.connectedSubnetRoutePolicy" options="connected-subnet-route-policy cs-route-policy" group="Properties">
           <help short="Connected Subnet RoutePolicy"/>
-          <arg type="object" var="$resource.properties.connectedSubnetRoutePolicy.exportRoutePolicy" options="export-route-policy">
+          <arg type="object" var="$body.properties.connectedSubnetRoutePolicy.exportRoutePolicy" options="export-route-policy">
             <help short="Array of ARM Resource ID of the RoutePolicies."/>
-            <arg nullable="True" type="ResourceId" var="$resource.properties.connectedSubnetRoutePolicy.exportRoutePolicy.exportIpv4RoutePolicyId" options="export-ipv4-route-policy-id">
+            <arg nullable="True" type="ResourceId" var="$body.properties.connectedSubnetRoutePolicy.exportRoutePolicy.exportIpv4RoutePolicyId" options="export-ipv4-route-policy-id">
               <help short="ARM Resource ID of the RoutePolicy."/>
             </arg>
-            <arg nullable="True" type="ResourceId" var="$resource.properties.connectedSubnetRoutePolicy.exportRoutePolicy.exportIpv6RoutePolicyId" options="export-ipv6-route-policy-id">
+            <arg nullable="True" type="ResourceId" var="$body.properties.connectedSubnetRoutePolicy.exportRoutePolicy.exportIpv6RoutePolicyId" options="export-ipv6-route-policy-id">
               <help short="ARM Resource ID of the RoutePolicy."/>
             </arg>
           </arg>
         </arg>
-        <arg type="object" var="$resource.properties.exportPolicyConfiguration" options="export-policy-config" group="Properties">
+        <arg type="object" var="$body.properties.exportPolicyConfiguration" options="export-policy-config" group="Properties">
           <help short="BMP Export Policy configuration."/>
-          <arg type="array<string>" var="$resource.properties.exportPolicyConfiguration.exportPolicies" options="export-policies">
+          <arg type="array<string>" var="$body.properties.exportPolicyConfiguration.exportPolicies" options="export-policies">
             <help short="Export Policy for the BGP Monitoring Protocol (BMP) Configuration."/>
             <format minLength="1"/>
             <item type="string">
@@ -342,10 +353,10 @@
             </item>
           </arg>
         </arg>
-        <arg nullable="True" type="ResourceId" var="$resource.properties.networkFabricId" options="network-fabric-id nf-id" required="True" group="Properties">
+        <arg nullable="True" type="ResourceId" var="$body.properties.networkFabricId" options="network-fabric-id nf-id" required="True" group="Properties">
           <help short="ARM Resource ID of the Network Fabric."/>
         </arg>
-        <arg type="string" var="$resource.properties.redistributeConnectedSubnets" options="redistribute-connected-subnets redist-conn-subnets" group="Properties">
+        <arg type="string" var="$body.properties.redistributeConnectedSubnets" options="redistribute-connected-subnets redist-conn-subnets" group="Properties">
           <help short="Advertise Connected Subnets. Ex: &quot;True&quot; | &quot;False&quot;."/>
           <default value="&quot;True&quot;"/>
           <enum>
@@ -353,7 +364,7 @@
             <item name="True" value="&quot;True&quot;"/>
           </enum>
         </arg>
-        <arg type="string" var="$resource.properties.redistributeStaticRoutes" options="redistribute-static-routes redist-static-routes" group="Properties">
+        <arg type="string" var="$body.properties.redistributeStaticRoutes" options="redistribute-static-routes redist-static-routes" group="Properties">
           <help short="Advertise Static Routes. Ex: &quot;True&quot; | &quot;False&quot;."/>
           <default value="&quot;False&quot;"/>
           <enum>
@@ -361,9 +372,9 @@
             <item name="True" value="&quot;True&quot;"/>
           </enum>
         </arg>
-        <arg type="object" var="$resource.properties.staticRouteRoutePolicy" options="static-route-route-policy sr-route-policy" group="Properties">
+        <arg type="object" var="$body.properties.staticRouteRoutePolicy" options="static-route-route-policy sr-route-policy" group="Properties">
           <help short="Static Route - route policy."/>
-          <arg type="object" var="$resource.properties.staticRouteRoutePolicy.exportRoutePolicy" options="export-route-policy" cls="L3ExportRoutePolicy_create">
+          <arg type="object" var="$body.properties.staticRouteRoutePolicy.exportRoutePolicy" options="export-route-policy" cls="L3ExportRoutePolicy_create">
             <help short="Array of ARM Resource ID of the RoutePolicies."/>
             <arg nullable="True" type="ResourceId" var="@L3ExportRoutePolicy_create.exportIpv4RoutePolicyId" options="export-ipv4-route-policy-id">
               <help short="ARM Resource ID of the RoutePolicy."/>
@@ -373,7 +384,7 @@
             </arg>
           </arg>
         </arg>
-        <arg type="object" var="$resource.properties.v4routePrefixLimit" options="v4route-prefix-limit" group="Properties" cls="RoutePrefixLimitProperties_create">
+        <arg type="object" var="$body.properties.v4routePrefixLimit" options="v4route-prefix-limit" group="Properties" cls="RoutePrefixLimitProperties_create">
           <help short="IPv4 VRF Limit configuration."/>
           <arg type="integer32" var="@RoutePrefixLimitProperties_create.hardLimit" options="hard-limit">
             <help short="Hard limit for the routes."/>
@@ -382,19 +393,8 @@
             <help short="Threshold for the routes."/>
           </arg>
         </arg>
-        <arg type="@RoutePrefixLimitProperties_create" var="$resource.properties.v6routePrefixLimit" options="v6route-prefix-limit" group="Properties">
+        <arg type="@RoutePrefixLimitProperties_create" var="$body.properties.v6routePrefixLimit" options="v6route-prefix-limit" group="Properties">
           <help short="IPv6 VRF Limit configuration."/>
-        </arg>
-      </argGroup>
-      <argGroup name="Resource">
-        <arg type="ResourceLocation" var="$resource.location" options="location l" required="True" group="Resource">
-          <help short="The geo-location where the resource lives"/>
-        </arg>
-        <arg type="object" var="$resource.tags" options="tags" group="Resource">
-          <help short="Resource tags."/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
         </arg>
       </argGroup>
       <operation operationId="L3IsolationDomains_Create">
@@ -418,9 +418,9 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="resource" required="True" clientFlatten="True">
+                <schema type="object" name="body" required="True" clientFlatten="True">
                   <prop type="IdentityObject" name="identity">
-                    <prop type="string" name="type" arg="$resource.identity.type" required="True">
+                    <prop type="string" name="type" arg="$body.identity.type" required="True">
                       <enum>
                         <item value="&quot;None&quot;"/>
                         <item value="&quot;SystemAssigned&quot;"/>
@@ -428,20 +428,20 @@
                         <item value="&quot;UserAssigned&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="userAssignedIdentities" arg="$resource.identity.userAssignedIdentities">
+                    <prop type="object" name="userAssignedIdentities" arg="$body.identity.userAssignedIdentities">
                       <additionalProp>
                         <item nullable="True" type="object"/>
                       </additionalProp>
                     </prop>
-                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                       <item action="create" type="string"/>
                     </userAssigned>
-                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
                   </prop>
-                  <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
+                  <prop type="ResourceLocation" name="location" arg="$body.location" required="True"/>
                   <prop type="object" name="properties" required="True" clientFlatten="True">
-                    <prop type="object" name="aggregateRouteConfiguration" arg="$resource.properties.aggregateRouteConfiguration">
-                      <prop type="array<object>" name="ipv4Routes" arg="$resource.properties.aggregateRouteConfiguration.ipv4Routes" identifiers="prefix">
+                    <prop type="object" name="aggregateRouteConfiguration" arg="$body.properties.aggregateRouteConfiguration">
+                      <prop type="array<object>" name="ipv4Routes" arg="$body.properties.aggregateRouteConfiguration.ipv4Routes" identifiers="prefix">
                         <format minLength="1"/>
                         <item type="object" cls="AggregateRoute_create">
                           <prop type="string" name="prefix" arg="@AggregateRoute_create.prefix" required="True">
@@ -449,20 +449,20 @@
                           </prop>
                         </item>
                       </prop>
-                      <prop type="array<@AggregateRoute_create>" name="ipv6Routes" arg="$resource.properties.aggregateRouteConfiguration.ipv6Routes" identifiers="prefix">
+                      <prop type="array<@AggregateRoute_create>" name="ipv6Routes" arg="$body.properties.aggregateRouteConfiguration.ipv6Routes" identifiers="prefix">
                         <format minLength="1"/>
                         <item type="@AggregateRoute_create"/>
                       </prop>
                     </prop>
-                    <prop type="string" name="annotation" arg="$resource.properties.annotation"/>
-                    <prop type="object" name="connectedSubnetRoutePolicy" arg="$resource.properties.connectedSubnetRoutePolicy">
-                      <prop type="object" name="exportRoutePolicy" arg="$resource.properties.connectedSubnetRoutePolicy.exportRoutePolicy">
-                        <prop nullable="True" type="ResourceId" name="exportIpv4RoutePolicyId" arg="$resource.properties.connectedSubnetRoutePolicy.exportRoutePolicy.exportIpv4RoutePolicyId"/>
-                        <prop nullable="True" type="ResourceId" name="exportIpv6RoutePolicyId" arg="$resource.properties.connectedSubnetRoutePolicy.exportRoutePolicy.exportIpv6RoutePolicyId"/>
+                    <prop type="string" name="annotation" arg="$body.properties.annotation"/>
+                    <prop type="object" name="connectedSubnetRoutePolicy" arg="$body.properties.connectedSubnetRoutePolicy">
+                      <prop type="object" name="exportRoutePolicy" arg="$body.properties.connectedSubnetRoutePolicy.exportRoutePolicy">
+                        <prop nullable="True" type="ResourceId" name="exportIpv4RoutePolicyId" arg="$body.properties.connectedSubnetRoutePolicy.exportRoutePolicy.exportIpv4RoutePolicyId"/>
+                        <prop nullable="True" type="ResourceId" name="exportIpv6RoutePolicyId" arg="$body.properties.connectedSubnetRoutePolicy.exportRoutePolicy.exportIpv6RoutePolicyId"/>
                       </prop>
                     </prop>
-                    <prop type="object" name="exportPolicyConfiguration" arg="$resource.properties.exportPolicyConfiguration">
-                      <prop type="array<string>" name="exportPolicies" arg="$resource.properties.exportPolicyConfiguration.exportPolicies">
+                    <prop type="object" name="exportPolicyConfiguration" arg="$body.properties.exportPolicyConfiguration">
+                      <prop type="array<string>" name="exportPolicies" arg="$body.properties.exportPolicyConfiguration.exportPolicies">
                         <format minLength="1"/>
                         <item type="string">
                           <enum>
@@ -474,34 +474,34 @@
                         </item>
                       </prop>
                     </prop>
-                    <prop nullable="True" type="ResourceId" name="networkFabricId" arg="$resource.properties.networkFabricId" required="True"/>
-                    <prop type="string" name="redistributeConnectedSubnets" arg="$resource.properties.redistributeConnectedSubnets">
+                    <prop nullable="True" type="ResourceId" name="networkFabricId" arg="$body.properties.networkFabricId" required="True"/>
+                    <prop type="string" name="redistributeConnectedSubnets" arg="$body.properties.redistributeConnectedSubnets">
                       <default value="&quot;True&quot;"/>
                       <enum>
                         <item value="&quot;False&quot;"/>
                         <item value="&quot;True&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="string" name="redistributeStaticRoutes" arg="$resource.properties.redistributeStaticRoutes">
+                    <prop type="string" name="redistributeStaticRoutes" arg="$body.properties.redistributeStaticRoutes">
                       <default value="&quot;False&quot;"/>
                       <enum>
                         <item value="&quot;False&quot;"/>
                         <item value="&quot;True&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="staticRouteRoutePolicy" arg="$resource.properties.staticRouteRoutePolicy">
-                      <prop type="object" name="exportRoutePolicy" arg="$resource.properties.staticRouteRoutePolicy.exportRoutePolicy" cls="L3ExportRoutePolicy_create">
+                    <prop type="object" name="staticRouteRoutePolicy" arg="$body.properties.staticRouteRoutePolicy">
+                      <prop type="object" name="exportRoutePolicy" arg="$body.properties.staticRouteRoutePolicy.exportRoutePolicy" cls="L3ExportRoutePolicy_create">
                         <prop nullable="True" type="ResourceId" name="exportIpv4RoutePolicyId" arg="@L3ExportRoutePolicy_create.exportIpv4RoutePolicyId"/>
                         <prop nullable="True" type="ResourceId" name="exportIpv6RoutePolicyId" arg="@L3ExportRoutePolicy_create.exportIpv6RoutePolicyId"/>
                       </prop>
                     </prop>
-                    <prop type="object" name="v4routePrefixLimit" arg="$resource.properties.v4routePrefixLimit" cls="RoutePrefixLimitProperties_create">
+                    <prop type="object" name="v4routePrefixLimit" arg="$body.properties.v4routePrefixLimit" cls="RoutePrefixLimitProperties_create">
                       <prop type="integer32" name="hardLimit" arg="@RoutePrefixLimitProperties_create.hardLimit"/>
                       <prop type="integer32" name="threshold" arg="@RoutePrefixLimitProperties_create.threshold"/>
                     </prop>
-                    <prop type="@RoutePrefixLimitProperties_create" name="v6routePrefixLimit" arg="$resource.properties.v6routePrefixLimit"/>
+                    <prop type="@RoutePrefixLimitProperties_create" name="v6routePrefixLimit" arg="$body.properties.v6routePrefixLimit"/>
                   </prop>
-                  <prop type="object" name="tags" arg="$resource.tags">
+                  <prop type="object" name="tags" arg="$body.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>
@@ -696,12 +696,20 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="Body">
+        <arg type="object" var="$body.tags" options="tags" group="Body">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
       <argGroup name="Identity">
-        <arg type="string" var="$properties.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
+        <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
           <blank value="&quot;True&quot;"/>
           <help short="Set the system managed identity."/>
         </arg>
-        <arg type="string" var="$properties.identity.type" options="type" hide="True" group="Identity">
+        <arg type="string" var="$body.identity.type" options="type" hide="True" group="Identity">
           <help short="The type of managed identity assigned to this resource."/>
           <enum>
             <item name="None" value="&quot;None&quot;"/>
@@ -710,12 +718,12 @@
             <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
           </enum>
         </arg>
-        <arg type="array<string>" var="$properties.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
+        <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
           <blank value="[]"/>
           <help short="Set the user managed identities."/>
           <item type="string"/>
         </arg>
-        <arg type="object" var="$properties.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+        <arg type="object" var="$body.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
           <help short="The identities assigned to this resource by the user."/>
           <additionalProp>
             <item nullable="True" type="object">
@@ -725,9 +733,9 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="object" var="$properties.properties.aggregateRouteConfiguration" options="aggregate-route-configuration aggr-route-config" group="Properties">
+        <arg nullable="True" type="object" var="$body.properties.aggregateRouteConfiguration" options="aggregate-route-configuration aggr-route-config" group="Properties">
           <help short="Aggregate route configurations."/>
-          <arg type="array<object>" var="$properties.properties.aggregateRouteConfiguration.ipv4Routes" options="ipv4-routes">
+          <arg type="array<object>" var="$body.properties.aggregateRouteConfiguration.ipv4Routes" options="ipv4-routes">
             <help short="List of IPv4 Route prefixes."/>
             <item type="object" cls="AggregateRoute_update">
               <arg type="string" var="@AggregateRoute_update.prefix" options="prefix" required="True">
@@ -736,29 +744,29 @@
               </arg>
             </item>
           </arg>
-          <arg type="array<@AggregateRoute_update>" var="$properties.properties.aggregateRouteConfiguration.ipv6Routes" options="ipv6-routes">
+          <arg type="array<@AggregateRoute_update>" var="$body.properties.aggregateRouteConfiguration.ipv6Routes" options="ipv6-routes">
             <help short="List of Ipv6Routes prefixes."/>
             <item type="@AggregateRoute_update"/>
           </arg>
         </arg>
-        <arg nullable="True" type="string" var="$properties.properties.annotation" options="annotation" group="Properties">
+        <arg nullable="True" type="string" var="$body.properties.annotation" options="annotation" group="Properties">
           <help short="Switch configuration description."/>
         </arg>
-        <arg nullable="True" type="object" var="$properties.properties.connectedSubnetRoutePolicy" options="connected-subnet-route-policy cs-route-policy" group="Properties">
+        <arg nullable="True" type="object" var="$body.properties.connectedSubnetRoutePolicy" options="connected-subnet-route-policy cs-route-policy" group="Properties">
           <help short="Connected Subnet RoutePolicy"/>
-          <arg type="object" var="$properties.properties.connectedSubnetRoutePolicy.exportRoutePolicy" options="export-route-policy">
+          <arg type="object" var="$body.properties.connectedSubnetRoutePolicy.exportRoutePolicy" options="export-route-policy">
             <help short="Array of ARM Resource ID of the RoutePolicies."/>
-            <arg nullable="True" type="ResourceId" var="$properties.properties.connectedSubnetRoutePolicy.exportRoutePolicy.exportIpv4RoutePolicyId" options="export-ipv4-route-policy-id">
+            <arg nullable="True" type="ResourceId" var="$body.properties.connectedSubnetRoutePolicy.exportRoutePolicy.exportIpv4RoutePolicyId" options="export-ipv4-route-policy-id">
               <help short="ARM Resource ID of the RoutePolicy."/>
             </arg>
-            <arg nullable="True" type="ResourceId" var="$properties.properties.connectedSubnetRoutePolicy.exportRoutePolicy.exportIpv6RoutePolicyId" options="export-ipv6-route-policy-id">
+            <arg nullable="True" type="ResourceId" var="$body.properties.connectedSubnetRoutePolicy.exportRoutePolicy.exportIpv6RoutePolicyId" options="export-ipv6-route-policy-id">
               <help short="ARM Resource ID of the RoutePolicy."/>
             </arg>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$properties.properties.exportPolicyConfiguration" options="export-policy-config" group="Properties">
+        <arg nullable="True" type="object" var="$body.properties.exportPolicyConfiguration" options="export-policy-config" group="Properties">
           <help short="BMP Export Policy configuration."/>
-          <arg type="array<string>" var="$properties.properties.exportPolicyConfiguration.exportPolicies" options="export-policies">
+          <arg type="array<string>" var="$body.properties.exportPolicyConfiguration.exportPolicies" options="export-policies">
             <help short="Export Policy for the BGP Monitoring Protocol (BMP) Configuration."/>
             <item type="string">
               <enum>
@@ -770,23 +778,23 @@
             </item>
           </arg>
         </arg>
-        <arg nullable="True" type="string" var="$properties.properties.redistributeConnectedSubnets" options="redistribute-connected-subnets redist-conn-subnets" group="Properties">
+        <arg nullable="True" type="string" var="$body.properties.redistributeConnectedSubnets" options="redistribute-connected-subnets redist-conn-subnets" group="Properties">
           <help short="Advertise Connected Subnets. Ex: &quot;True&quot; | &quot;False&quot;."/>
           <enum>
             <item name="False" value="&quot;False&quot;"/>
             <item name="True" value="&quot;True&quot;"/>
           </enum>
         </arg>
-        <arg nullable="True" type="string" var="$properties.properties.redistributeStaticRoutes" options="redistribute-static-routes redist-static-routes" group="Properties">
+        <arg nullable="True" type="string" var="$body.properties.redistributeStaticRoutes" options="redistribute-static-routes redist-static-routes" group="Properties">
           <help short="Advertise Static Routes. Ex: &quot;True&quot; | &quot;False&quot;."/>
           <enum>
             <item name="False" value="&quot;False&quot;"/>
             <item name="True" value="&quot;True&quot;"/>
           </enum>
         </arg>
-        <arg nullable="True" type="object" var="$properties.properties.staticRouteRoutePolicy" options="static-route-route-policy sr-route-policy" group="Properties">
+        <arg nullable="True" type="object" var="$body.properties.staticRouteRoutePolicy" options="static-route-route-policy sr-route-policy" group="Properties">
           <help short="Static Route - route policy."/>
-          <arg type="object" var="$properties.properties.staticRouteRoutePolicy.exportRoutePolicy" options="export-route-policy" cls="L3ExportRoutePolicyPatch_update">
+          <arg type="object" var="$body.properties.staticRouteRoutePolicy.exportRoutePolicy" options="export-route-policy" cls="L3ExportRoutePolicyPatch_update">
             <help short="Array of ARM Resource ID of the RoutePolicies."/>
             <arg nullable="True" type="ResourceId" var="@L3ExportRoutePolicyPatch_update.exportIpv4RoutePolicyId" options="export-ipv4-route-policy-id">
               <help short="ARM Resource ID of the RoutePolicy."/>
@@ -796,29 +804,23 @@
             </arg>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$properties.properties.v4routePrefixLimit" options="v4route-prefix-limit" group="Properties">
+        <arg nullable="True" type="object" var="$body.properties.v4routePrefixLimit" options="v4route-prefix-limit" group="Properties">
           <help short="IPv4 VRF Limit configuration."/>
-          <arg type="integer32" var="$properties.properties.v4routePrefixLimit.hardLimit" options="hard-limit">
+          <arg type="integer32" var="$body.properties.v4routePrefixLimit.hardLimit" options="hard-limit">
             <help short="Hard limit for the routes."/>
           </arg>
-          <arg type="integer32" var="$properties.properties.v4routePrefixLimit.threshold" options="threshold">
+          <arg type="integer32" var="$body.properties.v4routePrefixLimit.threshold" options="threshold">
             <help short="Threshold for the routes."/>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$properties.properties.v6routePrefixLimit" options="v6route-prefix-limit" group="Properties">
+        <arg nullable="True" type="object" var="$body.properties.v6routePrefixLimit" options="v6route-prefix-limit" group="Properties">
           <help short="IPv6 VRF Limit configuration."/>
-          <arg type="integer32" var="$properties.properties.v6routePrefixLimit.hardLimit" options="hard-limit">
+          <arg type="integer32" var="$body.properties.v6routePrefixLimit.hardLimit" options="hard-limit">
             <help short="Hard limit for the routes."/>
           </arg>
-          <arg type="integer32" var="$properties.properties.v6routePrefixLimit.threshold" options="threshold">
+          <arg type="integer32" var="$body.properties.v6routePrefixLimit.threshold" options="threshold">
             <help short="Threshold for the routes."/>
           </arg>
-        </arg>
-        <arg type="object" var="$properties.tags" options="tags" group="Properties">
-          <help short="Resource tags."/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
         </arg>
       </argGroup>
       <operation operationId="L3IsolationDomains_Update">
@@ -842,9 +844,9 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="properties" required="True" clientFlatten="True">
+                <schema type="object" name="body" required="True" clientFlatten="True">
                   <prop type="IdentityObject" name="identity">
-                    <prop type="string" name="type" arg="$properties.identity.type">
+                    <prop type="string" name="type" arg="$body.identity.type">
                       <enum>
                         <item value="&quot;None&quot;"/>
                         <item value="&quot;SystemAssigned&quot;"/>
@@ -852,38 +854,38 @@
                         <item value="&quot;UserAssigned&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="userAssignedIdentities" arg="$properties.identity.userAssignedIdentities">
+                    <prop type="object" name="userAssignedIdentities" arg="$body.identity.userAssignedIdentities">
                       <additionalProp>
                         <item nullable="True" type="object"/>
                       </additionalProp>
                     </prop>
-                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$properties.identity.userAssigned">
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                       <item action="create" type="string"/>
                     </userAssigned>
-                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$properties.identity.systemAssigned"/>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
                   </prop>
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop nullable="True" type="object" name="aggregateRouteConfiguration" arg="$properties.properties.aggregateRouteConfiguration">
-                      <prop type="array<object>" name="ipv4Routes" arg="$properties.properties.aggregateRouteConfiguration.ipv4Routes" identifiers="prefix">
+                    <prop nullable="True" type="object" name="aggregateRouteConfiguration" arg="$body.properties.aggregateRouteConfiguration">
+                      <prop type="array<object>" name="ipv4Routes" arg="$body.properties.aggregateRouteConfiguration.ipv4Routes" identifiers="prefix">
                         <item type="object" cls="AggregateRoute_update">
                           <prop type="string" name="prefix" arg="@AggregateRoute_update.prefix" required="True">
                             <format minLength="1"/>
                           </prop>
                         </item>
                       </prop>
-                      <prop type="array<@AggregateRoute_update>" name="ipv6Routes" arg="$properties.properties.aggregateRouteConfiguration.ipv6Routes" identifiers="prefix">
+                      <prop type="array<@AggregateRoute_update>" name="ipv6Routes" arg="$body.properties.aggregateRouteConfiguration.ipv6Routes" identifiers="prefix">
                         <item type="@AggregateRoute_update"/>
                       </prop>
                     </prop>
-                    <prop nullable="True" type="string" name="annotation" arg="$properties.properties.annotation"/>
-                    <prop nullable="True" type="object" name="connectedSubnetRoutePolicy" arg="$properties.properties.connectedSubnetRoutePolicy">
-                      <prop type="object" name="exportRoutePolicy" arg="$properties.properties.connectedSubnetRoutePolicy.exportRoutePolicy">
-                        <prop nullable="True" type="ResourceId" name="exportIpv4RoutePolicyId" arg="$properties.properties.connectedSubnetRoutePolicy.exportRoutePolicy.exportIpv4RoutePolicyId"/>
-                        <prop nullable="True" type="ResourceId" name="exportIpv6RoutePolicyId" arg="$properties.properties.connectedSubnetRoutePolicy.exportRoutePolicy.exportIpv6RoutePolicyId"/>
+                    <prop nullable="True" type="string" name="annotation" arg="$body.properties.annotation"/>
+                    <prop nullable="True" type="object" name="connectedSubnetRoutePolicy" arg="$body.properties.connectedSubnetRoutePolicy">
+                      <prop type="object" name="exportRoutePolicy" arg="$body.properties.connectedSubnetRoutePolicy.exportRoutePolicy">
+                        <prop nullable="True" type="ResourceId" name="exportIpv4RoutePolicyId" arg="$body.properties.connectedSubnetRoutePolicy.exportRoutePolicy.exportIpv4RoutePolicyId"/>
+                        <prop nullable="True" type="ResourceId" name="exportIpv6RoutePolicyId" arg="$body.properties.connectedSubnetRoutePolicy.exportRoutePolicy.exportIpv6RoutePolicyId"/>
                       </prop>
                     </prop>
-                    <prop nullable="True" type="object" name="exportPolicyConfiguration" arg="$properties.properties.exportPolicyConfiguration">
-                      <prop type="array<string>" name="exportPolicies" arg="$properties.properties.exportPolicyConfiguration.exportPolicies">
+                    <prop nullable="True" type="object" name="exportPolicyConfiguration" arg="$body.properties.exportPolicyConfiguration">
+                      <prop type="array<string>" name="exportPolicies" arg="$body.properties.exportPolicyConfiguration.exportPolicies">
                         <item type="string">
                           <enum>
                             <item value="&quot;All&quot;"/>
@@ -894,34 +896,34 @@
                         </item>
                       </prop>
                     </prop>
-                    <prop nullable="True" type="string" name="redistributeConnectedSubnets" arg="$properties.properties.redistributeConnectedSubnets">
+                    <prop nullable="True" type="string" name="redistributeConnectedSubnets" arg="$body.properties.redistributeConnectedSubnets">
                       <enum>
                         <item value="&quot;False&quot;"/>
                         <item value="&quot;True&quot;"/>
                       </enum>
                     </prop>
-                    <prop nullable="True" type="string" name="redistributeStaticRoutes" arg="$properties.properties.redistributeStaticRoutes">
+                    <prop nullable="True" type="string" name="redistributeStaticRoutes" arg="$body.properties.redistributeStaticRoutes">
                       <enum>
                         <item value="&quot;False&quot;"/>
                         <item value="&quot;True&quot;"/>
                       </enum>
                     </prop>
-                    <prop nullable="True" type="object" name="staticRouteRoutePolicy" arg="$properties.properties.staticRouteRoutePolicy">
-                      <prop type="object" name="exportRoutePolicy" arg="$properties.properties.staticRouteRoutePolicy.exportRoutePolicy" cls="L3ExportRoutePolicyPatch_update">
+                    <prop nullable="True" type="object" name="staticRouteRoutePolicy" arg="$body.properties.staticRouteRoutePolicy">
+                      <prop type="object" name="exportRoutePolicy" arg="$body.properties.staticRouteRoutePolicy.exportRoutePolicy" cls="L3ExportRoutePolicyPatch_update">
                         <prop nullable="True" type="ResourceId" name="exportIpv4RoutePolicyId" arg="@L3ExportRoutePolicyPatch_update.exportIpv4RoutePolicyId"/>
                         <prop nullable="True" type="ResourceId" name="exportIpv6RoutePolicyId" arg="@L3ExportRoutePolicyPatch_update.exportIpv6RoutePolicyId"/>
                       </prop>
                     </prop>
-                    <prop nullable="True" type="object" name="v4routePrefixLimit" arg="$properties.properties.v4routePrefixLimit">
-                      <prop type="integer32" name="hardLimit" arg="$properties.properties.v4routePrefixLimit.hardLimit"/>
-                      <prop type="integer32" name="threshold" arg="$properties.properties.v4routePrefixLimit.threshold"/>
+                    <prop nullable="True" type="object" name="v4routePrefixLimit" arg="$body.properties.v4routePrefixLimit">
+                      <prop type="integer32" name="hardLimit" arg="$body.properties.v4routePrefixLimit.hardLimit"/>
+                      <prop type="integer32" name="threshold" arg="$body.properties.v4routePrefixLimit.threshold"/>
                     </prop>
-                    <prop nullable="True" type="object" name="v6routePrefixLimit" arg="$properties.properties.v6routePrefixLimit">
-                      <prop type="integer32" name="hardLimit" arg="$properties.properties.v6routePrefixLimit.hardLimit"/>
-                      <prop type="integer32" name="threshold" arg="$properties.properties.v6routePrefixLimit.threshold"/>
+                    <prop nullable="True" type="object" name="v6routePrefixLimit" arg="$body.properties.v6routePrefixLimit">
+                      <prop type="integer32" name="hardLimit" arg="$body.properties.v6routePrefixLimit.hardLimit"/>
+                      <prop type="integer32" name="threshold" arg="$body.properties.v6routePrefixLimit.threshold"/>
                     </prop>
                   </prop>
-                  <prop type="object" name="tags" arg="$properties.tags">
+                  <prop type="object" name="tags" arg="$body.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>
@@ -1123,19 +1125,19 @@
           <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
-        <argGroup name="Resource.identity">
-          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+        <argGroup name="Body.identity">
+          <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Body.identity">
             <blank value="&quot;True&quot;"/>
             <help short="Set the system managed identity."/>
           </arg>
-          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+          <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Body.identity">
             <blank value="[]"/>
             <help short="Set the user managed identities."/>
             <item type="string"/>
           </arg>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="resource">
+          <json type="object" name="body">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>
@@ -1335,11 +1337,11 @@
         <operation>
           <instanceUpdate ref="$Subresource">
             <json>
-              <schema action="assign" type="IdentityObject" name="resource.identity" required="True">
-                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+              <schema action="assign" type="IdentityObject" name="body.identity" required="True">
+                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                   <item action="assign" type="string"/>
                 </userAssigned>
-                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
               </schema>
             </json>
           </instanceUpdate>
@@ -1395,19 +1397,19 @@
           <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
-        <argGroup name="Resource.identity">
-          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+        <argGroup name="Body.identity">
+          <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Body.identity">
             <blank value="&quot;True&quot;"/>
             <help short="Set the system managed identity."/>
           </arg>
-          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+          <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Body.identity">
             <blank value="[]"/>
             <help short="Set the user managed identities."/>
             <item type="string"/>
           </arg>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="resource">
+          <json type="object" name="body">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>
@@ -1607,11 +1609,11 @@
         <operation>
           <instanceUpdate ref="$Subresource">
             <json>
-              <schema action="remove" type="IdentityObject" name="resource.identity" required="True">
-                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+              <schema action="remove" type="IdentityObject" name="body.identity" required="True">
+                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                   <item action="remove" type="string"/>
                 </userAssigned>
-                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
               </schema>
             </json>
           </instanceUpdate>
@@ -1668,7 +1670,7 @@
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="resource">
+          <json type="object" name="body">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>

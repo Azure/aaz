@@ -10,12 +10,7 @@ List all the Network Bootstrap Interface resources in a given resource group.
 
 #### examples
 
-- List the Bootstrap Interfaces by Subscription
+- List the Bootstrap Interfaces in a Resource Group for a specific Subscription
     ```bash
-        networkfabric bootstrapinterface list --subscription <subscriptionId> --bootstrap-device example-device
-    ```
-
-- List the Bootstrap Interfaces by Resource Group
-    ```bash
-        networkfabric bootstrapinterface list --resource-group example-rg --bootstrap-device example-device
+        networkfabric bootstrapinterface list --subscription <subscriptionId> --resource-group example-rg --bootstrap-device example-device
     ```

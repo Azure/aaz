@@ -228,12 +228,23 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="Body">
+        <arg type="ResourceLocation" var="$body.location" options="location l" required="True" group="Body">
+          <help short="The geo-location where the resource lives"/>
+        </arg>
+        <arg type="object" var="$body.tags" options="tags" group="Body">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
       <argGroup name="Identity">
-        <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
+        <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
           <blank value="&quot;True&quot;"/>
           <help short="Set the system managed identity."/>
         </arg>
-        <arg type="string" var="$resource.identity.type" options="type" hide="True" group="Identity">
+        <arg type="string" var="$body.identity.type" options="type" hide="True" group="Identity">
           <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
           <enum>
             <item name="None" value="&quot;None&quot;"/>
@@ -242,12 +253,12 @@
             <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
           </enum>
         </arg>
-        <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
+        <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
           <blank value="[]"/>
           <help short="Set the user managed identities."/>
           <item type="string"/>
         </arg>
-        <arg type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+        <arg type="object" var="$body.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
           <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
           <additionalProp>
             <item nullable="True" type="object">
@@ -257,10 +268,10 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg type="string" var="$resource.properties.annotation" options="annotation" group="Properties">
+        <arg type="string" var="$body.properties.annotation" options="annotation" group="Properties">
           <help short="Switch configuration description."/>
         </arg>
-        <arg type="array<object>" var="$resource.properties.infrastructureExpressRouteConnections" options="infrastructure-express-route-connections infra-er-connections" group="Properties">
+        <arg type="array<object>" var="$body.properties.infrastructureExpressRouteConnections" options="infrastructure-express-route-connections infra-er-connections" group="Properties">
           <help short="As part of an update, the Infrastructure ExpressRoute CircuitID should be provided to create and Provision a NFC. This Express route is dedicated for Infrastructure services. (This is a Mandatory attribute)"/>
           <item type="object" cls="ExpressRouteConnectionInformation_create">
             <arg type="password" var="@ExpressRouteConnectionInformation_create.expressRouteAuthorizationKey" options="express-route-authorization-key" required="True" group="">
@@ -271,17 +282,17 @@
             </arg>
           </item>
         </arg>
-        <arg type="string" var="$resource.properties.ipv4AddressSpace" options="ipv4-address-space" group="Properties">
+        <arg type="string" var="$body.properties.ipv4AddressSpace" options="ipv4-address-space" group="Properties">
           <help short="IPv4 Network Fabric Controller Address Space."/>
           <default value="&quot;10.0.0.0/19&quot;"/>
           <format minLength="1"/>
         </arg>
-        <arg type="string" var="$resource.properties.ipv6AddressSpace" options="ipv6-address-space" group="Properties">
+        <arg type="string" var="$body.properties.ipv6AddressSpace" options="ipv6-address-space" group="Properties">
           <help short="IPv6 Network Fabric Controller Address Space."/>
           <default value="&quot;FC00::/59&quot;"/>
           <format minLength="1"/>
         </arg>
-        <arg type="string" var="$resource.properties.isWorkloadManagementNetworkEnabled" options="is-workload-management-network-enabled wl-mgt-net-enabled" group="Properties">
+        <arg type="string" var="$body.properties.isWorkloadManagementNetworkEnabled" options="is-workload-management-network-enabled wl-mgt-net-enabled" group="Properties">
           <help short="A workload management network is required for all the tenant (workload) traffic. This traffic is only dedicated for Tenant workloads which are required to access internet or any other MSFT/Public endpoints."/>
           <default value="&quot;True&quot;"/>
           <enum>
@@ -289,16 +300,16 @@
             <item name="True" value="&quot;True&quot;"/>
           </enum>
         </arg>
-        <arg type="object" var="$resource.properties.managedResourceGroupConfiguration" options="managed-resource-group-configuration mrg" group="Properties">
+        <arg type="object" var="$body.properties.managedResourceGroupConfiguration" options="managed-resource-group-configuration mrg" group="Properties">
           <help short="Managed Resource Group configuration properties."/>
-          <arg type="string" var="$resource.properties.managedResourceGroupConfiguration.location" options="location">
+          <arg type="string" var="$body.properties.managedResourceGroupConfiguration.location" options="location">
             <help short="Managed resource group location."/>
           </arg>
-          <arg type="string" var="$resource.properties.managedResourceGroupConfiguration.name" options="name">
+          <arg type="string" var="$body.properties.managedResourceGroupConfiguration.name" options="name">
             <help short="The NFC service will be hosted in a Managed resource group."/>
           </arg>
         </arg>
-        <arg type="string" var="$resource.properties.nfcSku" options="nfc-sku" group="Properties">
+        <arg type="string" var="$body.properties.nfcSku" options="nfc-sku" group="Properties">
           <help short="Network Fabric Controller SKU."/>
           <default value="&quot;Standard&quot;"/>
           <enum>
@@ -307,20 +318,9 @@
             <item name="Standard" value="&quot;Standard&quot;"/>
           </enum>
         </arg>
-        <arg type="array<@ExpressRouteConnectionInformation_create>" var="$resource.properties.workloadExpressRouteConnections" options="workload-express-route-connections workload-er-connections wl-er-connections" group="Properties">
+        <arg type="array<@ExpressRouteConnectionInformation_create>" var="$body.properties.workloadExpressRouteConnections" options="workload-express-route-connections workload-er-connections wl-er-connections" group="Properties">
           <help short="As part of an update, the workload ExpressRoute CircuitID should be provided to create and Provision a NFC. This Express route is dedicated for Workload services. (This is a Mandatory attribute)."/>
           <item type="@ExpressRouteConnectionInformation_create"/>
-        </arg>
-      </argGroup>
-      <argGroup name="Resource">
-        <arg type="ResourceLocation" var="$resource.location" options="location l" required="True" group="Resource">
-          <help short="The geo-location where the resource lives"/>
-        </arg>
-        <arg type="object" var="$resource.tags" options="tags" group="Resource">
-          <help short="Resource tags."/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
         </arg>
       </argGroup>
       <operation operationId="NetworkFabricControllers_Create">
@@ -344,9 +344,9 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="resource" required="True" clientFlatten="True">
+                <schema type="object" name="body" required="True" clientFlatten="True">
                   <prop type="IdentityObject" name="identity">
-                    <prop type="string" name="type" arg="$resource.identity.type" required="True">
+                    <prop type="string" name="type" arg="$body.identity.type" required="True">
                       <enum>
                         <item value="&quot;None&quot;"/>
                         <item value="&quot;SystemAssigned&quot;"/>
@@ -354,45 +354,45 @@
                         <item value="&quot;UserAssigned&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="userAssignedIdentities" arg="$resource.identity.userAssignedIdentities">
+                    <prop type="object" name="userAssignedIdentities" arg="$body.identity.userAssignedIdentities">
                       <additionalProp>
                         <item nullable="True" type="object"/>
                       </additionalProp>
                     </prop>
-                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                       <item action="create" type="string"/>
                     </userAssigned>
-                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
                   </prop>
-                  <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
+                  <prop type="ResourceLocation" name="location" arg="$body.location" required="True"/>
                   <prop type="object" name="properties" required="True" clientFlatten="True">
-                    <prop type="string" name="annotation" arg="$resource.properties.annotation"/>
-                    <prop type="array<object>" name="infrastructureExpressRouteConnections" arg="$resource.properties.infrastructureExpressRouteConnections" identifiers="expressRouteCircuitId">
+                    <prop type="string" name="annotation" arg="$body.properties.annotation"/>
+                    <prop type="array<object>" name="infrastructureExpressRouteConnections" arg="$body.properties.infrastructureExpressRouteConnections" identifiers="expressRouteCircuitId">
                       <item type="object" cls="ExpressRouteConnectionInformation_create">
                         <prop type="password" name="expressRouteAuthorizationKey" arg="@ExpressRouteConnectionInformation_create.expressRouteAuthorizationKey" required="True" secret="True"/>
                         <prop nullable="True" type="string" name="expressRouteCircuitId" arg="@ExpressRouteConnectionInformation_create.expressRouteCircuitId" required="True"/>
                       </item>
                     </prop>
-                    <prop type="string" name="ipv4AddressSpace" arg="$resource.properties.ipv4AddressSpace">
+                    <prop type="string" name="ipv4AddressSpace" arg="$body.properties.ipv4AddressSpace">
                       <default value="&quot;10.0.0.0/19&quot;"/>
                       <format minLength="1"/>
                     </prop>
-                    <prop type="string" name="ipv6AddressSpace" arg="$resource.properties.ipv6AddressSpace">
+                    <prop type="string" name="ipv6AddressSpace" arg="$body.properties.ipv6AddressSpace">
                       <default value="&quot;FC00::/59&quot;"/>
                       <format minLength="1"/>
                     </prop>
-                    <prop type="string" name="isWorkloadManagementNetworkEnabled" arg="$resource.properties.isWorkloadManagementNetworkEnabled">
+                    <prop type="string" name="isWorkloadManagementNetworkEnabled" arg="$body.properties.isWorkloadManagementNetworkEnabled">
                       <default value="&quot;True&quot;"/>
                       <enum>
                         <item value="&quot;False&quot;"/>
                         <item value="&quot;True&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="managedResourceGroupConfiguration" arg="$resource.properties.managedResourceGroupConfiguration">
-                      <prop type="string" name="location" arg="$resource.properties.managedResourceGroupConfiguration.location"/>
-                      <prop type="string" name="name" arg="$resource.properties.managedResourceGroupConfiguration.name"/>
+                    <prop type="object" name="managedResourceGroupConfiguration" arg="$body.properties.managedResourceGroupConfiguration">
+                      <prop type="string" name="location" arg="$body.properties.managedResourceGroupConfiguration.location"/>
+                      <prop type="string" name="name" arg="$body.properties.managedResourceGroupConfiguration.name"/>
                     </prop>
-                    <prop type="string" name="nfcSku" arg="$resource.properties.nfcSku">
+                    <prop type="string" name="nfcSku" arg="$body.properties.nfcSku">
                       <default value="&quot;Standard&quot;"/>
                       <enum>
                         <item value="&quot;Basic&quot;"/>
@@ -400,11 +400,11 @@
                         <item value="&quot;Standard&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="array<@ExpressRouteConnectionInformation_create>" name="workloadExpressRouteConnections" arg="$resource.properties.workloadExpressRouteConnections" identifiers="expressRouteCircuitId">
+                    <prop type="array<@ExpressRouteConnectionInformation_create>" name="workloadExpressRouteConnections" arg="$body.properties.workloadExpressRouteConnections" identifiers="expressRouteCircuitId">
                       <item type="@ExpressRouteConnectionInformation_create"/>
                     </prop>
                   </prop>
-                  <prop type="object" name="tags" arg="$resource.tags">
+                  <prop type="object" name="tags" arg="$body.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>
@@ -562,12 +562,20 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="Body">
+        <arg type="object" var="$body.tags" options="tags" group="Body">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
       <argGroup name="Identity">
-        <arg type="string" var="$properties.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
+        <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
           <blank value="&quot;True&quot;"/>
           <help short="Set the system managed identity."/>
         </arg>
-        <arg type="string" var="$properties.identity.type" options="type" hide="True" group="Identity">
+        <arg type="string" var="$body.identity.type" options="type" hide="True" group="Identity">
           <help short="The type of managed identity assigned to this resource."/>
           <enum>
             <item name="None" value="&quot;None&quot;"/>
@@ -576,12 +584,12 @@
             <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
           </enum>
         </arg>
-        <arg type="array<string>" var="$properties.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
+        <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
           <blank value="[]"/>
           <help short="Set the user managed identities."/>
           <item type="string"/>
         </arg>
-        <arg type="object" var="$properties.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+        <arg type="object" var="$body.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
           <help short="The identities assigned to this resource by the user."/>
           <additionalProp>
             <item nullable="True" type="object">
@@ -591,7 +599,7 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="array<object>" var="$properties.properties.infrastructureExpressRouteConnections" options="infrastructure-express-route-connections infra-er-connections" group="Properties">
+        <arg nullable="True" type="array<object>" var="$body.properties.infrastructureExpressRouteConnections" options="infrastructure-express-route-connections infra-er-connections" group="Properties">
           <help short="As part of an update, the Infrastructure ExpressRoute CircuitID should be provided to create and Provision a NFC. This Express route is dedicated for Infrastructure services. (This is a Mandatory attribute)"/>
           <item type="object" cls="ExpressRouteConnectionInformation_update">
             <arg type="password" var="@ExpressRouteConnectionInformation_update.expressRouteAuthorizationKey" options="express-route-authorization-key" required="True" group="">
@@ -602,15 +610,9 @@
             </arg>
           </item>
         </arg>
-        <arg nullable="True" type="array<@ExpressRouteConnectionInformation_update>" var="$properties.properties.workloadExpressRouteConnections" options="workload-express-route-connections workload-er-connections wl-er-connections" group="Properties">
+        <arg nullable="True" type="array<@ExpressRouteConnectionInformation_update>" var="$body.properties.workloadExpressRouteConnections" options="workload-express-route-connections workload-er-connections wl-er-connections" group="Properties">
           <help short="As part of an update, the workload ExpressRoute CircuitID should be provided to create and Provision a NFC. This Express route is dedicated for Workload services. (This is a Mandatory attribute)."/>
           <item type="@ExpressRouteConnectionInformation_update"/>
-        </arg>
-        <arg type="object" var="$properties.tags" options="tags" group="Properties">
-          <help short="Resource tags."/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
         </arg>
       </argGroup>
       <operation operationId="NetworkFabricControllers_Update">
@@ -634,9 +636,9 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="properties" required="True" clientFlatten="True">
+                <schema type="object" name="body" required="True" clientFlatten="True">
                   <prop type="IdentityObject" name="identity">
-                    <prop type="string" name="type" arg="$properties.identity.type">
+                    <prop type="string" name="type" arg="$body.identity.type">
                       <enum>
                         <item value="&quot;None&quot;"/>
                         <item value="&quot;SystemAssigned&quot;"/>
@@ -644,28 +646,28 @@
                         <item value="&quot;UserAssigned&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="userAssignedIdentities" arg="$properties.identity.userAssignedIdentities">
+                    <prop type="object" name="userAssignedIdentities" arg="$body.identity.userAssignedIdentities">
                       <additionalProp>
                         <item nullable="True" type="object"/>
                       </additionalProp>
                     </prop>
-                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$properties.identity.userAssigned">
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                       <item action="create" type="string"/>
                     </userAssigned>
-                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$properties.identity.systemAssigned"/>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
                   </prop>
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop nullable="True" type="array<object>" name="infrastructureExpressRouteConnections" arg="$properties.properties.infrastructureExpressRouteConnections" identifiers="expressRouteCircuitId">
+                    <prop nullable="True" type="array<object>" name="infrastructureExpressRouteConnections" arg="$body.properties.infrastructureExpressRouteConnections" identifiers="expressRouteCircuitId">
                       <item type="object" cls="ExpressRouteConnectionInformation_update">
                         <prop type="password" name="expressRouteAuthorizationKey" arg="@ExpressRouteConnectionInformation_update.expressRouteAuthorizationKey" required="True" secret="True"/>
                         <prop nullable="True" type="string" name="expressRouteCircuitId" arg="@ExpressRouteConnectionInformation_update.expressRouteCircuitId" required="True"/>
                       </item>
                     </prop>
-                    <prop nullable="True" type="array<@ExpressRouteConnectionInformation_update>" name="workloadExpressRouteConnections" arg="$properties.properties.workloadExpressRouteConnections" identifiers="expressRouteCircuitId">
+                    <prop nullable="True" type="array<@ExpressRouteConnectionInformation_update>" name="workloadExpressRouteConnections" arg="$body.properties.workloadExpressRouteConnections" identifiers="expressRouteCircuitId">
                       <item type="@ExpressRouteConnectionInformation_update"/>
                     </prop>
                   </prop>
-                  <prop type="object" name="tags" arg="$properties.tags">
+                  <prop type="object" name="tags" arg="$body.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>
@@ -830,19 +832,19 @@
           <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
-        <argGroup name="Resource.identity">
-          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+        <argGroup name="Body.identity">
+          <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Body.identity">
             <blank value="&quot;True&quot;"/>
             <help short="Set the system managed identity."/>
           </arg>
-          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+          <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Body.identity">
             <blank value="[]"/>
             <help short="Set the user managed identities."/>
             <item type="string"/>
           </arg>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="resource">
+          <json type="object" name="body">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>
@@ -1005,11 +1007,11 @@
         <operation>
           <instanceUpdate ref="$Subresource">
             <json>
-              <schema action="assign" type="IdentityObject" name="resource.identity" required="True">
-                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+              <schema action="assign" type="IdentityObject" name="body.identity" required="True">
+                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                   <item action="assign" type="string"/>
                 </userAssigned>
-                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
               </schema>
             </json>
           </instanceUpdate>
@@ -1065,19 +1067,19 @@
           <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
-        <argGroup name="Resource.identity">
-          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+        <argGroup name="Body.identity">
+          <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Body.identity">
             <blank value="&quot;True&quot;"/>
             <help short="Set the system managed identity."/>
           </arg>
-          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+          <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Body.identity">
             <blank value="[]"/>
             <help short="Set the user managed identities."/>
             <item type="string"/>
           </arg>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="resource">
+          <json type="object" name="body">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>
@@ -1240,11 +1242,11 @@
         <operation>
           <instanceUpdate ref="$Subresource">
             <json>
-              <schema action="remove" type="IdentityObject" name="resource.identity" required="True">
-                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+              <schema action="remove" type="IdentityObject" name="body.identity" required="True">
+                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                   <item action="remove" type="string"/>
                 </userAssigned>
-                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
               </schema>
             </json>
           </instanceUpdate>
@@ -1301,7 +1303,7 @@
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="resource">
+          <json type="object" name="body">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>
