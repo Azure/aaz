@@ -2,6 +2,11 @@
 
 Manage Endpoint resource, which represents a data transfer source or destination.
 
+## Subgroups
+
+- [identity](/Commands/storage-mover/endpoint/identity/readme.md)
+: Manage Identity
+
 ## Commands
 
 - [create](/Commands/storage-mover/endpoint/_create.md)
