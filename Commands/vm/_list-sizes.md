@@ -47,3 +47,14 @@ List available sizes for VMs.
     ```bash
         vm list-sizes -l westus
     ```
+
+### [2024-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlL2xvY2F0aW9ucy97fS92bXNpemVz/2024-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.compute/locations/{}/vmsizes 2024-11-01 -->
+
+#### examples
+
+- List the available VM sizes in the West US region.
+    ```bash
+        vm list-sizes -l westus
+    ```
