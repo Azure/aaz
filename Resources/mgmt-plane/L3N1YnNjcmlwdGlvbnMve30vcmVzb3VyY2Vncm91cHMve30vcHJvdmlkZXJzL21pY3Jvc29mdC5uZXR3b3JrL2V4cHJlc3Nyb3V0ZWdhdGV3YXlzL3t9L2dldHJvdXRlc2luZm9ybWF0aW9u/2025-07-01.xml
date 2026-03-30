@@ -7,11 +7,9 @@
       <argGroup name="">
         <arg type="string" var="$Path.expressRouteGatewayName" options="name" required="True" group="" idPart="name">
           <help short="The name of the vwan express route gateway."/>
-          <format pattern="^[A-Za-z0-9_]+"/>
+          <format pattern="^[A-Za-z0-9_-]+"/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group" required="True" group="" idPart="resource_group">
-          <help short=""/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         <arg type="boolean" var="$Query.attemptRefresh" options="attempt-refresh">
           <help short="Attempt to recalculate the Route Sets Information for the gateway"/>
@@ -23,15 +21,18 @@
           <request method="post">
             <path>
               <param type="string" name="expressRouteGatewayName" arg="$Path.expressRouteGatewayName" required="True">
-                <format pattern="^[A-Za-z0-9_]+"/>
+                <format pattern="^[A-Za-z0-9_-]+"/>
               </param>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
               <param type="boolean" name="attemptRefresh" arg="$Query.attemptRefresh"/>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
                 <default value="&quot;2025-07-01&quot;"/>
+                <format minLength="1"/>
               </const>
             </query>
           </request>
@@ -58,8 +59,8 @@
                           <item type="array<object>">
                             <item type="object">
                               <prop type="string" name="circuit"/>
-                              <prop type="string" name="pri"/>
-                              <prop type="string" name="sec"/>
+                              <prop type="integer" name="pri"/>
+                              <prop type="integer" name="sec"/>
                             </item>
                           </item>
                         </additionalProp>
@@ -76,7 +77,8 @@
           </response>
           <response statusCode="202">
             <header>
-              <item name="location"/>
+              <item name="Location"/>
+              <item name="Retry-After"/>
             </header>
           </response>
           <response isError="True">
