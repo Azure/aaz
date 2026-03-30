@@ -7,11 +7,9 @@
       <argGroup name="">
         <arg type="string" var="$Path.expressRouteCircuitName" options="name" required="True" group="" idPart="name">
           <help short="The name of the express route circuit."/>
-          <format pattern="^[A-Za-z0-9_]+"/>
+          <format pattern="^[A-Za-z0-9_-]+"/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group" required="True" group="" idPart="resource_group">
-          <help short=""/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         <arg type="string" var="$Query.circuitMaintenanceCategory" options="maintenance-category" required="True" group="">
           <help short="The type of maintenance test category"/>
@@ -37,10 +35,12 @@
           <request method="post">
             <path>
               <param type="string" name="expressRouteCircuitName" arg="$Path.expressRouteCircuitName" required="True">
-                <format pattern="^[A-Za-z0-9_]+"/>
+                <format pattern="^[A-Za-z0-9_-]+"/>
               </param>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
               <param type="string" name="circuitMaintenanceCategory" arg="$Query.circuitMaintenanceCategory" required="True">
@@ -58,89 +58,93 @@
               </param>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
                 <default value="&quot;2025-07-01&quot;"/>
+                <format minLength="1"/>
               </const>
             </query>
           </request>
           <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="array<object>">
-                  <item type="object">
-                    <prop readOnly="True" type="array<object>" name="bgpStatus">
-                      <item type="object">
-                        <prop readOnly="True" type="string" name="bgpStatusType">
-                          <enum>
-                            <item value="&quot;IPv4&quot;"/>
-                            <item value="&quot;IPv6&quot;"/>
-                          </enum>
-                        </prop>
-                        <prop readOnly="True" type="string" name="checkTime"/>
-                        <prop type="string" name="link">
-                          <enum>
-                            <item value="&quot;Primary&quot;"/>
-                            <item value="&quot;Secondary&quot;"/>
-                          </enum>
-                        </prop>
-                        <prop readOnly="True" type="string" name="status">
-                          <enum>
-                            <item value="&quot;Connected&quot;"/>
-                            <item value="&quot;Disconnected&quot;"/>
-                            <item value="&quot;Undefined&quot;"/>
-                          </enum>
-                        </prop>
-                      </item>
-                    </prop>
-                    <prop readOnly="True" type="string" name="circuitTestCategory">
-                      <enum>
-                        <item value="&quot;ASPathPrepend&quot;"/>
-                        <item value="&quot;BgpDisconnect&quot;"/>
-                      </enum>
-                    </prop>
-                    <prop readOnly="True" type="string" name="endTime"/>
-                    <prop readOnly="True" type="boolean" name="isSimulationVerified"/>
-                    <prop readOnly="True" type="string" name="linkType">
-                      <enum>
-                        <item value="&quot;Primary&quot;"/>
-                        <item value="&quot;Secondary&quot;"/>
-                      </enum>
-                    </prop>
-                    <prop readOnly="True" type="@ExpressRouteLinkFailoverRouteList_read" name="nonRedundantRoutes"/>
-                    <prop readOnly="True" type="object" name="redundantRoutes" cls="ExpressRouteLinkFailoverRouteList_read">
-                      <prop type="array<object>" name="beforeSimulation">
-                        <item type="object" cls="ExpressRouteLinkFailoverRoute_read">
-                          <prop type="string" name="nextHop"/>
-                          <prop type="string" name="primaryASPath"/>
-                          <prop type="string" name="route"/>
-                          <prop type="string" name="secondaryASPath"/>
+                <schema type="object">
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="array<object>" name="bgpStatus">
+                        <item type="object">
+                          <prop readOnly="True" type="string" name="bgpStatusType">
+                            <enum>
+                              <item value="&quot;IPv4&quot;"/>
+                              <item value="&quot;IPv6&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="string" name="checkTime"/>
+                          <prop type="string" name="link">
+                            <enum>
+                              <item value="&quot;Primary&quot;"/>
+                              <item value="&quot;Secondary&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="string" name="status">
+                            <enum>
+                              <item value="&quot;Connected&quot;"/>
+                              <item value="&quot;Disconnected&quot;"/>
+                              <item value="&quot;Undefined&quot;"/>
+                            </enum>
+                          </prop>
                         </item>
                       </prop>
-                      <prop type="array<@ExpressRouteLinkFailoverRoute_read>" name="duringSimulation">
-                        <item type="@ExpressRouteLinkFailoverRoute_read"/>
+                      <prop readOnly="True" type="string" name="circuitTestCategory">
+                        <enum>
+                          <item value="&quot;ASPathPrepend&quot;"/>
+                          <item value="&quot;BgpDisconnect&quot;"/>
+                        </enum>
                       </prop>
-                    </prop>
-                    <prop readOnly="True" type="string" name="startTime"/>
-                    <prop readOnly="True" type="string" name="status">
-                      <enum>
-                        <item value="&quot;Completed&quot;"/>
-                        <item value="&quot;Expired&quot;"/>
-                        <item value="&quot;Invalid&quot;"/>
-                        <item value="&quot;NotStarted&quot;"/>
-                        <item value="&quot;Running&quot;"/>
-                        <item value="&quot;StartFailed&quot;"/>
-                        <item value="&quot;Starting&quot;"/>
-                        <item value="&quot;StopFailed&quot;"/>
-                        <item value="&quot;Stopping&quot;"/>
-                      </enum>
-                    </prop>
-                    <prop readOnly="True" type="boolean" name="wasSimulationSuccessful"/>
-                  </item>
+                      <prop readOnly="True" type="string" name="endTime"/>
+                      <prop readOnly="True" type="boolean" name="isSimulationVerified"/>
+                      <prop readOnly="True" type="string" name="linkType">
+                        <enum>
+                          <item value="&quot;Primary&quot;"/>
+                          <item value="&quot;Secondary&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="@ExpressRouteLinkFailoverRouteList_read" name="nonRedundantRoutes"/>
+                      <prop readOnly="True" type="object" name="redundantRoutes" cls="ExpressRouteLinkFailoverRouteList_read">
+                        <prop type="array<object>" name="beforeSimulation">
+                          <item type="object" cls="ExpressRouteLinkFailoverRoute_read">
+                            <prop type="string" name="nextHop"/>
+                            <prop type="string" name="primaryASPath"/>
+                            <prop type="string" name="route"/>
+                            <prop type="string" name="secondaryASPath"/>
+                          </item>
+                        </prop>
+                        <prop type="array<@ExpressRouteLinkFailoverRoute_read>" name="duringSimulation">
+                          <item type="@ExpressRouteLinkFailoverRoute_read"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="startTime"/>
+                      <prop readOnly="True" type="string" name="status">
+                        <enum>
+                          <item value="&quot;Completed&quot;"/>
+                          <item value="&quot;Expired&quot;"/>
+                          <item value="&quot;Invalid&quot;"/>
+                          <item value="&quot;NotStarted&quot;"/>
+                          <item value="&quot;Running&quot;"/>
+                          <item value="&quot;StartFailed&quot;"/>
+                          <item value="&quot;Starting&quot;"/>
+                          <item value="&quot;StopFailed&quot;"/>
+                          <item value="&quot;Stopping&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="boolean" name="wasSimulationSuccessful"/>
+                    </item>
+                  </prop>
                 </schema>
               </json>
             </body>
           </response>
           <response statusCode="202">
             <header>
-              <item name="location"/>
+              <item name="Location"/>
+              <item name="Retry-After"/>
             </header>
           </response>
           <response isError="True">
@@ -152,7 +156,7 @@
           </response>
         </http>
       </operation>
-      <output type="array" ref="$Instance" clientFlatten="True"/>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
   </commandGroup>
 </CodeGen>

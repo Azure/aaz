@@ -7,11 +7,9 @@
       <argGroup name="">
         <arg type="string" var="$Path.expressRouteCircuitName" options="name" required="True" group="" idPart="name">
           <help short="The name of the express route circuit."/>
-          <format pattern="^[A-Za-z0-9_]+"/>
+          <format pattern="^[A-Za-z0-9_-]+"/>
         </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group" required="True" group="" idPart="resource_group">
-          <help short=""/>
-        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         <arg type="string" var="$Query.circuitMaintenanceCategory" options="maintenance-category" required="True" group="">
           <help short="The type of maintenance test category"/>
@@ -34,10 +32,12 @@
           <request method="post">
             <path>
               <param type="string" name="expressRouteCircuitName" arg="$Path.expressRouteCircuitName" required="True">
-                <format pattern="^[A-Za-z0-9_]+"/>
+                <format pattern="^[A-Za-z0-9_-]+"/>
               </param>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
               <param type="string" name="circuitMaintenanceCategory" arg="$Query.circuitMaintenanceCategory" required="True">
@@ -54,6 +54,7 @@
               </param>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
                 <default value="&quot;2025-07-01&quot;"/>
+                <format minLength="1"/>
               </const>
             </query>
           </request>
@@ -66,7 +67,8 @@
           </response>
           <response statusCode="202">
             <header>
-              <item name="location"/>
+              <item name="Location"/>
+              <item name="Retry-After"/>
             </header>
           </response>
           <response isError="True">
