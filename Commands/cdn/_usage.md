@@ -19,3 +19,7 @@ Check the quota and actual usage of the CDN profiles under the given subscriptio
 ### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vY2hlY2tyZXNvdXJjZXVzYWdl/2025-06-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.cdn/checkresourceusage 2025-06-01 -->
+
+### [2025-09-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vY2hlY2tyZXNvdXJjZXVzYWdl/2025-09-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.cdn/checkresourceusage 2025-09-01-preview -->
