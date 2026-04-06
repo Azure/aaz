@@ -206,12 +206,23 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="Body">
+        <arg type="ResourceLocation" var="$body.location" options="location l" required="True" group="Body">
+          <help short="The geo-location where the resource lives"/>
+        </arg>
+        <arg type="object" var="$body.tags" options="tags" group="Body">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
       <argGroup name="Identity">
-        <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
+        <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
           <blank value="&quot;True&quot;"/>
           <help short="Set the system managed identity."/>
         </arg>
-        <arg type="string" var="$resource.identity.type" options="type" hide="True" group="Identity">
+        <arg type="string" var="$body.identity.type" options="type" hide="True" group="Identity">
           <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
           <enum>
             <item name="None" value="&quot;None&quot;"/>
@@ -220,12 +231,12 @@
             <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
           </enum>
         </arg>
-        <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
+        <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
           <blank value="[]"/>
           <help short="Set the user managed identities."/>
           <item type="string"/>
         </arg>
-        <arg type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+        <arg type="object" var="$body.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
           <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
           <additionalProp>
             <item nullable="True" type="object">
@@ -235,19 +246,8 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="ResourceId" var="$resource.properties.networkFabricId" options="network-fabric-id nf-id" required="True" group="Properties">
+        <arg nullable="True" type="ResourceId" var="$body.properties.networkFabricId" options="network-fabric-id nf-id" required="True" group="Properties">
           <help short="ARM Resource ID of the Network Fabric."/>
-        </arg>
-      </argGroup>
-      <argGroup name="Resource">
-        <arg type="ResourceLocation" var="$resource.location" options="location l" required="True" group="Resource">
-          <help short="The geo-location where the resource lives"/>
-        </arg>
-        <arg type="object" var="$resource.tags" options="tags" group="Resource">
-          <help short="Resource tags."/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
         </arg>
       </argGroup>
       <operation operationId="NetworkPacketBrokers_Create">
@@ -271,9 +271,9 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="resource" required="True" clientFlatten="True">
+                <schema type="object" name="body" required="True" clientFlatten="True">
                   <prop type="IdentityObject" name="identity">
-                    <prop type="string" name="type" arg="$resource.identity.type" required="True">
+                    <prop type="string" name="type" arg="$body.identity.type" required="True">
                       <enum>
                         <item value="&quot;None&quot;"/>
                         <item value="&quot;SystemAssigned&quot;"/>
@@ -281,21 +281,21 @@
                         <item value="&quot;UserAssigned&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="userAssignedIdentities" arg="$resource.identity.userAssignedIdentities">
+                    <prop type="object" name="userAssignedIdentities" arg="$body.identity.userAssignedIdentities">
                       <additionalProp>
                         <item nullable="True" type="object"/>
                       </additionalProp>
                     </prop>
-                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                       <item action="create" type="string"/>
                     </userAssigned>
-                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
                   </prop>
-                  <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
+                  <prop type="ResourceLocation" name="location" arg="$body.location" required="True"/>
                   <prop type="object" name="properties" required="True" clientFlatten="True">
-                    <prop nullable="True" type="ResourceId" name="networkFabricId" arg="$resource.properties.networkFabricId" required="True"/>
+                    <prop nullable="True" type="ResourceId" name="networkFabricId" arg="$body.properties.networkFabricId" required="True"/>
                   </prop>
-                  <prop type="object" name="tags" arg="$resource.tags">
+                  <prop type="object" name="tags" arg="$body.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>
@@ -431,12 +431,20 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="Body">
+        <arg type="object" var="$body.tags" options="tags" group="Body">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
       <argGroup name="Identity">
-        <arg type="string" var="$properties.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
+        <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
           <blank value="&quot;True&quot;"/>
           <help short="Set the system managed identity."/>
         </arg>
-        <arg type="string" var="$properties.identity.type" options="type" hide="True" group="Identity">
+        <arg type="string" var="$body.identity.type" options="type" hide="True" group="Identity">
           <help short="The type of managed identity assigned to this resource."/>
           <enum>
             <item name="None" value="&quot;None&quot;"/>
@@ -445,25 +453,17 @@
             <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
           </enum>
         </arg>
-        <arg type="array<string>" var="$properties.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
+        <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
           <blank value="[]"/>
           <help short="Set the user managed identities."/>
           <item type="string"/>
         </arg>
-        <arg type="object" var="$properties.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+        <arg type="object" var="$body.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
           <help short="The identities assigned to this resource by the user."/>
           <additionalProp>
             <item nullable="True" type="object">
               <blank value="{}"/>
             </item>
-          </additionalProp>
-        </arg>
-      </argGroup>
-      <argGroup name="Properties">
-        <arg type="object" var="$properties.tags" options="tags" group="Properties">
-          <help short="Resource tags."/>
-          <additionalProp>
-            <item type="string"/>
           </additionalProp>
         </arg>
       </argGroup>
@@ -488,9 +488,9 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="properties" required="True" clientFlatten="True">
+                <schema type="object" name="body" required="True" clientFlatten="True">
                   <prop type="IdentityObject" name="identity">
-                    <prop type="string" name="type" arg="$properties.identity.type">
+                    <prop type="string" name="type" arg="$body.identity.type">
                       <enum>
                         <item value="&quot;None&quot;"/>
                         <item value="&quot;SystemAssigned&quot;"/>
@@ -498,17 +498,17 @@
                         <item value="&quot;UserAssigned&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="object" name="userAssignedIdentities" arg="$properties.identity.userAssignedIdentities">
+                    <prop type="object" name="userAssignedIdentities" arg="$body.identity.userAssignedIdentities">
                       <additionalProp>
                         <item nullable="True" type="object"/>
                       </additionalProp>
                     </prop>
-                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$properties.identity.userAssigned">
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                       <item action="create" type="string"/>
                     </userAssigned>
-                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$properties.identity.systemAssigned"/>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
                   </prop>
-                  <prop type="object" name="tags" arg="$properties.tags">
+                  <prop type="object" name="tags" arg="$body.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>
@@ -651,19 +651,19 @@
           <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
-        <argGroup name="Resource.identity">
-          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+        <argGroup name="Body.identity">
+          <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Body.identity">
             <blank value="&quot;True&quot;"/>
             <help short="Set the system managed identity."/>
           </arg>
-          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+          <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Body.identity">
             <blank value="[]"/>
             <help short="Set the user managed identities."/>
             <item type="string"/>
           </arg>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="resource">
+          <json type="object" name="body">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>
@@ -804,11 +804,11 @@
         <operation>
           <instanceUpdate ref="$Subresource">
             <json>
-              <schema action="assign" type="IdentityObject" name="resource.identity" required="True">
-                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+              <schema action="assign" type="IdentityObject" name="body.identity" required="True">
+                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                   <item action="assign" type="string"/>
                 </userAssigned>
-                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
               </schema>
             </json>
           </instanceUpdate>
@@ -864,19 +864,19 @@
           <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
-        <argGroup name="Resource.identity">
-          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+        <argGroup name="Body.identity">
+          <arg type="string" var="$body.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Body.identity">
             <blank value="&quot;True&quot;"/>
             <help short="Set the system managed identity."/>
           </arg>
-          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+          <arg type="array<string>" var="$body.identity.userAssigned" options="mi-user-assigned user-assigned" group="Body.identity">
             <blank value="[]"/>
             <help short="Set the user managed identities."/>
             <item type="string"/>
           </arg>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="resource">
+          <json type="object" name="body">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>
@@ -1017,11 +1017,11 @@
         <operation>
           <instanceUpdate ref="$Subresource">
             <json>
-              <schema action="remove" type="IdentityObject" name="resource.identity" required="True">
-                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+              <schema action="remove" type="IdentityObject" name="body.identity" required="True">
+                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$body.identity.userAssigned">
                   <item action="remove" type="string"/>
                 </userAssigned>
-                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$body.identity.systemAssigned"/>
               </schema>
             </json>
           </instanceUpdate>
@@ -1078,7 +1078,7 @@
           <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="resource">
+          <json type="object" name="body">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>

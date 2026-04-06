@@ -213,30 +213,41 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="Body">
+        <arg type="ResourceLocation" var="$body.location" options="location l" required="True" group="Body">
+          <help short="The geo-location where the resource lives"/>
+        </arg>
+        <arg type="object" var="$body.tags" options="tags" group="Body">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
       <argGroup name="Properties">
-        <arg type="string" var="$resource.properties.annotation" options="annotation" group="Properties">
+        <arg type="string" var="$body.properties.annotation" options="annotation" group="Properties">
           <help short="Switch configuration description."/>
         </arg>
-        <arg type="array<object>" var="$resource.properties.ipCommunityRules" options="ip-community-rules" required="True" group="Properties">
+        <arg type="array<object>" var="$body.properties.ipCommunityRules" options="ip-community-rules" required="True" group="Properties">
           <help short="List of IP Community Rules."/>
           <item type="object">
-            <arg type="string" var="$resource.properties.ipCommunityRules[].action" options="action" required="True">
+            <arg type="string" var="$body.properties.ipCommunityRules[].action" options="action" required="True">
               <help short="Action to be taken on the configuration. Example: Permit | Deny."/>
               <enum>
                 <item name="Deny" value="&quot;Deny&quot;"/>
                 <item name="Permit" value="&quot;Permit&quot;"/>
               </enum>
             </arg>
-            <arg type="array<string>" var="$resource.properties.ipCommunityRules[].communityMembers" options="community-members" required="True">
+            <arg type="array<string>" var="$body.properties.ipCommunityRules[].communityMembers" options="community-members" required="True">
               <help short="List the community members of IP Community."/>
               <format minLength="1"/>
               <item type="string"/>
             </arg>
-            <arg type="integer64" var="$resource.properties.ipCommunityRules[].sequenceNumber" options="sequence-number" required="True">
+            <arg type="integer64" var="$body.properties.ipCommunityRules[].sequenceNumber" options="sequence-number" required="True">
               <help short="Sequence to insert to/delete from existing route. Prefix lists are evaluated starting with the lowest sequence number and continue down the list until a match is made. Once a match is made, the permit or deny statement is applied to that network and the rest of the list is ignored."/>
               <format maximum="4294967295" minimum="1"/>
             </arg>
-            <arg type="array<string>" var="$resource.properties.ipCommunityRules[].wellKnownCommunities" options="well-known-communities">
+            <arg type="array<string>" var="$body.properties.ipCommunityRules[].wellKnownCommunities" options="well-known-communities">
               <help short="Supported well known Community List."/>
               <item type="string">
                 <enum>
@@ -249,17 +260,6 @@
               </item>
             </arg>
           </item>
-        </arg>
-      </argGroup>
-      <argGroup name="Resource">
-        <arg type="ResourceLocation" var="$resource.location" options="location l" required="True" group="Resource">
-          <help short="The geo-location where the resource lives"/>
-        </arg>
-        <arg type="object" var="$resource.tags" options="tags" group="Resource">
-          <help short="Resource tags."/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
         </arg>
       </argGroup>
       <operation operationId="IpCommunities_Create">
@@ -283,26 +283,26 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="resource" required="True" clientFlatten="True">
-                  <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="ResourceLocation" name="location" arg="$body.location" required="True"/>
                   <prop type="object" name="properties" required="True" clientFlatten="True">
-                    <prop type="string" name="annotation" arg="$resource.properties.annotation"/>
-                    <prop type="array<object>" name="ipCommunityRules" arg="$resource.properties.ipCommunityRules" required="True">
+                    <prop type="string" name="annotation" arg="$body.properties.annotation"/>
+                    <prop type="array<object>" name="ipCommunityRules" arg="$body.properties.ipCommunityRules" required="True">
                       <item type="object">
-                        <prop type="string" name="action" arg="$resource.properties.ipCommunityRules[].action" required="True">
+                        <prop type="string" name="action" arg="$body.properties.ipCommunityRules[].action" required="True">
                           <enum>
                             <item value="&quot;Deny&quot;"/>
                             <item value="&quot;Permit&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="array<string>" name="communityMembers" arg="$resource.properties.ipCommunityRules[].communityMembers" required="True">
+                        <prop type="array<string>" name="communityMembers" arg="$body.properties.ipCommunityRules[].communityMembers" required="True">
                           <format minLength="1"/>
                           <item type="string"/>
                         </prop>
-                        <prop type="integer64" name="sequenceNumber" arg="$resource.properties.ipCommunityRules[].sequenceNumber" required="True">
+                        <prop type="integer64" name="sequenceNumber" arg="$body.properties.ipCommunityRules[].sequenceNumber" required="True">
                           <format maximum="4294967295" minimum="1"/>
                         </prop>
-                        <prop type="array<string>" name="wellKnownCommunities" arg="$resource.properties.ipCommunityRules[].wellKnownCommunities">
+                        <prop type="array<string>" name="wellKnownCommunities" arg="$body.properties.ipCommunityRules[].wellKnownCommunities">
                           <item type="string">
                             <enum>
                               <item value="&quot;GShut&quot;"/>
@@ -316,7 +316,7 @@
                       </item>
                     </prop>
                   </prop>
-                  <prop type="object" name="tags" arg="$resource.tags">
+                  <prop type="object" name="tags" arg="$body.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>
@@ -459,27 +459,35 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="Body">
+        <arg type="object" var="$body.tags" options="tags" group="Body">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="array<object>" var="$properties.properties.ipCommunityRules" options="ip-community-rules" group="Properties">
+        <arg nullable="True" type="array<object>" var="$body.properties.ipCommunityRules" options="ip-community-rules" group="Properties">
           <help short="List of IP Community Rules."/>
           <item type="object">
-            <arg type="string" var="$properties.properties.ipCommunityRules[].action" options="action" required="True">
+            <arg type="string" var="$body.properties.ipCommunityRules[].action" options="action" required="True">
               <help short="Action to be taken on the configuration. Example: Permit | Deny."/>
               <enum>
                 <item name="Deny" value="&quot;Deny&quot;"/>
                 <item name="Permit" value="&quot;Permit&quot;"/>
               </enum>
             </arg>
-            <arg type="array<string>" var="$properties.properties.ipCommunityRules[].communityMembers" options="community-members" required="True">
+            <arg type="array<string>" var="$body.properties.ipCommunityRules[].communityMembers" options="community-members" required="True">
               <help short="List the community members of IP Community."/>
               <format minLength="1"/>
               <item type="string"/>
             </arg>
-            <arg type="integer64" var="$properties.properties.ipCommunityRules[].sequenceNumber" options="sequence-number" required="True">
+            <arg type="integer64" var="$body.properties.ipCommunityRules[].sequenceNumber" options="sequence-number" required="True">
               <help short="Sequence to insert to/delete from existing route. Prefix lists are evaluated starting with the lowest sequence number and continue down the list until a match is made. Once a match is made, the permit or deny statement is applied to that network and the rest of the list is ignored."/>
               <format maximum="4294967295" minimum="1"/>
             </arg>
-            <arg type="array<string>" var="$properties.properties.ipCommunityRules[].wellKnownCommunities" options="well-known-communities">
+            <arg type="array<string>" var="$body.properties.ipCommunityRules[].wellKnownCommunities" options="well-known-communities">
               <help short="Supported well known Community List."/>
               <item type="string">
                 <enum>
@@ -492,12 +500,6 @@
               </item>
             </arg>
           </item>
-        </arg>
-        <arg type="object" var="$properties.tags" options="tags" group="Properties">
-          <help short="Resource tags."/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
         </arg>
       </argGroup>
       <operation operationId="IpCommunities_Update">
@@ -521,24 +523,24 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="properties" required="True" clientFlatten="True">
+                <schema type="object" name="body" required="True" clientFlatten="True">
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop nullable="True" type="array<object>" name="ipCommunityRules" arg="$properties.properties.ipCommunityRules">
+                    <prop nullable="True" type="array<object>" name="ipCommunityRules" arg="$body.properties.ipCommunityRules">
                       <item type="object">
-                        <prop type="string" name="action" arg="$properties.properties.ipCommunityRules[].action" required="True">
+                        <prop type="string" name="action" arg="$body.properties.ipCommunityRules[].action" required="True">
                           <enum>
                             <item value="&quot;Deny&quot;"/>
                             <item value="&quot;Permit&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="array<string>" name="communityMembers" arg="$properties.properties.ipCommunityRules[].communityMembers" required="True">
+                        <prop type="array<string>" name="communityMembers" arg="$body.properties.ipCommunityRules[].communityMembers" required="True">
                           <format minLength="1"/>
                           <item type="string"/>
                         </prop>
-                        <prop type="integer64" name="sequenceNumber" arg="$properties.properties.ipCommunityRules[].sequenceNumber" required="True">
+                        <prop type="integer64" name="sequenceNumber" arg="$body.properties.ipCommunityRules[].sequenceNumber" required="True">
                           <format maximum="4294967295" minimum="1"/>
                         </prop>
-                        <prop type="array<string>" name="wellKnownCommunities" arg="$properties.properties.ipCommunityRules[].wellKnownCommunities">
+                        <prop type="array<string>" name="wellKnownCommunities" arg="$body.properties.ipCommunityRules[].wellKnownCommunities">
                           <item type="string">
                             <enum>
                               <item value="&quot;GShut&quot;"/>
@@ -552,7 +554,7 @@
                       </item>
                     </prop>
                   </prop>
-                  <prop type="object" name="tags" arg="$properties.tags">
+                  <prop type="object" name="tags" arg="$body.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>

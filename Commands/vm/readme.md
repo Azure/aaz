@@ -84,6 +84,9 @@ Manage Linux or Windows virtual machines.
 - [reimage](/Commands/vm/_reimage.md)
 : Reimage (upgrade the operating system) a virtual machine.
 
+- [restart](/Commands/vm/_restart.md)
+: The operation to restart a virtual machine.
+
 - [show](/Commands/vm/_show.md)
 : Get information about the model view or the instance view of a virtual machine.
 
@@ -95,6 +98,3 @@ Manage Linux or Windows virtual machines.
 
 - [update](/Commands/vm/_update.md)
 : Update operation to create or update a virtual machine. Please note some properties can be set only during virtual machine creation.
-
-- [patch](/Commands/vm/_patch.md)
-: Patch operation to patch a virtual machine.

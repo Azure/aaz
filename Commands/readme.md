@@ -23,6 +23,9 @@
 - [apic](/Commands/apic/readme.md)
 : Manage Azure API Center services
 
+- [appnet](/Commands/appnet/readme.md)
+: Azure Kubernetes Application Network
+
 - [arc](/Commands/arc/readme.md)
 : Manage Azure Arc Machines.
 
@@ -216,7 +219,7 @@
 : Manage Maintenance
 
 - [managedcleanroom](/Commands/managedcleanroom/readme.md)
-: Manage Clean Room
+: Manage Azure Confidential Clean Room
 
 - [managedservices](/Commands/managedservices/readme.md)
 : Manage the registration assignments and definitions in Azure.
@@ -354,10 +357,10 @@
 : Manage Azure Stack HCI.
 
 - [standby-container-group-pool](/Commands/standby-container-group-pool/readme.md)
-: Standby Container Group Pool Operations
+: Manage Standby Container Group Pool
 
 - [standby-vm-pool](/Commands/standby-vm-pool/readme.md)
-: Standby Virtual Machine Pool Operations
+: Manage Standby Virtual Machine Pool
 
 - [storage](/Commands/storage/readme.md)
 : Manage Azure Cloud Storage resources.

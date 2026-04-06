@@ -80,3 +80,14 @@ Get the properties of a specific NGINX certificate.
     ```bash
         nginx deployment certificate show --certificate-name myCertificate --deployment-name myDeployment --resource-group myResourceGroup
     ```
+
+### [2025-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL25naW54Lm5naW54cGx1cy9uZ2lueGRlcGxveW1lbnRzL3t9L2NlcnRpZmljYXRlcy97fQ==/2025-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/nginx.nginxplus/nginxdeployments/{}/certificates/{} 2025-11-01 -->
+
+#### examples
+
+- Certificate Get
+    ```bash
+        nginx deployment certificate show --certificate-name myCertificate --deployment-name myDeployment --resource-group myResourceGroup
+    ```
