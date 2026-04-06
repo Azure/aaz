@@ -1,4 +1,4 @@
-# [Command] _network express-route-gateway get-failover-all-tests-detail_
+# [Command] _network express-route gateway get-failover-all-tests-detail_
 
 This operation retrieves the details of all the failover tests performed on the Virtual Wan ExpressRoute gateways for different peering locations
 
@@ -12,5 +12,5 @@ This operation retrieves the details of all the failover tests performed on the 
 
 - VwanExpressRouteGatewayFailoverAllTestsDetails
     ```bash
-        network express-route-gateway get-failover-all-tests-detail --resource-group "rg1" --name "ergw1" --type "SingleSiteFailover" --fetch-latest True
+        network express-route gateway get-failover-all-tests-detail --resource-group "rg1" --name "ergw1" --type "SingleSiteFailover" --fetch-latest True
     ```

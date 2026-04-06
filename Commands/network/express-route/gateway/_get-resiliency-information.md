@@ -1,4 +1,4 @@
-# [Command] _network express-route-gateway get-resiliency-information_
+# [Command] _network express-route gateway get-resiliency-information_
 
 This operation retrieves the resiliency information for VWAN ExpressRoute Gateway, including the gateway's current resiliency score and recommendations to further improve the score
 
@@ -12,5 +12,5 @@ This operation retrieves the resiliency information for VWAN ExpressRoute Gatewa
 
 - VwanExpressRouteGatewayGetResiliencyInformation
     ```bash
-        network express-route-gateway get-resiliency-information --resource-group "rg1" --name "ergw" --attempt-refresh True
+        network express-route gateway get-resiliency-information --resource-group "rg1" --name "ergw" --attempt-refresh True
     ```

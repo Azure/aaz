@@ -1,4 +1,4 @@
-# [Command] _network express-route-gateway stop-site-failover-test_
+# [Command] _network express-route gateway stop-site-failover-test_
 
 This operation stops an ongoing failover simulation on the vwan expressRouteGateway for the specified peering location
 
@@ -12,5 +12,5 @@ This operation stops an ongoing failover simulation on the vwan expressRouteGate
 
 - VwanExpressRouteGatewayStopSiteFailoverSimulation
     ```bash
-        network express-route-gateway stop-site-failover-test --resource-group "rg1" --name "ergw" --peering-location "Vancouver" --simulation-successful True --details "[{failover-connection-name:'conn1',failover-location:'Denver',is-verified:False},{failover-connection-name:'conn2',failover-location:'Amsterdam',is-verified:True}]"
+        network express-route gateway stop-site-failover-test --resource-group "rg1" --name "ergw" --peering-location "Vancouver" --simulation-successful True --details "[{failover-connection-name:'conn1',failover-location:'Denver',is-verified:False},{failover-connection-name:'conn2',failover-location:'Amsterdam',is-verified:True}]"
     ```

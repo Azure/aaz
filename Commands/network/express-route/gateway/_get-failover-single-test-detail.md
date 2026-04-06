@@ -1,4 +1,4 @@
-# [Command] _network express-route-gateway get-failover-single-test-detail_
+# [Command] _network express-route gateway get-failover-single-test-detail_
 
 This operation retrieves the details of a particular failover test performed on the vwan expressRouteGateway based on the test Guid
 
@@ -12,5 +12,5 @@ This operation retrieves the details of a particular failover test performed on 
 
 - VwanExpressRouteGatewayFailoverSingleTestDetails
     ```bash
-        network express-route-gateway get-failover-single-test-detail --resource-group "rg1" --name "ergw" --peering-location "Vancouver" --failover-test-id "fe458ae8-d2ae-4520-a104-44bc233bde7e"
+        network express-route gateway get-failover-single-test-detail --resource-group "rg1" --name "ergw" --peering-location "Vancouver" --failover-test-id "fe458ae8-d2ae-4520-a104-44bc233bde7e"
     ```

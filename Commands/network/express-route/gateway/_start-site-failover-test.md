@@ -1,4 +1,4 @@
-# [Command] _network express-route-gateway start-site-failover-test_
+# [Command] _network express-route gateway start-site-failover-test_
 
 This operation starts failover simulation on the vwan expressRouteGateway for the specified peering location
 
@@ -12,5 +12,5 @@ This operation starts failover simulation on the vwan expressRouteGateway for th
 
 - VwanExpressRouteGatewayStartSiteFailoverSimulation
     ```bash
-        network express-route-gateway start-site-failover-test --resource-group "rg1" --name "ergw" --peering-location "Vancouver"
+        network express-route gateway start-site-failover-test --resource-group "rg1" --name "ergw" --peering-location "Vancouver"
     ```
