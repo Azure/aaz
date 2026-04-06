@@ -1,6 +1,6 @@
 # [Command] _capacity reservation group update_
 
-Update operation to create or update a capacity reservation group. When updating a capacity reservation group, only tags may be modified. Please refer to https://aka.ms/CapacityReservation for more details.
+Update operation to update a capacity reservation group. When updating a capacity reservation group, only tags and sharing profile may be modified.
 
 ## Versions
 
