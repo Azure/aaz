@@ -1,4 +1,4 @@
-# [Command] _network express-route stop-circuit-link-failover-test_
+# [Command] _network express-route stop-link-failover-test_
 
 This operation stops an ongoing failover simulation on the circuit for the specified link type
 
@@ -12,5 +12,5 @@ This operation stops an ongoing failover simulation on the circuit for the speci
 
 - ExpressRouteCircuitStopLinkFailoverSimulation
     ```bash
-        network express-route stop-circuit-link-failover-test --resource-group rg1 --name erckt --circuit-test-category BgpDisconnect --link-type Primary --simulation-successful True --is-verified True
+        network express-route stop-link-failover-test --resource-group rg1 --name erckt --circuit-test-category BgpDisconnect --link-type Primary --simulation-successful True --is-verified True
     ```

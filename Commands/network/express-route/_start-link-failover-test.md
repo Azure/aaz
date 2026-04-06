@@ -1,4 +1,4 @@
-# [Command] _network express-route start-circuit-link-failover-test_
+# [Command] _network express-route start-link-failover-test_
 
 This operation starts failover simulation on the circuit for the specified link type
 
@@ -12,5 +12,5 @@ This operation starts failover simulation on the circuit for the specified link 
 
 - ExpressRouteCircuitStartLinkFailoverSimulation
     ```bash
-        network express-route start-circuit-link-failover-test --resource-group rg1 --name erckt --link-type Primary --maintenance-category BgpDisconnect
+        network express-route start-link-failover-test --resource-group rg1 --name erckt --link-type Primary --maintenance-category BgpDisconnect
     ```

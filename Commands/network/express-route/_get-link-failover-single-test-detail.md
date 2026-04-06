@@ -1,4 +1,4 @@
-# [Command] _network express-route get-circuit-link-failover-single-test-detail_
+# [Command] _network express-route get-link-failover-single-test-detail_
 
 This operation retrieves the details of a particular failover test performed on the circuit based on the test Guid
 
@@ -12,5 +12,5 @@ This operation retrieves the details of a particular failover test performed on 
 
 - ExpressRouteCircuitLinkFailoverSingleTestDetails
     ```bash
-        network express-route get-circuit-link-failover-single-test-detail --resource-group rg1 --name erckt --failover-test-id fe458ae8-d2ae-4520-a104-44bc233bde7e --link-type Primary --maintenance-category BgpDisconnect
+        network express-route get-link-failover-single-test-detail --resource-group rg1 --name erckt --failover-test-id fe458ae8-d2ae-4520-a104-44bc233bde7e --link-type Primary --maintenance-category BgpDisconnect
     ```

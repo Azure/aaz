@@ -1,4 +1,4 @@
-# [Command] _network express-route get-circuit-link-failover-all-tests-detail_
+# [Command] _network express-route get-link-failover-all-tests-detail_
 
 This operation retrieves the details of all the failover tests performed on the ExpressRoute circuit for different peering locations
 
@@ -12,5 +12,5 @@ This operation retrieves the details of all the failover tests performed on the 
 
 - ExpressRouteCircuitLinkFailoverAllTestsDetails
     ```bash
-        network express-route get-circuit-link-failover-all-tests-detail --resource-group rg1 --name erckt --type LinkFailover --fetch-latest true
+        network express-route get-link-failover-all-tests-detail --resource-group rg1 --name erckt --type LinkFailover --fetch-latest true
     ```
