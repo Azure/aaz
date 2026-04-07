@@ -40,9 +40,6 @@ Manage Azure Network resources.
 - [express-route-cross-connection](/Commands/network/express-route-cross-connection/readme.md)
 : Manage express route cross connection
 
-- [express-route-gateway](/Commands/network/express-route-gateway/readme.md)
-: Manage Express Route Gateway
-
 - [express-route-port](/Commands/network/express-route-port/readme.md)
 : Manage express route port
 
