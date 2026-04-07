@@ -12,5 +12,5 @@ This operation retrieves the details of all the failover tests performed on the 
 
 - ExpressRouteCircuitLinkFailoverAllTestsDetails
     ```bash
-        network express-route get-link-failover-all-tests-detail --resource-group rg1 --name erckt --type LinkFailover --fetch-latest true
+        network express-route get-link-failover-all-tests-detail --resource-group rg1 --name erckt --type LinkFailover --fetch-latest True
     ```
