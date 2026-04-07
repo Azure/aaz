@@ -38,7 +38,12 @@
                   <prop readOnly="True" type="string" name="etag"/>
                   <prop type="object" name="extendedLocation" required="True">
                     <prop type="string" name="name" required="True"/>
-                    <prop type="string" name="type" required="True"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;CustomLocation&quot;"/>
+                        <item value="&quot;EdgeZone&quot;"/>
+                      </enum>
+                    </prop>
                   </prop>
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/kubernetesClusters/{}"/>
@@ -54,7 +59,7 @@
                     </prop>
                     <prop type="object" name="administratorConfiguration">
                       <prop type="string" name="adminUsername"/>
-                      <prop type="array<object>" name="sshPublicKeys" identifiers="keyData">
+                      <prop type="array<object>" name="sshPublicKeys">
                         <item type="object" cls="SshPublicKey_read">
                           <prop type="string" name="keyData" required="True">
                             <format minLength="1"/>
@@ -82,7 +87,7 @@
                     <prop type="object" name="controlPlaneNodeConfiguration" required="True">
                       <prop type="object" name="administratorConfiguration">
                         <prop type="string" name="adminUsername"/>
-                        <prop type="array<@SshPublicKey_read>" name="sshPublicKeys" identifiers="keyData">
+                        <prop type="array<@SshPublicKey_read>" name="sshPublicKeys">
                           <item type="@SshPublicKey_read"/>
                         </prop>
                       </prop>
@@ -121,7 +126,7 @@
                       <item type="object">
                         <prop type="object" name="administratorConfiguration">
                           <prop type="string" name="adminUsername"/>
-                          <prop type="array<@SshPublicKey_read>" name="sshPublicKeys" identifiers="keyData">
+                          <prop type="array<@SshPublicKey_read>" name="sshPublicKeys">
                             <item type="@SshPublicKey_read"/>
                           </prop>
                         </prop>
@@ -549,7 +554,7 @@
                   <prop readOnly="True" type="array<@OperationStatusResult_read>" name="operations">
                     <item type="@OperationStatusResult_read"/>
                   </prop>
-                  <prop readOnly="True" type="float" name="percentComplete">
+                  <prop readOnly="True" type="float32" name="percentComplete">
                     <format maximum="100.0" minimum="0.0"/>
                   </prop>
                   <prop type="object" name="properties" clientFlatten="True">
@@ -613,6 +618,10 @@
           </arg>
           <arg type="string" var="$kubernetesClusterParameters.extendedLocation.type" options="type" required="True">
             <help short="The extended location type, for example, CustomLocation."/>
+            <enum>
+              <item name="CustomLocation" value="&quot;CustomLocation&quot;"/>
+              <item name="EdgeZone" value="&quot;EdgeZone&quot;"/>
+            </enum>
           </arg>
         </arg>
         <arg type="ResourceLocation" var="$kubernetesClusterParameters.location" options="location l" required="True" group="KubernetesClusterParameters">
@@ -891,10 +900,10 @@
                   <help short="The name used to identify this BGP peer for association with a BGP advertisement."/>
                   <format pattern="^[a-z0-9]([a-z0-9.-]{0,61}[a-z0-9]){0,1}$"/>
                 </arg>
-                <arg type="string" var="$kubernetesClusterParameters.properties.networkConfiguration.bgpServiceLoadBalancerConfiguration.bgpPeers[].password" options="password">
+                <arg type="password" var="$kubernetesClusterParameters.properties.networkConfiguration.bgpServiceLoadBalancerConfiguration.bgpPeers[].password" options="password">
                   <help short="The authentication password for routers enforcing TCP MD5 authenticated sessions."/>
-                  <prompt msg="Password:"/>
                   <format pattern="^[a-zA-Z0-9]{0,80}$" maxLength="80"/>
+                  <prompt msg="Password:"/>
                 </arg>
                 <arg type="string" var="$kubernetesClusterParameters.properties.networkConfiguration.bgpServiceLoadBalancerConfiguration.bgpPeers[].peerAddress" options="peer-address" required="True">
                   <help short="The IPv4 or IPv6 address used to connect this BGP session."/>
@@ -1026,7 +1035,12 @@
                 <schema type="object" name="kubernetesClusterParameters" required="True" clientFlatten="True">
                   <prop type="object" name="extendedLocation" arg="$kubernetesClusterParameters.extendedLocation" required="True">
                     <prop type="string" name="name" arg="$kubernetesClusterParameters.extendedLocation.name" required="True"/>
-                    <prop type="string" name="type" arg="$kubernetesClusterParameters.extendedLocation.type" required="True"/>
+                    <prop type="string" name="type" arg="$kubernetesClusterParameters.extendedLocation.type" required="True">
+                      <enum>
+                        <item value="&quot;CustomLocation&quot;"/>
+                        <item value="&quot;EdgeZone&quot;"/>
+                      </enum>
+                    </prop>
                   </prop>
                   <prop type="ResourceLocation" name="location" arg="$kubernetesClusterParameters.location" required="True"/>
                   <prop type="object" name="properties" required="True" clientFlatten="True">
@@ -1038,7 +1052,7 @@
                     </prop>
                     <prop type="object" name="administratorConfiguration">
                       <prop type="string" name="adminUsername" arg="$kubernetesClusterParameters.properties.administratorConfiguration.adminUsername"/>
-                      <prop type="array<object>" name="sshPublicKeys" arg="$kubernetesClusterParameters.properties.administratorConfiguration.sshPublicKeys" identifiers="keyData">
+                      <prop type="array<object>" name="sshPublicKeys" arg="$kubernetesClusterParameters.properties.administratorConfiguration.sshPublicKeys">
                         <item type="object" cls="SshPublicKey_create">
                           <prop type="string" name="keyData" arg="@SshPublicKey_create.keyData" required="True">
                             <format minLength="1"/>
@@ -1049,7 +1063,7 @@
                     <prop type="object" name="controlPlaneNodeConfiguration" arg="$kubernetesClusterParameters.properties.controlPlaneNodeConfiguration" required="True">
                       <prop type="object" name="administratorConfiguration">
                         <prop type="string" name="adminUsername" arg="$kubernetesClusterParameters.properties.controlPlaneNodeConfiguration.administratorConfiguration.adminUsername"/>
-                        <prop type="array<@SshPublicKey_create>" name="sshPublicKeys" arg="$kubernetesClusterParameters.properties.controlPlaneNodeConfiguration.administratorConfiguration.sshPublicKeys" identifiers="keyData">
+                        <prop type="array<@SshPublicKey_create>" name="sshPublicKeys" arg="$kubernetesClusterParameters.properties.controlPlaneNodeConfiguration.administratorConfiguration.sshPublicKeys">
                           <item type="@SshPublicKey_create"/>
                         </prop>
                       </prop>
@@ -1066,7 +1080,7 @@
                       <item type="object">
                         <prop type="object" name="administratorConfiguration">
                           <prop type="string" name="adminUsername" arg="$kubernetesClusterParameters.properties.initialAgentPoolConfigurations[].administratorConfiguration.adminUsername"/>
-                          <prop type="array<@SshPublicKey_create>" name="sshPublicKeys" arg="$kubernetesClusterParameters.properties.initialAgentPoolConfigurations[].administratorConfiguration.sshPublicKeys" identifiers="keyData">
+                          <prop type="array<@SshPublicKey_create>" name="sshPublicKeys" arg="$kubernetesClusterParameters.properties.initialAgentPoolConfigurations[].administratorConfiguration.sshPublicKeys">
                             <item type="@SshPublicKey_create"/>
                           </prop>
                         </prop>
@@ -1231,7 +1245,7 @@
                             <prop type="string" name="name" arg="$kubernetesClusterParameters.properties.networkConfiguration.bgpServiceLoadBalancerConfiguration.bgpPeers[].name" required="True">
                               <format pattern="^[a-z0-9]([a-z0-9.-]{0,61}[a-z0-9]){0,1}$"/>
                             </prop>
-                            <prop type="string" name="password" arg="$kubernetesClusterParameters.properties.networkConfiguration.bgpServiceLoadBalancerConfiguration.bgpPeers[].password" secret="True">
+                            <prop type="password" name="password" arg="$kubernetesClusterParameters.properties.networkConfiguration.bgpServiceLoadBalancerConfiguration.bgpPeers[].password" secret="True">
                               <format pattern="^[a-zA-Z0-9]{0,80}$" maxLength="80"/>
                             </prop>
                             <prop type="string" name="peerAddress" arg="$kubernetesClusterParameters.properties.networkConfiguration.bgpServiceLoadBalancerConfiguration.bgpPeers[].peerAddress" required="True"/>
@@ -1328,7 +1342,12 @@
                   <prop readOnly="True" type="string" name="etag"/>
                   <prop type="object" name="extendedLocation" required="True">
                     <prop type="string" name="name" required="True"/>
-                    <prop type="string" name="type" required="True"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;CustomLocation&quot;"/>
+                        <item value="&quot;EdgeZone&quot;"/>
+                      </enum>
+                    </prop>
                   </prop>
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/kubernetesClusters/{}"/>
@@ -1344,7 +1363,7 @@
                     </prop>
                     <prop type="object" name="administratorConfiguration">
                       <prop type="string" name="adminUsername"/>
-                      <prop type="array<object>" name="sshPublicKeys" identifiers="keyData">
+                      <prop type="array<object>" name="sshPublicKeys">
                         <item type="object" cls="SshPublicKey_read">
                           <prop type="string" name="keyData" required="True">
                             <format minLength="1"/>
@@ -1372,7 +1391,7 @@
                     <prop type="object" name="controlPlaneNodeConfiguration" required="True">
                       <prop type="object" name="administratorConfiguration">
                         <prop type="string" name="adminUsername"/>
-                        <prop type="array<@SshPublicKey_read>" name="sshPublicKeys" identifiers="keyData">
+                        <prop type="array<@SshPublicKey_read>" name="sshPublicKeys">
                           <item type="@SshPublicKey_read"/>
                         </prop>
                       </prop>
@@ -1411,7 +1430,7 @@
                       <item type="object">
                         <prop type="object" name="administratorConfiguration">
                           <prop type="string" name="adminUsername"/>
-                          <prop type="array<@SshPublicKey_read>" name="sshPublicKeys" identifiers="keyData">
+                          <prop type="array<@SshPublicKey_read>" name="sshPublicKeys">
                             <item type="@SshPublicKey_read"/>
                           </prop>
                         </prop>
@@ -1889,7 +1908,12 @@
                   <prop readOnly="True" type="string" name="etag"/>
                   <prop type="object" name="extendedLocation" required="True">
                     <prop type="string" name="name" required="True"/>
-                    <prop type="string" name="type" required="True"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;CustomLocation&quot;"/>
+                        <item value="&quot;EdgeZone&quot;"/>
+                      </enum>
+                    </prop>
                   </prop>
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/kubernetesClusters/{}"/>
@@ -1905,7 +1929,7 @@
                     </prop>
                     <prop type="object" name="administratorConfiguration">
                       <prop type="string" name="adminUsername"/>
-                      <prop type="array<object>" name="sshPublicKeys" identifiers="keyData">
+                      <prop type="array<object>" name="sshPublicKeys">
                         <item type="object" cls="SshPublicKey_read">
                           <prop type="string" name="keyData" required="True">
                             <format minLength="1"/>
@@ -1933,7 +1957,7 @@
                     <prop type="object" name="controlPlaneNodeConfiguration" required="True">
                       <prop type="object" name="administratorConfiguration">
                         <prop type="string" name="adminUsername"/>
-                        <prop type="array<@SshPublicKey_read>" name="sshPublicKeys" identifiers="keyData">
+                        <prop type="array<@SshPublicKey_read>" name="sshPublicKeys">
                           <item type="@SshPublicKey_read"/>
                         </prop>
                       </prop>
@@ -1972,7 +1996,7 @@
                       <item type="object">
                         <prop type="object" name="administratorConfiguration">
                           <prop type="string" name="adminUsername"/>
-                          <prop type="array<@SshPublicKey_read>" name="sshPublicKeys" identifiers="keyData">
+                          <prop type="array<@SshPublicKey_read>" name="sshPublicKeys">
                             <item type="@SshPublicKey_read"/>
                           </prop>
                         </prop>

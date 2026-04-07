@@ -13,7 +13,7 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Body">
-        <arg type="array<string>" var="$body.credentials" options="credentials" group="Body">
+        <arg type="array<string>" var="$body.credentials" options="credentials" required="True" group="Body">
           <help short="The list of credential names for the credentials to rotate."/>
           <item type="string"/>
         </arg>
@@ -39,7 +39,7 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="body" clientFlatten="True">
+                <schema type="object" name="body" required="True" clientFlatten="True">
                   <prop type="array<string>" name="credentials" arg="$body.credentials" required="True">
                     <item type="string"/>
                   </prop>
@@ -50,6 +50,7 @@
           <response statusCode="202">
             <header>
               <item name="Location"/>
+              <item name="Retry-After"/>
             </header>
           </response>
           <response statusCode="200 201">
@@ -80,7 +81,7 @@
                   <prop readOnly="True" type="array<@OperationStatusResult_read>" name="operations">
                     <item type="@OperationStatusResult_read"/>
                   </prop>
-                  <prop readOnly="True" type="float" name="percentComplete">
+                  <prop readOnly="True" type="float32" name="percentComplete">
                     <format maximum="100.0" minimum="0.0"/>
                   </prop>
                   <prop type="object" name="properties" clientFlatten="True">

@@ -38,7 +38,12 @@
                   <prop readOnly="True" type="string" name="etag"/>
                   <prop type="object" name="extendedLocation" required="True">
                     <prop type="string" name="name" required="True"/>
-                    <prop type="string" name="type" required="True"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;CustomLocation&quot;"/>
+                        <item value="&quot;EdgeZone&quot;"/>
+                      </enum>
+                    </prop>
                   </prop>
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/bareMetalMachines/{}"/>
@@ -83,7 +88,7 @@
                     </prop>
                     <prop type="string" name="bmcConnectionString" required="True"/>
                     <prop type="object" name="bmcCredentials" required="True">
-                      <prop type="string" name="password" required="True" secret="True">
+                      <prop type="password" name="password" required="True" secret="True">
                         <format minLength="1"/>
                       </prop>
                       <prop type="string" name="username" required="True">
@@ -169,13 +174,13 @@
                     </prop>
                     <prop type="string" name="machineSkuId" required="True"/>
                     <prop readOnly="True" type="object" name="monitoringConfigurationStatus">
-                      <prop readOnly="True" type="string" name="logLevel">
+                      <prop type="string" name="logLevel">
                         <enum>
                           <item value="&quot;Default&quot;"/>
                           <item value="&quot;Nexus&quot;"/>
                         </enum>
                       </prop>
-                      <prop readOnly="True" type="string" name="metricsLevel">
+                      <prop type="string" name="metricsLevel">
                         <enum>
                           <item value="&quot;Default&quot;"/>
                           <item value="&quot;Nexus&quot;"/>
@@ -386,7 +391,7 @@
                   <prop readOnly="True" type="array<@OperationStatusResult_read>" name="operations">
                     <item type="@OperationStatusResult_read"/>
                   </prop>
-                  <prop readOnly="True" type="float" name="percentComplete">
+                  <prop readOnly="True" type="float32" name="percentComplete">
                     <format maximum="100.0" minimum="0.0"/>
                   </prop>
                   <prop type="object" name="properties" clientFlatten="True">
@@ -436,6 +441,10 @@
           </arg>
           <arg type="string" var="$bareMetalMachineParameters.extendedLocation.type" options="type" required="True">
             <help short="The extended location type, for example, CustomLocation."/>
+            <enum>
+              <item name="CustomLocation" value="&quot;CustomLocation&quot;"/>
+              <item name="EdgeZone" value="&quot;EdgeZone&quot;"/>
+            </enum>
           </arg>
         </arg>
         <arg type="ResourceLocation" var="$bareMetalMachineParameters.location" options="location l" required="True" group="BareMetalMachineParameters">
@@ -454,10 +463,10 @@
         </arg>
         <arg type="object" var="$bareMetalMachineParameters.properties.bmcCredentials" options="bmc-credentials" required="True" group="Properties">
           <help short="The credentials of the baseboard management controller on this bare metal machine. The password field is expected to be an Azure Key Vault key URL. Until the cluster is converted to utilize managed identity by setting the secret archive settings, the actual password value should be provided instead."/>
-          <arg type="string" var="$bareMetalMachineParameters.properties.bmcCredentials.password" options="password" required="True">
+          <arg type="password" var="$bareMetalMachineParameters.properties.bmcCredentials.password" options="password" required="True">
             <help short="The password of the administrator of the device used during initialization."/>
-            <prompt msg="Password:"/>
             <format minLength="1"/>
+            <prompt msg="Password:"/>
           </arg>
           <arg type="string" var="$bareMetalMachineParameters.properties.bmcCredentials.username" options="username" required="True">
             <help short="The username of the administrator of the device used during initialization."/>
@@ -526,13 +535,18 @@
                 <schema type="object" name="bareMetalMachineParameters" required="True" clientFlatten="True">
                   <prop type="object" name="extendedLocation" arg="$bareMetalMachineParameters.extendedLocation" required="True">
                     <prop type="string" name="name" arg="$bareMetalMachineParameters.extendedLocation.name" required="True"/>
-                    <prop type="string" name="type" arg="$bareMetalMachineParameters.extendedLocation.type" required="True"/>
+                    <prop type="string" name="type" arg="$bareMetalMachineParameters.extendedLocation.type" required="True">
+                      <enum>
+                        <item value="&quot;CustomLocation&quot;"/>
+                        <item value="&quot;EdgeZone&quot;"/>
+                      </enum>
+                    </prop>
                   </prop>
                   <prop type="ResourceLocation" name="location" arg="$bareMetalMachineParameters.location" required="True"/>
                   <prop type="object" name="properties" required="True" clientFlatten="True">
                     <prop type="string" name="bmcConnectionString" arg="$bareMetalMachineParameters.properties.bmcConnectionString" required="True"/>
                     <prop type="object" name="bmcCredentials" arg="$bareMetalMachineParameters.properties.bmcCredentials" required="True">
-                      <prop type="string" name="password" arg="$bareMetalMachineParameters.properties.bmcCredentials.password" required="True" secret="True">
+                      <prop type="password" name="password" arg="$bareMetalMachineParameters.properties.bmcCredentials.password" required="True" secret="True">
                         <format minLength="1"/>
                       </prop>
                       <prop type="string" name="username" arg="$bareMetalMachineParameters.properties.bmcCredentials.username" required="True">
@@ -577,7 +591,12 @@
                   <prop readOnly="True" type="string" name="etag"/>
                   <prop type="object" name="extendedLocation" required="True">
                     <prop type="string" name="name" required="True"/>
-                    <prop type="string" name="type" required="True"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;CustomLocation&quot;"/>
+                        <item value="&quot;EdgeZone&quot;"/>
+                      </enum>
+                    </prop>
                   </prop>
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/bareMetalMachines/{}"/>
@@ -622,7 +641,7 @@
                     </prop>
                     <prop type="string" name="bmcConnectionString" required="True"/>
                     <prop type="object" name="bmcCredentials" required="True">
-                      <prop type="string" name="password" required="True" secret="True">
+                      <prop type="password" name="password" required="True" secret="True">
                         <format minLength="1"/>
                       </prop>
                       <prop type="string" name="username" required="True">
@@ -708,13 +727,13 @@
                     </prop>
                     <prop type="string" name="machineSkuId" required="True"/>
                     <prop readOnly="True" type="object" name="monitoringConfigurationStatus">
-                      <prop readOnly="True" type="string" name="logLevel">
+                      <prop type="string" name="logLevel">
                         <enum>
                           <item value="&quot;Default&quot;"/>
                           <item value="&quot;Nexus&quot;"/>
                         </enum>
                       </prop>
-                      <prop readOnly="True" type="string" name="metricsLevel">
+                      <prop type="string" name="metricsLevel">
                         <enum>
                           <item value="&quot;Default&quot;"/>
                           <item value="&quot;Nexus&quot;"/>
@@ -928,7 +947,12 @@
                   <prop readOnly="True" type="string" name="etag"/>
                   <prop type="object" name="extendedLocation" required="True">
                     <prop type="string" name="name" required="True"/>
-                    <prop type="string" name="type" required="True"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;CustomLocation&quot;"/>
+                        <item value="&quot;EdgeZone&quot;"/>
+                      </enum>
+                    </prop>
                   </prop>
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/bareMetalMachines/{}"/>
@@ -973,7 +997,7 @@
                     </prop>
                     <prop type="string" name="bmcConnectionString" required="True"/>
                     <prop type="object" name="bmcCredentials" required="True">
-                      <prop type="string" name="password" required="True" secret="True">
+                      <prop type="password" name="password" required="True" secret="True">
                         <format minLength="1"/>
                       </prop>
                       <prop type="string" name="username" required="True">
@@ -1059,13 +1083,13 @@
                     </prop>
                     <prop type="string" name="machineSkuId" required="True"/>
                     <prop readOnly="True" type="object" name="monitoringConfigurationStatus">
-                      <prop readOnly="True" type="string" name="logLevel">
+                      <prop type="string" name="logLevel">
                         <enum>
                           <item value="&quot;Default&quot;"/>
                           <item value="&quot;Nexus&quot;"/>
                         </enum>
                       </prop>
-                      <prop readOnly="True" type="string" name="metricsLevel">
+                      <prop type="string" name="metricsLevel">
                         <enum>
                           <item value="&quot;Default&quot;"/>
                           <item value="&quot;Nexus&quot;"/>

@@ -50,12 +50,17 @@
               <json var="$Instance">
                 <schema type="object">
                   <prop type="string" name="nextLink"/>
-                  <prop type="array<object>" name="value">
+                  <prop type="array<object>" name="value" required="True">
                     <item type="object">
                       <prop readOnly="True" type="string" name="etag"/>
-                      <prop type="object" name="extendedLocation" required="True" cls="ExtendedLocation_read">
+                      <prop type="object" name="extendedLocation" required="True">
                         <prop type="string" name="name" required="True"/>
-                        <prop type="string" name="type" required="True"/>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;CustomLocation&quot;"/>
+                            <item value="&quot;EdgeZone&quot;"/>
+                          </enum>
+                        </prop>
                       </prop>
                       <prop readOnly="True" type="ResourceId" name="id">
                         <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/clusters/{}"/>
@@ -81,6 +86,7 @@
                         </prop>
                       </prop>
                       <prop type="string" name="kind">
+                        <format pattern="^[-\w\._,\(\\\)]+$"/>
                         <enum>
                           <item value="&quot;AzureLocal&quot;"/>
                           <item value="&quot;Nexus&quot;"/>
@@ -129,7 +135,7 @@
                             <item type="object">
                               <prop readOnly="True" type="string" name="bmcConnectionString"/>
                               <prop type="object" name="bmcCredentials" required="True" cls="AdministrativeCredentials_read">
-                                <prop type="string" name="password" required="True" secret="True">
+                                <prop type="password" name="password" required="True" secret="True">
                                   <format minLength="1"/>
                                 </prop>
                                 <prop type="string" name="username" required="True">
@@ -186,7 +192,7 @@
                                 <item value="&quot;UserAssignedIdentity&quot;"/>
                               </enum>
                             </prop>
-                            <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId"/>
+                            <prop type="ResourceId" name="userAssignedIdentityResourceId"/>
                           </prop>
                         </prop>
                         <prop type="ResourceId" name="analyticsWorkspaceId"/>
@@ -228,7 +234,15 @@
                             <item value="&quot;Undefined&quot;"/>
                           </enum>
                         </prop>
-                        <prop readOnly="True" type="@ExtendedLocation_read" name="clusterExtendedLocation"/>
+                        <prop readOnly="True" type="object" name="clusterExtendedLocation" cls="AzureResourceManagerCommonTypesExtendedLocation_read">
+                          <prop type="string" name="name" required="True"/>
+                          <prop type="string" name="type" required="True">
+                            <enum>
+                              <item value="&quot;CustomLocation&quot;"/>
+                              <item value="&quot;EdgeZone&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
                         <prop type="string" name="clusterLocation">
                           <format maxLength="256"/>
                         </prop>
@@ -241,7 +255,7 @@
                         <prop readOnly="True" type="ResourceId" name="clusterManagerId"/>
                         <prop type="object" name="clusterServicePrincipal">
                           <prop type="string" name="applicationId" required="True"/>
-                          <prop type="string" name="password" required="True" secret="True"/>
+                          <prop type="password" name="password" required="True" secret="True"/>
                           <prop type="string" name="principalId" required="True"/>
                           <prop type="string" name="tenantId" required="True"/>
                         </prop>
@@ -306,7 +320,7 @@
                           </enum>
                         </prop>
                         <prop readOnly="True" type="string" name="detailedStatusMessage"/>
-                        <prop readOnly="True" type="@ExtendedLocation_read" name="hybridAksExtendedLocation"/>
+                        <prop readOnly="True" type="@AzureResourceManagerCommonTypesExtendedLocation_read" name="hybridAksExtendedLocation"/>
                         <prop readOnly="True" type="dateTime" name="lastSuccessfulVersionUpdateTime"/>
                         <prop readOnly="True" type="array<string>" name="managedCredentials">
                           <item type="string"/>
@@ -466,10 +480,18 @@
               <json var="$Instance">
                 <schema type="object">
                   <prop type="string" name="nextLink"/>
-                  <prop type="array<object>" name="value">
+                  <prop type="array<object>" name="value" required="True">
                     <item type="object">
                       <prop readOnly="True" type="string" name="etag"/>
-                      <prop type="@ExtendedLocation_read" name="extendedLocation" required="True"/>
+                      <prop type="object" name="extendedLocation" required="True">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;CustomLocation&quot;"/>
+                            <item value="&quot;EdgeZone&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
                       <prop readOnly="True" type="ResourceId" name="id">
                         <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/clusters/{}"/>
                       </prop>
@@ -494,6 +516,7 @@
                         </prop>
                       </prop>
                       <prop type="string" name="kind">
+                        <format pattern="^[-\w\._,\(\\\)]+$"/>
                         <enum>
                           <item value="&quot;AzureLocal&quot;"/>
                           <item value="&quot;Nexus&quot;"/>
@@ -578,7 +601,7 @@
                             <item value="&quot;Undefined&quot;"/>
                           </enum>
                         </prop>
-                        <prop readOnly="True" type="@ExtendedLocation_read" name="clusterExtendedLocation"/>
+                        <prop readOnly="True" type="@AzureResourceManagerCommonTypesExtendedLocation_read" name="clusterExtendedLocation"/>
                         <prop type="string" name="clusterLocation">
                           <format maxLength="256"/>
                         </prop>
@@ -591,7 +614,7 @@
                         <prop readOnly="True" type="ResourceId" name="clusterManagerId"/>
                         <prop type="object" name="clusterServicePrincipal">
                           <prop type="string" name="applicationId" required="True"/>
-                          <prop type="string" name="password" required="True" secret="True"/>
+                          <prop type="password" name="password" required="True" secret="True"/>
                           <prop type="string" name="principalId" required="True"/>
                           <prop type="string" name="tenantId" required="True"/>
                         </prop>
@@ -656,7 +679,7 @@
                           </enum>
                         </prop>
                         <prop readOnly="True" type="string" name="detailedStatusMessage"/>
-                        <prop readOnly="True" type="@ExtendedLocation_read" name="hybridAksExtendedLocation"/>
+                        <prop readOnly="True" type="@AzureResourceManagerCommonTypesExtendedLocation_read" name="hybridAksExtendedLocation"/>
                         <prop readOnly="True" type="dateTime" name="lastSuccessfulVersionUpdateTime"/>
                         <prop readOnly="True" type="array<string>" name="managedCredentials">
                           <item type="string"/>

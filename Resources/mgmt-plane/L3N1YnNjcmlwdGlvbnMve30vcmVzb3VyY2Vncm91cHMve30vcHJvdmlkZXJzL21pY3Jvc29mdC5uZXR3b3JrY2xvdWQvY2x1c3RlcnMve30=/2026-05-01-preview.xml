@@ -36,9 +36,14 @@
               <json var="$Instance">
                 <schema type="object">
                   <prop readOnly="True" type="string" name="etag"/>
-                  <prop type="object" name="extendedLocation" required="True" cls="ExtendedLocation_read">
+                  <prop type="object" name="extendedLocation" required="True">
                     <prop type="string" name="name" required="True"/>
-                    <prop type="string" name="type" required="True"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;CustomLocation&quot;"/>
+                        <item value="&quot;EdgeZone&quot;"/>
+                      </enum>
+                    </prop>
                   </prop>
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/clusters/{}"/>
@@ -64,6 +69,7 @@
                     </prop>
                   </prop>
                   <prop type="string" name="kind">
+                    <format pattern="^[-\w\._,\(\\\)]+$"/>
                     <enum>
                       <item value="&quot;AzureLocal&quot;"/>
                       <item value="&quot;Nexus&quot;"/>
@@ -112,7 +118,7 @@
                         <item type="object">
                           <prop readOnly="True" type="string" name="bmcConnectionString"/>
                           <prop type="object" name="bmcCredentials" required="True" cls="AdministrativeCredentials_read">
-                            <prop type="string" name="password" required="True" secret="True">
+                            <prop type="password" name="password" required="True" secret="True">
                               <format minLength="1"/>
                             </prop>
                             <prop type="string" name="username" required="True">
@@ -169,7 +175,7 @@
                             <item value="&quot;UserAssignedIdentity&quot;"/>
                           </enum>
                         </prop>
-                        <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId"/>
+                        <prop type="ResourceId" name="userAssignedIdentityResourceId"/>
                       </prop>
                     </prop>
                     <prop type="ResourceId" name="analyticsWorkspaceId"/>
@@ -211,7 +217,15 @@
                         <item value="&quot;Undefined&quot;"/>
                       </enum>
                     </prop>
-                    <prop readOnly="True" type="@ExtendedLocation_read" name="clusterExtendedLocation"/>
+                    <prop readOnly="True" type="object" name="clusterExtendedLocation" cls="AzureResourceManagerCommonTypesExtendedLocation_read">
+                      <prop type="string" name="name" required="True"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;CustomLocation&quot;"/>
+                          <item value="&quot;EdgeZone&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
                     <prop type="string" name="clusterLocation">
                       <format maxLength="256"/>
                     </prop>
@@ -224,7 +238,7 @@
                     <prop readOnly="True" type="ResourceId" name="clusterManagerId"/>
                     <prop type="object" name="clusterServicePrincipal">
                       <prop type="string" name="applicationId" required="True"/>
-                      <prop type="string" name="password" required="True" secret="True"/>
+                      <prop type="password" name="password" required="True" secret="True"/>
                       <prop type="string" name="principalId" required="True"/>
                       <prop type="string" name="tenantId" required="True"/>
                     </prop>
@@ -289,7 +303,7 @@
                       </enum>
                     </prop>
                     <prop readOnly="True" type="string" name="detailedStatusMessage"/>
-                    <prop readOnly="True" type="@ExtendedLocation_read" name="hybridAksExtendedLocation"/>
+                    <prop readOnly="True" type="@AzureResourceManagerCommonTypesExtendedLocation_read" name="hybridAksExtendedLocation"/>
                     <prop readOnly="True" type="dateTime" name="lastSuccessfulVersionUpdateTime"/>
                     <prop readOnly="True" type="array<string>" name="managedCredentials">
                       <item type="string"/>
@@ -500,7 +514,7 @@
                   <prop readOnly="True" type="array<@OperationStatusResult_read>" name="operations">
                     <item type="@OperationStatusResult_read"/>
                   </prop>
-                  <prop readOnly="True" type="float" name="percentComplete">
+                  <prop readOnly="True" type="float32" name="percentComplete">
                     <format maximum="100.0" minimum="0.0"/>
                   </prop>
                   <prop type="object" name="properties" clientFlatten="True">
@@ -550,6 +564,10 @@
           </arg>
           <arg type="string" var="$clusterParameters.extendedLocation.type" options="type" required="True">
             <help short="The extended location type, for example, CustomLocation."/>
+            <enum>
+              <item name="CustomLocation" value="&quot;CustomLocation&quot;"/>
+              <item name="EdgeZone" value="&quot;EdgeZone&quot;"/>
+            </enum>
           </arg>
         </arg>
         <arg type="object" var="$clusterParameters.identity" options="identity" group="ClusterParameters">
@@ -583,6 +601,7 @@
         </arg>
         <arg type="string" var="$clusterParameters.kind" options="kind" group="ClusterParameters">
           <help short="The type (kind) of the cluster. When specified, the value must exactly match the kind configured on the cluster manager that manages the cluster. If omitted, the service will default the value to the kind value of the cluster manager."/>
+          <format pattern="^[-\w\._,\(\\\)]+$"/>
           <enum>
             <item name="AzureLocal" value="&quot;AzureLocal&quot;"/>
             <item name="Nexus" value="&quot;Nexus&quot;"/>
@@ -610,7 +629,7 @@
             <item type="object">
               <arg type="object" var="@RackDefinition_create.bareMetalMachineConfigurationData[].bmcCredentials" options="bmc-credentials" required="True" group="" cls="AdministrativeCredentials_create">
                 <help short="The credentials of the baseboard management controller on this bare metal machine. The password field is expected to be an Azure Key Vault key URL. Until the cluster is converted to utilize managed identity by setting the secret archive settings, the actual password value should be provided instead."/>
-                <arg type="string" var="@AdministrativeCredentials_create.password" options="password" required="True" group="">
+                <arg type="password" var="@AdministrativeCredentials_create.password" options="password" required="True" group="">
                   <help short="The password of the administrator of the device used during initialization."/>
                   <format minLength="1"/>
                 </arg>
@@ -691,7 +710,7 @@
               <item name="UserAssignedIdentity" value="&quot;UserAssignedIdentity&quot;"/>
             </enum>
           </arg>
-          <arg nullable="True" type="ResourceId" var="$clusterParameters.properties.analyticsOutputSettings.associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
+          <arg type="ResourceId" var="$clusterParameters.properties.analyticsOutputSettings.associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
             <help short="The user assigned managed identity resource ID to use. Mutually exclusive with a system assigned identity type."/>
           </arg>
         </arg>
@@ -707,7 +726,7 @@
           <arg type="string" var="$clusterParameters.properties.clusterServicePrincipal.applicationId" options="application-id" required="True">
             <help short="The application ID, also known as client ID, of the service principal."/>
           </arg>
-          <arg type="string" var="$clusterParameters.properties.clusterServicePrincipal.password" options="password" required="True" group="">
+          <arg type="password" var="$clusterParameters.properties.clusterServicePrincipal.password" options="password" required="True" group="">
             <help short="The password of the service principal."/>
           </arg>
           <arg type="string" var="$clusterParameters.properties.clusterServicePrincipal.principalId" options="principal-id" required="True">
@@ -736,7 +755,7 @@
               <item name="UserAssignedIdentity" value="&quot;UserAssignedIdentity&quot;"/>
             </enum>
           </arg>
-          <arg nullable="True" type="ResourceId" var="$clusterParameters.properties.commandOutputSettings.associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
+          <arg type="ResourceId" var="$clusterParameters.properties.commandOutputSettings.associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
             <help short="The user assigned managed identity resource ID to use. Mutually exclusive with a system assigned identity type."/>
           </arg>
           <arg type="string" var="$clusterParameters.properties.commandOutputSettings.containerUrl" options="container-url">
@@ -752,7 +771,7 @@
                   <item name="UserAssignedIdentity" value="&quot;UserAssignedIdentity&quot;"/>
                 </enum>
               </arg>
-              <arg nullable="True" type="ResourceId" var="$clusterParameters.properties.commandOutputSettings.overrides[].associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
+              <arg type="ResourceId" var="$clusterParameters.properties.commandOutputSettings.overrides[].associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
                 <help short="User assigned identity resource ID used as override."/>
               </arg>
               <arg type="string" var="$clusterParameters.properties.commandOutputSettings.overrides[].commandOutputType" options="command-output-type">
@@ -855,7 +874,7 @@
               <item name="UserAssignedIdentity" value="&quot;UserAssignedIdentity&quot;"/>
             </enum>
           </arg>
-          <arg nullable="True" type="ResourceId" var="$clusterParameters.properties.secretArchiveSettings.associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
+          <arg type="ResourceId" var="$clusterParameters.properties.secretArchiveSettings.associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
             <help short="The user assigned managed identity resource ID to use. Mutually exclusive with a system assigned identity type."/>
           </arg>
           <arg type="string" var="$clusterParameters.properties.secretArchiveSettings.vaultUri" options="vault-uri">
@@ -932,7 +951,12 @@
                 <schema type="object" name="clusterParameters" required="True" clientFlatten="True">
                   <prop type="object" name="extendedLocation" arg="$clusterParameters.extendedLocation" required="True">
                     <prop type="string" name="name" arg="$clusterParameters.extendedLocation.name" required="True"/>
-                    <prop type="string" name="type" arg="$clusterParameters.extendedLocation.type" required="True"/>
+                    <prop type="string" name="type" arg="$clusterParameters.extendedLocation.type" required="True">
+                      <enum>
+                        <item value="&quot;CustomLocation&quot;"/>
+                        <item value="&quot;EdgeZone&quot;"/>
+                      </enum>
+                    </prop>
                   </prop>
                   <prop type="IdentityObject" name="identity" arg="$clusterParameters.identity">
                     <prop type="string" name="type" arg="$clusterParameters.identity.type" required="True">
@@ -954,6 +978,7 @@
                     <systemAssigned action="create" type="string" name="systemAssigned" arg="$clusterParameters.identity.systemAssigned"/>
                   </prop>
                   <prop type="string" name="kind" arg="$clusterParameters.kind">
+                    <format pattern="^[-\w\._,\(\\\)]+$"/>
                     <enum>
                       <item value="&quot;AzureLocal&quot;"/>
                       <item value="&quot;Nexus&quot;"/>
@@ -968,7 +993,7 @@
                       <prop type="array<object>" name="bareMetalMachineConfigurationData" arg="@RackDefinition_create.bareMetalMachineConfigurationData">
                         <item type="object">
                           <prop type="object" name="bmcCredentials" arg="@RackDefinition_create.bareMetalMachineConfigurationData[].bmcCredentials" required="True" cls="AdministrativeCredentials_create">
-                            <prop type="string" name="password" arg="@AdministrativeCredentials_create.password" required="True" secret="True">
+                            <prop type="password" name="password" arg="@AdministrativeCredentials_create.password" required="True" secret="True">
                               <format minLength="1"/>
                             </prop>
                             <prop type="string" name="username" arg="@AdministrativeCredentials_create.username" required="True">
@@ -1025,7 +1050,7 @@
                             <item value="&quot;UserAssignedIdentity&quot;"/>
                           </enum>
                         </prop>
-                        <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterParameters.properties.analyticsOutputSettings.associatedIdentity.userAssignedIdentityResourceId"/>
+                        <prop type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterParameters.properties.analyticsOutputSettings.associatedIdentity.userAssignedIdentityResourceId"/>
                       </prop>
                     </prop>
                     <prop type="ResourceId" name="analyticsWorkspaceId" arg="$clusterParameters.properties.analyticsWorkspaceId"/>
@@ -1034,7 +1059,7 @@
                     </prop>
                     <prop type="object" name="clusterServicePrincipal" arg="$clusterParameters.properties.clusterServicePrincipal">
                       <prop type="string" name="applicationId" arg="$clusterParameters.properties.clusterServicePrincipal.applicationId" required="True"/>
-                      <prop type="string" name="password" arg="$clusterParameters.properties.clusterServicePrincipal.password" required="True" secret="True"/>
+                      <prop type="password" name="password" arg="$clusterParameters.properties.clusterServicePrincipal.password" required="True" secret="True"/>
                       <prop type="string" name="principalId" arg="$clusterParameters.properties.clusterServicePrincipal.principalId" required="True"/>
                       <prop type="string" name="tenantId" arg="$clusterParameters.properties.clusterServicePrincipal.tenantId" required="True"/>
                     </prop>
@@ -1053,7 +1078,7 @@
                             <item value="&quot;UserAssignedIdentity&quot;"/>
                           </enum>
                         </prop>
-                        <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterParameters.properties.commandOutputSettings.associatedIdentity.userAssignedIdentityResourceId"/>
+                        <prop type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterParameters.properties.commandOutputSettings.associatedIdentity.userAssignedIdentityResourceId"/>
                       </prop>
                       <prop type="string" name="containerUrl" arg="$clusterParameters.properties.commandOutputSettings.containerUrl"/>
                       <prop type="array<object>" name="overrides" arg="$clusterParameters.properties.commandOutputSettings.overrides" identifiers="commandOutputType">
@@ -1065,7 +1090,7 @@
                                 <item value="&quot;UserAssignedIdentity&quot;"/>
                               </enum>
                             </prop>
-                            <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterParameters.properties.commandOutputSettings.overrides[].associatedIdentity.userAssignedIdentityResourceId"/>
+                            <prop type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterParameters.properties.commandOutputSettings.overrides[].associatedIdentity.userAssignedIdentityResourceId"/>
                           </prop>
                           <prop type="string" name="commandOutputType" arg="$clusterParameters.properties.commandOutputSettings.overrides[].commandOutputType">
                             <enum>
@@ -1145,7 +1170,7 @@
                             <item value="&quot;UserAssignedIdentity&quot;"/>
                           </enum>
                         </prop>
-                        <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterParameters.properties.secretArchiveSettings.associatedIdentity.userAssignedIdentityResourceId"/>
+                        <prop type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterParameters.properties.secretArchiveSettings.associatedIdentity.userAssignedIdentityResourceId"/>
                       </prop>
                       <prop type="string" name="vaultUri" arg="$clusterParameters.properties.secretArchiveSettings.vaultUri"/>
                     </prop>
@@ -1197,9 +1222,14 @@
               <json var="$Instance">
                 <schema type="object">
                   <prop readOnly="True" type="string" name="etag"/>
-                  <prop type="object" name="extendedLocation" required="True" cls="ExtendedLocation_read">
+                  <prop type="object" name="extendedLocation" required="True">
                     <prop type="string" name="name" required="True"/>
-                    <prop type="string" name="type" required="True"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;CustomLocation&quot;"/>
+                        <item value="&quot;EdgeZone&quot;"/>
+                      </enum>
+                    </prop>
                   </prop>
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/clusters/{}"/>
@@ -1225,6 +1255,7 @@
                     </prop>
                   </prop>
                   <prop type="string" name="kind">
+                    <format pattern="^[-\w\._,\(\\\)]+$"/>
                     <enum>
                       <item value="&quot;AzureLocal&quot;"/>
                       <item value="&quot;Nexus&quot;"/>
@@ -1273,7 +1304,7 @@
                         <item type="object">
                           <prop readOnly="True" type="string" name="bmcConnectionString"/>
                           <prop type="object" name="bmcCredentials" required="True" cls="AdministrativeCredentials_read">
-                            <prop type="string" name="password" required="True" secret="True">
+                            <prop type="password" name="password" required="True" secret="True">
                               <format minLength="1"/>
                             </prop>
                             <prop type="string" name="username" required="True">
@@ -1330,7 +1361,7 @@
                             <item value="&quot;UserAssignedIdentity&quot;"/>
                           </enum>
                         </prop>
-                        <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId"/>
+                        <prop type="ResourceId" name="userAssignedIdentityResourceId"/>
                       </prop>
                     </prop>
                     <prop type="ResourceId" name="analyticsWorkspaceId"/>
@@ -1372,7 +1403,15 @@
                         <item value="&quot;Undefined&quot;"/>
                       </enum>
                     </prop>
-                    <prop readOnly="True" type="@ExtendedLocation_read" name="clusterExtendedLocation"/>
+                    <prop readOnly="True" type="object" name="clusterExtendedLocation" cls="AzureResourceManagerCommonTypesExtendedLocation_read">
+                      <prop type="string" name="name" required="True"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;CustomLocation&quot;"/>
+                          <item value="&quot;EdgeZone&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
                     <prop type="string" name="clusterLocation">
                       <format maxLength="256"/>
                     </prop>
@@ -1385,7 +1424,7 @@
                     <prop readOnly="True" type="ResourceId" name="clusterManagerId"/>
                     <prop type="object" name="clusterServicePrincipal">
                       <prop type="string" name="applicationId" required="True"/>
-                      <prop type="string" name="password" required="True" secret="True"/>
+                      <prop type="password" name="password" required="True" secret="True"/>
                       <prop type="string" name="principalId" required="True"/>
                       <prop type="string" name="tenantId" required="True"/>
                     </prop>
@@ -1450,7 +1489,7 @@
                       </enum>
                     </prop>
                     <prop readOnly="True" type="string" name="detailedStatusMessage"/>
-                    <prop readOnly="True" type="@ExtendedLocation_read" name="hybridAksExtendedLocation"/>
+                    <prop readOnly="True" type="@AzureResourceManagerCommonTypesExtendedLocation_read" name="hybridAksExtendedLocation"/>
                     <prop readOnly="True" type="dateTime" name="lastSuccessfulVersionUpdateTime"/>
                     <prop readOnly="True" type="array<string>" name="managedCredentials">
                       <item type="string"/>
@@ -1652,7 +1691,7 @@
             <item type="object">
               <arg type="object" var="@RackDefinition_update.bareMetalMachineConfigurationData[].bmcCredentials" options="bmc-credentials" required="True" group="" cls="AdministrativeCredentials_update">
                 <help short="The credentials of the baseboard management controller on this bare metal machine. The password field is expected to be an Azure Key Vault key URL. Until the cluster is converted to utilize managed identity by setting the secret archive settings, the actual password value should be provided instead."/>
-                <arg type="string" var="@AdministrativeCredentials_update.password" options="password" required="True" group="">
+                <arg type="password" var="@AdministrativeCredentials_update.password" options="password" required="True" group="">
                   <help short="The password of the administrator of the device used during initialization."/>
                   <format minLength="1"/>
                 </arg>
@@ -1721,7 +1760,7 @@
             </item>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$clusterUpdateParameters.properties.analyticsOutputSettings" options="analytics-output-settings ao-settings" group="Properties">
+        <arg type="object" var="$clusterUpdateParameters.properties.analyticsOutputSettings" options="analytics-output-settings ao-settings" group="Properties">
           <help short="The settings for the log analytics workspace used for output of logs from this cluster."/>
           <arg type="ResourceId" var="$clusterUpdateParameters.properties.analyticsOutputSettings.analyticsWorkspaceId" options="analytics-workspace-id">
             <help short="The resource ID of the analytics workspace that is to be used by the specified identity."/>
@@ -1733,19 +1772,19 @@
               <item name="UserAssignedIdentity" value="&quot;UserAssignedIdentity&quot;"/>
             </enum>
           </arg>
-          <arg nullable="True" type="ResourceId" var="$clusterUpdateParameters.properties.analyticsOutputSettings.associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
+          <arg type="ResourceId" var="$clusterUpdateParameters.properties.analyticsOutputSettings.associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
             <help short="The user assigned managed identity resource ID to use. Mutually exclusive with a system assigned identity type"/>
           </arg>
         </arg>
         <arg type="string" var="$clusterUpdateParameters.properties.clusterLocation" options="cluster-location" group="Properties">
           <help short="The customer-provided location information to identify where the cluster resides."/>
         </arg>
-        <arg nullable="True" type="object" var="$clusterUpdateParameters.properties.clusterServicePrincipal" options="cluster-service-principal cluster-sp" group="Properties">
+        <arg type="object" var="$clusterUpdateParameters.properties.clusterServicePrincipal" options="cluster-service-principal cluster-sp" group="Properties">
           <help short="Field Deprecated: Use managed identity to provide cluster privileges. The service principal to be used by the cluster during Arc Appliance installation."/>
           <arg type="string" var="$clusterUpdateParameters.properties.clusterServicePrincipal.applicationId" options="application-id" required="True">
             <help short="The application ID, also known as client ID, of the service principal."/>
           </arg>
-          <arg type="string" var="$clusterUpdateParameters.properties.clusterServicePrincipal.password" options="password" required="True" group="">
+          <arg type="password" var="$clusterUpdateParameters.properties.clusterServicePrincipal.password" options="password" required="True" group="">
             <help short="The password of the service principal."/>
           </arg>
           <arg type="string" var="$clusterUpdateParameters.properties.clusterServicePrincipal.principalId" options="principal-id" required="True">
@@ -1755,7 +1794,7 @@
             <help short="The tenant ID, also known as the directory ID, of the tenant in which the service principal is created."/>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$clusterUpdateParameters.properties.commandOutputSettings" options="command-output-settings co-settings" group="Properties">
+        <arg type="object" var="$clusterUpdateParameters.properties.commandOutputSettings" options="command-output-settings co-settings" group="Properties">
           <help short="The settings for commands run in this cluster, such as bare metal machine run read only commands and data extracts."/>
           <arg type="string" var="$clusterUpdateParameters.properties.commandOutputSettings.associatedIdentity.identityType" options="identity-type" group="AssociatedIdentity">
             <help short="The type of managed identity that is being selected."/>
@@ -1764,7 +1803,7 @@
               <item name="UserAssignedIdentity" value="&quot;UserAssignedIdentity&quot;"/>
             </enum>
           </arg>
-          <arg nullable="True" type="ResourceId" var="$clusterUpdateParameters.properties.commandOutputSettings.associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
+          <arg type="ResourceId" var="$clusterUpdateParameters.properties.commandOutputSettings.associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
             <help short="The user assigned managed identity resource ID to use. Mutually exclusive with a system assigned identity type."/>
           </arg>
           <arg type="string" var="$clusterUpdateParameters.properties.commandOutputSettings.containerUrl" options="container-url">
@@ -1780,7 +1819,7 @@
                   <item name="UserAssignedIdentity" value="&quot;UserAssignedIdentity&quot;"/>
                 </enum>
               </arg>
-              <arg nullable="True" type="ResourceId" var="$clusterUpdateParameters.properties.commandOutputSettings.overrides[].associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
+              <arg type="ResourceId" var="$clusterUpdateParameters.properties.commandOutputSettings.overrides[].associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
                 <help short="User assigned identity resource ID used as override."/>
               </arg>
               <arg type="string" var="$clusterUpdateParameters.properties.commandOutputSettings.overrides[].commandOutputType" options="command-output-type">
@@ -1800,7 +1839,7 @@
             </item>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$clusterUpdateParameters.properties.computeDeploymentThreshold" options="compute-deployment-threshold compute-dt" group="Properties">
+        <arg type="object" var="$clusterUpdateParameters.properties.computeDeploymentThreshold" options="compute-deployment-threshold compute-dt" group="Properties">
           <help short="The validation threshold indicating the allowable failures of compute machines during environment validation and deployment."/>
           <arg type="string" var="$clusterUpdateParameters.properties.computeDeploymentThreshold.grouping" options="grouping" required="True">
             <help short="Selection of how the type evaluation is applied to the cluster calculation."/>
@@ -1825,7 +1864,7 @@
           <help short="The list of rack definitions for the compute racks in a multi-rack cluster, or an empty list in a single-rack cluster."/>
           <item type="@RackDefinition_update"/>
         </arg>
-        <arg nullable="True" type="object" var="$clusterUpdateParameters.properties.runtimeProtectionConfiguration" options="runtime-protection" group="Properties">
+        <arg type="object" var="$clusterUpdateParameters.properties.runtimeProtectionConfiguration" options="runtime-protection" group="Properties">
           <help short="The settings for cluster runtime protection."/>
           <arg type="string" var="$clusterUpdateParameters.properties.runtimeProtectionConfiguration.definitionUpdateMode" options="definition-update-mode">
             <help short="The definition update mode for runtime protection."/>
@@ -1847,7 +1886,7 @@
             </enum>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$clusterUpdateParameters.properties.secretArchive" options="secret-archive" hide="True" group="Properties">
+        <arg type="object" var="$clusterUpdateParameters.properties.secretArchive" options="secret-archive" hide="True" group="Properties">
           <help short="The configuration for use of a key vault to store secrets for later retrieval by the operator."/>
           <arg type="ResourceId" var="$clusterUpdateParameters.properties.secretArchive.keyVaultId" options="key-vault-id" required="True">
             <help short="The resource ID of the key vault to archive the secrets of the cluster."/>
@@ -1861,7 +1900,7 @@
             </enum>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$clusterUpdateParameters.properties.secretArchiveSettings" options="secret-archive-settings sa-settings" group="Properties">
+        <arg type="object" var="$clusterUpdateParameters.properties.secretArchiveSettings" options="secret-archive-settings sa-settings" group="Properties">
           <help short="The settings for the secret archive used to hold credentials for the cluster."/>
           <arg type="string" var="$clusterUpdateParameters.properties.secretArchiveSettings.associatedIdentity.identityType" options="identity-type" group="AssociatedIdentity">
             <help short="The type of managed identity that is being selected."/>
@@ -1870,14 +1909,14 @@
               <item name="UserAssignedIdentity" value="&quot;UserAssignedIdentity&quot;"/>
             </enum>
           </arg>
-          <arg nullable="True" type="ResourceId" var="$clusterUpdateParameters.properties.secretArchiveSettings.associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
+          <arg type="ResourceId" var="$clusterUpdateParameters.properties.secretArchiveSettings.associatedIdentity.userAssignedIdentityResourceId" options="identity-resource-id" group="AssociatedIdentity">
             <help short="The user assigned managed identity resource ID to use. Mutually exclusive with a system assigned identity type."/>
           </arg>
           <arg type="string" var="$clusterUpdateParameters.properties.secretArchiveSettings.vaultUri" options="vault-uri">
             <help short="The URI for the key vault used as the secret archive."/>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$clusterUpdateParameters.properties.updateStrategy" options="update-strategy" group="Properties">
+        <arg type="object" var="$clusterUpdateParameters.properties.updateStrategy" options="update-strategy" group="Properties">
           <help short="The strategy for updating the cluster."/>
           <arg type="integer64" var="$clusterUpdateParameters.properties.updateStrategy.maxUnavailable" options="max-unavailable">
             <help short="The maximum number of worker nodes that can be offline within the increment of update, e.g., rack-by-rack. Limited by the maximum number of machines in the increment. Defaults to the whole increment size."/>
@@ -1907,7 +1946,7 @@
             <format maximum="60" minimum="0"/>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$clusterUpdateParameters.properties.vulnerabilityScanningSettings" options="vulnerability-scanning-settings vs-settings" group="Properties">
+        <arg type="object" var="$clusterUpdateParameters.properties.vulnerabilityScanningSettings" options="vulnerability-scanning-settings vs-settings" group="Properties">
           <help short="The settings for how security vulnerability scanning is applied to the cluster."/>
           <arg type="string" var="$clusterUpdateParameters.properties.vulnerabilityScanningSettings.containerScan" options="container-scan">
             <help short="The mode selection for container vulnerability scanning."/>
@@ -1971,7 +2010,7 @@
                       <prop type="array<object>" name="bareMetalMachineConfigurationData" arg="@RackDefinition_update.bareMetalMachineConfigurationData">
                         <item type="object">
                           <prop type="object" name="bmcCredentials" arg="@RackDefinition_update.bareMetalMachineConfigurationData[].bmcCredentials" required="True" cls="AdministrativeCredentials_update">
-                            <prop type="string" name="password" arg="@AdministrativeCredentials_update.password" required="True" secret="True">
+                            <prop type="password" name="password" arg="@AdministrativeCredentials_update.password" required="True" secret="True">
                               <format minLength="1"/>
                             </prop>
                             <prop type="string" name="username" arg="@AdministrativeCredentials_update.username" required="True">
@@ -2019,7 +2058,7 @@
                         </item>
                       </prop>
                     </prop>
-                    <prop nullable="True" type="object" name="analyticsOutputSettings" arg="$clusterUpdateParameters.properties.analyticsOutputSettings">
+                    <prop type="object" name="analyticsOutputSettings" arg="$clusterUpdateParameters.properties.analyticsOutputSettings">
                       <prop type="ResourceId" name="analyticsWorkspaceId" arg="$clusterUpdateParameters.properties.analyticsOutputSettings.analyticsWorkspaceId"/>
                       <prop type="object" name="associatedIdentity">
                         <prop type="string" name="identityType" arg="$clusterUpdateParameters.properties.analyticsOutputSettings.associatedIdentity.identityType">
@@ -2028,17 +2067,17 @@
                             <item value="&quot;UserAssignedIdentity&quot;"/>
                           </enum>
                         </prop>
-                        <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterUpdateParameters.properties.analyticsOutputSettings.associatedIdentity.userAssignedIdentityResourceId"/>
+                        <prop type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterUpdateParameters.properties.analyticsOutputSettings.associatedIdentity.userAssignedIdentityResourceId"/>
                       </prop>
                     </prop>
                     <prop type="string" name="clusterLocation" arg="$clusterUpdateParameters.properties.clusterLocation"/>
-                    <prop nullable="True" type="object" name="clusterServicePrincipal" arg="$clusterUpdateParameters.properties.clusterServicePrincipal">
+                    <prop type="object" name="clusterServicePrincipal" arg="$clusterUpdateParameters.properties.clusterServicePrincipal">
                       <prop type="string" name="applicationId" arg="$clusterUpdateParameters.properties.clusterServicePrincipal.applicationId" required="True"/>
-                      <prop type="string" name="password" arg="$clusterUpdateParameters.properties.clusterServicePrincipal.password" required="True" secret="True"/>
+                      <prop type="password" name="password" arg="$clusterUpdateParameters.properties.clusterServicePrincipal.password" required="True" secret="True"/>
                       <prop type="string" name="principalId" arg="$clusterUpdateParameters.properties.clusterServicePrincipal.principalId" required="True"/>
                       <prop type="string" name="tenantId" arg="$clusterUpdateParameters.properties.clusterServicePrincipal.tenantId" required="True"/>
                     </prop>
-                    <prop nullable="True" type="object" name="commandOutputSettings" arg="$clusterUpdateParameters.properties.commandOutputSettings">
+                    <prop type="object" name="commandOutputSettings" arg="$clusterUpdateParameters.properties.commandOutputSettings">
                       <prop type="object" name="associatedIdentity">
                         <prop type="string" name="identityType" arg="$clusterUpdateParameters.properties.commandOutputSettings.associatedIdentity.identityType">
                           <enum>
@@ -2046,7 +2085,7 @@
                             <item value="&quot;UserAssignedIdentity&quot;"/>
                           </enum>
                         </prop>
-                        <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterUpdateParameters.properties.commandOutputSettings.associatedIdentity.userAssignedIdentityResourceId"/>
+                        <prop type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterUpdateParameters.properties.commandOutputSettings.associatedIdentity.userAssignedIdentityResourceId"/>
                       </prop>
                       <prop type="string" name="containerUrl" arg="$clusterUpdateParameters.properties.commandOutputSettings.containerUrl"/>
                       <prop type="array<object>" name="overrides" arg="$clusterUpdateParameters.properties.commandOutputSettings.overrides" identifiers="commandOutputType">
@@ -2058,7 +2097,7 @@
                                 <item value="&quot;UserAssignedIdentity&quot;"/>
                               </enum>
                             </prop>
-                            <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterUpdateParameters.properties.commandOutputSettings.overrides[].associatedIdentity.userAssignedIdentityResourceId"/>
+                            <prop type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterUpdateParameters.properties.commandOutputSettings.overrides[].associatedIdentity.userAssignedIdentityResourceId"/>
                           </prop>
                           <prop type="string" name="commandOutputType" arg="$clusterUpdateParameters.properties.commandOutputSettings.overrides[].commandOutputType">
                             <enum>
@@ -2074,7 +2113,7 @@
                         </item>
                       </prop>
                     </prop>
-                    <prop nullable="True" type="object" name="computeDeploymentThreshold" arg="$clusterUpdateParameters.properties.computeDeploymentThreshold">
+                    <prop type="object" name="computeDeploymentThreshold" arg="$clusterUpdateParameters.properties.computeDeploymentThreshold">
                       <prop type="string" name="grouping" arg="$clusterUpdateParameters.properties.computeDeploymentThreshold.grouping" required="True">
                         <enum>
                           <item value="&quot;PerCluster&quot;"/>
@@ -2094,7 +2133,7 @@
                     <prop type="array<@RackDefinition_update>" name="computeRackDefinitions" arg="$clusterUpdateParameters.properties.computeRackDefinitions" identifiers="networkRackId">
                       <item type="@RackDefinition_update"/>
                     </prop>
-                    <prop nullable="True" type="object" name="runtimeProtectionConfiguration" arg="$clusterUpdateParameters.properties.runtimeProtectionConfiguration">
+                    <prop type="object" name="runtimeProtectionConfiguration" arg="$clusterUpdateParameters.properties.runtimeProtectionConfiguration">
                       <prop type="string" name="definitionUpdateMode" arg="$clusterUpdateParameters.properties.runtimeProtectionConfiguration.definitionUpdateMode">
                         <default value="&quot;None&quot;"/>
                         <enum>
@@ -2113,7 +2152,7 @@
                         </enum>
                       </prop>
                     </prop>
-                    <prop nullable="True" type="object" name="secretArchive" arg="$clusterUpdateParameters.properties.secretArchive">
+                    <prop type="object" name="secretArchive" arg="$clusterUpdateParameters.properties.secretArchive">
                       <prop type="ResourceId" name="keyVaultId" arg="$clusterUpdateParameters.properties.secretArchive.keyVaultId" required="True"/>
                       <prop type="string" name="useKeyVault" arg="$clusterUpdateParameters.properties.secretArchive.useKeyVault">
                         <default value="&quot;False&quot;"/>
@@ -2123,7 +2162,7 @@
                         </enum>
                       </prop>
                     </prop>
-                    <prop nullable="True" type="object" name="secretArchiveSettings" arg="$clusterUpdateParameters.properties.secretArchiveSettings">
+                    <prop type="object" name="secretArchiveSettings" arg="$clusterUpdateParameters.properties.secretArchiveSettings">
                       <prop type="object" name="associatedIdentity">
                         <prop type="string" name="identityType" arg="$clusterUpdateParameters.properties.secretArchiveSettings.associatedIdentity.identityType">
                           <enum>
@@ -2131,11 +2170,11 @@
                             <item value="&quot;UserAssignedIdentity&quot;"/>
                           </enum>
                         </prop>
-                        <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterUpdateParameters.properties.secretArchiveSettings.associatedIdentity.userAssignedIdentityResourceId"/>
+                        <prop type="ResourceId" name="userAssignedIdentityResourceId" arg="$clusterUpdateParameters.properties.secretArchiveSettings.associatedIdentity.userAssignedIdentityResourceId"/>
                       </prop>
                       <prop type="string" name="vaultUri" arg="$clusterUpdateParameters.properties.secretArchiveSettings.vaultUri"/>
                     </prop>
-                    <prop nullable="True" type="object" name="updateStrategy" arg="$clusterUpdateParameters.properties.updateStrategy">
+                    <prop type="object" name="updateStrategy" arg="$clusterUpdateParameters.properties.updateStrategy">
                       <prop type="integer64" name="maxUnavailable" arg="$clusterUpdateParameters.properties.updateStrategy.maxUnavailable">
                         <format minimum="1"/>
                       </prop>
@@ -2159,7 +2198,7 @@
                         <format maximum="60" minimum="0"/>
                       </prop>
                     </prop>
-                    <prop nullable="True" type="object" name="vulnerabilityScanningSettings" arg="$clusterUpdateParameters.properties.vulnerabilityScanningSettings">
+                    <prop type="object" name="vulnerabilityScanningSettings" arg="$clusterUpdateParameters.properties.vulnerabilityScanningSettings">
                       <prop type="string" name="containerScan" arg="$clusterUpdateParameters.properties.vulnerabilityScanningSettings.containerScan">
                         <enum>
                           <item value="&quot;Disabled&quot;"/>
@@ -2182,9 +2221,14 @@
               <json var="$Instance">
                 <schema type="object">
                   <prop readOnly="True" type="string" name="etag"/>
-                  <prop type="object" name="extendedLocation" required="True" cls="ExtendedLocation_read">
+                  <prop type="object" name="extendedLocation" required="True">
                     <prop type="string" name="name" required="True"/>
-                    <prop type="string" name="type" required="True"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;CustomLocation&quot;"/>
+                        <item value="&quot;EdgeZone&quot;"/>
+                      </enum>
+                    </prop>
                   </prop>
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/clusters/{}"/>
@@ -2210,6 +2254,7 @@
                     </prop>
                   </prop>
                   <prop type="string" name="kind">
+                    <format pattern="^[-\w\._,\(\\\)]+$"/>
                     <enum>
                       <item value="&quot;AzureLocal&quot;"/>
                       <item value="&quot;Nexus&quot;"/>
@@ -2258,7 +2303,7 @@
                         <item type="object">
                           <prop readOnly="True" type="string" name="bmcConnectionString"/>
                           <prop type="object" name="bmcCredentials" required="True" cls="AdministrativeCredentials_read">
-                            <prop type="string" name="password" required="True" secret="True">
+                            <prop type="password" name="password" required="True" secret="True">
                               <format minLength="1"/>
                             </prop>
                             <prop type="string" name="username" required="True">
@@ -2315,7 +2360,7 @@
                             <item value="&quot;UserAssignedIdentity&quot;"/>
                           </enum>
                         </prop>
-                        <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId"/>
+                        <prop type="ResourceId" name="userAssignedIdentityResourceId"/>
                       </prop>
                     </prop>
                     <prop type="ResourceId" name="analyticsWorkspaceId"/>
@@ -2357,7 +2402,15 @@
                         <item value="&quot;Undefined&quot;"/>
                       </enum>
                     </prop>
-                    <prop readOnly="True" type="@ExtendedLocation_read" name="clusterExtendedLocation"/>
+                    <prop readOnly="True" type="object" name="clusterExtendedLocation" cls="AzureResourceManagerCommonTypesExtendedLocation_read">
+                      <prop type="string" name="name" required="True"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;CustomLocation&quot;"/>
+                          <item value="&quot;EdgeZone&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
                     <prop type="string" name="clusterLocation">
                       <format maxLength="256"/>
                     </prop>
@@ -2370,7 +2423,7 @@
                     <prop readOnly="True" type="ResourceId" name="clusterManagerId"/>
                     <prop type="object" name="clusterServicePrincipal">
                       <prop type="string" name="applicationId" required="True"/>
-                      <prop type="string" name="password" required="True" secret="True"/>
+                      <prop type="password" name="password" required="True" secret="True"/>
                       <prop type="string" name="principalId" required="True"/>
                       <prop type="string" name="tenantId" required="True"/>
                     </prop>
@@ -2435,7 +2488,7 @@
                       </enum>
                     </prop>
                     <prop readOnly="True" type="string" name="detailedStatusMessage"/>
-                    <prop readOnly="True" type="@ExtendedLocation_read" name="hybridAksExtendedLocation"/>
+                    <prop readOnly="True" type="@AzureResourceManagerCommonTypesExtendedLocation_read" name="hybridAksExtendedLocation"/>
                     <prop readOnly="True" type="dateTime" name="lastSuccessfulVersionUpdateTime"/>
                     <prop readOnly="True" type="array<string>" name="managedCredentials">
                       <item type="string"/>
@@ -2635,9 +2688,14 @@
                 <json var="$Instance">
                   <schema type="object" cls="Cluster_read">
                     <prop readOnly="True" type="string" name="etag"/>
-                    <prop type="object" name="extendedLocation" required="True" cls="ExtendedLocation_read">
+                    <prop type="object" name="extendedLocation" required="True">
                       <prop type="string" name="name" required="True"/>
-                      <prop type="string" name="type" required="True"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;CustomLocation&quot;"/>
+                          <item value="&quot;EdgeZone&quot;"/>
+                        </enum>
+                      </prop>
                     </prop>
                     <prop readOnly="True" type="ResourceId" name="id">
                       <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/clusters/{}"/>
@@ -2663,6 +2721,7 @@
                       </prop>
                     </prop>
                     <prop type="string" name="kind">
+                      <format pattern="^[-\w\._,\(\\\)]+$"/>
                       <enum>
                         <item value="&quot;AzureLocal&quot;"/>
                         <item value="&quot;Nexus&quot;"/>
@@ -2711,7 +2770,7 @@
                           <item type="object">
                             <prop readOnly="True" type="string" name="bmcConnectionString"/>
                             <prop type="object" name="bmcCredentials" required="True" cls="AdministrativeCredentials_read">
-                              <prop type="string" name="password" required="True" secret="True">
+                              <prop type="password" name="password" required="True" secret="True">
                                 <format minLength="1"/>
                               </prop>
                               <prop type="string" name="username" required="True">
@@ -2768,7 +2827,7 @@
                               <item value="&quot;UserAssignedIdentity&quot;"/>
                             </enum>
                           </prop>
-                          <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId"/>
+                          <prop type="ResourceId" name="userAssignedIdentityResourceId"/>
                         </prop>
                       </prop>
                       <prop type="ResourceId" name="analyticsWorkspaceId"/>
@@ -2810,7 +2869,15 @@
                           <item value="&quot;Undefined&quot;"/>
                         </enum>
                       </prop>
-                      <prop readOnly="True" type="@ExtendedLocation_read" name="clusterExtendedLocation"/>
+                      <prop readOnly="True" type="object" name="clusterExtendedLocation" cls="AzureResourceManagerCommonTypesExtendedLocation_read">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;CustomLocation&quot;"/>
+                            <item value="&quot;EdgeZone&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
                       <prop type="string" name="clusterLocation">
                         <format maxLength="256"/>
                       </prop>
@@ -2823,7 +2890,7 @@
                       <prop readOnly="True" type="ResourceId" name="clusterManagerId"/>
                       <prop type="object" name="clusterServicePrincipal">
                         <prop type="string" name="applicationId" required="True"/>
-                        <prop type="string" name="password" required="True" secret="True"/>
+                        <prop type="password" name="password" required="True" secret="True"/>
                         <prop type="string" name="principalId" required="True"/>
                         <prop type="string" name="tenantId" required="True"/>
                       </prop>
@@ -2888,7 +2955,7 @@
                         </enum>
                       </prop>
                       <prop readOnly="True" type="string" name="detailedStatusMessage"/>
-                      <prop readOnly="True" type="@ExtendedLocation_read" name="hybridAksExtendedLocation"/>
+                      <prop readOnly="True" type="@AzureResourceManagerCommonTypesExtendedLocation_read" name="hybridAksExtendedLocation"/>
                       <prop readOnly="True" type="dateTime" name="lastSuccessfulVersionUpdateTime"/>
                       <prop readOnly="True" type="array<string>" name="managedCredentials">
                         <item type="string"/>
@@ -3136,9 +3203,14 @@
                 <json var="$Instance">
                   <schema type="object" cls="Cluster_read">
                     <prop readOnly="True" type="string" name="etag"/>
-                    <prop type="object" name="extendedLocation" required="True" cls="ExtendedLocation_read">
+                    <prop type="object" name="extendedLocation" required="True">
                       <prop type="string" name="name" required="True"/>
-                      <prop type="string" name="type" required="True"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;CustomLocation&quot;"/>
+                          <item value="&quot;EdgeZone&quot;"/>
+                        </enum>
+                      </prop>
                     </prop>
                     <prop readOnly="True" type="ResourceId" name="id">
                       <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/clusters/{}"/>
@@ -3164,6 +3236,7 @@
                       </prop>
                     </prop>
                     <prop type="string" name="kind">
+                      <format pattern="^[-\w\._,\(\\\)]+$"/>
                       <enum>
                         <item value="&quot;AzureLocal&quot;"/>
                         <item value="&quot;Nexus&quot;"/>
@@ -3212,7 +3285,7 @@
                           <item type="object">
                             <prop readOnly="True" type="string" name="bmcConnectionString"/>
                             <prop type="object" name="bmcCredentials" required="True" cls="AdministrativeCredentials_read">
-                              <prop type="string" name="password" required="True" secret="True">
+                              <prop type="password" name="password" required="True" secret="True">
                                 <format minLength="1"/>
                               </prop>
                               <prop type="string" name="username" required="True">
@@ -3269,7 +3342,7 @@
                               <item value="&quot;UserAssignedIdentity&quot;"/>
                             </enum>
                           </prop>
-                          <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId"/>
+                          <prop type="ResourceId" name="userAssignedIdentityResourceId"/>
                         </prop>
                       </prop>
                       <prop type="ResourceId" name="analyticsWorkspaceId"/>
@@ -3311,7 +3384,15 @@
                           <item value="&quot;Undefined&quot;"/>
                         </enum>
                       </prop>
-                      <prop readOnly="True" type="@ExtendedLocation_read" name="clusterExtendedLocation"/>
+                      <prop readOnly="True" type="object" name="clusterExtendedLocation" cls="AzureResourceManagerCommonTypesExtendedLocation_read">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;CustomLocation&quot;"/>
+                            <item value="&quot;EdgeZone&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
                       <prop type="string" name="clusterLocation">
                         <format maxLength="256"/>
                       </prop>
@@ -3324,7 +3405,7 @@
                       <prop readOnly="True" type="ResourceId" name="clusterManagerId"/>
                       <prop type="object" name="clusterServicePrincipal">
                         <prop type="string" name="applicationId" required="True"/>
-                        <prop type="string" name="password" required="True" secret="True"/>
+                        <prop type="password" name="password" required="True" secret="True"/>
                         <prop type="string" name="principalId" required="True"/>
                         <prop type="string" name="tenantId" required="True"/>
                       </prop>
@@ -3389,7 +3470,7 @@
                         </enum>
                       </prop>
                       <prop readOnly="True" type="string" name="detailedStatusMessage"/>
-                      <prop readOnly="True" type="@ExtendedLocation_read" name="hybridAksExtendedLocation"/>
+                      <prop readOnly="True" type="@AzureResourceManagerCommonTypesExtendedLocation_read" name="hybridAksExtendedLocation"/>
                       <prop readOnly="True" type="dateTime" name="lastSuccessfulVersionUpdateTime"/>
                       <prop readOnly="True" type="array<string>" name="managedCredentials">
                         <item type="string"/>
@@ -3620,9 +3701,14 @@
                 <json var="$Instance">
                   <schema type="object" cls="Cluster_read">
                     <prop readOnly="True" type="string" name="etag"/>
-                    <prop type="object" name="extendedLocation" required="True" cls="ExtendedLocation_read">
+                    <prop type="object" name="extendedLocation" required="True">
                       <prop type="string" name="name" required="True"/>
-                      <prop type="string" name="type" required="True"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;CustomLocation&quot;"/>
+                          <item value="&quot;EdgeZone&quot;"/>
+                        </enum>
+                      </prop>
                     </prop>
                     <prop readOnly="True" type="ResourceId" name="id">
                       <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/clusters/{}"/>
@@ -3648,6 +3734,7 @@
                       </prop>
                     </prop>
                     <prop type="string" name="kind">
+                      <format pattern="^[-\w\._,\(\\\)]+$"/>
                       <enum>
                         <item value="&quot;AzureLocal&quot;"/>
                         <item value="&quot;Nexus&quot;"/>
@@ -3696,7 +3783,7 @@
                           <item type="object">
                             <prop readOnly="True" type="string" name="bmcConnectionString"/>
                             <prop type="object" name="bmcCredentials" required="True" cls="AdministrativeCredentials_read">
-                              <prop type="string" name="password" required="True" secret="True">
+                              <prop type="password" name="password" required="True" secret="True">
                                 <format minLength="1"/>
                               </prop>
                               <prop type="string" name="username" required="True">
@@ -3753,7 +3840,7 @@
                               <item value="&quot;UserAssignedIdentity&quot;"/>
                             </enum>
                           </prop>
-                          <prop nullable="True" type="ResourceId" name="userAssignedIdentityResourceId"/>
+                          <prop type="ResourceId" name="userAssignedIdentityResourceId"/>
                         </prop>
                       </prop>
                       <prop type="ResourceId" name="analyticsWorkspaceId"/>
@@ -3795,7 +3882,15 @@
                           <item value="&quot;Undefined&quot;"/>
                         </enum>
                       </prop>
-                      <prop readOnly="True" type="@ExtendedLocation_read" name="clusterExtendedLocation"/>
+                      <prop readOnly="True" type="object" name="clusterExtendedLocation" cls="AzureResourceManagerCommonTypesExtendedLocation_read">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;CustomLocation&quot;"/>
+                            <item value="&quot;EdgeZone&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
                       <prop type="string" name="clusterLocation">
                         <format maxLength="256"/>
                       </prop>
@@ -3808,7 +3903,7 @@
                       <prop readOnly="True" type="ResourceId" name="clusterManagerId"/>
                       <prop type="object" name="clusterServicePrincipal">
                         <prop type="string" name="applicationId" required="True"/>
-                        <prop type="string" name="password" required="True" secret="True"/>
+                        <prop type="password" name="password" required="True" secret="True"/>
                         <prop type="string" name="principalId" required="True"/>
                         <prop type="string" name="tenantId" required="True"/>
                       </prop>
@@ -3873,7 +3968,7 @@
                         </enum>
                       </prop>
                       <prop readOnly="True" type="string" name="detailedStatusMessage"/>
-                      <prop readOnly="True" type="@ExtendedLocation_read" name="hybridAksExtendedLocation"/>
+                      <prop readOnly="True" type="@AzureResourceManagerCommonTypesExtendedLocation_read" name="hybridAksExtendedLocation"/>
                       <prop readOnly="True" type="dateTime" name="lastSuccessfulVersionUpdateTime"/>
                       <prop readOnly="True" type="array<string>" name="managedCredentials">
                         <item type="string"/>

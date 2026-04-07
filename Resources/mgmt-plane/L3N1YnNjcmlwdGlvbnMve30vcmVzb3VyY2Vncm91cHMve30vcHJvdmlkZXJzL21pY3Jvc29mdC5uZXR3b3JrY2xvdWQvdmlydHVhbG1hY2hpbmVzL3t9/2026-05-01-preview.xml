@@ -36,9 +36,14 @@
               <json var="$Instance">
                 <schema type="object">
                   <prop readOnly="True" type="string" name="etag"/>
-                  <prop type="object" name="extendedLocation" required="True" cls="ExtendedLocation_read">
+                  <prop type="object" name="extendedLocation" required="True">
                     <prop type="string" name="name" required="True"/>
-                    <prop type="string" name="type" required="True"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;CustomLocation&quot;"/>
+                        <item value="&quot;EdgeZone&quot;"/>
+                      </enum>
+                    </prop>
                   </prop>
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/virtualMachines/{}"/>
@@ -101,7 +106,15 @@
                       </prop>
                     </prop>
                     <prop readOnly="True" type="ResourceId" name="clusterId"/>
-                    <prop type="@ExtendedLocation_read" name="consoleExtendedLocation"/>
+                    <prop type="object" name="consoleExtendedLocation">
+                      <prop type="string" name="name" required="True"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;CustomLocation&quot;"/>
+                          <item value="&quot;EdgeZone&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
                     <prop type="integer64" name="cpuCores" required="True">
                       <format minimum="2"/>
                     </prop>
@@ -153,7 +166,7 @@
                       </item>
                     </prop>
                     <prop type="string" name="networkData"/>
-                    <prop type="string" name="networkDataContent" secret="True"/>
+                    <prop type="password" name="networkDataContent" secret="True"/>
                     <prop type="array<object>" name="placementHints">
                       <item type="object">
                         <prop type="string" name="hintType" required="True">
@@ -222,7 +235,7 @@
                       </prop>
                     </prop>
                     <prop type="string" name="userData"/>
-                    <prop type="string" name="userDataContent" secret="True"/>
+                    <prop type="password" name="userDataContent" secret="True"/>
                     <prop type="string" name="virtioInterface">
                       <default value="&quot;Modern&quot;"/>
                       <enum>
@@ -240,7 +253,7 @@
                     </prop>
                     <prop type="string" name="vmImage" required="True"/>
                     <prop type="object" name="vmImageRepositoryCredentials">
-                      <prop type="string" name="password" required="True" secret="True">
+                      <prop type="password" name="password" required="True" secret="True">
                         <format minLength="1"/>
                       </prop>
                       <prop type="string" name="registryUrl" required="True"/>
@@ -369,7 +382,7 @@
                   <prop readOnly="True" type="array<@OperationStatusResult_read>" name="operations">
                     <item type="@OperationStatusResult_read"/>
                   </prop>
-                  <prop readOnly="True" type="float" name="percentComplete">
+                  <prop readOnly="True" type="float32" name="percentComplete">
                     <format maximum="100.0" minimum="0.0"/>
                   </prop>
                   <prop type="object" name="properties" clientFlatten="True">
@@ -487,11 +500,15 @@
         </arg>
         <arg type="object" var="$virtualMachineParameters.properties.consoleExtendedLocation" options="console-extended-location ce-location" group="Properties">
           <help short="The extended location to use for creation of a VM console resource."/>
-          <arg type="string" var="$virtualMachineParameters.properties.consoleExtendedLocation.name" options="name" required="True">
-            <help short="The name of the extended location."/>
+          <arg type="string" var="$virtualMachineParameters.properties.consoleExtendedLocation.name" options="name" required="True" group="">
+            <help short="The resource ID of the extended location."/>
           </arg>
           <arg type="string" var="$virtualMachineParameters.properties.consoleExtendedLocation.type" options="type" required="True">
             <help short="The type of the extended location."/>
+            <enum>
+              <item name="CustomLocation" value="&quot;CustomLocation&quot;"/>
+              <item name="EdgeZone" value="&quot;EdgeZone&quot;"/>
+            </enum>
           </arg>
         </arg>
         <arg type="integer64" var="$virtualMachineParameters.properties.cpuCores" options="cpu-cores" required="True" group="Properties">
@@ -546,9 +563,8 @@
         <arg type="string" var="$virtualMachineParameters.properties.networkData" options="network-data nd" group="Properties">
           <help short="Field Deprecated: The Base64 encoded cloud-init network data. The networkDataContent property will be used in preference to this property."/>
         </arg>
-        <arg type="string" var="$virtualMachineParameters.properties.networkDataContent" options="network-data-content ndc" group="Properties">
+        <arg type="password" var="$virtualMachineParameters.properties.networkDataContent" options="network-data-content ndc" group="Properties">
           <help short="The Base64 encoded cloud-init network data."/>
-          <prompt msg="Password:"/>
         </arg>
         <arg type="array<object>" var="$virtualMachineParameters.properties.placementHints" options="placement-hints ph" group="Properties">
           <help short="The scheduling hints for the virtual machine."/>
@@ -616,9 +632,8 @@
         <arg type="string" var="$virtualMachineParameters.properties.userData" options="user-data ud" group="Properties">
           <help short="Field Deprecated: The Base64 encoded cloud-init user data. The userDataContent property will be used in preference to this property."/>
         </arg>
-        <arg type="string" var="$virtualMachineParameters.properties.userDataContent" options="user-data-content udc" group="Properties">
+        <arg type="password" var="$virtualMachineParameters.properties.userDataContent" options="user-data-content udc" group="Properties">
           <help short="The Base64 encoded cloud-init user data."/>
-          <prompt msg="Password:"/>
         </arg>
         <arg type="string" var="$virtualMachineParameters.properties.virtioInterface" options="virtio-interface vi" hide="True" group="Properties">
           <help short="Field Deprecated, use virtualizationModel instead. The type of the virtio interface."/>
@@ -642,9 +657,10 @@
         </arg>
         <arg type="object" var="$virtualMachineParameters.properties.vmImageRepositoryCredentials" options="vm-image-repository-credentials vmi-creds" group="Properties">
           <help short="The credentials used to login to the image repository that has access to the specified image."/>
-          <arg type="string" var="$virtualMachineParameters.properties.vmImageRepositoryCredentials.password" options="password" required="True" group="">
+          <arg type="password" var="$virtualMachineParameters.properties.vmImageRepositoryCredentials.password" options="password" required="True" group="">
             <help short="The password or token used to access an image in the target repository."/>
             <format minLength="1"/>
+            <prompt msg="Password:"/>
           </arg>
           <arg type="string" var="$virtualMachineParameters.properties.vmImageRepositoryCredentials.registryUrl" options="registry-url" required="True">
             <help short="The URL of the authentication server used to validate the repository credentials."/>
@@ -663,6 +679,10 @@
           </arg>
           <arg type="string" var="$virtualMachineParameters.extendedLocation.type" options="type" required="True">
             <help short="The extended location type, for example, CustomLocation."/>
+            <enum>
+              <item name="CustomLocation" value="&quot;CustomLocation&quot;"/>
+              <item name="EdgeZone" value="&quot;EdgeZone&quot;"/>
+            </enum>
           </arg>
         </arg>
         <arg type="ResourceLocation" var="$virtualMachineParameters.location" options="location l" required="True" group="VirtualMachineParameters">
@@ -703,7 +723,12 @@
                 <schema type="object" name="virtualMachineParameters" required="True" clientFlatten="True">
                   <prop type="object" name="extendedLocation" arg="$virtualMachineParameters.extendedLocation" required="True">
                     <prop type="string" name="name" arg="$virtualMachineParameters.extendedLocation.name" required="True"/>
-                    <prop type="string" name="type" arg="$virtualMachineParameters.extendedLocation.type" required="True"/>
+                    <prop type="string" name="type" arg="$virtualMachineParameters.extendedLocation.type" required="True">
+                      <enum>
+                        <item value="&quot;CustomLocation&quot;"/>
+                        <item value="&quot;EdgeZone&quot;"/>
+                      </enum>
+                    </prop>
                   </prop>
                   <prop type="IdentityObject" name="identity">
                     <prop type="string" name="type" arg="$virtualMachineParameters.identity.type" required="True">
@@ -759,7 +784,12 @@
                     </prop>
                     <prop type="object" name="consoleExtendedLocation" arg="$virtualMachineParameters.properties.consoleExtendedLocation">
                       <prop type="string" name="name" arg="$virtualMachineParameters.properties.consoleExtendedLocation.name" required="True"/>
-                      <prop type="string" name="type" arg="$virtualMachineParameters.properties.consoleExtendedLocation.type" required="True"/>
+                      <prop type="string" name="type" arg="$virtualMachineParameters.properties.consoleExtendedLocation.type" required="True">
+                        <enum>
+                          <item value="&quot;CustomLocation&quot;"/>
+                          <item value="&quot;EdgeZone&quot;"/>
+                        </enum>
+                      </prop>
                     </prop>
                     <prop type="integer64" name="cpuCores" arg="$virtualMachineParameters.properties.cpuCores" required="True">
                       <format minimum="2"/>
@@ -798,7 +828,7 @@
                       </item>
                     </prop>
                     <prop type="string" name="networkData" arg="$virtualMachineParameters.properties.networkData"/>
-                    <prop type="string" name="networkDataContent" arg="$virtualMachineParameters.properties.networkDataContent" secret="True"/>
+                    <prop type="password" name="networkDataContent" arg="$virtualMachineParameters.properties.networkDataContent" secret="True"/>
                     <prop type="array<object>" name="placementHints" arg="$virtualMachineParameters.properties.placementHints">
                       <item type="object">
                         <prop type="string" name="hintType" arg="$virtualMachineParameters.properties.placementHints[].hintType" required="True">
@@ -851,7 +881,7 @@
                       </prop>
                     </prop>
                     <prop type="string" name="userData" arg="$virtualMachineParameters.properties.userData"/>
-                    <prop type="string" name="userDataContent" arg="$virtualMachineParameters.properties.userDataContent" secret="True"/>
+                    <prop type="password" name="userDataContent" arg="$virtualMachineParameters.properties.userDataContent" secret="True"/>
                     <prop type="string" name="virtioInterface" arg="$virtualMachineParameters.properties.virtioInterface">
                       <default value="&quot;Modern&quot;"/>
                       <enum>
@@ -869,7 +899,7 @@
                     </prop>
                     <prop type="string" name="vmImage" arg="$virtualMachineParameters.properties.vmImage" required="True"/>
                     <prop type="object" name="vmImageRepositoryCredentials" arg="$virtualMachineParameters.properties.vmImageRepositoryCredentials">
-                      <prop type="string" name="password" arg="$virtualMachineParameters.properties.vmImageRepositoryCredentials.password" required="True" secret="True">
+                      <prop type="password" name="password" arg="$virtualMachineParameters.properties.vmImageRepositoryCredentials.password" required="True" secret="True">
                         <format minLength="1"/>
                       </prop>
                       <prop type="string" name="registryUrl" arg="$virtualMachineParameters.properties.vmImageRepositoryCredentials.registryUrl" required="True"/>
@@ -892,9 +922,14 @@
               <json var="$Instance">
                 <schema type="object">
                   <prop readOnly="True" type="string" name="etag"/>
-                  <prop type="object" name="extendedLocation" required="True" cls="ExtendedLocation_read">
+                  <prop type="object" name="extendedLocation" required="True">
                     <prop type="string" name="name" required="True"/>
-                    <prop type="string" name="type" required="True"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;CustomLocation&quot;"/>
+                        <item value="&quot;EdgeZone&quot;"/>
+                      </enum>
+                    </prop>
                   </prop>
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/virtualMachines/{}"/>
@@ -957,7 +992,15 @@
                       </prop>
                     </prop>
                     <prop readOnly="True" type="ResourceId" name="clusterId"/>
-                    <prop type="@ExtendedLocation_read" name="consoleExtendedLocation"/>
+                    <prop type="object" name="consoleExtendedLocation">
+                      <prop type="string" name="name" required="True"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;CustomLocation&quot;"/>
+                          <item value="&quot;EdgeZone&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
                     <prop type="integer64" name="cpuCores" required="True">
                       <format minimum="2"/>
                     </prop>
@@ -1009,7 +1052,7 @@
                       </item>
                     </prop>
                     <prop type="string" name="networkData"/>
-                    <prop type="string" name="networkDataContent" secret="True"/>
+                    <prop type="password" name="networkDataContent" secret="True"/>
                     <prop type="array<object>" name="placementHints">
                       <item type="object">
                         <prop type="string" name="hintType" required="True">
@@ -1078,7 +1121,7 @@
                       </prop>
                     </prop>
                     <prop type="string" name="userData"/>
-                    <prop type="string" name="userDataContent" secret="True"/>
+                    <prop type="password" name="userDataContent" secret="True"/>
                     <prop type="string" name="virtioInterface">
                       <default value="&quot;Modern&quot;"/>
                       <enum>
@@ -1096,7 +1139,7 @@
                     </prop>
                     <prop type="string" name="vmImage" required="True"/>
                     <prop type="object" name="vmImageRepositoryCredentials">
-                      <prop type="string" name="password" required="True" secret="True">
+                      <prop type="password" name="password" required="True" secret="True">
                         <format minLength="1"/>
                       </prop>
                       <prop type="string" name="registryUrl" required="True"/>
@@ -1198,7 +1241,7 @@
       <argGroup name="Properties">
         <arg type="object" var="$virtualMachineUpdateParameters.properties.vmImageRepositoryCredentials" options="vm-image-repository-credentials vmi-creds" group="Properties">
           <help short="The credentials used to login to the image repository that has access to the specified image."/>
-          <arg type="string" var="$virtualMachineUpdateParameters.properties.vmImageRepositoryCredentials.password" options="password" required="True" group="">
+          <arg type="password" var="$virtualMachineUpdateParameters.properties.vmImageRepositoryCredentials.password" options="password" required="True" group="">
             <help short="The password or token used to access an image in the target repository."/>
             <format minLength="1"/>
           </arg>
@@ -1266,7 +1309,7 @@
                   </prop>
                   <prop type="object" name="properties" clientFlatten="True">
                     <prop type="object" name="vmImageRepositoryCredentials" arg="$virtualMachineUpdateParameters.properties.vmImageRepositoryCredentials">
-                      <prop type="string" name="password" arg="$virtualMachineUpdateParameters.properties.vmImageRepositoryCredentials.password" required="True" secret="True">
+                      <prop type="password" name="password" arg="$virtualMachineUpdateParameters.properties.vmImageRepositoryCredentials.password" required="True" secret="True">
                         <format minLength="1"/>
                       </prop>
                       <prop type="string" name="registryUrl" arg="$virtualMachineUpdateParameters.properties.vmImageRepositoryCredentials.registryUrl" required="True"/>
@@ -1289,9 +1332,14 @@
               <json var="$Instance">
                 <schema type="object">
                   <prop readOnly="True" type="string" name="etag"/>
-                  <prop type="object" name="extendedLocation" required="True" cls="ExtendedLocation_read">
+                  <prop type="object" name="extendedLocation" required="True">
                     <prop type="string" name="name" required="True"/>
-                    <prop type="string" name="type" required="True"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;CustomLocation&quot;"/>
+                        <item value="&quot;EdgeZone&quot;"/>
+                      </enum>
+                    </prop>
                   </prop>
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/virtualMachines/{}"/>
@@ -1354,7 +1402,15 @@
                       </prop>
                     </prop>
                     <prop readOnly="True" type="ResourceId" name="clusterId"/>
-                    <prop type="@ExtendedLocation_read" name="consoleExtendedLocation"/>
+                    <prop type="object" name="consoleExtendedLocation">
+                      <prop type="string" name="name" required="True"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;CustomLocation&quot;"/>
+                          <item value="&quot;EdgeZone&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
                     <prop type="integer64" name="cpuCores" required="True">
                       <format minimum="2"/>
                     </prop>
@@ -1406,7 +1462,7 @@
                       </item>
                     </prop>
                     <prop type="string" name="networkData"/>
-                    <prop type="string" name="networkDataContent" secret="True"/>
+                    <prop type="password" name="networkDataContent" secret="True"/>
                     <prop type="array<object>" name="placementHints">
                       <item type="object">
                         <prop type="string" name="hintType" required="True">
@@ -1475,7 +1531,7 @@
                       </prop>
                     </prop>
                     <prop type="string" name="userData"/>
-                    <prop type="string" name="userDataContent" secret="True"/>
+                    <prop type="password" name="userDataContent" secret="True"/>
                     <prop type="string" name="virtioInterface">
                       <default value="&quot;Modern&quot;"/>
                       <enum>
@@ -1493,7 +1549,7 @@
                     </prop>
                     <prop type="string" name="vmImage" required="True"/>
                     <prop type="object" name="vmImageRepositoryCredentials">
-                      <prop type="string" name="password" required="True" secret="True">
+                      <prop type="password" name="password" required="True" secret="True">
                         <format minLength="1"/>
                       </prop>
                       <prop type="string" name="registryUrl" required="True"/>
@@ -1611,9 +1667,14 @@
                 <json var="$Instance">
                   <schema type="object" cls="VirtualMachine_read">
                     <prop readOnly="True" type="string" name="etag"/>
-                    <prop type="object" name="extendedLocation" required="True" cls="ExtendedLocation_read">
+                    <prop type="object" name="extendedLocation" required="True">
                       <prop type="string" name="name" required="True"/>
-                      <prop type="string" name="type" required="True"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;CustomLocation&quot;"/>
+                          <item value="&quot;EdgeZone&quot;"/>
+                        </enum>
+                      </prop>
                     </prop>
                     <prop readOnly="True" type="ResourceId" name="id">
                       <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/virtualMachines/{}"/>
@@ -1676,7 +1737,15 @@
                         </prop>
                       </prop>
                       <prop readOnly="True" type="ResourceId" name="clusterId"/>
-                      <prop type="@ExtendedLocation_read" name="consoleExtendedLocation"/>
+                      <prop type="object" name="consoleExtendedLocation">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;CustomLocation&quot;"/>
+                            <item value="&quot;EdgeZone&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
                       <prop type="integer64" name="cpuCores" required="True">
                         <format minimum="2"/>
                       </prop>
@@ -1728,7 +1797,7 @@
                         </item>
                       </prop>
                       <prop type="string" name="networkData"/>
-                      <prop type="string" name="networkDataContent" secret="True"/>
+                      <prop type="password" name="networkDataContent" secret="True"/>
                       <prop type="array<object>" name="placementHints">
                         <item type="object">
                           <prop type="string" name="hintType" required="True">
@@ -1797,7 +1866,7 @@
                         </prop>
                       </prop>
                       <prop type="string" name="userData"/>
-                      <prop type="string" name="userDataContent" secret="True"/>
+                      <prop type="password" name="userDataContent" secret="True"/>
                       <prop type="string" name="virtioInterface">
                         <default value="&quot;Modern&quot;"/>
                         <enum>
@@ -1815,7 +1884,7 @@
                       </prop>
                       <prop type="string" name="vmImage" required="True"/>
                       <prop type="object" name="vmImageRepositoryCredentials">
-                        <prop type="string" name="password" required="True" secret="True">
+                        <prop type="password" name="password" required="True" secret="True">
                           <format minLength="1"/>
                         </prop>
                         <prop type="string" name="registryUrl" required="True"/>
@@ -1981,9 +2050,14 @@
                 <json var="$Instance">
                   <schema type="object" cls="VirtualMachine_read">
                     <prop readOnly="True" type="string" name="etag"/>
-                    <prop type="object" name="extendedLocation" required="True" cls="ExtendedLocation_read">
+                    <prop type="object" name="extendedLocation" required="True">
                       <prop type="string" name="name" required="True"/>
-                      <prop type="string" name="type" required="True"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;CustomLocation&quot;"/>
+                          <item value="&quot;EdgeZone&quot;"/>
+                        </enum>
+                      </prop>
                     </prop>
                     <prop readOnly="True" type="ResourceId" name="id">
                       <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/virtualMachines/{}"/>
@@ -2046,7 +2120,15 @@
                         </prop>
                       </prop>
                       <prop readOnly="True" type="ResourceId" name="clusterId"/>
-                      <prop type="@ExtendedLocation_read" name="consoleExtendedLocation"/>
+                      <prop type="object" name="consoleExtendedLocation">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;CustomLocation&quot;"/>
+                            <item value="&quot;EdgeZone&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
                       <prop type="integer64" name="cpuCores" required="True">
                         <format minimum="2"/>
                       </prop>
@@ -2098,7 +2180,7 @@
                         </item>
                       </prop>
                       <prop type="string" name="networkData"/>
-                      <prop type="string" name="networkDataContent" secret="True"/>
+                      <prop type="password" name="networkDataContent" secret="True"/>
                       <prop type="array<object>" name="placementHints">
                         <item type="object">
                           <prop type="string" name="hintType" required="True">
@@ -2167,7 +2249,7 @@
                         </prop>
                       </prop>
                       <prop type="string" name="userData"/>
-                      <prop type="string" name="userDataContent" secret="True"/>
+                      <prop type="password" name="userDataContent" secret="True"/>
                       <prop type="string" name="virtioInterface">
                         <default value="&quot;Modern&quot;"/>
                         <enum>
@@ -2185,7 +2267,7 @@
                       </prop>
                       <prop type="string" name="vmImage" required="True"/>
                       <prop type="object" name="vmImageRepositoryCredentials">
-                        <prop type="string" name="password" required="True" secret="True">
+                        <prop type="password" name="password" required="True" secret="True">
                           <format minLength="1"/>
                         </prop>
                         <prop type="string" name="registryUrl" required="True"/>
@@ -2334,9 +2416,14 @@
                 <json var="$Instance">
                   <schema type="object" cls="VirtualMachine_read">
                     <prop readOnly="True" type="string" name="etag"/>
-                    <prop type="object" name="extendedLocation" required="True" cls="ExtendedLocation_read">
+                    <prop type="object" name="extendedLocation" required="True">
                       <prop type="string" name="name" required="True"/>
-                      <prop type="string" name="type" required="True"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;CustomLocation&quot;"/>
+                          <item value="&quot;EdgeZone&quot;"/>
+                        </enum>
+                      </prop>
                     </prop>
                     <prop readOnly="True" type="ResourceId" name="id">
                       <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.NetworkCloud/virtualMachines/{}"/>
@@ -2399,7 +2486,15 @@
                         </prop>
                       </prop>
                       <prop readOnly="True" type="ResourceId" name="clusterId"/>
-                      <prop type="@ExtendedLocation_read" name="consoleExtendedLocation"/>
+                      <prop type="object" name="consoleExtendedLocation">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;CustomLocation&quot;"/>
+                            <item value="&quot;EdgeZone&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
                       <prop type="integer64" name="cpuCores" required="True">
                         <format minimum="2"/>
                       </prop>
@@ -2451,7 +2546,7 @@
                         </item>
                       </prop>
                       <prop type="string" name="networkData"/>
-                      <prop type="string" name="networkDataContent" secret="True"/>
+                      <prop type="password" name="networkDataContent" secret="True"/>
                       <prop type="array<object>" name="placementHints">
                         <item type="object">
                           <prop type="string" name="hintType" required="True">
@@ -2520,7 +2615,7 @@
                         </prop>
                       </prop>
                       <prop type="string" name="userData"/>
-                      <prop type="string" name="userDataContent" secret="True"/>
+                      <prop type="password" name="userDataContent" secret="True"/>
                       <prop type="string" name="virtioInterface">
                         <default value="&quot;Modern&quot;"/>
                         <enum>
@@ -2538,7 +2633,7 @@
                       </prop>
                       <prop type="string" name="vmImage" required="True"/>
                       <prop type="object" name="vmImageRepositoryCredentials">
-                        <prop type="string" name="password" required="True" secret="True">
+                        <prop type="password" name="password" required="True" secret="True">
                           <format minLength="1"/>
                         </prop>
                         <prop type="string" name="registryUrl" required="True"/>
