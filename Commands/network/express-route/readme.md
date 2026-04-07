@@ -26,10 +26,10 @@ To learn more about ExpressRoute circuits visit https://learn.microsoft.com/azur
 - [delete](/Commands/network/express-route/_delete.md)
 : Delete an ExpressRoute circuit.
 
-- [get-circuit-link-failover-all-tests-detail](/Commands/network/express-route/_get-link-failover-all-tests-detail.md)
+- [get-link-failover-all-tests-detail](/Commands/network/express-route/_get-link-failover-all-tests-detail.md)
 : This operation retrieves the details of all the failover tests performed on the ExpressRoute circuit for different peering locations
 
-- [get-circuit-link-failover-single-test-detail](/Commands/network/express-route/_get-link-failover-single-test-detail.md)
+- [get-link-failover-single-test-detail](/Commands/network/express-route/_get-link-failover-single-test-detail.md)
 : This operation retrieves the details of a particular failover test performed on the circuit based on the test Guid
 
 - [get-stats](/Commands/network/express-route/_get-stats.md)
@@ -53,10 +53,10 @@ To learn more about ExpressRoute circuits visit https://learn.microsoft.com/azur
 - [show](/Commands/network/express-route/_show.md)
 : Get the details of an ExpressRoute circuit.
 
-- [start-circuit-link-failover-test](/Commands/network/express-route/_start-link-failover-test.md)
+- [start-link-failover-test](/Commands/network/express-route/_start-link-failover-test.md)
 : This operation starts failover simulation on the circuit for the specified link type
 
-- [stop-circuit-link-failover-test](/Commands/network/express-route/_stop-link-failover-test.md)
+- [stop-link-failover-test](/Commands/network/express-route/_stop-link-failover-test.md)
 : This operation stops an ongoing failover simulation on the circuit for the specified link type
 
 - [update](/Commands/network/express-route/_update.md)
