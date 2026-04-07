@@ -1,4 +1,4 @@
-# [Group] _network express-route/gateway_
+# [Group] _network express-route gateway_
 
 Manage ExpressRoute gateways.
 
