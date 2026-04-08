@@ -158,6 +158,60 @@
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
+    <command name="unregister" version="2025-12-01" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.storagemover/storagemovers/{}/agents/{}" version="2025-12-01" swagger="mgmt-plane/storagemover/ResourceProviders/Microsoft.StorageMover/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RvcmFnZU1vdmVyL3N0b3JhZ2VNb3ZlcnMve3N0b3JhZ2VNb3Zlck5hbWV9L2FnZW50cy97YWdlbnROYW1lfQ==/V/MjAyNS0xMi0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.agentName" options="agent-name name n" required="True" idPart="child_name_1">
+          <help short="The name of the Agent resource."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.storageMoverName" options="storage-mover-name" required="True" idPart="name">
+          <help short="The name of the Storage Mover resource."/>
+          <format pattern="^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="Agents_Delete">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageMover/storageMovers/{storageMoverName}/agents/{agentName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="agentName" arg="$Path.agentName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="storageMoverName" arg="$Path.storageMoverName" required="True">
+                <format pattern="^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-12-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200"/>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response statusCode="204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
     <command name="create" version="2025-12-01">
       <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.storagemover/storagemovers/{}/agents/{}" version="2025-12-01" swagger="mgmt-plane/storagemover/ResourceProviders/Microsoft.StorageMover/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RvcmFnZU1vdmVyL3N0b3JhZ2VNb3ZlcnMve3N0b3JhZ2VNb3Zlck5hbWV9L2FnZW50cy97YWdlbnROYW1lfQ==/V/MjAyNS0xMi0wMQ=="/>
       <argGroup name="">
@@ -705,60 +759,6 @@
         </http>
       </operation>
       <output type="object" ref="$Instance" clientFlatten="True"/>
-    </command>
-    <command name="unregister" version="2025-12-01" confirmation="Are you sure you want to perform this operation?">
-      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.storagemover/storagemovers/{}/agents/{}" version="2025-12-01" swagger="mgmt-plane/storagemover/ResourceProviders/Microsoft.StorageMover/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RvcmFnZU1vdmVyL3N0b3JhZ2VNb3ZlcnMve3N0b3JhZ2VNb3Zlck5hbWV9L2FnZW50cy97YWdlbnROYW1lfQ==/V/MjAyNS0xMi0wMQ=="/>
-      <argGroup name="">
-        <arg type="string" var="$Path.agentName" options="agent-name name n" required="True" idPart="child_name_1">
-          <help short="The name of the Agent resource."/>
-        </arg>
-        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
-        <arg type="string" var="$Path.storageMoverName" options="storage-mover-name" required="True" idPart="name">
-          <help short="The name of the Storage Mover resource."/>
-          <format pattern="^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
-      </argGroup>
-      <operation operationId="Agents_Delete">
-        <longRunning finalStateVia="location"/>
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.StorageMover/storageMovers/{storageMoverName}/agents/{agentName}">
-          <request method="delete">
-            <path>
-              <param type="string" name="agentName" arg="$Path.agentName" required="True"/>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
-              <param type="string" name="storageMoverName" arg="$Path.storageMoverName" required="True">
-                <format pattern="^[A-Za-z0-9][A-Za-z0-9_-]{0,63}$"/>
-              </param>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
-                <format minLength="1"/>
-              </param>
-            </path>
-            <query>
-              <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="&quot;2025-12-01&quot;"/>
-                <format minLength="1"/>
-              </const>
-            </query>
-          </request>
-          <response statusCode="200"/>
-          <response statusCode="202">
-            <header>
-              <item name="Location"/>
-              <item name="Retry-After"/>
-            </header>
-          </response>
-          <response statusCode="204"/>
-          <response isError="True">
-            <body>
-              <json>
-                <schema type="@MgmtErrorFormat"/>
-              </json>
-            </body>
-          </response>
-        </http>
-      </operation>
     </command>
   </commandGroup>
 </CodeGen>
