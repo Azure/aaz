@@ -23,3 +23,10 @@ Create an Agent resource, which references a hybrid compute machine that can run
 ### [2025-12-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zdG9yYWdlbW92ZXIvc3RvcmFnZW1vdmVycy97fS9hZ2VudHMve30=/2025-12-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.storagemover/storagemovers/{}/agents/{} 2025-12-01 -->
+
+#### examples
+
+- agent create
+    ```bash
+        storage-mover agent create -g {rg} --storage-mover-name {mover_name} -n {agent_name} --arc-resource-id {arc_resource_id} --arc-vm-uuid {arc_vm_uuid} --description AgentDesc
+    ```
