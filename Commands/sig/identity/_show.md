@@ -10,7 +10,7 @@ Show the details of managed identities.
 
 #### examples
 
-- Get a community gallery.
+- Show the managed identity.
     ```bash
-        sig identity show --resource-group myResourceGroup --gallery-name myGalleryName
+        sig identity show -g myResourceGroup -r myGalleryName
     ```

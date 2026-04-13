@@ -36,3 +36,18 @@ Create a shared image gallery.
     ```bash
         sig create --resource-group MyResourceGroup --gallery-name MyGallery
     ```
+
+- Create a shared image gallery with enabled system assigned identity.
+    ```bash
+        sig create --resource-group MyResourceGroup --gallery-name MyGallery123 --system-assigned
+    ```
+
+- Create a shared image gallery with a user assigned identity.
+    ```bash
+        sig create --resource-group MyResourceGroup --gallery-name MyGallery123 --user-assigned id1
+    ```
+
+- Create a shared image gallery with both system and user assigned identity.
+    ```bash
+        sig create --resource-group MyResourceGroup --gallery-name MyGallery123 --system-assigned --user-assigned id1
+    ```

@@ -12,10 +12,25 @@ Remove the user or system managed identities.
 
 - Remove the system assigned identity.
     ```bash
-        sig identity remove --resource-group myResourceGroup --gallery-name myGalleryName
+        sig identity remove -g myResourceGroup -r myGalleryName --system-assigned
     ```
 
 - Remove a user assigned identity.
     ```bash
-        sig identity remove --resource-group myResourceGroup --gallery-name myGalleryName --identities readerId
+        sig identity remove -g myResourceGroup -r myGalleryName --user-assigned id1
+    ```
+
+- Remove 2 user assigned identities.
+    ```bash
+        sig identity remove -g myResourceGroup -r myGalleryName --user-assigned id1 id2
+    ```
+
+- Remove all user assigned identities.
+    ```bash
+        sig identity remove -g myResourceGroup -r myGalleryName --user-assigned
+    ```
+
+- Remove the system assigned ientity and user assigned identity.
+    ```bash
+        sig identity remove -g myResourceGroup -r myGalleryName --system-assigned --user-assigned
     ```
