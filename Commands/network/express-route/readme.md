@@ -1,6 +1,6 @@
 # [Group] _network express-route_
 
-Manage dedicated private network fiber connections to Azure.
+Manage Express Route Circuit
 
 To learn more about ExpressRoute circuits visit https://learn.microsoft.com/azure/expressroute/howto-circuit-cli.
 
@@ -26,6 +26,12 @@ To learn more about ExpressRoute circuits visit https://learn.microsoft.com/azur
 - [delete](/Commands/network/express-route/_delete.md)
 : Delete an ExpressRoute circuit.
 
+- [get-link-failover-all-tests-detail](/Commands/network/express-route/_get-link-failover-all-tests-detail.md)
+: This operation retrieves the details of all the failover tests performed on the ExpressRoute circuit for different peering locations
+
+- [get-link-failover-single-test-detail](/Commands/network/express-route/_get-link-failover-single-test-detail.md)
+: This operation retrieves the details of a particular failover test performed on the circuit based on the test Guid
+
 - [get-stats](/Commands/network/express-route/_get-stats.md)
 : Get the statistics of an ExpressRoute circuit.
 
@@ -46,6 +52,12 @@ To learn more about ExpressRoute circuits visit https://learn.microsoft.com/azur
 
 - [show](/Commands/network/express-route/_show.md)
 : Get the details of an ExpressRoute circuit.
+
+- [start-link-failover-test](/Commands/network/express-route/_start-link-failover-test.md)
+: This operation starts failover simulation on the circuit for the specified link type
+
+- [stop-link-failover-test](/Commands/network/express-route/_stop-link-failover-test.md)
+: This operation stops an ongoing failover simulation on the circuit for the specified link type
 
 - [update](/Commands/network/express-route/_update.md)
 : Update settings of an ExpressRoute circuit.

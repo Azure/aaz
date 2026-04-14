@@ -35,7 +35,7 @@ Manage Azure Network resources.
 : Manage Dns Resolver Domain List
 
 - [express-route](/Commands/network/express-route/readme.md)
-: Manage dedicated private network fiber connections to Azure.
+: Manage Express Route Circuit
 
 - [express-route-cross-connection](/Commands/network/express-route-cross-connection/readme.md)
 : Manage express route cross connection
