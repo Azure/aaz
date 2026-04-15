@@ -7,6 +7,9 @@ Manage shared image gallery.
 - [gallery-application](/Commands/sig/gallery-application/readme.md)
 : Manage gallery application.
 
+- [identity](/Commands/sig/identity/readme.md)
+: Manage Identity
+
 - [image-definition](/Commands/sig/image-definition/readme.md)
 : Manage shared gallery image with VM
 
