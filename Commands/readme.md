@@ -357,10 +357,10 @@
 : Manage Azure Stack HCI.
 
 - [standby-container-group-pool](/Commands/standby-container-group-pool/readme.md)
-: Standby Container Group Pool Operations
+: Manage Standby Container Group Pool
 
 - [standby-vm-pool](/Commands/standby-vm-pool/readme.md)
-: Standby Virtual Machine Pool Operations
+: Manage Standby Virtual Machine Pool
 
 - [storage](/Commands/storage/readme.md)
 : Manage Azure Cloud Storage resources.
