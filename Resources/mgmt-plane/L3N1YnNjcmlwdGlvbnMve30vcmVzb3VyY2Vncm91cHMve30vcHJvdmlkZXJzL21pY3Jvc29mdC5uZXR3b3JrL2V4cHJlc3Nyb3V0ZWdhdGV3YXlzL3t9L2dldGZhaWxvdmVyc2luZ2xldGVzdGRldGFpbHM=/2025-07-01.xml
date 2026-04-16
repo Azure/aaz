@@ -1,0 +1,111 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/expressroutegateways/{}/getfailoversingletestdetails" version="2025-07-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9leHByZXNzUm91dGVHYXRld2F5cy97ZXhwcmVzc1JvdXRlR2F0ZXdheU5hbWV9L2dldEZhaWxvdmVyU2luZ2xlVGVzdERldGFpbHM=/V/MjAyNS0wNy0wMQ=="/>
+  <commandGroup name="network express-route gateway">
+    <command name="get-failover-single-test-detail" version="2025-07-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/expressroutegateways/{}/getfailoversingletestdetails" version="2025-07-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9leHByZXNzUm91dGVHYXRld2F5cy97ZXhwcmVzc1JvdXRlR2F0ZXdheU5hbWV9L2dldEZhaWxvdmVyU2luZ2xlVGVzdERldGFpbHM=/V/MjAyNS0wNy0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.expressRouteGatewayName" options="name" required="True" group="" idPart="name">
+          <help short="The name of the vwan express route gateway."/>
+          <format pattern="^[A-Za-z0-9_-]+"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Query.failoverTestId" options="failover-test-id" required="True">
+          <help short="The unique Guid value which identifies the test"/>
+        </arg>
+        <arg type="string" var="$Query.peeringLocation" options="peering-location" required="True">
+          <help short="Peering location of the test"/>
+        </arg>
+      </argGroup>
+      <operation operationId="ExpressRouteGateways_GetFailoverSingleTestDetails">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/expressRouteGateways/{expressRouteGatewayName}/getFailoverSingleTestDetails">
+          <request method="post">
+            <path>
+              <param type="string" name="expressRouteGatewayName" arg="$Path.expressRouteGatewayName" required="True">
+                <format pattern="^[A-Za-z0-9_-]+"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="failoverTestId" arg="$Query.failoverTestId" required="True"/>
+              <param type="string" name="peeringLocation" arg="$Query.peeringLocation" required="True"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-07-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="boolean" name="attestation"/>
+                      <prop readOnly="True" type="string" name="endTime"/>
+                      <prop readOnly="True" type="array<object>" name="failoverConnectionDetails">
+                        <item type="object">
+                          <prop type="string" name="failoverConnectionName"/>
+                          <prop type="string" name="failoverLocation"/>
+                          <prop type="boolean" name="isVerified"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="array<string>" name="nonRedundantRoutes">
+                        <item type="string"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="peeringLocation"/>
+                      <prop readOnly="True" type="array<object>" name="redundantRoutes">
+                        <item type="object">
+                          <prop type="array<string>" name="peeringLocations">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="array<string>" name="routes">
+                            <item type="string"/>
+                          </prop>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="string" name="startTime"/>
+                      <prop readOnly="True" type="string" name="status">
+                        <enum>
+                          <item value="&quot;Completed&quot;"/>
+                          <item value="&quot;Expired&quot;"/>
+                          <item value="&quot;Invalid&quot;"/>
+                          <item value="&quot;NotStarted&quot;"/>
+                          <item value="&quot;Running&quot;"/>
+                          <item value="&quot;StartFailed&quot;"/>
+                          <item value="&quot;Starting&quot;"/>
+                          <item value="&quot;StopFailed&quot;"/>
+                          <item value="&quot;Stopping&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="boolean" name="wasSimulationSuccessful"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

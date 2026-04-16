@@ -13,6 +13,9 @@ Manage Azure Managed Lustre Filesystem
 - [auto-import](/Commands/amlfs/auto-import/readme.md)
 : Manage Auto Import Job
 
+- [expansion](/Commands/amlfs/expansion/readme.md)
+: Manage Expansion
+
 - [import](/Commands/amlfs/import/readme.md)
 : Manage Import Job
 

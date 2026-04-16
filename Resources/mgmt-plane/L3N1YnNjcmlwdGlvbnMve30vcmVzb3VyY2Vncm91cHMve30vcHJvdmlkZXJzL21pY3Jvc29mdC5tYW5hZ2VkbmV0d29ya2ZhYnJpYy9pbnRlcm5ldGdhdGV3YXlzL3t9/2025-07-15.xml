@@ -173,40 +173,40 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Properties">
-        <arg type="string" var="$resource.properties.annotation" options="annotation" group="Properties">
-          <help short="Switch configuration description."/>
-        </arg>
-        <arg nullable="True" type="ResourceId" var="$resource.properties.internetGatewayRuleId" options="internet-gateway-rule-id gateway-rule-id" group="Properties">
-          <help short="ARM Resource ID of the Internet Gateway Rule."/>
-        </arg>
-        <arg type="string" var="$resource.properties.internetGatewayType" options="internet-gateway-type" group="Properties">
-          <help short="Gateway Type of the resource."/>
-          <enum>
-            <item name="Infrastructure" value="&quot;Infrastructure&quot;"/>
-            <item name="Workload" value="&quot;Workload&quot;"/>
-          </enum>
-        </arg>
-        <arg nullable="True" type="ResourceId" var="$resource.properties.networkFabricControllerId" options="network-fabric-controller-id nfc-id" required="True" group="Properties">
-          <help short="Azure resource ID for the NetworkFabricController the NetworkFabric belongs."/>
-        </arg>
-        <arg type="string" var="$resource.properties.type" options="type" group="Properties">
-          <help short="Gateway Type of the resource."/>
-          <enum>
-            <item name="Infrastructure" value="&quot;Infrastructure&quot;"/>
-            <item name="Workload" value="&quot;Workload&quot;"/>
-          </enum>
-        </arg>
-      </argGroup>
-      <argGroup name="Resource">
-        <arg type="ResourceLocation" var="$resource.location" options="location l" required="True" group="Resource">
+      <argGroup name="Body">
+        <arg type="ResourceLocation" var="$body.location" options="location l" required="True" group="Body">
           <help short="The geo-location where the resource lives"/>
         </arg>
-        <arg type="object" var="$resource.tags" options="tags" group="Resource">
+        <arg type="object" var="$body.tags" options="tags" group="Body">
           <help short="Resource tags."/>
           <additionalProp>
             <item type="string"/>
           </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="string" var="$body.properties.annotation" options="annotation" group="Properties">
+          <help short="Switch configuration description."/>
+        </arg>
+        <arg nullable="True" type="ResourceId" var="$body.properties.internetGatewayRuleId" options="internet-gateway-rule-id gateway-rule-id" group="Properties">
+          <help short="ARM Resource ID of the Internet Gateway Rule."/>
+        </arg>
+        <arg type="string" var="$body.properties.internetGatewayType" options="internet-gateway-type" group="Properties">
+          <help short="Gateway Type of the resource."/>
+          <enum>
+            <item name="Infrastructure" value="&quot;Infrastructure&quot;"/>
+            <item name="Workload" value="&quot;Workload&quot;"/>
+          </enum>
+        </arg>
+        <arg nullable="True" type="ResourceId" var="$body.properties.networkFabricControllerId" options="network-fabric-controller-id nfc-id" required="True" group="Properties">
+          <help short="Azure resource ID for the NetworkFabricController the NetworkFabric belongs."/>
+        </arg>
+        <arg type="string" var="$body.properties.type" options="type" group="Properties">
+          <help short="Gateway Type of the resource."/>
+          <enum>
+            <item name="Infrastructure" value="&quot;Infrastructure&quot;"/>
+            <item name="Workload" value="&quot;Workload&quot;"/>
+          </enum>
         </arg>
       </argGroup>
       <operation operationId="InternetGateways_Create">
@@ -230,26 +230,26 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="resource" required="True" clientFlatten="True">
-                  <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="ResourceLocation" name="location" arg="$body.location" required="True"/>
                   <prop type="object" name="properties" required="True">
-                    <prop type="string" name="annotation" arg="$resource.properties.annotation"/>
-                    <prop nullable="True" type="ResourceId" name="internetGatewayRuleId" arg="$resource.properties.internetGatewayRuleId"/>
-                    <prop type="string" name="internetGatewayType" arg="$resource.properties.internetGatewayType">
+                    <prop type="string" name="annotation" arg="$body.properties.annotation"/>
+                    <prop nullable="True" type="ResourceId" name="internetGatewayRuleId" arg="$body.properties.internetGatewayRuleId"/>
+                    <prop type="string" name="internetGatewayType" arg="$body.properties.internetGatewayType">
                       <enum>
                         <item value="&quot;Infrastructure&quot;"/>
                         <item value="&quot;Workload&quot;"/>
                       </enum>
                     </prop>
-                    <prop nullable="True" type="ResourceId" name="networkFabricControllerId" arg="$resource.properties.networkFabricControllerId" required="True"/>
-                    <prop type="string" name="type" arg="$resource.properties.type">
+                    <prop nullable="True" type="ResourceId" name="networkFabricControllerId" arg="$body.properties.networkFabricControllerId" required="True"/>
+                    <prop type="string" name="type" arg="$body.properties.type">
                       <enum>
                         <item value="&quot;Infrastructure&quot;"/>
                         <item value="&quot;Workload&quot;"/>
                       </enum>
                     </prop>
                   </prop>
-                  <prop type="object" name="tags" arg="$resource.tags">
+                  <prop type="object" name="tags" arg="$body.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>
@@ -352,15 +352,17 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Properties">
-        <arg nullable="True" type="ResourceId" var="$properties.properties.internetGatewayRuleId" options="internet-gateway-rule-id gateway-rule-id" group="Properties">
-          <help short="ARM Resource ID of the Internet Gateway Rule."/>
-        </arg>
-        <arg type="object" var="$properties.tags" options="tags" group="Properties">
+      <argGroup name="Body">
+        <arg type="object" var="$body.tags" options="tags" group="Body">
           <help short="Resource tags."/>
           <additionalProp>
             <item type="string"/>
           </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg nullable="True" type="ResourceId" var="$body.properties.internetGatewayRuleId" options="internet-gateway-rule-id gateway-rule-id" group="Properties">
+          <help short="ARM Resource ID of the Internet Gateway Rule."/>
         </arg>
       </argGroup>
       <operation operationId="InternetGateways_Update">
@@ -384,11 +386,11 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="properties" required="True" clientFlatten="True">
+                <schema type="object" name="body" required="True" clientFlatten="True">
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop nullable="True" type="ResourceId" name="internetGatewayRuleId" arg="$properties.properties.internetGatewayRuleId"/>
+                    <prop nullable="True" type="ResourceId" name="internetGatewayRuleId" arg="$body.properties.internetGatewayRuleId"/>
                   </prop>
-                  <prop type="object" name="tags" arg="$properties.tags">
+                  <prop type="object" name="tags" arg="$body.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>

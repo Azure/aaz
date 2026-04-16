@@ -25,3 +25,14 @@ Get the list of restore point collections in the subscription. Use nextLink prop
     ```bash
         restore-point collection list-all
     ```
+
+### [2025-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlL3Jlc3RvcmVwb2ludGNvbGxlY3Rpb25z/2025-04-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.compute/restorepointcollections 2025-04-01 -->
+
+#### examples
+
+- Get the list of restore point collections in a subscription.
+    ```bash
+        restore-point collection list-all
+    ```

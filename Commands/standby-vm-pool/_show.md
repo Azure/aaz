@@ -29,3 +29,14 @@ Get a StandbyVirtualMachinePoolResource
 ### [2024-03-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zdGFuZGJ5cG9vbC9zdGFuZGJ5dmlydHVhbG1hY2hpbmVwb29scy97fQ==/2024-03-01-preview.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.standbypool/standbyvirtualmachinepools/{} 2024-03-01-preview -->
+
+### [2025-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zdGFuZGJ5cG9vbC9zdGFuZGJ5dmlydHVhbG1hY2hpbmVwb29scy97fQ==/2025-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.standbypool/standbyvirtualmachinepools/{} 2025-10-01 -->
+
+#### examples
+
+- StandbyVirtualMachinePools_Get
+    ```bash
+        standby-vm-pool show --resource-group rgstandbypool --name pool
+    ```

@@ -222,7 +222,7 @@
 : Manage Maintenance
 
 - [managedcleanroom](/Commands/managedcleanroom/readme.md)
-: Manage Clean Room
+: Manage Azure Confidential Clean Room
 
 - [managedservices](/Commands/managedservices/readme.md)
 : Manage the registration assignments and definitions in Azure.
@@ -376,6 +376,9 @@
 
 - [storagesync](/Commands/storagesync/readme.md)
 : Manage Azure File Sync.
+
+- [stream-analytics](/Commands/stream-analytics/readme.md)
+: Manage Stream Analytics
 
 - [support](/Commands/support/readme.md)
 : Manage Azure support resource.
