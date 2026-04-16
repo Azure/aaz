@@ -1,6 +1,6 @@
-# [Command] _file-shares get-usage-datum_
+# [Command] _fileshare usage-show_
 
-Get file shares usage data.
+Get file share usage data.
 
 ## Versions
 

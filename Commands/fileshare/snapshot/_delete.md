@@ -1,4 +1,4 @@
-# [Command] _file-shares file-share file-share-snapshot delete_
+# [Command] _fileshare snapshot delete_
 
 Delete a FileShareSnapshot.
 

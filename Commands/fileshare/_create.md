@@ -1,4 +1,4 @@
-# [Command] _file-shares file-share create_
+# [Command] _fileshare create_
 
 Create a file share.
 

@@ -1,20 +1,20 @@
-# [Group] _file-shares file-share file-share-snapshot_
+# [Group] _fileshare snapshot_
 
-Manage File Share Snapshot
+Manage file share snapshots
 
 ## Commands
 
-- [create](/Commands/file-shares/file-share/file-share-snapshot/_create.md)
-: Create a FileShareSnapshot.
+- [create](/Commands/fileshare/snapshot/_create.md)
+: Create a file share snapshot.
 
-- [delete](/Commands/file-shares/file-share/file-share-snapshot/_delete.md)
-: Delete a FileShareSnapshot.
+- [delete](/Commands/fileshare/snapshot/_delete.md)
+: Delete a file share snapshot.
 
-- [list](/Commands/file-shares/file-share/file-share-snapshot/_list.md)
-: List FileShareSnapshot by FileShare.
+- [list](/Commands/fileshare/snapshot/_list.md)
+: List file share snapshots.
 
-- [show](/Commands/file-shares/file-share/file-share-snapshot/_show.md)
-: Get a FileShareSnapshot
+- [show](/Commands/fileshare/snapshot/_show.md)
+: Get a file share snapshot.
 
-- [update](/Commands/file-shares/file-share/file-share-snapshot/_update.md)
-: Update a FileShareSnapshot.
+- [update](/Commands/fileshare/snapshot/_update.md)
+: Update a file share snapshot.

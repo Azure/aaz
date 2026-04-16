@@ -1,4 +1,4 @@
-# [Command] _file-shares file-share file-share-snapshot list_
+# [Command] _fileshare snapshot list_
 
 List FileShareSnapshot by FileShare.
 

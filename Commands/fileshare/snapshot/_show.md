@@ -1,4 +1,4 @@
-# [Command] _file-shares file-share file-share-snapshot show_
+# [Command] _fileshare snapshot show_
 
 Get a FileShareSnapshot
 

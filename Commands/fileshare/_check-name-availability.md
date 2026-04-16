@@ -1,4 +1,4 @@
-# [Command] _file-shares check-name-availability_
+# [Command] _fileshare check-name-availability_
 
 Implements local CheckNameAvailability operations
 

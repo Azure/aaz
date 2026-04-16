@@ -1,4 +1,4 @@
-# [Command] _file-shares file-share private-endpoint-connection create_
+# [Command] _fileshare private-endpoint-connection create_
 
 Create the state of specified private endpoint connection associated with the file share.
 

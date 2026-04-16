@@ -1,4 +1,4 @@
-# [Command] _file-shares file-share update_
+# [Command] _fileshare update_
 
 Update a FileShare
 

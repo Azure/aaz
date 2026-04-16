@@ -1,4 +1,4 @@
-# [Command] _file-shares file-share private-endpoint-connection show_
+# [Command] _fileshare private-endpoint-connection show_
 
 Get the specified private endpoint connection associated with the file share.
 

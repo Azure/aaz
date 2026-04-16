@@ -1,4 +1,4 @@
-# [Command] _file-shares file-share list_
+# [Command] _fileshare list_
 
 List FileShare resources by subscription ID
 

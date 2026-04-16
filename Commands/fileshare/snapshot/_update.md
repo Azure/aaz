@@ -1,4 +1,4 @@
-# [Command] _file-shares file-share file-share-snapshot update_
+# [Command] _fileshare snapshot update_
 
 Update a FileShareSnapshot.
 

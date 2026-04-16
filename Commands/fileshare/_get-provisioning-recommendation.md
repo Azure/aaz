@@ -1,4 +1,4 @@
-# [Command] _file-shares get-provisioning-recommendation_
+# [Command] _fileshare get-provisioning-recommendation_
 
 Get file shares provisioning parameters recommendation.
 

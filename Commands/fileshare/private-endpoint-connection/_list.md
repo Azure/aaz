@@ -1,4 +1,4 @@
-# [Command] _file-shares file-share private-endpoint-connection list_
+# [Command] _fileshare private-endpoint-connection list_
 
 List a PrivateEndpointConnection List.
 

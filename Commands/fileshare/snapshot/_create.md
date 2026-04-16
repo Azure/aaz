@@ -1,4 +1,4 @@
-# [Command] _file-shares file-share file-share-snapshot create_
+# [Command] _fileshare snapshot create_
 
 Create a FileShareSnapshot.
 

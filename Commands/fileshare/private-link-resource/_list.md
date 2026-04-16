@@ -1,4 +1,4 @@
-# [Command] _file-shares file-share private-link-resource list_
+# [Command] _fileshare private-link-resource list_
 
 List the private link resources that need to be created for a file share.
 

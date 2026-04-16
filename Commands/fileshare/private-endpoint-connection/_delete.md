@@ -1,4 +1,4 @@
-# [Command] _file-shares file-share private-endpoint-connection delete_
+# [Command] _fileshare private-endpoint-connection delete_
 
 Delete the specified private endpoint connection associated with the file share.
 

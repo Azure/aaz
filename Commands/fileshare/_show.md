@@ -1,4 +1,4 @@
-# [Command] _file-shares file-share show_
+# [Command] _fileshare show_
 
 Get a FileShare
 

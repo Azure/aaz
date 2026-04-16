@@ -1,4 +1,4 @@
-# [Command] _file-shares file-share delete_
+# [Command] _fileshare delete_
 
 Delete a FileShare
 

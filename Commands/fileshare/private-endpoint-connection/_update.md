@@ -1,4 +1,4 @@
-# [Command] _file-shares file-share private-endpoint-connection update_
+# [Command] _fileshare private-endpoint-connection update_
 
 Update the state of specified private endpoint connection associated with the file share.
 

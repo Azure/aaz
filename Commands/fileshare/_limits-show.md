@@ -1,6 +1,6 @@
-# [Command] _file-shares get-limit_
+# [Command] _fileshare limits-show_
 
-Get file shares limits.
+Get file share limits and provisioning constants.
 
 ## Versions
 
