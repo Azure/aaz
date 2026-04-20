@@ -12,18 +12,18 @@ Post List of Scheduled Events Acknowledgement
 
 - Acknowledge list of Scheduled Events on VirtualMachineScaleSets
     ```bash
-        maintenance scheduledevents list acknowledge --resource-group {resourceGroupName} --resource-type "virtualMachinesScaleSets" --resource-name {VMSSName} --subscription {subscriptionId} --value []
-        maintenance scheduledevents list acknowledge --ids /subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.compute/virtualMachineScaleSets/{VMSSName}/providers/microsoft.maintenance/scheduledevents --body "{value:[]}"
+        maintenance scheduledevents list acknowledge --resource-group {resourceGroupName} --resource-type "virtualMachinesScaleSets" --resource-name {VMSSName} --subscription {subscriptionId} --value ["scheduledEventsId1","scheduledEventsId2",..,"scheduledEventsIdN"]
+        maintenance scheduledevents list acknowledge --ids /subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.compute/virtualMachineScaleSets/{VMSSName}/providers/microsoft.maintenance/scheduledevents --body "{\"value\":[\"scheduledEventsId1\",\"scheduledEventsId2\",..,\"scheduledEventsIdN\"]}"
     ```
 
 - Acknowledge list of ScheduledEvents on AvailabilitySets
     ```bash
-        maintenance scheduledvents list acknowledge --resource-group {resourceGroupName} --resource-type "availabilitySets"--resource-name {AvSetname} --value []
-        maintenance scheduledevents list acknowledge --ids /subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.compute/availabilitySets/{AvSetName}/providers/microsoft.maintenance/scheduledevents --body "{value:[]}"
+        maintenance scheduledvents list acknowledge --resource-group {resourceGroupName} --resource-type "availabilitySets"--resource-name {AvSetname} --value ["scheduledEventsId1","scheduledEventsId2",..,"scheduledEventsIdN"]
+        maintenance scheduledevents list acknowledge --ids /subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.compute/availabilitySets/{AvSetName}/providers/microsoft.maintenance/scheduledevents --body "{\"value\":[\"scheduledEventsId1\",\"scheduledEventsId2\",..,\"scheduledEventsIdN\"]}"
     ```
 
 - Acknowledge a single Scheduled Events on VirtualMachine
     ```bash
-        maintenance scheduledevents list acknowledge --resource-group {resourceGroupName} --resource-type "virtualMachines" --resource-name {VMname} --value []
-        maintenance scheduledevents list acknowledge --ids /subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.compute/virtualMachines/{virtualMachineName}/providers/microsoft.maintenance/scheduledevents --body "{value:[]}"
+        maintenance scheduledevents list acknowledge --resource-group {resourceGroupName} --resource-type "virtualMachines" --resource-name {VMname} --value ["scheduledEventsId1","scheduledEventsId2",..,"scheduledEventsIdN"]
+        maintenance scheduledevents list acknowledge --ids /subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/microsoft.compute/virtualMachines/{virtualMachineName}/providers/microsoft.maintenance/scheduledevents --body "{\"value\":[\"scheduledEventsId1\",\"scheduledEventsId2\",..,\"scheduledEventsIdN\"]}"
     ```
