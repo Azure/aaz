@@ -7,6 +7,9 @@ Manage Azure Cloud Storage resources.
 - [account](/Commands/storage/account/readme.md)
 : Manage storage accounts.
 
+- [advanced-platform-metric](/Commands/storage/advanced-platform-metric/readme.md)
+: Manage Advanced Platform Metric
+
 - [blob](/Commands/storage/blob/readme.md)
 : Manage object storage for unstructured data (blobs).
 
