@@ -20,13 +20,16 @@
                 <format maxLength="128"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format pattern="^[a-zA-Z0-9_\-\(\)\.]*[^\.]$" maxLength="80" minLength="1"/>
+                <format maxLength="90" minLength="1"/>
               </param>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
                 <default value="&quot;2025-11-01&quot;"/>
+                <format minLength="1"/>
               </const>
             </query>
           </request>
@@ -129,11 +132,11 @@
                           <prop type="string" name="name">
                             <format maxLength="128"/>
                           </prop>
-                          <prop type="integer" name="priority" required="True"/>
-                          <prop type="integer" name="rateLimitDurationInMinutes">
+                          <prop type="integer32" name="priority" required="True"/>
+                          <prop type="integer32" name="rateLimitDurationInMinutes">
                             <format maximum="5" minimum="0"/>
                           </prop>
-                          <prop type="integer" name="rateLimitThreshold">
+                          <prop type="integer32" name="rateLimitThreshold">
                             <format minimum="0"/>
                           </prop>
                           <prop type="string" name="ruleType" required="True">
@@ -146,7 +149,7 @@
                       </prop>
                     </prop>
                     <prop readOnly="True" type="array<object>" name="frontendEndpointLinks">
-                      <item readOnly="True" type="object">
+                      <item type="object">
                         <prop type="string" name="id"/>
                       </item>
                     </prop>
@@ -164,12 +167,12 @@
                                 <item value="&quot;SocketAddr&quot;"/>
                               </enum>
                             </prop>
-                            <prop type="array<object>" name="scopes" required="True">
+                            <prop type="array<object>" name="scopes" required="True" identifiers="ruleSetVersion ruleSetType">
                               <item type="object">
-                                <prop type="array<object>" name="ruleGroupScopes">
+                                <prop type="array<object>" name="ruleGroupScopes" identifiers="ruleGroupName">
                                   <item type="object">
                                     <prop type="string" name="ruleGroupName" required="True"/>
-                                    <prop type="array<object>" name="ruleScopes">
+                                    <prop type="array<object>" name="ruleScopes" identifiers="ruleId">
                                       <item type="object">
                                         <prop type="string" name="ruleId" required="True"/>
                                       </item>
@@ -283,7 +286,7 @@
                       <prop type="string" name="customBlockResponseBody">
                         <format pattern="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$"/>
                       </prop>
-                      <prop type="integer" name="customBlockResponseStatusCode"/>
+                      <prop type="integer32" name="customBlockResponseStatusCode"/>
                       <prop type="string" name="enabledState">
                         <enum>
                           <item value="&quot;Disabled&quot;"/>
@@ -355,12 +358,12 @@
                       </enum>
                     </prop>
                     <prop readOnly="True" type="array<object>" name="routingRuleLinks">
-                      <item readOnly="True" type="object">
+                      <item type="object">
                         <prop type="string" name="id"/>
                       </item>
                     </prop>
                     <prop readOnly="True" type="array<object>" name="securityPolicyLinks">
-                      <item readOnly="True" type="object">
+                      <item type="object">
                         <prop type="string" name="id"/>
                       </item>
                     </prop>
@@ -406,7 +409,7 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <operation operationId="Policies_Delete">
-        <longRunning finalStateVia="azure-async-operation"/>
+        <longRunning finalStateVia="location"/>
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/FrontDoorWebApplicationFirewallPolicies/{policyName}">
           <request method="delete">
             <path>
@@ -414,23 +417,31 @@
                 <format maxLength="128"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format pattern="^[a-zA-Z0-9_\-\(\)\.]*[^\.]$" maxLength="80" minLength="1"/>
+                <format maxLength="90" minLength="1"/>
               </param>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
                 <default value="&quot;2025-11-01&quot;"/>
+                <format minLength="1"/>
               </const>
             </query>
           </request>
           <response statusCode="200"/>
-          <response statusCode="202"/>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
           <response statusCode="204"/>
           <response isError="True">
             <body>
               <json>
-                <schema type="@MgmtErrorFormat"/>
+                <schema type="@ODataV4Format"/>
               </json>
             </body>
           </response>
@@ -470,7 +481,7 @@
           <help short="If the action type is block, customer can override the response body. The body must be specified in base64 encoding."/>
           <format pattern="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$"/>
         </arg>
-        <arg type="integer" var="$parameters.properties.policySettings.customBlockResponseStatusCode" options="custom-block-response-status-code" group="PolicySettings">
+        <arg type="integer32" var="$parameters.properties.policySettings.customBlockResponseStatusCode" options="custom-block-response-status-code" group="PolicySettings">
           <help short="If the action type is block, customer can override the response status code."/>
         </arg>
         <arg type="string" var="$parameters.properties.policySettings.enabledState" options="enabled-state" group="PolicySettings">
@@ -651,14 +662,14 @@
                 <help short="Describes the name of the rule."/>
                 <format maxLength="128"/>
               </arg>
-              <arg type="integer" var="$parameters.properties.customRules.rules[].priority" options="priority" required="True">
+              <arg type="integer32" var="$parameters.properties.customRules.rules[].priority" options="priority" required="True">
                 <help short="Describes priority of the rule. Rules with a lower value will be evaluated before rules with a higher value."/>
               </arg>
-              <arg type="integer" var="$parameters.properties.customRules.rules[].rateLimitDurationInMinutes" options="rate-limit-duration-in-minutes">
+              <arg type="integer32" var="$parameters.properties.customRules.rules[].rateLimitDurationInMinutes" options="rate-limit-duration-in-minutes">
                 <help short="Time window for resetting the rate limit count. Default is 1 minute."/>
                 <format maximum="5" minimum="0"/>
               </arg>
-              <arg type="integer" var="$parameters.properties.customRules.rules[].rateLimitThreshold" options="rate-limit-threshold">
+              <arg type="integer32" var="$parameters.properties.customRules.rules[].rateLimitThreshold" options="rate-limit-threshold">
                 <help short="Number of allowed requests per client within the time window."/>
                 <format minimum="0"/>
               </arg>
@@ -677,7 +688,7 @@
           <arg type="object" var="$parameters.properties.managedRules.exceptionsList" options="exceptions-list">
             <help short="List of exceptions applied on the managed rule sets."/>
             <arg type="array<object>" var="$parameters.properties.managedRules.exceptionsList.exceptions" options="exceptions">
-              <help short="List of exceptions applied on the managed rule sets."/>
+              <help short="List of exceptions."/>
               <item type="object">
                 <arg type="array<string>" var="$parameters.properties.managedRules.exceptionsList.exceptions[].matchValues" options="match-values" required="True">
                   <help short="List of values to be matched with."/>
@@ -711,7 +722,7 @@
                       </item>
                     </arg>
                     <arg type="string" var="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes[].ruleSetType" options="rule-set-type" required="True">
-                      <help short="Defines the rule set type. Currently supports: DefaultRuleSet, Microsoft_DefaultRuleSet, Microsoft_BotManagerRuleSet, Microsoft_HTTPDDoSRuleSet, BotProtection"/>
+                      <help short="Defines the rule set type. Examples: DefaultRuleSet, Microsoft_DefaultRuleSet, Microsoft_BotManagerRuleSet, Microsoft_HTTPDDoSRuleSet, BotProtection"/>
                     </arg>
                     <arg type="string" var="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes[].ruleSetVersion" options="rule-set-version" required="True">
                       <help short="Defines the version of the rule set."/>
@@ -719,7 +730,7 @@
                   </item>
                 </arg>
                 <arg type="string" var="$parameters.properties.managedRules.exceptionsList.exceptions[].selector" options="selector">
-                  <help short="When matchVariable is a collection, operator used to specify which elements in the collection this exception applies to. Currently, the only matchVariable to support selector is 'RequestHeaderNames', and the selector value can be any HTTP request header, e.g 'User-Agent'."/>
+                  <help short="When matchVariable is a collection, operator used to specify which elements in the collection this exception applies to. Currently supported only for RequestHeaderNames."/>
                 </arg>
                 <arg type="string" var="$parameters.properties.managedRules.exceptionsList.exceptions[].selectorMatchOperator" options="selector-match-operator">
                   <help short="Comparison operator to apply to the selector when specifying which elements in the collection this exception applies to."/>
@@ -853,7 +864,7 @@
         </arg>
       </argGroup>
       <operation operationId="Policies_CreateOrUpdate">
-        <longRunning finalStateVia="azure-async-operation"/>
+        <longRunning finalStateVia="location"/>
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/FrontDoorWebApplicationFirewallPolicies/{policyName}">
           <request method="put">
             <path>
@@ -861,13 +872,16 @@
                 <format maxLength="128"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format pattern="^[a-zA-Z0-9_\-\(\)\.]*[^\.]$" maxLength="80" minLength="1"/>
+                <format maxLength="90" minLength="1"/>
               </param>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
                 <default value="&quot;2025-11-01&quot;"/>
+                <format minLength="1"/>
               </const>
             </query>
             <body>
@@ -964,11 +978,11 @@
                           <prop type="string" name="name" arg="$parameters.properties.customRules.rules[].name">
                             <format maxLength="128"/>
                           </prop>
-                          <prop type="integer" name="priority" arg="$parameters.properties.customRules.rules[].priority" required="True"/>
-                          <prop type="integer" name="rateLimitDurationInMinutes" arg="$parameters.properties.customRules.rules[].rateLimitDurationInMinutes">
+                          <prop type="integer32" name="priority" arg="$parameters.properties.customRules.rules[].priority" required="True"/>
+                          <prop type="integer32" name="rateLimitDurationInMinutes" arg="$parameters.properties.customRules.rules[].rateLimitDurationInMinutes">
                             <format maximum="5" minimum="0"/>
                           </prop>
-                          <prop type="integer" name="rateLimitThreshold" arg="$parameters.properties.customRules.rules[].rateLimitThreshold">
+                          <prop type="integer32" name="rateLimitThreshold" arg="$parameters.properties.customRules.rules[].rateLimitThreshold">
                             <format minimum="0"/>
                           </prop>
                           <prop type="string" name="ruleType" arg="$parameters.properties.customRules.rules[].ruleType" required="True">
@@ -994,12 +1008,12 @@
                                 <item value="&quot;SocketAddr&quot;"/>
                               </enum>
                             </prop>
-                            <prop type="array<object>" name="scopes" arg="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes" required="True">
+                            <prop type="array<object>" name="scopes" arg="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes" required="True" identifiers="ruleSetVersion ruleSetType">
                               <item type="object">
-                                <prop type="array<object>" name="ruleGroupScopes" arg="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes[].ruleGroupScopes">
+                                <prop type="array<object>" name="ruleGroupScopes" arg="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes[].ruleGroupScopes" identifiers="ruleGroupName">
                                   <item type="object">
                                     <prop type="string" name="ruleGroupName" arg="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes[].ruleGroupScopes[].ruleGroupName" required="True"/>
-                                    <prop type="array<object>" name="ruleScopes" arg="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes[].ruleGroupScopes[].ruleScopes">
+                                    <prop type="array<object>" name="ruleScopes" arg="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes[].ruleGroupScopes[].ruleScopes" identifiers="ruleId">
                                       <item type="object">
                                         <prop type="string" name="ruleId" arg="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes[].ruleGroupScopes[].ruleScopes[].ruleId" required="True"/>
                                       </item>
@@ -1113,7 +1127,7 @@
                       <prop type="string" name="customBlockResponseBody" arg="$parameters.properties.policySettings.customBlockResponseBody">
                         <format pattern="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$"/>
                       </prop>
-                      <prop type="integer" name="customBlockResponseStatusCode" arg="$parameters.properties.policySettings.customBlockResponseStatusCode"/>
+                      <prop type="integer32" name="customBlockResponseStatusCode" arg="$parameters.properties.policySettings.customBlockResponseStatusCode"/>
                       <prop type="string" name="enabledState" arg="$parameters.properties.policySettings.enabledState">
                         <enum>
                           <item value="&quot;Disabled&quot;"/>
@@ -1291,11 +1305,11 @@
                           <prop type="string" name="name">
                             <format maxLength="128"/>
                           </prop>
-                          <prop type="integer" name="priority" required="True"/>
-                          <prop type="integer" name="rateLimitDurationInMinutes">
+                          <prop type="integer32" name="priority" required="True"/>
+                          <prop type="integer32" name="rateLimitDurationInMinutes">
                             <format maximum="5" minimum="0"/>
                           </prop>
-                          <prop type="integer" name="rateLimitThreshold">
+                          <prop type="integer32" name="rateLimitThreshold">
                             <format minimum="0"/>
                           </prop>
                           <prop type="string" name="ruleType" required="True">
@@ -1308,7 +1322,7 @@
                       </prop>
                     </prop>
                     <prop readOnly="True" type="array<object>" name="frontendEndpointLinks">
-                      <item readOnly="True" type="object">
+                      <item type="object">
                         <prop type="string" name="id"/>
                       </item>
                     </prop>
@@ -1326,12 +1340,12 @@
                                 <item value="&quot;SocketAddr&quot;"/>
                               </enum>
                             </prop>
-                            <prop type="array<object>" name="scopes" required="True">
+                            <prop type="array<object>" name="scopes" required="True" identifiers="ruleSetVersion ruleSetType">
                               <item type="object">
-                                <prop type="array<object>" name="ruleGroupScopes">
+                                <prop type="array<object>" name="ruleGroupScopes" identifiers="ruleGroupName">
                                   <item type="object">
                                     <prop type="string" name="ruleGroupName" required="True"/>
-                                    <prop type="array<object>" name="ruleScopes">
+                                    <prop type="array<object>" name="ruleScopes" identifiers="ruleId">
                                       <item type="object">
                                         <prop type="string" name="ruleId" required="True"/>
                                       </item>
@@ -1445,7 +1459,7 @@
                       <prop type="string" name="customBlockResponseBody">
                         <format pattern="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$"/>
                       </prop>
-                      <prop type="integer" name="customBlockResponseStatusCode"/>
+                      <prop type="integer32" name="customBlockResponseStatusCode"/>
                       <prop type="string" name="enabledState">
                         <enum>
                           <item value="&quot;Disabled&quot;"/>
@@ -1517,12 +1531,12 @@
                       </enum>
                     </prop>
                     <prop readOnly="True" type="array<object>" name="routingRuleLinks">
-                      <item readOnly="True" type="object">
+                      <item type="object">
                         <prop type="string" name="id"/>
                       </item>
                     </prop>
                     <prop readOnly="True" type="array<object>" name="securityPolicyLinks">
-                      <item readOnly="True" type="object">
+                      <item type="object">
                         <prop type="string" name="id"/>
                       </item>
                     </prop>
@@ -1547,6 +1561,10 @@
             </body>
           </response>
           <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
             <body>
               <json var="$Instance">
                 <schema type="@WebApplicationFirewallPolicy_read"/>
@@ -1597,7 +1615,7 @@
           <help short="If the action type is block, customer can override the response body. The body must be specified in base64 encoding."/>
           <format pattern="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$"/>
         </arg>
-        <arg nullable="True" type="integer" var="$parameters.properties.policySettings.customBlockResponseStatusCode" options="custom-block-response-status-code" group="PolicySettings">
+        <arg nullable="True" type="integer32" var="$parameters.properties.policySettings.customBlockResponseStatusCode" options="custom-block-response-status-code" group="PolicySettings">
           <help short="If the action type is block, customer can override the response status code."/>
         </arg>
         <arg nullable="True" type="string" var="$parameters.properties.policySettings.enabledState" options="enabled-state" group="PolicySettings">
@@ -1778,14 +1796,14 @@
                 <help short="Describes the name of the rule."/>
                 <format maxLength="128"/>
               </arg>
-              <arg type="integer" var="$parameters.properties.customRules.rules[].priority" options="priority">
+              <arg type="integer32" var="$parameters.properties.customRules.rules[].priority" options="priority">
                 <help short="Describes priority of the rule. Rules with a lower value will be evaluated before rules with a higher value."/>
               </arg>
-              <arg nullable="True" type="integer" var="$parameters.properties.customRules.rules[].rateLimitDurationInMinutes" options="rate-limit-duration-in-minutes">
+              <arg nullable="True" type="integer32" var="$parameters.properties.customRules.rules[].rateLimitDurationInMinutes" options="rate-limit-duration-in-minutes">
                 <help short="Time window for resetting the rate limit count. Default is 1 minute."/>
                 <format maximum="5" minimum="0"/>
               </arg>
-              <arg nullable="True" type="integer" var="$parameters.properties.customRules.rules[].rateLimitThreshold" options="rate-limit-threshold">
+              <arg nullable="True" type="integer32" var="$parameters.properties.customRules.rules[].rateLimitThreshold" options="rate-limit-threshold">
                 <help short="Number of allowed requests per client within the time window."/>
                 <format minimum="0"/>
               </arg>
@@ -1804,7 +1822,7 @@
           <arg nullable="True" type="object" var="$parameters.properties.managedRules.exceptionsList" options="exceptions-list">
             <help short="List of exceptions applied on the managed rule sets."/>
             <arg nullable="True" type="array<object>" var="$parameters.properties.managedRules.exceptionsList.exceptions" options="exceptions">
-              <help short="List of exceptions applied on the managed rule sets."/>
+              <help short="List of exceptions."/>
               <item nullable="True" type="object">
                 <arg type="array<string>" var="$parameters.properties.managedRules.exceptionsList.exceptions[].matchValues" options="match-values">
                   <help short="List of values to be matched with."/>
@@ -1838,7 +1856,7 @@
                       </item>
                     </arg>
                     <arg type="string" var="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes[].ruleSetType" options="rule-set-type">
-                      <help short="Defines the rule set type. Currently supports: DefaultRuleSet, Microsoft_DefaultRuleSet, Microsoft_BotManagerRuleSet, Microsoft_HTTPDDoSRuleSet, BotProtection"/>
+                      <help short="Defines the rule set type. Examples: DefaultRuleSet, Microsoft_DefaultRuleSet, Microsoft_BotManagerRuleSet, Microsoft_HTTPDDoSRuleSet, BotProtection"/>
                     </arg>
                     <arg type="string" var="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes[].ruleSetVersion" options="rule-set-version">
                       <help short="Defines the version of the rule set."/>
@@ -1846,7 +1864,7 @@
                   </item>
                 </arg>
                 <arg nullable="True" type="string" var="$parameters.properties.managedRules.exceptionsList.exceptions[].selector" options="selector">
-                  <help short="When matchVariable is a collection, operator used to specify which elements in the collection this exception applies to. Currently, the only matchVariable to support selector is 'RequestHeaderNames', and the selector value can be any HTTP request header, e.g 'User-Agent'."/>
+                  <help short="When matchVariable is a collection, operator used to specify which elements in the collection this exception applies to. Currently supported only for RequestHeaderNames."/>
                 </arg>
                 <arg nullable="True" type="string" var="$parameters.properties.managedRules.exceptionsList.exceptions[].selectorMatchOperator" options="selector-match-operator">
                   <help short="Comparison operator to apply to the selector when specifying which elements in the collection this exception applies to."/>
@@ -1986,13 +2004,16 @@
                 <format maxLength="128"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format pattern="^[a-zA-Z0-9_\-\(\)\.]*[^\.]$" maxLength="80" minLength="1"/>
+                <format maxLength="90" minLength="1"/>
               </param>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
                 <default value="&quot;2025-11-01&quot;"/>
+                <format minLength="1"/>
               </const>
             </query>
           </request>
@@ -2095,11 +2116,11 @@
                           <prop type="string" name="name">
                             <format maxLength="128"/>
                           </prop>
-                          <prop type="integer" name="priority" required="True"/>
-                          <prop type="integer" name="rateLimitDurationInMinutes">
+                          <prop type="integer32" name="priority" required="True"/>
+                          <prop type="integer32" name="rateLimitDurationInMinutes">
                             <format maximum="5" minimum="0"/>
                           </prop>
-                          <prop type="integer" name="rateLimitThreshold">
+                          <prop type="integer32" name="rateLimitThreshold">
                             <format minimum="0"/>
                           </prop>
                           <prop type="string" name="ruleType" required="True">
@@ -2112,7 +2133,7 @@
                       </prop>
                     </prop>
                     <prop readOnly="True" type="array<object>" name="frontendEndpointLinks">
-                      <item readOnly="True" type="object">
+                      <item type="object">
                         <prop type="string" name="id"/>
                       </item>
                     </prop>
@@ -2130,12 +2151,12 @@
                                 <item value="&quot;SocketAddr&quot;"/>
                               </enum>
                             </prop>
-                            <prop type="array<object>" name="scopes" required="True">
+                            <prop type="array<object>" name="scopes" required="True" identifiers="ruleSetVersion ruleSetType">
                               <item type="object">
-                                <prop type="array<object>" name="ruleGroupScopes">
+                                <prop type="array<object>" name="ruleGroupScopes" identifiers="ruleGroupName">
                                   <item type="object">
                                     <prop type="string" name="ruleGroupName" required="True"/>
-                                    <prop type="array<object>" name="ruleScopes">
+                                    <prop type="array<object>" name="ruleScopes" identifiers="ruleId">
                                       <item type="object">
                                         <prop type="string" name="ruleId" required="True"/>
                                       </item>
@@ -2249,7 +2270,7 @@
                       <prop type="string" name="customBlockResponseBody">
                         <format pattern="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$"/>
                       </prop>
-                      <prop type="integer" name="customBlockResponseStatusCode"/>
+                      <prop type="integer32" name="customBlockResponseStatusCode"/>
                       <prop type="string" name="enabledState">
                         <enum>
                           <item value="&quot;Disabled&quot;"/>
@@ -2321,12 +2342,12 @@
                       </enum>
                     </prop>
                     <prop readOnly="True" type="array<object>" name="routingRuleLinks">
-                      <item readOnly="True" type="object">
+                      <item type="object">
                         <prop type="string" name="id"/>
                       </item>
                     </prop>
                     <prop readOnly="True" type="array<object>" name="securityPolicyLinks">
-                      <item readOnly="True" type="object">
+                      <item type="object">
                         <prop type="string" name="id"/>
                       </item>
                     </prop>
@@ -2454,11 +2475,11 @@
                       <prop type="string" name="name" arg="$parameters.properties.customRules.rules[].name">
                         <format maxLength="128"/>
                       </prop>
-                      <prop type="integer" name="priority" arg="$parameters.properties.customRules.rules[].priority" required="True"/>
-                      <prop type="integer" name="rateLimitDurationInMinutes" arg="$parameters.properties.customRules.rules[].rateLimitDurationInMinutes">
+                      <prop type="integer32" name="priority" arg="$parameters.properties.customRules.rules[].priority" required="True"/>
+                      <prop type="integer32" name="rateLimitDurationInMinutes" arg="$parameters.properties.customRules.rules[].rateLimitDurationInMinutes">
                         <format maximum="5" minimum="0"/>
                       </prop>
-                      <prop type="integer" name="rateLimitThreshold" arg="$parameters.properties.customRules.rules[].rateLimitThreshold">
+                      <prop type="integer32" name="rateLimitThreshold" arg="$parameters.properties.customRules.rules[].rateLimitThreshold">
                         <format minimum="0"/>
                       </prop>
                       <prop type="string" name="ruleType" arg="$parameters.properties.customRules.rules[].ruleType" required="True">
@@ -2484,12 +2505,12 @@
                             <item value="&quot;SocketAddr&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="array<object>" name="scopes" arg="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes" required="True">
+                        <prop type="array<object>" name="scopes" arg="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes" required="True" identifiers="ruleSetVersion ruleSetType">
                           <item type="object">
-                            <prop type="array<object>" name="ruleGroupScopes" arg="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes[].ruleGroupScopes">
+                            <prop type="array<object>" name="ruleGroupScopes" arg="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes[].ruleGroupScopes" identifiers="ruleGroupName">
                               <item type="object">
                                 <prop type="string" name="ruleGroupName" arg="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes[].ruleGroupScopes[].ruleGroupName" required="True"/>
-                                <prop type="array<object>" name="ruleScopes" arg="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes[].ruleGroupScopes[].ruleScopes">
+                                <prop type="array<object>" name="ruleScopes" arg="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes[].ruleGroupScopes[].ruleScopes" identifiers="ruleId">
                                   <item type="object">
                                     <prop type="string" name="ruleId" arg="$parameters.properties.managedRules.exceptionsList.exceptions[].scopes[].ruleGroupScopes[].ruleScopes[].ruleId" required="True"/>
                                   </item>
@@ -2603,7 +2624,7 @@
                   <prop type="string" name="customBlockResponseBody" arg="$parameters.properties.policySettings.customBlockResponseBody">
                     <format pattern="^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=|[A-Za-z0-9+/]{4})$"/>
                   </prop>
-                  <prop type="integer" name="customBlockResponseStatusCode" arg="$parameters.properties.policySettings.customBlockResponseStatusCode"/>
+                  <prop type="integer32" name="customBlockResponseStatusCode" arg="$parameters.properties.policySettings.customBlockResponseStatusCode"/>
                   <prop type="string" name="enabledState" arg="$parameters.properties.policySettings.enabledState">
                     <enum>
                       <item value="&quot;Disabled&quot;"/>
@@ -2683,7 +2704,7 @@
         </instanceUpdate>
       </operation>
       <operation operationId="Policies_CreateOrUpdate">
-        <longRunning finalStateVia="azure-async-operation"/>
+        <longRunning finalStateVia="location"/>
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/FrontDoorWebApplicationFirewallPolicies/{policyName}">
           <request method="put">
             <path>
@@ -2691,13 +2712,16 @@
                 <format maxLength="128"/>
               </param>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format pattern="^[a-zA-Z0-9_\-\(\)\.]*[^\.]$" maxLength="80" minLength="1"/>
+                <format maxLength="90" minLength="1"/>
               </param>
-              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
                 <default value="&quot;2025-11-01&quot;"/>
+                <format minLength="1"/>
               </const>
             </query>
             <body>
@@ -2712,6 +2736,10 @@
             </body>
           </response>
           <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
             <body>
               <json var="$Instance">
                 <schema type="@WebApplicationFirewallPolicy_read"/>
