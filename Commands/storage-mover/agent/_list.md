@@ -1,6 +1,6 @@
 # [Command] _storage-mover agent list_
 
-Lists all Agents in a Storage Mover.
+List all Agents in a Storage Mover.
 
 ## Versions
 
@@ -47,3 +47,7 @@ Lists all Agents in a Storage Mover.
     ```bash
         storage-mover agent list -g {rg} --storage-mover-name {mover_name}
     ```
+
+### [2025-12-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zdG9yYWdlbW92ZXIvc3RvcmFnZW1vdmVycy97fS9hZ2VudHM=/2025-12-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.storagemover/storagemovers/{}/agents 2025-12-01 -->

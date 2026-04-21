@@ -1,6 +1,6 @@
 # [Command] _storage-mover list_
 
-Lists all Storage Movers in a subscription.
+List all Storage Movers in a subscription.
 
 ## Versions
 
@@ -51,3 +51,8 @@ Lists all Storage Movers in a subscription.
     ```bash
         storage-mover list -g {rg}
     ```
+
+### [2025-12-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zdG9yYWdlbW92ZXIvc3RvcmFnZW1vdmVycw==/2025-12-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.storagemover/storagemovers 2025-12-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.storagemover/storagemovers 2025-12-01 -->

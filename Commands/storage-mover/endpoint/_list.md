@@ -1,6 +1,6 @@
 # [Command] _storage-mover endpoint list_
 
-Lists all Endpoints in a Storage Mover.
+List all Endpoints in a Storage Mover.
 
 ## Versions
 
@@ -47,3 +47,7 @@ Lists all Endpoints in a Storage Mover.
     ```bash
         storage-mover endpoint list -g {rg} --storage-mover-name {mover_name}
     ```
+
+### [2025-12-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zdG9yYWdlbW92ZXIvc3RvcmFnZW1vdmVycy97fS9lbmRwb2ludHM=/2025-12-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.storagemover/storagemovers/{}/endpoints 2025-12-01 -->

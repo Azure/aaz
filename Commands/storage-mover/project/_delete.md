@@ -1,6 +1,6 @@
 # [Command] _storage-mover project delete_
 
-Deletes a Project resource.
+Delete a Project resource.
 
 ## Versions
 
@@ -47,3 +47,7 @@ Deletes a Project resource.
     ```bash
         storage-mover project delete -g {rg} --storage-mover-name {mover_name} -n {project_name}
     ```
+
+### [2025-12-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zdG9yYWdlbW92ZXIvc3RvcmFnZW1vdmVycy97fS9wcm9qZWN0cy97fQ==/2025-12-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.storagemover/storagemovers/{}/projects/{} 2025-12-01 -->
