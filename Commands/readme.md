@@ -302,6 +302,9 @@
 - [redisenterprise](/Commands/redisenterprise/readme.md)
 : Manage the redisenterprise cache
 
+- [relationship](/Commands/relationship/readme.md)
+: Manage Relationships
+
 - [relay](/Commands/relay/readme.md)
 : Manage Azure Relay Service namespaces, WCF relays, hybrid connections, and rules.
 
