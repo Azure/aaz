@@ -329,6 +329,9 @@
 - [sentinel](/Commands/sentinel/readme.md)
 : Manage Microsoft Sentinel.
 
+- [service-group](/Commands/service-group/readme.md)
+: Manage Service Group
+
 - [service-networking](/Commands/service-networking/readme.md)
 : Manage Service Networking Resources
 
