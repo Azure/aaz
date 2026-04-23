@@ -176,6 +176,9 @@
 - [eventhubs](/Commands/eventhubs/readme.md)
 : Manage Event Hub
 
+- [fileshare](/Commands/fileshare/readme.md)
+: Manage Azure File Shares.
+
 - [firmwareanalysis](/Commands/firmwareanalysis/readme.md)
 : Commands to manage firmware analysis.
 
