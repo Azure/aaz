@@ -302,6 +302,9 @@
 - [redisenterprise](/Commands/redisenterprise/readme.md)
 : Manage the redisenterprise cache
 
+- [relationship](/Commands/relationship/readme.md)
+: Manage Relationships
+
 - [relay](/Commands/relay/readme.md)
 : Manage Azure Relay Service namespaces, WCF relays, hybrid connections, and rules.
 
@@ -328,6 +331,9 @@
 
 - [sentinel](/Commands/sentinel/readme.md)
 : Manage Microsoft Sentinel.
+
+- [service-group](/Commands/service-group/readme.md)
+: Manage Service Group
 
 - [service-networking](/Commands/service-networking/readme.md)
 : Manage Service Networking Resources
