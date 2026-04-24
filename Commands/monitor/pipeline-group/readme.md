@@ -1,6 +1,6 @@
 # [Group] _monitor pipeline-group_
 
-Manage Pipeline Groups
+Manage Azure Monitor Pipelines
 
 ## Commands
 
