@@ -18,5 +18,22 @@ List all the Network Bootstrap Device resources in a given subscription.
 
 - List the Bootstrap Device for Resource Group
     ```bash
-        networkfabric bootstrapdevice list --resource-group example-rg
+        networkfabric bootstrapdevice list -resource-group example-rg
+    ```
+
+### [2026-01-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrYm9vdHN0cmFwZGV2aWNlcw==/2026-01-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.managednetworkfabric/networkbootstrapdevices 2026-01-15-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkbootstrapdevices 2026-01-15-preview -->
+
+#### examples
+
+- List the Bootstrap Device for Subscription
+    ```bash
+        networkfabric bootstrapdevice list --subscription <subscriptionId>
+    ```
+
+- List the Bootstrap Device for Resource Group
+    ```bash
+        networkfabric bootstrapdevice list -resource-group example-rg
     ```

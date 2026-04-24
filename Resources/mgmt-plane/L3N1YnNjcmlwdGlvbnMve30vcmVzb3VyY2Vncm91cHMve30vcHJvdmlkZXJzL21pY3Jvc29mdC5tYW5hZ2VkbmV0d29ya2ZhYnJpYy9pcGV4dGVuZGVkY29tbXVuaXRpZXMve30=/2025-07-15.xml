@@ -202,41 +202,41 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Body">
-        <arg type="ResourceLocation" var="$body.location" options="location l" required="True" group="Body">
-          <help short="The geo-location where the resource lives"/>
-        </arg>
-        <arg type="object" var="$body.tags" options="tags" group="Body">
-          <help short="Resource tags."/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
-        </arg>
-      </argGroup>
       <argGroup name="Properties">
-        <arg type="string" var="$body.properties.annotation" options="annotation" group="Properties">
+        <arg type="string" var="$resource.properties.annotation" options="annotation" group="Properties">
           <help short="Switch configuration description."/>
         </arg>
-        <arg type="array<object>" var="$body.properties.ipExtendedCommunityRules" options="ip-extended-community-rules ip-ext-community-rules" required="True" group="Properties">
+        <arg type="array<object>" var="$resource.properties.ipExtendedCommunityRules" options="ip-extended-community-rules ip-ext-community-rules" required="True" group="Properties">
           <help short="List of IP Extended Community Rules."/>
           <item type="object">
-            <arg type="string" var="$body.properties.ipExtendedCommunityRules[].action" options="action" required="True">
+            <arg type="string" var="$resource.properties.ipExtendedCommunityRules[].action" options="action" required="True">
               <help short="Action to be taken on the configuration. Example: Permit | Deny."/>
               <enum>
                 <item name="Deny" value="&quot;Deny&quot;"/>
                 <item name="Permit" value="&quot;Permit&quot;"/>
               </enum>
             </arg>
-            <arg type="array<string>" var="$body.properties.ipExtendedCommunityRules[].routeTargets" options="route-targets" required="True">
+            <arg type="array<string>" var="$resource.properties.ipExtendedCommunityRules[].routeTargets" options="route-targets" required="True">
               <help short="Route Target List.The expected formats are ASN(plain):NN >> example 4294967294:50, ASN.ASN:NN >> example 65533.65333:40, IP-address:NN >> example 10.10.10.10:65535. The possible values of ASN,NN are in range of 0-65535, ASN(plain) is in range of 0-4294967295."/>
               <format minLength="1"/>
               <item type="string"/>
             </arg>
-            <arg type="integer64" var="$body.properties.ipExtendedCommunityRules[].sequenceNumber" options="sequence-number" required="True">
+            <arg type="integer64" var="$resource.properties.ipExtendedCommunityRules[].sequenceNumber" options="sequence-number" required="True">
               <help short="Sequence to insert to/delete from existing route. Prefix lists are evaluated starting with the lowest sequence number and continue down the list until a match is made. Once a match is made, the permit or deny statement is applied to that network and the rest of the list is ignored."/>
               <format maximum="4294967295" minimum="1"/>
             </arg>
           </item>
+        </arg>
+      </argGroup>
+      <argGroup name="Resource">
+        <arg type="ResourceLocation" var="$resource.location" options="location l" required="True" group="Resource">
+          <help short="The geo-location where the resource lives"/>
+        </arg>
+        <arg type="object" var="$resource.tags" options="tags" group="Resource">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
         </arg>
       </argGroup>
       <operation operationId="IpExtendedCommunities_Create">
@@ -260,29 +260,29 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="body" required="True" clientFlatten="True">
-                  <prop type="ResourceLocation" name="location" arg="$body.location" required="True"/>
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
                   <prop type="object" name="properties" required="True" clientFlatten="True">
-                    <prop type="string" name="annotation" arg="$body.properties.annotation"/>
-                    <prop type="array<object>" name="ipExtendedCommunityRules" arg="$body.properties.ipExtendedCommunityRules" required="True">
+                    <prop type="string" name="annotation" arg="$resource.properties.annotation"/>
+                    <prop type="array<object>" name="ipExtendedCommunityRules" arg="$resource.properties.ipExtendedCommunityRules" required="True">
                       <item type="object">
-                        <prop type="string" name="action" arg="$body.properties.ipExtendedCommunityRules[].action" required="True">
+                        <prop type="string" name="action" arg="$resource.properties.ipExtendedCommunityRules[].action" required="True">
                           <enum>
                             <item value="&quot;Deny&quot;"/>
                             <item value="&quot;Permit&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="array<string>" name="routeTargets" arg="$body.properties.ipExtendedCommunityRules[].routeTargets" required="True">
+                        <prop type="array<string>" name="routeTargets" arg="$resource.properties.ipExtendedCommunityRules[].routeTargets" required="True">
                           <format minLength="1"/>
                           <item type="string"/>
                         </prop>
-                        <prop type="integer64" name="sequenceNumber" arg="$body.properties.ipExtendedCommunityRules[].sequenceNumber" required="True">
+                        <prop type="integer64" name="sequenceNumber" arg="$resource.properties.ipExtendedCommunityRules[].sequenceNumber" required="True">
                           <format maximum="4294967295" minimum="1"/>
                         </prop>
                       </item>
                     </prop>
                   </prop>
-                  <prop type="object" name="tags" arg="$body.tags">
+                  <prop type="object" name="tags" arg="$resource.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>
@@ -414,38 +414,36 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Body">
-        <arg type="object" var="$body.tags" options="tags" group="Body">
-          <help short="Resource tags."/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
-        </arg>
-      </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="string" var="$body.properties.annotation" options="annotation" group="Properties">
+        <arg nullable="True" type="string" var="$properties.properties.annotation" options="annotation" group="Properties">
           <help short="Switch configuration description."/>
         </arg>
-        <arg nullable="True" type="array<object>" var="$body.properties.ipExtendedCommunityRules" options="ip-extended-community-rules ip-ext-community-rules" group="Properties">
+        <arg nullable="True" type="array<object>" var="$properties.properties.ipExtendedCommunityRules" options="ip-extended-community-rules ip-ext-community-rules" group="Properties">
           <help short="List of IP Extended Community Rules."/>
           <item type="object">
-            <arg type="string" var="$body.properties.ipExtendedCommunityRules[].action" options="action" required="True">
+            <arg type="string" var="$properties.properties.ipExtendedCommunityRules[].action" options="action" required="True">
               <help short="Action to be taken on the configuration. Example: Permit | Deny."/>
               <enum>
                 <item name="Deny" value="&quot;Deny&quot;"/>
                 <item name="Permit" value="&quot;Permit&quot;"/>
               </enum>
             </arg>
-            <arg type="array<string>" var="$body.properties.ipExtendedCommunityRules[].routeTargets" options="route-targets" required="True">
+            <arg type="array<string>" var="$properties.properties.ipExtendedCommunityRules[].routeTargets" options="route-targets" required="True">
               <help short="Route Target List.The expected formats are ASN(plain):NN >> example 4294967294:50, ASN.ASN:NN >> example 65533.65333:40, IP-address:NN >> example 10.10.10.10:65535. The possible values of ASN,NN are in range of 0-65535, ASN(plain) is in range of 0-4294967295."/>
               <format minLength="1"/>
               <item type="string"/>
             </arg>
-            <arg type="integer64" var="$body.properties.ipExtendedCommunityRules[].sequenceNumber" options="sequence-number" required="True">
+            <arg type="integer64" var="$properties.properties.ipExtendedCommunityRules[].sequenceNumber" options="sequence-number" required="True">
               <help short="Sequence to insert to/delete from existing route. Prefix lists are evaluated starting with the lowest sequence number and continue down the list until a match is made. Once a match is made, the permit or deny statement is applied to that network and the rest of the list is ignored."/>
               <format maximum="4294967295" minimum="1"/>
             </arg>
           </item>
+        </arg>
+        <arg type="object" var="$properties.tags" options="tags" group="Properties">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
         </arg>
       </argGroup>
       <operation operationId="IpExtendedCommunities_Update">
@@ -469,28 +467,28 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="body" required="True" clientFlatten="True">
+                <schema type="object" name="properties" required="True" clientFlatten="True">
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop nullable="True" type="string" name="annotation" arg="$body.properties.annotation"/>
-                    <prop nullable="True" type="array<object>" name="ipExtendedCommunityRules" arg="$body.properties.ipExtendedCommunityRules">
+                    <prop nullable="True" type="string" name="annotation" arg="$properties.properties.annotation"/>
+                    <prop nullable="True" type="array<object>" name="ipExtendedCommunityRules" arg="$properties.properties.ipExtendedCommunityRules">
                       <item type="object">
-                        <prop type="string" name="action" arg="$body.properties.ipExtendedCommunityRules[].action" required="True">
+                        <prop type="string" name="action" arg="$properties.properties.ipExtendedCommunityRules[].action" required="True">
                           <enum>
                             <item value="&quot;Deny&quot;"/>
                             <item value="&quot;Permit&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="array<string>" name="routeTargets" arg="$body.properties.ipExtendedCommunityRules[].routeTargets" required="True">
+                        <prop type="array<string>" name="routeTargets" arg="$properties.properties.ipExtendedCommunityRules[].routeTargets" required="True">
                           <format minLength="1"/>
                           <item type="string"/>
                         </prop>
-                        <prop type="integer64" name="sequenceNumber" arg="$body.properties.ipExtendedCommunityRules[].sequenceNumber" required="True">
+                        <prop type="integer64" name="sequenceNumber" arg="$properties.properties.ipExtendedCommunityRules[].sequenceNumber" required="True">
                           <format maximum="4294967295" minimum="1"/>
                         </prop>
                       </item>
                     </prop>
                   </prop>
-                  <prop type="object" name="tags" arg="$body.tags">
+                  <prop type="object" name="tags" arg="$properties.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>

@@ -33,3 +33,14 @@ Upgrades the version of the underlying resources in the given Network Fabric ins
     ```bash
         networkfabric fabric upgrade --resource-group example-rg --resource-name example-fabric --version 3.x.x --action Start
     ```
+
+### [2026-01-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrZmFicmljcy97fS91cGdyYWRl/2026-01-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkfabrics/{}/upgrade 2026-01-15-preview -->
+
+#### examples
+
+- Upgrade the Network Fabric
+    ```bash
+        networkfabric fabric upgrade --resource-group example-rg --resource-name example-fabric --version 3.x.x --action Start
+    ```
