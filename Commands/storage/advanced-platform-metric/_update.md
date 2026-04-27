@@ -12,5 +12,5 @@ Update the advanced platform metrics rule for the storage account.
 
 - Update advanced platform metrics rule
     ```bash
-        storage advanced-platform-metric create -g resource_group_name --account-name storage_account_name --enabled --rule-config-filter-type AllContainersFilter
+        storage advanced-platform-metric update -g resource_group_name --account-name storage_account_name --enabled --rule-config-filter-type AllContainersFilter
     ```

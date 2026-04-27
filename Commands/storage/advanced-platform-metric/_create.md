@@ -17,10 +17,10 @@ Create the advanced platform metrics rule for the storage account.
 
 - Create ContainerPrefixFilter AdvancedPlatformMetric
     ```bash
-        storage advanced-platform-metric create -g resource_group_name --account-name storage_account_name --enabled --rule-config-filter-type ContainerPrefixFilter --rule-config-filter-value logsprefix dataprefix
+        storage advanced-platform-metric create -g resource_group_name --account-name storage_account_name --enabled --rule-config-filter-type ContainerPrefixFilter --rule-config-filter-values logsprefix dataprefix
     ```
 
 - Create ContainerListFilter AdvancedPlatformMetric
     ```bash
-        storage advanced-platform-metric create -g resource_group_name --account-name storage_account_name --enabled --rule-config-filter-type ContainerListFilter --rule-config-filter-value logs data
+        storage advanced-platform-metric create -g resource_group_name --account-name storage_account_name --enabled --rule-config-filter-type ContainerListFilter --rule-config-filter-values logs data
     ```
