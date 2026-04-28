@@ -1,6 +1,6 @@
 # [Group] _spatio_
 
-Manage Spatio
+Manage Planetary Computer resources
 
 ## Subgroups
 

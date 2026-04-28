@@ -348,7 +348,7 @@
 : Manage spatial anchor account with mixed reality.
 
 - [spatio](/Commands/spatio/readme.md)
-: Manage Spatio
+: Manage Planetary Computer resources
 
 - [sql](/Commands/sql/readme.md)
 : Manage Azure SQL Databases and Data Warehouses.
@@ -360,10 +360,10 @@
 : Manage Azure Stack HCI.
 
 - [standby-container-group-pool](/Commands/standby-container-group-pool/readme.md)
-: Standby Container Group Pool Operations
+: Manage Standby Container Group Pool
 
 - [standby-vm-pool](/Commands/standby-vm-pool/readme.md)
-: Standby Virtual Machine Pool Operations
+: Manage Standby Virtual Machine Pool
 
 - [storage](/Commands/storage/readme.md)
 : Manage Azure Cloud Storage resources.
