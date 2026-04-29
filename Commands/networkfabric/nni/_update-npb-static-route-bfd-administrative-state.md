@@ -14,3 +14,14 @@ Updates the NPB Static Route BFD Administrative State.
     ```bash
         networkfabric nni update-npb-static-route-bfd-administrative-state --resource-group example-rg --fabric example-fabric --resource-name example-nni --state Enable --resource-ids "[]"
     ```
+
+### [2026-01-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrZmFicmljcy97fS9uZXR3b3JrdG9uZXR3b3JraW50ZXJjb25uZWN0cy97fS91cGRhdGVucGJzdGF0aWNyb3V0ZWJmZGFkbWluaXN0cmF0aXZlc3RhdGU=/2026-01-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkfabrics/{}/networktonetworkinterconnects/{}/updatenpbstaticroutebfdadministrativestate 2026-01-15-preview -->
+
+#### examples
+
+- Update the NPB Static Route BFD Admin State of the the resource
+    ```bash
+        networkfabric nni update-npb-static-route-bfd-administrative-state --resource-group example-rg --fabric example-fabric --resource-name example-nni --state Enable --resource-ids "[]"
+    ```

@@ -37,3 +37,14 @@ Create a Network Interface resource.
     ```bash
         networkfabric interface create --resource-group example-rg --network-device-name example-device --resource-name example-interface --annotation annotation --description device 1 --additional-description device 1
     ```
+
+### [2026-01-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrZGV2aWNlcy97fS9uZXR3b3JraW50ZXJmYWNlcy97fQ==/2026-01-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkdevices/{}/networkinterfaces/{} 2026-01-15-preview -->
+
+#### examples
+
+- Create the Network Interface
+    ```bash
+        networkfabric interface create --resource-group example-rg --network-device-name example-device --resource-name example-interface --annotation annotation --description device 1 --additional-description device 1
+    ```
