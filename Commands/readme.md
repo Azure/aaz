@@ -176,6 +176,9 @@
 - [eventhubs](/Commands/eventhubs/readme.md)
 : Manage Event Hub
 
+- [fileshare](/Commands/fileshare/readme.md)
+: Manage Azure File Shares.
+
 - [firmwareanalysis](/Commands/firmwareanalysis/readme.md)
 : Commands to manage firmware analysis.
 
@@ -302,6 +305,9 @@
 - [redisenterprise](/Commands/redisenterprise/readme.md)
 : Manage the redisenterprise cache
 
+- [relationship](/Commands/relationship/readme.md)
+: Manage Relationships
+
 - [relay](/Commands/relay/readme.md)
 : Manage Azure Relay Service namespaces, WCF relays, hybrid connections, and rules.
 
@@ -329,6 +335,9 @@
 - [sentinel](/Commands/sentinel/readme.md)
 : Manage Microsoft Sentinel.
 
+- [service-group](/Commands/service-group/readme.md)
+: Manage Service Group
+
 - [service-networking](/Commands/service-networking/readme.md)
 : Manage Service Networking Resources
 
@@ -346,6 +355,9 @@
 
 - [spatial-anchors-account](/Commands/spatial-anchors-account/readme.md)
 : Manage spatial anchor account with mixed reality.
+
+- [spatio](/Commands/spatio/readme.md)
+: Manage Planetary Computer resources
 
 - [sql](/Commands/sql/readme.md)
 : Manage Azure SQL Databases and Data Warehouses.
