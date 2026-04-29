@@ -356,6 +356,9 @@
 - [spatial-anchors-account](/Commands/spatial-anchors-account/readme.md)
 : Manage spatial anchor account with mixed reality.
 
+- [spatio](/Commands/spatio/readme.md)
+: Manage Planetary Computer resources
+
 - [sql](/Commands/sql/readme.md)
 : Manage Azure SQL Databases and Data Warehouses.
 
