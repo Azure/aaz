@@ -17,4 +17,4 @@ Manage capacity reservation group.
 : Get operation that retrieves information about a capacity reservation group.
 
 - [update](/Commands/capacity/reservation/group/_update.md)
-: Update operation to create or update a capacity reservation group. When updating a capacity reservation group, only tags may be modified. Please refer to https://aka.ms/CapacityReservation for more details.
+: Update operation to update a capacity reservation group. When updating a capacity reservation group, only tags and sharing profile may be modified.
