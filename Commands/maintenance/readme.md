@@ -16,8 +16,8 @@ Manage Maintenance
 - [public-configuration](/Commands/maintenance/public-configuration/readme.md)
 : Manage public maintenance configuration with maintenance
 
-- [scheduledevent](/Commands/maintenance/scheduledevent/readme.md)
-: ScheduledEvents action
+- [scheduledevents](/Commands/maintenance/scheduledevents/readme.md)
+: Manage Scheduled Events
 
 - [update](/Commands/maintenance/update/readme.md)
 : Manage update with maintenance
