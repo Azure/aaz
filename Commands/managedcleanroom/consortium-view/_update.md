@@ -25,3 +25,14 @@ Update a consortium view.
     ```bash
         managedcleanroom consortium-view update --resource-group testrg --consortium-view-name ContosoConsortiumView --consortium-endpoint https://ContosoEndpoint/ --certificate-pem Contoso certificate pem --member "{certificate-pem:membercertificate,signed-payload:membersignedpayload}"
     ```
+
+### [2026-04-30-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jbGVhbnJvb20vY29uc29ydGl1bXZpZXdzL3t9/2026-04-30-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cleanroom/consortiumviews/{} 2026-04-30-preview -->
+
+#### examples
+
+- Update Consortium View
+    ```bash
+        managedcleanroom consortium-view update --resource-group testrg --consortium-view-name ContosoConsortiumView --consortium-endpoint https://ContosoEndpoint/ --certificate-pem Contoso certificate pem --member "{certificate-pem:membercertificate,signed-payload:membersignedpayload}"
+    ```
