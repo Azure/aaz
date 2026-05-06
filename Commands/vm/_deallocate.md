@@ -105,3 +105,28 @@ For an end-to-end tutorial, see https://learn.microsoft.com/azure/virtual-machin
     ```bash
         vm deallocate --name MyVm --no-wait --resource-group MyResourceGroup
     ```
+
+### [2025-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlL3ZpcnR1YWxtYWNoaW5lcy97fS9kZWFsbG9jYXRl/2025-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/virtualmachines/{}/deallocate 2025-11-01 -->
+
+#### examples
+
+- Deallocate, generalize, and capture a stopped virtual machine.
+    ```bash
+        vm deallocate -g MyResourceGroup -n MyVm
+        vm generalize -g MyResourceGroup -n MyVm
+        vm capture -g MyResourceGroup -n MyVm --vhd-name-prefix MyPrefix
+    ```
+
+- Deallocate, generalize, and capture multiple stopped virtual machines.
+    ```bash
+        vm deallocate --ids vms_ids
+        vm generalize --ids vms_ids
+        vm capture --ids vms_ids --vhd-name-prefix MyPrefix
+    ```
+
+- Deallocate a VM.
+    ```bash
+        vm deallocate --name MyVm --no-wait --resource-group MyResourceGroup
+    ```
