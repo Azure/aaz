@@ -25,3 +25,14 @@ Recovers collaboration.
     ```bash
         managedcleanroom collaboration recover --resource-group testrg --collaboration-name ContosoCollaboration --force-recover True
     ```
+
+### [2026-04-30-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jbGVhbnJvb20vY29sbGFib3JhdGlvbnMve30vcmVjb3Zlcg==/2026-04-30-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cleanroom/collaborations/{}/recover 2026-04-30-preview -->
+
+#### examples
+
+- Recover Collaboration
+    ```bash
+        managedcleanroom collaboration recover --resource-group testrg --collaboration-name ContosoCollaboration --force-recover True
+    ```

@@ -16,6 +16,9 @@ Manage Collaboration
 - [enable-workload](/Commands/managedcleanroom/collaboration/_enable-workload.md)
 : Enables a workload on a collaboration.
 
+- [get-readonly-kube-config](/Commands/managedcleanroom/collaboration/_get-readonly-kube-config.md)
+: Gets the readonly kubeconfig for the collaboration.
+
 - [list](/Commands/managedcleanroom/collaboration/_list.md)
 : List collaborations in a subscription.
 
