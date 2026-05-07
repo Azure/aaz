@@ -9,6 +9,9 @@ Generated Create update delete operations for Azure NetApp Files (ANF) Volumes
 - [backup](/Commands/netappfiles/volume/backup/readme.md)
 : Manage Azure NetApp Files (ANF) Volume Backup Resources.
 
+- [bucket](/Commands/netappfiles/volume/bucket/readme.md)
+: Manage Bucket
+
 - [export-policy](/Commands/netappfiles/volume/export-policy/readme.md)
 : Manage Azure NetApp Files (ANF) Volume export policies.
 

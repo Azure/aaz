@@ -21,3 +21,19 @@ Get details of the specified ransomware report (ARP)ARP reports are created with
     ```bash
         netappfiles volume ransomware-report show --resource-group myRG --account-name account1 --pool-name pool1 --volume-name volume1 --ransomware-report-name current
     ```
+
+### [2026-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbmV0YXBwYWNjb3VudHMve30vY2FwYWNpdHlwb29scy97fS92b2x1bWVzL3t9L3JhbnNvbXdhcmVyZXBvcnRzL3t9/2026-01-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.netapp/netappaccounts/{}/capacitypools/{}/volumes/{}/ransomwarereports/{} 2026-01-01 -->
+
+#### examples
+
+- RansomwareReports_Get
+    ```bash
+        netappfiles volume ransomware-report show --resource-group myRG --account-name account1 --pool-name pool1 --volume-name volume1 --ransomware-report-name ransomwareReport1
+    ```
+
+- RansomwareReports_Get current report
+    ```bash
+        netappfiles volume ransomware-report show --resource-group myRG --account-name account1 --pool-name pool1 --volume-name volume1 --ransomware-report-name current
+    ```
