@@ -1,6 +1,6 @@
 # [Group] _vmss extension_
 
-Manage Virtual Machine Scale Set
+Manage extensions on a VM scale set.
 
 ## Subgroups
 
