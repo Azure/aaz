@@ -177,7 +177,7 @@
 : Manage Event Hub
 
 - [fileshare](/Commands/fileshare/readme.md)
-: Manage Azure File Shares.
+: Manage Azure File Shares
 
 - [firmwareanalysis](/Commands/firmwareanalysis/readme.md)
 : Commands to manage firmware analysis.
@@ -286,6 +286,9 @@
 
 - [playwright-testing](/Commands/playwright-testing/readme.md)
 : Manage Microsoft Playwright Testing service
+
+- [policy](/Commands/policy/readme.md)
+: Manage resources defined and used by the Azure Policy service.
 
 - [portal](/Commands/portal/readme.md)
 : Manage Portal.

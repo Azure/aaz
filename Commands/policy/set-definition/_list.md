@@ -6,11 +6,11 @@ Retrieve the list of all policy set definitions in the given subscription or man
 
 ## Versions
 
-### [2024-05-01](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuYXV0aG9yaXphdGlvbi9wb2xpY3lzZXRkZWZpbml0aW9ucw==/2024-05-01.xml) **Stable**
+### [2025-11-01](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuYXV0aG9yaXphdGlvbi9wb2xpY3lzZXRkZWZpbml0aW9ucw==/2025-11-01.xml) **Stable**
 
-<!-- mgmt-plane /providers/microsoft.authorization/policysetdefinitions 2024-05-01 -->
-<!-- mgmt-plane /providers/microsoft.management/managementgroups/{}/providers/microsoft.authorization/policysetdefinitions 2024-05-01 -->
-<!-- mgmt-plane /subscriptions/{}/providers/microsoft.authorization/policysetdefinitions 2024-05-01 -->
+<!-- mgmt-plane /providers/microsoft.authorization/policysetdefinitions 2025-11-01 -->
+<!-- mgmt-plane /providers/microsoft.management/managementgroups/{}/providers/microsoft.authorization/policysetdefinitions 2025-11-01 -->
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.authorization/policysetdefinitions 2025-11-01 -->
 
 #### examples
 

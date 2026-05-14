@@ -4,6 +4,11 @@ Manage policy set definitions.
 
 Manage policy set definitions, which are collections of policy definitions.
 
+## Subgroups
+
+- [version](/Commands/policy/set-definition/version/readme.md)
+: Manage Version
+
 ## Commands
 
 - [create](/Commands/policy/set-definition/_create.md)
