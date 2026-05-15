@@ -7,10 +7,10 @@ Policy assignments are used to apply a policy definition or policy set definitio
 ## Subgroups
 
 - [identity](/Commands/policy/assignment/identity/readme.md)
-: Managed identity of the policy assignment.
+: Manage identity of the policy assignment.
 
 - [non-compliance-message](/Commands/policy/assignment/non-compliance-message/readme.md)
-: Non-compliance message used by the policy assignment.
+: Manage non-compliance message used by the policy assignment.
 
 ## Commands
 

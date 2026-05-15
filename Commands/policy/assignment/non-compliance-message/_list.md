@@ -6,9 +6,9 @@ Retrieve all non-compliance messages from the policy assignment matching the giv
 
 ## Versions
 
-### [2024-05-01](/Resources/mgmt-plane/L3tzY29wZX0vcHJvdmlkZXJzL21pY3Jvc29mdC5hdXRob3JpemF0aW9uL3BvbGljeWFzc2lnbm1lbnRzL3t9/2024-05-01.xml) **Stable**
+### [2025-11-01](/Resources/mgmt-plane/L3tzY29wZX0vcHJvdmlkZXJzL21pY3Jvc29mdC5hdXRob3JpemF0aW9uL3BvbGljeWFzc2lnbm1lbnRzL3t9/2025-11-01.xml) **Stable**
 
-<!-- mgmt-plane /{scope}/providers/microsoft.authorization/policyassignments/{} 2024-05-01 properties.nonComplianceMessages -->
+<!-- mgmt-plane /{scope}/providers/microsoft.authorization/policyassignments/{} 2025-11-01 properties.nonComplianceMessages -->
 
 #### examples
 
