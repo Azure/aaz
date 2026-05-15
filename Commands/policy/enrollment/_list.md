@@ -11,3 +11,20 @@ Retrieve the list of all policy enrollments applicable to the given resource gro
 <!-- mgmt-plane /providers/microsoft.management/managementgroups/{}/providers/microsoft.authorization/policyenrollments 2026-01-01-preview -->
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.authorization/policyenrollments 2026-01-01-preview -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.authorization/policyenrollments 2026-01-01-preview -->
+
+#### examples
+
+- List policy enrollments for management group
+    ```bash
+        policy enrollment list --management-group DevOrg --filter atScopeAndBelow()
+    ```
+
+- List policy enrollments for resource group
+    ```bash
+        policy enrollment list --resource-group TestResourceGroup
+    ```
+
+- List policy enrollments for subscription
+    ```bash
+        policy enrollment list
+    ```
