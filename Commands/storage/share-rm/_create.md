@@ -1,6 +1,6 @@
 # [Command] _storage share-rm create_
 
-Create a new share under the specified account as described by request body. The share resource includes metadata and properties for that share. It does not include a list of the files contained by the share. 
+Create a new share under the specified account as described by request body. The share resource includes metadata and properties for that share. It does not include a list of the files contained by the share.
 
 ## Versions
 
