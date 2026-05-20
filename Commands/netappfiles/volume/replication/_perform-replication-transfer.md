@@ -37,3 +37,14 @@ Performs an adhoc replication transfer on a volume with volumeType Migration
     ```bash
         netappfiles volume replication perform-replication-transfer --resource-group myRG --account-name account1 --pool-name pool1 --volume-name volume1
     ```
+
+### [2026-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbmV0YXBwYWNjb3VudHMve30vY2FwYWNpdHlwb29scy97fS92b2x1bWVzL3t9L3BlcmZvcm1yZXBsaWNhdGlvbnRyYW5zZmVy/2026-01-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.netapp/netappaccounts/{}/capacitypools/{}/volumes/{}/performreplicationtransfer 2026-01-01 -->
+
+#### examples
+
+- Volumes_PerformReplicationTransfer
+    ```bash
+        netappfiles volume replication perform-replication-transfer --resource-group myRG --account-name account1 --pool-name pool1 --volume-name volume1
+    ```

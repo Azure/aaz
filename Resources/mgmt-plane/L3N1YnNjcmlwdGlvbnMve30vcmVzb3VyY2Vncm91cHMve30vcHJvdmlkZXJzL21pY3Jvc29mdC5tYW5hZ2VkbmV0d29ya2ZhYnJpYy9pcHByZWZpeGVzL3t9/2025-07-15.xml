@@ -208,32 +208,21 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Body">
-        <arg type="ResourceLocation" var="$body.location" options="location l" required="True" group="Body">
-          <help short="The geo-location where the resource lives"/>
-        </arg>
-        <arg type="object" var="$body.tags" options="tags" group="Body">
-          <help short="Resource tags."/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
-        </arg>
-      </argGroup>
       <argGroup name="Properties">
-        <arg type="string" var="$body.properties.annotation" options="annotation" group="Properties">
+        <arg type="string" var="$resource.properties.annotation" options="annotation" group="Properties">
           <help short="Switch configuration description."/>
         </arg>
-        <arg type="array<object>" var="$body.properties.ipPrefixRules" options="ip-prefix-rules" required="True" group="Properties">
+        <arg type="array<object>" var="$resource.properties.ipPrefixRules" options="ip-prefix-rules" required="True" group="Properties">
           <help short="The list of IP Prefix Rules."/>
           <item type="object">
-            <arg type="string" var="$body.properties.ipPrefixRules[].action" options="action" required="True">
+            <arg type="string" var="$resource.properties.ipPrefixRules[].action" options="action" required="True">
               <help short="Action to be taken on the configuration. Example: Permit | Deny."/>
               <enum>
                 <item name="Deny" value="&quot;Deny&quot;"/>
                 <item name="Permit" value="&quot;Permit&quot;"/>
               </enum>
             </arg>
-            <arg type="string" var="$body.properties.ipPrefixRules[].condition" options="condition">
+            <arg type="string" var="$resource.properties.ipPrefixRules[].condition" options="condition">
               <help short="Specify prefix-list bounds."/>
               <enum>
                 <item name="EqualTo" value="&quot;EqualTo&quot;"/>
@@ -242,17 +231,28 @@
                 <item name="Range" value="&quot;Range&quot;"/>
               </enum>
             </arg>
-            <arg type="string" var="$body.properties.ipPrefixRules[].networkPrefix" options="network-prefix" required="True">
+            <arg type="string" var="$resource.properties.ipPrefixRules[].networkPrefix" options="network-prefix" required="True">
               <help short="Network Prefix specifying IPv4/IPv6 packets to be permitted or denied. Example: 1.1.1.0/24 | 3FFE:FFFF:0:CD30::/126"/>
             </arg>
-            <arg type="integer64" var="$body.properties.ipPrefixRules[].sequenceNumber" options="sequence-number" required="True">
+            <arg type="integer64" var="$resource.properties.ipPrefixRules[].sequenceNumber" options="sequence-number" required="True">
               <help short="Sequence to insert to/delete from existing route. Prefix lists are evaluated starting with the lowest sequence number and continue down the list until a match is made. Once a match is made, the permit or deny statement is applied to that network and the rest of the list is ignored."/>
               <format maximum="4294967295" minimum="1"/>
             </arg>
-            <arg type="string" var="$body.properties.ipPrefixRules[].subnetMaskLength" options="subnet-mask-length">
+            <arg type="string" var="$resource.properties.ipPrefixRules[].subnetMaskLength" options="subnet-mask-length">
               <help short="SubnetMaskLength gives the minimum NetworkPrefix length to be matched. Possible values for IPv4 are 1 - 32 . Possible values of IPv6 are 1 - 128."/>
             </arg>
           </item>
+        </arg>
+      </argGroup>
+      <argGroup name="Resource">
+        <arg type="ResourceLocation" var="$resource.location" options="location l" required="True" group="Resource">
+          <help short="The geo-location where the resource lives"/>
+        </arg>
+        <arg type="object" var="$resource.tags" options="tags" group="Resource">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
         </arg>
       </argGroup>
       <operation operationId="IpPrefixes_Create">
@@ -276,19 +276,19 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="body" required="True" clientFlatten="True">
-                  <prop type="ResourceLocation" name="location" arg="$body.location" required="True"/>
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
                   <prop type="object" name="properties" required="True" clientFlatten="True">
-                    <prop type="string" name="annotation" arg="$body.properties.annotation"/>
-                    <prop type="array<object>" name="ipPrefixRules" arg="$body.properties.ipPrefixRules" required="True">
+                    <prop type="string" name="annotation" arg="$resource.properties.annotation"/>
+                    <prop type="array<object>" name="ipPrefixRules" arg="$resource.properties.ipPrefixRules" required="True">
                       <item type="object">
-                        <prop type="string" name="action" arg="$body.properties.ipPrefixRules[].action" required="True">
+                        <prop type="string" name="action" arg="$resource.properties.ipPrefixRules[].action" required="True">
                           <enum>
                             <item value="&quot;Deny&quot;"/>
                             <item value="&quot;Permit&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="string" name="condition" arg="$body.properties.ipPrefixRules[].condition">
+                        <prop type="string" name="condition" arg="$resource.properties.ipPrefixRules[].condition">
                           <enum>
                             <item value="&quot;EqualTo&quot;"/>
                             <item value="&quot;GreaterThanOrEqualTo&quot;"/>
@@ -296,15 +296,15 @@
                             <item value="&quot;Range&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="string" name="networkPrefix" arg="$body.properties.ipPrefixRules[].networkPrefix" required="True"/>
-                        <prop type="integer64" name="sequenceNumber" arg="$body.properties.ipPrefixRules[].sequenceNumber" required="True">
+                        <prop type="string" name="networkPrefix" arg="$resource.properties.ipPrefixRules[].networkPrefix" required="True"/>
+                        <prop type="integer64" name="sequenceNumber" arg="$resource.properties.ipPrefixRules[].sequenceNumber" required="True">
                           <format maximum="4294967295" minimum="1"/>
                         </prop>
-                        <prop type="string" name="subnetMaskLength" arg="$body.properties.ipPrefixRules[].subnetMaskLength"/>
+                        <prop type="string" name="subnetMaskLength" arg="$resource.properties.ipPrefixRules[].subnetMaskLength"/>
                       </item>
                     </prop>
                   </prop>
-                  <prop type="object" name="tags" arg="$body.tags">
+                  <prop type="object" name="tags" arg="$resource.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>
@@ -442,29 +442,21 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Body">
-        <arg type="object" var="$body.tags" options="tags" group="Body">
-          <help short="Resource tags."/>
-          <additionalProp>
-            <item type="string"/>
-          </additionalProp>
-        </arg>
-      </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="string" var="$body.properties.annotation" options="annotation" group="Properties">
+        <arg nullable="True" type="string" var="$properties.properties.annotation" options="annotation" group="Properties">
           <help short="Switch configuration description."/>
         </arg>
-        <arg nullable="True" type="array<object>" var="$body.properties.ipPrefixRules" options="ip-prefix-rules" group="Properties">
+        <arg nullable="True" type="array<object>" var="$properties.properties.ipPrefixRules" options="ip-prefix-rules" group="Properties">
           <help short="The list of IP Prefix Rules."/>
           <item type="object">
-            <arg type="string" var="$body.properties.ipPrefixRules[].action" options="action" required="True">
+            <arg type="string" var="$properties.properties.ipPrefixRules[].action" options="action" required="True">
               <help short="Action to be taken on the configuration. Example: Permit | Deny."/>
               <enum>
                 <item name="Deny" value="&quot;Deny&quot;"/>
                 <item name="Permit" value="&quot;Permit&quot;"/>
               </enum>
             </arg>
-            <arg type="string" var="$body.properties.ipPrefixRules[].condition" options="condition">
+            <arg type="string" var="$properties.properties.ipPrefixRules[].condition" options="condition">
               <help short="Specify prefix-list bounds."/>
               <enum>
                 <item name="EqualTo" value="&quot;EqualTo&quot;"/>
@@ -473,17 +465,23 @@
                 <item name="Range" value="&quot;Range&quot;"/>
               </enum>
             </arg>
-            <arg type="string" var="$body.properties.ipPrefixRules[].networkPrefix" options="network-prefix" required="True">
+            <arg type="string" var="$properties.properties.ipPrefixRules[].networkPrefix" options="network-prefix" required="True">
               <help short="Network Prefix specifying IPv4/IPv6 packets to be permitted or denied. Example: 1.1.1.0/24 | 3FFE:FFFF:0:CD30::/126"/>
             </arg>
-            <arg type="integer64" var="$body.properties.ipPrefixRules[].sequenceNumber" options="sequence-number" required="True">
+            <arg type="integer64" var="$properties.properties.ipPrefixRules[].sequenceNumber" options="sequence-number" required="True">
               <help short="Sequence to insert to/delete from existing route. Prefix lists are evaluated starting with the lowest sequence number and continue down the list until a match is made. Once a match is made, the permit or deny statement is applied to that network and the rest of the list is ignored."/>
               <format maximum="4294967295" minimum="1"/>
             </arg>
-            <arg type="string" var="$body.properties.ipPrefixRules[].subnetMaskLength" options="subnet-mask-length">
+            <arg type="string" var="$properties.properties.ipPrefixRules[].subnetMaskLength" options="subnet-mask-length">
               <help short="SubnetMaskLength gives the minimum NetworkPrefix length to be matched. Possible values for IPv4 are 1 - 32 . Possible values of IPv6 are 1 - 128."/>
             </arg>
           </item>
+        </arg>
+        <arg type="object" var="$properties.tags" options="tags" group="Properties">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
         </arg>
       </argGroup>
       <operation operationId="IpPrefixes_Update">
@@ -507,18 +505,18 @@
             </query>
             <body>
               <json>
-                <schema type="object" name="body" required="True" clientFlatten="True">
+                <schema type="object" name="properties" required="True" clientFlatten="True">
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop nullable="True" type="string" name="annotation" arg="$body.properties.annotation"/>
-                    <prop nullable="True" type="array<object>" name="ipPrefixRules" arg="$body.properties.ipPrefixRules">
+                    <prop nullable="True" type="string" name="annotation" arg="$properties.properties.annotation"/>
+                    <prop nullable="True" type="array<object>" name="ipPrefixRules" arg="$properties.properties.ipPrefixRules">
                       <item type="object">
-                        <prop type="string" name="action" arg="$body.properties.ipPrefixRules[].action" required="True">
+                        <prop type="string" name="action" arg="$properties.properties.ipPrefixRules[].action" required="True">
                           <enum>
                             <item value="&quot;Deny&quot;"/>
                             <item value="&quot;Permit&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="string" name="condition" arg="$body.properties.ipPrefixRules[].condition">
+                        <prop type="string" name="condition" arg="$properties.properties.ipPrefixRules[].condition">
                           <enum>
                             <item value="&quot;EqualTo&quot;"/>
                             <item value="&quot;GreaterThanOrEqualTo&quot;"/>
@@ -526,15 +524,15 @@
                             <item value="&quot;Range&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="string" name="networkPrefix" arg="$body.properties.ipPrefixRules[].networkPrefix" required="True"/>
-                        <prop type="integer64" name="sequenceNumber" arg="$body.properties.ipPrefixRules[].sequenceNumber" required="True">
+                        <prop type="string" name="networkPrefix" arg="$properties.properties.ipPrefixRules[].networkPrefix" required="True"/>
+                        <prop type="integer64" name="sequenceNumber" arg="$properties.properties.ipPrefixRules[].sequenceNumber" required="True">
                           <format maximum="4294967295" minimum="1"/>
                         </prop>
-                        <prop type="string" name="subnetMaskLength" arg="$body.properties.ipPrefixRules[].subnetMaskLength"/>
+                        <prop type="string" name="subnetMaskLength" arg="$properties.properties.ipPrefixRules[].subnetMaskLength"/>
                       </item>
                     </prop>
                   </prop>
-                  <prop type="object" name="tags" arg="$body.tags">
+                  <prop type="object" name="tags" arg="$properties.tags">
                     <additionalProp>
                       <item type="string"/>
                     </additionalProp>

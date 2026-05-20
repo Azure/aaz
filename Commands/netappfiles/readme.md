@@ -9,6 +9,9 @@ Manage Azure NetApp Files (ANF) Resources.
 - [account](/Commands/netappfiles/account/readme.md)
 : Manage Azure NetApp Files (ANF) Account Resources.
 
+- [cache](/Commands/netappfiles/cache/readme.md)
+: Manage Cache resources
+
 - [netappaccount](/Commands/netappfiles/netappaccount/readme.md)
 : Manage Azure NetApp Files (ANF) Account Resources
 

@@ -47,3 +47,14 @@ Delete an existing AzureFrontDoor endpoint with the specified endpoint name unde
     ```bash
         afd endpoint delete -g group --profile-name profile --endpoint-name endpoint1
     ```
+
+### [2025-09-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vYWZkZW5kcG9pbnRzL3t9/2025-09-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/afdendpoints/{} 2025-09-01-preview -->
+
+#### examples
+
+- Delete an endpoint named endpoint1.
+    ```bash
+        afd endpoint delete -g group --profile-name profile --endpoint-name endpoint1
+    ```

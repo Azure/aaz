@@ -1,6 +1,6 @@
 # [Group] _stream-analytics output_
 
-Manage Output
+Manage output with stream analytics.
 
 ## Commands
 

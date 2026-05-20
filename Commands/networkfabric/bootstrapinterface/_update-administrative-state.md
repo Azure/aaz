@@ -14,3 +14,14 @@ Update the admin state of the Network Interface.
     ```bash
         networkfabric bootstrapinterface update-administrative-state --resource-group example-rg --bootstrap-device example-device --resource-name example-interface --resource-ids "[]" --state Enable
     ```
+
+### [2026-01-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrYm9vdHN0cmFwZGV2aWNlcy97fS9uZXR3b3JrYm9vdHN0cmFwaW50ZXJmYWNlcy97fS91cGRhdGVhZG1pbmlzdHJhdGl2ZXN0YXRl/2026-01-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkbootstrapdevices/{}/networkbootstrapinterfaces/{}/updateadministrativestate 2026-01-15-preview -->
+
+#### examples
+
+- Update the admin state of the Bootstrap Interface
+    ```bash
+        networkfabric bootstrapinterface update-administrative-state --resource-group example-rg --bootstrap-device example-device --resource-name example-interface --resource-ids "[]" --state Enable
+    ```

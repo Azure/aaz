@@ -47,3 +47,14 @@ List existing AzureFrontDoor endpoints.
     ```bash
         afd endpoint list -g group --profile-name profile
     ```
+
+### [2025-09-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vYWZkZW5kcG9pbnRz/2025-09-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/afdendpoints 2025-09-01-preview -->
+
+#### examples
+
+- List all the endpoints within the specified profile.
+    ```bash
+        afd endpoint list -g group --profile-name profile
+    ```

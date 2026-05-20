@@ -17,3 +17,14 @@ ARP creates snapshots named Anti_ransomware_backup when it detects a potential r
     ```bash
         netappfiles volume ransomware-report list --resource-group myRG --account-name account1 --pool-name pool1 --volume-name volume1
     ```
+
+### [2026-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbmV0YXBwYWNjb3VudHMve30vY2FwYWNpdHlwb29scy97fS92b2x1bWVzL3t9L3JhbnNvbXdhcmVyZXBvcnRz/2026-01-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.netapp/netappaccounts/{}/capacitypools/{}/volumes/{}/ransomwarereports 2026-01-01 -->
+
+#### examples
+
+- RansomwareReports_List
+    ```bash
+        netappfiles volume ransomware-report list --resource-group myRG --account-name account1 --pool-name pool1 --volume-name volume1
+    ```

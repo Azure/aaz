@@ -14,3 +14,14 @@ Resync the Neighbor Group after a configuration change.
     ```bash
         networkfabric neighborgroup resync --resource-group example-rg --resource-name example-neighborgroup
     ```
+
+### [2026-01-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZWlnaGJvcmdyb3Vwcy97fS9yZXN5bmM=/2026-01-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/neighborgroups/{}/resync 2026-01-15-preview -->
+
+#### examples
+
+- Resync the Neighbor Group resource
+    ```bash
+        networkfabric neighborgroup resync --resource-group example-rg --resource-name example-neighborgroup
+    ```

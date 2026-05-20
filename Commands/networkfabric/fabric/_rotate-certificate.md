@@ -14,3 +14,14 @@ Creates new certificates, then updates the Network Devices to use the new certif
     ```bash
         networkfabric fabric rotate-certificate --resource-group example-rg --resource-name example-fabric
     ```
+
+### [2026-01-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrZmFicmljcy97fS9yb3RhdGVjZXJ0aWZpY2F0ZXM=/2026-01-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkfabrics/{}/rotatecertificates 2026-01-15-preview -->
+
+#### examples
+
+- Create new certificates, then updates the Network Devices to use the new certificates
+    ```bash
+        networkfabric fabric rotate-certificate --resource-group example-rg --resource-name example-fabric
+    ```

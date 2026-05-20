@@ -29,3 +29,14 @@ Refreshes the configuration of the underlying resources in the given Network Fab
     ```bash
         networkfabric fabric refresh-configuration --resource-group example-rg --resource-name example-fabric
     ```
+
+### [2026-01-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrZmFicmljcy97fS9yZWZyZXNoY29uZmlndXJhdGlvbg==/2026-01-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkfabrics/{}/refreshconfiguration 2026-01-15-preview -->
+
+#### examples
+
+- Refresh the configuration of the underlying resources in the given Network Fabric instance
+    ```bash
+        networkfabric fabric refresh-configuration --resource-group example-rg --resource-name example-fabric
+    ```

@@ -1,0 +1,638 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.monitor/pipelinegroups" version="2026-04-01" swagger="mgmt-plane/monitoringservice/ResourceProviders/Microsoft.Monitor/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk1vbml0b3IvcGlwZWxpbmVHcm91cHM=/V/MjAyNi0wNC0wMQ=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.monitor/pipelinegroups" version="2026-04-01" swagger="mgmt-plane/monitoringservice/ResourceProviders/Microsoft.Monitor/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTW9uaXRvci9waXBlbGluZUdyb3Vwcw==/V/MjAyNi0wNC0wMQ=="/>
+  <commandGroup name="monitor pipeline-group">
+    <command name="list" version="2026-04-01">
+      <resource id="/subscriptions/{}/providers/microsoft.monitor/pipelinegroups" version="2026-04-01" swagger="mgmt-plane/monitoringservice/ResourceProviders/Microsoft.Monitor/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk1vbml0b3IvcGlwZWxpbmVHcm91cHM=/V/MjAyNi0wNC0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.monitor/pipelinegroups" version="2026-04-01" swagger="mgmt-plane/monitoringservice/ResourceProviders/Microsoft.Monitor/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTW9uaXRvci9waXBlbGluZUdyb3Vwcw==/V/MjAyNi0wNC0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <condition var="$Condition_PipelineGroups_ListBySubscription">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <condition var="$Condition_PipelineGroups_ListByResourceGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_PipelineGroups_ListBySubscription" operationId="PipelineGroups_ListBySubscription">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Monitor/pipelineGroups">
+          <request method="get">
+            <path>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-04-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop type="object" name="extendedLocation">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;CustomLocation&quot;"/>
+                            <item value="&quot;EdgeZone&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="id"/>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties">
+                        <prop type="object" name="executionPlacement">
+                          <prop type="array<object>" name="constraints">
+                            <item type="object">
+                              <prop type="string" name="capability" required="True"/>
+                              <prop type="string" name="operator" required="True">
+                                <enum>
+                                  <item value="&quot;DoesNotExist&quot;"/>
+                                  <item value="&quot;Exists&quot;"/>
+                                  <item value="&quot;In&quot;"/>
+                                  <item value="&quot;NotIn&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="array<string>" name="values">
+                                <item type="string"/>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="object" name="distribution">
+                            <prop type="integer32" name="maxInstancesPerHost">
+                              <format minimum="1"/>
+                            </prop>
+                          </prop>
+                        </prop>
+                        <prop type="array<object>" name="exporters" required="True">
+                          <item type="object">
+                            <prop type="object" name="azureMonitorWorkspaceLogs">
+                              <prop type="object" name="api" required="True">
+                                <prop type="string" name="dataCollectionEndpointUrl" required="True">
+                                  <format pattern="^(https?)://[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*$"/>
+                                </prop>
+                                <prop type="string" name="dataCollectionRule" required="True">
+                                  <format pattern="^(?!-)[a-zA-Z0-9.-]{1,1000}[^-]$"/>
+                                </prop>
+                                <prop type="object" name="schema" required="True">
+                                  <prop type="array<object>" name="recordMap" required="True">
+                                    <item type="object">
+                                      <prop type="string" name="from" required="True"/>
+                                      <prop type="string" name="to" required="True"/>
+                                    </item>
+                                  </prop>
+                                  <prop type="array<object>" name="resourceMap">
+                                    <item type="object">
+                                      <prop type="string" name="from" required="True"/>
+                                      <prop type="string" name="to" required="True"/>
+                                    </item>
+                                  </prop>
+                                  <prop type="array<object>" name="scopeMap">
+                                    <item type="object">
+                                      <prop type="string" name="from" required="True"/>
+                                      <prop type="string" name="to" required="True"/>
+                                    </item>
+                                  </prop>
+                                </prop>
+                                <prop type="string" name="stream" required="True">
+                                  <format pattern="^(?!-)[a-zA-Z0-9._-]{1,1000}[^-]$"/>
+                                </prop>
+                              </prop>
+                              <prop type="object" name="persistence">
+                                <prop type="integer32" name="maxStorageUsage">
+                                  <format minimum="1"/>
+                                </prop>
+                                <prop type="integer32" name="retentionPeriod">
+                                  <format minimum="1"/>
+                                </prop>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="name" required="True">
+                              <format pattern="^(?!-)[a-zA-Z0-9-]{3,32}[^-]$"/>
+                            </prop>
+                            <prop type="string" name="type" required="True">
+                              <enum>
+                                <item value="&quot;AzureMonitorWorkspaceLogs&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="array<object>" name="processors" required="True">
+                          <item type="object">
+                            <prop type="object" name="batch">
+                              <prop type="integer32" name="batchSize">
+                                <default value="8192"/>
+                                <format maximum="100000" minimum="10"/>
+                              </prop>
+                              <prop type="integer32" name="timeout">
+                                <default value="200"/>
+                                <format maximum="300000" minimum="10"/>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="name" required="True">
+                              <format pattern="^(?!-)[a-zA-Z0-9-]{3,32}[^-]$"/>
+                            </prop>
+                            <prop type="object" name="transformLanguage">
+                              <prop type="string" name="transformStatement" required="True">
+                                <format maxLength="10000" minLength="1"/>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="type" required="True">
+                              <enum>
+                                <item value="&quot;Batch&quot;"/>
+                                <item value="&quot;MicrosoftCommonSecurityLog&quot;"/>
+                                <item value="&quot;MicrosoftSyslog&quot;"/>
+                                <item value="&quot;TransformLanguage&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Creating&quot;"/>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<object>" name="receivers" required="True">
+                          <item type="object">
+                            <prop type="string" name="name" required="True">
+                              <format pattern="^(?!-)[a-zA-Z0-9-]{3,32}[^-]$"/>
+                            </prop>
+                            <prop type="object" name="otlp">
+                              <prop type="string" name="endpoint" required="True">
+                                <format pattern="^[a-zA-Z0-9-\.]+:[0-9]+$"/>
+                              </prop>
+                            </prop>
+                            <prop type="object" name="syslog">
+                              <prop type="boolean" name="allowSkipPriHeader">
+                                <default value="false"/>
+                              </prop>
+                              <prop type="array<string>" name="allowedFormats">
+                                <default value="[&quot;all&quot;]"/>
+                                <item type="string">
+                                  <enum>
+                                    <item value="&quot;all&quot;"/>
+                                    <item value="&quot;cefRfc3164&quot;"/>
+                                    <item value="&quot;cefRfc5424&quot;"/>
+                                    <item value="&quot;rawCef&quot;"/>
+                                    <item value="&quot;syslogRfc3164&quot;"/>
+                                    <item value="&quot;syslogRfc5424&quot;"/>
+                                  </enum>
+                                </item>
+                              </prop>
+                              <prop type="string" name="endpoint" required="True">
+                                <format pattern="^[a-zA-Z0-9-\.]+:[0-9]+$"/>
+                              </prop>
+                              <prop type="string" name="transportProtocol">
+                                <default value="&quot;tcp&quot;"/>
+                                <enum>
+                                  <item value="&quot;tcp&quot;"/>
+                                  <item value="&quot;udp&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="tlsConfiguration"/>
+                            <prop type="string" name="type" required="True">
+                              <enum>
+                                <item value="&quot;OTLP&quot;"/>
+                                <item value="&quot;Syslog&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="integer32" name="replicas">
+                          <format minimum="1"/>
+                        </prop>
+                        <prop type="object" name="service" required="True">
+                          <prop type="object" name="persistence">
+                            <prop type="string" name="persistentVolumeName" required="True"/>
+                          </prop>
+                          <prop type="array<object>" name="pipelines" required="True">
+                            <item type="object">
+                              <prop type="array<string>" name="exporters" required="True">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="name" required="True">
+                                <format pattern="^(?!-)[a-zA-Z0-9-]{3,32}[^-]$"/>
+                              </prop>
+                              <prop type="array<string>" name="processors">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="array<string>" name="receivers" required="True">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="type" required="True">
+                                <enum>
+                                  <item value="&quot;Logs&quot;"/>
+                                </enum>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="array<object>" name="tlsConfigurations">
+                          <item type="object">
+                            <prop type="@Certificatesource_read" name="clientCa"/>
+                            <prop type="string" name="mode">
+                              <default value="&quot;mutualTls&quot;"/>
+                              <enum>
+                                <item value="&quot;disabled&quot;"/>
+                                <item value="&quot;mutualTls&quot;"/>
+                                <item value="&quot;serverOnly&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="name" required="True">
+                              <format pattern="^(?!-)[a-zA-Z0-9-]{3,32}[^-]$"/>
+                            </prop>
+                            <prop type="object" name="tlsCertificate">
+                              <prop type="object" name="certificate" required="True" cls="Certificatesource_read">
+                                <prop type="string" name="location" required="True"/>
+                                <prop type="string" name="subLocation" required="True"/>
+                                <prop type="string" name="type" required="True">
+                                  <enum>
+                                    <item value="&quot;kubernetesConfigMap&quot;"/>
+                                    <item value="&quot;kubernetesSecret&quot;"/>
+                                  </enum>
+                                </prop>
+                              </prop>
+                              <prop type="object" name="privateKey" required="True">
+                                <prop type="string" name="location" required="True"/>
+                                <prop type="string" name="subLocation" required="True"/>
+                                <prop type="string" name="type" required="True">
+                                  <enum>
+                                    <item value="&quot;kubernetesSecret&quot;"/>
+                                  </enum>
+                                </prop>
+                              </prop>
+                            </prop>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_PipelineGroups_ListByResourceGroup" operationId="PipelineGroups_ListByResourceGroup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Monitor/pipelineGroups">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-04-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop type="object" name="extendedLocation">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;CustomLocation&quot;"/>
+                            <item value="&quot;EdgeZone&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="id"/>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties">
+                        <prop type="object" name="executionPlacement">
+                          <prop type="array<object>" name="constraints">
+                            <item type="object">
+                              <prop type="string" name="capability" required="True"/>
+                              <prop type="string" name="operator" required="True">
+                                <enum>
+                                  <item value="&quot;DoesNotExist&quot;"/>
+                                  <item value="&quot;Exists&quot;"/>
+                                  <item value="&quot;In&quot;"/>
+                                  <item value="&quot;NotIn&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="array<string>" name="values">
+                                <item type="string"/>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="object" name="distribution">
+                            <prop type="integer32" name="maxInstancesPerHost">
+                              <format minimum="1"/>
+                            </prop>
+                          </prop>
+                        </prop>
+                        <prop type="array<object>" name="exporters" required="True">
+                          <item type="object">
+                            <prop type="object" name="azureMonitorWorkspaceLogs">
+                              <prop type="object" name="api" required="True">
+                                <prop type="string" name="dataCollectionEndpointUrl" required="True">
+                                  <format pattern="^(https?)://[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*$"/>
+                                </prop>
+                                <prop type="string" name="dataCollectionRule" required="True">
+                                  <format pattern="^(?!-)[a-zA-Z0-9.-]{1,1000}[^-]$"/>
+                                </prop>
+                                <prop type="object" name="schema" required="True">
+                                  <prop type="array<object>" name="recordMap" required="True">
+                                    <item type="object">
+                                      <prop type="string" name="from" required="True"/>
+                                      <prop type="string" name="to" required="True"/>
+                                    </item>
+                                  </prop>
+                                  <prop type="array<object>" name="resourceMap">
+                                    <item type="object">
+                                      <prop type="string" name="from" required="True"/>
+                                      <prop type="string" name="to" required="True"/>
+                                    </item>
+                                  </prop>
+                                  <prop type="array<object>" name="scopeMap">
+                                    <item type="object">
+                                      <prop type="string" name="from" required="True"/>
+                                      <prop type="string" name="to" required="True"/>
+                                    </item>
+                                  </prop>
+                                </prop>
+                                <prop type="string" name="stream" required="True">
+                                  <format pattern="^(?!-)[a-zA-Z0-9._-]{1,1000}[^-]$"/>
+                                </prop>
+                              </prop>
+                              <prop type="object" name="persistence">
+                                <prop type="integer32" name="maxStorageUsage">
+                                  <format minimum="1"/>
+                                </prop>
+                                <prop type="integer32" name="retentionPeriod">
+                                  <format minimum="1"/>
+                                </prop>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="name" required="True">
+                              <format pattern="^(?!-)[a-zA-Z0-9-]{3,32}[^-]$"/>
+                            </prop>
+                            <prop type="string" name="type" required="True">
+                              <enum>
+                                <item value="&quot;AzureMonitorWorkspaceLogs&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="array<object>" name="processors" required="True">
+                          <item type="object">
+                            <prop type="object" name="batch">
+                              <prop type="integer32" name="batchSize">
+                                <default value="8192"/>
+                                <format maximum="100000" minimum="10"/>
+                              </prop>
+                              <prop type="integer32" name="timeout">
+                                <default value="200"/>
+                                <format maximum="300000" minimum="10"/>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="name" required="True">
+                              <format pattern="^(?!-)[a-zA-Z0-9-]{3,32}[^-]$"/>
+                            </prop>
+                            <prop type="object" name="transformLanguage">
+                              <prop type="string" name="transformStatement" required="True">
+                                <format maxLength="10000" minLength="1"/>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="type" required="True">
+                              <enum>
+                                <item value="&quot;Batch&quot;"/>
+                                <item value="&quot;MicrosoftCommonSecurityLog&quot;"/>
+                                <item value="&quot;MicrosoftSyslog&quot;"/>
+                                <item value="&quot;TransformLanguage&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Creating&quot;"/>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<object>" name="receivers" required="True">
+                          <item type="object">
+                            <prop type="string" name="name" required="True">
+                              <format pattern="^(?!-)[a-zA-Z0-9-]{3,32}[^-]$"/>
+                            </prop>
+                            <prop type="object" name="otlp">
+                              <prop type="string" name="endpoint" required="True">
+                                <format pattern="^[a-zA-Z0-9-\.]+:[0-9]+$"/>
+                              </prop>
+                            </prop>
+                            <prop type="object" name="syslog">
+                              <prop type="boolean" name="allowSkipPriHeader">
+                                <default value="false"/>
+                              </prop>
+                              <prop type="array<string>" name="allowedFormats">
+                                <default value="[&quot;all&quot;]"/>
+                                <item type="string">
+                                  <enum>
+                                    <item value="&quot;all&quot;"/>
+                                    <item value="&quot;cefRfc3164&quot;"/>
+                                    <item value="&quot;cefRfc5424&quot;"/>
+                                    <item value="&quot;rawCef&quot;"/>
+                                    <item value="&quot;syslogRfc3164&quot;"/>
+                                    <item value="&quot;syslogRfc5424&quot;"/>
+                                  </enum>
+                                </item>
+                              </prop>
+                              <prop type="string" name="endpoint" required="True">
+                                <format pattern="^[a-zA-Z0-9-\.]+:[0-9]+$"/>
+                              </prop>
+                              <prop type="string" name="transportProtocol">
+                                <default value="&quot;tcp&quot;"/>
+                                <enum>
+                                  <item value="&quot;tcp&quot;"/>
+                                  <item value="&quot;udp&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="string" name="tlsConfiguration"/>
+                            <prop type="string" name="type" required="True">
+                              <enum>
+                                <item value="&quot;OTLP&quot;"/>
+                                <item value="&quot;Syslog&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="integer32" name="replicas">
+                          <format minimum="1"/>
+                        </prop>
+                        <prop type="object" name="service" required="True">
+                          <prop type="object" name="persistence">
+                            <prop type="string" name="persistentVolumeName" required="True"/>
+                          </prop>
+                          <prop type="array<object>" name="pipelines" required="True">
+                            <item type="object">
+                              <prop type="array<string>" name="exporters" required="True">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="name" required="True">
+                                <format pattern="^(?!-)[a-zA-Z0-9-]{3,32}[^-]$"/>
+                              </prop>
+                              <prop type="array<string>" name="processors">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="array<string>" name="receivers" required="True">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="type" required="True">
+                                <enum>
+                                  <item value="&quot;Logs&quot;"/>
+                                </enum>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="array<object>" name="tlsConfigurations">
+                          <item type="object">
+                            <prop type="@Certificatesource_read" name="clientCa"/>
+                            <prop type="string" name="mode">
+                              <default value="&quot;mutualTls&quot;"/>
+                              <enum>
+                                <item value="&quot;disabled&quot;"/>
+                                <item value="&quot;mutualTls&quot;"/>
+                                <item value="&quot;serverOnly&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="name" required="True">
+                              <format pattern="^(?!-)[a-zA-Z0-9-]{3,32}[^-]$"/>
+                            </prop>
+                            <prop type="object" name="tlsCertificate">
+                              <prop type="@Certificatesource_read" name="certificate" required="True"/>
+                              <prop type="object" name="privateKey" required="True">
+                                <prop type="string" name="location" required="True"/>
+                                <prop type="string" name="subLocation" required="True"/>
+                                <prop type="string" name="type" required="True">
+                                  <enum>
+                                    <item value="&quot;kubernetesSecret&quot;"/>
+                                  </enum>
+                                </prop>
+                              </prop>
+                            </prop>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt"/>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt"/>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema readOnly="True" type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

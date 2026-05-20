@@ -19,3 +19,7 @@ Get current subscription usage of the specific type
 ### [2025-12-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbG9jYXRpb25zL3t9L3VzYWdlcy97fQ==/2025-12-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.netapp/locations/{}/usages/{} 2025-12-01 -->
+
+### [2026-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbG9jYXRpb25zL3t9L3VzYWdlcy97fQ==/2026-01-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.netapp/locations/{}/usages/{} 2026-01-01 -->

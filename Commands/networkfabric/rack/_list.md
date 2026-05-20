@@ -83,3 +83,20 @@ List all Network Racks in the provided resource group or subscription
     ```bash
         networkfabric rack list --subscription "<subscriptionId>"
     ```
+
+### [2026-01-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrcmFja3M=/2026-01-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.managednetworkfabric/networkracks 2026-01-15-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkracks 2026-01-15-preview -->
+
+#### examples
+
+- List the Network Racks for Resource Group.
+    ```bash
+        networkfabric rack list --resource-group "example-rg"
+    ```
+
+- List the Network Racks for Subscription
+    ```bash
+        networkfabric rack list --subscription "<subscriptionId>"
+    ```

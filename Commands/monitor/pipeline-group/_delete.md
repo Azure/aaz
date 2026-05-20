@@ -11,3 +11,7 @@ Delete a pipeline group instance.
 ### [2024-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tb25pdG9yL3BpcGVsaW5lZ3JvdXBzL3t9/2024-10-01-preview.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.monitor/pipelinegroups/{} 2024-10-01-preview -->
+
+### [2026-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tb25pdG9yL3BpcGVsaW5lZ3JvdXBzL3t9/2026-04-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.monitor/pipelinegroups/{} 2026-04-01 -->

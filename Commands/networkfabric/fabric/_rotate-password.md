@@ -14,3 +14,14 @@ Creates new passwords, then updates the Terminal Server and Network Devices to u
     ```bash
         networkfabric fabric rotate-password --resource-group example-rg --resource-name example-fabric
     ```
+
+### [2026-01-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrZmFicmljcy97fS9yb3RhdGVwYXNzd29yZHM=/2026-01-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkfabrics/{}/rotatepasswords 2026-01-15-preview -->
+
+#### examples
+
+- Create new passwords, then updates the Terminal Server and Network Devices to use the new passwords
+    ```bash
+        networkfabric fabric rotate-password --resource-group example-rg --resource-name example-fabric
+    ```

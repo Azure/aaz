@@ -19,3 +19,7 @@ List are the global Point of Presence (POP) locations used to deliver CDN conten
 ### [2025-06-01](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuY2RuL2VkZ2Vub2Rlcw==/2025-06-01.xml) **Stable**
 
 <!-- mgmt-plane /providers/microsoft.cdn/edgenodes 2025-06-01 -->
+
+### [2025-09-01-preview](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuY2RuL2VkZ2Vub2Rlcw==/2025-09-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /providers/microsoft.cdn/edgenodes 2025-09-01-preview -->

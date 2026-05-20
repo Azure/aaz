@@ -13,3 +13,8 @@ List all workspaces in the specified subscription
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.monitor/pipelinegroups 2024-10-01-preview -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.monitor/pipelinegroups 2024-10-01-preview -->
+
+### [2026-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tb25pdG9yL3BpcGVsaW5lZ3JvdXBz/2026-04-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.monitor/pipelinegroups 2026-04-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.monitor/pipelinegroups 2026-04-01 -->

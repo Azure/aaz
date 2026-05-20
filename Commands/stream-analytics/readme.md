@@ -5,4 +5,4 @@ Manage Stream Analytics
 ## Subgroups
 
 - [output](/Commands/stream-analytics/output/readme.md)
-: Manage Output
+: Manage output with stream analytics.

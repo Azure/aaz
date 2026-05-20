@@ -47,3 +47,14 @@ Check the availability of a resource name. This is needed for resources where na
     ```bash
         cdn name-exists --name contoso
     ```
+
+### [2025-09-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vY2hlY2tuYW1lYXZhaWxhYmlsaXR5/2025-09-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.cdn/checknameavailability 2025-09-01-preview -->
+
+#### examples
+
+- Check whether the resource name contoso is available or not.
+    ```bash
+        cdn name-exists --name contoso
+    ```

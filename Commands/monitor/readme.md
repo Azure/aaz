@@ -38,7 +38,7 @@ Manage the Azure Monitor Service.
 : View Azure resource metrics.
 
 - [pipeline-group](/Commands/monitor/pipeline-group/readme.md)
-: Manage Pipeline Groups
+: Manage Azure Monitor Pipelines
 
 - [private-link-scope](/Commands/monitor/private-link-scope/readme.md)
 : Manage monitor private link scope resource.

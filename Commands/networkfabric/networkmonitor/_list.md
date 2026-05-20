@@ -27,3 +27,15 @@ List NetworkMonitors list by subscription GET method.
     ```bash
         networkfabric networkmonitor list
     ```
+
+### [2026-01-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrbW9uaXRvcnM=/2026-01-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.managednetworkfabric/networkmonitors 2026-01-15-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkmonitors 2026-01-15-preview -->
+
+#### examples
+
+- List the Network Monitor
+    ```bash
+        networkfabric networkmonitor list
+    ```
