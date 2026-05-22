@@ -11,25 +11,16 @@
           <help short="The management group."/>
           <format maxLength="90" minLength="1"/>
         </arg>
-        <arg type="string" var="$Path.policyDefinitionName" options="name n" required="True" group="" idPart="name">
+        <arg type="string" var="$Path.policyDefinitionName" options="name n" required="True" group="">
           <help short="The name of the policy definition."/>
           <format pattern="^[^<>*%&:\?.+/]*[^<>*%&:\?.+/ ]+$"/>
         </arg>
-        <arg type="string" var="$Path.policyDefinitionVersion" options="version" required="True" group="" idPart="child_name_1">
+        <arg type="string" var="$Path.policyDefinitionVersion" options="version" required="True" group="">
           <help short="The policy definition version." lines="The policy definition version in #.#.# format."/>
           <format pattern="^\d+\.\d+\.\d+$"/>
         </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" group="" idPart="subscription">
-          <help short="The subscription name or ID."/>
-        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" idPart="subscription"/>
       </argGroup>
-      <condition var="$Condition_PolicyDefinitionVersions_Get">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.policyDefinitionName"/>
-          <operator type="hasValue" arg="$Path.policyDefinitionVersion"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_PolicyDefinitionVersions_GetAtManagementGroup">
         <operator type="and">
           <operator type="hasValue" arg="$Path.managementGroupName"/>
@@ -37,131 +28,13 @@
           <operator type="hasValue" arg="$Path.policyDefinitionVersion"/>
         </operator>
       </condition>
-      <operation when="$Condition_PolicyDefinitionVersions_Get" operationId="PolicyDefinitionVersions_Get">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}/versions/{policyDefinitionVersion}">
-          <request method="get">
-            <path>
-              <param type="string" name="policyDefinitionName" arg="$Path.policyDefinitionName" required="True">
-                <format pattern="^[^<>*%&:\?.+/]*[^<>*%&:\?.+/ ]+$"/>
-              </param>
-              <param type="string" name="policyDefinitionVersion" arg="$Path.policyDefinitionVersion" required="True">
-                <format pattern="^\d+\.\d+\.\d+$"/>
-              </param>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
-            </path>
-            <query>
-              <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="&quot;2025-11-01&quot;"/>
-                <format minLength="1"/>
-              </const>
-            </query>
-          </request>
-          <response statusCode="200">
-            <body>
-              <json var="$Instance">
-                <schema type="object">
-                  <prop readOnly="True" type="ResourceId" name="id"/>
-                  <prop readOnly="True" type="string" name="name"/>
-                  <prop type="object" name="properties" clientFlatten="True">
-                    <prop type="string" name="description"/>
-                    <prop type="string" name="displayName"/>
-                    <prop type="object" name="externalEvaluationEnforcementSettings">
-                      <prop type="object" name="endpointSettings">
-                        <prop type="any" name="details"/>
-                        <prop type="string" name="kind"/>
-                      </prop>
-                      <prop type="string" name="missingTokenAction"/>
-                      <prop type="string" name="resultLifespan"/>
-                      <prop type="array<string>" name="roleDefinitionIds">
-                        <item type="string"/>
-                      </prop>
-                    </prop>
-                    <prop type="any" name="metadata"/>
-                    <prop type="string" name="mode">
-                      <default value="&quot;Indexed&quot;"/>
-                    </prop>
-                    <prop type="object" name="parameters">
-                      <additionalProp>
-                        <item type="object">
-                          <prop type="array<any>" name="allowedValues">
-                            <item type="any"/>
-                          </prop>
-                          <prop type="any" name="defaultValue"/>
-                          <prop type="object" name="metadata">
-                            <prop type="boolean" name="assignPermissions"/>
-                            <prop type="string" name="description"/>
-                            <prop type="string" name="displayName"/>
-                            <prop type="string" name="strongType"/>
-                            <additionalProp>
-                              <item type="any"/>
-                            </additionalProp>
-                          </prop>
-                          <prop type="any" name="schema"/>
-                          <prop type="string" name="type">
-                            <enum>
-                              <item value="&quot;Array&quot;"/>
-                              <item value="&quot;Boolean&quot;"/>
-                              <item value="&quot;DateTime&quot;"/>
-                              <item value="&quot;Float&quot;"/>
-                              <item value="&quot;Integer&quot;"/>
-                              <item value="&quot;Object&quot;"/>
-                              <item value="&quot;String&quot;"/>
-                            </enum>
-                          </prop>
-                        </item>
-                      </additionalProp>
-                    </prop>
-                    <prop type="any" name="policyRule"/>
-                    <prop type="string" name="policyType">
-                      <enum>
-                        <item value="&quot;BuiltIn&quot;"/>
-                        <item value="&quot;Custom&quot;"/>
-                        <item value="&quot;NotSpecified&quot;"/>
-                        <item value="&quot;Static&quot;"/>
-                      </enum>
-                    </prop>
-                    <prop type="string" name="version"/>
-                  </prop>
-                  <prop readOnly="True" type="object" name="systemData">
-                    <prop type="dateTime" name="createdAt">
-                      <format protocol="iso"/>
-                    </prop>
-                    <prop type="string" name="createdBy"/>
-                    <prop type="string" name="createdByType">
-                      <enum>
-                        <item value="&quot;Application&quot;"/>
-                        <item value="&quot;Key&quot;"/>
-                        <item value="&quot;ManagedIdentity&quot;"/>
-                        <item value="&quot;User&quot;"/>
-                      </enum>
-                    </prop>
-                    <prop type="dateTime" name="lastModifiedAt">
-                      <format protocol="iso"/>
-                    </prop>
-                    <prop type="string" name="lastModifiedBy"/>
-                    <prop type="string" name="lastModifiedByType">
-                      <enum>
-                        <item value="&quot;Application&quot;"/>
-                        <item value="&quot;Key&quot;"/>
-                        <item value="&quot;ManagedIdentity&quot;"/>
-                        <item value="&quot;User&quot;"/>
-                      </enum>
-                    </prop>
-                  </prop>
-                  <prop readOnly="True" type="string" name="type"/>
-                </schema>
-              </json>
-            </body>
-          </response>
-          <response isError="True">
-            <body>
-              <json>
-                <schema type="@MgmtErrorFormat"/>
-              </json>
-            </body>
-          </response>
-        </http>
-      </operation>
+      <condition var="$Condition_PolicyDefinitionVersions_Get">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.policyDefinitionName"/>
+          <operator type="hasValue" arg="$Path.policyDefinitionVersion"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
       <operation when="$Condition_PolicyDefinitionVersions_GetAtManagementGroup" operationId="PolicyDefinitionVersions_GetAtManagementGroup">
         <http path="/providers/Microsoft.Management/managementGroups/{managementGroupName}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}/versions/{policyDefinitionVersion}">
           <request method="get">
@@ -289,45 +162,9 @@
           </response>
         </http>
       </operation>
-      <output type="object" ref="$Instance" clientFlatten="True"/>
-    </command>
-    <command name="delete" version="2025-11-01" confirmation="Are you sure you want to perform this operation?">
-      <resource id="/providers/microsoft.management/managementgroups/{}/providers/microsoft.authorization/policydefinitions/{}/versions/{}" version="2025-11-01" swagger="mgmt-plane/resources/ResourceProviders/Microsoft.Authorization/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9tYW5hZ2VtZW50R3JvdXBzL3ttYW5hZ2VtZW50R3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF1dGhvcml6YXRpb24vcG9saWN5RGVmaW5pdGlvbnMve3BvbGljeURlZmluaXRpb25OYW1lfS92ZXJzaW9ucy97cG9saWN5RGVmaW5pdGlvblZlcnNpb259/V/MjAyNS0xMS0wMQ=="/>
-      <resource id="/subscriptions/{}/providers/microsoft.authorization/policydefinitions/{}/versions/{}" version="2025-11-01" swagger="mgmt-plane/resources/ResourceProviders/Microsoft.Authorization/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF1dGhvcml6YXRpb24vcG9saWN5RGVmaW5pdGlvbnMve3BvbGljeURlZmluaXRpb25OYW1lfS92ZXJzaW9ucy97cG9saWN5RGVmaW5pdGlvblZlcnNpb259/V/MjAyNS0xMS0wMQ=="/>
-      <argGroup name="">
-        <arg type="string" var="$Path.managementGroupName" options="management-group" group="">
-          <help short="The management group."/>
-          <format maxLength="90" minLength="1"/>
-        </arg>
-        <arg type="string" var="$Path.policyDefinitionName" options="name n" required="True" group="" idPart="name">
-          <help short="The name of the policy definition."/>
-          <format pattern="^[^<>*%&:\?.+/]*[^<>*%&:\?.+/ ]+$"/>
-        </arg>
-        <arg type="string" var="$Path.policyDefinitionVersion" options="version" required="True" group="" idPart="child_name_1">
-          <help short="The policy definition version." lines="The policy definition version in #.#.# format."/>
-          <format pattern="^\d+\.\d+\.\d+$"/>
-        </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" group="" idPart="subscription">
-          <help short="The subscription name or ID."/>
-        </arg>
-      </argGroup>
-      <condition var="$Condition_PolicyDefinitionVersions_Delete">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.policyDefinitionName"/>
-          <operator type="hasValue" arg="$Path.policyDefinitionVersion"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
-      <condition var="$Condition_PolicyDefinitionVersions_DeleteAtManagementGroup">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.managementGroupName"/>
-          <operator type="hasValue" arg="$Path.policyDefinitionName"/>
-          <operator type="hasValue" arg="$Path.policyDefinitionVersion"/>
-        </operator>
-      </condition>
-      <operation when="$Condition_PolicyDefinitionVersions_Delete" operationId="PolicyDefinitionVersions_Delete">
+      <operation when="$Condition_PolicyDefinitionVersions_Get" operationId="PolicyDefinitionVersions_Get">
         <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}/versions/{policyDefinitionVersion}">
-          <request method="delete">
+          <request method="get">
             <path>
               <param type="string" name="policyDefinitionName" arg="$Path.policyDefinitionName" required="True">
                 <format pattern="^[^<>*%&:\?.+/]*[^<>*%&:\?.+/ ]+$"/>
@@ -344,8 +181,103 @@
               </const>
             </query>
           </request>
-          <response statusCode="200"/>
-          <response statusCode="204"/>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="string" name="description"/>
+                    <prop type="string" name="displayName"/>
+                    <prop type="object" name="externalEvaluationEnforcementSettings">
+                      <prop type="object" name="endpointSettings">
+                        <prop type="any" name="details"/>
+                        <prop type="string" name="kind"/>
+                      </prop>
+                      <prop type="string" name="missingTokenAction"/>
+                      <prop type="string" name="resultLifespan"/>
+                      <prop type="array<string>" name="roleDefinitionIds">
+                        <item type="string"/>
+                      </prop>
+                    </prop>
+                    <prop type="any" name="metadata"/>
+                    <prop type="string" name="mode">
+                      <default value="&quot;Indexed&quot;"/>
+                    </prop>
+                    <prop type="object" name="parameters">
+                      <additionalProp>
+                        <item type="object">
+                          <prop type="array<any>" name="allowedValues">
+                            <item type="any"/>
+                          </prop>
+                          <prop type="any" name="defaultValue"/>
+                          <prop type="object" name="metadata">
+                            <prop type="boolean" name="assignPermissions"/>
+                            <prop type="string" name="description"/>
+                            <prop type="string" name="displayName"/>
+                            <prop type="string" name="strongType"/>
+                            <additionalProp>
+                              <item type="any"/>
+                            </additionalProp>
+                          </prop>
+                          <prop type="any" name="schema"/>
+                          <prop type="string" name="type">
+                            <enum>
+                              <item value="&quot;Array&quot;"/>
+                              <item value="&quot;Boolean&quot;"/>
+                              <item value="&quot;DateTime&quot;"/>
+                              <item value="&quot;Float&quot;"/>
+                              <item value="&quot;Integer&quot;"/>
+                              <item value="&quot;Object&quot;"/>
+                              <item value="&quot;String&quot;"/>
+                            </enum>
+                          </prop>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                    <prop type="any" name="policyRule"/>
+                    <prop type="string" name="policyType">
+                      <enum>
+                        <item value="&quot;BuiltIn&quot;"/>
+                        <item value="&quot;Custom&quot;"/>
+                        <item value="&quot;NotSpecified&quot;"/>
+                        <item value="&quot;Static&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="version"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
           <response isError="True">
             <body>
               <json>
@@ -355,6 +287,40 @@
           </response>
         </http>
       </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2025-11-01" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/providers/microsoft.management/managementgroups/{}/providers/microsoft.authorization/policydefinitions/{}/versions/{}" version="2025-11-01" swagger="mgmt-plane/resources/ResourceProviders/Microsoft.Authorization/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9tYW5hZ2VtZW50R3JvdXBzL3ttYW5hZ2VtZW50R3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF1dGhvcml6YXRpb24vcG9saWN5RGVmaW5pdGlvbnMve3BvbGljeURlZmluaXRpb25OYW1lfS92ZXJzaW9ucy97cG9saWN5RGVmaW5pdGlvblZlcnNpb259/V/MjAyNS0xMS0wMQ=="/>
+      <resource id="/subscriptions/{}/providers/microsoft.authorization/policydefinitions/{}/versions/{}" version="2025-11-01" swagger="mgmt-plane/resources/ResourceProviders/Microsoft.Authorization/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF1dGhvcml6YXRpb24vcG9saWN5RGVmaW5pdGlvbnMve3BvbGljeURlZmluaXRpb25OYW1lfS92ZXJzaW9ucy97cG9saWN5RGVmaW5pdGlvblZlcnNpb259/V/MjAyNS0xMS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.managementGroupName" options="management-group" group="">
+          <help short="The management group."/>
+          <format maxLength="90" minLength="1"/>
+        </arg>
+        <arg type="string" var="$Path.policyDefinitionName" options="name n" required="True" group="">
+          <help short="The name of the policy definition."/>
+          <format pattern="^[^<>*%&:\?.+/]*[^<>*%&:\?.+/ ]+$"/>
+        </arg>
+        <arg type="string" var="$Path.policyDefinitionVersion" options="version" required="True" group="">
+          <help short="The policy definition version." lines="The policy definition version in #.#.# format."/>
+          <format pattern="^\d+\.\d+\.\d+$"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" idPart="subscription"/>
+      </argGroup>
+      <condition var="$Condition_PolicyDefinitionVersions_DeleteAtManagementGroup">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.managementGroupName"/>
+          <operator type="hasValue" arg="$Path.policyDefinitionName"/>
+          <operator type="hasValue" arg="$Path.policyDefinitionVersion"/>
+        </operator>
+      </condition>
+      <condition var="$Condition_PolicyDefinitionVersions_Delete">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.policyDefinitionName"/>
+          <operator type="hasValue" arg="$Path.policyDefinitionVersion"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
       <operation when="$Condition_PolicyDefinitionVersions_DeleteAtManagementGroup" operationId="PolicyDefinitionVersions_DeleteAtManagementGroup">
         <http path="/providers/Microsoft.Management/managementGroups/{managementGroupName}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}/versions/{policyDefinitionVersion}">
           <request method="delete">
@@ -387,6 +353,36 @@
           </response>
         </http>
       </operation>
+      <operation when="$Condition_PolicyDefinitionVersions_Delete" operationId="PolicyDefinitionVersions_Delete">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}/versions/{policyDefinitionVersion}">
+          <request method="delete">
+            <path>
+              <param type="string" name="policyDefinitionName" arg="$Path.policyDefinitionName" required="True">
+                <format pattern="^[^<>*%&:\?.+/]*[^<>*%&:\?.+/ ]+$"/>
+              </param>
+              <param type="string" name="policyDefinitionVersion" arg="$Path.policyDefinitionVersion" required="True">
+                <format pattern="^\d+\.\d+\.\d+$"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-11-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200"/>
+          <response statusCode="204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
     </command>
     <command name="create" version="2025-11-01" confirmation="">
       <resource id="/providers/microsoft.management/managementgroups/{}/providers/microsoft.authorization/policydefinitions/{}/versions/{}" version="2025-11-01" swagger="mgmt-plane/resources/ResourceProviders/Microsoft.Authorization/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9tYW5hZ2VtZW50R3JvdXBzL3ttYW5hZ2VtZW50R3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF1dGhvcml6YXRpb24vcG9saWN5RGVmaW5pdGlvbnMve3BvbGljeURlZmluaXRpb25OYW1lfS92ZXJzaW9ucy97cG9saWN5RGVmaW5pdGlvblZlcnNpb259/V/MjAyNS0xMS0wMQ=="/>
@@ -396,17 +392,15 @@
           <help short="The management group."/>
           <format maxLength="90" minLength="1"/>
         </arg>
-        <arg type="string" var="$Path.policyDefinitionName" options="name n" required="True" group="" idPart="name">
+        <arg type="string" var="$Path.policyDefinitionName" options="name n" required="True" group="">
           <help short="The name of the policy definition."/>
           <format pattern="^[^<>*%&:\?.+/]*[^<>*%&:\?.+/ ]+$"/>
         </arg>
-        <arg type="string" var="$Path.policyDefinitionVersion" options="version" required="True" group="" idPart="child_name_1">
+        <arg type="string" var="$Path.policyDefinitionVersion" options="version" required="True" group="">
           <help short="The policy definition version." lines="The policy definition version in #.#.# format."/>
           <format pattern="^\d+\.\d+\.\d+$"/>
         </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" group="" idPart="subscription">
-          <help short="The subscription name or ID."/>
-        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" idPart="subscription"/>
       </argGroup>
       <argGroup name="Properties">
         <arg type="string" var="$parameters.properties.description" options="description" group="Properties">
@@ -415,7 +409,7 @@
         <arg type="string" var="$parameters.properties.displayName" options="display-name" group="Properties">
           <help short="The display name of the policy definition."/>
         </arg>
-        <arg type="object" var="$parameters.properties.externalEvaluationEnforcementSettings" options="external-evaluation-enforcement-settings" group="Properties">
+        <arg type="object" var="$parameters.properties.externalEvaluationEnforcementSettings" options="external-evaluation-enforcement-settings external-settings" group="Properties">
           <help short="The details of the source of external evaluation results required by the policy during enforcement evaluation."/>
           <arg type="object" var="$parameters.properties.externalEvaluationEnforcementSettings.endpointSettings" options="endpoint-settings">
             <help short="The settings of an external endpoint providing evaluation results."/>
@@ -438,7 +432,7 @@
           </arg>
         </arg>
         <arg type="any" var="$parameters.properties.metadata" options="metadata" group="Properties">
-          <help short="The policy definition metadata.  Metadata is an open ended object and is typically a collection of key value pairs."/>
+          <help short="The policy definition metadata." lines="The policy definition metadata. Metadata is an open-ended object and is typically a collection of key value pairs."/>
         </arg>
         <arg type="string" var="$parameters.properties.mode" options="mode m" group="Properties">
           <help short="The policy definition mode." lines="The policy definition mode. Valid values for control plane policy definitions: All, Indexed. The mode 'Indexed' indicates the policy should be evaluated only for resource types that support tags and location. Some examples for data plane policy definitions: Microsoft.KeyVault.Data, Microsoft.Network.Data."/>
@@ -507,13 +501,6 @@
           <help short="The policy definition version in #.#.# format."/>
         </arg>
       </argGroup>
-      <condition var="$Condition_PolicyDefinitionVersions_CreateOrUpdate">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.policyDefinitionName"/>
-          <operator type="hasValue" arg="$Path.policyDefinitionVersion"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_PolicyDefinitionVersions_CreateOrUpdateAtManagementGroup">
         <operator type="and">
           <operator type="hasValue" arg="$Path.managementGroupName"/>
@@ -521,17 +508,26 @@
           <operator type="hasValue" arg="$Path.policyDefinitionVersion"/>
         </operator>
       </condition>
-      <operation when="$Condition_PolicyDefinitionVersions_CreateOrUpdate" operationId="PolicyDefinitionVersions_CreateOrUpdate">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}/versions/{policyDefinitionVersion}">
+      <condition var="$Condition_PolicyDefinitionVersions_CreateOrUpdate">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.policyDefinitionName"/>
+          <operator type="hasValue" arg="$Path.policyDefinitionVersion"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_PolicyDefinitionVersions_CreateOrUpdateAtManagementGroup" operationId="PolicyDefinitionVersions_CreateOrUpdateAtManagementGroup">
+        <http path="/providers/Microsoft.Management/managementGroups/{managementGroupName}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}/versions/{policyDefinitionVersion}">
           <request method="put">
             <path>
+              <param type="string" name="managementGroupName" arg="$Path.managementGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
               <param type="string" name="policyDefinitionName" arg="$Path.policyDefinitionName" required="True">
                 <format pattern="^[^<>*%&:\?.+/]*[^<>*%&:\?.+/ ]+$"/>
               </param>
               <param type="string" name="policyDefinitionVersion" arg="$Path.policyDefinitionVersion" required="True">
                 <format pattern="^\d+\.\d+\.\d+$"/>
               </param>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
@@ -712,19 +708,17 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_PolicyDefinitionVersions_CreateOrUpdateAtManagementGroup" operationId="PolicyDefinitionVersions_CreateOrUpdateAtManagementGroup">
-        <http path="/providers/Microsoft.Management/managementGroups/{managementGroupName}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}/versions/{policyDefinitionVersion}">
+      <operation when="$Condition_PolicyDefinitionVersions_CreateOrUpdate" operationId="PolicyDefinitionVersions_CreateOrUpdate">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}/versions/{policyDefinitionVersion}">
           <request method="put">
             <path>
-              <param type="string" name="managementGroupName" arg="$Path.managementGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
               <param type="string" name="policyDefinitionName" arg="$Path.policyDefinitionName" required="True">
                 <format pattern="^[^<>*%&:\?.+/]*[^<>*%&:\?.+/ ]+$"/>
               </param>
               <param type="string" name="policyDefinitionVersion" arg="$Path.policyDefinitionVersion" required="True">
                 <format pattern="^\d+\.\d+\.\d+$"/>
               </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
@@ -915,17 +909,15 @@
           <help short="The management group."/>
           <format maxLength="90" minLength="1"/>
         </arg>
-        <arg type="string" var="$Path.policyDefinitionName" options="name n" required="True" group="" idPart="name">
+        <arg type="string" var="$Path.policyDefinitionName" options="name n" required="True" group="">
           <help short="The name of the policy definition."/>
           <format pattern="^[^<>*%&:\?.+/]*[^<>*%&:\?.+/ ]+$"/>
         </arg>
-        <arg type="string" var="$Path.policyDefinitionVersion" options="version" required="True" group="" idPart="child_name_1">
+        <arg type="string" var="$Path.policyDefinitionVersion" options="version" required="True" group="">
           <help short="The policy definition version." lines="The policy definition version in #.#.# format."/>
           <format pattern="^\d+\.\d+\.\d+$"/>
         </arg>
-        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" group="" idPart="subscription">
-          <help short="The subscription name or ID."/>
-        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" idPart="subscription"/>
       </argGroup>
       <argGroup name="Properties">
         <arg nullable="True" type="string" var="$parameters.properties.description" options="description" group="Properties">
@@ -934,7 +926,7 @@
         <arg nullable="True" type="string" var="$parameters.properties.displayName" options="display-name" group="Properties">
           <help short="The display name of the policy definition."/>
         </arg>
-        <arg nullable="True" type="object" var="$parameters.properties.externalEvaluationEnforcementSettings" options="external-evaluation-enforcement-settings" group="Properties">
+        <arg nullable="True" type="object" var="$parameters.properties.externalEvaluationEnforcementSettings" options="external-evaluation-enforcement-settings external-settings" group="Properties">
           <help short="The details of the source of external evaluation results required by the policy during enforcement evaluation."/>
           <arg nullable="True" type="object" var="$parameters.properties.externalEvaluationEnforcementSettings.endpointSettings" options="endpoint-settings">
             <help short="The settings of an external endpoint providing evaluation results."/>
@@ -957,13 +949,13 @@
           </arg>
         </arg>
         <arg nullable="True" type="any" var="$parameters.properties.metadata" options="metadata" group="Properties">
-          <help short="The policy definition metadata.  Metadata is an open ended object and is typically a collection of key value pairs."/>
+          <help short="The policy definition metadata." lines="The policy definition metadata. Metadata is an open-ended object and is typically a collection of key value pairs."/>
         </arg>
         <arg nullable="True" type="string" var="$parameters.properties.mode" options="mode m" group="Properties">
           <help short="The policy definition mode." lines="The policy definition mode. Valid values for control plane policy definitions: All, Indexed. The mode 'Indexed' indicates the policy should be evaluated only for resource types that support tags and location. Some examples for data plane policy definitions: Microsoft.KeyVault.Data, Microsoft.Network.Data."/>
         </arg>
-        <arg nullable="True" type="object" var="$parameters.properties.parameters" options="parameters" group="Properties">
-          <help short="The parameter definitions for parameters used in the policy rule. The keys are the parameter names."/>
+        <arg nullable="True" type="object" var="$parameters.properties.parameters" options="params p" group="Properties">
+          <help short="The policy rule parameter definitions." lines="The parameter definitions for parameters used in the policy rule. The keys are the parameter names."/>
           <additionalProp>
             <item nullable="True" type="object">
               <arg nullable="True" type="array<any>" var="$parameters.properties.parameters{}.allowedValues" options="allowed-values">
@@ -1025,13 +1017,6 @@
           <help short="The policy definition version in #.#.# format."/>
         </arg>
       </argGroup>
-      <condition var="$Condition_PolicyDefinitionVersions_Get">
-        <operator type="and">
-          <operator type="hasValue" arg="$Path.policyDefinitionName"/>
-          <operator type="hasValue" arg="$Path.policyDefinitionVersion"/>
-          <operator type="hasValue" arg="$Path.subscriptionId"/>
-        </operator>
-      </condition>
       <condition var="$Condition_PolicyDefinitionVersions_GetAtManagementGroup">
         <operator type="and">
           <operator type="hasValue" arg="$Path.managementGroupName"/>
@@ -1039,7 +1024,7 @@
           <operator type="hasValue" arg="$Path.policyDefinitionVersion"/>
         </operator>
       </condition>
-      <condition var="$Condition_PolicyDefinitionVersions_CreateOrUpdate">
+      <condition var="$Condition_PolicyDefinitionVersions_Get">
         <operator type="and">
           <operator type="hasValue" arg="$Path.policyDefinitionName"/>
           <operator type="hasValue" arg="$Path.policyDefinitionVersion"/>
@@ -1053,17 +1038,26 @@
           <operator type="hasValue" arg="$Path.policyDefinitionVersion"/>
         </operator>
       </condition>
-      <operation when="$Condition_PolicyDefinitionVersions_Get" operationId="PolicyDefinitionVersions_Get">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}/versions/{policyDefinitionVersion}">
+      <condition var="$Condition_PolicyDefinitionVersions_CreateOrUpdate">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.policyDefinitionName"/>
+          <operator type="hasValue" arg="$Path.policyDefinitionVersion"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_PolicyDefinitionVersions_GetAtManagementGroup" operationId="PolicyDefinitionVersions_GetAtManagementGroup">
+        <http path="/providers/Microsoft.Management/managementGroups/{managementGroupName}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}/versions/{policyDefinitionVersion}">
           <request method="get">
             <path>
+              <param type="string" name="managementGroupName" arg="$Path.managementGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
               <param type="string" name="policyDefinitionName" arg="$Path.policyDefinitionName" required="True">
                 <format pattern="^[^<>*%&:\?.+/]*[^<>*%&:\?.+/ ]+$"/>
               </param>
               <param type="string" name="policyDefinitionVersion" arg="$Path.policyDefinitionVersion" required="True">
                 <format pattern="^\d+\.\d+\.\d+$"/>
               </param>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
@@ -1178,19 +1172,17 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_PolicyDefinitionVersions_GetAtManagementGroup" operationId="PolicyDefinitionVersions_GetAtManagementGroup">
-        <http path="/providers/Microsoft.Management/managementGroups/{managementGroupName}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}/versions/{policyDefinitionVersion}">
+      <operation when="$Condition_PolicyDefinitionVersions_Get" operationId="PolicyDefinitionVersions_Get">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}/versions/{policyDefinitionVersion}">
           <request method="get">
             <path>
-              <param type="string" name="managementGroupName" arg="$Path.managementGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
               <param type="string" name="policyDefinitionName" arg="$Path.policyDefinitionName" required="True">
                 <format pattern="^[^<>*%&:\?.+/]*[^<>*%&:\?.+/ ]+$"/>
               </param>
               <param type="string" name="policyDefinitionVersion" arg="$Path.policyDefinitionVersion" required="True">
                 <format pattern="^\d+\.\d+\.\d+$"/>
               </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
@@ -1283,17 +1275,19 @@
           </json>
         </instanceUpdate>
       </operation>
-      <operation when="$Condition_PolicyDefinitionVersions_CreateOrUpdate" operationId="PolicyDefinitionVersions_CreateOrUpdate">
-        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}/versions/{policyDefinitionVersion}">
+      <operation when="$Condition_PolicyDefinitionVersions_CreateOrUpdateAtManagementGroup" operationId="PolicyDefinitionVersions_CreateOrUpdateAtManagementGroup">
+        <http path="/providers/Microsoft.Management/managementGroups/{managementGroupName}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}/versions/{policyDefinitionVersion}">
           <request method="put">
             <path>
+              <param type="string" name="managementGroupName" arg="$Path.managementGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
               <param type="string" name="policyDefinitionName" arg="$Path.policyDefinitionName" required="True">
                 <format pattern="^[^<>*%&:\?.+/]*[^<>*%&:\?.+/ ]+$"/>
               </param>
               <param type="string" name="policyDefinitionVersion" arg="$Path.policyDefinitionVersion" required="True">
                 <format pattern="^\d+\.\d+\.\d+$"/>
               </param>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
@@ -1321,19 +1315,17 @@
           </response>
         </http>
       </operation>
-      <operation when="$Condition_PolicyDefinitionVersions_CreateOrUpdateAtManagementGroup" operationId="PolicyDefinitionVersions_CreateOrUpdateAtManagementGroup">
-        <http path="/providers/Microsoft.Management/managementGroups/{managementGroupName}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}/versions/{policyDefinitionVersion}">
+      <operation when="$Condition_PolicyDefinitionVersions_CreateOrUpdate" operationId="PolicyDefinitionVersions_CreateOrUpdate">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyDefinitions/{policyDefinitionName}/versions/{policyDefinitionVersion}">
           <request method="put">
             <path>
-              <param type="string" name="managementGroupName" arg="$Path.managementGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
               <param type="string" name="policyDefinitionName" arg="$Path.policyDefinitionName" required="True">
                 <format pattern="^[^<>*%&:\?.+/]*[^<>*%&:\?.+/ ]+$"/>
               </param>
               <param type="string" name="policyDefinitionVersion" arg="$Path.policyDefinitionVersion" required="True">
                 <format pattern="^\d+\.\d+\.\d+$"/>
               </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
             </path>
             <query>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">

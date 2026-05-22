@@ -10,3 +10,10 @@ Update the policy definition version in the given subscription or management gro
 
 <!-- mgmt-plane /providers/microsoft.management/managementgroups/{}/providers/microsoft.authorization/policydefinitions/{}/versions/{} 2025-11-01 -->
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.authorization/policydefinitions/{}/versions/{} 2025-11-01 -->
+
+#### examples
+
+- Update a policy definition version
+    ```bash
+        policy definition version update -n readOnlyStorage --display-name "Updated display name goes here"
+    ```

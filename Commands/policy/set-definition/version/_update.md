@@ -8,3 +8,10 @@ Update operation creates or updates a policy set definition version in the given
 
 <!-- mgmt-plane /providers/microsoft.management/managementgroups/{}/providers/microsoft.authorization/policysetdefinitions/{}/versions/{} 2025-11-01 -->
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.authorization/policysetdefinitions/{}/versions/{} 2025-11-01 -->
+
+#### examples
+
+- Update a policy set definition version
+    ```bash
+        az policy set-definition version update -n readOnlyStorage --display-name "Updated display name goes here"
+    ```

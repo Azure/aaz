@@ -40,5 +40,5 @@ Create a policy definition in the given subscription or management group with th
 
 - Create a policy definition with external evaluation enforcement settings
     ```bash
-        policy definition create --name externalPolicy --rules "{ 'if': { 'value': '[claims().isValid]', 'equals': 'true' }, 'then': { 'effect': 'deny' } }" --external-evaluation-enforcement-settings "{ 'roleDefinitionIds': [ '/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c' ], 'endpointSettings': { 'kind': 'CoinFlip' } }"
+        policy definition create --name externalPolicy --rules "{ 'if': { 'value': '[claims().isValid]', 'equals': 'true' }, 'then': { 'effect': 'deny' } }" --external-settings "{ 'roleDefinitionIds': [ '/providers/Microsoft.Authorization/roleDefinitions/b24988ac-6180-42a0-ab88-20f7382dd24c' ], 'endpointSettings': { 'kind': 'CoinFlip' } }"
     ```

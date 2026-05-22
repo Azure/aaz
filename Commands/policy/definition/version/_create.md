@@ -13,7 +13,7 @@ Create a policy definition version in the given subscription or management group
 
 #### examples
 
-- Create or update a policy definition version at management group level
+- Create a policy definition with older version
     ```bash
         policy definition version create --name readOnlyStorage --rules "{ 'if': { 'field': 'type', 'equals': 'Microsoft.Storage/storageAccounts/write' }, 'then': { 'effect': 'deny' } }" --version 1.1.0
     ```
