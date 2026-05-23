@@ -1,0 +1,2509 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.monitor/slis/{}" version="2025-03-01-preview" swagger="mgmt-plane/monitoringservice/ResourceProviders/Microsoft.Monitor/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk1vbml0b3Ivc2xpcy97c2xpTmFtZX0=/V/MjAyNS0wMy0wMS1wcmV2aWV3"/>
+  <commandGroup name="monitor sli">
+    <command name="show" version="2025-03-01-preview">
+      <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.monitor/slis/{}" version="2025-03-01-preview" swagger="mgmt-plane/monitoringservice/ResourceProviders/Microsoft.Monitor/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk1vbml0b3Ivc2xpcy97c2xpTmFtZX0=/V/MjAyNS0wMy0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.serviceGroupName" options="service-group-name" required="True">
+          <help short="The name of the service group."/>
+          <format pattern="^[A-Za-z0-9._()~-]{1,250}$"/>
+        </arg>
+        <arg type="string" var="$Path.sliName" options="sli-name" required="True">
+          <help short="Name of the SLI that is given by the user."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_()~-]{2,63}$"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Slis_Get">
+        <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.Monitor/slis/{sliName}">
+          <request method="get">
+            <path>
+              <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
+                <format pattern="^[A-Za-z0-9._()~-]{1,250}$"/>
+              </param>
+              <param type="string" name="sliName" arg="$Path.sliName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_()~-]{2,63}$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-03-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/providers/Microsoft.Management/serviceGroups/{}/providers/Microsoft.Monitor/slis/{}"/>
+                  </prop>
+                  <prop type="IdentityObject" name="identity">
+                    <prop readOnly="True" type="uuid" name="principalId"/>
+                    <prop readOnly="True" type="uuid" name="tenantId"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;None&quot;"/>
+                        <item value="&quot;SystemAssigned&quot;"/>
+                        <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                        <item value="&quot;UserAssigned&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="userAssignedIdentities">
+                      <additionalProp>
+                        <item nullable="True" type="object">
+                          <prop readOnly="True" type="uuid" name="clientId"/>
+                          <prop readOnly="True" type="uuid" name="principalId"/>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="baselineProperties" required="True">
+                      <prop type="object" name="baseline" required="True">
+                        <prop type="string" name="evaluationCalculationType" required="True">
+                          <enum>
+                            <item value="&quot;CalendarDays&quot;"/>
+                            <item value="&quot;RollingDays&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="integer32" name="evaluationPeriodDays" required="True">
+                          <format maximum="90" minimum="1"/>
+                        </prop>
+                        <prop type="float32" name="value" required="True">
+                          <format maximum="100.0" minimum="0"/>
+                        </prop>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="category" required="True">
+                      <enum>
+                        <item value="&quot;Availability&quot;"/>
+                        <item value="&quot;Latency&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="description" required="True">
+                      <format pattern="^[\s\S]{0,1000}$"/>
+                    </prop>
+                    <prop type="array<object>" name="destinationAmwAccounts" required="True" identifiers="resourceId">
+                      <item type="object">
+                        <prop type="ResourceId" name="identity" required="True"/>
+                        <prop type="ResourceId" name="resourceId" required="True"/>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="array<object>" name="destinationMetrics" identifiers="metricNamespace metricName">
+                      <item type="object">
+                        <prop type="string" name="metricName" required="True"/>
+                        <prop type="string" name="metricNamespace" required="True"/>
+                      </item>
+                    </prop>
+                    <prop type="boolean" name="enableAlert" required="True"/>
+                    <prop type="string" name="evaluationType" required="True">
+                      <enum>
+                        <item value="&quot;RequestBased&quot;"/>
+                        <item value="&quot;WindowBased&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="object" name="executionState">
+                      <prop type="string" name="message"/>
+                      <prop type="string" name="state" required="True"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="sliProperties" required="True">
+                      <prop type="object" name="goodSignals" cls="Signal_read">
+                        <prop type="string" name="signalFormula" required="True"/>
+                        <prop type="array<object>" name="signalSources" required="True" identifiers="signalSourceId">
+                          <item type="object">
+                            <prop type="array<object>" name="filters" required="True" identifiers="scalarFunction dimensionName samplingType operator value">
+                              <item type="object">
+                                <prop type="string" name="dimensionName"/>
+                                <prop type="string" name="operator" required="True">
+                                  <enum>
+                                    <item value="&quot;contains&quot;"/>
+                                    <item value="&quot;eq&quot;"/>
+                                    <item value="&quot;gt&quot;"/>
+                                    <item value="&quot;gte&quot;"/>
+                                    <item value="&quot;in&quot;"/>
+                                    <item value="&quot;lt&quot;"/>
+                                    <item value="&quot;lte&quot;"/>
+                                    <item value="&quot;ne&quot;"/>
+                                    <item value="&quot;notcontains&quot;"/>
+                                    <item value="&quot;notin&quot;"/>
+                                    <item value="&quot;notstartswith&quot;"/>
+                                    <item value="&quot;startswith&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="samplingType">
+                                  <enum>
+                                    <item value="&quot;Average&quot;"/>
+                                    <item value="&quot;Count&quot;"/>
+                                    <item value="&quot;Max&quot;"/>
+                                    <item value="&quot;Min&quot;"/>
+                                    <item value="&quot;Sum&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="scalarFunction">
+                                  <enum>
+                                    <item value="&quot;avg&quot;"/>
+                                    <item value="&quot;max&quot;"/>
+                                    <item value="&quot;min&quot;"/>
+                                    <item value="&quot;sum&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="value" required="True"/>
+                              </item>
+                            </prop>
+                            <prop type="string" name="metricName" required="True"/>
+                            <prop type="string" name="metricNamespace" required="True"/>
+                            <prop type="string" name="signalSourceId" required="True"/>
+                            <prop type="ResourceId" name="sourceAmwAccountManagedIdentity" required="True"/>
+                            <prop type="ResourceId" name="sourceAmwAccountResourceId" required="True"/>
+                            <prop type="object" name="spatialAggregation" required="True">
+                              <prop type="array<string>" name="dimensions" required="True">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="type" required="True">
+                                <enum>
+                                  <item value="&quot;Average&quot;"/>
+                                  <item value="&quot;Count&quot;"/>
+                                  <item value="&quot;Max&quot;"/>
+                                  <item value="&quot;Min&quot;"/>
+                                  <item value="&quot;Sum&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="object" name="temporalAggregation" required="True">
+                              <prop type="string" name="type" required="True">
+                                <enum>
+                                  <item value="&quot;Average&quot;"/>
+                                  <item value="&quot;Delta&quot;"/>
+                                  <item value="&quot;IDelta&quot;"/>
+                                  <item value="&quot;IRate&quot;"/>
+                                  <item value="&quot;Increase&quot;"/>
+                                  <item value="&quot;Max&quot;"/>
+                                  <item value="&quot;Min&quot;"/>
+                                  <item value="&quot;Rate&quot;"/>
+                                  <item value="&quot;Sum&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="integer32" name="windowSizeMinutes"/>
+                            </prop>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop type="@Signal_read" name="signals"/>
+                      <prop type="@Signal_read" name="totalSignals"/>
+                      <prop type="object" name="windowUptimeCriteria">
+                        <prop type="string" name="comparator" required="True">
+                          <enum>
+                            <item value="&quot;gt&quot;"/>
+                            <item value="&quot;gte&quot;"/>
+                            <item value="&quot;lt&quot;"/>
+                            <item value="&quot;lte&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="float32" name="target" required="True"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="streamingRuleId"/>
+                    <prop readOnly="True" type="dateTime" name="streamingRuleLastUpdatedTimestamp">
+                      <format protocol="iso"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2025-03-01-preview" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.monitor/slis/{}" version="2025-03-01-preview" swagger="mgmt-plane/monitoringservice/ResourceProviders/Microsoft.Monitor/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk1vbml0b3Ivc2xpcy97c2xpTmFtZX0=/V/MjAyNS0wMy0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.serviceGroupName" options="service-group-name" required="True">
+          <help short="The name of the service group."/>
+          <format pattern="^[A-Za-z0-9._()~-]{1,250}$"/>
+        </arg>
+        <arg type="string" var="$Path.sliName" options="sli-name" required="True">
+          <help short="Name of the SLI that is given by the user."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_()~-]{2,63}$"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Slis_Delete">
+        <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.Monitor/slis/{sliName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
+                <format pattern="^[A-Za-z0-9._()~-]{1,250}$"/>
+              </param>
+              <param type="string" name="sliName" arg="$Path.sliName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_()~-]{2,63}$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-03-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200"/>
+          <response statusCode="204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="create" version="2025-03-01-preview">
+      <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.monitor/slis/{}" version="2025-03-01-preview" swagger="mgmt-plane/monitoringservice/ResourceProviders/Microsoft.Monitor/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk1vbml0b3Ivc2xpcy97c2xpTmFtZX0=/V/MjAyNS0wMy0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.serviceGroupName" options="service-group-name" required="True">
+          <help short="The name of the service group."/>
+          <format pattern="^[A-Za-z0-9._()~-]{1,250}$"/>
+        </arg>
+        <arg type="string" var="$Path.sliName" options="sli-name" required="True">
+          <help short="Name of the SLI that is given by the user."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_()~-]{2,63}$"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Identity">
+        <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
+          <blank value="&quot;True&quot;"/>
+          <help short="Set the system managed identity."/>
+        </arg>
+        <arg type="string" var="$resource.identity.type" options="type" hide="True" group="Identity">
+          <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
+          <enum>
+            <item name="None" value="&quot;None&quot;"/>
+            <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
+            <item name="SystemAssigned,UserAssigned" value="&quot;SystemAssigned,UserAssigned&quot;"/>
+            <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
+          </enum>
+        </arg>
+        <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
+          <blank value="[]"/>
+          <help short="Set the user managed identities."/>
+          <item type="string"/>
+        </arg>
+        <arg type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+          <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
+          <additionalProp>
+            <item nullable="True" type="object">
+              <blank value="{}"/>
+            </item>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="object" var="$resource.properties.baselineProperties" options="baseline-properties" group="Properties">
+          <help short="Defines the SLO baseline associated with the SLI."/>
+          <arg type="object" var="$resource.properties.baselineProperties.baseline" options="baseline" required="True">
+            <help short="Defines the baseline target, which is compared against the SLI value to determine compliance."/>
+            <arg type="string" var="$resource.properties.baselineProperties.baseline.evaluationCalculationType" options="evaluation-calculation-type" required="True">
+              <help short="Specifies how evaluation is calculated, either based on calendar days or a rolling window."/>
+              <enum>
+                <item name="CalendarDays" value="&quot;CalendarDays&quot;"/>
+                <item name="RollingDays" value="&quot;RollingDays&quot;"/>
+              </enum>
+            </arg>
+            <arg type="integer32" var="$resource.properties.baselineProperties.baseline.evaluationPeriodDays" options="evaluation-period-days" required="True">
+              <help short="The time frame (in days) used for SLI evaluation."/>
+              <format maximum="90" minimum="1"/>
+            </arg>
+            <arg type="float32" var="$resource.properties.baselineProperties.baseline.value" options="value" required="True">
+              <help short="The user-defined or Azure-defined target value used for comparison against the SLI value."/>
+              <format maximum="100.0" minimum="0"/>
+            </arg>
+          </arg>
+        </arg>
+        <arg type="string" var="$resource.properties.category" options="category" group="Properties">
+          <help short="Specifies the category of the SLI, used to classify signals such as Availability and Latency."/>
+          <enum>
+            <item name="Availability" value="&quot;Availability&quot;"/>
+            <item name="Latency" value="&quot;Latency&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$resource.properties.description" options="description" group="Properties">
+          <help short="A user-provided description of the SLI, with a maximum length of 1000 characters."/>
+          <format pattern="^[\s\S]{0,1000}$"/>
+        </arg>
+        <arg type="array<object>" var="$resource.properties.destinationAmwAccounts" options="destination-amw-accounts" group="Properties">
+          <help short="Destination AMW accounts."/>
+          <item type="object">
+            <arg type="ResourceId" var="$resource.properties.destinationAmwAccounts[].identity" options="identity" required="True">
+              <help short="The ARM resource ID of the managed identity with access to the source account."/>
+            </arg>
+            <arg type="ResourceId" var="$resource.properties.destinationAmwAccounts[].resourceId" options="resource-id" required="True">
+              <help short="The ARM resource ID of the account where metrics are emitted."/>
+            </arg>
+          </item>
+        </arg>
+        <arg type="boolean" var="$resource.properties.enableAlert" options="enable-alert" group="Properties">
+          <help short="A flag to determine whether alert is enabled."/>
+        </arg>
+        <arg type="string" var="$resource.properties.evaluationType" options="evaluation-type" group="Properties">
+          <help short="Determines how the SLI is evaluated—either based on request counts or time windows."/>
+          <enum>
+            <item name="RequestBased" value="&quot;RequestBased&quot;"/>
+            <item name="WindowBased" value="&quot;WindowBased&quot;"/>
+          </enum>
+        </arg>
+        <arg type="object" var="$resource.properties.sliProperties" options="sli-properties" group="Properties">
+          <help short="Defines the SLI properties associated with the SLI."/>
+          <arg type="object" var="$resource.properties.sliProperties.goodSignals" options="good-signals" cls="Signal_create">
+            <help short="Represents good signals used in request-based SLI calculations."/>
+            <arg type="string" var="@Signal_create.signalFormula" options="signal-formula" required="True">
+              <help short="Mathematical formula used to combine multiple metrics."/>
+            </arg>
+            <arg type="array<object>" var="@Signal_create.signalSources" options="signal-sources" required="True">
+              <help short="Sources of metrics used for SLIs."/>
+              <item type="object">
+                <arg type="array<object>" var="@Signal_create.signalSources[].filters" options="filters" required="True">
+                  <help short="Filters applied to modify signal values."/>
+                  <item type="object">
+                    <arg type="string" var="@Signal_create.signalSources[].filters[].dimensionName" options="dimension-name">
+                      <help short="Dimension name used in filtering."/>
+                    </arg>
+                    <arg type="string" var="@Signal_create.signalSources[].filters[].operator" options="operator" required="True">
+                      <help short="Operator used in the filtering condition."/>
+                      <enum>
+                        <item name="contains" value="&quot;contains&quot;"/>
+                        <item name="eq" value="&quot;eq&quot;"/>
+                        <item name="gt" value="&quot;gt&quot;"/>
+                        <item name="gte" value="&quot;gte&quot;"/>
+                        <item name="in" value="&quot;in&quot;"/>
+                        <item name="lt" value="&quot;lt&quot;"/>
+                        <item name="lte" value="&quot;lte&quot;"/>
+                        <item name="ne" value="&quot;ne&quot;"/>
+                        <item name="notcontains" value="&quot;notcontains&quot;"/>
+                        <item name="notin" value="&quot;notin&quot;"/>
+                        <item name="notstartswith" value="&quot;notstartswith&quot;"/>
+                        <item name="startswith" value="&quot;startswith&quot;"/>
+                      </enum>
+                    </arg>
+                    <arg type="string" var="@Signal_create.signalSources[].filters[].samplingType" options="sampling-type">
+                      <help short="Defines the sampling type."/>
+                      <enum>
+                        <item name="Average" value="&quot;Average&quot;"/>
+                        <item name="Count" value="&quot;Count&quot;"/>
+                        <item name="Max" value="&quot;Max&quot;"/>
+                        <item name="Min" value="&quot;Min&quot;"/>
+                        <item name="Sum" value="&quot;Sum&quot;"/>
+                      </enum>
+                    </arg>
+                    <arg type="string" var="@Signal_create.signalSources[].filters[].scalarFunction" options="scalar-function">
+                      <help short="Scalar function applied for filtering."/>
+                      <enum>
+                        <item name="avg" value="&quot;avg&quot;"/>
+                        <item name="max" value="&quot;max&quot;"/>
+                        <item name="min" value="&quot;min&quot;"/>
+                        <item name="sum" value="&quot;sum&quot;"/>
+                      </enum>
+                    </arg>
+                    <arg type="string" var="@Signal_create.signalSources[].filters[].value" options="value" required="True">
+                      <help short="Value used in filtering. For most operators (eq, ne, lt, lte, gt, gte, startswith, notstartswith, contains, notcontains) this is a single value (for example &quot;GetContosoUsers&quot;). For the `in` and `notin` operators, multiple values must be joined by the delimiter `^^` (for example &quot;east^^west^^north&quot;)."/>
+                    </arg>
+                  </item>
+                </arg>
+                <arg type="string" var="@Signal_create.signalSources[].metricName" options="metric-name" required="True">
+                  <help short="Name of the metric."/>
+                </arg>
+                <arg type="string" var="@Signal_create.signalSources[].metricNamespace" options="metric-namespace" required="True">
+                  <help short="Namespace of the metric."/>
+                </arg>
+                <arg type="string" var="@Signal_create.signalSources[].signalSourceId" options="signal-source-id" required="True">
+                  <help short="Unique identifier for the signal source."/>
+                </arg>
+                <arg type="ResourceId" var="@Signal_create.signalSources[].sourceAmwAccountManagedIdentity" options="source-amw-account-managed-identity" required="True">
+                  <help short="Managed identity for authenticating the signal source."/>
+                </arg>
+                <arg type="ResourceId" var="@Signal_create.signalSources[].sourceAmwAccountResourceId" options="source-amw-account-resource-id" required="True">
+                  <help short="Resource ID of the source AMW account."/>
+                </arg>
+                <arg type="object" var="@Signal_create.signalSources[].spatialAggregation" options="spatial-aggregation" required="True">
+                  <help short="Defines how measurements are aggregated across multiple time series."/>
+                  <arg type="array<string>" var="@Signal_create.signalSources[].spatialAggregation.dimensions" options="dimensions" required="True">
+                    <help short="Dimensions considered for spatial aggregation."/>
+                    <item type="string"/>
+                  </arg>
+                  <arg type="string" var="@Signal_create.signalSources[].spatialAggregation.type" options="type" required="True">
+                    <help short="Type of spatial aggregation."/>
+                    <enum>
+                      <item name="Average" value="&quot;Average&quot;"/>
+                      <item name="Count" value="&quot;Count&quot;"/>
+                      <item name="Max" value="&quot;Max&quot;"/>
+                      <item name="Min" value="&quot;Min&quot;"/>
+                      <item name="Sum" value="&quot;Sum&quot;"/>
+                    </enum>
+                  </arg>
+                </arg>
+                <arg type="object" var="@Signal_create.signalSources[].temporalAggregation" options="temporal-aggregation" required="True">
+                  <help short="Defines how measurements are aggregated over a specific time window within the same time series."/>
+                  <arg type="string" var="@Signal_create.signalSources[].temporalAggregation.type" options="type" required="True">
+                    <help short="Type of temporal aggregation."/>
+                    <enum>
+                      <item name="Average" value="&quot;Average&quot;"/>
+                      <item name="Delta" value="&quot;Delta&quot;"/>
+                      <item name="IDelta" value="&quot;IDelta&quot;"/>
+                      <item name="IRate" value="&quot;IRate&quot;"/>
+                      <item name="Increase" value="&quot;Increase&quot;"/>
+                      <item name="Max" value="&quot;Max&quot;"/>
+                      <item name="Min" value="&quot;Min&quot;"/>
+                      <item name="Rate" value="&quot;Rate&quot;"/>
+                      <item name="Sum" value="&quot;Sum&quot;"/>
+                    </enum>
+                  </arg>
+                  <arg type="integer32" var="@Signal_create.signalSources[].temporalAggregation.windowSizeMinutes" options="window-size-minutes">
+                    <help short="Time window size for aggregation, in minutes."/>
+                  </arg>
+                </arg>
+              </item>
+            </arg>
+          </arg>
+          <arg type="@Signal_create" var="$resource.properties.sliProperties.signals" options="signals">
+            <help short="Signals used for window-based SLI calculations."/>
+          </arg>
+          <arg type="@Signal_create" var="$resource.properties.sliProperties.totalSignals" options="total-signals">
+            <help short="Represents total signals used in request-based SLI calculations."/>
+          </arg>
+          <arg type="object" var="$resource.properties.sliProperties.windowUptimeCriteria" options="window-uptime-criteria">
+            <help short="Defines the uptime criteria for window-based SLIs."/>
+            <arg type="string" var="$resource.properties.sliProperties.windowUptimeCriteria.comparator" options="comparator" required="True">
+              <help short="Comparison operator used for uptime evaluation."/>
+              <enum>
+                <item name="gt" value="&quot;gt&quot;"/>
+                <item name="gte" value="&quot;gte&quot;"/>
+                <item name="lt" value="&quot;lt&quot;"/>
+                <item name="lte" value="&quot;lte&quot;"/>
+              </enum>
+            </arg>
+            <arg type="float32" var="$resource.properties.sliProperties.windowUptimeCriteria.target" options="target" required="True">
+              <help short="Threshold value used to determine uptime."/>
+            </arg>
+          </arg>
+        </arg>
+      </argGroup>
+      <operation operationId="Slis_CreateOrUpdate">
+        <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.Monitor/slis/{sliName}">
+          <request method="put">
+            <path>
+              <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
+                <format pattern="^[A-Za-z0-9._()~-]{1,250}$"/>
+              </param>
+              <param type="string" name="sliName" arg="$Path.sliName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_()~-]{2,63}$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-03-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="IdentityObject" name="identity">
+                    <prop type="string" name="type" arg="$resource.identity.type" required="True">
+                      <enum>
+                        <item value="&quot;None&quot;"/>
+                        <item value="&quot;SystemAssigned&quot;"/>
+                        <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                        <item value="&quot;UserAssigned&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="userAssignedIdentities" arg="$resource.identity.userAssignedIdentities">
+                      <additionalProp>
+                        <item nullable="True" type="object"/>
+                      </additionalProp>
+                    </prop>
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+                      <item action="create" type="string"/>
+                    </userAssigned>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+                  </prop>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="baselineProperties" arg="$resource.properties.baselineProperties" required="True">
+                      <prop type="object" name="baseline" arg="$resource.properties.baselineProperties.baseline" required="True">
+                        <prop type="string" name="evaluationCalculationType" arg="$resource.properties.baselineProperties.baseline.evaluationCalculationType" required="True">
+                          <enum>
+                            <item value="&quot;CalendarDays&quot;"/>
+                            <item value="&quot;RollingDays&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="integer32" name="evaluationPeriodDays" arg="$resource.properties.baselineProperties.baseline.evaluationPeriodDays" required="True">
+                          <format maximum="90" minimum="1"/>
+                        </prop>
+                        <prop type="float32" name="value" arg="$resource.properties.baselineProperties.baseline.value" required="True">
+                          <format maximum="100.0" minimum="0"/>
+                        </prop>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="category" arg="$resource.properties.category" required="True">
+                      <enum>
+                        <item value="&quot;Availability&quot;"/>
+                        <item value="&quot;Latency&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="description" arg="$resource.properties.description" required="True">
+                      <format pattern="^[\s\S]{0,1000}$"/>
+                    </prop>
+                    <prop type="array<object>" name="destinationAmwAccounts" arg="$resource.properties.destinationAmwAccounts" required="True" identifiers="resourceId">
+                      <item type="object">
+                        <prop type="ResourceId" name="identity" arg="$resource.properties.destinationAmwAccounts[].identity" required="True"/>
+                        <prop type="ResourceId" name="resourceId" arg="$resource.properties.destinationAmwAccounts[].resourceId" required="True"/>
+                      </item>
+                    </prop>
+                    <prop type="boolean" name="enableAlert" arg="$resource.properties.enableAlert" required="True"/>
+                    <prop type="string" name="evaluationType" arg="$resource.properties.evaluationType" required="True">
+                      <enum>
+                        <item value="&quot;RequestBased&quot;"/>
+                        <item value="&quot;WindowBased&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="sliProperties" arg="$resource.properties.sliProperties" required="True">
+                      <prop type="object" name="goodSignals" arg="$resource.properties.sliProperties.goodSignals" cls="Signal_create">
+                        <prop type="string" name="signalFormula" arg="@Signal_create.signalFormula" required="True"/>
+                        <prop type="array<object>" name="signalSources" arg="@Signal_create.signalSources" required="True" identifiers="signalSourceId">
+                          <item type="object">
+                            <prop type="array<object>" name="filters" arg="@Signal_create.signalSources[].filters" required="True" identifiers="scalarFunction dimensionName samplingType operator value">
+                              <item type="object">
+                                <prop type="string" name="dimensionName" arg="@Signal_create.signalSources[].filters[].dimensionName"/>
+                                <prop type="string" name="operator" arg="@Signal_create.signalSources[].filters[].operator" required="True">
+                                  <enum>
+                                    <item value="&quot;contains&quot;"/>
+                                    <item value="&quot;eq&quot;"/>
+                                    <item value="&quot;gt&quot;"/>
+                                    <item value="&quot;gte&quot;"/>
+                                    <item value="&quot;in&quot;"/>
+                                    <item value="&quot;lt&quot;"/>
+                                    <item value="&quot;lte&quot;"/>
+                                    <item value="&quot;ne&quot;"/>
+                                    <item value="&quot;notcontains&quot;"/>
+                                    <item value="&quot;notin&quot;"/>
+                                    <item value="&quot;notstartswith&quot;"/>
+                                    <item value="&quot;startswith&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="samplingType" arg="@Signal_create.signalSources[].filters[].samplingType">
+                                  <enum>
+                                    <item value="&quot;Average&quot;"/>
+                                    <item value="&quot;Count&quot;"/>
+                                    <item value="&quot;Max&quot;"/>
+                                    <item value="&quot;Min&quot;"/>
+                                    <item value="&quot;Sum&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="scalarFunction" arg="@Signal_create.signalSources[].filters[].scalarFunction">
+                                  <enum>
+                                    <item value="&quot;avg&quot;"/>
+                                    <item value="&quot;max&quot;"/>
+                                    <item value="&quot;min&quot;"/>
+                                    <item value="&quot;sum&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="value" arg="@Signal_create.signalSources[].filters[].value" required="True"/>
+                              </item>
+                            </prop>
+                            <prop type="string" name="metricName" arg="@Signal_create.signalSources[].metricName" required="True"/>
+                            <prop type="string" name="metricNamespace" arg="@Signal_create.signalSources[].metricNamespace" required="True"/>
+                            <prop type="string" name="signalSourceId" arg="@Signal_create.signalSources[].signalSourceId" required="True"/>
+                            <prop type="ResourceId" name="sourceAmwAccountManagedIdentity" arg="@Signal_create.signalSources[].sourceAmwAccountManagedIdentity" required="True"/>
+                            <prop type="ResourceId" name="sourceAmwAccountResourceId" arg="@Signal_create.signalSources[].sourceAmwAccountResourceId" required="True"/>
+                            <prop type="object" name="spatialAggregation" arg="@Signal_create.signalSources[].spatialAggregation" required="True">
+                              <prop type="array<string>" name="dimensions" arg="@Signal_create.signalSources[].spatialAggregation.dimensions" required="True">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="type" arg="@Signal_create.signalSources[].spatialAggregation.type" required="True">
+                                <enum>
+                                  <item value="&quot;Average&quot;"/>
+                                  <item value="&quot;Count&quot;"/>
+                                  <item value="&quot;Max&quot;"/>
+                                  <item value="&quot;Min&quot;"/>
+                                  <item value="&quot;Sum&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="object" name="temporalAggregation" arg="@Signal_create.signalSources[].temporalAggregation" required="True">
+                              <prop type="string" name="type" arg="@Signal_create.signalSources[].temporalAggregation.type" required="True">
+                                <enum>
+                                  <item value="&quot;Average&quot;"/>
+                                  <item value="&quot;Delta&quot;"/>
+                                  <item value="&quot;IDelta&quot;"/>
+                                  <item value="&quot;IRate&quot;"/>
+                                  <item value="&quot;Increase&quot;"/>
+                                  <item value="&quot;Max&quot;"/>
+                                  <item value="&quot;Min&quot;"/>
+                                  <item value="&quot;Rate&quot;"/>
+                                  <item value="&quot;Sum&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="integer32" name="windowSizeMinutes" arg="@Signal_create.signalSources[].temporalAggregation.windowSizeMinutes"/>
+                            </prop>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop type="@Signal_create" name="signals" arg="$resource.properties.sliProperties.signals"/>
+                      <prop type="@Signal_create" name="totalSignals" arg="$resource.properties.sliProperties.totalSignals"/>
+                      <prop type="object" name="windowUptimeCriteria" arg="$resource.properties.sliProperties.windowUptimeCriteria">
+                        <prop type="string" name="comparator" arg="$resource.properties.sliProperties.windowUptimeCriteria.comparator" required="True">
+                          <enum>
+                            <item value="&quot;gt&quot;"/>
+                            <item value="&quot;gte&quot;"/>
+                            <item value="&quot;lt&quot;"/>
+                            <item value="&quot;lte&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="float32" name="target" arg="$resource.properties.sliProperties.windowUptimeCriteria.target" required="True"/>
+                      </prop>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/providers/Microsoft.Management/serviceGroups/{}/providers/Microsoft.Monitor/slis/{}"/>
+                  </prop>
+                  <prop type="IdentityObject" name="identity">
+                    <prop readOnly="True" type="uuid" name="principalId"/>
+                    <prop readOnly="True" type="uuid" name="tenantId"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;None&quot;"/>
+                        <item value="&quot;SystemAssigned&quot;"/>
+                        <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                        <item value="&quot;UserAssigned&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="userAssignedIdentities">
+                      <additionalProp>
+                        <item nullable="True" type="object">
+                          <prop readOnly="True" type="uuid" name="clientId"/>
+                          <prop readOnly="True" type="uuid" name="principalId"/>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="baselineProperties" required="True">
+                      <prop type="object" name="baseline" required="True">
+                        <prop type="string" name="evaluationCalculationType" required="True">
+                          <enum>
+                            <item value="&quot;CalendarDays&quot;"/>
+                            <item value="&quot;RollingDays&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="integer32" name="evaluationPeriodDays" required="True">
+                          <format maximum="90" minimum="1"/>
+                        </prop>
+                        <prop type="float32" name="value" required="True">
+                          <format maximum="100.0" minimum="0"/>
+                        </prop>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="category" required="True">
+                      <enum>
+                        <item value="&quot;Availability&quot;"/>
+                        <item value="&quot;Latency&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="description" required="True">
+                      <format pattern="^[\s\S]{0,1000}$"/>
+                    </prop>
+                    <prop type="array<object>" name="destinationAmwAccounts" required="True" identifiers="resourceId">
+                      <item type="object">
+                        <prop type="ResourceId" name="identity" required="True"/>
+                        <prop type="ResourceId" name="resourceId" required="True"/>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="array<object>" name="destinationMetrics" identifiers="metricNamespace metricName">
+                      <item type="object">
+                        <prop type="string" name="metricName" required="True"/>
+                        <prop type="string" name="metricNamespace" required="True"/>
+                      </item>
+                    </prop>
+                    <prop type="boolean" name="enableAlert" required="True"/>
+                    <prop type="string" name="evaluationType" required="True">
+                      <enum>
+                        <item value="&quot;RequestBased&quot;"/>
+                        <item value="&quot;WindowBased&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="object" name="executionState">
+                      <prop type="string" name="message"/>
+                      <prop type="string" name="state" required="True"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="sliProperties" required="True">
+                      <prop type="object" name="goodSignals" cls="Signal_read">
+                        <prop type="string" name="signalFormula" required="True"/>
+                        <prop type="array<object>" name="signalSources" required="True" identifiers="signalSourceId">
+                          <item type="object">
+                            <prop type="array<object>" name="filters" required="True" identifiers="scalarFunction dimensionName samplingType operator value">
+                              <item type="object">
+                                <prop type="string" name="dimensionName"/>
+                                <prop type="string" name="operator" required="True">
+                                  <enum>
+                                    <item value="&quot;contains&quot;"/>
+                                    <item value="&quot;eq&quot;"/>
+                                    <item value="&quot;gt&quot;"/>
+                                    <item value="&quot;gte&quot;"/>
+                                    <item value="&quot;in&quot;"/>
+                                    <item value="&quot;lt&quot;"/>
+                                    <item value="&quot;lte&quot;"/>
+                                    <item value="&quot;ne&quot;"/>
+                                    <item value="&quot;notcontains&quot;"/>
+                                    <item value="&quot;notin&quot;"/>
+                                    <item value="&quot;notstartswith&quot;"/>
+                                    <item value="&quot;startswith&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="samplingType">
+                                  <enum>
+                                    <item value="&quot;Average&quot;"/>
+                                    <item value="&quot;Count&quot;"/>
+                                    <item value="&quot;Max&quot;"/>
+                                    <item value="&quot;Min&quot;"/>
+                                    <item value="&quot;Sum&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="scalarFunction">
+                                  <enum>
+                                    <item value="&quot;avg&quot;"/>
+                                    <item value="&quot;max&quot;"/>
+                                    <item value="&quot;min&quot;"/>
+                                    <item value="&quot;sum&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="value" required="True"/>
+                              </item>
+                            </prop>
+                            <prop type="string" name="metricName" required="True"/>
+                            <prop type="string" name="metricNamespace" required="True"/>
+                            <prop type="string" name="signalSourceId" required="True"/>
+                            <prop type="ResourceId" name="sourceAmwAccountManagedIdentity" required="True"/>
+                            <prop type="ResourceId" name="sourceAmwAccountResourceId" required="True"/>
+                            <prop type="object" name="spatialAggregation" required="True">
+                              <prop type="array<string>" name="dimensions" required="True">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="type" required="True">
+                                <enum>
+                                  <item value="&quot;Average&quot;"/>
+                                  <item value="&quot;Count&quot;"/>
+                                  <item value="&quot;Max&quot;"/>
+                                  <item value="&quot;Min&quot;"/>
+                                  <item value="&quot;Sum&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="object" name="temporalAggregation" required="True">
+                              <prop type="string" name="type" required="True">
+                                <enum>
+                                  <item value="&quot;Average&quot;"/>
+                                  <item value="&quot;Delta&quot;"/>
+                                  <item value="&quot;IDelta&quot;"/>
+                                  <item value="&quot;IRate&quot;"/>
+                                  <item value="&quot;Increase&quot;"/>
+                                  <item value="&quot;Max&quot;"/>
+                                  <item value="&quot;Min&quot;"/>
+                                  <item value="&quot;Rate&quot;"/>
+                                  <item value="&quot;Sum&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="integer32" name="windowSizeMinutes"/>
+                            </prop>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop type="@Signal_read" name="signals"/>
+                      <prop type="@Signal_read" name="totalSignals"/>
+                      <prop type="object" name="windowUptimeCriteria">
+                        <prop type="string" name="comparator" required="True">
+                          <enum>
+                            <item value="&quot;gt&quot;"/>
+                            <item value="&quot;gte&quot;"/>
+                            <item value="&quot;lt&quot;"/>
+                            <item value="&quot;lte&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="float32" name="target" required="True"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="streamingRuleId"/>
+                    <prop readOnly="True" type="dateTime" name="streamingRuleLastUpdatedTimestamp">
+                      <format protocol="iso"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2025-03-01-preview">
+      <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.monitor/slis/{}" version="2025-03-01-preview" swagger="mgmt-plane/monitoringservice/ResourceProviders/Microsoft.Monitor/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk1vbml0b3Ivc2xpcy97c2xpTmFtZX0=/V/MjAyNS0wMy0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.serviceGroupName" options="service-group-name" required="True">
+          <help short="The name of the service group."/>
+          <format pattern="^[A-Za-z0-9._()~-]{1,250}$"/>
+        </arg>
+        <arg type="string" var="$Path.sliName" options="sli-name" required="True">
+          <help short="Name of the SLI that is given by the user."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_()~-]{2,63}$"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Identity">
+        <arg type="string" var="$resource.identity.type" options="type" hide="True" group="Identity">
+          <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
+          <enum>
+            <item name="None" value="&quot;None&quot;"/>
+            <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
+            <item name="SystemAssigned,UserAssigned" value="&quot;SystemAssigned,UserAssigned&quot;"/>
+            <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
+          </enum>
+        </arg>
+        <arg nullable="True" type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+          <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
+          <additionalProp>
+            <item nullable="True" type="object">
+              <blank value="{}"/>
+            </item>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="object" var="$resource.properties.baselineProperties" options="baseline-properties" group="Properties">
+          <help short="Defines the SLO baseline associated with the SLI."/>
+          <arg type="object" var="$resource.properties.baselineProperties.baseline" options="baseline">
+            <help short="Defines the baseline target, which is compared against the SLI value to determine compliance."/>
+            <arg type="string" var="$resource.properties.baselineProperties.baseline.evaluationCalculationType" options="evaluation-calculation-type">
+              <help short="Specifies how evaluation is calculated, either based on calendar days or a rolling window."/>
+              <enum>
+                <item name="CalendarDays" value="&quot;CalendarDays&quot;"/>
+                <item name="RollingDays" value="&quot;RollingDays&quot;"/>
+              </enum>
+            </arg>
+            <arg type="integer32" var="$resource.properties.baselineProperties.baseline.evaluationPeriodDays" options="evaluation-period-days">
+              <help short="The time frame (in days) used for SLI evaluation."/>
+              <format maximum="90" minimum="1"/>
+            </arg>
+            <arg type="float32" var="$resource.properties.baselineProperties.baseline.value" options="value">
+              <help short="The user-defined or Azure-defined target value used for comparison against the SLI value."/>
+              <format maximum="100.0" minimum="0"/>
+            </arg>
+          </arg>
+        </arg>
+        <arg type="string" var="$resource.properties.category" options="category" group="Properties">
+          <help short="Specifies the category of the SLI, used to classify signals such as Availability and Latency."/>
+          <enum>
+            <item name="Availability" value="&quot;Availability&quot;"/>
+            <item name="Latency" value="&quot;Latency&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$resource.properties.description" options="description" group="Properties">
+          <help short="A user-provided description of the SLI, with a maximum length of 1000 characters."/>
+          <format pattern="^[\s\S]{0,1000}$"/>
+        </arg>
+        <arg type="array<object>" var="$resource.properties.destinationAmwAccounts" options="destination-amw-accounts" group="Properties">
+          <help short="Destination AMW accounts."/>
+          <item nullable="True" type="object">
+            <arg type="ResourceId" var="$resource.properties.destinationAmwAccounts[].identity" options="identity">
+              <help short="The ARM resource ID of the managed identity with access to the source account."/>
+            </arg>
+            <arg type="ResourceId" var="$resource.properties.destinationAmwAccounts[].resourceId" options="resource-id">
+              <help short="The ARM resource ID of the account where metrics are emitted."/>
+            </arg>
+          </item>
+        </arg>
+        <arg type="boolean" var="$resource.properties.enableAlert" options="enable-alert" group="Properties">
+          <help short="A flag to determine whether alert is enabled."/>
+        </arg>
+        <arg type="string" var="$resource.properties.evaluationType" options="evaluation-type" group="Properties">
+          <help short="Determines how the SLI is evaluated—either based on request counts or time windows."/>
+          <enum>
+            <item name="RequestBased" value="&quot;RequestBased&quot;"/>
+            <item name="WindowBased" value="&quot;WindowBased&quot;"/>
+          </enum>
+        </arg>
+        <arg type="object" var="$resource.properties.sliProperties" options="sli-properties" group="Properties">
+          <help short="Defines the SLI properties associated with the SLI."/>
+          <arg nullable="True" type="object" var="$resource.properties.sliProperties.goodSignals" options="good-signals" cls="Signal_update">
+            <help short="Represents good signals used in request-based SLI calculations."/>
+            <arg type="string" var="@Signal_update.signalFormula" options="signal-formula">
+              <help short="Mathematical formula used to combine multiple metrics."/>
+            </arg>
+            <arg type="array<object>" var="@Signal_update.signalSources" options="signal-sources">
+              <help short="Sources of metrics used for SLIs."/>
+              <item nullable="True" type="object">
+                <arg type="array<object>" var="@Signal_update.signalSources[].filters" options="filters">
+                  <help short="Filters applied to modify signal values."/>
+                  <item nullable="True" type="object">
+                    <arg nullable="True" type="string" var="@Signal_update.signalSources[].filters[].dimensionName" options="dimension-name">
+                      <help short="Dimension name used in filtering."/>
+                    </arg>
+                    <arg type="string" var="@Signal_update.signalSources[].filters[].operator" options="operator">
+                      <help short="Operator used in the filtering condition."/>
+                      <enum>
+                        <item name="contains" value="&quot;contains&quot;"/>
+                        <item name="eq" value="&quot;eq&quot;"/>
+                        <item name="gt" value="&quot;gt&quot;"/>
+                        <item name="gte" value="&quot;gte&quot;"/>
+                        <item name="in" value="&quot;in&quot;"/>
+                        <item name="lt" value="&quot;lt&quot;"/>
+                        <item name="lte" value="&quot;lte&quot;"/>
+                        <item name="ne" value="&quot;ne&quot;"/>
+                        <item name="notcontains" value="&quot;notcontains&quot;"/>
+                        <item name="notin" value="&quot;notin&quot;"/>
+                        <item name="notstartswith" value="&quot;notstartswith&quot;"/>
+                        <item name="startswith" value="&quot;startswith&quot;"/>
+                      </enum>
+                    </arg>
+                    <arg nullable="True" type="string" var="@Signal_update.signalSources[].filters[].samplingType" options="sampling-type">
+                      <help short="Defines the sampling type."/>
+                      <enum>
+                        <item name="Average" value="&quot;Average&quot;"/>
+                        <item name="Count" value="&quot;Count&quot;"/>
+                        <item name="Max" value="&quot;Max&quot;"/>
+                        <item name="Min" value="&quot;Min&quot;"/>
+                        <item name="Sum" value="&quot;Sum&quot;"/>
+                      </enum>
+                    </arg>
+                    <arg nullable="True" type="string" var="@Signal_update.signalSources[].filters[].scalarFunction" options="scalar-function">
+                      <help short="Scalar function applied for filtering."/>
+                      <enum>
+                        <item name="avg" value="&quot;avg&quot;"/>
+                        <item name="max" value="&quot;max&quot;"/>
+                        <item name="min" value="&quot;min&quot;"/>
+                        <item name="sum" value="&quot;sum&quot;"/>
+                      </enum>
+                    </arg>
+                    <arg type="string" var="@Signal_update.signalSources[].filters[].value" options="value">
+                      <help short="Value used in filtering. For most operators (eq, ne, lt, lte, gt, gte, startswith, notstartswith, contains, notcontains) this is a single value (for example &quot;GetContosoUsers&quot;). For the `in` and `notin` operators, multiple values must be joined by the delimiter `^^` (for example &quot;east^^west^^north&quot;)."/>
+                    </arg>
+                  </item>
+                </arg>
+                <arg type="string" var="@Signal_update.signalSources[].metricName" options="metric-name">
+                  <help short="Name of the metric."/>
+                </arg>
+                <arg type="string" var="@Signal_update.signalSources[].metricNamespace" options="metric-namespace">
+                  <help short="Namespace of the metric."/>
+                </arg>
+                <arg type="string" var="@Signal_update.signalSources[].signalSourceId" options="signal-source-id">
+                  <help short="Unique identifier for the signal source."/>
+                </arg>
+                <arg type="ResourceId" var="@Signal_update.signalSources[].sourceAmwAccountManagedIdentity" options="source-amw-account-managed-identity">
+                  <help short="Managed identity for authenticating the signal source."/>
+                </arg>
+                <arg type="ResourceId" var="@Signal_update.signalSources[].sourceAmwAccountResourceId" options="source-amw-account-resource-id">
+                  <help short="Resource ID of the source AMW account."/>
+                </arg>
+                <arg type="object" var="@Signal_update.signalSources[].spatialAggregation" options="spatial-aggregation">
+                  <help short="Defines how measurements are aggregated across multiple time series."/>
+                  <arg type="array<string>" var="@Signal_update.signalSources[].spatialAggregation.dimensions" options="dimensions">
+                    <help short="Dimensions considered for spatial aggregation."/>
+                    <item nullable="True" type="string"/>
+                  </arg>
+                  <arg type="string" var="@Signal_update.signalSources[].spatialAggregation.type" options="type">
+                    <help short="Type of spatial aggregation."/>
+                    <enum>
+                      <item name="Average" value="&quot;Average&quot;"/>
+                      <item name="Count" value="&quot;Count&quot;"/>
+                      <item name="Max" value="&quot;Max&quot;"/>
+                      <item name="Min" value="&quot;Min&quot;"/>
+                      <item name="Sum" value="&quot;Sum&quot;"/>
+                    </enum>
+                  </arg>
+                </arg>
+                <arg type="object" var="@Signal_update.signalSources[].temporalAggregation" options="temporal-aggregation">
+                  <help short="Defines how measurements are aggregated over a specific time window within the same time series."/>
+                  <arg type="string" var="@Signal_update.signalSources[].temporalAggregation.type" options="type">
+                    <help short="Type of temporal aggregation."/>
+                    <enum>
+                      <item name="Average" value="&quot;Average&quot;"/>
+                      <item name="Delta" value="&quot;Delta&quot;"/>
+                      <item name="IDelta" value="&quot;IDelta&quot;"/>
+                      <item name="IRate" value="&quot;IRate&quot;"/>
+                      <item name="Increase" value="&quot;Increase&quot;"/>
+                      <item name="Max" value="&quot;Max&quot;"/>
+                      <item name="Min" value="&quot;Min&quot;"/>
+                      <item name="Rate" value="&quot;Rate&quot;"/>
+                      <item name="Sum" value="&quot;Sum&quot;"/>
+                    </enum>
+                  </arg>
+                  <arg nullable="True" type="integer32" var="@Signal_update.signalSources[].temporalAggregation.windowSizeMinutes" options="window-size-minutes">
+                    <help short="Time window size for aggregation, in minutes."/>
+                  </arg>
+                </arg>
+              </item>
+            </arg>
+          </arg>
+          <arg nullable="True" type="@Signal_update" var="$resource.properties.sliProperties.signals" options="signals">
+            <help short="Signals used for window-based SLI calculations."/>
+          </arg>
+          <arg nullable="True" type="@Signal_update" var="$resource.properties.sliProperties.totalSignals" options="total-signals">
+            <help short="Represents total signals used in request-based SLI calculations."/>
+          </arg>
+          <arg nullable="True" type="object" var="$resource.properties.sliProperties.windowUptimeCriteria" options="window-uptime-criteria">
+            <help short="Defines the uptime criteria for window-based SLIs."/>
+            <arg type="string" var="$resource.properties.sliProperties.windowUptimeCriteria.comparator" options="comparator">
+              <help short="Comparison operator used for uptime evaluation."/>
+              <enum>
+                <item name="gt" value="&quot;gt&quot;"/>
+                <item name="gte" value="&quot;gte&quot;"/>
+                <item name="lt" value="&quot;lt&quot;"/>
+                <item name="lte" value="&quot;lte&quot;"/>
+              </enum>
+            </arg>
+            <arg type="float32" var="$resource.properties.sliProperties.windowUptimeCriteria.target" options="target">
+              <help short="Threshold value used to determine uptime."/>
+            </arg>
+          </arg>
+        </arg>
+      </argGroup>
+      <operation operationId="Slis_Get">
+        <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.Monitor/slis/{sliName}">
+          <request method="get">
+            <path>
+              <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
+                <format pattern="^[A-Za-z0-9._()~-]{1,250}$"/>
+              </param>
+              <param type="string" name="sliName" arg="$Path.sliName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_()~-]{2,63}$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-03-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="Sli_read">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/providers/Microsoft.Management/serviceGroups/{}/providers/Microsoft.Monitor/slis/{}"/>
+                  </prop>
+                  <prop type="IdentityObject" name="identity">
+                    <prop readOnly="True" type="uuid" name="principalId"/>
+                    <prop readOnly="True" type="uuid" name="tenantId"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;None&quot;"/>
+                        <item value="&quot;SystemAssigned&quot;"/>
+                        <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                        <item value="&quot;UserAssigned&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="userAssignedIdentities">
+                      <additionalProp>
+                        <item nullable="True" type="object">
+                          <prop readOnly="True" type="uuid" name="clientId"/>
+                          <prop readOnly="True" type="uuid" name="principalId"/>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="baselineProperties" required="True">
+                      <prop type="object" name="baseline" required="True">
+                        <prop type="string" name="evaluationCalculationType" required="True">
+                          <enum>
+                            <item value="&quot;CalendarDays&quot;"/>
+                            <item value="&quot;RollingDays&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="integer32" name="evaluationPeriodDays" required="True">
+                          <format maximum="90" minimum="1"/>
+                        </prop>
+                        <prop type="float32" name="value" required="True">
+                          <format maximum="100.0" minimum="0"/>
+                        </prop>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="category" required="True">
+                      <enum>
+                        <item value="&quot;Availability&quot;"/>
+                        <item value="&quot;Latency&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="description" required="True">
+                      <format pattern="^[\s\S]{0,1000}$"/>
+                    </prop>
+                    <prop type="array<object>" name="destinationAmwAccounts" required="True" identifiers="resourceId">
+                      <item type="object">
+                        <prop type="ResourceId" name="identity" required="True"/>
+                        <prop type="ResourceId" name="resourceId" required="True"/>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="array<object>" name="destinationMetrics" identifiers="metricNamespace metricName">
+                      <item type="object">
+                        <prop type="string" name="metricName" required="True"/>
+                        <prop type="string" name="metricNamespace" required="True"/>
+                      </item>
+                    </prop>
+                    <prop type="boolean" name="enableAlert" required="True"/>
+                    <prop type="string" name="evaluationType" required="True">
+                      <enum>
+                        <item value="&quot;RequestBased&quot;"/>
+                        <item value="&quot;WindowBased&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="object" name="executionState">
+                      <prop type="string" name="message"/>
+                      <prop type="string" name="state" required="True"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="sliProperties" required="True">
+                      <prop type="object" name="goodSignals" cls="Signal_read">
+                        <prop type="string" name="signalFormula" required="True"/>
+                        <prop type="array<object>" name="signalSources" required="True" identifiers="signalSourceId">
+                          <item type="object">
+                            <prop type="array<object>" name="filters" required="True" identifiers="scalarFunction dimensionName samplingType operator value">
+                              <item type="object">
+                                <prop type="string" name="dimensionName"/>
+                                <prop type="string" name="operator" required="True">
+                                  <enum>
+                                    <item value="&quot;contains&quot;"/>
+                                    <item value="&quot;eq&quot;"/>
+                                    <item value="&quot;gt&quot;"/>
+                                    <item value="&quot;gte&quot;"/>
+                                    <item value="&quot;in&quot;"/>
+                                    <item value="&quot;lt&quot;"/>
+                                    <item value="&quot;lte&quot;"/>
+                                    <item value="&quot;ne&quot;"/>
+                                    <item value="&quot;notcontains&quot;"/>
+                                    <item value="&quot;notin&quot;"/>
+                                    <item value="&quot;notstartswith&quot;"/>
+                                    <item value="&quot;startswith&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="samplingType">
+                                  <enum>
+                                    <item value="&quot;Average&quot;"/>
+                                    <item value="&quot;Count&quot;"/>
+                                    <item value="&quot;Max&quot;"/>
+                                    <item value="&quot;Min&quot;"/>
+                                    <item value="&quot;Sum&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="scalarFunction">
+                                  <enum>
+                                    <item value="&quot;avg&quot;"/>
+                                    <item value="&quot;max&quot;"/>
+                                    <item value="&quot;min&quot;"/>
+                                    <item value="&quot;sum&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="value" required="True"/>
+                              </item>
+                            </prop>
+                            <prop type="string" name="metricName" required="True"/>
+                            <prop type="string" name="metricNamespace" required="True"/>
+                            <prop type="string" name="signalSourceId" required="True"/>
+                            <prop type="ResourceId" name="sourceAmwAccountManagedIdentity" required="True"/>
+                            <prop type="ResourceId" name="sourceAmwAccountResourceId" required="True"/>
+                            <prop type="object" name="spatialAggregation" required="True">
+                              <prop type="array<string>" name="dimensions" required="True">
+                                <item type="string"/>
+                              </prop>
+                              <prop type="string" name="type" required="True">
+                                <enum>
+                                  <item value="&quot;Average&quot;"/>
+                                  <item value="&quot;Count&quot;"/>
+                                  <item value="&quot;Max&quot;"/>
+                                  <item value="&quot;Min&quot;"/>
+                                  <item value="&quot;Sum&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                            <prop type="object" name="temporalAggregation" required="True">
+                              <prop type="string" name="type" required="True">
+                                <enum>
+                                  <item value="&quot;Average&quot;"/>
+                                  <item value="&quot;Delta&quot;"/>
+                                  <item value="&quot;IDelta&quot;"/>
+                                  <item value="&quot;IRate&quot;"/>
+                                  <item value="&quot;Increase&quot;"/>
+                                  <item value="&quot;Max&quot;"/>
+                                  <item value="&quot;Min&quot;"/>
+                                  <item value="&quot;Rate&quot;"/>
+                                  <item value="&quot;Sum&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="integer32" name="windowSizeMinutes"/>
+                            </prop>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop type="@Signal_read" name="signals"/>
+                      <prop type="@Signal_read" name="totalSignals"/>
+                      <prop type="object" name="windowUptimeCriteria">
+                        <prop type="string" name="comparator" required="True">
+                          <enum>
+                            <item value="&quot;gt&quot;"/>
+                            <item value="&quot;gte&quot;"/>
+                            <item value="&quot;lt&quot;"/>
+                            <item value="&quot;lte&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="float32" name="target" required="True"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="streamingRuleId"/>
+                    <prop readOnly="True" type="dateTime" name="streamingRuleLastUpdatedTimestamp">
+                      <format protocol="iso"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate ref="$Instance">
+          <json>
+            <schema type="object" name="resource" required="True" clientFlatten="True">
+              <prop type="IdentityObject" name="identity">
+                <prop type="string" name="type" arg="$resource.identity.type" required="True">
+                  <enum>
+                    <item value="&quot;None&quot;"/>
+                    <item value="&quot;SystemAssigned&quot;"/>
+                    <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                    <item value="&quot;UserAssigned&quot;"/>
+                  </enum>
+                </prop>
+                <prop type="object" name="userAssignedIdentities" arg="$resource.identity.userAssignedIdentities">
+                  <additionalProp>
+                    <item nullable="True" type="object"/>
+                  </additionalProp>
+                </prop>
+              </prop>
+              <prop type="object" name="properties">
+                <prop type="object" name="baselineProperties" arg="$resource.properties.baselineProperties" required="True">
+                  <prop type="object" name="baseline" arg="$resource.properties.baselineProperties.baseline" required="True">
+                    <prop type="string" name="evaluationCalculationType" arg="$resource.properties.baselineProperties.baseline.evaluationCalculationType" required="True">
+                      <enum>
+                        <item value="&quot;CalendarDays&quot;"/>
+                        <item value="&quot;RollingDays&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="integer32" name="evaluationPeriodDays" arg="$resource.properties.baselineProperties.baseline.evaluationPeriodDays" required="True">
+                      <format maximum="90" minimum="1"/>
+                    </prop>
+                    <prop type="float32" name="value" arg="$resource.properties.baselineProperties.baseline.value" required="True">
+                      <format maximum="100.0" minimum="0"/>
+                    </prop>
+                  </prop>
+                </prop>
+                <prop type="string" name="category" arg="$resource.properties.category" required="True">
+                  <enum>
+                    <item value="&quot;Availability&quot;"/>
+                    <item value="&quot;Latency&quot;"/>
+                  </enum>
+                </prop>
+                <prop type="string" name="description" arg="$resource.properties.description" required="True">
+                  <format pattern="^[\s\S]{0,1000}$"/>
+                </prop>
+                <prop type="array<object>" name="destinationAmwAccounts" arg="$resource.properties.destinationAmwAccounts" required="True" identifiers="resourceId">
+                  <item type="object">
+                    <prop type="ResourceId" name="identity" arg="$resource.properties.destinationAmwAccounts[].identity" required="True"/>
+                    <prop type="ResourceId" name="resourceId" arg="$resource.properties.destinationAmwAccounts[].resourceId" required="True"/>
+                  </item>
+                </prop>
+                <prop type="boolean" name="enableAlert" arg="$resource.properties.enableAlert" required="True"/>
+                <prop type="string" name="evaluationType" arg="$resource.properties.evaluationType" required="True">
+                  <enum>
+                    <item value="&quot;RequestBased&quot;"/>
+                    <item value="&quot;WindowBased&quot;"/>
+                  </enum>
+                </prop>
+                <prop type="object" name="sliProperties" arg="$resource.properties.sliProperties" required="True">
+                  <prop type="object" name="goodSignals" arg="$resource.properties.sliProperties.goodSignals" cls="Signal_update">
+                    <prop type="string" name="signalFormula" arg="@Signal_update.signalFormula" required="True"/>
+                    <prop type="array<object>" name="signalSources" arg="@Signal_update.signalSources" required="True" identifiers="signalSourceId">
+                      <item type="object">
+                        <prop type="array<object>" name="filters" arg="@Signal_update.signalSources[].filters" required="True" identifiers="scalarFunction dimensionName samplingType operator value">
+                          <item type="object">
+                            <prop type="string" name="dimensionName" arg="@Signal_update.signalSources[].filters[].dimensionName"/>
+                            <prop type="string" name="operator" arg="@Signal_update.signalSources[].filters[].operator" required="True">
+                              <enum>
+                                <item value="&quot;contains&quot;"/>
+                                <item value="&quot;eq&quot;"/>
+                                <item value="&quot;gt&quot;"/>
+                                <item value="&quot;gte&quot;"/>
+                                <item value="&quot;in&quot;"/>
+                                <item value="&quot;lt&quot;"/>
+                                <item value="&quot;lte&quot;"/>
+                                <item value="&quot;ne&quot;"/>
+                                <item value="&quot;notcontains&quot;"/>
+                                <item value="&quot;notin&quot;"/>
+                                <item value="&quot;notstartswith&quot;"/>
+                                <item value="&quot;startswith&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="samplingType" arg="@Signal_update.signalSources[].filters[].samplingType">
+                              <enum>
+                                <item value="&quot;Average&quot;"/>
+                                <item value="&quot;Count&quot;"/>
+                                <item value="&quot;Max&quot;"/>
+                                <item value="&quot;Min&quot;"/>
+                                <item value="&quot;Sum&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="scalarFunction" arg="@Signal_update.signalSources[].filters[].scalarFunction">
+                              <enum>
+                                <item value="&quot;avg&quot;"/>
+                                <item value="&quot;max&quot;"/>
+                                <item value="&quot;min&quot;"/>
+                                <item value="&quot;sum&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="value" arg="@Signal_update.signalSources[].filters[].value" required="True"/>
+                          </item>
+                        </prop>
+                        <prop type="string" name="metricName" arg="@Signal_update.signalSources[].metricName" required="True"/>
+                        <prop type="string" name="metricNamespace" arg="@Signal_update.signalSources[].metricNamespace" required="True"/>
+                        <prop type="string" name="signalSourceId" arg="@Signal_update.signalSources[].signalSourceId" required="True"/>
+                        <prop type="ResourceId" name="sourceAmwAccountManagedIdentity" arg="@Signal_update.signalSources[].sourceAmwAccountManagedIdentity" required="True"/>
+                        <prop type="ResourceId" name="sourceAmwAccountResourceId" arg="@Signal_update.signalSources[].sourceAmwAccountResourceId" required="True"/>
+                        <prop type="object" name="spatialAggregation" arg="@Signal_update.signalSources[].spatialAggregation" required="True">
+                          <prop type="array<string>" name="dimensions" arg="@Signal_update.signalSources[].spatialAggregation.dimensions" required="True">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="type" arg="@Signal_update.signalSources[].spatialAggregation.type" required="True">
+                            <enum>
+                              <item value="&quot;Average&quot;"/>
+                              <item value="&quot;Count&quot;"/>
+                              <item value="&quot;Max&quot;"/>
+                              <item value="&quot;Min&quot;"/>
+                              <item value="&quot;Sum&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="temporalAggregation" arg="@Signal_update.signalSources[].temporalAggregation" required="True">
+                          <prop type="string" name="type" arg="@Signal_update.signalSources[].temporalAggregation.type" required="True">
+                            <enum>
+                              <item value="&quot;Average&quot;"/>
+                              <item value="&quot;Delta&quot;"/>
+                              <item value="&quot;IDelta&quot;"/>
+                              <item value="&quot;IRate&quot;"/>
+                              <item value="&quot;Increase&quot;"/>
+                              <item value="&quot;Max&quot;"/>
+                              <item value="&quot;Min&quot;"/>
+                              <item value="&quot;Rate&quot;"/>
+                              <item value="&quot;Sum&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="integer32" name="windowSizeMinutes" arg="@Signal_update.signalSources[].temporalAggregation.windowSizeMinutes"/>
+                        </prop>
+                      </item>
+                    </prop>
+                  </prop>
+                  <prop type="@Signal_update" name="signals" arg="$resource.properties.sliProperties.signals"/>
+                  <prop type="@Signal_update" name="totalSignals" arg="$resource.properties.sliProperties.totalSignals"/>
+                  <prop type="object" name="windowUptimeCriteria" arg="$resource.properties.sliProperties.windowUptimeCriteria">
+                    <prop type="string" name="comparator" arg="$resource.properties.sliProperties.windowUptimeCriteria.comparator" required="True">
+                      <enum>
+                        <item value="&quot;gt&quot;"/>
+                        <item value="&quot;gte&quot;"/>
+                        <item value="&quot;lt&quot;"/>
+                        <item value="&quot;lte&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="float32" name="target" arg="$resource.properties.sliProperties.windowUptimeCriteria.target" required="True"/>
+                  </prop>
+                </prop>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="Slis_CreateOrUpdate">
+        <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.Monitor/slis/{sliName}">
+          <request method="put">
+            <path>
+              <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
+                <format pattern="^[A-Za-z0-9._()~-]{1,250}$"/>
+              </param>
+              <param type="string" name="sliName" arg="$Path.sliName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_()~-]{2,63}$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-03-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="@Sli_read"/>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <commandGroup name="identity">
+      <command name="assign" version="2025-03-01-preview">
+        <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.monitor/slis/{}" version="2025-03-01-preview" subresource="identity" swagger="mgmt-plane/monitoringservice/ResourceProviders/Microsoft.Monitor/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk1vbml0b3Ivc2xpcy97c2xpTmFtZX0=/V/MjAyNS0wMy0wMS1wcmV2aWV3"/>
+        <argGroup name="">
+          <arg type="string" var="$Path.serviceGroupName" options="service-group-name" required="True">
+            <help short="The name of the service group."/>
+            <format pattern="^[A-Za-z0-9._()~-]{1,250}$"/>
+          </arg>
+          <arg type="string" var="$Path.sliName" options="sli-name" required="True">
+            <help short="Name of the SLI that is given by the user."/>
+            <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_()~-]{2,63}$"/>
+          </arg>
+        </argGroup>
+        <argGroup name="Resource.identity">
+          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
+          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="resource">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="Slis_Get">
+          <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.Monitor/slis/{sliName}">
+            <request method="get">
+              <path>
+                <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
+                  <format pattern="^[A-Za-z0-9._()~-]{1,250}$"/>
+                </param>
+                <param type="string" name="sliName" arg="$Path.sliName" required="True">
+                  <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_()~-]{2,63}$"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2025-03-01-preview&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="Sli_read">
+                    <prop readOnly="True" type="ResourceId" name="id">
+                      <format template="/providers/Microsoft.Management/serviceGroups/{}/providers/Microsoft.Monitor/slis/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="uuid" name="principalId"/>
+                      <prop readOnly="True" type="uuid" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item nullable="True" type="object">
+                            <prop readOnly="True" type="uuid" name="clientId"/>
+                            <prop readOnly="True" type="uuid" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties">
+                      <prop type="object" name="baselineProperties" required="True">
+                        <prop type="object" name="baseline" required="True">
+                          <prop type="string" name="evaluationCalculationType" required="True">
+                            <enum>
+                              <item value="&quot;CalendarDays&quot;"/>
+                              <item value="&quot;RollingDays&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="integer32" name="evaluationPeriodDays" required="True">
+                            <format maximum="90" minimum="1"/>
+                          </prop>
+                          <prop type="float32" name="value" required="True">
+                            <format maximum="100.0" minimum="0.0"/>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="category" required="True">
+                        <enum>
+                          <item value="&quot;Availability&quot;"/>
+                          <item value="&quot;Latency&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="description" required="True">
+                        <format pattern="^[\s\S]{0,1000}$"/>
+                      </prop>
+                      <prop type="array<object>" name="destinationAmwAccounts" required="True" identifiers="resourceId">
+                        <item type="object">
+                          <prop type="ResourceId" name="identity" required="True"/>
+                          <prop type="ResourceId" name="resourceId" required="True"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="array<object>" name="destinationMetrics" identifiers="metricNamespace metricName">
+                        <item type="object">
+                          <prop type="string" name="metricName" required="True"/>
+                          <prop type="string" name="metricNamespace" required="True"/>
+                        </item>
+                      </prop>
+                      <prop type="boolean" name="enableAlert" required="True"/>
+                      <prop type="string" name="evaluationType" required="True">
+                        <enum>
+                          <item value="&quot;RequestBased&quot;"/>
+                          <item value="&quot;WindowBased&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="object" name="executionState">
+                        <prop type="string" name="message"/>
+                        <prop type="string" name="state" required="True"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="sliProperties" required="True">
+                        <prop type="object" name="goodSignals" cls="Signal_read">
+                          <prop type="string" name="signalFormula" required="True"/>
+                          <prop type="array<object>" name="signalSources" required="True" identifiers="signalSourceId">
+                            <item type="object">
+                              <prop type="array<object>" name="filters" required="True" identifiers="scalarFunction dimensionName samplingType operator value">
+                                <item type="object">
+                                  <prop type="string" name="dimensionName"/>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;contains&quot;"/>
+                                      <item value="&quot;eq&quot;"/>
+                                      <item value="&quot;gt&quot;"/>
+                                      <item value="&quot;gte&quot;"/>
+                                      <item value="&quot;in&quot;"/>
+                                      <item value="&quot;lt&quot;"/>
+                                      <item value="&quot;lte&quot;"/>
+                                      <item value="&quot;ne&quot;"/>
+                                      <item value="&quot;notcontains&quot;"/>
+                                      <item value="&quot;notin&quot;"/>
+                                      <item value="&quot;notstartswith&quot;"/>
+                                      <item value="&quot;startswith&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="string" name="samplingType">
+                                    <enum>
+                                      <item value="&quot;Average&quot;"/>
+                                      <item value="&quot;Count&quot;"/>
+                                      <item value="&quot;Max&quot;"/>
+                                      <item value="&quot;Min&quot;"/>
+                                      <item value="&quot;Sum&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="string" name="scalarFunction">
+                                    <enum>
+                                      <item value="&quot;avg&quot;"/>
+                                      <item value="&quot;max&quot;"/>
+                                      <item value="&quot;min&quot;"/>
+                                      <item value="&quot;sum&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="string" name="value" required="True"/>
+                                </item>
+                              </prop>
+                              <prop type="string" name="metricName" required="True"/>
+                              <prop type="string" name="metricNamespace" required="True"/>
+                              <prop type="string" name="signalSourceId" required="True"/>
+                              <prop type="ResourceId" name="sourceAmwAccountManagedIdentity" required="True"/>
+                              <prop type="ResourceId" name="sourceAmwAccountResourceId" required="True"/>
+                              <prop type="object" name="spatialAggregation" required="True">
+                                <prop type="array<string>" name="dimensions" required="True">
+                                  <item type="string"/>
+                                </prop>
+                                <prop type="string" name="type" required="True">
+                                  <enum>
+                                    <item value="&quot;Average&quot;"/>
+                                    <item value="&quot;Count&quot;"/>
+                                    <item value="&quot;Max&quot;"/>
+                                    <item value="&quot;Min&quot;"/>
+                                    <item value="&quot;Sum&quot;"/>
+                                  </enum>
+                                </prop>
+                              </prop>
+                              <prop type="object" name="temporalAggregation" required="True">
+                                <prop type="string" name="type" required="True">
+                                  <enum>
+                                    <item value="&quot;Average&quot;"/>
+                                    <item value="&quot;Delta&quot;"/>
+                                    <item value="&quot;IDelta&quot;"/>
+                                    <item value="&quot;IRate&quot;"/>
+                                    <item value="&quot;Increase&quot;"/>
+                                    <item value="&quot;Max&quot;"/>
+                                    <item value="&quot;Min&quot;"/>
+                                    <item value="&quot;Rate&quot;"/>
+                                    <item value="&quot;Sum&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="integer32" name="windowSizeMinutes"/>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="@Signal_read" name="signals"/>
+                        <prop type="@Signal_read" name="totalSignals"/>
+                        <prop type="object" name="windowUptimeCriteria">
+                          <prop type="string" name="comparator" required="True">
+                            <enum>
+                              <item value="&quot;gt&quot;"/>
+                              <item value="&quot;gte&quot;"/>
+                              <item value="&quot;lt&quot;"/>
+                              <item value="&quot;lte&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="float32" name="target" required="True"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="streamingRuleId"/>
+                      <prop readOnly="True" type="dateTime" name="streamingRuleLastUpdatedTimestamp">
+                        <format protocol="iso"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <operation>
+          <instanceUpdate ref="$Subresource">
+            <json>
+              <schema action="assign" type="IdentityObject" name="resource.identity" required="True">
+                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+                  <item action="assign" type="string"/>
+                </userAssigned>
+                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+              </schema>
+            </json>
+          </instanceUpdate>
+        </operation>
+        <operation operationId="Slis_CreateOrUpdate">
+          <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.Monitor/slis/{sliName}">
+            <request method="put">
+              <path>
+                <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
+                  <format pattern="^[A-Za-z0-9._()~-]{1,250}$"/>
+                </param>
+                <param type="string" name="sliName" arg="$Path.sliName" required="True">
+                  <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_()~-]{2,63}$"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2025-03-01-preview&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+              <body>
+                <json ref="$Instance"/>
+              </body>
+            </request>
+            <response statusCode="200 201">
+              <body>
+                <json var="$Instance">
+                  <schema type="@Sli_read"/>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+      <command name="remove" version="2025-03-01-preview">
+        <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.monitor/slis/{}" version="2025-03-01-preview" subresource="identity" swagger="mgmt-plane/monitoringservice/ResourceProviders/Microsoft.Monitor/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk1vbml0b3Ivc2xpcy97c2xpTmFtZX0=/V/MjAyNS0wMy0wMS1wcmV2aWV3"/>
+        <argGroup name="">
+          <arg type="string" var="$Path.serviceGroupName" options="service-group-name" required="True">
+            <help short="The name of the service group."/>
+            <format pattern="^[A-Za-z0-9._()~-]{1,250}$"/>
+          </arg>
+          <arg type="string" var="$Path.sliName" options="sli-name" required="True">
+            <help short="Name of the SLI that is given by the user."/>
+            <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_()~-]{2,63}$"/>
+          </arg>
+        </argGroup>
+        <argGroup name="Resource.identity">
+          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
+          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="resource">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="Slis_Get">
+          <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.Monitor/slis/{sliName}">
+            <request method="get">
+              <path>
+                <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
+                  <format pattern="^[A-Za-z0-9._()~-]{1,250}$"/>
+                </param>
+                <param type="string" name="sliName" arg="$Path.sliName" required="True">
+                  <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_()~-]{2,63}$"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2025-03-01-preview&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="Sli_read">
+                    <prop readOnly="True" type="ResourceId" name="id">
+                      <format template="/providers/Microsoft.Management/serviceGroups/{}/providers/Microsoft.Monitor/slis/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="uuid" name="principalId"/>
+                      <prop readOnly="True" type="uuid" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item nullable="True" type="object">
+                            <prop readOnly="True" type="uuid" name="clientId"/>
+                            <prop readOnly="True" type="uuid" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties">
+                      <prop type="object" name="baselineProperties" required="True">
+                        <prop type="object" name="baseline" required="True">
+                          <prop type="string" name="evaluationCalculationType" required="True">
+                            <enum>
+                              <item value="&quot;CalendarDays&quot;"/>
+                              <item value="&quot;RollingDays&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="integer32" name="evaluationPeriodDays" required="True">
+                            <format maximum="90" minimum="1"/>
+                          </prop>
+                          <prop type="float32" name="value" required="True">
+                            <format maximum="100.0" minimum="0.0"/>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="category" required="True">
+                        <enum>
+                          <item value="&quot;Availability&quot;"/>
+                          <item value="&quot;Latency&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="description" required="True">
+                        <format pattern="^[\s\S]{0,1000}$"/>
+                      </prop>
+                      <prop type="array<object>" name="destinationAmwAccounts" required="True" identifiers="resourceId">
+                        <item type="object">
+                          <prop type="ResourceId" name="identity" required="True"/>
+                          <prop type="ResourceId" name="resourceId" required="True"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="array<object>" name="destinationMetrics" identifiers="metricNamespace metricName">
+                        <item type="object">
+                          <prop type="string" name="metricName" required="True"/>
+                          <prop type="string" name="metricNamespace" required="True"/>
+                        </item>
+                      </prop>
+                      <prop type="boolean" name="enableAlert" required="True"/>
+                      <prop type="string" name="evaluationType" required="True">
+                        <enum>
+                          <item value="&quot;RequestBased&quot;"/>
+                          <item value="&quot;WindowBased&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="object" name="executionState">
+                        <prop type="string" name="message"/>
+                        <prop type="string" name="state" required="True"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="sliProperties" required="True">
+                        <prop type="object" name="goodSignals" cls="Signal_read">
+                          <prop type="string" name="signalFormula" required="True"/>
+                          <prop type="array<object>" name="signalSources" required="True" identifiers="signalSourceId">
+                            <item type="object">
+                              <prop type="array<object>" name="filters" required="True" identifiers="scalarFunction dimensionName samplingType operator value">
+                                <item type="object">
+                                  <prop type="string" name="dimensionName"/>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;contains&quot;"/>
+                                      <item value="&quot;eq&quot;"/>
+                                      <item value="&quot;gt&quot;"/>
+                                      <item value="&quot;gte&quot;"/>
+                                      <item value="&quot;in&quot;"/>
+                                      <item value="&quot;lt&quot;"/>
+                                      <item value="&quot;lte&quot;"/>
+                                      <item value="&quot;ne&quot;"/>
+                                      <item value="&quot;notcontains&quot;"/>
+                                      <item value="&quot;notin&quot;"/>
+                                      <item value="&quot;notstartswith&quot;"/>
+                                      <item value="&quot;startswith&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="string" name="samplingType">
+                                    <enum>
+                                      <item value="&quot;Average&quot;"/>
+                                      <item value="&quot;Count&quot;"/>
+                                      <item value="&quot;Max&quot;"/>
+                                      <item value="&quot;Min&quot;"/>
+                                      <item value="&quot;Sum&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="string" name="scalarFunction">
+                                    <enum>
+                                      <item value="&quot;avg&quot;"/>
+                                      <item value="&quot;max&quot;"/>
+                                      <item value="&quot;min&quot;"/>
+                                      <item value="&quot;sum&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="string" name="value" required="True"/>
+                                </item>
+                              </prop>
+                              <prop type="string" name="metricName" required="True"/>
+                              <prop type="string" name="metricNamespace" required="True"/>
+                              <prop type="string" name="signalSourceId" required="True"/>
+                              <prop type="ResourceId" name="sourceAmwAccountManagedIdentity" required="True"/>
+                              <prop type="ResourceId" name="sourceAmwAccountResourceId" required="True"/>
+                              <prop type="object" name="spatialAggregation" required="True">
+                                <prop type="array<string>" name="dimensions" required="True">
+                                  <item type="string"/>
+                                </prop>
+                                <prop type="string" name="type" required="True">
+                                  <enum>
+                                    <item value="&quot;Average&quot;"/>
+                                    <item value="&quot;Count&quot;"/>
+                                    <item value="&quot;Max&quot;"/>
+                                    <item value="&quot;Min&quot;"/>
+                                    <item value="&quot;Sum&quot;"/>
+                                  </enum>
+                                </prop>
+                              </prop>
+                              <prop type="object" name="temporalAggregation" required="True">
+                                <prop type="string" name="type" required="True">
+                                  <enum>
+                                    <item value="&quot;Average&quot;"/>
+                                    <item value="&quot;Delta&quot;"/>
+                                    <item value="&quot;IDelta&quot;"/>
+                                    <item value="&quot;IRate&quot;"/>
+                                    <item value="&quot;Increase&quot;"/>
+                                    <item value="&quot;Max&quot;"/>
+                                    <item value="&quot;Min&quot;"/>
+                                    <item value="&quot;Rate&quot;"/>
+                                    <item value="&quot;Sum&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="integer32" name="windowSizeMinutes"/>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="@Signal_read" name="signals"/>
+                        <prop type="@Signal_read" name="totalSignals"/>
+                        <prop type="object" name="windowUptimeCriteria">
+                          <prop type="string" name="comparator" required="True">
+                            <enum>
+                              <item value="&quot;gt&quot;"/>
+                              <item value="&quot;gte&quot;"/>
+                              <item value="&quot;lt&quot;"/>
+                              <item value="&quot;lte&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="float32" name="target" required="True"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="streamingRuleId"/>
+                      <prop readOnly="True" type="dateTime" name="streamingRuleLastUpdatedTimestamp">
+                        <format protocol="iso"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <operation>
+          <instanceUpdate ref="$Subresource">
+            <json>
+              <schema action="remove" type="IdentityObject" name="resource.identity" required="True">
+                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+                  <item action="remove" type="string"/>
+                </userAssigned>
+                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+              </schema>
+            </json>
+          </instanceUpdate>
+        </operation>
+        <operation operationId="Slis_CreateOrUpdate">
+          <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.Monitor/slis/{sliName}">
+            <request method="put">
+              <path>
+                <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
+                  <format pattern="^[A-Za-z0-9._()~-]{1,250}$"/>
+                </param>
+                <param type="string" name="sliName" arg="$Path.sliName" required="True">
+                  <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_()~-]{2,63}$"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2025-03-01-preview&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+              <body>
+                <json ref="$Instance"/>
+              </body>
+            </request>
+            <response statusCode="200 201">
+              <body>
+                <json var="$Instance">
+                  <schema type="@Sli_read"/>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+      <command name="show" version="2025-03-01-preview">
+        <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.monitor/slis/{}" version="2025-03-01-preview" subresource="identity" swagger="mgmt-plane/monitoringservice/ResourceProviders/Microsoft.Monitor/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0Lk1vbml0b3Ivc2xpcy97c2xpTmFtZX0=/V/MjAyNS0wMy0wMS1wcmV2aWV3"/>
+        <argGroup name="">
+          <arg type="string" var="$Path.serviceGroupName" options="service-group-name" required="True">
+            <help short="The name of the service group."/>
+            <format pattern="^[A-Za-z0-9._()~-]{1,250}$"/>
+          </arg>
+          <arg type="string" var="$Path.sliName" options="sli-name" required="True">
+            <help short="Name of the SLI that is given by the user."/>
+            <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_()~-]{2,63}$"/>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="resource">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="Slis_Get">
+          <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.Monitor/slis/{sliName}">
+            <request method="get">
+              <path>
+                <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
+                  <format pattern="^[A-Za-z0-9._()~-]{1,250}$"/>
+                </param>
+                <param type="string" name="sliName" arg="$Path.sliName" required="True">
+                  <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_()~-]{2,63}$"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2025-03-01-preview&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="Sli_read">
+                    <prop readOnly="True" type="ResourceId" name="id">
+                      <format template="/providers/Microsoft.Management/serviceGroups/{}/providers/Microsoft.Monitor/slis/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="uuid" name="principalId"/>
+                      <prop readOnly="True" type="uuid" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item nullable="True" type="object">
+                            <prop readOnly="True" type="uuid" name="clientId"/>
+                            <prop readOnly="True" type="uuid" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties">
+                      <prop type="object" name="baselineProperties" required="True">
+                        <prop type="object" name="baseline" required="True">
+                          <prop type="string" name="evaluationCalculationType" required="True">
+                            <enum>
+                              <item value="&quot;CalendarDays&quot;"/>
+                              <item value="&quot;RollingDays&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="integer32" name="evaluationPeriodDays" required="True">
+                            <format maximum="90" minimum="1"/>
+                          </prop>
+                          <prop type="float32" name="value" required="True">
+                            <format maximum="100.0" minimum="0.0"/>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="category" required="True">
+                        <enum>
+                          <item value="&quot;Availability&quot;"/>
+                          <item value="&quot;Latency&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="description" required="True">
+                        <format pattern="^[\s\S]{0,1000}$"/>
+                      </prop>
+                      <prop type="array<object>" name="destinationAmwAccounts" required="True" identifiers="resourceId">
+                        <item type="object">
+                          <prop type="ResourceId" name="identity" required="True"/>
+                          <prop type="ResourceId" name="resourceId" required="True"/>
+                        </item>
+                      </prop>
+                      <prop readOnly="True" type="array<object>" name="destinationMetrics" identifiers="metricNamespace metricName">
+                        <item type="object">
+                          <prop type="string" name="metricName" required="True"/>
+                          <prop type="string" name="metricNamespace" required="True"/>
+                        </item>
+                      </prop>
+                      <prop type="boolean" name="enableAlert" required="True"/>
+                      <prop type="string" name="evaluationType" required="True">
+                        <enum>
+                          <item value="&quot;RequestBased&quot;"/>
+                          <item value="&quot;WindowBased&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="object" name="executionState">
+                        <prop type="string" name="message"/>
+                        <prop type="string" name="state" required="True"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="sliProperties" required="True">
+                        <prop type="object" name="goodSignals" cls="Signal_read">
+                          <prop type="string" name="signalFormula" required="True"/>
+                          <prop type="array<object>" name="signalSources" required="True" identifiers="signalSourceId">
+                            <item type="object">
+                              <prop type="array<object>" name="filters" required="True" identifiers="scalarFunction dimensionName samplingType operator value">
+                                <item type="object">
+                                  <prop type="string" name="dimensionName"/>
+                                  <prop type="string" name="operator" required="True">
+                                    <enum>
+                                      <item value="&quot;contains&quot;"/>
+                                      <item value="&quot;eq&quot;"/>
+                                      <item value="&quot;gt&quot;"/>
+                                      <item value="&quot;gte&quot;"/>
+                                      <item value="&quot;in&quot;"/>
+                                      <item value="&quot;lt&quot;"/>
+                                      <item value="&quot;lte&quot;"/>
+                                      <item value="&quot;ne&quot;"/>
+                                      <item value="&quot;notcontains&quot;"/>
+                                      <item value="&quot;notin&quot;"/>
+                                      <item value="&quot;notstartswith&quot;"/>
+                                      <item value="&quot;startswith&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="string" name="samplingType">
+                                    <enum>
+                                      <item value="&quot;Average&quot;"/>
+                                      <item value="&quot;Count&quot;"/>
+                                      <item value="&quot;Max&quot;"/>
+                                      <item value="&quot;Min&quot;"/>
+                                      <item value="&quot;Sum&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="string" name="scalarFunction">
+                                    <enum>
+                                      <item value="&quot;avg&quot;"/>
+                                      <item value="&quot;max&quot;"/>
+                                      <item value="&quot;min&quot;"/>
+                                      <item value="&quot;sum&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <prop type="string" name="value" required="True"/>
+                                </item>
+                              </prop>
+                              <prop type="string" name="metricName" required="True"/>
+                              <prop type="string" name="metricNamespace" required="True"/>
+                              <prop type="string" name="signalSourceId" required="True"/>
+                              <prop type="ResourceId" name="sourceAmwAccountManagedIdentity" required="True"/>
+                              <prop type="ResourceId" name="sourceAmwAccountResourceId" required="True"/>
+                              <prop type="object" name="spatialAggregation" required="True">
+                                <prop type="array<string>" name="dimensions" required="True">
+                                  <item type="string"/>
+                                </prop>
+                                <prop type="string" name="type" required="True">
+                                  <enum>
+                                    <item value="&quot;Average&quot;"/>
+                                    <item value="&quot;Count&quot;"/>
+                                    <item value="&quot;Max&quot;"/>
+                                    <item value="&quot;Min&quot;"/>
+                                    <item value="&quot;Sum&quot;"/>
+                                  </enum>
+                                </prop>
+                              </prop>
+                              <prop type="object" name="temporalAggregation" required="True">
+                                <prop type="string" name="type" required="True">
+                                  <enum>
+                                    <item value="&quot;Average&quot;"/>
+                                    <item value="&quot;Delta&quot;"/>
+                                    <item value="&quot;IDelta&quot;"/>
+                                    <item value="&quot;IRate&quot;"/>
+                                    <item value="&quot;Increase&quot;"/>
+                                    <item value="&quot;Max&quot;"/>
+                                    <item value="&quot;Min&quot;"/>
+                                    <item value="&quot;Rate&quot;"/>
+                                    <item value="&quot;Sum&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="integer32" name="windowSizeMinutes"/>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="@Signal_read" name="signals"/>
+                        <prop type="@Signal_read" name="totalSignals"/>
+                        <prop type="object" name="windowUptimeCriteria">
+                          <prop type="string" name="comparator" required="True">
+                            <enum>
+                              <item value="&quot;gt&quot;"/>
+                              <item value="&quot;gte&quot;"/>
+                              <item value="&quot;lt&quot;"/>
+                              <item value="&quot;lte&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="float32" name="target" required="True"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="streamingRuleId"/>
+                      <prop readOnly="True" type="dateTime" name="streamingRuleLastUpdatedTimestamp">
+                        <format protocol="iso"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+    </commandGroup>
+  </commandGroup>
+</CodeGen>

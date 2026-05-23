@@ -43,5 +43,8 @@ Manage the Azure Monitor Service.
 - [private-link-scope](/Commands/monitor/private-link-scope/readme.md)
 : Manage monitor private link scope resource.
 
+- [sli](/Commands/monitor/sli/readme.md)
+: Manage Service Level Indicators (SLIs) in Azure Monitor.
+
 - [tenant-action-group](/Commands/monitor/tenant-action-group/readme.md)
 : monitor tenant-action-group
