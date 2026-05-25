@@ -18,3 +18,14 @@ Create a new storage task assignment sub-resource with the specified parameters.
     ```bash
         storage account task-assignment create -g rg_name -n task_assignment_name --account-name storage_account_name --description 'My Storage task assignment' --enabled false --task-id 'task_id' --report '{prefix:container1}' --execution-context '{trigger:{type:OnSchedule,parameters:{start-from:'2024-08-14T21:52:47Z',end-by:'2024-09-04T21:52:47.203074Z',interval:10,interval-unit:Days}},target:{prefix:[prefix1,prefix2],exclude-prefix:[prefix3]}}'
     ```
+
+### [2025-08-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zdG9yYWdlL3N0b3JhZ2VhY2NvdW50cy97fS9zdG9yYWdldGFza2Fzc2lnbm1lbnRzL3t9/2025-08-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.storage/storageaccounts/{}/storagetaskassignments/{} 2025-08-01 -->
+
+#### examples
+
+- Create Storage TaskAssignment
+    ```bash
+        storage account task-assignment create -g rg_name -n task_assignment_name --account-name storage_account_name --description 'My Storage task assignment' --enabled false --task-id 'task_id' --report '{prefix:container1}' --execution-context '{trigger:{type:OnSchedule,parameters:{start-from:'2024-08-14T21:52:47Z',end-by:'2024-09-04T21:52:47.203074Z',interval:10,interval-unit:Days}},target:{prefix:[prefix1,prefix2],exclude-prefix:[prefix3]}}'
+    ```
