@@ -1,4 +1,4 @@
-# [Command] _grafana mpe list_
+# [Command] _grafana managed-private-endpoint list_
 
 List all managed private endpoints.
 

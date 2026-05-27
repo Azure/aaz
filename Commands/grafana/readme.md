@@ -2,10 +2,15 @@
 
 Commands to manage Azure Managed Grafana resources.
 
+For optimized experience, not all data plane APIs, documented at https://grafana.com/docs/grafana/latest/http_api/, are exposed. On coverage gap, please reach out to ad4g@microsoft.com
+
 ## Subgroups
 
-- [mpe](/Commands/grafana/mpe/readme.md)
+- [managed-private-endpoint](/Commands/grafana/managed-private-endpoint/readme.md)
 : Commands to manage managed private endpoints.
+
+- [plugin](/Commands/grafana/plugin/readme.md)
+: Manage Plugin
 
 - [private-endpoint-connection](/Commands/grafana/private-endpoint-connection/readme.md)
 : Commands to manage private endpoint connections.
@@ -20,9 +25,6 @@ Commands to manage Azure Managed Grafana resources.
 
 - [list](/Commands/grafana/_list.md)
 : List all resources of workspaces for Grafana under the specified subscription.
-
-- [list-available-plugin](/Commands/grafana/_list-available-plugin.md)
-: list all the available plugins
 
 - [show](/Commands/grafana/_show.md)
 : Get the properties of a specific workspace for Grafana resource.
