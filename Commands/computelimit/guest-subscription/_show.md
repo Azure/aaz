@@ -4,7 +4,7 @@ Get a guest subscription added to the host subscription
 
 ## Versions
 
-### [2025-08-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlbGltaXQvbG9jYXRpb25zL3t9L2d1ZXN0c3Vic2NyaXB0aW9ucy97fQ==/2025-08-15.xml) **Preview**
+### [2025-08-15](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlbGltaXQvbG9jYXRpb25zL3t9L2d1ZXN0c3Vic2NyaXB0aW9ucy97fQ==/2025-08-15.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.computelimit/locations/{}/guestsubscriptions/{} 2025-08-15 -->
 

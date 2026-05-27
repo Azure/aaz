@@ -18,3 +18,14 @@ Delete the storage task assignment sub-resource
     ```bash
         storage account task-assignment delete --resource-group res4228 --account-name sto4445 --storage-task-assignment-name myassignment1
     ```
+
+### [2025-08-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zdG9yYWdlL3N0b3JhZ2VhY2NvdW50cy97fS9zdG9yYWdldGFza2Fzc2lnbm1lbnRzL3t9/2025-08-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.storage/storageaccounts/{}/storagetaskassignments/{} 2025-08-01 -->
+
+#### examples
+
+- Delete Storage TaskAssignment
+    ```bash
+        storage account task-assignment delete --resource-group res4228 --account-name sto4445 --storage-task-assignment-name myassignment1
+    ```

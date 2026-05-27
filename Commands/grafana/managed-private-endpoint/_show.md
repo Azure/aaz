@@ -1,4 +1,4 @@
-# [Command] _grafana mpe show_
+# [Command] _grafana managed-private-endpoint show_
 
 Get a specific managed private endpoint.
 
