@@ -1,4 +1,4 @@
-# [Command] _grafana mpe create_
+# [Command] _grafana managed-private-endpoint create_
 
 Create a managed private endpoint.
 
@@ -12,5 +12,5 @@ Create a managed private endpoint.
 
 - connect to an Azure SQL Server by resource ID
     ```bash
-        grafana mpe create -n MyManagedPrivateEndpoint -g MyResourceGroup --workspace-name MyGrafana --group-ids sqlServer --private-link-resource-id /subscriptions/3a7edf7d-1488-4017-a908-111111111111/resourceGroups/MyResourceGroup/providers/Microsoft.Sql/servers/MySQLServer
+        grafana managed-private-endpoint create -n MyManagedPrivateEndpoint -g MyResourceGroup --workspace-name MyGrafana --group-ids sqlServer --private-link-resource-id /subscriptions/3a7edf7d-1488-4017-a908-111111111111/resourceGroups/MyResourceGroup/providers/Microsoft.Sql/servers/MySQLServer
     ```

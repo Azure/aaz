@@ -1,4 +1,4 @@
-# [Command] _grafana mpe update_
+# [Command] _grafana managed-private-endpoint update_
 
 Update a managed private endpoint for a grafana resource.
 

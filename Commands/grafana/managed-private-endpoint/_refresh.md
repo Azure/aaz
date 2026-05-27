@@ -1,4 +1,4 @@
-# [Command] _grafana mpe refresh_
+# [Command] _grafana managed-private-endpoint refresh_
 
 Refresh and sync managed private endpoints to latest state.
 

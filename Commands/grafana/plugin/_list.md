@@ -1,4 +1,4 @@
-# [Command] _grafana list-available-plugin_
+# [Command] _grafana plugin list_
 
 list all the available plugins
 

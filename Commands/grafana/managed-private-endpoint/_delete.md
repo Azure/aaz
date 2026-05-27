@@ -1,4 +1,4 @@
-# [Command] _grafana mpe delete_
+# [Command] _grafana managed-private-endpoint delete_
 
 Delete a managed private endpoint.
 
