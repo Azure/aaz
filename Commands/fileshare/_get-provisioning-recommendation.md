@@ -11,3 +11,10 @@ Get provisioning recommendations for a file share.
 ### [2026-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5maWxlc2hhcmVzL2xvY2F0aW9ucy97fS9nZXRwcm92aXNpb25pbmdyZWNvbW1lbmRhdGlvbg==/2026-06-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.fileshares/locations/{}/getprovisioningrecommendation 2026-06-01 -->
+
+#### examples
+
+- Get provisioning recommendations for a file share
+    ```bash
+        fileshare get-provisioning-recommendation --location eastus --provisioned-storage-gib 1024
+    ```
