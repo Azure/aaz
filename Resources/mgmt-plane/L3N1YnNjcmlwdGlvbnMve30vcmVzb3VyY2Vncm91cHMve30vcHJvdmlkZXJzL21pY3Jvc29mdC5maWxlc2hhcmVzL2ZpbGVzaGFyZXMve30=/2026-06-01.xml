@@ -262,6 +262,23 @@
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="NfsProtocolProperties">
+        <arg type="string" var="$resource.properties.nfsProtocolProperties.encryptionInTransitRequired" options="encryption-in-transit-required" group="NfsProtocolProperties">
+          <help short="Encryption in transit defines whether data is encrypted for NFS shares."/>
+          <enum>
+            <item name="Disabled" value="&quot;Disabled&quot;"/>
+            <item name="Enabled" value="&quot;Enabled&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$resource.properties.nfsProtocolProperties.rootSquash" options="root-squash" group="NfsProtocolProperties">
+          <help short="Root squash defines how root users on clients are mapped to the NFS share."/>
+          <enum>
+            <item name="AllSquash" value="&quot;AllSquash&quot;"/>
+            <item name="NoRootSquash" value="&quot;NoRootSquash&quot;"/>
+            <item name="RootSquash" value="&quot;RootSquash&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
       <argGroup name="Properties">
         <arg type="string" var="$resource.properties.mediaTier" options="media-tier" group="Properties">
           <help short="The storage media tier of the file share."/>
@@ -271,24 +288,6 @@
         </arg>
         <arg type="string" var="$resource.properties.mountName" options="mount-name" group="Properties">
           <help short="The name of the file share as seen by the end user when mounting the share, such as in a URI or UNC format in their operating system."/>
-        </arg>
-        <arg type="object" var="$resource.properties.nfsProtocolProperties" options="nfs-protocol-properties" group="Properties">
-          <help short="Protocol settings specific NFS."/>
-          <arg type="string" var="$resource.properties.nfsProtocolProperties.encryptionInTransitRequired" options="encryption-in-transit-required">
-            <help short="Encryption in transit defines whether data is encrypted for NFS shares."/>
-            <enum>
-              <item name="Disabled" value="&quot;Disabled&quot;"/>
-              <item name="Enabled" value="&quot;Enabled&quot;"/>
-            </enum>
-          </arg>
-          <arg type="string" var="$resource.properties.nfsProtocolProperties.rootSquash" options="root-squash">
-            <help short="Root squash defines how root users on clients are mapped to the NFS share."/>
-            <enum>
-              <item name="AllSquash" value="&quot;AllSquash&quot;"/>
-              <item name="NoRootSquash" value="&quot;NoRootSquash&quot;"/>
-              <item name="RootSquash" value="&quot;RootSquash&quot;"/>
-            </enum>
-          </arg>
         </arg>
         <arg type="string" var="$resource.properties.protocol" options="protocol" group="Properties">
           <help short="The file sharing protocol for this file share."/>
@@ -305,13 +304,6 @@
         <arg type="integer32" var="$resource.properties.provisionedThroughputMiBPerSec" options="provisioned-throughput-mi-b-per-sec provisioned-throughput-mib throughput-mibps" group="Properties">
           <help short="The provisioned throughput / sec of the share."/>
         </arg>
-        <arg type="object" var="$resource.properties.publicAccessProperties" options="public-access-properties" group="Properties">
-          <help short="The set of properties for control public access."/>
-          <arg type="array<string>" var="$resource.properties.publicAccessProperties.allowedSubnets" options="allowed-subnets">
-            <help short="The allowed set of subnets when access is restricted."/>
-            <item type="string"/>
-          </arg>
-        </arg>
         <arg type="string" var="$resource.properties.publicNetworkAccess" options="public-network-access" group="Properties">
           <help short="Gets or sets allow or disallow public network access to azure managed file share"/>
           <enum>
@@ -325,6 +317,12 @@
             <item name="Local" value="&quot;Local&quot;"/>
             <item name="Zone" value="&quot;Zone&quot;"/>
           </enum>
+        </arg>
+      </argGroup>
+      <argGroup name="PublicAccessProperties">
+        <arg type="array<string>" var="$resource.properties.publicAccessProperties.allowedSubnets" options="allowed-subnets" group="PublicAccessProperties">
+          <help short="The allowed set of subnets when access is restricted."/>
+          <item type="string"/>
         </arg>
       </argGroup>
       <argGroup name="Resource">
@@ -368,7 +366,7 @@
                       </enum>
                     </prop>
                     <prop type="string" name="mountName" arg="$resource.properties.mountName"/>
-                    <prop type="object" name="nfsProtocolProperties" arg="$resource.properties.nfsProtocolProperties">
+                    <prop type="object" name="nfsProtocolProperties">
                       <prop type="string" name="encryptionInTransitRequired" arg="$resource.properties.nfsProtocolProperties.encryptionInTransitRequired">
                         <enum>
                           <item value="&quot;Disabled&quot;"/>
@@ -391,7 +389,7 @@
                     <prop type="integer32" name="provisionedIOPerSec" arg="$resource.properties.provisionedIOPerSec"/>
                     <prop type="integer32" name="provisionedStorageGiB" arg="$resource.properties.provisionedStorageGiB"/>
                     <prop type="integer32" name="provisionedThroughputMiBPerSec" arg="$resource.properties.provisionedThroughputMiBPerSec"/>
-                    <prop type="object" name="publicAccessProperties" arg="$resource.properties.publicAccessProperties">
+                    <prop type="object" name="publicAccessProperties">
                       <prop type="array<string>" name="allowedSubnets" arg="$resource.properties.publicAccessProperties.allowedSubnets">
                         <item type="string"/>
                       </prop>
@@ -601,25 +599,24 @@
         </arg>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
-      <argGroup name="Properties">
-        <arg type="object" var="$properties.properties.nfsProtocolProperties" options="nfs-protocol-properties" group="Properties">
-          <help short="Protocol settings specific NFS."/>
-          <arg type="string" var="$properties.properties.nfsProtocolProperties.encryptionInTransitRequired" options="encryption-in-transit-required">
-            <help short="Encryption in transit defines whether data is encrypted for NFS shares."/>
-            <enum>
-              <item name="Disabled" value="&quot;Disabled&quot;"/>
-              <item name="Enabled" value="&quot;Enabled&quot;"/>
-            </enum>
-          </arg>
-          <arg type="string" var="$properties.properties.nfsProtocolProperties.rootSquash" options="root-squash">
-            <help short="Root squash defines how root users on clients are mapped to the NFS share."/>
-            <enum>
-              <item name="AllSquash" value="&quot;AllSquash&quot;"/>
-              <item name="NoRootSquash" value="&quot;NoRootSquash&quot;"/>
-              <item name="RootSquash" value="&quot;RootSquash&quot;"/>
-            </enum>
-          </arg>
+      <argGroup name="NfsProtocolProperties">
+        <arg type="string" var="$properties.properties.nfsProtocolProperties.encryptionInTransitRequired" options="encryption-in-transit-required" group="NfsProtocolProperties">
+          <help short="Encryption in transit defines whether data is encrypted for NFS shares."/>
+          <enum>
+            <item name="Disabled" value="&quot;Disabled&quot;"/>
+            <item name="Enabled" value="&quot;Enabled&quot;"/>
+          </enum>
         </arg>
+        <arg type="string" var="$properties.properties.nfsProtocolProperties.rootSquash" options="root-squash" group="NfsProtocolProperties">
+          <help short="Root squash defines how root users on clients are mapped to the NFS share."/>
+          <enum>
+            <item name="AllSquash" value="&quot;AllSquash&quot;"/>
+            <item name="NoRootSquash" value="&quot;NoRootSquash&quot;"/>
+            <item name="RootSquash" value="&quot;RootSquash&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
         <arg type="integer32" var="$properties.properties.provisionedIOPerSec" options="provisioned-io-per-sec provisioned-iops" group="Properties">
           <help short="The provisioned IO / sec of the share."/>
         </arg>
@@ -628,13 +625,6 @@
         </arg>
         <arg type="integer32" var="$properties.properties.provisionedThroughputMiBPerSec" options="provisioned-throughput-mi-b-per-sec provisioned-throughput-mib throughput-mibps" group="Properties">
           <help short="The provisioned throughput / sec of the share."/>
-        </arg>
-        <arg type="object" var="$properties.properties.publicAccessProperties" options="public-access-properties" group="Properties">
-          <help short="The set of properties for control public access."/>
-          <arg type="array<string>" var="$properties.properties.publicAccessProperties.allowedSubnets" options="allowed-subnets">
-            <help short="The allowed set of subnets when access is restricted."/>
-            <item type="string"/>
-          </arg>
         </arg>
         <arg type="string" var="$properties.properties.publicNetworkAccess" options="public-network-access" group="Properties">
           <help short="Gets or sets allow or disallow public network access to azure managed file share"/>
@@ -648,6 +638,12 @@
           <additionalProp>
             <item type="string"/>
           </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="PublicAccessProperties">
+        <arg type="array<string>" var="$properties.properties.publicAccessProperties.allowedSubnets" options="allowed-subnets" group="PublicAccessProperties">
+          <help short="The allowed set of subnets when access is restricted."/>
+          <item type="string"/>
         </arg>
       </argGroup>
       <operation operationId="FileShares_Update">
@@ -673,7 +669,7 @@
               <json>
                 <schema type="object" name="properties" required="True" clientFlatten="True">
                   <prop type="object" name="properties">
-                    <prop type="object" name="nfsProtocolProperties" arg="$properties.properties.nfsProtocolProperties">
+                    <prop type="object" name="nfsProtocolProperties">
                       <prop type="string" name="encryptionInTransitRequired" arg="$properties.properties.nfsProtocolProperties.encryptionInTransitRequired">
                         <enum>
                           <item value="&quot;Disabled&quot;"/>
@@ -691,7 +687,7 @@
                     <prop type="integer32" name="provisionedIOPerSec" arg="$properties.properties.provisionedIOPerSec"/>
                     <prop type="integer32" name="provisionedStorageGiB" arg="$properties.properties.provisionedStorageGiB"/>
                     <prop type="integer32" name="provisionedThroughputMiBPerSec" arg="$properties.properties.provisionedThroughputMiBPerSec"/>
-                    <prop type="object" name="publicAccessProperties" arg="$properties.properties.publicAccessProperties">
+                    <prop type="object" name="publicAccessProperties">
                       <prop type="array<string>" name="allowedSubnets" arg="$properties.properties.publicAccessProperties.allowedSubnets">
                         <item type="string"/>
                       </prop>
