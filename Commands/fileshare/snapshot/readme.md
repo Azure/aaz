@@ -1,6 +1,6 @@
 # [Group] _fileshare snapshot_
 
-Manage file share snapshots
+Manage file share snapshots.
 
 ## Commands
 
