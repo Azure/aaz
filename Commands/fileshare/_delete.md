@@ -11,3 +11,10 @@ Delete a file share
 ### [2026-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5maWxlc2hhcmVzL2ZpbGVzaGFyZXMve30=/2026-06-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.fileshares/fileshares/{} 2026-06-01 -->
+
+#### examples
+
+- Delete a fileshare
+    ```bash
+        fileshare delete --resource-group MyRG --name MyFileShare
+    ```
