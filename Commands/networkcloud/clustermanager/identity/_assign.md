@@ -46,3 +46,14 @@ Assign the user or system managed identities.
     ```bash
         networkcloud clustermanager identity assign --cluster-manager-name "clusterManagerName" --resource-group "resourceGroupName" --subscription "subscriptionName" --system-assigned
     ```
+
+### [2026-05-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvY2x1c3Rlcm1hbmFnZXJzL3t9/2026-05-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/clustermanagers/{} 2026-05-01-preview identity -->
+
+#### examples
+
+- Assign system managed identity to a cluster manager
+    ```bash
+        networkcloud clustermanager identity assign --cluster-manager-name "clusterManagerName" --resource-group "resourceGroupName" --subscription "subscriptionName" --system-assigned
+    ```
