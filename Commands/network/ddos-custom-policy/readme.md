@@ -10,9 +10,6 @@ Manage Ddos Custom Policy
 - [delete](/Commands/network/ddos-custom-policy/_delete.md)
 : Delete the specified DDoS custom policy.
 
-- [list](/Commands/network/ddos-custom-policy/_list.md)
-: List all the DDoS custom policies in a resource group.
-
 - [show](/Commands/network/ddos-custom-policy/_show.md)
 : Get information about the specified DDoS custom policy.
 
