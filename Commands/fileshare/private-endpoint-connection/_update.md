@@ -7,3 +7,14 @@ Update the state of specified private endpoint connection associated with the fi
 ### [2025-09-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5maWxlc2hhcmVzL2ZpbGVzaGFyZXMve30vcHJpdmF0ZWVuZHBvaW50Y29ubmVjdGlvbnMve30=/2025-09-01-preview.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.fileshares/fileshares/{}/privateendpointconnections/{} 2025-09-01-preview -->
+
+### [2026-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5maWxlc2hhcmVzL2ZpbGVzaGFyZXMve30vcHJpdmF0ZWVuZHBvaW50Y29ubmVjdGlvbnMve30=/2026-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.fileshares/fileshares/{}/privateendpointconnections/{} 2026-06-01 -->
+
+#### examples
+
+- Update a private endpoint connection status
+    ```bash
+        fileshare private-endpoint-connection update --name MyConnection --resource-group MyRG --resource-name MyFileShare --connection-state status=Approved description="Approved by admin"
+    ```
