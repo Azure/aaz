@@ -18,6 +18,3 @@ View and manage Sql Vulnerability Assessment baseline.
 
 - [show](/Commands/security/va/sql/baseline/_show.md)
 : Get the results for a given rule in the Baseline.
-
-- [update](/Commands/security/va/sql/baseline/_update.md)
-: Update a Baseline for a rule in a database. Will overwrite any previously existing results.
