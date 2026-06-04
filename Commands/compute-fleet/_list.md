@@ -15,3 +15,15 @@ List Fleet resources by subscription ID and resource group
     ```bash
         azure-fleet list
     ```
+
+### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5henVyZWZsZWV0L2ZsZWV0cw==/2026-04-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.azurefleet/fleets 2026-04-01-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.azurefleet/fleets 2026-04-01-preview -->
+
+#### examples
+
+- Fleets_ListBySubscription
+    ```bash
+        azure-fleet list
+    ```
