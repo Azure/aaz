@@ -1,20 +1,20 @@
 # [Group] _storage-mover project_
 
-Manage Project resource, which is a logical grouping of related jobs.
+Manage Project
 
 ## Commands
 
 - [create](/Commands/storage-mover/project/_create.md)
-: Creates a Project resource, which is a logical grouping of related jobs.
+: Create a Project resource, which is a logical grouping of related jobs.
 
 - [delete](/Commands/storage-mover/project/_delete.md)
-: Deletes a Project resource.
+: Delete a Project resource.
 
 - [list](/Commands/storage-mover/project/_list.md)
-: Lists all Projects in a Storage Mover.
+: List all Projects in a Storage Mover.
 
 - [show](/Commands/storage-mover/project/_show.md)
-: Gets a Project resource.
+: Get a Project resource.
 
 - [update](/Commands/storage-mover/project/_update.md)
 : Update a Project resource, which is a logical grouping of related jobs.
