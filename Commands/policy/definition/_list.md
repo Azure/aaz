@@ -1,6 +1,6 @@
 # [Command] _policy definition list_
 
-Retrieves policy definition.
+Retrieve policy definitions.
 
 Retrieve the list of all policy definitions in the given subscription or management group.
 

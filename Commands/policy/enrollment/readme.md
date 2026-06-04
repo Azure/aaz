@@ -2,7 +2,7 @@
 
 Manage policy enrollments.
 
-Policy exemptions specify resources that a policy assignment on 'Enroll' mode applies to.
+Policy enrollments specify resources that a policy assignment on 'Enroll' mode applies to.
 
 ## Commands
 

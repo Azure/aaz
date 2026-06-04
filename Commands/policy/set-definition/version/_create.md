@@ -1,6 +1,8 @@
 # [Command] _policy set-definition version create_
 
-Create operation creates or updates a policy set definition version in the given management group with the given name and version.
+Create a policy set definition version.
+
+Create a policy set definition version in the given subscription or management group with the given name and other properties.
 
 ## Versions
 

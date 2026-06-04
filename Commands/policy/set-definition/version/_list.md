@@ -1,6 +1,8 @@
 # [Command] _policy set-definition version list_
 
-List operation retrieves a list of all the built-in policy set definition versions for the given built-in policy set definition.
+Retrieve policy set definition versions.
+
+Retrieve the list of all policy set definition versions for a policy definition in the given subscription or management group.
 
 ## Versions
 

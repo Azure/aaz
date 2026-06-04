@@ -1,6 +1,8 @@
 # [Command] _policy set-definition version update_
 
-Update operation creates or updates a policy set definition version in the given management group with the given name and version.
+Update a policy set definition version.
+
+Update the policy set definition version in the given subscription or management group with the given name and version by applying the given properties.
 
 ## Versions
 

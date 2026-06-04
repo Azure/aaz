@@ -5,16 +5,16 @@ Manage Version
 ## Commands
 
 - [create](/Commands/policy/set-definition/version/_create.md)
-: Create operation creates or updates a policy set definition version in the given management group with the given name and version.
+: Create a policy set definition version.
 
 - [delete](/Commands/policy/set-definition/version/_delete.md)
-: Delete operation deletes the policy set definition version in the given management group with the given name and version.
+: Delete a policy set definition version.
 
 - [list](/Commands/policy/set-definition/version/_list.md)
-: List operation retrieves a list of all the built-in policy set definition versions for the given built-in policy set definition.
+: Retrieve policy set definition versions.
 
 - [show](/Commands/policy/set-definition/version/_show.md)
-: Get operation retrieves the policy set definition version in the given management group with the given name and version.
+: Retrieves a policy set definition version.
 
 - [update](/Commands/policy/set-definition/version/_update.md)
-: Update operation creates or updates a policy set definition version in the given management group with the given name and version.
+: Update a policy set definition version.

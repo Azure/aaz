@@ -24,5 +24,5 @@ Create a policy enrollment with the given name and scope. Policy enrollments app
 
 - Create a policy enrollment in the management group
     ```bash
-        az policy enrollment create -n enrollTestVm --policy-assignment "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyAssignments/limitVMSku" --scope "/providers/Microsoft.Management/managementGroups/{managementGroupName}"
+        policy enrollment create -n enrollTestVm --policy-assignment "/subscriptions/{subscriptionId}/providers/Microsoft.Authorization/policyAssignments/limitVMSku" --scope "/providers/Microsoft.Management/managementGroups/{managementGroupName}"
     ```

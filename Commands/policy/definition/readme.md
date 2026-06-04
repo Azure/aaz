@@ -18,7 +18,7 @@ Policy definitions are rules that specify allowed or disallowed Azure resource c
 : Delete a policy definition.
 
 - [list](/Commands/policy/definition/_list.md)
-: Retrieves policy definition.
+: Retrieve policy definitions.
 
 - [show](/Commands/policy/definition/_show.md)
 : Retrieves a policy definition.

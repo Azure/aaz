@@ -1,6 +1,8 @@
 # [Command] _policy set-definition version delete_
 
-Delete operation deletes the policy set definition version in the given management group with the given name and version.
+Delete a policy set definition version.
+
+Delete the policy set definition version in the given subscription or management group with the given name and other properties.
 
 ## Versions
 
