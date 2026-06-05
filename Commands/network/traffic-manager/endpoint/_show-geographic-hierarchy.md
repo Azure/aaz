@@ -36,3 +36,14 @@ Get the default geographic hierarchy used by the geographic traffic routing meth
     ```bash
         network traffic-manager endpoint show-geographic-hierarchy
     ```
+
+### [2024-04-01-preview](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQubmV0d29yay90cmFmZmljbWFuYWdlcmdlb2dyYXBoaWNoaWVyYXJjaGllcy9kZWZhdWx0/2024-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /providers/microsoft.network/trafficmanagergeographichierarchies/default 2024-04-01-preview -->
+
+#### examples
+
+- Get the default geographic hierarchy used by the geographic traffic routing method.
+    ```bash
+        network traffic-manager endpoint show-geographic-hierarchy
+    ```
