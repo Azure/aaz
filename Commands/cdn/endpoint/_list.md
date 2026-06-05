@@ -54,7 +54,7 @@ List existing CDN endpoints.
 
 #### examples
 
-- List all endpoints within a given CDN profile.
+- Endpoints_ListByProfile
     ```bash
-        cdn endpoint list -g group --profile-name profile-name
+        cdn endpoint list --resource-group RG --profile-name profile1
     ```

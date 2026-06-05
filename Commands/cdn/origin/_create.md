@@ -74,12 +74,7 @@ Create a new origin within the specified endpoint.
 
 #### examples
 
-- Create an additional origin
+- Origins_Create
     ```bash
-        cdn origin create -g group --host-name example.contoso.com --profile-name profile --endpoint-name endpoint -n origin --host-name example.contoso.com --origin-host-header example.contoso.com --http-port 80 --https-port 443
-    ```
-
-- Create a private origin
-    ```bash
-        cdn origin create -g group --host-name example.contoso.com --profile-name profile --endpoint-name endpoint -n origin --http-port 80 --https-port 443 --private-link-resource-id /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group/providers/Microsoft.Network/privateLinkServices/pls --private-link-location EastUS --private-link-approval-message 'Please approve this request'
+        cdn origin create --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --origin-name www-someDomain-net --enabled True --host-name www.someDomain.net --http-port 80 --https-port 443 --origin-host-header www.someDomain.net --priority 1 --private-link-approval-message Please approve the connection request for this Private Link --private-link-location eastus --private-link-resource-id /subscriptions/subid/resourcegroups/rg1/providers/Microsoft.Network/privateLinkServices/pls1 --weight 50
     ```

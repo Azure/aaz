@@ -54,7 +54,7 @@ Validates the custom domain mapping to ensure it maps to the correct CDN endpoin
 
 #### examples
 
-- Validate domain www.contoso.com to see whether it maps to the correct CDN endpoint in DNS.
+- Endpoints_ValidateCustomDomain
     ```bash
-        cdn endpoint validate-custom-domain -g group -n endpoint --profile-name profile-name --host-name www.contoso.com
+        cdn endpoint validate-custom-domain --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --host-name www.someDomain.com
     ```

@@ -74,12 +74,12 @@ Enable https delivery of the custom domain.
 
 #### examples
 
-- Enable HTTPS for custom domain with resource name customdomain1 using a CDN-managed certificate
+- CustomDomains_EnableCustomHttpsUsingCDNManagedCertificate
     ```bash
-        cdn custom-domain enable-https -g group --profile-name profile --endpoint-name endpoint -n customdomain1
+        cdn custom-domain enable-https --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --custom-domain-name www-someDomain-net
     ```
 
-- Enable HTTPS for custom domain with resource name customdomain1 using a CDN-managed certificate and set the minimum TLS version to 1.2
+- CustomDomains_EnableCustomHttpsUsingYourOwnCertificate
     ```bash
-        cdn custom-domain enable-https -g group --profile-name profile --endpoint-name endpoint -n customdomain1 --min-tls-version 1.2
+        cdn custom-domain enable-https --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --custom-domain-name www-someDomain-net --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --custom-domain-name www-someDomain-net
     ```

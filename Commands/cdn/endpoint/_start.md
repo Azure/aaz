@@ -54,7 +54,7 @@ Starts an existing CDN endpoint that is on a stopped state.
 
 #### examples
 
-- Start a CDN endpoint.
+- Endpoints_Start
     ```bash
-        cdn endpoint start -g group -n endpoint --profile-name profile-name
+        cdn endpoint start --resource-group RG --profile-name profile1 --endpoint-nameendpoint-name endpoint1
     ```

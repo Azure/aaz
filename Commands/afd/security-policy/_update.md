@@ -54,7 +54,7 @@ Update a new security policy within the specified profile.
 
 #### examples
 
-- Update the specified security policy's domain list.
+- SecurityPolicies_Create
     ```bash
-        afd security-policy update -g group --security-policy-name sp1 --profile-name profile --domains /subscriptions/sub1/resourcegroups/rg1/providers/Microsoft.Cdn/profiles/profile1/customDomains/customDomain1
+        afd security-policy update --resource-group RG --profile-name profile1 --security-policy-name securityPolicy1
     ```

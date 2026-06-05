@@ -54,7 +54,7 @@ Delete an existing AzureFrontDoor rule set with the specified rule set name unde
 
 #### examples
 
-- Delete a rule set with the name ruleset1.
+- RuleSets_Delete
     ```bash
-        afd rule-set delete -g group --rule-set-name ruleset1 --profile-name profile
+        afd rule-set delete --resource-group RG --profile-name profile1 --rule-set-name ruleSet1
     ```

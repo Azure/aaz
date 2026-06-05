@@ -74,12 +74,7 @@ Create a new origin group within the specified endpoint.
 
 #### examples
 
-- Create an origin group
+- OriginGroups_Create
     ```bash
-        cdn origin-group create -g group --profile-name profile --endpoint-name endpoint -n origin-group --origins origin-0,origin-1
-    ```
-
-- Create an origin group with a custom health probe
-    ```bash
-        cdn origin-group create -g group --profile-name profile --endpoint-name endpoint -n origin-group --origins origin-0,origin-1 --probe-path /healthz --probe-interval 90 --probe-protocol HTTPS --probe-method GET
+        cdn origin-group create --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --origin-group-name origingroup1 --health-probe-settings "{probe-interval-in-seconds:120,probe-path:/health.aspx,probe-protocol:Http,probe-request-type:GET}" --formatted-origins "[{id:/subscriptions/subid/resourceGroups/RG/providers/Microsoft.Cdn/profiles/profile1/endpoints/endpoint1/origins/origin1}]" --response-based-origin-error-detection-settings "{response-based-detected-error-types:TcpErrorsOnly,response-based-failover-threshold-percentage:10}"
     ```

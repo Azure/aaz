@@ -23,3 +23,10 @@ Get an existing origin within an origin group.
 ### [2025-09-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vb3JpZ2luZ3JvdXBzL3t9L29yaWdpbnMve30=/2025-09-01-preview.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/origingroups/{}/origins/{} 2025-09-01-preview -->
+
+#### examples
+
+- AFDOrigins_Get
+    ```bash
+        afd origin show --resource-group RG --profile-name profile1 --origin-group-name origingroup1 --origin-name origin1
+    ```

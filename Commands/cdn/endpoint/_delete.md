@@ -54,7 +54,7 @@ Delete an existing CDN endpoint with the specified endpoint name under the speci
 
 #### examples
 
-- Delete a CDN endpoint.
+- Endpoints_Delete
     ```bash
-        cdn endpoint delete -g group -n endpoint --profile-name profile-name
+        cdn endpoint delete --resource-group RG --profile-name profile1 --endpoint-name endpoint1
     ```

@@ -54,7 +54,7 @@ Get an existing delivery rule within a rule set.
 
 #### examples
 
-- show details of the delivery rule with name rule1.
+- Rules_Get
     ```bash
-        afd rule show -g group --rule-set-name ruleSetName --profile-name profile --rule-name rule1
+        afd rule show --resource-group RG --profile-name profile1 --rule-set-name ruleSet1 --rule-name rule1
     ```

@@ -65,7 +65,7 @@ Get an existing AzureFrontDoor domain with the specified domain name under the s
 
 #### examples
 
-- show details of the custom domain within the specified profile.
+- AFDCustomDomains_Get
     ```bash
-        afd custom-domain show -g group --profile-name profile  --custom-domain-name customDomainName
+        afd custom-domain show --resource-group RG --profile-name profile1 --custom-domain-name domain1
     ```

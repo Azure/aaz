@@ -71,7 +71,12 @@ List all of the Azure Front Door Standard, Azure Front Door Premium, and CDN pro
 
 #### examples
 
-- List AFD profiles in a resource group.
+- Profiles_List
     ```bash
-        afd profile list -g group
+        afd profile list
+    ```
+
+- Profiles_ListByResourceGroup
+    ```bash
+        afd profile list --resource-group RG
     ```

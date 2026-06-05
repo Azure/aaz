@@ -74,12 +74,7 @@ Update a new origin within the specified origin group.
 
 #### examples
 
-- Update the host header and priority of the specified origin.
+- AFDOrigins_Create
     ```bash
-        afd origin update -g group --host-name example.contoso.com --profile-name profile --origin-group-name originGroup --origin-name origin1 --origin-host-header example.contoso.com --priority 3
-    ```
-
-- Disable private link of the origin.
-    ```bash
-        afd origin update -g group --host-name example.contoso.com --profile-name profile --origin-group-name originGroup --origin-name origin1 --enable-private-link False
+        afd origin update --resource-group RG --profile-name profile1 --origin-group-name origingroup1 --origin-name origin1 --enabled-state Enabled --host-name host1.blob.core.windows.net --http-port 80 --https-port 443 --origin-host-header host1.foo.com --origin-capacity-resource "{enabled:Enabled,origin-ingress-rate-threshold:10,origin-request-rate-threshold:1000,region:EastUs}"
     ```

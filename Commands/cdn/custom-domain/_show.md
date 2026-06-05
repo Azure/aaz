@@ -54,7 +54,7 @@ Get an existing custom domain within an endpoint.
 
 #### examples
 
-- Get the details of a custom domain with resource name customdomain1.
+- CustomDomains_Get
     ```bash
-        cdn custom-domain show -g group --endpoint-name endpoint --profile-name profile -n customdomain1
+        cdn custom-domain show --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --custom-domain-name www-someDomain-net
     ```

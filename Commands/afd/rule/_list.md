@@ -54,7 +54,7 @@ List all of the existing delivery rules within a rule set.
 
 #### examples
 
-- List all the routes within the specified endpoint.
+- Rules_ListByRuleSet
     ```bash
-        afd route list -g group --profile-name profile --endpoint-name endpoint1
+        afd rule list --resource-group RG --profile-name profile1 --rule-set-name ruleSet1
     ```

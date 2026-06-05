@@ -54,7 +54,7 @@ Checks the quota and actual usage of endpoints under the given Azure Front Door 
 
 #### examples
 
-- List resource usage within the specific AFD profile.
+- AFDProfiles_ListResourceUsage
     ```bash
-        afd profile usage -g group --profile-name profile
+        afd profile usage --resource-group RG --profile-name profile1
     ```

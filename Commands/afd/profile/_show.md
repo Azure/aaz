@@ -65,7 +65,7 @@ Get an Azure Front Door Standard or Azure Front Door Premium or CDN profile with
 
 #### examples
 
-- Show details of an AFD profile.
+- Profiles_Get
     ```bash
-        afd profile show -g group --profile-name profile
+        afd profile show --resource-group RG --profile-name profile1
     ```

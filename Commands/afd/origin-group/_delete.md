@@ -65,7 +65,7 @@ Delete an existing origin group within a profile.
 
 #### examples
 
-- Deletes an existing origin group within a profile.
+- AFDOriginGroups_Delete
     ```bash
-        afd origin-group delete -g group --origin-group-name og1 --profile-name profile
+        afd origin-group delete --resource-group RG --profile-name profile1 --origin-group-name origingroup1
     ```

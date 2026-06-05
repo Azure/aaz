@@ -54,7 +54,7 @@ Updates the domain validation token.
 
 #### examples
 
-- Regenerate the domain validation token.
+- AFDCustomDomains_Delete
     ```bash
-        afd custom-domain regenerate-validation-token -g MyResourceGroup --profile-name MyProfle --custom-domain-name MyCustomDomain
+        afd custom-domain regenerate-validation-token --resource-group RG --profile-name profile1 --custom-domain-name domain1
     ```

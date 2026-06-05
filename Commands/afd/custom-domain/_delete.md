@@ -65,7 +65,7 @@ Delete an existing AzureFrontDoor domain with the specified domain name under th
 
 #### examples
 
-- Delete a custom domain.
+- AFDCustomDomains_Delete
     ```bash
-        afd custom-domain delete -g group --profile-name profile  --custom-domain-name customDomainName
+        afd custom-domain delete --resource-group RG --profile-name profile1 --custom-domain-name domain1
     ```

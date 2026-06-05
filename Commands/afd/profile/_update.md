@@ -65,7 +65,7 @@ Update a new Azure Front Door Standard or Azure Front Door Premium or CDN profil
 
 #### examples
 
-- Update an AFD profile with tags.
+- Profiles_Create
     ```bash
-        afd profile update --profile-name profile --resource-group MyResourceGroup --tags tag1=value1
+        afd profile update --resource-group RG --profile-name profile1 --sku Premium_AzureFrontDoor
     ```

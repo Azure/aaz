@@ -54,7 +54,7 @@ Create a new custom domain within an endpoint.
 
 #### examples
 
-- Create a custom domain with resource name customdomain1 within an endpoint and profile.
+- CustomDomains_Create
     ```bash
-        cdn custom-domain create -g group --endpoint-name endpoint --profile-name profile -n customdomain1 --hostname www.example.com
+        cdn custom-domain create --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --custom-domain-name www-someDomain-net --hostname www.someDomain.net
     ```

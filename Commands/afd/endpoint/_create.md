@@ -54,7 +54,7 @@ Create a new AzureFrontDoor endpoint with the specified endpoint name under the 
 
 #### examples
 
-- Creates an enabled endpoint
+- AFDEndpoints_Create
     ```bash
-        afd endpoint create -g group --endpoint-name endpoint1 --profile-name profile --enabled-state Enabled
+        afd endpoint create --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --location global --name-reuse-scope TenantReuse --enabled-state Enabled --enforce-mtls Disabled --tags "{}"
     ```

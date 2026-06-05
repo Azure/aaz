@@ -54,7 +54,7 @@ Check the availability of a resource name. This is needed for resources where na
 
 #### examples
 
-- Check whether the resource name contoso is available or not.
+- CheckNameAvailabilityWithSubscription
     ```bash
-        cdn name-exists --name contoso
+        cdn name-exists --name sampleName --type Microsoft.Cdn/Profiles/Endpoints
     ```

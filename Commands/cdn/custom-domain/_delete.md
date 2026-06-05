@@ -54,7 +54,7 @@ Delete an existing custom domain within an endpoint.
 
 #### examples
 
-- Delete the custom domain of a CDN.
+- CustomDomains_Delete
     ```bash
-        cdn custom-domain delete -g group --endpoint-name endpoint --profile-name profile -n customdomain1
+        cdn custom-domain delete --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --custom-domain-name www-someDomain-net
     ```

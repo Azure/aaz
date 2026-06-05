@@ -65,7 +65,7 @@ List existing AzureFrontDoor domains.
 
 #### examples
 
-- List all the custom domains within the specified profile.
+- AFDCustomDomains_ListByProfile
     ```bash
-        afd custom-domain list -g group --profile-name profile
+        afd custom-domain list --resource-group RG --profile-name profile1
     ```

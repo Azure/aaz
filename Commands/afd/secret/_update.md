@@ -54,7 +54,17 @@ Update a new Secret within the specified profile.
 
 #### examples
 
-- Update the specified secret to use the certificate's latest version.
+- Secrets_CreateCustomerCertificateType
     ```bash
-        afd secret update -g group --profile-name profile --secret-name secret1 --use-latest-version
+        afd secret update --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{type:CustomerCertificate,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/certificatename},secretVersion:abcdef1234578900abcdef1234567890,useLatestVersion:False}"
+    ```
+
+- Secrets_CreateMtlsCertificateChainType
+    ```bash
+        afd secret update --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{type:CustomerCertificate,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/certificatename},secretVersion:abcdef1234578900abcdef1234567890,useLatestVersion:False}" --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{type:MtlsCertificateChain,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vaults/kvName/secrets/mTLSCertificateChainname},secretVersion:abcdef1234578900abcdef1234567890}"
+    ```
+
+- Secrets_CreateUrlSigningKeyType
+    ```bash
+        afd secret update --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{type:CustomerCertificate,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/certificatename},secretVersion:abcdef1234578900abcdef1234567890,useLatestVersion:False}" --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{type:MtlsCertificateChain,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vaults/kvName/secrets/mTLSCertificateChainname},secretVersion:abcdef1234578900abcdef1234567890}" --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{type:UrlSigningKey,keyId:customKeyId,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/urlsigningkeyname},secretVersion:abcdef1234578900abcdef1234567890}"
     ```
