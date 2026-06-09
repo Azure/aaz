@@ -158,8 +158,9 @@ List virtual networks.
         network vnet list --query "[?contains(addressSpace.addressPrefixes, '10.0.0.0/16')]"
     ```
 
-### [2025-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL3ZpcnR1YWxuZXR3b3Jrcw==/2025-07-01.xml) **Stable**
+### [2025-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL3ZpcnR1YWxuZXR3b3Jrcw==/2025-07-01.xml) **Stable**
 
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.network/virtualnetworks 2025-07-01 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/virtualnetworks 2025-07-01 -->
 
 #### examples
