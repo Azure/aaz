@@ -76,8 +76,9 @@ List load balancers.
         network lb list -g MyResourceGroup
     ```
 
-### [2025-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL2xvYWRiYWxhbmNlcnM=/2025-07-01.xml) **Stable**
+### [2025-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL2xvYWRiYWxhbmNlcnM=/2025-07-01.xml) **Stable**
 
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.network/loadbalancers 2025-07-01 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/loadbalancers 2025-07-01 -->
 
 #### examples
