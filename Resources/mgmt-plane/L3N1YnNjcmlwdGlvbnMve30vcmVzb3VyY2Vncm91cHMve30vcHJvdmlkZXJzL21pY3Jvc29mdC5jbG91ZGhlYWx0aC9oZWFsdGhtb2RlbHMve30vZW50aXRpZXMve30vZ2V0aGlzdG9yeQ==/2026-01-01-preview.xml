@@ -1,0 +1,114 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cloudhealth/healthmodels/{}/entities/{}/gethistory" version="2026-01-01-preview" swagger="mgmt-plane/cloudhealth/ResourceProviders/Microsoft.CloudHealth/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2xvdWRIZWFsdGgvaGVhbHRobW9kZWxzL3toZWFsdGhNb2RlbE5hbWV9L2VudGl0aWVzL3tlbnRpdHlOYW1lfS9nZXRIaXN0b3J5/V/MjAyNi0wMS0wMS1wcmV2aWV3"/>
+  <commandGroup name="cloud-health healthmodel entity">
+    <command name="get-history" version="2026-01-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cloudhealth/healthmodels/{}/entities/{}/gethistory" version="2026-01-01-preview" swagger="mgmt-plane/cloudhealth/ResourceProviders/Microsoft.CloudHealth/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2xvdWRIZWFsdGgvaGVhbHRobW9kZWxzL3toZWFsdGhNb2RlbE5hbWV9L2VudGl0aWVzL3tlbnRpdHlOYW1lfS9nZXRIaXN0b3J5/V/MjAyNi0wMS0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.entityName" options="entity-name" required="True" idPart="child_name_1">
+          <help short="Name of the entity. Must be unique within a health model."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-]{1,258}[a-zA-Z0-9]$"/>
+        </arg>
+        <arg type="string" var="$Path.healthModelName" options="health-model-name" required="True" idPart="name">
+          <help short="Name of health model resource"/>
+          <format pattern="^[a-zA-Z][a-zA-Z0-9-]{1,42}[a-zA-Z0-9]$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="dateTime" var="$body.endAt" options="end-at" group="Body">
+          <help short="End time for the history query. Defaults to now if not specified."/>
+          <format protocol="iso"/>
+        </arg>
+        <arg type="dateTime" var="$body.startAt" options="start-at" group="Body">
+          <help short="Start time for the history query. Defaults to 24 hours ago if not specified."/>
+          <format protocol="iso"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Entities_GetHistory">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CloudHealth/healthmodels/{healthModelName}/entities/{entityName}/getHistory">
+          <request method="post">
+            <path>
+              <param type="string" name="entityName" arg="$Path.entityName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-]{1,258}[a-zA-Z0-9]$"/>
+              </param>
+              <param type="string" name="healthModelName" arg="$Path.healthModelName" required="True">
+                <format pattern="^[a-zA-Z][a-zA-Z0-9-]{1,42}[a-zA-Z0-9]$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-01-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="dateTime" name="endAt" arg="$body.endAt">
+                    <format protocol="iso"/>
+                  </prop>
+                  <prop type="dateTime" name="startAt" arg="$body.startAt">
+                    <format protocol="iso"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="entityName" required="True">
+                    <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-]{1,258}[a-zA-Z0-9]$"/>
+                  </prop>
+                  <prop type="array<object>" name="history" required="True" identifiers="occurredAt">
+                    <item type="object">
+                      <prop type="string" name="newState" required="True">
+                        <enum>
+                          <item value="&quot;Degraded&quot;"/>
+                          <item value="&quot;Deleted&quot;"/>
+                          <item value="&quot;Healthy&quot;"/>
+                          <item value="&quot;Unhealthy&quot;"/>
+                          <item value="&quot;Unknown&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="occurredAt" required="True">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="previousState" required="True">
+                        <enum>
+                          <item value="&quot;Degraded&quot;"/>
+                          <item value="&quot;Deleted&quot;"/>
+                          <item value="&quot;Healthy&quot;"/>
+                          <item value="&quot;Unhealthy&quot;"/>
+                          <item value="&quot;Unknown&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="reason">
+                        <format maxLength="4096"/>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
