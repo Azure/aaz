@@ -7,3 +7,10 @@ Assign the user or system managed identities.
 ### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5henVyZWZsZWV0L2ZsZWV0cy97fQ==/2026-04-01-preview.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.azurefleet/fleets/{} 2026-04-01-preview identity -->
+
+#### examples
+
+- Fleets_CreateOrUpdate_MaximumSet_Gen
+    ```bash
+        compute-fleet identity assign --resource-group rgazurefleet --fleet-name myFleet
+    ```
