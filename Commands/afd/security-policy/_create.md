@@ -54,7 +54,7 @@ Create a new security policy within the specified profile.
 
 #### examples
 
-- Creates a security policy to apply the specified WAF policy to an endpoint's default domain and a custom domain.
+- SecurityPolicies_Create
     ```bash
-        afd security-policy create -g group --profile-name profile --security-policy-name sp1 --domains /subscriptions/sub1/resourcegroups/rg1/providers/Microsoft.Cdn/profiles/profile1/afdEndpoints/endpoint1 /subscriptions/sub1/resourcegroups/rg1/providers/Microsoft.Cdn/profiles/profile1/customDomains/customDomain1 --waf-policy /subscriptions/sub1/resourcegroups/rg1/providers/Microsoft.Network/frontdoorwebapplicationfirewallpolicies/waf1
+        afd security-policy create --resource-group RG --profile-name profile1 --security-policy-name securityPolicy1
     ```

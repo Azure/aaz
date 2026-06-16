@@ -54,7 +54,7 @@ Removes a content from CDN.
 
 #### examples
 
-- Purge pre-loaded Javascript and CSS content.
+- Endpoints_PurgeContent
     ```bash
-        cdn endpoint purge -g group -n endpoint --profile-name profile-name --content-paths '/scripts/app.js' '/styles/*'
+        cdn endpoint purge --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --content-paths "[/folder1]"
     ```

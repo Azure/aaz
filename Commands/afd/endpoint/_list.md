@@ -54,7 +54,7 @@ List existing AzureFrontDoor endpoints.
 
 #### examples
 
-- List all the endpoints within the specified profile.
+- AFDEndpoints_ListByProfile
     ```bash
-        afd endpoint list -g group --profile-name profile
+        afd endpoint list --resource-group RG --profile-name profile1
     ```

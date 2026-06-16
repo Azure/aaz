@@ -90,12 +90,7 @@ Create a new domain within the specified profile.
 
 #### examples
 
-- Create a custom domain that uses AFD managed certificate for SSL/TLS encryption.
+- AFDCustomDomains_Create
     ```bash
-        afd custom-domain create -g group --custom-domain-name customDomain --profile-name profile --host-name www.contoso.com --minimum-tls-version TLS12 --certificate-type ManagedCertificate
-    ```
-
-- Create a custom domain that uses your own certificate for SSL/TLS encryption, the certificate is stored in Azure Key Vault and referenced by an AFD secret.
-    ```bash
-        afd custom-domain create -g group --custom-domain-name customDomain --profile-name profile --host-name www.contoso.com --minimum-tls-version TLS12 --certificate-type CustomerCertificate --secret secretName
+        afd custom-domain create --resource-group RG --profile-name profile1 --custom-domain-name domain1 --azure-dns-zone  --host-name www.someDomain.net --mtls-settings "{allowedFqdns:[foo.contoso.com],secrets:[{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.Cdn/profiles/profile1/secrets/name1},{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.Cdn/profiles/profile1/secrets/name2}],client-certificate-required-and-validated:{allowed-fqdns:[foo.contoso.com],secrets:[{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.Cdn/profiles/profile1/secrets/name1},{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.Cdn/profiles/profile1/secrets/name2}]}}" --certificate-type ManagedCertificate --cipher-suite-set-type Customized --customized-cipher-suite-set "{cipher-suite-set-for-tls12:[ECDHE_RSA_AES128_GCM_SHA256],cipher-suite-set-for-tls13:[TLS_AES_128_GCM_SHA256,TLS_AES_256_GCM_SHA384]}" --minimum-tls-version TLS12
     ```

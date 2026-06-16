@@ -94,17 +94,7 @@ Update a new route with the specified route name under the specified subscriptio
 
 #### examples
 
-- Update a route to accept both Http and Https requests and redirect all trafic to use Https.
+- Routes_Create
     ```bash
-        afd route update -g group --endpoint-name endpoint1 --profile-name profile --route-name route1 --supported-protocols Http Https --https-redirect Enabled
-    ```
-
-- Update a route's rule sets settings to customize the route behavior.
-    ```bash
-        afd route update -g group --endpoint-name endpoint1 --profile-name profile --route-name route1 --rule-sets ruleset1 rulseset2
-    ```
-
-- Update a route's compression settings to enable compression for the specified content types.
-    ```bash
-        afd route update -g group --endpoint-name endpoint1 --profile-name profile --route-name route1 --query-string-caching-behavior IgnoreQueryString --enable-compression true --content-types-to-compress text/javascript text/plain
+        afd route update --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --route-name route1 --cache-configuration "{compression-settings:{content-types-to-compress:[text/html,application/octet-stream],is-compression-enabled:True},query-parameters:querystring=test,query-string-caching-behavior:IgnoreSpecifiedQueryStrings}" --formatted-custom-domains "[{id:/subscriptions/subid/resourceGroups/RG/providers/Microsoft.Cdn/profiles/profile1/customDomains/domain1}]" --enabled-state Enabled --forwarding-protocol MatchRequest --grpc-state Enabled --https-redirect Enabled --link-to-default-domain Enabled --origin-group /subscriptions/subid/resourceGroups/RG/providers/Microsoft.Cdn/profiles/profile1/originGroups/originGroup1 --origin-path None --patterns-to-match "[/*]" --formatted-rule-sets "[{id:/subscriptions/subid/resourceGroups/RG/providers/Microsoft.Cdn/profiles/profile1/ruleSets/ruleSet1}]" --supported-protocols "[Https,Http]"
     ```

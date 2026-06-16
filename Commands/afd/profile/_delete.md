@@ -65,7 +65,7 @@ Delete an existing  Azure Front Door Standard or Azure Front Door Premium or CDN
 
 #### examples
 
-- Delete an AFD profile.
+- Profiles_Delete
     ```bash
-        profile delete -g group --profile-name profile
+        afd profile delete --resource-group RG --profile-name profile1
     ```

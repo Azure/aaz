@@ -23,5 +23,5 @@ Update an existing DeploymentVersion within a profile.
 
 - DeploymentVersions_Update
     ```bash
-        cdn profile deployment-version update --resource-group RG --profile-name profile1 --version-name dv1 --description "test deployment"
+        cdn profile deployment-version update --resource-group RG --profile-name profile1 --version-name dv1 --description test deployment
     ```

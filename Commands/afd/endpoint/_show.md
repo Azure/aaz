@@ -54,7 +54,7 @@ Get an existing AzureFrontDoor endpoint with the specified endpoint name under t
 
 #### examples
 
-- show details of the endpoint named endpoint1.
+- AFDEndpoints_Get
     ```bash
-        afd endpoint show -g group --profile-name profile  --endpoint-name endpoint1
+        afd endpoint show --resource-group RG --profile-name profile1 --endpoint-name endpoint1
     ```

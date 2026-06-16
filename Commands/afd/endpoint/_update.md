@@ -54,7 +54,7 @@ Update a new AzureFrontDoor endpoint with the specified endpoint name under the 
 
 #### examples
 
-- Update an endpoint's state to disabled.
+- AFDEndpoints_Create
     ```bash
-        afd endpoint update -g group --endpoint-name endpoint1 --profile-name profile --enabled-state Disabled
+        afd endpoint update --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --name-reuse-scope TenantReuse --enabled-state Enabled --enforce-mtls Disabled --tags "{}"
     ```

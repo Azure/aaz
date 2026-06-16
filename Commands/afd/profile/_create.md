@@ -65,7 +65,7 @@ Create a new Azure Front Door Standard or Azure Front Door Premium or CDN profil
 
 #### examples
 
-- Create an AFD profile using Standard SKU.
+- Profiles_Create
     ```bash
-        afd profile create -g group --profile-name profile --sku Standard_AzureFrontDoor
+        afd profile create --resource-group RG --profile-name profile1 --location global --sku Premium_AzureFrontDoor
     ```

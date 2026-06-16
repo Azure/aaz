@@ -54,7 +54,7 @@ Delete an existing delivery rule within a rule set.
 
 #### examples
 
-- Remove a rule with name rule1.
+- Rules_Delete
     ```bash
-        afd rule delete -g group --rule-set-name ruleSetName --profile-name profile --rule-name rule1
+        afd rule delete --resource-group RG --profile-name profile1 --rule-set-name ruleSet1 --rule-name rule1
     ```

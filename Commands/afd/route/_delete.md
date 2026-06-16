@@ -54,7 +54,7 @@ Delete an existing route with the specified route name under the specified subsc
 
 #### examples
 
-- Delete an route named route1.
+- Routes_Delete
     ```bash
-        afd route delete -g group --profile-name profile --endpoint-name endpoint1 --route-name route1
+        afd route delete --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --route-name route1
     ```

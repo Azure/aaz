@@ -54,7 +54,7 @@ Delete an existing AzureFrontDoor endpoint with the specified endpoint name unde
 
 #### examples
 
-- Delete an endpoint named endpoint1.
+- AFDEndpoints_Delete
     ```bash
-        afd endpoint delete -g group --profile-name profile --endpoint-name endpoint1
+        afd endpoint delete --resource-group RG --profile-name profile1 --endpoint-name endpoint1
     ```

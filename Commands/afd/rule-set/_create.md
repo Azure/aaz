@@ -54,7 +54,7 @@ Create a new rule set within the specified profile.
 
 #### examples
 
-- Create a new rule set under the specified profile.
+- RuleSets_Create
     ```bash
-        afd rule-set create -g group --rule-set-name ruleset1 --profile-name profile
+        afd rule-set create --resource-group RG --profile-name profile1 --rule-set-name ruleSet1
     ```

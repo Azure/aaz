@@ -54,7 +54,7 @@ Stops an existing running CDN endpoint.
 
 #### examples
 
-- Stop a CDN endpoint.
+- Endpoints_Stop
     ```bash
-        cdn endpoint stop -g group -n endpoint --profile-name profile-name
+        cdn endpoint stop --resource-group RG --profile-name profile1 --endpoint-name endpoint1
     ```

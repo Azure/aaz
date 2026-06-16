@@ -54,7 +54,17 @@ Create a new Secret within the specified profile.
 
 #### examples
 
-- Creates a secret using the specified certificate version.
+- Secrets_CreateCustomerCertificateType
     ```bash
-        afd secret create -g group --profile-name profile --secret-name secret1 --secret-version version1 --secret-source /subscriptions/sub1/resourceGroups/rg1/providers/Microsoft.KeyVault/vaults/vault1/secrets/cert1
+        afd secret create --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/certificatename},secretVersion:abcdef1234578900abcdef1234567890,useLatestVersion:False,customer-certificate:{secret-source:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/certificatename},secret-version:abcdef1234578900abcdef1234567890,use-latest-version:False}}"
+    ```
+
+- Secrets_CreateMtlsCertificateChainType
+    ```bash
+        afd secret create --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/certificatename},secretVersion:abcdef1234578900abcdef1234567890,useLatestVersion:False,customer-certificate:{secret-source:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/certificatename},secret-version:abcdef1234578900abcdef1234567890,use-latest-version:False}}" --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vaults/kvName/secrets/mTLSCertificateChainname},secretVersion:abcdef1234578900abcdef1234567890,mtls-certificate-chain:{secret-source:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vaults/kvName/secrets/mTLSCertificateChainname},secret-version:abcdef1234578900abcdef1234567890}}"
+    ```
+
+- Secrets_CreateUrlSigningKeyType
+    ```bash
+        afd secret create --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/certificatename},secretVersion:abcdef1234578900abcdef1234567890,useLatestVersion:False,customer-certificate:{secret-source:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/certificatename},secret-version:abcdef1234578900abcdef1234567890,use-latest-version:False}}" --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vaults/kvName/secrets/mTLSCertificateChainname},secretVersion:abcdef1234578900abcdef1234567890,mtls-certificate-chain:{secret-source:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vaults/kvName/secrets/mTLSCertificateChainname},secret-version:abcdef1234578900abcdef1234567890}}" --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{keyId:customKeyId,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/urlsigningkeyname},secretVersion:abcdef1234578900abcdef1234567890,url-signing-key:{key-id:customKeyId,secret-source:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/urlsigningkeyname},secret-version:abcdef1234578900abcdef1234567890}}"
     ```

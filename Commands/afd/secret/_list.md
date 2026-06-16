@@ -23,3 +23,10 @@ List existing AzureFrontDoor secrets.
 ### [2025-09-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vc2VjcmV0cw==/2025-09-01-preview.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/secrets 2025-09-01-preview -->
+
+#### examples
+
+- Secrets_ListByProfile
+    ```bash
+        afd secret list --resource-group RG --profile-name profile1
+    ```

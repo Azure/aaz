@@ -2,6 +2,14 @@
 
 Manage delivery rules within the specified rule set.
 
+## Subgroups
+
+- [action](/Commands/afd/rule/action/readme.md)
+: Manage Action
+
+- [condition](/Commands/afd/rule/condition/readme.md)
+: Manage Condition
+
 ## Commands
 
 - [create](/Commands/afd/rule/_create.md)

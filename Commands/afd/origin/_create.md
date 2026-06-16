@@ -74,12 +74,7 @@ Create a new origin within the specified origin group.
 
 #### examples
 
-- Create an regular origin
+- AFDOrigins_Create
     ```bash
-        afd origin create -g group --host-name example.contoso.com --profile-name profile --origin-group-name originGroup --origin-name origin1 --origin-host-header example.contoso.com --priority 1 --weight 500 --enabled-state Enabled --http-port 80 --https-port 443 - name: Create a private link origin
-    ```
-
-- Create a private link origin
-    ```bash
-        afd origin create -g group --host-name example.contoso.com --profile-name profile --origin-group-name originGroup --origin-name origin1 --origin-host-header example.contoso.com --priority 1 --weight 500 --enabled-state Enabled --http-port 80 --https-port 443 --private-link-resource /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/group/providers/Microsoft.Storage/storageAccounts/plstest --private-link-location EastUS --private-link-request-message 'Please approve this request' --private-link-sub-resource-type table
+        afd origin create --resource-group RG --profile-name profile1 --origin-group-name origingroup1 --origin-name origin1 --enabled-state Enabled --host-name host1.blob.core.windows.net --http-port 80 --https-port 443 --origin-host-header host1.foo.com --origin-capacity-resource "{enabled:Enabled,origin-ingress-rate-threshold:10,origin-request-rate-threshold:1000,region:EastUs}"
     ```

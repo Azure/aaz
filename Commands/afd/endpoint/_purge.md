@@ -54,7 +54,7 @@ Removes a content from AzureFrontDoor.
 
 #### examples
 
-- Remove all cached contents under directory "/script" for domain www.contoso.com
+- AFDEndpoints_PurgeContent
     ```bash
-        afd endpoint purge -g group --profile-name profile --domains www.contoso.com --content-paths '/scripts/*'
+        afd endpoint purge --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --content-paths "[/folder1]" --domains "[endpoint1-abcdefghijklmnop.z01.azurefd.net]"
     ```

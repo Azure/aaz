@@ -54,7 +54,7 @@ Pre-loads a content to CDN. Available for Verizon Profiles.
 
 #### examples
 
-- Pre-load Javascript and CSS content for an endpoint.
+- Endpoints_LoadContent
     ```bash
-        cdn endpoint load -g group -n endpoint --profile-name profile-name --content-paths '/scripts/app.js' '/styles/main.css'
+        cdn endpoint load --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --content-paths "[/folder1]"
     ```
