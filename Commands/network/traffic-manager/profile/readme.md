@@ -8,16 +8,16 @@ Manage Azure Traffic Manager profiles.
 : Check the availability of a relative DNS name.
 
 - [create](/Commands/network/traffic-manager/profile/_create.md)
-: Create a traffic manager profile.
+: Create a Traffic Manager profile.
 
 - [delete](/Commands/network/traffic-manager/profile/_delete.md)
-: Delete a traffic manager profile.
+: Delete a Traffic Manager profile.
 
 - [list](/Commands/network/traffic-manager/profile/_list.md)
-: List traffic manager profiles.
+: List all Traffic Manager profiles within a resource group.
 
 - [show](/Commands/network/traffic-manager/profile/_show.md)
-: Get the details of a traffic manager profile.
+: Get a Traffic Manager profile.
 
 - [update](/Commands/network/traffic-manager/profile/_update.md)
-: Update a traffic manager profile.
+: Update a Traffic Manager profile.
