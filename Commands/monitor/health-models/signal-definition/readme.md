@@ -1,20 +1,20 @@
 # [Group] _monitor health-models signal-definition_
 
-Manage signal definitions in a health model.
+Manage Signaldefinition
 
 ## Commands
 
 - [create](/Commands/monitor/health-models/signal-definition/_create.md)
-: Create or update a signal definition.
+: Create a SignalDefinition
 
 - [delete](/Commands/monitor/health-models/signal-definition/_delete.md)
-: Delete a signal definition.
+: Delete a SignalDefinition
 
 - [list](/Commands/monitor/health-models/signal-definition/_list.md)
-: List signal definitions in a health model.
+: List SignalDefinition resources by HealthModel
 
 - [show](/Commands/monitor/health-models/signal-definition/_show.md)
-: Get a signal definition.
+: Get a SignalDefinition
 
 - [update](/Commands/monitor/health-models/signal-definition/_update.md)
-: Update a signal definition.
+: Update a SignalDefinition

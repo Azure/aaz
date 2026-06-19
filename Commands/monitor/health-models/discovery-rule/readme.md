@@ -1,20 +1,20 @@
 # [Group] _monitor health-models discovery-rule_
 
-Manage discovery rules that auto-populate a health model.
+Manage Discoveryrule
 
 ## Commands
 
 - [create](/Commands/monitor/health-models/discovery-rule/_create.md)
-: Create a discovery rule.
+: Create a DiscoveryRule
 
 - [delete](/Commands/monitor/health-models/discovery-rule/_delete.md)
-: Delete a discovery rule.
+: Delete a DiscoveryRule
 
 - [list](/Commands/monitor/health-models/discovery-rule/_list.md)
-: List discovery rules in a health model.
+: List DiscoveryRule resources by HealthModel
 
 - [show](/Commands/monitor/health-models/discovery-rule/_show.md)
-: Get a discovery rule.
+: Get a DiscoveryRule
 
 - [update](/Commands/monitor/health-models/discovery-rule/_update.md)
-: Update a discovery rule.
+: Update a DiscoveryRule

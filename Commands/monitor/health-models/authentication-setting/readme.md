@@ -1,20 +1,20 @@
 # [Group] _monitor health-models authentication-setting_
 
-Manage authentication settings used by signal definitions and discovery rules.
+Manage Authenticationsetting
 
 ## Commands
 
 - [create](/Commands/monitor/health-models/authentication-setting/_create.md)
-: Create an authentication setting backed by a managed identity.
+: Create a AuthenticationSetting
 
 - [delete](/Commands/monitor/health-models/authentication-setting/_delete.md)
-: Delete an authentication setting.
+: Delete a AuthenticationSetting
 
 - [list](/Commands/monitor/health-models/authentication-setting/_list.md)
-: List authentication settings in a health model.
+: List AuthenticationSetting resources by HealthModel
 
 - [show](/Commands/monitor/health-models/authentication-setting/_show.md)
-: Get an authentication setting.
+: Get a AuthenticationSetting
 
 - [update](/Commands/monitor/health-models/authentication-setting/_update.md)
-: Update an authentication setting.
+: Update a AuthenticationSetting

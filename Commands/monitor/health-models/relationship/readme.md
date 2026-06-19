@@ -1,20 +1,20 @@
 # [Group] _monitor health-models relationship_
 
-Manage parent-child relationships (edges) between entities.
+Manage Relationship
 
 ## Commands
 
 - [create](/Commands/monitor/health-models/relationship/_create.md)
-: Create a relationship between two entities.
+: Create a Relationship
 
 - [delete](/Commands/monitor/health-models/relationship/_delete.md)
-: Delete a relationship.
+: Delete a Relationship
 
 - [list](/Commands/monitor/health-models/relationship/_list.md)
-: List relationships in a health model.
+: List Relationship resources by HealthModel
 
 - [show](/Commands/monitor/health-models/relationship/_show.md)
-: Get a relationship.
+: Get a Relationship
 
 - [update](/Commands/monitor/health-models/relationship/_update.md)
-: Update a relationship.
+: Update a Relationship

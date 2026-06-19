@@ -1,16 +1,16 @@
 # [Command] _monitor health-models signal-definition update_
 
-Update a signal definition.
+Update a SignalDefinition
 
 ## Versions
 
-### [2026-01-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jbG91ZGhlYWx0aC9oZWFsdGhtb2RlbHMve30vc2lnbmFsZGVmaW5pdGlvbnMve30=/2026-01-01-preview.xml) **Stable**
+### [2026-05-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jbG91ZGhlYWx0aC9oZWFsdGhtb2RlbHMve30vc2lnbmFsZGVmaW5pdGlvbnMve30=/2026-05-01-preview.xml) **Stable**
 
-<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cloudhealth/healthmodels/{}/signaldefinitions/{} 2026-01-01-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cloudhealth/healthmodels/{}/signaldefinitions/{} 2026-05-01-preview -->
 
 #### examples
 
-- Update the refresh interval of a signal definition
+- SignalDefinitions_CreateOrUpdate
     ```bash
-        monitor health-models signal-definition update --resource-group myRG --health-model-name myModel --name cpuPressure --refresh-interval PT10M
+        monitor health-models signal-definition update --resource-group rgopenapi --health-model-name myHealthModel --signal-definition-name sig1
     ```
