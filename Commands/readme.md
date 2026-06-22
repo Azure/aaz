@@ -245,6 +245,9 @@
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
 
+- [napster](/Commands/napster/readme.md)
+: Manage Napster
+
 - [neon](/Commands/neon/readme.md)
 : Manage Neon Postgres databases and related resources within Azure.
 
