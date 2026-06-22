@@ -43,14 +43,25 @@ Create a new security policy within the specified profile.
 
 #### examples
 
-- Creates a security policy to apply the specified WAF policy to an endpoint's default domain and a custom domain.
+- SecurityPolicies_Create
     ```bash
-        afd security-policy create -g group --profile-name profile --security-policy-name sp1 --domains /subscriptions/sub1/resourcegroups/rg1/providers/Microsoft.Cdn/profiles/profile1/afdEndpoints/endpoint1 /subscriptions/sub1/resourcegroups/rg1/providers/Microsoft.Cdn/profiles/profile1/customDomains/customDomain1 --waf-policy /subscriptions/sub1/resourcegroups/rg1/providers/Microsoft.Network/frontdoorwebapplicationfirewallpolicies/waf1
+        afd security-policy create --resource-group RG --profile-name profile1 --security-policy-name securityPolicy1
     ```
 
 ### [2025-09-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vc2VjdXJpdHlwb2xpY2llcy97fQ==/2025-09-01-preview.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/securitypolicies/{} 2025-09-01-preview -->
+
+#### examples
+
+- SecurityPolicies_Create
+    ```bash
+        afd security-policy create --resource-group RG --profile-name profile1 --security-policy-name securityPolicy1
+    ```
+
+### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vc2VjdXJpdHlwb2xpY2llcy97fQ==/2026-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/securitypolicies/{} 2026-04-01-preview -->
 
 #### examples
 
