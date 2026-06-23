@@ -161,6 +161,9 @@
 - [dynatrace](/Commands/dynatrace/readme.md)
 : Manage dynatrace
 
+- [edge](/Commands/edge/readme.md)
+: Edge disconnected operations CLI
+
 - [edge-zones](/Commands/edge-zones/readme.md)
 : Manage Edge Zone resources
 
