@@ -5,7 +5,7 @@ Manage reservations for Azure resources.
 ## Subgroups
 
 - [detail](/Commands/consumption/reservation/detail/readme.md)
-: List reservation details.
+: Manage Reservation Detail
 
 - [summary](/Commands/consumption/reservation/summary/readme.md)
-: List reservation summaries.
+: Manage Reservation Summary
