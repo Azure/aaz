@@ -7,3 +7,7 @@ Assign the user or system managed identities.
 ### [2024-06-19](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL3F1bXVsby5zdG9yYWdlL2ZpbGVzeXN0ZW1zL3t9/2024-06-19.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/qumulo.storage/filesystems/{} 2024-06-19 identity -->
+
+### [2026-04-16](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL3F1bXVsby5zdG9yYWdlL2ZpbGVzeXN0ZW1zL3t9/2026-04-16.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/qumulo.storage/filesystems/{} 2026-04-16 identity -->
