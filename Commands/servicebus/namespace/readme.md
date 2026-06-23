@@ -1,14 +1,20 @@
 # [Group] _servicebus namespace_
 
-servicebus namespace
+Manage Namespace
 
 ## Subgroups
 
 - [authorization-rule](/Commands/servicebus/namespace/authorization-rule/readme.md)
 : servicebus namespace authorization-rule
 
+- [identity](/Commands/servicebus/namespace/identity/readme.md)
+: Manage Identity
+
 - [network-rule-set](/Commands/servicebus/namespace/network-rule-set/readme.md)
 : servicebus namespace network-rule-set
+
+- [nsp](/Commands/servicebus/namespace/nsp/readme.md)
+: Manage Nsp
 
 - [private-endpoint-connection](/Commands/servicebus/namespace/private-endpoint-connection/readme.md)
 : servicebus namespace private-endpoint-connection
@@ -26,6 +32,9 @@ servicebus namespace
 
 - [exists](/Commands/servicebus/namespace/_exists.md)
 : Check the give namespace name availability.
+
+- [failover](/Commands/servicebus/namespace/_failover.md)
+: GeoDR Failover
 
 - [list](/Commands/servicebus/namespace/_list.md)
 : List the available namespaces within a resource group.
