@@ -1,0 +1,1033 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.changesafety/changestates/{}" version="2025-03-01-preview" swagger="mgmt-plane/changesafety/ResourceProviders/Microsoft.ChangeSafety/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2hhbmdlU2FmZXR5L2NoYW5nZVN0YXRlcy97Y2hhbmdlU3RhdGVOYW1lfQ==/V/MjAyNS0wMy0wMS1wcmV2aWV3"/>
+  <commandGroup name="change-safety change-state">
+    <command name="show" version="2025-03-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.changesafety/changestates/{}" version="2025-03-01-preview" swagger="mgmt-plane/changesafety/ResourceProviders/Microsoft.ChangeSafety/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2hhbmdlU2FmZXR5L2NoYW5nZVN0YXRlcy97Y2hhbmdlU3RhdGVOYW1lfQ==/V/MjAyNS0wMy0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.changeStateName" options="change-state-name name n" required="True" idPart="name">
+          <help short="The name of the ChangeState resource."/>
+          <format pattern="^[a-zA-Z0-9-]{3,100}$" maxLength="100" minLength="3"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="ChangeStates_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ChangeSafety/changeStates/{changeStateName}">
+          <request method="get">
+            <path>
+              <param type="string" name="changeStateName" arg="$Path.changeStateName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,100}$" maxLength="100" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-03-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="changeArtifact" required="True">
+                      <prop type="string" name="artifactType" required="True">
+                        <enum>
+                          <item value="&quot;ArmOperation&quot;"/>
+                          <item value="&quot;ExternalArmTemplate&quot;"/>
+                          <item value="&quot;ExternalBicep&quot;"/>
+                          <item value="&quot;InlineArmTemplate&quot;"/>
+                          <item value="&quot;InlineBicep&quot;"/>
+                          <item value="&quot;TemplateSpec&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="name" required="True"/>
+                      <discriminator property="artifactType" value="ArmOperation">
+                        <prop type="object" name="artifactPayload" required="True">
+                          <prop type="array<object>" name="operations" required="True" identifiers="uri">
+                            <item type="object">
+                              <prop type="object" name="content">
+                                <prop type="string" name="location"/>
+                                <prop type="string" name="name"/>
+                                <prop type="object" name="properties" required="True"/>
+                              </prop>
+                              <prop type="string" name="httpMethod" required="True">
+                                <enum>
+                                  <item value="&quot;DELETE&quot;"/>
+                                  <item value="&quot;PATCH&quot;"/>
+                                  <item value="&quot;PUT&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="uri" required="True"/>
+                            </item>
+                          </prop>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="ExternalArmTemplate">
+                        <prop type="object" name="artifactPayload" required="True">
+                          <prop type="string" name="externalArtifactUri" required="True"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="ExternalBicep">
+                        <prop type="object" name="artifactPayload" required="True">
+                          <prop type="string" name="externalArtifactUri" required="True"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="InlineArmTemplate">
+                        <prop type="object" name="artifactPayload" required="True">
+                          <prop type="string" name="inlineScript" required="True"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="InlineBicep">
+                        <prop type="object" name="artifactPayload" required="True">
+                          <prop type="string" name="inlineScript" required="True"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="TemplateSpec">
+                        <prop type="object" name="artifactPayload" required="True">
+                          <prop type="ResourceId" name="artifactResourceId" required="True"/>
+                        </prop>
+                      </discriminator>
+                    </prop>
+                    <prop type="string" name="changeType" required="True">
+                      <enum>
+                        <item value="&quot;Breakglass&quot;"/>
+                        <item value="&quot;Emergency&quot;"/>
+                        <item value="&quot;Normal&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="comments">
+                      <format maxLength="2000"/>
+                    </prop>
+                    <prop type="string" name="description">
+                      <format maxLength="2000"/>
+                    </prop>
+                    <prop type="dateTime" name="expirationDate" required="True"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Provisioning&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="serviceCatalogReference"/>
+                    <prop type="ResourceId" name="stageMapResourceId" required="True"/>
+                    <prop readOnly="True" type="array<any>" name="stageMapSnapshot">
+                      <item type="any"/>
+                    </prop>
+                    <prop type="object" name="stageParameters" required="True">
+                      <additionalProp>
+                        <item type="object">
+                          <prop type="object" name="metadata">
+                            <additionalProp>
+                              <item type="string"/>
+                            </additionalProp>
+                          </prop>
+                          <prop type="string" name="type" required="True">
+                            <enum>
+                              <item value="&quot;number&quot;"/>
+                              <item value="&quot;string&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="type" value="number">
+                            <prop type="array<integer32>" name="allowedValues" required="True">
+                              <item type="integer32"/>
+                            </prop>
+                            <prop type="integer32" name="defaultValue"/>
+                          </discriminator>
+                          <discriminator property="type" value="string">
+                            <prop type="array<string>" name="allowedValues" required="True">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="string" name="defaultValue"/>
+                          </discriminator>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                    <prop type="string" name="state" required="True">
+                      <enum>
+                        <item value="&quot;Abandoned&quot;"/>
+                        <item value="&quot;Completed&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;InProgress&quot;"/>
+                        <item value="&quot;Initialized&quot;"/>
+                        <item value="&quot;Paused&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="workItemReference"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2025-03-01-preview" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.changesafety/changestates/{}" version="2025-03-01-preview" swagger="mgmt-plane/changesafety/ResourceProviders/Microsoft.ChangeSafety/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2hhbmdlU2FmZXR5L2NoYW5nZVN0YXRlcy97Y2hhbmdlU3RhdGVOYW1lfQ==/V/MjAyNS0wMy0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.changeStateName" options="change-state-name name n" required="True" idPart="name">
+          <help short="The name of the ChangeState resource."/>
+          <format pattern="^[a-zA-Z0-9-]{3,100}$" maxLength="100" minLength="3"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="ChangeStates_Delete">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ChangeSafety/changeStates/{changeStateName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="changeStateName" arg="$Path.changeStateName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,100}$" maxLength="100" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-03-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response statusCode="204"/>
+          <response statusCode="200 201"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="create" version="2025-03-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.changesafety/changestates/{}" version="2025-03-01-preview" swagger="mgmt-plane/changesafety/ResourceProviders/Microsoft.ChangeSafety/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2hhbmdlU2FmZXR5L2NoYW5nZVN0YXRlcy97Y2hhbmdlU3RhdGVOYW1lfQ==/V/MjAyNS0wMy0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.changeStateName" options="change-state-name name n" required="True" idPart="name">
+          <help short="The name of the ChangeState resource."/>
+          <format pattern="^[a-zA-Z0-9-]{3,100}$" maxLength="100" minLength="3"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="ChangeArtifact">
+        <arg type="object" var="$resource.properties.changeArtifact.ArmOperation" options="c-arm-operation" group="ChangeArtifact">
+          <arg type="object" var="$resource.properties.changeArtifact.ArmOperation.artifactPayload" options="artifact-payload" required="True">
+            <help short="The actual payload content."/>
+            <arg type="array<object>" var="$resource.properties.changeArtifact.ArmOperation.artifactPayload.operations" options="operations" required="True">
+              <help short="Arm Operation Array."/>
+              <item type="object">
+                <arg type="object" var="$resource.properties.changeArtifact.ArmOperation.artifactPayload.operations[].content" options="content">
+                  <help short="The resource operation content."/>
+                  <arg type="string" var="$resource.properties.changeArtifact.ArmOperation.artifactPayload.operations[].content.location" options="location">
+                    <help short="The location of the resource."/>
+                  </arg>
+                  <arg type="string" var="$resource.properties.changeArtifact.ArmOperation.artifactPayload.operations[].content.name" options="name">
+                    <help short="The name of the resource."/>
+                  </arg>
+                  <arg type="object" var="$resource.properties.changeArtifact.ArmOperation.artifactPayload.operations[].content.properties" options="properties" required="True">
+                    <blank value="{}"/>
+                    <help short="The properties of the resource."/>
+                  </arg>
+                </arg>
+                <arg type="string" var="$resource.properties.changeArtifact.ArmOperation.artifactPayload.operations[].httpMethod" options="http-method" required="True">
+                  <help short="The http method of the operation."/>
+                  <enum>
+                    <item name="DELETE" value="&quot;DELETE&quot;"/>
+                    <item name="PATCH" value="&quot;PATCH&quot;"/>
+                    <item name="PUT" value="&quot;PUT&quot;"/>
+                  </enum>
+                </arg>
+                <arg type="string" var="$resource.properties.changeArtifact.ArmOperation.artifactPayload.operations[].uri" options="uri" required="True">
+                  <help short="The uri of the operation."/>
+                </arg>
+              </item>
+            </arg>
+          </arg>
+        </arg>
+        <arg type="object" var="$resource.properties.changeArtifact.ExternalArmTemplate" options="c-external-arm-template" group="ChangeArtifact">
+          <arg type="object" var="$resource.properties.changeArtifact.ExternalArmTemplate.artifactPayload" options="artifact-payload" required="True">
+            <help short="The actual payload content."/>
+            <arg type="string" var="$resource.properties.changeArtifact.ExternalArmTemplate.artifactPayload.externalArtifactUri" options="external-artifact-uri" required="True">
+              <help short="URI for the external ARM template or Bicep file."/>
+            </arg>
+          </arg>
+        </arg>
+        <arg type="object" var="$resource.properties.changeArtifact.ExternalBicep" options="c-external-bicep" group="ChangeArtifact">
+          <arg type="object" var="$resource.properties.changeArtifact.ExternalBicep.artifactPayload" options="artifact-payload" required="True">
+            <help short="The actual payload content."/>
+            <arg type="string" var="$resource.properties.changeArtifact.ExternalBicep.artifactPayload.externalArtifactUri" options="external-artifact-uri" required="True">
+              <help short="URI for the external ARM template or Bicep file."/>
+            </arg>
+          </arg>
+        </arg>
+        <arg type="object" var="$resource.properties.changeArtifact.InlineArmTemplate" options="c-inline-arm-template" group="ChangeArtifact">
+          <arg type="object" var="$resource.properties.changeArtifact.InlineArmTemplate.artifactPayload" options="artifact-payload" required="True">
+            <help short="The actual payload content."/>
+            <arg type="string" var="$resource.properties.changeArtifact.InlineArmTemplate.artifactPayload.inlineScript" options="inline-script" required="True">
+              <help short="Inline ArmTemplate string or Bicep content."/>
+            </arg>
+          </arg>
+        </arg>
+        <arg type="object" var="$resource.properties.changeArtifact.InlineBicep" options="c-inline-bicep" group="ChangeArtifact">
+          <arg type="object" var="$resource.properties.changeArtifact.InlineBicep.artifactPayload" options="artifact-payload" required="True">
+            <help short="The actual payload content."/>
+            <arg type="string" var="$resource.properties.changeArtifact.InlineBicep.artifactPayload.inlineScript" options="inline-script" required="True">
+              <help short="Inline ArmTemplate string or Bicep content."/>
+            </arg>
+          </arg>
+        </arg>
+        <arg type="object" var="$resource.properties.changeArtifact.TemplateSpec" options="c-template-spec" group="ChangeArtifact">
+          <arg type="object" var="$resource.properties.changeArtifact.TemplateSpec.artifactPayload" options="artifact-payload" required="True">
+            <help short="The actual payload content."/>
+            <arg type="ResourceId" var="$resource.properties.changeArtifact.TemplateSpec.artifactPayload.artifactResourceId" options="artifact-resource-id" required="True">
+              <help short="TemplateSpec artifact resource Id in ARM."/>
+            </arg>
+          </arg>
+        </arg>
+        <arg type="string" var="$resource.properties.changeArtifact.name" options="c-name" group="ChangeArtifact">
+          <help short="Artifact label."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="string" var="$resource.properties.changeType" options="change-type" group="Properties">
+          <help short="Describes the type of the change."/>
+          <enum>
+            <item name="Breakglass" value="&quot;Breakglass&quot;"/>
+            <item name="Emergency" value="&quot;Emergency&quot;"/>
+            <item name="Normal" value="&quot;Normal&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$resource.properties.comments" options="comments" group="Properties">
+          <help short="Comments about the last update to the changeState resource."/>
+          <format maxLength="2000"/>
+        </arg>
+        <arg type="string" var="$resource.properties.description" options="description" group="Properties">
+          <help short="Brief description about the change."/>
+          <format maxLength="2000"/>
+        </arg>
+        <arg type="dateTime" var="$resource.properties.expirationDate" options="expiration-date" group="Properties">
+          <help short="Change is expected to be expired by date, in ISO 8601 format."/>
+        </arg>
+        <arg type="string" var="$resource.properties.serviceCatalogReference" options="service-catalog-reference" group="Properties">
+          <help short="URI to the external service catalog reference."/>
+        </arg>
+        <arg type="ResourceId" var="$resource.properties.stageMapResourceId" options="stage-map-resource-id" group="Properties">
+          <help short="Azure resource Id of the referenced StageMap."/>
+        </arg>
+        <arg type="object" var="$resource.properties.stageParameters" options="stage-parameters" group="Properties">
+          <help short="Schema of parameters that will be provided for each stageProgression."/>
+          <additionalProp>
+            <item type="object">
+              <arg type="object" var="$resource.properties.stageParameters{}.metadata" options="metadata">
+                <help short="user-specified parameter metadata"/>
+                <additionalProp>
+                  <item type="string"/>
+                </additionalProp>
+              </arg>
+              <arg type="object" var="$resource.properties.stageParameters{}.number" options="number">
+                <arg type="array<integer32>" var="$resource.properties.stageParameters{}.number.allowedValues" options="allowed-values" required="True">
+                  <help short="Allowed list of the values for the parameter."/>
+                  <item type="integer32"/>
+                </arg>
+                <arg type="integer32" var="$resource.properties.stageParameters{}.number.defaultValue" options="default-value">
+                  <help short="Default value for the parameter."/>
+                </arg>
+              </arg>
+              <arg type="object" var="$resource.properties.stageParameters{}.string" options="string">
+                <arg type="array<string>" var="$resource.properties.stageParameters{}.string.allowedValues" options="allowed-values" required="True">
+                  <help short="Allowed list of the values for the parameter."/>
+                  <item type="string"/>
+                </arg>
+                <arg type="string" var="$resource.properties.stageParameters{}.string.defaultValue" options="default-value">
+                  <help short="Default value for the parameter."/>
+                </arg>
+              </arg>
+            </item>
+          </additionalProp>
+        </arg>
+        <arg type="string" var="$resource.properties.state" options="state" group="Properties">
+          <help short="Internal status of the changestate resource."/>
+          <enum>
+            <item name="Abandoned" value="&quot;Abandoned&quot;"/>
+            <item name="Completed" value="&quot;Completed&quot;"/>
+            <item name="Failed" value="&quot;Failed&quot;"/>
+            <item name="InProgress" value="&quot;InProgress&quot;"/>
+            <item name="Initialized" value="&quot;Initialized&quot;"/>
+            <item name="Paused" value="&quot;Paused&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$resource.properties.workItemReference" options="work-item-reference" group="Properties">
+          <help short="URI to the work item related to this change."/>
+        </arg>
+      </argGroup>
+      <operation operationId="ChangeStates_CreateOrUpdate">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ChangeSafety/changeStates/{changeStateName}">
+          <request method="put">
+            <path>
+              <param type="string" name="changeStateName" arg="$Path.changeStateName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,100}$" maxLength="100" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-03-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="object" name="properties">
+                    <prop type="object" name="changeArtifact" required="True">
+                      <prop type="string" name="artifactType" required="True">
+                        <enum>
+                          <item arg="$resource.properties.changeArtifact.ArmOperation" value="&quot;ArmOperation&quot;"/>
+                          <item arg="$resource.properties.changeArtifact.ExternalArmTemplate" value="&quot;ExternalArmTemplate&quot;"/>
+                          <item arg="$resource.properties.changeArtifact.ExternalBicep" value="&quot;ExternalBicep&quot;"/>
+                          <item arg="$resource.properties.changeArtifact.InlineArmTemplate" value="&quot;InlineArmTemplate&quot;"/>
+                          <item arg="$resource.properties.changeArtifact.InlineBicep" value="&quot;InlineBicep&quot;"/>
+                          <item arg="$resource.properties.changeArtifact.TemplateSpec" value="&quot;TemplateSpec&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="name" arg="$resource.properties.changeArtifact.name" required="True"/>
+                      <discriminator property="artifactType" value="ArmOperation">
+                        <prop type="object" name="artifactPayload" arg="$resource.properties.changeArtifact.ArmOperation.artifactPayload" required="True">
+                          <prop type="array<object>" name="operations" arg="$resource.properties.changeArtifact.ArmOperation.artifactPayload.operations" required="True" identifiers="uri">
+                            <item type="object">
+                              <prop type="object" name="content" arg="$resource.properties.changeArtifact.ArmOperation.artifactPayload.operations[].content">
+                                <prop type="string" name="location" arg="$resource.properties.changeArtifact.ArmOperation.artifactPayload.operations[].content.location"/>
+                                <prop type="string" name="name" arg="$resource.properties.changeArtifact.ArmOperation.artifactPayload.operations[].content.name"/>
+                                <prop type="object" name="properties" arg="$resource.properties.changeArtifact.ArmOperation.artifactPayload.operations[].content.properties" required="True"/>
+                              </prop>
+                              <prop type="string" name="httpMethod" arg="$resource.properties.changeArtifact.ArmOperation.artifactPayload.operations[].httpMethod" required="True">
+                                <enum>
+                                  <item value="&quot;DELETE&quot;"/>
+                                  <item value="&quot;PATCH&quot;"/>
+                                  <item value="&quot;PUT&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="uri" arg="$resource.properties.changeArtifact.ArmOperation.artifactPayload.operations[].uri" required="True"/>
+                            </item>
+                          </prop>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="ExternalArmTemplate">
+                        <prop type="object" name="artifactPayload" arg="$resource.properties.changeArtifact.ExternalArmTemplate.artifactPayload" required="True">
+                          <prop type="string" name="externalArtifactUri" arg="$resource.properties.changeArtifact.ExternalArmTemplate.artifactPayload.externalArtifactUri" required="True"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="ExternalBicep">
+                        <prop type="object" name="artifactPayload" arg="$resource.properties.changeArtifact.ExternalBicep.artifactPayload" required="True">
+                          <prop type="string" name="externalArtifactUri" arg="$resource.properties.changeArtifact.ExternalBicep.artifactPayload.externalArtifactUri" required="True"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="InlineArmTemplate">
+                        <prop type="object" name="artifactPayload" arg="$resource.properties.changeArtifact.InlineArmTemplate.artifactPayload" required="True">
+                          <prop type="string" name="inlineScript" arg="$resource.properties.changeArtifact.InlineArmTemplate.artifactPayload.inlineScript" required="True"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="InlineBicep">
+                        <prop type="object" name="artifactPayload" arg="$resource.properties.changeArtifact.InlineBicep.artifactPayload" required="True">
+                          <prop type="string" name="inlineScript" arg="$resource.properties.changeArtifact.InlineBicep.artifactPayload.inlineScript" required="True"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="TemplateSpec">
+                        <prop type="object" name="artifactPayload" arg="$resource.properties.changeArtifact.TemplateSpec.artifactPayload" required="True">
+                          <prop type="ResourceId" name="artifactResourceId" arg="$resource.properties.changeArtifact.TemplateSpec.artifactPayload.artifactResourceId" required="True"/>
+                        </prop>
+                      </discriminator>
+                    </prop>
+                    <prop type="string" name="changeType" arg="$resource.properties.changeType" required="True">
+                      <enum>
+                        <item value="&quot;Breakglass&quot;"/>
+                        <item value="&quot;Emergency&quot;"/>
+                        <item value="&quot;Normal&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="comments" arg="$resource.properties.comments">
+                      <format maxLength="2000"/>
+                    </prop>
+                    <prop type="string" name="description" arg="$resource.properties.description">
+                      <format maxLength="2000"/>
+                    </prop>
+                    <prop type="dateTime" name="expirationDate" arg="$resource.properties.expirationDate" required="True"/>
+                    <prop type="string" name="serviceCatalogReference" arg="$resource.properties.serviceCatalogReference"/>
+                    <prop type="ResourceId" name="stageMapResourceId" arg="$resource.properties.stageMapResourceId" required="True"/>
+                    <prop type="object" name="stageParameters" arg="$resource.properties.stageParameters" required="True">
+                      <additionalProp>
+                        <item type="object">
+                          <prop type="object" name="metadata" arg="$resource.properties.stageParameters{}.metadata">
+                            <additionalProp>
+                              <item type="string"/>
+                            </additionalProp>
+                          </prop>
+                          <prop type="string" name="type" required="True">
+                            <enum>
+                              <item arg="$resource.properties.stageParameters{}.number" value="&quot;number&quot;"/>
+                              <item arg="$resource.properties.stageParameters{}.string" value="&quot;string&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="type" value="number">
+                            <prop type="array<integer32>" name="allowedValues" arg="$resource.properties.stageParameters{}.number.allowedValues" required="True">
+                              <item type="integer32"/>
+                            </prop>
+                            <prop type="integer32" name="defaultValue" arg="$resource.properties.stageParameters{}.number.defaultValue"/>
+                          </discriminator>
+                          <discriminator property="type" value="string">
+                            <prop type="array<string>" name="allowedValues" arg="$resource.properties.stageParameters{}.string.allowedValues" required="True">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="string" name="defaultValue" arg="$resource.properties.stageParameters{}.string.defaultValue"/>
+                          </discriminator>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                    <prop type="string" name="state" arg="$resource.properties.state" required="True">
+                      <enum>
+                        <item value="&quot;Abandoned&quot;"/>
+                        <item value="&quot;Completed&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;InProgress&quot;"/>
+                        <item value="&quot;Initialized&quot;"/>
+                        <item value="&quot;Paused&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="workItemReference" arg="$resource.properties.workItemReference"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="changeArtifact" required="True">
+                      <prop type="string" name="artifactType" required="True">
+                        <enum>
+                          <item value="&quot;ArmOperation&quot;"/>
+                          <item value="&quot;ExternalArmTemplate&quot;"/>
+                          <item value="&quot;ExternalBicep&quot;"/>
+                          <item value="&quot;InlineArmTemplate&quot;"/>
+                          <item value="&quot;InlineBicep&quot;"/>
+                          <item value="&quot;TemplateSpec&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="name" required="True"/>
+                      <discriminator property="artifactType" value="ArmOperation">
+                        <prop type="object" name="artifactPayload" required="True">
+                          <prop type="array<object>" name="operations" required="True" identifiers="uri">
+                            <item type="object">
+                              <prop type="object" name="content">
+                                <prop type="string" name="location"/>
+                                <prop type="string" name="name"/>
+                                <prop type="object" name="properties" required="True"/>
+                              </prop>
+                              <prop type="string" name="httpMethod" required="True">
+                                <enum>
+                                  <item value="&quot;DELETE&quot;"/>
+                                  <item value="&quot;PATCH&quot;"/>
+                                  <item value="&quot;PUT&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="uri" required="True"/>
+                            </item>
+                          </prop>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="ExternalArmTemplate">
+                        <prop type="object" name="artifactPayload" required="True">
+                          <prop type="string" name="externalArtifactUri" required="True"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="ExternalBicep">
+                        <prop type="object" name="artifactPayload" required="True">
+                          <prop type="string" name="externalArtifactUri" required="True"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="InlineArmTemplate">
+                        <prop type="object" name="artifactPayload" required="True">
+                          <prop type="string" name="inlineScript" required="True"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="InlineBicep">
+                        <prop type="object" name="artifactPayload" required="True">
+                          <prop type="string" name="inlineScript" required="True"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="TemplateSpec">
+                        <prop type="object" name="artifactPayload" required="True">
+                          <prop type="ResourceId" name="artifactResourceId" required="True"/>
+                        </prop>
+                      </discriminator>
+                    </prop>
+                    <prop type="string" name="changeType" required="True">
+                      <enum>
+                        <item value="&quot;Breakglass&quot;"/>
+                        <item value="&quot;Emergency&quot;"/>
+                        <item value="&quot;Normal&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="comments">
+                      <format maxLength="2000"/>
+                    </prop>
+                    <prop type="string" name="description">
+                      <format maxLength="2000"/>
+                    </prop>
+                    <prop type="dateTime" name="expirationDate" required="True"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Provisioning&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="serviceCatalogReference"/>
+                    <prop type="ResourceId" name="stageMapResourceId" required="True"/>
+                    <prop readOnly="True" type="array<any>" name="stageMapSnapshot">
+                      <item type="any"/>
+                    </prop>
+                    <prop type="object" name="stageParameters" required="True">
+                      <additionalProp>
+                        <item type="object">
+                          <prop type="object" name="metadata">
+                            <additionalProp>
+                              <item type="string"/>
+                            </additionalProp>
+                          </prop>
+                          <prop type="string" name="type" required="True">
+                            <enum>
+                              <item value="&quot;number&quot;"/>
+                              <item value="&quot;string&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="type" value="number">
+                            <prop type="array<integer32>" name="allowedValues" required="True">
+                              <item type="integer32"/>
+                            </prop>
+                            <prop type="integer32" name="defaultValue"/>
+                          </discriminator>
+                          <discriminator property="type" value="string">
+                            <prop type="array<string>" name="allowedValues" required="True">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="string" name="defaultValue"/>
+                          </discriminator>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                    <prop type="string" name="state" required="True">
+                      <enum>
+                        <item value="&quot;Abandoned&quot;"/>
+                        <item value="&quot;Completed&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;InProgress&quot;"/>
+                        <item value="&quot;Initialized&quot;"/>
+                        <item value="&quot;Paused&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="workItemReference"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2025-03-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.changesafety/changestates/{}" version="2025-03-01-preview" swagger="mgmt-plane/changesafety/ResourceProviders/Microsoft.ChangeSafety/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2hhbmdlU2FmZXR5L2NoYW5nZVN0YXRlcy97Y2hhbmdlU3RhdGVOYW1lfQ==/V/MjAyNS0wMy0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.changeStateName" options="change-state-name name n" required="True" idPart="name">
+          <help short="The name of the ChangeState resource."/>
+          <format pattern="^[a-zA-Z0-9-]{3,100}$" maxLength="100" minLength="3"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg nullable="True" type="string" var="$resource.properties.comments" options="comments" group="Properties">
+          <help short="Comments about the last update to the changeState resource."/>
+          <format maxLength="2000"/>
+        </arg>
+        <arg nullable="True" type="string" var="$resource.properties.description" options="description" group="Properties">
+          <help short="Brief description about the change."/>
+          <format maxLength="2000"/>
+        </arg>
+        <arg nullable="True" type="string" var="$resource.properties.serviceCatalogReference" options="service-catalog-reference" group="Properties">
+          <help short="URI to the external service catalog reference."/>
+        </arg>
+        <arg type="string" var="$resource.properties.state" options="state" group="Properties">
+          <help short="Internal status of the changestate resource."/>
+          <enum>
+            <item name="Abandoned" value="&quot;Abandoned&quot;"/>
+            <item name="Completed" value="&quot;Completed&quot;"/>
+            <item name="Failed" value="&quot;Failed&quot;"/>
+            <item name="InProgress" value="&quot;InProgress&quot;"/>
+            <item name="Initialized" value="&quot;Initialized&quot;"/>
+            <item name="Paused" value="&quot;Paused&quot;"/>
+          </enum>
+        </arg>
+        <arg nullable="True" type="string" var="$resource.properties.workItemReference" options="work-item-reference" group="Properties">
+          <help short="URI to the work item related to this change."/>
+        </arg>
+      </argGroup>
+      <operation operationId="ChangeStates_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ChangeSafety/changeStates/{changeStateName}">
+          <request method="get">
+            <path>
+              <param type="string" name="changeStateName" arg="$Path.changeStateName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,100}$" maxLength="100" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-03-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="ChangeState_read">
+                  <prop readOnly="True" type="ResourceId" name="id"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="changeArtifact" required="True">
+                      <prop type="string" name="artifactType" required="True">
+                        <enum>
+                          <item value="&quot;ArmOperation&quot;"/>
+                          <item value="&quot;ExternalArmTemplate&quot;"/>
+                          <item value="&quot;ExternalBicep&quot;"/>
+                          <item value="&quot;InlineArmTemplate&quot;"/>
+                          <item value="&quot;InlineBicep&quot;"/>
+                          <item value="&quot;TemplateSpec&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="name" required="True"/>
+                      <discriminator property="artifactType" value="ArmOperation">
+                        <prop type="object" name="artifactPayload" required="True">
+                          <prop type="array<object>" name="operations" required="True" identifiers="uri">
+                            <item type="object">
+                              <prop type="object" name="content">
+                                <prop type="string" name="location"/>
+                                <prop type="string" name="name"/>
+                                <prop type="object" name="properties" required="True"/>
+                              </prop>
+                              <prop type="string" name="httpMethod" required="True">
+                                <enum>
+                                  <item value="&quot;DELETE&quot;"/>
+                                  <item value="&quot;PATCH&quot;"/>
+                                  <item value="&quot;PUT&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="uri" required="True"/>
+                            </item>
+                          </prop>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="ExternalArmTemplate">
+                        <prop type="object" name="artifactPayload" required="True">
+                          <prop type="string" name="externalArtifactUri" required="True"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="ExternalBicep">
+                        <prop type="object" name="artifactPayload" required="True">
+                          <prop type="string" name="externalArtifactUri" required="True"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="InlineArmTemplate">
+                        <prop type="object" name="artifactPayload" required="True">
+                          <prop type="string" name="inlineScript" required="True"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="InlineBicep">
+                        <prop type="object" name="artifactPayload" required="True">
+                          <prop type="string" name="inlineScript" required="True"/>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="artifactType" value="TemplateSpec">
+                        <prop type="object" name="artifactPayload" required="True">
+                          <prop type="ResourceId" name="artifactResourceId" required="True"/>
+                        </prop>
+                      </discriminator>
+                    </prop>
+                    <prop type="string" name="changeType" required="True">
+                      <enum>
+                        <item value="&quot;Breakglass&quot;"/>
+                        <item value="&quot;Emergency&quot;"/>
+                        <item value="&quot;Normal&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="comments">
+                      <format maxLength="2000"/>
+                    </prop>
+                    <prop type="string" name="description">
+                      <format maxLength="2000"/>
+                    </prop>
+                    <prop type="dateTime" name="expirationDate" required="True"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Provisioning&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="serviceCatalogReference"/>
+                    <prop type="ResourceId" name="stageMapResourceId" required="True"/>
+                    <prop readOnly="True" type="array<any>" name="stageMapSnapshot">
+                      <item type="any"/>
+                    </prop>
+                    <prop type="object" name="stageParameters" required="True">
+                      <additionalProp>
+                        <item type="object">
+                          <prop type="object" name="metadata">
+                            <additionalProp>
+                              <item type="string"/>
+                            </additionalProp>
+                          </prop>
+                          <prop type="string" name="type" required="True">
+                            <enum>
+                              <item value="&quot;number&quot;"/>
+                              <item value="&quot;string&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="type" value="number">
+                            <prop type="array<integer32>" name="allowedValues" required="True">
+                              <item type="integer32"/>
+                            </prop>
+                            <prop type="integer32" name="defaultValue"/>
+                          </discriminator>
+                          <discriminator property="type" value="string">
+                            <prop type="array<string>" name="allowedValues" required="True">
+                              <item type="string"/>
+                            </prop>
+                            <prop type="string" name="defaultValue"/>
+                          </discriminator>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                    <prop type="string" name="state" required="True">
+                      <enum>
+                        <item value="&quot;Abandoned&quot;"/>
+                        <item value="&quot;Completed&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;InProgress&quot;"/>
+                        <item value="&quot;Initialized&quot;"/>
+                        <item value="&quot;Paused&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="workItemReference"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate ref="$Instance">
+          <json>
+            <schema type="object" name="resource" required="True" clientFlatten="True">
+              <prop type="object" name="properties">
+                <prop type="string" name="comments" arg="$resource.properties.comments">
+                  <format maxLength="2000"/>
+                </prop>
+                <prop type="string" name="description" arg="$resource.properties.description">
+                  <format maxLength="2000"/>
+                </prop>
+                <prop type="string" name="serviceCatalogReference" arg="$resource.properties.serviceCatalogReference"/>
+                <prop type="string" name="state" arg="$resource.properties.state" required="True">
+                  <enum>
+                    <item value="&quot;Abandoned&quot;"/>
+                    <item value="&quot;Completed&quot;"/>
+                    <item value="&quot;Failed&quot;"/>
+                    <item value="&quot;InProgress&quot;"/>
+                    <item value="&quot;Initialized&quot;"/>
+                    <item value="&quot;Paused&quot;"/>
+                  </enum>
+                </prop>
+                <prop type="string" name="workItemReference" arg="$resource.properties.workItemReference"/>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="ChangeStates_CreateOrUpdate">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ChangeSafety/changeStates/{changeStateName}">
+          <request method="put">
+            <path>
+              <param type="string" name="changeStateName" arg="$Path.changeStateName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,100}$" maxLength="100" minLength="3"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-03-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="@ChangeState_read"/>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
