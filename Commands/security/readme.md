@@ -15,3 +15,6 @@ Manage your security posture with Microsoft Defender for Cloud.
 
 - [setting](/Commands/security/setting/readme.md)
 : View your security settings.
+
+- [va](/Commands/security/va/readme.md)
+: Manage Defender for Cloud vulnerability assessment.
