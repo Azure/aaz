@@ -1,0 +1,338 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.streamanalytics/streamingjobs/{}/inputs" version="2021-10-01-preview" swagger="mgmt-plane/streamanalytics/ResourceProviders/Microsoft.StreamAnalytics/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZWdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RyZWFtQW5hbHl0aWNzL3N0cmVhbWluZ2pvYnMve2pvYk5hbWV9L2lucHV0cw==/V/MjAyMS0xMC0wMS1wcmV2aWV3"/>
+  <commandGroup name="stream-analytics input">
+    <command name="list" version="2021-10-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.streamanalytics/streamingjobs/{}/inputs" version="2021-10-01-preview" swagger="mgmt-plane/streamanalytics/ResourceProviders/Microsoft.StreamAnalytics/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZWdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuU3RyZWFtQW5hbHl0aWNzL3N0cmVhbWluZ2pvYnMve2pvYk5hbWV9L2lucHV0cw==/V/MjAyMS0xMC0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.jobName" options="job-name" required="True" idPart="name">
+          <help short="The name of the streaming job."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Query.select" options="select">
+          <help short="The $select OData query parameter. This is a comma-separated list of structural properties to include in the response, or &quot;*&quot; to include all properties. By default, all properties are returned except diagnostics. Currently only accepts '*' as a valid value."/>
+        </arg>
+      </argGroup>
+      <operation operationId="Inputs_ListByStreamingJob">
+        <http path="/subscriptions/{subscriptionId}/resourcegroups/{resourceGroupName}/providers/Microsoft.StreamAnalytics/streamingjobs/{jobName}/inputs">
+          <request method="get">
+            <path>
+              <param type="string" name="jobName" arg="$Path.jobName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <param type="string" name="$select" arg="$Query.select"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2021-10-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="nextLink"/>
+                  <prop readOnly="True" type="array<object>" name="value">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourcegroups/{}/providers/Microsoft.StreamAnalytics/streamingjobs/{}/inputs/{}"/>
+                      </prop>
+                      <prop type="string" name="name"/>
+                      <prop type="object" name="properties">
+                        <prop type="object" name="compression">
+                          <prop type="string" name="type" required="True">
+                            <default value="&quot;None&quot;"/>
+                            <enum>
+                              <item value="&quot;Deflate&quot;"/>
+                              <item value="&quot;GZip&quot;"/>
+                              <item value="&quot;None&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="object" name="diagnostics">
+                          <prop readOnly="True" type="array<object>" name="conditions">
+                            <item type="object">
+                              <prop readOnly="True" type="string" name="code"/>
+                              <prop readOnly="True" type="string" name="message"/>
+                              <prop readOnly="True" type="string" name="since"/>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="string" name="etag"/>
+                        <prop type="string" name="partitionKey"/>
+                        <prop type="object" name="serialization">
+                          <prop type="string" name="type" required="True">
+                            <enum>
+                              <item value="&quot;Avro&quot;"/>
+                              <item value="&quot;Csv&quot;"/>
+                              <item value="&quot;CustomClr&quot;"/>
+                              <item value="&quot;Delta&quot;"/>
+                              <item value="&quot;Json&quot;"/>
+                              <item value="&quot;Parquet&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="type" value="Avro">
+                            <prop type="object" name="properties" clientFlatten="True"/>
+                          </discriminator>
+                          <discriminator property="type" value="Csv">
+                            <prop type="object" name="properties" clientFlatten="True">
+                              <prop type="string" name="encoding">
+                                <enum>
+                                  <item value="&quot;UTF8&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="fieldDelimiter"/>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="type" value="CustomClr">
+                            <prop type="object" name="properties" clientFlatten="True">
+                              <prop type="string" name="serializationClassName"/>
+                              <prop type="string" name="serializationDllPath"/>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="type" value="Delta">
+                            <prop type="object" name="properties" clientFlatten="True">
+                              <prop type="string" name="deltaTablePath" required="True"/>
+                              <prop type="array<string>" name="partitionColumns">
+                                <item type="string"/>
+                              </prop>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="type" value="Json">
+                            <prop type="object" name="properties" clientFlatten="True">
+                              <prop type="string" name="encoding">
+                                <enum>
+                                  <item value="&quot;UTF8&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="format">
+                                <enum>
+                                  <item value="&quot;Array&quot;"/>
+                                  <item value="&quot;LineSeparated&quot;"/>
+                                </enum>
+                              </prop>
+                            </prop>
+                          </discriminator>
+                          <discriminator property="type" value="Parquet">
+                            <prop type="object" name="properties" clientFlatten="True"/>
+                          </discriminator>
+                        </prop>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;Reference&quot;"/>
+                            <item value="&quot;Stream&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="watermarkSettings">
+                          <prop type="string" name="watermarkMode">
+                            <enum>
+                              <item value="&quot;None&quot;"/>
+                              <item value="&quot;ReadWatermark&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <discriminator property="type" value="Reference">
+                          <prop type="object" name="datasource">
+                            <prop type="string" name="type" required="True">
+                              <enum>
+                                <item value="&quot;File&quot;"/>
+                                <item value="&quot;Microsoft.Sql/Server/Database&quot;"/>
+                                <item value="&quot;Microsoft.Storage/Blob&quot;"/>
+                                <item value="&quot;Raw&quot;"/>
+                              </enum>
+                            </prop>
+                            <discriminator property="type" value="File">
+                              <prop type="object" name="properties" clientFlatten="True">
+                                <prop type="string" name="path"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="type" value="Microsoft.Sql/Server/Database">
+                              <prop type="object" name="properties" clientFlatten="True">
+                                <prop type="string" name="authenticationMode">
+                                  <default value="&quot;ConnectionString&quot;"/>
+                                  <enum>
+                                    <item value="&quot;ConnectionString&quot;"/>
+                                    <item value="&quot;Msi&quot;"/>
+                                    <item value="&quot;UserToken&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="database"/>
+                                <prop type="string" name="deltaSnapshotQuery"/>
+                                <prop type="string" name="fullSnapshotQuery"/>
+                                <prop type="string" name="password" secret="True"/>
+                                <prop type="string" name="refreshRate"/>
+                                <prop type="string" name="refreshType">
+                                  <enum>
+                                    <item value="&quot;RefreshPeriodicallyWithDelta&quot;"/>
+                                    <item value="&quot;RefreshPeriodicallyWithFull&quot;"/>
+                                    <item value="&quot;Static&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="server"/>
+                                <prop type="string" name="user"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="type" value="Microsoft.Storage/Blob">
+                              <prop type="object" name="properties" clientFlatten="True">
+                                <prop type="string" name="authenticationMode">
+                                  <default value="&quot;ConnectionString&quot;"/>
+                                  <enum>
+                                    <item value="&quot;ConnectionString&quot;"/>
+                                    <item value="&quot;Msi&quot;"/>
+                                    <item value="&quot;UserToken&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="blobName"/>
+                                <prop type="string" name="container"/>
+                                <prop type="string" name="dateFormat"/>
+                                <prop type="string" name="deltaPathPattern"/>
+                                <prop type="string" name="deltaSnapshotRefreshRate"/>
+                                <prop type="string" name="fullSnapshotRefreshRate"/>
+                                <prop type="string" name="pathPattern"/>
+                                <prop type="integer32" name="sourcePartitionCount"/>
+                                <prop type="array<@StorageAccount_read>" name="storageAccounts">
+                                  <item type="@StorageAccount_read"/>
+                                </prop>
+                                <prop type="string" name="timeFormat"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="type" value="Raw">
+                              <prop type="@RawInputDatasourceProperties_read" name="properties" clientFlatten="True"/>
+                            </discriminator>
+                          </prop>
+                        </discriminator>
+                        <discriminator property="type" value="Stream">
+                          <prop type="object" name="datasource">
+                            <prop type="string" name="type" required="True">
+                              <enum>
+                                <item value="&quot;GatewayMessageBus&quot;"/>
+                                <item value="&quot;Microsoft.Devices/IotHubs&quot;"/>
+                                <item value="&quot;Microsoft.EventGrid/EventSubscriptions&quot;"/>
+                                <item value="&quot;Microsoft.EventHub/EventHub&quot;"/>
+                                <item value="&quot;Microsoft.ServiceBus/EventHub&quot;"/>
+                                <item value="&quot;Microsoft.Storage/Blob&quot;"/>
+                                <item value="&quot;Raw&quot;"/>
+                              </enum>
+                            </prop>
+                            <discriminator property="type" value="GatewayMessageBus">
+                              <prop type="object" name="properties" clientFlatten="True">
+                                <prop type="string" name="topic"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="type" value="Microsoft.Devices/IotHubs">
+                              <prop type="object" name="properties" clientFlatten="True">
+                                <prop type="string" name="consumerGroupName"/>
+                                <prop type="string" name="endpoint"/>
+                                <prop type="string" name="iotHubNamespace"/>
+                                <prop type="string" name="sharedAccessPolicyKey" secret="True"/>
+                                <prop type="string" name="sharedAccessPolicyName"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="type" value="Microsoft.EventGrid/EventSubscriptions">
+                              <prop type="object" name="properties" clientFlatten="True">
+                                <prop type="array<string>" name="eventTypes">
+                                  <item type="string"/>
+                                </prop>
+                                <prop type="string" name="schema">
+                                  <enum>
+                                    <item value="&quot;CloudEventSchema&quot;"/>
+                                    <item value="&quot;EventGridEventSchema&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="array<@StorageAccount_read>" name="storageAccounts">
+                                  <item type="@StorageAccount_read"/>
+                                </prop>
+                                <prop type="object" name="subscriber">
+                                  <prop type="@EventHubStreamInputDataSourceProperties_read" name="properties" clientFlatten="True"/>
+                                </prop>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="type" value="Microsoft.EventHub/EventHub">
+                              <prop type="@EventHubStreamInputDataSourceProperties_read" name="properties" clientFlatten="True"/>
+                            </discriminator>
+                            <discriminator property="type" value="Microsoft.ServiceBus/EventHub">
+                              <prop type="object" name="properties" cls="EventHubStreamInputDataSourceProperties_read" clientFlatten="True">
+                                <prop type="string" name="authenticationMode">
+                                  <default value="&quot;ConnectionString&quot;"/>
+                                  <enum>
+                                    <item value="&quot;ConnectionString&quot;"/>
+                                    <item value="&quot;Msi&quot;"/>
+                                    <item value="&quot;UserToken&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="consumerGroupName"/>
+                                <prop type="string" name="eventHubName"/>
+                                <prop type="integer32" name="partitionCount"/>
+                                <prop type="integer32" name="prefetchCount"/>
+                                <prop type="string" name="serviceBusNamespace"/>
+                                <prop type="string" name="sharedAccessPolicyKey" secret="True"/>
+                                <prop type="string" name="sharedAccessPolicyName"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="type" value="Microsoft.Storage/Blob">
+                              <prop type="object" name="properties" clientFlatten="True">
+                                <prop type="string" name="authenticationMode">
+                                  <default value="&quot;ConnectionString&quot;"/>
+                                  <enum>
+                                    <item value="&quot;ConnectionString&quot;"/>
+                                    <item value="&quot;Msi&quot;"/>
+                                    <item value="&quot;UserToken&quot;"/>
+                                  </enum>
+                                </prop>
+                                <prop type="string" name="container"/>
+                                <prop type="string" name="dateFormat"/>
+                                <prop type="string" name="pathPattern"/>
+                                <prop type="integer32" name="sourcePartitionCount"/>
+                                <prop type="array<object>" name="storageAccounts">
+                                  <item type="object" cls="StorageAccount_read">
+                                    <prop type="string" name="accountKey" secret="True"/>
+                                    <prop type="string" name="accountName"/>
+                                    <prop type="string" name="authenticationMode">
+                                      <default value="&quot;ConnectionString&quot;"/>
+                                      <enum>
+                                        <item value="&quot;ConnectionString&quot;"/>
+                                        <item value="&quot;Msi&quot;"/>
+                                        <item value="&quot;UserToken&quot;"/>
+                                      </enum>
+                                    </prop>
+                                  </item>
+                                </prop>
+                                <prop type="string" name="timeFormat"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="type" value="Raw">
+                              <prop type="object" name="properties" cls="RawInputDatasourceProperties_read" clientFlatten="True">
+                                <prop type="string" name="payload"/>
+                                <prop type="string" name="payloadUri"/>
+                              </prop>
+                            </discriminator>
+                          </prop>
+                        </discriminator>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
