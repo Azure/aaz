@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cloudhealth/healthmodels/{}/entities/{}/adddataannotation" version="2026-05-01-preview" swagger="mgmt-plane/cloudhealth/ResourceProviders/Microsoft.CloudHealth/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2xvdWRIZWFsdGgvaGVhbHRobW9kZWxzL3toZWFsdGhNb2RlbE5hbWV9L2VudGl0aWVzL3tlbnRpdHlOYW1lfS9hZGREYXRhQW5ub3RhdGlvbg==/V/MjAyNi0wNS0wMS1wcmV2aWV3"/>
+  <commandGroup name="monitor health-models entity">
+    <command name="add-data-annotation" version="2026-05-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cloudhealth/healthmodels/{}/entities/{}/adddataannotation" version="2026-05-01-preview" swagger="mgmt-plane/cloudhealth/ResourceProviders/Microsoft.CloudHealth/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2xvdWRIZWFsdGgvaGVhbHRobW9kZWxzL3toZWFsdGhNb2RlbE5hbWV9L2VudGl0aWVzL3tlbnRpdHlOYW1lfS9hZGREYXRhQW5ub3RhdGlvbg==/V/MjAyNi0wNS0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.entityName" options="entity-name" required="True" idPart="child_name_1">
+          <help short="Name of the entity. Must be unique within a health model."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-]{1,258}[a-zA-Z0-9]$"/>
+        </arg>
+        <arg type="string" var="$Path.healthModelName" options="health-model-name" required="True" idPart="name">
+          <help short="Name of health model resource"/>
+          <format pattern="^[a-zA-Z][a-zA-Z0-9-]{1,42}[a-zA-Z0-9]$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="object" var="$body.annotationDetails" options="annotation-details" required="True" group="Body">
+          <help short="Annotation details as a dynamic key-value pair bag. Service-enforced limits: a maximum of 10 entries per annotation and a maximum value length of 256 characters. Requests exceeding these limits will be rejected with a 400 response."/>
+          <additionalProp>
+            <item type="string">
+              <format maxLength="256"/>
+            </item>
+          </additionalProp>
+        </arg>
+        <arg type="string" var="$body.description" options="description" group="Body">
+          <help short="Optional description of the annotation"/>
+          <format maxLength="4096"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Entities_AddDataAnnotation">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.CloudHealth/healthmodels/{healthModelName}/entities/{entityName}/addDataAnnotation">
+          <request method="post">
+            <path>
+              <param type="string" name="entityName" arg="$Path.entityName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-]{1,258}[a-zA-Z0-9]$"/>
+              </param>
+              <param type="string" name="healthModelName" arg="$Path.healthModelName" required="True">
+                <format pattern="^[a-zA-Z][a-zA-Z0-9-]{1,42}[a-zA-Z0-9]$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-05-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="object" name="annotationDetails" arg="$body.annotationDetails" required="True">
+                    <additionalProp>
+                      <item type="string">
+                        <format maxLength="256"/>
+                      </item>
+                    </additionalProp>
+                  </prop>
+                  <prop type="string" name="description" arg="$body.description">
+                    <format maxLength="4096"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="object" name="annotationDetails" required="True">
+                    <additionalProp>
+                      <item type="string">
+                        <format maxLength="256"/>
+                      </item>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="annotationId">
+                    <format maxLength="256"/>
+                  </prop>
+                  <prop readOnly="True" type="dateTime" name="createdAt">
+                    <format protocol="iso"/>
+                  </prop>
+                  <prop type="string" name="description">
+                    <format maxLength="4096"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
