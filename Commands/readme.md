@@ -78,7 +78,7 @@
 : List changes for resources
 
 - [chaos](/Commands/chaos/readme.md)
-: Manage Chaos
+: Manage Azure Chaos Studio resources.
 
 - [cloud-service](/Commands/cloud-service/readme.md)
 : Manage cloud service
