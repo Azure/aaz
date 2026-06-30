@@ -10,6 +10,9 @@ Manage Managed Identity
 - [delete](/Commands/identity/_delete.md)
 : Delete the identity.
 
+- [list](/Commands/identity/_list.md)
+: List all the userAssignedIdentities available under the specified ResourceGroup.
+
 - [show](/Commands/identity/_show.md)
 : Get the identity.
 
