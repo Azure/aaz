@@ -12,5 +12,5 @@ Update a SignalDefinition
 
 - SignalDefinitions_CreateOrUpdate
     ```bash
-        monitor health-models signal-definition update --resource-group rgopenapi --health-model-name myHealthModel --signal-definition-name sig1
+        monitor health-models signal-definition update --resource-group rgopenapi --health-model-name myHealthModel --signal-definition-name sig1 --display-name cpu usage --refresh-interval PT1M --tags "{key4788:ixfvzsfnpvkkbrce}" --data-unit byte --evaluation-rules "{degraded-rule:{operator:GreaterThan,threshold:70},unhealthy-rule:{operator:Dynamic,sensitivity:Medium,lookBackWindow:PT1H}}"
     ```

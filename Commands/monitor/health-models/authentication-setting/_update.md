@@ -12,5 +12,5 @@ Update a AuthenticationSetting
 
 - AuthenticationSettings_CreateOrUpdate
     ```bash
-        monitor health-models authentication-setting update --resource-group myResourceGroup --health-model-name myHealthModel --authentication-setting-name myAuthSetting
+        monitor health-models authentication-setting update --resource-group myResourceGroup --health-model-name myHealthModel --authentication-setting-name myAuthSetting --display-name myDisplayName
     ```

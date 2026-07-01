@@ -12,5 +12,5 @@ Update a DiscoveryRule
 
 - DiscoveryRules_CreateOrUpdate
     ```bash
-        monitor health-models discovery-rule update --resource-group myResourceGroup --health-model-name myHealthModel --discovery-rule-name myDiscoveryRule
+        monitor health-models discovery-rule update --resource-group myResourceGroup --health-model-name myHealthModel --discovery-rule-name myDiscoveryRule --authentication-setting authSetting1 --display-name myDisplayName --discover-relationships Enabled --add-recommended-signals Enabled --specification "{kind:ResourceGraphQuery,resourceGraphQuery:'resources | where subscriptionId == '/7ddfffd7-9b32-40df-1234-828cbd55d6f4'/ | where resourceGroup == '/my-rg'/'}" --add-resource-health-signal Enabled
     ```

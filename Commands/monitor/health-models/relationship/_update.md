@@ -12,5 +12,5 @@ Update a Relationship
 
 - Relationships_CreateOrUpdate
     ```bash
-        monitor health-models relationship update --resource-group rgopenapi --health-model-name model1 --relationship-name rel1
+        monitor health-models relationship update --resource-group rgopenapi --health-model-name model1 --relationship-name rel1 --display-name My relationship --tags "{key9681:ixfvzsfnpvkkbrce}"
     ```

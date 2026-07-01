@@ -1,6 +1,6 @@
 # [Group] _monitor health-models_
 
-Manage Healthmodel
+Manage Azure Monitor health models.
 
 ## Subgroups
 

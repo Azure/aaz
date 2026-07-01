@@ -12,5 +12,5 @@ Update a HealthModel
 
 - HealthModels_Create
     ```bash
-        monitor health-models update --resource-group rgopenapi --health-model-name model1
+        monitor health-models update --resource-group rgopenapi --health-model-name model1 --type SystemAssigned, UserAssigned --user-assigned-identities "{/subscriptions/4980D7D5-4E07-47AD-AD34-E76C6BC9F061/resourceGroups/rgopenapi/providers/Microsoft.ManagedIdentity/userAssignedIdentities/ua1:{}}" --tags "{key2961:hbljozzkqrpcthsjtfkyozpwyx}"
     ```
