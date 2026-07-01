@@ -1,4 +1,4 @@
-# [Command] _monitor health-models entity get-data-annotation_
+# [Command] _monitor health-models entity get-data-annotations_
 
 Retrieve data annotations for an entity
 
@@ -12,5 +12,5 @@ Retrieve data annotations for an entity
 
 - Entities_GetDataAnnotations
     ```bash
-        monitor health-models entity get-data-annotation --resource-group rgopenapi --health-model-name myHealthModel --entity-name entity1 --start-at 2026-04-09T00:00:00Z --end-at 2026-04-10T23:59:59Z
+        monitor health-models entity get-data-annotations --resource-group rgopenapi --health-model-name myHealthModel --entity-name entity1 --start-at 2026-04-09T00:00:00Z --end-at 2026-04-10T23:59:59Z
     ```

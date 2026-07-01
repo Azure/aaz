@@ -1,4 +1,4 @@
-# [Command] _monitor health-models entity get-signal-recommendation_
+# [Command] _monitor health-models entity get-signal-recommendations_
 
 Get recommended signal configurations for a given Entity (only applicable for Entities representing Azure resources)
 
@@ -12,5 +12,5 @@ Get recommended signal configurations for a given Entity (only applicable for En
 
 - Entities_GetSignalRecommendations
     ```bash
-        monitor health-models entity get-signal-recommendation --resource-group rgopenapi --health-model-name myHealthModel --entity-name entity1
+        monitor health-models entity get-signal-recommendations --resource-group rgopenapi --health-model-name myHealthModel --entity-name entity1
     ```
