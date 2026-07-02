@@ -77,6 +77,9 @@
 - [change-analysis](/Commands/change-analysis/readme.md)
 : List changes for resources
 
+- [chaos](/Commands/chaos/readme.md)
+: Manage Chaos
+
 - [cloud-service](/Commands/cloud-service/readme.md)
 : Manage cloud service
 
@@ -177,7 +180,7 @@
 : Manage Event Hub
 
 - [fileshare](/Commands/fileshare/readme.md)
-: Manage Azure File Shares.
+: Manage Azure File Shares
 
 - [firmwareanalysis](/Commands/firmwareanalysis/readme.md)
 : Commands to manage firmware analysis.
@@ -245,6 +248,9 @@
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
 
+- [napster](/Commands/napster/readme.md)
+: Manage Napster
+
 - [neon](/Commands/neon/readme.md)
 : Manage Neon Postgres databases and related resources within Azure.
 
@@ -286,6 +292,9 @@
 
 - [playwright-testing](/Commands/playwright-testing/readme.md)
 : Manage Microsoft Playwright Testing service
+
+- [policy](/Commands/policy/readme.md)
+: Manage resources defined and used by the Azure Policy service.
 
 - [portal](/Commands/portal/readme.md)
 : Manage Portal.

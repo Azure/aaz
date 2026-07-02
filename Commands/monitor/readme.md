@@ -28,6 +28,9 @@ Manage the Azure Monitor Service.
 - [diagnostic-settings](/Commands/monitor/diagnostic-settings/readme.md)
 : Manage service diagnostic settings.
 
+- [health-models](/Commands/monitor/health-models/readme.md)
+: Manage Azure Monitor health models.
+
 - [log-analytics](/Commands/monitor/log-analytics/readme.md)
 : Manage Azure log analytics.
 

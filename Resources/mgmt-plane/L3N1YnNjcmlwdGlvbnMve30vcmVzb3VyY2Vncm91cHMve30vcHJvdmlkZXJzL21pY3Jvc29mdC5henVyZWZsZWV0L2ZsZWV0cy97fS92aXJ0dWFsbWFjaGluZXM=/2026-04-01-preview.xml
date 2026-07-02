@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.azurefleet/fleets/{}/virtualmachines" version="2026-04-01-preview" swagger="mgmt-plane/azurefleet/ResourceProviders/Microsoft.AzureFleet/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXp1cmVGbGVldC9mbGVldHMve25hbWV9L3ZpcnR1YWxNYWNoaW5lcw==/V/MjAyNi0wNC0wMS1wcmV2aWV3"/>
+  <commandGroup name="compute-fleet">
+    <command name="list-vms" version="2026-04-01-preview" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.azurefleet/fleets/{}/virtualmachines" version="2026-04-01-preview" swagger="mgmt-plane/azurefleet/ResourceProviders/Microsoft.AzureFleet/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXp1cmVGbGVldC9mbGVldHMve25hbWV9L3ZpcnR1YWxNYWNoaW5lcw==/V/MjAyNi0wNC0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.name" options="name" required="True" idPart="name">
+          <help short="The name of the Fleet"/>
+          <format pattern="^[^_\W][\w\-._]{0,79}(?<![-.])$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Query.filter" options="filter">
+          <help short="Filter expression to filter the virtual machines."/>
+        </arg>
+        <arg type="string" var="$Query.skiptoken" options="skiptoken">
+          <help short="Skip token for pagination. Uses the token from a previous response to fetch the next page of results."/>
+        </arg>
+      </argGroup>
+      <operation operationId="Fleets_ListVirtualMachines">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.AzureFleet/fleets/{name}/virtualMachines">
+          <request method="get">
+            <path>
+              <param type="string" name="name" arg="$Path.name" required="True">
+                <format pattern="^[^_\W][\w\-._]{0,79}(?<![-.])$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="$filter" arg="$Query.filter"/>
+              <param type="string" name="$skiptoken" arg="$Query.skiptoken"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-04-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="object" name="error">
+                        <prop type="string" name="code"/>
+                        <prop type="array<object>" name="details" identifiers="message target">
+                          <item type="object">
+                            <prop type="string" name="code"/>
+                            <prop type="string" name="message"/>
+                            <prop type="string" name="target"/>
+                          </item>
+                        </prop>
+                        <prop type="object" name="innererror">
+                          <prop type="string" name="errorDetail"/>
+                          <prop type="string" name="exceptionType"/>
+                        </prop>
+                        <prop type="string" name="message"/>
+                        <prop type="string" name="target"/>
+                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="id"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop readOnly="True" type="string" name="operationStatus">
+                        <enum>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;Launching&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

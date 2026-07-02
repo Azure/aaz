@@ -1,6 +1,6 @@
 # [Group] _policy assignment non-compliance-message_
 
-Non-compliance message used by the policy assignment.
+Manage non-compliance message used by the policy assignment.
 
 Customized message used by the enclosing policy assignment to report non-compliance.
 

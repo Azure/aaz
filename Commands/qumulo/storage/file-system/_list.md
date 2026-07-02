@@ -27,3 +27,15 @@ List all existing Qumulo file system storage resources.
     ```bash
         qumulo storage file-system list -g rg
     ```
+
+### [2026-04-16](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL3F1bXVsby5zdG9yYWdlL2ZpbGVzeXN0ZW1z/2026-04-16.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/qumulo.storage/filesystems 2026-04-16 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/qumulo.storage/filesystems 2026-04-16 -->
+
+#### examples
+
+- List file system by resource group
+    ```bash
+        qumulo storage file-system list -g rg
+    ```

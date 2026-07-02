@@ -4,6 +4,11 @@ Manage policy definitions.
 
 Policy definitions are rules that specify allowed or disallowed Azure resource configurations.
 
+## Subgroups
+
+- [version](/Commands/policy/definition/version/readme.md)
+: Manage policy definition versions.
+
 ## Commands
 
 - [create](/Commands/policy/definition/_create.md)

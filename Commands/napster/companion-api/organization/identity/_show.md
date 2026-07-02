@@ -1,0 +1,9 @@
+# [Command] _napster companion-api organization identity show_
+
+Show the details of managed identities.
+
+## Versions
+
+### [2025-12-24-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL25hcHN0ZXIuY29tcGFuaW9uYXBpL29yZ2FuaXphdGlvbnMve30=/2025-12-24-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/napster.companionapi/organizations/{} 2025-12-24-preview identity -->
