@@ -4,7 +4,7 @@ Update a Relationship
 
 ## Versions
 
-### [2026-05-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jbG91ZGhlYWx0aC9oZWFsdGhtb2RlbHMve30vcmVsYXRpb25zaGlwcy97fQ==/2026-05-01-preview.xml) **Stable**
+### [2026-05-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jbG91ZGhlYWx0aC9oZWFsdGhtb2RlbHMve30vcmVsYXRpb25zaGlwcy97fQ==/2026-05-01-preview.xml) **Preview**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cloudhealth/healthmodels/{}/relationships/{} 2026-05-01-preview -->
 
@@ -12,5 +12,5 @@ Update a Relationship
 
 - Relationships_CreateOrUpdate
     ```bash
-        monitor health-models relationship update --resource-group rgopenapi --health-model-name model1 --relationship-name rel1
+        monitor health-models relationship update --resource-group rgopenapi --health-model-name model1 --relationship-name rel1 --display-name My relationship --tags "{key9681:ixfvzsfnpvkkbrce}"
     ```

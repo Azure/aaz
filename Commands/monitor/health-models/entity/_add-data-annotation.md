@@ -4,7 +4,7 @@ Add a data annotation to an entity
 
 ## Versions
 
-### [2026-05-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jbG91ZGhlYWx0aC9oZWFsdGhtb2RlbHMve30vZW50aXRpZXMve30vYWRkZGF0YWFubm90YXRpb24=/2026-05-01-preview.xml) **Stable**
+### [2026-05-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jbG91ZGhlYWx0aC9oZWFsdGhtb2RlbHMve30vZW50aXRpZXMve30vYWRkZGF0YWFubm90YXRpb24=/2026-05-01-preview.xml) **Preview**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cloudhealth/healthmodels/{}/entities/{}/adddataannotation 2026-05-01-preview -->
 

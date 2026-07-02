@@ -13,7 +13,7 @@ Manage Entity
 - [delete](/Commands/monitor/health-models/entity/_delete.md)
 : Delete a Entity
 
-- [get-data-annotation](/Commands/monitor/health-models/entity/_get-data-annotation.md)
+- [get-data-annotations](/Commands/monitor/health-models/entity/_get-data-annotations.md)
 : Retrieve data annotations for an entity
 
 - [get-history](/Commands/monitor/health-models/entity/_get-history.md)
@@ -22,7 +22,7 @@ Manage Entity
 - [get-signal-history](/Commands/monitor/health-models/entity/_get-signal-history.md)
 : Retrieve the time series history for a signal on an entity
 
-- [get-signal-recommendation](/Commands/monitor/health-models/entity/_get-signal-recommendation.md)
+- [get-signal-recommendations](/Commands/monitor/health-models/entity/_get-signal-recommendations.md)
 : Get recommended signal configurations for a given Entity (only applicable for Entities representing Azure resources)
 
 - [ingest-health-report](/Commands/monitor/health-models/entity/_ingest-health-report.md)
