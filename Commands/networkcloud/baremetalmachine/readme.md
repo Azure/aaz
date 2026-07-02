@@ -8,12 +8,10 @@ Manage bare metal machine
 : Cordon the provided bare metal machine's Kubernetes node.
 
 - [create](/Commands/networkcloud/baremetalmachine/_create.md)
-: Create a new bare metal machine or update the properties of the existing one.
-All customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
+: Create a new bare metal machine or update the properties of the existing one.\nAll customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
 
 - [delete](/Commands/networkcloud/baremetalmachine/_delete.md)
-: Delete the provided bare metal machine.
-All customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
+: Delete the provided bare metal machine.\nAll customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
 
 - [list](/Commands/networkcloud/baremetalmachine/_list.md)
 : List bare metal machines in the provided resource group or subscription.
