@@ -7,6 +7,9 @@ Manage WebApplication Firewall (WAF) policies.
 - [managed-rule-definition](/Commands/network/front-door/waf-policy/managed-rule-definition/readme.md)
 : Manage Managed Rule Definition
 
+- [managed-rules](/Commands/network/front-door/waf-policy/managed-rules/readme.md)
+: Manage Managed Rules
+
 ## Commands
 
 - [create](/Commands/network/front-door/waf-policy/_create.md)
