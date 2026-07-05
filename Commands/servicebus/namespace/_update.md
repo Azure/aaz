@@ -15,3 +15,15 @@ Update a service namespace. Once created, this namespace's resource manifest is 
         servicebus namespace update --resource-group myresourcegroup --name mynamespace --tags tag=value
         az servicebus namespace update --name mynamespace --resource-group myresourcegroup --sku Basic
     ```
+
+### [2023-01-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zZXJ2aWNlYnVzL25hbWVzcGFjZXMve30=/2023-01-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.servicebus/namespaces/{} 2023-01-01-preview -->
+
+#### examples
+
+- Updates a Service Bus Namespace
+    ```bash
+        servicebus namespace update --resource-group myresourcegroup --name mynamespace --tags tag=value
+        az servicebus namespace update --name mynamespace --resource-group myresourcegroup --sku Basic
+    ```
