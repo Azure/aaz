@@ -14,3 +14,14 @@ Rotate the specified cluster credential.
     ```bash
         networkcloud cluster rotate-credential --resource-group resourceGroupName --cluster-name clusterName --credentials "['BMC Credential']"
     ```
+
+### [2026-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQvY2x1c3RlcnMve30vcm90YXRlY3JlZGVudGlhbA==/2026-07-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/clusters/{}/rotatecredential 2026-07-01 -->
+
+#### examples
+
+- Rotate one or more managed credentials
+    ```bash
+        networkcloud cluster rotate-credential --resource-group resourceGroupName --cluster-name clusterName --credentials "['BMC Credential']"
+    ```

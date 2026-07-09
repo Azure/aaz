@@ -27,3 +27,15 @@ List a list of Kubernetes version resources in the provided subscription.
     ```bash
         networkcloud kubernetesversion list
     ```
+
+### [2026-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQva3ViZXJuZXRlc3ZlcnNpb25z/2026-07-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.networkcloud/kubernetesversions 2026-07-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/kubernetesversions 2026-07-01 -->
+
+#### examples
+
+- List Kubernetes versions for subscription
+    ```bash
+        networkcloud kubernetesversion list
+    ```

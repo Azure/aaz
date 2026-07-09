@@ -157,3 +157,14 @@ Delete the provided Kubernetes cluster.
     ```bash
         networkcloud kubernetescluster delete --name "kubernetesClusterName" --resource-group "resourceGroupName"
     ```
+
+### [2026-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrY2xvdWQva3ViZXJuZXRlc2NsdXN0ZXJzL3t9/2026-07-01.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networkcloud/kubernetesclusters/{} 2026-07-01 -->
+
+#### examples
+
+- Delete Kubernetes cluster
+    ```bash
+        networkcloud kubernetescluster delete --name "kubernetesClusterName" --resource-group "resourceGroupName"
+    ```

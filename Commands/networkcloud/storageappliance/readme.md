@@ -5,12 +5,10 @@ Manage storage appliance
 ## Commands
 
 - [create](/Commands/networkcloud/storageappliance/_create.md)
-: Create a new storage appliance or update the properties of the existing one.
-All customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
+: Create a new storage appliance or update the properties of the existing one.\nAll customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
 
 - [delete](/Commands/networkcloud/storageappliance/_delete.md)
-: Delete the provided storage appliance.
-All customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
+: Delete the provided storage appliance.\nAll customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
 
 - [disable-remote-vendor-management](/Commands/networkcloud/storageappliance/_disable-remote-vendor-management.md)
 : Disable remote vendor management of the provided storage appliance.

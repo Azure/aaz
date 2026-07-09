@@ -5,12 +5,10 @@ Manage rack
 ## Commands
 
 - [create](/Commands/networkcloud/rack/_create.md)
-: Create a new rack or update properties of the existing one.
-All customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
+: Create a new rack or update properties of the existing one.\nAll customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
 
 - [delete](/Commands/networkcloud/rack/_delete.md)
-: Delete the provided rack.
-All customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
+: Delete the provided rack.\nAll customer initiated requests will be rejected as the life cycle of this resource is managed by the system.
 
 - [list](/Commands/networkcloud/rack/_list.md)
 : List racks in the provided resource group or subscription.
