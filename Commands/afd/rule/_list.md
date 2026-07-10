@@ -58,3 +58,14 @@ List all of the existing delivery rules within a rule set.
     ```bash
         afd rule list --resource-group RG --profile-name profile1 --rule-set-name ruleSet1
     ```
+
+### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vcnVsZXNldHMve30vcnVsZXM=/2026-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/rulesets/{}/rules 2026-04-01-preview -->
+
+#### examples
+
+- Rules_ListByRuleSet
+    ```bash
+        afd rule list --resource-group RG --profile-name profile1 --rule-set-name ruleSet1
+    ```

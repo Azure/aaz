@@ -69,3 +69,14 @@ Create a new origin group within the specified profile.
     ```bash
         afd origin-group create --resource-group RG --profile-name profile1 --origin-group-name origingroup1 --authentication "{type:UserAssignedIdentity,scope:'https://www.contoso.com/.default',user-assigned-identity:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id-1}}" --probe-interval-in-seconds 10 --probe-path /path2 --probe-protocol NotSet --probe-request-type NotSet --additional-latency-in-milliseconds 1000 --sample-size 3 --successful-samples-required 3 --traffic-restoration-time-to-healed-or-new-endpoints-in-minutes 5
     ```
+
+### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vb3JpZ2luZ3JvdXBzL3t9/2026-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/origingroups/{} 2026-04-01-preview -->
+
+#### examples
+
+- AFDOriginGroups_Create
+    ```bash
+        afd origin-group create --resource-group RG --profile-name profile1 --origin-group-name origingroup1 --authentication "{type:UserAssignedIdentity,scope:'https://www.contoso.com/.default',user-assigned-identity:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.ManagedIdentity/userAssignedIdentities/user-assigned-id-1}}" --probe-interval-in-seconds 10 --probe-path /path2 --probe-protocol NotSet --probe-request-type NotSet --additional-latency-in-milliseconds 1000 --sample-size 3 --successful-samples-required 3 --traffic-restoration-time-to-healed-or-new-endpoints-in-minutes 5
+    ```

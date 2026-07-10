@@ -26,3 +26,14 @@ Commit the migrated Azure Frontdoor(Standard/Premium) profile.
     ```bash
         cdn profile-migration commit --resource-group RG --profile-name profile1
     ```
+
+### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vbWlncmF0aW9uY29tbWl0/2026-04-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/migrationcommit 2026-04-01-preview -->
+
+#### examples
+
+- Profiles_MigrationCommit
+    ```bash
+        cdn profile-migration commit --resource-group RG --profile-name profile1
+    ```

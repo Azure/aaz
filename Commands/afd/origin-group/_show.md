@@ -48,3 +48,14 @@ Get an existing origin group within a profile.
     ```bash
         afd origin-group show --resource-group RG --profile-name profile1 --origin-group-name origingroup1
     ```
+
+### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vb3JpZ2luZ3JvdXBzL3t9/2026-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/origingroups/{} 2026-04-01-preview -->
+
+#### examples
+
+- AFDOriginGroups_Get
+    ```bash
+        afd origin-group show --resource-group RG --profile-name profile1 --origin-group-name origingroup1
+    ```

@@ -58,3 +58,14 @@ Create a new AzureFrontDoor endpoint with the specified endpoint name under the 
     ```bash
         afd endpoint create --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --location global --name-reuse-scope TenantReuse --enabled-state Enabled --enforce-mtls Disabled --tags "{}"
     ```
+
+### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vYWZkZW5kcG9pbnRzL3t9/2026-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/afdendpoints/{} 2026-04-01-preview -->
+
+#### examples
+
+- AFDEndpoints_Create
+    ```bash
+        afd endpoint create --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --location global --name-reuse-scope TenantReuse --enabled-state Enabled --enforce-mtls Disabled --tags "{}"
+    ```

@@ -30,3 +30,14 @@ Check the quota and actual usage of the CDN profiles under the given subscriptio
     ```bash
         cdn usage
     ```
+
+### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vY2hlY2tyZXNvdXJjZXVzYWdl/2026-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.cdn/checkresourceusage 2026-04-01-preview -->
+
+#### examples
+
+- ResourceUsage_List
+    ```bash
+        cdn usage
+    ```

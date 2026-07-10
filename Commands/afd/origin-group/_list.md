@@ -34,3 +34,14 @@ List all of the existing origin groups within a profile.
     ```bash
         afd origin-group list --resource-group RG --profile-name profile1
     ```
+
+### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vb3JpZ2luZ3JvdXBz/2026-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/origingroups 2026-04-01-preview -->
+
+#### examples
+
+- AFDOriginGroups_ListByProfile
+    ```bash
+        afd origin-group list --resource-group RG --profile-name profile1
+    ```

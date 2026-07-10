@@ -58,3 +58,14 @@ Pre-loads a content to CDN. Available for Verizon Profiles.
     ```bash
         cdn endpoint load --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --content-paths "[/folder1]"
     ```
+
+### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vZW5kcG9pbnRzL3t9L2xvYWQ=/2026-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/endpoints/{}/load 2026-04-01-preview -->
+
+#### examples
+
+- Endpoints_LoadContent
+    ```bash
+        cdn endpoint load --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --content-paths "[/folder1]"
+    ```

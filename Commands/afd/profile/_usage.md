@@ -58,3 +58,14 @@ Checks the quota and actual usage of endpoints under the given Azure Front Door 
     ```bash
         afd profile usage --resource-group RG --profile-name profile1
     ```
+
+### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vdXNhZ2Vz/2026-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/usages 2026-04-01-preview -->
+
+#### examples
+
+- AFDProfiles_ListResourceUsage
+    ```bash
+        afd profile usage --resource-group RG --profile-name profile1
+    ```
