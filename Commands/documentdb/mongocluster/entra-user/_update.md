@@ -1,6 +1,6 @@
-# [Command] _documentdb mongocluster user delete_
+# [Command] _documentdb mongocluster entra-user update_
 
-Delete a mongo cluster user.
+Update a Microsoft Entra ID user on a mongo cluster.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Delete a mongo cluster user.
 
 #### examples
 
-- Delete a user.
+- Update an Entra ID user's roles.
     ```bash
-        documentdb mongocluster user delete -n alice-entra --cluster-name MyCluster -g MyResourceGroup
+        documentdb mongocluster entra-user update --object-id 11111111-1111-1111-1111-111111111111 --cluster-name MyCluster -g MyResourceGroup --role db=admin role=root
     ```

@@ -1,6 +1,6 @@
-# [Command] _documentdb mongocluster user show_
+# [Command] _documentdb mongocluster entra-user delete_
 
-Get the defintion of a Mongo cluster user.
+Delete a Microsoft Entra ID user from a mongo cluster.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Get the defintion of a Mongo cluster user.
 
 #### examples
 
-- Get a user.
+- Delete an Entra ID user by object ID.
     ```bash
-        documentdb mongocluster user show -n alice-entra --cluster-name MyCluster -g MyResourceGroup
+        documentdb mongocluster entra-user delete --object-id 11111111-1111-1111-1111-111111111111 --cluster-name MyCluster -g MyResourceGroup
     ```

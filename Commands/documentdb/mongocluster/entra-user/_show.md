@@ -1,6 +1,6 @@
-# [Command] _documentdb mongocluster user update_
+# [Command] _documentdb mongocluster entra-user show_
 
-Update a new user or updates an existing user on a mongo cluster.
+Get the definition of a Microsoft Entra ID user on a mongo cluster.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Update a new user or updates an existing user on a mongo cluster.
 
 #### examples
 
-- Update a user's roles.
+- Get an Entra ID user by object ID.
     ```bash
-        documentdb mongocluster user update -n alice-entra --cluster-name MyCluster -g MyResourceGroup --role db=admin role=root
+        documentdb mongocluster entra-user show --object-id 11111111-1111-1111-1111-111111111111 --cluster-name MyCluster -g MyResourceGroup
     ```

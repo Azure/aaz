@@ -13,8 +13,8 @@ Manage Mongo Cluster
 - [replica](/Commands/documentdb/mongocluster/replica/readme.md)
 : Manage Replica
 
-- [user](/Commands/documentdb/mongocluster/user/readme.md)
-: Manage User
+- [entra-user](/Commands/documentdb/mongocluster/entra-user/readme.md)
+: Manage Microsoft Entra ID users on a mongo cluster.
 
 ## Commands
 

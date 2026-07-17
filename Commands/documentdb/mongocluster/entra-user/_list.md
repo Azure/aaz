@@ -1,6 +1,6 @@
-# [Command] _documentdb mongocluster user list_
+# [Command] _documentdb mongocluster entra-user list_
 
-List all the users on a mongo cluster.
+List the Microsoft Entra ID users on a mongo cluster.
 
 ## Versions
 
@@ -10,7 +10,7 @@ List all the users on a mongo cluster.
 
 #### examples
 
-- List users on a cluster.
+- List Entra ID users on a cluster.
     ```bash
-        documentdb mongocluster user list --cluster-name MyCluster -g MyResourceGroup
+        documentdb mongocluster entra-user list --cluster-name MyCluster -g MyResourceGroup
     ```
