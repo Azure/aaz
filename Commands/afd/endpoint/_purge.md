@@ -58,3 +58,14 @@ Removes a content from AzureFrontDoor.
     ```bash
         afd endpoint purge --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --content-paths "[/folder1]" --domains "[endpoint1-abcdefghijklmnop.z01.azurefd.net]"
     ```
+
+### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vYWZkZW5kcG9pbnRzL3t9L3B1cmdl/2026-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/afdendpoints/{}/purge 2026-04-01-preview -->
+
+#### examples
+
+- AFDEndpoints_PurgeContent
+    ```bash
+        afd endpoint purge --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --content-paths "[/folder1]" --domains "[endpoint1-abcdefghijklmnop.z01.azurefd.net]"
+    ```

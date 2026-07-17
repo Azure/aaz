@@ -58,3 +58,14 @@ Get an existing delivery rule within a rule set.
     ```bash
         afd rule show --resource-group RG --profile-name profile1 --rule-set-name ruleSet1 --rule-name rule1
     ```
+
+### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vcnVsZXNldHMve30vcnVsZXMve30=/2026-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/rulesets/{}/rules/{} 2026-04-01-preview -->
+
+#### examples
+
+- Rules_Get
+    ```bash
+        afd rule show --resource-group RG --profile-name profile1 --rule-set-name ruleSet1 --rule-name rule1
+    ```

@@ -30,3 +30,14 @@ Get log report for AFD profile
     ```bash
         afd log-analytic metric list --resource-group RG --profile-name profile1 --metrics "[clientRequestCount]" --date-time-begin 2020-11-04T04:30:00.000Z --date-time-end 2020-11-04T05:00:00.000Z --granularity PT5M --group-by "[protocol]" --custom-domains "[customdomain1.azurecdn.net,customdomain2.azurecdn.net]" --protocols "[https]"
     ```
+
+### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vZ2V0bG9nYW5hbHl0aWNzbWV0cmljcw==/2026-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/getloganalyticsmetrics 2026-04-01-preview -->
+
+#### examples
+
+- LogAnalytics_GetLogAnalyticsMetrics
+    ```bash
+        afd log-analytic metric list --resource-group RG --profile-name profile1 --metrics "[clientRequestCount]" --date-time-begin 2020-11-04T04:30:00.000Z --date-time-end 2020-11-04T05:00:00.000Z --granularity PT5M --group-by "[protocol]" --custom-domains "[customdomain1.azurecdn.net,customdomain2.azurecdn.net]" --protocols "[https]"
+    ```

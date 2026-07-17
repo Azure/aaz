@@ -68,3 +68,29 @@ Update a new Secret within the specified profile.
     ```bash
         afd secret update --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{type:CustomerCertificate,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/certificatename},secretVersion:abcdef1234578900abcdef1234567890,useLatestVersion:False}" --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{type:MtlsCertificateChain,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vaults/kvName/secrets/mTLSCertificateChainname},secretVersion:abcdef1234578900abcdef1234567890}" --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{type:UrlSigningKey,keyId:customKeyId,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/urlsigningkeyname},secretVersion:abcdef1234578900abcdef1234567890}"
     ```
+
+### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vc2VjcmV0cy97fQ==/2026-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/secrets/{} 2026-04-01-preview -->
+
+#### examples
+
+- Secrets_Create
+    ```bash
+        afd secret update --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{type:CustomerCertificate,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/certificatename},secretVersion:abcdef1234578900abcdef1234567890,useLatestVersion:False}"
+    ```
+
+- Secrets_CreateCustomerCertificateType
+    ```bash
+        afd secret update --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{type:CustomerCertificate,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/certificatename},secretVersion:abcdef1234578900abcdef1234567890,useLatestVersion:False}" --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{type:CustomerCertificate,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/certificatename},secretVersion:abcdef1234578900abcdef1234567890,useLatestVersion:False}"
+    ```
+
+- Secrets_CreateMtlsCertificateChainType
+    ```bash
+        afd secret update --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{type:CustomerCertificate,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/certificatename},secretVersion:abcdef1234578900abcdef1234567890,useLatestVersion:False}" --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{type:CustomerCertificate,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/certificatename},secretVersion:abcdef1234578900abcdef1234567890,useLatestVersion:False}" --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{type:MtlsCertificateChain,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vaults/kvName/secrets/mTLSCertificateChainname},secretVersion:abcdef1234578900abcdef1234567890}"
+    ```
+
+- Secrets_CreateUrlSigningKeyType
+    ```bash
+        afd secret update --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{type:CustomerCertificate,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/certificatename},secretVersion:abcdef1234578900abcdef1234567890,useLatestVersion:False}" --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{type:CustomerCertificate,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/certificatename},secretVersion:abcdef1234578900abcdef1234567890,useLatestVersion:False}" --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{type:MtlsCertificateChain,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vaults/kvName/secrets/mTLSCertificateChainname},secretVersion:abcdef1234578900abcdef1234567890}" --resource-group RG --profile-name profile1 --secret-name secret1 --parameters "{type:UrlSigningKey,keyId:customKeyId,secretSource:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.KeyVault/vault/kvName/secrets/urlsigningkeyname},secretVersion:abcdef1234578900abcdef1234567890}"
+    ```
