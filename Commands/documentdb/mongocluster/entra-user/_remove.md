@@ -1,6 +1,6 @@
-# [Command] _documentdb mongocluster entra-user delete_
+# [Command] _documentdb mongocluster entra-user remove_
 
-Delete a Microsoft Entra ID user from a mongo cluster.
+Remove a Microsoft Entra ID principal's access from a mongo cluster.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Delete a Microsoft Entra ID user from a mongo cluster.
 
 #### examples
 
-- Delete an Entra ID user by object ID.
+- Remove an Entra ID user's access by object ID.
     ```bash
-        documentdb mongocluster entra-user delete --object-id 11111111-1111-1111-1111-111111111111 --cluster-name MyCluster -g MyResourceGroup
+        documentdb mongocluster entra-user remove --object-id 11111111-1111-1111-1111-111111111111 --cluster-name MyCluster -g MyResourceGroup
     ```

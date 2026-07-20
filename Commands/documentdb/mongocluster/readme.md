@@ -4,6 +4,9 @@ Manage Mongo Cluster
 
 ## Subgroups
 
+- [entra-user](/Commands/documentdb/mongocluster/entra-user/readme.md)
+: Manage Microsoft Entra ID users on a mongo cluster.
+
 - [firewall-rule](/Commands/documentdb/mongocluster/firewall-rule/readme.md)
 : Manage Firewall Rule
 
@@ -12,9 +15,6 @@ Manage Mongo Cluster
 
 - [replica](/Commands/documentdb/mongocluster/replica/readme.md)
 : Manage Replica
-
-- [entra-user](/Commands/documentdb/mongocluster/entra-user/readme.md)
-: Manage Microsoft Entra ID users on a mongo cluster.
 
 ## Commands
 

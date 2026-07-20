@@ -12,5 +12,5 @@ Get the definition of a Microsoft Entra ID user on a mongo cluster.
 
 - Get an Entra ID user by object ID.
     ```bash
-        documentdb mongocluster entra-user show --object-id 11111111-1111-1111-1111-111111111111 --cluster-name MyCluster -g MyResourceGroup
+        documentdb mongocluster user show --object-id 11111111-1111-1111-1111-111111111111 --cluster-name MyCluster -g MyResourceGroup
     ```

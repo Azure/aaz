@@ -12,5 +12,5 @@ List the Microsoft Entra ID users on a mongo cluster.
 
 - List Entra ID users on a cluster.
     ```bash
-        documentdb mongocluster entra-user list --cluster-name MyCluster -g MyResourceGroup
+        documentdb mongocluster user list --cluster-name MyCluster -g MyResourceGroup
     ```

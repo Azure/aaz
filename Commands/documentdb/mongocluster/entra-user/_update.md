@@ -12,5 +12,5 @@ Update a Microsoft Entra ID user on a mongo cluster.
 
 - Update an Entra ID user's roles.
     ```bash
-        documentdb mongocluster entra-user update --object-id 11111111-1111-1111-1111-111111111111 --cluster-name MyCluster -g MyResourceGroup --role db=admin role=root
+        documentdb mongocluster user update --object-id 11111111-1111-1111-1111-111111111111 --cluster-name MyCluster -g MyResourceGroup --role db=admin role=root
     ```
