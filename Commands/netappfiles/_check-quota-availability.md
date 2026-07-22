@@ -49,3 +49,7 @@ Check if a quota is available
 ### [2026-04-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbG9jYXRpb25zL3t9L2NoZWNrcXVvdGFhdmFpbGFiaWxpdHk=/2026-04-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.netapp/locations/{}/checkquotaavailability 2026-04-01 -->
+
+### [2026-05-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbG9jYXRpb25zL3t9L2NoZWNrcXVvdGFhdmFpbGFiaWxpdHk=/2026-05-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.netapp/locations/{}/checkquotaavailability 2026-05-01 -->
