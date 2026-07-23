@@ -12,5 +12,5 @@ List all the replicas for the mongo cluster.
 
 - List replicas of a cluster.
     ```bash
-        documentdb mongocluster replica list --cluster-name MyCluster -g MyResourceGroup
+        documentdb mongocluster replica list --parent-cluster-name MyCluster -g MyResourceGroup
     ```

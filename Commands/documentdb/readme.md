@@ -5,4 +5,4 @@ Manage Azure DocumentDB clusters.
 ## Subgroups
 
 - [mongocluster](/Commands/documentdb/mongocluster/readme.md)
-: Manage Azure DocumentDB clusters.
+: Manage Azure DocumentDB mongo clusters.
