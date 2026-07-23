@@ -25,3 +25,14 @@ Resets the SMB password for the cache
     ```bash
         netappfiles cache reset-smb-password --resource-group myResourceGroup --account-name account1 --pool-name pool1 --cache-name cache1
     ```
+
+### [2026-05-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXRhcHAvbmV0YXBwYWNjb3VudHMve30vY2FwYWNpdHlwb29scy97fS9jYWNoZXMve30vcmVzZXRzbWJwYXNzd29yZA==/2026-05-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.netapp/netappaccounts/{}/capacitypools/{}/caches/{}/resetsmbpassword 2026-05-01 -->
+
+#### examples
+
+- Caches_ResetSmbPassword
+    ```bash
+        netappfiles cache reset-smb-password --resource-group myResourceGroup --account-name account1 --pool-name pool1 --cache-name cache1
+    ```
