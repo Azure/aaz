@@ -159,7 +159,7 @@
 : Manage Dns Resolver
 
 - [documentdb](/Commands/documentdb/readme.md)
-: Manage Document Db
+: Manage Azure DocumentDB clusters.
 
 - [durabletask](/Commands/durabletask/readme.md)
 : Commands to manage Durabletask schedulers and taskhubs

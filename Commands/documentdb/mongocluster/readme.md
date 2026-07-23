@@ -1,6 +1,6 @@
 # [Group] _documentdb mongocluster_
 
-Manage Mongo Cluster
+Manage Azure DocumentDB mongo clusters.
 
 ## Subgroups
 
