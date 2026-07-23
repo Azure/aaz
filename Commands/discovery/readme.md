@@ -1,20 +1,20 @@
 # [Group] _discovery_
 
-Manage Discovery
+Manage Microsoft Discovery resources.
 
 ## Subgroups
 
 - [bookshelf](/Commands/discovery/bookshelf/readme.md)
-: Manage Bookshelf
+: Manage bookshelves.
 
 - [storage-container](/Commands/discovery/storage-container/readme.md)
-: Manage Storage Container
+: Manage storage containers and storage assets.
 
 - [supercomputer](/Commands/discovery/supercomputer/readme.md)
-: Manage Supercomputer
+: Manage supercomputers and nodepools.
 
 - [tool](/Commands/discovery/tool/readme.md)
-: Manage Tool
+: Manage tools.
 
 - [workspace](/Commands/discovery/workspace/readme.md)
-: Manage Workspace
+: Manage workspaces, projects, and chat model deployments.

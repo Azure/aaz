@@ -1,6 +1,6 @@
 # [Group] _discovery workspace_
 
-Manage Workspace
+Manage workspaces, projects, and chat model deployments.
 
 ## Subgroups
 

@@ -1,6 +1,6 @@
 # [Group] _discovery bookshelf_
 
-Manage Bookshelf
+Manage bookshelves.
 
 ## Subgroups
 

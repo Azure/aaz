@@ -1,6 +1,6 @@
 # [Group] _discovery tool_
 
-Manage Tool
+Manage tools.
 
 ## Commands
 

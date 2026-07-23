@@ -1,6 +1,6 @@
 # [Group] _discovery supercomputer_
 
-Manage Supercomputer
+Manage supercomputers and nodepools.
 
 ## Subgroups
 

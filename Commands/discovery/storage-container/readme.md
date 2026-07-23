@@ -1,6 +1,6 @@
 # [Group] _discovery storage-container_
 
-Manage Storage Container
+Manage storage containers and storage assets.
 
 ## Subgroups
 
