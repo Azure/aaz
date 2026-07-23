@@ -13,6 +13,9 @@ Manage groupings of virtual machines in an Azure Virtual Machine Scale Set (VMSS
 - [instance-view](/Commands/vmss/instance-view/readme.md)
 : Manage Instance View
 
+- [lifecycle-hook-event](/Commands/vmss/lifecycle-hook-event/readme.md)
+: Manage Lifecycle Hook Event
+
 - [nic](/Commands/vmss/nic/readme.md)
 : Manage network interfaces of a VMSS.
 
