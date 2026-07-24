@@ -1,13 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
 <CodeGen plane="mgmt-plane">
-  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/interconnectblocks/{}" version="2026-03-01" swagger="mgmt-plane/compute/ResourceProviders/Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9pbnRlcmNvbm5lY3RCbG9ja3Mve2ludGVyY29ubmVjdEJsb2NrTmFtZX0=/V/MjAyNi0wMy0wMQ=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/interconnectblocks/{}" version="2026-03-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9pbnRlcmNvbm5lY3RCbG9ja3Mve2ludGVyY29ubmVjdEJsb2NrTmFtZX0=/V/MjAyNi0wMy0wMQ=="/>
   <commandGroup name="interconnect-block">
     <command name="show" version="2026-03-01">
-      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/interconnectblocks/{}" version="2026-03-01" swagger="mgmt-plane/compute/ResourceProviders/Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9pbnRlcmNvbm5lY3RCbG9ja3Mve2ludGVyY29ubmVjdEJsb2NrTmFtZX0=/V/MjAyNi0wMy0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/interconnectblocks/{}" version="2026-03-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9pbnRlcmNvbm5lY3RCbG9ja3Mve2ludGVyY29ubmVjdEJsb2NrTmFtZX0=/V/MjAyNi0wMy0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.interconnectBlockName" options="interconnect-block-name name n" required="True" idPart="name">
           <help short="The name of the Interconnect Block."/>
-          <format pattern=""/>
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
@@ -22,17 +21,20 @@
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/interconnectBlocks/{interconnectBlockName}">
           <request method="get">
             <path>
-              <param type="string" name="interconnectBlockName" arg="$Path.interconnectBlockName" required="True">
-                <format pattern=""/>
-              </param>
+              <param type="string" name="interconnectBlockName" arg="$Path.interconnectBlockName" required="True"/>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+                <format maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
                 <format minLength="1"/>
               </param>
             </path>
             <query>
+              <param type="string" name="$expand" arg="$Query.expand">
+                <enum>
+                  <item value="&quot;instanceView&quot;"/>
+                </enum>
+              </param>
               <const readOnly="True" const="True" type="string" name="api-version" required="True">
                 <default value="&quot;2026-03-01&quot;"/>
                 <format minLength="1"/>
@@ -43,7 +45,9 @@
             <body>
               <json var="$Instance">
                 <schema type="object">
-                  <prop readOnly="True" type="string" name="id"/>
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/interconnectBlocks/{}"/>
+                  </prop>
                   <prop type="ResourceLocation" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="placement">
@@ -75,7 +79,9 @@
                             </enum>
                           </prop>
                           <prop type="string" name="message"/>
-                          <prop type="dateTime" name="time"/>
+                          <prop type="dateTime" name="time">
+                            <format protocol="iso"/>
+                          </prop>
                         </item>
                       </prop>
                     </prop>
@@ -84,11 +90,15 @@
                       <prop type="string" name="id"/>
                     </prop>
                     <prop readOnly="True" type="string" name="provisioningState"/>
-                    <prop readOnly="True" type="dateTime" name="provisioningTime"/>
-                    <prop readOnly="True" type="dateTime" name="timeCreated"/>
-                    <prop readOnly="True" type="array<object>" name="virtualMachinesAssociated">
+                    <prop readOnly="True" type="dateTime" name="provisioningTime">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop readOnly="True" type="dateTime" name="timeCreated">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop readOnly="True" type="array<object>" name="virtualMachinesAssociated" identifiers="id">
                       <item type="object">
-                        <prop readOnly="True" type="ResourceId" name="id"/>
+                        <prop readOnly="True" type="string" name="id"/>
                       </item>
                     </prop>
                   </prop>
@@ -98,7 +108,9 @@
                     <prop type="string" name="tier"/>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
-                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="createdBy"/>
                     <prop type="string" name="createdByType">
                       <enum>
@@ -108,7 +120,9 @@
                         <item value="&quot;User&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="lastModifiedBy"/>
                     <prop type="string" name="lastModifiedByType">
                       <enum>
@@ -135,7 +149,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema readOnly="True" type="@ODataV4Format"/>
+                <schema type="@ODataV4Format"/>
               </json>
             </body>
           </response>
@@ -144,11 +158,10 @@
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
     <command name="delete" version="2026-03-01" confirmation="Are you sure you want to perform this operation?">
-      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/interconnectblocks/{}" version="2026-03-01" swagger="mgmt-plane/compute/ResourceProviders/Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9pbnRlcmNvbm5lY3RCbG9ja3Mve2ludGVyY29ubmVjdEJsb2NrTmFtZX0=/V/MjAyNi0wMy0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/interconnectblocks/{}" version="2026-03-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9pbnRlcmNvbm5lY3RCbG9ja3Mve2ludGVyY29ubmVjdEJsb2NrTmFtZX0=/V/MjAyNi0wMy0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.interconnectBlockName" options="interconnect-block-name name n" required="True" idPart="name">
           <help short="The name of the Interconnect Block."/>
-          <format pattern=""/>
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
@@ -158,11 +171,9 @@
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/interconnectBlocks/{interconnectBlockName}">
           <request method="delete">
             <path>
-              <param type="string" name="interconnectBlockName" arg="$Path.interconnectBlockName" required="True">
-                <format pattern=""/>
-              </param>
+              <param type="string" name="interconnectBlockName" arg="$Path.interconnectBlockName" required="True"/>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+                <format maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
                 <format minLength="1"/>
@@ -186,7 +197,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema readOnly="True" type="@ODataV4Format"/>
+                <schema type="@ODataV4Format"/>
               </json>
             </body>
           </response>
@@ -194,11 +205,10 @@
       </operation>
     </command>
     <command name="create" version="2026-03-01" confirmation="">
-      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/interconnectblocks/{}" version="2026-03-01" swagger="mgmt-plane/compute/ResourceProviders/Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9pbnRlcmNvbm5lY3RCbG9ja3Mve2ludGVyY29ubmVjdEJsb2NrTmFtZX0=/V/MjAyNi0wMy0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/interconnectblocks/{}" version="2026-03-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9pbnRlcmNvbm5lY3RCbG9ja3Mve2ludGVyY29ubmVjdEJsb2NrTmFtZX0=/V/MjAyNi0wMy0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.interconnectBlockName" options="interconnect-block-name name n" required="True" idPart="name">
           <help short="The name of the Interconnect Block."/>
-          <format pattern=""/>
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
@@ -209,11 +219,11 @@
         </arg>
       </argGroup>
       <argGroup name="Placement">
-        <arg type="array<string>" var="$resource.placement.excludeZones" options="placement-exclude-zone exclude-zone" group="Placement">
+        <arg type="array<string>" var="$resource.placement.excludeZones" options="placement-exclude-zones exclude-zones" group="Placement">
           <help short="This property supplements the 'zonePlacementPolicy' property. If 'zonePlacementPolicy' is set to 'Any'/'Auto', availability zone selected by the system must not be present in the list of availability zones passed with 'excludeZones'. If 'excludeZones' is not provided, all availability zones in region will be considered for selection."/>
           <item type="string"/>
         </arg>
-        <arg type="array<string>" var="$resource.placement.includeZones" options="placement-include-zone include-zone" group="Placement">
+        <arg type="array<string>" var="$resource.placement.includeZones" options="placement-include-zones include-zones" group="Placement">
           <help short="This property supplements the 'zonePlacementPolicy' property. If 'zonePlacementPolicy' is set to 'Any'/'Auto', availability zone selected by the system must be present in the list of availability zones passed with 'includeZones'. If 'includeZones' is not provided, all availability zones in region will be considered for selection."/>
           <item type="string"/>
         </arg>
@@ -256,11 +266,9 @@
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/interconnectBlocks/{interconnectBlockName}">
           <request method="put">
             <path>
-              <param type="string" name="interconnectBlockName" arg="$Path.interconnectBlockName" required="True">
-                <format pattern=""/>
-              </param>
+              <param type="string" name="interconnectBlockName" arg="$Path.interconnectBlockName" required="True"/>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+                <format maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
                 <format minLength="1"/>
@@ -316,7 +324,9 @@
             <body>
               <json var="$Instance">
                 <schema type="object">
-                  <prop readOnly="True" type="string" name="id"/>
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/interconnectBlocks/{}"/>
+                  </prop>
                   <prop type="ResourceLocation" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="placement">
@@ -348,7 +358,9 @@
                             </enum>
                           </prop>
                           <prop type="string" name="message"/>
-                          <prop type="dateTime" name="time"/>
+                          <prop type="dateTime" name="time">
+                            <format protocol="iso"/>
+                          </prop>
                         </item>
                       </prop>
                     </prop>
@@ -357,11 +369,15 @@
                       <prop type="string" name="id"/>
                     </prop>
                     <prop readOnly="True" type="string" name="provisioningState"/>
-                    <prop readOnly="True" type="dateTime" name="provisioningTime"/>
-                    <prop readOnly="True" type="dateTime" name="timeCreated"/>
-                    <prop readOnly="True" type="array<object>" name="virtualMachinesAssociated">
+                    <prop readOnly="True" type="dateTime" name="provisioningTime">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop readOnly="True" type="dateTime" name="timeCreated">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop readOnly="True" type="array<object>" name="virtualMachinesAssociated" identifiers="id">
                       <item type="object">
-                        <prop readOnly="True" type="ResourceId" name="id"/>
+                        <prop readOnly="True" type="string" name="id"/>
                       </item>
                     </prop>
                   </prop>
@@ -371,7 +387,9 @@
                     <prop type="string" name="tier"/>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
-                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="createdBy"/>
                     <prop type="string" name="createdByType">
                       <enum>
@@ -381,7 +399,9 @@
                         <item value="&quot;User&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="lastModifiedBy"/>
                     <prop type="string" name="lastModifiedByType">
                       <enum>
@@ -408,7 +428,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema readOnly="True" type="@ODataV4Format"/>
+                <schema type="@ODataV4Format"/>
               </json>
             </body>
           </response>
@@ -417,21 +437,20 @@
       <output type="object" ref="$Instance" clientFlatten="True"/>
     </command>
     <command name="update" version="2026-03-01" confirmation="">
-      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/interconnectblocks/{}" version="2026-03-01" swagger="mgmt-plane/compute/ResourceProviders/Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9pbnRlcmNvbm5lY3RCbG9ja3Mve2ludGVyY29ubmVjdEJsb2NrTmFtZX0=/V/MjAyNi0wMy0wMQ=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/interconnectblocks/{}" version="2026-03-01" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9pbnRlcmNvbm5lY3RCbG9ja3Mve2ludGVyY29ubmVjdEJsb2NrTmFtZX0=/V/MjAyNi0wMy0wMQ=="/>
       <argGroup name="">
         <arg type="string" var="$Path.interconnectBlockName" options="interconnect-block-name name n" required="True" idPart="name">
           <help short="The name of the Interconnect Block."/>
-          <format pattern=""/>
         </arg>
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Placement">
-        <arg nullable="True" type="array<string>" var="$resource.placement.excludeZones" options="placement-exclude-zone exclude-zone" group="Placement">
+        <arg nullable="True" type="array<string>" var="$resource.placement.excludeZones" options="placement-exclude-zones exclude-zones" group="Placement">
           <help short="This property supplements the 'zonePlacementPolicy' property. If 'zonePlacementPolicy' is set to 'Any'/'Auto', availability zone selected by the system must not be present in the list of availability zones passed with 'excludeZones'. If 'excludeZones' is not provided, all availability zones in region will be considered for selection."/>
           <item nullable="True" type="string"/>
         </arg>
-        <arg nullable="True" type="array<string>" var="$resource.placement.includeZones" options="placement-include-zone include-zone" group="Placement">
+        <arg nullable="True" type="array<string>" var="$resource.placement.includeZones" options="placement-include-zones include-zones" group="Placement">
           <help short="This property supplements the 'zonePlacementPolicy' property. If 'zonePlacementPolicy' is set to 'Any'/'Auto', availability zone selected by the system must be present in the list of availability zones passed with 'includeZones'. If 'includeZones' is not provided, all availability zones in region will be considered for selection."/>
           <item nullable="True" type="string"/>
         </arg>
@@ -470,11 +489,9 @@
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/interconnectBlocks/{interconnectBlockName}">
           <request method="get">
             <path>
-              <param type="string" name="interconnectBlockName" arg="$Path.interconnectBlockName" required="True">
-                <format pattern=""/>
-              </param>
+              <param type="string" name="interconnectBlockName" arg="$Path.interconnectBlockName" required="True"/>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+                <format maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
                 <format minLength="1"/>
@@ -490,8 +507,10 @@
           <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="object">
-                  <prop readOnly="True" type="string" name="id"/>
+                <schema type="object" cls="InterconnectBlock_read">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/interconnectBlocks/{}"/>
+                  </prop>
                   <prop type="ResourceLocation" name="location" required="True"/>
                   <prop readOnly="True" type="string" name="name"/>
                   <prop type="object" name="placement">
@@ -523,7 +542,9 @@
                             </enum>
                           </prop>
                           <prop type="string" name="message"/>
-                          <prop type="dateTime" name="time"/>
+                          <prop type="dateTime" name="time">
+                            <format protocol="iso"/>
+                          </prop>
                         </item>
                       </prop>
                     </prop>
@@ -532,11 +553,15 @@
                       <prop type="string" name="id"/>
                     </prop>
                     <prop readOnly="True" type="string" name="provisioningState"/>
-                    <prop readOnly="True" type="dateTime" name="provisioningTime"/>
-                    <prop readOnly="True" type="dateTime" name="timeCreated"/>
-                    <prop readOnly="True" type="array<object>" name="virtualMachinesAssociated">
+                    <prop readOnly="True" type="dateTime" name="provisioningTime">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop readOnly="True" type="dateTime" name="timeCreated">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop readOnly="True" type="array<object>" name="virtualMachinesAssociated" identifiers="id">
                       <item type="object">
-                        <prop readOnly="True" type="ResourceId" name="id"/>
+                        <prop readOnly="True" type="string" name="id"/>
                       </item>
                     </prop>
                   </prop>
@@ -546,7 +571,9 @@
                     <prop type="string" name="tier"/>
                   </prop>
                   <prop readOnly="True" type="object" name="systemData">
-                    <prop type="dateTime" name="createdAt"/>
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="createdBy"/>
                     <prop type="string" name="createdByType">
                       <enum>
@@ -556,7 +583,9 @@
                         <item value="&quot;User&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="dateTime" name="lastModifiedAt"/>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
                     <prop type="string" name="lastModifiedBy"/>
                     <prop type="string" name="lastModifiedByType">
                       <enum>
@@ -583,7 +612,7 @@
           <response isError="True">
             <body>
               <json>
-                <schema readOnly="True" type="@ODataV4Format"/>
+                <schema type="@ODataV4Format"/>
               </json>
             </body>
           </response>
@@ -629,11 +658,9 @@
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/interconnectBlocks/{interconnectBlockName}">
           <request method="put">
             <path>
-              <param type="string" name="interconnectBlockName" arg="$Path.interconnectBlockName" required="True">
-                <format pattern=""/>
-              </param>
+              <param type="string" name="interconnectBlockName" arg="$Path.interconnectBlockName" required="True"/>
               <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+                <format maxLength="90" minLength="1"/>
               </param>
               <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True">
                 <format minLength="1"/>
@@ -652,100 +679,14 @@
           <response statusCode="200 201">
             <body>
               <json var="$Instance">
-                <schema type="object">
-                  <prop readOnly="True" type="string" name="id"/>
-                  <prop type="ResourceLocation" name="location" required="True"/>
-                  <prop readOnly="True" type="string" name="name"/>
-                  <prop type="object" name="placement">
-                    <prop type="array<string>" name="excludeZones">
-                      <item type="string"/>
-                    </prop>
-                    <prop type="array<string>" name="includeZones">
-                      <item type="string"/>
-                    </prop>
-                    <prop type="string" name="zonePlacementPolicy">
-                      <enum>
-                        <item value="&quot;Any&quot;"/>
-                        <item value="&quot;Auto&quot;"/>
-                      </enum>
-                    </prop>
-                  </prop>
-                  <prop type="object" name="properties">
-                    <prop readOnly="True" type="object" name="instanceView">
-                      <prop readOnly="True" type="integer32" name="currentCapacity"/>
-                      <prop readOnly="True" type="array<object>" name="statuses">
-                        <item type="object">
-                          <prop type="string" name="code"/>
-                          <prop type="string" name="displayStatus"/>
-                          <prop type="string" name="level">
-                            <enum>
-                              <item value="&quot;Error&quot;"/>
-                              <item value="&quot;Info&quot;"/>
-                              <item value="&quot;Warning&quot;"/>
-                            </enum>
-                          </prop>
-                          <prop type="string" name="message"/>
-                          <prop type="dateTime" name="time"/>
-                        </item>
-                      </prop>
-                    </prop>
-                    <prop readOnly="True" type="string" name="interconnectBlockId"/>
-                    <prop type="object" name="interconnectGroup" required="True">
-                      <prop type="string" name="id"/>
-                    </prop>
-                    <prop readOnly="True" type="string" name="provisioningState"/>
-                    <prop readOnly="True" type="dateTime" name="provisioningTime"/>
-                    <prop readOnly="True" type="dateTime" name="timeCreated"/>
-                    <prop readOnly="True" type="array<object>" name="virtualMachinesAssociated">
-                      <item type="object">
-                        <prop readOnly="True" type="ResourceId" name="id"/>
-                      </item>
-                    </prop>
-                  </prop>
-                  <prop type="object" name="sku" required="True">
-                    <prop type="integer64" name="capacity"/>
-                    <prop type="string" name="name"/>
-                    <prop type="string" name="tier"/>
-                  </prop>
-                  <prop readOnly="True" type="object" name="systemData">
-                    <prop type="dateTime" name="createdAt"/>
-                    <prop type="string" name="createdBy"/>
-                    <prop type="string" name="createdByType">
-                      <enum>
-                        <item value="&quot;Application&quot;"/>
-                        <item value="&quot;Key&quot;"/>
-                        <item value="&quot;ManagedIdentity&quot;"/>
-                        <item value="&quot;User&quot;"/>
-                      </enum>
-                    </prop>
-                    <prop type="dateTime" name="lastModifiedAt"/>
-                    <prop type="string" name="lastModifiedBy"/>
-                    <prop type="string" name="lastModifiedByType">
-                      <enum>
-                        <item value="&quot;Application&quot;"/>
-                        <item value="&quot;Key&quot;"/>
-                        <item value="&quot;ManagedIdentity&quot;"/>
-                        <item value="&quot;User&quot;"/>
-                      </enum>
-                    </prop>
-                  </prop>
-                  <prop type="object" name="tags">
-                    <additionalProp>
-                      <item type="string"/>
-                    </additionalProp>
-                  </prop>
-                  <prop readOnly="True" type="string" name="type"/>
-                  <prop type="array<string>" name="zones">
-                    <item type="string"/>
-                  </prop>
-                </schema>
+                <schema type="@InterconnectBlock_read"/>
               </json>
             </body>
           </response>
           <response isError="True">
             <body>
               <json>
-                <schema readOnly="True" type="@ODataV4Format"/>
+                <schema type="@ODataV4Format"/>
               </json>
             </body>
           </response>

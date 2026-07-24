@@ -10,7 +10,7 @@ Delete an Interconnect Block. The operation is only allowed when there are no vi
 
 #### examples
 
-- Delete with confirmation
+- Delete an Interconnect Block.
     ```bash
         interconnect-block delete --name training-icb-001 --resource-group ai-training-rg
     ```
