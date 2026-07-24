@@ -212,6 +212,9 @@
 - [informatica](/Commands/informatica/readme.md)
 : Manage all resources related to Informatica within the Azure CLI.
 
+- [interconnect-block](/Commands/interconnect-block/readme.md)
+: Manage Interconnect Block
+
 - [k8s-runtime](/Commands/k8s-runtime/readme.md)
 : Manage Arc Kubernetes Runtime resources
 
