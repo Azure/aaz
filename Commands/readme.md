@@ -144,7 +144,7 @@
 : Manage resources with devcenter.
 
 - [discovery](/Commands/discovery/readme.md)
-: Manage Discovery
+: Manage Microsoft Discovery resources.
 
 - [disk](/Commands/disk/readme.md)
 : Manage Azure Managed Disks.
@@ -211,6 +211,9 @@
 
 - [informatica](/Commands/informatica/readme.md)
 : Manage all resources related to Informatica within the Azure CLI.
+
+- [interconnect](/Commands/interconnect/readme.md)
+: Manage Interconnect
 
 - [k8s-runtime](/Commands/k8s-runtime/readme.md)
 : Manage Arc Kubernetes Runtime resources
