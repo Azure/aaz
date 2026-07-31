@@ -1,8 +1,8 @@
 # [Group] _mongo-db_
 
-Manage MongoDB
+Manage Mongo Db
 
 ## Subgroups
 
 - [atlas](/Commands/mongo-db/atlas/readme.md)
-: Manage MongoDB Atlas
+: Manage Atlas

@@ -144,7 +144,7 @@
 : Manage resources with devcenter.
 
 - [discovery](/Commands/discovery/readme.md)
-: Manage Discovery
+: Manage Microsoft Discovery resources.
 
 - [disk](/Commands/disk/readme.md)
 : Manage Azure Managed Disks.
@@ -253,6 +253,9 @@
 
 - [mobile-network](/Commands/mobile-network/readme.md)
 : Manage mobile network
+
+- [mongo-db](/Commands/mongo-db/readme.md)
+: Manage Mongo Db
 
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.
