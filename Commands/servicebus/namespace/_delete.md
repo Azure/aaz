@@ -25,3 +25,14 @@ Delete an existing namespace. This operation also removes all associated resourc
     ```bash
         servicebus namespace delete --resource-group myresourcegroup --name mynamespace
     ```
+
+### [2026-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zZXJ2aWNlYnVzL25hbWVzcGFjZXMve30=/2026-01-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.servicebus/namespaces/{} 2026-01-01 -->
+
+#### examples
+
+- Deletes the Service Bus Namespace
+    ```bash
+        servicebus namespace delete --resource-group myresourcegroup --name mynamespace
+    ```

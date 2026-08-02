@@ -35,3 +35,20 @@ List the available namespaces within a resource group.
     ```bash
         servicebus namespace list
     ```
+
+### [2026-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zZXJ2aWNlYnVzL25hbWVzcGFjZXM=/2026-01-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.servicebus/namespaces 2026-01-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.servicebus/namespaces 2026-01-01 -->
+
+#### examples
+
+- List the Service Bus Namespaces under resourcegroup.
+    ```bash
+        servicebus namespace list --resource-group myresourcegroup
+    ```
+
+- List the Service Bus Namespaces under subscription
+    ```bash
+        servicebus namespace list
+    ```
