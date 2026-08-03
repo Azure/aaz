@@ -10,11 +10,14 @@ Manage Namespace
 - [authorization-rule](/Commands/eventhubs/namespace/authorization-rule/readme.md)
 : Eventhub namespace authorization-rule.
 
+- [identity](/Commands/eventhubs/namespace/identity/readme.md)
+: Manage Identity
+
 - [network-rule-set](/Commands/eventhubs/namespace/network-rule-set/readme.md)
 : Manage Azure EventHubs networkruleset for namespace
 
 - [nsp-configuration](/Commands/eventhubs/namespace/nsp-configuration/readme.md)
-: Manage Network Security Perimeter Configurations
+: Manage Nsp Configurations
 
 - [private-endpoint-connection](/Commands/eventhubs/namespace/private-endpoint-connection/readme.md)
 : Manage eventhubs namespace private endpoint connection.
