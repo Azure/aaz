@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/{resourceuri}/providers/microsoft.mission/approvals/{}/notifyinitiator" version="2026-03-01-preview" swagger="mgmt-plane/mission/ResourceProviders/Microsoft.Mission/Paths/L3tyZXNvdXJjZVVyaX0vcHJvdmlkZXJzL01pY3Jvc29mdC5NaXNzaW9uL2FwcHJvdmFscy97YXBwcm92YWxOYW1lfS9ub3RpZnlJbml0aWF0b3I=/V/MjAyNi0wMy0wMS1wcmV2aWV3"/>
+  <commandGroup name="mission approval">
+    <command name="notify-initiator" version="2026-03-01-preview">
+      <resource id="/{resourceuri}/providers/microsoft.mission/approvals/{}/notifyinitiator" version="2026-03-01-preview" swagger="mgmt-plane/mission/ResourceProviders/Microsoft.Mission/Paths/L3tyZXNvdXJjZVVyaX0vcHJvdmlkZXJzL01pY3Jvc29mdC5NaXNzaW9uL2FwcHJvdmFscy97YXBwcm92YWxOYW1lfS9ub3RpZnlJbml0aWF0b3I=/V/MjAyNi0wMy0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.approvalName" options="approval-name" required="True">
+          <help short="The name of the approvals resource."/>
+          <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+        </arg>
+        <arg type="string" var="$Path.resourceUri" options="resource-uri" required="True">
+          <help short="The fully qualified Azure Resource manager identifier of the resource."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="string" var="$body.approvalStatus" options="approval-status" required="True" group="Body">
+          <help short="Approval status indicating 'Approved' or 'Rejected'"/>
+          <enum>
+            <item name="Approved" value="&quot;Approved&quot;"/>
+            <item name="Rejected" value="&quot;Rejected&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <operation operationId="Approval_NotifyInitiator">
+        <longRunning finalStateVia="location"/>
+        <http path="/{resourceUri}/providers/Microsoft.Mission/approvals/{approvalName}/notifyInitiator">
+          <request method="post">
+            <path>
+              <param type="string" name="approvalName" arg="$Path.approvalName" required="True">
+                <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+              </param>
+              <param type="string" name="resourceUri" arg="$Path.resourceUri" required="True" skipUrlEncoding="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-03-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="string" name="approvalStatus" arg="$body.approvalStatus" required="True">
+                    <enum>
+                      <item value="&quot;Approved&quot;"/>
+                      <item value="&quot;Rejected&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="message" required="True"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

@@ -1,0 +1,3063 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.mission/virtualenclaves/{}" version="2026-03-01-preview" swagger="mgmt-plane/mission/ResourceProviders/Microsoft.Mission/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWlzc2lvbi92aXJ0dWFsRW5jbGF2ZXMve3ZpcnR1YWxFbmNsYXZlTmFtZX0=/V/MjAyNi0wMy0wMS1wcmV2aWV3"/>
+  <commandGroup name="mission virtual-enclave">
+    <command name="show" version="2026-03-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.mission/virtualenclaves/{}" version="2026-03-01-preview" swagger="mgmt-plane/mission/ResourceProviders/Microsoft.Mission/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWlzc2lvbi92aXJ0dWFsRW5jbGF2ZXMve3ZpcnR1YWxFbmNsYXZlTmFtZX0=/V/MjAyNi0wMy0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.virtualEnclaveName" options="virtual-enclave-name name n" required="True" idPart="name">
+          <help short="The name of the enclaveResource Resource"/>
+          <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualEnclave_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="virtualEnclaveName" arg="$Path.virtualEnclaveName" required="True">
+                <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-03-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Mission/virtualEnclaves/{}"/>
+                  </prop>
+                  <prop type="IdentityObject" name="identity">
+                    <prop readOnly="True" type="uuid" name="principalId"/>
+                    <prop readOnly="True" type="uuid" name="tenantId"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;None&quot;"/>
+                        <item value="&quot;SystemAssigned&quot;"/>
+                        <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                        <item value="&quot;UserAssigned&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="userAssignedIdentities">
+                      <additionalProp>
+                        <item nullable="True" type="object">
+                          <prop readOnly="True" type="uuid" name="clientId"/>
+                          <prop readOnly="True" type="uuid" name="principalId"/>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="object" name="approvalSettings">
+                      <prop type="@ApprovalSettingConfiguration_read" name="connectionCreation"/>
+                      <prop type="@ApprovalSettingConfiguration_read" name="connectionUpdate"/>
+                      <prop type="object" name="enclaveEndpointUpdate" cls="ApprovalSettingConfiguration_read">
+                        <prop type="string" name="approvalPolicy">
+                          <enum>
+                            <item value="&quot;NotRequired&quot;"/>
+                            <item value="&quot;Required&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<object>" name="mandatoryApprovers" identifiers="approverEntraId">
+                          <item type="object">
+                            <prop type="string" name="approverEntraId" required="True"/>
+                          </item>
+                        </prop>
+                        <prop type="integer32" name="minimumApproversRequired">
+                          <format minimum="0"/>
+                        </prop>
+                      </prop>
+                      <prop type="@ApprovalSettingConfiguration_read" name="enclaveMaintenanceMode"/>
+                    </prop>
+                    <prop type="boolean" name="bastionEnabled">
+                      <default value="false"/>
+                    </prop>
+                    <prop type="ResourceId" name="communityResourceId" required="True"/>
+                    <prop type="ResourceId" name="dedicatedHubResourceId"/>
+                    <prop readOnly="True" type="object" name="enclaveAddressSpaces">
+                      <prop type="string" name="enclaveAddressSpace"/>
+                      <prop type="string" name="managedAddressSpace"/>
+                    </prop>
+                    <prop type="object" name="enclaveDefaultSettings">
+                      <prop type="string" name="diagnosticDestination">
+                        <default value="&quot;EnclaveOnly&quot;"/>
+                        <enum>
+                          <item value="&quot;Both&quot;"/>
+                          <item value="&quot;CommunityOnly&quot;"/>
+                          <item value="&quot;EnclaveOnly&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="keyVaultResourceId"/>
+                      <prop readOnly="True" type="array<ResourceId>" name="logAnalyticsResourceIdCollection">
+                        <item type="ResourceId"/>
+                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="storageAccountResourceId"/>
+                    </prop>
+                    <prop type="array<object>" name="enclaveRoleAssignments">
+                      <item type="object" cls="RoleAssignmentItem_read">
+                        <prop type="string" name="condition"/>
+                        <prop type="array<object>" name="principals">
+                          <item type="object" cls="Principal_read">
+                            <prop type="string" name="id" required="True"/>
+                            <prop type="string" name="type" required="True">
+                              <enum>
+                                <item value="&quot;Group&quot;"/>
+                                <item value="&quot;ServicePrincipal&quot;"/>
+                                <item value="&quot;User&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="string" name="roleDefinitionId" required="True"/>
+                      </item>
+                    </prop>
+                    <prop type="object" name="enclaveVirtualNetwork" required="True">
+                      <prop type="boolean" name="allowSubnetCommunication">
+                        <default value="false"/>
+                      </prop>
+                      <prop type="string" name="customCidrRange"/>
+                      <prop type="string" name="networkName"/>
+                      <prop type="string" name="networkSize"/>
+                      <prop type="array<object>" name="subnetConfigurations">
+                        <item type="object">
+                          <prop readOnly="True" type="string" name="addressPrefix"/>
+                          <prop type="integer32" name="networkPrefixSize" required="True"/>
+                          <prop readOnly="True" type="ResourceId" name="networkSecurityGroupResourceId"/>
+                          <prop type="string" name="subnetDelegation"/>
+                          <prop type="string" name="subnetName" required="True"/>
+                          <prop readOnly="True" type="ResourceId" name="subnetResourceId"/>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop type="array<object>" name="governedServiceList">
+                      <item type="object">
+                        <prop type="string" name="enforcement">
+                          <enum>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="array<string>" name="initiatives">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="string" name="option">
+                          <enum>
+                            <item value="&quot;Allow&quot;"/>
+                            <item value="&quot;Deny&quot;"/>
+                            <item value="&quot;ExceptionOnly&quot;"/>
+                            <item value="&quot;NotApplicable&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="policyAction">
+                          <enum>
+                            <item value="&quot;AuditOnly&quot;"/>
+                            <item value="&quot;Enforce&quot;"/>
+                            <item value="&quot;None&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="serviceId" required="True">
+                          <enum>
+                            <item value="&quot;AKS&quot;"/>
+                            <item value="&quot;AppService&quot;"/>
+                            <item value="&quot;AzureFirewalls&quot;"/>
+                            <item value="&quot;ContainerRegistry&quot;"/>
+                            <item value="&quot;CosmosDB&quot;"/>
+                            <item value="&quot;DataConnectors&quot;"/>
+                            <item value="&quot;Insights&quot;"/>
+                            <item value="&quot;KeyVault&quot;"/>
+                            <item value="&quot;Logic&quot;"/>
+                            <item value="&quot;MicrosoftSQL&quot;"/>
+                            <item value="&quot;Monitoring&quot;"/>
+                            <item value="&quot;PostgreSQL&quot;"/>
+                            <item value="&quot;PrivateDNSZones&quot;"/>
+                            <item value="&quot;ServiceBus&quot;"/>
+                            <item value="&quot;Storage&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="serviceName"/>
+                      </item>
+                    </prop>
+                    <prop type="object" name="maintenanceModeConfiguration">
+                      <prop type="string" name="justification">
+                        <default value="&quot;Off&quot;"/>
+                        <enum>
+                          <item value="&quot;Governance&quot;"/>
+                          <item value="&quot;Networking&quot;"/>
+                          <item value="&quot;Off&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="mode" required="True">
+                        <default value="&quot;Off&quot;"/>
+                        <enum>
+                          <item value="&quot;Advanced&quot;"/>
+                          <item value="&quot;CanNotDelete&quot;"/>
+                          <item value="&quot;General&quot;"/>
+                          <item value="&quot;Off&quot;"/>
+                          <item value="&quot;On&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="array<@Principal_read>" name="principals">
+                        <default value="[]"/>
+                        <item type="@Principal_read"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="managedOnBehalfOfConfiguration">
+                      <prop type="array<object>" name="moboBrokerResources" identifiers="id">
+                        <item type="object">
+                          <prop type="ResourceId" name="id"/>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="managedResourceGroupName"/>
+                    <prop type="object" name="monitoringSettings">
+                      <prop type="array<object>" name="diagnosticDestinations">
+                        <item type="object" cls="MonitoringDestination_read">
+                          <prop type="ResourceId" name="customWorkspaceResourceId"/>
+                          <prop type="string" name="destinationType" required="True">
+                            <default value="&quot;EnclaveWorkspace&quot;"/>
+                            <enum>
+                              <item value="&quot;CommunityWorkspace&quot;"/>
+                              <item value="&quot;CustomWorkspace&quot;"/>
+                              <item value="&quot;EnclaveWorkspace&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="diagnosticSettingsName"/>
+                        </item>
+                      </prop>
+                      <prop type="@MonitoringDestination_read" name="flowLogDestination"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Creating&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;NotSpecified&quot;"/>
+                        <item value="&quot;Running&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="rbacInheritance">
+                      <default value="&quot;Disabled&quot;"/>
+                      <enum>
+                        <item value="&quot;Disabled&quot;"/>
+                        <item value="&quot;Enabled&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="array<ResourceId>" name="resourceCollection">
+                      <item type="ResourceId"/>
+                    </prop>
+                    <prop type="string" name="workloadResourceVisibility">
+                      <default value="&quot;Disabled&quot;"/>
+                      <enum>
+                        <item value="&quot;Disabled&quot;"/>
+                        <item value="&quot;Enabled&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<@RoleAssignmentItem_read>" name="workloadRoleAssignments">
+                      <item type="@RoleAssignmentItem_read"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2026-03-01-preview" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.mission/virtualenclaves/{}" version="2026-03-01-preview" swagger="mgmt-plane/mission/ResourceProviders/Microsoft.Mission/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWlzc2lvbi92aXJ0dWFsRW5jbGF2ZXMve3ZpcnR1YWxFbmNsYXZlTmFtZX0=/V/MjAyNi0wMy0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.virtualEnclaveName" options="virtual-enclave-name name n" required="True" idPart="name">
+          <help short="The name of the enclaveResource Resource"/>
+          <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualEnclave_Delete">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="virtualEnclaveName" arg="$Path.virtualEnclaveName" required="True">
+                <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-03-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response statusCode="204"/>
+          <response statusCode="200 201"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="create" version="2026-03-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.mission/virtualenclaves/{}" version="2026-03-01-preview" swagger="mgmt-plane/mission/ResourceProviders/Microsoft.Mission/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWlzc2lvbi92aXJ0dWFsRW5jbGF2ZXMve3ZpcnR1YWxFbmNsYXZlTmFtZX0=/V/MjAyNi0wMy0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.virtualEnclaveName" options="virtual-enclave-name name n" required="True" idPart="name">
+          <help short="The name of the enclaveResource Resource"/>
+          <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Identity">
+        <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Identity">
+          <blank value="&quot;True&quot;"/>
+          <help short="Set the system managed identity."/>
+        </arg>
+        <arg type="string" var="$resource.identity.type" options="type" hide="True" group="Identity">
+          <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
+          <enum>
+            <item name="None" value="&quot;None&quot;"/>
+            <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
+            <item name="SystemAssigned,UserAssigned" value="&quot;SystemAssigned,UserAssigned&quot;"/>
+            <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
+          </enum>
+        </arg>
+        <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Identity">
+          <blank value="[]"/>
+          <help short="Set the user managed identities."/>
+          <item type="string"/>
+        </arg>
+        <arg type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+          <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
+          <additionalProp>
+            <item nullable="True" type="object">
+              <blank value="{}"/>
+            </item>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="object" var="$resource.properties.approvalSettings" options="approval-settings" group="Properties">
+          <help short="Approval requirements for various actions on the enclave's resources."/>
+          <arg type="@ApprovalSettingConfiguration_create" var="$resource.properties.approvalSettings.connectionCreation" options="connection-creation">
+            <help short="Approval configuration for connection creation."/>
+          </arg>
+          <arg type="@ApprovalSettingConfiguration_create" var="$resource.properties.approvalSettings.connectionUpdate" options="connection-update">
+            <help short="Approval configuration for connection updates."/>
+          </arg>
+          <arg type="object" var="$resource.properties.approvalSettings.enclaveEndpointUpdate" options="enclave-endpoint-update" cls="ApprovalSettingConfiguration_create">
+            <help short="Approval configuration for enclave endpoint updates."/>
+            <arg type="string" var="@ApprovalSettingConfiguration_create.approvalPolicy" options="approval-policy">
+              <help short="Approval policy (Required or NotRequired)."/>
+              <enum>
+                <item name="NotRequired" value="&quot;NotRequired&quot;"/>
+                <item name="Required" value="&quot;Required&quot;"/>
+              </enum>
+            </arg>
+            <arg type="array<object>" var="@ApprovalSettingConfiguration_create.mandatoryApprovers" options="mandatory-approvers">
+              <help short="List of mandatory approvers for this approval setting."/>
+              <item type="object">
+                <arg type="string" var="@ApprovalSettingConfiguration_create.mandatoryApprovers[].approverEntraId" options="approver-entra-id" required="True">
+                  <help short="EntraId of the approver"/>
+                </arg>
+              </item>
+            </arg>
+            <arg type="integer32" var="@ApprovalSettingConfiguration_create.minimumApproversRequired" options="minimum-approvers-required">
+              <help short="Minimum number of approvers required for this approval setting."/>
+              <format minimum="0"/>
+            </arg>
+          </arg>
+          <arg type="@ApprovalSettingConfiguration_create" var="$resource.properties.approvalSettings.enclaveMaintenanceMode" options="enclave-maintenance-mode">
+            <help short="Approval configuration for enclave maintenance mode."/>
+          </arg>
+        </arg>
+        <arg type="boolean" var="$resource.properties.bastionEnabled" options="bastion-enabled" group="Properties">
+          <help short="Deploy Bastion service (True or False)."/>
+          <default value="false"/>
+        </arg>
+        <arg type="ResourceId" var="$resource.properties.communityResourceId" options="community-resource-id" group="Properties">
+          <help short="Community Resource Id."/>
+        </arg>
+        <arg type="ResourceId" var="$resource.properties.dedicatedHubResourceId" options="dedicated-hub-resource-id" group="Properties">
+          <help short="DedicatedHub Resource ID."/>
+        </arg>
+        <arg type="object" var="$resource.properties.enclaveDefaultSettings" options="enclave-default-settings" group="Properties">
+          <help short="Enclave default settings."/>
+          <arg type="string" var="$resource.properties.enclaveDefaultSettings.diagnosticDestination" options="diagnostic-destination">
+            <help short="Diagnostic Destination."/>
+            <default value="&quot;EnclaveOnly&quot;"/>
+            <enum>
+              <item name="Both" value="&quot;Both&quot;"/>
+              <item name="CommunityOnly" value="&quot;CommunityOnly&quot;"/>
+              <item name="EnclaveOnly" value="&quot;EnclaveOnly&quot;"/>
+            </enum>
+          </arg>
+        </arg>
+        <arg type="array<object>" var="$resource.properties.enclaveRoleAssignments" options="enclave-role-assignments" group="Properties">
+          <help short="Enclave role assignments"/>
+          <item type="object" cls="RoleAssignmentItem_create">
+            <arg type="string" var="@RoleAssignmentItem_create.condition" options="condition">
+              <help short="Condition under which the principal can be granted permission"/>
+            </arg>
+            <arg type="array<object>" var="@RoleAssignmentItem_create.principals" options="principals">
+              <help short="List of principal IDs to which to assign this role definition"/>
+              <item type="object" cls="Principal_create">
+                <arg type="string" var="@Principal_create.id" options="id" required="True">
+                  <help short="The object id associated with the principal"/>
+                </arg>
+                <arg type="string" var="@Principal_create.type" options="type" required="True">
+                  <help short="The type of the object id. We currently allow users, groups, and service principals"/>
+                  <enum>
+                    <item name="Group" value="&quot;Group&quot;"/>
+                    <item name="ServicePrincipal" value="&quot;ServicePrincipal&quot;"/>
+                    <item name="User" value="&quot;User&quot;"/>
+                  </enum>
+                </arg>
+              </item>
+            </arg>
+            <arg type="string" var="@RoleAssignmentItem_create.roleDefinitionId" options="role-definition-id" required="True">
+              <help short="Role definition identifier"/>
+            </arg>
+          </item>
+        </arg>
+        <arg type="object" var="$resource.properties.enclaveVirtualNetwork" options="enclave-virtual-network" group="Properties">
+          <help short="Virtual Network."/>
+          <arg type="boolean" var="$resource.properties.enclaveVirtualNetwork.allowSubnetCommunication" options="allow-subnet-communication">
+            <help short="Allow Subnet Communication."/>
+            <default value="false"/>
+          </arg>
+          <arg type="string" var="$resource.properties.enclaveVirtualNetwork.customCidrRange" options="custom-cidr-range">
+            <help short="Custom CIDR Range."/>
+          </arg>
+          <arg type="string" var="$resource.properties.enclaveVirtualNetwork.networkName" options="network-name">
+            <help short="Network Name."/>
+          </arg>
+          <arg type="string" var="$resource.properties.enclaveVirtualNetwork.networkSize" options="network-size">
+            <help short="Network Size."/>
+          </arg>
+          <arg type="array<object>" var="$resource.properties.enclaveVirtualNetwork.subnetConfigurations" options="subnet-configurations">
+            <help short="Subnet Configurations."/>
+            <item type="object">
+              <arg type="integer32" var="$resource.properties.enclaveVirtualNetwork.subnetConfigurations[].networkPrefixSize" options="network-prefix-size" required="True">
+                <help short="Network prefix size."/>
+              </arg>
+              <arg type="string" var="$resource.properties.enclaveVirtualNetwork.subnetConfigurations[].subnetDelegation" options="subnet-delegation">
+                <help short="Subnet delegation."/>
+              </arg>
+              <arg type="string" var="$resource.properties.enclaveVirtualNetwork.subnetConfigurations[].subnetName" options="subnet-name" required="True">
+                <help short="Subnet name."/>
+              </arg>
+            </item>
+          </arg>
+        </arg>
+        <arg type="array<object>" var="$resource.properties.governedServiceList" options="governed-service-list" group="Properties">
+          <help short="Enclave specific policies"/>
+          <item type="object">
+            <arg type="string" var="$resource.properties.governedServiceList[].enforcement" options="enforcement">
+              <help short="Initiative enforcement (Enabled or Disabled)."/>
+              <enum>
+                <item name="Disabled" value="&quot;Disabled&quot;"/>
+                <item name="Enabled" value="&quot;Enabled&quot;"/>
+              </enum>
+            </arg>
+            <arg type="string" var="$resource.properties.governedServiceList[].option" options="option">
+              <help short="Governance option for this service (Allow, Deny, ExceptionOnly, or NotApplicable)."/>
+              <enum>
+                <item name="Allow" value="&quot;Allow&quot;"/>
+                <item name="Deny" value="&quot;Deny&quot;"/>
+                <item name="ExceptionOnly" value="&quot;ExceptionOnly&quot;"/>
+                <item name="NotApplicable" value="&quot;NotApplicable&quot;"/>
+              </enum>
+            </arg>
+            <arg type="string" var="$resource.properties.governedServiceList[].policyAction" options="policy-action">
+              <help short="Enforcement mode for policy. AuditOnly, Enforce, or None."/>
+              <enum>
+                <item name="AuditOnly" value="&quot;AuditOnly&quot;"/>
+                <item name="Enforce" value="&quot;Enforce&quot;"/>
+                <item name="None" value="&quot;None&quot;"/>
+              </enum>
+            </arg>
+            <arg type="string" var="$resource.properties.governedServiceList[].serviceId" options="service-id" required="True">
+              <help short="Service ID"/>
+              <enum>
+                <item name="AKS" value="&quot;AKS&quot;"/>
+                <item name="AppService" value="&quot;AppService&quot;"/>
+                <item name="AzureFirewalls" value="&quot;AzureFirewalls&quot;"/>
+                <item name="ContainerRegistry" value="&quot;ContainerRegistry&quot;"/>
+                <item name="CosmosDB" value="&quot;CosmosDB&quot;"/>
+                <item name="DataConnectors" value="&quot;DataConnectors&quot;"/>
+                <item name="Insights" value="&quot;Insights&quot;"/>
+                <item name="KeyVault" value="&quot;KeyVault&quot;"/>
+                <item name="Logic" value="&quot;Logic&quot;"/>
+                <item name="MicrosoftSQL" value="&quot;MicrosoftSQL&quot;"/>
+                <item name="Monitoring" value="&quot;Monitoring&quot;"/>
+                <item name="PostgreSQL" value="&quot;PostgreSQL&quot;"/>
+                <item name="PrivateDNSZones" value="&quot;PrivateDNSZones&quot;"/>
+                <item name="ServiceBus" value="&quot;ServiceBus&quot;"/>
+                <item name="Storage" value="&quot;Storage&quot;"/>
+              </enum>
+            </arg>
+          </item>
+        </arg>
+        <arg type="object" var="$resource.properties.maintenanceModeConfiguration" options="maintenance-mode-configuration" group="Properties">
+          <help short="Maintenance Mode configuration."/>
+          <arg type="string" var="$resource.properties.maintenanceModeConfiguration.justification" options="justification">
+            <help short="Justification for entering or exiting Maintenance Mode"/>
+            <default value="&quot;Off&quot;"/>
+            <enum>
+              <item name="Governance" value="&quot;Governance&quot;"/>
+              <item name="Networking" value="&quot;Networking&quot;"/>
+              <item name="Off" value="&quot;Off&quot;"/>
+            </enum>
+          </arg>
+          <arg type="string" var="$resource.properties.maintenanceModeConfiguration.mode" options="mode" required="True">
+            <help short="Current mode of Maintenance Mode Configuration"/>
+            <default value="&quot;Off&quot;"/>
+            <enum>
+              <item name="Advanced" value="&quot;Advanced&quot;"/>
+              <item name="CanNotDelete" value="&quot;CanNotDelete&quot;"/>
+              <item name="General" value="&quot;General&quot;"/>
+              <item name="Off" value="&quot;Off&quot;"/>
+              <item name="On" value="&quot;On&quot;"/>
+            </enum>
+          </arg>
+          <arg type="array<@Principal_create>" var="$resource.properties.maintenanceModeConfiguration.principals" options="principals">
+            <help short="The user, group or service principal object affected by Maintenance Mode"/>
+            <default value="[]"/>
+            <item type="@Principal_create"/>
+          </arg>
+        </arg>
+        <arg type="object" var="$resource.properties.monitoringSettings" options="monitoring-settings" group="Properties">
+          <help short="Virtual Enclave Monitoring Settings for diagnostic and virtual network flow logs"/>
+          <arg type="array<object>" var="$resource.properties.monitoringSettings.diagnosticDestinations" options="diagnostic-destinations">
+            <help short="Log Analytics workspace destinations where diagnostic logs will be stored."/>
+            <item type="object" cls="MonitoringDestination_create">
+              <arg type="ResourceId" var="@MonitoringDestination_create.customWorkspaceResourceId" options="custom-workspace-resource-id">
+                <help short="Log analytics workspace resource ID for custom workspace"/>
+              </arg>
+              <arg type="string" var="@MonitoringDestination_create.destinationType" options="destination-type" required="True">
+                <help short="The type of monitoring workspace destination"/>
+                <default value="&quot;EnclaveWorkspace&quot;"/>
+                <enum>
+                  <item name="CommunityWorkspace" value="&quot;CommunityWorkspace&quot;"/>
+                  <item name="CustomWorkspace" value="&quot;CustomWorkspace&quot;"/>
+                  <item name="EnclaveWorkspace" value="&quot;EnclaveWorkspace&quot;"/>
+                </enum>
+              </arg>
+              <arg type="string" var="@MonitoringDestination_create.diagnosticSettingsName" options="diagnostic-settings-name">
+                <help short="Custom name for diagnostic settings"/>
+              </arg>
+            </item>
+          </arg>
+          <arg type="@MonitoringDestination_create" var="$resource.properties.monitoringSettings.flowLogDestination" options="flow-log-destination">
+            <help short="Log Analytics workspace destination where virtual network flow logs will be stored."/>
+          </arg>
+        </arg>
+        <arg type="string" var="$resource.properties.rbacInheritance" options="rbac-inheritance" group="Properties">
+          <help short="Controls whether standard Azure RBAC role inheritance applies to the workload resource group(s)"/>
+          <default value="&quot;Disabled&quot;"/>
+          <enum>
+            <item name="Disabled" value="&quot;Disabled&quot;"/>
+            <item name="Enabled" value="&quot;Enabled&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$resource.properties.workloadResourceVisibility" options="workload-resource-visibility" group="Properties">
+          <help short="Specifies whether resources in the workload resource group(s) are visible through standard RBAC"/>
+          <default value="&quot;Disabled&quot;"/>
+          <enum>
+            <item name="Disabled" value="&quot;Disabled&quot;"/>
+            <item name="Enabled" value="&quot;Enabled&quot;"/>
+          </enum>
+        </arg>
+        <arg type="array<@RoleAssignmentItem_create>" var="$resource.properties.workloadRoleAssignments" options="workload-role-assignments" group="Properties">
+          <help short="Workload role assignments"/>
+          <item type="@RoleAssignmentItem_create"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Resource">
+        <arg type="ResourceLocation" var="$resource.location" options="location l" required="True" group="Resource">
+          <help short="The geo-location where the resource lives"/>
+        </arg>
+        <arg type="object" var="$resource.tags" options="tags" group="Resource">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualEnclave_CreateOrUpdate">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}">
+          <request method="put">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="virtualEnclaveName" arg="$Path.virtualEnclaveName" required="True">
+                <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-03-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="IdentityObject" name="identity">
+                    <prop type="string" name="type" arg="$resource.identity.type" required="True">
+                      <enum>
+                        <item value="&quot;None&quot;"/>
+                        <item value="&quot;SystemAssigned&quot;"/>
+                        <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                        <item value="&quot;UserAssigned&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="userAssignedIdentities" arg="$resource.identity.userAssignedIdentities">
+                      <additionalProp>
+                        <item nullable="True" type="object"/>
+                      </additionalProp>
+                    </prop>
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+                      <item action="create" type="string"/>
+                    </userAssigned>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="object" name="approvalSettings" arg="$resource.properties.approvalSettings">
+                      <prop type="@ApprovalSettingConfiguration_create" name="connectionCreation" arg="$resource.properties.approvalSettings.connectionCreation"/>
+                      <prop type="@ApprovalSettingConfiguration_create" name="connectionUpdate" arg="$resource.properties.approvalSettings.connectionUpdate"/>
+                      <prop type="object" name="enclaveEndpointUpdate" arg="$resource.properties.approvalSettings.enclaveEndpointUpdate" cls="ApprovalSettingConfiguration_create">
+                        <prop type="string" name="approvalPolicy" arg="@ApprovalSettingConfiguration_create.approvalPolicy">
+                          <enum>
+                            <item value="&quot;NotRequired&quot;"/>
+                            <item value="&quot;Required&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<object>" name="mandatoryApprovers" arg="@ApprovalSettingConfiguration_create.mandatoryApprovers" identifiers="approverEntraId">
+                          <item type="object">
+                            <prop type="string" name="approverEntraId" arg="@ApprovalSettingConfiguration_create.mandatoryApprovers[].approverEntraId" required="True"/>
+                          </item>
+                        </prop>
+                        <prop type="integer32" name="minimumApproversRequired" arg="@ApprovalSettingConfiguration_create.minimumApproversRequired">
+                          <format minimum="0"/>
+                        </prop>
+                      </prop>
+                      <prop type="@ApprovalSettingConfiguration_create" name="enclaveMaintenanceMode" arg="$resource.properties.approvalSettings.enclaveMaintenanceMode"/>
+                    </prop>
+                    <prop type="boolean" name="bastionEnabled" arg="$resource.properties.bastionEnabled">
+                      <default value="false"/>
+                    </prop>
+                    <prop type="ResourceId" name="communityResourceId" arg="$resource.properties.communityResourceId" required="True"/>
+                    <prop type="ResourceId" name="dedicatedHubResourceId" arg="$resource.properties.dedicatedHubResourceId"/>
+                    <prop type="object" name="enclaveDefaultSettings" arg="$resource.properties.enclaveDefaultSettings">
+                      <prop type="string" name="diagnosticDestination" arg="$resource.properties.enclaveDefaultSettings.diagnosticDestination">
+                        <default value="&quot;EnclaveOnly&quot;"/>
+                        <enum>
+                          <item value="&quot;Both&quot;"/>
+                          <item value="&quot;CommunityOnly&quot;"/>
+                          <item value="&quot;EnclaveOnly&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="array<object>" name="enclaveRoleAssignments" arg="$resource.properties.enclaveRoleAssignments">
+                      <item type="object" cls="RoleAssignmentItem_create">
+                        <prop type="string" name="condition" arg="@RoleAssignmentItem_create.condition"/>
+                        <prop type="array<object>" name="principals" arg="@RoleAssignmentItem_create.principals">
+                          <item type="object" cls="Principal_create">
+                            <prop type="string" name="id" arg="@Principal_create.id" required="True"/>
+                            <prop type="string" name="type" arg="@Principal_create.type" required="True">
+                              <enum>
+                                <item value="&quot;Group&quot;"/>
+                                <item value="&quot;ServicePrincipal&quot;"/>
+                                <item value="&quot;User&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="string" name="roleDefinitionId" arg="@RoleAssignmentItem_create.roleDefinitionId" required="True"/>
+                      </item>
+                    </prop>
+                    <prop type="object" name="enclaveVirtualNetwork" arg="$resource.properties.enclaveVirtualNetwork" required="True">
+                      <prop type="boolean" name="allowSubnetCommunication" arg="$resource.properties.enclaveVirtualNetwork.allowSubnetCommunication">
+                        <default value="false"/>
+                      </prop>
+                      <prop type="string" name="customCidrRange" arg="$resource.properties.enclaveVirtualNetwork.customCidrRange"/>
+                      <prop type="string" name="networkName" arg="$resource.properties.enclaveVirtualNetwork.networkName"/>
+                      <prop type="string" name="networkSize" arg="$resource.properties.enclaveVirtualNetwork.networkSize"/>
+                      <prop type="array<object>" name="subnetConfigurations" arg="$resource.properties.enclaveVirtualNetwork.subnetConfigurations">
+                        <item type="object">
+                          <prop type="integer32" name="networkPrefixSize" arg="$resource.properties.enclaveVirtualNetwork.subnetConfigurations[].networkPrefixSize" required="True"/>
+                          <prop type="string" name="subnetDelegation" arg="$resource.properties.enclaveVirtualNetwork.subnetConfigurations[].subnetDelegation"/>
+                          <prop type="string" name="subnetName" arg="$resource.properties.enclaveVirtualNetwork.subnetConfigurations[].subnetName" required="True"/>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop type="array<object>" name="governedServiceList" arg="$resource.properties.governedServiceList">
+                      <item type="object">
+                        <prop type="string" name="enforcement" arg="$resource.properties.governedServiceList[].enforcement">
+                          <enum>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="option" arg="$resource.properties.governedServiceList[].option">
+                          <enum>
+                            <item value="&quot;Allow&quot;"/>
+                            <item value="&quot;Deny&quot;"/>
+                            <item value="&quot;ExceptionOnly&quot;"/>
+                            <item value="&quot;NotApplicable&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="policyAction" arg="$resource.properties.governedServiceList[].policyAction">
+                          <enum>
+                            <item value="&quot;AuditOnly&quot;"/>
+                            <item value="&quot;Enforce&quot;"/>
+                            <item value="&quot;None&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="serviceId" arg="$resource.properties.governedServiceList[].serviceId" required="True">
+                          <enum>
+                            <item value="&quot;AKS&quot;"/>
+                            <item value="&quot;AppService&quot;"/>
+                            <item value="&quot;AzureFirewalls&quot;"/>
+                            <item value="&quot;ContainerRegistry&quot;"/>
+                            <item value="&quot;CosmosDB&quot;"/>
+                            <item value="&quot;DataConnectors&quot;"/>
+                            <item value="&quot;Insights&quot;"/>
+                            <item value="&quot;KeyVault&quot;"/>
+                            <item value="&quot;Logic&quot;"/>
+                            <item value="&quot;MicrosoftSQL&quot;"/>
+                            <item value="&quot;Monitoring&quot;"/>
+                            <item value="&quot;PostgreSQL&quot;"/>
+                            <item value="&quot;PrivateDNSZones&quot;"/>
+                            <item value="&quot;ServiceBus&quot;"/>
+                            <item value="&quot;Storage&quot;"/>
+                          </enum>
+                        </prop>
+                      </item>
+                    </prop>
+                    <prop type="object" name="maintenanceModeConfiguration" arg="$resource.properties.maintenanceModeConfiguration">
+                      <prop type="string" name="justification" arg="$resource.properties.maintenanceModeConfiguration.justification">
+                        <default value="&quot;Off&quot;"/>
+                        <enum>
+                          <item value="&quot;Governance&quot;"/>
+                          <item value="&quot;Networking&quot;"/>
+                          <item value="&quot;Off&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="mode" arg="$resource.properties.maintenanceModeConfiguration.mode" required="True">
+                        <default value="&quot;Off&quot;"/>
+                        <enum>
+                          <item value="&quot;Advanced&quot;"/>
+                          <item value="&quot;CanNotDelete&quot;"/>
+                          <item value="&quot;General&quot;"/>
+                          <item value="&quot;Off&quot;"/>
+                          <item value="&quot;On&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="array<@Principal_create>" name="principals" arg="$resource.properties.maintenanceModeConfiguration.principals">
+                        <default value="[]"/>
+                        <item type="@Principal_create"/>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="monitoringSettings" arg="$resource.properties.monitoringSettings">
+                      <prop type="array<object>" name="diagnosticDestinations" arg="$resource.properties.monitoringSettings.diagnosticDestinations">
+                        <item type="object" cls="MonitoringDestination_create">
+                          <prop type="ResourceId" name="customWorkspaceResourceId" arg="@MonitoringDestination_create.customWorkspaceResourceId"/>
+                          <prop type="string" name="destinationType" arg="@MonitoringDestination_create.destinationType" required="True">
+                            <default value="&quot;EnclaveWorkspace&quot;"/>
+                            <enum>
+                              <item value="&quot;CommunityWorkspace&quot;"/>
+                              <item value="&quot;CustomWorkspace&quot;"/>
+                              <item value="&quot;EnclaveWorkspace&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="diagnosticSettingsName" arg="@MonitoringDestination_create.diagnosticSettingsName"/>
+                        </item>
+                      </prop>
+                      <prop type="@MonitoringDestination_create" name="flowLogDestination" arg="$resource.properties.monitoringSettings.flowLogDestination"/>
+                    </prop>
+                    <prop type="string" name="rbacInheritance" arg="$resource.properties.rbacInheritance">
+                      <default value="&quot;Disabled&quot;"/>
+                      <enum>
+                        <item value="&quot;Disabled&quot;"/>
+                        <item value="&quot;Enabled&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="workloadResourceVisibility" arg="$resource.properties.workloadResourceVisibility">
+                      <default value="&quot;Disabled&quot;"/>
+                      <enum>
+                        <item value="&quot;Disabled&quot;"/>
+                        <item value="&quot;Enabled&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<@RoleAssignmentItem_create>" name="workloadRoleAssignments" arg="$resource.properties.workloadRoleAssignments">
+                      <item type="@RoleAssignmentItem_create"/>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags" arg="$resource.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Mission/virtualEnclaves/{}"/>
+                  </prop>
+                  <prop type="IdentityObject" name="identity">
+                    <prop readOnly="True" type="uuid" name="principalId"/>
+                    <prop readOnly="True" type="uuid" name="tenantId"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;None&quot;"/>
+                        <item value="&quot;SystemAssigned&quot;"/>
+                        <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                        <item value="&quot;UserAssigned&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="userAssignedIdentities">
+                      <additionalProp>
+                        <item nullable="True" type="object">
+                          <prop readOnly="True" type="uuid" name="clientId"/>
+                          <prop readOnly="True" type="uuid" name="principalId"/>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="object" name="approvalSettings">
+                      <prop type="@ApprovalSettingConfiguration_read" name="connectionCreation"/>
+                      <prop type="@ApprovalSettingConfiguration_read" name="connectionUpdate"/>
+                      <prop type="object" name="enclaveEndpointUpdate" cls="ApprovalSettingConfiguration_read">
+                        <prop type="string" name="approvalPolicy">
+                          <enum>
+                            <item value="&quot;NotRequired&quot;"/>
+                            <item value="&quot;Required&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<object>" name="mandatoryApprovers" identifiers="approverEntraId">
+                          <item type="object">
+                            <prop type="string" name="approverEntraId" required="True"/>
+                          </item>
+                        </prop>
+                        <prop type="integer32" name="minimumApproversRequired">
+                          <format minimum="0"/>
+                        </prop>
+                      </prop>
+                      <prop type="@ApprovalSettingConfiguration_read" name="enclaveMaintenanceMode"/>
+                    </prop>
+                    <prop type="boolean" name="bastionEnabled">
+                      <default value="false"/>
+                    </prop>
+                    <prop type="ResourceId" name="communityResourceId" required="True"/>
+                    <prop type="ResourceId" name="dedicatedHubResourceId"/>
+                    <prop readOnly="True" type="object" name="enclaveAddressSpaces">
+                      <prop type="string" name="enclaveAddressSpace"/>
+                      <prop type="string" name="managedAddressSpace"/>
+                    </prop>
+                    <prop type="object" name="enclaveDefaultSettings">
+                      <prop type="string" name="diagnosticDestination">
+                        <default value="&quot;EnclaveOnly&quot;"/>
+                        <enum>
+                          <item value="&quot;Both&quot;"/>
+                          <item value="&quot;CommunityOnly&quot;"/>
+                          <item value="&quot;EnclaveOnly&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="keyVaultResourceId"/>
+                      <prop readOnly="True" type="array<ResourceId>" name="logAnalyticsResourceIdCollection">
+                        <item type="ResourceId"/>
+                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="storageAccountResourceId"/>
+                    </prop>
+                    <prop type="array<object>" name="enclaveRoleAssignments">
+                      <item type="object" cls="RoleAssignmentItem_read">
+                        <prop type="string" name="condition"/>
+                        <prop type="array<object>" name="principals">
+                          <item type="object" cls="Principal_read">
+                            <prop type="string" name="id" required="True"/>
+                            <prop type="string" name="type" required="True">
+                              <enum>
+                                <item value="&quot;Group&quot;"/>
+                                <item value="&quot;ServicePrincipal&quot;"/>
+                                <item value="&quot;User&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="string" name="roleDefinitionId" required="True"/>
+                      </item>
+                    </prop>
+                    <prop type="object" name="enclaveVirtualNetwork" required="True">
+                      <prop type="boolean" name="allowSubnetCommunication">
+                        <default value="false"/>
+                      </prop>
+                      <prop type="string" name="customCidrRange"/>
+                      <prop type="string" name="networkName"/>
+                      <prop type="string" name="networkSize"/>
+                      <prop type="array<object>" name="subnetConfigurations">
+                        <item type="object">
+                          <prop readOnly="True" type="string" name="addressPrefix"/>
+                          <prop type="integer32" name="networkPrefixSize" required="True"/>
+                          <prop readOnly="True" type="ResourceId" name="networkSecurityGroupResourceId"/>
+                          <prop type="string" name="subnetDelegation"/>
+                          <prop type="string" name="subnetName" required="True"/>
+                          <prop readOnly="True" type="ResourceId" name="subnetResourceId"/>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop type="array<object>" name="governedServiceList">
+                      <item type="object">
+                        <prop type="string" name="enforcement">
+                          <enum>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="array<string>" name="initiatives">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="string" name="option">
+                          <enum>
+                            <item value="&quot;Allow&quot;"/>
+                            <item value="&quot;Deny&quot;"/>
+                            <item value="&quot;ExceptionOnly&quot;"/>
+                            <item value="&quot;NotApplicable&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="policyAction">
+                          <enum>
+                            <item value="&quot;AuditOnly&quot;"/>
+                            <item value="&quot;Enforce&quot;"/>
+                            <item value="&quot;None&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="serviceId" required="True">
+                          <enum>
+                            <item value="&quot;AKS&quot;"/>
+                            <item value="&quot;AppService&quot;"/>
+                            <item value="&quot;AzureFirewalls&quot;"/>
+                            <item value="&quot;ContainerRegistry&quot;"/>
+                            <item value="&quot;CosmosDB&quot;"/>
+                            <item value="&quot;DataConnectors&quot;"/>
+                            <item value="&quot;Insights&quot;"/>
+                            <item value="&quot;KeyVault&quot;"/>
+                            <item value="&quot;Logic&quot;"/>
+                            <item value="&quot;MicrosoftSQL&quot;"/>
+                            <item value="&quot;Monitoring&quot;"/>
+                            <item value="&quot;PostgreSQL&quot;"/>
+                            <item value="&quot;PrivateDNSZones&quot;"/>
+                            <item value="&quot;ServiceBus&quot;"/>
+                            <item value="&quot;Storage&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="serviceName"/>
+                      </item>
+                    </prop>
+                    <prop type="object" name="maintenanceModeConfiguration">
+                      <prop type="string" name="justification">
+                        <default value="&quot;Off&quot;"/>
+                        <enum>
+                          <item value="&quot;Governance&quot;"/>
+                          <item value="&quot;Networking&quot;"/>
+                          <item value="&quot;Off&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="mode" required="True">
+                        <default value="&quot;Off&quot;"/>
+                        <enum>
+                          <item value="&quot;Advanced&quot;"/>
+                          <item value="&quot;CanNotDelete&quot;"/>
+                          <item value="&quot;General&quot;"/>
+                          <item value="&quot;Off&quot;"/>
+                          <item value="&quot;On&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="array<@Principal_read>" name="principals">
+                        <default value="[]"/>
+                        <item type="@Principal_read"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="managedOnBehalfOfConfiguration">
+                      <prop type="array<object>" name="moboBrokerResources" identifiers="id">
+                        <item type="object">
+                          <prop type="ResourceId" name="id"/>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="managedResourceGroupName"/>
+                    <prop type="object" name="monitoringSettings">
+                      <prop type="array<object>" name="diagnosticDestinations">
+                        <item type="object" cls="MonitoringDestination_read">
+                          <prop type="ResourceId" name="customWorkspaceResourceId"/>
+                          <prop type="string" name="destinationType" required="True">
+                            <default value="&quot;EnclaveWorkspace&quot;"/>
+                            <enum>
+                              <item value="&quot;CommunityWorkspace&quot;"/>
+                              <item value="&quot;CustomWorkspace&quot;"/>
+                              <item value="&quot;EnclaveWorkspace&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="diagnosticSettingsName"/>
+                        </item>
+                      </prop>
+                      <prop type="@MonitoringDestination_read" name="flowLogDestination"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Creating&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;NotSpecified&quot;"/>
+                        <item value="&quot;Running&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="rbacInheritance">
+                      <default value="&quot;Disabled&quot;"/>
+                      <enum>
+                        <item value="&quot;Disabled&quot;"/>
+                        <item value="&quot;Enabled&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="array<ResourceId>" name="resourceCollection">
+                      <item type="ResourceId"/>
+                    </prop>
+                    <prop type="string" name="workloadResourceVisibility">
+                      <default value="&quot;Disabled&quot;"/>
+                      <enum>
+                        <item value="&quot;Disabled&quot;"/>
+                        <item value="&quot;Enabled&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<@RoleAssignmentItem_read>" name="workloadRoleAssignments">
+                      <item type="@RoleAssignmentItem_read"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2026-03-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.mission/virtualenclaves/{}" version="2026-03-01-preview" swagger="mgmt-plane/mission/ResourceProviders/Microsoft.Mission/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWlzc2lvbi92aXJ0dWFsRW5jbGF2ZXMve3ZpcnR1YWxFbmNsYXZlTmFtZX0=/V/MjAyNi0wMy0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.virtualEnclaveName" options="virtual-enclave-name name n" required="True" idPart="name">
+          <help short="The name of the enclaveResource Resource"/>
+          <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Identity">
+        <arg type="string" var="$resource.identity.type" options="type" hide="True" group="Identity">
+          <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
+          <enum>
+            <item name="None" value="&quot;None&quot;"/>
+            <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
+            <item name="SystemAssigned,UserAssigned" value="&quot;SystemAssigned,UserAssigned&quot;"/>
+            <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
+          </enum>
+        </arg>
+        <arg nullable="True" type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+          <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
+          <additionalProp>
+            <item nullable="True" type="object">
+              <blank value="{}"/>
+            </item>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg nullable="True" type="object" var="$resource.properties.approvalSettings" options="approval-settings" group="Properties">
+          <help short="Approval requirements for various actions on the enclave's resources."/>
+          <arg nullable="True" type="@ApprovalSettingConfiguration_update" var="$resource.properties.approvalSettings.connectionCreation" options="connection-creation">
+            <help short="Approval configuration for connection creation."/>
+          </arg>
+          <arg nullable="True" type="@ApprovalSettingConfiguration_update" var="$resource.properties.approvalSettings.connectionUpdate" options="connection-update">
+            <help short="Approval configuration for connection updates."/>
+          </arg>
+          <arg nullable="True" type="object" var="$resource.properties.approvalSettings.enclaveEndpointUpdate" options="enclave-endpoint-update" cls="ApprovalSettingConfiguration_update">
+            <help short="Approval configuration for enclave endpoint updates."/>
+            <arg nullable="True" type="string" var="@ApprovalSettingConfiguration_update.approvalPolicy" options="approval-policy">
+              <help short="Approval policy (Required or NotRequired)."/>
+              <enum>
+                <item name="NotRequired" value="&quot;NotRequired&quot;"/>
+                <item name="Required" value="&quot;Required&quot;"/>
+              </enum>
+            </arg>
+            <arg nullable="True" type="array<object>" var="@ApprovalSettingConfiguration_update.mandatoryApprovers" options="mandatory-approvers">
+              <help short="List of mandatory approvers for this approval setting."/>
+              <item nullable="True" type="object">
+                <arg type="string" var="@ApprovalSettingConfiguration_update.mandatoryApprovers[].approverEntraId" options="approver-entra-id">
+                  <help short="EntraId of the approver"/>
+                </arg>
+              </item>
+            </arg>
+            <arg nullable="True" type="integer32" var="@ApprovalSettingConfiguration_update.minimumApproversRequired" options="minimum-approvers-required">
+              <help short="Minimum number of approvers required for this approval setting."/>
+              <format minimum="0"/>
+            </arg>
+          </arg>
+          <arg nullable="True" type="@ApprovalSettingConfiguration_update" var="$resource.properties.approvalSettings.enclaveMaintenanceMode" options="enclave-maintenance-mode">
+            <help short="Approval configuration for enclave maintenance mode."/>
+          </arg>
+        </arg>
+        <arg nullable="True" type="boolean" var="$resource.properties.bastionEnabled" options="bastion-enabled" group="Properties">
+          <help short="Deploy Bastion service (True or False)."/>
+        </arg>
+        <arg nullable="True" type="ResourceId" var="$resource.properties.dedicatedHubResourceId" options="dedicated-hub-resource-id" group="Properties">
+          <help short="DedicatedHub Resource ID."/>
+        </arg>
+        <arg nullable="True" type="object" var="$resource.properties.enclaveDefaultSettings" options="enclave-default-settings" group="Properties">
+          <help short="Enclave default settings."/>
+          <arg nullable="True" type="string" var="$resource.properties.enclaveDefaultSettings.diagnosticDestination" options="diagnostic-destination">
+            <help short="Diagnostic Destination."/>
+            <enum>
+              <item name="Both" value="&quot;Both&quot;"/>
+              <item name="CommunityOnly" value="&quot;CommunityOnly&quot;"/>
+              <item name="EnclaveOnly" value="&quot;EnclaveOnly&quot;"/>
+            </enum>
+          </arg>
+        </arg>
+        <arg nullable="True" type="array<object>" var="$resource.properties.enclaveRoleAssignments" options="enclave-role-assignments" group="Properties">
+          <help short="Enclave role assignments"/>
+          <item nullable="True" type="object" cls="RoleAssignmentItem_update">
+            <arg nullable="True" type="string" var="@RoleAssignmentItem_update.condition" options="condition">
+              <help short="Condition under which the principal can be granted permission"/>
+            </arg>
+            <arg nullable="True" type="array<object>" var="@RoleAssignmentItem_update.principals" options="principals">
+              <help short="List of principal IDs to which to assign this role definition"/>
+              <item nullable="True" type="object" cls="Principal_update">
+                <arg type="string" var="@Principal_update.id" options="id">
+                  <help short="The object id associated with the principal"/>
+                </arg>
+                <arg type="string" var="@Principal_update.type" options="type">
+                  <help short="The type of the object id. We currently allow users, groups, and service principals"/>
+                  <enum>
+                    <item name="Group" value="&quot;Group&quot;"/>
+                    <item name="ServicePrincipal" value="&quot;ServicePrincipal&quot;"/>
+                    <item name="User" value="&quot;User&quot;"/>
+                  </enum>
+                </arg>
+              </item>
+            </arg>
+            <arg type="string" var="@RoleAssignmentItem_update.roleDefinitionId" options="role-definition-id">
+              <help short="Role definition identifier"/>
+            </arg>
+          </item>
+        </arg>
+        <arg type="object" var="$resource.properties.enclaveVirtualNetwork" options="enclave-virtual-network" group="Properties">
+          <help short="Virtual Network."/>
+          <arg nullable="True" type="string" var="$resource.properties.enclaveVirtualNetwork.networkName" options="network-name">
+            <help short="Network Name."/>
+          </arg>
+          <arg nullable="True" type="array<object>" var="$resource.properties.enclaveVirtualNetwork.subnetConfigurations" options="subnet-configurations">
+            <help short="Subnet Configurations."/>
+            <item nullable="True" type="object">
+              <arg type="integer32" var="$resource.properties.enclaveVirtualNetwork.subnetConfigurations[].networkPrefixSize" options="network-prefix-size">
+                <help short="Network prefix size."/>
+              </arg>
+              <arg nullable="True" type="string" var="$resource.properties.enclaveVirtualNetwork.subnetConfigurations[].subnetDelegation" options="subnet-delegation">
+                <help short="Subnet delegation."/>
+              </arg>
+              <arg type="string" var="$resource.properties.enclaveVirtualNetwork.subnetConfigurations[].subnetName" options="subnet-name">
+                <help short="Subnet name."/>
+              </arg>
+            </item>
+          </arg>
+        </arg>
+        <arg nullable="True" type="array<object>" var="$resource.properties.governedServiceList" options="governed-service-list" group="Properties">
+          <help short="Enclave specific policies"/>
+          <item nullable="True" type="object">
+            <arg nullable="True" type="string" var="$resource.properties.governedServiceList[].enforcement" options="enforcement">
+              <help short="Initiative enforcement (Enabled or Disabled)."/>
+              <enum>
+                <item name="Disabled" value="&quot;Disabled&quot;"/>
+                <item name="Enabled" value="&quot;Enabled&quot;"/>
+              </enum>
+            </arg>
+            <arg nullable="True" type="string" var="$resource.properties.governedServiceList[].option" options="option">
+              <help short="Governance option for this service (Allow, Deny, ExceptionOnly, or NotApplicable)."/>
+              <enum>
+                <item name="Allow" value="&quot;Allow&quot;"/>
+                <item name="Deny" value="&quot;Deny&quot;"/>
+                <item name="ExceptionOnly" value="&quot;ExceptionOnly&quot;"/>
+                <item name="NotApplicable" value="&quot;NotApplicable&quot;"/>
+              </enum>
+            </arg>
+            <arg nullable="True" type="string" var="$resource.properties.governedServiceList[].policyAction" options="policy-action">
+              <help short="Enforcement mode for policy. AuditOnly, Enforce, or None."/>
+              <enum>
+                <item name="AuditOnly" value="&quot;AuditOnly&quot;"/>
+                <item name="Enforce" value="&quot;Enforce&quot;"/>
+                <item name="None" value="&quot;None&quot;"/>
+              </enum>
+            </arg>
+            <arg type="string" var="$resource.properties.governedServiceList[].serviceId" options="service-id">
+              <help short="Service ID"/>
+              <enum>
+                <item name="AKS" value="&quot;AKS&quot;"/>
+                <item name="AppService" value="&quot;AppService&quot;"/>
+                <item name="AzureFirewalls" value="&quot;AzureFirewalls&quot;"/>
+                <item name="ContainerRegistry" value="&quot;ContainerRegistry&quot;"/>
+                <item name="CosmosDB" value="&quot;CosmosDB&quot;"/>
+                <item name="DataConnectors" value="&quot;DataConnectors&quot;"/>
+                <item name="Insights" value="&quot;Insights&quot;"/>
+                <item name="KeyVault" value="&quot;KeyVault&quot;"/>
+                <item name="Logic" value="&quot;Logic&quot;"/>
+                <item name="MicrosoftSQL" value="&quot;MicrosoftSQL&quot;"/>
+                <item name="Monitoring" value="&quot;Monitoring&quot;"/>
+                <item name="PostgreSQL" value="&quot;PostgreSQL&quot;"/>
+                <item name="PrivateDNSZones" value="&quot;PrivateDNSZones&quot;"/>
+                <item name="ServiceBus" value="&quot;ServiceBus&quot;"/>
+                <item name="Storage" value="&quot;Storage&quot;"/>
+              </enum>
+            </arg>
+          </item>
+        </arg>
+        <arg nullable="True" type="object" var="$resource.properties.maintenanceModeConfiguration" options="maintenance-mode-configuration" group="Properties">
+          <help short="Maintenance Mode configuration."/>
+          <arg nullable="True" type="string" var="$resource.properties.maintenanceModeConfiguration.justification" options="justification">
+            <help short="Justification for entering or exiting Maintenance Mode"/>
+            <enum>
+              <item name="Governance" value="&quot;Governance&quot;"/>
+              <item name="Networking" value="&quot;Networking&quot;"/>
+              <item name="Off" value="&quot;Off&quot;"/>
+            </enum>
+          </arg>
+          <arg type="string" var="$resource.properties.maintenanceModeConfiguration.mode" options="mode">
+            <help short="Current mode of Maintenance Mode Configuration"/>
+            <enum>
+              <item name="Advanced" value="&quot;Advanced&quot;"/>
+              <item name="CanNotDelete" value="&quot;CanNotDelete&quot;"/>
+              <item name="General" value="&quot;General&quot;"/>
+              <item name="Off" value="&quot;Off&quot;"/>
+              <item name="On" value="&quot;On&quot;"/>
+            </enum>
+          </arg>
+          <arg nullable="True" type="array<@Principal_update>" var="$resource.properties.maintenanceModeConfiguration.principals" options="principals">
+            <help short="The user, group or service principal object affected by Maintenance Mode"/>
+            <item nullable="True" type="@Principal_update"/>
+          </arg>
+        </arg>
+        <arg nullable="True" type="object" var="$resource.properties.monitoringSettings" options="monitoring-settings" group="Properties">
+          <help short="Virtual Enclave Monitoring Settings for diagnostic and virtual network flow logs"/>
+          <arg nullable="True" type="array<object>" var="$resource.properties.monitoringSettings.diagnosticDestinations" options="diagnostic-destinations">
+            <help short="Log Analytics workspace destinations where diagnostic logs will be stored."/>
+            <item nullable="True" type="object" cls="MonitoringDestination_update">
+              <arg nullable="True" type="ResourceId" var="@MonitoringDestination_update.customWorkspaceResourceId" options="custom-workspace-resource-id">
+                <help short="Log analytics workspace resource ID for custom workspace"/>
+              </arg>
+              <arg type="string" var="@MonitoringDestination_update.destinationType" options="destination-type">
+                <help short="The type of monitoring workspace destination"/>
+                <enum>
+                  <item name="CommunityWorkspace" value="&quot;CommunityWorkspace&quot;"/>
+                  <item name="CustomWorkspace" value="&quot;CustomWorkspace&quot;"/>
+                  <item name="EnclaveWorkspace" value="&quot;EnclaveWorkspace&quot;"/>
+                </enum>
+              </arg>
+              <arg nullable="True" type="string" var="@MonitoringDestination_update.diagnosticSettingsName" options="diagnostic-settings-name">
+                <help short="Custom name for diagnostic settings"/>
+              </arg>
+            </item>
+          </arg>
+          <arg nullable="True" type="@MonitoringDestination_update" var="$resource.properties.monitoringSettings.flowLogDestination" options="flow-log-destination">
+            <help short="Log Analytics workspace destination where virtual network flow logs will be stored."/>
+          </arg>
+        </arg>
+        <arg nullable="True" type="string" var="$resource.properties.rbacInheritance" options="rbac-inheritance" group="Properties">
+          <help short="Controls whether standard Azure RBAC role inheritance applies to the workload resource group(s)"/>
+          <enum>
+            <item name="Disabled" value="&quot;Disabled&quot;"/>
+            <item name="Enabled" value="&quot;Enabled&quot;"/>
+          </enum>
+        </arg>
+        <arg nullable="True" type="string" var="$resource.properties.workloadResourceVisibility" options="workload-resource-visibility" group="Properties">
+          <help short="Specifies whether resources in the workload resource group(s) are visible through standard RBAC"/>
+          <enum>
+            <item name="Disabled" value="&quot;Disabled&quot;"/>
+            <item name="Enabled" value="&quot;Enabled&quot;"/>
+          </enum>
+        </arg>
+        <arg nullable="True" type="array<@RoleAssignmentItem_update>" var="$resource.properties.workloadRoleAssignments" options="workload-role-assignments" group="Properties">
+          <help short="Workload role assignments"/>
+          <item nullable="True" type="@RoleAssignmentItem_update"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Resource">
+        <arg nullable="True" type="object" var="$resource.tags" options="tags" group="Resource">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item nullable="True" type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualEnclave_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="virtualEnclaveName" arg="$Path.virtualEnclaveName" required="True">
+                <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-03-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="EnclaveResource_read">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Mission/virtualEnclaves/{}"/>
+                  </prop>
+                  <prop type="IdentityObject" name="identity">
+                    <prop readOnly="True" type="uuid" name="principalId"/>
+                    <prop readOnly="True" type="uuid" name="tenantId"/>
+                    <prop type="string" name="type" required="True">
+                      <enum>
+                        <item value="&quot;None&quot;"/>
+                        <item value="&quot;SystemAssigned&quot;"/>
+                        <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                        <item value="&quot;UserAssigned&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="userAssignedIdentities">
+                      <additionalProp>
+                        <item nullable="True" type="object">
+                          <prop readOnly="True" type="uuid" name="clientId"/>
+                          <prop readOnly="True" type="uuid" name="principalId"/>
+                        </item>
+                      </additionalProp>
+                    </prop>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties" clientFlatten="True">
+                    <prop type="object" name="approvalSettings">
+                      <prop type="@ApprovalSettingConfiguration_read" name="connectionCreation"/>
+                      <prop type="@ApprovalSettingConfiguration_read" name="connectionUpdate"/>
+                      <prop type="object" name="enclaveEndpointUpdate" cls="ApprovalSettingConfiguration_read">
+                        <prop type="string" name="approvalPolicy">
+                          <enum>
+                            <item value="&quot;NotRequired&quot;"/>
+                            <item value="&quot;Required&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<object>" name="mandatoryApprovers" identifiers="approverEntraId">
+                          <item type="object">
+                            <prop type="string" name="approverEntraId" required="True"/>
+                          </item>
+                        </prop>
+                        <prop type="integer32" name="minimumApproversRequired">
+                          <format minimum="0"/>
+                        </prop>
+                      </prop>
+                      <prop type="@ApprovalSettingConfiguration_read" name="enclaveMaintenanceMode"/>
+                    </prop>
+                    <prop type="boolean" name="bastionEnabled">
+                      <default value="false"/>
+                    </prop>
+                    <prop type="ResourceId" name="communityResourceId" required="True"/>
+                    <prop type="ResourceId" name="dedicatedHubResourceId"/>
+                    <prop readOnly="True" type="object" name="enclaveAddressSpaces">
+                      <prop type="string" name="enclaveAddressSpace"/>
+                      <prop type="string" name="managedAddressSpace"/>
+                    </prop>
+                    <prop type="object" name="enclaveDefaultSettings">
+                      <prop type="string" name="diagnosticDestination">
+                        <default value="&quot;EnclaveOnly&quot;"/>
+                        <enum>
+                          <item value="&quot;Both&quot;"/>
+                          <item value="&quot;CommunityOnly&quot;"/>
+                          <item value="&quot;EnclaveOnly&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="keyVaultResourceId"/>
+                      <prop readOnly="True" type="array<ResourceId>" name="logAnalyticsResourceIdCollection">
+                        <item type="ResourceId"/>
+                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="storageAccountResourceId"/>
+                    </prop>
+                    <prop type="array<object>" name="enclaveRoleAssignments">
+                      <item type="object" cls="RoleAssignmentItem_read">
+                        <prop type="string" name="condition"/>
+                        <prop type="array<object>" name="principals">
+                          <item type="object" cls="Principal_read">
+                            <prop type="string" name="id" required="True"/>
+                            <prop type="string" name="type" required="True">
+                              <enum>
+                                <item value="&quot;Group&quot;"/>
+                                <item value="&quot;ServicePrincipal&quot;"/>
+                                <item value="&quot;User&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="string" name="roleDefinitionId" required="True"/>
+                      </item>
+                    </prop>
+                    <prop type="object" name="enclaveVirtualNetwork" required="True">
+                      <prop type="boolean" name="allowSubnetCommunication">
+                        <default value="false"/>
+                      </prop>
+                      <prop type="string" name="customCidrRange"/>
+                      <prop type="string" name="networkName"/>
+                      <prop type="string" name="networkSize"/>
+                      <prop type="array<object>" name="subnetConfigurations">
+                        <item type="object">
+                          <prop readOnly="True" type="string" name="addressPrefix"/>
+                          <prop type="integer32" name="networkPrefixSize" required="True"/>
+                          <prop readOnly="True" type="ResourceId" name="networkSecurityGroupResourceId"/>
+                          <prop type="string" name="subnetDelegation"/>
+                          <prop type="string" name="subnetName" required="True"/>
+                          <prop readOnly="True" type="ResourceId" name="subnetResourceId"/>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop type="array<object>" name="governedServiceList">
+                      <item type="object">
+                        <prop type="string" name="enforcement">
+                          <enum>
+                            <item value="&quot;Disabled&quot;"/>
+                            <item value="&quot;Enabled&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="array<string>" name="initiatives">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="string" name="option">
+                          <enum>
+                            <item value="&quot;Allow&quot;"/>
+                            <item value="&quot;Deny&quot;"/>
+                            <item value="&quot;ExceptionOnly&quot;"/>
+                            <item value="&quot;NotApplicable&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="policyAction">
+                          <enum>
+                            <item value="&quot;AuditOnly&quot;"/>
+                            <item value="&quot;Enforce&quot;"/>
+                            <item value="&quot;None&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="serviceId" required="True">
+                          <enum>
+                            <item value="&quot;AKS&quot;"/>
+                            <item value="&quot;AppService&quot;"/>
+                            <item value="&quot;AzureFirewalls&quot;"/>
+                            <item value="&quot;ContainerRegistry&quot;"/>
+                            <item value="&quot;CosmosDB&quot;"/>
+                            <item value="&quot;DataConnectors&quot;"/>
+                            <item value="&quot;Insights&quot;"/>
+                            <item value="&quot;KeyVault&quot;"/>
+                            <item value="&quot;Logic&quot;"/>
+                            <item value="&quot;MicrosoftSQL&quot;"/>
+                            <item value="&quot;Monitoring&quot;"/>
+                            <item value="&quot;PostgreSQL&quot;"/>
+                            <item value="&quot;PrivateDNSZones&quot;"/>
+                            <item value="&quot;ServiceBus&quot;"/>
+                            <item value="&quot;Storage&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="serviceName"/>
+                      </item>
+                    </prop>
+                    <prop type="object" name="maintenanceModeConfiguration">
+                      <prop type="string" name="justification">
+                        <default value="&quot;Off&quot;"/>
+                        <enum>
+                          <item value="&quot;Governance&quot;"/>
+                          <item value="&quot;Networking&quot;"/>
+                          <item value="&quot;Off&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="mode" required="True">
+                        <default value="&quot;Off&quot;"/>
+                        <enum>
+                          <item value="&quot;Advanced&quot;"/>
+                          <item value="&quot;CanNotDelete&quot;"/>
+                          <item value="&quot;General&quot;"/>
+                          <item value="&quot;Off&quot;"/>
+                          <item value="&quot;On&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="array<@Principal_read>" name="principals">
+                        <default value="[]"/>
+                        <item type="@Principal_read"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="managedOnBehalfOfConfiguration">
+                      <prop type="array<object>" name="moboBrokerResources" identifiers="id">
+                        <item type="object">
+                          <prop type="ResourceId" name="id"/>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="managedResourceGroupName"/>
+                    <prop type="object" name="monitoringSettings">
+                      <prop type="array<object>" name="diagnosticDestinations">
+                        <item type="object" cls="MonitoringDestination_read">
+                          <prop type="ResourceId" name="customWorkspaceResourceId"/>
+                          <prop type="string" name="destinationType" required="True">
+                            <default value="&quot;EnclaveWorkspace&quot;"/>
+                            <enum>
+                              <item value="&quot;CommunityWorkspace&quot;"/>
+                              <item value="&quot;CustomWorkspace&quot;"/>
+                              <item value="&quot;EnclaveWorkspace&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="diagnosticSettingsName"/>
+                        </item>
+                      </prop>
+                      <prop type="@MonitoringDestination_read" name="flowLogDestination"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Creating&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;NotSpecified&quot;"/>
+                        <item value="&quot;Running&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="rbacInheritance">
+                      <default value="&quot;Disabled&quot;"/>
+                      <enum>
+                        <item value="&quot;Disabled&quot;"/>
+                        <item value="&quot;Enabled&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="array<ResourceId>" name="resourceCollection">
+                      <item type="ResourceId"/>
+                    </prop>
+                    <prop type="string" name="workloadResourceVisibility">
+                      <default value="&quot;Disabled&quot;"/>
+                      <enum>
+                        <item value="&quot;Disabled&quot;"/>
+                        <item value="&quot;Enabled&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<@RoleAssignmentItem_read>" name="workloadRoleAssignments">
+                      <item type="@RoleAssignmentItem_read"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate ref="$Instance">
+          <json>
+            <schema type="object" name="resource" required="True" clientFlatten="True">
+              <prop type="IdentityObject" name="identity">
+                <prop type="string" name="type" arg="$resource.identity.type" required="True">
+                  <enum>
+                    <item value="&quot;None&quot;"/>
+                    <item value="&quot;SystemAssigned&quot;"/>
+                    <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                    <item value="&quot;UserAssigned&quot;"/>
+                  </enum>
+                </prop>
+                <prop type="object" name="userAssignedIdentities" arg="$resource.identity.userAssignedIdentities">
+                  <additionalProp>
+                    <item nullable="True" type="object"/>
+                  </additionalProp>
+                </prop>
+              </prop>
+              <prop type="object" name="properties" clientFlatten="True">
+                <prop type="object" name="approvalSettings" arg="$resource.properties.approvalSettings">
+                  <prop type="@ApprovalSettingConfiguration_update" name="connectionCreation" arg="$resource.properties.approvalSettings.connectionCreation"/>
+                  <prop type="@ApprovalSettingConfiguration_update" name="connectionUpdate" arg="$resource.properties.approvalSettings.connectionUpdate"/>
+                  <prop type="object" name="enclaveEndpointUpdate" arg="$resource.properties.approvalSettings.enclaveEndpointUpdate" cls="ApprovalSettingConfiguration_update">
+                    <prop type="string" name="approvalPolicy" arg="@ApprovalSettingConfiguration_update.approvalPolicy">
+                      <enum>
+                        <item value="&quot;NotRequired&quot;"/>
+                        <item value="&quot;Required&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="array<object>" name="mandatoryApprovers" arg="@ApprovalSettingConfiguration_update.mandatoryApprovers" identifiers="approverEntraId">
+                      <item type="object">
+                        <prop type="string" name="approverEntraId" arg="@ApprovalSettingConfiguration_update.mandatoryApprovers[].approverEntraId" required="True"/>
+                      </item>
+                    </prop>
+                    <prop type="integer32" name="minimumApproversRequired" arg="@ApprovalSettingConfiguration_update.minimumApproversRequired">
+                      <format minimum="0"/>
+                    </prop>
+                  </prop>
+                  <prop type="@ApprovalSettingConfiguration_update" name="enclaveMaintenanceMode" arg="$resource.properties.approvalSettings.enclaveMaintenanceMode"/>
+                </prop>
+                <prop type="boolean" name="bastionEnabled" arg="$resource.properties.bastionEnabled">
+                  <default value="false"/>
+                </prop>
+                <prop type="ResourceId" name="dedicatedHubResourceId" arg="$resource.properties.dedicatedHubResourceId"/>
+                <prop type="object" name="enclaveDefaultSettings" arg="$resource.properties.enclaveDefaultSettings">
+                  <prop type="string" name="diagnosticDestination" arg="$resource.properties.enclaveDefaultSettings.diagnosticDestination">
+                    <default value="&quot;EnclaveOnly&quot;"/>
+                    <enum>
+                      <item value="&quot;Both&quot;"/>
+                      <item value="&quot;CommunityOnly&quot;"/>
+                      <item value="&quot;EnclaveOnly&quot;"/>
+                    </enum>
+                  </prop>
+                </prop>
+                <prop type="array<object>" name="enclaveRoleAssignments" arg="$resource.properties.enclaveRoleAssignments">
+                  <item type="object" cls="RoleAssignmentItem_update">
+                    <prop type="string" name="condition" arg="@RoleAssignmentItem_update.condition"/>
+                    <prop type="array<object>" name="principals" arg="@RoleAssignmentItem_update.principals">
+                      <item type="object" cls="Principal_update">
+                        <prop type="string" name="id" arg="@Principal_update.id" required="True"/>
+                        <prop type="string" name="type" arg="@Principal_update.type" required="True">
+                          <enum>
+                            <item value="&quot;Group&quot;"/>
+                            <item value="&quot;ServicePrincipal&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </item>
+                    </prop>
+                    <prop type="string" name="roleDefinitionId" arg="@RoleAssignmentItem_update.roleDefinitionId" required="True"/>
+                  </item>
+                </prop>
+                <prop type="object" name="enclaveVirtualNetwork" arg="$resource.properties.enclaveVirtualNetwork" required="True">
+                  <prop type="string" name="networkName" arg="$resource.properties.enclaveVirtualNetwork.networkName"/>
+                  <prop type="array<object>" name="subnetConfigurations" arg="$resource.properties.enclaveVirtualNetwork.subnetConfigurations">
+                    <item type="object">
+                      <prop type="integer32" name="networkPrefixSize" arg="$resource.properties.enclaveVirtualNetwork.subnetConfigurations[].networkPrefixSize" required="True"/>
+                      <prop type="string" name="subnetDelegation" arg="$resource.properties.enclaveVirtualNetwork.subnetConfigurations[].subnetDelegation"/>
+                      <prop type="string" name="subnetName" arg="$resource.properties.enclaveVirtualNetwork.subnetConfigurations[].subnetName" required="True"/>
+                    </item>
+                  </prop>
+                </prop>
+                <prop type="array<object>" name="governedServiceList" arg="$resource.properties.governedServiceList">
+                  <item type="object">
+                    <prop type="string" name="enforcement" arg="$resource.properties.governedServiceList[].enforcement">
+                      <enum>
+                        <item value="&quot;Disabled&quot;"/>
+                        <item value="&quot;Enabled&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="option" arg="$resource.properties.governedServiceList[].option">
+                      <enum>
+                        <item value="&quot;Allow&quot;"/>
+                        <item value="&quot;Deny&quot;"/>
+                        <item value="&quot;ExceptionOnly&quot;"/>
+                        <item value="&quot;NotApplicable&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="policyAction" arg="$resource.properties.governedServiceList[].policyAction">
+                      <enum>
+                        <item value="&quot;AuditOnly&quot;"/>
+                        <item value="&quot;Enforce&quot;"/>
+                        <item value="&quot;None&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="serviceId" arg="$resource.properties.governedServiceList[].serviceId" required="True">
+                      <enum>
+                        <item value="&quot;AKS&quot;"/>
+                        <item value="&quot;AppService&quot;"/>
+                        <item value="&quot;AzureFirewalls&quot;"/>
+                        <item value="&quot;ContainerRegistry&quot;"/>
+                        <item value="&quot;CosmosDB&quot;"/>
+                        <item value="&quot;DataConnectors&quot;"/>
+                        <item value="&quot;Insights&quot;"/>
+                        <item value="&quot;KeyVault&quot;"/>
+                        <item value="&quot;Logic&quot;"/>
+                        <item value="&quot;MicrosoftSQL&quot;"/>
+                        <item value="&quot;Monitoring&quot;"/>
+                        <item value="&quot;PostgreSQL&quot;"/>
+                        <item value="&quot;PrivateDNSZones&quot;"/>
+                        <item value="&quot;ServiceBus&quot;"/>
+                        <item value="&quot;Storage&quot;"/>
+                      </enum>
+                    </prop>
+                  </item>
+                </prop>
+                <prop type="object" name="maintenanceModeConfiguration" arg="$resource.properties.maintenanceModeConfiguration">
+                  <prop type="string" name="justification" arg="$resource.properties.maintenanceModeConfiguration.justification">
+                    <default value="&quot;Off&quot;"/>
+                    <enum>
+                      <item value="&quot;Governance&quot;"/>
+                      <item value="&quot;Networking&quot;"/>
+                      <item value="&quot;Off&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="string" name="mode" arg="$resource.properties.maintenanceModeConfiguration.mode" required="True">
+                    <default value="&quot;Off&quot;"/>
+                    <enum>
+                      <item value="&quot;Advanced&quot;"/>
+                      <item value="&quot;CanNotDelete&quot;"/>
+                      <item value="&quot;General&quot;"/>
+                      <item value="&quot;Off&quot;"/>
+                      <item value="&quot;On&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="array<@Principal_update>" name="principals" arg="$resource.properties.maintenanceModeConfiguration.principals">
+                    <default value="[]"/>
+                    <item type="@Principal_update"/>
+                  </prop>
+                </prop>
+                <prop type="object" name="monitoringSettings" arg="$resource.properties.monitoringSettings">
+                  <prop type="array<object>" name="diagnosticDestinations" arg="$resource.properties.monitoringSettings.diagnosticDestinations">
+                    <item type="object" cls="MonitoringDestination_update">
+                      <prop type="ResourceId" name="customWorkspaceResourceId" arg="@MonitoringDestination_update.customWorkspaceResourceId"/>
+                      <prop type="string" name="destinationType" arg="@MonitoringDestination_update.destinationType" required="True">
+                        <default value="&quot;EnclaveWorkspace&quot;"/>
+                        <enum>
+                          <item value="&quot;CommunityWorkspace&quot;"/>
+                          <item value="&quot;CustomWorkspace&quot;"/>
+                          <item value="&quot;EnclaveWorkspace&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="diagnosticSettingsName" arg="@MonitoringDestination_update.diagnosticSettingsName"/>
+                    </item>
+                  </prop>
+                  <prop type="@MonitoringDestination_update" name="flowLogDestination" arg="$resource.properties.monitoringSettings.flowLogDestination"/>
+                </prop>
+                <prop type="string" name="rbacInheritance" arg="$resource.properties.rbacInheritance">
+                  <default value="&quot;Disabled&quot;"/>
+                  <enum>
+                    <item value="&quot;Disabled&quot;"/>
+                    <item value="&quot;Enabled&quot;"/>
+                  </enum>
+                </prop>
+                <prop type="string" name="workloadResourceVisibility" arg="$resource.properties.workloadResourceVisibility">
+                  <default value="&quot;Disabled&quot;"/>
+                  <enum>
+                    <item value="&quot;Disabled&quot;"/>
+                    <item value="&quot;Enabled&quot;"/>
+                  </enum>
+                </prop>
+                <prop type="array<@RoleAssignmentItem_update>" name="workloadRoleAssignments" arg="$resource.properties.workloadRoleAssignments">
+                  <item type="@RoleAssignmentItem_update"/>
+                </prop>
+              </prop>
+              <prop type="object" name="tags" arg="$resource.tags">
+                <additionalProp>
+                  <item type="string"/>
+                </additionalProp>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="VirtualEnclave_CreateOrUpdate">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}">
+          <request method="put">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="virtualEnclaveName" arg="$Path.virtualEnclaveName" required="True">
+                <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-03-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="@EnclaveResource_read"/>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <commandGroup name="identity">
+      <command name="assign" version="2026-03-01-preview">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.mission/virtualenclaves/{}" version="2026-03-01-preview" subresource="identity" swagger="mgmt-plane/mission/ResourceProviders/Microsoft.Mission/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWlzc2lvbi92aXJ0dWFsRW5jbGF2ZXMve3ZpcnR1YWxFbmNsYXZlTmFtZX0=/V/MjAyNi0wMy0wMS1wcmV2aWV3"/>
+        <argGroup name="">
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+          <arg type="string" var="$Path.virtualEnclaveName" options="virtual-enclave-name name n" required="True" idPart="name">
+            <help short="The name of the enclaveResource Resource"/>
+            <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+          </arg>
+        </argGroup>
+        <argGroup name="Resource.identity">
+          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
+          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="resource">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="VirtualEnclave_Get">
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}">
+            <request method="get">
+              <path>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+                <param type="string" name="virtualEnclaveName" arg="$Path.virtualEnclaveName" required="True">
+                  <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2026-03-01-preview&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="EnclaveResource_read">
+                    <prop readOnly="True" type="ResourceId" name="id">
+                      <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Mission/virtualEnclaves/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="uuid" name="principalId"/>
+                      <prop readOnly="True" type="uuid" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item nullable="True" type="object">
+                            <prop readOnly="True" type="uuid" name="clientId"/>
+                            <prop readOnly="True" type="uuid" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" clientFlatten="True">
+                      <prop type="object" name="approvalSettings">
+                        <prop type="@ApprovalSettingConfiguration_read" name="connectionCreation"/>
+                        <prop type="@ApprovalSettingConfiguration_read" name="connectionUpdate"/>
+                        <prop type="object" name="enclaveEndpointUpdate" cls="ApprovalSettingConfiguration_read">
+                          <prop type="string" name="approvalPolicy">
+                            <enum>
+                              <item value="&quot;NotRequired&quot;"/>
+                              <item value="&quot;Required&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="array<object>" name="mandatoryApprovers" identifiers="approverEntraId">
+                            <item type="object">
+                              <prop type="string" name="approverEntraId" required="True"/>
+                            </item>
+                          </prop>
+                          <prop type="integer32" name="minimumApproversRequired">
+                            <format minimum="0"/>
+                          </prop>
+                        </prop>
+                        <prop type="@ApprovalSettingConfiguration_read" name="enclaveMaintenanceMode"/>
+                      </prop>
+                      <prop type="boolean" name="bastionEnabled">
+                        <default value="false"/>
+                      </prop>
+                      <prop type="ResourceId" name="communityResourceId" required="True"/>
+                      <prop type="ResourceId" name="dedicatedHubResourceId"/>
+                      <prop readOnly="True" type="object" name="enclaveAddressSpaces">
+                        <prop type="string" name="enclaveAddressSpace"/>
+                        <prop type="string" name="managedAddressSpace"/>
+                      </prop>
+                      <prop type="object" name="enclaveDefaultSettings">
+                        <prop type="string" name="diagnosticDestination">
+                          <default value="&quot;EnclaveOnly&quot;"/>
+                          <enum>
+                            <item value="&quot;Both&quot;"/>
+                            <item value="&quot;CommunityOnly&quot;"/>
+                            <item value="&quot;EnclaveOnly&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="ResourceId" name="keyVaultResourceId"/>
+                        <prop readOnly="True" type="array<ResourceId>" name="logAnalyticsResourceIdCollection">
+                          <item type="ResourceId"/>
+                        </prop>
+                        <prop readOnly="True" type="ResourceId" name="storageAccountResourceId"/>
+                      </prop>
+                      <prop type="array<object>" name="enclaveRoleAssignments">
+                        <item type="object" cls="RoleAssignmentItem_read">
+                          <prop type="string" name="condition"/>
+                          <prop type="array<object>" name="principals">
+                            <item type="object" cls="Principal_read">
+                              <prop type="string" name="id" required="True"/>
+                              <prop type="string" name="type" required="True">
+                                <enum>
+                                  <item value="&quot;Group&quot;"/>
+                                  <item value="&quot;ServicePrincipal&quot;"/>
+                                  <item value="&quot;User&quot;"/>
+                                </enum>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="string" name="roleDefinitionId" required="True"/>
+                        </item>
+                      </prop>
+                      <prop type="object" name="enclaveVirtualNetwork" required="True">
+                        <prop type="boolean" name="allowSubnetCommunication">
+                          <default value="false"/>
+                        </prop>
+                        <prop type="string" name="customCidrRange"/>
+                        <prop type="string" name="networkName"/>
+                        <prop type="string" name="networkSize"/>
+                        <prop type="array<object>" name="subnetConfigurations">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="addressPrefix"/>
+                            <prop type="integer32" name="networkPrefixSize" required="True"/>
+                            <prop readOnly="True" type="ResourceId" name="networkSecurityGroupResourceId"/>
+                            <prop type="string" name="subnetDelegation"/>
+                            <prop type="string" name="subnetName" required="True"/>
+                            <prop readOnly="True" type="ResourceId" name="subnetResourceId"/>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop type="array<object>" name="governedServiceList">
+                        <item type="object">
+                          <prop type="string" name="enforcement">
+                            <enum>
+                              <item value="&quot;Disabled&quot;"/>
+                              <item value="&quot;Enabled&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="array<string>" name="initiatives">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="option">
+                            <enum>
+                              <item value="&quot;Allow&quot;"/>
+                              <item value="&quot;Deny&quot;"/>
+                              <item value="&quot;ExceptionOnly&quot;"/>
+                              <item value="&quot;NotApplicable&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="policyAction">
+                            <enum>
+                              <item value="&quot;AuditOnly&quot;"/>
+                              <item value="&quot;Enforce&quot;"/>
+                              <item value="&quot;None&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="serviceId" required="True">
+                            <enum>
+                              <item value="&quot;AKS&quot;"/>
+                              <item value="&quot;AppService&quot;"/>
+                              <item value="&quot;AzureFirewalls&quot;"/>
+                              <item value="&quot;ContainerRegistry&quot;"/>
+                              <item value="&quot;CosmosDB&quot;"/>
+                              <item value="&quot;DataConnectors&quot;"/>
+                              <item value="&quot;Insights&quot;"/>
+                              <item value="&quot;KeyVault&quot;"/>
+                              <item value="&quot;Logic&quot;"/>
+                              <item value="&quot;MicrosoftSQL&quot;"/>
+                              <item value="&quot;Monitoring&quot;"/>
+                              <item value="&quot;PostgreSQL&quot;"/>
+                              <item value="&quot;PrivateDNSZones&quot;"/>
+                              <item value="&quot;ServiceBus&quot;"/>
+                              <item value="&quot;Storage&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="string" name="serviceName"/>
+                        </item>
+                      </prop>
+                      <prop type="object" name="maintenanceModeConfiguration">
+                        <prop type="string" name="justification">
+                          <default value="&quot;Off&quot;"/>
+                          <enum>
+                            <item value="&quot;Governance&quot;"/>
+                            <item value="&quot;Networking&quot;"/>
+                            <item value="&quot;Off&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="mode" required="True">
+                          <default value="&quot;Off&quot;"/>
+                          <enum>
+                            <item value="&quot;Advanced&quot;"/>
+                            <item value="&quot;CanNotDelete&quot;"/>
+                            <item value="&quot;General&quot;"/>
+                            <item value="&quot;Off&quot;"/>
+                            <item value="&quot;On&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<@Principal_read>" name="principals">
+                          <default value="[]"/>
+                          <item type="@Principal_read"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="managedOnBehalfOfConfiguration">
+                        <prop type="array<object>" name="moboBrokerResources" identifiers="id">
+                          <item type="object">
+                            <prop type="ResourceId" name="id"/>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="managedResourceGroupName"/>
+                      <prop type="object" name="monitoringSettings">
+                        <prop type="array<object>" name="diagnosticDestinations">
+                          <item type="object" cls="MonitoringDestination_read">
+                            <prop type="ResourceId" name="customWorkspaceResourceId"/>
+                            <prop type="string" name="destinationType" required="True">
+                              <default value="&quot;EnclaveWorkspace&quot;"/>
+                              <enum>
+                                <item value="&quot;CommunityWorkspace&quot;"/>
+                                <item value="&quot;CustomWorkspace&quot;"/>
+                                <item value="&quot;EnclaveWorkspace&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="diagnosticSettingsName"/>
+                          </item>
+                        </prop>
+                        <prop type="@MonitoringDestination_read" name="flowLogDestination"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Accepted&quot;"/>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;NotSpecified&quot;"/>
+                          <item value="&quot;Running&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="rbacInheritance">
+                        <default value="&quot;Disabled&quot;"/>
+                        <enum>
+                          <item value="&quot;Disabled&quot;"/>
+                          <item value="&quot;Enabled&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="array<ResourceId>" name="resourceCollection">
+                        <item type="ResourceId"/>
+                      </prop>
+                      <prop type="string" name="workloadResourceVisibility">
+                        <default value="&quot;Disabled&quot;"/>
+                        <enum>
+                          <item value="&quot;Disabled&quot;"/>
+                          <item value="&quot;Enabled&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="array<@RoleAssignmentItem_read>" name="workloadRoleAssignments">
+                        <item type="@RoleAssignmentItem_read"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <operation>
+          <instanceUpdate ref="$Subresource">
+            <json>
+              <schema action="assign" type="IdentityObject" name="resource.identity" required="True">
+                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+                  <item action="assign" type="string"/>
+                </userAssigned>
+                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+              </schema>
+            </json>
+          </instanceUpdate>
+        </operation>
+        <operation operationId="VirtualEnclave_CreateOrUpdate">
+          <longRunning finalStateVia="azure-async-operation"/>
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}">
+            <request method="put">
+              <path>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+                <param type="string" name="virtualEnclaveName" arg="$Path.virtualEnclaveName" required="True">
+                  <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2026-03-01-preview&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+              <body>
+                <json ref="$Instance"/>
+              </body>
+            </request>
+            <response statusCode="200 201">
+              <body>
+                <json var="$Instance">
+                  <schema type="@EnclaveResource_read"/>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+      <command name="remove" version="2026-03-01-preview">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.mission/virtualenclaves/{}" version="2026-03-01-preview" subresource="identity" swagger="mgmt-plane/mission/ResourceProviders/Microsoft.Mission/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWlzc2lvbi92aXJ0dWFsRW5jbGF2ZXMve3ZpcnR1YWxFbmNsYXZlTmFtZX0=/V/MjAyNi0wMy0wMS1wcmV2aWV3"/>
+        <argGroup name="">
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+          <arg type="string" var="$Path.virtualEnclaveName" options="virtual-enclave-name name n" required="True" idPart="name">
+            <help short="The name of the enclaveResource Resource"/>
+            <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+          </arg>
+        </argGroup>
+        <argGroup name="Resource.identity">
+          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+            <blank value="&quot;True&quot;"/>
+            <help short="Set the system managed identity."/>
+          </arg>
+          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+            <blank value="[]"/>
+            <help short="Set the user managed identities."/>
+            <item type="string"/>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="resource">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="VirtualEnclave_Get">
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}">
+            <request method="get">
+              <path>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+                <param type="string" name="virtualEnclaveName" arg="$Path.virtualEnclaveName" required="True">
+                  <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2026-03-01-preview&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="EnclaveResource_read">
+                    <prop readOnly="True" type="ResourceId" name="id">
+                      <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Mission/virtualEnclaves/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="uuid" name="principalId"/>
+                      <prop readOnly="True" type="uuid" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item nullable="True" type="object">
+                            <prop readOnly="True" type="uuid" name="clientId"/>
+                            <prop readOnly="True" type="uuid" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" clientFlatten="True">
+                      <prop type="object" name="approvalSettings">
+                        <prop type="@ApprovalSettingConfiguration_read" name="connectionCreation"/>
+                        <prop type="@ApprovalSettingConfiguration_read" name="connectionUpdate"/>
+                        <prop type="object" name="enclaveEndpointUpdate" cls="ApprovalSettingConfiguration_read">
+                          <prop type="string" name="approvalPolicy">
+                            <enum>
+                              <item value="&quot;NotRequired&quot;"/>
+                              <item value="&quot;Required&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="array<object>" name="mandatoryApprovers" identifiers="approverEntraId">
+                            <item type="object">
+                              <prop type="string" name="approverEntraId" required="True"/>
+                            </item>
+                          </prop>
+                          <prop type="integer32" name="minimumApproversRequired">
+                            <format minimum="0"/>
+                          </prop>
+                        </prop>
+                        <prop type="@ApprovalSettingConfiguration_read" name="enclaveMaintenanceMode"/>
+                      </prop>
+                      <prop type="boolean" name="bastionEnabled">
+                        <default value="false"/>
+                      </prop>
+                      <prop type="ResourceId" name="communityResourceId" required="True"/>
+                      <prop type="ResourceId" name="dedicatedHubResourceId"/>
+                      <prop readOnly="True" type="object" name="enclaveAddressSpaces">
+                        <prop type="string" name="enclaveAddressSpace"/>
+                        <prop type="string" name="managedAddressSpace"/>
+                      </prop>
+                      <prop type="object" name="enclaveDefaultSettings">
+                        <prop type="string" name="diagnosticDestination">
+                          <default value="&quot;EnclaveOnly&quot;"/>
+                          <enum>
+                            <item value="&quot;Both&quot;"/>
+                            <item value="&quot;CommunityOnly&quot;"/>
+                            <item value="&quot;EnclaveOnly&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="ResourceId" name="keyVaultResourceId"/>
+                        <prop readOnly="True" type="array<ResourceId>" name="logAnalyticsResourceIdCollection">
+                          <item type="ResourceId"/>
+                        </prop>
+                        <prop readOnly="True" type="ResourceId" name="storageAccountResourceId"/>
+                      </prop>
+                      <prop type="array<object>" name="enclaveRoleAssignments">
+                        <item type="object" cls="RoleAssignmentItem_read">
+                          <prop type="string" name="condition"/>
+                          <prop type="array<object>" name="principals">
+                            <item type="object" cls="Principal_read">
+                              <prop type="string" name="id" required="True"/>
+                              <prop type="string" name="type" required="True">
+                                <enum>
+                                  <item value="&quot;Group&quot;"/>
+                                  <item value="&quot;ServicePrincipal&quot;"/>
+                                  <item value="&quot;User&quot;"/>
+                                </enum>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="string" name="roleDefinitionId" required="True"/>
+                        </item>
+                      </prop>
+                      <prop type="object" name="enclaveVirtualNetwork" required="True">
+                        <prop type="boolean" name="allowSubnetCommunication">
+                          <default value="false"/>
+                        </prop>
+                        <prop type="string" name="customCidrRange"/>
+                        <prop type="string" name="networkName"/>
+                        <prop type="string" name="networkSize"/>
+                        <prop type="array<object>" name="subnetConfigurations">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="addressPrefix"/>
+                            <prop type="integer32" name="networkPrefixSize" required="True"/>
+                            <prop readOnly="True" type="ResourceId" name="networkSecurityGroupResourceId"/>
+                            <prop type="string" name="subnetDelegation"/>
+                            <prop type="string" name="subnetName" required="True"/>
+                            <prop readOnly="True" type="ResourceId" name="subnetResourceId"/>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop type="array<object>" name="governedServiceList">
+                        <item type="object">
+                          <prop type="string" name="enforcement">
+                            <enum>
+                              <item value="&quot;Disabled&quot;"/>
+                              <item value="&quot;Enabled&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="array<string>" name="initiatives">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="option">
+                            <enum>
+                              <item value="&quot;Allow&quot;"/>
+                              <item value="&quot;Deny&quot;"/>
+                              <item value="&quot;ExceptionOnly&quot;"/>
+                              <item value="&quot;NotApplicable&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="policyAction">
+                            <enum>
+                              <item value="&quot;AuditOnly&quot;"/>
+                              <item value="&quot;Enforce&quot;"/>
+                              <item value="&quot;None&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="serviceId" required="True">
+                            <enum>
+                              <item value="&quot;AKS&quot;"/>
+                              <item value="&quot;AppService&quot;"/>
+                              <item value="&quot;AzureFirewalls&quot;"/>
+                              <item value="&quot;ContainerRegistry&quot;"/>
+                              <item value="&quot;CosmosDB&quot;"/>
+                              <item value="&quot;DataConnectors&quot;"/>
+                              <item value="&quot;Insights&quot;"/>
+                              <item value="&quot;KeyVault&quot;"/>
+                              <item value="&quot;Logic&quot;"/>
+                              <item value="&quot;MicrosoftSQL&quot;"/>
+                              <item value="&quot;Monitoring&quot;"/>
+                              <item value="&quot;PostgreSQL&quot;"/>
+                              <item value="&quot;PrivateDNSZones&quot;"/>
+                              <item value="&quot;ServiceBus&quot;"/>
+                              <item value="&quot;Storage&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="string" name="serviceName"/>
+                        </item>
+                      </prop>
+                      <prop type="object" name="maintenanceModeConfiguration">
+                        <prop type="string" name="justification">
+                          <default value="&quot;Off&quot;"/>
+                          <enum>
+                            <item value="&quot;Governance&quot;"/>
+                            <item value="&quot;Networking&quot;"/>
+                            <item value="&quot;Off&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="mode" required="True">
+                          <default value="&quot;Off&quot;"/>
+                          <enum>
+                            <item value="&quot;Advanced&quot;"/>
+                            <item value="&quot;CanNotDelete&quot;"/>
+                            <item value="&quot;General&quot;"/>
+                            <item value="&quot;Off&quot;"/>
+                            <item value="&quot;On&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<@Principal_read>" name="principals">
+                          <default value="[]"/>
+                          <item type="@Principal_read"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="managedOnBehalfOfConfiguration">
+                        <prop type="array<object>" name="moboBrokerResources" identifiers="id">
+                          <item type="object">
+                            <prop type="ResourceId" name="id"/>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="managedResourceGroupName"/>
+                      <prop type="object" name="monitoringSettings">
+                        <prop type="array<object>" name="diagnosticDestinations">
+                          <item type="object" cls="MonitoringDestination_read">
+                            <prop type="ResourceId" name="customWorkspaceResourceId"/>
+                            <prop type="string" name="destinationType" required="True">
+                              <default value="&quot;EnclaveWorkspace&quot;"/>
+                              <enum>
+                                <item value="&quot;CommunityWorkspace&quot;"/>
+                                <item value="&quot;CustomWorkspace&quot;"/>
+                                <item value="&quot;EnclaveWorkspace&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="diagnosticSettingsName"/>
+                          </item>
+                        </prop>
+                        <prop type="@MonitoringDestination_read" name="flowLogDestination"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Accepted&quot;"/>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;NotSpecified&quot;"/>
+                          <item value="&quot;Running&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="rbacInheritance">
+                        <default value="&quot;Disabled&quot;"/>
+                        <enum>
+                          <item value="&quot;Disabled&quot;"/>
+                          <item value="&quot;Enabled&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="array<ResourceId>" name="resourceCollection">
+                        <item type="ResourceId"/>
+                      </prop>
+                      <prop type="string" name="workloadResourceVisibility">
+                        <default value="&quot;Disabled&quot;"/>
+                        <enum>
+                          <item value="&quot;Disabled&quot;"/>
+                          <item value="&quot;Enabled&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="array<@RoleAssignmentItem_read>" name="workloadRoleAssignments">
+                        <item type="@RoleAssignmentItem_read"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <operation>
+          <instanceUpdate ref="$Subresource">
+            <json>
+              <schema action="remove" type="IdentityObject" name="resource.identity" required="True">
+                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+                  <item action="remove" type="string"/>
+                </userAssigned>
+                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+              </schema>
+            </json>
+          </instanceUpdate>
+        </operation>
+        <operation operationId="VirtualEnclave_CreateOrUpdate">
+          <longRunning finalStateVia="azure-async-operation"/>
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}">
+            <request method="put">
+              <path>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+                <param type="string" name="virtualEnclaveName" arg="$Path.virtualEnclaveName" required="True">
+                  <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2026-03-01-preview&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+              <body>
+                <json ref="$Instance"/>
+              </body>
+            </request>
+            <response statusCode="200 201">
+              <body>
+                <json var="$Instance">
+                  <schema type="@EnclaveResource_read"/>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+      <command name="show" version="2026-03-01-preview">
+        <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.mission/virtualenclaves/{}" version="2026-03-01-preview" subresource="identity" swagger="mgmt-plane/mission/ResourceProviders/Microsoft.Mission/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWlzc2lvbi92aXJ0dWFsRW5jbGF2ZXMve3ZpcnR1YWxFbmNsYXZlTmFtZX0=/V/MjAyNi0wMy0wMS1wcmV2aWV3"/>
+        <argGroup name="">
+          <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+          <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+          <arg type="string" var="$Path.virtualEnclaveName" options="virtual-enclave-name name n" required="True" idPart="name">
+            <help short="The name of the enclaveResource Resource"/>
+            <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+          </arg>
+        </argGroup>
+        <subresourceSelector var="$Subresource" ref="$Instance">
+          <json type="object" name="resource">
+            <prop type="object" name="identity"/>
+          </json>
+        </subresourceSelector>
+        <operation operationId="VirtualEnclave_Get">
+          <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}">
+            <request method="get">
+              <path>
+                <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                  <format maxLength="90" minLength="1"/>
+                </param>
+                <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+                <param type="string" name="virtualEnclaveName" arg="$Path.virtualEnclaveName" required="True">
+                  <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+                </param>
+              </path>
+              <query>
+                <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                  <default value="&quot;2026-03-01-preview&quot;"/>
+                  <format minLength="1"/>
+                </const>
+              </query>
+            </request>
+            <response statusCode="200">
+              <body>
+                <json var="$Instance">
+                  <schema type="object" cls="EnclaveResource_read">
+                    <prop readOnly="True" type="ResourceId" name="id">
+                      <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Mission/virtualEnclaves/{}"/>
+                    </prop>
+                    <prop type="IdentityObject" name="identity">
+                      <prop readOnly="True" type="uuid" name="principalId"/>
+                      <prop readOnly="True" type="uuid" name="tenantId"/>
+                      <prop type="string" name="type" required="True">
+                        <enum>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;SystemAssigned&quot;"/>
+                          <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                          <item value="&quot;UserAssigned&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="object" name="userAssignedIdentities">
+                        <additionalProp>
+                          <item nullable="True" type="object">
+                            <prop readOnly="True" type="uuid" name="clientId"/>
+                            <prop readOnly="True" type="uuid" name="principalId"/>
+                          </item>
+                        </additionalProp>
+                      </prop>
+                    </prop>
+                    <prop type="ResourceLocation" name="location" required="True"/>
+                    <prop readOnly="True" type="string" name="name"/>
+                    <prop type="object" name="properties" clientFlatten="True">
+                      <prop type="object" name="approvalSettings">
+                        <prop type="@ApprovalSettingConfiguration_read" name="connectionCreation"/>
+                        <prop type="@ApprovalSettingConfiguration_read" name="connectionUpdate"/>
+                        <prop type="object" name="enclaveEndpointUpdate" cls="ApprovalSettingConfiguration_read">
+                          <prop type="string" name="approvalPolicy">
+                            <enum>
+                              <item value="&quot;NotRequired&quot;"/>
+                              <item value="&quot;Required&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="array<object>" name="mandatoryApprovers" identifiers="approverEntraId">
+                            <item type="object">
+                              <prop type="string" name="approverEntraId" required="True"/>
+                            </item>
+                          </prop>
+                          <prop type="integer32" name="minimumApproversRequired">
+                            <format minimum="0"/>
+                          </prop>
+                        </prop>
+                        <prop type="@ApprovalSettingConfiguration_read" name="enclaveMaintenanceMode"/>
+                      </prop>
+                      <prop type="boolean" name="bastionEnabled">
+                        <default value="false"/>
+                      </prop>
+                      <prop type="ResourceId" name="communityResourceId" required="True"/>
+                      <prop type="ResourceId" name="dedicatedHubResourceId"/>
+                      <prop readOnly="True" type="object" name="enclaveAddressSpaces">
+                        <prop type="string" name="enclaveAddressSpace"/>
+                        <prop type="string" name="managedAddressSpace"/>
+                      </prop>
+                      <prop type="object" name="enclaveDefaultSettings">
+                        <prop type="string" name="diagnosticDestination">
+                          <default value="&quot;EnclaveOnly&quot;"/>
+                          <enum>
+                            <item value="&quot;Both&quot;"/>
+                            <item value="&quot;CommunityOnly&quot;"/>
+                            <item value="&quot;EnclaveOnly&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="ResourceId" name="keyVaultResourceId"/>
+                        <prop readOnly="True" type="array<ResourceId>" name="logAnalyticsResourceIdCollection">
+                          <item type="ResourceId"/>
+                        </prop>
+                        <prop readOnly="True" type="ResourceId" name="storageAccountResourceId"/>
+                      </prop>
+                      <prop type="array<object>" name="enclaveRoleAssignments">
+                        <item type="object" cls="RoleAssignmentItem_read">
+                          <prop type="string" name="condition"/>
+                          <prop type="array<object>" name="principals">
+                            <item type="object" cls="Principal_read">
+                              <prop type="string" name="id" required="True"/>
+                              <prop type="string" name="type" required="True">
+                                <enum>
+                                  <item value="&quot;Group&quot;"/>
+                                  <item value="&quot;ServicePrincipal&quot;"/>
+                                  <item value="&quot;User&quot;"/>
+                                </enum>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="string" name="roleDefinitionId" required="True"/>
+                        </item>
+                      </prop>
+                      <prop type="object" name="enclaveVirtualNetwork" required="True">
+                        <prop type="boolean" name="allowSubnetCommunication">
+                          <default value="false"/>
+                        </prop>
+                        <prop type="string" name="customCidrRange"/>
+                        <prop type="string" name="networkName"/>
+                        <prop type="string" name="networkSize"/>
+                        <prop type="array<object>" name="subnetConfigurations">
+                          <item type="object">
+                            <prop readOnly="True" type="string" name="addressPrefix"/>
+                            <prop type="integer32" name="networkPrefixSize" required="True"/>
+                            <prop readOnly="True" type="ResourceId" name="networkSecurityGroupResourceId"/>
+                            <prop type="string" name="subnetDelegation"/>
+                            <prop type="string" name="subnetName" required="True"/>
+                            <prop readOnly="True" type="ResourceId" name="subnetResourceId"/>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop type="array<object>" name="governedServiceList">
+                        <item type="object">
+                          <prop type="string" name="enforcement">
+                            <enum>
+                              <item value="&quot;Disabled&quot;"/>
+                              <item value="&quot;Enabled&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="array<string>" name="initiatives">
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="option">
+                            <enum>
+                              <item value="&quot;Allow&quot;"/>
+                              <item value="&quot;Deny&quot;"/>
+                              <item value="&quot;ExceptionOnly&quot;"/>
+                              <item value="&quot;NotApplicable&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="policyAction">
+                            <enum>
+                              <item value="&quot;AuditOnly&quot;"/>
+                              <item value="&quot;Enforce&quot;"/>
+                              <item value="&quot;None&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="serviceId" required="True">
+                            <enum>
+                              <item value="&quot;AKS&quot;"/>
+                              <item value="&quot;AppService&quot;"/>
+                              <item value="&quot;AzureFirewalls&quot;"/>
+                              <item value="&quot;ContainerRegistry&quot;"/>
+                              <item value="&quot;CosmosDB&quot;"/>
+                              <item value="&quot;DataConnectors&quot;"/>
+                              <item value="&quot;Insights&quot;"/>
+                              <item value="&quot;KeyVault&quot;"/>
+                              <item value="&quot;Logic&quot;"/>
+                              <item value="&quot;MicrosoftSQL&quot;"/>
+                              <item value="&quot;Monitoring&quot;"/>
+                              <item value="&quot;PostgreSQL&quot;"/>
+                              <item value="&quot;PrivateDNSZones&quot;"/>
+                              <item value="&quot;ServiceBus&quot;"/>
+                              <item value="&quot;Storage&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="string" name="serviceName"/>
+                        </item>
+                      </prop>
+                      <prop type="object" name="maintenanceModeConfiguration">
+                        <prop type="string" name="justification">
+                          <default value="&quot;Off&quot;"/>
+                          <enum>
+                            <item value="&quot;Governance&quot;"/>
+                            <item value="&quot;Networking&quot;"/>
+                            <item value="&quot;Off&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="mode" required="True">
+                          <default value="&quot;Off&quot;"/>
+                          <enum>
+                            <item value="&quot;Advanced&quot;"/>
+                            <item value="&quot;CanNotDelete&quot;"/>
+                            <item value="&quot;General&quot;"/>
+                            <item value="&quot;Off&quot;"/>
+                            <item value="&quot;On&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<@Principal_read>" name="principals">
+                          <default value="[]"/>
+                          <item type="@Principal_read"/>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="managedOnBehalfOfConfiguration">
+                        <prop type="array<object>" name="moboBrokerResources" identifiers="id">
+                          <item type="object">
+                            <prop type="ResourceId" name="id"/>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="managedResourceGroupName"/>
+                      <prop type="object" name="monitoringSettings">
+                        <prop type="array<object>" name="diagnosticDestinations">
+                          <item type="object" cls="MonitoringDestination_read">
+                            <prop type="ResourceId" name="customWorkspaceResourceId"/>
+                            <prop type="string" name="destinationType" required="True">
+                              <default value="&quot;EnclaveWorkspace&quot;"/>
+                              <enum>
+                                <item value="&quot;CommunityWorkspace&quot;"/>
+                                <item value="&quot;CustomWorkspace&quot;"/>
+                                <item value="&quot;EnclaveWorkspace&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="string" name="diagnosticSettingsName"/>
+                          </item>
+                        </prop>
+                        <prop type="@MonitoringDestination_read" name="flowLogDestination"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="provisioningState">
+                        <enum>
+                          <item value="&quot;Accepted&quot;"/>
+                          <item value="&quot;Canceled&quot;"/>
+                          <item value="&quot;Creating&quot;"/>
+                          <item value="&quot;Deleting&quot;"/>
+                          <item value="&quot;Failed&quot;"/>
+                          <item value="&quot;NotSpecified&quot;"/>
+                          <item value="&quot;Running&quot;"/>
+                          <item value="&quot;Succeeded&quot;"/>
+                          <item value="&quot;Updating&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="rbacInheritance">
+                        <default value="&quot;Disabled&quot;"/>
+                        <enum>
+                          <item value="&quot;Disabled&quot;"/>
+                          <item value="&quot;Enabled&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="array<ResourceId>" name="resourceCollection">
+                        <item type="ResourceId"/>
+                      </prop>
+                      <prop type="string" name="workloadResourceVisibility">
+                        <default value="&quot;Disabled&quot;"/>
+                        <enum>
+                          <item value="&quot;Disabled&quot;"/>
+                          <item value="&quot;Enabled&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="array<@RoleAssignmentItem_read>" name="workloadRoleAssignments">
+                        <item type="@RoleAssignmentItem_read"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="systemData">
+                      <prop type="dateTime" name="createdAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="createdBy"/>
+                      <prop type="string" name="createdByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="lastModifiedAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="lastModifiedBy"/>
+                      <prop type="string" name="lastModifiedByType">
+                        <enum>
+                          <item value="&quot;Application&quot;"/>
+                          <item value="&quot;Key&quot;"/>
+                          <item value="&quot;ManagedIdentity&quot;"/>
+                          <item value="&quot;User&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="tags">
+                      <additionalProp>
+                        <item type="string"/>
+                      </additionalProp>
+                    </prop>
+                    <prop readOnly="True" type="string" name="type"/>
+                  </schema>
+                </json>
+              </body>
+            </response>
+            <response isError="True">
+              <body>
+                <json>
+                  <schema type="@MgmtErrorFormat"/>
+                </json>
+              </body>
+            </response>
+          </http>
+        </operation>
+        <output type="object" ref="$Subresource" clientFlatten="True"/>
+      </command>
+    </commandGroup>
+  </commandGroup>
+</CodeGen>
