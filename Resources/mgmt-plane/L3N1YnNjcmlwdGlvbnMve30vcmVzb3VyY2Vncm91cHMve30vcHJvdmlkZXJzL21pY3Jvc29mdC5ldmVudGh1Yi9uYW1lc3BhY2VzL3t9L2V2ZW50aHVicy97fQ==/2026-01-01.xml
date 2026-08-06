@@ -296,20 +296,19 @@
           </arg>
         </arg>
       </argGroup>
+      <argGroup name="MessageTimestampDescription">
+        <arg type="string" var="$parameters.properties.messageTimestampDescription.timestampType" options="timestamp-type" group="MessageTimestampDescription">
+          <help short="Denotes the type of timestamp the message will hold.Two types of timestamp types - &quot;AppendTime&quot; and &quot;CreateTime&quot;. AppendTime refers the time in which message got appended inside broker log. CreateTime refers to the time in which the message was generated on source side and producers can set this timestamp while sending the message. Default value is AppendTime. If you are using AMQP protocol, CreateTime equals AppendTime and its behavior remains the same."/>
+          <enum>
+            <item name="Create" value="&quot;Create&quot;"/>
+            <item name="LogAppend" value="&quot;LogAppend&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
       <argGroup name="Properties">
         <arg type="integer64" var="$parameters.properties.messageRetentionInDays" options="message-retention-in-days" group="Properties">
           <help short="Number of days to retain the events for this Event Hub, value should be 1 to 7 days"/>
           <format minimum="1"/>
-        </arg>
-        <arg type="object" var="$parameters.properties.messageTimestampDescription" options="message-timestamp-description" group="Properties">
-          <help short="Properties of MessageTimestamp Description"/>
-          <arg type="string" var="$parameters.properties.messageTimestampDescription.timestampType" options="timestamp-type">
-            <help short="Denotes the type of timestamp the message will hold.Two types of timestamp types - &quot;AppendTime&quot; and &quot;CreateTime&quot;. AppendTime refers the time in which message got appended inside broker log. CreateTime refers to the time in which the message was generated on source side and producers can set this timestamp while sending the message. Default value is AppendTime. If you are using AMQP protocol, CreateTime equals AppendTime and its behavior remains the same."/>
-            <enum>
-              <item name="Create" value="&quot;Create&quot;"/>
-              <item name="LogAppend" value="&quot;LogAppend&quot;"/>
-            </enum>
-          </arg>
         </arg>
         <arg type="integer64" var="$parameters.properties.partitionCount" options="partition-count" group="Properties">
           <help short="Number of partitions created for the Event Hub, allowed values are from 1 to 32 partitions."/>
@@ -342,7 +341,7 @@
             <item name="DeleteOrCompact" value="&quot;DeleteOrCompact&quot;"/>
           </enum>
         </arg>
-        <arg type="integer64" var="$parameters.properties.retentionDescription.minCompactionLagTimeInMinutes" options="min-compaction-lag-time-in-minutes" group="RetentionDescription">
+        <arg type="integer64" var="$parameters.properties.retentionDescription.minCompactionLagTimeInMinutes" options="min-compaction-lag-in-mins min-lag" group="RetentionDescription">
           <help short="The minimum time a message will remain ineligible for compaction in the log. This value is used when cleanupPolicy is Compact or DeleteOrCompact."/>
         </arg>
         <arg type="integer64" var="$parameters.properties.retentionDescription.retentionTimeInHours" options="retention-time-in-hours retention-time" group="RetentionDescription">
@@ -414,7 +413,7 @@
                     <prop type="integer64" name="messageRetentionInDays" arg="$parameters.properties.messageRetentionInDays">
                       <format minimum="1"/>
                     </prop>
-                    <prop type="object" name="messageTimestampDescription" arg="$parameters.properties.messageTimestampDescription">
+                    <prop type="object" name="messageTimestampDescription">
                       <prop type="string" name="timestampType" arg="$parameters.properties.messageTimestampDescription.timestampType">
                         <enum>
                           <item value="&quot;Create&quot;"/>
@@ -662,20 +661,19 @@
           </arg>
         </arg>
       </argGroup>
+      <argGroup name="MessageTimestampDescription">
+        <arg nullable="True" type="string" var="$parameters.properties.messageTimestampDescription.timestampType" options="timestamp-type" group="MessageTimestampDescription">
+          <help short="Denotes the type of timestamp the message will hold.Two types of timestamp types - &quot;AppendTime&quot; and &quot;CreateTime&quot;. AppendTime refers the time in which message got appended inside broker log. CreateTime refers to the time in which the message was generated on source side and producers can set this timestamp while sending the message. Default value is AppendTime. If you are using AMQP protocol, CreateTime equals AppendTime and its behavior remains the same."/>
+          <enum>
+            <item name="Create" value="&quot;Create&quot;"/>
+            <item name="LogAppend" value="&quot;LogAppend&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
       <argGroup name="Properties">
         <arg nullable="True" type="integer64" var="$parameters.properties.messageRetentionInDays" options="message-retention-in-days" hide="True" group="Properties">
           <help short="Number of days to retain the events for this Event Hub, value should be 1 to 7 days"/>
           <format minimum="1"/>
-        </arg>
-        <arg nullable="True" type="object" var="$parameters.properties.messageTimestampDescription" options="message-timestamp-description" group="Properties">
-          <help short="Properties of MessageTimestamp Description"/>
-          <arg nullable="True" type="string" var="$parameters.properties.messageTimestampDescription.timestampType" options="timestamp-type">
-            <help short="Denotes the type of timestamp the message will hold.Two types of timestamp types - &quot;AppendTime&quot; and &quot;CreateTime&quot;. AppendTime refers the time in which message got appended inside broker log. CreateTime refers to the time in which the message was generated on source side and producers can set this timestamp while sending the message. Default value is AppendTime. If you are using AMQP protocol, CreateTime equals AppendTime and its behavior remains the same."/>
-            <enum>
-              <item name="Create" value="&quot;Create&quot;"/>
-              <item name="LogAppend" value="&quot;LogAppend&quot;"/>
-            </enum>
-          </arg>
         </arg>
         <arg nullable="True" type="integer64" var="$parameters.properties.partitionCount" options="partition-count" group="Properties">
           <help short="Number of partitions created for the Event Hub, allowed values are from 1 to 32 partitions."/>
@@ -708,7 +706,7 @@
             <item name="DeleteOrCompact" value="&quot;DeleteOrCompact&quot;"/>
           </enum>
         </arg>
-        <arg nullable="True" type="integer64" var="$parameters.properties.retentionDescription.minCompactionLagTimeInMinutes" options="min-compaction-lag-time-in-minutes" group="RetentionDescription">
+        <arg nullable="True" type="integer64" var="$parameters.properties.retentionDescription.minCompactionLagTimeInMinutes" options="min-compaction-lag-in-mins min-lag" group="RetentionDescription">
           <help short="The minimum time a message will remain ineligible for compaction in the log. This value is used when cleanupPolicy is Compact or DeleteOrCompact."/>
         </arg>
         <arg nullable="True" type="integer64" var="$parameters.properties.retentionDescription.retentionTimeInHours" options="retention-time-in-hours retention-time" group="RetentionDescription">
@@ -915,7 +913,7 @@
                 <prop type="integer64" name="messageRetentionInDays" arg="$parameters.properties.messageRetentionInDays">
                   <format minimum="1"/>
                 </prop>
-                <prop type="object" name="messageTimestampDescription" arg="$parameters.properties.messageTimestampDescription">
+                <prop type="object" name="messageTimestampDescription">
                   <prop type="string" name="timestampType" arg="$parameters.properties.messageTimestampDescription.timestampType">
                     <enum>
                       <item value="&quot;Create&quot;"/>
