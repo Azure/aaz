@@ -1,0 +1,104 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.mission/virtualenclaves/{}/handleapprovalcreation" version="2026-03-01-preview" swagger="mgmt-plane/mission/ResourceProviders/Microsoft.Mission/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWlzc2lvbi92aXJ0dWFsRW5jbGF2ZXMve3ZpcnR1YWxFbmNsYXZlTmFtZX0vaGFuZGxlQXBwcm92YWxDcmVhdGlvbg==/V/MjAyNi0wMy0wMS1wcmV2aWV3"/>
+  <commandGroup name="mission virtual-enclave">
+    <command name="handle-approval-creation" version="2026-03-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.mission/virtualenclaves/{}/handleapprovalcreation" version="2026-03-01-preview" swagger="mgmt-plane/mission/ResourceProviders/Microsoft.Mission/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWlzc2lvbi92aXJ0dWFsRW5jbGF2ZXMve3ZpcnR1YWxFbmNsYXZlTmFtZX0vaGFuZGxlQXBwcm92YWxDcmVhdGlvbg==/V/MjAyNi0wMy0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.virtualEnclaveName" options="virtual-enclave-name" required="True" idPart="name">
+          <help short="The name of the enclaveResource Resource"/>
+          <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="string" var="$body.approvalCallbackPayload" options="approval-callback-payload" group="Body">
+          <help short="Payload requested by client upon approval action"/>
+        </arg>
+        <arg type="string" var="$body.approvalStatus" options="approval-status" required="True" group="Body">
+          <help short="Approval status indicating 'Approved' or 'Rejected'"/>
+          <enum>
+            <item name="Approved" value="&quot;Approved&quot;"/>
+            <item name="Rejected" value="&quot;Rejected&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$body.resourceRequestAction" options="resource-request-action" required="True" group="Body">
+          <help short="Resource request action indicating action which needed to be performed upon calling approval-callback post action"/>
+          <enum>
+            <item name="Create" value="&quot;Create&quot;"/>
+            <item name="Delete" value="&quot;Delete&quot;"/>
+            <item name="Reset" value="&quot;Reset&quot;"/>
+            <item name="Update" value="&quot;Update&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualEnclave_HandleApprovalCreation">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Mission/virtualEnclaves/{virtualEnclaveName}/handleApprovalCreation">
+          <request method="post">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="virtualEnclaveName" arg="$Path.virtualEnclaveName" required="True">
+                <format pattern="^[a-zA-Z][a-zA-Z0-9-]*[a-zA-Z0-9]$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-03-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="string" name="approvalCallbackPayload" arg="$body.approvalCallbackPayload"/>
+                  <prop type="string" name="approvalStatus" arg="$body.approvalStatus" required="True">
+                    <enum>
+                      <item value="&quot;Approved&quot;"/>
+                      <item value="&quot;Rejected&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="string" name="resourceRequestAction" arg="$body.resourceRequestAction" required="True">
+                    <enum>
+                      <item value="&quot;Create&quot;"/>
+                      <item value="&quot;Delete&quot;"/>
+                      <item value="&quot;Reset&quot;"/>
+                      <item value="&quot;Update&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="message" required="True"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

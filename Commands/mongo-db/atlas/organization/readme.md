@@ -1,17 +1,25 @@
 # [Group] _mongo-db atlas organization_
 
-Manage Azure resources that represent MongoDB Atlas organizations
+Manage Organization
+
+## Subgroups
+
+- [project](/Commands/mongo-db/atlas/organization/project/readme.md)
+: Manage Project
 
 ## Commands
 
 - [create](/Commands/mongo-db/atlas/organization/_create.md)
-: Create an Azure resource that provisions a corresponding MongoDB Atlas organization
+: Create a OrganizationResource
 
 - [delete](/Commands/mongo-db/atlas/organization/_delete.md)
-: Delete the Azure resource linked to a MongoDB Atlas organization
+: Delete a OrganizationResource
 
 - [list](/Commands/mongo-db/atlas/organization/_list.md)
-: List all Azure resources representing MongoDB Atlas organizations under the current subscription
+: List OrganizationResource resources by subscription ID
 
 - [show](/Commands/mongo-db/atlas/organization/_show.md)
-: Retrieve details of the Azure resource associated with a MongoDB Atlas organization
+: Get a OrganizationResource
+
+- [update](/Commands/mongo-db/atlas/organization/_update.md)
+: Update a OrganizationResource

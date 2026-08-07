@@ -1,0 +1,16 @@
+# [Command] _mission community identity assign_
+
+Assign the user or system managed identities.
+
+## Versions
+
+### [2026-03-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5taXNzaW9uL2NvbW11bml0aWVzL3t9/2026-03-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.mission/communities/{} 2026-03-01-preview identity -->
+
+#### examples
+
+- Community_CreateOrUpdate
+    ```bash
+        mission community identity assign --resource-group rgopenapi --community-name TestMyCommunity
+    ```

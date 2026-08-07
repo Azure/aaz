@@ -212,6 +212,9 @@
 - [informatica](/Commands/informatica/readme.md)
 : Manage all resources related to Informatica within the Azure CLI.
 
+- [interconnect-block](/Commands/interconnect-block/readme.md)
+: Manage Interconnect Block
+
 - [interconnect-group](/Commands/interconnect-group/readme.md)
 : Manage Interconnect Group
 
@@ -254,8 +257,14 @@
 - [mesh](/Commands/mesh/readme.md)
 : (PREVIEW) Manage Azure Service Fabric Mesh Resources.
 
+- [mission](/Commands/mission/readme.md)
+: Manage Mission
+
 - [mobile-network](/Commands/mobile-network/readme.md)
 : Manage mobile network
+
+- [mongo-db](/Commands/mongo-db/readme.md)
+: Manage Mongo Db
 
 - [monitor](/Commands/monitor/readme.md)
 : Manage the Azure Monitor Service.

@@ -1,16 +1,16 @@
 # [Command] _mongo-db atlas organization delete_
 
-Delete the Azure resource linked to a MongoDB Atlas organization
+Delete a OrganizationResource
 
 ## Versions
 
-### [2025-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21vbmdvZGIuYXRsYXMvb3JnYW5pemF0aW9ucy97fQ==/2025-06-01.xml) **Stable**
+### [2026-03-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21vbmdvZGIuYXRsYXMvb3JnYW5pemF0aW9ucy97fQ==/2026-03-01-preview.xml) **Stable**
 
-<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/mongodb.atlas/organizations/{} 2025-06-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/mongodb.atlas/organizations/{} 2026-03-01-preview -->
 
 #### examples
 
-- Organizations_Delete
+- Organizations_Delete_MaximumSet
     ```bash
-        mongo-db atlas organization delete --subscription "abcd1234-5678-90ab-cdef-12345678abcd" --resource-group "MyResourceGroup" -name "MyOrganizationResourceName"
+        mongo-db atlas organization delete \ --subscription {subscription} \ --resource-group {resource_group} \ --name MongoDBCLITestOrg2 \ --yes
     ```
