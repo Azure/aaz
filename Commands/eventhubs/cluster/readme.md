@@ -7,6 +7,12 @@ Manage Azure EventHubs Clusters.
 - [namespace](/Commands/eventhubs/cluster/namespace/readme.md)
 : List of Namespaces within given Cluster.
 
+- [quota-configuration](/Commands/eventhubs/cluster/quota-configuration/readme.md)
+: Manage quota and settings configuration of an Event Hubs Dedicated Cluster.
+
+- [upgrade-preference](/Commands/eventhubs/cluster/upgrade-preference/readme.md)
+: Manage upgrade preferences of an Event Hubs Dedicated Cluster.
+
 ## Commands
 
 - [available-region](/Commands/eventhubs/cluster/_available-region.md)

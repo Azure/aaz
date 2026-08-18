@@ -10,6 +10,9 @@ Manage Azure EventHubs eventhub and authorization-rule.
 - [consumer-group](/Commands/eventhubs/eventhub/consumer-group/readme.md)
 : Manage Azure Event Hubs consumergroup.
 
+- [fabric-shortcut](/Commands/eventhubs/eventhub/fabric-shortcut/readme.md)
+: Manage Fabric Shortcut
+
 ## Commands
 
 - [create](/Commands/eventhubs/eventhub/_create.md)

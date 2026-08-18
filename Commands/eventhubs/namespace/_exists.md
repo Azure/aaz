@@ -15,3 +15,14 @@ Check the give Namespace name availability.
 ### [2026-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5ldmVudGh1Yi9jaGVja25hbWVhdmFpbGFiaWxpdHk=/2026-01-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.eventhub/checknameavailability 2026-01-01 -->
+
+### [2026-07-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5ldmVudGh1Yi9jaGVja25hbWVhdmFpbGFiaWxpdHk=/2026-07-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.eventhub/checknameavailability 2026-07-01-preview -->
+
+#### examples
+
+- NamespacesCheckNameAvailability
+    ```bash
+        eventhubs namespace exists --name sdk-Namespace-8458
+    ```
