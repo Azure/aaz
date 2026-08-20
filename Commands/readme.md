@@ -35,6 +35,9 @@
 - [arcgateway](/Commands/arcgateway/readme.md)
 : Manage gateway connection on Arc machine
 
+- [aro](/Commands/aro/readme.md)
+: Manage Azure Red Hat OpenShift resource types
+
 - [artifact-signing](/Commands/artifact-signing/readme.md)
 : Manage artifact signing account.
 

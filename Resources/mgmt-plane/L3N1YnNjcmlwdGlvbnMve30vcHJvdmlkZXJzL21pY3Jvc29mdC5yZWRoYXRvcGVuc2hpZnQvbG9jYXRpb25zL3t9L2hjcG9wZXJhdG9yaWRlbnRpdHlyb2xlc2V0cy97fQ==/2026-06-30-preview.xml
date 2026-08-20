@@ -1,0 +1,107 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.redhatopenshift/locations/{}/hcpoperatoridentityrolesets/{}" version="2026-06-30-preview" swagger="mgmt-plane/redhatopenshift/ResourceProviders/Microsoft.RedHatOpenShift/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LlJlZEhhdE9wZW5TaGlmdC9sb2NhdGlvbnMve2xvY2F0aW9ufS9oY3BPcGVyYXRvcklkZW50aXR5Um9sZVNldHMve2hjcE9wZXJhdG9ySWRlbnRpdHlSb2xlU2V0TmFtZX0=/V/MjAyNi0wNi0zMC1wcmV2aWV3"/>
+  <commandGroup name="aro hcp identity-role-sets">
+    <command name="show" version="2026-06-30-preview" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.redhatopenshift/locations/{}/hcpoperatoridentityrolesets/{}" version="2026-06-30-preview" swagger="mgmt-plane/redhatopenshift/ResourceProviders/Microsoft.RedHatOpenShift/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LlJlZEhhdE9wZW5TaGlmdC9sb2NhdGlvbnMve2xvY2F0aW9ufS9oY3BPcGVyYXRvcklkZW50aXR5Um9sZVNldHMve2hjcE9wZXJhdG9ySWRlbnRpdHlSb2xlU2V0TmFtZX0=/V/MjAyNi0wNi0zMC1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.hcpOperatorIdentityRoleSetName" options="name n" required="True" group="" idPart="child_name_1">
+          <help short="The OpenShift minor version these identities are required for."/>
+          <format pattern="^[a-zA-Z0-9-\.]{3,24}$"/>
+        </arg>
+        <arg type="ResourceLocation" var="$Path.location" options="location l" required="True" idPart="name"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="HcpOperatorIdentityRoleSets_Get">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.RedHatOpenShift/locations/{location}/hcpOperatorIdentityRoleSets/{hcpOperatorIdentityRoleSetName}">
+          <request method="get">
+            <path>
+              <param type="string" name="hcpOperatorIdentityRoleSetName" arg="$Path.hcpOperatorIdentityRoleSetName" required="True">
+                <format pattern="^[a-zA-Z0-9-\.]{3,24}$"/>
+              </param>
+              <param type="string" name="location" arg="$Path.location" required="True">
+                <format minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-06-30-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/providers/Microsoft.RedHatOpenShift/locations/{}/hcpOperatorIdentityRoleSets/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="array<object>" name="controlPlaneOperators" required="True" identifiers="name">
+                      <item type="object" cls="OperatorIdentityRoles_read">
+                        <prop type="string" name="name" required="True"/>
+                        <prop type="string" name="required" required="True">
+                          <enum>
+                            <item value="&quot;Always&quot;"/>
+                            <item value="&quot;OnEnablement&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<object>" name="roleDefinitions" required="True" identifiers="name">
+                          <item type="object">
+                            <prop type="string" name="name" required="True"/>
+                            <prop type="ResourceId" name="resourceId" required="True"/>
+                          </item>
+                        </prop>
+                      </item>
+                    </prop>
+                    <prop type="array<@OperatorIdentityRoles_read>" name="dataPlaneOperators" required="True" identifiers="name">
+                      <item type="@OperatorIdentityRoles_read"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
