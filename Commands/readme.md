@@ -78,7 +78,7 @@
 : List changes for resources
 
 - [chaos](/Commands/chaos/readme.md)
-: Manage Chaos
+: Manage Azure Chaos Studio resources.
 
 - [cloud-service](/Commands/cloud-service/readme.md)
 : Manage cloud service
@@ -183,7 +183,7 @@
 : Manage Event Hub
 
 - [fileshare](/Commands/fileshare/readme.md)
-: Manage Azure File Shares
+: Manage Azure File Shares.
 
 - [firmwareanalysis](/Commands/firmwareanalysis/readme.md)
 : Commands to manage firmware analysis.
