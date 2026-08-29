@@ -17,4 +17,4 @@ Manage consumption of Azure resources.
 : Manage reservations for Azure resources.
 
 - [usage](/Commands/consumption/usage/readme.md)
-: Inspect the usage of Azure resources.
+: Manage Usage Detail
