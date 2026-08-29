@@ -12,7 +12,7 @@ Create a shared image gallery.
 
 - Create a shared image gallery
     ```bash
-        sig create --resource-group MyResourceGroup --gallery-name MyGallery
+        sig create --resource-group MyResourceGroup --gallery-name MyGallery --location eastus
     ```
 
 ### [2021-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlL2dhbGxlcmllcy97fQ==/2021-10-01.xml) **Stable**
@@ -23,7 +23,7 @@ Create a shared image gallery.
 
 - Create a shared image gallery
     ```bash
-        sig create --resource-group MyResourceGroup --gallery-name MyGallery
+        sig create --resource-group MyResourceGroup --gallery-name MyGallery --location eastus
     ```
 
 ### [2025-03-03](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb21wdXRlL2dhbGxlcmllcy97fQ==/2025-03-03.xml) **Stable**
