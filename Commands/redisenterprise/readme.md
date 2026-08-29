@@ -10,6 +10,9 @@ Manage the redisenterprise cache
 - [identity](/Commands/redisenterprise/identity/readme.md)
 : Manage Identity
 
+- [migration](/Commands/redisenterprise/migration/readme.md)
+: Manage Migration
+
 - [operation-status](/Commands/redisenterprise/operation-status/readme.md)
 : Get the status of an operation
 
