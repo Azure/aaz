@@ -4,9 +4,9 @@ List Azure Red Hat OpenShift with hosted control plane versions
 
 ## Versions
 
-### [2026-06-30-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5yZWRoYXRvcGVuc2hpZnQvbG9jYXRpb25zL3t9L2hjcG9wZW5zaGlmdHZlcnNpb25z/2026-06-30-preview.xml) **Preview**
+### [2026-09-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5yZWRoYXRvcGVuc2hpZnQvbG9jYXRpb25zL3t9L2hjcG9wZW5zaGlmdHZlcnNpb25z/2026-09-01-preview.xml) **Preview**
 
-<!-- mgmt-plane /subscriptions/{}/providers/microsoft.redhatopenshift/locations/{}/hcpopenshiftversions 2026-06-30-preview -->
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.redhatopenshift/locations/{}/hcpopenshiftversions 2026-09-01-preview -->
 
 #### examples
 
