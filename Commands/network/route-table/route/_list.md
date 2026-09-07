@@ -47,3 +47,14 @@ List routes in a route table.
     ```bash
         network route-table route list -g MyResourceGroup --route-table-name MyRouteTable
     ```
+
+### [2025-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL3JvdXRldGFibGVzL3t9L3JvdXRlcw==/2025-07-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/routetables/{}/routes 2025-07-01 -->
+
+#### examples
+
+- List routes in a route table.
+    ```bash
+        network route-table route list -g MyResourceGroup --route-table-name MyRouteTable
+    ```

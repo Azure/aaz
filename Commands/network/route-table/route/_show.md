@@ -58,3 +58,14 @@ Get the details of a route in a route table.
     ```bash
         network route-table route show -g MyResourceGroup --route-table-name MyRouteTable -n MyRoute -o table
     ```
+
+### [2025-07-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL3JvdXRldGFibGVzL3t9L3JvdXRlcy97fQ==/2025-07-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/routetables/{}/routes/{} 2025-07-01 -->
+
+#### examples
+
+- Get the details of a route in a route table.
+    ```bash
+        network route-table route show -g MyResourceGroup --route-table-name MyRouteTable -n MyRoute -o table
+    ```
