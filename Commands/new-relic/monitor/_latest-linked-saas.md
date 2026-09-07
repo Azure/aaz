@@ -10,7 +10,7 @@ Returns the latest SaaS linked to the newrelic organization of the underlying mo
 
 #### examples
 
-- Get the latest SaaS resource linked to a New Relic monito
+- Get the latest SaaS resource linked to a New Relic monitor
     ```bash
         new-relic monitor latest-linked-saas --resource-group myResourceGroup --monitor-name myMonitor
     ```

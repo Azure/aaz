@@ -21,7 +21,7 @@ Create subscriptions to be monitored by the New Relic monitor resource, enabling
 
 #### examples
 
-- Create monitored subscription configuration for a New Relic monito
+- Create monitored subscription configuration for a New Relic monitor
     ```bash
         new-relic monitor monitored-subscription create --resource-group myResourceGroup --monitor-name myNewRelicMonitor --configuration-name default --patch-operation AddBegin --monitored-subscription-list "[{subscription-id:/subscriptions/00000000-0000-0000-0000-000000000000,status:Active}]"
     ```
