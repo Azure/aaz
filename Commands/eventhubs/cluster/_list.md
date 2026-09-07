@@ -18,3 +18,20 @@ List the available Event Hubs Clusters within an ARM resource group
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.eventhub/clusters 2026-01-01 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.eventhub/clusters 2026-01-01 -->
+
+### [2026-07-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5ldmVudGh1Yi9jbHVzdGVycw==/2026-07-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.eventhub/clusters 2026-07-01-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.eventhub/clusters 2026-07-01-preview -->
+
+#### examples
+
+- ClustersListBySubscription
+    ```bash
+        eventhubs cluster list
+    ```
+
+- ClustersListByResourceGroup
+    ```bash
+        eventhubs cluster list --resource-group myResourceGroup
+    ```

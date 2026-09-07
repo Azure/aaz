@@ -15,3 +15,14 @@ Invokes GEO DR failover and reconfigure the alias to point to the secondary name
 ### [2026-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5ldmVudGh1Yi9uYW1lc3BhY2VzL3t9L2Rpc2FzdGVycmVjb3Zlcnljb25maWdzL3t9L2ZhaWxvdmVy/2026-01-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.eventhub/namespaces/{}/disasterrecoveryconfigs/{}/failover 2026-01-01 -->
+
+### [2026-07-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5ldmVudGh1Yi9uYW1lc3BhY2VzL3t9L2Rpc2FzdGVycmVjb3Zlcnljb25maWdzL3t9L2ZhaWxvdmVy/2026-07-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.eventhub/namespaces/{}/disasterrecoveryconfigs/{}/failover 2026-07-01-preview -->
+
+#### examples
+
+- EHAliasFailOver
+    ```bash
+        eventhubs georecovery-alias fail-over --resource-group exampleResourceGroup --namespace-name sdk-Namespace-8859 --alias sdk-DisasterRecovery-3814
+    ```
