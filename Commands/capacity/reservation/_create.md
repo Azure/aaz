@@ -39,3 +39,8 @@ Create operation to create or update a capacity reservation. Please note some pr
     ```bash
         capacity reservation create -c ReservationGroupName -n ReservationName -l centraluseuap -g MyResourceGroup  --sku Standard_A1_v2 --capacity 5 --zone 1 --tags key=val
     ```
+
+- Create a Future capacity reservation.
+    ```bash
+        capacity reservation create -c ReservationGroupName -n ReservationName -g MyResourceGroup --sku Standard_A1_v2 --capacity 5 --schedule-profile-start 2026-12-01T12:00:00Z --minimum-commitment-days 30
+    ```

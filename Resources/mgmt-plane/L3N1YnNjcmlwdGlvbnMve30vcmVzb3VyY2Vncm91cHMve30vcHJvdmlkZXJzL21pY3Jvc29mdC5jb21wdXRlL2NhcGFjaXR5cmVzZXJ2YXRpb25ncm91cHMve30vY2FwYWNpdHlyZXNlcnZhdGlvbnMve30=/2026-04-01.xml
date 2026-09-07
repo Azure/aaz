@@ -254,18 +254,15 @@
           <item type="string"/>
         </arg>
       </argGroup>
-      <argGroup name="Properties">
-        <arg type="object" var="$parameters.properties.scheduleProfile" options="schedule-profile" group="Properties">
-          <help short="Defines the schedule for Block and Future capacity reservations. Specifies the schedule during which capacity reservation is active and VM or VMSS resource can be allocated using reservation. For Block capacity reservations, the scheduleProfile, start, and end fields are immutable after creation. Please refer to https://aka.ms/blockcapacityreservation for more details. Minimum API version for Block capacity reservations: 2025-04-01. Future capacity reservations must use this property with only a start time, which can be changed until the ‘modifiableUntil’ time. Please refer to https://aka.ms/futurecapacityreservation for more details. Minimum API version for Future capacity reservations: 2026-04-01."/>
-          <arg type="string" var="$parameters.properties.scheduleProfile.end" options="end">
-            <help short="The required end date for Block capacity reservations. Must be after the start date, with a duration of either 1–14 whole days or 3–26 whole weeks. Example: 2025-06-28."/>
-          </arg>
-          <arg type="integer32" var="$parameters.properties.scheduleProfile.minimumCommitmentDays" options="minimum-commitment-days">
-            <help short="The minimum number of days that must pass after the start date before a Future capacity reservation can be updated or deleted once it has been committed. Will be populated with a default value if not provided."/>
-          </arg>
-          <arg type="string" var="$parameters.properties.scheduleProfile.start" options="start">
-            <help short="The required start date for Block or Future capacity reservations. Block capacity reservations: Must be today or within 56 days in the future. For same-day scheduling, requests must be submitted before 11:30 AM UTC. Future capacity reservations: Must be at least 7 days in the future, and maximum 6 months in the future. Minimum API version for Future capacity reservations: 2026-04-01. Example: 2025-06-27, applicable for both Block and Future capacity reservations."/>
-          </arg>
+      <argGroup name="ScheduleProfile">
+        <arg type="string" var="$parameters.properties.scheduleProfile.end" options="end" group="ScheduleProfile">
+          <help short="The required end date for Block capacity reservations. Must be after the start date, with a duration of either 1–14 whole days or 3–26 whole weeks. Example: 2025-06-28."/>
+        </arg>
+        <arg type="integer32" var="$parameters.properties.scheduleProfile.minimumCommitmentDays" options="minimum-commitment-days min-commitment-days" group="ScheduleProfile">
+          <help short="The minimum number of days after the start date before a committed Future capacity reservation can be updated or deleted. The service supplies a default when this value is omitted."/>
+        </arg>
+        <arg type="string" var="$parameters.properties.scheduleProfile.start" options="schedule-profile-start" group="ScheduleProfile">
+          <help short="The start date and time of a Future capacity reservation. The value must be at least 7 days and at most 6 months in the future. Example: 2026-08-01T12:00:00Z."/>
         </arg>
       </argGroup>
       <argGroup name="Sku">
@@ -304,7 +301,7 @@
                 <schema type="object" name="parameters" required="True" clientFlatten="True">
                   <prop type="ResourceLocation" name="location" arg="$parameters.location" required="True"/>
                   <prop type="object" name="properties" clientFlatten="True">
-                    <prop type="object" name="scheduleProfile" arg="$parameters.properties.scheduleProfile">
+                    <prop type="object" name="scheduleProfile">
                       <prop type="string" name="end" arg="$parameters.properties.scheduleProfile.end"/>
                       <prop type="integer32" name="minimumCommitmentDays" arg="$parameters.properties.scheduleProfile.minimumCommitmentDays"/>
                       <prop type="string" name="start" arg="$parameters.properties.scheduleProfile.start"/>
@@ -484,8 +481,8 @@
           <arg type="string" var="$parameters.properties.scheduleProfile.end" options="end">
             <help short="The required end date for Block capacity reservations. Must be after the start date, with a duration of either 1–14 whole days or 3–26 whole weeks. Example: 2025-06-28."/>
           </arg>
-          <arg type="integer32" var="$parameters.properties.scheduleProfile.minimumCommitmentDays" options="minimum-commitment-days">
-            <help short="The minimum number of days that must pass after the start date before a Future capacity reservation can be updated or deleted once it has been committed. Will be populated with a default value if not provided."/>
+          <arg type="integer32" var="$parameters.properties.scheduleProfile.minimumCommitmentDays" options="minimum-commitment-days min-commitment-days" group="ScheduleProfile">
+            <help short="The minimum number of days after the start date before a committed Future capacity reservation can be updated or deleted. The service supplies a default when this value is omitted."/>
           </arg>
           <arg type="string" var="$parameters.properties.scheduleProfile.start" options="start">
             <help short="The required start date for Block or Future capacity reservations. Block capacity reservations: Must be today or within 56 days in the future. For same-day scheduling, requests must be submitted before 11:30 AM UTC. Future capacity reservations: Must be at least 7 days in the future, and maximum 6 months in the future. Minimum API version for Future capacity reservations: 2026-04-01. Example: 2025-06-27, applicable for both Block and Future capacity reservations."/>
