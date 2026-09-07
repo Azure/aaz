@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.monitor/accounts/{}/issues/{}/listresources" version="2025-10-03" swagger="mgmt-plane/monitoringservice/ResourceProviders/Microsoft.Monitor/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTW9uaXRvci9hY2NvdW50cy97YXp1cmVNb25pdG9yV29ya3NwYWNlTmFtZX0vaXNzdWVzL3tpc3N1ZU5hbWV9L2xpc3RSZXNvdXJjZXM=/V/MjAyNS0xMC0wMw=="/>
+  <commandGroup name="monitor account issue">
+    <command name="list-resource" version="2025-10-03">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.monitor/accounts/{}/issues/{}/listresources" version="2025-10-03" swagger="mgmt-plane/monitoringservice/ResourceProviders/Microsoft.Monitor/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTW9uaXRvci9hY2NvdW50cy97YXp1cmVNb25pdG9yV29ya3NwYWNlTmFtZX0vaXNzdWVzL3tpc3N1ZU5hbWV9L2xpc3RSZXNvdXJjZXM=/V/MjAyNS0xMC0wMw=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.azureMonitorWorkspaceName" options="azure-monitor-workspace-name" required="True" idPart="name">
+          <help short="The name of the Azure Monitor Workspace. The name is case insensitive"/>
+          <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+        </arg>
+        <arg type="string" var="$Path.issueName" options="issue-name" required="True" idPart="child_name_1">
+          <help short="The name of the IssueResource"/>
+          <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="string" var="$body.filter" options="filter" group="Body">
+          <help short="The filter to apply on the operation. For example, to filter by relevance, use &quot;$filter=relevance eq 'Relevant'&quot;. Note: this property is currently a placeholder and is not in use."/>
+        </arg>
+      </argGroup>
+      <operation operationId="Issue_ListResources">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Monitor/accounts/{azureMonitorWorkspaceName}/issues/{issueName}/listResources">
+          <request method="post">
+            <path>
+              <param type="string" name="azureMonitorWorkspaceName" arg="$Path.azureMonitorWorkspaceName" required="True">
+                <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+              </param>
+              <param type="string" name="issueName" arg="$Path.issueName" required="True">
+                <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-10-03&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="string" name="filter" arg="$body.filter"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="dateTime" name="addedAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="ResourceId" name="id" required="True"/>
+                      <prop readOnly="True" type="dateTime" name="lastModifiedAt">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop readOnly="True" type="object" name="origin">
+                        <prop type="string" name="addedBy" required="True"/>
+                        <prop type="string" name="addedByType" required="True">
+                          <enum>
+                            <item value="&quot;Automatic&quot;"/>
+                            <item value="&quot;Manual&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="string" name="relevance" required="True">
+                        <enum>
+                          <item value="&quot;Irrelevant&quot;"/>
+                          <item value="&quot;None&quot;"/>
+                          <item value="&quot;Relevant&quot;"/>
+                        </enum>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
