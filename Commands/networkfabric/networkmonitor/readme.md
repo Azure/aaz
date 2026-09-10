@@ -19,5 +19,8 @@ Manage Network Monitor Resource
 - [update](/Commands/networkfabric/networkmonitor/_update.md)
 : Update to update certain properties of the NetworkMonitor resource.
 
+- [update-admin-state](/Commands/networkfabric/networkmonitor/_update-admin-state.md)
+: Enables isolation domain across the fabric or on specified racks.
+
 - [update-administrative-state](/Commands/networkfabric/networkmonitor/_update-administrative-state.md)
 : Enables isolation domain across the fabric or on specified racks.

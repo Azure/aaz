@@ -19,5 +19,8 @@ Manage Network Bootstrap Interface
 - [update](/Commands/networkfabric/bootstrapinterface/_update.md)
 : Update certain properties of the Network Bootstrap Interface resource.
 
+- [update-admin-state](/Commands/networkfabric/bootstrapinterface/_update-admin-state.md)
+: Update the admin state of the Network Interface.
+
 - [update-administrative-state](/Commands/networkfabric/bootstrapinterface/_update-administrative-state.md)
 : Update the admin state of the Network Interface.

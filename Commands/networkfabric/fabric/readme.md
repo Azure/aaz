@@ -12,11 +12,17 @@ Manage Network Fabric Resource
 
 ## Commands
 
+- [arm-config-diff](/Commands/networkfabric/fabric/_arm-config-diff.md)
+: Post action: Triggers diff of NetworkFabric ARM Configuration.
+
 - [arm-configuration-diff](/Commands/networkfabric/fabric/_arm-configuration-diff.md)
 : Post action: Triggers diff of NetworkFabric ARM Configuration.
 
 - [commit-batch-status](/Commands/networkfabric/fabric/_commit-batch-status.md)
 : Post action: Returns a status of commit batch operation.
+
+- [commit-config](/Commands/networkfabric/fabric/_commit-config.md)
+: Atomic update of the given Network Fabric instance. Sync update of NFA resources at Fabric level.
 
 - [commit-configuration](/Commands/networkfabric/fabric/_commit-configuration.md)
 : Atomic update of the given Network Fabric instance. Sync update of NFA resources at Fabric level.
@@ -45,6 +51,9 @@ Manage Network Fabric Resource
 - [provision](/Commands/networkfabric/fabric/_provision.md)
 : Provisions the underlying resources in the given Network Fabric instance.
 
+- [refresh-config](/Commands/networkfabric/fabric/_refresh-config.md)
+: Refreshes the configuration of the underlying resources in the given Network Fabric instance.
+
 - [refresh-configuration](/Commands/networkfabric/fabric/_refresh-configuration.md)
 : Refreshes the configuration of the underlying resources in the given Network Fabric instance.
 
@@ -60,6 +69,12 @@ Manage Network Fabric Resource
 - [rotate-password](/Commands/networkfabric/fabric/_rotate-password.md)
 : Creates new passwords, then updates the Terminal Server and Network Devices to use the new passwords.  Note that disabled devices cannot be updated and must be resynchronized with the new passwords once they are enabled.  Fails if any of the devices could not be updated with the new password. Failed devices should be resynchronized with the new passwords once possible.
 
+- [run-diagnostic](/Commands/networkfabric/fabric/_run-diagnostic.md)
+: Runs diagnostics information collection on the Network Fabric
+
+- [run-validation](/Commands/networkfabric/fabric/_run-validation.md)
+: Runs validation on the Network Fabric for the specified operation. Updated
+
 - [show](/Commands/networkfabric/fabric/_show.md)
 : Show details of the provided Network Fabric resource
 
@@ -69,14 +84,26 @@ Manage Network Fabric Resource
 - [update-infra-management-bfd-configuration](/Commands/networkfabric/fabric/_update-infra-management-bfd-configuration.md)
 : Updates the Infra Management BFD Configuration of the underlying resources in the given Network Fabric instance.
 
+- [update-infra-mgt-bfd-config](/Commands/networkfabric/fabric/_update-infra-mgt-bfd-config.md)
+: Updates the Infra Management BFD Configuration of the underlying resources in the given Network Fabric instance.
+
 - [update-workload-management-bfd-configuration](/Commands/networkfabric/fabric/_update-workload-management-bfd-configuration.md)
+: Updates the Workload Management BFD Configuration of the underlying resources in the given Network Fabric instance.
+
+- [update-workload-mgt-bfd-config](/Commands/networkfabric/fabric/_update-workload-mgt-bfd-config.md)
 : Updates the Workload Management BFD Configuration of the underlying resources in the given Network Fabric instance.
 
 - [upgrade](/Commands/networkfabric/fabric/_upgrade.md)
 : Upgrades the version of the underlying resources in the given Network Fabric instance.
 
+- [validate-config](/Commands/networkfabric/fabric/_validate-config.md)
+: Validates the configuration of the underlying resources in the given Network Fabric instance.
+
 - [validate-configuration](/Commands/networkfabric/fabric/_validate-configuration.md)
 : Validates the configuration of the underlying resources in the given Network Fabric instance.
+
+- [view-device-config](/Commands/networkfabric/fabric/_view-device-config.md)
+: Post action: Triggers view of network fabric configuration.
 
 - [view-device-configuration](/Commands/networkfabric/fabric/_view-device-configuration.md)
 : Post action: Triggers view of network fabric configuration.
