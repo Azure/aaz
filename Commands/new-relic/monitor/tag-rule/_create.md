@@ -25,3 +25,14 @@ Creates a new set of tag rules for a specific New Relic monitor resource, determ
     ```bash
         new-relic monitor tag-rule create --resource-group MyResourceGroup --monitor-name MyNewRelicMonitor --name default --log-rules send-aad-logs="Enabled" send-subscription-logs="Enabled" send-activity-logs="Enabled" filtering-tags=[] --metric-rules user-email="UserEmail@123.com" filtering-tags=[{"name":"Environment","value":"Prod","action":"Include"}]
     ```
+
+### [2026-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL25ld3JlbGljLm9ic2VydmFiaWxpdHkvbW9uaXRvcnMve30vdGFncnVsZXMve30=/2026-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/newrelic.observability/monitors/{}/tagrules/{} 2026-06-01 -->
+
+#### examples
+
+- Create a tag rule for a New Relic monitor
+    ```bash
+        new-relic monitor tag-rule create --resource-group myResourceGroup --monitor-name myNewRelicMonitor --name default --log-rules send-aad-logs=Enabled send-subscription-logs=Enabled send-activity-logs=Enabled filtering-tags=[] --metric-rules send-metrics=Enabled user-email=user@example.com filtering-tags="[{name:Environment,value:Production,action:Include}]"
+    ```

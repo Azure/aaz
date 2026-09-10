@@ -27,3 +27,15 @@ Retrieves a list of all New Relic monitor resources either within a specific res
     ```bash
         new-relic monitor list
     ```
+
+### [2026-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL25ld3JlbGljLm9ic2VydmFiaWxpdHkvbW9uaXRvcnM=/2026-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/newrelic.observability/monitors 2026-06-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/newrelic.observability/monitors 2026-06-01 -->
+
+#### examples
+
+- List NewRelicMonitorResource resources by subscription ID
+    ```bash
+        new-relic monitor list
+    ```

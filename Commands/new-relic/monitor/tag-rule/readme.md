@@ -17,4 +17,4 @@ Provides a set of commands to manage tag rules for New Relic monitor resources, 
 : Retrieves the details of the tag rules for a specific New Relic monitor resource, providing insight into its setup and status.
 
 - [update](/Commands/new-relic/monitor/tag-rule/_update.md)
-: Updates the tag rules for a specific New Relic monitor resource, allowing you to modify the rules that control which Azure resources are monitored.
+: Update the tag rules for a specific New Relic monitor resource, allowing you to modify the rules that control which Azure resources are monitored

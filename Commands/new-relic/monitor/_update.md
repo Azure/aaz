@@ -1,6 +1,6 @@
 # [Command] _new-relic monitor update_
 
-Updates an existing New Relic monitor resource from your Azure subscription.
+Update an existing New Relic monitor resource from your Azure subscription
 
 ## Versions
 

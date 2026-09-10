@@ -15,3 +15,8 @@ Manage Azure New Relic resources.
 
 - [plan](/Commands/new-relic/plan/readme.md)
 : Manages the New Relic plans.
+
+## Commands
+
+- [activate-saas](/Commands/new-relic/_activate-saas.md)
+: Resolve the token to get the SaaS resource ID and activate the SaaS resource

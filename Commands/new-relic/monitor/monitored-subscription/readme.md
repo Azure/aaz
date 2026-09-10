@@ -17,4 +17,4 @@ Manage subscriptions monitored by the New Relic monitor resource, ensuring optim
 : Get detailed information about all subscriptions currently being monitored by the New Relic monitor resource.
 
 - [update](/Commands/new-relic/monitor/monitored-subscription/_update.md)
-: Update subscriptions to be monitored by the New Relic monitor resource, ensuring optimal observability and performance.
+: Update a MonitoredSubscriptionProperties

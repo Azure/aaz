@@ -27,6 +27,12 @@ Provides a set of commands to manage New Relic monitor resources in your Azure s
 - [get-metric-statu](/Commands/new-relic/monitor/_get-metric-statu.md)
 : Retrieves the metric status that are configured in the New Relic monitor resource.
 
+- [latest-linked-saas](/Commands/new-relic/monitor/_latest-linked-saas.md)
+: Returns the latest SaaS linked to the newrelic organization of the underlying monitor.
+
+- [link-saas](/Commands/new-relic/monitor/_link-saas.md)
+: Links a new SaaS to the newrelic organization of the underlying monitor.
+
 - [list](/Commands/new-relic/monitor/_list.md)
 : Retrieves a list of all New Relic monitor resources either within a specific resource group or across the entire subscription, helping you quickly audit and manage your monitoring setup.
 
@@ -45,6 +51,9 @@ Provides a set of commands to manage New Relic monitor resources in your Azure s
 - [monitored-resource](/Commands/new-relic/monitor/_monitored-resource.md)
 : Lists all Azure resources that are currently being monitored by the specified New Relic monitor resource, providing insight into the coverage of your observability setup.
 
+- [refresh-ingestion-key](/Commands/new-relic/monitor/_refresh-ingestion-key.md)
+: Refreshes the ingestion key for all monitors linked to the same account associated to the underlying monitor.
+
 - [show](/Commands/new-relic/monitor/_show.md)
 : Retrieves the properties and configuration details of a specific New Relic monitor resource, providing insight into its setup and status.
 
@@ -52,7 +61,7 @@ Provides a set of commands to manage New Relic monitor resources in your Azure s
 : Switches the billing for the New Relic Monitor resource to be billed by Azure Marketplace.
 
 - [update](/Commands/new-relic/monitor/_update.md)
-: Updates an existing New Relic monitor resource from your Azure subscription.
+: Update an existing New Relic monitor resource from your Azure subscription
 
 - [vm-host-payload](/Commands/new-relic/monitor/_vm-host-payload.md)
 : Returns the payload that needs to be passed in the request body for installing the New Relic agent on a VM, providing the necessary configuration details.
