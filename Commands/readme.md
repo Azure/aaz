@@ -144,7 +144,7 @@
 : Manage resources with devcenter.
 
 - [discovery](/Commands/discovery/readme.md)
-: Manage Discovery
+: Manage Microsoft Discovery resources.
 
 - [disk](/Commands/disk/readme.md)
 : Manage Azure Managed Disks.
