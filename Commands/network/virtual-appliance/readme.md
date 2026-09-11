@@ -13,6 +13,9 @@ Manage Azure Network Virtual Appliance.
 - [inbound-security-rule](/Commands/network/virtual-appliance/inbound-security-rule/readme.md)
 : Manage Azure Network Virtual Appliance Inbound Security Rules.
 
+- [migration](/Commands/network/virtual-appliance/migration/readme.md)
+: Manage Network Virtual Appliance migrations.
+
 - [site](/Commands/network/virtual-appliance/site/readme.md)
 : Manage Azure Network Virtual Appliance Site.
 
