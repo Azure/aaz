@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networkvirtualappliances/{}/commitmigration" version="2025-09-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9uZXR3b3JrVmlydHVhbEFwcGxpYW5jZXMve25ldHdvcmtWaXJ0dWFsQXBwbGlhbmNlTmFtZX0vY29tbWl0TWlncmF0aW9u/V/MjAyNS0wOS0wMQ=="/>
+  <commandGroup name="network virtual-appliance migration">
+    <command name="commit" version="2025-09-01" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networkvirtualappliances/{}/commitmigration" version="2025-09-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay9uZXR3b3JrVmlydHVhbEFwcGxpYW5jZXMve25ldHdvcmtWaXJ0dWFsQXBwbGlhbmNlTmFtZX0vY29tbWl0TWlncmF0aW9u/V/MjAyNS0wOS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.networkVirtualApplianceName" options="name n" required="True" group="" idPart="name">
+          <help short="The name of Network Virtual Appliance."/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="string" var="$body.properties.migrationType" options="migration-type" group="Properties">
+          <help short="The type of migration workflow to commit."/>
+          <enum>
+            <item name="MigrateToNewILBArchitecture" value="&quot;MigrateToNewILBArchitecture&quot;"/>
+            <item name="MigrateToNewOSVersion" value="&quot;MigrateToNewOSVersion&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <operation operationId="NetworkVirtualAppliances_CommitMigration">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/networkVirtualAppliances/{networkVirtualApplianceName}/commitMigration">
+          <request method="post">
+            <path>
+              <param type="string" name="networkVirtualApplianceName" arg="$Path.networkVirtualApplianceName" required="True"/>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format pattern="^[-\w\._\(\)]+$" maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-09-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="object" name="properties">
+                    <prop type="string" name="migrationType" arg="$body.properties.migrationType" required="True">
+                      <enum>
+                        <item value="&quot;MigrateToNewILBArchitecture&quot;"/>
+                        <item value="&quot;MigrateToNewOSVersion&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response statusCode="204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema readOnly="True" type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>
