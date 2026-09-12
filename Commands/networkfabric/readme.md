@@ -22,11 +22,17 @@ Manage Azure Network Fabric Management Service API
 - [devicesku](/Commands/networkfabric/devicesku/readme.md)
 : Manage Network Device SKU Resource
 
+- [edgeconnector](/Commands/networkfabric/edgeconnector/readme.md)
+: Manage Edge Connector
+
 - [externalnetwork](/Commands/networkfabric/externalnetwork/readme.md)
 : Manage External Network Resource
 
 - [fabric](/Commands/networkfabric/fabric/readme.md)
 : Manage Network Fabric Resource
+
+- [fabric-v2](/Commands/networkfabric/fabric-v2/readme.md)
+: Manage Fabric
 
 - [fabricsku](/Commands/networkfabric/fabricsku/readme.md)
 : Manage Network Fabric SKU Resource

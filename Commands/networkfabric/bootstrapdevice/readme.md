@@ -21,17 +21,29 @@ Manage Network Bootstrap Device Resource
 - [reboot](/Commands/networkfabric/bootstrapdevice/_reboot.md)
 : Reboot the Network Bootstrap Device.
 
+- [refresh-config](/Commands/networkfabric/bootstrapdevice/_refresh-config.md)
+: Refreshes the configuration of Network Bootstrap Device.
+
 - [refresh-configuration](/Commands/networkfabric/bootstrapdevice/_refresh-configuration.md)
 : Refreshes the configuration of Network Bootstrap Device.
 
 - [resync-password](/Commands/networkfabric/bootstrapdevice/_resync-password.md)
 : Updates the Network Bootstrap Device to use the latest passwords. Does not generate new passwords. Allows network bootstrap devices missed during a previous password rotation to be brought back into sync.
 
+- [run-ro-command](/Commands/networkfabric/bootstrapdevice/_run-ro-command.md)
+: Run the RO Command on the Network Bootstrap Device.
+
+- [run-rw-command](/Commands/networkfabric/bootstrapdevice/_run-rw-command.md)
+: Run the RW Command on the Network Bootstrap Device.
+
 - [show](/Commands/networkfabric/bootstrapdevice/_show.md)
 : Get a Network Bootstrap Device resource details.
 
 - [update](/Commands/networkfabric/bootstrapdevice/_update.md)
 : Update certain properties of the Network Bootstrap Device resource.
+
+- [update-admin-state](/Commands/networkfabric/bootstrapdevice/_update-admin-state.md)
+: Updates the Administrative state of the Network Bootstrap Device.
 
 - [update-administrative-state](/Commands/networkfabric/bootstrapdevice/_update-administrative-state.md)
 : Updates the Administrative state of the Network Bootstrap Device.
