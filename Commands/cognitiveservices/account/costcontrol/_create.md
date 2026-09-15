@@ -1,4 +1,4 @@
-# [Command] _cognitive-services account cost-control create_
+# [Command] _cognitiveservices account costcontrol create_
 
 Create a cost control.
 

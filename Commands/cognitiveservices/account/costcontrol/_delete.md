@@ -1,6 +1,6 @@
-# [Command] _cognitive-services account cost-control show_
+# [Command] _cognitiveservices account costcontrol delete_
 
-Get a cost control.
+Delete a cost control.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Get a cost control.
 
 #### examples
 
-- Get a cost control with all settings
+- Delete a cost control conditionally
     ```bash
-        cognitive-services account cost-control show --resource-group foundry-resource-group --account-name foundry-account --cost-control-name production-agents
+        cognitive-services account cost-control delete --resource-group foundry-resource-group --account-name foundry-account --cost-control-name production-agents --if-match "00000000-0000-0000-0000-000000000002"
     ```

@@ -1,4 +1,4 @@
-# [Command] _cognitive-services account cost-control list_
+# [Command] _cognitiveservices account costcontrol list_
 
 List the cost controls owned by an account.
 

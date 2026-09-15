@@ -1,4 +1,4 @@
-# [Command] _cognitive-services account cost-control update_
+# [Command] _cognitiveservices account costcontrol update_
 
 Update a cost control.
 

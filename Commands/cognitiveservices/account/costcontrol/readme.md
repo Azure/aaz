@@ -1,4 +1,4 @@
-# [Group] _cognitive-services account cost-control_
+# [Group] _cognitiveservices account costcontrol_
 
 Manage Cost Control Policies in Foundry
 
@@ -6,17 +6,17 @@ A set of commands to manage Cost Control Policies in Foundry. Supported commands
 
 ## Commands
 
-- [create](/Commands/cognitive-services/account/cost-control/_create.md)
+- [create](/Commands/cognitiveservices/account/costcontrol/_create.md)
 : Create a cost control.
 
-- [delete](/Commands/cognitive-services/account/cost-control/_delete.md)
+- [delete](/Commands/cognitiveservices/account/costcontrol/_delete.md)
 : Delete a cost control.
 
-- [list](/Commands/cognitive-services/account/cost-control/_list.md)
+- [list](/Commands/cognitiveservices/account/costcontrol/_list.md)
 : List the cost controls owned by an account.
 
-- [show](/Commands/cognitive-services/account/cost-control/_show.md)
+- [show](/Commands/cognitiveservices/account/costcontrol/_show.md)
 : Get a cost control.
 
-- [update](/Commands/cognitive-services/account/cost-control/_update.md)
+- [update](/Commands/cognitiveservices/account/costcontrol/_update.md)
 : Update a cost control.
