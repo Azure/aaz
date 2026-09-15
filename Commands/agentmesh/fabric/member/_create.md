@@ -12,5 +12,5 @@ Create a Member
 
 - Members_CreateOrUpdate
     ```bash
-        agentmesh fabric member create --resource-group rgnetworksecurity --fabric-name testAIFabric --member-name testMember --location eastus --workload "{resourceId:/subscriptions/11809CA1-E126-4017-945E-AA795CD5C5A9/resourceGroups/rgnetworksecurity/providers/Microsoft.ContainerInstance/containerGroups/testContainerGroup,aci:{resource-id:/subscriptions/11809CA1-E126-4017-945E-AA795CD5C5A9/resourceGroups/rgnetworksecurity/providers/Microsoft.ContainerInstance/containerGroups/testContainerGroup}}"
+        agentmesh fabric member create --resource-group rgnetworksecurity --fabric-name testAIFabric --member-name testMember --location eastus --workload "{aci:{resource-id:/subscriptions/11809CA1-E126-4017-945E-AA795CD5C5A9/resourceGroups/rgnetworksecurity/providers/Microsoft.ContainerInstance/containerGroups/testContainerGroup}}"
     ```
