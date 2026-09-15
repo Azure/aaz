@@ -1,0 +1,92 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cache/redisenterprise/{}/migrations/default/validate" version="2026-05-01-preview" swagger="mgmt-plane/redisenterprise/ResourceProviders/Microsoft.Cache/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2FjaGUvcmVkaXNFbnRlcnByaXNlL3tjbHVzdGVyTmFtZX0vbWlncmF0aW9ucy9kZWZhdWx0L3ZhbGlkYXRl/V/MjAyNi0wNS0wMS1wcmV2aWV3"/>
+  <commandGroup name="redisenterprise migration">
+    <command name="validate" version="2026-05-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cache/redisenterprise/{}/migrations/default/validate" version="2026-05-01-preview" swagger="mgmt-plane/redisenterprise/ResourceProviders/Microsoft.Cache/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2FjaGUvcmVkaXNFbnRlcnByaXNlL3tjbHVzdGVyTmFtZX0vbWlncmF0aW9ucy9kZWZhdWx0L3ZhbGlkYXRl/V/MjAyNi0wNS0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.clusterName" options="cluster-name" required="True" idPart="name">
+          <help short="The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens"/>
+          <format pattern="^(?=.{1,60}$)[A-Za-z0-9]+(-[A-Za-z0-9]+)*$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="boolean" var="$body.forceMigrate" options="force-migrate" group="Body">
+          <help short="Sets whether to ignore warnings when validating if the source cache can be migrated to the target cache. If this property is true, the isValid property in the response will ignore warning-level disparities between the source and target resource. The default value is false."/>
+        </arg>
+        <arg type="boolean" var="$body.skipDataMigration" options="skip-data-migration" group="Body">
+          <help short="Sets whether the data is migrated from source to target or not. The default value is true."/>
+        </arg>
+        <arg type="ResourceId" var="$body.sourceResourceId" options="source-resource-id" required="True" group="Body">
+          <help short="The source resource ID to validate migration from. This is the resource ID of the Azure Cache for Redis."/>
+        </arg>
+      </argGroup>
+      <operation operationId="Migrations_Validate">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/migrations/default/validate">
+          <request method="post">
+            <path>
+              <param type="string" name="clusterName" arg="$Path.clusterName" required="True">
+                <format pattern="^(?=.{1,60}$)[A-Za-z0-9]+(-[A-Za-z0-9]+)*$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-05-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="boolean" name="forceMigrate" arg="$body.forceMigrate"/>
+                  <prop type="boolean" name="skipDataMigration" arg="$body.skipDataMigration"/>
+                  <prop type="ResourceId" name="sourceResourceId" arg="$body.sourceResourceId" required="True"/>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="errors">
+                    <item type="object">
+                      <prop type="array<object>" name="disparities" required="True">
+                        <item type="object" cls="MigrationValidationDisparity_read">
+                          <prop type="string" name="category" required="True"/>
+                          <prop type="string" name="message" required="True"/>
+                        </item>
+                      </prop>
+                    </item>
+                  </prop>
+                  <prop type="boolean" name="isValid" required="True"/>
+                  <prop type="array<object>" name="warnings">
+                    <item type="object">
+                      <prop type="array<@MigrationValidationDisparity_read>" name="disparities" required="True">
+                        <item type="@MigrationValidationDisparity_read"/>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
