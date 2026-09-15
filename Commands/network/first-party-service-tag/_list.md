@@ -8,3 +8,10 @@ List all the first party service tags in a subscription.
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.network/firstpartyservicetags 2025-09-01 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/firstpartyservicetags 2025-09-01 -->
+
+#### examples
+
+- List all first party service tags
+    ```bash
+        network first-party-service-tag list
+    ```
