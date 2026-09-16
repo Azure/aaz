@@ -26,6 +26,9 @@
 - [appnet](/Commands/appnet/readme.md)
 : Azure Kubernetes Application Network
 
+- [apr](/Commands/apr/readme.md)
+: Manage Azure Package Registry
+
 - [arc](/Commands/arc/readme.md)
 : Manage Azure Arc Machines.
 
