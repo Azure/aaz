@@ -1,6 +1,6 @@
 # [Command] _aro hcp cluster nodepool list_
 
-List Azure Red Hat OpenShift with hosted control plane node pools by cluster
+List Azure Red Hat OpenShift with hosted control plane node pools
 
 ## Versions
 

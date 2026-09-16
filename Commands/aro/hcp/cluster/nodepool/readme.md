@@ -11,7 +11,7 @@ Manage Azure Red Hat OpenShift with hosted control plane node pools
 : Delete an Azure Red Hat OpenShift with hosted control plane node pool
 
 - [list](/Commands/aro/hcp/cluster/nodepool/_list.md)
-: List Azure Red Hat OpenShift with hosted control plane node pools by cluster
+: List Azure Red Hat OpenShift with hosted control plane node pools
 
 - [show](/Commands/aro/hcp/cluster/nodepool/_show.md)
 : Get an Azure Red Hat OpenShift with hosted control plane node pool
