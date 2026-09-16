@@ -12,5 +12,5 @@ Create an Azure Red Hat OpenShift with hosted control plane external authenticat
 
 - Create an external authentication provider
     ```bash
-        aro hcp cluster external-auth create --resource-group MyResourceGroup --cluster-name MyCluster --name MyExternalAuth --issuer-url https://login.microsoftonline.com/<tenant-id>/v2.0 --issuer-audience <audience> --username-claim email --clients "[{client-id:<client-id>,component:{name:console,auth-client-namespace:openshift-console},type:Confidential}]"
+        aro hcp cluster external-auth create --resource-group MyResourceGroup --cluster-name MyCluster --name MyExternalAuth --issuer-url https://login.microsoftonline.com/<tenant-id>/v2.0 --issuer-audience <audience> --username-claim email --client client-id=<client-id> component-name=console auth-client-namespace=openshift-console type=Confidential
     ```

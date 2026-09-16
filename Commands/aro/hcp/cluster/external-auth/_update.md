@@ -14,3 +14,8 @@ Update an Azure Red Hat OpenShift with hosted control plane external authenticat
     ```bash
         aro hcp cluster external-auth update --resource-group MyResourceGroup --cluster-name MyCluster --name MyExternalAuth --username-claim sub
     ```
+
+- Update an external authentication provider to remove any existing clients
+    ```bash
+        aro hcp cluster external-auth update --resource-group MyResourceGroup --cluster-name MyCluster --name MyExternalAuth --clients "[]"
+    ```
