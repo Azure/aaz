@@ -1,6 +1,6 @@
 # [Command] _agentmesh fabric member show_
 
-Get a Member
+Get a member in an Agent Mesh fabric
 
 ## Versions
 

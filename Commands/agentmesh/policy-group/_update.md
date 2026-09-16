@@ -1,6 +1,6 @@
 # [Command] _agentmesh policy-group update_
 
-Update a PolicyGroup
+Update an Agent Mesh policy group's tags
 
 ## Versions
 

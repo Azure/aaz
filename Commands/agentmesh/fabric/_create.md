@@ -1,6 +1,6 @@
 # [Command] _agentmesh fabric create_
 
-Create a AgentFabric
+Create an Agent Mesh fabric
 
 ## Versions
 

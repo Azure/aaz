@@ -1,6 +1,6 @@
 # [Command] _agentmesh policy-group list_
 
-List PolicyGroup resources by subscription ID
+List Agent Mesh policy groups
 
 ## Versions
 

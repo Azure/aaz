@@ -1,6 +1,6 @@
 # [Command] _agentmesh fabric member list_
 
-List Member resources by AgentFabric
+List members in an Agent Mesh fabric
 
 ## Versions
 

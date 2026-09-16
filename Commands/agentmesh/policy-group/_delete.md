@@ -1,6 +1,6 @@
 # [Command] _agentmesh policy-group delete_
 
-Delete a PolicyGroup
+Delete an Agent Mesh policy group
 
 ## Versions
 

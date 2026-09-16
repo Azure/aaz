@@ -1,6 +1,6 @@
 # [Command] _agentmesh fabric show_
 
-Get a AgentFabric
+Get an Agent Mesh fabric
 
 ## Versions
 

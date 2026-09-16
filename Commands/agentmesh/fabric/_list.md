@@ -1,6 +1,6 @@
 # [Command] _agentmesh fabric list_
 
-List AgentFabric resources by subscription ID
+List Agent Mesh fabrics
 
 ## Versions
 

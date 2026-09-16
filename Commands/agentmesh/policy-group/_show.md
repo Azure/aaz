@@ -1,6 +1,6 @@
 # [Command] _agentmesh policy-group show_
 
-Get a PolicyGroup
+Get an Agent Mesh policy group
 
 ## Versions
 

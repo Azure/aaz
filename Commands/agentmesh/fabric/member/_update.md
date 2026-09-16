@@ -1,6 +1,6 @@
 # [Command] _agentmesh fabric member update_
 
-Update a Member
+Update an Agent Mesh fabric member's tags
 
 ## Versions
 

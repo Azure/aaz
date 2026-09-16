@@ -1,6 +1,6 @@
 # [Command] _agentmesh fabric member delete_
 
-Delete a Member
+Delete a member from an Agent Mesh fabric
 
 ## Versions
 
