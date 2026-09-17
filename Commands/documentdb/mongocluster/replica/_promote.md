@@ -21,7 +21,7 @@ Promotes a replica mongo cluster to a primary role.
 
 #### examples
 
-- Promote a caught-up replica to primary without data loss.
+- Promote a replica to primary.
     ```bash
-        documentdb mongocluster replica promote -n MyReplica -g MyResourceGroup --mode Switchover --promote-option Planned
+        documentdb mongocluster replica promote -n MyReplica -g MyResourceGroup --mode Switchover --promote-option Forced
     ```

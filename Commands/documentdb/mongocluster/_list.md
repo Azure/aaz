@@ -15,3 +15,15 @@ List all the mongo clusters in a given subscription.
     ```bash
         documentdb mongocluster list -g MyResourceGroup
     ```
+
+### [2026-06-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kb2N1bWVudGRiL21vbmdvY2x1c3RlcnM=/2026-06-15-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.documentdb/mongoclusters 2026-06-15-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.documentdb/mongoclusters 2026-06-15-preview -->
+
+#### examples
+
+- List all mongo clusters in a resource group.
+    ```bash
+        documentdb mongocluster list -g MyResourceGroup
+    ```

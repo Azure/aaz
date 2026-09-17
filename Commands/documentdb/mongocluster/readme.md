@@ -1,6 +1,6 @@
 # [Group] _documentdb mongocluster_
 
-Manage Mongo Cluster
+Manage Azure DocumentDB mongo clusters.
 
 ## Subgroups
 
@@ -9,6 +9,9 @@ Manage Mongo Cluster
 
 - [identity](/Commands/documentdb/mongocluster/identity/readme.md)
 : Manage Identity
+
+- [microsoft-entra-user](/Commands/documentdb/mongocluster/microsoft-entra-user/readme.md)
+: Manage Microsoft Entra ID users on a mongo cluster.
 
 - [replica](/Commands/documentdb/mongocluster/replica/readme.md)
 : Manage Replica
