@@ -1,0 +1,261 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/recoveryplans" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlUmVzaWxpZW5jZU1hbmFnZW1lbnQvcmVjb3ZlcnlQbGFucw==/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+  <commandGroup name="resiliency recovery-plan">
+    <command name="list" version="2026-09-30-preview">
+      <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/recoveryplans" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlUmVzaWxpZW5jZU1hbmFnZW1lbnQvcmVjb3ZlcnlQbGFucw==/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.serviceGroupName" options="service-group-name" required="True">
+          <help short="The name of the service group."/>
+          <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
+        </arg>
+        <arg type="string" var="$Query.skipToken" options="skip-token">
+          <help short="Skip over when retrieving results."/>
+        </arg>
+        <arg type="integer32" var="$Query.top" options="top">
+          <help short="Number of elements to return when retrieving results."/>
+          <format maximum="100" minimum="1"/>
+        </arg>
+      </argGroup>
+      <operation operationId="RecoveryPlans_List">
+        <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.AzureResilienceManagement/recoveryPlans">
+          <request method="get">
+            <path>
+              <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
+                <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
+              </param>
+            </path>
+            <query>
+              <param type="string" name="$skipToken" arg="$Query.skipToken"/>
+              <param type="integer32" name="$top" arg="$Query.top">
+                <format maximum="100" minimum="1"/>
+              </param>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-09-30-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True" identifiers="id">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/providers/Microsoft.Management/serviceGroups/{}/providers/Microsoft.AzureResilienceManagement/recoveryPlans/{}"/>
+                      </prop>
+                      <prop type="IdentityObject" name="identity">
+                        <prop readOnly="True" type="uuid" name="principalId"/>
+                        <prop readOnly="True" type="uuid" name="tenantId"/>
+                        <prop type="string" name="type" required="True">
+                          <enum>
+                            <item value="&quot;None&quot;"/>
+                            <item value="&quot;SystemAssigned&quot;"/>
+                            <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                            <item value="&quot;UserAssigned&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="userAssignedIdentities">
+                          <additionalProp>
+                            <item nullable="True" type="object">
+                              <prop readOnly="True" type="uuid" name="clientId"/>
+                              <prop readOnly="True" type="uuid" name="principalId"/>
+                            </item>
+                          </additionalProp>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties">
+                        <prop readOnly="True" type="@ErrorDetail_read" name="errorDetails"/>
+                        <prop readOnly="True" type="object" name="latestFailoverStatus">
+                          <prop readOnly="True" type="object" name="errorDetails" cls="ErrorDetail_read">
+                            <prop readOnly="True" type="array<object>" name="additionalInfo">
+                              <item type="object">
+                                <prop readOnly="True" type="object" name="info">
+                                  <additionalProp readOnly="True">
+                                    <item type="any"/>
+                                  </additionalProp>
+                                </prop>
+                                <prop readOnly="True" type="string" name="type"/>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="string" name="code"/>
+                            <prop readOnly="True" type="array<@ErrorDetail_read>" name="details" identifiers="message target">
+                              <item type="@ErrorDetail_read"/>
+                            </prop>
+                            <prop readOnly="True" type="string" name="message"/>
+                            <prop readOnly="True" type="string" name="target"/>
+                          </prop>
+                          <prop readOnly="True" type="dateTime" name="lastExecutedAt">
+                            <format protocol="iso"/>
+                          </prop>
+                          <prop readOnly="True" type="string" name="operationStatus">
+                            <enum>
+                              <item value="&quot;Canceled&quot;"/>
+                              <item value="&quot;CompletedWithWarning&quot;"/>
+                              <item value="&quot;Failed&quot;"/>
+                              <item value="&quot;InProgress&quot;"/>
+                              <item value="&quot;NotStarted&quot;"/>
+                              <item value="&quot;Succeeded&quot;"/>
+                              <item value="&quot;ValidationFailed&quot;"/>
+                              <item value="&quot;ValidationInProgress&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="duration" name="recoveryTimeActual"/>
+                        </prop>
+                        <prop readOnly="True" type="object" name="latestValidationStatus">
+                          <prop readOnly="True" type="@ErrorDetail_read" name="errorDetails"/>
+                          <prop readOnly="True" type="dateTime" name="lastExecutedAt">
+                            <format protocol="iso"/>
+                          </prop>
+                          <prop readOnly="True" type="string" name="operationStatus">
+                            <enum>
+                              <item value="&quot;Canceled&quot;"/>
+                              <item value="&quot;CompletedWithWarning&quot;"/>
+                              <item value="&quot;Failed&quot;"/>
+                              <item value="&quot;InProgress&quot;"/>
+                              <item value="&quot;NotStarted&quot;"/>
+                              <item value="&quot;Succeeded&quot;"/>
+                              <item value="&quot;ValidationFailed&quot;"/>
+                              <item value="&quot;ValidationInProgress&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="planDescription" required="True">
+                          <format maxLength="50" minLength="5"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="planState">
+                          <enum>
+                            <item value="&quot;Ready&quot;"/>
+                            <item value="&quot;UnderEdit&quot;"/>
+                            <item value="&quot;Warning&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Accepted&quot;"/>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;NeedsAttention&quot;"/>
+                            <item value="&quot;Provisioning&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="object" name="recoveryGroupsSetting" required="True">
+                          <prop type="array<@RecoveryGroup_read>" name="additionalGroups">
+                            <format maxLength="14"/>
+                            <item type="@RecoveryGroup_read"/>
+                          </prop>
+                          <prop type="object" name="defaultGroup" required="True" cls="RecoveryGroup_read">
+                            <prop readOnly="True" type="ResourceId" name="id"/>
+                            <prop readOnly="True" type="string" name="name"/>
+                            <prop type="object" name="properties">
+                              <prop type="string" name="description" required="True">
+                                <format maxLength="50" minLength="5"/>
+                              </prop>
+                              <prop type="string" name="groupUniqueId" required="True">
+                                <format pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"/>
+                              </prop>
+                              <prop type="integer32" name="orderId" required="True">
+                                <format maximum="15" minimum="0"/>
+                              </prop>
+                              <prop type="array<@RecoveryGroupBaseAction_read>" name="postActions">
+                                <format maxLength="10"/>
+                                <item type="@RecoveryGroupBaseAction_read"/>
+                              </prop>
+                              <prop type="array<object>" name="preActions">
+                                <format maxLength="10"/>
+                                <item type="object" cls="RecoveryGroupBaseAction_read">
+                                  <prop type="string" name="description">
+                                    <format maxLength="100"/>
+                                  </prop>
+                                  <prop type="string" name="name" required="True">
+                                    <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+                                  </prop>
+                                  <prop type="integer32" name="timeoutInMinutes" required="True">
+                                    <format maximum="10000" minimum="0"/>
+                                  </prop>
+                                  <prop type="string" name="type" required="True">
+                                    <enum>
+                                      <item value="&quot;CustomRunbook&quot;"/>
+                                      <item value="&quot;ManualAction&quot;"/>
+                                    </enum>
+                                  </prop>
+                                  <discriminator property="type" value="CustomRunbook">
+                                    <prop type="ResourceId" name="actionResourceId"/>
+                                    <prop type="object" name="associatedIdentity">
+                                      <prop type="string" name="type" required="True">
+                                        <enum>
+                                          <item value="&quot;None&quot;"/>
+                                          <item value="&quot;SystemAssigned&quot;"/>
+                                          <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                                          <item value="&quot;UserAssigned&quot;"/>
+                                        </enum>
+                                      </prop>
+                                      <prop type="ResourceId" name="userAssignedIdentity"/>
+                                    </prop>
+                                    <prop type="object" name="parameters">
+                                      <additionalProp>
+                                        <item type="string"/>
+                                      </additionalProp>
+                                    </prop>
+                                  </discriminator>
+                                  <discriminator property="type" value="ManualAction"/>
+                                </item>
+                              </prop>
+                            </prop>
+                            <prop readOnly="True" type="@SystemData_read" name="systemData"/>
+                            <prop readOnly="True" type="string" name="type"/>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData" cls="SystemData_read">
+                        <prop type="dateTime" name="createdAt">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>

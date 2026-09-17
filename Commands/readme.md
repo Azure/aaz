@@ -56,6 +56,9 @@
 - [automation](/Commands/automation/readme.md)
 : Manage Automation Account.
 
+- [resiliency](/Commands/resiliency/readme.md)
+: Manage Azure Resilience Management
+
 - [baremetalinstance](/Commands/baremetalinstance/readme.md)
 : Handle Operations for Compute Azure Bare Instances.
 
