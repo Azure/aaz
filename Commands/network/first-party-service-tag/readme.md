@@ -11,7 +11,7 @@ Manage First Party Service Tag
 : Delete the specified first party service tag.
 
 - [list](/Commands/network/first-party-service-tag/_list.md)
-: List all the first party service tags in a subscription.
+: List first party service tags in a resource group.
 
 - [show](/Commands/network/first-party-service-tag/_show.md)
 : Get the specified first party service tag.
