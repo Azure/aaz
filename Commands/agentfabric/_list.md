@@ -1,6 +1,6 @@
-# [Command] _agentmesh fabric list_
+# [Command] _agentfabric list_
 
-List Agent Mesh fabrics
+List Agent Fabric resources.
 
 ## Versions
 
@@ -13,10 +13,10 @@ List Agent Mesh fabrics
 
 - AgentFabrics_ListBySubscription
     ```bash
-        agentmesh fabric list
+        agentfabric list
     ```
 
 - AgentFabrics_ListByResourceGroup
     ```bash
-        agentmesh fabric list --resource-group rgnetworksecurity
+        agentfabric list --resource-group rgnetworksecurity
     ```

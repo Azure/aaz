@@ -1,6 +1,6 @@
-# [Command] _agentmesh policy-group delete_
+# [Command] _agentfabric policy-group delete_
 
-Delete an Agent Mesh policy group
+Delete an independent resource-group-scoped Microsoft.NetworkSecurity Policy Group resource. Policy Groups are not children of an Agent Fabric.
 
 ## Versions
 
@@ -12,5 +12,5 @@ Delete an Agent Mesh policy group
 
 - PolicyGroups_Delete
     ```bash
-        agentmesh policy-group delete --resource-group rgnetworksecurity --name testPolicyGroup
+        agentfabric policy-group delete --resource-group rgnetworksecurity --name testPolicyGroup
     ```

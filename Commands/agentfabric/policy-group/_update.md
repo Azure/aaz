@@ -1,6 +1,6 @@
-# [Command] _agentmesh policy-group update_
+# [Command] _agentfabric policy-group update_
 
-Update an Agent Mesh policy group's tags
+Update an independent resource-group-scoped Microsoft.NetworkSecurity Policy Group resource. Policy Groups are not children of an Agent Fabric.
 
 ## Versions
 
@@ -12,5 +12,5 @@ Update an Agent Mesh policy group's tags
 
 - PolicyGroups_Update
     ```bash
-        agentmesh policy-group update --resource-group rgnetworksecurity --name testPolicyGroup --tags "{env:production}"
+        agentfabric policy-group update --resource-group rgnetworksecurity --name testPolicyGroup --tags "{env:production}"
     ```

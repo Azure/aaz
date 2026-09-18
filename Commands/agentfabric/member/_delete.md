@@ -1,6 +1,6 @@
-# [Command] _agentmesh fabric member show_
+# [Command] _agentfabric member delete_
 
-Get a member in an Agent Mesh fabric
+Delete a member resource that is a child of an Agent Fabric. The parent Fabric name is required.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Get a member in an Agent Mesh fabric
 
 #### examples
 
-- Members_Get
+- Members_Delete
     ```bash
-        agentmesh fabric member show --resource-group rgnetworksecurity --fabric-name testAIFabric --member-name testMember
+        agentfabric member delete --resource-group rgnetworksecurity --fabric-name testAIFabric --member-name testMember
     ```

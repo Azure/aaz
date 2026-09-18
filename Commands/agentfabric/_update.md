@@ -1,6 +1,6 @@
-# [Command] _agentmesh fabric delete_
+# [Command] _agentfabric update_
 
-Delete an Agent Mesh fabric
+Update an Agent Fabric resource.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Delete an Agent Mesh fabric
 
 #### examples
 
-- AgentFabrics_Delete
+- AgentFabrics_Update
     ```bash
-        agentmesh fabric delete --resource-group rgnetworksecurity --name testAIFabric
+        agentfabric update --resource-group rgnetworksecurity --name testAIFabric --tags "{env:production}"
     ```
