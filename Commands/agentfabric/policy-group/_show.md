@@ -1,6 +1,6 @@
-# [Command] _agentmesh policy-group show_
+# [Command] _agentfabric policy-group show_
 
-Get an Agent Mesh policy group
+Show an independent resource-group-scoped Microsoft.NetworkSecurity Policy Group resource. Policy Groups are not children of an Agent Fabric.
 
 ## Versions
 
@@ -12,5 +12,5 @@ Get an Agent Mesh policy group
 
 - PolicyGroups_Get
     ```bash
-        agentmesh policy-group show --resource-group rgnetworksecurity --name testPolicyGroup
+        agentfabric policy-group show --resource-group rgnetworksecurity --name testPolicyGroup
     ```

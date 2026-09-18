@@ -1,6 +1,6 @@
-# [Command] _agentmesh fabric member list_
+# [Command] _agentfabric member list_
 
-List members in an Agent Mesh fabric
+List member resources that are children of an Agent Fabric. The parent Fabric name is required.
 
 ## Versions
 
@@ -12,5 +12,5 @@ List members in an Agent Mesh fabric
 
 - Members_ListByParent
     ```bash
-        agentmesh fabric member list --resource-group rgnetworksecurity --fabric-name testAIFabric
+        agentfabric member list --resource-group rgnetworksecurity --fabric-name testAIFabric
     ```

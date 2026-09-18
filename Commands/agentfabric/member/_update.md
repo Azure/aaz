@@ -1,6 +1,6 @@
-# [Command] _agentmesh fabric member update_
+# [Command] _agentfabric member update_
 
-Update an Agent Mesh fabric member's tags
+Update a member resource that is a child of an Agent Fabric. The parent Fabric name is required.
 
 ## Versions
 
@@ -12,5 +12,5 @@ Update an Agent Mesh fabric member's tags
 
 - Members_Update
     ```bash
-        agentmesh fabric member update --resource-group rgnetworksecurity --fabric-name testAIFabric --member-name testMember --tags "{environment:production}"
+        agentfabric member update --resource-group rgnetworksecurity --fabric-name testAIFabric --member-name testMember --tags "{environment:production}"
     ```

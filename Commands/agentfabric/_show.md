@@ -1,6 +1,6 @@
-# [Command] _agentmesh fabric show_
+# [Command] _agentfabric show_
 
-Get an Agent Mesh fabric
+Show an Agent Fabric resource.
 
 ## Versions
 
@@ -12,5 +12,5 @@ Get an Agent Mesh fabric
 
 - AgentFabrics_Get
     ```bash
-        agentmesh fabric show --resource-group rgnetworksecurity --name testAIFabric
+        agentfabric show --resource-group rgnetworksecurity --name testAIFabric
     ```

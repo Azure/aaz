@@ -1,6 +1,6 @@
-# [Command] _agentmesh policy-group list_
+# [Command] _agentfabric policy-group list_
 
-List Agent Mesh policy groups
+List independent resource-group-scoped Microsoft.NetworkSecurity Policy Group resources. Policy Groups are not children of an Agent Fabric.
 
 ## Versions
 
@@ -13,10 +13,10 @@ List Agent Mesh policy groups
 
 - PolicyGroups_ListBySubscription
     ```bash
-        agentmesh policy-group list
+        agentfabric policy-group list
     ```
 
 - PolicyGroups_ListByResourceGroup
     ```bash
-        agentmesh policy-group list --resource-group rgnetworksecurity
+        agentfabric policy-group list --resource-group rgnetworksecurity
     ```
