@@ -1,6 +1,6 @@
-# [Command] _agentmesh fabric create_
+# [Command] _agentfabric create_
 
-Create an Agent Mesh fabric
+Create an Agent Fabric resource.
 
 ## Versions
 
@@ -12,5 +12,5 @@ Create an Agent Mesh fabric
 
 - AgentFabrics_CreateOrUpdate
     ```bash
-        agentmesh fabric create --resource-group rgnetworksecurity --name testAIFabric --default-policy-groups "[/subscriptions/11809CA1-E126-4017-945E-AA795CD5C5A9/resourceGroups/rgnetworksecurity/providers/Microsoft.NetworkSecurity/policyGroups/testPolicyGroup]" --trust-domain contoso.agentfabric --tags "{}" --location eastus
+        agentfabric create --resource-group rgnetworksecurity --name testAIFabric --default-policy-groups "[/subscriptions/11809CA1-E126-4017-945E-AA795CD5C5A9/resourceGroups/rgnetworksecurity/providers/Microsoft.NetworkSecurity/policyGroups/testPolicyGroup]" --trust-domain contoso.agentfabric --tags "{}" --location eastus
     ```
