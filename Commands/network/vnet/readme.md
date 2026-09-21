@@ -32,6 +32,9 @@ To learn more about Virtual Networks visit https://learn.microsoft.com/azure/vir
 - [list-endpoint-services](/Commands/network/vnet/_list-endpoint-services.md)
 : List which services support VNet service tunneling in a given region.
 
+- [move-ip-configurations](/Commands/network/vnet/_move-ip-configurations.md)
+: Move IP configurations from one virtual network to another.
+
 - [show](/Commands/network/vnet/_show.md)
 : Get the details of a virtual network.
 
