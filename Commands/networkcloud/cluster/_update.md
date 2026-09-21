@@ -830,3 +830,18 @@ Update the properties of the provided cluster, or update the tags associated wit
     ```bash
         networkcloud cluster update --name "clusterName" --resource-group "resourceGroupName" --analytics-output-settings analytics-workspace-id="/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/microsoft.operationalInsights/workspaces/logAnalyticsWorkspaceName" identity-type="UserAssignedIdentity" identity-resource-id="/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/userIdentity"
     ```
+
+- Patch cluster secret archive settings with OpenBao provider
+    ```bash
+        networkcloud cluster update --name "clusterName" --resource-group "resourceGroupName" --secret-archive-settings identity-type="UserAssignedIdentity" identity-resource-id="/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUAI" vault-uri="https://openbao.example.com/" encryption-public-key="somepublickey" provider="OpenBao" authentication-method="AppRole" application-role-id="edge-credentials-role" authentication-mount-path="approle" key-value-version="V2" mount-path="kv" namespace="edge-credentials" path-template="azure-local/{namespace}/{name}"
+    ```
+
+- Patch cluster secret archive settings with HashiCorp Vault provider
+    ```bash
+        networkcloud cluster update --name "clusterName" --resource-group "resourceGroupName" --secret-archive-settings identity-type="UserAssignedIdentity" identity-resource-id="/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUAI" vault-uri="https://vault.example.com/" encryption-public-key="somepublickey" provider="HashiCorpVault" authentication-method="AppRole" application-role-id="edge-credentials-role" authentication-mount-path="approle" key-value-version="V2" mount-path="secret" namespace="edge-credentials" path-template="azure-local/{namespace}/{name}"
+    ```
+
+- Patch cluster secret archive settings with CyberArk provider
+    ```bash
+        networkcloud cluster update --name "clusterName" --resource-group "resourceGroupName" --secret-archive-settings identity-type="UserAssignedIdentity" identity-resource-id="/subscriptions/subscriptionId/resourceGroups/resourceGroupName/providers/Microsoft.ManagedIdentity/userAssignedIdentities/myUAI" vault-uri="https://cyberark.example.com/" encryption-public-key="somepublickey" provider="CyberArk" application-id="EdgeCredentials" safe-name="Azure-Local-Credentials" folder-name="Root" object-name-template="{namespace}-{name}"
+    ```
