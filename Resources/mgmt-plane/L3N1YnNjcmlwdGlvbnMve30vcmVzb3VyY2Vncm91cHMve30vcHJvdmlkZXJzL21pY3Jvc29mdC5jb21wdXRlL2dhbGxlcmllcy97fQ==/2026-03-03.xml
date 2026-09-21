@@ -597,6 +597,20 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="CommunityGalleryInfo">
+        <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.eula" options="eula" group="CommunityGalleryInfo">
+          <help short="End-user license agreement for community gallery image."/>
+        </arg>
+        <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.publicNamePrefix" options="public-name-prefix" group="CommunityGalleryInfo">
+          <help short="The prefix of the gallery name that will be displayed publicly. Visible to all users."/>
+        </arg>
+        <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.publisherContact" options="publisher-contact publisher-email" group="CommunityGalleryInfo">
+          <help short="Community gallery publisher support email. The email address of the publisher. Visible to all users."/>
+        </arg>
+        <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.publisherUri" options="publisher-uri" group="CommunityGalleryInfo">
+          <help short="The link to the publisher website. Visible to all users."/>
+        </arg>
+      </argGroup>
       <argGroup name="Gallery">
         <arg nullable="True" type="object" var="$gallery.tags" options="tags" group="Gallery">
           <help short="Resource tags."/>
@@ -628,31 +642,15 @@
         <arg nullable="True" type="string" var="$gallery.properties.description" options="description" group="Properties">
           <help short="The description of this Shared Image Gallery resource. This property is updatable."/>
         </arg>
-        <arg nullable="True" type="object" var="$gallery.properties.sharingProfile" options="sharing-profile" group="Properties">
-          <help short="Profile for gallery sharing to subscription or tenant"/>
-          <arg nullable="True" type="object" var="$gallery.properties.sharingProfile.communityGalleryInfo" options="community-gallery-info">
-            <help short="Information of community gallery if current gallery is shared to community."/>
-            <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.eula" options="eula">
-              <help short="End-user license agreement for community gallery image."/>
-            </arg>
-            <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.publicNamePrefix" options="public-name-prefix">
-              <help short="The prefix of the gallery name that will be displayed publicly. Visible to all users."/>
-            </arg>
-            <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.publisherContact" options="publisher-contact">
-              <help short="Community gallery publisher support email. The email address of the publisher. Visible to all users."/>
-            </arg>
-            <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.communityGalleryInfo.publisherUri" options="publisher-uri">
-              <help short="The link to the publisher website. Visible to all users."/>
-            </arg>
-          </arg>
-          <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.permissions" options="permissions">
-            <help short="This property allows you to specify the permission of sharing gallery. Possible values are: **Private,** **Groups,** **Community.**"/>
-            <enum>
-              <item name="Community" value="&quot;Community&quot;"/>
-              <item name="Groups" value="&quot;Groups&quot;"/>
-              <item name="Private" value="&quot;Private&quot;"/>
-            </enum>
-          </arg>
+      </argGroup>
+      <argGroup name="SharingProfile">
+        <arg nullable="True" type="string" var="$gallery.properties.sharingProfile.permissions" options="permissions" group="SharingProfile">
+          <help short="This property allows you to specify the permission of sharing gallery. Possible values are: **Private,** **Groups,** **Community.**"/>
+          <enum>
+            <item name="Community" value="&quot;Community&quot;"/>
+            <item name="Groups" value="&quot;Groups&quot;"/>
+            <item name="Private" value="&quot;Private&quot;"/>
+          </enum>
         </arg>
       </argGroup>
       <argGroup name="SoftDeletePolicy">
@@ -859,8 +857,8 @@
               </prop>
               <prop type="object" name="properties" clientFlatten="True">
                 <prop type="string" name="description" arg="$gallery.properties.description"/>
-                <prop type="object" name="sharingProfile" arg="$gallery.properties.sharingProfile">
-                  <prop type="object" name="communityGalleryInfo" arg="$gallery.properties.sharingProfile.communityGalleryInfo">
+                <prop type="object" name="sharingProfile">
+                  <prop type="object" name="communityGalleryInfo">
                     <prop type="string" name="eula" arg="$gallery.properties.sharingProfile.communityGalleryInfo.eula"/>
                     <prop type="string" name="publicNamePrefix" arg="$gallery.properties.sharingProfile.communityGalleryInfo.publicNamePrefix"/>
                     <prop type="string" name="publisherContact" arg="$gallery.properties.sharingProfile.communityGalleryInfo.publisherContact"/>
