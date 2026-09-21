@@ -11,9 +11,6 @@
 - [afd](/Commands/afd/readme.md)
 : Manage Azure Front Door Standard/Premium.
 
-- [agentmesh](/Commands/agentmesh/readme.md)
-: Manage Azure Agent Mesh resources.
-
 - [alerts-management](/Commands/alerts-management/readme.md)
 : Manage Azure Alerts Management Service Resource.
 
