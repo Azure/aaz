@@ -46,6 +46,9 @@ Manage Azure Network resources.
 - [firewall](/Commands/network/firewall/readme.md)
 : Manage and configure Azure Firewalls.
 
+- [first-party-service-tag](/Commands/network/first-party-service-tag/readme.md)
+: Manage First Party Service Tag
+
 - [front-door](/Commands/network/front-door/readme.md)
 : Manage Classical Azure Front Doors. For managing Azure Front Door Standard/Premium, please refer https://learn.microsoft.com/en-us/cli/azure/afd?view=azure-cli-latest.
 
