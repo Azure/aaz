@@ -4,6 +4,9 @@ Manage Agent Fabric and related Microsoft.NetworkSecurity resources. Root comman
 
 ## Subgroups
 
+- [cluster-association](/Commands/agentfabric/cluster-association/readme.md)
+: Manage Cluster Association resources that are children of an Agent Fabric. The parent Fabric name is required.
+
 - [member](/Commands/agentfabric/member/readme.md)
 : Manage members that are children of an Agent Fabric. The parent Fabric name is required.
 
