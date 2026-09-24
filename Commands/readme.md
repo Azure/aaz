@@ -278,6 +278,9 @@
 - [neon](/Commands/neon/readme.md)
 : Manage Neon Postgres databases and related resources within Azure.
 
+- [net-app](/Commands/net-app/readme.md)
+: Manage Net App
+
 - [netappfiles](/Commands/netappfiles/readme.md)
 : Manage Azure NetApp Files (ANF) Resources
 
