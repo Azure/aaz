@@ -10,6 +10,9 @@ Manage Ssh Public Key
 - [delete](/Commands/sshkey/_delete.md)
 : Delete a SSH public key.
 
+- [generate-key-pair](/Commands/sshkey/_generate-key-pair.md)
+: Generate an SSH public/private key pair for an SSH public key resource.
+
 - [list](/Commands/sshkey/_list.md)
 : List all of the SSH public keys in the subscription. Use the nextLink property in the response to get the next page of SSH public keys.
 
