@@ -19,6 +19,9 @@ Manage shared gallery image version with VM
 - [list-shared](/Commands/sig/image-version/_list-shared.md)
 : List VM Image Versions in a gallery shared directly to your subscription or tenant
 
+- [list-soft-deleted](/Commands/sig/image-version/_list-soft-deleted.md)
+: List soft-deleted resources of an artifact in the gallery, such as soft-deleted gallery image version of an image.
+
 - [show](/Commands/sig/image-version/_show.md)
 : Get information about a gallery image version.
 
