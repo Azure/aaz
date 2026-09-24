@@ -4,6 +4,11 @@ Manage application security groups (ASGs).
 
 You can configure network security as a natural extension of an application's structure, ASG allows you to group virtual machines and define network security policies based on those groups. You can specify an application security group as the source and destination in a NSG security rule. For more information, visit https://learn.microsoft.com/azure/virtual-network/create-network-security-group-preview.
 
+## Subgroups
+
+- [address-prefix-set](/Commands/network/asg/address-prefix-set/readme.md)
+: Manage address prefix sets in an application security group.
+
 ## Commands
 
 - [create](/Commands/network/asg/_create.md)

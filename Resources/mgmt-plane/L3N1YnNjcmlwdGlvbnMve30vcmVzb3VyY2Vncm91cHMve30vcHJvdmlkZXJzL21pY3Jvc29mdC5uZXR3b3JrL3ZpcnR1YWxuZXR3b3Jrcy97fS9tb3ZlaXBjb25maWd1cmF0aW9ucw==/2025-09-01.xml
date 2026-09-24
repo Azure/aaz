@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/virtualnetworks/{}/moveipconfigurations" version="2025-09-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay92aXJ0dWFsTmV0d29ya3Mve3ZpcnR1YWxOZXR3b3JrTmFtZX0vbW92ZUlwQ29uZmlndXJhdGlvbnM=/V/MjAyNS0wOS0wMQ=="/>
+  <commandGroup name="network vnet">
+    <command name="move-ip-configurations" version="2025-09-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.network/virtualnetworks/{}/moveipconfigurations" version="2025-09-01" swagger="mgmt-plane/network/ResourceProviders/Microsoft.Network/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTmV0d29yay92aXJ0dWFsTmV0d29ya3Mve3ZpcnR1YWxOZXR3b3JrTmFtZX0vbW92ZUlwQ29uZmlndXJhdGlvbnM=/V/MjAyNS0wOS0wMQ=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.virtualNetworkName" options="name n" required="True" idPart="name">
+          <help short="Name of the virtual network."/>
+        </arg>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="array<object>" var="$body.moveIpConfigurationItems" options="move-ip-configuration-items move-items" required="True" group="Body">
+          <help short="List of source and target IP configuration resource ID pairs."/>
+          <item type="object">
+            <arg type="object" var="$body.moveIpConfigurationItems[].sourceIpConfiguration" options="source-ip-configuration" required="True">
+              <help short="Source IP configuration."/>
+              <arg type="ResourceId" var="$body.moveIpConfigurationItems[].sourceIpConfiguration.id" options="id" required="True">
+                <help short="ARM resource ID of the source IP configuration."/>
+              </arg>
+            </arg>
+            <arg type="object" var="$body.moveIpConfigurationItems[].targetIpConfiguration" options="target-ip-configuration" required="True">
+              <help short="Target IP configuration."/>
+              <arg type="ResourceId" var="$body.moveIpConfigurationItems[].targetIpConfiguration.id" options="id" required="True">
+                <help short="ARM resource ID of the target IP configuration."/>
+              </arg>
+            </arg>
+          </item>
+        </arg>
+      </argGroup>
+      <operation operationId="VirtualNetworks_MoveIpConfigurations">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Network/virtualNetworks/{virtualNetworkName}/moveIpConfigurations">
+          <request method="post">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="virtualNetworkName" arg="$Path.virtualNetworkName" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-09-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="array<object>" name="moveIpConfigurationItems" arg="$body.moveIpConfigurationItems" required="True">
+                    <item type="object">
+                      <prop type="object" name="sourceIpConfiguration" arg="$body.moveIpConfigurationItems[].sourceIpConfiguration" required="True">
+                        <prop type="ResourceId" name="id" arg="$body.moveIpConfigurationItems[].sourceIpConfiguration.id" required="True"/>
+                      </prop>
+                      <prop type="object" name="targetIpConfiguration" arg="$body.moveIpConfigurationItems[].targetIpConfiguration" required="True">
+                        <prop type="ResourceId" name="id" arg="$body.moveIpConfigurationItems[].targetIpConfiguration.id" required="True"/>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200"/>
+          <response statusCode="202">
+            <header>
+              <item name="Azure-AsyncOperation"/>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>
