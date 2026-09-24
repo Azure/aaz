@@ -38,5 +38,5 @@ Join a kubernetes cluster to an Application Network
 
 - Join an AKS cluster using a named network
     ```bash
-        appnet member join --resource-group test_rg --appnet-name appnet-test-01 --member-name member-01 --cluster-type AKS --member-resource-id /subscriptions/bc7e0da9-5e4c-4a91-9252-9658837006cf/resourcegroups/test-rg/providers/Microsoft.ContainerService/managedClusters/test-member1 --network-name shared-network-1 --member-location westus2
+        appnet member join --resource-group test_rg --appnet-name appnet-test-01 --member-name member-01 --cluster-type AKS --member-resource-id /subscriptions/bc7e0da9-5e4c-4a91-9252-9658837006cf/resourcegroups/test-rg/providers/Microsoft.ContainerService/managedClusters/test-member1 --upgrade-mode SelfManaged --version 1.4 --network-name shared-network --member-location westus2
     ```
