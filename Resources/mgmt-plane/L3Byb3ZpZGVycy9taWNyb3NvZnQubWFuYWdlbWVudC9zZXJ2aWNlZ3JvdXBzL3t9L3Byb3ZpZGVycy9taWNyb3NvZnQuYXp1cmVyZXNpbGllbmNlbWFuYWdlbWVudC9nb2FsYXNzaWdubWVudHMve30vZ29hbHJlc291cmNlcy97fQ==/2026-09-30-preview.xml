@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/goalassignments/{}/goalresources/{}" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlUmVzaWxpZW5jZU1hbmFnZW1lbnQvZ29hbEFzc2lnbm1lbnRzL3tnb2FsQXNzaWdubWVudE5hbWV9L2dvYWxSZXNvdXJjZXMve2dvYWxSZXNvdXJjZU5hbWV9/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+  <commandGroup name="resiliency goal-assignment goal-resource">
+    <command name="show" version="2026-09-30-preview">
+      <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/goalassignments/{}/goalresources/{}" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlUmVzaWxpZW5jZU1hbmFnZW1lbnQvZ29hbEFzc2lnbm1lbnRzL3tnb2FsQXNzaWdubWVudE5hbWV9L2dvYWxSZXNvdXJjZXMve2dvYWxSZXNvdXJjZU5hbWV9/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.goalAssignmentName" options="goal-assignment-name" required="True">
+          <help short="The name of the GoalAssignment"/>
+          <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+        </arg>
+        <arg type="string" var="$Path.goalResourceName" options="goal-resource-name" required="True">
+          <help short="The name of the GoalAssignment"/>
+          <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+        </arg>
+        <arg type="string" var="$Path.serviceGroupName" options="service-group-name" required="True">
+          <help short="The name of the service group."/>
+          <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
+        </arg>
+      </argGroup>
+      <operation operationId="GoalResources_Get">
+        <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.AzureResilienceManagement/goalAssignments/{goalAssignmentName}/goalResources/{goalResourceName}">
+          <request method="get">
+            <path>
+              <param type="string" name="goalAssignmentName" arg="$Path.goalAssignmentName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+              </param>
+              <param type="string" name="goalResourceName" arg="$Path.goalResourceName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+              </param>
+              <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
+                <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-09-30-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/providers/Microsoft.Management/serviceGroups/{}/providers/Microsoft.AzureResilienceManagement/goalAssignments/{}/goalResources/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;NeedsAttention&quot;"/>
+                        <item value="&quot;Provisioning&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="@ResiliencyProperties_read" name="regionalResiliency"/>
+                    <prop type="ResourceId" name="resourceArmId" required="True"/>
+                    <prop type="object" name="zonalResiliency" cls="ResiliencyProperties_read">
+                      <prop type="string" name="attestationStatus">
+                        <enum>
+                          <item value="&quot;ManuallyAttested&quot;"/>
+                          <item value="&quot;NotAttested&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop readOnly="True" type="string" name="exclusionReason">
+                        <enum>
+                          <item value="&quot;FailedOverResource&quot;"/>
+                          <item value="&quot;UnsupportedResource&quot;"/>
+                          <item value="&quot;UserSelectedExclusion&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="goalParticipation">
+                        <enum>
+                          <item value="&quot;Excluded&quot;"/>
+                          <item value="&quot;Included&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="array<object>" name="userConfirmation" identifiers="solutionDisplayName">
+                        <item type="object">
+                          <prop type="string" name="confirmationStatus" required="True">
+                            <enum>
+                              <item value="&quot;ApprovalNotNeeded&quot;"/>
+                              <item value="&quot;ApprovalPending&quot;"/>
+                              <item value="&quot;ApprovedByUser&quot;"/>
+                              <item value="&quot;RejectedByUser&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="reasonForRequestingConfirmation">
+                            <enum>
+                              <item value="&quot;VmInMultiZoneScaleSetStatelessOnly&quot;"/>
+                              <item value="&quot;ZonePinnedZrsDataDisksConditional&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="solutionDisplayName" required="True">
+                            <enum>
+                              <item value="&quot;VmInMultiZoneVmss&quot;"/>
+                              <item value="&quot;ZonePinnedVmWithZrsDisk&quot;"/>
+                            </enum>
+                          </prop>
+                        </item>
+                      </prop>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
