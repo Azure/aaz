@@ -14,3 +14,14 @@ Get a ExadbVmCluster
     ```bash
         oracle-database exadb-vm-cluster show --resource-group rgopenapi --exadb-vm-cluster-name exadbVmClusterName1
     ```
+
+### [2026-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL29yYWNsZS5kYXRhYmFzZS9leGFkYnZtY2x1c3RlcnMve30=/2026-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/oracle.database/exadbvmclusters/{} 2026-06-01 -->
+
+#### examples
+
+- ExadbVmClusters_ show
+    ```bash
+        oracle-database exadb-vm-cluster show --resource-group rgopenapi --exadb-vm-cluster-name exadbVmClusterName1
+    ```

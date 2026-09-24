@@ -14,3 +14,14 @@ Delete a ExadbVmCluster
     ```bash
         oracle-database exadb-vm-cluster delete --resource-group rgopenapi --exadb-vm-cluster-name exadaVmClusterName1
     ```
+
+### [2026-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL29yYWNsZS5kYXRhYmFzZS9leGFkYnZtY2x1c3RlcnMve30=/2026-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/oracle.database/exadbvmclusters/{} 2026-06-01 -->
+
+#### examples
+
+- ExadbVmClusters_Delete_MaximumSet
+    ```bash
+        oracle-database exadb-vm-cluster delete --resource-group rgopenapi --exadb-vm-cluster-name exadaVmClusterName1
+    ```
