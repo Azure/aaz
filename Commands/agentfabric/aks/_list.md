@@ -1,6 +1,6 @@
-# [Command] _agentfabric cluster-association list_
+# [Command] _agentfabric aks list_
 
-List Cluster Association resources that are children of an Agent Fabric. The parent Fabric name is required.
+List AKS cluster enrollments for an Agent Fabric. The parent Fabric name is required.
 
 ## Versions
 
@@ -10,7 +10,7 @@ List Cluster Association resources that are children of an Agent Fabric. The par
 
 #### examples
 
-- ClusterAssociations_ListByParent
+- List AKS cluster enrollments
     ```bash
-        agentfabric cluster-association list --resource-group rgnetworksecurity --fabric-name testAIFabric
+        agentfabric aks list --resource-group rgnetworksecurity --fabric-name testAIFabric
     ```

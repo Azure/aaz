@@ -1,6 +1,6 @@
-# [Command] _agentfabric cluster-association show_
+# [Command] _agentfabric aks detach_
 
-Show a Cluster Association resource that is a child of an Agent Fabric. The parent Fabric name is required.
+Detach an AKS cluster from an Agent Fabric. The parent Fabric name and AKS cluster name are required.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Show a Cluster Association resource that is a child of an Agent Fabric. The pare
 
 #### examples
 
-- ClusterAssociations_Get
+- Detach an AKS cluster
     ```bash
-        agentfabric cluster-association show --resource-group rgnetworksecurity --fabric-name testAIFabric --cluster-association-name testClusterAssociation
+        agentfabric aks detach --resource-group rgnetworksecurity --fabric-name testAIFabric --cluster-name testCluster
     ```

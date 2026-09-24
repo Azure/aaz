@@ -1,6 +1,6 @@
-# [Command] _agentfabric cluster-association delete_
+# [Command] _agentfabric aks show_
 
-Delete a Cluster Association resource that is a child of an Agent Fabric. The parent Fabric name is required.
+Show an AKS cluster enrollment for an Agent Fabric. The parent Fabric name and AKS cluster name are required.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Delete a Cluster Association resource that is a child of an Agent Fabric. The pa
 
 #### examples
 
-- ClusterAssociations_Delete
+- Show an AKS cluster enrollment
     ```bash
-        agentfabric cluster-association delete --resource-group rgnetworksecurity --fabric-name testAIFabric --cluster-association-name testClusterAssociation
+        agentfabric aks show --resource-group rgnetworksecurity --fabric-name testAIFabric --cluster-name testCluster
     ```

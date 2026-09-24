@@ -1,6 +1,6 @@
-# [Command] _agentfabric cluster-association update_
+# [Command] _agentfabric aks update_
 
-Update a Cluster Association resource that is a child of an Agent Fabric. The parent Fabric name is required.
+Update the SKU for an AKS cluster enrollment. The parent Fabric name and AKS cluster name are required.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Update a Cluster Association resource that is a child of an Agent Fabric. The pa
 
 #### examples
 
-- ClusterAssociations_CreateOrUpdate
+- Update an AKS cluster enrollment SKU
     ```bash
-        agentfabric cluster-association update --resource-group rgnetworksecurity --fabric-name testAIFabric --cluster-association-name testClusterAssociation --sku Premium
+        agentfabric aks update --resource-group rgnetworksecurity --fabric-name testAIFabric --cluster-name testCluster --sku Premium
     ```
