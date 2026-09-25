@@ -86,6 +86,9 @@
 - [cloud-service](/Commands/cloud-service/readme.md)
 : Manage cloud service
 
+- [cognitiveservices](/Commands/cognitiveservices/readme.md)
+: Manage Cognitive Services
+
 - [communication](/Commands/communication/readme.md)
 : Manage communication service with communication.
 
