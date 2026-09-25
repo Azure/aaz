@@ -19,3 +19,19 @@ List available Application Network versions by location
     ```bash
         appnet list-versions --location westus2 --kubernetes-version 1.28
     ```
+
+### [2026-08-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5hcHBsaW5rL2xvY2F0aW9ucy97fS9hdmFpbGFibGV2ZXJzaW9ucw==/2026-08-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.applink/locations/{}/availableversions 2026-08-01-preview -->
+
+#### examples
+
+- List Application Network versions in westus2
+    ```bash
+        appnet list-versions --location westus2
+    ```
+
+- List compatible Application Network versions with K8S 1.28 on westus2
+    ```bash
+        appnet list-versions --location westus2 --kubernetes-version 1.28
+    ```
