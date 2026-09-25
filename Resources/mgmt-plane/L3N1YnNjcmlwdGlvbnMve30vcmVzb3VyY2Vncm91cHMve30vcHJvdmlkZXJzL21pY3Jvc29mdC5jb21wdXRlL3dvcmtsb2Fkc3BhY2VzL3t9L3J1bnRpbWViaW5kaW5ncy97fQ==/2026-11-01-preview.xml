@@ -1,0 +1,791 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/workloadspaces/{}/runtimebindings/{}" version="2026-11-01-preview" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS93b3JrbG9hZFNwYWNlcy97c3BhY2VOYW1lfS9ydW50aW1lQmluZGluZ3Mve2JpbmRpbmdOYW1lfQ==/V/MjAyNi0xMS0wMS1wcmV2aWV3"/>
+  <commandGroup name="workload-manager workload-space runtime-binding">
+    <command name="show" version="2026-11-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/workloadspaces/{}/runtimebindings/{}" version="2026-11-01-preview" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS93b3JrbG9hZFNwYWNlcy97c3BhY2VOYW1lfS9ydW50aW1lQmluZGluZ3Mve2JpbmRpbmdOYW1lfQ==/V/MjAyNi0xMS0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.bindingName" options="binding-name name n" required="True" idPart="child_name_1">
+          <help short="The name of the RuntimeBinding"/>
+          <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.spaceName" options="space-name" required="True" idPart="name">
+          <help short="The name of the WorkloadSpace"/>
+          <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="RuntimeBindings_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/workloadSpaces/{spaceName}/runtimeBindings/{bindingName}">
+          <request method="get">
+            <path>
+              <param type="string" name="bindingName" arg="$Path.bindingName" required="True">
+                <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="spaceName" arg="$Path.spaceName" required="True">
+                <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-11-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/workloadSpaces/{}/runtimeBindings/{}"/>
+                  </prop>
+                  <prop type="string" name="kind">
+                    <format pattern="^[-\w\._,\(\\\)]+$"/>
+                    <enum>
+                      <item value="&quot;Kubernetes&quot;"/>
+                      <item value="&quot;ServerlessContainers&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="identityProfile">
+                      <prop type="object" name="executionIdentity">
+                        <prop type="string" name="provisioningMode" required="True">
+                          <enum>
+                            <item value="&quot;Referenced&quot;"/>
+                            <item value="&quot;ServiceManaged&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="scope" required="True">
+                          <enum>
+                            <item value="&quot;SandboxGroup&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="provisioningMode" value="Referenced">
+                          <prop type="ResourceId" name="userAssignedIdentityResourceId" required="True"/>
+                        </discriminator>
+                        <discriminator property="provisioningMode" value="ServiceManaged">
+                          <prop readOnly="True" type="ResourceId" name="userAssignedIdentityResourceId"/>
+                        </discriminator>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="networkProfile">
+                      <prop type="string" name="egressMode">
+                        <enum>
+                          <item value="&quot;CustomerManaged&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="ResourceId" name="subnetResourceId"/>
+                    </prop>
+                    <prop readOnly="True" type="ResourceId" name="providerResourceId"/>
+                    <prop type="string" name="provisioningMode" required="True">
+                      <enum>
+                        <item value="&quot;Managed&quot;"/>
+                        <item value="&quot;Referenced&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Provisioning&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <discriminator property="provisioningMode" value="Managed">
+                      <prop type="object" name="managedProfile" required="True">
+                        <prop type="string" name="offering"/>
+                        <prop type="string" name="provider"/>
+                      </prop>
+                    </discriminator>
+                    <discriminator property="provisioningMode" value="Referenced">
+                      <prop type="ResourceId" name="resourceId" required="True"/>
+                    </discriminator>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2026-11-01-preview" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/workloadspaces/{}/runtimebindings/{}" version="2026-11-01-preview" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS93b3JrbG9hZFNwYWNlcy97c3BhY2VOYW1lfS9ydW50aW1lQmluZGluZ3Mve2JpbmRpbmdOYW1lfQ==/V/MjAyNi0xMS0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.bindingName" options="binding-name name n" required="True" idPart="child_name_1">
+          <help short="The name of the RuntimeBinding"/>
+          <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.spaceName" options="space-name" required="True" idPart="name">
+          <help short="The name of the WorkloadSpace"/>
+          <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="RuntimeBindings_Delete">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/workloadSpaces/{spaceName}/runtimeBindings/{bindingName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="bindingName" arg="$Path.bindingName" required="True">
+                <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="spaceName" arg="$Path.spaceName" required="True">
+                <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-11-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Azure-AsyncOperation"/>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response statusCode="204"/>
+          <response statusCode="200 201"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="create" version="2026-11-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/workloadspaces/{}/runtimebindings/{}" version="2026-11-01-preview" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS93b3JrbG9hZFNwYWNlcy97c3BhY2VOYW1lfS9ydW50aW1lQmluZGluZ3Mve2JpbmRpbmdOYW1lfQ==/V/MjAyNi0xMS0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.bindingName" options="binding-name name n" required="True" idPart="child_name_1">
+          <help short="The name of the RuntimeBinding"/>
+          <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.spaceName" options="space-name" required="True" idPart="name">
+          <help short="The name of the WorkloadSpace"/>
+          <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="object" var="$resource.properties.Managed" options="managed" group="Properties">
+          <arg type="object" var="$resource.properties.Managed.managedProfile" options="managed-profile" required="True">
+            <help short="The limited service-managed runtime configuration."/>
+            <arg type="string" var="$resource.properties.Managed.managedProfile.offering" options="offering">
+              <help short="The required product offering when the runtime binding kind is Kubernetes."/>
+            </arg>
+            <arg type="string" var="$resource.properties.Managed.managedProfile.provider" options="provider">
+              <help short="The required provider when the runtime binding kind is ServerlessContainers."/>
+            </arg>
+          </arg>
+        </arg>
+        <arg type="object" var="$resource.properties.Referenced" options="referenced" group="Properties">
+          <arg type="ResourceId" var="$resource.properties.Referenced.resourceId" options="resource-id" required="True">
+            <help short="The existing customer-owned runtime resource."/>
+          </arg>
+        </arg>
+        <arg type="object" var="$resource.properties.identityProfile" options="identity-profile" group="Properties">
+          <help short="The runtime identity configuration for a managed runtime."/>
+          <arg type="object" var="$resource.properties.identityProfile.executionIdentity" options="execution-identity">
+            <help short="The identity made available to the execution runtime."/>
+            <arg type="object" var="$resource.properties.identityProfile.executionIdentity.Referenced" options="referenced">
+              <arg type="ResourceId" var="$resource.properties.identityProfile.executionIdentity.Referenced.userAssignedIdentityResourceId" options="user-assigned-identity-resource-id" required="True">
+                <help short="The customer-provided user-assigned identity."/>
+              </arg>
+            </arg>
+            <arg type="object" var="$resource.properties.identityProfile.executionIdentity.ServiceManaged" options="service-managed">
+              <blank value="{}"/>
+            </arg>
+            <arg type="string" var="$resource.properties.identityProfile.executionIdentity.scope" options="scope" required="True">
+              <help short="The execution boundary across which the identity is shared."/>
+              <enum>
+                <item name="SandboxGroup" value="&quot;SandboxGroup&quot;"/>
+              </enum>
+            </arg>
+          </arg>
+        </arg>
+        <arg type="object" var="$resource.properties.networkProfile" options="network-profile" group="Properties">
+          <help short="The runtime network configuration for a managed runtime."/>
+          <arg type="string" var="$resource.properties.networkProfile.egressMode" options="egress-mode">
+            <help short="Indicates who manages runtime egress."/>
+            <enum>
+              <item name="CustomerManaged" value="&quot;CustomerManaged&quot;"/>
+            </enum>
+          </arg>
+          <arg type="ResourceId" var="$resource.properties.networkProfile.subnetResourceId" options="subnet-resource-id">
+            <help short="The customer-provided subnet used by the runtime."/>
+          </arg>
+        </arg>
+      </argGroup>
+      <argGroup name="Resource">
+        <arg type="string" var="$resource.kind" options="kind" group="Resource">
+          <help short="Metadata used by portal/tooling/etc to render different UX experiences for resources of the same type; e.g. ApiApps are a kind of Microsoft.Web/sites type.  If supported, the resource provider must validate and persist this value."/>
+          <format pattern="^[-\w\._,\(\\\)]+$"/>
+          <enum>
+            <item name="Kubernetes" value="&quot;Kubernetes&quot;"/>
+            <item name="ServerlessContainers" value="&quot;ServerlessContainers&quot;"/>
+          </enum>
+        </arg>
+        <arg type="ResourceLocation" var="$resource.location" options="location l" required="True" group="Resource">
+          <help short="The geo-location where the resource lives"/>
+        </arg>
+        <arg type="object" var="$resource.tags" options="tags" group="Resource">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="RuntimeBindings_CreateOrUpdate">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/workloadSpaces/{spaceName}/runtimeBindings/{bindingName}">
+          <request method="put">
+            <path>
+              <param type="string" name="bindingName" arg="$Path.bindingName" required="True">
+                <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="spaceName" arg="$Path.spaceName" required="True">
+                <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-11-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="string" name="kind" arg="$resource.kind">
+                    <format pattern="^[-\w\._,\(\\\)]+$"/>
+                    <enum>
+                      <item value="&quot;Kubernetes&quot;"/>
+                      <item value="&quot;ServerlessContainers&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" arg="$resource.location" required="True"/>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="identityProfile" arg="$resource.properties.identityProfile">
+                      <prop type="object" name="executionIdentity" arg="$resource.properties.identityProfile.executionIdentity">
+                        <prop type="string" name="provisioningMode" required="True">
+                          <enum>
+                            <item arg="$resource.properties.identityProfile.executionIdentity.Referenced" value="&quot;Referenced&quot;"/>
+                            <item arg="$resource.properties.identityProfile.executionIdentity.ServiceManaged" value="&quot;ServiceManaged&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="scope" arg="$resource.properties.identityProfile.executionIdentity.scope" required="True">
+                          <enum>
+                            <item value="&quot;SandboxGroup&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="provisioningMode" value="Referenced">
+                          <prop type="ResourceId" name="userAssignedIdentityResourceId" arg="$resource.properties.identityProfile.executionIdentity.Referenced.userAssignedIdentityResourceId" required="True"/>
+                        </discriminator>
+                        <discriminator property="provisioningMode" value="ServiceManaged"/>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="networkProfile" arg="$resource.properties.networkProfile">
+                      <prop type="string" name="egressMode" arg="$resource.properties.networkProfile.egressMode">
+                        <enum>
+                          <item value="&quot;CustomerManaged&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="ResourceId" name="subnetResourceId" arg="$resource.properties.networkProfile.subnetResourceId"/>
+                    </prop>
+                    <prop type="string" name="provisioningMode" required="True">
+                      <enum>
+                        <item arg="$resource.properties.Managed" value="&quot;Managed&quot;"/>
+                        <item arg="$resource.properties.Referenced" value="&quot;Referenced&quot;"/>
+                      </enum>
+                    </prop>
+                    <discriminator property="provisioningMode" value="Managed">
+                      <prop type="object" name="managedProfile" arg="$resource.properties.Managed.managedProfile" required="True">
+                        <prop type="string" name="offering" arg="$resource.properties.Managed.managedProfile.offering"/>
+                        <prop type="string" name="provider" arg="$resource.properties.Managed.managedProfile.provider"/>
+                      </prop>
+                    </discriminator>
+                    <discriminator property="provisioningMode" value="Referenced">
+                      <prop type="ResourceId" name="resourceId" arg="$resource.properties.Referenced.resourceId" required="True"/>
+                    </discriminator>
+                  </prop>
+                  <prop type="object" name="tags" arg="$resource.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/workloadSpaces/{}/runtimeBindings/{}"/>
+                  </prop>
+                  <prop type="string" name="kind">
+                    <format pattern="^[-\w\._,\(\\\)]+$"/>
+                    <enum>
+                      <item value="&quot;Kubernetes&quot;"/>
+                      <item value="&quot;ServerlessContainers&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="identityProfile">
+                      <prop type="object" name="executionIdentity">
+                        <prop type="string" name="provisioningMode" required="True">
+                          <enum>
+                            <item value="&quot;Referenced&quot;"/>
+                            <item value="&quot;ServiceManaged&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="scope" required="True">
+                          <enum>
+                            <item value="&quot;SandboxGroup&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="provisioningMode" value="Referenced">
+                          <prop type="ResourceId" name="userAssignedIdentityResourceId" required="True"/>
+                        </discriminator>
+                        <discriminator property="provisioningMode" value="ServiceManaged">
+                          <prop readOnly="True" type="ResourceId" name="userAssignedIdentityResourceId"/>
+                        </discriminator>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="networkProfile">
+                      <prop type="string" name="egressMode">
+                        <enum>
+                          <item value="&quot;CustomerManaged&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="ResourceId" name="subnetResourceId"/>
+                    </prop>
+                    <prop readOnly="True" type="ResourceId" name="providerResourceId"/>
+                    <prop type="string" name="provisioningMode" required="True">
+                      <enum>
+                        <item value="&quot;Managed&quot;"/>
+                        <item value="&quot;Referenced&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Provisioning&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <discriminator property="provisioningMode" value="Managed">
+                      <prop type="object" name="managedProfile" required="True">
+                        <prop type="string" name="offering"/>
+                        <prop type="string" name="provider"/>
+                      </prop>
+                    </discriminator>
+                    <discriminator property="provisioningMode" value="Referenced">
+                      <prop type="ResourceId" name="resourceId" required="True"/>
+                    </discriminator>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2026-11-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/workloadspaces/{}/runtimebindings/{}" version="2026-11-01-preview" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS93b3JrbG9hZFNwYWNlcy97c3BhY2VOYW1lfS9ydW50aW1lQmluZGluZ3Mve2JpbmRpbmdOYW1lfQ==/V/MjAyNi0xMS0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.bindingName" options="binding-name name n" required="True" idPart="child_name_1">
+          <help short="The name of the RuntimeBinding"/>
+          <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="string" var="$Path.spaceName" options="space-name" required="True" idPart="name">
+          <help short="The name of the WorkloadSpace"/>
+          <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
+        </arg>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="object" var="$resource.properties.Managed" options="managed" group="Properties">
+          <arg type="object" var="$resource.properties.Managed.managedProfile" options="managed-profile">
+            <help short="The limited service-managed runtime configuration."/>
+            <arg nullable="True" type="string" var="$resource.properties.Managed.managedProfile.offering" options="offering">
+              <help short="The required product offering when the runtime binding kind is Kubernetes."/>
+            </arg>
+            <arg nullable="True" type="string" var="$resource.properties.Managed.managedProfile.provider" options="provider">
+              <help short="The required provider when the runtime binding kind is ServerlessContainers."/>
+            </arg>
+          </arg>
+        </arg>
+        <arg nullable="True" type="object" var="$resource.properties.identityProfile" options="identity-profile" group="Properties">
+          <help short="The runtime identity configuration for a managed runtime."/>
+          <arg nullable="True" type="object" var="$resource.properties.identityProfile.executionIdentity" options="execution-identity">
+            <help short="The identity made available to the execution runtime."/>
+            <arg type="string" var="$resource.properties.identityProfile.executionIdentity.scope" options="scope">
+              <help short="The execution boundary across which the identity is shared."/>
+              <enum>
+                <item name="SandboxGroup" value="&quot;SandboxGroup&quot;"/>
+              </enum>
+            </arg>
+          </arg>
+        </arg>
+        <arg nullable="True" type="object" var="$resource.properties.networkProfile" options="network-profile" group="Properties">
+          <help short="The runtime network configuration for a managed runtime."/>
+          <arg nullable="True" type="string" var="$resource.properties.networkProfile.egressMode" options="egress-mode">
+            <help short="Indicates who manages runtime egress."/>
+            <enum>
+              <item name="CustomerManaged" value="&quot;CustomerManaged&quot;"/>
+            </enum>
+          </arg>
+          <arg nullable="True" type="ResourceId" var="$resource.properties.networkProfile.subnetResourceId" options="subnet-resource-id">
+            <help short="The customer-provided subnet used by the runtime."/>
+          </arg>
+        </arg>
+      </argGroup>
+      <argGroup name="Resource">
+        <arg nullable="True" type="object" var="$resource.tags" options="tags" group="Resource">
+          <help short="Resource tags."/>
+          <additionalProp>
+            <item nullable="True" type="string"/>
+          </additionalProp>
+        </arg>
+      </argGroup>
+      <operation operationId="RuntimeBindings_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/workloadSpaces/{spaceName}/runtimeBindings/{bindingName}">
+          <request method="get">
+            <path>
+              <param type="string" name="bindingName" arg="$Path.bindingName" required="True">
+                <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="spaceName" arg="$Path.spaceName" required="True">
+                <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-11-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="RuntimeBinding_read">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/workloadSpaces/{}/runtimeBindings/{}"/>
+                  </prop>
+                  <prop type="string" name="kind">
+                    <format pattern="^[-\w\._,\(\\\)]+$"/>
+                    <enum>
+                      <item value="&quot;Kubernetes&quot;"/>
+                      <item value="&quot;ServerlessContainers&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="ResourceLocation" name="location" required="True"/>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="identityProfile">
+                      <prop type="object" name="executionIdentity">
+                        <prop type="string" name="provisioningMode" required="True">
+                          <enum>
+                            <item value="&quot;Referenced&quot;"/>
+                            <item value="&quot;ServiceManaged&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="scope" required="True">
+                          <enum>
+                            <item value="&quot;SandboxGroup&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="provisioningMode" value="Referenced">
+                          <prop type="ResourceId" name="userAssignedIdentityResourceId" required="True"/>
+                        </discriminator>
+                        <discriminator property="provisioningMode" value="ServiceManaged">
+                          <prop readOnly="True" type="ResourceId" name="userAssignedIdentityResourceId"/>
+                        </discriminator>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="networkProfile">
+                      <prop type="string" name="egressMode">
+                        <enum>
+                          <item value="&quot;CustomerManaged&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="ResourceId" name="subnetResourceId"/>
+                    </prop>
+                    <prop readOnly="True" type="ResourceId" name="providerResourceId"/>
+                    <prop type="string" name="provisioningMode" required="True">
+                      <enum>
+                        <item value="&quot;Managed&quot;"/>
+                        <item value="&quot;Referenced&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Provisioning&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <discriminator property="provisioningMode" value="Managed">
+                      <prop type="object" name="managedProfile" required="True">
+                        <prop type="string" name="offering"/>
+                        <prop type="string" name="provider"/>
+                      </prop>
+                    </discriminator>
+                    <discriminator property="provisioningMode" value="Referenced">
+                      <prop type="ResourceId" name="resourceId" required="True"/>
+                    </discriminator>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate ref="$Instance">
+          <json>
+            <schema type="object" name="resource" required="True" clientFlatten="True">
+              <prop type="object" name="properties">
+                <prop type="object" name="identityProfile" arg="$resource.properties.identityProfile">
+                  <prop type="object" name="executionIdentity" arg="$resource.properties.identityProfile.executionIdentity">
+                    <prop type="string" name="scope" arg="$resource.properties.identityProfile.executionIdentity.scope" required="True">
+                      <enum>
+                        <item value="&quot;SandboxGroup&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                </prop>
+                <prop type="object" name="networkProfile" arg="$resource.properties.networkProfile">
+                  <prop type="string" name="egressMode" arg="$resource.properties.networkProfile.egressMode">
+                    <enum>
+                      <item value="&quot;CustomerManaged&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="ResourceId" name="subnetResourceId" arg="$resource.properties.networkProfile.subnetResourceId"/>
+                </prop>
+                <discriminator property="provisioningMode" value="Managed">
+                  <prop type="object" name="managedProfile" arg="$resource.properties.Managed.managedProfile" required="True">
+                    <prop type="string" name="offering" arg="$resource.properties.Managed.managedProfile.offering"/>
+                    <prop type="string" name="provider" arg="$resource.properties.Managed.managedProfile.provider"/>
+                  </prop>
+                </discriminator>
+              </prop>
+              <prop type="object" name="tags" arg="$resource.tags">
+                <additionalProp>
+                  <item type="string"/>
+                </additionalProp>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="RuntimeBindings_CreateOrUpdate">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/workloadSpaces/{spaceName}/runtimeBindings/{bindingName}">
+          <request method="put">
+            <path>
+              <param type="string" name="bindingName" arg="$Path.bindingName" required="True">
+                <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="spaceName" arg="$Path.spaceName" required="True">
+                <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-11-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="@RuntimeBinding_read"/>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
