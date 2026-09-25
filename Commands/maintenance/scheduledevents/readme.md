@@ -2,12 +2,10 @@
 
 Manage Scheduled Events
 
-## Subgroups
-
-- [list](/Commands/maintenance/scheduledevents/list/readme.md)
-: manage list of scheduled Events
-
 ## Commands
 
 - [acknowledge](/Commands/maintenance/scheduledevents/_acknowledge.md)
-: Acknowledge a single Scheduled Events
+: Acknowledge a single ScheduledEvents Id.
+
+- [list-acknowledge](/Commands/maintenance/scheduledevents/_list-acknowledge.md)
+: Acknowledge a list of ScheduledEvents Id.
