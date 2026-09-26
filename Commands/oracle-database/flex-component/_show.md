@@ -7,3 +7,7 @@ Get a FlexComponent
 ### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL29yYWNsZS5kYXRhYmFzZS9sb2NhdGlvbnMve30vZmxleGNvbXBvbmVudHMve30=/2025-09-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/oracle.database/locations/{}/flexcomponents/{} 2025-09-01 -->
+
+### [2026-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL29yYWNsZS5kYXRhYmFzZS9sb2NhdGlvbnMve30vZmxleGNvbXBvbmVudHMve30=/2026-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/oracle.database/locations/{}/flexcomponents/{} 2026-06-01 -->

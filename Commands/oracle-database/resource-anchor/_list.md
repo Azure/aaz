@@ -15,3 +15,15 @@ List ResourceAnchor resources by subscription ID
     ```bash
         oracle-database resource-anchor list
     ```
+
+### [2026-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL29yYWNsZS5kYXRhYmFzZS9yZXNvdXJjZWFuY2hvcnM=/2026-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/oracle.database/resourceanchors 2026-06-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/oracle.database/resourceanchors 2026-06-01 -->
+
+#### examples
+
+- ResourceAnchors_List
+    ```bash
+        oracle-database resource-anchor list
+    ```
