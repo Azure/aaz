@@ -1,6 +1,6 @@
 # [Command] _consumption pricesheet show_
 
-Show the price sheet for an Azure subscription within a billing period.
+Get the price sheet for a subscription. Price sheet is available via this API only for May 1, 2014 or later.
 
 ## Versions
 
@@ -8,3 +8,14 @@ Show the price sheet for an Azure subscription within a billing period.
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.billing/billingperiods/{}/providers/microsoft.consumption/pricesheets/default 2018-01-31 -->
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.consumption/pricesheets/default 2018-01-31 -->
+
+### [2024-08-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb25zdW1wdGlvbi9wcmljZXNoZWV0cy9kZWZhdWx0/2024-08-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.consumption/pricesheets/default 2024-08-01 -->
+
+#### examples
+
+- PriceSheet
+    ```bash
+        consumption pricesheet show
+    ```
