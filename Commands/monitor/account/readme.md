@@ -2,6 +2,17 @@
 
 Manage monitor account
 
+## Subgroups
+
+- [identity](/Commands/monitor/account/identity/readme.md)
+: Manage Identity
+
+- [issue](/Commands/monitor/account/issue/readme.md)
+: Manage Issue
+
+- [metrics-container](/Commands/monitor/account/metrics-container/readme.md)
+: Manage Metrics Container
+
 ## Commands
 
 - [create](/Commands/monitor/account/_create.md)

@@ -1,0 +1,799 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.monitor/accounts/{}/issues/{}" version="2025-10-03" swagger="mgmt-plane/monitoringservice/ResourceProviders/Microsoft.Monitor/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTW9uaXRvci9hY2NvdW50cy97YXp1cmVNb25pdG9yV29ya3NwYWNlTmFtZX0vaXNzdWVzL3tpc3N1ZU5hbWV9/V/MjAyNS0xMC0wMw=="/>
+  <commandGroup name="monitor account issue">
+    <command name="show" version="2025-10-03">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.monitor/accounts/{}/issues/{}" version="2025-10-03" swagger="mgmt-plane/monitoringservice/ResourceProviders/Microsoft.Monitor/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTW9uaXRvci9hY2NvdW50cy97YXp1cmVNb25pdG9yV29ya3NwYWNlTmFtZX0vaXNzdWVzL3tpc3N1ZU5hbWV9/V/MjAyNS0xMC0wMw=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.azureMonitorWorkspaceName" options="azure-monitor-workspace-name" required="True" idPart="name">
+          <help short="The name of the Azure Monitor Workspace. The name is case insensitive"/>
+          <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+        </arg>
+        <arg type="string" var="$Path.issueName" options="issue-name name n" required="True" idPart="child_name_1">
+          <help short="The name of the IssueResource"/>
+          <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="Issue_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Monitor/accounts/{azureMonitorWorkspaceName}/issues/{issueName}">
+          <request method="get">
+            <path>
+              <param type="string" name="azureMonitorWorkspaceName" arg="$Path.azureMonitorWorkspaceName" required="True">
+                <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+              </param>
+              <param type="string" name="issueName" arg="$Path.issueName" required="True">
+                <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-10-03&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Monitor/accounts/{}/issues/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="background">
+                      <prop type="array<object>" name="details">
+                        <item type="object">
+                          <prop type="string" name="name" required="True"/>
+                          <prop type="string" name="value" required="True"/>
+                        </item>
+                      </prop>
+                      <prop type="string" name="text"/>
+                      <prop type="string" name="type"/>
+                    </prop>
+                    <prop type="dateTime" name="impactTime" required="True">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop readOnly="True" type="array<object>" name="investigations">
+                      <item type="object">
+                        <prop type="dateTime" name="createdAt" required="True">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="uuid" name="id" required="True"/>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="integer32" name="investigationsCount"/>
+                    <prop type="object" name="notifications">
+                      <prop type="array<string>" name="actionGroupIds">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="boolean" name="excludeDefaultActionGroups"/>
+                      <prop type="array<object>" name="updateTypes" identifiers="updateType">
+                        <item type="object">
+                          <prop type="string" name="updateType" required="True">
+                            <enum>
+                              <item value="&quot;IssueCreation&quot;"/>
+                              <item value="&quot;OnChange&quot;"/>
+                              <item value="&quot;TimeBased&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="updateType" value="IssueCreation"/>
+                          <discriminator property="updateType" value="OnChange"/>
+                          <discriminator property="updateType" value="TimeBased">
+                            <prop type="string" name="updateInterval" required="True"/>
+                          </discriminator>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="severity" required="True"/>
+                    <prop type="string" name="status" required="True">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Closed&quot;"/>
+                        <item value="&quot;InProgress&quot;"/>
+                        <item value="&quot;Mitigated&quot;"/>
+                        <item value="&quot;New&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="title" required="True"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2025-10-03" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.monitor/accounts/{}/issues/{}" version="2025-10-03" swagger="mgmt-plane/monitoringservice/ResourceProviders/Microsoft.Monitor/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTW9uaXRvci9hY2NvdW50cy97YXp1cmVNb25pdG9yV29ya3NwYWNlTmFtZX0vaXNzdWVzL3tpc3N1ZU5hbWV9/V/MjAyNS0xMC0wMw=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.azureMonitorWorkspaceName" options="azure-monitor-workspace-name" required="True" idPart="name">
+          <help short="The name of the Azure Monitor Workspace. The name is case insensitive"/>
+          <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+        </arg>
+        <arg type="string" var="$Path.issueName" options="issue-name name n" required="True" idPart="child_name_1">
+          <help short="The name of the IssueResource"/>
+          <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="Issue_Delete">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Monitor/accounts/{azureMonitorWorkspaceName}/issues/{issueName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="azureMonitorWorkspaceName" arg="$Path.azureMonitorWorkspaceName" required="True">
+                <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+              </param>
+              <param type="string" name="issueName" arg="$Path.issueName" required="True">
+                <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-10-03&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200"/>
+          <response statusCode="204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="create" version="2025-10-03">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.monitor/accounts/{}/issues/{}" version="2025-10-03" swagger="mgmt-plane/monitoringservice/ResourceProviders/Microsoft.Monitor/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTW9uaXRvci9hY2NvdW50cy97YXp1cmVNb25pdG9yV29ya3NwYWNlTmFtZX0vaXNzdWVzL3tpc3N1ZU5hbWV9/V/MjAyNS0xMC0wMw=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.azureMonitorWorkspaceName" options="azure-monitor-workspace-name" required="True" idPart="name">
+          <help short="The name of the Azure Monitor Workspace. The name is case insensitive"/>
+          <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+        </arg>
+        <arg type="string" var="$Path.issueName" options="issue-name name n" required="True" idPart="child_name_1">
+          <help short="The name of the IssueResource"/>
+          <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Query.related" options="related">
+          <help short="Related resource or alert that is to be added to the issue (default: empty - the issue will be created without any related resources or alerts)"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="object" var="$resource.properties.background" options="background" group="Properties">
+          <help short="The issue background information"/>
+          <arg type="array<object>" var="$resource.properties.background.details" options="details">
+            <help short="The background details"/>
+            <item type="object">
+              <arg type="string" var="$resource.properties.background.details[].name" options="name" required="True">
+                <help short="The background details name"/>
+              </arg>
+              <arg type="string" var="$resource.properties.background.details[].value" options="value" required="True">
+                <help short="The background details value"/>
+              </arg>
+            </item>
+          </arg>
+          <arg type="string" var="$resource.properties.background.text" options="text">
+            <help short="The background text"/>
+          </arg>
+          <arg type="string" var="$resource.properties.background.type" options="type">
+            <help short="The background type"/>
+          </arg>
+        </arg>
+        <arg type="dateTime" var="$resource.properties.impactTime" options="impact-time" group="Properties">
+          <help short="The issue impact time (in UTC)"/>
+          <format protocol="iso"/>
+        </arg>
+        <arg type="object" var="$resource.properties.notifications" options="notifications" group="Properties">
+          <help short="The issue notification settings"/>
+          <arg type="array<string>" var="$resource.properties.notifications.actionGroupIds" options="action-group-ids">
+            <help short="The action group IDs to notify"/>
+            <item type="string"/>
+          </arg>
+          <arg type="boolean" var="$resource.properties.notifications.excludeDefaultActionGroups" options="exclude-default-action-groups">
+            <help short="Whether to exclude default action groups from notifications"/>
+          </arg>
+          <arg type="array<object>" var="$resource.properties.notifications.updateTypes" options="update-types">
+            <help short="The types of updates that trigger notifications"/>
+            <item type="object">
+              <arg type="object" var="$resource.properties.notifications.updateTypes[].IssueCreation" options="issue-creation">
+                <blank value="{}"/>
+              </arg>
+              <arg type="object" var="$resource.properties.notifications.updateTypes[].OnChange" options="on-change">
+                <blank value="{}"/>
+              </arg>
+              <arg type="object" var="$resource.properties.notifications.updateTypes[].TimeBased" options="time-based">
+                <arg type="string" var="$resource.properties.notifications.updateTypes[].TimeBased.updateInterval" options="update-interval" required="True">
+                  <help short="The interval between time-based updates"/>
+                </arg>
+              </arg>
+            </item>
+          </arg>
+        </arg>
+        <arg type="string" var="$resource.properties.severity" options="severity" group="Properties">
+          <help short="The issue severity"/>
+        </arg>
+        <arg type="string" var="$resource.properties.status" options="status" group="Properties">
+          <help short="The issue status"/>
+          <enum>
+            <item name="Canceled" value="&quot;Canceled&quot;"/>
+            <item name="Closed" value="&quot;Closed&quot;"/>
+            <item name="InProgress" value="&quot;InProgress&quot;"/>
+            <item name="Mitigated" value="&quot;Mitigated&quot;"/>
+            <item name="New" value="&quot;New&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$resource.properties.title" options="title" group="Properties">
+          <help short="The issue title"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Issue_Create">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Monitor/accounts/{azureMonitorWorkspaceName}/issues/{issueName}">
+          <request method="put">
+            <path>
+              <param type="string" name="azureMonitorWorkspaceName" arg="$Path.azureMonitorWorkspaceName" required="True">
+                <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+              </param>
+              <param type="string" name="issueName" arg="$Path.issueName" required="True">
+                <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="related" arg="$Query.related"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-10-03&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="object" name="properties">
+                    <prop type="object" name="background" arg="$resource.properties.background">
+                      <prop type="array<object>" name="details" arg="$resource.properties.background.details">
+                        <item type="object">
+                          <prop type="string" name="name" arg="$resource.properties.background.details[].name" required="True"/>
+                          <prop type="string" name="value" arg="$resource.properties.background.details[].value" required="True"/>
+                        </item>
+                      </prop>
+                      <prop type="string" name="text" arg="$resource.properties.background.text"/>
+                      <prop type="string" name="type" arg="$resource.properties.background.type"/>
+                    </prop>
+                    <prop type="dateTime" name="impactTime" arg="$resource.properties.impactTime" required="True">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="object" name="notifications" arg="$resource.properties.notifications">
+                      <prop type="array<string>" name="actionGroupIds" arg="$resource.properties.notifications.actionGroupIds">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="boolean" name="excludeDefaultActionGroups" arg="$resource.properties.notifications.excludeDefaultActionGroups"/>
+                      <prop type="array<object>" name="updateTypes" arg="$resource.properties.notifications.updateTypes" identifiers="updateType">
+                        <item type="object">
+                          <prop type="string" name="updateType" required="True">
+                            <enum>
+                              <item arg="$resource.properties.notifications.updateTypes[].IssueCreation" value="&quot;IssueCreation&quot;"/>
+                              <item arg="$resource.properties.notifications.updateTypes[].OnChange" value="&quot;OnChange&quot;"/>
+                              <item arg="$resource.properties.notifications.updateTypes[].TimeBased" value="&quot;TimeBased&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="updateType" value="IssueCreation"/>
+                          <discriminator property="updateType" value="OnChange"/>
+                          <discriminator property="updateType" value="TimeBased">
+                            <prop type="string" name="updateInterval" arg="$resource.properties.notifications.updateTypes[].TimeBased.updateInterval" required="True"/>
+                          </discriminator>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="severity" arg="$resource.properties.severity" required="True"/>
+                    <prop type="string" name="status" arg="$resource.properties.status" required="True">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Closed&quot;"/>
+                        <item value="&quot;InProgress&quot;"/>
+                        <item value="&quot;Mitigated&quot;"/>
+                        <item value="&quot;New&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="title" arg="$resource.properties.title" required="True"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Monitor/accounts/{}/issues/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="background">
+                      <prop type="array<object>" name="details">
+                        <item type="object">
+                          <prop type="string" name="name" required="True"/>
+                          <prop type="string" name="value" required="True"/>
+                        </item>
+                      </prop>
+                      <prop type="string" name="text"/>
+                      <prop type="string" name="type"/>
+                    </prop>
+                    <prop type="dateTime" name="impactTime" required="True">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop readOnly="True" type="array<object>" name="investigations">
+                      <item type="object">
+                        <prop type="dateTime" name="createdAt" required="True">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="uuid" name="id" required="True"/>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="integer32" name="investigationsCount"/>
+                    <prop type="object" name="notifications">
+                      <prop type="array<string>" name="actionGroupIds">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="boolean" name="excludeDefaultActionGroups"/>
+                      <prop type="array<object>" name="updateTypes" identifiers="updateType">
+                        <item type="object">
+                          <prop type="string" name="updateType" required="True">
+                            <enum>
+                              <item value="&quot;IssueCreation&quot;"/>
+                              <item value="&quot;OnChange&quot;"/>
+                              <item value="&quot;TimeBased&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="updateType" value="IssueCreation"/>
+                          <discriminator property="updateType" value="OnChange"/>
+                          <discriminator property="updateType" value="TimeBased">
+                            <prop type="string" name="updateInterval" required="True"/>
+                          </discriminator>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="severity" required="True"/>
+                    <prop type="string" name="status" required="True">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Closed&quot;"/>
+                        <item value="&quot;InProgress&quot;"/>
+                        <item value="&quot;Mitigated&quot;"/>
+                        <item value="&quot;New&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="title" required="True"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2025-10-03">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.monitor/accounts/{}/issues/{}" version="2025-10-03" swagger="mgmt-plane/monitoringservice/ResourceProviders/Microsoft.Monitor/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTW9uaXRvci9hY2NvdW50cy97YXp1cmVNb25pdG9yV29ya3NwYWNlTmFtZX0vaXNzdWVzL3tpc3N1ZU5hbWV9/V/MjAyNS0xMC0wMw=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.azureMonitorWorkspaceName" options="azure-monitor-workspace-name" required="True" idPart="name">
+          <help short="The name of the Azure Monitor Workspace. The name is case insensitive"/>
+          <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+        </arg>
+        <arg type="string" var="$Path.issueName" options="issue-name name n" required="True" idPart="child_name_1">
+          <help short="The name of the IssueResource"/>
+          <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Query.related" options="related">
+          <help short="Related resource or alert that is to be added to the issue (default: empty - the issue will be created without any related resources or alerts)"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg nullable="True" type="object" var="$resource.properties.background" options="background" group="Properties">
+          <help short="The issue background information"/>
+          <arg nullable="True" type="array<object>" var="$resource.properties.background.details" options="details">
+            <help short="The background details"/>
+            <item nullable="True" type="object">
+              <arg type="string" var="$resource.properties.background.details[].name" options="name">
+                <help short="The background details name"/>
+              </arg>
+              <arg type="string" var="$resource.properties.background.details[].value" options="value">
+                <help short="The background details value"/>
+              </arg>
+            </item>
+          </arg>
+          <arg nullable="True" type="string" var="$resource.properties.background.text" options="text">
+            <help short="The background text"/>
+          </arg>
+          <arg nullable="True" type="string" var="$resource.properties.background.type" options="type">
+            <help short="The background type"/>
+          </arg>
+        </arg>
+        <arg type="dateTime" var="$resource.properties.impactTime" options="impact-time" group="Properties">
+          <help short="The issue impact time (in UTC)"/>
+          <format protocol="iso"/>
+        </arg>
+        <arg nullable="True" type="object" var="$resource.properties.notifications" options="notifications" group="Properties">
+          <help short="The issue notification settings"/>
+          <arg nullable="True" type="array<string>" var="$resource.properties.notifications.actionGroupIds" options="action-group-ids">
+            <help short="The action group IDs to notify"/>
+            <item nullable="True" type="string"/>
+          </arg>
+          <arg nullable="True" type="boolean" var="$resource.properties.notifications.excludeDefaultActionGroups" options="exclude-default-action-groups">
+            <help short="Whether to exclude default action groups from notifications"/>
+          </arg>
+          <arg nullable="True" type="array<object>" var="$resource.properties.notifications.updateTypes" options="update-types">
+            <help short="The types of updates that trigger notifications"/>
+            <item nullable="True" type="object">
+              <arg type="object" var="$resource.properties.notifications.updateTypes[].IssueCreation" options="issue-creation">
+                <blank value="{}"/>
+              </arg>
+              <arg type="object" var="$resource.properties.notifications.updateTypes[].OnChange" options="on-change">
+                <blank value="{}"/>
+              </arg>
+              <arg type="object" var="$resource.properties.notifications.updateTypes[].TimeBased" options="time-based">
+                <arg type="string" var="$resource.properties.notifications.updateTypes[].TimeBased.updateInterval" options="update-interval">
+                  <help short="The interval between time-based updates"/>
+                </arg>
+              </arg>
+            </item>
+          </arg>
+        </arg>
+        <arg type="string" var="$resource.properties.severity" options="severity" group="Properties">
+          <help short="The issue severity"/>
+        </arg>
+        <arg type="string" var="$resource.properties.status" options="status" group="Properties">
+          <help short="The issue status"/>
+          <enum>
+            <item name="Canceled" value="&quot;Canceled&quot;"/>
+            <item name="Closed" value="&quot;Closed&quot;"/>
+            <item name="InProgress" value="&quot;InProgress&quot;"/>
+            <item name="Mitigated" value="&quot;Mitigated&quot;"/>
+            <item name="New" value="&quot;New&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$resource.properties.title" options="title" group="Properties">
+          <help short="The issue title"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Issue_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Monitor/accounts/{azureMonitorWorkspaceName}/issues/{issueName}">
+          <request method="get">
+            <path>
+              <param type="string" name="azureMonitorWorkspaceName" arg="$Path.azureMonitorWorkspaceName" required="True">
+                <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+              </param>
+              <param type="string" name="issueName" arg="$Path.issueName" required="True">
+                <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-10-03&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="IssueResource_read">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Monitor/accounts/{}/issues/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="background">
+                      <prop type="array<object>" name="details">
+                        <item type="object">
+                          <prop type="string" name="name" required="True"/>
+                          <prop type="string" name="value" required="True"/>
+                        </item>
+                      </prop>
+                      <prop type="string" name="text"/>
+                      <prop type="string" name="type"/>
+                    </prop>
+                    <prop type="dateTime" name="impactTime" required="True">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop readOnly="True" type="array<object>" name="investigations">
+                      <item type="object">
+                        <prop type="dateTime" name="createdAt" required="True">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="uuid" name="id" required="True"/>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="integer32" name="investigationsCount"/>
+                    <prop type="object" name="notifications">
+                      <prop type="array<string>" name="actionGroupIds">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="boolean" name="excludeDefaultActionGroups"/>
+                      <prop type="array<object>" name="updateTypes" identifiers="updateType">
+                        <item type="object">
+                          <prop type="string" name="updateType" required="True">
+                            <enum>
+                              <item value="&quot;IssueCreation&quot;"/>
+                              <item value="&quot;OnChange&quot;"/>
+                              <item value="&quot;TimeBased&quot;"/>
+                            </enum>
+                          </prop>
+                          <discriminator property="updateType" value="IssueCreation"/>
+                          <discriminator property="updateType" value="OnChange"/>
+                          <discriminator property="updateType" value="TimeBased">
+                            <prop type="string" name="updateInterval" required="True"/>
+                          </discriminator>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="severity" required="True"/>
+                    <prop type="string" name="status" required="True">
+                      <enum>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Closed&quot;"/>
+                        <item value="&quot;InProgress&quot;"/>
+                        <item value="&quot;Mitigated&quot;"/>
+                        <item value="&quot;New&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="title" required="True"/>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate ref="$Instance">
+          <json>
+            <schema type="object" name="resource" required="True" clientFlatten="True">
+              <prop type="object" name="properties">
+                <prop type="object" name="background" arg="$resource.properties.background">
+                  <prop type="array<object>" name="details" arg="$resource.properties.background.details">
+                    <item type="object">
+                      <prop type="string" name="name" arg="$resource.properties.background.details[].name" required="True"/>
+                      <prop type="string" name="value" arg="$resource.properties.background.details[].value" required="True"/>
+                    </item>
+                  </prop>
+                  <prop type="string" name="text" arg="$resource.properties.background.text"/>
+                  <prop type="string" name="type" arg="$resource.properties.background.type"/>
+                </prop>
+                <prop type="dateTime" name="impactTime" arg="$resource.properties.impactTime" required="True">
+                  <format protocol="iso"/>
+                </prop>
+                <prop type="object" name="notifications" arg="$resource.properties.notifications">
+                  <prop type="array<string>" name="actionGroupIds" arg="$resource.properties.notifications.actionGroupIds">
+                    <item type="string"/>
+                  </prop>
+                  <prop type="boolean" name="excludeDefaultActionGroups" arg="$resource.properties.notifications.excludeDefaultActionGroups"/>
+                  <prop type="array<object>" name="updateTypes" arg="$resource.properties.notifications.updateTypes" identifiers="updateType">
+                    <item type="object">
+                      <prop type="string" name="updateType" required="True">
+                        <enum>
+                          <item arg="$resource.properties.notifications.updateTypes[].IssueCreation" value="&quot;IssueCreation&quot;"/>
+                          <item arg="$resource.properties.notifications.updateTypes[].OnChange" value="&quot;OnChange&quot;"/>
+                          <item arg="$resource.properties.notifications.updateTypes[].TimeBased" value="&quot;TimeBased&quot;"/>
+                        </enum>
+                      </prop>
+                      <discriminator property="updateType" value="IssueCreation"/>
+                      <discriminator property="updateType" value="OnChange"/>
+                      <discriminator property="updateType" value="TimeBased">
+                        <prop type="string" name="updateInterval" arg="$resource.properties.notifications.updateTypes[].TimeBased.updateInterval" required="True"/>
+                      </discriminator>
+                    </item>
+                  </prop>
+                </prop>
+                <prop type="string" name="severity" arg="$resource.properties.severity" required="True"/>
+                <prop type="string" name="status" arg="$resource.properties.status" required="True">
+                  <enum>
+                    <item value="&quot;Canceled&quot;"/>
+                    <item value="&quot;Closed&quot;"/>
+                    <item value="&quot;InProgress&quot;"/>
+                    <item value="&quot;Mitigated&quot;"/>
+                    <item value="&quot;New&quot;"/>
+                  </enum>
+                </prop>
+                <prop type="string" name="title" arg="$resource.properties.title" required="True"/>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="Issue_Create">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Monitor/accounts/{azureMonitorWorkspaceName}/issues/{issueName}">
+          <request method="put">
+            <path>
+              <param type="string" name="azureMonitorWorkspaceName" arg="$Path.azureMonitorWorkspaceName" required="True">
+                <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+              </param>
+              <param type="string" name="issueName" arg="$Path.issueName" required="True">
+                <format pattern="^(?!-)[a-zA-Z0-9-]+[^-]$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <param type="string" name="related" arg="$Query.related"/>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2025-10-03&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="@IssueResource_read"/>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

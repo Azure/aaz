@@ -15,3 +15,15 @@ List all workspaces in the specified subscription
     ```bash
         monitor account list -g rg
     ```
+
+### [2025-10-03](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tb25pdG9yL2FjY291bnRz/2025-10-03.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.monitor/accounts 2025-10-03 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.monitor/accounts 2025-10-03 -->
+
+#### examples
+
+- List monitor account by resource group
+    ```bash
+        monitor account list -g rg
+    ```
