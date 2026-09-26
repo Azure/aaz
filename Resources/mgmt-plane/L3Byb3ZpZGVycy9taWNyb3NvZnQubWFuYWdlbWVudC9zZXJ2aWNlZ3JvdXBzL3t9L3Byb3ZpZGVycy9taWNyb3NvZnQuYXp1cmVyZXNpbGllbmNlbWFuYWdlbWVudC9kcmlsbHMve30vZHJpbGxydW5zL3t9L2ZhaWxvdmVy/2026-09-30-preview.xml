@@ -1,0 +1,151 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/drills/{}/drillruns/{}/failover" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlUmVzaWxpZW5jZU1hbmFnZW1lbnQvZHJpbGxzL3tkcmlsbE5hbWV9L2RyaWxsUnVucy97ZHJpbGxSdW5OYW1lfS9mYWlsT3Zlcg==/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+  <commandGroup name="resiliency drill drill-run">
+    <command name="fail-over" version="2026-09-30-preview">
+      <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/drills/{}/drillruns/{}/failover" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlUmVzaWxpZW5jZU1hbmFnZW1lbnQvZHJpbGxzL3tkcmlsbE5hbWV9L2RyaWxsUnVucy97ZHJpbGxSdW5OYW1lfS9mYWlsT3Zlcg==/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Header.operation-id" options="operation-id" required="True">
+          <help short="A GUID that represents the Long Running OperationId."/>
+        </arg>
+        <arg type="string" var="$Path.drillName" options="drill-name" required="True">
+          <help short="The name of the Drill"/>
+          <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+        </arg>
+        <arg type="string" var="$Path.drillRunName" options="drill-run-name" required="True">
+          <help short="The name of the DrillRun (GUID)."/>
+          <format pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"/>
+        </arg>
+        <arg type="string" var="$Path.serviceGroupName" options="service-group-name" required="True">
+          <help short="The name of the service group."/>
+          <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="string" var="$body.autoFailover" options="auto-failover" group="Body">
+          <help short="AutoFailover - whether to pause between Fault and Failover for manual input."/>
+          <enum>
+            <item name="Disable" value="&quot;Disable&quot;"/>
+            <item name="Enable" value="&quot;Enable&quot;"/>
+          </enum>
+        </arg>
+        <arg type="object" var="$body.failoverProperties" options="failover-properties" group="Body">
+          <help short="The failover properties."/>
+          <arg type="string" var="$body.failoverProperties.failoverDirection" options="failover-direction" required="True">
+            <help short="Type of Failover direction."/>
+            <enum>
+              <item name="FromSpecificLocations" value="&quot;FromSpecificLocations&quot;"/>
+            </enum>
+          </arg>
+          <arg type="object" var="$body.failoverProperties.failoverRequestProperties" options="failover-request-properties">
+            <help short="Additional properties for Failover."/>
+            <arg type="object" var="$body.failoverProperties.failoverRequestProperties.executionConfigurations" options="execution-configurations">
+              <help short="Execution configurations for the recovery action."/>
+              <arg type="string" var="$body.failoverProperties.failoverRequestProperties.executionConfigurations.userConsent" options="user-consent" required="True">
+                <help short="User consent for performing recovery action."/>
+                <enum>
+                  <item name="Allowed" value="&quot;Allowed&quot;"/>
+                  <item name="Unspecified" value="&quot;Unspecified&quot;"/>
+                </enum>
+              </arg>
+            </arg>
+            <arg type="array<ResourceId>" var="$body.failoverProperties.failoverRequestProperties.selectedResourceIds" options="selected-resource-ids">
+              <help short="Selected recovery resource Ids to be processed. If not provided, all qualified resources based on the source location(s) will be processed."/>
+              <item type="ResourceId"/>
+            </arg>
+            <arg type="array<string>" var="$body.failoverProperties.failoverRequestProperties.sourceLocations" options="source-locations" required="True">
+              <help short="Source locations from where resources to be failed-over."/>
+              <item type="string"/>
+            </arg>
+          </arg>
+        </arg>
+      </argGroup>
+      <operation operationId="DrillRuns_FailOver">
+        <longRunning finalStateVia="location"/>
+        <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.AzureResilienceManagement/drills/{drillName}/drillRuns/{drillRunName}/failOver">
+          <request method="post">
+            <path>
+              <param type="string" name="drillName" arg="$Path.drillName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+              </param>
+              <param type="string" name="drillRunName" arg="$Path.drillRunName" required="True">
+                <format pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"/>
+              </param>
+              <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
+                <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-09-30-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <header>
+              <param type="string" name="operation-id" arg="$Header.operation-id" required="True"/>
+            </header>
+            <body>
+              <json>
+                <schema type="object" name="body" clientFlatten="True">
+                  <prop type="string" name="autoFailover" arg="$body.autoFailover" required="True">
+                    <enum>
+                      <item value="&quot;Disable&quot;"/>
+                      <item value="&quot;Enable&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="object" name="failoverProperties" arg="$body.failoverProperties" required="True">
+                    <prop type="string" name="failoverDirection" arg="$body.failoverProperties.failoverDirection" required="True">
+                      <enum>
+                        <item value="&quot;FromSpecificLocations&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="failoverRequestProperties" arg="$body.failoverProperties.failoverRequestProperties">
+                      <prop type="object" name="executionConfigurations" arg="$body.failoverProperties.failoverRequestProperties.executionConfigurations">
+                        <prop type="string" name="userConsent" arg="$body.failoverProperties.failoverRequestProperties.executionConfigurations.userConsent" required="True">
+                          <enum>
+                            <item value="&quot;Allowed&quot;"/>
+                            <item value="&quot;Unspecified&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="array<ResourceId>" name="selectedResourceIds" arg="$body.failoverProperties.failoverRequestProperties.selectedResourceIds">
+                        <item type="ResourceId"/>
+                      </prop>
+                      <prop type="array<string>" name="sourceLocations" arg="$body.failoverProperties.failoverRequestProperties.sourceLocations" required="True">
+                        <item type="string"/>
+                      </prop>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="jobId"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Azure-AsyncOperation"/>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
