@@ -28,4 +28,4 @@ Manage Workload Space
 : Get a workload space.
 
 - [update](/Commands/workload-manager/workload-space/_update.md)
-: Update a workload space.
+: Update mutable workload space properties.

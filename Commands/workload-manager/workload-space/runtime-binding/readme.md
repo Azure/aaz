@@ -17,4 +17,4 @@ Manage Runtime Binding
 : Get a runtime binding.
 
 - [update](/Commands/workload-manager/workload-space/runtime-binding/_update.md)
-: Update a runtime binding.
+: Update mutable runtime binding properties.

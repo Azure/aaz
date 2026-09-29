@@ -1,6 +1,6 @@
 # [Command] _workload-manager workload-space capability delete_
 
-Delete and deletes a capability.
+Disable and delete a capability.
 
 ## Versions
 

@@ -8,7 +8,7 @@ Manage Capability
 : Create a capability.
 
 - [delete](/Commands/workload-manager/workload-space/capability/_delete.md)
-: Delete and deletes a capability.
+: Disable and delete a capability.
 
 - [list](/Commands/workload-manager/workload-space/capability/_list.md)
 : List capabilities in a workload space.
@@ -17,4 +17,4 @@ Manage Capability
 : Get a capability.
 
 - [update](/Commands/workload-manager/workload-space/capability/_update.md)
-: Update a capability.
+: Update mutable capability properties.

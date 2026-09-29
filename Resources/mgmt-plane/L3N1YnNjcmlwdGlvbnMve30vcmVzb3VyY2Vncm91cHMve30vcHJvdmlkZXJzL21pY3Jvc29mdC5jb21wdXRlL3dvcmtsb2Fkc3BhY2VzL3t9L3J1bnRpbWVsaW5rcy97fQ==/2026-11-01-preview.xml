@@ -375,29 +375,28 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Properties">
-        <arg nullable="True" type="object" var="$resource.properties.capacityProfile" options="capacity-profile" group="Properties">
+        <arg type="object" var="$properties.properties.capacityProfile" options="capacity-profile" group="Properties">
           <help short="The mutable capacity policy for the runtime composition."/>
-          <arg type="integer32" var="$resource.properties.capacityProfile.maximumNodes" options="maximum-nodes">
+          <arg type="integer32" var="$properties.properties.capacityProfile.maximumNodes" options="maximum-nodes">
             <help short="The maximum number of execution nodes."/>
             <format minimum="0"/>
           </arg>
-          <arg type="integer32" var="$resource.properties.capacityProfile.minimumNodes" options="minimum-nodes">
+          <arg type="integer32" var="$properties.properties.capacityProfile.minimumNodes" options="minimum-nodes">
             <help short="The minimum number of execution nodes."/>
             <format minimum="0"/>
           </arg>
         </arg>
-      </argGroup>
-      <argGroup name="Resource">
-        <arg nullable="True" type="object" var="$resource.tags" options="tags" group="Resource">
+        <arg type="object" var="$properties.tags" options="tags" group="Properties">
           <help short="Resource tags."/>
           <additionalProp>
-            <item nullable="True" type="string"/>
+            <item type="string"/>
           </additionalProp>
         </arg>
       </argGroup>
-      <operation operationId="RuntimeLinks_Get">
+      <operation operationId="RuntimeLinks_Update">
+        <longRunning finalStateVia="azure-async-operation"/>
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/workloadSpaces/{spaceName}/runtimeLinks/{linkName}">
-          <request method="get">
+          <request method="patch">
             <path>
               <param type="string" name="linkName" arg="$Path.linkName" required="True">
                 <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
@@ -416,11 +415,32 @@
                 <format minLength="1"/>
               </const>
             </query>
+            <body>
+              <json>
+                <schema type="object" name="properties" required="True" clientFlatten="True">
+                  <prop type="object" name="properties">
+                    <prop type="object" name="capacityProfile" arg="$properties.properties.capacityProfile">
+                      <prop type="integer32" name="maximumNodes" arg="$properties.properties.capacityProfile.maximumNodes">
+                        <format minimum="0"/>
+                      </prop>
+                      <prop type="integer32" name="minimumNodes" arg="$properties.properties.capacityProfile.minimumNodes">
+                        <format minimum="0"/>
+                      </prop>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags" arg="$properties.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
           </request>
           <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="object" cls="RuntimeLink_read">
+                <schema type="object">
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/workloadSpaces/{}/runtimeLinks/{}"/>
                   </prop>
@@ -489,70 +509,12 @@
               </json>
             </body>
           </response>
-          <response isError="True">
-            <body>
-              <json>
-                <schema type="@MgmtErrorFormat"/>
-              </json>
-            </body>
-          </response>
-        </http>
-      </operation>
-      <operation>
-        <instanceUpdate ref="$Instance">
-          <json>
-            <schema type="object" name="resource" required="True" clientFlatten="True">
-              <prop type="object" name="properties">
-                <prop type="object" name="capacityProfile" arg="$resource.properties.capacityProfile">
-                  <prop type="integer32" name="maximumNodes" arg="$resource.properties.capacityProfile.maximumNodes" required="True">
-                    <format minimum="0"/>
-                  </prop>
-                  <prop type="integer32" name="minimumNodes" arg="$resource.properties.capacityProfile.minimumNodes" required="True">
-                    <format minimum="0"/>
-                  </prop>
-                </prop>
-              </prop>
-              <prop type="object" name="tags" arg="$resource.tags">
-                <additionalProp>
-                  <item type="string"/>
-                </additionalProp>
-              </prop>
-            </schema>
-          </json>
-        </instanceUpdate>
-      </operation>
-      <operation operationId="RuntimeLinks_CreateOrUpdate">
-        <longRunning finalStateVia="azure-async-operation"/>
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/workloadSpaces/{spaceName}/runtimeLinks/{linkName}">
-          <request method="put">
-            <path>
-              <param type="string" name="linkName" arg="$Path.linkName" required="True">
-                <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
-              </param>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
-              <param type="string" name="spaceName" arg="$Path.spaceName" required="True">
-                <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
-              </param>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
-            </path>
-            <query>
-              <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="&quot;2026-11-01-preview&quot;"/>
-                <format minLength="1"/>
-              </const>
-            </query>
-            <body>
-              <json ref="$Instance"/>
-            </body>
-          </request>
-          <response statusCode="200 201">
-            <body>
-              <json var="$Instance">
-                <schema type="@RuntimeLink_read"/>
-              </json>
-            </body>
+          <response statusCode="202">
+            <header>
+              <item name="Azure-AsyncOperation"/>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
           </response>
           <response isError="True">
             <body>

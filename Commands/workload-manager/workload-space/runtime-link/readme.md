@@ -17,4 +17,4 @@ Manage Runtime Link
 : Get a runtime link.
 
 - [update](/Commands/workload-manager/workload-space/runtime-link/_update.md)
-: Update a runtime link.
+: Update mutable runtime link properties.

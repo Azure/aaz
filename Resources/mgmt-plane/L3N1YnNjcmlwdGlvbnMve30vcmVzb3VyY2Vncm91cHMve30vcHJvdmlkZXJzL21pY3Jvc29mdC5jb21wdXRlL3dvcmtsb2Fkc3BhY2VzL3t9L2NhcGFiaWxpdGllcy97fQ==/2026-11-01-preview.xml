@@ -359,24 +359,23 @@
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
       <argGroup name="Properties">
-        <arg type="string" var="$resource.properties.versionPolicy" options="version-policy" group="Properties">
+        <arg type="string" var="$properties.properties.versionPolicy" options="version-policy" group="Properties">
           <help short="The version selection policy for the capability."/>
           <enum>
             <item name="ServiceManaged" value="&quot;ServiceManaged&quot;"/>
           </enum>
         </arg>
-      </argGroup>
-      <argGroup name="Resource">
-        <arg nullable="True" type="object" var="$resource.tags" options="tags" group="Resource">
+        <arg type="object" var="$properties.tags" options="tags" group="Properties">
           <help short="Resource tags."/>
           <additionalProp>
-            <item nullable="True" type="string"/>
+            <item type="string"/>
           </additionalProp>
         </arg>
       </argGroup>
-      <operation operationId="Capabilities_Get">
+      <operation operationId="Capabilities_Update">
+        <longRunning finalStateVia="azure-async-operation"/>
         <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/workloadSpaces/{spaceName}/capabilities/{capabilityName}">
-          <request method="get">
+          <request method="patch">
             <path>
               <param type="string" name="capabilityName" arg="$Path.capabilityName" required="True">
                 <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
@@ -395,11 +394,29 @@
                 <format minLength="1"/>
               </const>
             </query>
+            <body>
+              <json>
+                <schema type="object" name="properties" required="True" clientFlatten="True">
+                  <prop type="object" name="properties">
+                    <prop type="string" name="versionPolicy" arg="$properties.properties.versionPolicy">
+                      <enum>
+                        <item value="&quot;ServiceManaged&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="tags" arg="$properties.tags">
+                    <additionalProp>
+                      <item type="string"/>
+                    </additionalProp>
+                  </prop>
+                </schema>
+              </json>
+            </body>
           </request>
           <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="object" cls="Capability_read">
+                <schema type="object">
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/workloadSpaces/{}/capabilities/{}"/>
                   </prop>
@@ -466,67 +483,12 @@
               </json>
             </body>
           </response>
-          <response isError="True">
-            <body>
-              <json>
-                <schema type="@MgmtErrorFormat"/>
-              </json>
-            </body>
-          </response>
-        </http>
-      </operation>
-      <operation>
-        <instanceUpdate ref="$Instance">
-          <json>
-            <schema type="object" name="resource" required="True" clientFlatten="True">
-              <prop type="object" name="properties">
-                <prop type="string" name="versionPolicy" arg="$resource.properties.versionPolicy" required="True">
-                  <enum>
-                    <item value="&quot;ServiceManaged&quot;"/>
-                  </enum>
-                </prop>
-              </prop>
-              <prop type="object" name="tags" arg="$resource.tags">
-                <additionalProp>
-                  <item type="string"/>
-                </additionalProp>
-              </prop>
-            </schema>
-          </json>
-        </instanceUpdate>
-      </operation>
-      <operation operationId="Capabilities_CreateOrUpdate">
-        <longRunning finalStateVia="azure-async-operation"/>
-        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/workloadSpaces/{spaceName}/capabilities/{capabilityName}">
-          <request method="put">
-            <path>
-              <param type="string" name="capabilityName" arg="$Path.capabilityName" required="True">
-                <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
-              </param>
-              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
-                <format maxLength="90" minLength="1"/>
-              </param>
-              <param type="string" name="spaceName" arg="$Path.spaceName" required="True">
-                <format pattern="^(?![.-])[A-Za-z0-9_.-]{1,64}$"/>
-              </param>
-              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
-            </path>
-            <query>
-              <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="&quot;2026-11-01-preview&quot;"/>
-                <format minLength="1"/>
-              </const>
-            </query>
-            <body>
-              <json ref="$Instance"/>
-            </body>
-          </request>
-          <response statusCode="200 201">
-            <body>
-              <json var="$Instance">
-                <schema type="@Capability_read"/>
-              </json>
-            </body>
+          <response statusCode="202">
+            <header>
+              <item name="Azure-AsyncOperation"/>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
           </response>
           <response isError="True">
             <body>
