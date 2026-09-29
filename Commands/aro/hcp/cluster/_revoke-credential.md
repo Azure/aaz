@@ -14,3 +14,14 @@ Revoke all credentials for your Azure Red Hat OpenShift with hosted control plan
     ```bash
         aro hcp cluster revoke-credential --resource-group MyResourceGroup --name MyCluster
     ```
+
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5yZWRoYXRvcGVuc2hpZnQvaGNwb3BlbnNoaWZ0Y2x1c3RlcnMve30vcmV2b2tlY3JlZGVudGlhbHM=/2026-10-01.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.redhatopenshift/hcpopenshiftclusters/{}/revokecredentials 2026-10-01 -->
+
+#### examples
+
+- Revoke all admin credentials
+    ```bash
+        aro hcp cluster revoke-credential --resource-group MyResourceGroup --name MyCluster
+    ```
