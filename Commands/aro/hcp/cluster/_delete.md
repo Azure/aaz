@@ -14,3 +14,14 @@ Delete an Azure Red Hat OpenShift with hosted control plane cluster
     ```bash
         aro hcp cluster delete --resource-group MyResourceGroup --name MyCluster --yes
     ```
+
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5yZWRoYXRvcGVuc2hpZnQvaGNwb3BlbnNoaWZ0Y2x1c3RlcnMve30=/2026-10-01.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.redhatopenshift/hcpopenshiftclusters/{} 2026-10-01 -->
+
+#### examples
+
+- Delete a cluster
+    ```bash
+        aro hcp cluster delete --resource-group MyResourceGroup --name MyCluster --yes
+    ```

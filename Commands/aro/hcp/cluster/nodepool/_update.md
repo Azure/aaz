@@ -14,3 +14,14 @@ Update an Azure Red Hat OpenShift with hosted control plane node pool
     ```bash
         aro hcp cluster nodepool update --resource-group MyResourceGroup --cluster-name MyCluster --name MyNodePool --replicas 5
     ```
+
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5yZWRoYXRvcGVuc2hpZnQvaGNwb3BlbnNoaWZ0Y2x1c3RlcnMve30vbm9kZXBvb2xzL3t9/2026-10-01.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.redhatopenshift/hcpopenshiftclusters/{}/nodepools/{} 2026-10-01 -->
+
+#### examples
+
+- Scale a node pool
+    ```bash
+        aro hcp cluster nodepool update --resource-group MyResourceGroup --cluster-name MyCluster --name MyNodePool --replicas 5
+    ```
