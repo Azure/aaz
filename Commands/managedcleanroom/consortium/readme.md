@@ -26,4 +26,4 @@ Manage Consortium
 : Get a consortium.
 
 - [update](/Commands/managedcleanroom/consortium/_update.md)
-: Update a consortium.
+: Update tags on a consortium.

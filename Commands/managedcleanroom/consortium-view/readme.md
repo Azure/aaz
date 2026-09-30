@@ -22,4 +22,4 @@ Manage Consortium View
 : Get a consortium view.
 
 - [update](/Commands/managedcleanroom/consortium-view/_update.md)
-: Update a consortium view.
+: Update tags on a consortium view.

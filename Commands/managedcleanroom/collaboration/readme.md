@@ -35,4 +35,4 @@ Manage Collaboration
 : Get a collaboration.
 
 - [update](/Commands/managedcleanroom/collaboration/_update.md)
-: Update a collaboration.
+: Update tags on a collaboration.

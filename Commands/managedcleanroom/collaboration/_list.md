@@ -49,3 +49,20 @@ List collaborations in a subscription.
     ```bash
         managedcleanroom collaboration list --resource-group testrg
     ```
+
+### [2026-09-30-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jbGVhbnJvb20vY29sbGFib3JhdGlvbnM=/2026-09-30-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.cleanroom/collaborations 2026-09-30-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cleanroom/collaborations 2026-09-30-preview -->
+
+#### examples
+
+- List collaborations in subscription
+    ```bash
+        managedcleanroom collaboration list
+    ```
+
+- List collaborations in a resource group
+    ```bash
+        managedcleanroom collaboration list --resource-group testrg
+    ```
