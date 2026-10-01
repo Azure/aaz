@@ -13,3 +13,8 @@ List Azure Firewalls.
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.network/azurefirewalls 2024-10-01 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/azurefirewalls 2024-10-01 -->
+
+### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL2F6dXJlZmlyZXdhbGxz/2025-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.network/azurefirewalls 2025-09-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/azurefirewalls 2025-09-01 -->
