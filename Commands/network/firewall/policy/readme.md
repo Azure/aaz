@@ -1,6 +1,6 @@
 # [Group] _network firewall policy_
 
-Manage and configure Azure firewall policy.
+Manage Firewall Policy
 
 ## Subgroups
 
@@ -9,6 +9,9 @@ Manage and configure Azure firewall policy.
 
 - [intrusion-detection](/Commands/network/firewall/policy/intrusion-detection/readme.md)
 : Manage intrusion signature rules and bypass rules
+
+- [kube-selector-group](/Commands/network/firewall/policy/kube-selector-group/readme.md)
+: Manage Kube Selector Group
 
 - [rule-collection-group](/Commands/network/firewall/policy/rule-collection-group/readme.md)
 : Manage and configure Azure firewall policy rule-collection-group.
