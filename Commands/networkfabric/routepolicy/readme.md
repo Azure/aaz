@@ -4,6 +4,9 @@ Manage Route Policy Resource
 
 ## Commands
 
+- [commit-config](/Commands/networkfabric/routepolicy/_commit-config.md)
+: Commits the configuration of the given resources.
+
 - [commit-configuration](/Commands/networkfabric/routepolicy/_commit-configuration.md)
 : Commits the configuration of the given resources.
 
@@ -22,8 +25,14 @@ Manage Route Policy Resource
 - [update](/Commands/networkfabric/routepolicy/_update.md)
 : Update the Route Policy resource.
 
+- [update-admin-state](/Commands/networkfabric/routepolicy/_update-admin-state.md)
+: Updated the admin state for this Route Policy.
+
 - [update-administrative-state](/Commands/networkfabric/routepolicy/_update-administrative-state.md)
 : Updated the admin state for this Route Policy.
+
+- [validate-config](/Commands/networkfabric/routepolicy/_validate-config.md)
+: Validates the configuration of the resources.
 
 - [validate-configuration](/Commands/networkfabric/routepolicy/_validate-configuration.md)
 : Validates the configuration of the resources.

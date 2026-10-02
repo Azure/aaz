@@ -15,6 +15,9 @@ Manage L3 Isolation Domain Resource
 
 ## Commands
 
+- [commit-config](/Commands/networkfabric/l3domain/_commit-config.md)
+: Commits the configuration of the given resources.
+
 - [commit-configuration](/Commands/networkfabric/l3domain/_commit-configuration.md)
 : Commits the configuration of the given resources.
 
@@ -35,6 +38,9 @@ Manage L3 Isolation Domain Resource
 
 - [update-admin-state](/Commands/networkfabric/l3domain/_update-admin-state.md)
 : Enables racks for this Isolation Domain.
+
+- [validate-config](/Commands/networkfabric/l3domain/_validate-config.md)
+: Validates the configuration of the resources.
 
 - [validate-configuration](/Commands/networkfabric/l3domain/_validate-configuration.md)
 : Validates the configuration of the resources.
