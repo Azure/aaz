@@ -455,5 +455,8 @@
 - [voice-service](/Commands/voice-service/readme.md)
 : Manage voice services
 
+- [workload-manager](/Commands/workload-manager/readme.md)
+: Manage Azure Compute Workload Manager resources.
+
 - [workloads](/Commands/workloads/readme.md)
 : Manage workloads
