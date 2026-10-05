@@ -86,9 +86,6 @@
 - [chaos](/Commands/chaos/readme.md)
 : Manage Azure Chaos Studio resources.
 
-- [clean-room](/Commands/clean-room/readme.md)
-: Manage Clean Room
-
 - [cloud-service](/Commands/cloud-service/readme.md)
 : Manage cloud service
 
@@ -352,6 +349,9 @@
 
 - [relay](/Commands/relay/readme.md)
 : Manage Azure Relay Service namespaces, WCF relays, hybrid connections, and rules.
+
+- [resilience](/Commands/resilience/readme.md)
+: Manage Azure Resiliency
 
 - [remote-rendering-account](/Commands/remote-rendering-account/readme.md)
 : Manage remote rendering account with mixed reality.
