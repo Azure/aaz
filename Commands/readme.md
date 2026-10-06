@@ -353,6 +353,12 @@
 - [relay](/Commands/relay/readme.md)
 : Manage Azure Relay Service namespaces, WCF relays, hybrid connections, and rules.
 
+<<<<<<< Updated upstream
+=======
+- [resiliency](/Commands/resiliency/readme.md)
+: Manage Azure Resiliency
+
+>>>>>>> Stashed changes
 - [remote-rendering-account](/Commands/remote-rendering-account/readme.md)
 : Manage remote rendering account with mixed reality.
 
