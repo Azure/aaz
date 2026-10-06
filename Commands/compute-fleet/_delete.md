@@ -25,3 +25,14 @@ Delete an Azure Compute  Fleet
     ```bash
         compute-fleet delete --resource-group rgazurefleet --fleet-name testFleet
     ```
+
+### [2026-08-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5henVyZWZsZWV0L2ZsZWV0cy97fQ==/2026-08-01.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.azurefleet/fleets/{} 2026-08-01 -->
+
+#### examples
+
+- Fleets_Delete
+    ```bash
+        compute-fleet delete --resource-group rgazurefleet --fleet-name testFleet
+    ```
