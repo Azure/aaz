@@ -1,0 +1,345 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkfabrics/{}/runvalidation" version="2026-07-15-preview" swagger="mgmt-plane/managednetworkfabric/ResourceProviders/Microsoft.ManagedNetworkFabric/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlZE5ldHdvcmtGYWJyaWMvbmV0d29ya0ZhYnJpY3Mve25ldHdvcmtGYWJyaWNOYW1lfS9ydW5WYWxpZGF0aW9u/V/MjAyNi0wNy0xNS1wcmV2aWV3"/>
+  <commandGroup name="networkfabric fabric">
+    <command name="run-validation" version="2026-07-15-preview" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkfabrics/{}/runvalidation" version="2026-07-15-preview" swagger="mgmt-plane/managednetworkfabric/ResourceProviders/Microsoft.ManagedNetworkFabric/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlZE5ldHdvcmtGYWJyaWMvbmV0d29ya0ZhYnJpY3Mve25ldHdvcmtGYWJyaWNOYW1lfS9ydW5WYWxpZGF0aW9u/V/MjAyNi0wNy0xNS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.networkFabricName" options="resource-name" required="True" group="" idPart="name">
+          <help short="Name of the Network Fabric."/>
+          <format pattern="^[a-zA-Z]{1}[a-zA-Z0-9-_]{2,127}$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="object" var="$body.deviceCommandConfiguration" options="command-config" group="Body">
+          <help short="Device command configuration specifying how validation commands are provided."/>
+          <arg type="string" var="$body.deviceCommandConfiguration.configurationType" options="configuration-type" required="True">
+            <help short="Configuration type indicating how commands are provided."/>
+            <enum>
+              <item name="File" value="&quot;File&quot;"/>
+              <item name="Inline" value="&quot;Inline&quot;"/>
+            </enum>
+          </arg>
+        </arg>
+        <arg type="array<ResourceId>" var="$body.deviceFilter" options="device-filter" group="Body">
+          <help short="List of device resource IDs to filter validation to specific devices. When omitted, all devices in the fabric are validated."/>
+          <item nullable="True" type="ResourceId"/>
+        </arg>
+        <arg type="array<object>" var="$body.metricsConfiguration" options="metrics-config" group="Body">
+          <help short="Custom metric validation rules to evaluate device metrics as part of validation."/>
+          <item type="object">
+            <arg type="string" var="$body.metricsConfiguration[].bucketAggregation" options="bucket-aggregation">
+              <help short="Optional aggregation applied to metric values within each sampling bucket (e.g., 'Average')."/>
+              <enum>
+                <item name="Average" value="&quot;Average&quot;"/>
+                <item name="Count" value="&quot;Count&quot;"/>
+                <item name="Max" value="&quot;Max&quot;"/>
+                <item name="Min" value="&quot;Min&quot;"/>
+                <item name="Sum" value="&quot;Sum&quot;"/>
+              </enum>
+            </arg>
+            <arg type="string" var="$body.metricsConfiguration[].checkName" options="check-name" required="True">
+              <help short="Unique check name that identifies this metric check in the validation results. Maps to checkName in checkResults response."/>
+            </arg>
+            <arg type="string" var="$body.metricsConfiguration[].description" options="description">
+              <help short="Description of what this metric check validates."/>
+            </arg>
+            <arg type="array<object>" var="$body.metricsConfiguration[].dimensionFilters" options="dimension-filters">
+              <help short="Optional dimension filters used to scope the metric query."/>
+              <item type="object">
+                <arg type="string" var="$body.metricsConfiguration[].dimensionFilters[].dimensionName" options="dimension-name" required="True">
+                  <help short="The metric dimension name to filter."/>
+                </arg>
+                <arg type="string" var="$body.metricsConfiguration[].dimensionFilters[].value" options="value" required="True">
+                  <help short="The metric dimension value to filter on."/>
+                </arg>
+              </item>
+            </arg>
+            <arg type="float64" var="$body.metricsConfiguration[].expectedValue" options="expected-value" required="True">
+              <help short="The expected value to compare against the metric value."/>
+            </arg>
+            <arg type="integer32" var="$body.metricsConfiguration[].maxAllowedFailures" options="max-allowed-failures">
+              <help short="Maximum number of metric samples allowed to fail before the check is considered failed. Default is 0 (any failure fails the check)."/>
+              <default value="0"/>
+              <format minimum="0"/>
+            </arg>
+            <arg type="string" var="$body.metricsConfiguration[].metricName" options="metric-name" required="True">
+              <help short="The name of the metric to query (e.g., 'CpuUtilizationMax', 'MemoryUtilization')."/>
+            </arg>
+            <arg type="string" var="$body.metricsConfiguration[].namespace" options="namespace" required="True">
+              <help short="The metrics namespace containing the metric."/>
+            </arg>
+            <arg type="string" var="$body.metricsConfiguration[].operator" options="operator" required="True">
+              <help short="The comparison operator to use for evaluating the metric value."/>
+              <enum>
+                <item name="Contains" value="&quot;Contains&quot;"/>
+                <item name="Equals" value="&quot;Equals&quot;"/>
+                <item name="GreaterThan" value="&quot;GreaterThan&quot;"/>
+                <item name="LessThan" value="&quot;LessThan&quot;"/>
+                <item name="NotEquals" value="&quot;NotEquals&quot;"/>
+              </enum>
+            </arg>
+            <arg type="string" var="$body.metricsConfiguration[].perResultDimensionName" options="per-result-dimension-name" required="True">
+              <help short="The metric dimension used to produce an individual validation result per dimension value (e.g., 'DeviceId')."/>
+            </arg>
+            <arg type="integer32" var="$body.metricsConfiguration[].samplingIntervalMinutes" options="sampling-interval-minutes">
+              <help short="Optional interval in minutes used to group metric samples into buckets."/>
+            </arg>
+            <arg type="string" var="$body.metricsConfiguration[].samplingType" options="sampling-type" required="True">
+              <help short="The sampling type used to evaluate the bucketed metric values (e.g., 'Max')."/>
+              <enum>
+                <item name="Average" value="&quot;Average&quot;"/>
+                <item name="Count" value="&quot;Count&quot;"/>
+                <item name="Max" value="&quot;Max&quot;"/>
+                <item name="Min" value="&quot;Min&quot;"/>
+                <item name="Rate" value="&quot;Rate&quot;"/>
+                <item name="Sum" value="&quot;Sum&quot;"/>
+              </enum>
+            </arg>
+            <arg type="integer32" var="$body.metricsConfiguration[].timeWindowMinutes" options="time-window-minutes" required="True">
+              <help short="Time window in minutes to look back for metric data."/>
+            </arg>
+          </item>
+        </arg>
+        <arg type="array<object>" var="$body.overrideChecks" options="override-checks" group="Body">
+          <help short="List of validation checks to waive for this run even if they fail or warn, each with an optional operator-provided justification captured for audit. Waived checks are recorded in the detailed validation report."/>
+          <item type="object">
+            <arg type="string" var="$body.overrideChecks[].checkName" options="check-name" required="True">
+              <help short="Name of the validation check to waive. Must match a checkName produced by the validation run."/>
+            </arg>
+            <arg type="string" var="$body.overrideChecks[].justification" options="justification">
+              <help short="Operator-provided justification for waiving this check. Captured for audit and included in the detailed validation report."/>
+            </arg>
+          </item>
+        </arg>
+        <arg type="string" var="$body.targetVersion" options="target-version" group="Body">
+          <help short="Target version for upgrade validation in semantic versioning format (e.g., '4.1.0'). Required for upgrade-related validation types."/>
+        </arg>
+        <arg type="string" var="$body.validationType" options="validation-type" required="True" group="Body">
+          <help short="Type of validation to perform."/>
+          <enum>
+            <item name="UpgradePostcheck" value="&quot;UpgradePostcheck&quot;"/>
+            <item name="UpgradePrecheck" value="&quot;UpgradePrecheck&quot;"/>
+            <item name="UpgradeStageGate" value="&quot;UpgradeStageGate&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <operation operationId="NetworkFabrics_RunValidation">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedNetworkFabric/networkFabrics/{networkFabricName}/runValidation">
+          <request method="post">
+            <path>
+              <param type="string" name="networkFabricName" arg="$Path.networkFabricName" required="True">
+                <format pattern="^[a-zA-Z]{1}[a-zA-Z0-9-_]{2,127}$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-07-15-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="object" name="deviceCommandConfiguration" arg="$body.deviceCommandConfiguration">
+                    <prop type="string" name="configurationType" arg="$body.deviceCommandConfiguration.configurationType" required="True">
+                      <enum>
+                        <item value="&quot;File&quot;"/>
+                        <item value="&quot;Inline&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="array<ResourceId>" name="deviceFilter" arg="$body.deviceFilter">
+                    <item nullable="True" type="ResourceId"/>
+                  </prop>
+                  <prop type="array<object>" name="metricsConfiguration" arg="$body.metricsConfiguration" identifiers="checkName">
+                    <item type="object">
+                      <prop type="string" name="bucketAggregation" arg="$body.metricsConfiguration[].bucketAggregation">
+                        <enum>
+                          <item value="&quot;Average&quot;"/>
+                          <item value="&quot;Count&quot;"/>
+                          <item value="&quot;Max&quot;"/>
+                          <item value="&quot;Min&quot;"/>
+                          <item value="&quot;Sum&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="checkName" arg="$body.metricsConfiguration[].checkName" required="True"/>
+                      <prop type="string" name="description" arg="$body.metricsConfiguration[].description"/>
+                      <prop type="array<object>" name="dimensionFilters" arg="$body.metricsConfiguration[].dimensionFilters" identifiers="dimensionName">
+                        <item type="object">
+                          <prop type="string" name="dimensionName" arg="$body.metricsConfiguration[].dimensionFilters[].dimensionName" required="True"/>
+                          <prop type="string" name="value" arg="$body.metricsConfiguration[].dimensionFilters[].value" required="True"/>
+                        </item>
+                      </prop>
+                      <prop type="float64" name="expectedValue" arg="$body.metricsConfiguration[].expectedValue" required="True"/>
+                      <prop type="integer32" name="maxAllowedFailures" arg="$body.metricsConfiguration[].maxAllowedFailures">
+                        <default value="0"/>
+                        <format minimum="0"/>
+                      </prop>
+                      <prop type="string" name="metricName" arg="$body.metricsConfiguration[].metricName" required="True"/>
+                      <prop type="string" name="namespace" arg="$body.metricsConfiguration[].namespace" required="True"/>
+                      <prop type="string" name="operator" arg="$body.metricsConfiguration[].operator" required="True">
+                        <enum>
+                          <item value="&quot;Contains&quot;"/>
+                          <item value="&quot;Equals&quot;"/>
+                          <item value="&quot;GreaterThan&quot;"/>
+                          <item value="&quot;LessThan&quot;"/>
+                          <item value="&quot;NotEquals&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="perResultDimensionName" arg="$body.metricsConfiguration[].perResultDimensionName" required="True"/>
+                      <prop type="integer32" name="samplingIntervalMinutes" arg="$body.metricsConfiguration[].samplingIntervalMinutes"/>
+                      <prop type="string" name="samplingType" arg="$body.metricsConfiguration[].samplingType" required="True">
+                        <enum>
+                          <item value="&quot;Average&quot;"/>
+                          <item value="&quot;Count&quot;"/>
+                          <item value="&quot;Max&quot;"/>
+                          <item value="&quot;Min&quot;"/>
+                          <item value="&quot;Rate&quot;"/>
+                          <item value="&quot;Sum&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="integer32" name="timeWindowMinutes" arg="$body.metricsConfiguration[].timeWindowMinutes" required="True"/>
+                    </item>
+                  </prop>
+                  <prop type="array<object>" name="overrideChecks" arg="$body.overrideChecks" identifiers="checkName">
+                    <item type="object">
+                      <prop type="string" name="checkName" arg="$body.overrideChecks[].checkName" required="True"/>
+                      <prop type="string" name="justification" arg="$body.overrideChecks[].justification"/>
+                    </item>
+                  </prop>
+                  <prop type="string" name="targetVersion" arg="$body.targetVersion"/>
+                  <prop type="string" name="validationType" arg="$body.validationType" required="True">
+                    <enum>
+                      <item value="&quot;UpgradePostcheck&quot;"/>
+                      <item value="&quot;UpgradePrecheck&quot;"/>
+                      <item value="&quot;UpgradeStageGate&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="dateTime" name="endTime"/>
+                  <prop type="object" name="error" cls="ErrorDetail_read">
+                    <prop readOnly="True" type="array<object>" name="additionalInfo">
+                      <item type="object">
+                        <prop readOnly="True" type="object" name="info">
+                          <additionalProp readOnly="True">
+                            <item type="any"/>
+                          </additionalProp>
+                        </prop>
+                        <prop readOnly="True" type="string" name="type"/>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="string" name="code"/>
+                    <prop readOnly="True" type="array<@ErrorDetail_read>" name="details" identifiers="message target">
+                      <item type="@ErrorDetail_read"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="message"/>
+                    <prop readOnly="True" type="string" name="target"/>
+                  </prop>
+                  <prop nullable="True" type="ResourceId" name="id"/>
+                  <prop type="string" name="name"/>
+                  <prop type="array<object>" name="operations">
+                    <item type="object" cls="OperationStatusResult_read">
+                      <prop type="dateTime" name="endTime"/>
+                      <prop type="@ErrorDetail_read" name="error"/>
+                      <prop type="ResourceId" name="id"/>
+                      <prop type="string" name="name"/>
+                      <prop type="array<@OperationStatusResult_read>" name="operations">
+                        <item type="@OperationStatusResult_read"/>
+                      </prop>
+                      <prop type="float" name="percentComplete">
+                        <format maximum="100.0" minimum="0.0"/>
+                      </prop>
+                      <prop readOnly="True" type="ResourceId" name="resourceId"/>
+                      <prop type="dateTime" name="startTime"/>
+                      <prop type="string" name="status" required="True"/>
+                    </item>
+                  </prop>
+                  <prop type="float64" name="percentComplete">
+                    <format maximum="100.0" minimum="0.0"/>
+                  </prop>
+                  <prop type="object" name="properties">
+                    <prop readOnly="True" type="array<object>" name="checkResults">
+                      <item type="object">
+                        <prop readOnly="True" type="string" name="category">
+                          <enum>
+                            <item value="&quot;CustomCommandSet&quot;"/>
+                            <item value="&quot;CustomMetric&quot;"/>
+                            <item value="&quot;ImplicitBaseline&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="string" name="checkName"/>
+                        <prop readOnly="True" type="string" name="commandOutput"/>
+                        <prop readOnly="True" type="array<ResourceId>" name="impactedResources">
+                          <item nullable="True" type="ResourceId"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="message"/>
+                        <prop readOnly="True" type="string" name="result">
+                          <enum>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;Passed&quot;"/>
+                            <item value="&quot;Warning&quot;"/>
+                          </enum>
+                        </prop>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="string" name="currentVersion"/>
+                    <prop readOnly="True" type="dateTime" name="expiresAt"/>
+                    <prop readOnly="True" type="array<ResourceId>" name="failedDevices">
+                      <item nullable="True" type="ResourceId"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="resultUrl"/>
+                    <prop readOnly="True" type="array<ResourceId>" name="successfulDevices">
+                      <item nullable="True" type="ResourceId"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="targetVersion"/>
+                    <prop readOnly="True" type="uuid" name="validationId"/>
+                    <prop readOnly="True" type="string" name="validationResult">
+                      <enum>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Passed&quot;"/>
+                        <item value="&quot;Warning&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="dateTime" name="validationTime"/>
+                  </prop>
+                  <prop readOnly="True" nullable="True" type="ResourceId" name="resourceId"/>
+                  <prop type="dateTime" name="startTime"/>
+                  <prop type="string" name="status" required="True"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
