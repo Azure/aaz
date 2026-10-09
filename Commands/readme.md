@@ -86,7 +86,7 @@
 - [chaos](/Commands/chaos/readme.md)
 : Manage Azure Chaos Studio resources.
 
-- [clean-room](/Commands/clean-room/readme.md)
+- [managedcleanroom](/Commands/managedcleanroom/readme.md)
 : Manage Clean Room
 
 - [cloud-service](/Commands/cloud-service/readme.md)
