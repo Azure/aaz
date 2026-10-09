@@ -314,6 +314,9 @@
 - [notification-hub](/Commands/notification-hub/readme.md)
 : Manage notification hubs.
 
+- [oracle](/Commands/oracle/readme.md)
+: Manage Oracle
+
 - [oracle-database](/Commands/oracle-database/readme.md)
 : Command Modules for RP Oracle.Database
 

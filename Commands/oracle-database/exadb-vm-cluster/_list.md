@@ -15,3 +15,15 @@ List ExadbVmCluster resources by subscription ID
     ```bash
         oracle-database exadb-vm-cluster list
     ```
+
+### [2026-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL29yYWNsZS5kYXRhYmFzZS9leGFkYnZtY2x1c3RlcnM=/2026-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/oracle.database/exadbvmclusters 2026-06-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/oracle.database/exadbvmclusters 2026-06-01 -->
+
+#### examples
+
+- ExadbVmClusters_List
+    ```bash
+        oracle-database exadb-vm-cluster list
+    ```
