@@ -9,6 +9,12 @@ To learn more about Application Gateway, visit https://learn.microsoft.com/en-us
 - [address-pool](/Commands/network/application-gateway/address-pool/readme.md)
 : Manage address pools of an application gateway.
 
+- [advanced-routing-condition-set](/Commands/network/application-gateway/advanced-routing-condition-set/readme.md)
+: Manage advanced routing condition sets of an application gateway.
+
+- [advanced-routing-map](/Commands/network/application-gateway/advanced-routing-map/readme.md)
+: Manage advanced routing maps of an application gateway.
+
 - [auth-cert](/Commands/network/application-gateway/auth-cert/readme.md)
 : Manage authorization certificates of an application gateway.
 
