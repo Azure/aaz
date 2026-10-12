@@ -14,3 +14,14 @@ Delete a OracleSubscription
     ```bash
         oracle-database oracle-subscription delete
     ```
+
+### [2026-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL29yYWNsZS5kYXRhYmFzZS9vcmFjbGVzdWJzY3JpcHRpb25zL2RlZmF1bHQ=/2026-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/oracle.database/oraclesubscriptions/default 2026-06-01 -->
+
+#### examples
+
+- Delete Oracle Subscription
+    ```bash
+        oracle-database oracle-subscription delete
+    ```

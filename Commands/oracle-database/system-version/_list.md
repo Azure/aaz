@@ -11,3 +11,7 @@ List SystemVersion resources by Location
 ### [2025-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL29yYWNsZS5kYXRhYmFzZS9sb2NhdGlvbnMve30vc3lzdGVtdmVyc2lvbnM=/2025-09-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/oracle.database/locations/{}/systemversions 2025-09-01 -->
+
+### [2026-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL29yYWNsZS5kYXRhYmFzZS9sb2NhdGlvbnMve30vc3lzdGVtdmVyc2lvbnM=/2026-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/oracle.database/locations/{}/systemversions 2026-06-01 -->

@@ -25,3 +25,14 @@ List GiVersion resources by Location
     ```bash
         oracle-database gi-version list --location <location>
     ```
+
+### [2026-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL29yYWNsZS5kYXRhYmFzZS9sb2NhdGlvbnMve30vZ2l2ZXJzaW9ucw==/2026-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/oracle.database/locations/{}/giversions 2026-06-01 -->
+
+#### examples
+
+- List Gi Version
+    ```bash
+        oracle-database gi-version list --location <location>
+    ```
