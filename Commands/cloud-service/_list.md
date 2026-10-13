@@ -8,3 +8,10 @@ List a list of all cloud services under a resource group. Use nextLink property 
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.compute/cloudservices 2022-09-04 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/cloudservices 2022-09-04 -->
+
+#### examples
+
+- List Cloud Services in a Subscription
+    ```bash
+        cloud-service list
+    ```
