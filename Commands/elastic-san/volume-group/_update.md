@@ -207,6 +207,11 @@ Update a Volume Group.
         elastic-san volume-group update -e "san_name" -n "vg_name" -g "rg" --encryption EncryptionAtRestWithPlatformKey
     ```
 
+- Update Volume Group with Network ACLs
+    ```bash
+        elastic-san volume-group update --resource-group resourcegroupname --elastic-san-name elasticsanname --volume-group-name volumegroupname --network-acls "{virtual-network-rules:[{action:Allow,id:fhhawhc}]}"
+    ```
+
 - Update volume group back to SystemAssignedIdentity
     ```bash
         elastic-san volume-group update -e "san_name" -n "vg_name" -g "rg" --identity '{type:SystemAssigned}'

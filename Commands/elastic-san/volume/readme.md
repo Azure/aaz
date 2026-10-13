@@ -13,7 +13,7 @@ Manage Elastic SAN Volume.
 : Create a Volume.
 
 - [delete](/Commands/elastic-san/volume/_delete.md)
-: Delete an Volume.
+: Delete a Volume.
 
 - [list](/Commands/elastic-san/volume/_list.md)
 : List Volumes in a Volume Group.
@@ -22,7 +22,7 @@ Manage Elastic SAN Volume.
 : Restore Soft Deleted Volumes.
 
 - [show](/Commands/elastic-san/volume/_show.md)
-: Get an Volume.
+: Get a Volume.
 
 - [update](/Commands/elastic-san/volume/_update.md)
 : Update a Volume.

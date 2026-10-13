@@ -134,5 +134,5 @@ Create a Volume Group.
 
 - Create a volume group with delete retention policy params
     ```bash
-        elastic-san volume-group create -e san_name -n volume_group_name -g rg_name --encryption EncryptionAtRestWithPlatformKey --protocol-type Iscsi --network-acls '{virtual-network-rules:[{id:{subnet_id},action:Allow}]}' --delete-retention-policy-state Enabled --delete-retention-period-days 7
+        elastic-san volume-group create --resource-group rg --elastic-san-name esanname --volume-group-name vgname --identity "{type:None,user-assigned-identities:{key2350:{}}}" --delete-retention-policy "{policy-state:Enabled,retention-period-days:14}" --encryption EncryptionAtRestWithPlatformKey --encryption-properties "{identity:{user-assigned-identity:identityname},key-vault-properties:{key-name:keyvaultname,key-vault-uri:'https://microsoft.com/at',key-version:keyver}}" --enforce-data-integrity-check-for-iscsi True --encryption-in-transit True --network-acls "{virtual-network-rules:[{action:Allow,id:fhhawhc}]}" --protocol-type Iscsi
     ```
