@@ -14,3 +14,14 @@ List the keys and connection strings of Authorization Rule for the given Relay S
     ```bash
         relay wcfrelay authorization-rule keys list --resource-group myresourcegroup --namespace- name mynamespace --relay-name myrelay --name myauthorule
     ```
+
+### [2026-07-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5yZWxheS9uYW1lc3BhY2VzL3t9L3djZnJlbGF5cy97fS9hdXRob3JpemF0aW9ucnVsZXMve30vbGlzdGtleXM=/2026-07-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.relay/namespaces/{}/wcfrelays/{}/authorizationrules/{}/listkeys 2026-07-01-preview -->
+
+#### examples
+
+- List the keys and connection strings of Authorization Rule for the given Relay Service WCF Relay
+    ```bash
+        relay wcfrelay authorization-rule keys list --resource-group myresourcegroup --namespace- name mynamespace --relay-name myrelay --name myauthorule
+    ```
