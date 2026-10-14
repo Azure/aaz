@@ -17,3 +17,15 @@ For additional details, please visit the https://learn.microsoft.com/en-us/cli/a
     ```bash
         arc-multicloud solution-type list --resource-group multiCloudRG --subscription 2c60e476-6048-5ff0-9635-373175a378d9
     ```
+
+### [2027-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5oeWJyaWRjb25uZWN0aXZpdHkvc29sdXRpb250eXBlcw==/2027-01-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.hybridconnectivity/solutiontypes 2027-01-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridconnectivity/solutiontypes 2027-01-01 -->
+
+#### examples
+
+- SolutionTypes_ListBySubscription
+    ```bash
+        arc-multicloud solution-type list --resource-group multiCloudRG --subscription 2c60e476-6048-5ff0-9635-373175a378d9
+    ```

@@ -16,3 +16,14 @@ For additional details, please visit the https://learn.microsoft.com/en-us/cli/a
     ```bash
         arc-multicloud solution-configuration list --connector-id /subscriptions/{}/resourceGroups/{}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{}
     ```
+
+### [2027-01-01](/Resources/mgmt-plane/L3tyZXNvdXJjZXVyaX0vcHJvdmlkZXJzL21pY3Jvc29mdC5oeWJyaWRjb25uZWN0aXZpdHkvc29sdXRpb25jb25maWd1cmF0aW9ucw==/2027-01-01.xml) **Stable**
+
+<!-- mgmt-plane /{resourceuri}/providers/microsoft.hybridconnectivity/solutionconfigurations 2027-01-01 -->
+
+#### examples
+
+- SolutionConfigurations_List
+    ```bash
+        arc-multicloud solution-configuration list --connector-id /subscriptions/{}/resourceGroups/{}/providers/Microsoft.HybridConnectivity/publicCloudConnectors/{}
+    ```
