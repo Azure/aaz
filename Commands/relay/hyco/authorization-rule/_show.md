@@ -14,3 +14,14 @@ Shows the details of Authorization Rule for given Relay Service Hybrid Connectio
     ```bash
         relay hyco authorization-rule show --resource-group myresourcegroup --namespace-name mynamespace --hybrid-connection-name myhyco --name myauthorule
     ```
+
+### [2026-07-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5yZWxheS9uYW1lc3BhY2VzL3t9L2h5YnJpZGNvbm5lY3Rpb25zL3t9L2F1dGhvcml6YXRpb25ydWxlcy97fQ==/2026-07-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.relay/namespaces/{}/hybridconnections/{}/authorizationrules/{} 2026-07-01-preview -->
+
+#### examples
+
+- Shows the details of Authorization Rule for given Relay Service Hybrid Connection
+    ```bash
+        relay hyco authorization-rule show --resource-group myresourcegroup --namespace-name mynamespace --hybrid-connection-name myhyco --name myauthorule
+    ```
