@@ -14,3 +14,14 @@ Get a SignalDefinition
     ```bash
         monitor health-models signal-definition show --resource-group rgopenapi --health-model-name myHealthModel --signal-definition-name sig1
     ```
+
+### [2026-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jbG91ZGhlYWx0aC9oZWFsdGhtb2RlbHMve30vc2lnbmFsZGVmaW5pdGlvbnMve30=/2026-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cloudhealth/healthmodels/{}/signaldefinitions/{} 2026-11-01 -->
+
+#### examples
+
+- SignalDefinitions_Get
+    ```bash
+        monitor health-models signal-definition show --resource-group rgopenapi --health-model-name myHealthModel --signal-definition-name sig1
+    ```
