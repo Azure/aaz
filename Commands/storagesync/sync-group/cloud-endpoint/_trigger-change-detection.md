@@ -7,3 +7,7 @@ Triggers detection of changes performed on Azure File share connected to the spe
 ### [2022-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zdG9yYWdlc3luYy9zdG9yYWdlc3luY3NlcnZpY2VzL3t9L3N5bmNncm91cHMve30vY2xvdWRlbmRwb2ludHMve30vdHJpZ2dlcmNoYW5nZWRldGVjdGlvbg==/2022-06-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.storagesync/storagesyncservices/{}/syncgroups/{}/cloudendpoints/{}/triggerchangedetection 2022-06-01 -->
+
+### [2025-12-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zdG9yYWdlc3luYy9zdG9yYWdlc3luY3NlcnZpY2VzL3t9L3N5bmNncm91cHMve30vY2xvdWRlbmRwb2ludHMve30vdHJpZ2dlcmNoYW5nZWRldGVjdGlvbg==/2025-12-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.storagesync/storagesyncservices/{}/syncgroups/{}/cloudendpoints/{}/triggerchangedetection 2025-12-01 -->
