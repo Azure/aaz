@@ -4,6 +4,17 @@ Generates the manifest for the given provider.
 
 ## Versions
 
+### [2025-03-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5wcm92aWRlcmh1Yi9wcm92aWRlcnJlZ2lzdHJhdGlvbnMve30vZ2VuZXJhdGVtYW5pZmVzdA==/2025-03-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.providerhub/providerregistrations/{}/generatemanifest 2025-03-01-preview -->
+
+#### examples
+
+- manifest generate
+    ```bash
+        providerhub manifest generate --provider-namespace "{providerNamespace}"
+    ```
+
 ### [2026-02-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5wcm92aWRlcmh1Yi9wcm92aWRlcnJlZ2lzdHJhdGlvbnMve30vZ2VuZXJhdGVtYW5pZmVzdA==/2026-02-01-preview.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.providerhub/providerregistrations/{}/generatemanifest 2026-02-01-preview -->
