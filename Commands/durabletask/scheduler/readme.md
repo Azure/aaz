@@ -2,6 +2,14 @@
 
 Commands to manage Durabletask schedulers
 
+## Subgroups
+
+- [identity](/Commands/durabletask/scheduler/identity/readme.md)
+: Manage Identity
+
+- [transparent-data-encryption](/Commands/durabletask/scheduler/transparent-data-encryption/readme.md)
+: Manage Transparent Data Encryption
+
 ## Commands
 
 - [create](/Commands/durabletask/scheduler/_create.md)
