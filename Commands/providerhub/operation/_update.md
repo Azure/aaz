@@ -4,13 +4,13 @@ Update the operation supported by the given provider.
 
 ## Versions
 
-### [2026-02-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5wcm92aWRlcmh1Yi9wcm92aWRlcnJlZ2lzdHJhdGlvbnMve30vb3BlcmF0aW9ucy9kZWZhdWx0/2026-02-01-preview.xml) **Stable**
+### [2025-03-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5wcm92aWRlcmh1Yi9wcm92aWRlcnJlZ2lzdHJhdGlvbnMve30vb3BlcmF0aW9ucy9kZWZhdWx0/2025-03-01-preview.xml) **Stable**
 
-<!-- mgmt-plane /subscriptions/{}/providers/microsoft.providerhub/providerregistrations/{}/operations/default 2026-02-01-preview -->
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.providerhub/providerregistrations/{}/operations/default 2025-03-01-preview -->
 
 #### examples
 
 - operation update
     ```bash
-        providerhub operation update --contents "[{{"name":"Private.VPTest/Employees/Read","display":{{"default":{{"description":"Read employees","operation":"Gets/List employee resources","provider":"Private.VPTest","resource":"Employees"}}}}}}]" --provider-namespace "{providerNamespace}"
+        providerhub operation update --contents "[{{\\"name\\":\\"Private.VPTest/Employees/Read\\",\\"display\\":{{\\"default\\":{{\\"description\\":\\"Read employees\\",\\"operation\\":\\"Gets/List employee resources\\",\\"provider\\":\\"Private.VPTest\\",\\"resource\\":\\"Employees\\"}}}}}}]" --provider-namespace "{providerNamespace}"
     ```
