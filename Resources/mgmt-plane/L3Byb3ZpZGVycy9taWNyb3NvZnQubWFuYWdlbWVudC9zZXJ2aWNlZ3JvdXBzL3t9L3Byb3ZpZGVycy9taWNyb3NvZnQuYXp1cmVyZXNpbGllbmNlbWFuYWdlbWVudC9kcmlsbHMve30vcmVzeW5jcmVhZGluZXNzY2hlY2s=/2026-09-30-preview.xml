@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/drills/{}/resyncreadinesscheck" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlUmVzaWxpZW5jZU1hbmFnZW1lbnQvZHJpbGxzL3tkcmlsbE5hbWV9L3Jlc3luY1JlYWRpbmVzc0NoZWNr/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+  <commandGroup name="resiliency drill">
+    <command name="resync-readiness-check" version="2026-09-30-preview">
+      <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/drills/{}/resyncreadinesscheck" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlUmVzaWxpZW5jZU1hbmFnZW1lbnQvZHJpbGxzL3tkcmlsbE5hbWV9L3Jlc3luY1JlYWRpbmVzc0NoZWNr/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Header.operation-id" options="operation-id" required="True">
+          <help short="A GUID that represents the Long Running OperationId."/>
+        </arg>
+        <arg type="string" var="$Path.drillName" options="drill-name" required="True">
+          <help short="The name of the Drill"/>
+          <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+        </arg>
+        <arg type="string" var="$Path.serviceGroupName" options="service-group-name" required="True">
+          <help short="The name of the service group."/>
+          <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Drills_ResyncReadinessCheck">
+        <longRunning finalStateVia="location"/>
+        <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.AzureResilienceManagement/drills/{drillName}/resyncReadinessCheck">
+          <request method="post">
+            <path>
+              <param type="string" name="drillName" arg="$Path.drillName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+              </param>
+              <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
+                <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-09-30-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <header>
+              <param type="string" name="operation-id" arg="$Header.operation-id" required="True"/>
+            </header>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Azure-AsyncOperation"/>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response statusCode="204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>

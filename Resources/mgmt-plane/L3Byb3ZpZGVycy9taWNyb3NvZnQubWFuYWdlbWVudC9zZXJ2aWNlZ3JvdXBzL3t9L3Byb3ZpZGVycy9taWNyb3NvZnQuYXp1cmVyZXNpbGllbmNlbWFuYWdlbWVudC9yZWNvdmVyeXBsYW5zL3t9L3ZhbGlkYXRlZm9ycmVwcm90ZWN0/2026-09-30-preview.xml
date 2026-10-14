@@ -1,0 +1,394 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/recoveryplans/{}/validateforreprotect" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlUmVzaWxpZW5jZU1hbmFnZW1lbnQvcmVjb3ZlcnlQbGFucy97cmVjb3ZlcnlQbGFuTmFtZX0vdmFsaWRhdGVGb3JSZXByb3RlY3Q=/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+  <commandGroup name="resiliency recovery-plan">
+    <command name="validate-for-reprotect" version="2026-09-30-preview">
+      <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/recoveryplans/{}/validateforreprotect" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlUmVzaWxpZW5jZU1hbmFnZW1lbnQvcmVjb3ZlcnlQbGFucy97cmVjb3ZlcnlQbGFuTmFtZX0vdmFsaWRhdGVGb3JSZXByb3RlY3Q=/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Header.operation-id" options="operation-id" required="True">
+          <help short="A GUID that represents the Long Running OperationId."/>
+        </arg>
+        <arg type="string" var="$Path.recoveryPlanName" options="recovery-plan-name" required="True">
+          <help short="The name of the recovery orchestration plan."/>
+          <format pattern="^[a-zA-Z0-9-]{5,24}$"/>
+        </arg>
+        <arg type="string" var="$Path.serviceGroupName" options="service-group-name" required="True">
+          <help short="The name of the service group."/>
+          <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="object" var="$body.reprotectRequestProperties" options="reprotect-request-properties" group="Body">
+          <help short="Additional properties for Reprotect."/>
+          <arg type="array<ResourceId>" var="$body.reprotectRequestProperties.selectedResourceIds" options="selected-resource-ids">
+            <help short="Selected recovery resource Ids to be processed. If not provided, all qualified resources will be processed."/>
+            <item type="ResourceId"/>
+          </arg>
+        </arg>
+      </argGroup>
+      <operation operationId="RecoveryPlanActions_ValidateForReprotect">
+        <longRunning finalStateVia="location"/>
+        <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.AzureResilienceManagement/recoveryPlans/{recoveryPlanName}/validateForReprotect">
+          <request method="post">
+            <path>
+              <param type="string" name="recoveryPlanName" arg="$Path.recoveryPlanName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{5,24}$"/>
+              </param>
+              <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
+                <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-09-30-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <header>
+              <param type="string" name="operation-id" arg="$Header.operation-id" required="True"/>
+            </header>
+            <body>
+              <json>
+                <schema type="object" name="body" clientFlatten="True">
+                  <prop type="object" name="reprotectRequestProperties" arg="$body.reprotectRequestProperties">
+                    <prop type="array<ResourceId>" name="selectedResourceIds" arg="$body.reprotectRequestProperties.selectedResourceIds">
+                      <item type="ResourceId"/>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="recoveryResourceQualifications" required="True">
+                    <item type="object">
+                      <prop type="object" name="operationQualificationDetails" required="True">
+                        <prop type="array<string>" name="notQualifiedReasons">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="string" name="qualificationState" required="True">
+                          <enum>
+                            <item value="&quot;Excluded&quot;"/>
+                            <item value="&quot;NotQualified&quot;"/>
+                            <item value="&quot;Qualified&quot;"/>
+                            <item value="&quot;Unknown&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="array<object>" name="resourceFeasibilityReviews" identifiers="feasibilityType resourceType">
+                          <format maxLength="10"/>
+                          <item type="object">
+                            <prop type="object" name="currentTargetSku" cls="SkuDetails_read">
+                              <prop type="string" name="currency"/>
+                              <prop type="float64" name="monthlyPrice"/>
+                              <prop type="string" name="offeringId"/>
+                              <prop type="integer32" name="ram"/>
+                              <prop type="string" name="sku" required="True"/>
+                              <prop type="integer32" name="vCpu"/>
+                            </prop>
+                            <prop type="string" name="feasibilityType" required="True">
+                              <enum>
+                                <item value="&quot;SkuCapacity&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="array<@SkuDetails_read>" name="recommendedTargetSkus" identifiers="sku">
+                              <format maxLength="5"/>
+                              <item type="@SkuDetails_read"/>
+                            </prop>
+                            <prop type="string" name="resourceType" required="True">
+                              <format pattern="^[a-zA-Z0-9]+\.[a-zA-Z0-9]+(/[a-zA-Z0-9]+)+$"/>
+                            </prop>
+                            <prop type="string" name="status" required="True">
+                              <enum>
+                                <item value="&quot;Flagged&quot;"/>
+                                <item value="&quot;NotApplicable&quot;"/>
+                                <item value="&quot;Passed&quot;"/>
+                                <item value="&quot;Unavailable&quot;"/>
+                              </enum>
+                            </prop>
+                          </item>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="recoveryResource" required="True">
+                        <prop readOnly="True" type="ResourceId" name="id">
+                          <format template="/providers/Microsoft.Management/serviceGroups/{}/providers/Microsoft.AzureResilienceManagement/recoveryPlans/{}/recoveryResources/{}"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="name"/>
+                        <prop type="object" name="properties">
+                          <prop type="object" name="associatedIdentity">
+                            <prop type="string" name="type" required="True">
+                              <enum>
+                                <item value="&quot;None&quot;"/>
+                                <item value="&quot;SystemAssigned&quot;"/>
+                                <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                                <item value="&quot;UserAssigned&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop type="ResourceId" name="userAssignedIdentity"/>
+                          </prop>
+                          <prop readOnly="True" type="array<string>" name="attentionReasons">
+                            <item type="string"/>
+                          </prop>
+                          <prop readOnly="True" type="object" name="errorDetails" cls="ErrorDetail_read">
+                            <prop readOnly="True" type="array<object>" name="additionalInfo">
+                              <item type="object">
+                                <prop readOnly="True" type="object" name="info">
+                                  <additionalProp readOnly="True">
+                                    <item type="any"/>
+                                  </additionalProp>
+                                </prop>
+                                <prop readOnly="True" type="string" name="type"/>
+                              </item>
+                            </prop>
+                            <prop readOnly="True" type="string" name="code"/>
+                            <prop readOnly="True" type="array<@ErrorDetail_read>" name="details" identifiers="message target">
+                              <item type="@ErrorDetail_read"/>
+                            </prop>
+                            <prop readOnly="True" type="string" name="message"/>
+                            <prop readOnly="True" type="string" name="target"/>
+                          </prop>
+                          <prop readOnly="True" type="array<string>" name="inclusionDisabledReasons">
+                            <item type="string">
+                              <enum>
+                                <item value="&quot;ResourceActiveActiveProtection&quot;"/>
+                                <item value="&quot;ResourceHighlyAvailable&quot;"/>
+                              </enum>
+                            </item>
+                          </prop>
+                          <prop type="string" name="inclusionState">
+                            <enum>
+                              <item value="&quot;Excluded&quot;"/>
+                              <item value="&quot;Included&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="boolean" name="needsAttention">
+                            <default value="false"/>
+                          </prop>
+                          <prop readOnly="True" type="string" name="protectionStatus">
+                            <enum>
+                              <item value="&quot;HighlyAvailable&quot;"/>
+                              <item value="&quot;NotProtected&quot;"/>
+                              <item value="&quot;Protected&quot;"/>
+                              <item value="&quot;Unknown&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="string" name="provisioningState">
+                            <enum>
+                              <item value="&quot;Accepted&quot;"/>
+                              <item value="&quot;Canceled&quot;"/>
+                              <item value="&quot;Deleting&quot;"/>
+                              <item value="&quot;Failed&quot;"/>
+                              <item value="&quot;NeedsAttention&quot;"/>
+                              <item value="&quot;Provisioning&quot;"/>
+                              <item value="&quot;Succeeded&quot;"/>
+                              <item value="&quot;Updating&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="recoveryGroupId">
+                            <format pattern="[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"/>
+                          </prop>
+                          <prop type="string" name="recoveryResourceUniqueId" required="True">
+                            <format pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"/>
+                          </prop>
+                          <prop readOnly="True" type="ResourceId" name="resourceId"/>
+                          <prop readOnly="True" type="string" name="resourceLocation"/>
+                          <prop readOnly="True" type="array<string>" name="resourcePhysicalZones">
+                            <item type="string"/>
+                          </prop>
+                          <prop readOnly="True" type="array<object>" name="resourceProtectionSolutions">
+                            <item type="object">
+                              <prop readOnly="True" type="string" name="activeLocation"/>
+                              <prop readOnly="True" type="array<string>" name="activeLocations">
+                                <item type="string"/>
+                              </prop>
+                              <prop readOnly="True" type="array<string>" name="activePhysicalZones">
+                                <item type="string"/>
+                              </prop>
+                              <prop readOnly="True" type="string" name="failoverState">
+                                <enum>
+                                  <item value="&quot;FailedOver&quot;"/>
+                                  <item value="&quot;FailedOverCommitPending&quot;"/>
+                                  <item value="&quot;FailedOverReprotectPending&quot;"/>
+                                  <item value="&quot;None&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop readOnly="True" type="boolean" name="isAutoFailover">
+                                <default value="false"/>
+                              </prop>
+                              <prop readOnly="True" type="ResourceId" name="primaryResource"/>
+                              <prop readOnly="True" type="string" name="protectionSolutionType">
+                                <enum>
+                                  <item value="&quot;AzureCosmosDB&quot;"/>
+                                  <item value="&quot;AzureNative&quot;"/>
+                                  <item value="&quot;AzureNetAppFiles&quot;"/>
+                                  <item value="&quot;AzureServiceBus&quot;"/>
+                                  <item value="&quot;AzureSiteRecovery&quot;"/>
+                                  <item value="&quot;AzureStorageAccount&quot;"/>
+                                  <item value="&quot;AzureTemplate&quot;"/>
+                                  <item value="&quot;CrossZoneVMRecovery&quot;"/>
+                                  <item value="&quot;CustomRunbook&quot;"/>
+                                  <item value="&quot;None&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop readOnly="True" type="string" name="protectionStatus">
+                                <enum>
+                                  <item value="&quot;HighlyAvailable&quot;"/>
+                                  <item value="&quot;NotProtected&quot;"/>
+                                  <item value="&quot;Protected&quot;"/>
+                                  <item value="&quot;Unknown&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop readOnly="True" type="array<string>" name="recoveryLocations">
+                                <item type="string"/>
+                              </prop>
+                              <prop readOnly="True" type="array<ResourceId>" name="replicaResources">
+                                <item type="ResourceId"/>
+                              </prop>
+                              <prop type="string" name="replicationMode">
+                                <enum>
+                                  <item value="&quot;ActiveActive&quot;"/>
+                                  <item value="&quot;ActivePassive&quot;"/>
+                                  <item value="&quot;None&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop readOnly="True" type="string" name="replicationRole">
+                                <enum>
+                                  <item value="&quot;Primary&quot;"/>
+                                  <item value="&quot;Replica&quot;"/>
+                                  <item value="&quot;Unknown&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop readOnly="True" type="ResourceId" name="resourceId"/>
+                              <prop readOnly="True" type="string" name="testFailoverState">
+                                <enum>
+                                  <item value="&quot;None&quot;"/>
+                                  <item value="&quot;TestFailoverCleanupPending&quot;"/>
+                                </enum>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="object" name="selectedProtectionSolutionSetting">
+                            <prop type="string" name="protectionSolutionType" required="True">
+                              <enum>
+                                <item value="&quot;AzureCosmosDB&quot;"/>
+                                <item value="&quot;AzureNative&quot;"/>
+                                <item value="&quot;AzureNetAppFiles&quot;"/>
+                                <item value="&quot;AzureServiceBus&quot;"/>
+                                <item value="&quot;AzureSiteRecovery&quot;"/>
+                                <item value="&quot;AzureStorageAccount&quot;"/>
+                                <item value="&quot;AzureTemplate&quot;"/>
+                                <item value="&quot;CrossZoneVMRecovery&quot;"/>
+                                <item value="&quot;CustomRunbook&quot;"/>
+                                <item value="&quot;None&quot;"/>
+                              </enum>
+                            </prop>
+                            <discriminator property="protectionSolutionType" value="AzureCosmosDB"/>
+                            <discriminator property="protectionSolutionType" value="AzureNative"/>
+                            <discriminator property="protectionSolutionType" value="AzureNetAppFiles"/>
+                            <discriminator property="protectionSolutionType" value="AzureServiceBus"/>
+                            <discriminator property="protectionSolutionType" value="AzureSiteRecovery">
+                              <prop type="object" name="reprotectParams">
+                                <prop type="array<object>" name="diskReprotectInputDetails">
+                                  <item type="object">
+                                    <prop type="ResourceId" name="diskResourceId"/>
+                                    <prop type="ResourceId" name="stagingStorageAccountResourceId"/>
+                                  </item>
+                                </prop>
+                              </prop>
+                              <prop type="object" name="testFailoverCleanupParams">
+                                <prop type="string" name="comments"/>
+                              </prop>
+                              <prop type="object" name="testFailoverParams">
+                                <prop type="ResourceId" name="networkResourceId"/>
+                              </prop>
+                            </discriminator>
+                            <discriminator property="protectionSolutionType" value="AzureStorageAccount"/>
+                            <discriminator property="protectionSolutionType" value="AzureTemplate">
+                              <prop type="string" name="deploymentLocation"/>
+                              <prop type="ResourceId" name="deploymentScope" required="True"/>
+                              <prop type="ResourceId" name="templateSpecVersionId" required="True"/>
+                            </discriminator>
+                            <discriminator property="protectionSolutionType" value="CrossZoneVMRecovery">
+                              <prop type="ResourceId" name="capacityReservationGroupId"/>
+                              <prop type="string" name="targetZone"/>
+                            </discriminator>
+                            <discriminator property="protectionSolutionType" value="CustomRunbook">
+                              <prop type="object" name="failoverAction" cls="ResourceCustomProtectionAction_read">
+                                <prop type="ResourceId" name="resourceId" required="True"/>
+                              </prop>
+                              <prop type="@ResourceCustomProtectionAction_read" name="failoverCommitAction"/>
+                              <prop type="@ResourceCustomProtectionAction_read" name="reprotectAction"/>
+                              <prop type="@ResourceCustomProtectionAction_read" name="testFailoverAction"/>
+                              <prop type="@ResourceCustomProtectionAction_read" name="testFailoverCleanupAction"/>
+                            </discriminator>
+                          </prop>
+                          <prop type="string" name="selectedProtectionSolutionType">
+                            <enum>
+                              <item value="&quot;AzureCosmosDB&quot;"/>
+                              <item value="&quot;AzureNative&quot;"/>
+                              <item value="&quot;AzureNetAppFiles&quot;"/>
+                              <item value="&quot;AzureServiceBus&quot;"/>
+                              <item value="&quot;AzureSiteRecovery&quot;"/>
+                              <item value="&quot;AzureStorageAccount&quot;"/>
+                              <item value="&quot;AzureTemplate&quot;"/>
+                              <item value="&quot;CrossZoneVMRecovery&quot;"/>
+                              <item value="&quot;CustomRunbook&quot;"/>
+                              <item value="&quot;None&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="object" name="systemData">
+                          <prop type="dateTime" name="createdAt">
+                            <format protocol="iso"/>
+                          </prop>
+                          <prop type="string" name="createdBy"/>
+                          <prop type="string" name="createdByType">
+                            <enum>
+                              <item value="&quot;Application&quot;"/>
+                              <item value="&quot;Key&quot;"/>
+                              <item value="&quot;ManagedIdentity&quot;"/>
+                              <item value="&quot;User&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="dateTime" name="lastModifiedAt">
+                            <format protocol="iso"/>
+                          </prop>
+                          <prop type="string" name="lastModifiedBy"/>
+                          <prop type="string" name="lastModifiedByType">
+                            <enum>
+                              <item value="&quot;Application&quot;"/>
+                              <item value="&quot;Key&quot;"/>
+                              <item value="&quot;ManagedIdentity&quot;"/>
+                              <item value="&quot;User&quot;"/>
+                            </enum>
+                          </prop>
+                        </prop>
+                        <prop readOnly="True" type="string" name="type"/>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
