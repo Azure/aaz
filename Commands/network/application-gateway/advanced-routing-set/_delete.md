@@ -1,4 +1,4 @@
-# [Command] _network application-gateway advanced-routing-condition-set delete_
+# [Command] _network application-gateway advanced-routing-set delete_
 
 Delete an advanced routing condition set.
 
@@ -12,5 +12,5 @@ Delete an advanced routing condition set.
 
 - Delete an advanced routing condition set.
     ```bash
-        network application-gateway advanced-routing-condition-set delete -g MyResourceGroup --gateway-name MyAppGateway -n MyConditionSet
+        network application-gateway advanced-routing-set delete -g MyResourceGroup --gateway-name MyAppGateway -n MyConditionSet
     ```

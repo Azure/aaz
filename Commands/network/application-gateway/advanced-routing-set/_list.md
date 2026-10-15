@@ -1,4 +1,4 @@
-# [Command] _network application-gateway advanced-routing-condition-set list_
+# [Command] _network application-gateway advanced-routing-set list_
 
 List advanced routing condition sets.
 
@@ -12,5 +12,5 @@ List advanced routing condition sets.
 
 - List advanced routing condition sets.
     ```bash
-        network application-gateway advanced-routing-condition-set list -g MyResourceGroup --gateway-name MyAppGateway
+        network application-gateway advanced-routing-set list -g MyResourceGroup --gateway-name MyAppGateway
     ```

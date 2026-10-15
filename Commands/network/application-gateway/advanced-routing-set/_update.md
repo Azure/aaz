@@ -1,4 +1,4 @@
-# [Command] _network application-gateway advanced-routing-condition-set update_
+# [Command] _network application-gateway advanced-routing-set update_
 
 Update an advanced routing condition set.
 
@@ -12,5 +12,5 @@ Update an advanced routing condition set.
 
 - Replace the routing conditions of an advanced routing condition set.
     ```bash
-        network application-gateway advanced-routing-condition-set update -g MyResourceGroup --gateway-name MyAppGateway -n MyConditionSet --routing-conditions "[{condition-type:Header,property-name:x-env,property-values:[canary,beta]}]"
+        network application-gateway advanced-routing-set update -g MyResourceGroup --gateway-name MyAppGateway -n MyConditionSet --routing-conditions "[{condition-type:Header,property-name:x-env,property-values:[canary,beta]}]"
     ```

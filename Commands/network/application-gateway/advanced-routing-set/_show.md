@@ -1,4 +1,4 @@
-# [Command] _network application-gateway advanced-routing-condition-set show_
+# [Command] _network application-gateway advanced-routing-set show_
 
 Get the details of an advanced routing condition set.
 
@@ -12,5 +12,5 @@ Get the details of an advanced routing condition set.
 
 - Get the details of an advanced routing condition set.
     ```bash
-        network application-gateway advanced-routing-condition-set show -g MyResourceGroup --gateway-name MyAppGateway -n MyConditionSet
+        network application-gateway advanced-routing-set show -g MyResourceGroup --gateway-name MyAppGateway -n MyConditionSet
     ```

@@ -1,4 +1,4 @@
-# [Command] _network application-gateway advanced-routing-condition-set create_
+# [Command] _network application-gateway advanced-routing-set create_
 
 Create an advanced routing condition set.
 
@@ -14,10 +14,10 @@ The condition set must contain at least one routing condition. All conditions mu
 
 - Create an advanced routing condition set that matches requests with a header value.
     ```bash
-        network application-gateway advanced-routing-condition-set create -g MyResourceGroup --gateway-name MyAppGateway -n MyConditionSet --routing-conditions "[{condition-type:Header,property-name:x-env,property-values:[canary]}]"
+        network application-gateway advanced-routing-set create -g MyResourceGroup --gateway-name MyAppGateway -n MyConditionSet --routing-conditions "[{condition-type:Header,property-name:x-env,property-values:[canary]}]"
     ```
 
 - Create an advanced routing condition set that matches requests by path pattern and query string.
     ```bash
-        network application-gateway advanced-routing-condition-set create -g MyResourceGroup --gateway-name MyAppGateway -n MyConditionSet2 --routing-conditions "[{condition-type:Path,property-value-matcher:{pattern:'/api/*'}},{condition-type:QueryString,property-name:version,property-values:[v2]}]"
+        network application-gateway advanced-routing-set create -g MyResourceGroup --gateway-name MyAppGateway -n MyConditionSet2 --routing-conditions "[{condition-type:Path,property-value-matcher:{pattern:'/api/*'}},{condition-type:QueryString,property-name:version,property-values:[v2]}]"
     ```

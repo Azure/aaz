@@ -1,4 +1,4 @@
-# [Command] _network application-gateway advanced-routing-condition-set condition create_
+# [Command] _network application-gateway advanced-routing-set condition create_
 
 Create a routing condition.
 
@@ -12,5 +12,5 @@ Create a routing condition.
 
 - Add a query string condition to an advanced routing condition set.
     ```bash
-        network application-gateway advanced-routing-condition-set condition create -g MyResourceGroup --gateway-name MyAppGateway --condition-set-name MyConditionSet --condition-type QueryString --property-name version --property-values v2
+        network application-gateway advanced-routing-set condition create -g MyResourceGroup --gateway-name MyAppGateway --condition-set-name MyConditionSet --condition-type QueryString --property-name version --property-values v2
     ```

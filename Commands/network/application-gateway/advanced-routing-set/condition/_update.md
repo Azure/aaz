@@ -1,6 +1,6 @@
-# [Command] _network application-gateway advanced-routing-condition-set condition show_
+# [Command] _network application-gateway advanced-routing-set condition update_
 
-Get the details of a routing condition.
+Update a routing condition.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Get the details of a routing condition.
 
 #### examples
 
-- Get the details of the first routing condition of an advanced routing condition set.
+- Update the values of the second routing condition of an advanced routing condition set.
     ```bash
-        network application-gateway advanced-routing-condition-set condition show -g MyResourceGroup --gateway-name MyAppGateway --condition-set-name MyConditionSet --index 0
+        network application-gateway advanced-routing-set condition update -g MyResourceGroup --gateway-name MyAppGateway --condition-set-name MyConditionSet --index 1 --property-values v2 v3
     ```
