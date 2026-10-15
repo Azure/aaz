@@ -8,7 +8,7 @@ Manage resource type registration with providerhub.
 : Create a resource type.
 
 - [delete](/Commands/providerhub/resource-type-registration/_delete.md)
-: Delete a resource type
+: Delete a resource type.
 
 - [list](/Commands/providerhub/resource-type-registration/_list.md)
 : List the list of the resource types for the given provider.

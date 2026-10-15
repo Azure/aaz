@@ -1,6 +1,6 @@
 # [Group] _providerhub_
 
-Manage resources with providerhub.
+Manage resources with ProviderHub.
 
 ## Subgroups
 

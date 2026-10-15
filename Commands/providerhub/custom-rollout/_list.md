@@ -14,3 +14,14 @@ List the list of the custom rollouts for the given provider.
     ```bash
         providerhub custom-rollout list --provider-namespace "{providerNamespace}"
     ```
+
+### [2026-02-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5wcm92aWRlcmh1Yi9wcm92aWRlcnJlZ2lzdHJhdGlvbnMve30vY3VzdG9tcm9sbG91dHM=/2026-02-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.providerhub/providerregistrations/{}/customrollouts 2026-02-01-preview -->
+
+#### examples
+
+- custom-rollout list
+    ```bash
+        providerhub custom-rollout list --provider-namespace "{providerNamespace}"
+    ```
