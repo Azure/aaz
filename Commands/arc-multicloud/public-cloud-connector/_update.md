@@ -16,3 +16,29 @@ For additional details, please visit the https://learn.microsoft.com/en-us/cli/a
     ```bash
         arc-multicloud public-cloud-connector update --resource-group multiCloudRG --name awsConnector --aws-cloud-profile "{excluded-accounts:[123456789123,123456789124]}" --tags "{}"
     ```
+
+### [2027-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5oeWJyaWRjb25uZWN0aXZpdHkvcHVibGljY2xvdWRjb25uZWN0b3JzL3t9/2027-01-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridconnectivity/publiccloudconnectors/{} 2027-01-01 -->
+
+#### examples
+
+- publicCloudConnectors_Update
+    ```bash
+        arc-multicloud public-cloud-connector update --resource-group multiCloudRG --name awsConnector --aws-cloud-profile "{excluded-accounts:[123456789123,123456789124]}" --tags "{}"
+    ```
+
+- publicCloudConnectors_Update
+    ```bash
+        arc-multicloud public-cloud-connector update --resource-group multiCloudRG --name awsConnector --aws-cloud-profile excluded-accounts[0]=123456789123 excluded-accounts[1]=123456789124
+    ```
+
+- publicCloudConnectors_Update
+    ```bash
+        arc-multicloud public-cloud-connector update --resource-group multiCloudRG --name gcpConnector --gcp-cloud-profile "{organization-properties:{excluded-project-numbers:[123456789123,123456789124],excluded-folder-ids:[folders/555,folders/666]}}"
+    ```
+
+- publicCloudConnectors_Update
+    ```bash
+        arc-multicloud public-cloud-connector update --resource-group multiCloudRG --name gcpConnector --gcp-cloud-profile organization-properties.excluded-project-numbers[0]=123456789123 organization-properties.excluded-folder-ids[0]=folders/555
+    ```

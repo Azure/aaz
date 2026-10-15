@@ -17,3 +17,15 @@ For additional details, please visit the https://learn.microsoft.com/en-us/cli/a
     ```bash
         arc-multicloud public-cloud-connector list --resource-group multiCloudRG
     ```
+
+### [2027-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5oeWJyaWRjb25uZWN0aXZpdHkvcHVibGljY2xvdWRjb25uZWN0b3Jz/2027-01-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.hybridconnectivity/publiccloudconnectors 2027-01-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridconnectivity/publiccloudconnectors 2027-01-01 -->
+
+#### examples
+
+- PublicCloudConnectors_ListBySubscription
+    ```bash
+        arc-multicloud public-cloud-connector list --resource-group multiCloudRG
+    ```
