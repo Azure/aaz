@@ -22,8 +22,14 @@ Manage Network To Network Interconnect Resource
 - [update-admin-state](/Commands/networkfabric/nni/_update-admin-state.md)
 : Updates the Admin State.
 
+- [update-bfd-admin-state](/Commands/networkfabric/nni/_update-bfd-admin-state.md)
+: Updates the Admin State.
+
 - [update-bfd-administrative-state](/Commands/networkfabric/nni/_update-bfd-administrative-state.md)
 : Updates the Admin State.
+
+- [update-npb-static-route-bfd-admin-state](/Commands/networkfabric/nni/_update-npb-static-route-bfd-admin-state.md)
+: Updates the NPB Static Route BFD Administrative State.
 
 - [update-npb-static-route-bfd-administrative-state](/Commands/networkfabric/nni/_update-npb-static-route-bfd-administrative-state.md)
 : Updates the NPB Static Route BFD Administrative State.

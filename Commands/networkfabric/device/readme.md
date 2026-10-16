@@ -21,6 +21,9 @@ Manage Network Device Resource
 - [reboot](/Commands/networkfabric/device/_reboot.md)
 : Reboot the Network Device.
 
+- [refresh-config](/Commands/networkfabric/device/_refresh-config.md)
+: Refreshes the configuration the Network Device.
+
 - [refresh-configuration](/Commands/networkfabric/device/_refresh-configuration.md)
 : Refreshes the configuration the Network Device.
 
@@ -30,11 +33,17 @@ Manage Network Device Resource
 - [resync-password](/Commands/networkfabric/device/_resync-password.md)
 : Updates the Network Device to use the latest passwords. Does not generate new passwords. Allows network devices missed during a previous password rotation to be brought back into sync.
 
+- [run-diagnostic](/Commands/networkfabric/device/_run-diagnostic.md)
+: Runs a diagnostics operation on the Network Device.
+
 - [run-ro](/Commands/networkfabric/device/_run-ro.md)
 : Run the RO Command on the Network Device.
 
 - [run-rw](/Commands/networkfabric/device/_run-rw.md)
 : Run the RW Command on the Network Device.
+
+- [run-validation](/Commands/networkfabric/device/_run-validation.md)
+: Runs validation on the Network Device for the specified operation.
 
 - [show](/Commands/networkfabric/device/_show.md)
 : Show details of the provided Network Device resource
