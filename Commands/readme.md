@@ -11,6 +11,9 @@
 - [afd](/Commands/afd/readme.md)
 : Manage Azure Front Door Standard/Premium.
 
+- [agentfabric](/Commands/agentfabric/readme.md)
+: Manage Agent Fabric and related Microsoft.NetworkSecurity resources. Root commands manage Agent Fabric resources.
+
 - [alerts-management](/Commands/alerts-management/readme.md)
 : Manage Azure Alerts Management Service Resource.
 
