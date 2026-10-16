@@ -12,5 +12,5 @@ Show the short-term retention policy for a SQL database.
 
 - Show the database backup retention policy.
     ```bash
-        sql db str-policy show --resource-group MyResourceGroup --server MyServer --name MyDatabase --policy-name default
+        sql db str-policy show --resource-group MyResourceGroup --server MyServer --name MyDatabase
     ```

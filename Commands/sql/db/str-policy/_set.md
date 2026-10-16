@@ -12,5 +12,5 @@ Set the short-term retention policy for a SQL database.
 
 - Set the backup retention period to seven days.
     ```bash
-        sql db str-policy set --resource-group MyResourceGroup --server MyServer --name MyDatabase --policy-name default --retention-days 7
+        sql db str-policy set --resource-group MyResourceGroup --server MyServer --name MyDatabase --retention-days 7
     ```

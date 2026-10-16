@@ -12,5 +12,5 @@ Show the short-term retention policy for a managed database.
 
 - Show the database backup retention policy.
     ```bash
-        sql midb short-term-retention-policy show --resource-group MyResourceGroup --mi MyInstance --name MyDatabase --policy-name default
+        sql midb short-term-retention-policy show --resource-group MyResourceGroup --mi MyInstance --name MyDatabase
     ```

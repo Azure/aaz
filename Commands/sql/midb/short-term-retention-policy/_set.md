@@ -12,5 +12,5 @@ Set the short-term retention policy for a managed database.
 
 - Set the backup retention period to seven days.
     ```bash
-        sql midb short-term-retention-policy set --resource-group MyResourceGroup --mi MyInstance --name MyDatabase --policy-name default --retention-days 7
+        sql midb short-term-retention-policy set --resource-group MyResourceGroup --mi MyInstance --name MyDatabase --retention-days 7
     ```
