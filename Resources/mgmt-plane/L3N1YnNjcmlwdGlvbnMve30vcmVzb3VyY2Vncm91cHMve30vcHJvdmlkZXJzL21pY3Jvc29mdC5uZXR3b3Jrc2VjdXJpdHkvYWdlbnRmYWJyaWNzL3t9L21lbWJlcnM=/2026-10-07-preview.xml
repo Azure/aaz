@@ -59,7 +59,7 @@
                         </prop>
                         <prop readOnly="True" type="string" name="spiffeId"/>
                         <prop type="object" name="workload">
-                          <prop type="string" name="memberGuid"/>
+                          <prop type="uuid" name="memberGuid"/>
                           <prop type="string" name="type" required="True">
                             <enum>
                               <item value="&quot;ACI&quot;"/>
@@ -69,6 +69,11 @@
                           </prop>
                           <prop readOnly="True" type="string" name="workloadId"/>
                           <discriminator property="type" value="ACI">
+                            <prop type="object" name="agentIdentity" cls="AgentIdentity_read">
+                              <prop type="string" name="agentId" required="True"/>
+                              <prop type="string" name="blueprintId"/>
+                              <prop type="string" name="tenantId" required="True"/>
+                            </prop>
                             <prop type="ResourceId" name="resourceId" required="True"/>
                           </discriminator>
                           <discriminator property="type" value="AKS">
@@ -98,10 +103,7 @@
                             </prop>
                           </discriminator>
                           <discriminator property="type" value="AgentFabricSandbox">
-                            <prop type="object" name="agentIdentity">
-                              <prop type="string" name="agentId" required="True"/>
-                              <prop type="string" name="tenantId" required="True"/>
-                            </prop>
+                            <prop type="@AgentIdentity_read" name="agentIdentity"/>
                             <prop type="string" name="domain" required="True"/>
                             <prop type="array<object>" name="endpoints" identifiers="name">
                               <item type="object">

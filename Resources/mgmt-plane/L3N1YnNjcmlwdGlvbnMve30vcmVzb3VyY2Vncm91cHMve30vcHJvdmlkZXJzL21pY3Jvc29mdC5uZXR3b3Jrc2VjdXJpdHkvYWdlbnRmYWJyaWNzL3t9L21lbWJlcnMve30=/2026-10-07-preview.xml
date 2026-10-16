@@ -63,7 +63,7 @@
                     </prop>
                     <prop readOnly="True" type="string" name="spiffeId"/>
                     <prop type="object" name="workload">
-                      <prop type="string" name="memberGuid"/>
+                      <prop type="uuid" name="memberGuid"/>
                       <prop type="string" name="type" required="True">
                         <enum>
                           <item value="&quot;ACI&quot;"/>
@@ -73,6 +73,11 @@
                       </prop>
                       <prop readOnly="True" type="string" name="workloadId"/>
                       <discriminator property="type" value="ACI">
+                        <prop type="object" name="agentIdentity" cls="AgentIdentity_read">
+                          <prop type="string" name="agentId" required="True"/>
+                          <prop type="string" name="blueprintId"/>
+                          <prop type="string" name="tenantId" required="True"/>
+                        </prop>
                         <prop type="ResourceId" name="resourceId" required="True"/>
                       </discriminator>
                       <discriminator property="type" value="AKS">
@@ -102,10 +107,7 @@
                         </prop>
                       </discriminator>
                       <discriminator property="type" value="AgentFabricSandbox">
-                        <prop type="object" name="agentIdentity">
-                          <prop type="string" name="agentId" required="True"/>
-                          <prop type="string" name="tenantId" required="True"/>
-                        </prop>
+                        <prop type="@AgentIdentity_read" name="agentIdentity"/>
                         <prop type="string" name="domain" required="True"/>
                         <prop type="array<object>" name="endpoints" identifiers="name">
                           <item type="object">
@@ -261,6 +263,18 @@
         <arg type="object" var="$resource.properties.workload" options="workload" group="Properties">
           <help short="The workload configuration of the member. Set at creation and immutable thereafter; to change the workload, delete and recreate the member."/>
           <arg type="object" var="$resource.properties.workload.ACI" options="aci">
+            <arg type="object" var="$resource.properties.workload.ACI.agentIdentity" options="agent-identity" cls="AgentIdentity_create">
+              <help short="The Entra agent identity associated with the workload."/>
+              <arg type="string" var="@AgentIdentity_create.agentId" options="agent-id" required="True">
+                <help short="The Entra agent ID representing the workload's identity."/>
+              </arg>
+              <arg type="string" var="@AgentIdentity_create.blueprintId" options="blueprint-id">
+                <help short="The Entra agent blueprint ID that this agent identity was instantiated from. The blueprint describes the agent's declared capabilities and is used to scope the policies applied to the workload."/>
+              </arg>
+              <arg type="string" var="@AgentIdentity_create.tenantId" options="tenant-id" required="True">
+                <help short="The Azure tenant ID that owns the agent identity."/>
+              </arg>
+            </arg>
             <arg type="ResourceId" var="$resource.properties.workload.ACI.resourceId" options="resource-id" required="True">
               <help short="The Azure Resource Manager resource ID of the Azure Container Instances (ACI) resource backing this member's sandbox. Starting in API version `2026-10-07-preview`, this identifies the parent SandboxGroup -- the enrollment boundary associated with the fabric through a ClusterAssociation -- rather than the individual container group."/>
             </arg>
@@ -310,14 +324,8 @@
             </arg>
           </arg>
           <arg type="object" var="$resource.properties.workload.AgentFabricSandbox" options="agent-fabric-sandbox">
-            <arg type="object" var="$resource.properties.workload.AgentFabricSandbox.agentIdentity" options="agent-identity">
+            <arg type="@AgentIdentity_create" var="$resource.properties.workload.AgentFabricSandbox.agentIdentity" options="agent-identity">
               <help short="The Entra agent identity associated with the workload."/>
-              <arg type="string" var="$resource.properties.workload.AgentFabricSandbox.agentIdentity.agentId" options="agent-id" required="True">
-                <help short="The Entra agent ID representing the workload's identity."/>
-              </arg>
-              <arg type="string" var="$resource.properties.workload.AgentFabricSandbox.agentIdentity.tenantId" options="tenant-id" required="True">
-                <help short="The Azure tenant ID that owns the agent identity."/>
-              </arg>
             </arg>
             <arg type="string" var="$resource.properties.workload.AgentFabricSandbox.domain" options="domain" required="True">
               <help short="The resolvable DNS name assigned to the workload."/>
@@ -370,8 +378,8 @@
               </arg>
             </arg>
           </arg>
-          <arg type="string" var="$resource.properties.workload.memberGuid" options="member-guid">
-            <help short="The unique identifier (GUID) assigned to the member when it is created. For most workload types this is assigned by the resource provider and is read-only. Starting in API version `2026-10-07-preview`, ACI workloads instead supply this value at creation: the ACI resource provider generates the GUID for the sandbox and this field is immutable afterward."/>
+          <arg type="uuid" var="$resource.properties.workload.memberGuid" options="member-guid">
+            <help short="The unique identifier (GUID) assigned to the member when it is created. For most workload types this is assigned by the resource provider and is read-only. ACI workloads instead supply this value at creation: the ACI resource provider generates the GUID for the sandbox and this field is immutable afterward."/>
           </arg>
         </arg>
       </argGroup>
@@ -415,7 +423,7 @@
                   <prop type="object" name="properties">
                     <prop type="string" name="fqdn" arg="$resource.properties.fqdn"/>
                     <prop type="object" name="workload" arg="$resource.properties.workload">
-                      <prop type="string" name="memberGuid" arg="$resource.properties.workload.memberGuid"/>
+                      <prop type="uuid" name="memberGuid" arg="$resource.properties.workload.memberGuid"/>
                       <prop type="string" name="type" required="True">
                         <enum>
                           <item arg="$resource.properties.workload.ACI" value="&quot;ACI&quot;"/>
@@ -424,6 +432,11 @@
                         </enum>
                       </prop>
                       <discriminator property="type" value="ACI">
+                        <prop type="object" name="agentIdentity" arg="$resource.properties.workload.ACI.agentIdentity" cls="AgentIdentity_create">
+                          <prop type="string" name="agentId" arg="@AgentIdentity_create.agentId" required="True"/>
+                          <prop type="string" name="blueprintId" arg="@AgentIdentity_create.blueprintId"/>
+                          <prop type="string" name="tenantId" arg="@AgentIdentity_create.tenantId" required="True"/>
+                        </prop>
                         <prop type="ResourceId" name="resourceId" arg="$resource.properties.workload.ACI.resourceId" required="True"/>
                       </discriminator>
                       <discriminator property="type" value="AKS">
@@ -453,10 +466,7 @@
                         </prop>
                       </discriminator>
                       <discriminator property="type" value="AgentFabricSandbox">
-                        <prop type="object" name="agentIdentity" arg="$resource.properties.workload.AgentFabricSandbox.agentIdentity">
-                          <prop type="string" name="agentId" arg="$resource.properties.workload.AgentFabricSandbox.agentIdentity.agentId" required="True"/>
-                          <prop type="string" name="tenantId" arg="$resource.properties.workload.AgentFabricSandbox.agentIdentity.tenantId" required="True"/>
-                        </prop>
+                        <prop type="@AgentIdentity_create" name="agentIdentity" arg="$resource.properties.workload.AgentFabricSandbox.agentIdentity"/>
                         <prop type="string" name="domain" arg="$resource.properties.workload.AgentFabricSandbox.domain" required="True"/>
                         <prop type="array<object>" name="endpoints" arg="$resource.properties.workload.AgentFabricSandbox.endpoints" identifiers="name">
                           <item type="object">
@@ -522,7 +532,7 @@
                     </prop>
                     <prop readOnly="True" type="string" name="spiffeId"/>
                     <prop type="object" name="workload">
-                      <prop type="string" name="memberGuid"/>
+                      <prop type="uuid" name="memberGuid"/>
                       <prop type="string" name="type" required="True">
                         <enum>
                           <item value="&quot;ACI&quot;"/>
@@ -532,6 +542,11 @@
                       </prop>
                       <prop readOnly="True" type="string" name="workloadId"/>
                       <discriminator property="type" value="ACI">
+                        <prop type="object" name="agentIdentity" cls="AgentIdentity_read">
+                          <prop type="string" name="agentId" required="True"/>
+                          <prop type="string" name="blueprintId"/>
+                          <prop type="string" name="tenantId" required="True"/>
+                        </prop>
                         <prop type="ResourceId" name="resourceId" required="True"/>
                       </discriminator>
                       <discriminator property="type" value="AKS">
@@ -561,10 +576,7 @@
                         </prop>
                       </discriminator>
                       <discriminator property="type" value="AgentFabricSandbox">
-                        <prop type="object" name="agentIdentity">
-                          <prop type="string" name="agentId" required="True"/>
-                          <prop type="string" name="tenantId" required="True"/>
-                        </prop>
+                        <prop type="@AgentIdentity_read" name="agentIdentity"/>
                         <prop type="string" name="domain" required="True"/>
                         <prop type="array<object>" name="endpoints" identifiers="name">
                           <item type="object">
@@ -730,7 +742,7 @@
                     </prop>
                     <prop readOnly="True" type="string" name="spiffeId"/>
                     <prop type="object" name="workload">
-                      <prop type="string" name="memberGuid"/>
+                      <prop type="uuid" name="memberGuid"/>
                       <prop type="string" name="type" required="True">
                         <enum>
                           <item value="&quot;ACI&quot;"/>
@@ -740,6 +752,11 @@
                       </prop>
                       <prop readOnly="True" type="string" name="workloadId"/>
                       <discriminator property="type" value="ACI">
+                        <prop type="object" name="agentIdentity" cls="AgentIdentity_read">
+                          <prop type="string" name="agentId" required="True"/>
+                          <prop type="string" name="blueprintId"/>
+                          <prop type="string" name="tenantId" required="True"/>
+                        </prop>
                         <prop type="ResourceId" name="resourceId" required="True"/>
                       </discriminator>
                       <discriminator property="type" value="AKS">
@@ -769,10 +786,7 @@
                         </prop>
                       </discriminator>
                       <discriminator property="type" value="AgentFabricSandbox">
-                        <prop type="object" name="agentIdentity">
-                          <prop type="string" name="agentId" required="True"/>
-                          <prop type="string" name="tenantId" required="True"/>
-                        </prop>
+                        <prop type="@AgentIdentity_read" name="agentIdentity"/>
                         <prop type="string" name="domain" required="True"/>
                         <prop type="array<object>" name="endpoints" identifiers="name">
                           <item type="object">
