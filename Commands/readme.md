@@ -87,7 +87,7 @@
 : Manage Azure Chaos Studio resources.
 
 - [cloud-service](/Commands/cloud-service/readme.md)
-: Manage cloud service
+: Manage Cloud Service
 
 - [cognitiveservices](/Commands/cognitiveservices/readme.md)
 : Manage Cognitive Services
