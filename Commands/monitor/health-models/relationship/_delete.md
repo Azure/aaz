@@ -14,3 +14,14 @@ Delete a Relationship
     ```bash
         monitor health-models relationship delete --resource-group rgopenapi --health-model-name model1 --relationship-name rel1
     ```
+
+### [2026-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jbG91ZGhlYWx0aC9oZWFsdGhtb2RlbHMve30vcmVsYXRpb25zaGlwcy97fQ==/2026-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cloudhealth/healthmodels/{}/relationships/{} 2026-11-01 -->
+
+#### examples
+
+- Relationships_Delete
+    ```bash
+        monitor health-models relationship delete --resource-group rgopenapi --health-model-name model1 --relationship-name rel1
+    ```
