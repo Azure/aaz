@@ -14,3 +14,14 @@ Shows the Relay Service Namespace details.
     ```bash
         relay namespace show --resource-group myresourcegroup --name mynamespace
     ```
+
+### [2026-07-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5yZWxheS9uYW1lc3BhY2VzL3t9/2026-07-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.relay/namespaces/{} 2026-07-01-preview -->
+
+#### examples
+
+- shows the Namespace details.
+    ```bash
+        relay namespace show --resource-group myresourcegroup --name mynamespace
+    ```

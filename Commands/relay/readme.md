@@ -4,6 +4,9 @@ Manage Azure Relay Service namespaces, WCF relays, hybrid connections, and rules
 
 ## Subgroups
 
+- [cluster](/Commands/relay/cluster/readme.md)
+: Manage Cluster
+
 - [hyco](/Commands/relay/hyco/readme.md)
 : Manage Azure Relay Service Hybrid Connection and Authorization Rule.
 

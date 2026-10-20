@@ -14,3 +14,14 @@ Regenerate keys of Authorization Rule for Relay Service WCF Relay.
     ```bash
         relay wcfrelay authorization-rule keys renew --resource-group myresourcegroup --namespace-name mynamespace --relay-name myrelay --name myauthorule --key PrimaryKey
     ```
+
+### [2026-07-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5yZWxheS9uYW1lc3BhY2VzL3t9L3djZnJlbGF5cy97fS9hdXRob3JpemF0aW9ucnVsZXMve30vcmVnZW5lcmF0ZWtleXM=/2026-07-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.relay/namespaces/{}/wcfrelays/{}/authorizationrules/{}/regeneratekeys 2026-07-01-preview -->
+
+#### examples
+
+- Regenerate keys of Authorization Rule for Relay Service WCF Relay
+    ```bash
+        relay wcfrelay authorization-rule keys renew --resource-group myresourcegroup --namespace-name mynamespace --relay-name myrelay --name myauthorule --key PrimaryKey
+    ```
