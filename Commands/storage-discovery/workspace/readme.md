@@ -2,6 +2,11 @@
 
 Manage Storage Discovery Workspace
 
+## Subgroups
+
+- [report](/Commands/storage-discovery/workspace/report/readme.md)
+: Manage Storage Discovery Workspace Report
+
 ## Commands
 
 - [create](/Commands/storage-discovery/workspace/_create.md)

@@ -86,9 +86,6 @@
 - [chaos](/Commands/chaos/readme.md)
 : Manage Azure Chaos Studio resources.
 
-- [managedcleanroom](/Commands/managedcleanroom/readme.md)
-: Manage Clean Room
-
 - [cloud-service](/Commands/cloud-service/readme.md)
 : Manage cloud service
 
@@ -424,6 +421,9 @@
 
 - [storage-actions](/Commands/storage-actions/readme.md)
 : Manage StorageActions
+
+- [storage-discovery](/Commands/storage-discovery/readme.md)
+: Manage Storage Discovery
 
 - [storage-mover](/Commands/storage-mover/readme.md)
 : Manage top-level Storage Mover resource.
