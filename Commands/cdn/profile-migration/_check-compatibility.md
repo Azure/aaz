@@ -27,9 +27,9 @@ Checks if CDN profile can be migrated to Azure Frontdoor(Standard/Premium) profi
         cdn profile-migration check-compatibility --resource-group RG --profile-name profile1
     ```
 
-### [2026-09-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vY2RuY2FubWlncmF0ZXRvYWZk/2026-09-01-preview.xml) **Preview**
+### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vY2RuY2FubWlncmF0ZXRvYWZk/2026-04-01-preview.xml) **Preview**
 
-<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/cdncanmigratetoafd 2026-09-01-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/cdncanmigratetoafd 2026-04-01-preview -->
 
 #### examples
 

@@ -27,9 +27,9 @@ Abort the migration to Azure Frontdoor Premium/Standard.
         cdn profile-migration abort --resource-group RG --profile-name profile1
     ```
 
-### [2026-09-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vbWlncmF0aW9uYWJvcnQ=/2026-09-01-preview.xml) **Preview**
+### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vbWlncmF0aW9uYWJvcnQ=/2026-04-01-preview.xml) **Preview**
 
-<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/migrationabort 2026-09-01-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/migrationabort 2026-04-01-preview -->
 
 #### examples
 

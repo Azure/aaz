@@ -27,9 +27,9 @@ Migrate the CDN profile to Azure Frontdoor(Standard/Premium) profile. This step 
         cdn profile-migration migrate --resource-group RG --profile-name profile1 --sku Standard_AzureFrontDoor
     ```
 
-### [2026-09-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vY2RubWlncmF0ZXRvYWZk/2026-09-01-preview.xml) **Preview**
+### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vY2RubWlncmF0ZXRvYWZk/2026-04-01-preview.xml) **Preview**
 
-<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/cdnmigratetoafd 2026-09-01-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/cdnmigratetoafd 2026-04-01-preview -->
 
 #### examples
 

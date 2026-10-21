@@ -31,9 +31,9 @@ List are the global Point of Presence (POP) locations used to deliver CDN conten
         cdn edge-node list
     ```
 
-### [2026-09-01-preview](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuY2RuL2VkZ2Vub2Rlcw==/2026-09-01-preview.xml) **Stable**
+### [2026-04-01-preview](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuY2RuL2VkZ2Vub2Rlcw==/2026-04-01-preview.xml) **Stable**
 
-<!-- mgmt-plane /providers/microsoft.cdn/edgenodes 2026-09-01-preview -->
+<!-- mgmt-plane /providers/microsoft.cdn/edgenodes 2026-04-01-preview -->
 
 #### examples
 
