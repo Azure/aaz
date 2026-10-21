@@ -381,7 +381,7 @@
 : Manage Microsoft Sentinel.
 
 - [service-group](/Commands/service-group/readme.md)
-: Manage Service Group
+: Manage Azure Service Groups.
 
 - [service-networking](/Commands/service-networking/readme.md)
 : Manage Service Networking Resources

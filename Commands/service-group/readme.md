@@ -1,20 +1,20 @@
 # [Group] _service-group_
 
-Manage Service Group
+Manage Azure Service Groups.
 
 ## Commands
 
 - [create](/Commands/service-group/_create.md)
-: Create a serviceGroup
+: Create or update a service group.
 
 - [delete](/Commands/service-group/_delete.md)
-: Delete a ServiceGroup
+: Delete a service group.
 
 - [list-ancestors](/Commands/service-group/_list-ancestors.md)
 : Get the details of the serviceGroup's ancestors
 
 - [show](/Commands/service-group/_show.md)
-: Get the details of the serviceGroup
+: Get the details of a service group.
 
 - [update](/Commands/service-group/_update.md)
-: Update a serviceGroup
+: Update a service group.
