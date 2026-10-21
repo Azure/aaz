@@ -86,9 +86,6 @@
 - [chaos](/Commands/chaos/readme.md)
 : Manage Azure Chaos Studio resources.
 
-- [managedcleanroom](/Commands/managedcleanroom/readme.md)
-: Manage Clean Room
-
 - [cloud-service](/Commands/cloud-service/readme.md)
 : Manage cloud service
 
@@ -181,6 +178,9 @@
 
 - [dynatrace](/Commands/dynatrace/readme.md)
 : Manage dynatrace
+
+- [edge-action](/Commands/edge-action/readme.md)
+: Manage Edge Action
 
 - [edge-zones](/Commands/edge-zones/readme.md)
 : Manage Edge Zone resources

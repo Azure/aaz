@@ -16,19 +16,19 @@ Manage Edge Action
 : A long-running operation for adding an EdgeAction attachment.
 
 - [create](/Commands/edge-action/_create.md)
-: Create EdgeAction resource
+: Create an EdgeAction
 
 - [delete](/Commands/edge-action/_delete.md)
-: Delete EdgeAction resource
+: Delete an EdgeAction
 
 - [delete-attachment](/Commands/edge-action/_delete-attachment.md)
 : A long-running operation for deleting an EdgeAction attachment that returns no content.
 
 - [list](/Commands/edge-action/_list.md)
-: List EdgeAction resources by subscription ID
+: List EdgeAction resources by resource group
 
 - [show](/Commands/edge-action/_show.md)
-: Get EdgeAction resource
+: Get an EdgeAction
 
 - [update](/Commands/edge-action/_update.md)
-: Update EdgeAction resource
+: Update an EdgeAction
