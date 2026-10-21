@@ -4,6 +4,6 @@ Checks whether or not the given search service name is available for use. Search
 
 ## Versions
 
-### [2025-05-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zZWFyY2gvY2hlY2tuYW1lYXZhaWxhYmlsaXR5/2025-05-01.xml) **Stable**
+### [2026-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zZWFyY2gvY2hlY2tuYW1lYXZhaWxhYmlsaXR5/2026-11-01.xml) **Stable**
 
-<!-- mgmt-plane /subscriptions/{}/providers/microsoft.search/checknameavailability 2025-05-01 -->
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.search/checknameavailability 2026-11-01 -->
