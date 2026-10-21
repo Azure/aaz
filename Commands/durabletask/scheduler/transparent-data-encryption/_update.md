@@ -14,3 +14,8 @@ Update a Transparent Data Encryption
     ```bash
         durabletask scheduler transparent-data-encryption update --resource-group rgdurabletask --scheduler-name testscheduler --key-vault-key-uri https://myencryption.vault.azure.net/keys/newEncryptionKey --auto-rotation-enabled True
     ```
+
+- Enable automatic rotation of customer-managed encryption keys on an existing encryption configuration
+    ```bash
+        durabletask scheduler transparent-data-encryption update --resource-group myResourceGroup --scheduler-name myScheduler --auto-rotation-enabled true
+    ```
