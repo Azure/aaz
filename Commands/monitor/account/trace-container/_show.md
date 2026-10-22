@@ -1,8 +1,6 @@
 # [Command] _monitor account trace-container show_
 
-Show trace container settings.
-
-Omitted settings are preserved on existing containers. New containers default to 30 days retention, a 600-second duration window, and Enabled trace metrics. Trace-derived metrics are billed.
+Show the trace container of an Azure Monitor workspace.
 
 ## Versions
 
@@ -12,7 +10,7 @@ Omitted settings are preserved on existing containers. New containers default to
 
 #### examples
 
-- Show the default trace container for an Azure Monitor workspace
+- Show the trace container of an Azure Monitor workspace
     ```bash
         monitor account trace-container show -g obsRg -w myAmw
     ```

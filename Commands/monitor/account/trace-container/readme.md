@@ -1,14 +1,14 @@
 # [Group] _monitor account trace-container_
 
-Manage Azure Monitor trace container settings.
+Manage the trace container of an Azure Monitor workspace.
 
 ## Commands
 
 - [create](/Commands/monitor/account/trace-container/_create.md)
-: Create trace container settings.
+: Create the trace container of an Azure Monitor workspace.
 
 - [show](/Commands/monitor/account/trace-container/_show.md)
-: Show trace container settings.
+: Show the trace container of an Azure Monitor workspace.
 
 - [update](/Commands/monitor/account/trace-container/_update.md)
-: Update trace container settings.
+: Update the trace container of an Azure Monitor workspace.

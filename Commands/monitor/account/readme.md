@@ -5,7 +5,7 @@ Manage monitor account
 ## Subgroups
 
 - [trace-container](/Commands/monitor/account/trace-container/readme.md)
-: Manage Azure Monitor trace container settings.
+: Manage the trace container of an Azure Monitor workspace.
 
 ## Commands
 

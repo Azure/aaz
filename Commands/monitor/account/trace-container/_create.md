@@ -1,8 +1,8 @@
 # [Command] _monitor account trace-container create_
 
-Create trace container settings.
+Create the trace container of an Azure Monitor workspace.
 
-Omitted settings are preserved on existing containers. New containers default to 30 days retention, a 600-second duration window, and Enabled trace metrics. Trace-derived metrics are billed.
+A workspace has one trace container, named default. On an existing container, omitted settings keep their current values. A new container defaults to 30 days retention, a 600-second duration window and Enabled trace metrics, which are billed.
 
 ## Versions
 
@@ -12,7 +12,7 @@ Omitted settings are preserved on existing containers. New containers default to
 
 #### examples
 
-- Create the default trace container for an Azure Monitor workspace
+- Create the trace container of an Azure Monitor workspace
     ```bash
         monitor account trace-container create -g obsRg -w myAmw --retention-days 30 --trace-duration-window 600 --trace-metrics Enabled
     ```
