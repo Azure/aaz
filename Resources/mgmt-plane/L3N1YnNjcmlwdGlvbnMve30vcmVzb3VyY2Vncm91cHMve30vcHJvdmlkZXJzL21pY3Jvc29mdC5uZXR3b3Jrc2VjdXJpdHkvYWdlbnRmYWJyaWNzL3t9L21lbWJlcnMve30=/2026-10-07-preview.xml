@@ -66,16 +66,48 @@
                       <prop type="uuid" name="memberGuid"/>
                       <prop type="string" name="type" required="True">
                         <enum>
+                          <item value="&quot;ACI&quot;"/>
+                          <item value="&quot;AKS&quot;"/>
                           <item value="&quot;AgentFabricSandbox&quot;"/>
                         </enum>
                       </prop>
                       <prop readOnly="True" type="string" name="workloadId"/>
-                      <discriminator property="type" value="AgentFabricSandbox">
+                      <discriminator property="type" value="ACI">
                         <prop type="object" name="agentIdentity" cls="AgentIdentity_read">
                           <prop type="string" name="agentId" required="True"/>
                           <prop type="string" name="blueprintId"/>
                           <prop type="string" name="tenantId" required="True"/>
                         </prop>
+                        <prop type="ResourceId" name="resourceId" required="True"/>
+                      </discriminator>
+                      <discriminator property="type" value="AKS">
+                        <prop type="ResourceId" name="clusterAssociationId" required="True"/>
+                        <prop type="ResourceId" name="clusterResourceId" required="True"/>
+                        <prop type="array<object>" name="endpoints" identifiers="name">
+                          <item type="object">
+                            <prop type="string" name="name" required="True"/>
+                            <prop type="string" name="protocol" required="True"/>
+                            <prop type="integer32" name="servicePort" required="True">
+                              <format maximum="65535" minimum="1"/>
+                            </prop>
+                            <prop type="integer32" name="targetPort" required="True">
+                              <format maximum="65535" minimum="1"/>
+                            </prop>
+                          </item>
+                        </prop>
+                        <prop type="object" name="workload" required="True">
+                          <prop type="string" name="apiVersion" required="True"/>
+                          <prop type="string" name="kind" required="True"/>
+                          <prop type="string" name="name" required="True">
+                            <format pattern="^[a-z0-9]([-a-z0-9]*[a-z0-9])?(\.[a-z0-9]([-a-z0-9]*[a-z0-9])?)*$" maxLength="253"/>
+                          </prop>
+                          <prop type="string" name="namespace" required="True">
+                            <format pattern="^[a-z0-9]([-a-z0-9]*[a-z0-9])?$" maxLength="63"/>
+                          </prop>
+                        </prop>
+                      </discriminator>
+                      <discriminator property="type" value="AgentFabricSandbox">
+                        <prop type="@AgentIdentity_read" name="agentIdentity"/>
                         <prop type="string" name="domain" required="True"/>
                         <prop type="array<object>" name="endpoints" identifiers="name">
                           <item type="object">
