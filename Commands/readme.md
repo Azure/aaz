@@ -182,6 +182,9 @@
 - [dynatrace](/Commands/dynatrace/readme.md)
 : Manage dynatrace
 
+- [edge-action](/Commands/edge-action/readme.md)
+: Manage Edge Action
+
 - [edge-zones](/Commands/edge-zones/readme.md)
 : Manage Edge Zone resources
 

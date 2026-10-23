@@ -1,6 +1,6 @@
 # [Command] _edge-action create_
 
-Create EdgeAction resource
+Create an EdgeAction
 
 ## Versions
 
@@ -18,6 +18,17 @@ Create EdgeAction resource
 ### [2025-12-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vZWRnZWFjdGlvbnMve30=/2025-12-01-preview.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/edgeactions/{} 2025-12-01-preview -->
+
+#### examples
+
+- CreateEdgeAction
+    ```bash
+        edge-action create --resource-group testrg --edge-action-name edgeAction1 --location global --sku "{name:Standard,tier:Standard}"
+    ```
+
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vZWRnZWFjdGlvbnMve30=/2026-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/edgeactions/{} 2026-10-01 -->
 
 #### examples
 
