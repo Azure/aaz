@@ -18,6 +18,9 @@ Manage Storage Discovery Workspace
 - [list](/Commands/storage-discovery/workspace/_list.md)
 : List StorageDiscoveryWorkspace resources by subscription ID
 
+- [query](/Commands/storage-discovery/workspace/_query.md)
+: A long-running resource action.
+
 - [show](/Commands/storage-discovery/workspace/_show.md)
 : Get a StorageDiscoveryWorkspace
 
