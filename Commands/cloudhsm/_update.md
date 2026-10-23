@@ -14,3 +14,14 @@ Update the properties of a Cloud HSM
     ```bash
         cloudhsm update --name chsm1 --resource-group myrg --tags Department=Accounting
     ```
+
+### [2025-12-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5oYXJkd2FyZXNlY3VyaXR5bW9kdWxlcy9jbG91ZGhzbWNsdXN0ZXJzL3t9/2025-12-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.hardwaresecuritymodules/cloudhsmclusters/{} 2025-12-01-preview -->
+
+#### examples
+
+- Update the properties of a Cloud HSM
+    ```bash
+        cloudhsm update --name chsm1 --resource-group myrg --tags Department=Accounting
+    ```
