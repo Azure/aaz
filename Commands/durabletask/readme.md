@@ -18,3 +18,6 @@ Commands to manage Durabletask schedulers and taskhubs
 
 - [taskhub](/Commands/durabletask/taskhub/readme.md)
 : Commands to manage Durabletask taskhubs
+
+- [taskqueue](/Commands/durabletask/taskqueue/readme.md)
+: Manage Task Queue

@@ -2,6 +2,17 @@
 
 Commands to manage Durabletask schedulers
 
+## Subgroups
+
+- [failover-instance](/Commands/durabletask/scheduler/failover-instance/readme.md)
+: Manage Failover Instance
+
+- [identity](/Commands/durabletask/scheduler/identity/readme.md)
+: Manage Identity
+
+- [transparent-data-encryption](/Commands/durabletask/scheduler/transparent-data-encryption/readme.md)
+: Manage Transparent Data Encryption
+
 ## Commands
 
 - [create](/Commands/durabletask/scheduler/_create.md)
@@ -12,6 +23,9 @@ Commands to manage Durabletask schedulers
 
 - [list](/Commands/durabletask/scheduler/_list.md)
 : List Schedulers by subscription
+
+- [restart](/Commands/durabletask/scheduler/_restart.md)
+: Restart a Scheduler
 
 - [show](/Commands/durabletask/scheduler/_show.md)
 : Get a Scheduler
