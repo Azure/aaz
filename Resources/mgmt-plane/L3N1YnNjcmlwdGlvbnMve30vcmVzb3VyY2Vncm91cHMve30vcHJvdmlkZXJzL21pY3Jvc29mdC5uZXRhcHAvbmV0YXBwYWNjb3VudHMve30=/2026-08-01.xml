@@ -334,6 +334,18 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="BindPasswordAkvConfig">
+        <arg type="string" var="$body.properties.ldapConfiguration.bindPasswordAkvConfig.azureKeyVaultUri" options="bind-password-akv-uri bp-akv-uri" group="BindPasswordAkvConfig">
+          <help short="The Azure Key Vault URI where the Bind DN user password is stored."/>
+        </arg>
+        <arg type="string" var="$body.properties.ldapConfiguration.bindPasswordAkvConfig.secretName" options="bind-password-akv-secret-name bp-akv-secret" group="BindPasswordAkvConfig">
+          <help short="The name of the secret in Azure Key Vault that contains the Bind DN user password."/>
+          <format pattern="^[a-zA-Z0-9-]+$" maxLength="127" minLength="1"/>
+        </arg>
+        <arg type="ResourceId" var="$body.properties.ldapConfiguration.bindPasswordAkvConfig.userAssignedIdentity" options="bind-password-akv-user-identity bp-akv-mi" group="BindPasswordAkvConfig">
+          <help short="The ARM resource identifier of the user assigned identity used to authenticate with key vault."/>
+        </arg>
+      </argGroup>
       <argGroup name="Body">
         <arg type="ResourceLocation" var="$body.location" options="location l" required="True" group="Body">
           <help short="The geo-location where the resource lives"/>
@@ -398,6 +410,65 @@
               <blank value="{}"/>
             </item>
           </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="LdapConfiguration">
+        <arg type="string" var="$body.properties.ldapConfiguration.bindAuthenticationLevel" options="bind-authentication-level bind-auth-level" group="LdapConfiguration">
+          <help short="The authentication level to use when binding to the LDAP server, defaults to Anonymous."/>
+          <default value="&quot;Anonymous&quot;"/>
+          <enum>
+            <item name="Anonymous" value="&quot;Anonymous&quot;"/>
+            <item name="Simple" value="&quot;Simple&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$body.properties.ldapConfiguration.bindDN" options="bind-dn" group="LdapConfiguration">
+          <help short="The distinguished name (DN) to bind as when performing LDAP operations."/>
+          <format maxLength="255" minLength="1"/>
+        </arg>
+        <arg nullable="True" type="string" var="$body.properties.ldapConfiguration.certificateCNHost" options="certificate-cn-host" group="LdapConfiguration">
+          <help short="The CN host name used while generating the certificate, LDAP Over TLS requires the CN host name to create DNS host entry."/>
+          <format maxLength="255"/>
+        </arg>
+        <arg type="array<string>" var="$body.properties.ldapConfiguration.dnsServers" options="dns-servers" group="LdapConfiguration">
+          <help short="List of DNS server IPv4 addresses for resolving the CN host certificate. This parameter is used when LDAP over TLS is enabled."/>
+          <item type="string"/>
+        </arg>
+        <arg type="string" var="$body.properties.ldapConfiguration.domain" options="domain" group="LdapConfiguration">
+          <help short="Name of the LDAP configuration domain"/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9.-]{0,253}[a-zA-Z0-9]$" maxLength="255"/>
+        </arg>
+        <arg type="string" var="$body.properties.ldapConfiguration.groupDN" options="group-dn" group="LdapConfiguration">
+          <help short="This specifies the group DN (Distinguished Name), which overrides the base DN for group lookups."/>
+          <format maxLength="1024"/>
+        </arg>
+        <arg type="integer32" var="$body.properties.ldapConfiguration.ldapPort" options="ldap-port" group="LdapConfiguration">
+          <help short="Port number for LDAP communication. Default is 389 for LDAP."/>
+          <format maximum="65535" minimum="1"/>
+        </arg>
+        <arg type="array<string>" var="$body.properties.ldapConfiguration.ldapServers" options="ldap-servers" group="LdapConfiguration">
+          <help short="List of LDAP server IP addresses (IPv4 only) for the LDAP domain."/>
+          <item type="string"/>
+        </arg>
+        <arg type="string" var="$body.properties.ldapConfiguration.netGroupDN" options="net-group-dn" group="LdapConfiguration">
+          <help short="This specifies the netgroup DN (Distinguished Name), which overrides the base DN for netgroup lookups."/>
+          <format maxLength="1024"/>
+        </arg>
+        <arg type="string" var="$body.properties.ldapConfiguration.secureLdapType" options="secure-ldap-type" group="LdapConfiguration">
+          <help short="Indicates the secure LDAP mode for encrypting communication between ANF storage and customer LDAP servers."/>
+          <default value="&quot;None&quot;"/>
+          <enum>
+            <item name="LdapOverTLS" value="&quot;LdapOverTLS&quot;"/>
+            <item name="None" value="&quot;None&quot;"/>
+          </enum>
+        </arg>
+        <arg type="password" var="$body.properties.ldapConfiguration.serverCACertificate" options="server-ca-certificate" group="LdapConfiguration">
+          <help short="When LDAP over SSL/TLS is enabled, the LDAP client is required to have base64 encoded ldap servers CA certificate."/>
+          <format maxLength="10240" minLength="1"/>
+          <prompt msg="Password:"/>
+        </arg>
+        <arg type="string" var="$body.properties.ldapConfiguration.userDN" options="user-dn" group="LdapConfiguration">
+          <help short="This specifies the user DN (Distinguished Name), which overrides the base DN for user lookups."/>
+          <format maxLength="1024"/>
         </arg>
       </argGroup>
       <argGroup name="Properties">
@@ -498,79 +569,6 @@
               <help short="A domain user account with permission to create machine accounts"/>
             </arg>
           </item>
-        </arg>
-        <arg type="object" var="$body.properties.ldapConfiguration" options="ldap-configuration" group="Properties">
-          <help short="LDAP Configuration for the account."/>
-          <arg type="string" var="$body.properties.ldapConfiguration.bindAuthenticationLevel" options="bind-authentication-level">
-            <help short="The authentication level to use when binding to the LDAP server, defaults to Anonymous."/>
-            <default value="&quot;Anonymous&quot;"/>
-            <enum>
-              <item name="Anonymous" value="&quot;Anonymous&quot;"/>
-              <item name="Simple" value="&quot;Simple&quot;"/>
-            </enum>
-          </arg>
-          <arg type="string" var="$body.properties.ldapConfiguration.bindDN" options="bind-dn">
-            <help short="The distinguished name (DN) to bind as when performing LDAP operations."/>
-            <format maxLength="255" minLength="1"/>
-          </arg>
-          <arg type="object" var="$body.properties.ldapConfiguration.bindPasswordAkvConfig" options="bind-password-akv-config">
-            <help short="The Azure Key Vault configuration where the Bind DN (Distinguished Name) user password is stored."/>
-            <arg type="string" var="$body.properties.ldapConfiguration.bindPasswordAkvConfig.azureKeyVaultUri" options="azure-key-vault-uri" required="True">
-              <help short="The Azure Key Vault URI where the Bind DN user password is stored."/>
-            </arg>
-            <arg type="string" var="$body.properties.ldapConfiguration.bindPasswordAkvConfig.secretName" options="secret-name" required="True">
-              <help short="The name of the secret in Azure Key Vault that contains the Bind DN user password."/>
-              <format pattern="^[a-zA-Z0-9-]+$" maxLength="127" minLength="1"/>
-            </arg>
-            <arg type="ResourceId" var="$body.properties.ldapConfiguration.bindPasswordAkvConfig.userAssignedIdentity" options="user-assigned-identity">
-              <help short="The ARM resource identifier of the user assigned identity used to authenticate with key vault."/>
-            </arg>
-          </arg>
-          <arg nullable="True" type="string" var="$body.properties.ldapConfiguration.certificateCNHost" options="certificate-cn-host">
-            <help short="The CN host name used while generating the certificate, LDAP Over TLS requires the CN host name to create DNS host entry."/>
-            <format maxLength="255"/>
-          </arg>
-          <arg type="array<string>" var="$body.properties.ldapConfiguration.dnsServers" options="dns-servers">
-            <help short="List of DNS server IPv4 addresses for resolving the CN host certificate. This parameter is used when LDAP over TLS is enabled."/>
-            <item type="string"/>
-          </arg>
-          <arg type="string" var="$body.properties.ldapConfiguration.domain" options="domain">
-            <help short="Name of the LDAP configuration domain"/>
-            <format pattern="^[a-zA-Z0-9][a-zA-Z0-9.-]{0,253}[a-zA-Z0-9]$" maxLength="255"/>
-          </arg>
-          <arg type="string" var="$body.properties.ldapConfiguration.groupDN" options="group-dn">
-            <help short="This specifies the group DN (Distinguished Name), which overrides the base DN for group lookups."/>
-            <format maxLength="1024"/>
-          </arg>
-          <arg type="integer32" var="$body.properties.ldapConfiguration.ldapPort" options="ldap-port">
-            <help short="Port number for LDAP communication. Default is 389 for LDAP."/>
-            <format maximum="65535" minimum="1"/>
-          </arg>
-          <arg type="array<string>" var="$body.properties.ldapConfiguration.ldapServers" options="ldap-servers">
-            <help short="List of LDAP server IP addresses (IPv4 only) for the LDAP domain."/>
-            <item type="string"/>
-          </arg>
-          <arg type="string" var="$body.properties.ldapConfiguration.netGroupDN" options="net-group-dn">
-            <help short="This specifies the netgroup DN (Distinguished Name), which overrides the base DN for netgroup lookups."/>
-            <format maxLength="1024"/>
-          </arg>
-          <arg type="string" var="$body.properties.ldapConfiguration.secureLdapType" options="secure-ldap-type">
-            <help short="Indicates the secure LDAP mode for encrypting communication between ANF storage and customer LDAP servers."/>
-            <default value="&quot;None&quot;"/>
-            <enum>
-              <item name="LdapOverTLS" value="&quot;LdapOverTLS&quot;"/>
-              <item name="None" value="&quot;None&quot;"/>
-            </enum>
-          </arg>
-          <arg type="password" var="$body.properties.ldapConfiguration.serverCACertificate" options="server-ca-certificate">
-            <help short="When LDAP over SSL/TLS is enabled, the LDAP client is required to have base64 encoded ldap servers CA certificate."/>
-            <format maxLength="10240" minLength="1"/>
-            <prompt msg="Password:"/>
-          </arg>
-          <arg type="string" var="$body.properties.ldapConfiguration.userDN" options="user-dn">
-            <help short="This specifies the user DN (Distinguished Name), which overrides the base DN for user lookups."/>
-            <format maxLength="1024"/>
-          </arg>
         </arg>
         <arg nullable="True" type="string" var="$body.properties.nfsV4IDDomain" options="nfs-v4-id-domain" group="Properties">
           <help short="Domain for NFSv4 user ID mapping. This property will be set for all NetApp accounts in the subscription and region and only affect non ldap NFSv4 volumes."/>
@@ -699,7 +697,7 @@
                         <prop type="string" name="keyVaultUri" arg="$body.properties.encryption.keyVaultProperties.keyVaultUri" required="True"/>
                       </prop>
                     </prop>
-                    <prop type="object" name="ldapConfiguration" arg="$body.properties.ldapConfiguration">
+                    <prop type="object" name="ldapConfiguration">
                       <prop type="string" name="bindAuthenticationLevel" arg="$body.properties.ldapConfiguration.bindAuthenticationLevel">
                         <default value="&quot;Anonymous&quot;"/>
                         <enum>
@@ -710,7 +708,7 @@
                       <prop type="string" name="bindDN" arg="$body.properties.ldapConfiguration.bindDN">
                         <format maxLength="255" minLength="1"/>
                       </prop>
-                      <prop type="object" name="bindPasswordAkvConfig" arg="$body.properties.ldapConfiguration.bindPasswordAkvConfig">
+                      <prop type="object" name="bindPasswordAkvConfig">
                         <prop type="string" name="azureKeyVaultUri" arg="$body.properties.ldapConfiguration.bindPasswordAkvConfig.azureKeyVaultUri" required="True"/>
                         <prop type="string" name="secretName" arg="$body.properties.ldapConfiguration.bindPasswordAkvConfig.secretName" required="True">
                           <format pattern="^[a-zA-Z0-9-]+$" maxLength="127" minLength="1"/>
@@ -1020,6 +1018,18 @@
         <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
         <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
       </argGroup>
+      <argGroup name="BindPasswordAkvConfig">
+        <arg type="string" var="$body.properties.ldapConfiguration.bindPasswordAkvConfig.azureKeyVaultUri" options="bind-password-akv-uri bp-akv-uri" group="BindPasswordAkvConfig">
+          <help short="The Azure Key Vault URI where the Bind DN user password is stored."/>
+        </arg>
+        <arg type="string" var="$body.properties.ldapConfiguration.bindPasswordAkvConfig.secretName" options="bind-password-akv-secret-name bp-akv-secret" group="BindPasswordAkvConfig">
+          <help short="The name of the secret in Azure Key Vault that contains the Bind DN user password."/>
+          <format pattern="^[a-zA-Z0-9-]+$" maxLength="127" minLength="1"/>
+        </arg>
+        <arg nullable="True" type="ResourceId" var="$body.properties.ldapConfiguration.bindPasswordAkvConfig.userAssignedIdentity" options="bind-password-akv-user-identity bp-akv-mi" group="BindPasswordAkvConfig">
+          <help short="The ARM resource identifier of the user assigned identity used to authenticate with key vault."/>
+        </arg>
+      </argGroup>
       <argGroup name="Body">
         <arg nullable="True" type="object" var="$body.tags" options="tags" group="Body">
           <help short="Resource tags."/>
@@ -1071,6 +1081,63 @@
               <blank value="{}"/>
             </item>
           </additionalProp>
+        </arg>
+      </argGroup>
+      <argGroup name="LdapConfiguration">
+        <arg nullable="True" type="string" var="$body.properties.ldapConfiguration.bindAuthenticationLevel" options="bind-authentication-level bind-auth-level" group="LdapConfiguration">
+          <help short="The authentication level to use when binding to the LDAP server, defaults to Anonymous."/>
+          <enum>
+            <item name="Anonymous" value="&quot;Anonymous&quot;"/>
+            <item name="Simple" value="&quot;Simple&quot;"/>
+          </enum>
+        </arg>
+        <arg nullable="True" type="string" var="$body.properties.ldapConfiguration.bindDN" options="bind-dn" group="LdapConfiguration">
+          <help short="The distinguished name (DN) to bind as when performing LDAP operations."/>
+          <format maxLength="255" minLength="1"/>
+        </arg>
+        <arg nullable="True" type="string" var="$body.properties.ldapConfiguration.certificateCNHost" options="certificate-cn-host" group="LdapConfiguration">
+          <help short="The CN host name used while generating the certificate, LDAP Over TLS requires the CN host name to create DNS host entry."/>
+          <format maxLength="255"/>
+        </arg>
+        <arg nullable="True" type="array<string>" var="$body.properties.ldapConfiguration.dnsServers" options="dns-servers" group="LdapConfiguration">
+          <help short="List of DNS server IPv4 addresses for resolving the CN host certificate. This parameter is used when LDAP over TLS is enabled."/>
+          <item nullable="True" type="string"/>
+        </arg>
+        <arg nullable="True" type="string" var="$body.properties.ldapConfiguration.domain" options="domain" group="LdapConfiguration">
+          <help short="Name of the LDAP configuration domain"/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9.-]{0,253}[a-zA-Z0-9]$" maxLength="255"/>
+        </arg>
+        <arg nullable="True" type="string" var="$body.properties.ldapConfiguration.groupDN" options="group-dn" group="LdapConfiguration">
+          <help short="This specifies the group DN (Distinguished Name), which overrides the base DN for group lookups."/>
+          <format maxLength="1024"/>
+        </arg>
+        <arg nullable="True" type="integer32" var="$body.properties.ldapConfiguration.ldapPort" options="ldap-port" group="LdapConfiguration">
+          <help short="Port number for LDAP communication. Default is 389 for LDAP."/>
+          <format maximum="65535" minimum="1"/>
+        </arg>
+        <arg nullable="True" type="array<string>" var="$body.properties.ldapConfiguration.ldapServers" options="ldap-servers" group="LdapConfiguration">
+          <help short="List of LDAP server IP addresses (IPv4 only) for the LDAP domain."/>
+          <item nullable="True" type="string"/>
+        </arg>
+        <arg nullable="True" type="string" var="$body.properties.ldapConfiguration.netGroupDN" options="net-group-dn" group="LdapConfiguration">
+          <help short="This specifies the netgroup DN (Distinguished Name), which overrides the base DN for netgroup lookups."/>
+          <format maxLength="1024"/>
+        </arg>
+        <arg nullable="True" type="string" var="$body.properties.ldapConfiguration.secureLdapType" options="secure-ldap-type" group="LdapConfiguration">
+          <help short="Indicates the secure LDAP mode for encrypting communication between ANF storage and customer LDAP servers."/>
+          <enum>
+            <item name="LdapOverTLS" value="&quot;LdapOverTLS&quot;"/>
+            <item name="None" value="&quot;None&quot;"/>
+          </enum>
+        </arg>
+        <arg nullable="True" type="password" var="$body.properties.ldapConfiguration.serverCACertificate" options="server-ca-certificate" group="LdapConfiguration">
+          <help short="When LDAP over SSL/TLS is enabled, the LDAP client is required to have base64 encoded ldap servers CA certificate."/>
+          <format maxLength="10240" minLength="1"/>
+          <prompt msg="Password:"/>
+        </arg>
+        <arg nullable="True" type="string" var="$body.properties.ldapConfiguration.userDN" options="user-dn" group="LdapConfiguration">
+          <help short="This specifies the user DN (Distinguished Name), which overrides the base DN for user lookups."/>
+          <format maxLength="1024"/>
         </arg>
       </argGroup>
       <argGroup name="Properties">
@@ -1170,77 +1237,6 @@
               <help short="A domain user account with permission to create machine accounts"/>
             </arg>
           </item>
-        </arg>
-        <arg nullable="True" type="object" var="$body.properties.ldapConfiguration" options="ldap-configuration" group="Properties">
-          <help short="LDAP Configuration for the account."/>
-          <arg nullable="True" type="string" var="$body.properties.ldapConfiguration.bindAuthenticationLevel" options="bind-authentication-level">
-            <help short="The authentication level to use when binding to the LDAP server, defaults to Anonymous."/>
-            <enum>
-              <item name="Anonymous" value="&quot;Anonymous&quot;"/>
-              <item name="Simple" value="&quot;Simple&quot;"/>
-            </enum>
-          </arg>
-          <arg nullable="True" type="string" var="$body.properties.ldapConfiguration.bindDN" options="bind-dn">
-            <help short="The distinguished name (DN) to bind as when performing LDAP operations."/>
-            <format maxLength="255" minLength="1"/>
-          </arg>
-          <arg nullable="True" type="object" var="$body.properties.ldapConfiguration.bindPasswordAkvConfig" options="bind-password-akv-config">
-            <help short="The Azure Key Vault configuration where the Bind DN (Distinguished Name) user password is stored."/>
-            <arg type="string" var="$body.properties.ldapConfiguration.bindPasswordAkvConfig.azureKeyVaultUri" options="azure-key-vault-uri">
-              <help short="The Azure Key Vault URI where the Bind DN user password is stored."/>
-            </arg>
-            <arg type="string" var="$body.properties.ldapConfiguration.bindPasswordAkvConfig.secretName" options="secret-name">
-              <help short="The name of the secret in Azure Key Vault that contains the Bind DN user password."/>
-              <format pattern="^[a-zA-Z0-9-]+$" maxLength="127" minLength="1"/>
-            </arg>
-            <arg nullable="True" type="ResourceId" var="$body.properties.ldapConfiguration.bindPasswordAkvConfig.userAssignedIdentity" options="user-assigned-identity">
-              <help short="The ARM resource identifier of the user assigned identity used to authenticate with key vault."/>
-            </arg>
-          </arg>
-          <arg nullable="True" type="string" var="$body.properties.ldapConfiguration.certificateCNHost" options="certificate-cn-host">
-            <help short="The CN host name used while generating the certificate, LDAP Over TLS requires the CN host name to create DNS host entry."/>
-            <format maxLength="255"/>
-          </arg>
-          <arg nullable="True" type="array<string>" var="$body.properties.ldapConfiguration.dnsServers" options="dns-servers">
-            <help short="List of DNS server IPv4 addresses for resolving the CN host certificate. This parameter is used when LDAP over TLS is enabled."/>
-            <item nullable="True" type="string"/>
-          </arg>
-          <arg nullable="True" type="string" var="$body.properties.ldapConfiguration.domain" options="domain">
-            <help short="Name of the LDAP configuration domain"/>
-            <format pattern="^[a-zA-Z0-9][a-zA-Z0-9.-]{0,253}[a-zA-Z0-9]$" maxLength="255"/>
-          </arg>
-          <arg nullable="True" type="string" var="$body.properties.ldapConfiguration.groupDN" options="group-dn">
-            <help short="This specifies the group DN (Distinguished Name), which overrides the base DN for group lookups."/>
-            <format maxLength="1024"/>
-          </arg>
-          <arg nullable="True" type="integer32" var="$body.properties.ldapConfiguration.ldapPort" options="ldap-port">
-            <help short="Port number for LDAP communication. Default is 389 for LDAP."/>
-            <format maximum="65535" minimum="1"/>
-          </arg>
-          <arg nullable="True" type="array<string>" var="$body.properties.ldapConfiguration.ldapServers" options="ldap-servers">
-            <help short="List of LDAP server IP addresses (IPv4 only) for the LDAP domain."/>
-            <item nullable="True" type="string"/>
-          </arg>
-          <arg nullable="True" type="string" var="$body.properties.ldapConfiguration.netGroupDN" options="net-group-dn">
-            <help short="This specifies the netgroup DN (Distinguished Name), which overrides the base DN for netgroup lookups."/>
-            <format maxLength="1024"/>
-          </arg>
-          <arg nullable="True" type="string" var="$body.properties.ldapConfiguration.secureLdapType" options="secure-ldap-type">
-            <help short="Indicates the secure LDAP mode for encrypting communication between ANF storage and customer LDAP servers."/>
-            <enum>
-              <item name="LdapOverTLS" value="&quot;LdapOverTLS&quot;"/>
-              <item name="None" value="&quot;None&quot;"/>
-            </enum>
-          </arg>
-          <arg nullable="True" type="password" var="$body.properties.ldapConfiguration.serverCACertificate" options="server-ca-certificate">
-            <help short="When LDAP over SSL/TLS is enabled, the LDAP client is required to have base64 encoded ldap servers CA certificate."/>
-            <format maxLength="10240" minLength="1"/>
-            <prompt msg="Password:"/>
-          </arg>
-          <arg nullable="True" type="string" var="$body.properties.ldapConfiguration.userDN" options="user-dn">
-            <help short="This specifies the user DN (Distinguished Name), which overrides the base DN for user lookups."/>
-            <format maxLength="1024"/>
-          </arg>
         </arg>
         <arg nullable="True" type="string" var="$body.properties.nfsV4IDDomain" options="nfs-v4-id-domain" group="Properties">
           <help short="Domain for NFSv4 user ID mapping. This property will be set for all NetApp accounts in the subscription and region and only affect non ldap NFSv4 volumes."/>
@@ -1608,7 +1604,7 @@
                     <prop type="string" name="keyVaultUri" arg="$body.properties.encryption.keyVaultProperties.keyVaultUri" required="True"/>
                   </prop>
                 </prop>
-                <prop type="object" name="ldapConfiguration" arg="$body.properties.ldapConfiguration">
+                <prop type="object" name="ldapConfiguration">
                   <prop type="string" name="bindAuthenticationLevel" arg="$body.properties.ldapConfiguration.bindAuthenticationLevel">
                     <default value="&quot;Anonymous&quot;"/>
                     <enum>
@@ -1619,7 +1615,7 @@
                   <prop type="string" name="bindDN" arg="$body.properties.ldapConfiguration.bindDN">
                     <format maxLength="255" minLength="1"/>
                   </prop>
-                  <prop type="object" name="bindPasswordAkvConfig" arg="$body.properties.ldapConfiguration.bindPasswordAkvConfig">
+                  <prop type="object" name="bindPasswordAkvConfig">
                     <prop type="string" name="azureKeyVaultUri" arg="$body.properties.ldapConfiguration.bindPasswordAkvConfig.azureKeyVaultUri" required="True"/>
                     <prop type="string" name="secretName" arg="$body.properties.ldapConfiguration.bindPasswordAkvConfig.secretName" required="True">
                       <format pattern="^[a-zA-Z0-9-]+$" maxLength="127" minLength="1"/>
