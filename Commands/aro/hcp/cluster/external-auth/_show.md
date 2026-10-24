@@ -15,7 +15,7 @@ Get an Azure Red Hat OpenShift with hosted control plane external authentication
         aro hcp cluster external-auth show --resource-group MyResourceGroup --cluster-name MyCluster --name MyExternalAuth
     ```
 
-### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5yZWRoYXRvcGVuc2hpZnQvaGNwb3BlbnNoaWZ0Y2x1c3RlcnMve30vZXh0ZXJuYWxhdXRocy97fQ==/2026-10-01.xml) **Preview**
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5yZWRoYXRvcGVuc2hpZnQvaGNwb3BlbnNoaWZ0Y2x1c3RlcnMve30vZXh0ZXJuYWxhdXRocy97fQ==/2026-10-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.redhatopenshift/hcpopenshiftclusters/{}/externalauths/{} 2026-10-01 -->
 
