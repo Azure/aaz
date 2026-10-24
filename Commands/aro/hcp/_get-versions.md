@@ -15,7 +15,7 @@ List Azure Red Hat OpenShift with hosted control plane versions
         aro hcp get-versions --location eastus
     ```
 
-### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5yZWRoYXRvcGVuc2hpZnQvbG9jYXRpb25zL3t9L2hjcG9wZW5zaGlmdHZlcnNpb25z/2026-10-01.xml) **Preview**
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5yZWRoYXRvcGVuc2hpZnQvbG9jYXRpb25zL3t9L2hjcG9wZW5zaGlmdHZlcnNpb25z/2026-10-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.redhatopenshift/locations/{}/hcpopenshiftversions 2026-10-01 -->
 
