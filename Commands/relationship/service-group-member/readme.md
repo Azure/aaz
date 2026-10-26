@@ -1,6 +1,6 @@
 # [Group] _relationship service-group-member_
 
-Manage Service Group Member
+Manage serviceGroupMember relationships.
 
 ## Commands
 
@@ -9,6 +9,9 @@ Manage Service Group Member
 
 - [delete](/Commands/relationship/service-group-member/_delete.md)
 : Delete a ServiceGroupMemberRelationship
+
+- [list](/Commands/relationship/service-group-member/_list.md)
+: List ServiceGroupMemberRelationship resources by parent
 
 - [show](/Commands/relationship/service-group-member/_show.md)
 : Get a ServiceGroupMemberRelationship
