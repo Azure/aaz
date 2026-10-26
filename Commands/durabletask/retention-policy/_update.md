@@ -11,7 +11,3 @@ Update a Retention Policy
 ### [2026-02-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kdXJhYmxldGFzay9zY2hlZHVsZXJzL3t9L3JldGVudGlvbnBvbGljaWVzL2RlZmF1bHQ=/2026-02-01.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.durabletask/schedulers/{}/retentionpolicies/default 2026-02-01 -->
-
-### [2026-07-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5kdXJhYmxldGFzay9zY2hlZHVsZXJzL3t9L3JldGVudGlvbnBvbGljaWVzL2RlZmF1bHQ=/2026-07-01-preview.xml) **Stable**
-
-<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.durabletask/schedulers/{}/retentionpolicies/default 2026-07-01-preview -->

@@ -7,9 +7,6 @@ Commands to manage Durabletask schedulers
 - [failover-instance](/Commands/durabletask/scheduler/failover-instance/readme.md)
 : Manage Failover Instance
 
-- [identity](/Commands/durabletask/scheduler/identity/readme.md)
-: Manage Identity
-
 - [transparent-data-encryption](/Commands/durabletask/scheduler/transparent-data-encryption/readme.md)
 : Manage Transparent Data Encryption
 
