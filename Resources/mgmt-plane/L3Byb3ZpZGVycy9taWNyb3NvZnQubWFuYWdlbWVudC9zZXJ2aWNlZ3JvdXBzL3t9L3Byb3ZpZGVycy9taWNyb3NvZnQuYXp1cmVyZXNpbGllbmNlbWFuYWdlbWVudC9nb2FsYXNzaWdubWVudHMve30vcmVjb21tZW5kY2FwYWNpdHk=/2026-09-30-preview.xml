@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/goalassignments/{}/recommendcapacity" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlUmVzaWxpZW5jZU1hbmFnZW1lbnQvZ29hbEFzc2lnbm1lbnRzL3tnb2FsQXNzaWdubWVudE5hbWV9L3JlY29tbWVuZENhcGFjaXR5/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+  <commandGroup name="resiliency goal-assignment">
+    <command name="recommend-capacity" version="2026-09-30-preview">
+      <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/goalassignments/{}/recommendcapacity" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlUmVzaWxpZW5jZU1hbmFnZW1lbnQvZ29hbEFzc2lnbm1lbnRzL3tnb2FsQXNzaWdubWVudE5hbWV9L3JlY29tbWVuZENhcGFjaXR5/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.goalAssignmentName" options="goal-assignment-name" required="True">
+          <help short="The name of the GoalAssignment"/>
+          <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+        </arg>
+        <arg type="string" var="$Path.serviceGroupName" options="service-group-name" required="True">
+          <help short="The name of the service group."/>
+          <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="array<ResourceId>" var="$body.resourceIds" options="resource-ids" required="True" group="Body">
+          <help short="Azure resource IDs to evaluate for resiliency. Pass an empty array to automatically discover and evaluate non-resilient resources in the service group. Maximum 50 resources per request."/>
+          <format maxLength="50"/>
+          <item type="ResourceId"/>
+        </arg>
+      </argGroup>
+      <operation operationId="GoalAssignments_RecommendCapacity">
+        <longRunning finalStateVia="location"/>
+        <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.AzureResilienceManagement/goalAssignments/{goalAssignmentName}/recommendCapacity">
+          <request method="post">
+            <path>
+              <param type="string" name="goalAssignmentName" arg="$Path.goalAssignmentName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+              </param>
+              <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
+                <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-09-30-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="array<ResourceId>" name="resourceIds" arg="$body.resourceIds" required="True">
+                    <format maxLength="50"/>
+                    <item type="ResourceId"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="agentError"/>
+                  <prop type="array<string>" name="recommendations" required="True">
+                    <item type="string"/>
+                  </prop>
+                  <prop type="array<object>" name="resourceCapacities" required="True" identifiers="resourceId">
+                    <item type="object">
+                      <prop type="string" name="capacityAssessment"/>
+                      <prop type="string" name="category">
+                        <enum>
+                          <item value="&quot;RegionUnsupported&quot;"/>
+                          <item value="&quot;SkuCapacityConstrained&quot;"/>
+                          <item value="&quot;SkuIneligible&quot;"/>
+                          <item value="&quot;Unsupported&quot;"/>
+                          <item value="&quot;ZrEligible&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="error"/>
+                      <prop type="array<string>" name="links">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="string" name="location"/>
+                      <prop type="ResourceId" name="resourceId" required="True"/>
+                      <prop type="string" name="resourceType"/>
+                      <prop type="string" name="skuName"/>
+                      <prop type="array<string>" name="steps">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="array<string>" name="suggestedRegions">
+                        <item type="string"/>
+                      </prop>
+                      <prop type="array<string>" name="suggestedSkus">
+                        <item type="string"/>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Azure-AsyncOperation"/>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
