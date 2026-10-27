@@ -90,7 +90,7 @@
 : Manage Azure Chaos Studio resources.
 
 - [cloud-service](/Commands/cloud-service/readme.md)
-: Manage cloud service
+: Manage Cloud Service
 
 - [cloudhsm](/Commands/cloudhsm/readme.md)
 : Manage Cloud Hsm Cluster
