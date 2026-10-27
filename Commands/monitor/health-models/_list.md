@@ -20,3 +20,20 @@ List HealthModel resources by subscription ID
     ```bash
         monitor health-models list --resource-group rgopenapi
     ```
+
+### [2026-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jbG91ZGhlYWx0aC9oZWFsdGhtb2RlbHM=/2026-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.cloudhealth/healthmodels 2026-11-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cloudhealth/healthmodels 2026-11-01 -->
+
+#### examples
+
+- HealthModels_ListBySubscription
+    ```bash
+        monitor health-models list
+    ```
+
+- HealthModels_ListByResourceGroup
+    ```bash
+        monitor health-models list --resource-group rgopenapi
+    ```
