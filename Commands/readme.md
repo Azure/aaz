@@ -11,6 +11,9 @@
 - [afd](/Commands/afd/readme.md)
 : Manage Azure Front Door Standard/Premium.
 
+- [agentfabric](/Commands/agentfabric/readme.md)
+: Manage Agent Fabric and related Microsoft.NetworkSecurity resources. Root commands manage Agent Fabric resources.
+
 - [alerts-management](/Commands/alerts-management/readme.md)
 : Manage Azure Alerts Management Service Resource.
 
@@ -88,6 +91,9 @@
 
 - [cloud-service](/Commands/cloud-service/readme.md)
 : Manage cloud service
+
+- [cloudhsm](/Commands/cloudhsm/readme.md)
+: Manage Cloud Hsm Cluster
 
 - [cognitiveservices](/Commands/cognitiveservices/readme.md)
 : Manage Cognitive Services
@@ -381,7 +387,7 @@
 : Manage Microsoft Sentinel.
 
 - [service-group](/Commands/service-group/readme.md)
-: Manage Service Group
+: Manage Azure Service Groups.
 
 - [service-networking](/Commands/service-networking/readme.md)
 : Manage Service Networking Resources

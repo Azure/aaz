@@ -7,6 +7,15 @@ Manage Azure Relay Service Namespace.
 - [authorization-rule](/Commands/relay/namespace/authorization-rule/readme.md)
 : Manage Azure Relay Service Namespace Authorization Rule.
 
+- [network-rule-set](/Commands/relay/namespace/network-rule-set/readme.md)
+: Manage Network Rule Set
+
+- [private-endpoint-connection](/Commands/relay/namespace/private-endpoint-connection/readme.md)
+: Manage Private Endpoint Connection
+
+- [private-link-resource](/Commands/relay/namespace/private-link-resource/readme.md)
+: Manage Private Link Resource
+
 ## Commands
 
 - [create](/Commands/relay/namespace/_create.md)

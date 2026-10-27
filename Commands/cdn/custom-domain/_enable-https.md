@@ -83,3 +83,19 @@ Enable https delivery of the custom domain.
     ```bash
         cdn custom-domain enable-https --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --custom-domain-name www-someDomain-net --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --custom-domain-name www-someDomain-net
     ```
+
+### [2026-04-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vZW5kcG9pbnRzL3t9L2N1c3RvbWRvbWFpbnMve30vZW5hYmxlY3VzdG9taHR0cHM=/2026-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/endpoints/{}/customdomains/{}/enablecustomhttps 2026-04-01-preview -->
+
+#### examples
+
+- CustomDomains_EnableCustomHttpsUsingCDNManagedCertificate
+    ```bash
+        cdn custom-domain enable-https --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --custom-domain-name www-someDomain-net
+    ```
+
+- CustomDomains_EnableCustomHttpsUsingYourOwnCertificate
+    ```bash
+        cdn custom-domain enable-https --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --custom-domain-name www-someDomain-net --resource-group RG --profile-name profile1 --endpoint-name endpoint1 --custom-domain-name www-someDomain-net
+    ```

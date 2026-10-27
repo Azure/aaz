@@ -69,3 +69,14 @@ Create a new security policy within the specified profile.
     ```bash
         afd security-policy create --resource-group RG --profile-name profile1 --security-policy-name securityPolicy1
     ```
+
+### [2026-09-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vc2VjdXJpdHlwb2xpY2llcy97fQ==/2026-09-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/securitypolicies/{} 2026-09-01-preview -->
+
+#### examples
+
+- SecurityPolicies_Create
+    ```bash
+        afd security-policy create --resource-group RG --profile-name profile1 --security-policy-name securityPolicy1
+    ```

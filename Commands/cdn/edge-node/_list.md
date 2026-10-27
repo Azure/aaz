@@ -30,3 +30,14 @@ List are the global Point of Presence (POP) locations used to deliver CDN conten
     ```bash
         cdn edge-node list
     ```
+
+### [2026-04-01-preview](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuY2RuL2VkZ2Vub2Rlcw==/2026-04-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /providers/microsoft.cdn/edgenodes 2026-04-01-preview -->
+
+#### examples
+
+- EdgeNodes_List
+    ```bash
+        cdn edge-node list
+    ```
