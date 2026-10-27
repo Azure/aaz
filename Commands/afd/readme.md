@@ -4,6 +4,9 @@ Manage Azure Front Door Standard/Premium.
 
 ## Subgroups
 
+- [auth-policy](/Commands/afd/auth-policy/readme.md)
+: Manage authentication policies within an Azure Front Door profile.
+
 - [custom-domain](/Commands/afd/custom-domain/readme.md)
 : Manage custom domains within the specified profile.
 
