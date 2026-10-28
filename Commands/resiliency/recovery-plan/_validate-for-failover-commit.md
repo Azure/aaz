@@ -7,3 +7,10 @@ This action checks if the recovery orchestration plan is eligible for failover c
 ### [2026-10-01](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQubWFuYWdlbWVudC9zZXJ2aWNlZ3JvdXBzL3t9L3Byb3ZpZGVycy9taWNyb3NvZnQuYXp1cmVyZXNpbGllbmNlbWFuYWdlbWVudC9yZWNvdmVyeXBsYW5zL3t9L3ZhbGlkYXRlZm9yZmFpbG92ZXJjb21taXQ=/2026-10-01.xml) **Stable**
 
 <!-- mgmt-plane /providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/recoveryplans/{}/validateforfailovercommit 2026-10-01 -->
+
+#### examples
+
+- RecoveryPlanActions_ValidateForFailoverCommit_MaximumSet
+    ```bash
+        resiliency recovery-plan validate-for-failover-commit --service-group-name sampleServiceGroupName --operation-id qmn --recovery-plan-name samplePlanName
+    ```

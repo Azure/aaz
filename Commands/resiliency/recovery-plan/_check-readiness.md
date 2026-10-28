@@ -7,3 +7,10 @@ This action performs the necessary readiness check on the recovery orchestration
 ### [2026-10-01](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQubWFuYWdlbWVudC9zZXJ2aWNlZ3JvdXBzL3t9L3Byb3ZpZGVycy9taWNyb3NvZnQuYXp1cmVyZXNpbGllbmNlbWFuYWdlbWVudC9yZWNvdmVyeXBsYW5zL3t9L2NoZWNrcmVhZGluZXNz/2026-10-01.xml) **Stable**
 
 <!-- mgmt-plane /providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/recoveryplans/{}/checkreadiness 2026-10-01 -->
+
+#### examples
+
+- RecoveryPlanActions_CheckReadiness_MaximumSet
+    ```bash
+        resiliency recovery-plan check-readiness --service-group-name sampleServiceGroupName --operation-id qmn --recovery-plan-name samplePlanName
+    ```

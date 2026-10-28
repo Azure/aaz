@@ -8,3 +8,15 @@ List UsagePlan resources by subscription ID
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.azureresiliencemanagement/usageplans 2026-10-01 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.azureresiliencemanagement/usageplans 2026-10-01 -->
+
+#### examples
+
+- UsagePlans_ListBySubscription_MaximumSet
+    ```bash
+        resiliency usage-plan list
+    ```
+
+- UsagePlans_ListByResourceGroup_MaximumSet
+    ```bash
+        resiliency usage-plan list --resource-group MyResourceGroup
+    ```
