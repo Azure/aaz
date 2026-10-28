@@ -1,6 +1,6 @@
 # [Command] _edge-action update_
 
-Update EdgeAction resource
+Update an EdgeAction
 
 ## Versions
 
@@ -24,4 +24,15 @@ Update EdgeAction resource
 - UpdateEdgeAction
     ```bash
         edge-action Update --resource-group testrg --edge-action-name edgeAction1 --location global --sku "{name:Standard,tier:Standard}"
+    ```
+
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vZWRnZWFjdGlvbnMve30=/2026-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/edgeactions/{} 2026-10-01 -->
+
+#### examples
+
+- UpdateEdgeAction
+    ```bash
+        edge-action update --resource-group testrg --edge-action-name edgeAction1 --sku "{name:Standard,tier:Standard}"
     ```
