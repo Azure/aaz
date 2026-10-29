@@ -53,5 +53,5 @@ Create a Network Rack resource
 
 - Create the Network Rack
     ```bash
-        networkfabric rack create --resource-group example-rg --resource-name example-rack --annotation annotation --network-rack-type Aggregate --network-fabric-id /subscriptions/1234ABCD-0A1B-1234-5678-123456ABCDEF/resourcegroups/example-rg/providers/Microsoft.ManagedNetworkFabric/networkFabrics/example-networkFabric --tags "{keyId:keyValue}" --location eastuseuap
+        networkfabric rack create --resource-group "example-rg" --resource-name "example-rack" --annotation "annotation" --network-rack-type "Aggregate" --network-fabric-id "/subscriptions/1234ABCD-0A1B-1234-5678-123456ABCDEF/resourcegroups/example-rg/providers/Microsoft.ManagedNetworkFabric/networkFabrics/example-networkFabric" --tags "{keyId:keyValue}" --location "eastuseuap"
     ```

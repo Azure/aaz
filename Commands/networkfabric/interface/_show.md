@@ -67,5 +67,5 @@ Show details of the provided Network Interface resource
 
 - Show the Network Interface
     ```bash
-        networkfabric interface show -g "example-rg" --network-device-name "example-device" --resource-name "example-interface"
+        networkfabric interface show --resource-group "example-rg" --network-device-name "example-device" --resource-name "example-interface"
     ```

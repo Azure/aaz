@@ -23,5 +23,5 @@ Upgrades the version of the Network Bootstrap Device.
 
 - Upgrades the version of the Network Bootstrap Device.
     ```bash
-        networkfabric bootstrapdevice upgrade --resource-group example-rg --resource-name example-device --version 1.0
+        networkfabric bootstrapdevice upgrade --resource-group "example-rg" --resource-name "example-device" --version "1.0"
     ```

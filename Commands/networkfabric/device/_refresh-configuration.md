@@ -38,5 +38,5 @@ Refreshes the configuration the Network Device.
 
 - Run refresh configuration on the Network Device
     ```bash
-        networkfabric device refresh-configuration --resource-group example-rg --resource-name example-device
+        networkfabric device refresh-configuration --resource-group "example-rg" --resource-name "example-device"
     ```

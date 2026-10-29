@@ -56,5 +56,5 @@ Validates the configuration of the underlying resources in the given Network Fab
 
 - Validate the configuration on the Network Fabric
     ```bash
-        networkfabric fabric validate-configuration -g "example-rg" --resource-name "example-nf" --validate-action "Cabling"
+        networkfabric fabric validate-configuration --resource-group "example-rg" --resource-name "example-nf" --validate-action "Cabling"
     ```

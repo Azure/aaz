@@ -23,5 +23,5 @@ Refreshes the configuration of Network Bootstrap Device.
 
 - Run refresh configuration on the Boostrap Device
     ```bash
-        networkfabric bootstrapdevice refresh-configuration --resource-group example-rg --resource-name example-device
+        networkfabric bootstrapdevice refresh-configuration --resource-group "example-rg" --resource-name "example-device"
     ```

@@ -42,5 +42,5 @@ Update to update certain properties of the Network Packet Broker resource.
 
 - update Network Packet Broker
     ```bash
-        networkfabric npb update --resource-group "example-rg" --resource-name "example-npb" --tag "{'name': 'value'}"
+        networkfabric npb update --resource-group "example-rg" --resource-name "example-npb" --tags "{name:value}"
     ```

@@ -23,5 +23,5 @@ Creates new passwords, then updates the Terminal Server and Network Devices to u
 
 - Create new passwords, then updates the Terminal Server and Network Devices to use the new passwords
     ```bash
-        networkfabric fabric rotate-password --resource-group example-rg --resource-name example-fabric
+        networkfabric fabric rotate-password --resource-group "example-rg" --resource-name "example-fabric"
     ```

@@ -34,5 +34,5 @@ Post action: Triggers network fabric lock operation.
 
 - Run lock fabric on the Network Fabric
     ```bash
-        networkfabric fabric lock-fabric --resource-group example-rg --resource-name example-networkFabric --lock-type Administrative --action Lock
+        networkfabric fabric lock-fabric --resource-group "example-rg" --resource-name "example-networkFabric" --lock-type "Administrative" --action "Lock"
     ```

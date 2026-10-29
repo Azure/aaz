@@ -23,5 +23,5 @@ Get the Network Bootstrap Interface resource details.
 
 - Show the Bootstrap Interface resource
     ```bash
-        networkfabric bootstrapinterface show --resource-group example-rg --network-bootstrap-device-name example-device --resource-name example-interface
+        networkfabric bootstrapinterface show --resource-group "example-rg" --network-bootstrap-device-name "example-device" --resource-name "example-interface"
     ```

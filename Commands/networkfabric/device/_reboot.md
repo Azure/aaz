@@ -38,5 +38,5 @@ Reboot the Network Device.
 
 - Reboot the Network Device
     ```bash
-        networkfabric device reboot --resource-group example-rg --resource-name example-device --reboot-type GracefulRebootWithZTP
+        networkfabric device reboot --resource-group "example-rg" --resource-name "example-device" --reboot-type "GracefulRebootWithZTP"
     ```

@@ -33,6 +33,9 @@ Manage Network Bootstrap Device Resource
 - [update](/Commands/networkfabric/bootstrapdevice/_update.md)
 : Update certain properties of the Network Bootstrap Device resource.
 
+- [update-admin-state](/Commands/networkfabric/bootstrapdevice/_update-admin-state.md)
+: Updates the Administrative state of the Network Bootstrap Device.
+
 - [update-administrative-state](/Commands/networkfabric/bootstrapdevice/_update-administrative-state.md)
 : Updates the Administrative state of the Network Bootstrap Device.
 

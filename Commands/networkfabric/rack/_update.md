@@ -46,5 +46,5 @@ Update certain properties of the Network Rack resource.
 
 - Update the Network Rack
     ```bash
-        networkfabric rack update--resource-group "example-rg" --resource-name "example-rack" --tag "{'name': 'value'}"
+        networkfabric rack update --resource-group "example-rg" --resource-name "example-rack" --tags "{name:value}"
     ```

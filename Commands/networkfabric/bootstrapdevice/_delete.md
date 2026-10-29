@@ -23,5 +23,5 @@ Delete a Network Bootstrap Device resource.
 
 - Delete the Bootstrap Device resource
     ```bash
-        networkfabric bootstrapdevice delete --resource-group example-rg --resource-name example-device
+        networkfabric bootstrapdevice delete --resource-group "example-rg" --resource-name "example-device"
     ```

@@ -23,5 +23,5 @@ Resync the Neighbor Group after a configuration change.
 
 - Resync the Neighbor Group resource
     ```bash
-        networkfabric neighborgroup resync --resource-group example-rg --resource-name example-neighborgroup
+        networkfabric neighborgroup resync --resource-group "example-rg" --resource-name "example-neighborgroup"
     ```
