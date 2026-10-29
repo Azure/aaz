@@ -67,5 +67,5 @@ Delete the Network Interface resource
 
 - Delete the Network Interface
     ```bash
-        networkfabric interface delete -g "example-rg" --network-device-name "example-device" --resource-name "example-interface"
+        networkfabric interface delete --resource-group "example-rg" --network-device-name "example-device" --resource-name "example-interface"
     ```

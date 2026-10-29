@@ -67,5 +67,5 @@ Update the admin state of the Network Interface.
 
 - Update admin state of Network Interface
     ```bash
-        networkfabric interface update-admin-state -g "example-rg" --network-device-name "example-device" --resource-name "example-interface" --state "Enable"
+        networkfabric interface update-admin-state --resource-group "example-rg" --network-device-name "example-device" --resource-name "example-interface" --state "Enable"
     ```

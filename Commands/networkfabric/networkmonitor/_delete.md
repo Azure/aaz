@@ -34,5 +34,5 @@ Delete layer 2 connectivity between compute nodes by managed by named NetworkMon
 
 - Delete the Network Monitor
     ```bash
-        networkfabric networkmonitor delete --resource-group rgmanagednetworkfabric --network-monitor-name example-monitor
+        networkfabric networkmonitor delete --resource-group "rgmanagednetworkfabric" --network-monitor-name "example-monitor"
     ```

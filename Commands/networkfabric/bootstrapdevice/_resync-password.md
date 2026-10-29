@@ -23,5 +23,5 @@ Updates the Network Bootstrap Device to use the latest passwords. Does not gener
 
 - Resync the latest passwords to the Network Bootstrap Device
     ```bash
-        networkfabric bootstrapdevice resync-password --resource-group example-rg --resource-name example-device
+        networkfabric bootstrapdevice resync-password --resource-group "example-rg" --resource-name "example-device"
     ```

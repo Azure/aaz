@@ -42,5 +42,5 @@ Upgrades the version of the underlying resources in the given Network Fabric ins
 
 - Upgrade the Network Fabric
     ```bash
-        networkfabric fabric upgrade --resource-group example-rg --resource-name example-fabric --version 3.x.x --action Start
+        networkfabric fabric upgrade --resource-group "example-rg" --resource-name "example-fabric" --version "3.x.x" --action "Start"
     ```

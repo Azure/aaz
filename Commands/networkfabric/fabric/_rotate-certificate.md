@@ -23,5 +23,5 @@ Creates new certificates, then updates the Network Devices to use the new certif
 
 - Create new certificates, then updates the Network Devices to use the new certificates
     ```bash
-        networkfabric fabric rotate-certificate --resource-group example-rg --resource-name example-fabric
+        networkfabric fabric rotate-certificate --resource-group "example-rg" --resource-name "example-fabric"
     ```

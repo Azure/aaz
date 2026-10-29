@@ -23,5 +23,5 @@ Create a Network Bootstrap Device resource
 
 - Create a Bootstrap Device resource
     ```bash
-        networkfabric bootstrapdevice create --resource-group example-rg --resource-name example-device --annotation annotation --host-name NFA-Device --serial-number Vendor;DCS-7280XXX-24;12.05;JPE2111XXXX --network-device-sku DeviceSku --type None --user-assigned-identities "{key3673:{}}" --tags "{}" --location eastuseuap
+        networkfabric bootstrapdevice create --resource-group "example-rg" --resource-name "example-device" --annotation "annotation" --host-name "NFA-Device" --serial-number "Vendor;DCS-7280XXX-24;12.05;JPE2111XXXX" --network-device-sku "DeviceSku" --tags "{}" --location "eastuseuap"
     ```

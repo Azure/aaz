@@ -42,5 +42,5 @@ Show details of the provided Network Device SKU resource.
 
 - Show the DeviceSKU for Subscription
     ```bash
-        networkfabric devicesku show --resource-name example-deviceSku
+        networkfabric devicesku show --resource-name "example-deviceSku"
     ```

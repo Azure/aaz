@@ -23,5 +23,5 @@ Update certain properties of the Network Bootstrap Device resource.
 
 - Update the Bootstrap Device resource
     ```bash
-        networkfabric bootstrapdevice update --resource-group "example-rg" --resource-name "example-device" --annotation example-annotation --host-name "AustinNF-AR-CE1" --serial-number "Arista;DCS-7280DR3-24;12.05;JPE21115446" --type None --user-assigned-identities "{key3673:{}}"
+        networkfabric bootstrapdevice update --resource-group "example-rg" --resource-name "example-device" --annotation "example-annotation" --host-name "AustinNF-AR-CE1" --serial-number "Arista;DCS-7280DR3-24;12.05;JPE21115446"
     ```

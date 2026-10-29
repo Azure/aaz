@@ -46,5 +46,5 @@ Create a Network Interface resource.
 
 - Create the Network Interface
     ```bash
-        networkfabric interface create --resource-group example-rg --network-device-name example-device --resource-name example-interface --annotation annotation --description device 1 --additional-description device 1
+        networkfabric interface create --resource-group "example-rg" --network-device-name "example-device" --resource-name "example-interface" --annotation "annotation" --additional-description "device 1"
     ```
