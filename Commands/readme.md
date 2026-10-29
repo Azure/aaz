@@ -371,6 +371,9 @@
 - [reservations](/Commands/reservations/readme.md)
 : Azure Reservations
 
+- [resiliency](/Commands/resiliency/readme.md)
+: Manage Azure Resiliency
+
 - [resource-mover](/Commands/resource-mover/readme.md)
 : Manage Resource Mover Service API.
 
