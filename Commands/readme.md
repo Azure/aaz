@@ -14,6 +14,9 @@
 - [agentfabric](/Commands/agentfabric/readme.md)
 : Manage Agent Fabric and related Microsoft.NetworkSecurity resources. Root commands manage Agent Fabric resources.
 
+- [aiinfraoptimization](/Commands/aiinfraoptimization/readme.md)
+: AI Infra Optimization
+
 - [alerts-management](/Commands/alerts-management/readme.md)
 : Manage Azure Alerts Management Service Resource.
 
