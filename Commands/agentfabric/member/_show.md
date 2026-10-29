@@ -2,7 +2,7 @@
 
 Show an Agent Fabric member.
 
-Members are children of an Agent Fabric and require the parent Fabric name. This command shows an Agent Fabric sandbox member.
+Members are children of an Agent Fabric and require the parent Fabric name. Member workloads can describe ACI or Agent Fabric sandbox resources, and AKS resources in API version 2026-10-07-preview.
 
 ## Versions
 
