@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/commvault.contentstore/cloudaccounts/{}/protectiongroups/{}/protecteditems/{}/restore" version="2026-09-30" swagger="mgmt-plane/liftrcommvault/ResourceProviders/Commvault.ContentStore/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9Db21tdmF1bHQuQ29udGVudFN0b3JlL2Nsb3VkQWNjb3VudHMve2Nsb3VkQWNjb3VudE5hbWV9L3Byb3RlY3Rpb25Hcm91cHMve3Byb3RlY3Rpb25Hcm91cE5hbWV9L3Byb3RlY3RlZEl0ZW1zL3twcm90ZWN0ZWRJdGVtTmFtZX0vcmVzdG9yZQ==/V/MjAyNi0wOS0zMA=="/>
+  <commandGroup name="commvault cloud-account protection-group protected-item">
+    <command name="restore" version="2026-09-30">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/commvault.contentstore/cloudaccounts/{}/protectiongroups/{}/protecteditems/{}/restore" version="2026-09-30" swagger="mgmt-plane/liftrcommvault/ResourceProviders/Commvault.ContentStore/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9Db21tdmF1bHQuQ29udGVudFN0b3JlL2Nsb3VkQWNjb3VudHMve2Nsb3VkQWNjb3VudE5hbWV9L3Byb3RlY3Rpb25Hcm91cHMve3Byb3RlY3Rpb25Hcm91cE5hbWV9L3Byb3RlY3RlZEl0ZW1zL3twcm90ZWN0ZWRJdGVtTmFtZX0vcmVzdG9yZQ==/V/MjAyNi0wOS0zMA=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.cloudAccountName" options="cloud-account-name" required="True" idPart="name">
+          <help short="Name of the Cloud Account resource"/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
+        </arg>
+        <arg type="string" var="$Path.protectedItemName" options="protected-item-name" required="True" idPart="child_name_2">
+          <help short="The protectedItem Id, name of 2 protected items can be same under a PG if they belong to different resource group or even different data source types VM/DB/AKS, etc; and name is mandatory in Azure Typespec, hence using name parameter for id in Commvault In case of Vm it will be vmGuid"/>
+          <format pattern="^[a-zA-Z0-9\-_]{1,127}$"/>
+        </arg>
+        <arg type="string" var="$Path.protectionGroupName" options="protection-group-name" required="True" idPart="child_name_1">
+          <help short="Name of the ProtectionGroup resource"/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Request">
+        <arg type="boolean" var="$request.inPlaceRestore" options="in-place-restore" required="True" group="Request">
+          <help short="Check whether inplace or out of place restore."/>
+        </arg>
+        <arg type="string" var="$request.restoreType" options="restore-type" group="Request">
+          <help short="Type of Restore"/>
+          <enum>
+            <item name="DISK_ATTACH" value="&quot;DISK_ATTACH&quot;"/>
+            <item name="NONE" value="&quot;NONE&quot;"/>
+            <item name="VIRTUAL_MACHINE" value="&quot;VIRTUAL_MACHINE&quot;"/>
+          </enum>
+        </arg>
+        <arg type="string" var="$request.toTime" options="to-time" group="Request">
+          <help short="Time to restore"/>
+        </arg>
+        <arg type="object" var="$request.vmDestinationInfo" options="vm-destination-info" required="True" group="Request">
+          <help short="The vm destination details of the VM."/>
+          <arg type="array<object>" var="$request.vmDestinationInfo.vmInfoList" options="vm-info-list" required="True">
+            <help short="List of information on VMs"/>
+            <item type="object">
+              <arg type="boolean" var="$request.vmDestinationInfo.vmInfoList[].attachAndSwapOsDisk" options="attach-and-swap-os-disk">
+                <help short="The identifier to check if to attach and swap disk of the VM."/>
+              </arg>
+              <arg type="string" var="$request.vmDestinationInfo.vmInfoList[].name" options="name">
+                <help short="The name of the VM."/>
+              </arg>
+              <arg type="string" var="$request.vmDestinationInfo.vmInfoList[].networkId" options="network-id">
+                <help short="The network Id of the VM."/>
+              </arg>
+              <arg type="boolean" var="$request.vmDestinationInfo.vmInfoList[].powerOnVmAfterRestore" options="power-on-vm-after-restore">
+                <help short="The identifier to check if VM needs to be powered on."/>
+              </arg>
+              <arg type="string" var="$request.vmDestinationInfo.vmInfoList[].region" options="region">
+                <help short="The region of the VM."/>
+              </arg>
+              <arg type="string" var="$request.vmDestinationInfo.vmInfoList[].resourceGroup" options="resource-group">
+                <help short="The resource group of the VM."/>
+              </arg>
+              <arg type="string" var="$request.vmDestinationInfo.vmInfoList[].sourceVmGuid" options="source-vm-guid" required="True">
+                <help short="The GUID of VM to be restored."/>
+              </arg>
+              <arg type="string" var="$request.vmDestinationInfo.vmInfoList[].storageAccountId" options="storage-account-id" required="True">
+                <help short="The storage account to be used for restore."/>
+              </arg>
+              <arg type="string" var="$request.vmDestinationInfo.vmInfoList[].subnetId" options="subnet-id">
+                <help short="The subnet Id of the VM."/>
+              </arg>
+              <arg type="string" var="$request.vmDestinationInfo.vmInfoList[].targetVmGuid" options="target-vm-guid">
+                <help short="The GUID of target VM used in DISK ATTACH."/>
+              </arg>
+              <arg type="array<object>" var="$request.vmDestinationInfo.vmInfoList[].vmtags" options="vmtags">
+                <help short="The vmTag of the VM."/>
+                <item type="object">
+                  <arg type="string" var="$request.vmDestinationInfo.vmInfoList[].vmtags[].name" options="name" required="True">
+                    <help short="The name of VM tag."/>
+                  </arg>
+                  <arg type="string" var="$request.vmDestinationInfo.vmInfoList[].vmtags[].value" options="value" required="True">
+                    <help short="The value of VM tag."/>
+                  </arg>
+                </item>
+              </arg>
+            </item>
+          </arg>
+        </arg>
+      </argGroup>
+      <operation operationId="ProtectedItems_Restore">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Commvault.ContentStore/cloudAccounts/{cloudAccountName}/protectionGroups/{protectionGroupName}/protectedItems/{protectedItemName}/restore">
+          <request method="post">
+            <path>
+              <param type="string" name="cloudAccountName" arg="$Path.cloudAccountName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
+              </param>
+              <param type="string" name="protectedItemName" arg="$Path.protectedItemName" required="True">
+                <format pattern="^[a-zA-Z0-9\-_]{1,127}$"/>
+              </param>
+              <param type="string" name="protectionGroupName" arg="$Path.protectionGroupName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-09-30&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="request" required="True" clientFlatten="True">
+                  <prop type="boolean" name="inPlaceRestore" arg="$request.inPlaceRestore" required="True"/>
+                  <prop type="string" name="restoreType" arg="$request.restoreType">
+                    <enum>
+                      <item value="&quot;DISK_ATTACH&quot;"/>
+                      <item value="&quot;NONE&quot;"/>
+                      <item value="&quot;VIRTUAL_MACHINE&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="string" name="toTime" arg="$request.toTime"/>
+                  <prop type="object" name="vmDestinationInfo" arg="$request.vmDestinationInfo" required="True">
+                    <prop type="array<object>" name="vmInfoList" arg="$request.vmDestinationInfo.vmInfoList" required="True">
+                      <item type="object">
+                        <prop type="boolean" name="attachAndSwapOsDisk" arg="$request.vmDestinationInfo.vmInfoList[].attachAndSwapOsDisk"/>
+                        <prop type="string" name="name" arg="$request.vmDestinationInfo.vmInfoList[].name"/>
+                        <prop type="string" name="networkId" arg="$request.vmDestinationInfo.vmInfoList[].networkId"/>
+                        <prop type="boolean" name="powerOnVmAfterRestore" arg="$request.vmDestinationInfo.vmInfoList[].powerOnVmAfterRestore"/>
+                        <prop type="string" name="region" arg="$request.vmDestinationInfo.vmInfoList[].region"/>
+                        <prop type="string" name="resourceGroup" arg="$request.vmDestinationInfo.vmInfoList[].resourceGroup"/>
+                        <prop type="string" name="sourceVmGuid" arg="$request.vmDestinationInfo.vmInfoList[].sourceVmGuid" required="True"/>
+                        <prop type="string" name="storageAccountId" arg="$request.vmDestinationInfo.vmInfoList[].storageAccountId" required="True"/>
+                        <prop type="string" name="subnetId" arg="$request.vmDestinationInfo.vmInfoList[].subnetId"/>
+                        <prop type="string" name="targetVmGuid" arg="$request.vmDestinationInfo.vmInfoList[].targetVmGuid"/>
+                        <prop type="array<object>" name="vmtags" arg="$request.vmDestinationInfo.vmInfoList[].vmtags">
+                          <item type="object">
+                            <prop type="string" name="name" arg="$request.vmDestinationInfo.vmInfoList[].vmtags[].name" required="True"/>
+                            <prop type="string" name="value" arg="$request.vmDestinationInfo.vmInfoList[].vmtags[].value" required="True"/>
+                          </item>
+                        </prop>
+                      </item>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="array<string>" name="jobIds">
+                    <item type="string"/>
+                  </prop>
+                  <prop readOnly="True" type="integer32" name="taskId"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
