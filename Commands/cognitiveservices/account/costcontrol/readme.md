@@ -12,6 +12,9 @@ A set of commands to manage Cost Control Policies in Foundry. Supported commands
 - [delete](/Commands/cognitiveservices/account/costcontrol/_delete.md)
 : Delete a cost control.
 
+- [head](/Commands/cognitiveservices/account/costcontrol/_head.md)
+: Checks whether an account-owned cost control exists without returning its body.
+
 - [list](/Commands/cognitiveservices/account/costcontrol/_list.md)
 : List the cost controls owned by an account.
 
