@@ -380,6 +380,9 @@
 - [role](/Commands/role/readme.md)
 : Manage Azure role-based access control (Azure RBAC)
 
+- [search](/Commands/search/readme.md)
+: Manage Search
+
 - [security](/Commands/security/readme.md)
 : Manage your security posture with Microsoft Defender for Cloud.
 
