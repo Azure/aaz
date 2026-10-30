@@ -20,3 +20,20 @@ List the Relay Service Namespaces.
     ```bash
         relay namespace list
     ```
+
+### [2026-07-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5yZWxheS9uYW1lc3BhY2Vz/2026-07-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.relay/namespaces 2026-07-01-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.relay/namespaces 2026-07-01-preview -->
+
+#### examples
+
+- Get the Relay Service Namespaces by resource group
+    ```bash
+        relay namespace list --resource-group myresourcegroup
+    ```
+
+- Get the Relay Service Namespaces by Subscription.
+    ```bash
+        relay namespace list
+    ```

@@ -25,3 +25,14 @@ List EdgeActionExecutionFilter resources by EdgeAction
     ```bash
         edge-action execution-filter list --resource-group testrg --edge-action-name edgeAction1
     ```
+
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vZWRnZWFjdGlvbnMve30vZXhlY3V0aW9uZmlsdGVycw==/2026-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/edgeactions/{}/executionfilters 2026-10-01 -->
+
+#### examples
+
+- ListEdgeActionsExecutionFilters_byEdgeAction
+    ```bash
+        edge-action execution-filter list --resource-group testrg --edge-action-name edgeAction1
+    ```

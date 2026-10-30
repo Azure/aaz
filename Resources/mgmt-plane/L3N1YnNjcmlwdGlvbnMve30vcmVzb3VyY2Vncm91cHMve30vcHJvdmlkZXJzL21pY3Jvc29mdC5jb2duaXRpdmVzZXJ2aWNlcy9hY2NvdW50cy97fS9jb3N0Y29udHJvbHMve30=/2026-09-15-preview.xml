@@ -60,44 +60,39 @@
                         <prop type="float64" name="amount" required="True">
                           <format minimum="0.0" exclusiveMinimum="True"/>
                         </prop>
-                        <prop type="array<object>" name="counterKey" required="True">
-                          <format maxLength="1" minLength="1"/>
-                          <item type="object">
-                            <prop type="string" name="attribute">
-                              <format pattern="^[a-zA-Z][a-zA-Z0-9_.-]{0,127}$" maxLength="128"/>
-                            </prop>
-                            <prop type="string" name="type" required="True">
-                              <enum>
-                                <item value="&quot;account&quot;"/>
-                                <item value="&quot;agent&quot;"/>
-                                <item value="&quot;custom&quot;"/>
-                                <item value="&quot;identity&quot;"/>
-                                <item value="&quot;project&quot;"/>
-                                <item value="&quot;session&quot;"/>
-                              </enum>
-                            </prop>
-                          </item>
+                        <prop type="object" name="counterKey" required="True">
+                          <prop readOnly="True" type="string" name="attribute"/>
+                          <prop type="string" name="type" required="True">
+                            <enum>
+                              <item value="&quot;Account&quot;"/>
+                              <item value="&quot;Agent&quot;"/>
+                              <item value="&quot;Custom&quot;"/>
+                              <item value="&quot;Identity&quot;"/>
+                              <item value="&quot;Project&quot;"/>
+                              <item value="&quot;Session&quot;"/>
+                            </enum>
+                          </prop>
                         </prop>
                         <prop type="object" name="match">
-                          <prop type="array<string>" name="foundry.caller.agent.id">
+                          <prop type="array<string>" name="agentResourceIds">
                             <format maxLength="20" minLength="1"/>
                             <item type="string">
                               <format minLength="1"/>
                             </item>
                           </prop>
-                          <prop type="array<string>" name="foundry.caller.identity.oid">
+                          <prop type="array<string>" name="identityObjectIds">
                             <format maxLength="20" minLength="1"/>
                             <item type="string">
                               <format minLength="1"/>
                             </item>
                           </prop>
-                          <prop type="array<string>" name="foundry.caller.session.id">
+                          <prop type="array<ResourceId>" name="projectIds">
                             <format maxLength="20" minLength="1"/>
-                            <item type="string">
-                              <format minLength="1"/>
+                            <item type="ResourceId">
+                              <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.CognitiveServices/accounts/projects/{}"/>
                             </item>
                           </prop>
-                          <prop type="array<string>" name="foundry.project.id">
+                          <prop type="array<string>" name="sessionIds">
                             <format maxLength="20" minLength="1"/>
                             <item type="string">
                               <format minLength="1"/>
@@ -109,12 +104,12 @@
                         </prop>
                         <prop type="string" name="period">
                           <enum>
-                            <item value="&quot;day&quot;"/>
-                            <item value="&quot;hour&quot;"/>
-                            <item value="&quot;minute&quot;"/>
-                            <item value="&quot;month&quot;"/>
-                            <item value="&quot;week&quot;"/>
-                            <item value="&quot;year&quot;"/>
+                            <item value="&quot;Day&quot;"/>
+                            <item value="&quot;Hour&quot;"/>
+                            <item value="&quot;Minute&quot;"/>
+                            <item value="&quot;Month&quot;"/>
+                            <item value="&quot;Week&quot;"/>
+                            <item value="&quot;Year&quot;"/>
                           </enum>
                         </prop>
                         <prop type="boolean" name="recurring">
@@ -123,18 +118,17 @@
                         <prop nullable="True" type="array<object>" name="thresholds">
                           <format maxLength="10"/>
                           <item type="object">
-                            <prop type="string" name="action">
-                              <default value="&quot;audit&quot;"/>
+                            <prop type="string" name="action" required="True">
                               <enum>
-                                <item value="&quot;alert&quot;"/>
-                                <item value="&quot;audit&quot;"/>
-                                <item value="&quot;block&quot;"/>
+                                <item value="&quot;Alert&quot;"/>
+                                <item value="&quot;Audit&quot;"/>
+                                <item value="&quot;Block&quot;"/>
                               </enum>
                             </prop>
                             <prop type="string" name="type" required="True">
                               <enum>
-                                <item value="&quot;absolute&quot;"/>
-                                <item value="&quot;percentage&quot;"/>
+                                <item value="&quot;Absolute&quot;"/>
+                                <item value="&quot;Percentage&quot;"/>
                               </enum>
                             </prop>
                             <prop type="float64" name="value" required="True">
@@ -144,7 +138,7 @@
                         </prop>
                         <prop type="string" name="unit" required="True">
                           <enum>
-                            <item value="&quot;usd&quot;"/>
+                            <item value="&quot;Usd&quot;"/>
                           </enum>
                         </prop>
                       </item>
@@ -277,52 +271,45 @@
               <help short="The maximum consumption allowed by this rule, expressed in the selected unit."/>
               <format minimum="0.0" exclusiveMinimum="True"/>
             </arg>
-            <arg type="array<object>" var="$resource.properties.rules[].counterKey" options="counter-key" required="True">
+            <arg type="object" var="$resource.properties.rules[].counterKey" options="counter-key" required="True">
               <help short="The built-in dimension used to partition consumption. The initial preview supports exactly one dimension."/>
-              <format maxLength="1" minLength="1"/>
-              <item type="object">
-                <arg type="string" var="$resource.properties.rules[].counterKey[].attribute" options="attribute">
-                  <help short="The request attribute used by a custom dimension. This property is required for custom dimensions and must be omitted for built-in dimensions."/>
-                  <format pattern="^[a-zA-Z][a-zA-Z0-9_.-]{0,127}$" maxLength="128"/>
-                </arg>
-                <arg type="string" var="$resource.properties.rules[].counterKey[].type" options="type" required="True">
-                  <help short="The kind of request dimension."/>
-                  <enum>
-                    <item name="account" value="&quot;account&quot;"/>
-                    <item name="agent" value="&quot;agent&quot;"/>
-                    <item name="custom" value="&quot;custom&quot;"/>
-                    <item name="identity" value="&quot;identity&quot;"/>
-                    <item name="project" value="&quot;project&quot;"/>
-                    <item name="session" value="&quot;session&quot;"/>
-                  </enum>
-                </arg>
-              </item>
+              <arg type="string" var="$resource.properties.rules[].counterKey.type" options="type" required="True">
+                <help short="The kind of request dimension."/>
+                <enum>
+                  <item name="Account" value="&quot;Account&quot;"/>
+                  <item name="Agent" value="&quot;Agent&quot;"/>
+                  <item name="Custom" value="&quot;Custom&quot;"/>
+                  <item name="Identity" value="&quot;Identity&quot;"/>
+                  <item name="Project" value="&quot;Project&quot;"/>
+                  <item name="Session" value="&quot;Session&quot;"/>
+                </enum>
+              </arg>
             </arg>
             <arg type="object" var="$resource.properties.rules[].match" options="match">
               <help short="Trusted request attributes and allowed values used to select matching requests."/>
-              <arg type="array<string>" var="$resource.properties.rules[].match.foundry.caller.agent.id" options="foundry-caller-agent-id">
-                <help short="The stable Foundry agent IDs to match."/>
+              <arg type="array<string>" var="$resource.properties.rules[].match.agentResourceIds" options="agent-resource-ids">
+                <help short="Agent resource IDs use /subscriptions/{subscription_guid}/accounts/{account-name}/project/{project-name}/agent/{agent_name}."/>
                 <format maxLength="20" minLength="1"/>
                 <item type="string">
                   <format minLength="1"/>
                 </item>
               </arg>
-              <arg type="array<string>" var="$resource.properties.rules[].match.foundry.caller.identity.oid" options="foundry-caller-identity-oid">
+              <arg type="array<string>" var="$resource.properties.rules[].match.identityObjectIds" options="identity-object-ids">
                 <help short="The authenticated principal object IDs to match."/>
                 <format maxLength="20" minLength="1"/>
                 <item type="string">
                   <format minLength="1"/>
                 </item>
               </arg>
-              <arg type="array<string>" var="$resource.properties.rules[].match.foundry.caller.session.id" options="foundry-caller-session-id">
-                <help short="The Foundry session IDs to match."/>
+              <arg type="array<ResourceId>" var="$resource.properties.rules[].match.projectIds" options="project-ids">
+                <help short="The Foundry project resource IDs to match."/>
                 <format maxLength="20" minLength="1"/>
-                <item type="string">
-                  <format minLength="1"/>
+                <item type="ResourceId">
+                  <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.CognitiveServices/accounts/projects/{}"/>
                 </item>
               </arg>
-              <arg type="array<string>" var="$resource.properties.rules[].match.foundry.project.id" options="foundry-project-id">
-                <help short="The Foundry project resource IDs to match."/>
+              <arg type="array<string>" var="$resource.properties.rules[].match.sessionIds" options="session-ids">
+                <help short="The Foundry session IDs to match."/>
                 <format maxLength="20" minLength="1"/>
                 <item type="string">
                   <format minLength="1"/>
@@ -336,12 +323,12 @@
             <arg type="string" var="$resource.properties.rules[].period" options="period">
               <help short="The calendar-aligned UTC renewal period. This property is required for recurring rules and omitted for non-recurring rules."/>
               <enum>
-                <item name="day" value="&quot;day&quot;"/>
-                <item name="hour" value="&quot;hour&quot;"/>
-                <item name="minute" value="&quot;minute&quot;"/>
-                <item name="month" value="&quot;month&quot;"/>
-                <item name="week" value="&quot;week&quot;"/>
-                <item name="year" value="&quot;year&quot;"/>
+                <item name="Day" value="&quot;Day&quot;"/>
+                <item name="Hour" value="&quot;Hour&quot;"/>
+                <item name="Minute" value="&quot;Minute&quot;"/>
+                <item name="Month" value="&quot;Month&quot;"/>
+                <item name="Week" value="&quot;Week&quot;"/>
+                <item name="Year" value="&quot;Year&quot;"/>
               </enum>
             </arg>
             <arg type="boolean" var="$resource.properties.rules[].recurring" options="recurring">
@@ -352,20 +339,20 @@
               <help short="The actions evaluated as consumption approaches the configured amount."/>
               <format maxLength="10"/>
               <item type="object">
-                <arg type="string" var="$resource.properties.rules[].thresholds[].action" options="action">
+                <arg type="string" var="$resource.properties.rules[].thresholds[].action" options="action" required="True">
                   <help short="The action taken when the threshold is reached. The default is audit."/>
                   <default value="&quot;audit&quot;"/>
                   <enum>
-                    <item name="alert" value="&quot;alert&quot;"/>
-                    <item name="audit" value="&quot;audit&quot;"/>
-                    <item name="block" value="&quot;block&quot;"/>
+                    <item name="Alert" value="&quot;Alert&quot;"/>
+                    <item name="Audit" value="&quot;Audit&quot;"/>
+                    <item name="Block" value="&quot;Block&quot;"/>
                   </enum>
                 </arg>
                 <arg type="string" var="$resource.properties.rules[].thresholds[].type" options="type" required="True">
                   <help short="How the threshold value is interpreted."/>
                   <enum>
-                    <item name="absolute" value="&quot;absolute&quot;"/>
-                    <item name="percentage" value="&quot;percentage&quot;"/>
+                    <item name="Absolute" value="&quot;Absolute&quot;"/>
+                    <item name="Percentage" value="&quot;Percentage&quot;"/>
                   </enum>
                 </arg>
                 <arg type="float64" var="$resource.properties.rules[].thresholds[].value" options="value" required="True">
@@ -377,7 +364,7 @@
             <arg type="string" var="$resource.properties.rules[].unit" options="unit" required="True">
               <help short="The unit used for the cost control amount and absolute thresholds."/>
               <enum>
-                <item name="usd" value="&quot;usd&quot;"/>
+                <item name="Usd" value="&quot;Usd&quot;"/>
               </enum>
             </arg>
           </item>
@@ -423,44 +410,38 @@
                         <prop type="float64" name="amount" arg="$resource.properties.rules[].amount" required="True">
                           <format minimum="0.0" exclusiveMinimum="True"/>
                         </prop>
-                        <prop type="array<object>" name="counterKey" arg="$resource.properties.rules[].counterKey" required="True">
-                          <format maxLength="1" minLength="1"/>
-                          <item type="object">
-                            <prop type="string" name="attribute" arg="$resource.properties.rules[].counterKey[].attribute">
-                              <format pattern="^[a-zA-Z][a-zA-Z0-9_.-]{0,127}$" maxLength="128"/>
-                            </prop>
-                            <prop type="string" name="type" arg="$resource.properties.rules[].counterKey[].type" required="True">
-                              <enum>
-                                <item value="&quot;account&quot;"/>
-                                <item value="&quot;agent&quot;"/>
-                                <item value="&quot;custom&quot;"/>
-                                <item value="&quot;identity&quot;"/>
-                                <item value="&quot;project&quot;"/>
-                                <item value="&quot;session&quot;"/>
-                              </enum>
-                            </prop>
-                          </item>
+                        <prop type="object" name="counterKey" arg="$resource.properties.rules[].counterKey" required="True">
+                          <prop type="string" name="type" arg="$resource.properties.rules[].counterKey.type" required="True">
+                            <enum>
+                              <item value="&quot;Account&quot;"/>
+                              <item value="&quot;Agent&quot;"/>
+                              <item value="&quot;Custom&quot;"/>
+                              <item value="&quot;Identity&quot;"/>
+                              <item value="&quot;Project&quot;"/>
+                              <item value="&quot;Session&quot;"/>
+                            </enum>
+                          </prop>
                         </prop>
                         <prop type="object" name="match" arg="$resource.properties.rules[].match">
-                          <prop type="array<string>" name="foundry.caller.agent.id" arg="$resource.properties.rules[].match.foundry.caller.agent.id">
+                          <prop type="array<string>" name="agentResourceIds" arg="$resource.properties.rules[].match.agentResourceIds">
                             <format maxLength="20" minLength="1"/>
                             <item type="string">
                               <format minLength="1"/>
                             </item>
                           </prop>
-                          <prop type="array<string>" name="foundry.caller.identity.oid" arg="$resource.properties.rules[].match.foundry.caller.identity.oid">
+                          <prop type="array<string>" name="identityObjectIds" arg="$resource.properties.rules[].match.identityObjectIds">
                             <format maxLength="20" minLength="1"/>
                             <item type="string">
                               <format minLength="1"/>
                             </item>
                           </prop>
-                          <prop type="array<string>" name="foundry.caller.session.id" arg="$resource.properties.rules[].match.foundry.caller.session.id">
+                          <prop type="array<ResourceId>" name="projectIds" arg="$resource.properties.rules[].match.projectIds">
                             <format maxLength="20" minLength="1"/>
-                            <item type="string">
-                              <format minLength="1"/>
+                            <item type="ResourceId">
+                              <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.CognitiveServices/accounts/projects/{}"/>
                             </item>
                           </prop>
-                          <prop type="array<string>" name="foundry.project.id" arg="$resource.properties.rules[].match.foundry.project.id">
+                          <prop type="array<string>" name="sessionIds" arg="$resource.properties.rules[].match.sessionIds">
                             <format maxLength="20" minLength="1"/>
                             <item type="string">
                               <format minLength="1"/>
@@ -472,12 +453,12 @@
                         </prop>
                         <prop type="string" name="period" arg="$resource.properties.rules[].period">
                           <enum>
-                            <item value="&quot;day&quot;"/>
-                            <item value="&quot;hour&quot;"/>
-                            <item value="&quot;minute&quot;"/>
-                            <item value="&quot;month&quot;"/>
-                            <item value="&quot;week&quot;"/>
-                            <item value="&quot;year&quot;"/>
+                            <item value="&quot;Day&quot;"/>
+                            <item value="&quot;Hour&quot;"/>
+                            <item value="&quot;Minute&quot;"/>
+                            <item value="&quot;Month&quot;"/>
+                            <item value="&quot;Week&quot;"/>
+                            <item value="&quot;Year&quot;"/>
                           </enum>
                         </prop>
                         <prop type="boolean" name="recurring" arg="$resource.properties.rules[].recurring">
@@ -486,18 +467,17 @@
                         <prop nullable="True" type="array<object>" name="thresholds" arg="$resource.properties.rules[].thresholds">
                           <format maxLength="10"/>
                           <item type="object">
-                            <prop type="string" name="action" arg="$resource.properties.rules[].thresholds[].action">
-                              <default value="&quot;audit&quot;"/>
+                            <prop type="string" name="action" arg="$resource.properties.rules[].thresholds[].action" required="True">
                               <enum>
-                                <item value="&quot;alert&quot;"/>
-                                <item value="&quot;audit&quot;"/>
-                                <item value="&quot;block&quot;"/>
+                                <item value="&quot;Alert&quot;"/>
+                                <item value="&quot;Audit&quot;"/>
+                                <item value="&quot;Block&quot;"/>
                               </enum>
                             </prop>
                             <prop type="string" name="type" arg="$resource.properties.rules[].thresholds[].type" required="True">
                               <enum>
-                                <item value="&quot;absolute&quot;"/>
-                                <item value="&quot;percentage&quot;"/>
+                                <item value="&quot;Absolute&quot;"/>
+                                <item value="&quot;Percentage&quot;"/>
                               </enum>
                             </prop>
                             <prop type="float64" name="value" arg="$resource.properties.rules[].thresholds[].value" required="True">
@@ -507,7 +487,7 @@
                         </prop>
                         <prop type="string" name="unit" arg="$resource.properties.rules[].unit" required="True">
                           <enum>
-                            <item value="&quot;usd&quot;"/>
+                            <item value="&quot;Usd&quot;"/>
                           </enum>
                         </prop>
                       </item>
@@ -537,44 +517,39 @@
                         <prop type="float64" name="amount" required="True">
                           <format minimum="0.0" exclusiveMinimum="True"/>
                         </prop>
-                        <prop type="array<object>" name="counterKey" required="True">
-                          <format maxLength="1" minLength="1"/>
-                          <item type="object">
-                            <prop type="string" name="attribute">
-                              <format pattern="^[a-zA-Z][a-zA-Z0-9_.-]{0,127}$" maxLength="128"/>
-                            </prop>
-                            <prop type="string" name="type" required="True">
-                              <enum>
-                                <item value="&quot;account&quot;"/>
-                                <item value="&quot;agent&quot;"/>
-                                <item value="&quot;custom&quot;"/>
-                                <item value="&quot;identity&quot;"/>
-                                <item value="&quot;project&quot;"/>
-                                <item value="&quot;session&quot;"/>
-                              </enum>
-                            </prop>
-                          </item>
+                        <prop type="object" name="counterKey" required="True">
+                          <prop readOnly="True" type="string" name="attribute"/>
+                          <prop type="string" name="type" required="True">
+                            <enum>
+                              <item value="&quot;Account&quot;"/>
+                              <item value="&quot;Agent&quot;"/>
+                              <item value="&quot;Custom&quot;"/>
+                              <item value="&quot;Identity&quot;"/>
+                              <item value="&quot;Project&quot;"/>
+                              <item value="&quot;Session&quot;"/>
+                            </enum>
+                          </prop>
                         </prop>
                         <prop type="object" name="match">
-                          <prop type="array<string>" name="foundry.caller.agent.id">
+                          <prop type="array<string>" name="agentResourceIds">
                             <format maxLength="20" minLength="1"/>
                             <item type="string">
                               <format minLength="1"/>
                             </item>
                           </prop>
-                          <prop type="array<string>" name="foundry.caller.identity.oid">
+                          <prop type="array<string>" name="identityObjectIds">
                             <format maxLength="20" minLength="1"/>
                             <item type="string">
                               <format minLength="1"/>
                             </item>
                           </prop>
-                          <prop type="array<string>" name="foundry.caller.session.id">
+                          <prop type="array<ResourceId>" name="projectIds">
                             <format maxLength="20" minLength="1"/>
-                            <item type="string">
-                              <format minLength="1"/>
+                            <item type="ResourceId">
+                              <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.CognitiveServices/accounts/projects/{}"/>
                             </item>
                           </prop>
-                          <prop type="array<string>" name="foundry.project.id">
+                          <prop type="array<string>" name="sessionIds">
                             <format maxLength="20" minLength="1"/>
                             <item type="string">
                               <format minLength="1"/>
@@ -586,12 +561,12 @@
                         </prop>
                         <prop type="string" name="period">
                           <enum>
-                            <item value="&quot;day&quot;"/>
-                            <item value="&quot;hour&quot;"/>
-                            <item value="&quot;minute&quot;"/>
-                            <item value="&quot;month&quot;"/>
-                            <item value="&quot;week&quot;"/>
-                            <item value="&quot;year&quot;"/>
+                            <item value="&quot;Day&quot;"/>
+                            <item value="&quot;Hour&quot;"/>
+                            <item value="&quot;Minute&quot;"/>
+                            <item value="&quot;Month&quot;"/>
+                            <item value="&quot;Week&quot;"/>
+                            <item value="&quot;Year&quot;"/>
                           </enum>
                         </prop>
                         <prop type="boolean" name="recurring">
@@ -600,18 +575,17 @@
                         <prop nullable="True" type="array<object>" name="thresholds">
                           <format maxLength="10"/>
                           <item type="object">
-                            <prop type="string" name="action">
-                              <default value="&quot;audit&quot;"/>
+                            <prop type="string" name="action" required="True">
                               <enum>
-                                <item value="&quot;alert&quot;"/>
-                                <item value="&quot;audit&quot;"/>
-                                <item value="&quot;block&quot;"/>
+                                <item value="&quot;Alert&quot;"/>
+                                <item value="&quot;Audit&quot;"/>
+                                <item value="&quot;Block&quot;"/>
                               </enum>
                             </prop>
                             <prop type="string" name="type" required="True">
                               <enum>
-                                <item value="&quot;absolute&quot;"/>
-                                <item value="&quot;percentage&quot;"/>
+                                <item value="&quot;Absolute&quot;"/>
+                                <item value="&quot;Percentage&quot;"/>
                               </enum>
                             </prop>
                             <prop type="float64" name="value" required="True">
@@ -621,7 +595,7 @@
                         </prop>
                         <prop type="string" name="unit" required="True">
                           <enum>
-                            <item value="&quot;usd&quot;"/>
+                            <item value="&quot;Usd&quot;"/>
                           </enum>
                         </prop>
                       </item>
@@ -698,52 +672,45 @@
               <help short="The maximum consumption allowed by this rule, expressed in the selected unit."/>
               <format minimum="0.0" exclusiveMinimum="True"/>
             </arg>
-            <arg type="array<object>" var="$resource.properties.rules[].counterKey" options="counter-key">
+            <arg type="object" var="$resource.properties.rules[].counterKey" options="counter-key">
               <help short="The built-in dimension used to partition consumption. The initial preview supports exactly one dimension."/>
-              <format maxLength="1" minLength="1"/>
-              <item nullable="True" type="object">
-                <arg nullable="True" type="string" var="$resource.properties.rules[].counterKey[].attribute" options="attribute">
-                  <help short="The request attribute used by a custom dimension. This property is required for custom dimensions and must be omitted for built-in dimensions."/>
-                  <format pattern="^[a-zA-Z][a-zA-Z0-9_.-]{0,127}$" maxLength="128"/>
-                </arg>
-                <arg type="string" var="$resource.properties.rules[].counterKey[].type" options="type">
-                  <help short="The kind of request dimension."/>
-                  <enum>
-                    <item name="account" value="&quot;account&quot;"/>
-                    <item name="agent" value="&quot;agent&quot;"/>
-                    <item name="custom" value="&quot;custom&quot;"/>
-                    <item name="identity" value="&quot;identity&quot;"/>
-                    <item name="project" value="&quot;project&quot;"/>
-                    <item name="session" value="&quot;session&quot;"/>
-                  </enum>
-                </arg>
-              </item>
+              <arg type="string" var="$resource.properties.rules[].counterKey.type" options="type">
+                <help short="The kind of request dimension."/>
+                <enum>
+                  <item name="Account" value="&quot;Account&quot;"/>
+                  <item name="Agent" value="&quot;Agent&quot;"/>
+                  <item name="Custom" value="&quot;Custom&quot;"/>
+                  <item name="Identity" value="&quot;Identity&quot;"/>
+                  <item name="Project" value="&quot;Project&quot;"/>
+                  <item name="Session" value="&quot;Session&quot;"/>
+                </enum>
+              </arg>
             </arg>
             <arg nullable="True" type="object" var="$resource.properties.rules[].match" options="match">
               <help short="Trusted request attributes and allowed values used to select matching requests."/>
-              <arg nullable="True" type="array<string>" var="$resource.properties.rules[].match.foundry.caller.agent.id" options="foundry-caller-agent-id">
-                <help short="The stable Foundry agent IDs to match."/>
+              <arg nullable="True" type="array<string>" var="$resource.properties.rules[].match.agentResourceIds" options="agent-resource-ids">
+                <help short="Agent resource IDs use /subscriptions/{subscription_guid}/accounts/{account-name}/project/{project-name}/agent/{agent_name}."/>
                 <format maxLength="20" minLength="1"/>
                 <item nullable="True" type="string">
                   <format minLength="1"/>
                 </item>
               </arg>
-              <arg nullable="True" type="array<string>" var="$resource.properties.rules[].match.foundry.caller.identity.oid" options="foundry-caller-identity-oid">
+              <arg nullable="True" type="array<string>" var="$resource.properties.rules[].match.identityObjectIds" options="identity-object-ids">
                 <help short="The authenticated principal object IDs to match."/>
                 <format maxLength="20" minLength="1"/>
                 <item nullable="True" type="string">
                   <format minLength="1"/>
                 </item>
               </arg>
-              <arg nullable="True" type="array<string>" var="$resource.properties.rules[].match.foundry.caller.session.id" options="foundry-caller-session-id">
-                <help short="The Foundry session IDs to match."/>
+              <arg nullable="True" type="array<ResourceId>" var="$resource.properties.rules[].match.projectIds" options="project-ids">
+                <help short="The Foundry project resource IDs to match."/>
                 <format maxLength="20" minLength="1"/>
-                <item nullable="True" type="string">
-                  <format minLength="1"/>
+                <item nullable="True" type="ResourceId">
+                  <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.CognitiveServices/accounts/projects/{}"/>
                 </item>
               </arg>
-              <arg nullable="True" type="array<string>" var="$resource.properties.rules[].match.foundry.project.id" options="foundry-project-id">
-                <help short="The Foundry project resource IDs to match."/>
+              <arg nullable="True" type="array<string>" var="$resource.properties.rules[].match.sessionIds" options="session-ids">
+                <help short="The Foundry session IDs to match."/>
                 <format maxLength="20" minLength="1"/>
                 <item nullable="True" type="string">
                   <format minLength="1"/>
@@ -757,12 +724,12 @@
             <arg nullable="True" type="string" var="$resource.properties.rules[].period" options="period">
               <help short="The calendar-aligned UTC renewal period. This property is required for recurring rules and omitted for non-recurring rules."/>
               <enum>
-                <item name="day" value="&quot;day&quot;"/>
-                <item name="hour" value="&quot;hour&quot;"/>
-                <item name="minute" value="&quot;minute&quot;"/>
-                <item name="month" value="&quot;month&quot;"/>
-                <item name="week" value="&quot;week&quot;"/>
-                <item name="year" value="&quot;year&quot;"/>
+                <item name="Day" value="&quot;Day&quot;"/>
+                <item name="Hour" value="&quot;Hour&quot;"/>
+                <item name="Minute" value="&quot;Minute&quot;"/>
+                <item name="Month" value="&quot;Month&quot;"/>
+                <item name="Week" value="&quot;Week&quot;"/>
+                <item name="Year" value="&quot;Year&quot;"/>
               </enum>
             </arg>
             <arg nullable="True" type="boolean" var="$resource.properties.rules[].recurring" options="recurring">
@@ -772,19 +739,19 @@
               <help short="The actions evaluated as consumption approaches the configured amount."/>
               <format maxLength="10"/>
               <item nullable="True" type="object">
-                <arg nullable="True" type="string" var="$resource.properties.rules[].thresholds[].action" options="action">
+                <arg type="string" var="$resource.properties.rules[].thresholds[].action" options="action">
                   <help short="The action taken when the threshold is reached. The default is audit."/>
                   <enum>
-                    <item name="alert" value="&quot;alert&quot;"/>
-                    <item name="audit" value="&quot;audit&quot;"/>
-                    <item name="block" value="&quot;block&quot;"/>
+                    <item name="Alert" value="&quot;Alert&quot;"/>
+                    <item name="Audit" value="&quot;Audit&quot;"/>
+                    <item name="Block" value="&quot;Block&quot;"/>
                   </enum>
                 </arg>
                 <arg type="string" var="$resource.properties.rules[].thresholds[].type" options="type">
                   <help short="How the threshold value is interpreted."/>
                   <enum>
-                    <item name="absolute" value="&quot;absolute&quot;"/>
-                    <item name="percentage" value="&quot;percentage&quot;"/>
+                    <item name="Absolute" value="&quot;Absolute&quot;"/>
+                    <item name="Percentage" value="&quot;Percentage&quot;"/>
                   </enum>
                 </arg>
                 <arg type="float64" var="$resource.properties.rules[].thresholds[].value" options="value">
@@ -796,7 +763,7 @@
             <arg type="string" var="$resource.properties.rules[].unit" options="unit">
               <help short="The unit used for the cost control amount and absolute thresholds."/>
               <enum>
-                <item name="usd" value="&quot;usd&quot;"/>
+                <item name="Usd" value="&quot;Usd&quot;"/>
               </enum>
             </arg>
           </item>
@@ -846,44 +813,39 @@
                         <prop type="float64" name="amount" required="True">
                           <format minimum="0.0" exclusiveMinimum="True"/>
                         </prop>
-                        <prop type="array<object>" name="counterKey" required="True">
-                          <format maxLength="1" minLength="1"/>
-                          <item type="object">
-                            <prop type="string" name="attribute">
-                              <format pattern="^[a-zA-Z][a-zA-Z0-9_.-]{0,127}$" maxLength="128"/>
-                            </prop>
-                            <prop type="string" name="type" required="True">
-                              <enum>
-                                <item value="&quot;account&quot;"/>
-                                <item value="&quot;agent&quot;"/>
-                                <item value="&quot;custom&quot;"/>
-                                <item value="&quot;identity&quot;"/>
-                                <item value="&quot;project&quot;"/>
-                                <item value="&quot;session&quot;"/>
-                              </enum>
-                            </prop>
-                          </item>
+                        <prop type="object" name="counterKey" required="True">
+                          <prop readOnly="True" type="string" name="attribute"/>
+                          <prop type="string" name="type" required="True">
+                            <enum>
+                              <item value="&quot;Account&quot;"/>
+                              <item value="&quot;Agent&quot;"/>
+                              <item value="&quot;Custom&quot;"/>
+                              <item value="&quot;Identity&quot;"/>
+                              <item value="&quot;Project&quot;"/>
+                              <item value="&quot;Session&quot;"/>
+                            </enum>
+                          </prop>
                         </prop>
                         <prop type="object" name="match">
-                          <prop type="array<string>" name="foundry.caller.agent.id">
+                          <prop type="array<string>" name="agentResourceIds">
                             <format maxLength="20" minLength="1"/>
                             <item type="string">
                               <format minLength="1"/>
                             </item>
                           </prop>
-                          <prop type="array<string>" name="foundry.caller.identity.oid">
+                          <prop type="array<string>" name="identityObjectIds">
                             <format maxLength="20" minLength="1"/>
                             <item type="string">
                               <format minLength="1"/>
                             </item>
                           </prop>
-                          <prop type="array<string>" name="foundry.caller.session.id">
+                          <prop type="array<ResourceId>" name="projectIds">
                             <format maxLength="20" minLength="1"/>
-                            <item type="string">
-                              <format minLength="1"/>
+                            <item type="ResourceId">
+                              <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.CognitiveServices/accounts/projects/{}"/>
                             </item>
                           </prop>
-                          <prop type="array<string>" name="foundry.project.id">
+                          <prop type="array<string>" name="sessionIds">
                             <format maxLength="20" minLength="1"/>
                             <item type="string">
                               <format minLength="1"/>
@@ -895,12 +857,12 @@
                         </prop>
                         <prop type="string" name="period">
                           <enum>
-                            <item value="&quot;day&quot;"/>
-                            <item value="&quot;hour&quot;"/>
-                            <item value="&quot;minute&quot;"/>
-                            <item value="&quot;month&quot;"/>
-                            <item value="&quot;week&quot;"/>
-                            <item value="&quot;year&quot;"/>
+                            <item value="&quot;Day&quot;"/>
+                            <item value="&quot;Hour&quot;"/>
+                            <item value="&quot;Minute&quot;"/>
+                            <item value="&quot;Month&quot;"/>
+                            <item value="&quot;Week&quot;"/>
+                            <item value="&quot;Year&quot;"/>
                           </enum>
                         </prop>
                         <prop type="boolean" name="recurring">
@@ -909,18 +871,17 @@
                         <prop nullable="True" type="array<object>" name="thresholds">
                           <format maxLength="10"/>
                           <item type="object">
-                            <prop type="string" name="action">
-                              <default value="&quot;audit&quot;"/>
+                            <prop type="string" name="action" required="True">
                               <enum>
-                                <item value="&quot;alert&quot;"/>
-                                <item value="&quot;audit&quot;"/>
-                                <item value="&quot;block&quot;"/>
+                                <item value="&quot;Alert&quot;"/>
+                                <item value="&quot;Audit&quot;"/>
+                                <item value="&quot;Block&quot;"/>
                               </enum>
                             </prop>
                             <prop type="string" name="type" required="True">
                               <enum>
-                                <item value="&quot;absolute&quot;"/>
-                                <item value="&quot;percentage&quot;"/>
+                                <item value="&quot;Absolute&quot;"/>
+                                <item value="&quot;Percentage&quot;"/>
                               </enum>
                             </prop>
                             <prop type="float64" name="value" required="True">
@@ -930,7 +891,7 @@
                         </prop>
                         <prop type="string" name="unit" required="True">
                           <enum>
-                            <item value="&quot;usd&quot;"/>
+                            <item value="&quot;Usd&quot;"/>
                           </enum>
                         </prop>
                       </item>
@@ -986,44 +947,38 @@
                     <prop type="float64" name="amount" arg="$resource.properties.rules[].amount" required="True">
                       <format minimum="0.0" exclusiveMinimum="True"/>
                     </prop>
-                    <prop type="array<object>" name="counterKey" arg="$resource.properties.rules[].counterKey" required="True">
-                      <format maxLength="1" minLength="1"/>
-                      <item type="object">
-                        <prop type="string" name="attribute" arg="$resource.properties.rules[].counterKey[].attribute">
-                          <format pattern="^[a-zA-Z][a-zA-Z0-9_.-]{0,127}$" maxLength="128"/>
-                        </prop>
-                        <prop type="string" name="type" arg="$resource.properties.rules[].counterKey[].type" required="True">
-                          <enum>
-                            <item value="&quot;account&quot;"/>
-                            <item value="&quot;agent&quot;"/>
-                            <item value="&quot;custom&quot;"/>
-                            <item value="&quot;identity&quot;"/>
-                            <item value="&quot;project&quot;"/>
-                            <item value="&quot;session&quot;"/>
-                          </enum>
-                        </prop>
-                      </item>
+                    <prop type="object" name="counterKey" arg="$resource.properties.rules[].counterKey" required="True">
+                      <prop type="string" name="type" arg="$resource.properties.rules[].counterKey.type" required="True">
+                        <enum>
+                          <item value="&quot;Account&quot;"/>
+                          <item value="&quot;Agent&quot;"/>
+                          <item value="&quot;Custom&quot;"/>
+                          <item value="&quot;Identity&quot;"/>
+                          <item value="&quot;Project&quot;"/>
+                          <item value="&quot;Session&quot;"/>
+                        </enum>
+                      </prop>
                     </prop>
                     <prop type="object" name="match" arg="$resource.properties.rules[].match">
-                      <prop type="array<string>" name="foundry.caller.agent.id" arg="$resource.properties.rules[].match.foundry.caller.agent.id">
+                      <prop type="array<string>" name="agentResourceIds" arg="$resource.properties.rules[].match.agentResourceIds">
                         <format maxLength="20" minLength="1"/>
                         <item type="string">
                           <format minLength="1"/>
                         </item>
                       </prop>
-                      <prop type="array<string>" name="foundry.caller.identity.oid" arg="$resource.properties.rules[].match.foundry.caller.identity.oid">
+                      <prop type="array<string>" name="identityObjectIds" arg="$resource.properties.rules[].match.identityObjectIds">
                         <format maxLength="20" minLength="1"/>
                         <item type="string">
                           <format minLength="1"/>
                         </item>
                       </prop>
-                      <prop type="array<string>" name="foundry.caller.session.id" arg="$resource.properties.rules[].match.foundry.caller.session.id">
+                      <prop type="array<ResourceId>" name="projectIds" arg="$resource.properties.rules[].match.projectIds">
                         <format maxLength="20" minLength="1"/>
-                        <item type="string">
-                          <format minLength="1"/>
+                        <item type="ResourceId">
+                          <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.CognitiveServices/accounts/projects/{}"/>
                         </item>
                       </prop>
-                      <prop type="array<string>" name="foundry.project.id" arg="$resource.properties.rules[].match.foundry.project.id">
+                      <prop type="array<string>" name="sessionIds" arg="$resource.properties.rules[].match.sessionIds">
                         <format maxLength="20" minLength="1"/>
                         <item type="string">
                           <format minLength="1"/>
@@ -1035,12 +990,12 @@
                     </prop>
                     <prop type="string" name="period" arg="$resource.properties.rules[].period">
                       <enum>
-                        <item value="&quot;day&quot;"/>
-                        <item value="&quot;hour&quot;"/>
-                        <item value="&quot;minute&quot;"/>
-                        <item value="&quot;month&quot;"/>
-                        <item value="&quot;week&quot;"/>
-                        <item value="&quot;year&quot;"/>
+                        <item value="&quot;Day&quot;"/>
+                        <item value="&quot;Hour&quot;"/>
+                        <item value="&quot;Minute&quot;"/>
+                        <item value="&quot;Month&quot;"/>
+                        <item value="&quot;Week&quot;"/>
+                        <item value="&quot;Year&quot;"/>
                       </enum>
                     </prop>
                     <prop type="boolean" name="recurring" arg="$resource.properties.rules[].recurring">
@@ -1049,18 +1004,17 @@
                     <prop nullable="True" type="array<object>" name="thresholds" arg="$resource.properties.rules[].thresholds">
                       <format maxLength="10"/>
                       <item type="object">
-                        <prop type="string" name="action" arg="$resource.properties.rules[].thresholds[].action">
-                          <default value="&quot;audit&quot;"/>
+                        <prop type="string" name="action" arg="$resource.properties.rules[].thresholds[].action" required="True">
                           <enum>
-                            <item value="&quot;alert&quot;"/>
-                            <item value="&quot;audit&quot;"/>
-                            <item value="&quot;block&quot;"/>
+                            <item value="&quot;Alert&quot;"/>
+                            <item value="&quot;Audit&quot;"/>
+                            <item value="&quot;Block&quot;"/>
                           </enum>
                         </prop>
                         <prop type="string" name="type" arg="$resource.properties.rules[].thresholds[].type" required="True">
                           <enum>
-                            <item value="&quot;absolute&quot;"/>
-                            <item value="&quot;percentage&quot;"/>
+                            <item value="&quot;Absolute&quot;"/>
+                            <item value="&quot;Percentage&quot;"/>
                           </enum>
                         </prop>
                         <prop type="float64" name="value" arg="$resource.properties.rules[].thresholds[].value" required="True">
@@ -1070,7 +1024,7 @@
                     </prop>
                     <prop type="string" name="unit" arg="$resource.properties.rules[].unit" required="True">
                       <enum>
-                        <item value="&quot;usd&quot;"/>
+                        <item value="&quot;Usd&quot;"/>
                       </enum>
                     </prop>
                   </item>
@@ -1131,44 +1085,39 @@
                         <prop type="float64" name="amount" required="True">
                           <format minimum="0.0" exclusiveMinimum="True"/>
                         </prop>
-                        <prop type="array<object>" name="counterKey" required="True">
-                          <format maxLength="1" minLength="1"/>
-                          <item type="object">
-                            <prop type="string" name="attribute">
-                              <format pattern="^[a-zA-Z][a-zA-Z0-9_.-]{0,127}$" maxLength="128"/>
-                            </prop>
-                            <prop type="string" name="type" required="True">
-                              <enum>
-                                <item value="&quot;account&quot;"/>
-                                <item value="&quot;agent&quot;"/>
-                                <item value="&quot;custom&quot;"/>
-                                <item value="&quot;identity&quot;"/>
-                                <item value="&quot;project&quot;"/>
-                                <item value="&quot;session&quot;"/>
-                              </enum>
-                            </prop>
-                          </item>
+                        <prop type="object" name="counterKey" required="True">
+                          <prop readOnly="True" type="string" name="attribute"/>
+                          <prop type="string" name="type" required="True">
+                            <enum>
+                              <item value="&quot;Account&quot;"/>
+                              <item value="&quot;Agent&quot;"/>
+                              <item value="&quot;Custom&quot;"/>
+                              <item value="&quot;Identity&quot;"/>
+                              <item value="&quot;Project&quot;"/>
+                              <item value="&quot;Session&quot;"/>
+                            </enum>
+                          </prop>
                         </prop>
                         <prop type="object" name="match">
-                          <prop type="array<string>" name="foundry.caller.agent.id">
+                          <prop type="array<string>" name="agentResourceIds">
                             <format maxLength="20" minLength="1"/>
                             <item type="string">
                               <format minLength="1"/>
                             </item>
                           </prop>
-                          <prop type="array<string>" name="foundry.caller.identity.oid">
+                          <prop type="array<string>" name="identityObjectIds">
                             <format maxLength="20" minLength="1"/>
                             <item type="string">
                               <format minLength="1"/>
                             </item>
                           </prop>
-                          <prop type="array<string>" name="foundry.caller.session.id">
+                          <prop type="array<ResourceId>" name="projectIds">
                             <format maxLength="20" minLength="1"/>
-                            <item type="string">
-                              <format minLength="1"/>
+                            <item type="ResourceId">
+                              <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.CognitiveServices/accounts/projects/{}"/>
                             </item>
                           </prop>
-                          <prop type="array<string>" name="foundry.project.id">
+                          <prop type="array<string>" name="sessionIds">
                             <format maxLength="20" minLength="1"/>
                             <item type="string">
                               <format minLength="1"/>
@@ -1180,12 +1129,12 @@
                         </prop>
                         <prop type="string" name="period">
                           <enum>
-                            <item value="&quot;day&quot;"/>
-                            <item value="&quot;hour&quot;"/>
-                            <item value="&quot;minute&quot;"/>
-                            <item value="&quot;month&quot;"/>
-                            <item value="&quot;week&quot;"/>
-                            <item value="&quot;year&quot;"/>
+                            <item value="&quot;Day&quot;"/>
+                            <item value="&quot;Hour&quot;"/>
+                            <item value="&quot;Minute&quot;"/>
+                            <item value="&quot;Month&quot;"/>
+                            <item value="&quot;Week&quot;"/>
+                            <item value="&quot;Year&quot;"/>
                           </enum>
                         </prop>
                         <prop type="boolean" name="recurring">
@@ -1194,18 +1143,17 @@
                         <prop nullable="True" type="array<object>" name="thresholds">
                           <format maxLength="10"/>
                           <item type="object">
-                            <prop type="string" name="action">
-                              <default value="&quot;audit&quot;"/>
+                            <prop type="string" name="action" required="True">
                               <enum>
-                                <item value="&quot;alert&quot;"/>
-                                <item value="&quot;audit&quot;"/>
-                                <item value="&quot;block&quot;"/>
+                                <item value="&quot;Alert&quot;"/>
+                                <item value="&quot;Audit&quot;"/>
+                                <item value="&quot;Block&quot;"/>
                               </enum>
                             </prop>
                             <prop type="string" name="type" required="True">
                               <enum>
-                                <item value="&quot;absolute&quot;"/>
-                                <item value="&quot;percentage&quot;"/>
+                                <item value="&quot;Absolute&quot;"/>
+                                <item value="&quot;Percentage&quot;"/>
                               </enum>
                             </prop>
                             <prop type="float64" name="value" required="True">
@@ -1215,7 +1163,7 @@
                         </prop>
                         <prop type="string" name="unit" required="True">
                           <enum>
-                            <item value="&quot;usd&quot;"/>
+                            <item value="&quot;Usd&quot;"/>
                           </enum>
                         </prop>
                       </item>

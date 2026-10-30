@@ -11,6 +11,9 @@
 - [afd](/Commands/afd/readme.md)
 : Manage Azure Front Door Standard/Premium.
 
+- [agentfabric](/Commands/agentfabric/readme.md)
+: Manage Agent Fabric and related Microsoft.NetworkSecurity resources. Root commands manage Agent Fabric resources.
+
 - [alerts-management](/Commands/alerts-management/readme.md)
 : Manage Azure Alerts Management Service Resource.
 
@@ -86,11 +89,11 @@
 - [chaos](/Commands/chaos/readme.md)
 : Manage Azure Chaos Studio resources.
 
-- [chaos](/Commands/managedcleanroom/readme.md)
-: Manage Manage Clean Room.
-
 - [cloud-service](/Commands/cloud-service/readme.md)
 : Manage cloud service
+
+- [cloudhsm](/Commands/cloudhsm/readme.md)
+: Manage Cloud Hsm Cluster
 
 - [cognitiveservices](/Commands/cognitiveservices/readme.md)
 : Manage Cognitive Services
@@ -181,6 +184,9 @@
 
 - [dynatrace](/Commands/dynatrace/readme.md)
 : Manage dynatrace
+
+- [edge-action](/Commands/edge-action/readme.md)
+: Manage Edge Action
 
 - [edge-zones](/Commands/edge-zones/readme.md)
 : Manage Edge Zone resources
@@ -341,6 +347,9 @@
 - [ppg](/Commands/ppg/readme.md)
 : Manage Proximity Placement Groups.
 
+- [providerhub](/Commands/providerhub/readme.md)
+: Manage resources with ProviderHub.
+
 - [qumulo](/Commands/qumulo/readme.md)
 : Manage Qumulo file system storage resources with the Azure CLI.
 
@@ -381,7 +390,7 @@
 : Manage Microsoft Sentinel.
 
 - [service-group](/Commands/service-group/readme.md)
-: Manage Service Group
+: Manage Azure Service Groups.
 
 - [service-networking](/Commands/service-networking/readme.md)
 : Manage Service Networking Resources

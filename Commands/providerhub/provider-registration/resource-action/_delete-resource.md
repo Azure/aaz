@@ -7,3 +7,7 @@ Deletes resources.
 ### [2025-03-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5wcm92aWRlcmh1Yi9wcm92aWRlcnJlZ2lzdHJhdGlvbnMve30vcmVzb3VyY2VhY3Rpb25zL3t9L2RlbGV0ZXJlc291cmNlcw==/2025-03-01-preview.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/providers/microsoft.providerhub/providerregistrations/{}/resourceactions/{}/deleteresources 2025-03-01-preview -->
+
+### [2026-02-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5wcm92aWRlcmh1Yi9wcm92aWRlcnJlZ2lzdHJhdGlvbnMve30vcmVzb3VyY2VhY3Rpb25zL3t9L2RlbGV0ZXJlc291cmNlcw==/2026-02-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.providerhub/providerregistrations/{}/resourceactions/{}/deleteresources 2026-02-01-preview -->

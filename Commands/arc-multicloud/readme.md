@@ -19,3 +19,6 @@ For additional details, please visit the https://learn.microsoft.com/en-us/cli/a
 
 - [generate-aws-template](/Commands/arc-multicloud/_generate-aws-template.md)
 : Retrieve AWS Cloud Formation template
+
+- [generate-gcp-template](/Commands/arc-multicloud/_generate-gcp-template.md)
+: Retrieve GCP Access Control template

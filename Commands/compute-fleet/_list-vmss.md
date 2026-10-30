@@ -25,3 +25,14 @@ List VirtualMachineScaleSet resources by Fleet
     ```bash
         compute-fleet list-vmss --resource-group rgazurefleet --name myFleet
     ```
+
+### [2026-08-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5henVyZWZsZWV0L2ZsZWV0cy97fS92aXJ0dWFsbWFjaGluZXNjYWxlc2V0cw==/2026-08-01.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.azurefleet/fleets/{}/virtualmachinescalesets 2026-08-01 -->
+
+#### examples
+
+- Fleets_ListVirtualMachineScaleSets
+    ```bash
+        compute-fleet list-vmss --resource-group rgazurefleet --name myFleet
+    ```

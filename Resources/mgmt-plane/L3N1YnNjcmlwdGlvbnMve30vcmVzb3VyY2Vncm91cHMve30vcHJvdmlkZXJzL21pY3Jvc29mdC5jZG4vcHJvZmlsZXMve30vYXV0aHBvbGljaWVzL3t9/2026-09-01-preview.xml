@@ -1,0 +1,825 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/authpolicies/{}" version="2026-09-01-preview" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0vYXV0aFBvbGljaWVzL3thdXRoUG9saWN5TmFtZX0=/V/MjAyNi0wOS0wMS1wcmV2aWV3"/>
+  <commandGroup name="afd auth-policy">
+    <command name="show" version="2026-09-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/authpolicies/{}" version="2026-09-01-preview" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0vYXV0aFBvbGljaWVzL3thdXRoUG9saWN5TmFtZX0=/V/MjAyNi0wOS0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.authPolicyName" options="auth-policy-name name n" required="True" idPart="child_name_1">
+          <help short="Name of the authorization policy under the profile."/>
+          <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+        </arg>
+        <arg type="string" var="$Path.profileName" options="profile-name" required="True" idPart="name">
+          <help short="Name of the Azure Front Door Standard or Azure Front Door Premium or CDN profile which is unique within the resource group."/>
+          <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="AuthPolicies_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/authPolicies/{authPolicyName}">
+          <request method="get">
+            <path>
+              <param type="string" name="authPolicyName" arg="$Path.authPolicyName" required="True">
+                <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+              </param>
+              <param type="string" name="profileName" arg="$Path.profileName" required="True">
+                <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-09-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Cdn/profiles/{}/authPolicies/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="string" name="action">
+                      <default value="&quot;Block&quot;"/>
+                      <enum>
+                        <item value="&quot;Block&quot;"/>
+                        <item value="&quot;Log&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="associations" required="True">
+                      <prop type="array<object>" name="domains" identifiers="id">
+                        <format maxLength="15"/>
+                        <item type="object">
+                          <prop type="ResourceId" name="id" required="True"/>
+                          <prop readOnly="True" type="boolean" name="isActive"/>
+                        </item>
+                      </prop>
+                      <prop type="boolean" name="isProfileLevel"/>
+                      <prop type="array<object>" name="routes" identifiers="id">
+                        <format maxLength="15"/>
+                        <item type="object">
+                          <prop type="ResourceId" name="id" required="True"/>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop type="array<object>" name="authConfigs" required="True">
+                      <format minLength="1"/>
+                      <item type="object">
+                        <prop type="string" name="identityProvider" required="True">
+                          <enum>
+                            <item value="&quot;EntraID&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="identityProvider" value="EntraID">
+                          <prop type="array<string>" name="audiences" required="True">
+                            <format minLength="1"/>
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="authLocation">
+                            <default value="&quot;Header&quot;"/>
+                            <enum>
+                              <item value="&quot;Header&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="authLocationSelector"/>
+                          <prop type="string" name="issuer" required="True"/>
+                        </discriminator>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="string" name="deploymentStatus">
+                      <enum>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;InProgress&quot;"/>
+                        <item value="&quot;NotStarted&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="boolean" name="forwardTokenToOrigin">
+                      <default value="true"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Creating&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="delete" version="2026-09-01-preview" confirmation="Are you sure you want to perform this operation?">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/authpolicies/{}" version="2026-09-01-preview" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0vYXV0aFBvbGljaWVzL3thdXRoUG9saWN5TmFtZX0=/V/MjAyNi0wOS0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.authPolicyName" options="auth-policy-name name n" required="True" idPart="child_name_1">
+          <help short="Name of the authorization policy under the profile."/>
+          <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+        </arg>
+        <arg type="string" var="$Path.profileName" options="profile-name" required="True" idPart="name">
+          <help short="Name of the Azure Front Door Standard or Azure Front Door Premium or CDN profile which is unique within the resource group."/>
+          <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="AuthPolicies_Delete">
+        <longRunning finalStateVia="azure-async-operation"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/authPolicies/{authPolicyName}">
+          <request method="delete">
+            <path>
+              <param type="string" name="authPolicyName" arg="$Path.authPolicyName" required="True">
+                <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+              </param>
+              <param type="string" name="profileName" arg="$Path.profileName" required="True">
+                <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-09-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200"/>
+          <response statusCode="202">
+            <header>
+              <item name="Azure-AsyncOperation"/>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response statusCode="204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+    <command name="create" version="2026-09-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/authpolicies/{}" version="2026-09-01-preview" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0vYXV0aFBvbGljaWVzL3thdXRoUG9saWN5TmFtZX0=/V/MjAyNi0wOS0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.authPolicyName" options="auth-policy-name name n" required="True" idPart="child_name_1">
+          <help short="Name of the authorization policy under the profile."/>
+          <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+        </arg>
+        <arg type="string" var="$Path.profileName" options="profile-name" required="True" idPart="name">
+          <help short="Name of the Azure Front Door Standard or Azure Front Door Premium or CDN profile which is unique within the resource group."/>
+          <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg type="string" var="$resource.properties.action" options="action" group="Properties">
+          <help short="Action to apply when authorization fails."/>
+          <default value="&quot;Block&quot;"/>
+          <enum>
+            <item name="Block" value="&quot;Block&quot;"/>
+            <item name="Log" value="&quot;Log&quot;"/>
+          </enum>
+        </arg>
+        <arg type="object" var="$resource.properties.associations" options="associations" group="Properties">
+          <help short="Resource associations for the authorization policy."/>
+          <arg type="array<object>" var="$resource.properties.associations.domains" options="domains">
+            <help short="Domains associated with the authorization policy."/>
+            <format maxLength="15"/>
+            <item type="object">
+              <arg type="ResourceId" var="$resource.properties.associations.domains[].id" options="id" required="True">
+                <help short="Resource ID of the custom domain or Azure Front Door endpoint."/>
+              </arg>
+            </item>
+          </arg>
+          <arg type="boolean" var="$resource.properties.associations.isProfileLevel" options="is-profile-level">
+            <help short="Indicates whether the policy is associated at the profile level. When omitted during creation, the service defaults this value to false."/>
+          </arg>
+          <arg type="array<object>" var="$resource.properties.associations.routes" options="routes">
+            <help short="Routes associated with the authorization policy."/>
+            <format maxLength="15"/>
+            <item type="object">
+              <arg type="ResourceId" var="$resource.properties.associations.routes[].id" options="id" required="True">
+                <help short="Resource ID of the Azure Front Door route."/>
+              </arg>
+            </item>
+          </arg>
+        </arg>
+        <arg type="array<object>" var="$resource.properties.authConfigs" options="auth-configs" group="Properties">
+          <help short="Authorization configurations for the policy."/>
+          <format minLength="1"/>
+          <item type="object">
+            <arg type="object" var="$resource.properties.authConfigs[].EntraID" options="entra-id">
+              <arg type="array<string>" var="$resource.properties.authConfigs[].EntraID.audiences" options="audiences" required="True">
+                <help short="Audiences to validate."/>
+                <format minLength="1"/>
+                <item type="string"/>
+              </arg>
+              <arg type="string" var="$resource.properties.authConfigs[].EntraID.authLocation" options="auth-location">
+                <help short="Location of the authorization value in the HTTP request. Only Header is supported."/>
+                <default value="&quot;Header&quot;"/>
+                <enum>
+                  <item name="Header" value="&quot;Header&quot;"/>
+                </enum>
+              </arg>
+              <arg type="string" var="$resource.properties.authConfigs[].EntraID.authLocationSelector" options="auth-location-selector">
+                <help short="Selector within the authorization location used to find the identity."/>
+              </arg>
+              <arg type="string" var="$resource.properties.authConfigs[].EntraID.issuer" options="issuer" required="True">
+                <help short="Issuer or authority for the identity provider to validate."/>
+              </arg>
+            </arg>
+          </item>
+        </arg>
+        <arg type="boolean" var="$resource.properties.forwardTokenToOrigin" options="forward-token-to-origin forward-token" group="Properties">
+          <help short="Whether to forward the authentication token to the origin. Defaults to true."/>
+          <default value="true"/>
+        </arg>
+      </argGroup>
+      <operation operationId="AuthPolicies_Create">
+        <longRunning finalStateVia="original-uri"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/authPolicies/{authPolicyName}">
+          <request method="put">
+            <path>
+              <param type="string" name="authPolicyName" arg="$Path.authPolicyName" required="True">
+                <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+              </param>
+              <param type="string" name="profileName" arg="$Path.profileName" required="True">
+                <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-09-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="resource" required="True" clientFlatten="True">
+                  <prop type="object" name="properties">
+                    <prop type="string" name="action" arg="$resource.properties.action">
+                      <default value="&quot;Block&quot;"/>
+                      <enum>
+                        <item value="&quot;Block&quot;"/>
+                        <item value="&quot;Log&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="associations" arg="$resource.properties.associations" required="True">
+                      <prop type="array<object>" name="domains" arg="$resource.properties.associations.domains" identifiers="id">
+                        <format maxLength="15"/>
+                        <item type="object">
+                          <prop type="ResourceId" name="id" arg="$resource.properties.associations.domains[].id" required="True"/>
+                        </item>
+                      </prop>
+                      <prop type="boolean" name="isProfileLevel" arg="$resource.properties.associations.isProfileLevel"/>
+                      <prop type="array<object>" name="routes" arg="$resource.properties.associations.routes" identifiers="id">
+                        <format maxLength="15"/>
+                        <item type="object">
+                          <prop type="ResourceId" name="id" arg="$resource.properties.associations.routes[].id" required="True"/>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop type="array<object>" name="authConfigs" arg="$resource.properties.authConfigs" required="True">
+                      <format minLength="1"/>
+                      <item type="object">
+                        <prop type="string" name="identityProvider" required="True">
+                          <enum>
+                            <item arg="$resource.properties.authConfigs[].EntraID" value="&quot;EntraID&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="identityProvider" value="EntraID">
+                          <prop type="array<string>" name="audiences" arg="$resource.properties.authConfigs[].EntraID.audiences" required="True">
+                            <format minLength="1"/>
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="authLocation" arg="$resource.properties.authConfigs[].EntraID.authLocation">
+                            <default value="&quot;Header&quot;"/>
+                            <enum>
+                              <item value="&quot;Header&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="authLocationSelector" arg="$resource.properties.authConfigs[].EntraID.authLocationSelector"/>
+                          <prop type="string" name="issuer" arg="$resource.properties.authConfigs[].EntraID.issuer" required="True"/>
+                        </discriminator>
+                      </item>
+                    </prop>
+                    <prop type="boolean" name="forwardTokenToOrigin" arg="$resource.properties.forwardTokenToOrigin">
+                      <default value="true"/>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Cdn/profiles/{}/authPolicies/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="string" name="action">
+                      <default value="&quot;Block&quot;"/>
+                      <enum>
+                        <item value="&quot;Block&quot;"/>
+                        <item value="&quot;Log&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="associations" required="True">
+                      <prop type="array<object>" name="domains" identifiers="id">
+                        <format maxLength="15"/>
+                        <item type="object">
+                          <prop type="ResourceId" name="id" required="True"/>
+                          <prop readOnly="True" type="boolean" name="isActive"/>
+                        </item>
+                      </prop>
+                      <prop type="boolean" name="isProfileLevel"/>
+                      <prop type="array<object>" name="routes" identifiers="id">
+                        <format maxLength="15"/>
+                        <item type="object">
+                          <prop type="ResourceId" name="id" required="True"/>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop type="array<object>" name="authConfigs" required="True">
+                      <format minLength="1"/>
+                      <item type="object">
+                        <prop type="string" name="identityProvider" required="True">
+                          <enum>
+                            <item value="&quot;EntraID&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="identityProvider" value="EntraID">
+                          <prop type="array<string>" name="audiences" required="True">
+                            <format minLength="1"/>
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="authLocation">
+                            <default value="&quot;Header&quot;"/>
+                            <enum>
+                              <item value="&quot;Header&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="authLocationSelector"/>
+                          <prop type="string" name="issuer" required="True"/>
+                        </discriminator>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="string" name="deploymentStatus">
+                      <enum>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;InProgress&quot;"/>
+                        <item value="&quot;NotStarted&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="boolean" name="forwardTokenToOrigin">
+                      <default value="true"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Creating&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Azure-AsyncOperation"/>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+    <command name="update" version="2026-09-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/authpolicies/{}" version="2026-09-01-preview" swagger="mgmt-plane/cdn/ResourceProviders/Microsoft.Cdn/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2RuL3Byb2ZpbGVzL3twcm9maWxlTmFtZX0vYXV0aFBvbGljaWVzL3thdXRoUG9saWN5TmFtZX0=/V/MjAyNi0wOS0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.authPolicyName" options="auth-policy-name name n" required="True" idPart="child_name_1">
+          <help short="Name of the authorization policy under the profile."/>
+          <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+        </arg>
+        <arg type="string" var="$Path.profileName" options="profile-name" required="True" idPart="name">
+          <help short="Name of the Azure Front Door Standard or Azure Front Door Premium or CDN profile which is unique within the resource group."/>
+          <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Properties">
+        <arg nullable="True" type="string" var="$resource.properties.action" options="action" group="Properties">
+          <help short="Action to apply when authorization fails."/>
+          <enum>
+            <item name="Block" value="&quot;Block&quot;"/>
+            <item name="Log" value="&quot;Log&quot;"/>
+          </enum>
+        </arg>
+        <arg type="object" var="$resource.properties.associations" options="associations" group="Properties">
+          <help short="Resource associations for the authorization policy."/>
+          <arg nullable="True" type="array<object>" var="$resource.properties.associations.domains" options="domains">
+            <help short="Domains associated with the authorization policy."/>
+            <format maxLength="15"/>
+            <item nullable="True" type="object">
+              <arg type="ResourceId" var="$resource.properties.associations.domains[].id" options="id">
+                <help short="Resource ID of the custom domain or Azure Front Door endpoint."/>
+              </arg>
+            </item>
+          </arg>
+          <arg nullable="True" type="boolean" var="$resource.properties.associations.isProfileLevel" options="is-profile-level">
+            <help short="Indicates whether the policy is associated at the profile level. When omitted during creation, the service defaults this value to false."/>
+          </arg>
+          <arg nullable="True" type="array<object>" var="$resource.properties.associations.routes" options="routes">
+            <help short="Routes associated with the authorization policy."/>
+            <format maxLength="15"/>
+            <item nullable="True" type="object">
+              <arg type="ResourceId" var="$resource.properties.associations.routes[].id" options="id">
+                <help short="Resource ID of the Azure Front Door route."/>
+              </arg>
+            </item>
+          </arg>
+        </arg>
+        <arg type="array<object>" var="$resource.properties.authConfigs" options="auth-configs" group="Properties">
+          <help short="Authorization configurations for the policy."/>
+          <format minLength="1"/>
+          <item nullable="True" type="object">
+            <arg type="object" var="$resource.properties.authConfigs[].EntraID" options="entra-id">
+              <arg type="array<string>" var="$resource.properties.authConfigs[].EntraID.audiences" options="audiences">
+                <help short="Audiences to validate."/>
+                <format minLength="1"/>
+                <item nullable="True" type="string"/>
+              </arg>
+              <arg nullable="True" type="string" var="$resource.properties.authConfigs[].EntraID.authLocation" options="auth-location">
+                <help short="Location of the authorization value in the HTTP request. Only Header is supported."/>
+                <enum>
+                  <item name="Header" value="&quot;Header&quot;"/>
+                </enum>
+              </arg>
+              <arg nullable="True" type="string" var="$resource.properties.authConfigs[].EntraID.authLocationSelector" options="auth-location-selector">
+                <help short="Selector within the authorization location used to find the identity."/>
+              </arg>
+              <arg type="string" var="$resource.properties.authConfigs[].EntraID.issuer" options="issuer">
+                <help short="Issuer or authority for the identity provider to validate."/>
+              </arg>
+            </arg>
+          </item>
+        </arg>
+        <arg nullable="True" type="boolean" var="$resource.properties.forwardTokenToOrigin" options="forward-token-to-origin forward-token" group="Properties">
+          <help short="Whether to forward the authentication token to the origin. Defaults to true."/>
+        </arg>
+      </argGroup>
+      <operation operationId="AuthPolicies_Get">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/authPolicies/{authPolicyName}">
+          <request method="get">
+            <path>
+              <param type="string" name="authPolicyName" arg="$Path.authPolicyName" required="True">
+                <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+              </param>
+              <param type="string" name="profileName" arg="$Path.profileName" required="True">
+                <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-09-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="AuthPolicy_read">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Cdn/profiles/{}/authPolicies/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop type="string" name="action">
+                      <default value="&quot;Block&quot;"/>
+                      <enum>
+                        <item value="&quot;Block&quot;"/>
+                        <item value="&quot;Log&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="associations" required="True">
+                      <prop type="array<object>" name="domains" identifiers="id">
+                        <format maxLength="15"/>
+                        <item type="object">
+                          <prop type="ResourceId" name="id" required="True"/>
+                          <prop readOnly="True" type="boolean" name="isActive"/>
+                        </item>
+                      </prop>
+                      <prop type="boolean" name="isProfileLevel"/>
+                      <prop type="array<object>" name="routes" identifiers="id">
+                        <format maxLength="15"/>
+                        <item type="object">
+                          <prop type="ResourceId" name="id" required="True"/>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop type="array<object>" name="authConfigs" required="True">
+                      <format minLength="1"/>
+                      <item type="object">
+                        <prop type="string" name="identityProvider" required="True">
+                          <enum>
+                            <item value="&quot;EntraID&quot;"/>
+                          </enum>
+                        </prop>
+                        <discriminator property="identityProvider" value="EntraID">
+                          <prop type="array<string>" name="audiences" required="True">
+                            <format minLength="1"/>
+                            <item type="string"/>
+                          </prop>
+                          <prop type="string" name="authLocation">
+                            <default value="&quot;Header&quot;"/>
+                            <enum>
+                              <item value="&quot;Header&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="authLocationSelector"/>
+                          <prop type="string" name="issuer" required="True"/>
+                        </discriminator>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="string" name="deploymentStatus">
+                      <enum>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;InProgress&quot;"/>
+                        <item value="&quot;NotStarted&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="boolean" name="forwardTokenToOrigin">
+                      <default value="true"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Creating&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation>
+        <instanceUpdate ref="$Instance">
+          <json>
+            <schema type="object" name="resource" required="True" clientFlatten="True">
+              <prop type="object" name="properties">
+                <prop type="string" name="action" arg="$resource.properties.action">
+                  <default value="&quot;Block&quot;"/>
+                  <enum>
+                    <item value="&quot;Block&quot;"/>
+                    <item value="&quot;Log&quot;"/>
+                  </enum>
+                </prop>
+                <prop type="object" name="associations" arg="$resource.properties.associations" required="True">
+                  <prop type="array<object>" name="domains" arg="$resource.properties.associations.domains" identifiers="id">
+                    <format maxLength="15"/>
+                    <item type="object">
+                      <prop type="ResourceId" name="id" arg="$resource.properties.associations.domains[].id" required="True"/>
+                    </item>
+                  </prop>
+                  <prop type="boolean" name="isProfileLevel" arg="$resource.properties.associations.isProfileLevel"/>
+                  <prop type="array<object>" name="routes" arg="$resource.properties.associations.routes" identifiers="id">
+                    <format maxLength="15"/>
+                    <item type="object">
+                      <prop type="ResourceId" name="id" arg="$resource.properties.associations.routes[].id" required="True"/>
+                    </item>
+                  </prop>
+                </prop>
+                <prop type="array<object>" name="authConfigs" arg="$resource.properties.authConfigs" required="True">
+                  <format minLength="1"/>
+                  <item type="object">
+                    <prop type="string" name="identityProvider" required="True">
+                      <enum>
+                        <item arg="$resource.properties.authConfigs[].EntraID" value="&quot;EntraID&quot;"/>
+                      </enum>
+                    </prop>
+                    <discriminator property="identityProvider" value="EntraID">
+                      <prop type="array<string>" name="audiences" arg="$resource.properties.authConfigs[].EntraID.audiences" required="True">
+                        <format minLength="1"/>
+                        <item type="string"/>
+                      </prop>
+                      <prop type="string" name="authLocation" arg="$resource.properties.authConfigs[].EntraID.authLocation">
+                        <default value="&quot;Header&quot;"/>
+                        <enum>
+                          <item value="&quot;Header&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="authLocationSelector" arg="$resource.properties.authConfigs[].EntraID.authLocationSelector"/>
+                      <prop type="string" name="issuer" arg="$resource.properties.authConfigs[].EntraID.issuer" required="True"/>
+                    </discriminator>
+                  </item>
+                </prop>
+                <prop type="boolean" name="forwardTokenToOrigin" arg="$resource.properties.forwardTokenToOrigin">
+                  <default value="true"/>
+                </prop>
+              </prop>
+            </schema>
+          </json>
+        </instanceUpdate>
+      </operation>
+      <operation operationId="AuthPolicies_Create">
+        <longRunning finalStateVia="original-uri"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cdn/profiles/{profileName}/authPolicies/{authPolicyName}">
+          <request method="put">
+            <path>
+              <param type="string" name="authPolicyName" arg="$Path.authPolicyName" required="True">
+                <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+              </param>
+              <param type="string" name="profileName" arg="$Path.profileName" required="True">
+                <format pattern="^[a-zA-Z0-9]+(-*[a-zA-Z0-9])*$" maxLength="260" minLength="1"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-09-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json ref="$Instance"/>
+            </body>
+          </request>
+          <response statusCode="200 201">
+            <body>
+              <json var="$Instance">
+                <schema type="@AuthPolicy_read"/>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Azure-AsyncOperation"/>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

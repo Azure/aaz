@@ -38,7 +38,7 @@
               <json var="$Instance">
                 <schema type="object">
                   <prop type="string" name="nextLink"/>
-                  <prop type="array<object>" name="value">
+                  <prop type="array<object>" name="value" required="True">
                     <item type="object">
                       <prop readOnly="True" type="string" name="etag"/>
                       <prop readOnly="True" type="string" name="id"/>
@@ -53,44 +53,39 @@
                             <prop type="float64" name="amount" required="True">
                               <format minimum="0.0" exclusiveMinimum="True"/>
                             </prop>
-                            <prop type="array<object>" name="counterKey" required="True">
-                              <format maxLength="1" minLength="1"/>
-                              <item type="object">
-                                <prop type="string" name="attribute">
-                                  <format pattern="^[a-zA-Z][a-zA-Z0-9_.-]{0,127}$" maxLength="128"/>
-                                </prop>
-                                <prop type="string" name="type" required="True">
-                                  <enum>
-                                    <item value="&quot;account&quot;"/>
-                                    <item value="&quot;agent&quot;"/>
-                                    <item value="&quot;custom&quot;"/>
-                                    <item value="&quot;identity&quot;"/>
-                                    <item value="&quot;project&quot;"/>
-                                    <item value="&quot;session&quot;"/>
-                                  </enum>
-                                </prop>
-                              </item>
+                            <prop type="object" name="counterKey" required="True">
+                              <prop readOnly="True" type="string" name="attribute"/>
+                              <prop type="string" name="type" required="True">
+                                <enum>
+                                  <item value="&quot;Account&quot;"/>
+                                  <item value="&quot;Agent&quot;"/>
+                                  <item value="&quot;Custom&quot;"/>
+                                  <item value="&quot;Identity&quot;"/>
+                                  <item value="&quot;Project&quot;"/>
+                                  <item value="&quot;Session&quot;"/>
+                                </enum>
+                              </prop>
                             </prop>
                             <prop type="object" name="match">
-                              <prop type="array<string>" name="foundry.caller.agent.id">
+                              <prop type="array<string>" name="agentResourceIds">
                                 <format maxLength="20" minLength="1"/>
                                 <item type="string">
                                   <format minLength="1"/>
                                 </item>
                               </prop>
-                              <prop type="array<string>" name="foundry.caller.identity.oid">
+                              <prop type="array<string>" name="identityObjectIds">
                                 <format maxLength="20" minLength="1"/>
                                 <item type="string">
                                   <format minLength="1"/>
                                 </item>
                               </prop>
-                              <prop type="array<string>" name="foundry.caller.session.id">
+                              <prop type="array<ResourceId>" name="projectIds">
                                 <format maxLength="20" minLength="1"/>
-                                <item type="string">
-                                  <format minLength="1"/>
+                                <item type="ResourceId">
+                                  <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.CognitiveServices/accounts/projects/{}"/>
                                 </item>
                               </prop>
-                              <prop type="array<string>" name="foundry.project.id">
+                              <prop type="array<string>" name="sessionIds">
                                 <format maxLength="20" minLength="1"/>
                                 <item type="string">
                                   <format minLength="1"/>
@@ -102,12 +97,12 @@
                             </prop>
                             <prop type="string" name="period">
                               <enum>
-                                <item value="&quot;day&quot;"/>
-                                <item value="&quot;hour&quot;"/>
-                                <item value="&quot;minute&quot;"/>
-                                <item value="&quot;month&quot;"/>
-                                <item value="&quot;week&quot;"/>
-                                <item value="&quot;year&quot;"/>
+                                <item value="&quot;Day&quot;"/>
+                                <item value="&quot;Hour&quot;"/>
+                                <item value="&quot;Minute&quot;"/>
+                                <item value="&quot;Month&quot;"/>
+                                <item value="&quot;Week&quot;"/>
+                                <item value="&quot;Year&quot;"/>
                               </enum>
                             </prop>
                             <prop type="boolean" name="recurring">
@@ -116,18 +111,17 @@
                             <prop nullable="True" type="array<object>" name="thresholds">
                               <format maxLength="10"/>
                               <item type="object">
-                                <prop type="string" name="action">
-                                  <default value="&quot;audit&quot;"/>
+                                <prop type="string" name="action" required="True">
                                   <enum>
-                                    <item value="&quot;alert&quot;"/>
-                                    <item value="&quot;audit&quot;"/>
-                                    <item value="&quot;block&quot;"/>
+                                    <item value="&quot;Alert&quot;"/>
+                                    <item value="&quot;Audit&quot;"/>
+                                    <item value="&quot;Block&quot;"/>
                                   </enum>
                                 </prop>
                                 <prop type="string" name="type" required="True">
                                   <enum>
-                                    <item value="&quot;absolute&quot;"/>
-                                    <item value="&quot;percentage&quot;"/>
+                                    <item value="&quot;Absolute&quot;"/>
+                                    <item value="&quot;Percentage&quot;"/>
                                   </enum>
                                 </prop>
                                 <prop type="float64" name="value" required="True">
@@ -137,7 +131,7 @@
                             </prop>
                             <prop type="string" name="unit" required="True">
                               <enum>
-                                <item value="&quot;usd&quot;"/>
+                                <item value="&quot;Usd&quot;"/>
                               </enum>
                             </prop>
                           </item>

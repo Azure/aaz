@@ -5,13 +5,13 @@ Defines rules that scrub sensitive fields in the Azure Front Door profile logs.
 ## Commands
 
 - [create](/Commands/afd/profile/log-scrubbing/_create.md)
-: Defines rules that scrub sensitive fields in the Azure Front Door profile logs.
+: Create Log Scrubbing
 
 - [delete](/Commands/afd/profile/log-scrubbing/_delete.md)
-: Defines rules that scrub sensitive fields in the Azure Front Door profile logs.
+: Delete Log Scrubbing
 
 - [show](/Commands/afd/profile/log-scrubbing/_show.md)
-: Defines rules that scrub sensitive fields in the Azure Front Door profile logs.
+: Show Log Scrubbing
 
 - [update](/Commands/afd/profile/log-scrubbing/_update.md)
-: Defines rules that scrub sensitive fields in the Azure Front Door profile logs.
+: Update Log Scrubbing
