@@ -19,6 +19,9 @@ Manage Azure NetApp Files (ANF) Account Resources.
 - [identity](/Commands/netappfiles/account/identity/readme.md)
 : Manage Identity
 
+- [ldap-configuration](/Commands/netappfiles/account/ldap-configuration/readme.md)
+: Manage Ldap Configuration
+
 - [pool](/Commands/netappfiles/account/pool/readme.md)
 : Manage Azure NetApp Files (ANF) Pool Resources.
 
