@@ -56,7 +56,7 @@ Policy Groups are independent resource-group-scoped Microsoft.NetworkSecurity pe
 
 - Create an independent FQDN filtering Policy Group
     ```bash
-        agentfabric policy-group create --resource-group rgnetworksecurity --name testPolicyGroup --location eastus --display-name "Test Policy Group" --priority 100 --network-security-policies "[{fqdn-filtering:{name:allowOutbound,priority:10,direction:Outbound,ports:[443],source:{workload-id-patterns:{patterns:[workload1]}},destination:{fqdns:{fqdns:[example.com]}}}}]"
+        agentfabric policy-group create --resource-group rgnetworksecurity --name testPolicyGroup --location eastus --display-name "Test Policy Group" --priority 100 --network-security-policies "[{fqdn-filtering:{name:allowOutbound,priority:10,direction:Outbound,ports:[443],source:{workload-id-patterns:{patterns:['spiffe://contoso.com/ns/*/sa/*']}},destination:{fqdns:{fqdns:[example.com]}}}}]"
     ```
 
 - Allow selected MCP tools using named matching rules
