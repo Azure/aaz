@@ -26,3 +26,15 @@ List all virtual network appliances in a subscription.
     ```bash
         network virtual-network-appliance list
     ```
+
+### [2026-03-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL3ZpcnR1YWxuZXR3b3JrYXBwbGlhbmNlcw==/2026-03-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.network/virtualnetworkappliances 2026-03-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/virtualnetworkappliances 2026-03-01 -->
+
+#### examples
+
+- List all virtual network appliances
+    ```bash
+        network virtual-network-appliance list
+    ```
