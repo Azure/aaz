@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/kore.agentplatform/organizations/{}/workspaces/{}/getworkspacedetails" version="2026-07-01-preview" swagger="mgmt-plane/azure-native-integrations/ResourceProviders/Kore.AgentPlatform/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9Lb3JlLkFnZW50UGxhdGZvcm0vb3JnYW5pemF0aW9ucy97b3JnYW5pemF0aW9uTmFtZX0vd29ya3NwYWNlcy97d29ya3NwYWNlTmFtZX0vZ2V0V29ya3NwYWNlRGV0YWlscw==/V/MjAyNi0wNy0wMS1wcmV2aWV3"/>
+  <commandGroup name="artemis organization workspace">
+    <command name="show-details" version="2026-07-01-preview">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/kore.agentplatform/organizations/{}/workspaces/{}/getworkspacedetails" version="2026-07-01-preview" swagger="mgmt-plane/azure-native-integrations/ResourceProviders/Kore.AgentPlatform/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9Lb3JlLkFnZW50UGxhdGZvcm0vb3JnYW5pemF0aW9ucy97b3JnYW5pemF0aW9uTmFtZX0vd29ya3NwYWNlcy97d29ya3NwYWNlTmFtZX0vZ2V0V29ya3NwYWNlRGV0YWlscw==/V/MjAyNi0wNy0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.organizationName" options="organization-name" required="True" idPart="name">
+          <help short="Name of the Organization."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-]{0,48}[a-zA-Z0-9]$" maxLength="50" minLength="2"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+        <arg type="string" var="$Path.workspaceName" options="workspace-name" required="True" idPart="child_name_1">
+          <help short="Name of the Workspace."/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-]{0,98}[a-zA-Z0-9]$" maxLength="100" minLength="2"/>
+        </arg>
+      </argGroup>
+      <operation operationId="Workspaces_GetDetails">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Kore.AgentPlatform/organizations/{organizationName}/workspaces/{workspaceName}/getWorkspaceDetails">
+          <request method="post">
+            <path>
+              <param type="string" name="organizationName" arg="$Path.organizationName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-]{0,48}[a-zA-Z0-9]$" maxLength="50" minLength="2"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+              <param type="string" name="workspaceName" arg="$Path.workspaceName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9-]{0,98}[a-zA-Z0-9]$" maxLength="100" minLength="2"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-07-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="ResourceId" name="azureResourceId" required="True"/>
+                  <prop type="dateTime" name="createdAt" required="True">
+                    <format protocol="iso"/>
+                  </prop>
+                  <prop type="string" name="id" required="True"/>
+                  <prop type="string" name="organizationId" required="True"/>
+                  <prop type="object" name="partnerProperties" required="True">
+                    <prop type="boolean" name="default" required="True"/>
+                    <prop type="array<object>" name="marketplaceDetails" required="True" identifiers="mpId">
+                      <format maxLength="20"/>
+                      <item type="object">
+                        <prop type="string" name="mpId" required="True"/>
+                        <prop type="string" name="offerId" required="True"/>
+                        <prop type="string" name="planId" required="True"/>
+                        <prop type="string" name="planName"/>
+                        <prop type="string" name="publisherId"/>
+                        <prop type="ResourceId" name="resourceId" required="True"/>
+                        <prop type="string" name="status">
+                          <enum>
+                            <item value="&quot;PendingFulfillmentStart&quot;"/>
+                            <item value="&quot;Subscribed&quot;"/>
+                            <item value="&quot;Suspended&quot;"/>
+                            <item value="&quot;Unsubscribed&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="termId"/>
+                      </item>
+                    </prop>
+                    <prop type="string" name="name" required="True"/>
+                    <prop type="string" name="ownerEmail" required="True">
+                      <format pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"/>
+                    </prop>
+                    <prop type="integer32" name="retentionDays" required="True">
+                      <format maximum="365" minimum="1"/>
+                    </prop>
+                  </prop>
+                  <prop type="array<object>" name="projects" required="True" identifiers="id">
+                    <item type="object">
+                      <prop type="integer32" name="agentCount" required="True"/>
+                      <prop type="dateTime" name="createdAt" required="True">
+                        <format protocol="iso"/>
+                      </prop>
+                      <prop type="string" name="createdBy" required="True">
+                        <format pattern="^[A-Za-z0-9._%+-]+@(?:[A-Za-z0-9-]+\.)+[A-Za-z]{2,}$"/>
+                      </prop>
+                      <prop type="string" name="description"/>
+                      <prop type="string" name="id" required="True"/>
+                      <prop type="string" name="name" required="True"/>
+                      <prop type="string" name="status" required="True">
+                        <enum>
+                          <item value="&quot;active&quot;"/>
+                          <item value="&quot;archived&quot;"/>
+                          <item value="&quot;deployed&quot;"/>
+                          <item value="&quot;in-development&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="dateTime" name="updatedAt" required="True">
+                        <format protocol="iso"/>
+                      </prop>
+                    </item>
+                  </prop>
+                  <prop type="string" name="status" required="True">
+                    <enum>
+                      <item value="&quot;active&quot;"/>
+                      <item value="&quot;archived&quot;"/>
+                      <item value="&quot;suspended&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="dateTime" name="updatedAt" required="True">
+                    <format protocol="iso"/>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
