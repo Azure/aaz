@@ -2,7 +2,7 @@
 
 Show an Agent Fabric member.
 
-Members are children of an Agent Fabric and require the parent Fabric name. This command shows an Agent Fabric sandbox member.
+Members are children of an Agent Fabric and require the parent Fabric name. API version 2026-11-03-preview supports AKS, ACI, and Agent Fabric sandbox workload responses.
 
 ## Versions
 
@@ -13,6 +13,17 @@ Members are children of an Agent Fabric and require the parent Fabric name. This
 ### [2026-10-07-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3Jrc2VjdXJpdHkvYWdlbnRmYWJyaWNzL3t9L21lbWJlcnMve30=/2026-10-07-preview.xml) **Stable**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networksecurity/agentfabrics/{}/members/{} 2026-10-07-preview -->
+
+#### examples
+
+- Show an Agent Fabric member
+    ```bash
+        agentfabric member show --resource-group rgnetworksecurity --fabric-name testAIFabric --member-name checkoutApi
+    ```
+
+### [2026-11-03-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3Jrc2VjdXJpdHkvYWdlbnRmYWJyaWNzL3t9L21lbWJlcnMve30=/2026-11-03-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networksecurity/agentfabrics/{}/members/{} 2026-11-03-preview -->
 
 #### examples
 

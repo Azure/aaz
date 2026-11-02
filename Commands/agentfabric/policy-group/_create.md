@@ -47,3 +47,24 @@ Policy Groups are independent resource-group-scoped Microsoft.NetworkSecurity pe
     ```bash
         agentfabric policy-group create --resource-group rgnetworksecurity --name testPolicyGroup --location eastus --display-name "Test Policy Group" --priority 100 --network-security-policies "[{fqdn-filtering:{name:allowOutbound,priority:10,direction:Outbound,ports:[443],source:{workload-id-patterns:{patterns:[workload1]}},destination:{fqdns:{fqdns:[example.com]}}}}]"
     ```
+
+### [2026-11-03-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3Jrc2VjdXJpdHkvcG9saWN5Z3JvdXBzL3t9/2026-11-03-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networksecurity/policygroups/{} 2026-11-03-preview -->
+
+#### examples
+
+- Create an independent FQDN filtering Policy Group
+    ```bash
+        agentfabric policy-group create --resource-group rgnetworksecurity --name testPolicyGroup --location eastus --display-name "Test Policy Group" --priority 100 --network-security-policies "[{fqdn-filtering:{name:allowOutbound,priority:10,direction:Outbound,ports:[443],source:{workload-id-patterns:{patterns:[workload1]}},destination:{fqdns:{fqdns:[example.com]}}}}]"
+    ```
+
+- Allow selected MCP tools using named matching rules
+    ```bash
+        agentfabric policy-group create --resource-group rgnetworksecurity --name mcpRulesPolicyGroup --location eastus --priority 100 --network-security-policies "[{mcp:{default-action:Deny,source:{workload-id-patterns:{patterns:['spiffe://contoso.com/ns/agents/sa/*']}},destination:{fqdns:{fqdns:[mcp.contoso.com]}},rules:[{name:allow-search,priority:100,action:Allow,matching-conditions:{destinations:{tool-matching:{names:{values:[search],match-type:ExactMatch}}}}}]}},{tls-inspection:{source:{workload-id-patterns:{patterns:['spiffe://contoso.com/ns/agents/sa/*']}},certificate:{azure-managed-ca:{}},default-action:Inspect}}]"
+    ```
+
+- Inspect selected TLS destinations and bypass other connections
+    ```bash
+        agentfabric policy-group create --resource-group rgnetworksecurity --name tlsRulesPolicyGroup --location eastus --priority 100 --network-security-policies "[{tls-inspection:{source:{workload-id-patterns:{patterns:['spiffe://contoso.com/ns/default/sa/*']}},certificate:{azure-managed-ca:{}},default-action:Bypass,rules:[{name:inspectContosoApi,priority:100,action:Inspect,destinations:[{fqdns:{fqdns:[api.contoso.com,'*.contoso.net']}}]}]}}]"
+    ```
