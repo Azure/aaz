@@ -68,11 +68,7 @@
                       </enum>
                     </prop>
                     <prop type="object" name="filter" cls="CostControlFilter_read">
-                      <prop type="array<@CostControlFilter_read>" name="and">
-                        <format minLength="2"/>
-                        <item type="@CostControlFilter_read"/>
-                      </prop>
-                      <prop type="object" name="tags">
+                      <prop type="object" name="additionalInfo">
                         <prop type="string" name="name" required="True">
                           <enum>
                             <item value="&quot;agent&quot;"/>
@@ -95,6 +91,10 @@
                           </item>
                         </prop>
                       </prop>
+                      <prop type="array<@CostControlFilter_read>" name="and">
+                        <format minLength="2"/>
+                        <item type="@CostControlFilter_read"/>
+                      </prop>
                     </prop>
                     <prop type="array<object>" name="grouping">
                       <format maxLength="1"/>
@@ -109,7 +109,7 @@
                         </prop>
                         <prop type="string" name="type" required="True">
                           <enum>
-                            <item value="&quot;TagKey&quot;"/>
+                            <item value="&quot;AdditionalInfoKey&quot;"/>
                           </enum>
                         </prop>
                       </item>
@@ -321,14 +321,9 @@
         </arg>
         <arg type="object" var="$resource.properties.filter" options="filter" group="Properties" cls="CostControlFilter_create">
           <help short="Optional traffic selection. Omission selects all eligible traffic within the owner's scope."/>
-          <arg type="array<@CostControlFilter_create>" var="@CostControlFilter_create.and" options="and">
-            <help short="A conjunction of at least two conditions. Must not be combined with tags on the same filter object."/>
-            <format minLength="2"/>
-            <item type="@CostControlFilter_create"/>
-          </arg>
-          <arg type="object" var="@CostControlFilter_create.tags" options="tags">
-            <help short="A single tag condition. Must not be combined with and on the same filter object."/>
-            <arg type="string" var="@CostControlFilter_create.tags.name" options="name" required="True">
+          <arg type="object" var="@CostControlFilter_create.additionalInfo" options="additional-info">
+            <help short="A single additional-info condition. Must not be combined with `and` on the same filter object."/>
+            <arg type="string" var="@CostControlFilter_create.additionalInfo.name" options="name" required="True">
               <help short="The built-in attribute: agent, identityObjectId, sessionId, project, deployment, or tokenType. Resource selectors use owner-scoped short names, not Azure resource IDs. Agent selections require an explicit project filter selecting exactly one project; multiple agents in that project are supported. A project-owned control can select only its owning project. Project, agent, and deployment values must be plain names of 1-64 characters without leading or trailing whitespace, control characters, path/query/fragment separators, percent signs, or . and .. path segments. tokenType accepts input, output, or both for a Tokens budget; omission measures overall tokens."/>
               <enum>
                 <item name="agent" value="&quot;agent&quot;"/>
@@ -339,19 +334,24 @@
                 <item name="tokenType" value="&quot;tokenType&quot;"/>
               </enum>
             </arg>
-            <arg type="string" var="@CostControlFilter_create.tags.operator" options="operator" required="True">
+            <arg type="string" var="@CostControlFilter_create.additionalInfo.operator" options="operator" required="True">
               <help short="The comparison operator.`In` is supported."/>
               <enum>
                 <item name="In" value="&quot;In&quot;"/>
               </enum>
             </arg>
-            <arg type="array<string>" var="@CostControlFilter_create.tags.values" options="values" required="True">
-              <help short="One or more nonempty, non-whitespace strings to match. There is no per-tag value-count limit; the serialized cost-control definition must not exceed 32 KiB."/>
+            <arg type="array<string>" var="@CostControlFilter_create.additionalInfo.values" options="values" required="True">
+              <help short="One or more nonempty, non-whitespace strings to match. There is no per-condition value-count limit; the serialized cost-control definition must not exceed 32 KiB."/>
               <format minLength="1"/>
               <item type="string">
                 <format minLength="1"/>
               </item>
             </arg>
+          </arg>
+          <arg type="array<@CostControlFilter_create>" var="@CostControlFilter_create.and" options="and">
+            <help short="A conjunction of at least two conditions. Must not be combined with tags on the same filter object."/>
+            <format minLength="2"/>
+            <item type="@CostControlFilter_create"/>
           </arg>
         </arg>
         <arg type="array<object>" var="$resource.properties.grouping" options="grouping" group="Properties">
@@ -370,7 +370,7 @@
             <arg type="string" var="$resource.properties.grouping[].type" options="type" required="True">
               <help short="The grouping kind. Only `TagKey` is supported."/>
               <enum>
-                <item name="TagKey" value="&quot;TagKey&quot;"/>
+                <item name="AdditionalInfoKey" value="&quot;AdditionalInfoKey&quot;"/>
               </enum>
             </arg>
           </item>
@@ -507,12 +507,8 @@
                       </enum>
                     </prop>
                     <prop type="object" name="filter" arg="$resource.properties.filter" cls="CostControlFilter_create">
-                      <prop type="array<@CostControlFilter_create>" name="and" arg="@CostControlFilter_create.and">
-                        <format minLength="2"/>
-                        <item type="@CostControlFilter_create"/>
-                      </prop>
-                      <prop type="object" name="tags" arg="@CostControlFilter_create.tags">
-                        <prop type="string" name="name" arg="@CostControlFilter_create.tags.name" required="True">
+                      <prop type="object" name="additionalInfo" arg="@CostControlFilter_create.additionalInfo">
+                        <prop type="string" name="name" arg="@CostControlFilter_create.additionalInfo.name" required="True">
                           <enum>
                             <item value="&quot;agent&quot;"/>
                             <item value="&quot;deployment&quot;"/>
@@ -522,17 +518,21 @@
                             <item value="&quot;tokenType&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="string" name="operator" arg="@CostControlFilter_create.tags.operator" required="True">
+                        <prop type="string" name="operator" arg="@CostControlFilter_create.additionalInfo.operator" required="True">
                           <enum>
                             <item value="&quot;In&quot;"/>
                           </enum>
                         </prop>
-                        <prop type="array<string>" name="values" arg="@CostControlFilter_create.tags.values" required="True">
+                        <prop type="array<string>" name="values" arg="@CostControlFilter_create.additionalInfo.values" required="True">
                           <format minLength="1"/>
                           <item type="string">
                             <format minLength="1"/>
                           </item>
                         </prop>
+                      </prop>
+                      <prop type="array<@CostControlFilter_create>" name="and" arg="@CostControlFilter_create.and">
+                        <format minLength="2"/>
+                        <item type="@CostControlFilter_create"/>
                       </prop>
                     </prop>
                     <prop type="array<object>" name="grouping" arg="$resource.properties.grouping">
@@ -548,7 +548,7 @@
                         </prop>
                         <prop type="string" name="type" arg="$resource.properties.grouping[].type" required="True">
                           <enum>
-                            <item value="&quot;TagKey&quot;"/>
+                            <item value="&quot;AdditionalInfoKey&quot;"/>
                           </enum>
                         </prop>
                       </item>
@@ -646,11 +646,7 @@
                       </enum>
                     </prop>
                     <prop type="object" name="filter" cls="CostControlFilter_read">
-                      <prop type="array<@CostControlFilter_read>" name="and">
-                        <format minLength="2"/>
-                        <item type="@CostControlFilter_read"/>
-                      </prop>
-                      <prop type="object" name="tags">
+                      <prop type="object" name="additionalInfo">
                         <prop type="string" name="name" required="True">
                           <enum>
                             <item value="&quot;agent&quot;"/>
@@ -673,6 +669,10 @@
                           </item>
                         </prop>
                       </prop>
+                      <prop type="array<@CostControlFilter_read>" name="and">
+                        <format minLength="2"/>
+                        <item type="@CostControlFilter_read"/>
+                      </prop>
                     </prop>
                     <prop type="array<object>" name="grouping">
                       <format maxLength="1"/>
@@ -687,7 +687,7 @@
                         </prop>
                         <prop type="string" name="type" required="True">
                           <enum>
-                            <item value="&quot;TagKey&quot;"/>
+                            <item value="&quot;AdditionalInfoKey&quot;"/>
                           </enum>
                         </prop>
                       </item>
@@ -896,14 +896,9 @@
         </arg>
         <arg nullable="True" type="object" var="$resource.properties.filter" options="filter" group="Properties" cls="CostControlFilter_update">
           <help short="Optional traffic selection. Omission selects all eligible traffic within the owner's scope."/>
-          <arg nullable="True" type="array<@CostControlFilter_update>" var="@CostControlFilter_update.and" options="and">
-            <help short="A conjunction of at least two conditions. Must not be combined with tags on the same filter object."/>
-            <format minLength="2"/>
-            <item nullable="True" type="@CostControlFilter_update"/>
-          </arg>
-          <arg nullable="True" type="object" var="@CostControlFilter_update.tags" options="tags">
-            <help short="A single tag condition. Must not be combined with and on the same filter object."/>
-            <arg type="string" var="@CostControlFilter_update.tags.name" options="name">
+          <arg nullable="True" type="object" var="@CostControlFilter_update.additionalInfo" options="additional-info">
+            <help short="A single additional-info condition. Must not be combined with `and` on the same filter object."/>
+            <arg type="string" var="@CostControlFilter_update.additionalInfo.name" options="name">
               <help short="The built-in attribute: agent, identityObjectId, sessionId, project, deployment, or tokenType. Resource selectors use owner-scoped short names, not Azure resource IDs. Agent selections require an explicit project filter selecting exactly one project; multiple agents in that project are supported. A project-owned control can select only its owning project. Project, agent, and deployment values must be plain names of 1-64 characters without leading or trailing whitespace, control characters, path/query/fragment separators, percent signs, or . and .. path segments. tokenType accepts input, output, or both for a Tokens budget; omission measures overall tokens."/>
               <enum>
                 <item name="agent" value="&quot;agent&quot;"/>
@@ -914,19 +909,24 @@
                 <item name="tokenType" value="&quot;tokenType&quot;"/>
               </enum>
             </arg>
-            <arg type="string" var="@CostControlFilter_update.tags.operator" options="operator">
+            <arg type="string" var="@CostControlFilter_update.additionalInfo.operator" options="operator">
               <help short="The comparison operator.`In` is supported."/>
               <enum>
                 <item name="In" value="&quot;In&quot;"/>
               </enum>
             </arg>
-            <arg type="array<string>" var="@CostControlFilter_update.tags.values" options="values">
-              <help short="One or more nonempty, non-whitespace strings to match. There is no per-tag value-count limit; the serialized cost-control definition must not exceed 32 KiB."/>
+            <arg type="array<string>" var="@CostControlFilter_update.additionalInfo.values" options="values">
+              <help short="One or more nonempty, non-whitespace strings to match. There is no per-condition value-count limit; the serialized cost-control definition must not exceed 32 KiB."/>
               <format minLength="1"/>
               <item nullable="True" type="string">
                 <format minLength="1"/>
               </item>
             </arg>
+          </arg>
+          <arg nullable="True" type="array<@CostControlFilter_update>" var="@CostControlFilter_update.and" options="and">
+            <help short="A conjunction of at least two conditions. Must not be combined with tags on the same filter object."/>
+            <format minLength="2"/>
+            <item nullable="True" type="@CostControlFilter_update"/>
           </arg>
         </arg>
         <arg nullable="True" type="array<object>" var="$resource.properties.grouping" options="grouping" group="Properties">
@@ -945,7 +945,7 @@
             <arg type="string" var="$resource.properties.grouping[].type" options="type">
               <help short="The grouping kind. Only `TagKey` is supported."/>
               <enum>
-                <item name="TagKey" value="&quot;TagKey&quot;"/>
+                <item name="AdditionalInfoKey" value="&quot;AdditionalInfoKey&quot;"/>
               </enum>
             </arg>
           </item>
@@ -1086,11 +1086,7 @@
                       </enum>
                     </prop>
                     <prop type="object" name="filter" cls="CostControlFilter_read">
-                      <prop type="array<@CostControlFilter_read>" name="and">
-                        <format minLength="2"/>
-                        <item type="@CostControlFilter_read"/>
-                      </prop>
-                      <prop type="object" name="tags">
+                      <prop type="object" name="additionalInfo">
                         <prop type="string" name="name" required="True">
                           <enum>
                             <item value="&quot;agent&quot;"/>
@@ -1113,6 +1109,10 @@
                           </item>
                         </prop>
                       </prop>
+                      <prop type="array<@CostControlFilter_read>" name="and">
+                        <format minLength="2"/>
+                        <item type="@CostControlFilter_read"/>
+                      </prop>
                     </prop>
                     <prop type="array<object>" name="grouping">
                       <format maxLength="1"/>
@@ -1127,7 +1127,7 @@
                         </prop>
                         <prop type="string" name="type" required="True">
                           <enum>
-                            <item value="&quot;TagKey&quot;"/>
+                            <item value="&quot;AdditionalInfoKey&quot;"/>
                           </enum>
                         </prop>
                       </item>
@@ -1251,12 +1251,8 @@
                   </enum>
                 </prop>
                 <prop type="object" name="filter" arg="$resource.properties.filter" cls="CostControlFilter_update">
-                  <prop type="array<@CostControlFilter_update>" name="and" arg="@CostControlFilter_update.and">
-                    <format minLength="2"/>
-                    <item type="@CostControlFilter_update"/>
-                  </prop>
-                  <prop type="object" name="tags" arg="@CostControlFilter_update.tags">
-                    <prop type="string" name="name" arg="@CostControlFilter_update.tags.name" required="True">
+                  <prop type="object" name="additionalInfo" arg="@CostControlFilter_update.additionalInfo">
+                    <prop type="string" name="name" arg="@CostControlFilter_update.additionalInfo.name" required="True">
                       <enum>
                         <item value="&quot;agent&quot;"/>
                         <item value="&quot;deployment&quot;"/>
@@ -1266,17 +1262,21 @@
                         <item value="&quot;tokenType&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="string" name="operator" arg="@CostControlFilter_update.tags.operator" required="True">
+                    <prop type="string" name="operator" arg="@CostControlFilter_update.additionalInfo.operator" required="True">
                       <enum>
                         <item value="&quot;In&quot;"/>
                       </enum>
                     </prop>
-                    <prop type="array<string>" name="values" arg="@CostControlFilter_update.tags.values" required="True">
+                    <prop type="array<string>" name="values" arg="@CostControlFilter_update.additionalInfo.values" required="True">
                       <format minLength="1"/>
                       <item type="string">
                         <format minLength="1"/>
                       </item>
                     </prop>
+                  </prop>
+                  <prop type="array<@CostControlFilter_update>" name="and" arg="@CostControlFilter_update.and">
+                    <format minLength="2"/>
+                    <item type="@CostControlFilter_update"/>
                   </prop>
                 </prop>
                 <prop type="array<object>" name="grouping" arg="$resource.properties.grouping">
@@ -1292,7 +1292,7 @@
                     </prop>
                     <prop type="string" name="type" arg="$resource.properties.grouping[].type" required="True">
                       <enum>
-                        <item value="&quot;TagKey&quot;"/>
+                        <item value="&quot;AdditionalInfoKey&quot;"/>
                       </enum>
                     </prop>
                   </item>
@@ -1437,7 +1437,7 @@
                         </prop>
                         <prop type="string" name="type" required="True">
                           <enum>
-                            <item value="&quot;TagKey&quot;"/>
+                            <item value="&quot;AdditionalInfoKey&quot;"/>
                           </enum>
                         </prop>
                       </item>
