@@ -18,3 +18,14 @@ Get the specified private endpoint connection associated with the file share.
     ```bash
         fileshare private-endpoint-connection show --resource-group rgfileshares --resource-name fileshare --private-endpoint-connection-name privateEndpointConnection1
     ```
+
+### [2026-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5maWxlc2hhcmVzL2ZpbGVzaGFyZXMve30vcHJpdmF0ZWVuZHBvaW50Y29ubmVjdGlvbnMve30=/2026-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.fileshares/fileshares/{}/privateendpointconnections/{} 2026-09-01 -->
+
+#### examples
+
+- Show private endpoint connection
+    ```bash
+        fileshare private-endpoint-connection show --resource-group rgfileshares --resource-name fileshare --private-endpoint-connection-name privateEndpointConnection1
+    ```
