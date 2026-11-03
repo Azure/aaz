@@ -1,22 +1,25 @@
 # [Group] _cognitiveservices account costcontrol_
 
-Manage Cost Control Policies in Foundry
+Manage Cost Control
 
 A set of commands to manage Cost Control Policies in Foundry. Supported commands are `create`, `delete`, `list`, `show` and `update`. Use those policies to set a threshold on the cost (in USD) per time period for token use by your account or deployment. You can also set alerts to get notified when this threshold approaches.
 
 ## Commands
 
 - [create](/Commands/cognitiveservices/account/costcontrol/_create.md)
-: Create a cost control.
+: Create an account-owned cost control.
 
 - [delete](/Commands/cognitiveservices/account/costcontrol/_delete.md)
-: Delete a cost control.
+: Delete an account-owned cost control.
+
+- [head](/Commands/cognitiveservices/account/costcontrol/_head.md)
+: Checks whether an account-owned cost control exists without returning its body.
 
 - [list](/Commands/cognitiveservices/account/costcontrol/_list.md)
-: List the cost controls owned by an account.
+: List account-owned cost controls.
 
 - [show](/Commands/cognitiveservices/account/costcontrol/_show.md)
-: Get a cost control.
+: Get an account-owned cost control and its representation entity tag.
 
 - [update](/Commands/cognitiveservices/account/costcontrol/_update.md)
-: Update a cost control.
+: Update an account-owned cost control.
