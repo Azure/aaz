@@ -1,6 +1,6 @@
 # [Group] _cognitiveservices account project costcontrol_
 
-Manage Cost Control
+Manage Foundry project-owned cost controls
 
 ## Commands
 
