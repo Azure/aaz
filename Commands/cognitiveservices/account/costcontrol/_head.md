@@ -7,3 +7,10 @@ Checks whether an account-owned cost control exists without returning its body.
 ### [2026-11-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jb2duaXRpdmVzZXJ2aWNlcy9hY2NvdW50cy97fS9jb3N0Y29udHJvbHMve30=/2026-11-15-preview.xml) **Preview**
 
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cognitiveservices/accounts/{}/costcontrols/{} 2026-11-15-preview -->
+
+#### examples
+
+- Check for a budget without returning its body
+    ```bash
+        cognitiveservices account costcontrol head --resource-group foundry-resource-group --account-name foundry-account --cost-control-name production-agents
+    ```
