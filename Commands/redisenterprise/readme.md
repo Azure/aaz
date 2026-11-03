@@ -42,5 +42,8 @@ Manage the redisenterprise cache
 - [show](/Commands/redisenterprise/_show.md)
 : Get information about a RedisEnterprise cluster
 
+- [unlink-migrated-endpoint](/Commands/redisenterprise/_unlink-migrated-endpoint.md)
+: Unlinks the migrated endpoint from an Azure Managed Redis cluster that was migrated from Azure Cache for Redis Enterprise, removing the source cache endpoint that was redirected to this cluster during migration.
+
 - [update](/Commands/redisenterprise/_update.md)
 : Update an existing (overwrite/recreate, with potential downtime) cache cluster

@@ -18,3 +18,14 @@ Cancel or rollback the migration operation in a Redis Enterprise cluster.
     ```bash
         redisenterprise migration undo --cluster-name cache1 --resource-group rg1
     ```
+
+### [2026-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jYWNoZS9yZWRpc2VudGVycHJpc2Uve30vbWlncmF0aW9ucy9kZWZhdWx0L2NhbmNlbA==/2026-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cache/redisenterprise/{}/migrations/default/cancel 2026-09-01 -->
+
+#### examples
+
+- Undo a migration because of performance issues
+    ```bash
+        redisenterprise migration undo --cluster-name cache1 --resource-group rg1 --rollback-reason performance
+    ```

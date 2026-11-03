@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cache/redisenterprise/{}/migrations/default/cancel" version="2026-09-01" swagger="mgmt-plane/redisenterprise/ResourceProviders/Microsoft.Cache/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2FjaGUvcmVkaXNFbnRlcnByaXNlL3tjbHVzdGVyTmFtZX0vbWlncmF0aW9ucy9kZWZhdWx0L2NhbmNlbA==/V/MjAyNi0wOS0wMQ=="/>
+  <commandGroup name="redisenterprise migration">
+    <command name="undo" version="2026-09-01">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.cache/redisenterprise/{}/migrations/default/cancel" version="2026-09-01" swagger="mgmt-plane/redisenterprise/ResourceProviders/Microsoft.Cache/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ2FjaGUvcmVkaXNFbnRlcnByaXNlL3tjbHVzdGVyTmFtZX0vbWlncmF0aW9ucy9kZWZhdWx0L2NhbmNlbA==/V/MjAyNi0wOS0wMQ=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.clusterName" options="cluster-name" required="True" idPart="name">
+          <help short="The name of the Redis Enterprise cluster. Name must be 1-60 characters long. Allowed characters(A-Z, a-z, 0-9) and hyphen(-). There can be no leading nor trailing nor consecutive hyphens"/>
+          <format pattern="^(?=.{1,60}$)[A-Za-z0-9]+(-[A-Za-z0-9]+)*$"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="string" var="$body.rollbackReason" options="rollback-reason" group="Body">
+          <help short="The reason for undoing (rolling back) the migration. Choose the value that best describes why the rollback is needed. This information helps us improve the migration experience and does not change how the rollback is performed."/>
+          <enum>
+            <item name="clientConnection" value="&quot;clientConnection&quot;"/>
+            <item name="compatibility" value="&quot;compatibility&quot;"/>
+            <item name="cost" value="&quot;cost&quot;"/>
+            <item name="dataLoss" value="&quot;dataLoss&quot;"/>
+            <item name="other" value="&quot;other&quot;"/>
+            <item name="performance" value="&quot;performance&quot;"/>
+            <item name="stability" value="&quot;stability&quot;"/>
+            <item name="testing" value="&quot;testing&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <operation operationId="Migrations_Undo">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Cache/redisEnterprise/{clusterName}/migrations/default/cancel">
+          <request method="post">
+            <path>
+              <param type="string" name="clusterName" arg="$Path.clusterName" required="True">
+                <format pattern="^(?=.{1,60}$)[A-Za-z0-9]+(-[A-Za-z0-9]+)*$"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-09-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" clientFlatten="True">
+                  <prop type="string" name="rollbackReason" arg="$body.rollbackReason">
+                    <enum>
+                      <item value="&quot;clientConnection&quot;"/>
+                      <item value="&quot;compatibility&quot;"/>
+                      <item value="&quot;cost&quot;"/>
+                      <item value="&quot;dataLoss&quot;"/>
+                      <item value="&quot;other&quot;"/>
+                      <item value="&quot;performance&quot;"/>
+                      <item value="&quot;stability&quot;"/>
+                      <item value="&quot;testing&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Azure-AsyncOperation"/>
+              <item name="Location"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>

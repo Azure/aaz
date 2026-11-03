@@ -21,5 +21,8 @@ Manage Migration
 - [undo](/Commands/redisenterprise/migration/_undo.md)
 : Cancel or rollback the migration operation in a Redis Enterprise cluster.
 
+- [unlink-migrated-endpoint](/Commands/redisenterprise/migration/_unlink-migrated-endpoint.md)
+: Unlinks the migrated endpoint from the Azure Managed Redis cluster that was migrated from Azure Cache for Redis, removing the source cache endpoint that was redirected to this cluster during migration.
+
 - [validate](/Commands/redisenterprise/migration/_validate.md)
 : Validates if a source Azure Cache for Redis resource can be migrated to a target Azure Managed Redis resource.
