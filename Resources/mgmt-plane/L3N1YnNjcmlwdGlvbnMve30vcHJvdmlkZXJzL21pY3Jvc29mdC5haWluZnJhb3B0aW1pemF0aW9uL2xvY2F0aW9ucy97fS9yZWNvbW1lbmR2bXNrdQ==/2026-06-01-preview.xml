@@ -1,0 +1,420 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.aiinfraoptimization/locations/{}/recommendvmsku" version="2026-06-01-preview" swagger="mgmt-plane/aiinfraoptimization/ResourceProviders/Microsoft.AIInfraOptimization/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkFJSW5mcmFPcHRpbWl6YXRpb24vbG9jYXRpb25zL3tsb2NhdGlvbn0vcmVjb21tZW5kVm1Ta3U=/V/MjAyNi0wNi0wMS1wcmV2aWV3"/>
+  <commandGroup name="aiinfraoptimization">
+    <command name="recommendvmsku" version="2026-06-01-preview" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.aiinfraoptimization/locations/{}/recommendvmsku" version="2026-06-01-preview" swagger="mgmt-plane/aiinfraoptimization/ResourceProviders/Microsoft.AIInfraOptimization/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkFJSW5mcmFPcHRpbWl6YXRpb24vbG9jYXRpb25zL3tsb2NhdGlvbn0vcmVjb21tZW5kVm1Ta3U=/V/MjAyNi0wNi0wMS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="ResourceLocation" var="$Path.location" options="location l" required="True" idPart="name"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="object" var="$body.deployment" options="deployment" group="Body">
+          <help short="Deployment scale and Azure virtual machine procurement option."/>
+          <arg type="string" var="$body.deployment.procurementOption" options="procurement-option">
+            <help short="The Azure virtual machine procurement option."/>
+            <enum>
+              <item name="OnDemand" value="&quot;OnDemand&quot;"/>
+              <item name="Spot" value="&quot;Spot&quot;"/>
+            </enum>
+          </arg>
+          <arg type="integer32" var="$body.deployment.replicaCount" options="replica-count">
+            <help short="The number of deployment replicas used for cost, quota, and placement calculations."/>
+            <format minimum="1"/>
+          </arg>
+        </arg>
+        <arg type="object" var="$body.model" options="model" group="Body">
+          <help short="Model identity, sizing inputs, and optional maximum model context length."/>
+          <arg type="integer32" var="$body.model.headDim" options="head-dim">
+            <help short="The attention head dimension, used for architecture-aware key-value cache sizing. Supply all architecture fields together with a parameter count."/>
+            <format minimum="1"/>
+          </arg>
+          <arg type="string" var="$body.model.huggingFaceModelId" options="hugging-face-model-id">
+            <help short="The Hugging Face model identifier, for example `meta-llama/Llama-3.1-70B-Instruct`."/>
+          </arg>
+          <arg type="integer32" var="$body.model.maxContextLength" options="max-context-length">
+            <help short="The maximum context length the model supports, in tokens. Used only as an upper bound for the sizing context length when Hugging Face metadata provides no usable maximum."/>
+            <format minimum="1"/>
+          </arg>
+          <arg type="integer32" var="$body.model.numKeyValueHeads" options="num-key-value-heads">
+            <help short="The model key-value head count, used for architecture-aware key-value cache sizing. Supply all architecture fields together with a parameter count."/>
+            <format minimum="1"/>
+          </arg>
+          <arg type="integer32" var="$body.model.numLayers" options="num-layers">
+            <help short="The model layer count, used for architecture-aware key-value cache sizing. Supply all architecture fields together with a parameter count."/>
+            <format minimum="1"/>
+          </arg>
+          <arg type="integer64" var="$body.model.parameterCount" options="parameter-count">
+            <help short="The logical total model parameter count, including all mixture-of-experts experts. May be supplied with or without a model identifier."/>
+            <format minimum="1"/>
+          </arg>
+          <arg type="string" var="$body.model.weightPrecision" options="weight-precision">
+            <help short="The precision the model weights are served at. Matched case-insensitively."/>
+            <enum>
+              <item name="BF16" value="&quot;BF16&quot;"/>
+              <item name="FP16" value="&quot;FP16&quot;"/>
+              <item name="FP32" value="&quot;FP32&quot;"/>
+              <item name="FP4" value="&quot;FP4&quot;"/>
+              <item name="FP8" value="&quot;FP8&quot;"/>
+              <item name="INT4" value="&quot;INT4&quot;"/>
+              <item name="INT8" value="&quot;INT8&quot;"/>
+            </enum>
+          </arg>
+        </arg>
+        <arg type="object" var="$body.optimization" options="optimization" group="Body">
+          <help short="Ranking preference and optional deployment-wide hourly cost limit."/>
+          <arg type="object" var="$body.optimization.maxDeploymentCostPerHour" options="max-deployment-cost-per-hour">
+            <help short="The deployment-wide hourly cost ceiling."/>
+            <arg type="float64" var="$body.optimization.maxDeploymentCostPerHour.amount" options="amount">
+              <help short="The maximum cost per hour for the whole deployment. Must be greater than zero when supplied."/>
+            </arg>
+            <arg type="string" var="$body.optimization.maxDeploymentCostPerHour.currencyCode" options="currency-code">
+              <help short="The ISO 4217 currency code the amount is expressed in. The recommendation service currently supports `USD`."/>
+              <format pattern="^[A-Za-z]{3}$"/>
+            </arg>
+          </arg>
+          <arg type="string" var="$body.optimization.rankingPreference" options="ranking-preference">
+            <help short="The preference used to rank the recommended options."/>
+            <enum>
+              <item name="Cost" value="&quot;Cost&quot;"/>
+              <item name="Latency" value="&quot;Latency&quot;"/>
+            </enum>
+          </arg>
+        </arg>
+        <arg type="object" var="$body.subscriptionOptions" options="subscription-options" group="Body">
+          <help short="The subscription-scoped lookups to include in the recommendation."/>
+          <arg type="boolean" var="$body.subscriptionOptions.includePlacement" options="include-placement">
+            <help short="Whether to query placement scores for candidate virtual machine sizes with available quota."/>
+            <default value="false"/>
+          </arg>
+          <arg type="boolean" var="$body.subscriptionOptions.includePricing" options="include-pricing">
+            <help short="Whether to fetch subscription-scoped virtual machine pricing."/>
+            <default value="false"/>
+          </arg>
+          <arg type="boolean" var="$body.subscriptionOptions.includeQuota" options="include-quota">
+            <help short="Whether to evaluate subscription quota for candidate virtual machine sizes."/>
+            <default value="false"/>
+          </arg>
+        </arg>
+        <arg type="array<string>" var="$body.targetVmSizes" options="target-vm-sizes" group="Body">
+          <help short="The Azure virtual machine candidate set. When supplied, only these virtual machine sizes are ranked. Entries must be non-blank and unique, compared case-insensitively."/>
+          <format unique="True" maxLength="50" minLength="1"/>
+          <item type="string">
+            <format maxLength="128"/>
+          </item>
+        </arg>
+        <arg type="object" var="$body.workload" options="workload" group="Body">
+          <help short="Inference request concurrency and token shape assumptions."/>
+          <arg type="integer32" var="$body.workload.maxConcurrentRequestsPerReplica" options="max-concurrent-requests-per-replica">
+            <help short="The maximum number of simultaneous inference requests handled by each deployment replica."/>
+            <format minimum="1"/>
+          </arg>
+          <arg type="object" var="$body.workload.tokenBudget" options="token-budget">
+            <help short="The prompt and output token budget used for key-value cache sizing."/>
+            <arg type="integer32" var="$body.workload.tokenBudget.maxOutputTokens" options="max-output-tokens">
+              <help short="The maximum number of generated output tokens per inference request. Must be supplied together with `promptTokens`, and the two must total from 1 through 131072."/>
+              <format maximum="131072" minimum="0"/>
+            </arg>
+            <arg type="integer32" var="$body.workload.tokenBudget.promptTokens" options="prompt-tokens">
+              <help short="The number of prompt, or input, tokens per inference request. Must be supplied together with `maxOutputTokens`, and the two must total from 1 through 131072."/>
+              <format maximum="131072" minimum="0"/>
+            </arg>
+          </arg>
+        </arg>
+      </argGroup>
+      <operation operationId="Recommendations_RecommendVmSku">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.AIInfraOptimization/locations/{location}/recommendVmSku">
+          <request method="post">
+            <path>
+              <param type="string" name="location" arg="$Path.location" required="True">
+                <format minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-06-01-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="object" name="deployment" arg="$body.deployment">
+                    <prop type="string" name="procurementOption" arg="$body.deployment.procurementOption">
+                      <enum>
+                        <item value="&quot;OnDemand&quot;"/>
+                        <item value="&quot;Spot&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="integer32" name="replicaCount" arg="$body.deployment.replicaCount">
+                      <format minimum="1"/>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="model" arg="$body.model">
+                    <prop type="integer32" name="headDim" arg="$body.model.headDim">
+                      <format minimum="1"/>
+                    </prop>
+                    <prop type="string" name="huggingFaceModelId" arg="$body.model.huggingFaceModelId"/>
+                    <prop type="integer32" name="maxContextLength" arg="$body.model.maxContextLength">
+                      <format minimum="1"/>
+                    </prop>
+                    <prop type="integer32" name="numKeyValueHeads" arg="$body.model.numKeyValueHeads">
+                      <format minimum="1"/>
+                    </prop>
+                    <prop type="integer32" name="numLayers" arg="$body.model.numLayers">
+                      <format minimum="1"/>
+                    </prop>
+                    <prop type="integer64" name="parameterCount" arg="$body.model.parameterCount">
+                      <format minimum="1"/>
+                    </prop>
+                    <prop type="string" name="weightPrecision" arg="$body.model.weightPrecision">
+                      <enum>
+                        <item value="&quot;BF16&quot;"/>
+                        <item value="&quot;FP16&quot;"/>
+                        <item value="&quot;FP32&quot;"/>
+                        <item value="&quot;FP4&quot;"/>
+                        <item value="&quot;FP8&quot;"/>
+                        <item value="&quot;INT4&quot;"/>
+                        <item value="&quot;INT8&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="optimization" arg="$body.optimization">
+                    <prop type="object" name="maxDeploymentCostPerHour" arg="$body.optimization.maxDeploymentCostPerHour">
+                      <prop type="float64" name="amount" arg="$body.optimization.maxDeploymentCostPerHour.amount"/>
+                      <prop type="string" name="currencyCode" arg="$body.optimization.maxDeploymentCostPerHour.currencyCode">
+                        <format pattern="^[A-Za-z]{3}$"/>
+                      </prop>
+                    </prop>
+                    <prop type="string" name="rankingPreference" arg="$body.optimization.rankingPreference">
+                      <enum>
+                        <item value="&quot;Cost&quot;"/>
+                        <item value="&quot;Latency&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop type="object" name="subscriptionOptions" arg="$body.subscriptionOptions">
+                    <prop type="boolean" name="includePlacement" arg="$body.subscriptionOptions.includePlacement">
+                      <default value="false"/>
+                    </prop>
+                    <prop type="boolean" name="includePricing" arg="$body.subscriptionOptions.includePricing">
+                      <default value="false"/>
+                    </prop>
+                    <prop type="boolean" name="includeQuota" arg="$body.subscriptionOptions.includeQuota">
+                      <default value="false"/>
+                    </prop>
+                  </prop>
+                  <prop type="array<string>" name="targetVmSizes" arg="$body.targetVmSizes">
+                    <format unique="True" maxLength="50" minLength="1"/>
+                    <item type="string">
+                      <format maxLength="128"/>
+                    </item>
+                  </prop>
+                  <prop type="object" name="workload" arg="$body.workload">
+                    <prop type="integer32" name="maxConcurrentRequestsPerReplica" arg="$body.workload.maxConcurrentRequestsPerReplica">
+                      <format minimum="1"/>
+                    </prop>
+                    <prop type="object" name="tokenBudget" arg="$body.workload.tokenBudget">
+                      <prop type="integer32" name="maxOutputTokens" arg="$body.workload.tokenBudget.maxOutputTokens">
+                        <format maximum="131072" minimum="0"/>
+                      </prop>
+                      <prop type="integer32" name="promptTokens" arg="$body.workload.tokenBudget.promptTokens">
+                        <format maximum="131072" minimum="0"/>
+                      </prop>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="options" required="True" identifiers="vmSize">
+                    <item type="object">
+                      <prop type="boolean" name="azureMlRecommended"/>
+                      <prop type="object" name="benchmark">
+                        <prop type="string" name="benchmarkModel"/>
+                        <prop type="string" name="level" required="True">
+                          <enum>
+                            <item value="&quot;Benchmarked&quot;"/>
+                            <item value="&quot;TopologyMatched&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="string" name="modelClass" required="True"/>
+                        <prop type="string" name="operatingSystem"/>
+                        <prop type="float64" name="p99TpotMs"/>
+                        <prop type="float64" name="p99TtftMs"/>
+                        <prop type="string" name="scenario" required="True"/>
+                        <prop type="string" name="software"/>
+                        <prop type="string" name="submissionId"/>
+                        <prop type="string" name="submitter"/>
+                        <prop type="integer32" name="submitterCount" required="True"/>
+                        <prop type="string" name="system"/>
+                        <prop type="float64" name="throughput"/>
+                        <prop type="string" name="throughputUnit"/>
+                        <prop type="string" name="weightDataTypes"/>
+                      </prop>
+                      <prop type="object" name="cost" required="True">
+                        <prop type="string" name="currencyCode" required="True">
+                          <format pattern="^[A-Za-z]{3}$"/>
+                        </prop>
+                        <prop type="float64" name="deploymentHourly" required="True"/>
+                        <prop type="object" name="error" cls="RecommendVmSkuStageError_read">
+                          <prop type="string" name="code" required="True">
+                            <enum>
+                              <item value="&quot;DataUnavailable&quot;"/>
+                              <item value="&quot;DependencyError&quot;"/>
+                              <item value="&quot;EvaluationBudgetExceeded&quot;"/>
+                              <item value="&quot;PartitionCapacityExceeded&quot;"/>
+                              <item value="&quot;Throttled&quot;"/>
+                              <item value="&quot;TimedOut&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="message" required="True"/>
+                        </prop>
+                        <prop type="dateTime" name="priceAsOf">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="source" required="True">
+                          <enum>
+                            <item value="&quot;AzureRetail&quot;"/>
+                            <item value="&quot;AzureSubscription&quot;"/>
+                            <item value="&quot;StaticPreview&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="float64" name="vmHourly" required="True"/>
+                      </prop>
+                      <prop type="string" name="documentationUrl"/>
+                      <prop type="object" name="performanceEstimate">
+                        <prop type="float64" name="deploymentOutputTokensPerSecond" required="True"/>
+                        <prop type="float64" name="ttftMs" required="True"/>
+                      </prop>
+                      <prop type="object" name="placement">
+                        <prop type="@RecommendVmSkuStageError_read" name="error"/>
+                        <prop type="string" name="reason"/>
+                        <prop type="array<string>" name="recommendedAvailabilityZones">
+                          <item type="string"/>
+                        </prop>
+                        <prop type="string" name="status" required="True">
+                          <enum>
+                            <item value="&quot;Evaluated&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;NotEvaluated&quot;"/>
+                            <item value="&quot;Unsupported&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="quota">
+                        <prop type="@RecommendVmSkuStageError_read" name="error"/>
+                        <prop type="object" name="increase">
+                          <prop type="array<object>" name="limits" required="True" identifiers="name">
+                            <item type="object">
+                              <prop type="integer64" name="currentLimit" required="True"/>
+                              <prop type="integer64" name="currentUsage" required="True"/>
+                              <prop type="string" name="name" required="True"/>
+                              <prop type="integer64" name="requiredLimit" required="True"/>
+                            </item>
+                          </prop>
+                          <prop type="string" name="portalUrl" required="True"/>
+                        </prop>
+                        <prop type="integer32" name="maxAvailableReplicaCount"/>
+                        <prop type="string" name="reason"/>
+                        <prop type="string" name="status" required="True">
+                          <enum>
+                            <item value="&quot;Available&quot;"/>
+                            <item value="&quot;Unavailable&quot;"/>
+                            <item value="&quot;Unknown&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="readiness" required="True">
+                        <prop type="string" name="reason" required="True"/>
+                        <prop type="string" name="status" required="True">
+                          <enum>
+                            <item value="&quot;QuotaIncreaseRequired&quot;"/>
+                            <item value="&quot;ReadyToAttempt&quot;"/>
+                            <item value="&quot;Unavailable&quot;"/>
+                            <item value="&quot;VerificationRequired&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="integer32" name="recommendationRank" required="True"/>
+                      <prop type="object" name="topology" required="True">
+                        <prop type="object" name="accelerator" required="True">
+                          <prop type="integer32" name="countPerVm" required="True"/>
+                          <prop type="integer32" name="memoryGiBPerAccelerator" required="True"/>
+                          <prop type="string" name="model" required="True"/>
+                        </prop>
+                        <prop type="integer32" name="estimatedNodeCountPerReplica" required="True"/>
+                        <prop type="integer64" name="estimatedTotalNodeCount" required="True"/>
+                      </prop>
+                      <prop type="string" name="vmSize" required="True"/>
+                    </item>
+                  </prop>
+                  <prop type="object" name="sizing" required="True">
+                    <prop type="object" name="basis" required="True">
+                      <prop type="string" name="contextLengthSource" required="True">
+                        <enum>
+                          <item value="&quot;Default&quot;"/>
+                          <item value="&quot;Request&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="modelWeightsCalculation" required="True">
+                        <enum>
+                          <item value="&quot;ArtifactSize&quot;"/>
+                          <item value="&quot;EstimatedFromParameterCount&quot;"/>
+                        </enum>
+                      </prop>
+                      <prop type="string" name="parameterCountSource" required="True">
+                        <enum>
+                          <item value="&quot;HuggingFace&quot;"/>
+                          <item value="&quot;Request&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="memory" required="True">
+                      <prop type="float64" name="kvCacheGiBPerRequest" required="True"/>
+                      <prop type="float64" name="kvCacheGiBTotal" required="True"/>
+                      <prop type="float64" name="modelAndKvCacheGiB" required="True"/>
+                      <prop type="float64" name="modelWeightsGiB" required="True"/>
+                    </prop>
+                    <prop type="object" name="model" required="True">
+                      <prop type="string" name="huggingFaceModelId"/>
+                      <prop type="integer64" name="parameterCount" required="True"/>
+                      <prop type="string" name="weightPrecision" required="True">
+                        <enum>
+                          <item value="&quot;BF16&quot;"/>
+                          <item value="&quot;FP16&quot;"/>
+                          <item value="&quot;FP32&quot;"/>
+                          <item value="&quot;FP4&quot;"/>
+                          <item value="&quot;FP8&quot;"/>
+                          <item value="&quot;INT4&quot;"/>
+                          <item value="&quot;INT8&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="workload" required="True">
+                      <prop type="integer32" name="contextLength" required="True"/>
+                      <prop type="integer32" name="maxConcurrentRequestsPerReplica" required="True"/>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
