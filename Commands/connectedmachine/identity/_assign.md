@@ -30,3 +30,14 @@ Assign the user or system managed identities.
     ```bash
         connectedmachine identity assign --resource-group myResourceGroup --machine-name myMachine
     ```
+
+### [2026-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5oeWJyaWRjb21wdXRlL21hY2hpbmVzL3t9/2026-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridcompute/machines/{} 2026-09-01 identity -->
+
+#### examples
+
+- Sample command for identity assign
+    ```bash
+        connectedmachine identity assign --resource-group myResourceGroup --machine-name myMachine
+    ```
