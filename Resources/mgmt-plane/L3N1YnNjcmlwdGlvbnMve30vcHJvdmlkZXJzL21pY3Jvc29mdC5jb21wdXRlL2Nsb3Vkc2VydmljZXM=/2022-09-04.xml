@@ -1,0 +1,343 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.compute/cloudservices" version="2022-09-04" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNvbXB1dGUvY2xvdWRTZXJ2aWNlcw==/V/MjAyMi0wOS0wNA=="/>
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/cloudservices" version="2022-09-04" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9jbG91ZFNlcnZpY2Vz/V/MjAyMi0wOS0wNA=="/>
+  <commandGroup name="cloud-service">
+    <command name="list" version="2022-09-04" confirmation="">
+      <resource id="/subscriptions/{}/providers/microsoft.compute/cloudservices" version="2022-09-04" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LkNvbXB1dGUvY2xvdWRTZXJ2aWNlcw==/V/MjAyMi0wOS0wNA=="/>
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.compute/cloudservices" version="2022-09-04" swagger="mgmt-plane/compute/ResourceProviders/Microsoft.Compute/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQ29tcHV0ZS9jbG91ZFNlcnZpY2Vz/V/MjAyMi0wOS0wNA=="/>
+      <argGroup name="">
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <condition var="$Condition_CloudServices_ListAll">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+          <operator type="not">
+            <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          </operator>
+        </operator>
+      </condition>
+      <condition var="$Condition_CloudServices_List">
+        <operator type="and">
+          <operator type="hasValue" arg="$Path.resourceGroupName"/>
+          <operator type="hasValue" arg="$Path.subscriptionId"/>
+        </operator>
+      </condition>
+      <operation when="$Condition_CloudServices_ListAll" operationId="CloudServices_ListAll">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Compute/cloudServices">
+          <request method="get">
+            <path>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-09-04&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/cloudServices/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties">
+                        <prop type="boolean" name="allowModelOverride"/>
+                        <prop type="string" name="configuration"/>
+                        <prop type="string" name="configurationUrl"/>
+                        <prop type="object" name="extensionProfile">
+                          <prop type="array<object>" name="extensions" identifiers="name">
+                            <item type="object">
+                              <prop type="string" name="name"/>
+                              <prop type="object" name="properties">
+                                <prop type="boolean" name="autoUpgradeMinorVersion"/>
+                                <prop type="string" name="forceUpdateTag"/>
+                                <prop type="object" name="protectedSettings">
+                                  <additionalProp>
+                                    <item type="any"/>
+                                  </additionalProp>
+                                </prop>
+                                <prop type="object" name="protectedSettingsFromKeyVault">
+                                  <prop type="string" name="secretUrl"/>
+                                  <prop type="@SubResource_read" name="sourceVault"/>
+                                </prop>
+                                <prop readOnly="True" type="string" name="provisioningState"/>
+                                <prop type="string" name="publisher"/>
+                                <prop type="array<string>" name="rolesAppliedTo">
+                                  <item type="string"/>
+                                </prop>
+                                <prop type="object" name="settings">
+                                  <additionalProp>
+                                    <item type="any"/>
+                                  </additionalProp>
+                                </prop>
+                                <prop type="string" name="type"/>
+                                <prop type="string" name="typeHandlerVersion"/>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="networkProfile">
+                          <prop type="array<object>" name="loadBalancerConfigurations">
+                            <item type="object">
+                              <prop type="string" name="id"/>
+                              <prop type="string" name="name" required="True"/>
+                              <prop type="object" name="properties" required="True">
+                                <prop type="array<object>" name="frontendIpConfigurations" required="True" identifiers="name">
+                                  <item type="object">
+                                    <prop type="string" name="name" required="True"/>
+                                    <prop type="object" name="properties" required="True">
+                                      <prop type="string" name="privateIPAddress"/>
+                                      <prop type="@SubResource_read" name="publicIPAddress"/>
+                                      <prop type="@SubResource_read" name="subnet"/>
+                                    </prop>
+                                  </item>
+                                </prop>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="string" name="slotType">
+                            <enum>
+                              <item value="&quot;Production&quot;"/>
+                              <item value="&quot;Staging&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="@SubResource_read" name="swappableCloudService"/>
+                        </prop>
+                        <prop type="object" name="osProfile">
+                          <prop type="array<object>" name="secrets">
+                            <item type="object">
+                              <prop type="object" name="sourceVault" cls="SubResource_read">
+                                <prop type="string" name="id"/>
+                              </prop>
+                              <prop type="array<object>" name="vaultCertificates" identifiers="certificateUrl">
+                                <item type="object">
+                                  <prop type="string" name="certificateUrl"/>
+                                </item>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="packageUrl"/>
+                        <prop readOnly="True" type="string" name="provisioningState"/>
+                        <prop type="object" name="roleProfile">
+                          <prop type="array<object>" name="roles" identifiers="name">
+                            <item type="object">
+                              <prop type="string" name="name"/>
+                              <prop type="object" name="sku">
+                                <prop type="integer64" name="capacity"/>
+                                <prop type="string" name="name"/>
+                                <prop type="string" name="tier"/>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="boolean" name="startCloudService"/>
+                        <prop readOnly="True" type="string" name="uniqueId"/>
+                        <prop type="string" name="upgradeMode">
+                          <enum>
+                            <item value="&quot;Auto&quot;"/>
+                            <item value="&quot;Manual&quot;"/>
+                            <item value="&quot;Simultaneous&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="systemData">
+                        <prop readOnly="True" type="dateTime" name="createdAt">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="lastModifiedAt">
+                          <format protocol="iso"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                      <prop type="array<string>" name="zones">
+                        <item type="string"/>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <operation when="$Condition_CloudServices_List" operationId="CloudServices_List">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.Compute/cloudServices">
+          <request method="get">
+            <path>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True"/>
+              <param type="string" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2022-09-04&quot;"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="nextLink"/>
+                  <prop type="array<object>" name="value" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/subscriptions/{}/resourceGroups/{}/providers/Microsoft.Compute/cloudServices/{}"/>
+                      </prop>
+                      <prop type="ResourceLocation" name="location" required="True"/>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties">
+                        <prop type="boolean" name="allowModelOverride"/>
+                        <prop type="string" name="configuration"/>
+                        <prop type="string" name="configurationUrl"/>
+                        <prop type="object" name="extensionProfile">
+                          <prop type="array<object>" name="extensions" identifiers="name">
+                            <item type="object">
+                              <prop type="string" name="name"/>
+                              <prop type="object" name="properties">
+                                <prop type="boolean" name="autoUpgradeMinorVersion"/>
+                                <prop type="string" name="forceUpdateTag"/>
+                                <prop type="object" name="protectedSettings">
+                                  <additionalProp>
+                                    <item type="any"/>
+                                  </additionalProp>
+                                </prop>
+                                <prop type="object" name="protectedSettingsFromKeyVault">
+                                  <prop type="string" name="secretUrl"/>
+                                  <prop type="@SubResource_read" name="sourceVault"/>
+                                </prop>
+                                <prop readOnly="True" type="string" name="provisioningState"/>
+                                <prop type="string" name="publisher"/>
+                                <prop type="array<string>" name="rolesAppliedTo">
+                                  <item type="string"/>
+                                </prop>
+                                <prop type="object" name="settings">
+                                  <additionalProp>
+                                    <item type="any"/>
+                                  </additionalProp>
+                                </prop>
+                                <prop type="string" name="type"/>
+                                <prop type="string" name="typeHandlerVersion"/>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="object" name="networkProfile">
+                          <prop type="array<object>" name="loadBalancerConfigurations">
+                            <item type="object">
+                              <prop type="string" name="id"/>
+                              <prop type="string" name="name" required="True"/>
+                              <prop type="object" name="properties" required="True">
+                                <prop type="array<object>" name="frontendIpConfigurations" required="True" identifiers="name">
+                                  <item type="object">
+                                    <prop type="string" name="name" required="True"/>
+                                    <prop type="object" name="properties" required="True">
+                                      <prop type="string" name="privateIPAddress"/>
+                                      <prop type="@SubResource_read" name="publicIPAddress"/>
+                                      <prop type="@SubResource_read" name="subnet"/>
+                                    </prop>
+                                  </item>
+                                </prop>
+                              </prop>
+                            </item>
+                          </prop>
+                          <prop type="string" name="slotType">
+                            <enum>
+                              <item value="&quot;Production&quot;"/>
+                              <item value="&quot;Staging&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="@SubResource_read" name="swappableCloudService"/>
+                        </prop>
+                        <prop type="object" name="osProfile">
+                          <prop type="array<object>" name="secrets">
+                            <item type="object">
+                              <prop type="@SubResource_read" name="sourceVault"/>
+                              <prop type="array<object>" name="vaultCertificates" identifiers="certificateUrl">
+                                <item type="object">
+                                  <prop type="string" name="certificateUrl"/>
+                                </item>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="string" name="packageUrl"/>
+                        <prop readOnly="True" type="string" name="provisioningState"/>
+                        <prop type="object" name="roleProfile">
+                          <prop type="array<object>" name="roles" identifiers="name">
+                            <item type="object">
+                              <prop type="string" name="name"/>
+                              <prop type="object" name="sku">
+                                <prop type="integer64" name="capacity"/>
+                                <prop type="string" name="name"/>
+                                <prop type="string" name="tier"/>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                        <prop type="boolean" name="startCloudService"/>
+                        <prop readOnly="True" type="string" name="uniqueId"/>
+                        <prop type="string" name="upgradeMode">
+                          <enum>
+                            <item value="&quot;Auto&quot;"/>
+                            <item value="&quot;Manual&quot;"/>
+                            <item value="&quot;Simultaneous&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="systemData">
+                        <prop readOnly="True" type="dateTime" name="createdAt">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop readOnly="True" type="dateTime" name="lastModifiedAt">
+                          <format protocol="iso"/>
+                        </prop>
+                      </prop>
+                      <prop type="object" name="tags">
+                        <additionalProp>
+                          <item type="string"/>
+                        </additionalProp>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                      <prop type="array<string>" name="zones">
+                        <item type="string"/>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@ODataV4Format"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="array" ref="$Instance.value" clientFlatten="True" nextLink="$Instance.nextLink"/>
+    </command>
+  </commandGroup>
+</CodeGen>
