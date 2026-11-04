@@ -11,3 +11,10 @@ Update a DependencyOfRelationship
 ### [2026-08-01](/Resources/mgmt-plane/L3tyZXNvdXJjZXVyaX0vcHJvdmlkZXJzL21pY3Jvc29mdC5yZWxhdGlvbnNoaXBzL2RlcGVuZGVuY3lvZi97fQ==/2026-08-01.xml) **Stable**
 
 <!-- mgmt-plane /{resourceuri}/providers/microsoft.relationships/dependencyof/{} 2026-08-01 -->
+
+#### examples
+
+- Update the target of a resource-scoped dependency
+    ```bash
+        relationship dependency-of update --resource-uri "/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}" --name myDependency --target-id "/providers/Microsoft.Management/serviceGroups/targetSG"
+    ```
