@@ -13,6 +13,9 @@ Manage Azure Cloud Storage resources.
 - [blob](/Commands/storage/blob/readme.md)
 : Manage object storage for unstructured data (blobs).
 
+- [context-cache](/Commands/storage/context-cache/readme.md)
+: Manage Context Caches.
+
 - [share-rm](/Commands/storage/share-rm/readme.md)
 : Manage Azure file shares using the Microsoft.Storage resource provider.
 

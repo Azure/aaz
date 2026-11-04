@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/providers/microsoft.storage/contextcachechecknameavailability" version="2026-09-01" swagger="mgmt-plane/storage/ResourceProviders/Microsoft.Storage/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LlN0b3JhZ2UvY29udGV4dENhY2hlQ2hlY2tOYW1lQXZhaWxhYmlsaXR5/V/MjAyNi0wOS0wMQ=="/>
+  <commandGroup name="storage context-cache">
+    <command name="check-name" version="2026-09-01">
+      <resource id="/subscriptions/{}/providers/microsoft.storage/contextcachechecknameavailability" version="2026-09-01" swagger="mgmt-plane/storage/ResourceProviders/Microsoft.Storage/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9wcm92aWRlcnMvTWljcm9zb2Z0LlN0b3JhZ2UvY29udGV4dENhY2hlQ2hlY2tOYW1lQXZhaWxhYmlsaXR5/V/MjAyNi0wOS0wMQ=="/>
+      <argGroup name="">
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="string" var="$body.name" options="name" required="True" group="Body">
+          <help short="The name of the context cache resource to check for availability."/>
+          <format pattern="^[a-z0-9][a-z0-9-]{1,22}[a-z0-9]$"/>
+        </arg>
+        <arg type="string" var="$body.type" options="type" group="Body">
+          <help short="The type of the context cache resource to check for availability."/>
+          <default value="&quot;Microsoft.Storage/contextCaches&quot;"/>
+          <enum>
+            <item name="Microsoft.Storage/contextCaches" value="&quot;Microsoft.Storage/contextCaches&quot;"/>
+          </enum>
+        </arg>
+      </argGroup>
+      <operation operationId="ContextCaches_CheckNameAvailability">
+        <http path="/subscriptions/{subscriptionId}/providers/Microsoft.Storage/contextCacheCheckNameAvailability">
+          <request method="post">
+            <path>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-09-01&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="string" name="name" arg="$body.name" required="True">
+                    <format pattern="^[a-z0-9][a-z0-9-]{1,22}[a-z0-9]$"/>
+                  </prop>
+                  <prop type="string" name="type" arg="$body.type" required="True">
+                    <enum>
+                      <item value="&quot;Microsoft.Storage/contextCaches&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="string" name="message"/>
+                  <prop readOnly="True" type="boolean" name="nameAvailable"/>
+                  <prop readOnly="True" type="string" name="reason">
+                    <enum>
+                      <item value="&quot;AlreadyExists&quot;"/>
+                      <item value="&quot;ContextCacheNameInvalid&quot;"/>
+                    </enum>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
