@@ -13,6 +13,9 @@ Manage Job Definition
 - [list](/Commands/storage-mover/job-definition/_list.md)
 : List all Job Definitions in a Project.
 
+- [reconcile-job](/Commands/storage-mover/job-definition/_reconcile-job.md)
+: Reconcile the running job.
+
 - [show](/Commands/storage-mover/job-definition/_show.md)
 : Get a Job Definition resource.
 
