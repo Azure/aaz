@@ -242,6 +242,9 @@
 - [k8s-runtime](/Commands/k8s-runtime/readme.md)
 : Manage Arc Kubernetes Runtime resources
 
+- [artemis](/Commands/artemis/readme.md)
+: Manage Kore.ai Artemis resources.
+
 - [lab](/Commands/lab/readme.md)
 : Manage azure devtest labs.
 
