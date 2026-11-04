@@ -14,3 +14,14 @@ Assign the user or system managed identities.
     ```bash
         monitor health-models identity assign --resource-group rgopenapi --health-model-name model1
     ```
+
+### [2026-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jbG91ZGhlYWx0aC9oZWFsdGhtb2RlbHMve30=/2026-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cloudhealth/healthmodels/{} 2026-11-01 identity -->
+
+#### examples
+
+- HealthModels_Create
+    ```bash
+        monitor health-models identity assign --resource-group rgopenapi --health-model-name model1
+    ```

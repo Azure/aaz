@@ -14,3 +14,14 @@ Get a DiscoveryRule
     ```bash
         monitor health-models discovery-rule show --resource-group myResourceGroup --health-model-name myHealthModel --discovery-rule-name myDiscoveryRule
     ```
+
+### [2026-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jbG91ZGhlYWx0aC9oZWFsdGhtb2RlbHMve30vZGlzY292ZXJ5cnVsZXMve30=/2026-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cloudhealth/healthmodels/{}/discoveryrules/{} 2026-11-01 -->
+
+#### examples
+
+- DiscoveryRules_Get
+    ```bash
+        monitor health-models discovery-rule show --resource-group myResourceGroup --health-model-name myHealthModel --discovery-rule-name myDiscoveryRule
+    ```
