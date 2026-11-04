@@ -67,3 +67,8 @@ Update a private endpoint.
     ```bash
         network private-endpoint update --name MyPE --resource-group MyResourceGroup --set useRemoteGateways=true
     ```
+
+- Update a private endpoint with an approval reference.
+    ```bash
+        network private-endpoint update -g MyResourceGroup -n PE-B --approval-reference-id "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/MyResourceGroup/providers/Microsoft.Network/privateEndpoints/PE-A
+    ```
