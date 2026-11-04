@@ -14,6 +14,9 @@
 - [agentfabric](/Commands/agentfabric/readme.md)
 : Manage Agent Fabric and related Microsoft.NetworkSecurity resources. Root commands manage Agent Fabric resources.
 
+- [aiinfraoptimization](/Commands/aiinfraoptimization/readme.md)
+: AI Infra Optimization
+
 - [alerts-management](/Commands/alerts-management/readme.md)
 : Manage Azure Alerts Management Service Resource.
 
@@ -293,6 +296,9 @@
 - [neon](/Commands/neon/readme.md)
 : Manage Neon Postgres databases and related resources within Azure.
 
+- [net-app](/Commands/net-app/readme.md)
+: Manage Net App
+
 - [netappfiles](/Commands/netappfiles/readme.md)
 : Manage Azure NetApp Files (ANF) Resources
 
@@ -360,7 +366,7 @@
 : Manage the redisenterprise cache
 
 - [relationship](/Commands/relationship/readme.md)
-: Manage Relationships
+: Manage Azure Relationships.
 
 - [relay](/Commands/relay/readme.md)
 : Manage Azure Relay Service namespaces, WCF relays, hybrid connections, and rules.
@@ -466,6 +472,9 @@
 
 - [voice-service](/Commands/voice-service/readme.md)
 : Manage voice services
+
+- [web](/Commands/web/readme.md)
+: Manage Web
 
 - [workload-manager](/Commands/workload-manager/readme.md)
 : Manage Azure Compute Workload Manager resources.

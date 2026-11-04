@@ -27,9 +27,6 @@ Manage Azure NetApp Files (ANF) Resources.
 - [snapshot](/Commands/netappfiles/snapshot/readme.md)
 : Manage Azure NetApp Files (ANF) Snapshot Resources.
 
-- [subvolume](/Commands/netappfiles/subvolume/readme.md)
-: Manage Azure NetApp Files (ANF) Subvolume Resources.
-
 - [usage](/Commands/netappfiles/usage/readme.md)
 : Get current subscription usages
 

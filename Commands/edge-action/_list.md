@@ -26,8 +26,9 @@ List EdgeAction resources by resource group
         edge-action list
     ```
 
-### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vZWRnZWFjdGlvbnM=/2026-10-01.xml) **Stable**
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vZWRnZWFjdGlvbnM=/2026-10-01.xml) **Stable**
 
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.cdn/edgeactions 2026-10-01 -->
 <!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/edgeactions 2026-10-01 -->
 
 #### examples
@@ -35,4 +36,9 @@ List EdgeAction resources by resource group
 - ListEdgeActions_byResourceGroup
     ```bash
         edge-action list --resource-group testrg
+    ```
+
+- ListEdgeActions_bySubscription
+    ```bash
+        edge-action list
     ```
