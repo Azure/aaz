@@ -1,0 +1,269 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/goalassignments/{}/updategoalresources" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlUmVzaWxpZW5jZU1hbmFnZW1lbnQvZ29hbEFzc2lnbm1lbnRzL3tnb2FsQXNzaWdubWVudE5hbWV9L3VwZGF0ZUdvYWxSZXNvdXJjZXM=/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+  <commandGroup name="resiliency goal-assignment">
+    <command name="update-goal-resource" version="2026-09-30-preview">
+      <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/goalassignments/{}/updategoalresources" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlUmVzaWxpZW5jZU1hbmFnZW1lbnQvZ29hbEFzc2lnbm1lbnRzL3tnb2FsQXNzaWdubWVudE5hbWV9L3VwZGF0ZUdvYWxSZXNvdXJjZXM=/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.goalAssignmentName" options="goal-assignment-name" required="True">
+          <help short="The name of the GoalAssignment"/>
+          <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+        </arg>
+        <arg type="string" var="$Path.serviceGroupName" options="service-group-name" required="True">
+          <help short="The name of the service group."/>
+          <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="array<object>" var="$body.resources" options="resources" required="True" group="Body">
+          <help short="List of update goal resource."/>
+          <item type="object">
+            <arg type="@ResiliencyProperties_create" var="$body.resources[].properties.regionalResiliency" options="regional-resiliency" group="Properties">
+              <help short="Regional resiliency posture (participation, attestation, exclusion reason, and user confirmations) for the Azure resource."/>
+            </arg>
+            <arg type="ResourceId" var="$body.resources[].properties.resourceArmId" options="resource-arm-id" group="Properties">
+              <help short="Arm Id of resource under the SG for which the extension resource is maintained."/>
+            </arg>
+            <arg type="object" var="$body.resources[].properties.zonalResiliency" options="zonal-resiliency" group="Properties" cls="ResiliencyProperties_create">
+              <help short="Zonal resiliency posture (participation, attestation, exclusion reason, and user confirmations) for the Arm resource."/>
+              <arg type="string" var="@ResiliencyProperties_create.attestationStatus" options="attestation-status">
+                <help short="Flag which depicts whether the Arm resource is manually attested for resiliency recommendation."/>
+                <enum>
+                  <item name="ManuallyAttested" value="&quot;ManuallyAttested&quot;"/>
+                  <item name="NotAttested" value="&quot;NotAttested&quot;"/>
+                </enum>
+              </arg>
+              <arg type="string" var="@ResiliencyProperties_create.goalParticipation" options="goal-participation">
+                <help short="Flag which depicts whether the Arm resource is excluded for resiliency recommendation."/>
+                <enum>
+                  <item name="Excluded" value="&quot;Excluded&quot;"/>
+                  <item name="Included" value="&quot;Included&quot;"/>
+                </enum>
+              </arg>
+              <arg type="array<object>" var="@ResiliencyProperties_create.userConfirmation" options="user-confirmation">
+                <help short="List of user confirmations for resiliency solutions."/>
+                <item type="object">
+                  <arg type="string" var="@ResiliencyProperties_create.userConfirmation[].confirmationStatus" options="confirmation-status" required="True">
+                    <help short="The confirmation status of the high availability solution."/>
+                    <enum>
+                      <item name="ApprovalNotNeeded" value="&quot;ApprovalNotNeeded&quot;"/>
+                      <item name="ApprovalPending" value="&quot;ApprovalPending&quot;"/>
+                      <item name="ApprovedByUser" value="&quot;ApprovedByUser&quot;"/>
+                      <item name="RejectedByUser" value="&quot;RejectedByUser&quot;"/>
+                    </enum>
+                  </arg>
+                  <arg type="string" var="@ResiliencyProperties_create.userConfirmation[].reasonForRequestingConfirmation" options="reason-for-requesting-confirmation">
+                    <help short="The reason for requesting user confirmation for the high availability solution."/>
+                    <enum>
+                      <item name="VmInMultiZoneScaleSetStatelessOnly" value="&quot;VmInMultiZoneScaleSetStatelessOnly&quot;"/>
+                      <item name="ZonePinnedZrsDataDisksConditional" value="&quot;ZonePinnedZrsDataDisksConditional&quot;"/>
+                    </enum>
+                  </arg>
+                  <arg type="string" var="@ResiliencyProperties_create.userConfirmation[].solutionDisplayName" options="solution-display-name" required="True">
+                    <help short="The solution display name of the high availability solution."/>
+                    <enum>
+                      <item name="VmInMultiZoneVmss" value="&quot;VmInMultiZoneVmss&quot;"/>
+                      <item name="ZonePinnedVmWithZrsDisk" value="&quot;ZonePinnedVmWithZrsDisk&quot;"/>
+                    </enum>
+                  </arg>
+                </item>
+              </arg>
+            </arg>
+          </item>
+        </arg>
+      </argGroup>
+      <operation operationId="GoalAssignments_UpdateGoalResources">
+        <longRunning finalStateVia="location"/>
+        <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.AzureResilienceManagement/goalAssignments/{goalAssignmentName}/updateGoalResources">
+          <request method="post">
+            <path>
+              <param type="string" name="goalAssignmentName" arg="$Path.goalAssignmentName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+              </param>
+              <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
+                <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-09-30-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="array<object>" name="resources" arg="$body.resources" required="True">
+                    <item type="object">
+                      <prop type="object" name="properties">
+                        <prop type="@ResiliencyProperties_create" name="regionalResiliency" arg="$body.resources[].properties.regionalResiliency"/>
+                        <prop type="ResourceId" name="resourceArmId" arg="$body.resources[].properties.resourceArmId" required="True"/>
+                        <prop type="object" name="zonalResiliency" arg="$body.resources[].properties.zonalResiliency" cls="ResiliencyProperties_create">
+                          <prop type="string" name="attestationStatus" arg="@ResiliencyProperties_create.attestationStatus">
+                            <enum>
+                              <item value="&quot;ManuallyAttested&quot;"/>
+                              <item value="&quot;NotAttested&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="goalParticipation" arg="@ResiliencyProperties_create.goalParticipation">
+                            <enum>
+                              <item value="&quot;Excluded&quot;"/>
+                              <item value="&quot;Included&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="array<object>" name="userConfirmation" arg="@ResiliencyProperties_create.userConfirmation" identifiers="solutionDisplayName">
+                            <item type="object">
+                              <prop type="string" name="confirmationStatus" arg="@ResiliencyProperties_create.userConfirmation[].confirmationStatus" required="True">
+                                <enum>
+                                  <item value="&quot;ApprovalNotNeeded&quot;"/>
+                                  <item value="&quot;ApprovalPending&quot;"/>
+                                  <item value="&quot;ApprovedByUser&quot;"/>
+                                  <item value="&quot;RejectedByUser&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="reasonForRequestingConfirmation" arg="@ResiliencyProperties_create.userConfirmation[].reasonForRequestingConfirmation">
+                                <enum>
+                                  <item value="&quot;VmInMultiZoneScaleSetStatelessOnly&quot;"/>
+                                  <item value="&quot;ZonePinnedZrsDataDisksConditional&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="solutionDisplayName" arg="@ResiliencyProperties_create.userConfirmation[].solutionDisplayName" required="True">
+                                <enum>
+                                  <item value="&quot;VmInMultiZoneVmss&quot;"/>
+                                  <item value="&quot;ZonePinnedVmWithZrsDisk&quot;"/>
+                                </enum>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                      </prop>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="array<object>" name="resources" required="True">
+                    <item type="object">
+                      <prop readOnly="True" type="ResourceId" name="id">
+                        <format template="/providers/Microsoft.Management/serviceGroups/{}/providers/Microsoft.AzureResilienceManagement/goalAssignments/{}/goalResources/{}"/>
+                      </prop>
+                      <prop readOnly="True" type="string" name="name"/>
+                      <prop type="object" name="properties">
+                        <prop readOnly="True" type="string" name="provisioningState">
+                          <enum>
+                            <item value="&quot;Accepted&quot;"/>
+                            <item value="&quot;Canceled&quot;"/>
+                            <item value="&quot;Deleting&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;NeedsAttention&quot;"/>
+                            <item value="&quot;Provisioning&quot;"/>
+                            <item value="&quot;Succeeded&quot;"/>
+                            <item value="&quot;Updating&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="@ResiliencyProperties_read" name="regionalResiliency"/>
+                        <prop type="ResourceId" name="resourceArmId" required="True"/>
+                        <prop type="object" name="zonalResiliency" cls="ResiliencyProperties_read">
+                          <prop type="string" name="attestationStatus">
+                            <enum>
+                              <item value="&quot;ManuallyAttested&quot;"/>
+                              <item value="&quot;NotAttested&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="string" name="exclusionReason">
+                            <enum>
+                              <item value="&quot;FailedOverResource&quot;"/>
+                              <item value="&quot;UnsupportedResource&quot;"/>
+                              <item value="&quot;UserSelectedExclusion&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="string" name="goalParticipation">
+                            <enum>
+                              <item value="&quot;Excluded&quot;"/>
+                              <item value="&quot;Included&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop type="array<object>" name="userConfirmation" identifiers="solutionDisplayName">
+                            <item type="object">
+                              <prop type="string" name="confirmationStatus" required="True">
+                                <enum>
+                                  <item value="&quot;ApprovalNotNeeded&quot;"/>
+                                  <item value="&quot;ApprovalPending&quot;"/>
+                                  <item value="&quot;ApprovedByUser&quot;"/>
+                                  <item value="&quot;RejectedByUser&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="reasonForRequestingConfirmation">
+                                <enum>
+                                  <item value="&quot;VmInMultiZoneScaleSetStatelessOnly&quot;"/>
+                                  <item value="&quot;ZonePinnedZrsDataDisksConditional&quot;"/>
+                                </enum>
+                              </prop>
+                              <prop type="string" name="solutionDisplayName" required="True">
+                                <enum>
+                                  <item value="&quot;VmInMultiZoneVmss&quot;"/>
+                                  <item value="&quot;ZonePinnedVmWithZrsDisk&quot;"/>
+                                </enum>
+                              </prop>
+                            </item>
+                          </prop>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="object" name="systemData">
+                        <prop type="dateTime" name="createdAt">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="createdBy"/>
+                        <prop type="string" name="createdByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="dateTime" name="lastModifiedAt">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="string" name="lastModifiedBy"/>
+                        <prop type="string" name="lastModifiedByType">
+                          <enum>
+                            <item value="&quot;Application&quot;"/>
+                            <item value="&quot;Key&quot;"/>
+                            <item value="&quot;ManagedIdentity&quot;"/>
+                            <item value="&quot;User&quot;"/>
+                          </enum>
+                        </prop>
+                      </prop>
+                      <prop readOnly="True" type="string" name="type"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Azure-AsyncOperation"/>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

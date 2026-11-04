@@ -1,0 +1,165 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/drills/{}/addorupdateresources" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlUmVzaWxpZW5jZU1hbmFnZW1lbnQvZHJpbGxzL3tkcmlsbE5hbWV9L2FkZE9yVXBkYXRlUmVzb3VyY2Vz/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+  <commandGroup name="resiliency drill">
+    <command name="add-or-update-resource" version="2026-09-30-preview">
+      <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/drills/{}/addorupdateresources" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlUmVzaWxpZW5jZU1hbmFnZW1lbnQvZHJpbGxzL3tkcmlsbE5hbWV9L2FkZE9yVXBkYXRlUmVzb3VyY2Vz/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Header.operation-id" options="operation-id" required="True">
+          <help short="A GUID that represents the Long Running OperationId."/>
+        </arg>
+        <arg type="string" var="$Path.drillName" options="drill-name" required="True">
+          <help short="The name of the Drill"/>
+          <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+        </arg>
+        <arg type="string" var="$Path.serviceGroupName" options="service-group-name" required="True">
+          <help short="The name of the service group."/>
+          <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
+        </arg>
+      </argGroup>
+      <argGroup name="Body">
+        <arg type="integer32" var="$body.faultDurationInMin" options="fault-duration-in-min" required="True" group="Body">
+          <help short="Duration of faults."/>
+          <format minimum="0"/>
+        </arg>
+        <arg type="string" var="$body.forceInclusionAndUpdate" options="force-inclusion-and-update" group="Body">
+          <help short="Whether to allow inclusion and update despite attention reasons."/>
+          <enum>
+            <item name="Disable" value="&quot;Disable&quot;"/>
+            <item name="Enable" value="&quot;Enable&quot;"/>
+          </enum>
+        </arg>
+        <arg type="object" var="$body.resourceLists" options="resource-lists" group="Body">
+          <help short="Add, Update, Delete resource lists"/>
+          <arg type="array<ResourceId>" var="$body.resourceLists.excludeResources" options="exclude-resources">
+            <help short="Excluded resource"/>
+            <item type="ResourceId"/>
+          </arg>
+          <arg type="array<object>" var="$body.resourceLists.includeResources" options="include-resources">
+            <help short="Include resource"/>
+            <item type="object" cls="IncludeOrUpdateResource_create">
+              <arg type="object" var="@IncludeOrUpdateResource_create.faultProperties" options="fault-properties">
+                <help short="Fault properties."/>
+                <arg type="object" var="@IncludeOrUpdateResource_create.faultProperties.customFault" options="custom-fault">
+                  <help short="Custom Fault Details selected by user"/>
+                  <arg type="string" var="@IncludeOrUpdateResource_create.faultProperties.customFault.faultName" options="fault-name" required="True">
+                    <help short="fault name"/>
+                    <format maxLength="100" minLength="3"/>
+                  </arg>
+                  <arg type="ResourceId" var="@IncludeOrUpdateResource_create.faultProperties.customFault.scriptResourceId" options="script-resource-id" required="True">
+                    <help short="ID of ARM resource used for automation (e.g. Automation runbook URL)."/>
+                  </arg>
+                </arg>
+                <arg type="object" var="@IncludeOrUpdateResource_create.faultProperties.overriddenDefaultFault" options="overridden-default-fault">
+                  <help short="Override fault provided by the user."/>
+                  <arg type="string" var="@IncludeOrUpdateResource_create.faultProperties.overriddenDefaultFault.faultName" options="fault-name" required="True">
+                    <help short="fault name"/>
+                    <format maxLength="100" minLength="1"/>
+                  </arg>
+                  <arg type="string" var="@IncludeOrUpdateResource_create.faultProperties.overriddenDefaultFault.faultUrn" options="fault-urn" required="True">
+                    <help short="fault urn."/>
+                    <format minLength="1"/>
+                  </arg>
+                  <arg type="ResourceId" var="@IncludeOrUpdateResource_create.faultProperties.overriddenDefaultFault.targetResourceId" options="target-resource-id" required="True">
+                    <help short="ARMId of the target resource where fault will be applied. For non-NSG, same as ResourceId. For NSG, its the NSG resource and not the actual resource which is to be simulated for faulting."/>
+                  </arg>
+                </arg>
+              </arg>
+              <arg type="ResourceId" var="@IncludeOrUpdateResource_create.id" options="id" required="True">
+                <help short="Id of the DrillResource to be included (NOT the ARM Id of the underlying resource)."/>
+              </arg>
+            </item>
+          </arg>
+          <arg type="array<@IncludeOrUpdateResource_create>" var="$body.resourceLists.updateResources" options="update-resources">
+            <help short="Update resource"/>
+            <item type="@IncludeOrUpdateResource_create"/>
+          </arg>
+        </arg>
+      </argGroup>
+      <operation operationId="Drills_AddOrUpdateResources">
+        <longRunning finalStateVia="location"/>
+        <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.AzureResilienceManagement/drills/{drillName}/addOrUpdateResources">
+          <request method="post">
+            <path>
+              <param type="string" name="drillName" arg="$Path.drillName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
+              </param>
+              <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
+                <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-09-30-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <header>
+              <param type="string" name="operation-id" arg="$Header.operation-id" required="True"/>
+            </header>
+            <body>
+              <json>
+                <schema type="object" name="body" required="True" clientFlatten="True">
+                  <prop type="integer32" name="faultDurationInMin" arg="$body.faultDurationInMin" required="True">
+                    <format minimum="0"/>
+                  </prop>
+                  <prop type="string" name="forceInclusionAndUpdate" arg="$body.forceInclusionAndUpdate">
+                    <enum>
+                      <item value="&quot;Disable&quot;"/>
+                      <item value="&quot;Enable&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="object" name="resourceLists" arg="$body.resourceLists">
+                    <prop type="array<ResourceId>" name="excludeResources" arg="$body.resourceLists.excludeResources">
+                      <item type="ResourceId"/>
+                    </prop>
+                    <prop type="array<object>" name="includeResources" arg="$body.resourceLists.includeResources">
+                      <item type="object" cls="IncludeOrUpdateResource_create">
+                        <prop type="object" name="faultProperties" arg="@IncludeOrUpdateResource_create.faultProperties">
+                          <prop type="object" name="customFault" arg="@IncludeOrUpdateResource_create.faultProperties.customFault">
+                            <prop type="string" name="faultName" arg="@IncludeOrUpdateResource_create.faultProperties.customFault.faultName" required="True">
+                              <format maxLength="100" minLength="3"/>
+                            </prop>
+                            <prop type="ResourceId" name="scriptResourceId" arg="@IncludeOrUpdateResource_create.faultProperties.customFault.scriptResourceId" required="True"/>
+                          </prop>
+                          <prop type="object" name="overriddenDefaultFault" arg="@IncludeOrUpdateResource_create.faultProperties.overriddenDefaultFault">
+                            <prop type="string" name="faultName" arg="@IncludeOrUpdateResource_create.faultProperties.overriddenDefaultFault.faultName" required="True">
+                              <format maxLength="100" minLength="1"/>
+                            </prop>
+                            <prop type="string" name="faultUrn" arg="@IncludeOrUpdateResource_create.faultProperties.overriddenDefaultFault.faultUrn" required="True">
+                              <format minLength="1"/>
+                            </prop>
+                            <prop type="ResourceId" name="targetResourceId" arg="@IncludeOrUpdateResource_create.faultProperties.overriddenDefaultFault.targetResourceId" required="True"/>
+                          </prop>
+                        </prop>
+                        <prop type="ResourceId" name="id" arg="@IncludeOrUpdateResource_create.id" required="True"/>
+                      </item>
+                    </prop>
+                    <prop type="array<@IncludeOrUpdateResource_create>" name="updateResources" arg="$body.resourceLists.updateResources">
+                      <item type="@IncludeOrUpdateResource_create"/>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="202">
+            <header>
+              <item name="Azure-AsyncOperation"/>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response statusCode="204"/>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+    </command>
+  </commandGroup>
+</CodeGen>

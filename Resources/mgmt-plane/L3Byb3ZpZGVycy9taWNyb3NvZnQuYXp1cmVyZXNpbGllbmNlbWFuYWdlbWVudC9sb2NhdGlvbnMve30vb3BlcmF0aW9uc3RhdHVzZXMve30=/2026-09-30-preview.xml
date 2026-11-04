@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/providers/microsoft.azureresiliencemanagement/locations/{}/operationstatuses/{}" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXp1cmVSZXNpbGllbmNlTWFuYWdlbWVudC9sb2NhdGlvbnMve2xvY2F0aW9ufS9vcGVyYXRpb25TdGF0dXNlcy97b3BlcmF0aW9uSWR9/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+  <commandGroup name="resiliency operation-status">
+    <command name="show" version="2026-09-30-preview">
+      <resource id="/providers/microsoft.azureresiliencemanagement/locations/{}/operationstatuses/{}" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXp1cmVSZXNpbGllbmNlTWFuYWdlbWVudC9sb2NhdGlvbnMve2xvY2F0aW9ufS9vcGVyYXRpb25TdGF0dXNlcy97b3BlcmF0aW9uSWR9/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="ResourceLocation" var="$Path.location" options="location l" required="True"/>
+        <arg type="string" var="$Path.operationId" options="operation-id" required="True">
+          <help short="The ID of an ongoing async operation."/>
+          <format minLength="1"/>
+        </arg>
+      </argGroup>
+      <operation operationId="OperationStatus_Get">
+        <http path="/providers/Microsoft.AzureResilienceManagement/locations/{location}/operationStatuses/{operationId}">
+          <request method="get">
+            <path>
+              <param type="string" name="location" arg="$Path.location" required="True">
+                <format minLength="1"/>
+              </param>
+              <param type="string" name="operationId" arg="$Path.operationId" required="True">
+                <format minLength="1"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-09-30-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object" cls="OperationStatusResult_read">
+                  <prop type="dateTime" name="endTime">
+                    <format protocol="iso"/>
+                  </prop>
+                  <prop type="object" name="error" cls="ErrorDetail_read">
+                    <prop readOnly="True" type="array<object>" name="additionalInfo">
+                      <item type="object">
+                        <prop readOnly="True" type="object" name="info">
+                          <additionalProp readOnly="True">
+                            <item type="any"/>
+                          </additionalProp>
+                        </prop>
+                        <prop readOnly="True" type="string" name="type"/>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="string" name="code"/>
+                    <prop readOnly="True" type="array<@ErrorDetail_read>" name="details" identifiers="message target">
+                      <item type="@ErrorDetail_read"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="message"/>
+                    <prop readOnly="True" type="string" name="target"/>
+                  </prop>
+                  <prop type="ResourceId" name="id"/>
+                  <prop type="string" name="name"/>
+                  <prop type="array<@OperationStatusResult_read>" name="operations">
+                    <item type="@OperationStatusResult_read"/>
+                  </prop>
+                  <prop type="float" name="percentComplete">
+                    <format maximum="100.0" minimum="0.0"/>
+                  </prop>
+                  <prop readOnly="True" type="ResourceId" name="resourceId"/>
+                  <prop type="dateTime" name="startTime">
+                    <format protocol="iso"/>
+                  </prop>
+                  <prop type="string" name="status" required="True"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>

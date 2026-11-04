@@ -1,0 +1,249 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/recoveryplans/{}/recoveryjobs/{}" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlUmVzaWxpZW5jZU1hbmFnZW1lbnQvcmVjb3ZlcnlQbGFucy97cmVjb3ZlcnlQbGFuTmFtZX0vcmVjb3ZlcnlKb2JzL3tyZWNvdmVyeUpvYk5hbWV9/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+  <commandGroup name="resiliency recovery-plan recovery-job">
+    <command name="show" version="2026-09-30-preview">
+      <resource id="/providers/microsoft.management/servicegroups/{}/providers/microsoft.azureresiliencemanagement/recoveryplans/{}/recoveryjobs/{}" version="2026-09-30-preview" swagger="mgmt-plane/azureresiliencemanagement/ResourceProviders/Microsoft.AzureResilienceManagement/Paths/L3Byb3ZpZGVycy9NaWNyb3NvZnQuTWFuYWdlbWVudC9zZXJ2aWNlR3JvdXBzL3tzZXJ2aWNlR3JvdXBOYW1lfS9wcm92aWRlcnMvTWljcm9zb2Z0LkF6dXJlUmVzaWxpZW5jZU1hbmFnZW1lbnQvcmVjb3ZlcnlQbGFucy97cmVjb3ZlcnlQbGFuTmFtZX0vcmVjb3ZlcnlKb2JzL3tyZWNvdmVyeUpvYk5hbWV9/V/MjAyNi0wOS0zMC1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.recoveryJobName" options="recovery-job-name" required="True">
+          <help short="The unique name (GUID) of the recovery job."/>
+          <format pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"/>
+        </arg>
+        <arg type="string" var="$Path.recoveryPlanName" options="recovery-plan-name" required="True">
+          <help short="The name of the recovery orchestration plan."/>
+          <format pattern="^[a-zA-Z0-9-]{5,24}$"/>
+        </arg>
+        <arg type="string" var="$Path.serviceGroupName" options="service-group-name" required="True">
+          <help short="The name of the service group."/>
+          <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
+        </arg>
+      </argGroup>
+      <operation operationId="RecoveryJobs_Get">
+        <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.AzureResilienceManagement/recoveryPlans/{recoveryPlanName}/recoveryJobs/{recoveryJobName}">
+          <request method="get">
+            <path>
+              <param type="string" name="recoveryJobName" arg="$Path.recoveryJobName" required="True">
+                <format pattern="^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$"/>
+              </param>
+              <param type="string" name="recoveryPlanName" arg="$Path.recoveryPlanName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{5,24}$"/>
+              </param>
+              <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
+                <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
+              </param>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-09-30-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="ResourceId" name="id">
+                    <format template="/providers/Microsoft.Management/serviceGroups/{}/providers/Microsoft.AzureResilienceManagement/recoveryPlans/{}/recoveryJobs/{}"/>
+                  </prop>
+                  <prop readOnly="True" type="string" name="name"/>
+                  <prop type="object" name="properties">
+                    <prop readOnly="True" type="duration" name="duration"/>
+                    <prop readOnly="True" type="dateTime" name="endTime">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="object" name="errorDetails" cls="JobErrorInfo_read">
+                      <prop readOnly="True" type="string" name="errorCode"/>
+                      <prop readOnly="True" type="string" name="errorMessage"/>
+                      <prop readOnly="True" type="array<string>" name="recommendations">
+                        <item type="string"/>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" type="object" name="executionConfigurations">
+                      <prop type="string" name="userConsent" required="True">
+                        <enum>
+                          <item value="&quot;Allowed&quot;"/>
+                          <item value="&quot;Unspecified&quot;"/>
+                        </enum>
+                      </prop>
+                    </prop>
+                    <prop type="object" name="jobExtendedInfo">
+                      <prop readOnly="True" type="string" name="dynamicErrorMessage"/>
+                      <prop readOnly="True" type="array<object>" name="tasksList">
+                        <item type="object" cls="JobTaskDetail_read">
+                          <prop readOnly="True" type="duration" name="duration"/>
+                          <prop readOnly="True" type="dateTime" name="endTime">
+                            <format protocol="iso"/>
+                          </prop>
+                          <prop type="@JobErrorInfo_read" name="errorDetails"/>
+                          <prop readOnly="True" type="array<ResourceId>" name="linkedJobIds">
+                            <item type="ResourceId"/>
+                          </prop>
+                          <prop readOnly="True" type="array<@JobRetryDetails_read>" name="retryDetails">
+                            <item type="@JobRetryDetails_read"/>
+                          </prop>
+                          <prop readOnly="True" type="dateTime" name="startTime">
+                            <format protocol="iso"/>
+                          </prop>
+                          <prop readOnly="True" type="string" name="status">
+                            <enum>
+                              <item value="&quot;Cancelled&quot;"/>
+                              <item value="&quot;Cancelling&quot;"/>
+                              <item value="&quot;Completed&quot;"/>
+                              <item value="&quot;CompletedWithWarnings&quot;"/>
+                              <item value="&quot;Failed&quot;"/>
+                              <item value="&quot;InProgress&quot;"/>
+                              <item value="&quot;NotApplicable&quot;"/>
+                              <item value="&quot;NotStarted&quot;"/>
+                              <item value="&quot;Paused&quot;"/>
+                              <item value="&quot;Pending&quot;"/>
+                              <item value="&quot;Skipped&quot;"/>
+                            </enum>
+                          </prop>
+                          <prop readOnly="True" type="array<@JobTaskDetail_read>" name="subTasksList">
+                            <item type="@JobTaskDetail_read"/>
+                          </prop>
+                          <prop readOnly="True" type="string" name="taskId"/>
+                          <prop readOnly="True" type="string" name="taskName"/>
+                          <prop readOnly="True" type="array<@JobUserComment_read>" name="userComments">
+                            <item type="@JobUserComment_read"/>
+                          </prop>
+                        </item>
+                      </prop>
+                    </prop>
+                    <prop readOnly="True" const="True" type="string" name="jobType">
+                      <default value="&quot;RecoveryPlan&quot;"/>
+                      <enum>
+                        <item value="&quot;DrillRun&quot;"/>
+                        <item value="&quot;Invalid&quot;"/>
+                        <item value="&quot;RecoveryPlan&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="operation"/>
+                    <prop readOnly="True" type="string" name="provisioningState">
+                      <enum>
+                        <item value="&quot;Accepted&quot;"/>
+                        <item value="&quot;Canceled&quot;"/>
+                        <item value="&quot;Deleting&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;NeedsAttention&quot;"/>
+                        <item value="&quot;Provisioning&quot;"/>
+                        <item value="&quot;Succeeded&quot;"/>
+                        <item value="&quot;Updating&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="ResourceId" name="resourceId"/>
+                    <prop type="array<object>" name="retryDetails">
+                      <item type="object" cls="JobRetryDetails_read">
+                        <prop readOnly="True" type="duration" name="duration"/>
+                        <prop readOnly="True" type="dateTime" name="endTime">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop type="@JobErrorInfo_read" name="errorDetails"/>
+                        <prop type="integer32" name="retryAttempt" required="True"/>
+                        <prop readOnly="True" type="dateTime" name="startTime">
+                          <format protocol="iso"/>
+                        </prop>
+                        <prop readOnly="True" type="string" name="status">
+                          <enum>
+                            <item value="&quot;Cancelled&quot;"/>
+                            <item value="&quot;Cancelling&quot;"/>
+                            <item value="&quot;Completed&quot;"/>
+                            <item value="&quot;CompletedWithWarnings&quot;"/>
+                            <item value="&quot;Failed&quot;"/>
+                            <item value="&quot;InProgress&quot;"/>
+                            <item value="&quot;NotApplicable&quot;"/>
+                            <item value="&quot;NotStarted&quot;"/>
+                            <item value="&quot;Paused&quot;"/>
+                            <item value="&quot;Pending&quot;"/>
+                            <item value="&quot;Skipped&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop readOnly="True" type="array<object>" name="userComments">
+                          <item type="object" cls="JobUserComment_read">
+                            <prop readOnly="True" type="dateTime" name="commentTime">
+                              <format protocol="iso"/>
+                            </prop>
+                            <prop readOnly="True" type="string" name="commentType">
+                              <enum>
+                                <item value="&quot;Description&quot;"/>
+                                <item value="&quot;ResumeReason&quot;"/>
+                              </enum>
+                            </prop>
+                            <prop readOnly="True" type="string" name="comments"/>
+                          </item>
+                        </prop>
+                      </item>
+                    </prop>
+                    <prop readOnly="True" type="dateTime" name="startTime">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop readOnly="True" type="string" name="status">
+                      <enum>
+                        <item value="&quot;Cancelled&quot;"/>
+                        <item value="&quot;Cancelling&quot;"/>
+                        <item value="&quot;Completed&quot;"/>
+                        <item value="&quot;CompletedWithWarnings&quot;"/>
+                        <item value="&quot;Failed&quot;"/>
+                        <item value="&quot;InProgress&quot;"/>
+                        <item value="&quot;NotApplicable&quot;"/>
+                        <item value="&quot;NotStarted&quot;"/>
+                        <item value="&quot;Paused&quot;"/>
+                        <item value="&quot;Pending&quot;"/>
+                        <item value="&quot;Skipped&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="string" name="triggeredBy">
+                      <enum>
+                        <item value="&quot;System&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop readOnly="True" type="array<@JobUserComment_read>" name="userComments">
+                      <item type="@JobUserComment_read"/>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="object" name="systemData">
+                    <prop type="dateTime" name="createdAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="createdBy"/>
+                    <prop type="string" name="createdByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="dateTime" name="lastModifiedAt">
+                      <format protocol="iso"/>
+                    </prop>
+                    <prop type="string" name="lastModifiedBy"/>
+                    <prop type="string" name="lastModifiedByType">
+                      <enum>
+                        <item value="&quot;Application&quot;"/>
+                        <item value="&quot;Key&quot;"/>
+                        <item value="&quot;ManagedIdentity&quot;"/>
+                        <item value="&quot;User&quot;"/>
+                      </enum>
+                    </prop>
+                  </prop>
+                  <prop readOnly="True" type="string" name="type"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
