@@ -12,5 +12,5 @@ This action triggers the test failover cleanup operation on the recovery orchest
 
 - RecoveryPlanActions_TestFailoverCleanup_MaximumSet
     ```bash
-        resiliency recovery-plan test-failover-cleanup --service-group-name sampleServiceGroupName --operation-id qmn --recovery-plan-name samplePlanName --comments Test failover clean-up comments
+        resiliency recovery-plan test-failover-cleanup --service-group-name sampleServiceGroupName --operation-id qmn --recovery-plan-name samplePlanName --comments "Test failover clean-up comments"
     ```

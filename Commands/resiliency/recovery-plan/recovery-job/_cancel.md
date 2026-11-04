@@ -12,5 +12,5 @@ This action attempts to cancel the ongoing recovery orchestration job.
 
 - RecoveryJobs_Cancel_MaximumSet
     ```bash
-        resiliency recovery-plan recovery-job cancel --service-group-name sampleServiceGroup --operation-id qmn --recovery-plan-name samplePlanName --recovery-job-name c56888ef-9ced-4001-a6d4-7145a0309bdb --description Cancelling the recovery job due to user request
+        resiliency recovery-plan recovery-job cancel --service-group-name sampleServiceGroup --operation-id qmn --recovery-plan-name samplePlanName --recovery-job-name c56888ef-9ced-4001-a6d4-7145a0309bdb --description "Cancelling the recovery job due to user request"
     ```

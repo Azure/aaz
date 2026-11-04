@@ -10,12 +10,12 @@ Update a goal assignment.
 
 #### examples
 
-- GoalAssignments_CreateOrUpdate_MaximumSet
+- Require zonal resiliency for an existing goal assignment
     ```bash
-        resiliency goal-assignment update --service-group-name production-sg --goal-assignment-name zonal-resiliency-goal --service-level-resources "[{service-level-indicator-resource-id:/subscriptions/12345678-1234-1234-1234-123456789012/resourceGroups/MyResourceGroup/providers/Microsoft.Compute/virtualMachines/MyVirtualMachine}]" --require-zonal-resiliency True
+        resiliency goal-assignment update --service-group-name production-sg --goal-assignment-name zonal-resiliency-goal --require-zonal-resiliency true
     ```
 
-- GoalAssignments_CreateOrUpdate_MinimumSet
+- Change the service level indicator resources of a goal assignment
     ```bash
-        resiliency goal-assignment update --service-group-name production-sg --goal-assignment-name zonal-resiliency-goal --service-level-resources "[{service-level-indicator-resource-id:/subscriptions/12345678-1234-1234-1234-123456789012/resourceGroups/MyResourceGroup/providers/Microsoft.Compute/virtualMachines/MyVirtualMachine}]" --require-zonal-resiliency True --service-group-name production-sg --goal-assignment-name zonal-resiliency-goal --require-zonal-resiliency True
+        resiliency goal-assignment update --service-group-name production-sg --goal-assignment-name zonal-resiliency-goal --sli-resources "[{service-level-indicator-resource-id:/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/rg1/providers/Microsoft.Compute/virtualMachines/vm1}]"
     ```
