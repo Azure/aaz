@@ -19,6 +19,9 @@ Manage Azure NetApp Files (ANF) Account Resources.
 - [identity](/Commands/netappfiles/account/identity/readme.md)
 : Manage Identity
 
+- [ldap-configuration](/Commands/netappfiles/account/ldap-configuration/readme.md)
+: Manage Ldap Configuration
+
 - [pool](/Commands/netappfiles/account/pool/readme.md)
 : Manage Azure NetApp Files (ANF) Pool Resources.
 
@@ -44,6 +47,9 @@ Manage Azure NetApp Files (ANF) Account Resources.
 
 - [migrate-backup](/Commands/netappfiles/account/_migrate-backup.md)
 : Migrate the backups under a NetApp account to backup vault
+
+- [refresh-ldap-bind-password](/Commands/netappfiles/account/_refresh-ldap-bind-password.md)
+: Refresh LDAP Bind DN password by fetching the latest password from Azure Key Vault.
 
 - [renew-credentials](/Commands/netappfiles/account/_renew-credentials.md)
 : Renew identity credentials that are used to authenticate to key vault, for customer-managed key encryption. If encryption.identity.principalId does not match identity.principalId, running this operation will fix it.
