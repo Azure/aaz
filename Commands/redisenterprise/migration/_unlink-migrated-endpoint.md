@@ -1,6 +1,8 @@
 # [Command] _redisenterprise migration unlink-migrated-endpoint_
 
-Unlinks the migrated endpoint from the Azure Managed Redis cluster that was migrated from Azure Cache for Redis, removing the source cache endpoint that was redirected to this cluster during migration.
+Unlink the endpoint migrated from Azure Cache for Redis Basic, Standard, or Premium tiers to Azure Managed Redis.
+
+These commands apply only to migrations from the Basic, Standard, and Premium tiers of Azure Cache for Redis to Azure Managed Redis.
 
 ## Versions
 

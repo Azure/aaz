@@ -1,6 +1,8 @@
 # [Command] _redisenterprise migration validate_
 
-Validates if a source Azure Cache for Redis resource can be migrated to a target Azure Managed Redis resource.
+Validate migration from Azure Cache for Redis Basic, Standard, or Premium tiers to Azure Managed Redis.
+
+These commands apply only to migrations from the Basic, Standard, and Premium tiers of Azure Cache for Redis to Azure Managed Redis.
 
 ## Versions
 

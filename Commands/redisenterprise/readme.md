@@ -11,7 +11,7 @@ Manage the redisenterprise cache
 : Manage Identity
 
 - [migration](/Commands/redisenterprise/migration/readme.md)
-: Manage Migration
+: Manage migrations from Azure Cache for Redis Basic, Standard, and Premium tiers to Azure Managed Redis.
 
 - [operation-status](/Commands/redisenterprise/operation-status/readme.md)
 : Get the status of an operation

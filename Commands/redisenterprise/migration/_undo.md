@@ -1,6 +1,8 @@
 # [Command] _redisenterprise migration undo_
 
-Cancel or rollback the migration operation in a Redis Enterprise cluster.
+Cancel or roll back a migration from Azure Cache for Redis Basic, Standard, or Premium tiers to Azure Managed Redis.
+
+These commands apply only to migrations from the Basic, Standard, and Premium tiers of Azure Cache for Redis to Azure Managed Redis.
 
 ## Versions
 

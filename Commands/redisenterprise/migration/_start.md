@@ -1,6 +1,8 @@
 # [Command] _redisenterprise migration start_
 
-Create a new migration
+Start migration from Azure Cache for Redis Basic, Standard, or Premium tiers to Azure Managed Redis.
+
+These commands apply only to migrations from the Basic, Standard, and Premium tiers of Azure Cache for Redis to Azure Managed Redis.
 
 ## Versions
 
