@@ -1237,8 +1237,12 @@
         </arg>
       </argGroup>
       <argGroup name="Identity">
-        <arg type="string" var="$resource.identity.type" options="type" hide="True" group="Identity">
-          <help short="Type of managed service identity (where both SystemAssigned and UserAssigned types are allowed)."/>
+        <arg type="string" var="$properties.identity.systemAssigned" options="mi-system-assigned system-assigned" hide="True" group="Identity">
+          <blank value="&quot;True&quot;"/>
+          <help short="Set the system managed identity."/>
+        </arg>
+        <arg type="string" var="$properties.identity.type" options="type" hide="True" group="Identity">
+          <help short="The type of managed identity assigned to this resource."/>
           <enum>
             <item name="None" value="&quot;None&quot;"/>
             <item name="SystemAssigned" value="&quot;SystemAssigned&quot;"/>
@@ -1246,8 +1250,13 @@
             <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
           </enum>
         </arg>
-        <arg nullable="True" type="object" var="$resource.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
-          <help short="The set of user assigned identities associated with the resource. The userAssignedIdentities dictionary keys will be ARM resource ids in the form: '/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}. The dictionary values can be empty objects ({}) in requests."/>
+        <arg type="array<string>" var="$properties.identity.userAssigned" options="mi-user-assigned user-assigned" hide="True" group="Identity">
+          <blank value="[]"/>
+          <help short="Set the user managed identities."/>
+          <item type="string"/>
+        </arg>
+        <arg type="object" var="$properties.identity.userAssignedIdentities" options="user-assigned-identities" hide="True" group="Identity">
+          <help short="The identities assigned to this resource by the user."/>
           <additionalProp>
             <item nullable="True" type="object">
               <blank value="{}"/>
@@ -1256,49 +1265,46 @@
         </arg>
       </argGroup>
       <argGroup name="Properties">
-        <arg type="object" var="$resource.properties.Regional" options="regional" group="Properties">
-          <blank value="{}"/>
-        </arg>
-        <arg nullable="True" type="object" var="$resource.properties.chaosResourceProperties" options="chaos-resource-properties chaos-properties" group="Properties">
+        <arg type="object" var="$properties.properties.chaosResourceProperties" options="chaos-resource-properties chaos-properties" group="Properties">
           <help short="Chaos Resource properties."/>
-          <arg type="@AssociatedIdentity_update" var="$resource.properties.chaosResourceProperties.chaosResourceIdentityForFaults" options="chaos-resource-identity-for-faults">
+          <arg type="@AssociatedIdentityUpdate_update" var="$properties.properties.chaosResourceProperties.chaosResourceIdentityForFaults" options="chaos-resource-identity-for-faults">
             <help short="Identity to be used by the Chaos Resource for invoking faults on resources."/>
           </arg>
-          <arg type="@AssociatedIdentity_update" var="$resource.properties.chaosResourceProperties.identity" options="identity">
+          <arg type="@AssociatedIdentityUpdate_update" var="$properties.properties.chaosResourceProperties.identity" options="identity">
             <help short="Identity to use for Chaos Resource operations."/>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$resource.properties.drillAssetProperties" options="drill-asset-properties" group="Properties">
+        <arg type="object" var="$properties.properties.drillAssetProperties" options="drill-asset-properties" group="Properties">
           <help short="Properties for internal resources that are created for the Drill."/>
-          <arg type="string" var="$resource.properties.drillAssetProperties.region" options="region">
+          <arg type="string" var="$properties.properties.drillAssetProperties.region" options="region">
             <help short="Region where Drill's internal resources will be created."/>
           </arg>
-          <arg type="string" var="$resource.properties.drillAssetProperties.subscription" options="subscription">
+          <arg type="string" var="$properties.properties.drillAssetProperties.subscription" options="subscription">
             <help short="Subscription where Drill's internal resources will be created."/>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$resource.properties.goalAssignmentProperties" options="goal-assignment-properties goal-properties" group="Properties">
+        <arg type="object" var="$properties.properties.goalAssignmentProperties" options="goal-assignment-properties goal-properties" group="Properties">
           <help short="Goal Assignment properties."/>
-          <arg type="@AssociatedIdentity_update" var="$resource.properties.goalAssignmentProperties.identity" options="identity">
+          <arg type="@AssociatedIdentityUpdate_update" var="$properties.properties.goalAssignmentProperties.identity" options="identity">
             <help short="Identity to use for goal assignment operations."/>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$resource.properties.healthModelMonitoringProperties" options="health-model-monitoring-properties health-properties" group="Properties">
-          <help short="Azure Health Model monitoring properties of the Drill."/>
-          <arg type="ResourceId" var="$resource.properties.healthModelMonitoringProperties.healthModelId" options="health-model-id">
+        <arg nullable="True" type="object" var="$properties.properties.healthModelMonitoringProperties" options="health-model-monitoring-properties health-properties" group="Properties">
+          <help short="Azure Health Model monitoring properties of the Drill. Send null to clear the selection."/>
+          <arg type="ResourceId" var="$properties.properties.healthModelMonitoringProperties.healthModelId" options="health-model-id">
             <help short="Full ARM Id of the Azure Health Model selected for Drill monitoring."/>
           </arg>
-          <arg type="@AssociatedIdentity_update" var="$resource.properties.healthModelMonitoringProperties.identity" options="identity">
+          <arg type="@AssociatedIdentityUpdate_update" var="$properties.properties.healthModelMonitoringProperties.identity" options="identity">
             <help short="Identity that the Drill uses to read the Azure Health Model. The Drill is granted Reader on the Health Model for this identity."/>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$resource.properties.monitoringProperties" options="monitoring-properties" group="Properties">
+        <arg type="object" var="$properties.properties.monitoringProperties" options="monitoring-properties" group="Properties">
           <help short="Monitoring properties of the Drill."/>
-          <arg nullable="True" type="@AssociatedIdentity_update" var="$resource.properties.monitoringProperties.identity" options="identity">
+          <arg type="@AssociatedIdentityUpdate_update" var="$properties.properties.monitoringProperties.identity" options="identity">
             <help short="Identity to use for Drill monitoring operations."/>
           </arg>
         </arg>
-        <arg nullable="True" type="string" var="$resource.properties.rbacSetupMode" options="rbac-setup-mode" group="Properties">
+        <arg type="string" var="$properties.properties.rbacSetupMode" options="rbac-setup-mode" group="Properties">
           <help short="RBAC setup mode."/>
           <enum>
             <item name="AutomatedBuiltinRoles" value="&quot;AutomatedBuiltinRoles&quot;"/>
@@ -1306,11 +1312,11 @@
             <item name="Manual" value="&quot;Manual&quot;"/>
           </enum>
         </arg>
-        <arg nullable="True" type="object" var="$resource.properties.recoveryPlanProperties" options="recovery-plan-properties recovery-properties" group="Properties">
-          <help short="ROPlan properties."/>
-          <arg type="object" var="$resource.properties.recoveryPlanProperties.identity" options="identity" cls="AssociatedIdentity_update">
+        <arg type="object" var="$properties.properties.recoveryPlanProperties" options="recovery-plan-properties recovery-properties" group="Properties">
+          <help short="Recovery Plan properties."/>
+          <arg type="object" var="$properties.properties.recoveryPlanProperties.identity" options="identity" cls="AssociatedIdentityUpdate_update">
             <help short="Identity to use for RecoveryPlan operations."/>
-            <arg type="string" var="@AssociatedIdentity_update.type" options="type">
+            <arg type="string" var="@AssociatedIdentityUpdate_update.type" options="type">
               <help short="Identity type linked with the resource"/>
               <enum>
                 <item name="None" value="&quot;None&quot;"/>
@@ -1319,24 +1325,24 @@
                 <item name="UserAssigned" value="&quot;UserAssigned&quot;"/>
               </enum>
             </arg>
-            <arg nullable="True" type="ResourceId" var="@AssociatedIdentity_update.userAssignedIdentity" options="user-assigned-identity">
+            <arg type="ResourceId" var="@AssociatedIdentityUpdate_update.userAssignedIdentity" options="user-assigned-identity">
               <help short="User assigned identity id linked with the resource"/>
             </arg>
           </arg>
         </arg>
-        <arg nullable="True" type="object" var="$resource.properties.sliMonitoringProperties" options="sli-monitoring-properties sli-properties" group="Properties">
-          <help short="SLI monitoring properties of the Drill."/>
-          <arg type="@AssociatedIdentity_update" var="$resource.properties.sliMonitoringProperties.identity" options="identity">
+        <arg nullable="True" type="object" var="$properties.properties.sliMonitoringProperties" options="sli-monitoring-properties sli-properties" group="Properties">
+          <help short="SLI monitoring properties of the Drill. Send null to clear the selection; the submitted slis array is the new desired state."/>
+          <arg type="@AssociatedIdentityUpdate_update" var="$properties.properties.sliMonitoringProperties.identity" options="identity">
             <help short="Identity that the Drill uses to read evaluated SLI results from each SLI's destination Azure Monitor Workspace. The Drill is granted Monitoring Reader on every destination AMW of every selected SLI for this identity."/>
           </arg>
-          <arg type="array<object>" var="$resource.properties.sliMonitoringProperties.slis" options="slis">
+          <arg type="array<object>" var="$properties.properties.sliMonitoringProperties.slis" options="slis">
             <help short="The SLIs selected for Drill monitoring. Maximum of two entries: at most one Availability and one Latency. Duplicate types or duplicate SLI Ids are rejected."/>
             <format maxLength="2" minLength="1"/>
-            <item nullable="True" type="object">
-              <arg type="ResourceId" var="$resource.properties.sliMonitoringProperties.slis[].sliId" options="sli-id">
+            <item type="object">
+              <arg type="ResourceId" var="$properties.properties.sliMonitoringProperties.slis[].sliId" options="sli-id" required="True">
                 <help short="Full ARM Id of the SLI."/>
               </arg>
-              <arg type="string" var="$resource.properties.sliMonitoringProperties.slis[].type" options="type">
+              <arg type="string" var="$properties.properties.sliMonitoringProperties.slis[].type" options="type" required="True">
                 <help short="User-declared category of the SLI. Must be unique across the selected SLIs."/>
                 <enum>
                   <item name="Availability" value="&quot;Availability&quot;"/>
@@ -1347,9 +1353,10 @@
           </arg>
         </arg>
       </argGroup>
-      <operation operationId="Drills_Get">
+      <operation operationId="Drills_Update">
+        <longRunning finalStateVia="location"/>
         <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.AzureResilienceManagement/drills/{drillName}">
-          <request method="get">
+          <request method="patch">
             <path>
               <param type="string" name="drillName" arg="$Path.drillName" required="True">
                 <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
@@ -1364,11 +1371,91 @@
                 <format minLength="1"/>
               </const>
             </query>
+            <body>
+              <json>
+                <schema type="object" name="properties" required="True" clientFlatten="True">
+                  <prop type="IdentityObject" name="identity">
+                    <prop type="string" name="type" arg="$properties.identity.type">
+                      <enum>
+                        <item value="&quot;None&quot;"/>
+                        <item value="&quot;SystemAssigned&quot;"/>
+                        <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                        <item value="&quot;UserAssigned&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="userAssignedIdentities" arg="$properties.identity.userAssignedIdentities">
+                      <additionalProp>
+                        <item nullable="True" type="object"/>
+                      </additionalProp>
+                    </prop>
+                    <userAssigned action="create" type="array<string>" name="userAssigned" arg="$properties.identity.userAssigned">
+                      <item action="create" type="string"/>
+                    </userAssigned>
+                    <systemAssigned action="create" type="string" name="systemAssigned" arg="$properties.identity.systemAssigned"/>
+                  </prop>
+                  <prop type="object" name="properties">
+                    <prop type="object" name="chaosResourceProperties" arg="$properties.properties.chaosResourceProperties">
+                      <prop type="@AssociatedIdentityUpdate_update" name="chaosResourceIdentityForFaults" arg="$properties.properties.chaosResourceProperties.chaosResourceIdentityForFaults"/>
+                      <prop type="@AssociatedIdentityUpdate_update" name="identity" arg="$properties.properties.chaosResourceProperties.identity"/>
+                    </prop>
+                    <prop type="object" name="drillAssetProperties" arg="$properties.properties.drillAssetProperties">
+                      <prop type="string" name="region" arg="$properties.properties.drillAssetProperties.region"/>
+                      <prop type="string" name="subscription" arg="$properties.properties.drillAssetProperties.subscription"/>
+                    </prop>
+                    <prop type="object" name="goalAssignmentProperties" arg="$properties.properties.goalAssignmentProperties">
+                      <prop type="@AssociatedIdentityUpdate_update" name="identity" arg="$properties.properties.goalAssignmentProperties.identity"/>
+                    </prop>
+                    <prop nullable="True" type="object" name="healthModelMonitoringProperties" arg="$properties.properties.healthModelMonitoringProperties">
+                      <prop type="ResourceId" name="healthModelId" arg="$properties.properties.healthModelMonitoringProperties.healthModelId"/>
+                      <prop type="@AssociatedIdentityUpdate_update" name="identity" arg="$properties.properties.healthModelMonitoringProperties.identity"/>
+                    </prop>
+                    <prop type="object" name="monitoringProperties" arg="$properties.properties.monitoringProperties">
+                      <prop type="@AssociatedIdentityUpdate_update" name="identity" arg="$properties.properties.monitoringProperties.identity"/>
+                    </prop>
+                    <prop type="string" name="rbacSetupMode" arg="$properties.properties.rbacSetupMode">
+                      <enum>
+                        <item value="&quot;AutomatedBuiltinRoles&quot;"/>
+                        <item value="&quot;AutomatedCustomRole&quot;"/>
+                        <item value="&quot;Manual&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="object" name="recoveryPlanProperties" arg="$properties.properties.recoveryPlanProperties">
+                      <prop type="object" name="identity" arg="$properties.properties.recoveryPlanProperties.identity" cls="AssociatedIdentityUpdate_update">
+                        <prop type="string" name="type" arg="@AssociatedIdentityUpdate_update.type">
+                          <enum>
+                            <item value="&quot;None&quot;"/>
+                            <item value="&quot;SystemAssigned&quot;"/>
+                            <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
+                            <item value="&quot;UserAssigned&quot;"/>
+                          </enum>
+                        </prop>
+                        <prop type="ResourceId" name="userAssignedIdentity" arg="@AssociatedIdentityUpdate_update.userAssignedIdentity"/>
+                      </prop>
+                    </prop>
+                    <prop nullable="True" type="object" name="sliMonitoringProperties" arg="$properties.properties.sliMonitoringProperties">
+                      <prop type="@AssociatedIdentityUpdate_update" name="identity" arg="$properties.properties.sliMonitoringProperties.identity"/>
+                      <prop type="array<object>" name="slis" arg="$properties.properties.sliMonitoringProperties.slis">
+                        <format maxLength="2" minLength="1"/>
+                        <item type="object">
+                          <prop type="ResourceId" name="sliId" arg="$properties.properties.sliMonitoringProperties.slis[].sliId" required="True"/>
+                          <prop type="string" name="type" arg="$properties.properties.sliMonitoringProperties.slis[].type" required="True">
+                            <enum>
+                              <item value="&quot;Availability&quot;"/>
+                              <item value="&quot;Latency&quot;"/>
+                            </enum>
+                          </prop>
+                        </item>
+                      </prop>
+                    </prop>
+                  </prop>
+                </schema>
+              </json>
+            </body>
           </request>
           <response statusCode="200">
             <body>
               <json var="$Instance">
-                <schema type="object" cls="Drill_read">
+                <schema type="object">
                   <prop readOnly="True" type="ResourceId" name="id">
                     <format template="/providers/Microsoft.Management/serviceGroups/{}/providers/Microsoft.AzureResilienceManagement/drills/{}"/>
                   </prop>
@@ -1801,122 +1888,12 @@
               </json>
             </body>
           </response>
-          <response isError="True">
-            <body>
-              <json>
-                <schema type="@MgmtErrorFormat"/>
-              </json>
-            </body>
-          </response>
-        </http>
-      </operation>
-      <operation>
-        <instanceUpdate ref="$Instance">
-          <json>
-            <schema type="object" name="resource" required="True" clientFlatten="True">
-              <prop type="IdentityObject" name="identity">
-                <prop type="string" name="type" arg="$resource.identity.type" required="True">
-                  <enum>
-                    <item value="&quot;None&quot;"/>
-                    <item value="&quot;SystemAssigned&quot;"/>
-                    <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
-                    <item value="&quot;UserAssigned&quot;"/>
-                  </enum>
-                </prop>
-                <prop type="object" name="userAssignedIdentities" arg="$resource.identity.userAssignedIdentities">
-                  <additionalProp>
-                    <item nullable="True" type="object"/>
-                  </additionalProp>
-                </prop>
-              </prop>
-              <prop type="object" name="properties">
-                <prop type="object" name="chaosResourceProperties" arg="$resource.properties.chaosResourceProperties">
-                  <prop type="@AssociatedIdentity_update" name="chaosResourceIdentityForFaults" arg="$resource.properties.chaosResourceProperties.chaosResourceIdentityForFaults" required="True"/>
-                  <prop type="@AssociatedIdentity_update" name="identity" arg="$resource.properties.chaosResourceProperties.identity" required="True"/>
-                </prop>
-                <prop type="object" name="drillAssetProperties" arg="$resource.properties.drillAssetProperties">
-                  <prop type="string" name="region" arg="$resource.properties.drillAssetProperties.region" required="True"/>
-                  <prop type="string" name="subscription" arg="$resource.properties.drillAssetProperties.subscription" required="True"/>
-                </prop>
-                <prop type="object" name="goalAssignmentProperties" arg="$resource.properties.goalAssignmentProperties">
-                  <prop type="@AssociatedIdentity_update" name="identity" arg="$resource.properties.goalAssignmentProperties.identity" required="True"/>
-                </prop>
-                <prop type="object" name="healthModelMonitoringProperties" arg="$resource.properties.healthModelMonitoringProperties">
-                  <prop type="ResourceId" name="healthModelId" arg="$resource.properties.healthModelMonitoringProperties.healthModelId" required="True"/>
-                  <prop type="@AssociatedIdentity_update" name="identity" arg="$resource.properties.healthModelMonitoringProperties.identity" required="True"/>
-                </prop>
-                <prop type="object" name="monitoringProperties" arg="$resource.properties.monitoringProperties">
-                  <prop type="@AssociatedIdentity_update" name="identity" arg="$resource.properties.monitoringProperties.identity"/>
-                </prop>
-                <prop type="string" name="rbacSetupMode" arg="$resource.properties.rbacSetupMode">
-                  <enum>
-                    <item value="&quot;AutomatedBuiltinRoles&quot;"/>
-                    <item value="&quot;AutomatedCustomRole&quot;"/>
-                    <item value="&quot;Manual&quot;"/>
-                  </enum>
-                </prop>
-                <prop type="object" name="recoveryPlanProperties" arg="$resource.properties.recoveryPlanProperties">
-                  <prop type="object" name="identity" arg="$resource.properties.recoveryPlanProperties.identity" required="True" cls="AssociatedIdentity_update">
-                    <prop type="string" name="type" arg="@AssociatedIdentity_update.type" required="True">
-                      <enum>
-                        <item value="&quot;None&quot;"/>
-                        <item value="&quot;SystemAssigned&quot;"/>
-                        <item value="&quot;SystemAssigned,UserAssigned&quot;"/>
-                        <item value="&quot;UserAssigned&quot;"/>
-                      </enum>
-                    </prop>
-                    <prop type="ResourceId" name="userAssignedIdentity" arg="@AssociatedIdentity_update.userAssignedIdentity"/>
-                  </prop>
-                </prop>
-                <prop type="object" name="sliMonitoringProperties" arg="$resource.properties.sliMonitoringProperties">
-                  <prop type="@AssociatedIdentity_update" name="identity" arg="$resource.properties.sliMonitoringProperties.identity" required="True"/>
-                  <prop type="array<object>" name="slis" arg="$resource.properties.sliMonitoringProperties.slis" required="True">
-                    <format maxLength="2" minLength="1"/>
-                    <item type="object">
-                      <prop type="ResourceId" name="sliId" arg="$resource.properties.sliMonitoringProperties.slis[].sliId" required="True"/>
-                      <prop type="string" name="type" arg="$resource.properties.sliMonitoringProperties.slis[].type" required="True">
-                        <enum>
-                          <item value="&quot;Availability&quot;"/>
-                          <item value="&quot;Latency&quot;"/>
-                        </enum>
-                      </prop>
-                    </item>
-                  </prop>
-                </prop>
-                <discriminator property="drillType" value="Regional"/>
-              </prop>
-            </schema>
-          </json>
-        </instanceUpdate>
-      </operation>
-      <operation operationId="Drills_Create">
-        <longRunning finalStateVia="azure-async-operation"/>
-        <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.AzureResilienceManagement/drills/{drillName}">
-          <request method="put">
-            <path>
-              <param type="string" name="drillName" arg="$Path.drillName" required="True">
-                <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
-              </param>
-              <param type="string" name="serviceGroupName" arg="$Path.serviceGroupName" required="True">
-                <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
-              </param>
-            </path>
-            <query>
-              <const readOnly="True" const="True" type="string" name="api-version" required="True">
-                <default value="&quot;2026-10-01&quot;"/>
-                <format minLength="1"/>
-              </const>
-            </query>
-            <body>
-              <json ref="$Instance"/>
-            </body>
-          </request>
-          <response statusCode="200 201">
-            <body>
-              <json var="$Instance">
-                <schema type="@Drill_read"/>
-              </json>
-            </body>
+          <response statusCode="202">
+            <header>
+              <item name="Azure-AsyncOperation"/>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
           </response>
           <response isError="True">
             <body>
@@ -1942,19 +1919,19 @@
             <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
           </arg>
         </argGroup>
-        <argGroup name="Resource.identity">
-          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+        <argGroup name="Properties.identity">
+          <arg type="string" var="$properties.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Properties.identity">
             <blank value="&quot;True&quot;"/>
             <help short="Set the system managed identity."/>
           </arg>
-          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+          <arg type="array<string>" var="$properties.identity.userAssigned" options="mi-user-assigned user-assigned" group="Properties.identity">
             <blank value="[]"/>
             <help short="Set the user managed identities."/>
             <item type="string"/>
           </arg>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="resource">
+          <json type="object" name="properties">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>
@@ -2424,19 +2401,19 @@
         <operation>
           <instanceUpdate ref="$Subresource">
             <json>
-              <schema action="assign" type="IdentityObject" name="resource.identity" required="True">
-                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+              <schema action="assign" type="IdentityObject" name="properties.identity" required="True">
+                <userAssigned action="assign" type="array<string>" name="userAssigned" arg="$properties.identity.userAssigned">
                   <item action="assign" type="string"/>
                 </userAssigned>
-                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+                <systemAssigned action="assign" type="string" name="systemAssigned" arg="$properties.identity.systemAssigned"/>
               </schema>
             </json>
           </instanceUpdate>
         </operation>
-        <operation operationId="Drills_Create">
-          <longRunning finalStateVia="azure-async-operation"/>
+        <operation operationId="Drills_Update">
+          <longRunning finalStateVia="location"/>
           <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.AzureResilienceManagement/drills/{drillName}">
-            <request method="put">
+            <request method="patch">
               <path>
                 <param type="string" name="drillName" arg="$Path.drillName" required="True">
                   <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
@@ -2452,15 +2429,26 @@
                 </const>
               </query>
               <body>
-                <json ref="$Instance"/>
+                <json ref="$Instance">
+                  <schema type="object" name="properties" required="True" clientFlatten="True">
+                    <prop type="IdentityObject" name="identity"/>
+                  </schema>
+                </json>
               </body>
             </request>
-            <response statusCode="200 201">
+            <response statusCode="200">
               <body>
                 <json var="$Instance">
                   <schema type="@Drill_read"/>
                 </json>
               </body>
+            </response>
+            <response statusCode="202">
+              <header>
+                <item name="Azure-AsyncOperation"/>
+                <item name="Location"/>
+                <item name="Retry-After"/>
+              </header>
             </response>
             <response isError="True">
               <body>
@@ -2485,19 +2473,19 @@
             <format pattern="^[a-zA-Z0-9\-_().~]{1,90}$"/>
           </arg>
         </argGroup>
-        <argGroup name="Resource.identity">
-          <arg type="string" var="$resource.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Resource.identity">
+        <argGroup name="Properties.identity">
+          <arg type="string" var="$properties.identity.systemAssigned" options="mi-system-assigned system-assigned" group="Properties.identity">
             <blank value="&quot;True&quot;"/>
             <help short="Set the system managed identity."/>
           </arg>
-          <arg type="array<string>" var="$resource.identity.userAssigned" options="mi-user-assigned user-assigned" group="Resource.identity">
+          <arg type="array<string>" var="$properties.identity.userAssigned" options="mi-user-assigned user-assigned" group="Properties.identity">
             <blank value="[]"/>
             <help short="Set the user managed identities."/>
             <item type="string"/>
           </arg>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="resource">
+          <json type="object" name="properties">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>
@@ -2967,19 +2955,19 @@
         <operation>
           <instanceUpdate ref="$Subresource">
             <json>
-              <schema action="remove" type="IdentityObject" name="resource.identity" required="True">
-                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$resource.identity.userAssigned">
+              <schema action="remove" type="IdentityObject" name="properties.identity" required="True">
+                <userAssigned action="remove" type="array<string>" name="userAssigned" arg="$properties.identity.userAssigned">
                   <item action="remove" type="string"/>
                 </userAssigned>
-                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$resource.identity.systemAssigned"/>
+                <systemAssigned action="remove" type="string" name="systemAssigned" arg="$properties.identity.systemAssigned"/>
               </schema>
             </json>
           </instanceUpdate>
         </operation>
-        <operation operationId="Drills_Create">
-          <longRunning finalStateVia="azure-async-operation"/>
+        <operation operationId="Drills_Update">
+          <longRunning finalStateVia="location"/>
           <http path="/providers/Microsoft.Management/serviceGroups/{serviceGroupName}/providers/Microsoft.AzureResilienceManagement/drills/{drillName}">
-            <request method="put">
+            <request method="patch">
               <path>
                 <param type="string" name="drillName" arg="$Path.drillName" required="True">
                   <format pattern="^[a-zA-Z0-9-]{3,24}$"/>
@@ -2995,15 +2983,26 @@
                 </const>
               </query>
               <body>
-                <json ref="$Instance"/>
+                <json ref="$Instance">
+                  <schema type="object" name="properties" required="True" clientFlatten="True">
+                    <prop type="IdentityObject" name="identity"/>
+                  </schema>
+                </json>
               </body>
             </request>
-            <response statusCode="200 201">
+            <response statusCode="200">
               <body>
                 <json var="$Instance">
                   <schema type="@Drill_read"/>
                 </json>
               </body>
+            </response>
+            <response statusCode="202">
+              <header>
+                <item name="Azure-AsyncOperation"/>
+                <item name="Location"/>
+                <item name="Retry-After"/>
+              </header>
             </response>
             <response isError="True">
               <body>
@@ -3029,7 +3028,7 @@
           </arg>
         </argGroup>
         <subresourceSelector var="$Subresource" ref="$Instance">
-          <json type="object" name="resource">
+          <json type="object" name="properties">
             <prop type="object" name="identity"/>
           </json>
         </subresourceSelector>
