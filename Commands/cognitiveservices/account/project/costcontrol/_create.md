@@ -1,6 +1,8 @@
 # [Command] _cognitiveservices account project costcontrol create_
 
-Create a project-owned const control.
+Create a Foundry project-owned const control.
+
+Create a Foundry project-owned const control. The definition may contain at most one notification, including disabled notifications, and one Block action. Exceeding either limit returns HTTP 400 without persisting the request.
 
 ## Versions
 

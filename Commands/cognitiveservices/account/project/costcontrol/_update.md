@@ -1,8 +1,8 @@
 # [Command] _cognitiveservices account project costcontrol update_
 
-Update a project-owned const control.
+Updates a Foundry project-owned const control.
 
-Updates a Foundry project cost control. Omitting properties preserves all existing cost control properties; setting properties to null or an empty object ({}) clears them all. A non-empty properties object updates selected fields, preserving omitted fields; an unchanged cost control retains its entity tag.
+Updates a Foundry project cost control. Omitting properties preserves all existing cost control properties; setting properties to null or an empty object ({}) clears them all. A non-empty properties object updates selected fields, preserving omitted fields; a successful update that leaves the cost control unchanged retains its entity tag. The complete merged result may contain at most one notification, including disabled notifications, and one Block action. Exceeding either limit returns HTTP 400 without changing the stored definition.
 
 ## Versions
 

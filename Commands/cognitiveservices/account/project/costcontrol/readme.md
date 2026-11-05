@@ -5,7 +5,7 @@ Manage Foundry project-owned cost controls
 ## Commands
 
 - [create](/Commands/cognitiveservices/account/project/costcontrol/_create.md)
-: Create a project-owned const control.
+: Create a Foundry project-owned const control.
 
 - [delete](/Commands/cognitiveservices/account/project/costcontrol/_delete.md)
 : Delete a project-owned cost control.
@@ -20,4 +20,4 @@ Manage Foundry project-owned cost controls
 : Get a project-owned cost control and its representation entity tag.
 
 - [update](/Commands/cognitiveservices/account/project/costcontrol/_update.md)
-: Update a project-owned const control.
+: Updates a Foundry project-owned const control.
