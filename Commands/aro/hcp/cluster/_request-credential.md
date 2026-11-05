@@ -23,5 +23,5 @@ Request a temporary credential for your Azure Red Hat OpenShift with hosted cont
 
 - Request a temporary admin credential
     ```bash
-        aro hcp cluster request-credential --resource-group MyResourceGroup --name MyCluster
+        aro hcp cluster request-credential --admin --resource-group MyResourceGroup --name MyCluster
     ```
