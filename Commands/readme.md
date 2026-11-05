@@ -95,9 +95,6 @@
 - [cloudhsm](/Commands/cloudhsm/readme.md)
 : Manage Cloud Hsm Cluster
 
-- [cognitive-services](/Commands/cognitive-services/readme.md)
-: Manage Cognitive Services
-
 - [cognitiveservices](/Commands/cognitiveservices/readme.md)
 : Manage Cognitive Services
 
