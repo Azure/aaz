@@ -22,7 +22,13 @@ Manage Access Control List Resource
 - [update](/Commands/networkfabric/acl/_update.md)
 : Update the Access Control List resource
 
+- [update-admin-state](/Commands/networkfabric/acl/_update-admin-state.md)
+: Implements the operation to the underlying resources.
+
 - [update-administrative-state](/Commands/networkfabric/acl/_update-administrative-state.md)
+: Implements the operation to the underlying resources.
+
+- [validate-config](/Commands/networkfabric/acl/_validate-config.md)
 : Implements the operation to the underlying resources.
 
 - [validate-configuration](/Commands/networkfabric/acl/_validate-configuration.md)

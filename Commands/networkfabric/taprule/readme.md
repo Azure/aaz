@@ -27,7 +27,13 @@ Manage Network Tap Rule Resource
 - [update](/Commands/networkfabric/taprule/_update.md)
 : Update the Network Tap Rule resource.
 
+- [update-admin-state](/Commands/networkfabric/taprule/_update-admin-state.md)
+: Implements the operation to the underlying resources.
+
 - [update-administrative-state](/Commands/networkfabric/taprule/_update-administrative-state.md)
+: Implements the operation to the underlying resources.
+
+- [validate-config](/Commands/networkfabric/taprule/_validate-config.md)
 : Implements the operation to the underlying resources.
 
 - [validate-configuration](/Commands/networkfabric/taprule/_validate-configuration.md)

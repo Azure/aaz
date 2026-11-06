@@ -23,5 +23,5 @@ Get a Network Bootstrap Device resource details.
 
 - Show the Bootstrap Device resource
     ```bash
-        networkfabric bootstrapdevice show --resource-group example-rg --resource-name example-device
+        networkfabric bootstrapdevice show --resource-group "example-rg" --resource-name "example-device"
     ```

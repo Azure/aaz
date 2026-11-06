@@ -42,5 +42,5 @@ Upgrades the version of the Network Device.
 
 - Upgrade the Network Device
     ```bash
-        networkfabric device upgrade --resource-group example-rg --resource-name example-device --version 1.0.0
+        networkfabric device upgrade --resource-group "example-rg" --resource-name "example-device" --version "1.0.0"
     ```

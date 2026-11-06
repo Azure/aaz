@@ -42,5 +42,5 @@ Show details of the provided Network Fabric SKU resource.
 
 - Show the FabricSKU for Subscription
     ```bash
-        networkfabric fabricsku show --resource-name wxample-fabricsku
+        networkfabric fabricsku show --resource-name "wxample-fabricsku"
     ```

@@ -23,5 +23,5 @@ Updates all Network Devices to use the latest certificates. Does not generate ne
 
 - Updates all Network Devices to use the latest certificates
     ```bash
-        networkfabric fabric resync-certificate --resource-group example-rg --resource-name example-fabric
+        networkfabric fabric resync-certificate --resource-group "example-rg" --resource-name "example-fabric"
     ```

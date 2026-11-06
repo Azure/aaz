@@ -23,5 +23,5 @@ Reboot the Network Bootstrap Device.
 
 - Reboot the Bootstrap Device
     ```bash
-        networkfabric bootstrapdevice reboot --resource-group example-rg --resource-name example-device
+        networkfabric bootstrapdevice reboot --resource-group "example-rg" --resource-name "example-device"
     ```

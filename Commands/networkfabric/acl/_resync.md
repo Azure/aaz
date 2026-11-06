@@ -38,5 +38,5 @@ Implements the operation to the underlying resources.
 
 - Resync the Access Control List
     ```bash
-        networkfabric acl resync --resource-group example-rg --access-control-list-name example-acl
+        networkfabric acl resync --resource-group "example-rg" --access-control-list-name "example-acl"
     ```

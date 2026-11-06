@@ -23,5 +23,5 @@ Delete the Network Bootstrap Interface resource.
 
 - Delete the Bootstrap Interface resource
     ```bash
-        networkfabric bootstrapinterface delete --resource-group example-rg --bootstrap-device example-device --resource-name example-interface
+        networkfabric bootstrapinterface delete --resource-group "example-rg" --bootstrap-device "example-device" --resource-name "example-interface"
     ```

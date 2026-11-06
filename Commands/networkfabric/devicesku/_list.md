@@ -56,5 +56,5 @@ List all Network Device SKUs in the provided subscription.
 
 - List the DeviceSKU for Subscription
     ```bash
-        networkfabric devicesku list --subscription <subscriptionId>
+        networkfabric devicesku list --subscription "<subscriptionId>"
     ```

@@ -60,5 +60,5 @@ Update the L2 Isolation Domain resource.
 
 - Update the L2 Isolation Domain
     ```bash
-        networkfabric l2domain update --resource-group "example-rg" --resource-name "example-l2domain" --mtu 1500
+        networkfabric l2domain update --resource-group "example-rg" --resource-name "example-l2domain" --mtu "1500"
     ```

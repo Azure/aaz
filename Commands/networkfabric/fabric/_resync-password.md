@@ -23,5 +23,5 @@ Updates the Terminal Server and all Network Devices to use the latest passwords.
 
 - Updates the Terminal Server and all Network Devices to use the latest passwords
     ```bash
-        networkfabric fabric resync-password --resource-group example-rg --resource-name example-fabric
+        networkfabric fabric resync-password --resource-group "example-rg" --resource-name "example-fabric"
     ```
