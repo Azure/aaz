@@ -143,6 +143,9 @@
                       </enum>
                     </prop>
                     <prop type="string" name="extensionsTimeBudget"/>
+                    <prop type="object" name="flexProfile">
+                      <prop type="string" name="preferredVMSize" required="True"/>
+                    </prop>
                     <prop type="object" name="hardwareProfile">
                       <prop type="string" name="processorMode">
                         <enum>
@@ -1411,6 +1414,12 @@
         <arg type="string" var="$parameters.properties.extensionsTimeBudget" options="extensions-time-budget" group="Properties">
           <help short="Specifies the time alloted for all extensions to start. The time duration should be between 15 minutes and 120 minutes (inclusive) and should be specified in ISO 8601 format. The default value is 90 minutes (PT1H30M). Minimum api-version: 2020-06-01."/>
         </arg>
+        <arg type="object" var="$parameters.properties.flexProfile" options="flex-profile" group="Properties">
+          <help short="[Preview Feature] Specifies a FlexProfile for VM size. Azure may deploy a compatible alternative VM size based on capacity and placement considerations, and returns the deployed size in hardwareProfile.vmSize. A request that adds flexProfile must omit hardwareProfile.vmSize. For a virtual machine that uses FlexProfile, a hardwareProfile.vmSize equal to the deployed size is ignored, so a GET response can be sent back unchanged. A PATCH request that omits flexProfile keeps it. A PUT request that omits flexProfile and sets hardwareProfile.vmSize clears it. This property cannot exist along with a non-null properties.availabilitySet, properties.capacityReservation, properties.host, properties.hostGroup, properties.proximityPlacementGroup or properties.virtualMachineScaleSet."/>
+          <arg type="string" var="$parameters.properties.flexProfile.preferredVMSize" options="preferred-vm-size" required="True">
+            <help short="Specifies the preferred VM size, for example Standard_D4s_v5. Azure may deploy a compatible alternative size based on capacity and placement considerations. Supported VM families for FlexProfile may vary by region. The recommended way to get the list of available sizes is using these APIs: [List all available virtual machine sizes in a region](https://docs.microsoft.com/rest/api/compute/resourceskus/list), [List all available virtual machine sizes for resizing](https://docs.microsoft.com/rest/api/compute/virtualmachines/listavailablesizes)."/>
+          </arg>
+        </arg>
         <arg type="object" var="$parameters.properties.hardwareProfile" options="hardware-profile" group="Properties">
           <help short="Specifies the hardware settings for the virtual machine."/>
           <arg type="string" var="$parameters.properties.hardwareProfile.processorMode" options="processor-mode">
@@ -2359,7 +2368,7 @@
                 </arg>
                 <arg type="object" var="$parameters.properties.storageProfile.osDisk.encryptionSettings.diskEncryptionKey.sourceVault" options="source-vault" required="True" cls="SubResource_create">
                   <help short="The relative URL of the Key Vault containing the secret."/>
-                  <arg type="ResourceId" var="@SubResource_create.id" options="id">
+                  <arg type="ResourceId" var="@SubResource_create.id" options="id" group="">
                     <help short="Resource Id"/>
                   </arg>
                 </arg>
@@ -2618,6 +2627,9 @@
                       </enum>
                     </prop>
                     <prop type="string" name="extensionsTimeBudget" arg="$parameters.properties.extensionsTimeBudget"/>
+                    <prop type="object" name="flexProfile" arg="$parameters.properties.flexProfile">
+                      <prop type="string" name="preferredVMSize" arg="$parameters.properties.flexProfile.preferredVMSize" required="True"/>
+                    </prop>
                     <prop type="object" name="hardwareProfile" arg="$parameters.properties.hardwareProfile">
                       <prop type="string" name="processorMode" arg="$parameters.properties.hardwareProfile.processorMode">
                         <enum>
@@ -3488,6 +3500,9 @@
                       </enum>
                     </prop>
                     <prop type="string" name="extensionsTimeBudget"/>
+                    <prop type="object" name="flexProfile">
+                      <prop type="string" name="preferredVMSize" required="True"/>
+                    </prop>
                     <prop type="object" name="hardwareProfile">
                       <prop type="string" name="processorMode">
                         <enum>
@@ -4693,6 +4708,12 @@
         <arg nullable="True" type="string" var="$parameters.properties.extensionsTimeBudget" options="extensions-time-budget" group="Properties">
           <help short="Specifies the time alloted for all extensions to start. The time duration should be between 15 minutes and 120 minutes (inclusive) and should be specified in ISO 8601 format. The default value is 90 minutes (PT1H30M). Minimum api-version: 2020-06-01."/>
         </arg>
+        <arg nullable="True" type="object" var="$parameters.properties.flexProfile" options="flex-profile" group="Properties">
+          <help short="[Preview Feature] Specifies a FlexProfile for VM size. Azure may deploy a compatible alternative VM size based on capacity and placement considerations, and returns the deployed size in hardwareProfile.vmSize. A request that adds flexProfile must omit hardwareProfile.vmSize. For a virtual machine that uses FlexProfile, a hardwareProfile.vmSize equal to the deployed size is ignored, so a GET response can be sent back unchanged. A PATCH request that omits flexProfile keeps it. A PUT request that omits flexProfile and sets hardwareProfile.vmSize clears it. This property cannot exist along with a non-null properties.availabilitySet, properties.capacityReservation, properties.host, properties.hostGroup, properties.proximityPlacementGroup or properties.virtualMachineScaleSet."/>
+          <arg type="string" var="$parameters.properties.flexProfile.preferredVMSize" options="preferred-vm-size">
+            <help short="Specifies the preferred VM size, for example Standard_D4s_v5. Azure may deploy a compatible alternative size based on capacity and placement considerations. Supported VM families for FlexProfile may vary by region. The recommended way to get the list of available sizes is using these APIs: [List all available virtual machine sizes in a region](https://docs.microsoft.com/rest/api/compute/resourceskus/list), [List all available virtual machine sizes for resizing](https://docs.microsoft.com/rest/api/compute/virtualmachines/listavailablesizes)."/>
+          </arg>
+        </arg>
         <arg nullable="True" type="object" var="$parameters.properties.hardwareProfile" options="hardware-profile" group="Properties">
           <help short="Specifies the hardware settings for the virtual machine."/>
           <arg nullable="True" type="string" var="$parameters.properties.hardwareProfile.processorMode" options="processor-mode">
@@ -5641,7 +5662,7 @@
                 </arg>
                 <arg type="object" var="$parameters.properties.storageProfile.osDisk.encryptionSettings.diskEncryptionKey.sourceVault" options="source-vault" cls="SubResource_update">
                   <help short="The relative URL of the Key Vault containing the secret."/>
-                  <arg nullable="True" type="ResourceId" var="@SubResource_update.id" options="id">
+                  <arg nullable="True" type="ResourceId" var="@SubResource_update.id" options="id" group="">
                     <help short="Resource Id"/>
                   </arg>
                 </arg>
@@ -5904,6 +5925,9 @@
                       </enum>
                     </prop>
                     <prop type="string" name="extensionsTimeBudget"/>
+                    <prop type="object" name="flexProfile">
+                      <prop type="string" name="preferredVMSize" required="True"/>
+                    </prop>
                     <prop type="object" name="hardwareProfile">
                       <prop type="string" name="processorMode">
                         <enum>
@@ -7023,6 +7047,9 @@
                   </enum>
                 </prop>
                 <prop type="string" name="extensionsTimeBudget" arg="$parameters.properties.extensionsTimeBudget"/>
+                <prop type="object" name="flexProfile" arg="$parameters.properties.flexProfile">
+                  <prop type="string" name="preferredVMSize" arg="$parameters.properties.flexProfile.preferredVMSize" required="True"/>
+                </prop>
                 <prop type="object" name="hardwareProfile" arg="$parameters.properties.hardwareProfile">
                   <prop type="string" name="processorMode" arg="$parameters.properties.hardwareProfile.processorMode">
                     <enum>
@@ -7989,6 +8016,9 @@
                         </enum>
                       </prop>
                       <prop type="string" name="extensionsTimeBudget"/>
+                      <prop type="object" name="flexProfile">
+                        <prop type="string" name="preferredVMSize" required="True"/>
+                      </prop>
                       <prop type="object" name="hardwareProfile">
                         <prop type="string" name="processorMode">
                           <enum>
@@ -9227,6 +9257,9 @@
                         </enum>
                       </prop>
                       <prop type="string" name="extensionsTimeBudget"/>
+                      <prop type="object" name="flexProfile">
+                        <prop type="string" name="preferredVMSize" required="True"/>
+                      </prop>
                       <prop type="object" name="hardwareProfile">
                         <prop type="string" name="processorMode">
                           <enum>
@@ -10448,6 +10481,9 @@
                         </enum>
                       </prop>
                       <prop type="string" name="extensionsTimeBudget"/>
+                      <prop type="object" name="flexProfile">
+                        <prop type="string" name="preferredVMSize" required="True"/>
+                      </prop>
                       <prop type="object" name="hardwareProfile">
                         <prop type="string" name="processorMode">
                           <enum>
