@@ -51,3 +51,6 @@ Manage the Azure Monitor Service.
 
 - [tenant-action-group](/Commands/monitor/tenant-action-group/readme.md)
 : monitor tenant-action-group
+
+- [trace-association](/Commands/monitor/trace-association/readme.md)
+: Manage distributed trace associations.
