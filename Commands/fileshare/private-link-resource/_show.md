@@ -18,3 +18,14 @@ Get the private link resources that need to be created for a file share.
     ```bash
         fileshare private-link-resource show --resource-group rgfileshare --resource-name testfileshare01 --private-link-resource-name fileshare
     ```
+
+### [2026-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5maWxlc2hhcmVzL2ZpbGVzaGFyZXMve30vcHJpdmF0ZWxpbmtyZXNvdXJjZXMve30=/2026-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.fileshares/fileshares/{}/privatelinkresources/{} 2026-09-01 -->
+
+#### examples
+
+- Get private link resource
+    ```bash
+        fileshare private-link-resource show --resource-group rgfileshare --resource-name testfileshare01 --private-link-resource-name fileshare
+    ```

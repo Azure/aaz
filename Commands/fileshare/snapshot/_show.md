@@ -18,3 +18,14 @@ Get a file share snapshot.
     ```bash
         fileshare snapshot show --resource-group rgfileshares --resource-name fileshare --name testfilesharesnapshot
     ```
+
+### [2026-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5maWxlc2hhcmVzL2ZpbGVzaGFyZXMve30vZmlsZXNoYXJlc25hcHNob3RzL3t9/2026-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.fileshares/fileshares/{}/filesharesnapshots/{} 2026-09-01 -->
+
+#### examples
+
+- Show fileshare snapshots
+    ```bash
+        fileshare snapshot show --resource-group rgfileshares --resource-name fileshare --name testfilesharesnapshot
+    ```
