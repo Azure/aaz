@@ -39,3 +39,20 @@ Policy Groups are independent resource-group-scoped Microsoft.NetworkSecurity pe
     ```bash
         agentfabric policy-group list
     ```
+
+### [2026-11-03-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3Jrc2VjdXJpdHkvcG9saWN5Z3JvdXBz/2026-11-03-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.networksecurity/policygroups 2026-11-03-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networksecurity/policygroups 2026-11-03-preview -->
+
+#### examples
+
+- List independent Policy Groups in a resource group
+    ```bash
+        agentfabric policy-group list --resource-group rgnetworksecurity
+    ```
+
+- List independent Policy Groups in a subscription
+    ```bash
+        agentfabric policy-group list
+    ```
