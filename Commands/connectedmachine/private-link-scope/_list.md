@@ -94,3 +94,16 @@ Get a list of Azure Arc PrivateLinkScopes for a resource group or a subscription
         connectedmachine private-link-scope list --resource-group my-resource-group
         connectedmachine private-link-scope list
     ```
+
+### [2026-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5oeWJyaWRjb21wdXRlL3ByaXZhdGVsaW5rc2NvcGVz/2026-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.hybridcompute/privatelinkscopes 2026-09-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridcompute/privatelinkscopes 2026-09-01 -->
+
+#### examples
+
+- Sample command for private-link-scope list
+    ```bash
+        connectedmachine private-link-scope list --resource-group my-resource-group
+        connectedmachine private-link-scope list
+    ```

@@ -29,3 +29,14 @@ The operation to validate a license.
     ```bash
         connectedmachine license validate --location myLocation --subscription mySubscription
     ```
+
+### [2026-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5oeWJyaWRjb21wdXRlL3ZhbGlkYXRlbGljZW5zZQ==/2026-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.hybridcompute/validatelicense 2026-09-01 -->
+
+#### examples
+
+- Sample command for license validate
+    ```bash
+        connectedmachine license validate --location myLocation --subscription mySubscription
+    ```

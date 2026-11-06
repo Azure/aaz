@@ -39,3 +39,15 @@ List all Arc gateway resources associated with a specific subscription.
     ```bash
         arcgateway list --subscription mySubscription
     ```
+
+### [2026-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5oeWJyaWRjb21wdXRlL2dhdGV3YXlz/2026-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.hybridcompute/gateways 2026-09-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.hybridcompute/gateways 2026-09-01 -->
+
+#### examples
+
+- Sample command or gateway list
+    ```bash
+        arcgateway list --subscription mySubscription
+    ```
