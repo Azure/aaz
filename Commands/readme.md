@@ -317,6 +317,9 @@
 - [networkfabric](/Commands/networkfabric/readme.md)
 : Manage Azure Network Fabric Management Service API
 
+- [networksecurity](/Commands/networksecurity/readme.md)
+: Manage Network Security
+
 - [new-relic](/Commands/new-relic/readme.md)
 : Manage Azure New Relic resources.
 
