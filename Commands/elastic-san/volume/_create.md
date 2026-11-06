@@ -105,3 +105,24 @@ Create a Volume.
     ```bash
         elastic-san volume create -g "rg" -e "san_name" -v "vg_name" -n "volume_name_2" --size-gib 2 --creation-data '{source-id:"snapshot_id",create-source:VolumeSnapshot}'
     ```
+
+### [2026-05-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5lbGFzdGljc2FuL2VsYXN0aWNzYW5zL3t9L3ZvbHVtZWdyb3Vwcy97fS92b2x1bWVzL3t9/2026-05-01-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.elasticsan/elasticsans/{}/volumegroups/{}/volumes/{} 2026-05-01-preview -->
+
+#### examples
+
+- Create a Volume.
+    ```bash
+        elastic-san volume create -g "rg" -e "san_name" -v "vg_name" -n "volume_name" --size-gib 2
+    ```
+
+- Create a Volume from snapshot.
+    ```bash
+        elastic-san volume create -g "rg" -e "san_name" -v "vg_name" -n "volume_name_2" --size-gib 2 --creation-data '{source-id:"snapshot_id",create-source:VolumeSnapshot}'
+    ```
+
+- Create a volume with Resource Ids.
+    ```bash
+        elastic-san volume create --resource-group resourcegroupname --elastic-san-name elasticsanname --volume-group-name volumegroupname --volume-name volumename --creation-data "{create-source:None,source-id:mdonegivjquite}" --managed-by "[{client-id:pclpkrpkpmvcsegcubrakcoodrubo,version:1,resource-ids:[/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myResourceGroup/providers/Microsoft.SomeProvider/someResource/myResource]}]" --size-gib 23
+    ```
