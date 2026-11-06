@@ -1,6 +1,8 @@
 # [Group] _redisenterprise migration_
 
-Manage Migration
+Manage migrations from Azure Cache for Redis Basic, Standard, and Premium tiers to Azure Managed Redis.
+
+These commands apply only to migrations from the Basic, Standard, and Premium tiers of Azure Cache for Redis to Azure Managed Redis. Azure Cache for Redis Enterprise clusters use a separate cluster SKU-update migration flow.
 
 ## Subgroups
 
@@ -10,16 +12,19 @@ Manage Migration
 ## Commands
 
 - [list](/Commands/redisenterprise/migration/_list.md)
-: List information about all migrations attempts in a Redis Enterprise cluster.
+: List migrations from Azure Cache for Redis Basic, Standard, or Premium tiers to Azure Managed Redis.
 
 - [show](/Commands/redisenterprise/migration/_show.md)
-: Get information about a migration in a Redis Enterprise cluster.
+: Get details of a migration from Azure Cache for Redis Basic, Standard, or Premium tiers to Azure Managed Redis.
 
 - [start](/Commands/redisenterprise/migration/_start.md)
-: Create a new migration
+: Start migration from Azure Cache for Redis Basic, Standard, or Premium tiers to Azure Managed Redis.
 
 - [undo](/Commands/redisenterprise/migration/_undo.md)
-: Cancel or rollback the migration operation in a Redis Enterprise cluster.
+: Cancel or roll back a migration from Azure Cache for Redis Basic, Standard, or Premium tiers to Azure Managed Redis.
+
+- [unlink-migrated-endpoint](/Commands/redisenterprise/migration/_unlink-migrated-endpoint.md)
+: Unlink the endpoint migrated from Azure Cache for Redis Basic, Standard, or Premium tiers to Azure Managed Redis.
 
 - [validate](/Commands/redisenterprise/migration/_validate.md)
-: Validates if a source Azure Cache for Redis resource can be migrated to a target Azure Managed Redis resource.
+: Validate migration from Azure Cache for Redis Basic, Standard, or Premium tiers to Azure Managed Redis.

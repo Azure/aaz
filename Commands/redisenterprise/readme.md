@@ -11,7 +11,7 @@ Manage the redisenterprise cache
 : Manage Identity
 
 - [migration](/Commands/redisenterprise/migration/readme.md)
-: Manage Migration
+: Manage migrations from Azure Cache for Redis Basic, Standard, and Premium tiers to Azure Managed Redis.
 
 - [operation-status](/Commands/redisenterprise/operation-status/readme.md)
 : Get the status of an operation
@@ -41,6 +41,9 @@ Manage the redisenterprise cache
 
 - [show](/Commands/redisenterprise/_show.md)
 : Get information about a RedisEnterprise cluster
+
+- [unlink-migrated-endpoint](/Commands/redisenterprise/_unlink-migrated-endpoint.md)
+: Unlinks the migrated endpoint from an Azure Managed Redis cluster that was migrated from Azure Cache for Redis Enterprise, removing the source cache endpoint that was redirected to this cluster during migration.
 
 - [update](/Commands/redisenterprise/_update.md)
 : Update an existing (overwrite/recreate, with potential downtime) cache cluster
