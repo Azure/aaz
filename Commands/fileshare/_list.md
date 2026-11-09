@@ -20,3 +20,15 @@ List file shares in a resource group.
     ```bash
         fileshare list
     ```
+
+### [2026-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5maWxlc2hhcmVzL2ZpbGVzaGFyZXM=/2026-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.fileshares/fileshares 2026-09-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.fileshares/fileshares 2026-09-01 -->
+
+#### examples
+
+- List file share
+    ```bash
+        fileshare list
+    ```

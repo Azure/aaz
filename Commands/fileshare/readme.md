@@ -4,6 +4,9 @@ Manage Azure File Shares.
 
 ## Subgroups
 
+- [identity](/Commands/fileshare/identity/readme.md)
+: Manage Identity
+
 - [private-endpoint-connection](/Commands/fileshare/private-endpoint-connection/readme.md)
 : Manage private endpoint connections for file shares.
 
@@ -27,6 +30,9 @@ Manage Azure File Shares.
 - [get-provisioning-recommendation](/Commands/fileshare/_get-provisioning-recommendation.md)
 : Get provisioning recommendations for a file share.
 
+- [get-redundancy-conversion-status](/Commands/fileshare/_get-redundancy-conversion-status.md)
+: Gets the status and details of the current or most recent redundancy conversion for the file share.
+
 - [limits-show](/Commands/fileshare/_limits-show.md)
 : Get file share limits and provisioning constants.
 
@@ -35,6 +41,9 @@ Manage Azure File Shares.
 
 - [show](/Commands/fileshare/_show.md)
 : Get details of a file share.
+
+- [start-redundancy-conversion](/Commands/fileshare/_start-redundancy-conversion.md)
+: Starts a redundancy conversion for the file share.
 
 - [update](/Commands/fileshare/_update.md)
 : Update a file share.

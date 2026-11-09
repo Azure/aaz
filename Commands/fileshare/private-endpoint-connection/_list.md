@@ -18,3 +18,14 @@ List private endpoint connections for a file share.
     ```bash
         fileshare private-endpoint-connection list --resource-group rgfileshares --resource-name fileshare
     ```
+
+### [2026-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5maWxlc2hhcmVzL2ZpbGVzaGFyZXMve30vcHJpdmF0ZWVuZHBvaW50Y29ubmVjdGlvbnM=/2026-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.fileshares/fileshares/{}/privateendpointconnections 2026-09-01 -->
+
+#### examples
+
+- List private endpoint connections
+    ```bash
+        fileshare private-endpoint-connection list --resource-group rgfileshares --resource-name fileshare
+    ```

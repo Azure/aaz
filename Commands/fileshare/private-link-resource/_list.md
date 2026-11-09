@@ -18,3 +18,14 @@ List the private link resources that need to be created for a file share.
     ```bash
         fileshare private-link-resource list --resource-group res4303 --resource-name testfileshare01
     ```
+
+### [2026-09-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5maWxlc2hhcmVzL2ZpbGVzaGFyZXMve30vcHJpdmF0ZWxpbmtyZXNvdXJjZXM=/2026-09-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.fileshares/fileshares/{}/privatelinkresources 2026-09-01 -->
+
+#### examples
+
+- List private link resources
+    ```bash
+        fileshare private-link-resource list --resource-group res4303 --resource-name testfileshare01
+    ```
