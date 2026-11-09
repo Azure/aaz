@@ -16,8 +16,5 @@ Manage Azure Resiliency
 - [recovery-plan](/Commands/resiliency/recovery-plan/readme.md)
 : Manage Recovery Plan
 
-- [unified-resilience-item](/Commands/resiliency/unified-resilience-item/readme.md)
-: Manage Unified Resilience Item
-
 - [usage-plan](/Commands/resiliency/usage-plan/readme.md)
 : Manage Usage Plan

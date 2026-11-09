@@ -9,9 +9,6 @@ Manage Recovery Job
 
 ## Commands
 
-- [cancel](/Commands/resiliency/recovery-plan/recovery-job/_cancel.md)
-: This action attempts to cancel the ongoing recovery orchestration job.
-
 - [list](/Commands/resiliency/recovery-plan/recovery-job/_list.md)
 : List RecoveryJob resources by RecoveryPlan
 
