@@ -14,3 +14,14 @@ Get the usage of file service in storage account including account limits, file 
     ```bash
         storage account file-service-usage --account-name sa1 -g rg1
     ```
+
+### [2026-06-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5zdG9yYWdlL3N0b3JhZ2VhY2NvdW50cy97fS9maWxlc2VydmljZXMvZGVmYXVsdC91c2FnZXMvZGVmYXVsdA==/2026-06-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.storage/storageaccounts/{}/fileservices/default/usages/default 2026-06-01 -->
+
+#### examples
+
+- GetFileServiceUsage
+    ```bash
+        storage account file-service-usage --resource-group res4410 --account-name sto8607
+    ```
