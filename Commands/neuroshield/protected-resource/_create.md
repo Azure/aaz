@@ -12,17 +12,17 @@ Create a protected resource under a NeuroShield resource.
 
 - Create or update protected resource with a system-assigned target identity
     ```bash
-        neuroshield protected-resource create --resource-group myResourceGroup --neuroshield-name myNeuroShield --protected-resource-name vm-01 --target-resource-id /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myComputeRg/providers/Microsoft.Compute/virtualMachines/vm-01 --type SystemAssigned --principal-id 11111111-1111-1111-1111-111111111111 --tenant-id 22222222-2222-2222-2222-222222222222
+        neuroshield protected-resource create --resource-group myResourceGroup --neuroshield-name myNeuroShield --protected-resource-name vm-01 --target-resource-id /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myComputeRg/providers/Microsoft.Compute/virtualMachines/vm-01 --target-identity "{type:SystemAssigned,principal-id:11111111-1111-1111-1111-111111111111,tenant-id:22222222-2222-2222-2222-222222222222}"
     ```
 
 - Create or update protected resource with a user-assigned target identity
     ```bash
-        neuroshield protected-resource create --resource-group myResourceGroup --neuroshield-name myNeuroShield --protected-resource-name vm-01 --target-resource-id /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myComputeRg/providers/Microsoft.Compute/virtualMachines/vm-01 --type UserAssigned --user-assigned-identities "{/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myIdentityRg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/neuronIdentity:{principalId:11111111-1111-1111-1111-111111111111,clientId:22222222-2222-2222-2222-222222222222}}"
+        neuroshield protected-resource create --resource-group myResourceGroup --neuroshield-name myNeuroShield --protected-resource-name vm-01 --target-resource-id /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myComputeRg/providers/Microsoft.Compute/virtualMachines/vm-01 --target-identity "{type:UserAssigned,user-assigned-identities:{/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myIdentityRg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/neuronIdentity:{principal-id:11111111-1111-1111-1111-111111111111,client-id:22222222-2222-2222-2222-222222222222}}}"
     ```
 
 - Create or update protected resource with explicit None identity
     ```bash
-        neuroshield protected-resource create --resource-group myResourceGroup --neuroshield-name myNeuroShield --protected-resource-name vm-01 --target-resource-id /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myComputeRg/providers/Microsoft.Compute/virtualMachines/vm-01 --type None
+        neuroshield protected-resource create --resource-group myResourceGroup --neuroshield-name myNeuroShield --protected-resource-name vm-01 --target-resource-id /subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myComputeRg/providers/Microsoft.Compute/virtualMachines/vm-01 --target-identity "{type:None}"
     ```
 
 - Create or update protected resource without an identity
