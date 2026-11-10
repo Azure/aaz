@@ -317,6 +317,9 @@
 - [networkfabric](/Commands/networkfabric/readme.md)
 : Manage Azure Network Fabric Management Service API
 
+- [neuroshield](/Commands/neuroshield/readme.md)
+: Manage Neuro Shield
+
 - [new-relic](/Commands/new-relic/readme.md)
 : Manage Azure New Relic resources.
 
