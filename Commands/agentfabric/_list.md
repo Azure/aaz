@@ -37,3 +37,20 @@ List Agent Fabric resources.
     ```bash
         agentfabric list
     ```
+
+### [2026-11-03-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3Jrc2VjdXJpdHkvYWdlbnRmYWJyaWNz/2026-11-03-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.networksecurity/agentfabrics 2026-11-03-preview -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networksecurity/agentfabrics 2026-11-03-preview -->
+
+#### examples
+
+- List Agent Fabrics in a resource group
+    ```bash
+        agentfabric list --resource-group rgnetworksecurity
+    ```
+
+- List Agent Fabrics in a subscription
+    ```bash
+        agentfabric list
+    ```

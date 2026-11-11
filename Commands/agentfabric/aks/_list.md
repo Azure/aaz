@@ -27,3 +27,14 @@ Manage compute-resource enrollment through ClusterAssociation resources under an
     ```bash
         agentfabric aks list --resource-group rgnetworksecurity --fabric-name testAIFabric
     ```
+
+### [2026-11-03-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3Jrc2VjdXJpdHkvYWdlbnRmYWJyaWNzL3t9L2NsdXN0ZXJhc3NvY2lhdGlvbnM=/2026-11-03-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.networksecurity/agentfabrics/{}/clusterassociations 2026-11-03-preview -->
+
+#### examples
+
+- List compute associations
+    ```bash
+        agentfabric aks list --resource-group rgnetworksecurity --fabric-name testAIFabric
+    ```
