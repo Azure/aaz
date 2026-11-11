@@ -12,5 +12,5 @@ Show detailed workspace information, including projects.
 
 - Workspaces_GetDetails
     ```bash
-        artemis organization workspace show-details --resource-group contoso-rg --organization-name contoso-org --workspace-name contoso-prod
+        koreai artemis organization workspace show-details --resource-group contoso-rg --organization-name contoso-org --workspace-name contoso-prod
     ```

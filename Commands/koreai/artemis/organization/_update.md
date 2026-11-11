@@ -1,6 +1,6 @@
-# [Command] _artemis organization show_
+# [Command] _artemis organization update_
 
-Get an Organization.
+Update an Organization (long-running).
 
 ## Versions
 
@@ -10,7 +10,7 @@ Get an Organization.
 
 #### examples
 
-- Organizations_Get
+- Organizations_Create
     ```bash
-        artemis organization show --resource-group contoso-rg --organization-name contoso-org
+        koreai artemis organization update --resource-group contoso-rg --organization-name contoso-org
     ```

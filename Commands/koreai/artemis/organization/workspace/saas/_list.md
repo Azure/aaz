@@ -1,4 +1,4 @@
-# [Command] _artemis organization workspace list-linked-saas_
+# [Command] _koreai artemis organization workspace saas list_
 
 Returns the list of SaaS resources linked to the workspace.
 
@@ -12,5 +12,5 @@ Returns the list of SaaS resources linked to the workspace.
 
 - Workspaces_ListLinkedSaaS
     ```bash
-        artemis organization workspace list-linked-saas --resource-group contoso-rg --organization-name contoso-org --workspace-name contoso-prod
+        koreai artemis organization workspace saas list --resource-group contoso-rg --organization-name contoso-org --workspace-name contoso-prod
     ```

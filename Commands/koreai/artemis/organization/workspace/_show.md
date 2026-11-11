@@ -1,6 +1,6 @@
-# [Command] _artemis organization workspace update_
+# [Command] _artemis organization workspace show_
 
-Update a Workspace under an Organization (long-running).
+Get a Workspace under an Organization.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Update a Workspace under an Organization (long-running).
 
 #### examples
 
-- Workspaces_CreateOrUpdate
+- Workspaces_Get
     ```bash
-        artemis organization workspace update --resource-group contoso-rg --organization-name contoso-org --workspace-name contoso-prod
+        koreai artemis organization workspace show --resource-group contoso-rg --organization-name contoso-org --workspace-name contoso-prod
     ```

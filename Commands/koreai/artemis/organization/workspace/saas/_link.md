@@ -1,4 +1,4 @@
-# [Command] _artemis organization workspace link-saas_
+# [Command] _koreai artemis organization workspace saas link_
 
 Links SaaS resources to the workspace. Accepts the full list of SaaS assets to be linked.
 
@@ -12,5 +12,5 @@ Links SaaS resources to the workspace. Accepts the full list of SaaS assets to b
 
 - Workspaces_LinkSaaS
     ```bash
-        artemis organization workspace link-saas --resource-group contoso-rg --organization-name contoso-org --workspace-name contoso-prod --saas-resource-ids "[/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso-rg/providers/Microsoft.SaaS/resources/kore-ai-saas-1,/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso-rg/providers/Microsoft.SaaS/resources/kore-ai-saas-2]"
+        koreai artemis organization workspace saas link --resource-group contoso-rg --organization-name contoso-org --workspace-name contoso-prod --saas-resource-ids "[/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso-rg/providers/Microsoft.SaaS/resources/kore-ai-saas-1,/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/contoso-rg/providers/Microsoft.SaaS/resources/kore-ai-saas-2]"
     ```

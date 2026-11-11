@@ -14,5 +14,5 @@ This operation permanently deletes the organization and cascades to all child wo
 
 - Organizations_Delete
     ```bash
-        artemis organization delete --resource-group contoso-rg --organization-name contoso-org
+        koreai artemis organization delete --resource-group contoso-rg --organization-name contoso-org
     ```

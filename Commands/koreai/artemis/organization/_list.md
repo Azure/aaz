@@ -13,10 +13,10 @@ List Organizations in a Subscription.
 
 - Organizations_ListBySubscription
     ```bash
-        artemis organization list
+        koreai artemis organization list
     ```
 
 - Organizations_ListByResourceGroup
     ```bash
-        artemis organization list --resource-group contoso-rg
+        koreai artemis organization list --resource-group contoso-rg
     ```

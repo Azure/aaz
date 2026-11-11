@@ -1,4 +1,4 @@
-# [Command] _artemis organization list-workspaces_
+# [Command] _koreai artemis organization workspace list-all_
 
 List all workspaces reported by a Kore.ai organization.
 
@@ -14,5 +14,5 @@ Includes both ARM-managed workspaces and Kore-only workspaces that do not have a
 
 - Organizations_ListWorkspaces
     ```bash
-        artemis organization list-workspaces --resource-group contoso-rg --organization-name contoso-org
+        koreai artemis organization workspace list-all --resource-group contoso-rg --organization-name contoso-org
     ```

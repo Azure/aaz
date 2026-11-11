@@ -1,6 +1,6 @@
-# [Command] _artemis organization workspace show_
+# [Command] _artemis organization workspace delete_
 
-Get a Workspace under an Organization.
+Delete a Workspace under an Organization (long-running).
 
 ## Versions
 
@@ -10,7 +10,7 @@ Get a Workspace under an Organization.
 
 #### examples
 
-- Workspaces_Get
+- Workspaces_Delete
     ```bash
-        artemis organization workspace show --resource-group contoso-rg --organization-name contoso-org --workspace-name contoso-prod
+        koreai artemis organization workspace delete --resource-group contoso-rg --organization-name contoso-org --workspace-name contoso-prod
     ```

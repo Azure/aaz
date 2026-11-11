@@ -12,5 +12,5 @@ List Workspaces under an Organization.
 
 - Workspaces_ListByOrganization
     ```bash
-        artemis organization workspace list --resource-group contoso-rg --organization-name contoso-org
+        koreai artemis organization workspace list --resource-group contoso-rg --organization-name contoso-org
     ```

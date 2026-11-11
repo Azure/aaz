@@ -1,6 +1,6 @@
-# [Command] _artemis organization workspace delete_
+# [Command] _artemis organization workspace update_
 
-Delete a Workspace under an Organization (long-running).
+Update a Workspace under an Organization (long-running).
 
 ## Versions
 
@@ -10,7 +10,7 @@ Delete a Workspace under an Organization (long-running).
 
 #### examples
 
-- Workspaces_Delete
+- Workspaces_CreateOrUpdate
     ```bash
-        artemis organization workspace delete --resource-group contoso-rg --organization-name contoso-org --workspace-name contoso-prod
+        koreai artemis organization workspace update --resource-group contoso-rg --organization-name contoso-org --workspace-name contoso-prod
     ```

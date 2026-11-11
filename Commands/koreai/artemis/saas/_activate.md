@@ -1,4 +1,4 @@
-# [Command] _artemis activate-saas_
+# [Command] _koreai artemis saas activate_
 
 Activate a Kore.ai SaaS marketplace resource.
 
@@ -12,5 +12,5 @@ Activate a Kore.ai SaaS marketplace resource.
 
 - SaaSOperationGroup_ActivateResource
     ```bash
-        artemis activate-saas --saas-guid 12345678-1234-1234-1234-123456789012 --publisher-id kore-ai
+        koreai artemis saas activate --saas-guid 12345678-1234-1234-1234-123456789012 --publisher-id kore-ai
     ```
