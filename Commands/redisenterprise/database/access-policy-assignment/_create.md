@@ -69,3 +69,14 @@ Create access policy assignment for database
     ```bash
         redisenterprise database access-policy-assignment create --resource-group rg1 --cluster-name cache1 --database-name default --access-policy-assignment-name defaultTestEntraApp1 --access-policy-name default --object-id 6497c918-11ad-41e7-1b0f-7c518a87d0b0
     ```
+
+### [2026-10-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jYWNoZS9yZWRpc2VudGVycHJpc2Uve30vZGF0YWJhc2VzL3t9L2FjY2Vzc3BvbGljeWFzc2lnbm1lbnRzL3t9/2026-10-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cache/redisenterprise/{}/databases/{}/accesspolicyassignments/{} 2026-10-01-preview -->
+
+#### examples
+
+- Assign a read-only Redis ACL to an Entra object
+    ```bash
+        redisenterprise database access-policy-assignment create --cluster-name cache1 --resource-group rg1 --database-name default --access-policy-assignment-name reader --object-id 00000000-0000-0000-0000-000000000001 --access-string '+@read ~cache:*'
+    ```
