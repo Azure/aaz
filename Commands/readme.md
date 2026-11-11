@@ -218,6 +218,9 @@
 - [healthcareapis](/Commands/healthcareapis/readme.md)
 : Azure Healthcare APIs is a secure cloud platform for managing health data, supporting analytics, machine learning, and scalable solutions.
 
+- [horizondb](/Commands/horizondb/readme.md)
+: Manage HorizonDB
+
 - [identity](/Commands/identity/readme.md)
 : Manage Managed Identity
 
