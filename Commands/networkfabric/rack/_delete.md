@@ -53,5 +53,5 @@ Delete the Network Rack resource
 
 - Delete the Network Rack
     ```bash
-        networkfabric rack delete --resource-group example-rg --resource-name example-rack
+        networkfabric rack delete --resource-group "example-rg" --resource-name "example-rack"
     ```

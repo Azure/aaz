@@ -23,5 +23,5 @@ Updates the Network Device to use the latest passwords. Does not generate new pa
 
 - Updates the Network Device to use the latest passwords
     ```bash
-        networkfabric device resync-password --resource-group example-rg --resource-name example-device
+        networkfabric device resync-password --resource-group "example-rg" --resource-name "example-device"
     ```

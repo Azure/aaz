@@ -96,7 +96,7 @@ Create a Network Tap Rule resource
 
 - Create a Network Tap Rule with Configuration type as "File".
     ```bash
-        networkfabric taprule create --resource-group "example-rg" --location "westus3" --resource-name "example-networktaprule" --polling-interval-in-seconds 30 --configuration-type "File" --tap-rules-url "https://microsoft.com/<FileName>"
+        networkfabric taprule create --resource-group "example-rg" --location "westus3" --resource-name "example-networktaprule" --polling-interval-in-seconds "30" --configuration-type "File" --tap-rules-url "https://microsoft.com/<FileName>"
     ```
 
 - Create a Network Tap Rule with Configuration type as "Inline".

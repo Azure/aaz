@@ -46,5 +46,5 @@ Update certain properties of the Network Interface resource.
 
 - Update Network Interface
     ```bash
-        networkfabric interface update -g "example-rg" --network-device-name "example-device" --resource-name "example-interface" --additional-description "additional description"
+        networkfabric interface update --resource-group "example-rg" --network-device-name "example-device" --resource-name "example-interface" --additional-description "additional description"
     ```

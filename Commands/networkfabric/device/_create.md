@@ -46,5 +46,5 @@ Create a Network Device resource
 
 - Create the Network Device
     ```bash
-        networkfabric device create --resource-group example-rg --resource-name example-device --annotation annotation --host-name NFA-Device --serial-number Vendor;DCS-7280XXX-24;12.05;JPE2111XXXX --network-device-sku DeviceSku --tags "{KeyId:KeyValue}" --location eastuseuap
+        networkfabric device create --resource-group "example-rg" --resource-name "example-device" --annotation "annotation" --host-name "NFA-Device" --serial-number "Vendor;DCS-7280XXX-24;12.05;JPE2111XXXX" --network-device-sku "DeviceSku" --tags "{KeyId:KeyValue}" --location "eastuseuap"
     ```

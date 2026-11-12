@@ -67,5 +67,5 @@ List all Network Interfaces in the provided resource group
 
 - List the Network Interfaces for Resource Group
     ```bash
-        networkfabric interface list -g "example-rg" --network-device-name "example-device"
+        networkfabric interface list --resource-group "example-rg" --network-device-name "example-device"
     ```

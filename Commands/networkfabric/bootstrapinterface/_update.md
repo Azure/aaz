@@ -23,5 +23,5 @@ Update certain properties of the Network Bootstrap Interface resource.
 
 - Update the Bootstrap Interface resource
     ```bash
-        networkfabric bootstrapinterface create --resource-group example-rg --bootstrap-device example-device --resource-name example-interface --annotation annotation --additional-description additionalDescription --serial-number Vendor;DCS-7280XXX-24;12.05;JPE2111XXXX
+        networkfabric bootstrapinterface update --resource-group "example-rg" --bootstrap-device "example-device" --resource-name "example-interface" --annotation "annotation" --additional-description "additionalDescription" --serial-number "Vendor;DCS-7280XXX-24;12.05;JPE2111XXXX"
     ```

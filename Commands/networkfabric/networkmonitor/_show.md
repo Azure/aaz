@@ -34,5 +34,5 @@ Get NetworkMonitor GET method.
 
 - Show the Network Monitor
     ```bash
-        networkfabric networkmonitor show --resource-group example-rg --network-monitor-name example-monitor
+        networkfabric networkmonitor show --resource-group "example-rg" --network-monitor-name "example-monitor"
     ```

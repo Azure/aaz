@@ -30,10 +30,10 @@ List all the Network Bootstrap Device resources in a given subscription.
 
 - List the Bootstrap Device for Subscription
     ```bash
-        networkfabric bootstrapdevice list --subscription <subscriptionId>
+        networkfabric bootstrapdevice list --subscription "<subscriptionId>"
     ```
 
 - List the Bootstrap Device for Resource Group
     ```bash
-        networkfabric bootstrapdevice list --resource-group example-rg
+        networkfabric bootstrapdevice list --resource-group "example-rg"
     ```

@@ -23,5 +23,5 @@ Updates the Network Device to use the latest certificates. Does not generate new
 
 - Updates the Network Device to use the latest certificates
     ```bash
-        networkfabric device resync-certificate --resource-group example-rg --resource-name example-device
+        networkfabric device resync-certificate --resource-group "example-rg" --resource-name "example-device"
     ```

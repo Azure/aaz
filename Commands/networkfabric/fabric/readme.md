@@ -12,6 +12,9 @@ Manage Network Fabric Resource
 
 ## Commands
 
+- [arm-config-diff](/Commands/networkfabric/fabric/_arm-config-diff.md)
+: Post action: Triggers diff of NetworkFabric ARM Configuration.
+
 - [arm-configuration-diff](/Commands/networkfabric/fabric/_arm-configuration-diff.md)
 : Post action: Triggers diff of NetworkFabric ARM Configuration.
 
@@ -45,6 +48,9 @@ Manage Network Fabric Resource
 - [provision](/Commands/networkfabric/fabric/_provision.md)
 : Provisions the underlying resources in the given Network Fabric instance.
 
+- [refresh-config](/Commands/networkfabric/fabric/_refresh-config.md)
+: Refreshes the configuration of the underlying resources in the given Network Fabric instance.
+
 - [refresh-configuration](/Commands/networkfabric/fabric/_refresh-configuration.md)
 : Refreshes the configuration of the underlying resources in the given Network Fabric instance.
 
@@ -69,7 +75,13 @@ Manage Network Fabric Resource
 - [update-infra-management-bfd-configuration](/Commands/networkfabric/fabric/_update-infra-management-bfd-configuration.md)
 : Updates the Infra Management BFD Configuration of the underlying resources in the given Network Fabric instance.
 
+- [update-infra-mgt-bfd-config](/Commands/networkfabric/fabric/_update-infra-mgt-bfd-config.md)
+: Updates the Infra Management BFD Configuration of the underlying resources in the given Network Fabric instance.
+
 - [update-workload-management-bfd-configuration](/Commands/networkfabric/fabric/_update-workload-management-bfd-configuration.md)
+: Updates the Workload Management BFD Configuration of the underlying resources in the given Network Fabric instance.
+
+- [update-workload-mgt-bfd-config](/Commands/networkfabric/fabric/_update-workload-mgt-bfd-config.md)
 : Updates the Workload Management BFD Configuration of the underlying resources in the given Network Fabric instance.
 
 - [upgrade](/Commands/networkfabric/fabric/_upgrade.md)

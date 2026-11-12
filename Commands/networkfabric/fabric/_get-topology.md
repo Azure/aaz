@@ -38,5 +38,5 @@ Gets Topology of the underlying resources in the given Network Fabric instance.
 
 - Run get topology on the Network Fabric
     ```bash
-        networkfabric fabric get-topology --resource-group example-rg --resource-name example-fabric
+        networkfabric fabric get-topology --resource-group "example-rg" --resource-name "example-fabric"
     ```

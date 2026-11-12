@@ -56,5 +56,5 @@ List all Network Fabric SKUs in the provided subscription.
 
 - List the FabricSKU for Subscription
     ```bash
-        networkfabric fabricsku list --subscription <subscriptionId>
+        networkfabric fabricsku list --subscription "<subscriptionId>"
     ```
