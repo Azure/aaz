@@ -104,5 +104,5 @@ Create an Elastic SAN.
 
 - Create an ElasticSAN with auto scale params
     ```bash
-        elastic-san create -n san_name -g rg_name -l eastus2euap --base-size-tib 23 --extended-capacity-size-tib 14 --sku '{name:Premium_LRS,tier:Premium}' --availability-zones 1 --auto-scale-policy-enforcement Enabled --capacity-unit-scale-up-limit-tib 40 --increase-capacity-unit-by-tib 4 --unused-size-tib 24 --availability-zones 1
+        elastic-san create -n san_name -g rg_name -l eastus2 --base-size-tib 23 --extended-capacity-size-tib 14 --sku '{name:Premium_LRS,tier:Premium}' --availability-zones 1 --auto-scale-policy-enforcement Enabled --capacity-unit-scale-up-limit-tib 40 --increase-capacity-unit-by-tib 4 --unused-size-tib 24 --availability-zones 1
     ```
