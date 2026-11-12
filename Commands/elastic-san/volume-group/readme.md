@@ -2,6 +2,11 @@
 
 Manage Elastic SAN Volume Group.
 
+## Subgroups
+
+- [identity](/Commands/elastic-san/volume-group/identity/readme.md)
+: Manage Identity
+
 ## Commands
 
 - [create](/Commands/elastic-san/volume-group/_create.md)
