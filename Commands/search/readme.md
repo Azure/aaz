@@ -5,7 +5,7 @@ Manage Search
 ## Subgroups
 
 - [service](/Commands/search/service/readme.md)
-: Manage Service
+: Manage Search Service
 
 - [usage](/Commands/search/usage/readme.md)
 : Manage Usage
