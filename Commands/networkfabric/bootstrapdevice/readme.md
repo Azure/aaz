@@ -21,6 +21,9 @@ Manage Network Bootstrap Device Resource
 - [reboot](/Commands/networkfabric/bootstrapdevice/_reboot.md)
 : Reboot the Network Bootstrap Device.
 
+- [refresh-config](/Commands/networkfabric/bootstrapdevice/_refresh-config.md)
+: Refreshes the configuration of Network Bootstrap Device.
+
 - [refresh-configuration](/Commands/networkfabric/bootstrapdevice/_refresh-configuration.md)
 : Refreshes the configuration of Network Bootstrap Device.
 
