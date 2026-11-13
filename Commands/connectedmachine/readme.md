@@ -4,6 +4,9 @@ Manage Azure Arc-Enabled Server.
 
 ## Subgroups
 
+- [application](/Commands/connectedmachine/application/readme.md)
+: Manage Application
+
 - [extension](/Commands/connectedmachine/extension/readme.md)
 : Manage a VM extension on an Azure Arc-Enabled Server.
 

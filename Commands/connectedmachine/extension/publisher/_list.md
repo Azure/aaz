@@ -29,3 +29,14 @@ List all Extension publishers based on the location
     ```bash
         connectedmachine extension publisher list --publisher microsoft.azure.monitor --location eastus
     ```
+
+### [2026-09-01](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuaHlicmlkY29tcHV0ZS9sb2NhdGlvbnMve30vcHVibGlzaGVycw==/2026-09-01.xml) **Stable**
+
+<!-- mgmt-plane /providers/microsoft.hybridcompute/locations/{}/publishers 2026-09-01 -->
+
+#### examples
+
+- Sample command for extension publisher list
+    ```bash
+        connectedmachine extension publisher list --publisher microsoft.azure.monitor --location eastus
+    ```
