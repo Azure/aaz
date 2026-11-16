@@ -25,3 +25,14 @@ Delete the Pool resource.
     ```bash
         network manager ipam-pool delete --name "myIpamPool" --network-manager-name "myAVNM" --resource-group "myAVNMResourceGroup"
     ```
+
+### [2026-01-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5uZXR3b3JrL25ldHdvcmttYW5hZ2Vycy97fS9pcGFtcG9vbHMve30=/2026-01-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.network/networkmanagers/{}/ipampools/{} 2026-01-01 -->
+
+#### examples
+
+- IpamPools_Delete
+    ```bash
+        network manager ipam-pool delete --name "myIpamPool" --network-manager-name "myAVNM" --resource-group "myAVNMResourceGroup"
+    ```
