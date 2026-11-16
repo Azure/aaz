@@ -91,3 +91,14 @@ List all Extension versions based on location, publisher, extensionType.
     ```bash
         connectedmachine extension image list --publisher microsoft.azure.monitor --extension-type azuremonitorlinuxagent --location eastus
     ```
+
+### [2026-09-01](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuaHlicmlkY29tcHV0ZS9sb2NhdGlvbnMve30vcHVibGlzaGVycy97fS9leHRlbnNpb250eXBlcy97fS92ZXJzaW9ucw==/2026-09-01.xml) **Stable**
+
+<!-- mgmt-plane /providers/microsoft.hybridcompute/locations/{}/publishers/{}/extensiontypes/{}/versions 2026-09-01 -->
+
+#### examples
+
+- Sample command for extension image list
+    ```bash
+        connectedmachine extension image list --publisher microsoft.azure.monitor --extension-type azuremonitorlinuxagent --location eastus
+    ```

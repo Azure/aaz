@@ -91,3 +91,14 @@ Get an Extension Metadata based on location, publisher, extensionType and versio
     ```bash
         connectedmachine extension image show --publisher microsoft.azure.monitor --extension-type azuremonitorlinuxagent --location eastus --version 1.9.1
     ```
+
+### [2026-09-01](/Resources/mgmt-plane/L3Byb3ZpZGVycy9taWNyb3NvZnQuaHlicmlkY29tcHV0ZS9sb2NhdGlvbnMve30vcHVibGlzaGVycy97fS9leHRlbnNpb250eXBlcy97fS92ZXJzaW9ucy97fQ==/2026-09-01.xml) **Stable**
+
+<!-- mgmt-plane /providers/microsoft.hybridcompute/locations/{}/publishers/{}/extensiontypes/{}/versions/{} 2026-09-01 -->
+
+#### examples
+
+- Sample command for extension image show
+    ```bash
+        connectedmachine extension image show --publisher microsoft.azure.monitor --extension-type azuremonitorlinuxagent --location eastus --version 1.9.1
+    ```
