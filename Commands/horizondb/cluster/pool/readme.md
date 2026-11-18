@@ -1,11 +1,14 @@
 # [Group] _horizondb cluster pool_
 
-Manage HorizonDB Pool
+Manage Pool
 
 ## Subgroups
 
 - [firewall-rule](/Commands/horizondb/cluster/pool/firewall-rule/readme.md)
 : Manage Firewall Rule
+
+- [maintenance-event](/Commands/horizondb/cluster/pool/maintenance-event/readme.md)
+: Manage Maintenance Event
 
 ## Commands
 
