@@ -13,6 +13,9 @@ Manage Azure Network resources.
 - [asg](/Commands/network/asg/readme.md)
 : Manage application security groups (ASGs).
 
+- [authentication-policy](/Commands/network/authentication-policy/readme.md)
+: Manage authentication policies for identity integration of Application Gateway.
+
 - [bastion](/Commands/network/bastion/readme.md)
 : Manage Azure Bastion host machines.
 
