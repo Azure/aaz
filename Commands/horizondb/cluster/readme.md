@@ -1,11 +1,11 @@
 # [Group] _horizondb cluster_
 
-Manage Cluster
+Manage HorizonDB Cluster
 
 ## Subgroups
 
 - [pool](/Commands/horizondb/cluster/pool/readme.md)
-: Manage Pool
+: Manage HorizonDB Pool
 
 - [private-endpoint-connection](/Commands/horizondb/cluster/private-endpoint-connection/readme.md)
 : Manage Private Endpoint Connection

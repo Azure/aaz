@@ -1,6 +1,6 @@
 # [Group] _horizondb cluster pool_
 
-Manage Pool
+Manage HorizonDB Pool
 
 ## Subgroups
 
