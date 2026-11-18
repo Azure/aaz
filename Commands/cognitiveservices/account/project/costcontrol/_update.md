@@ -12,7 +12,12 @@ Updates a Foundry project cost control. Omitting properties preserves all existi
 
 #### examples
 
-- Create or replace a project token budget
+- Update alert threshold to 90%
+    ```bash
+        cognitiveservices account project costcontrol update --resource-group foundry-resource-group --account-name foundry-account --project-name production --cost-control-name project-token-budget --set properties.notifications.usageAlert.threshold=90
+    ```
+
+- Example using full settings (filters, grouping, alert and block)
     ```bash
         cognitiveservices account project costcontrol update --resource-group foundry-resource-group --account-name foundry-account --project-name production --cost-control-name project-token-budget --if-none-match * --category Tokens --amount 1000000 --time-grain Daily --time-period "{start-date:'2026-11-15T00:00:00Z',end-date:'2027-11-15T00:00:00Z'}" --filter "{additional-info:{name:tokenType,operator:In,values:[input,output]}}" --notifications "{usage-alert:{event-grid-connection-id:/subscriptions/00000000-1111-2222-3333-444444444444/resourceGroups/foundry-resource-group/providers/Microsoft.CognitiveServices/accounts/foundry-account/connections/budget-alerts,threshold-type:Percentage,threshold:80,enabled:True,operator:GreaterThanOrEqualTo}}" --provider-properties "{actions:{stop-requests:{type:Block,thresholdType:Percentage,threshold:100,operator:GreaterThanOrEqualTo}}}"
     ```
