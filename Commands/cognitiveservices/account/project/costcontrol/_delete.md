@@ -15,7 +15,7 @@ Delete a project-owned cost control.
         cognitiveservices account project costcontrol delete --resource-group foundry-resource-group --account-name foundry-account --project-name production --cost-control-name project-token-budget
     ```
 
-- Delete a budget conditionally
+- Delete a budget if the project entity tag matches the given one. Note the required forward slash before the quotation marks around the entity tag.
     ```bash
         cognitiveservices account project costcontrol delete --resource-group foundry-resource-group --account-name foundry-account --project-name production --cost-control-name project-token-budget --if-match \"bb926e0d-880b-4d60-8d59-9a341fa826a2.additional-info\"
     ```
