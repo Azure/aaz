@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.apicenter/analyzerconfigs/{}/exportruleset" version="2024-12-15-preview" swagger="mgmt-plane/apicenter/ResourceProviders/Microsoft.ApiCenter/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXBpQ2VudGVyL2FuYWx5emVyQ29uZmlncy97YW5hbHl6ZXJDb25maWdOYW1lfS9leHBvcnRSdWxlc2V0/V/MjAyNC0xMi0xNS1wcmV2aWV3"/>
+  <commandGroup name="apic api-analysis">
+    <command name="export-ruleset" version="2024-12-15-preview" confirmation="">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/microsoft.apicenter/analyzerconfigs/{}/exportruleset" version="2024-12-15-preview" swagger="mgmt-plane/apicenter/ResourceProviders/Microsoft.ApiCenter/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9NaWNyb3NvZnQuQXBpQ2VudGVyL2FuYWx5emVyQ29uZmlncy97YW5hbHl6ZXJDb25maWdOYW1lfS9leHBvcnRSdWxlc2V0/V/MjAyNC0xMi0xNS1wcmV2aWV3"/>
+      <argGroup name="">
+        <arg type="string" var="$Path.analyzerConfigName" options="analyzer-config-name" required="True" idPart="name">
+          <help short="The name of the configuration."/>
+          <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <operation operationId="AnalyzerConfigs_ExportRuleset">
+        <longRunning finalStateVia="location"/>
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ApiCenter/analyzerConfigs/{analyzerConfigName}/exportRuleset">
+          <request method="post">
+            <path>
+              <param type="string" name="analyzerConfigName" arg="$Path.analyzerConfigName" required="True">
+                <format pattern="^[a-zA-Z0-9-]{3,90}$" maxLength="90" minLength="1"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2024-12-15-preview&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop type="string" name="format">
+                    <enum>
+                      <item value="&quot;inline-json&quot;"/>
+                      <item value="&quot;inline-yaml&quot;"/>
+                      <item value="&quot;inline-zip&quot;"/>
+                      <item value="&quot;link-zip&quot;"/>
+                    </enum>
+                  </prop>
+                  <prop type="string" name="value"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response statusCode="202">
+            <header>
+              <item name="Location"/>
+              <item name="Retry-After"/>
+            </header>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
