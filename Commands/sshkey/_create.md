@@ -14,3 +14,18 @@ Create a new SSH public key resource.
     ```bash
         sshkey create --resource-group myResourceGroup --ssh-public-key-name mySshPublicKeyName --location westus --public-key {ssh-rsa public key}
     ```
+
+- Create a new SSH public key resource using public key in a file.
+    ```bash
+        sshkey create --location "westus" --public-key "@filename" --resource-group "myResourceGroup" --name "mySshPublicKeyName"
+    ```
+
+- Create a new SSH public key resource with auto-generated value.
+    ```bash
+        sshkey create --location "westus" --resource-group "myResourceGroup" --name "mySshPublicKeyName"
+    ```
+
+- Create a new SSH public key resource with Ed25519 encryption.
+    ```bash
+        sshkey create --location "westus" --resource-group "myResourceGroup" --name "mySshPublicKeyName" --encryption-type "Ed25519"
+    ```
