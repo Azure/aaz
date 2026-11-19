@@ -7,6 +7,9 @@ Manage HorizonDB Pool
 - [firewall-rule](/Commands/horizondb/cluster/pool/firewall-rule/readme.md)
 : Manage Firewall Rule
 
+- [maintenance-event](/Commands/horizondb/cluster/pool/maintenance-event/readme.md)
+: Manage Maintenance Event
+
 ## Commands
 
 - [create](/Commands/horizondb/cluster/pool/_create.md)
