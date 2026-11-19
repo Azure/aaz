@@ -14,3 +14,14 @@ Get recommended signal configurations for a given Entity (only applicable for En
     ```bash
         monitor health-models entity get-signal-recommendations --resource-group rgopenapi --health-model-name myHealthModel --entity-name entity1
     ```
+
+### [2026-11-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jbG91ZGhlYWx0aC9oZWFsdGhtb2RlbHMve30vZW50aXRpZXMve30vZ2V0c2lnbmFscmVjb21tZW5kYXRpb25z/2026-11-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cloudhealth/healthmodels/{}/entities/{}/getsignalrecommendations 2026-11-01 -->
+
+#### examples
+
+- Entities_GetSignalRecommendations
+    ```bash
+        monitor health-models entity get-signal-recommendations --resource-group rgopenapi --health-model-name myHealthModel --entity-name entity1
+    ```
