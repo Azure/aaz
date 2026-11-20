@@ -14,3 +14,19 @@ Implements the operation to the underlying resources.
     ```bash
         networkfabric acl update-admin-state --resource-group "example-rg" --access-control-list-name "example-acl" --resource-ids "[]" --state "Enable"
     ```
+
+### [2026-07-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9hY2Nlc3Njb250cm9sbGlzdHMve30vdXBkYXRlYWRtaW5pc3RyYXRpdmVzdGF0ZQ==/2026-07-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/accesscontrollists/{}/updateadministrativestate 2026-07-15-preview -->
+
+#### examples
+
+- Updates the Administrative state of the Access Control List
+    ```bash
+        networkfabric acl update-admin-state --resource-group "example-rg" --resource-name "example-acl" --state "Enable" --force "True"
+    ```
+
+- Updates the Administrative state of the Access Control List with resource ids parameter
+    ```bash
+        networkfabric acl update-admin-state --resource-group "example-rg" --resource-name "example-acl" --resource-ids "[/Subscriptions/example-subscription-id/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/accessControlLists/example-acl-1]" --state "Enable"
+    ```

@@ -48,3 +48,19 @@ Create a Network Interface resource.
     ```bash
         networkfabric interface create --resource-group "example-rg" --network-device-name "example-device" --resource-name "example-interface" --annotation "annotation" --additional-description "device 1"
     ```
+
+### [2026-07-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrZGV2aWNlcy97fS9uZXR3b3JraW50ZXJmYWNlcy97fQ==/2026-07-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkdevices/{}/networkinterfaces/{} 2026-07-15-preview -->
+
+#### examples
+
+- Create the Network Interface
+    ```bash
+        networkfabric interface create --resource-group "example-rg" --network-device-name "example-device" --resource-name "example-interface" --annotation "annotation" --additional-description "additional description"
+    ```
+
+- Create a Network Interface with system-assigned and user-assigned identities
+    ```bash
+        networkfabric interface create --network-device-name "example-device" --resource-name "example-interface" --resource-group "example-rg" --system-assigned "true" --user-assigned "/subscriptions/example-subscription-id/resourceGroups/example-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/example-identity"
+    ```

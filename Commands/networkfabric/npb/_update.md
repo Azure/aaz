@@ -44,3 +44,19 @@ Update to update certain properties of the Network Packet Broker resource.
     ```bash
         networkfabric npb update --resource-group "example-rg" --resource-name "example-npb" --tags "{name:value}"
     ```
+
+### [2026-07-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrcGFja2V0YnJva2Vycy97fQ==/2026-07-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkpacketbrokers/{} 2026-07-15-preview -->
+
+#### examples
+
+- update Network Packet Broker
+    ```bash
+        networkfabric npb update --resource-group "example-rg" --resource-name "example-npb" --tags "{'name': 'value'}"
+    ```
+
+- Update a Network Packet Broker with system-assigned and user-assigned identities
+    ```bash
+        networkfabric npb update --resource-name "example-npb" --resource-group "example-rg" --system-assigned "true" --user-assigned "/subscriptions/example-subscription-id/resourceGroups/example-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/example-identity"
+    ```

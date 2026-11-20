@@ -14,3 +14,19 @@ Implements the operation to the underlying resources.
     ```bash
         networkfabric taprule update-admin-state --resource-group "example-rg" --resource-name "example-tapRule" --resource-ids "[]" --state "Enable"
     ```
+
+### [2026-07-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrdGFwcnVsZXMve30vdXBkYXRlYWRtaW5pc3RyYXRpdmVzdGF0ZQ==/2026-07-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networktaprules/{}/updateadministrativestate 2026-07-15-preview -->
+
+#### examples
+
+- Updates the Administrative state of the Network Tap Rule
+    ```bash
+        networkfabric taprule update-admin-state --resource-group "example-rg" --resource-name "example-tapRule" --state "Enable" --force "True"
+    ```
+
+- Updates the Administrative state of the Network Tap Rule with resource ids parameter
+    ```bash
+        networkfabric taprule update-admin-state --resource-group "example-rg" --resource-name "example-tapRule" --resource-ids "[/Subscriptions/example-subscription-id/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/networkTapRules/example-tapRule-1]" --state "Enable"
+    ```

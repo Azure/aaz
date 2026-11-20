@@ -14,3 +14,19 @@ Updates the Workload Management BFD Configuration of the underlying resources in
     ```bash
         networkfabric fabric update-workload-mgt-bfd-config --resource-group "example-rg" --resource-name "example-fabric" --resource-ids "[]" --state "Enable"
     ```
+
+### [2026-07-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrZmFicmljcy97fS91cGRhdGV3b3JrbG9hZG1hbmFnZW1lbnRiZmRjb25maWd1cmF0aW9u/2026-07-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkfabrics/{}/updateworkloadmanagementbfdconfiguration 2026-07-15-preview -->
+
+#### examples
+
+- Updates the Workload Management BFD configuration of the Network Fabric
+    ```bash
+        networkfabric fabric update-workload-mgt-bfd-config --resource-group "example-rg" --resource-name "example-fabric" --state "Enable" --force "True"
+    ```
+
+- Updates the Workload Management BFD configuration of the Network Fabric with resource ids parameter
+    ```bash
+        networkfabric fabric update-workload-mgt-bfd-config --resource-group "example-rg" --resource-name "example-fabric" --resource-ids "[/Subscriptions/example-subscription-id/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/networkFabrics/example-fabric-1]" --state "Enable"
+    ```
