@@ -4,6 +4,9 @@ Manage HorizonDB Cluster
 
 ## Subgroups
 
+- [authentication](/Commands/horizondb/cluster/authentication/readme.md)
+: Manage authentication methods for a HorizonDB cluster.
+
 - [pool](/Commands/horizondb/cluster/pool/readme.md)
 : Manage HorizonDB Pool
 
