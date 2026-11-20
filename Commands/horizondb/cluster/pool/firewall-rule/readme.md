@@ -5,7 +5,7 @@ Manage Firewall Rule
 ## Commands
 
 - [create](/Commands/horizondb/cluster/pool/firewall-rule/_create.md)
-: Create a HorizonDB pool firewall rule.
+: Create or replace a HorizonDB pool firewall rule.
 
 - [delete](/Commands/horizondb/cluster/pool/firewall-rule/_delete.md)
 : Delete a HorizonDB pool firewall rule.
