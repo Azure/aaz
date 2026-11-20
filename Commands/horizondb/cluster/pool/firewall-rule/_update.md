@@ -12,5 +12,5 @@ Update a HorizonDB pool firewall rule.
 
 - Update a firewall rule on a HorizonDB pool
     ```bash
-        horizon-db cluster pool firewall-rule update --resource-group example-resource-group --cluster-name example-cluster --pool-name example-pool-01 --firewall-rule-name example-firewall-rule-01 --start-ip-address 10.0.0.1 --end-ip-address 10.0.0.254 --description Allow access from the corporate network
+        horizondb cluster pool firewall-rule update --resource-group example-resource-group --cluster-name example-cluster --pool-name example-pool-01 --firewall-rule-name example-firewall-rule-01 --end-ip-address 10.0.0.254 --description "Allow access from the corporate network"
     ```
