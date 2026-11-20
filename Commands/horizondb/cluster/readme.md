@@ -21,6 +21,9 @@ Manage HorizonDB Cluster
 - [delete](/Commands/horizondb/cluster/_delete.md)
 : Delete a HorizonDB cluster.
 
+- [failover](/Commands/horizondb/cluster/_failover.md)
+: Trigger service-selected failover within the cluster's designated read-write pool.
+
 - [list](/Commands/horizondb/cluster/_list.md)
 : List HorizonDB clusters.
 
