@@ -83,3 +83,24 @@ Create a Neighbor Group resource
     ```bash
         networkfabric neighborgroup create --destination "??"
     ```
+
+### [2026-07-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZWlnaGJvcmdyb3Vwcy97fQ==/2026-07-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/neighborgroups/{} 2026-07-15-preview -->
+
+#### examples
+
+- Create a Neighbor Group
+    ```bash
+        networkfabric neighborgroup create --resource-group "example-rg" --location "westus3" --resource-name "example-neighborgroup" --destination "{ipv4Addresses:['10.10.10.10']}" --tags "{key:value}" --annotation "example-annotation"
+    ```
+
+- Help text for sub parameters under the specific parent can be viewed by using the shorthand syntax '??'. See https://github.com/Azure/azure-cli/tree/dev/doc/shorthand_syntax.md for more about shorthand syntax
+    ```bash
+        networkfabric neighborgroup create --destination "??"
+    ```
+
+- Create a Neighbor Group with system-assigned and user-assigned identities
+    ```bash
+        networkfabric neighborgroup create --resource-name "example-neighborgroup" --resource-group "example-rg" --location "westus3" --destination "{ipv4Addresses:['10.10.10.10']}" --system-assigned "true" --user-assigned "/subscriptions/example-subscription-id/resourceGroups/example-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/example-identity"
+    ```

@@ -69,3 +69,19 @@ Create a L2 Isolation Domain resource
     ```bash
         networkfabric l2domain create --resource-group "example-rg" --resource-name "example-l2domain" --location "westus3" --nf-id "/subscriptions/xxxxxx-xxxxxx-xxxx-xxxx-xxxxxx/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/NetworkFabrics/example-fabricName" --vlan-id "501" --mtu "1500"
     ```
+
+### [2026-07-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9sMmlzb2xhdGlvbmRvbWFpbnMve30=/2026-07-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/l2isolationdomains/{} 2026-07-15-preview -->
+
+#### examples
+
+- Create an L2 Isolation Domain
+    ```bash
+        networkfabric l2domain create --resource-group "example-rg" --resource-name "example-l2domain" --location "westus3" --nf-id "/subscriptions/xxxxxx-xxxxxx-xxxx-xxxx-xxxxxx/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/NetworkFabrics/example-fabricName" --vlan-id "501" --mtu "1500" --tags "{key:value}" --annotation "example-annotation" --nni-id "/subscriptions/example-subscription-id/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/networkFabrics/example-fabric/networkToNetworkInterconnects/example-nni"
+    ```
+
+- Create a L2 Isolation Domain with system-assigned and user-assigned identities
+    ```bash
+        networkfabric l2domain create --resource-name "example-l2domain" --resource-group "example-rg" --location "westus3" --nf-id "/subscriptions/xxxxxx-xxxxxx-xxxx-xxxx-xxxxxx/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/NetworkFabrics/example-fabricName" --vlan-id "501" --system-assigned "true" --user-assigned "/subscriptions/example-subscription-id/resourceGroups/example-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/example-identity"
+    ```
