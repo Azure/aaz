@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='utf-8'?>
+<CodeGen plane="mgmt-plane">
+  <resource id="/subscriptions/{}/resourcegroups/{}/providers/commvault.contentstore/cloudaccounts/{}/protectiongroups/{}/backup" version="2026-09-30" swagger="mgmt-plane/liftrcommvault/ResourceProviders/Commvault.ContentStore/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9Db21tdmF1bHQuQ29udGVudFN0b3JlL2Nsb3VkQWNjb3VudHMve2Nsb3VkQWNjb3VudE5hbWV9L3Byb3RlY3Rpb25Hcm91cHMve3Byb3RlY3Rpb25Hcm91cE5hbWV9L2JhY2t1cA==/V/MjAyNi0wOS0zMA=="/>
+  <commandGroup name="commvault cloud-account protection-group">
+    <command name="backup" version="2026-09-30">
+      <resource id="/subscriptions/{}/resourcegroups/{}/providers/commvault.contentstore/cloudaccounts/{}/protectiongroups/{}/backup" version="2026-09-30" swagger="mgmt-plane/liftrcommvault/ResourceProviders/Commvault.ContentStore/Paths/L3N1YnNjcmlwdGlvbnMve3N1YnNjcmlwdGlvbklkfS9yZXNvdXJjZUdyb3Vwcy97cmVzb3VyY2VHcm91cE5hbWV9L3Byb3ZpZGVycy9Db21tdmF1bHQuQ29udGVudFN0b3JlL2Nsb3VkQWNjb3VudHMve2Nsb3VkQWNjb3VudE5hbWV9L3Byb3RlY3Rpb25Hcm91cHMve3Byb3RlY3Rpb25Hcm91cE5hbWV9L2JhY2t1cA==/V/MjAyNi0wOS0zMA=="/>
+      <argGroup name="">
+        <arg type="string" var="$Path.cloudAccountName" options="cloud-account-name" required="True" idPart="name">
+          <help short="Name of the Cloud Account resource"/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
+        </arg>
+        <arg type="string" var="$Path.protectionGroupName" options="protection-group-name" required="True" idPart="child_name_1">
+          <help short="Name of the ProtectionGroup resource"/>
+          <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
+        </arg>
+        <arg type="ResourceGroupName" var="$Path.resourceGroupName" options="resource-group g" required="True" idPart="resource_group"/>
+        <arg type="SubscriptionId" var="$Path.subscriptionId" options="subscription" required="True" idPart="subscription"/>
+      </argGroup>
+      <argGroup name="Request">
+        <arg type="object" var="$request.backupOptions" options="backup-options" required="True" group="Request">
+          <help short="The backup options for the VM backup"/>
+          <arg type="boolean" var="$request.backupOptions.backupCopyImmediately" options="backup-copy-immediately" required="True">
+            <help short="Indicates whether to run backup immediately or not for the VM"/>
+          </arg>
+          <arg type="string" var="$request.backupOptions.backupLevel" options="backup-level">
+            <help short="Indicates whether to stop backup or not for the VM"/>
+            <enum>
+              <item name="DIFFERENTIAL" value="&quot;DIFFERENTIAL&quot;"/>
+              <item name="FULL" value="&quot;FULL&quot;"/>
+              <item name="INCREMENTAL" value="&quot;INCREMENTAL&quot;"/>
+              <item name="SYNTHETIC_FULL" value="&quot;SYNTHETIC_FULL&quot;"/>
+            </enum>
+          </arg>
+          <arg type="string" var="$request.backupOptions.jobDescription" options="job-description" required="True">
+            <help short="The name of the backup job to be shown in Commvault"/>
+          </arg>
+          <arg type="boolean" var="$request.backupOptions.notifyUserOnJobCompletion" options="notify-user-on-job-completion" required="True">
+            <help short="Indicates whether to notify the user on job completion"/>
+          </arg>
+          <arg type="boolean" var="$request.backupOptions.runSnapShotBackup" options="run-snap-shot-backup" required="True">
+            <help short="Indicates whether to run snapshot backup or not for the VM, if false, it will run regular backup"/>
+          </arg>
+        </arg>
+        <arg type="array<object>" var="$request.vmList" options="vm-list" required="True" group="Request">
+          <help short="The vm list details."/>
+          <item type="object">
+            <arg type="string" var="$request.vmList[].vmGuid" options="vm-guid" required="True">
+              <help short="The GUID of the VM to backup"/>
+            </arg>
+          </item>
+        </arg>
+      </argGroup>
+      <operation operationId="ProtectionGroups_Backup">
+        <http path="/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Commvault.ContentStore/cloudAccounts/{cloudAccountName}/protectionGroups/{protectionGroupName}/backup">
+          <request method="post">
+            <path>
+              <param type="string" name="cloudAccountName" arg="$Path.cloudAccountName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
+              </param>
+              <param type="string" name="protectionGroupName" arg="$Path.protectionGroupName" required="True">
+                <format pattern="^[a-zA-Z0-9][a-zA-Z0-9_\-.: ]*$" maxLength="50" minLength="1"/>
+              </param>
+              <param type="string" name="resourceGroupName" arg="$Path.resourceGroupName" required="True">
+                <format maxLength="90" minLength="1"/>
+              </param>
+              <param type="uuid" name="subscriptionId" arg="$Path.subscriptionId" required="True"/>
+            </path>
+            <query>
+              <const readOnly="True" const="True" type="string" name="api-version" required="True">
+                <default value="&quot;2026-09-30&quot;"/>
+                <format minLength="1"/>
+              </const>
+            </query>
+            <body>
+              <json>
+                <schema type="object" name="request" required="True" clientFlatten="True">
+                  <prop type="object" name="backupOptions" arg="$request.backupOptions" required="True">
+                    <prop type="boolean" name="backupCopyImmediately" arg="$request.backupOptions.backupCopyImmediately" required="True"/>
+                    <prop type="string" name="backupLevel" arg="$request.backupOptions.backupLevel">
+                      <enum>
+                        <item value="&quot;DIFFERENTIAL&quot;"/>
+                        <item value="&quot;FULL&quot;"/>
+                        <item value="&quot;INCREMENTAL&quot;"/>
+                        <item value="&quot;SYNTHETIC_FULL&quot;"/>
+                      </enum>
+                    </prop>
+                    <prop type="string" name="jobDescription" arg="$request.backupOptions.jobDescription" required="True"/>
+                    <prop type="boolean" name="notifyUserOnJobCompletion" arg="$request.backupOptions.notifyUserOnJobCompletion" required="True"/>
+                    <prop type="boolean" name="runSnapShotBackup" arg="$request.backupOptions.runSnapShotBackup" required="True"/>
+                  </prop>
+                  <prop type="array<object>" name="vmList" arg="$request.vmList" required="True">
+                    <item type="object">
+                      <prop type="string" name="vmGuid" arg="$request.vmList[].vmGuid" required="True"/>
+                    </item>
+                  </prop>
+                </schema>
+              </json>
+            </body>
+          </request>
+          <response statusCode="200">
+            <body>
+              <json var="$Instance">
+                <schema type="object">
+                  <prop readOnly="True" type="array<string>" name="jobIds">
+                    <item type="string"/>
+                  </prop>
+                  <prop readOnly="True" type="integer32" name="taskId"/>
+                </schema>
+              </json>
+            </body>
+          </response>
+          <response isError="True">
+            <body>
+              <json>
+                <schema type="@MgmtErrorFormat"/>
+              </json>
+            </body>
+          </response>
+        </http>
+      </operation>
+      <output type="object" ref="$Instance" clientFlatten="True"/>
+    </command>
+  </commandGroup>
+</CodeGen>
