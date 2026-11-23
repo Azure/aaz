@@ -1,6 +1,6 @@
 # [Command] _horizondb cluster pool firewall-rule create_
 
-Create or replace a HorizonDB pool firewall rule.
+Create a HorizonDB pool firewall rule.
 
 ## Versions
 
@@ -10,7 +10,7 @@ Create or replace a HorizonDB pool firewall rule.
 
 #### examples
 
-- Create or replace a firewall rule on a HorizonDB pool
+- Create a firewall rule on a HorizonDB pool
     ```bash
         horizondb cluster pool firewall-rule create --resource-group example-resource-group --cluster-name example-cluster --pool-name example-pool-01 --firewall-rule-name example-firewall-rule-01 --start-ip-address 10.0.0.1 --end-ip-address 10.0.0.254 --description "Allow access from the corporate network"
     ```
