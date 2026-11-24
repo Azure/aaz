@@ -7,9 +7,6 @@ Manage Search Service
 - [admin-key](/Commands/search/service/admin-key/readme.md)
 : Manage Admin Key
 
-- [identity](/Commands/search/service/identity/readme.md)
-: Manage Identity
-
 - [network-security-perimeter-configuration](/Commands/search/service/network-security-perimeter-configuration/readme.md)
 : Manage Network Security Perimeter Configuration
 
