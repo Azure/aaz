@@ -7,6 +7,9 @@ Manage a HorizonDB Parameter Group
 - [connection](/Commands/horizondb/parameter-group/connection/readme.md)
 : Manage HorizonDB Parameter Group Connections
 
+- [default](/Commands/horizondb/parameter-group/default/readme.md)
+: Manage default HorizonDB parameter groups.
+
 ## Commands
 
 - [create](/Commands/horizondb/parameter-group/_create.md)
