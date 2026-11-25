@@ -41,3 +41,14 @@ Checks the quota and actual usage of endpoints under the given Azure Front Door 
     ```bash
         afd rule-set usage --resource-group RG --profile-name profile1 --rule-set-name ruleSet1
     ```
+
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vcnVsZXNldHMve30vdXNhZ2Vz/2026-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/rulesets/{}/usages 2026-10-01 -->
+
+#### examples
+
+- RuleSets_ListResourceUsage
+    ```bash
+        afd rule-set usage --resource-group RG --profile-name profile1 --rule-set-name ruleSet1
+    ```

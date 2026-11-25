@@ -41,3 +41,14 @@ Get WAF log analytics charts for AFD profile
     ```bash
         afd waf-log-analytic ranking list --resource-group RG --profile-name profile1 --metrics "[clientRequestCount]" --date-time-begin 2020-11-04T06:49:27.554Z --date-time-end 2020-11-04T09:49:27.554Z --max-ranking 5 --rankings "[ruleId]"
     ```
+
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vZ2V0d2FmbG9nYW5hbHl0aWNzcmFua2luZ3M=/2026-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/getwafloganalyticsrankings 2026-10-01 -->
+
+#### examples
+
+- LogAnalytics_GetWafLogAnalyticsRankings
+    ```bash
+        afd waf-log-analytic ranking list --resource-group RG --profile-name profile1 --metrics "[clientRequestCount]" --date-time-begin 2020-11-04T06:49:27.554Z --date-time-end 2020-11-04T09:49:27.554Z --max-ranking 5 --rankings "[ruleId]"
+    ```

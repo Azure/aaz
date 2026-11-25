@@ -41,3 +41,14 @@ List all of the existing origin groups within an endpoint.
     ```bash
         cdn origin-group list --resource-group RG --profile-name profile1 --endpoint-name endpoint1
     ```
+
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vZW5kcG9pbnRzL3t9L29yaWdpbmdyb3Vwcw==/2026-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/endpoints/{}/origingroups 2026-10-01 -->
+
+#### examples
+
+- OriginsGroups_ListByEndpoint
+    ```bash
+        cdn origin-group list --resource-group RG --profile-name profile1 --endpoint-name endpoint1
+    ```

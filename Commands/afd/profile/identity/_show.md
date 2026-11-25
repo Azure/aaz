@@ -51,3 +51,14 @@ Show the details of managed identities.
     ```bash
         afd profile identity show --resource-group RG --profile-name profile1
     ```
+
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30=/2026-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{} 2026-10-01 identity -->
+
+#### examples
+
+- Profiles_Get
+    ```bash
+        afd profile identity show --resource-group RG --profile-name profile1
+    ```

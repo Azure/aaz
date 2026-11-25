@@ -69,3 +69,14 @@ Updates the domain validation token.
     ```bash
         afd custom-domain regenerate-validation-token --resource-group RG --profile-name profile1 --custom-domain-name domain1
     ```
+
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vY3VzdG9tZG9tYWlucy97fS9yZWZyZXNodmFsaWRhdGlvbnRva2Vu/2026-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/customdomains/{}/refreshvalidationtoken 2026-10-01 -->
+
+#### examples
+
+- AFDCustomDomains_Delete
+    ```bash
+        afd custom-domain regenerate-validation-token --resource-group RG --profile-name profile1 --custom-domain-name domain1
+    ```

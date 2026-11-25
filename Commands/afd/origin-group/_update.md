@@ -85,3 +85,14 @@ Update a new origin group within the specified profile.
     ```bash
         afd origin-group update --resource-group MyResourceGroup --profile-name MyProfile --origin-group-name MyOriginGroup --probe-protocol Grpc --capacity-distribution-settings "{capacity-conscious-threshold:50,distribution-type:DynamicWeights}"
     ```
+
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vb3JpZ2luZ3JvdXBzL3t9/2026-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/origingroups/{} 2026-10-01 -->
+
+#### examples
+
+- Update origin group health probes.
+    ```bash
+        afd origin-group update --resource-group MyResourceGroup --profile-name MyProfile --origin-group-name MyOriginGroup --probe-protocol Https --probe-request-type HEAD
+    ```

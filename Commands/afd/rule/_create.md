@@ -99,3 +99,14 @@ Create a new delivery rule within the specified rule set.
     ```bash
         afd rule create --resource-group RG --profile-name profile1 --rule-set-name ruleSet1 --rule-name rule1 --actions "[{parameters:{headerAction:Overwrite,headerName:X-CDN,typeName:DeliveryRuleHeaderActionParameters,value:MSFT},modify-response-header:{parameters:{headerAction:Overwrite,headerName:X-CDN,typeName:DeliveryRuleHeaderActionParameters,value:MSFT}}}]" --conditions "[{parameters:{matchValues:[GET],negateCondition:False,operator:Equal,typeName:DeliveryRuleRequestMethodConditionParameters},request-method:{parameters:{typeName:DeliveryRuleRequestMethodConditionParameters,match-values:[GET],negate-condition:False,operator:Equal}}}]" --order 1 --resource-group RG --profile-name profile1 --rule-set-name ruleSet1 --rule-name rule1 --actions "[{parameters:{algorithm:SHA256,keyGroupReference:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.Cdn/profiles/profile1/keygroups/kg1},parameterNameOverride:[{paramIndicator:Expires,paramName:Expiration-Date},{paramIndicator:Signature,paramName:Sig-Hash}],typeName:DeliveryRuleAfdUrlSigningActionParameters},afd-url-signing:{parameters:{algorithm:SHA256,key-group-reference:{id:/subscriptions/subid/resourcegroups/RG/providers/Microsoft.Cdn/profiles/profile1/keygroups/kg1},parameter-name-override:[{paramIndicator:Expires,paramName:Expiration-Date},{paramIndicator:Signature,paramName:Sig-Hash}],type-name:DeliveryRuleAfdUrlSigningActionParameters}}}]" --conditions "[{parameters:{matchValues:[GET],negateCondition:False,operator:Equal,typeName:DeliveryRuleRequestMethodConditionParameters},request-method:{parameters:{typeName:DeliveryRuleRequestMethodConditionParameters,match-values:[GET],negate-condition:False,operator:Equal}}}]" --order 1
     ```
+
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vcnVsZXNldHMve30vcnVsZXMve30=/2026-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/rulesets/{}/rules/{} 2026-10-01 -->
+
+#### examples
+
+- Configure a route override action.
+    ```bash
+        afd rule create --resource-group MyResourceGroup --profile-name MyProfile --rule-set-name MyRuleSet --rule-name MyRule --order 1 --actions '[{"route-configuration-override":{"parameters":{"cache-configuration":{"cache-behavior":"HonorOrigin","query-string-caching-behavior":"UseQueryString","is-compression-enabled":"Disabled"}}}}]'
+    ```

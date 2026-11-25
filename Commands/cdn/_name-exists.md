@@ -69,3 +69,14 @@ Check the availability of a resource name. This is needed for resources where na
     ```bash
         cdn name-exists --name sampleName --type Microsoft.Cdn/Profiles/Endpoints
     ```
+
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vY2hlY2tuYW1lYXZhaWxhYmlsaXR5/2026-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.cdn/checknameavailability 2026-10-01 -->
+
+#### examples
+
+- CheckNameAvailabilityWithSubscription
+    ```bash
+        cdn name-exists --name sampleName --type Microsoft.Cdn/Profiles/Endpoints
+    ```
