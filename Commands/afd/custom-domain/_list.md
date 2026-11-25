@@ -80,3 +80,14 @@ List existing AzureFrontDoor domains.
     ```bash
         afd custom-domain list --resource-group RG --profile-name profile1
     ```
+
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vY3VzdG9tZG9tYWlucw==/2026-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/customdomains 2026-10-01 -->
+
+#### examples
+
+- AFDCustomDomains_ListByProfile
+    ```bash
+        afd custom-domain list --resource-group RG --profile-name profile1
+    ```

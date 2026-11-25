@@ -14,3 +14,14 @@ Create a CDN profile.
     ```bash
         cdn profile create --resource-group RG --profile-name profile1 --sku Standard_Microsoft
     ```
+
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30=/2026-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{} 2026-10-01 -->
+
+#### examples
+
+- Profiles_Create
+    ```bash
+        cdn profile create --resource-group RG --profile-name profile1 --sku Standard_Microsoft
+    ```

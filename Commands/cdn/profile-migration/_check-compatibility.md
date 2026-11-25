@@ -37,3 +37,14 @@ Checks if CDN profile can be migrated to Azure Frontdoor(Standard/Premium) profi
     ```bash
         cdn profile-migration check-compatibility --resource-group RG --profile-name profile1
     ```
+
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vY2RuY2FubWlncmF0ZXRvYWZk/2026-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/cdncanmigratetoafd 2026-10-01 -->
+
+#### examples
+
+- Profiles_CdnCanMigrate
+    ```bash
+        cdn profile-migration check-compatibility --resource-group RG --profile-name profile1
+    ```

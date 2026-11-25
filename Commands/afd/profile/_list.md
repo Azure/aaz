@@ -102,3 +102,20 @@ List all of the Azure Front Door Standard, Azure Front Door Premium, and CDN pro
     ```bash
         afd profile list --resource-group RG
     ```
+
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXM=/2026-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/providers/microsoft.cdn/profiles 2026-10-01 -->
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles 2026-10-01 -->
+
+#### examples
+
+- Profiles_List
+    ```bash
+        afd profile list
+    ```
+
+- Profiles_ListByResourceGroup
+    ```bash
+        afd profile list --resource-group RG
+    ```

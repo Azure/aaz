@@ -41,3 +41,14 @@ List existing AzureFrontDoor rule sets within a profile.
     ```bash
         afd rule-set list --resource-group RG --profile-name profile1
     ```
+
+### [2026-10-01](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5jZG4vcHJvZmlsZXMve30vcnVsZXNldHM=/2026-10-01.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.cdn/profiles/{}/rulesets 2026-10-01 -->
+
+#### examples
+
+- RuleSets_ListByProfile
+    ```bash
+        afd rule-set list --resource-group RG --profile-name profile1
+    ```
