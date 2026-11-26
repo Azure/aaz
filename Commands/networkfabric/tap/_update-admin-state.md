@@ -58,3 +58,19 @@ Enable/Disable a network tap
     ```bash
         networkfabric tap update-admin-state --resource-group "example-rg" --resource-name "example-tap" --state "Enable"
     ```
+
+### [2026-07-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrdGFwcy97fS91cGRhdGVhZG1pbmlzdHJhdGl2ZXN0YXRl/2026-07-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networktaps/{}/updateadministrativestate 2026-07-15-preview -->
+
+#### examples
+
+- Updates the Administrative state of the Network Tap
+    ```bash
+        networkfabric tap update-admin-state --resource-group "example-rg" --resource-name "example-tap" --state "Enable" --force "True"
+    ```
+
+- Updates the Administrative state of the Network Tap with resource ids parameter
+    ```bash
+        networkfabric tap update-admin-state --resource-group "example-rg" --resource-name "example-tap" --resource-ids "[/Subscriptions/example-subscription-id/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/networkTaps/example-tap-1]" --state "Enable"
+    ```

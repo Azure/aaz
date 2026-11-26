@@ -14,3 +14,19 @@ Update Static Route BFD administrative state for internalNetwork.
     ```bash
         networkfabric internalnetwork update-static-route-bfd-admin-state --resource-group "example-rg" --l3domain "example-l3domain" --resource-name "example-internalNetwork" --state "Enable" --resource-ids "[]"
     ```
+
+### [2026-07-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9sM2lzb2xhdGlvbmRvbWFpbnMve30vaW50ZXJuYWxuZXR3b3Jrcy97fS91cGRhdGVzdGF0aWNyb3V0ZWJmZGFkbWluaXN0cmF0aXZlc3RhdGU=/2026-07-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/l3isolationdomains/{}/internalnetworks/{}/updatestaticroutebfdadministrativestate 2026-07-15-preview -->
+
+#### examples
+
+- Updates the Static Route BFD Administrative state of the Internal Network
+    ```bash
+        networkfabric internalnetwork update-static-route-bfd-admin-state --resource-group "example-rg" --l3domain "example-l3domain" --resource-name "example-internalNetwork" --state "Enable" --force "True"
+    ```
+
+- Updates the Static Route BFD Administrative state of the Internal Network with resource ids parameter
+    ```bash
+        networkfabric internalnetwork update-static-route-bfd-admin-state --resource-group "example-rg" --l3domain "example-l3domain" --resource-name "example-internalNetwork" --resource-ids "[/Subscriptions/example-subscription-id/resourceGroups/example-rg/providers/Microsoft.ManagedNetworkFabric/l3IsolationDomains/example-l3domain/internalNetworks/example-internalNetwork-1]" --state "Enable"
+    ```

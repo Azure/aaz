@@ -48,3 +48,24 @@ Create a Network Device resource
     ```bash
         networkfabric device create --resource-group "example-rg" --resource-name "example-device" --annotation "annotation" --host-name "NFA-Device" --serial-number "Vendor;DCS-7280XXX-24;12.05;JPE2111XXXX" --network-device-sku "DeviceSku" --tags "{KeyId:KeyValue}" --location "eastuseuap"
     ```
+
+### [2026-07-15-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL21pY3Jvc29mdC5tYW5hZ2VkbmV0d29ya2ZhYnJpYy9uZXR3b3JrZGV2aWNlcy97fQ==/2026-07-15-preview.xml) **Stable**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/microsoft.managednetworkfabric/networkdevices/{} 2026-07-15-preview -->
+
+#### examples
+
+- Create the Network Device
+    ```bash
+        networkfabric device create --resource-group "example-rg" --resource-name "example-device" --annotation "annotation" --host-name "NFA-Device" --serial-number "Vendor;DCS-7280XXX-24;12.05;JPE2111XXXX" --network-device-sku "DeviceSku" --tags "{KeyId:KeyValue}" --location "eastuseuap"
+    ```
+
+- Create a Network Device with identity selector
+    ```bash
+        networkfabric device create --resource-group "example-rg" --resource-name "example-device" --location "eastus" --serial-number "Vendor;Model;HardwareRevisionId;SerialNumber" --identity-selector "{identityType:SystemAssignedIdentity}"
+    ```
+
+- Create a Network Device with system-assigned and user-assigned identities
+    ```bash
+        networkfabric device create --resource-name "example-device" --resource-group "example-rg" --location "eastuseuap" --serial-number "Vendor;DCS-7280XXX-24;12.05;JPE2111XXXX" --system-assigned "true" --user-assigned "/subscriptions/example-subscription-id/resourceGroups/example-rg/providers/Microsoft.ManagedIdentity/userAssignedIdentities/example-identity"
+    ```
