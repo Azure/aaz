@@ -36,3 +36,14 @@ Update a AutonomousDatabase
     ```bash
         oracle-database autonomous-database update --autonomousdatabasename <ADBS name> --resource-group <resource_group> --tags {Tagkey:TagValue}
     ```
+
+### [2026-07-01-preview](/Resources/mgmt-plane/L3N1YnNjcmlwdGlvbnMve30vcmVzb3VyY2Vncm91cHMve30vcHJvdmlkZXJzL29yYWNsZS5kYXRhYmFzZS9hdXRvbm9tb3VzZGF0YWJhc2VzL3t9/2026-07-01-preview.xml) **Preview**
+
+<!-- mgmt-plane /subscriptions/{}/resourcegroups/{}/providers/oracle.database/autonomousdatabases/{} 2026-07-01-preview -->
+
+#### examples
+
+- Update Autonomous database
+    ```bash
+        oracle-database autonomous-database update --autonomousdatabasename <ADBS name> --resource-group <resource_group> --tags {Tagkey:TagValue}
+    ```
